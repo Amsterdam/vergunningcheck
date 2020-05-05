@@ -8,7 +8,7 @@ COPY apps/graphql/ .
 
 # Test
 FROM builder
-RUN cd apps/graphql/; npm test
+RUN npm test
 
 # Release
 FROM builder
