@@ -1,0 +1,58 @@
+{
+	"_links": {
+		"self": {
+			"href": "https://api.data.amsterdam.nl/monumenten/monumenten/?betreft_pand=0363100012182894"
+		},
+		"next": {
+			"href": null
+		},
+		"previous": {
+			"href": null
+		}
+	},
+	"count": 1,
+	"results": [
+		{
+			"_links": {
+				"self": {
+					"href": "https://api.data.amsterdam.nl/monumenten/monumenten/c70dd3b7-50e9-43a1-bc87-80bf5bc3906a/"
+				}
+			},
+			"identificerende_sleutel_monument": "c70dd3b7-50e9-43a1-bc87-80bf5bc3906a",
+			"monumentnummer": 4140,
+			"monumentnaam": "Nicolaaskerk",
+			"monumentstatus": "Rijksmonument",
+			"monument_aanwijzingsdatum": null,
+			"betreft_pand": [
+				{
+					"pandidentificatie": "0363100012165691",
+					"_links": {
+						"self": {
+							"href": "https://api.data.amsterdam.nl/bag/pand/0363100012165691/"
+						}
+					}
+				},
+				{
+					"pandidentificatie": "0363100012182894",
+					"_links": {
+						"self": {
+							"href": "https://api.data.amsterdam.nl/bag/pand/0363100012182894/"
+						}
+					}
+				}
+			],
+			"_display": "Nicolaaskerk",
+			"heeft_als_grondslag_beperking": null,
+			"heeft_situeringen": {
+				"count": 3,
+				"href": "https://api.data.amsterdam.nl/monumenten/situeringen/?monument_id=c70dd3b7-50e9-43a1-bc87-80bf5bc3906a"
+			},
+			"monumentcoordinaten": {
+				"type": "Point",
+				"coordinates": [121876, 487744]
+			},
+			"ligt_in_complex": null,
+			"in_onderzoek": "N"
+		}
+	]
+}

@@ -1,0 +1,326 @@
+<?xml version="1.0" standalone="no" ?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" xmlns:intr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel" xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content" xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001001567834000" namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001001567834000" exporter="Berkeley DMN Modeler 64" exporterVersion="1.0.2.3530" id="_ad8c9bc2-f5ab-4e19-8213-1b37d2d01cee" name="ConclusieBoomKappen">
+    <dmn:extensionElements>
+        <intr:regelgroepen>
+            <intr:regelgroep id="RegelGroep01">
+                <intr:naam>Beschermde boom</intr:naam>
+                <intr:prioriteit>1</intr:prioriteit>
+            </intr:regelgroep>
+            <intr:regelgroep id="RegelGroep02">
+                <intr:naam>Boomplan</intr:naam>
+                <intr:prioriteit>2</intr:prioriteit>
+            </intr:regelgroep>
+        </intr:regelgroepen>
+        <uitv:uitvoeringsregels>
+            <uitv:uitvoeringsregel id="UitvId0001">
+                <uitv:regelgroepRef href="#RegelGroep01" />
+                <intr:prioriteit>1</intr:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Staat de boom in een tuin of op een erf?</uitv:vraagTekst>
+                </uitv:vraag>
+                <content:uitvoeringsregelToelichting>
+                    <content:toelichting>
+                        <![CDATA[  Met een tuin of een erf wordt bedoeld de grond die bij een woning of bedrijf hoort.  ]]>
+                    </content:toelichting>
+                    <content:belangrijk>false</content:belangrijk>
+                </content:uitvoeringsregelToelichting>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="UitvId0002">
+                <uitv:regelgroepRef href="#RegelGroep01" />
+                <intr:prioriteit>2</intr:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Is het een beschermde boom?
+                    </uitv:vraagTekst>
+                </uitv:vraag>
+                <content:uitvoeringsregelToelichting>
+                    <content:toelichting>
+                        <![CDATA[Burgemeester en wethouders hebben een lijst vastgesteld met bomen die zo bijzonder zijn dat ze extra beschermd worden. Bijvoorbeeld omdat ze beeldbepalend zijn, erg oud zijn of omdat ze geplant zijn voor een bijzondere gebeurtenis. Voor het kappen van beschermde bomen is altijd een vergunning nodig. Deze bomen mogen alleen in uitzonderlijke situaties gekapt worden. Klik [hier](https://kaarten.venlo.nl/files/bomen_houtopstanden.pdf) om te controleren of de boom beschermd is. ]]>
+                    </content:toelichting>
+                    <content:belangrijk>true</content:belangrijk>
+                </content:uitvoeringsregelToelichting>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="UitvId0003">
+                <uitv:regelgroepRef href="#RegelGroep02" />
+                <intr:prioriteit>1</intr:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>list</uitv:gegevensType>
+                    <uitv:vraagTekst>Wat wilt u gaan doen met de boom?</uitv:vraagTekst>
+                    <uitv:opties>
+                        <uitv:optieType>enkelAntwoord</uitv:optieType>
+                        <uitv:optie>
+                            <uitv:sequenceId>1</uitv:sequenceId>
+                            <uitv:optieText>Kappen</uitv:optieText>
+                        </uitv:optie>
+                        <uitv:optie>
+                            <uitv:sequenceId>2</uitv:sequenceId>
+                            <uitv:optieText>Meer dan 20% snoeien van de kroon of de wortels</uitv:optieText>
+                        </uitv:optie>
+                        <uitv:optie>
+                            <uitv:sequenceId>3</uitv:sequenceId>
+                            <uitv:optieText>Minder dan 20% snoeien van de kroon of de wortels</uitv:optieText>
+                        </uitv:optie>
+                    </uitv:opties>
+                </uitv:vraag>
+                <content:uitvoeringsregelToelichting>
+                    <content:toelichting>
+                        <![CDATA[De kroon van een boom is het bovenste gedeelte van de boom, de wortels van de boom is het gedeelte onder de grond. ]]>
+                    </content:toelichting>
+                    <content:belangrijk>false</content:belangrijk>
+                </content:uitvoeringsregelToelichting>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="UitvId0004">
+                <uitv:regelgroepRef href="#RegelGroep02" />
+                <intr:prioriteit>2</intr:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Gaat u de vorm van een vormboom onderhouden?</uitv:vraagTekst>
+                </uitv:vraag>
+                <content:uitvoeringsregelToelichting>
+                    <content:toelichting>
+                        <![CDATA[Een vormboom is bijvoorbeeld een leiboom of knotwilg. Deze bomen moeten regelmatig weer terug in hun vorm worden gesnoeid. ]]>
+                    </content:toelichting>
+                    <content:belangrijk>false</content:belangrijk>
+                </content:uitvoeringsregelToelichting>
+            </uitv:uitvoeringsregel>
+        </uitv:uitvoeringsregels>
+    </dmn:extensionElements>
+
+    <dmn:inputData id="InputData0001" name="erf">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#UitvId0001" />
+        </dmn:extensionElements>
+        <dmn:variable id="InputData0001.var" name="erf" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="InputData0002" name="beschermd">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#UitvId0002" />
+        </dmn:extensionElements>
+        <dmn:variable id="InputData0002.var" name="beschermd" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="InputData0003" name="plan">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#UitvId0003" />
+        </dmn:extensionElements>
+        <dmn:variable id="InputData0003.var" name="plan" typeRef="feel:string" />
+    </dmn:inputData>
+    <dmn:inputData id="InputData0004" name="vormboom">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#UitvId0004" />
+        </dmn:extensionElements>
+        <dmn:variable id="InputData0004.var" name="vormboom" typeRef="feel:boolean" />
+    </dmn:inputData>
+
+    <dmn:decision id="Decision0001" name="ConclusieBoomKappen">
+        <dmn:extensionElements>
+            <bedr:functioneleStructuurRef href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001001567834000/id/concept/Conclusienl.imow-gm0983.activiteit.MD2i221" />
+        </dmn:extensionElements>
+        <dmn:variable id="Decision0001.var" name="ConclusieBoomKappen" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#Decision0002" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#Decision0003" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" outputLabel="ConclusieBoomKappen">
+            <dmn:input>
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Beschermde boom</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input>
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>Boomplan</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output>
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","Toestemmingsvrij","Meldingsplicht"</dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"nee"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Toestemmingsvrij"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"nvt"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"nvt"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"ja"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"ja"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Toestemmingsvrij"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="Decision0002" name="Beschermde boom">
+        <dmn:variable id="Decision0002.var" name="Beschermde boom" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#InputData0001" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#InputData0002" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" outputLabel="Beschermde boom">
+            <dmn:input>
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>erf</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input>
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>beschermd</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+
+            <dmn:output>
+                <dmn:outputValues>
+                    <dmn:text>"ja","nee","nvt"</dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"ja"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"nee"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"nvt"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="Decision0003" name="Boomplan">
+        <dmn:variable id="Decision0003.var" name="Boomplan" typeRef="feel:boolean" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#InputData0003" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#InputData0004" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" outputLabel="Boomplan">
+            <dmn:input>
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>plan</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input>
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>vormboom</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output />
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"Kappen"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"Minder dan 20% snoeien van de kroon of de wortels"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"Meer dan 20% snoeien van de kroon of de wortels"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"Meer dan 20% snoeien van de kroon of de wortels"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+</dmn:definitions>

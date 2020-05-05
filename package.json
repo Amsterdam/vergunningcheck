@@ -1,0 +1,26 @@
+{
+  "name": "chappie-1.0",
+  "private": true,
+  "engines": {
+    "node": "13.1"
+  },
+  "scripts": {
+    "start": "lerna run --parallel --no-bail start",
+    "start:prod": "lerna run --parallel start:prod",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "postinstall": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "@types/lodash.isstring": "^4.0.6",
+    "husky": "^4.2.3",
+    "lerna": "^3.20.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "lerna run --concurrency 1 --stream precommit"
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bagsearch findAddress 1`] = `
+Array [
+  Object {
+    "_adressableObjectId": "0363010000578090",
+    "houseNumber": 30,
+    "houseNumberFull": "30",
+    "houseNumberLetter": null,
+    "houseNumberSuffix": null,
+    "postalCode": "1043AP",
+    "residence": "Amsterdam",
+    "streetName": "Basisweg",
+    "type": "BUILDING",
+  },
+]
+`;
+
+exports[`bagsearch reducer 1`] = `
+Object {
+  "_adressableObjectId": "0363010000578090",
+  "houseNumber": 30,
+  "houseNumberFull": "30",
+  "houseNumberLetter": null,
+  "houseNumberSuffix": null,
+  "postalCode": "1043AP",
+  "residence": "Amsterdam",
+  "streetName": "Basisweg",
+  "type": "BUILDING",
+}
+`;

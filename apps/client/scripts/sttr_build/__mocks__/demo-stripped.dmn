@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel" xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content" xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000" namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000">
+
+    <dmn:extensionElements>
+        <inter:regelgroepen>
+            <inter:regelgroep id="groep1">
+                <inter:naam>Conclusie STTR Test gemeente Amsterdam</inter:naam>
+                <inter:prioriteit>10</inter:prioriteit>
+            </inter:regelgroep>
+        </inter:regelgroepen>
+
+        <uitv:uitvoeringsregels>
+            <uitv:uitvoeringsregel id="vraag-wietplantage">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>10</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst> Ga je wiet plantage opzetten? </uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="vraag-aanbouwmetvergunning">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>20</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Ga je een aanbouw maken waar je een vergunning voor moet aanvragen?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+        </uitv:uitvoeringsregels>
+    </dmn:extensionElements>
+
+    <dmn:inputData id="input-id-wietplantage">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#vraag-wietplantage" />
+        </dmn:extensionElements>
+        <dmn:variable typeRef="feel:boolean" />
+    </dmn:inputData>
+
+    <dmn:inputData id="input-id-aanbouwmetvergunning">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#vraag-aanbouwmetvergunning" />
+        </dmn:extensionElements>
+        <dmn:variable typeRef="feel:boolean" />
+    </dmn:inputData>
+
+
+    <dmn:decision id="decision-pad-1" name="Pad 1">
+        <dmn:variable name="Pad 1" typeRef="feel:string" />
+
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input-id-wietplantage" />
+        </dmn:informationRequirement>
+
+        <dmn:decisionTable hitPolicy="ANY" outputLabel="Pad 1">
+
+            <dmn:input label="input-name-wietplantage">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>input-name-wietplantage</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+
+            <dmn:output>
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"</dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+
+
+    <dmn:decision id="decision-pad-2" name="Pad 2">
+        <dmn:variable name="Pad 2" typeRef="feel:string" />
+
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input-id-wietplantage" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input-id-aanbouwmetvergunning" />
+        </dmn:informationRequirement>
+
+
+        <dmn:decisionTable hitPolicy="ANY" outputLabel="Pad 2">
+
+            <dmn:input label="input-name-wietplantage">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>input-name-wietplantage</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+
+            <dmn:input label="input-name-aanbouwmetvergunning">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>input-name-aanbouwmetvergunning</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+
+            <dmn:output>
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"</dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+
+
+    <dmn:decision id="dummy" name="_Conclusie_dummy">
+
+        <dmn:extensionElements>
+            <bedr:functioneleStructuurRef href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.Bijbehorendbouwwerkbouwen" />
+        </dmn:extensionElements>
+
+        <dmn:variable name="_Conclusie_dummy" typeRef="feel:string" />
+
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#decision-pad-1" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#decision-pad-2" />
+        </dmn:informationRequirement>
+
+        <dmn:decisionTable hitPolicy="ANY" outputLabel="Conclusie dummy">
+
+            <dmn:input label="Pad 1">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 1</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+
+            <dmn:input label="Pad 2">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 2</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+
+            <dmn:output>
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","Toestemmingsvrij"</dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+
+            <dmn:rule>
+                <dmn:inputEntry>
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry>
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry>
+                    <dmn:text>"Toestemmingsvrij"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+</dmn:definitions>

@@ -1,0 +1,183 @@
+{
+	"_links": {
+		"self": {
+			"href": "https://api.data.amsterdam.nl/bag/verblijfsobject/0363010000783024/"
+		}
+	},
+	"_display": "Prins Hendrikkade 73",
+	"sleutelverzendend": "03630000783024",
+	"verblijfsobjectidentificatie": "0363010000783024",
+	"date_modified": "2020-01-09T23:34:22.450081Z",
+	"document_mutatie": "2010-09-09",
+	"document_nummer": "GV00000406",
+	"begin_geldigheid": "2010-09-09",
+	"einde_geldigheid": null,
+	"mutatie_gebruiker": "DBI",
+	"status": {
+		"code": "21",
+		"omschrijving": "Verblijfsobject in gebruik"
+	},
+	"bron": null,
+	"bbox": [121876, 487744, 121876, 487744],
+	"geometrie": {
+		"type": "Point",
+		"coordinates": [121876, 487744]
+	},
+	"oppervlakte": 488,
+	"bouwlaag_toegang": null,
+	"status_coordinaat": {
+		"code": "DEF",
+		"omschrijving": "Definitief punt"
+	},
+	"verhuurbare_eenheden": null,
+	"bouwlagen": null,
+	"type_woonobject": {
+		"code": "",
+		"omschrijving": ""
+	},
+	"woningvoorraad": false,
+	"aantal_kamers": null,
+	"reden_afvoer": null,
+	"reden_opvoer": null,
+	"eigendomsverhouding": null,
+	"financieringswijze": null,
+	"gebruik": null,
+	"ligging": {
+		"code": "03",
+		"omschrijving": "Tussengebouw"
+	},
+	"locatie_ingang": null,
+	"toegang": null,
+	"hoofdadres": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/bag/nummeraanduiding/0363200000242754/"
+			}
+		},
+		"_display": "Prins Hendrikkade 73",
+		"landelijk_id": "0363200000242754",
+		"hoofdadres": true,
+		"vbo_status": {
+			"code": "21",
+			"omschrijving": "Verblijfsobject in gebruik"
+		},
+		"dataset": "bag"
+	},
+	"adressen": {
+		"count": 1,
+		"href": "https://api.data.amsterdam.nl/bag/nummeraanduiding/?verblijfsobject=0363010000783024"
+	},
+	"buurt": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/gebieden/buurt/03630000000078/"
+			}
+		},
+		"_display": "Kop Zeedijk (A00a)",
+		"code": "00a",
+		"naam": "Kop Zeedijk",
+		"dataset": "gebieden"
+	},
+	"panden": {
+		"count": 1,
+		"href": "https://api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010000783024"
+	},
+	"kadastrale_objecten": {
+		"count": 1,
+		"href": "https://api.data.amsterdam.nl/brk/object/?verblijfsobjecten__id=0363010000783024"
+	},
+	"rechten": {
+		"count": 1,
+		"href": "https://api.data.amsterdam.nl/brk/zakelijk-recht/?verblijfsobjecten__id=0363010000783024"
+	},
+	"beperkingen": {
+		"count": 1,
+		"href": "https://api.data.amsterdam.nl/wkpb/beperking/?verblijfsobjecten__id=0363010000783024"
+	},
+	"bouwblok": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/gebieden/bouwblok/03630012100969/"
+			}
+		},
+		"_display": "YA01",
+		"id": "03630012100969",
+		"dataset": "gebieden"
+	},
+	"indicatie_geconstateerd": false,
+	"aanduiding_in_onderzoek": false,
+	"_buurtcombinatie": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/gebieden/buurtcombinatie/3630012052036/"
+			}
+		},
+		"_display": "Burgwallen-Oude Zijde (00)",
+		"naam": "Burgwallen-Oude Zijde",
+		"vollcode": "A00",
+		"dataset": "gebieden"
+	},
+	"_stadsdeel": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/gebieden/stadsdeel/03630000000018/"
+			}
+		},
+		"_display": "Centrum (A)",
+		"code": "A",
+		"naam": "Centrum",
+		"dataset": "gebieden"
+	},
+	"_gebiedsgerichtwerken": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/gebieden/gebiedsgerichtwerken/DX01/"
+			}
+		},
+		"_display": "Centrum-West (DX01)",
+		"code": "DX01",
+		"naam": "Centrum-West",
+		"dataset": "gebieden"
+	},
+	"_grootstedelijkgebied": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/gebieden/grootstedelijkgebied/programma-hoogfrequent-spoorve/"
+			}
+		},
+		"_display": "Programma Hoogfrequent Spoorve",
+		"naam": "Programma Hoogfrequent Spoorve",
+		"gsg_type": "GSP",
+		"dataset": "gebieden"
+	},
+	"_gemeente": {
+		"_display": "Amsterdam",
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/brk/gemeente/Amsterdam/"
+			}
+		},
+		"naam": "Amsterdam",
+		"code": "0363",
+		"dataset": "bag"
+	},
+	"_woonplaats": {
+		"_links": {
+			"self": {
+				"href": "https://api.data.amsterdam.nl/bag/woonplaats/3594/"
+			}
+		},
+		"_display": "Amsterdam",
+		"landelijk_id": "3594",
+		"dataset": "bag"
+	},
+	"gebruiksdoelen": [
+		{
+			"code": "1500",
+			"omschrijving": "kantoorfunctie",
+			"code_plus": "",
+			"omschrijving_plus": ""
+		}
+	],
+	"dataset": "bag"
+}

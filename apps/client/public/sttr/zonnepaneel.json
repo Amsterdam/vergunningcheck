@@ -1,0 +1,1031 @@
+{
+  "id": "zonnepaneel",
+  "permits": [
+    {
+      "name": "Conclusie Zonnepaneel en warmtecollector monument",
+      "questions": [
+        {
+          "text": "Gaat u een zonnepaneel plaatsen of een warmtecollector?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/1_a_Zonnepaneel_elektriciteit.png)\n\nZonnepanelen\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/1_b_Zonnepaneel_warmtecollector.png)\n\nWarmtecollector\n\nHet verschil tussen zonnepanelen en een warmtecollector:\n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een warmtecollector is een installatie die water verwarmt door zonlicht.",
+          "options": ["Zonnepanelen", "Warmtecollector"],
+          "type": "string",
+          "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "prio": 10,
+          "uuid": "zonnepaneel-warmtecollector"
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen aan of bij een gemeentelijk of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "prio": 20,
+          "uuid": "monument-zonnepaneel"
+        },
+        {
+          "text": "Gaat u de warmtecollector plaatsen aan of bij een gemeentelijk of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "prio": 30
+        }
+      ],
+      "inputs": {
+        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
+          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "type": "string"
+        },
+        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
+          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "type": "boolean"
+        },
+        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
+          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_50ac17f2-d208-4356-b4a3-c6a7a4d31bed": {
+          "requiredInputs": [
+            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+            "#input__30a75386-d045-473c-b4b8-3aad506986f2"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_3a352624-cbd0-4c08-a6c6-c29a4cf718f8": {
+          "requiredInputs": [
+            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+            "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Warmtecollector\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Zonnepanelen\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_50ac17f2-d208-4356-b4a3-c6a7a4d31bed",
+            "#_3a352624-cbd0-4c08-a6c6-c29a4cf718f8"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Conclusie Zonnepaneel en warmtecollector bouwen",
+      "questions": [
+        {
+          "text": "Gaat u zonnepanelen of een warmtecollector plaatsen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/1_a_Zonnepaneel_elektriciteit.png)\n\nZonnepanelen\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/1_b_Zonnepaneel_warmtecollector.png)\n\nWarmtecollector\n\nHet verschil tussen zonnepanelen en een warmtecollector:\n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een warmtecollector is een installatie die water verwarmt door zonlicht.",
+          "options": ["Zonnepanelen", "Warmtecollector"],
+          "type": "string",
+          "id": "uitv__d09a954d-cb3c-441c-b564-d2c1e6530974",
+          "prio": 10,
+          "uuid": "zonnepaneel-warmtecollector"
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__7a581a66-8143-4f7f-b864-a7dabd06850d",
+          "prio": 20,
+          "uuid": "monument-zonnepaneel"
+        },
+        {
+          "text": "Staat het gebouw waarop u zonnepanelen gaat plaatsen in een beschermd stads- of dorpsgezicht?",
+          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "type": "boolean",
+          "id": "uitv__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
+          "prio": 30
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen aan de achterkant van het gebouw?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_a_Zonnepaneel_achterkant_plaatsen.png)",
+          "type": "boolean",
+          "id": "uitv__9f885868-4033-487c-8e38-6ccf211c5539",
+          "prio": 40
+        },
+        {
+          "text": "U gaat zonnepanelen plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_b_Zonnepaneel_OTG_Achterkant_weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__e9b7860d-f422-4a85-9afe-fd7fb9936cc6",
+          "prio": 50
+        },
+        {
+          "text": "U gaat zonnepanelen plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_c_Zonnepaneel_OTG_Achterkant_water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__f7154f29-6663-4900-88b3-516fc3955a5c",
+          "prio": 60
+        },
+        {
+          "text": "U gaat zonnepanelen plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_d_Zonnepaneel_OTG_Achterkant_plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__52dcbe27-9a39-4097-bdf1-70cc20e3bcc0",
+          "prio": 70
+        },
+        {
+          "text": "Wordt de installatie voor het omzetten van de opgewekte elektriciteit onderdeel van het zonnepaneel?",
+          "description": "Een zonnepaneel zet zonlicht om in elektriciteit. De opgewekte elektriciteit is niet direct geschikt voor de apparaten in huis of het energienet. Daarom kan er een losse installatie nodig zijn voor het omzetten van de opgewekte elektriciteit. Dit heet een omvormer. Deze omvormer wordt meestal geplaatst:\n\n*   op zolder onder het dak\n*   in de meterkast\n*   in de garage of schuur\n*   buiten onder een afdak\n\nWanneer er sprake is van een losse installatie, dan beantwoordt u deze vraag met ‘nee’.",
+          "options": [
+            "Ja, paneel en installatie zitten aan elkaar vast",
+            "Nee, er zijn twee losse onderdelen"
+          ],
+          "type": "string",
+          "id": "uitv__d2e1d3a6-4ed8-45dd-8876-107db345d841",
+          "prio": 80
+        },
+        {
+          "text": "Komt de omvormer of een andere installatie voor het omzetten van elektriciteit binnen of buiten te staan?",
+          "description": "Voorbeelden van binnen:\n\n*   op zolder\n*   in de meterkast\n*   in de garage of schuur\n\nVoorbeelden van buiten:\n\n*   onder een afdak\n*   op het dak\n*   in de tuin",
+          "options": ["Binnen", "Buiten"],
+          "type": "string",
+          "id": "uitv__68ba9cd2-be70-4595-b29d-2ae9f8f4a371",
+          "prio": 90
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen op een plat dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/7_a_Zonnepaneel_plat_dak.png)",
+          "type": "boolean",
+          "id": "uitv__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+          "prio": 100
+        },
+        {
+          "text": "Komen de zonnepanelen verder van de dakrand te staan dan de hoogte van de zonnepanelen?",
+          "description": "Voorbeeld: is het hoogste punt van de panelen 25 centimeter? Dan moeten ze minstens 25 centimeter van de dakranden af komen te staan.\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/7_b_Zonnepaneel_afstand_groter_dan_hoogte.png)\n\nDit is een van de voorwaarden om zonnepanelen vergunningvrij te plaatsen.",
+          "type": "boolean",
+          "id": "uitv__4af95a13-5cfc-4f9e-b56a-7e3b1d8d3579",
+          "prio": 110
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen op een schuin dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_a_Zonnepaneel_Schuin_dak.png)",
+          "type": "boolean",
+          "id": "uitv__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
+          "prio": 120
+        },
+        {
+          "text": "Blijven de zonnepanelen binnen de randen van het dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_b_Zonnepaneel_binnen_dakranden.png)",
+          "type": "boolean",
+          "id": "uitv__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891",
+          "prio": 130
+        },
+        {
+          "text": "Gaat u de zonnepanelen in het dak plaatsen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_d_Zonnepaneel_in_dak.png)",
+          "type": "boolean",
+          "id": "uitv__679562df-0ee1-4958-b173-677c95eb812f",
+          "prio": 140
+        },
+        {
+          "text": "Gaat u de zonnepanelen direct op het dak plaatsen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_c_Zonnepaneel_direct_op_dak.png)",
+          "type": "boolean",
+          "id": "uitv__4a6d1c04-9f16-4c2a-8abe-6af395cd886d",
+          "prio": 150
+        },
+        {
+          "text": "Gaat u de zonnepanelen net zo schuin plaatsen als het dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_b_Zonnepaneel_helling_op_dak.png)\n\nAls de zonnepanelen de helling van het dak volgen, vallen ze minder op.",
+          "type": "boolean",
+          "id": "uitv__03596543-74bc-43ef-bd91-81bc09fa3b1a",
+          "prio": 160
+        }
+      ],
+      "inputs": {
+        "input__d09a954d-cb3c-441c-b564-d2c1e6530974": {
+          "href": "#uitv__d09a954d-cb3c-441c-b564-d2c1e6530974",
+          "type": "string"
+        },
+        "input__7a581a66-8143-4f7f-b864-a7dabd06850d": {
+          "href": "#uitv__7a581a66-8143-4f7f-b864-a7dabd06850d",
+          "type": "boolean"
+        },
+        "input__7054e7c3-6acc-4ca3-9a45-2e60110713e5": {
+          "href": "#uitv__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
+          "type": "boolean"
+        },
+        "input__9f885868-4033-487c-8e38-6ccf211c5539": {
+          "href": "#uitv__9f885868-4033-487c-8e38-6ccf211c5539",
+          "type": "boolean"
+        },
+        "input__e9b7860d-f422-4a85-9afe-fd7fb9936cc6": {
+          "href": "#uitv__e9b7860d-f422-4a85-9afe-fd7fb9936cc6",
+          "type": "boolean"
+        },
+        "input__f7154f29-6663-4900-88b3-516fc3955a5c": {
+          "href": "#uitv__f7154f29-6663-4900-88b3-516fc3955a5c",
+          "type": "boolean"
+        },
+        "input__52dcbe27-9a39-4097-bdf1-70cc20e3bcc0": {
+          "href": "#uitv__52dcbe27-9a39-4097-bdf1-70cc20e3bcc0",
+          "type": "boolean"
+        },
+        "input__d2e1d3a6-4ed8-45dd-8876-107db345d841": {
+          "href": "#uitv__d2e1d3a6-4ed8-45dd-8876-107db345d841",
+          "type": "string"
+        },
+        "input__68ba9cd2-be70-4595-b29d-2ae9f8f4a371": {
+          "href": "#uitv__68ba9cd2-be70-4595-b29d-2ae9f8f4a371",
+          "type": "string"
+        },
+        "input__0b0105bb-169d-47ff-a96b-ebf93256dff4": {
+          "href": "#uitv__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+          "type": "boolean"
+        },
+        "input__4af95a13-5cfc-4f9e-b56a-7e3b1d8d3579": {
+          "href": "#uitv__4af95a13-5cfc-4f9e-b56a-7e3b1d8d3579",
+          "type": "boolean"
+        },
+        "input__9dbf6ab3-894f-4453-9987-b74f84fd66ce": {
+          "href": "#uitv__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
+          "type": "boolean"
+        },
+        "input__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891": {
+          "href": "#uitv__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891",
+          "type": "boolean"
+        },
+        "input__679562df-0ee1-4958-b173-677c95eb812f": {
+          "href": "#uitv__679562df-0ee1-4958-b173-677c95eb812f",
+          "type": "boolean"
+        },
+        "input__4a6d1c04-9f16-4c2a-8abe-6af395cd886d": {
+          "href": "#uitv__4a6d1c04-9f16-4c2a-8abe-6af395cd886d",
+          "type": "boolean"
+        },
+        "input__03596543-74bc-43ef-bd91-81bc09fa3b1a": {
+          "href": "#uitv__03596543-74bc-43ef-bd91-81bc09fa3b1a",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_a980ab96-0b9f-40c0-93df-3165c6d51fab": {
+          "requiredInputs": ["#input__d09a954d-cb3c-441c-b564-d2c1e6530974"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Warmtecollector\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"Zonnepanelen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_6bf6dd3c-c6e3-49ad-98ea-fb0234771163": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_422b1f8a-c582-4bfb-af96-58628066cd8a": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
+            "#input__9f885868-4033-487c-8e38-6ccf211c5539"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_e6568f36-ddd8-4922-8257-7e16f3e963e2": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+            "#input__9dbf6ab3-894f-4453-9987-b74f84fd66ce"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", false, false],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f54d7191-da8a-46ca-a512-54e955f80470": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__d2e1d3a6-4ed8-45dd-8876-107db345d841",
+            "#input__68ba9cd2-be70-4595-b29d-2ae9f8f4a371"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  "\"Nee, er zijn twee losse onderdelen\"",
+                  "\"Buiten\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, paneel en installatie zitten aan elkaar vast\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"Binnen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_fb326b53-7a78-401b-bbc7-316cc98e9b1f": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+            "#input__4af95a13-5cfc-4f9e-b56a-7e3b1d8d3579"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_ad58970a-4658-41a6-ac06-8838676144bd": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
+            "#input__9f885868-4033-487c-8e38-6ccf211c5539",
+            "#input__e9b7860d-f422-4a85-9afe-fd7fb9936cc6"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true, true, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_e0c34846-3ca1-46e7-bed9-06889f5b376b": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+            "#input__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
+            "#input__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", false, true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_25bceb82-af1a-4c7b-9a44-1322e5accb3d": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
+            "#input__9f885868-4033-487c-8e38-6ccf211c5539",
+            "#input__e9b7860d-f422-4a85-9afe-fd7fb9936cc6",
+            "#input__f7154f29-6663-4900-88b3-516fc3955a5c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true, true, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_01009c24-ba7d-4ac0-861e-8135b02c2d6c": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
+            "#input__9f885868-4033-487c-8e38-6ccf211c5539",
+            "#input__e9b7860d-f422-4a85-9afe-fd7fb9936cc6",
+            "#input__f7154f29-6663-4900-88b3-516fc3955a5c",
+            "#input__52dcbe27-9a39-4097-bdf1-70cc20e3bcc0"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true, true, false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_23ddfafc-b698-47ae-8e7f-ceeddd8a3f57": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+            "#input__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
+            "#input__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891",
+            "#input__679562df-0ee1-4958-b173-677c95eb812f",
+            "#input__4a6d1c04-9f16-4c2a-8abe-6af395cd886d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", false, true, true, false, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_18eb02d7-e6e8-4378-bd55-2ef31a8dd51e": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+            "#input__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
+            "#input__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891",
+            "#input__679562df-0ee1-4958-b173-677c95eb812f",
+            "#input__03596543-74bc-43ef-bd91-81bc09fa3b1a"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", false, true, true, true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c852bc72-ec6f-4a23-ba32-9a0eed1ae0e1": {
+          "requiredInputs": [
+            "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
+            "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
+            "#input__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
+            "#input__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891",
+            "#input__679562df-0ee1-4958-b173-677c95eb812f",
+            "#input__4a6d1c04-9f16-4c2a-8abe-6af395cd886d",
+            "#input__03596543-74bc-43ef-bd91-81bc09fa3b1a"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Warmtecollector\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_a980ab96-0b9f-40c0-93df-3165c6d51fab",
+            "#_6bf6dd3c-c6e3-49ad-98ea-fb0234771163",
+            "#_422b1f8a-c582-4bfb-af96-58628066cd8a",
+            "#_e6568f36-ddd8-4922-8257-7e16f3e963e2",
+            "#_f54d7191-da8a-46ca-a512-54e955f80470",
+            "#_fb326b53-7a78-401b-bbc7-316cc98e9b1f",
+            "#_ad58970a-4658-41a6-ac06-8838676144bd",
+            "#_e0c34846-3ca1-46e7-bed9-06889f5b376b",
+            "#_25bceb82-af1a-4c7b-9a44-1322e5accb3d",
+            "#_01009c24-ba7d-4ac0-861e-8135b02c2d6c",
+            "#_23ddfafc-b698-47ae-8e7f-ceeddd8a3f57",
+            "#_18eb02d7-e6e8-4378-bd55-2ef31a8dd51e",
+            "#_c852bc72-ec6f-4a23-ba32-9a0eed1ae0e1"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "De vergunningcheck werkt niet voor uw situatie. Dat kan 2 redenen hebben:  \n\n1.  U gaat een warmtecollector plaatsen.\n2.  U gaat de zonnepanelen niet op een plat dak of op een schuin dak plaatsen.\n\n**Warmtecollector**\n\nDe vergunningcheck is nog niet geschikt voor warmtecollectoren. Wij werken hier op dit moment nog aan. Bel de gemeente op 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur. Of ga naar het [landelijke omgevingsloket](https://www.omgevingsloket.nl/Particulier/particulier/home/checken?init=true&clear-case=true).\n\n**Zonnepanelen niet op een plat dak of schuin dak**\n\nU hebt aangegeven zonnepanelen te willen plaatsen. Maar deze komen niet op een plat dak en ook niet op een schuin dak. Dat is een situatie waar de vergunningcheck geen uitkomst voor heeft. Bel daarom met de gemeente op 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "De vergunningcheck werkt niet voor uw situatie. Dat kan 2 redenen hebben:  \n\n1.  U gaat een warmtecollector plaatsen.\n2.  U gaat de zonnepanelen niet op een plat dak of op een schuin dak plaatsen.\n\n**Warmtecollector**\n\nDe vergunningcheck is nog niet geschikt voor warmtecollectoren. Wij werken hier op dit moment nog aan. Bel de gemeente op 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur. Of ga naar het [landelijke omgevingsloket](https://www.omgevingsloket.nl/Particulier/particulier/home/checken?init=true&clear-case=true).\n\n**Zonnepanelen niet op een plat dak of schuin dak**\n\nU hebt aangegeven zonnepanelen te willen plaatsen. Maar deze komen niet op een plat dak en ook niet op een schuin dak. Dat is een situatie waar de vergunningcheck geen uitkomst voor heeft. Bel daarom met de gemeente op 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hebt geen vergunning nodig voor het plaatsen van zonnepanelen. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\nDit is waar u verder op moet letten:\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van zonnepanelen op de WOZ-waarde van uw huis."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

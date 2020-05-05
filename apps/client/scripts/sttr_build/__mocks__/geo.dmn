@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel" xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content" xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000" namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000" exporter="Vinfo sttr exporter" exporterVersion="0.3.0" id="_2fbaa32a-0c44-485e-88ac-9f83f638ef9e" name="Conclusie Bouwen">
+    <dmn:extensionElements>
+        <inter:regelgroepen>
+            <inter:regelgroep id="groep1">
+                <inter:naam>Conclusie Bouwen gemeente Amsterdam</inter:naam>
+                <inter:prioriteit>10</inter:prioriteit>
+            </inter:regelgroep>
+        </inter:regelgroepen>
+
+        
+        <uitv:uitvoeringsregels>
+            <uitv:uitvoeringsregel id="uitv__6955a83b-e19c-4014-9655-3076879ea74f">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>10</inter:prioriteit>
+                <uitv:geoVerwijzing>
+                    <uitv:locatie identificatie="nl.imow-gm0363.gebied.4" />
+                </uitv:geoVerwijzing>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__ce0dffab-5b40-4bc8-a4e6-4f602a8b1513">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>20</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Gaat een aanbouw maken aan een rijksmonument?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__b9ff3816-1b89-4674-9eac-e0732eca75e4">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>30</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Gaat u een aanbouw maken in een beschermd stadsgezicht?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__6f7053f4-b6c4-4bcc-a897-b41792f0b2a4">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>40</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Is het bouwwerk zichtbaar vanaf de openbaar toegankelijk gebied?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__97fec18b-c8fd-4286-8aa9-ad14cdee96a9">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>50</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Staat het bouwwerk op de grond?</uitv:vraagTekst>
+                </uitv:vraag>
+                <content:uitvoeringsregelToelichting>
+                    <content:toelichting>
+                        <![CDATA[Een bouwwerk op de grond sluit aan bij de vloer van de 1e bouwlaag. 
+
+Let op: dus niet (gedeeltelijk) in de grond, en ook niet op een kelder. Alleen de fundering mag in de grond worden gebouwd.
+
+![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__op_de_grond_x_1.png)
+![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__op_de_grond_x_2.png)
+]]>
+                    </content:toelichting>
+                    <content:belangrijk>false</content:belangrijk>
+                </content:uitvoeringsregelToelichting>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__e16662c3-d8bf-444d-8340-94998ded1e7e">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>60</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Wordt de aanbouw hoger dan 5 m?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__3105524d-1e1f-4b89-a7e7-26657a69bbe4">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>70</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Wordt de aanbouw hoger dan 0,3m boven de scheidingsconstructie van de 2e bouwlaag?</uitv:vraagTekst>
+                </uitv:vraag>
+                <content:uitvoeringsregelToelichting>
+                    <content:toelichting>
+                        <![CDATA[![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__max__0_3_m_hoger_dan_de_vloer_van_de_2e_bouwlaag.png)]]>
+                    </content:toelichting>
+                    <content:belangrijk>false</content:belangrijk>
+                </content:uitvoeringsregelToelichting>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__33f06c99-68e1-49ec-8bd1-e9eee4d9f28d">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>80</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Ligt de aanbouw op minder dan 1 meter vanaf een openbaar gebied?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>90</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Bestaat de aanbouw uit meerder bouwlagen?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__3c3d7b0f-9141-4a81-8e5e-9850411d849c">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>100</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Wordt de 2e bouwlaag gebruikt als verblijfsruimte?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+            <uitv:uitvoeringsregel id="uitv__138d2889-82a2-4fb0-9522-63a403f55a72">
+                <uitv:regelgroepRef href="#groep1" />
+                <inter:prioriteit>110</inter:prioriteit>
+                <uitv:vraag>
+                    <uitv:gegevensType>boolean</uitv:gegevensType>
+                    <uitv:vraagTekst>Is de aanbouw voorzien van een dakterras, balkon of buitenruimte?</uitv:vraagTekst>
+                </uitv:vraag>
+            </uitv:uitvoeringsregel>
+        </uitv:uitvoeringsregels>
+    </dmn:extensionElements>
+    <dmn:inputData id="input__6955a83b-e19c-4014-9655-3076879ea74f" label="_6955a83b-e19c-4014-9655-3076879ea74f" name="_6955a83b-e19c-4014-9655-3076879ea74f">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__6955a83b-e19c-4014-9655-3076879ea74f" />
+        </dmn:extensionElements>
+        <dmn:variable id="_b6bf98ba-8d32-4c01-8b0c-5e65291111eb" name="_6955a83b-e19c-4014-9655-3076879ea74f" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__ce0dffab-5b40-4bc8-a4e6-4f602a8b1513" label="_ce0dffab-5b40-4bc8-a4e6-4f602a8b1513" name="_ce0dffab-5b40-4bc8-a4e6-4f602a8b1513">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__ce0dffab-5b40-4bc8-a4e6-4f602a8b1513" />
+        </dmn:extensionElements>
+        <dmn:variable id="_a8dee27a-df86-4a27-8103-8679f4f4d604" name="_ce0dffab-5b40-4bc8-a4e6-4f602a8b1513" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__b9ff3816-1b89-4674-9eac-e0732eca75e4" label="_b9ff3816-1b89-4674-9eac-e0732eca75e4" name="_b9ff3816-1b89-4674-9eac-e0732eca75e4">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__b9ff3816-1b89-4674-9eac-e0732eca75e4" />
+        </dmn:extensionElements>
+        <dmn:variable id="_9081ffe2-fbd9-4db7-a299-877cdd26abd0" name="_b9ff3816-1b89-4674-9eac-e0732eca75e4" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__6f7053f4-b6c4-4bcc-a897-b41792f0b2a4" label="_6f7053f4-b6c4-4bcc-a897-b41792f0b2a4" name="_6f7053f4-b6c4-4bcc-a897-b41792f0b2a4">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__6f7053f4-b6c4-4bcc-a897-b41792f0b2a4" />
+        </dmn:extensionElements>
+        <dmn:variable id="_05809e40-c1f3-4c43-880e-06db38f31018" name="_6f7053f4-b6c4-4bcc-a897-b41792f0b2a4" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__97fec18b-c8fd-4286-8aa9-ad14cdee96a9" label="_97fec18b-c8fd-4286-8aa9-ad14cdee96a9" name="_97fec18b-c8fd-4286-8aa9-ad14cdee96a9">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__97fec18b-c8fd-4286-8aa9-ad14cdee96a9" />
+        </dmn:extensionElements>
+        <dmn:variable id="_89c14d9e-4241-4289-b1ce-7ab4ea7161c3" name="_97fec18b-c8fd-4286-8aa9-ad14cdee96a9" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__e16662c3-d8bf-444d-8340-94998ded1e7e" label="_e16662c3-d8bf-444d-8340-94998ded1e7e" name="_e16662c3-d8bf-444d-8340-94998ded1e7e">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__e16662c3-d8bf-444d-8340-94998ded1e7e" />
+        </dmn:extensionElements>
+        <dmn:variable id="_1b7ee8cf-a1ca-42b6-bc62-ee300ce8a3b4" name="_e16662c3-d8bf-444d-8340-94998ded1e7e" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__3105524d-1e1f-4b89-a7e7-26657a69bbe4" label="_3105524d-1e1f-4b89-a7e7-26657a69bbe4" name="_3105524d-1e1f-4b89-a7e7-26657a69bbe4">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__3105524d-1e1f-4b89-a7e7-26657a69bbe4" />
+        </dmn:extensionElements>
+        <dmn:variable id="_49302bad-bba0-43a1-a834-3671687f4c58" name="_3105524d-1e1f-4b89-a7e7-26657a69bbe4" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__33f06c99-68e1-49ec-8bd1-e9eee4d9f28d" label="_33f06c99-68e1-49ec-8bd1-e9eee4d9f28d" name="_33f06c99-68e1-49ec-8bd1-e9eee4d9f28d">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__33f06c99-68e1-49ec-8bd1-e9eee4d9f28d" />
+        </dmn:extensionElements>
+        <dmn:variable id="_be66a3a0-ae8e-479d-b89a-414151a907cb" name="_33f06c99-68e1-49ec-8bd1-e9eee4d9f28d" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4" label="_a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4" name="_a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4" />
+        </dmn:extensionElements>
+        <dmn:variable id="_b9778f7e-e787-4557-a2ba-e81d5e5151b8" name="_a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__3c3d7b0f-9141-4a81-8e5e-9850411d849c" label="_3c3d7b0f-9141-4a81-8e5e-9850411d849c" name="_3c3d7b0f-9141-4a81-8e5e-9850411d849c">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__3c3d7b0f-9141-4a81-8e5e-9850411d849c" />
+        </dmn:extensionElements>
+        <dmn:variable id="_9853c4c5-62cf-4733-b119-5b76b8b6afb5" name="_3c3d7b0f-9141-4a81-8e5e-9850411d849c" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:inputData id="input__138d2889-82a2-4fb0-9522-63a403f55a72" label="_138d2889-82a2-4fb0-9522-63a403f55a72" name="_138d2889-82a2-4fb0-9522-63a403f55a72">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#uitv__138d2889-82a2-4fb0-9522-63a403f55a72" />
+        </dmn:extensionElements>
+        <dmn:variable id="_145401b9-5506-41f2-8ce1-543d6570534e" name="_138d2889-82a2-4fb0-9522-63a403f55a72" typeRef="feel:boolean" />
+    </dmn:inputData>
+    <dmn:decision id="_e259ae13-148e-4a67-9ada-0e72ab5f2000" name="Pad 1">
+        <dmn:variable id="_5452651c-5196-4f95-b485-25df0e8c1366" name="Pad 1" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__6955a83b-e19c-4014-9655-3076879ea74f" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_a7cdeb8e-a7bb-4f09-8312-d460d534c11e" outputLabel="Pad 1">
+            <dmn:input id="_145fb679-61c3-49f0-9ff8-b10f3d730c00" label="_6955a83b-e19c-4014-9655-3076879ea74f">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_6955a83b-e19c-4014-9655-3076879ea74f</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_9866f3fc-8ee4-4af3-8557-2c5ea72ba597" label="Pad 1">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_1128d7be-697f-48fc-bf19-fd699818bd29">
+                <dmn:inputEntry id="_2db06e61-6ea4-43af-951f-ed80780fa974">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_ce61a839-04a5-4bd6-b445-bc0d0582ebd1">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_c6720650-1e15-4560-8894-97684ec3d9ae">
+                <dmn:inputEntry id="_0e72c3c8-d2f5-4081-8d4b-67c1b13c9e7e">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_367fc0b7-c173-4044-828f-e85d1b523cb8">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_17925a75-60de-49d5-aafd-b2c872260e16" name="Pad 2">
+        <dmn:variable id="_9c5543df-a4b9-4efa-a607-5bd87d6c7253" name="Pad 2" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__ce0dffab-5b40-4bc8-a4e6-4f602a8b1513" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_99061cd6-82b0-4f87-8053-cc86a3b5e6ee" outputLabel="Pad 2">
+            <dmn:input id="_8fd45d66-97f1-463b-843b-3d809fecdf9a" label="_ce0dffab-5b40-4bc8-a4e6-4f602a8b1513">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_ce0dffab-5b40-4bc8-a4e6-4f602a8b1513</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_507c9f5f-5d98-43f5-84ed-73a23ab0f920" label="Pad 2">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_cccf1a04-8980-4be7-bebf-fd302b46198d">
+                <dmn:inputEntry id="_7988d12e-6d45-4271-b4ae-17911c636661">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_ab7e36a2-830f-42d3-80aa-7e771c3ff279">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_f21aed20-f845-4728-a3e7-d26a288fc0ad">
+                <dmn:inputEntry id="_7e53501f-bb8c-48d9-a65b-4c17d88f2998">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_508553d7-082a-42ca-a08b-8c796e20916f">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_db8fa9c5-c1c9-4778-869d-6982dbd90634" name="Pad 3">
+        <dmn:variable id="_bce354bd-47ff-43f0-a212-1202a1c7d136" name="Pad 3" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__97fec18b-c8fd-4286-8aa9-ad14cdee96a9" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_393f8a3d-5e64-4701-b91d-02b53fb332f0" outputLabel="Pad 3">
+            <dmn:input id="_7d79a6b9-2a3a-4e91-9901-8462e4b27d69" label="_97fec18b-c8fd-4286-8aa9-ad14cdee96a9">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_97fec18b-c8fd-4286-8aa9-ad14cdee96a9</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_4bbf2b57-1b1d-4236-9c3e-ba85373fbeea" label="Pad 3">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_4d271f34-eec4-41a4-bc99-4762f9ac368b">
+                <dmn:inputEntry id="_5544be8f-c973-4486-96eb-2a943602d266">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_06314495-9637-435f-b6a5-afca6a3a1e3a">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_4fbd8ed6-3d9c-4e58-a119-035b0d146cf6">
+                <dmn:inputEntry id="_b89d39a5-261a-4891-bad0-0c730e1eb865">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_fcc2c083-6fef-4939-996f-ae0995a950df">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_0304f7c8-1c54-4df1-b11c-da636455f2da" name="Pad 4">
+        <dmn:variable id="_30555d48-c4fc-4711-a842-f16b5f55bc7c" name="Pad 4" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__e16662c3-d8bf-444d-8340-94998ded1e7e" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_5469ceb4-817d-4201-9832-b0de122fda4f" outputLabel="Pad 4">
+            <dmn:input id="_89b70239-6467-4aaa-bde4-e02d9619f4d2" label="_e16662c3-d8bf-444d-8340-94998ded1e7e">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_e16662c3-d8bf-444d-8340-94998ded1e7e</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_3a7fb613-31fc-4c86-b823-a941326520c3" label="Pad 4">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_c9a40ac9-273b-4bd3-a5f6-ce6c5f33589b">
+                <dmn:inputEntry id="_e450515d-096b-4058-bb3c-2c2db3c4bfef">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_bdc04386-8148-4111-b6e0-9577248a6788">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_b2ad8c08-554c-46c0-97dc-d6544ac2f5e9">
+                <dmn:inputEntry id="_67f37c96-1185-40e4-a337-86da37319f2b">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_5e70882a-f478-4bab-a0c6-ff82fa45e9e5">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_6af7b0c0-ae04-4a2a-bce5-5429b35cf44d" name="Pad 5">
+        <dmn:variable id="_bd589427-0241-44a8-a008-504ef413acc5" name="Pad 5" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__3105524d-1e1f-4b89-a7e7-26657a69bbe4" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_84c1a863-9d74-487f-9b79-56c298ad9e64" outputLabel="Pad 5">
+            <dmn:input id="_6fbb813f-4a97-4e5c-96ce-a329d180bb88" label="_3105524d-1e1f-4b89-a7e7-26657a69bbe4">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_3105524d-1e1f-4b89-a7e7-26657a69bbe4</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_c0c58fc3-0a18-4cf9-abd1-797ef11c1225" label="Pad 5">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_001f2164-f569-458c-9ded-d4744eb41b21">
+                <dmn:inputEntry id="_119f74e5-277f-410d-8523-2d30f5923d7e">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_88d2d61a-5c19-4ad8-a92f-80dd08384a7d">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_0467e0b5-169c-4e43-bfb4-04fadd3d4971">
+                <dmn:inputEntry id="_474cae86-ea41-4ce2-8c13-3196e140072c">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_998c603c-da7c-4580-91a0-71561e0463f6">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_26dd85cb-ebad-4b05-a08c-cadf8532057b" name="Pad 6">
+        <dmn:variable id="_014d34fb-2769-441d-9420-f562d3482281" name="Pad 6" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__33f06c99-68e1-49ec-8bd1-e9eee4d9f28d" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_bff49c12-ba1e-499b-a2aa-18e78647f822" outputLabel="Pad 6">
+            <dmn:input id="_09c01f3d-607b-4171-bbb9-068a2ceb4793" label="_33f06c99-68e1-49ec-8bd1-e9eee4d9f28d">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_33f06c99-68e1-49ec-8bd1-e9eee4d9f28d</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_75461643-b564-4dc8-b39f-3a7a9657e8c2" label="Pad 6">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_d72fba12-0499-4b07-99e2-72372024c550">
+                <dmn:inputEntry id="_994003d0-fdd4-472f-b1a5-2aa18121a2fa">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_8530e389-9445-4479-bd78-83b861da02a4">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_7143e903-cb4e-4256-8a7f-39a77eb86ffc">
+                <dmn:inputEntry id="_3124c983-4abc-4b94-b333-bf06d24e30fc">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_938912b3-247f-448a-8c68-80a29b20f0ba">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_a6ff206a-3654-4f66-b428-2309df721daf" name="Pad 7">
+        <dmn:variable id="_751cc880-013f-4b1b-8fd1-5214f6a9ada1" name="Pad 7" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__138d2889-82a2-4fb0-9522-63a403f55a72" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_d075e3f8-edf4-4405-9025-ef693227a09d" outputLabel="Pad 7">
+            <dmn:input id="_9da9f9df-15eb-4b15-b33c-17045c3d3bf7" label="_138d2889-82a2-4fb0-9522-63a403f55a72">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_138d2889-82a2-4fb0-9522-63a403f55a72</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_7439a854-509c-4649-b38e-2c2cf53484fe" label="Pad 7">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_383e7901-825b-4395-98b5-eac57216138a">
+                <dmn:inputEntry id="_9bbca2bf-a212-426b-8fa3-03eb65a4e36e">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_1f161793-0f44-4f6d-93cf-0788ccb54502">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_7587b1e1-cf9f-4b7c-8a50-8c1a9263a9fb">
+                <dmn:inputEntry id="_4fbc28b9-6106-4bac-a74f-3b686a5224ce">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_e3425e61-7b6e-4002-a404-0340b1cc80c4">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_c42d5309-b1dc-4705-990a-6090d8d1e586" name="Pad 8">
+        <dmn:variable id="_38924c19-3f71-4e7e-8741-4bd2a8354eea" name="Pad 8" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__b9ff3816-1b89-4674-9eac-e0732eca75e4" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__6f7053f4-b6c4-4bcc-a897-b41792f0b2a4" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_b336f7f6-c27a-4fbe-baf8-78ccb3ee240b" outputLabel="Pad 8">
+            <dmn:input id="_d47a806f-55dc-4d8e-bf68-9bfc9d919059" label="_b9ff3816-1b89-4674-9eac-e0732eca75e4">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_b9ff3816-1b89-4674-9eac-e0732eca75e4</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_f9003abf-c428-4f4f-b48a-0d8bd91030fb" label="_6f7053f4-b6c4-4bcc-a897-b41792f0b2a4">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_6f7053f4-b6c4-4bcc-a897-b41792f0b2a4</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_5beebc68-3359-40af-939c-adf1b7d36cff" label="Pad 8">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_31164768-21d3-4ebd-98c2-dc0e3a7b7ef9">
+                <dmn:inputEntry id="_31e1a665-9c36-427c-acce-d75554a72cde">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_60ef718d-e691-474b-a84d-d2df3ffd192d">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_871a3288-b265-44f3-a7c8-85e93605f019">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_d80a34ff-faa1-46d7-96c8-bfa76c0e16da">
+                <dmn:inputEntry id="_559472c8-9d78-4a81-a6b6-f5e501af8e6d">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_d4772365-3061-4925-84c2-0a951168592d">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_bcac3edf-72ad-4bef-8e35-3589d3b56f86">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_f579b9ec-9756-47d9-b124-887e43afa8cd">
+                <dmn:inputEntry id="_a0ae35a3-cb7b-4171-a0e5-3545cd15eec3">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_33dacf1d-b4cf-4e13-bf31-5fd843c5aec0">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_30e78e5b-72c9-4b44-a21d-b3ff096afa1e">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="_6d131d8d-528d-4789-8b9d-54daa63c4899" name="Pad 9">
+        <dmn:variable id="_a5f00cd1-fb18-4a2b-aa23-b8c9c2f6a509" name="Pad 9" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#input__3c3d7b0f-9141-4a81-8e5e-9850411d849c" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_44987b2e-5777-4ad3-b384-9995bfb24b77" outputLabel="Pad 9">
+            <dmn:input id="_b5a2e9ba-9651-46f3-b8bb-3d17e25f75ac" label="_a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_add8cbae-734e-4463-90b5-8b793aec2041" label="_3c3d7b0f-9141-4a81-8e5e-9850411d849c">
+                <dmn:inputExpression typeRef="feel:boolean">
+                    <dmn:text>_3c3d7b0f-9141-4a81-8e5e-9850411d849c</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_e75ad49b-578c-40b2-b7ec-d3ff93593084" label="Pad 9">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","no hit"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_5c58751e-5fee-4589-8fe8-7ff9ee79976c">
+                <dmn:inputEntry id="_73a5086c-3281-4999-bbf9-a34ed4635677">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_9b0fe8e2-6860-488b-8e65-f45926f3f266">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_51b4099a-5675-47a8-a50c-5f3dc9e8c8bc">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_aa0965be-914c-4ab3-bead-054562d1d02d">
+                <dmn:inputEntry id="_b899844e-6955-4889-ae87-824860a897c3">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_eeff41db-c093-4f1d-82c9-f7beb769110a">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_743e6943-cd79-4e84-b938-67bdbdb5abe3">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_14ab7e21-eb95-40c4-bfd1-7b4d81980670">
+                <dmn:inputEntry id="_9e88eb0d-925c-4f38-8896-a96af3c7e9fe">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_5af33dc5-4ad1-4118-9900-ee462ccb300a">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_8f083672-d418-4d80-8c39-25fcf98ecc64">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+    <dmn:decision id="dummy" name="_Conclusie_dummy">
+        <dmn:extensionElements>
+            <bedr:functioneleStructuurRef href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.2" />
+        </dmn:extensionElements>
+        <dmn:variable id="_a4d671cc-46e4-43a3-ae17-cf29c4a5fee5" name="_Conclusie_dummy" typeRef="feel:string" />
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_e259ae13-148e-4a67-9ada-0e72ab5f2000" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_17925a75-60de-49d5-aafd-b2c872260e16" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_db8fa9c5-c1c9-4778-869d-6982dbd90634" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_0304f7c8-1c54-4df1-b11c-da636455f2da" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_6af7b0c0-ae04-4a2a-bce5-5429b35cf44d" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_26dd85cb-ebad-4b05-a08c-cadf8532057b" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_a6ff206a-3654-4f66-b428-2309df721daf" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_c42d5309-b1dc-4705-990a-6090d8d1e586" />
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredDecision href="#_6d131d8d-528d-4789-8b9d-54daa63c4899" />
+        </dmn:informationRequirement>
+        <dmn:decisionTable hitPolicy="ANY" id="_c4a99fdb-e1a1-4726-b523-c7e1918074cd" outputLabel="Conclusie dummy">
+            <dmn:input id="_433e0bb9-d1ff-40fc-99a1-310245a8dbf8" label="Pad 1">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 1</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_a3585a13-c1a7-4382-b619-61d0714467a5" label="Pad 2">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 2</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_38b2d2dd-6822-4340-ab50-d9b6f3f9c9e0" label="Pad 3">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 3</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_19c8824a-a855-454e-b06f-b0c447bf57fa" label="Pad 4">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 4</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_9d8112bf-a3c5-477a-829e-83619dd42fa4" label="Pad 5">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 5</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_b756da57-b87f-4151-b862-b746f36c113e" label="Pad 6">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 6</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_323f5162-1d5e-4c4f-b61f-554caccfb6f8" label="Pad 7">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 7</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_c110f376-be8b-41dd-9603-6f9534517766" label="Pad 8">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 8</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_f2a6af6c-f62d-4609-8ac5-75a920e5f414" label="Pad 9">
+                <dmn:inputExpression typeRef="feel:string">
+                    <dmn:text>Pad 9</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_47189a87-c586-4788-9bab-b39670a29143" label="Conclusie">
+                <dmn:outputValues>
+                    <dmn:text>"Vergunningplicht","Toestemmingsvrij"
+                    </dmn:text>
+                </dmn:outputValues>
+            </dmn:output>
+            <dmn:rule id="_a0afd517-c781-4d70-8558-862cb2c8a1b3">
+                <dmn:inputEntry id="_7d1b7690-ee74-4f5d-9cde-bea1fb03afe1">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_f41c93d2-518d-4348-bae4-722d578b3634">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_f8a71edb-69a4-4bc6-8002-2d967c7e83d2">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_ae9e5870-56b7-45f6-a9d7-3acdc5ff71c1">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_c9dfd30b-7afe-4567-a7a3-8fc6c8fb130f">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_2618da05-ea01-45ad-914b-3ab26001310c">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_c67061cb-7648-438d-b6c9-c62be9a2ccb0">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_6f45a8dd-dbe4-4f9f-94c1-30d9a82e6c63">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_63757e23-c7ef-455a-8227-a56d599ab7df">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_55baf277-f5bb-4e69-9d05-9119dab91943">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_d9e18764-7921-45fc-a177-5b6d27d4d401">
+                <dmn:inputEntry id="_1c71e0d8-c723-46d8-9f84-7cb50a433796">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_265b8f9d-b538-477b-a658-fed110f411df">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_5348ef37-2694-4750-81f3-18fe6d85910b">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_4ae65c58-1e2f-4328-bf16-6f127ea484c7">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_f3045e43-5652-4a6d-8f3d-45d62c4e0cd7">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_dda4447c-6e66-4704-9f8b-fb24a68482d0">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_a8b083d6-68ff-4d30-8049-1257415a18f6">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_e105521e-dd12-42a6-b7f2-0ef9416ed7b2">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_51e24fce-fdfe-4065-89be-72cbc8ed086e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_f6770431-054a-48be-9676-a6b9468980a8">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_03edce7d-ea4f-41c2-bc15-37855ecfb21a">
+                <dmn:inputEntry id="_4f075997-a3b1-4324-9e2e-ceb4a88ba1b1">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_b89428ea-c9a0-4fb0-8e3c-9c4d7d8b32aa">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_449fcd1a-cdf1-4af6-90a3-b385d6f37cbb">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_556e6129-1b58-498f-b9bc-b62049a94661">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_79787af5-cb62-4831-b093-4e773b4a380b">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_c53ef489-53ce-44fb-9b5c-74ba6b0c2974">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_a589fe4e-7222-4ead-a422-3fc5e3f1ae9e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_a4b3ee8a-1510-48f7-8ae5-f615b00bc1e5">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_7f6059f9-b752-4840-882e-4a3c09ae936f">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_5c85aabd-57ac-4542-85cc-f78c5246d1db">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_f518ddad-98ef-4b6f-a26e-419d97039004">
+                <dmn:inputEntry id="_dd4799a7-4e30-4981-92a3-1f2b35e12aa7">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_e4befb52-4128-4721-ac71-f5a52f9fda4e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_214005b2-5f45-4561-aeff-6e6106cc737e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_d81211cd-a4eb-4ed9-a389-24e852ef0100">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_635942d8-e386-480a-aa41-f33a9a5e8e73">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_b0654179-9cfb-47a9-98cb-4d6c6db495fe">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_b0a2feb8-b736-466f-89e1-14b328add924">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_e8c6d233-7b69-453a-b99e-2c680f755102">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_0410d956-bcab-4e2e-bde6-20201d9308fc">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_8f5d0e71-4efa-498d-8e6c-f9f1414e09f8">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_ca2c6a99-2f6e-4a76-9112-1bdc4f6b357b">
+                <dmn:inputEntry id="_fe786180-bd4d-4438-96c5-81cf75251493">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_0dd68613-46a6-4e12-978d-bd0dc19cba72">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_d8ff327d-11c6-4b39-a490-b829e4a413b5">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_902f6a19-b023-4bdd-8675-d27b763e8eb4">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_972ee0f8-694f-4ba8-b5c0-b907edb8eeb0">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_1678e765-cfbd-4adb-840d-14c9ee54b635">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_11d75d6d-21c5-47e2-8e66-5de3118dc98e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_fc162a4e-8b74-4c37-8e0a-2ea00f273f4e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_d3627126-86d2-4e5e-997d-dd8f3d36eb8c">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_484085cd-a185-4ba7-a081-594d7f544a70">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_cb6c97b8-e799-4e0f-ad0d-7dadeffc136f">
+                <dmn:inputEntry id="_1ad5c35a-dbc0-4172-92db-17814cafb967">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_495c4940-e367-4e7c-a721-4628d6c238fa">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_0e1c72c9-0d3e-4f21-b3fa-a5711b3a8748">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_21e0bc6e-10f1-44f7-814e-116d7ac16ae8">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_0dd09268-7378-4440-8104-721760b308f9">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_42d2b1b0-e27c-4040-aafe-e59f92ce9402">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_91afae4c-b312-4fb9-8593-7465c038bc44">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_43a0b04e-22e3-4f61-877f-64288a9934de">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_ddc24924-65da-4ebb-9e06-3cfc2281725b">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_415b46fb-60fc-41b1-a3e6-36e2cce9fd0e">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_12546b37-55d4-4277-8f7a-e9140b266757">
+                <dmn:inputEntry id="_1c07bb2c-1d0f-4f7a-8e39-9296b607e1d1">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_a047c09a-07e0-452f-b82b-85e502fe98b3">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_00b17b47-bbe2-468b-811c-5589d5d3bbc7">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_c3d10355-dfee-4ddc-9d38-8d12b66e82d0">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_a8e247c8-7879-4dd3-b5a5-b44274e5a1e1">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_64bbf7e3-1ca0-4b8b-ba12-4dd9fa946e03">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_8ce1a3ab-1b74-45b3-81d2-74fe4919cfe0">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_9a5a903c-7f4a-4608-bb56-34e40b0af8df">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_87dfbad9-5aaa-467b-a81e-dc2beacdef9e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_ecad3534-51ba-4883-b929-edee9b8aa902">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_2486ef60-82ba-4db7-85c7-0442eaee28bb">
+                <dmn:inputEntry id="_66f94d0f-d183-412a-84d3-3fbf06547df5">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_325e76a9-335b-4005-986e-91c0f253f138">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_6495b494-512e-4343-aca4-a234ad2df3f9">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_3429c24b-d022-487c-bfc2-caa81130a8a6">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_e31547f4-3392-426b-bdea-a9c103d1111d">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_d33591a8-04b9-477d-9a9e-43dcbe9b970e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_0b2f93c9-8975-4827-b6b6-71fd296756cf">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_e8d49997-8528-4717-abc0-e35097e0e2b6">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_ff004f06-3420-4c5b-97a0-4cdd84053e75">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_2e969280-444d-4f72-9082-4233d94fde1b">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_df8a5613-9f10-4381-a216-63d00ca000b1">
+                <dmn:inputEntry id="_501f63e3-79fb-45b5-b294-16cd7c48e794">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_20513b86-3645-463b-ad3c-87902ada030d">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_9759b196-0628-441b-abb3-83ea232832ac">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_b7253dd1-730b-4e96-a054-3dbf0bdf283f">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_b5113deb-422c-4bdd-9416-cb102602dfdb">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_cfdacd82-3efa-4ce7-8ac6-f2e00f763c11">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_1fc6d55d-eb22-4d0a-a407-c6b31f77ae24">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_b8432918-d512-41f0-9fb0-85497efdfbe9">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_f433dbf9-5710-4397-be79-946fe7e774bb">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_f005a907-d249-4a3a-ace0-c18a06c72606">
+                    <dmn:text>"Vergunningplicht"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="no_hit_rule">
+                <dmn:inputEntry id="_f9a7398f-563c-42ee-8dae-4e4af582cda6">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_58a244e9-5a7c-4b66-a8ae-f423a47ede86">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_be667ed8-8b90-41db-ac00-10aa87166417">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_0884dde5-b39c-411f-ad6f-1a613f816a2d">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_ec5dfb99-dc8f-43c6-b913-246a74b42cad">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_e5d55305-05ea-47be-882a-24760144deb3">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_254fbba7-7614-4016-8bb0-8fd21fc78931">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_4eabd2d6-4409-40c5-a89a-2619badceadb">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_12393931-6407-4097-bec3-e83e8a08192e">
+                    <dmn:text>"no hit"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_0294bb89-fff2-40f9-8331-d11f663ad708">
+                    <dmn:text>"Toestemmingsvrij"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+</dmn:definitions>

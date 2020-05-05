@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel" xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content" xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000" namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000" exporter="Vinfo sttr exporter" exporterVersion="0.3.0" id="_ef964765-8ef5-4a07-a487-b5034aba9987" name="Conclusie Dakkapel monument">
+       <dmn:extensionElements>
+              <inter:regelgroepen>
+                     <inter:regelgroep id="groep1">
+                            <inter:naam>Conclusie Dakkapel monument gemeente Amsterdam</inter:naam>
+                            <inter:prioriteit>10</inter:prioriteit>
+                     </inter:regelgroep>
+              </inter:regelgroepen>
+              <uitv:uitvoeringsregels>
+                     <uitv:uitvoeringsregel id="uitv__b5407a05-6af0-4dc8-b559-e26f0239328f">
+                            <uitv:regelgroepRef href="#groep1" />
+                            <inter:prioriteit>10</inter:prioriteit>
+                            <uitv:vraag>
+                                   <uitv:gegevensType>boolean</uitv:gegevensType>
+                                   <uitv:vraagTekst>Ligt het gebouw waarop u de dakkapel gaat bouwen in een welstandsvrij gebied?</uitv:vraagTekst>
+                            </uitv:vraag>
+                     </uitv:uitvoeringsregel>
+                     <uitv:uitvoeringsregel id="uitv__bfbaabd8-3f4b-46eb-9078-6108b6203a66">
+                            <uitv:regelgroepRef href="#groep1" />
+                            <inter:prioriteit>20</inter:prioriteit>
+                            <uitv:vraag>
+                                   <uitv:gegevensType>boolean</uitv:gegevensType>
+                                   <uitv:vraagTekst>Gaat u de dakkapel bouwen op het dak van een gemeentelijk of rijksmonument?</uitv:vraagTekst>
+                            </uitv:vraag>
+                     </uitv:uitvoeringsregel>
+              </uitv:uitvoeringsregels>
+       </dmn:extensionElements>
+       <dmn:inputData id="input__b5407a05-6af0-4dc8-b559-e26f0239328f" label="_b5407a05-6af0-4dc8-b559-e26f0239328f" name="_b5407a05-6af0-4dc8-b559-e26f0239328f">
+              <dmn:extensionElements>
+                     <uitv:uitvoeringsregelRef href="#uitv__b5407a05-6af0-4dc8-b559-e26f0239328f" />
+              </dmn:extensionElements>
+              <dmn:variable id="_21625a8c-9b6b-4818-9028-ffaae3a68bf8" name="_b5407a05-6af0-4dc8-b559-e26f0239328f" typeRef="feel:boolean" />
+       </dmn:inputData>
+       <dmn:inputData id="input__bfbaabd8-3f4b-46eb-9078-6108b6203a66" label="_bfbaabd8-3f4b-46eb-9078-6108b6203a66" name="_bfbaabd8-3f4b-46eb-9078-6108b6203a66">
+              <dmn:extensionElements>
+                     <uitv:uitvoeringsregelRef href="#uitv__bfbaabd8-3f4b-46eb-9078-6108b6203a66" />
+              </dmn:extensionElements>
+              <dmn:variable id="_82443af7-c0d5-4f54-9919-c885f95217a7" name="_bfbaabd8-3f4b-46eb-9078-6108b6203a66" typeRef="feel:boolean" />
+       </dmn:inputData>
+       <dmn:decision id="_429dd8e1-41bb-40ee-a1d1-5e129669031d" name="Pad 1">
+              <dmn:variable id="_e64cb19c-bc1d-4b1c-8453-0621b7db4f0a" name="Pad 1" typeRef="feel:string" />
+              <dmn:informationRequirement>
+                     <dmn:requiredInput href="#input__b5407a05-6af0-4dc8-b559-e26f0239328f" />
+              </dmn:informationRequirement>
+              <dmn:decisionTable hitPolicy="ANY" id="_7f9f1720-9e02-41b1-ada3-01a8e5d579ff" outputLabel="Pad 1">
+                     <dmn:input id="_55a53462-43c3-47d9-ad71-07fd3c96807e" label="_b5407a05-6af0-4dc8-b559-e26f0239328f">
+                            <dmn:inputExpression typeRef="feel:boolean">
+                                   <dmn:text>_b5407a05-6af0-4dc8-b559-e26f0239328f</dmn:text>
+                            </dmn:inputExpression>
+                     </dmn:input>
+                     <dmn:output id="_903d7b23-8907-4be2-9be9-4386283b0efa" label="Pad 1">
+                            <dmn:outputValues>
+                                   <dmn:text>"NeemContactOpMet","no hit"
+                                   </dmn:text>
+                            </dmn:outputValues>
+                     </dmn:output>
+                     <dmn:rule id="_c3d3df69-d2e3-4b61-96a4-1cb03c330ced">
+                            <dmn:inputEntry id="_e3e3205f-e039-4260-be57-1906fe4a0b56">
+                                   <dmn:text>true</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_57529b53-c9b2-45e7-b1d9-29a039e37ac2">
+                                   <dmn:text>"NeemContactOpMet"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+                     <dmn:rule id="_79391e2a-8288-41b6-ad0d-bd1f09758c3f">
+                            <dmn:inputEntry id="_6c46379c-3d53-4175-b0ac-482974ced472">
+                                   <dmn:text>false</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_72dd606a-7471-4015-9270-d8d862345dfb">
+                                   <dmn:text>"no hit"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+              </dmn:decisionTable>
+       </dmn:decision>
+       <dmn:decision id="_64b1ebcd-7a93-4263-b818-0c90ca2cc55b" name="Pad 2">
+              <dmn:variable id="_ea20b27e-affa-41fc-8ed9-0d6000e3c72a" name="Pad 2" typeRef="feel:string" />
+              <dmn:informationRequirement>
+                     <dmn:requiredInput href="#input__bfbaabd8-3f4b-46eb-9078-6108b6203a66" />
+              </dmn:informationRequirement>
+              <dmn:decisionTable hitPolicy="ANY" id="_2103b893-80cb-4f1f-af2b-7307cf74f956" outputLabel="Pad 2">
+                     <dmn:input id="_aa608bb5-c824-472a-9648-112dad6f201c" label="_bfbaabd8-3f4b-46eb-9078-6108b6203a66">
+                            <dmn:inputExpression typeRef="feel:boolean">
+                                   <dmn:text>_bfbaabd8-3f4b-46eb-9078-6108b6203a66</dmn:text>
+                            </dmn:inputExpression>
+                     </dmn:input>
+                     <dmn:output id="_0a636030-f239-4db9-b90e-e80741dd7cfe" label="Pad 2">
+                            <dmn:outputValues>
+                                   <dmn:text>"Vergunningplicht","no hit"
+                                   </dmn:text>
+                            </dmn:outputValues>
+                     </dmn:output>
+                     <dmn:rule id="_b297e738-b2dc-48fe-9ebe-66de7b183a3a">
+                            <dmn:inputEntry id="_38686332-085d-49f2-8e01-38b0f1b954fd">
+                                   <dmn:text>true</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_bcad31d8-635d-4a5d-a30c-6eb30d44a2f1">
+                                   <dmn:text>"Vergunningplicht"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+                     <dmn:rule id="_703652e3-5587-4807-b447-21f88e3e0b14">
+                            <dmn:inputEntry id="_b2a81c50-7155-4f9a-8ea7-23dfb6da01ee">
+                                   <dmn:text>false</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_067afeb9-8af2-447c-af8f-c29e8f9eb2a4">
+                                   <dmn:text>"no hit"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+              </dmn:decisionTable>
+       </dmn:decision>
+       <dmn:decision id="dummy" name="_Conclusie_dummy">
+              <dmn:extensionElements>
+                     <bedr:functioneleStructuurRef href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.4" />
+              </dmn:extensionElements>
+              <dmn:variable id="_1a1ffbda-6e1e-43f9-ba98-0c1783bfd892" name="_Conclusie_dummy" typeRef="feel:string" />
+              <dmn:informationRequirement>
+                     <dmn:requiredDecision href="#_429dd8e1-41bb-40ee-a1d1-5e129669031d" />
+              </dmn:informationRequirement>
+              <dmn:informationRequirement>
+                     <dmn:requiredDecision href="#_64b1ebcd-7a93-4263-b818-0c90ca2cc55b" />
+              </dmn:informationRequirement>
+              <dmn:decisionTable hitPolicy="ANY" id="_6497a6f9-6ef8-40c4-b548-b69f4d6e358a" outputLabel="Conclusie dummy">
+                     <dmn:input id="_bde6b046-5eec-45e8-b31c-24d604cda68e" label="Pad 1">
+                            <dmn:inputExpression typeRef="feel:string">
+                                   <dmn:text>Pad 1</dmn:text>
+                            </dmn:inputExpression>
+                     </dmn:input>
+                     <dmn:input id="_36f60ac8-72fb-42d3-a4f3-580dc6208ecd" label="Pad 2">
+                            <dmn:inputExpression typeRef="feel:string">
+                                   <dmn:text>Pad 2</dmn:text>
+                            </dmn:inputExpression>
+                     </dmn:input>
+                     <dmn:output id="_47dbfbfd-38de-46c4-bcc6-1726e11b2adf" label="Conclusie">
+                            <dmn:outputValues>
+                                   <dmn:text>"NeemContactOpMet","Vergunningplicht","Toestemmingsvrij"
+                                   </dmn:text>
+                            </dmn:outputValues>
+                     </dmn:output>
+                     <dmn:rule id="_c190faa9-6503-4e44-841e-bf35bf9f310b">
+                            <dmn:inputEntry id="_d2042afb-9f01-4036-8c04-3a44316252d6">
+                                   <dmn:text>"NeemContactOpMet"</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:inputEntry id="_d7d94b12-8d37-4f06-98b8-ff726721f16f">
+                                   <dmn:text>-</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_c6bfeea7-ab25-4d65-bd44-07aba45e9220">
+                                   <dmn:extensionElements>
+                                          <content:conclusieToelichting>
+                                                 <content:toelichting>
+                                                        <![CDATA[Uitleg bij Neem Contact Op Met.]]>
+                                                 </content:toelichting>
+                                          </content:conclusieToelichting>
+                                   </dmn:extensionElements>
+                                   <dmn:text>"NeemContactOpMet"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+                     <dmn:rule id="_5412cc86-bcdb-471d-a9ad-82a7141b64f5">
+                            <dmn:inputEntry id="_77ff8458-ea8f-4efb-96f3-3a2950dfc073">
+                                   <dmn:text>-</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:inputEntry id="_3620b3d6-724c-4f3c-9854-51006d16c5ef">
+                                   <dmn:text>"Vergunningplicht"</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_7c62a946-d279-42b3-b382-4c438d541134">
+                                   <dmn:extensionElements>
+                                          <content:conclusieToelichting>
+                                                 <content:toelichting>
+                                                        <![CDATA[Uitleg bij Vergunningplicht.]]>
+                                                 </content:toelichting>
+                                          </content:conclusieToelichting>
+                                   </dmn:extensionElements>
+                                   <dmn:text>"Vergunningplicht"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+                     <dmn:rule id="no_hit_rule">
+                            <dmn:inputEntry id="_20f464f4-002a-4dc4-a38d-77ce44ecbf2e">
+                                   <dmn:text>"no hit"</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:inputEntry id="_e3a114a9-6716-4546-a734-4df66e1aedcb">
+                                   <dmn:text>"no hit"</dmn:text>
+                            </dmn:inputEntry>
+                            <dmn:outputEntry id="_afc08243-45ba-46ff-9016-48d21db2084e">
+                                   <dmn:text>"Toestemmingsvrij"</dmn:text>
+                            </dmn:outputEntry>
+                     </dmn:rule>
+              </dmn:decisionTable>
+       </dmn:decision>
+</dmn:definitions>
