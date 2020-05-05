@@ -8,8 +8,8 @@ COPY apps/client/ ./
 RUN npm run build --no-color
 
 # Test
-# FROM builder
-# RUN npm test
+FROM builder
+RUN npm test
 
 # Release
 FROM nginx:stable-alpine

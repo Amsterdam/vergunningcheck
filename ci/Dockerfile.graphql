@@ -6,9 +6,9 @@ COPY apps/graphql/package*.json ./
 RUN npm ci --no-color -q
 COPY apps/graphql/ .
 
-# Test
-FROM builder
-RUN npm test
+# Test, disabled because of redis requirement
+# FROM builder
+# RUN npm test
 
 # Release
 FROM builder
