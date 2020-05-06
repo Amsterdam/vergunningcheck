@@ -13,9 +13,8 @@ COPY apps/graphql/ .
 # Release
 
 # Enable when Node docker image is done
-# FROM amsterdam/node
-# COPY --from=builder /app/ /app/
-FROM builder
+FROM amsterdam/node
+COPY --from=builder /app/ /app/
 
 USER node
 ENV PORT=8080
