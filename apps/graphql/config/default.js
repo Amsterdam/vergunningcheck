@@ -35,7 +35,7 @@ module.exports = {
     },
     zoningPlan: {
       url:
-        "https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied",
+        "http://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied",
       cacheTimeout: 600,
     },
   },
