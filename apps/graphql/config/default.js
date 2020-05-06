@@ -3,6 +3,9 @@ module.exports = {
   path: "graphql",
   healthPath: "health",
   graphql: { graphiql: false },
+  cors: {
+    enabled: false,
+  },
   cache: {
     dataLoaderEnabled: true,
     requestCacheEnabled: true,

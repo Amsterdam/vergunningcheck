@@ -11,7 +11,10 @@ const app = express();
 // Hardening
 app.use(helmet());
 app.disable("x-powered-by");
-app.use(cors());
+
+if (config.cors.enabled) {
+  app.use(cors());
+}
 
 // Basic access log, BUT no permission to log IP
 app.use(
