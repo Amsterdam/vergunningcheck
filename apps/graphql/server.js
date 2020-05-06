@@ -10,6 +10,7 @@ const app = express();
 // Hardening
 app.use(helmet());
 
+// Loosening
 if (config.cors.enabled) {
   app.use(cors());
 }
@@ -27,10 +28,6 @@ app.use(function (err, req, res, next) {
   res.status(500).send("Something broke!");
 });
 
-app.use((req, res, next) => {
-  res.append("X-Env", process.env.NODE_ENV);
-  next();
-});
 // Setup main graphql application logic
 app.use(`/${config.path}`, server);
 
@@ -41,8 +38,6 @@ app.use(`/${config.healthPath}`, (_, res) => {
 
 app.listen(config.port, () =>
   console.log(
-    `🚀 Server running at http://localhost:${config.port}/${config.path}`,
-    `config.cache = `,
-    config.cache
+    `🚀 Server running at http://localhost:${config.port}/${config.path}`
   )
 );
