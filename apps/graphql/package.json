@@ -9,7 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon .",
-    "start:prod": "node .",
+    "start:prod": "NODE_ENV=production node .",
     "test": "jest",
     "precommit": "lint-staged",
     "lint": "eslint ."

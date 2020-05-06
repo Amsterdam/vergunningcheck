@@ -1,5 +1,5 @@
 module.exports = {
-  port: 4000,
+  port: process.env.PORT || 4000,
   path: "graphql",
   healthPath: "health",
   graphql: { graphiql: false },

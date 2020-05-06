@@ -11,8 +11,9 @@ COPY apps/graphql/ .
 # RUN npm test
 
 # Release
-FROM builder
-ARG NODE_ENV
+FROM amsterdam/node
+COPY --from=builder /app/ /app/
 USER node
 ENV PORT=8080
+ENV NODE_ENV=production
 CMD node .

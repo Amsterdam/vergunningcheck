@@ -5,12 +5,10 @@ const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 
-const port = process.env.PORT || config.port;
 const app = express();
 
 // Hardening
 app.use(helmet());
-app.disable("x-powered-by");
 
 if (config.cors.enabled) {
   app.use(cors());
@@ -29,6 +27,10 @@ app.use(function (err, req, res, next) {
   res.status(500).send("Something broke!");
 });
 
+app.use((req, res, next) => {
+  res.append("X-Env", process.env.NODE_ENV);
+  next();
+});
 // Setup main graphql application logic
 app.use(`/${config.path}`, server);
 
@@ -37,9 +39,9 @@ app.use(`/${config.healthPath}`, (_, res) => {
   res.send("OK");
 });
 
-app.listen(port, () =>
+app.listen(config.port, () =>
   console.log(
-    `🚀 Server running at http://localhost:${port}/${config.path}`,
+    `🚀 Server running at http://localhost:${config.port}/${config.path}`,
     `config.cache = `,
     config.cache
   )
