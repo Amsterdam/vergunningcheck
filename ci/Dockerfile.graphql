@@ -19,6 +19,7 @@ WORKDIR /app/
 COPY --from=builder /app/ /app/
 
 USER node
+ENV DEBUG=graphql:*
 ENV PORT=8080
 ENV NODE_ENV=production
 CMD node .
