@@ -14,8 +14,8 @@ String BACKEND_DOCKERFILE="ci/Dockerfile.graphql"
 String BRANCH = "${env.BRANCH_NAME}"
 
 def sendMessage(String message, String color = "good") {
-  slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-vergunningcheck", color: color
-  slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-channel", color: color
+  slackSend message: "${env.JOB_NAME}: ${message} ${env.BUILD_URL}", channel: "#ci-vergunningcheck", color: color
+  slackSend message: "${env.JOB_NAME}: ${message} ${env.BUILD_URL}", channel: "#ci-channel", color: color
 }
 
 def tryStep(String message, Closure block) {
