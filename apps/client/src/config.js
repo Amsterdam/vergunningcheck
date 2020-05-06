@@ -17,14 +17,14 @@ const topics = [
     slug: "kappen-of-snoeien",
     redirectToOlo: true,
     text: {
-      heading: "Vergunningchecker kappen of snoeien",
+      heading: "Vergunningcheck kappen of snoeien",
     },
   },
   {
     slug: "dakkapel-plaatsen",
     sttrFile: "dakkapel.json",
     text: {
-      heading: "Vergunningchecker dakkapel plaatsen",
+      heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
       addressPage:
         "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck.",
@@ -35,7 +35,7 @@ const topics = [
     slug: "dakraam-plaatsen",
     sttrFile: "dakraam.json",
     text: {
-      heading: "Vergunningchecker dakraam plaatsen",
+      heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
       addressPage:
         "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.",
@@ -45,7 +45,7 @@ const topics = [
   {
     slug: "aanbouw-of-uitbouw-maken",
     text: {
-      heading: "Vergunningchecker aanbouw of uitbouw maken",
+      heading: "Vergunningcheck aanbouw of uitbouw maken",
       locationIntro:
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
     },
@@ -54,7 +54,7 @@ const topics = [
   {
     slug: "kozijnen-plaatsen-of-vervangen",
     text: {
-      heading: "Vergunningchecker kozijnen plaatsen of vervangen",
+      heading: "Vergunningcheck kozijnen plaatsen of vervangen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
@@ -64,7 +64,7 @@ const topics = [
     slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {
-      heading: "Vergunningchecker zonnepanelen of warmtecollectoren plaatsen",
+      heading: "Vergunningcheck zonnepanelen of warmtecollectoren plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen",
     },
@@ -73,7 +73,7 @@ const topics = [
   {
     slug: "bouwwerk-slopen",
     text: {
-      heading: "Vergunningchecker bouwwerk slopen",
+      heading: "Vergunningcheck bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
     },
     intro: "BouwwerkSlopenIntro",
@@ -81,7 +81,7 @@ const topics = [
   {
     slug: "intern-verbouwen",
     text: {
-      heading: "Vergunningchecker intern verbouwen",
+      heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
     },
     intro: "InternVerbouwenIntro",

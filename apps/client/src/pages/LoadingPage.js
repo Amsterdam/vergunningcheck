@@ -7,7 +7,7 @@ import Helmet from "react-helmet";
 const IntroPage = () => (
   <Layout>
     <Helmet>
-      <title>Laden... - Amsterdam Vergunningchecker</title>
+      <title>Laden... - Amsterdam Vergunningcheck</title>
     </Helmet>
     <Loading />
   </Layout>

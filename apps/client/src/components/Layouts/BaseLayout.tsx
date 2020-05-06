@@ -5,7 +5,7 @@ import {
   Container,
   ContentContainer,
   FormTitle,
-  Content
+  Content,
 } from "./BaseLayoutStyles";
 
 import Context from "../../context";
@@ -28,7 +28,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
   return (
     <Container>
       <Helmet>
-        <title>Amsterdam Vergunningchecker</title>
+        <title>Amsterdam Vergunningcheck</title>
       </Helmet>
       <Header showLinks={showNavLink} />
       <ContentContainer>
@@ -40,7 +40,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
               medium: 2,
               big: 5,
               large: 9,
-              xLarge: 9
+              xLarge: 9,
             }}
           >
             <Content>
@@ -72,7 +72,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           __html: `<!--
             Version: ${process.env.REACT_APP_VERSION}
             Environment: ${process.env.NODE_ENV}
-            -->`
+            -->`,
         }}
       />
     </Container>

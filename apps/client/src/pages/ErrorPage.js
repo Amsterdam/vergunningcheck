@@ -7,7 +7,7 @@ import Helmet from "react-helmet";
 const ErrorPage = ({ error }) => (
   <Layout>
     <Helmet>
-      <title>Er is een fout opgetreden - Amsterdam Vergunningchecker</title>
+      <title>Er is een fout opgetreden - Amsterdam Vergunningcheck</title>
     </Helmet>
     <Error stack={error.stack} content={error.message} />
   </Layout>
