@@ -11,8 +11,12 @@ COPY apps/graphql/ .
 # RUN npm test
 
 # Release
-FROM amsterdam/node
-COPY --from=builder /app/ /app/
+
+# Enable when Node docker image is done
+# FROM amsterdam/node
+# COPY --from=builder /app/ /app/
+FROM builder
+
 USER node
 ENV PORT=8080
 ENV NODE_ENV=production
