@@ -44,9 +44,8 @@ const Question = ({
   hideNavigation,
   showNext,
   showPrev,
-  onGoToPrev,
 }) => {
-  const { handleSubmit, register, unregister, setValue, errors } = useForm();
+  const { handleSubmit, register, unregister, setValue, getValues, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
     label: answer,
     formValue: answer,
@@ -108,6 +107,23 @@ const Question = ({
     const responseObj = booleanOptions.find((o) => o.value === currentAnswer);
     answer = responseObj?.formValue;
   }
+
+  const onGoToPrev = () => {
+    const data = getValues();
+    // Is also triggered with on not validated form.
+    // but if data has a key that matches the questionId,
+    // if question is answered, store answer. Else go back anyway.
+    window.scrollTo(0, 0);
+    if (onSubmitProp) {
+      onSubmitProp(data[questionId], true);
+    }
+    if (questionAnswers) {
+      answer = currentAnswer;
+    } else {
+      const responseObj = booleanOptions.find((o) => o.value === currentAnswer);
+      answer = responseObj?.formValue;
+    }
+  };
 
   return (
     <Form

@@ -45,10 +45,10 @@ describe("<QuestionsPage />", () => {
   // Mock address
   const { exactMatch } = address[0].result.data.findAddress;
 
-  const Wrapper = () => {
+  const Wrapper = ({questionId}) => {
     const history = createMemoryHistory();
     return (
-      <Context topicMock={topic} addressMock={exactMatch} checker={checker}>
+      <Context topicMock={topic} addressMock={exactMatch} checker={checker} questionId={questionId}>
         <Router history={history}>
           <QuestionsPage topic={topic} checker={checker} />
         </Router>
@@ -58,7 +58,7 @@ describe("<QuestionsPage />", () => {
 
   it("renders correctly on first load", async () => {
     const { container, getByText, getByTestId, findByTestId } = render(
-      <Wrapper />
+      <Wrapper questionId={0} />
     );
 
     expect(container).toBeInTheDocument();
@@ -81,7 +81,7 @@ describe("<QuestionsPage />", () => {
 
   it("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
     const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper />
+      <Wrapper questionId={0} />
     );
 
     // Click `NEXT_BUTTON` and expect form validation to display `requiredFieldText`
@@ -119,7 +119,7 @@ describe("<QuestionsPage />", () => {
 
   it("navigates correctly between different questions and Results Page", async () => {
     const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper />
+      <Wrapper questionId={0} />
     );
 
     // Click the THIRD `input` and go to the next question

@@ -30,6 +30,9 @@ const withChecker = (Component) =>
         fetchData(topic.sttrFile)
           .then((json) => {
             const checker = getChecker(json);
+            if (context.data) {
+              checker.setData(context.data);
+            }
             checker.next();
             context.checker = checker;
             setChecker(checker);

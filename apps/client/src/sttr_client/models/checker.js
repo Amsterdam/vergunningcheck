@@ -1,4 +1,4 @@
-import { collectionOfType, uniqueFilter } from "../util";
+import { collectionOfType, uniqueFilter, isObject } from "../util";
 
 /**
  * Step checker class for quiz
@@ -51,6 +51,28 @@ class Checker {
   }
 
   /**
+   * @returns {Question} -
+   */
+  getData() {
+    return this.stack.reduce((acc, question) => {
+      acc[question.id] = question.answer;
+      return acc;
+    }, {});
+  }
+
+  setData(answers) {
+    if(!isObject(answers)) {
+      throw Error("Answers must be of type object");
+    }
+    this._questions.forEach((question) => {
+      if (answers[question.id] !== undefined) {
+        question.setAnswer(answers[question.id]);
+        this._stack.push(question);
+      }
+    });
+  }
+
+  /**
    * @returns {Question} - last question in the stack
    */
   get _last() {
@@ -98,7 +120,9 @@ class Checker {
    * @param {number} index - The index in the stack to rewind to
    * @returns {Question} The last question in the stack
    */
-  rewindTo(index) {
+  rewindTo(index, page) {
+    console.log(index);
+    console.log(page);
     const lastIndex = this._stack.length - 1;
     if (index < 0 || index > lastIndex) {
       throw Error("'rewindTo' index out of bounds of current question stack.");
