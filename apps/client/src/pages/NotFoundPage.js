@@ -6,7 +6,7 @@ import Helmet from "react-helmet";
 const NotFoundPage = () => (
   <Layout>
     <Helmet>
-      <title>Pagina niet gevonden - Amsterdam Vergunningchecker</title>
+      <title>Pagina niet gevonden - Amsterdam Vergunningcheck</title>
     </Helmet>
     <Heading forwardedAs="h2">Deze pagina is niet gevonden.</Heading>
     <Paragraph>Helaas</Paragraph>
