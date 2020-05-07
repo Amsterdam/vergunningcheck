@@ -1,12 +1,7 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { Row, Column } from "@datapunt/asc-ui";
-import {
-  Container,
-  ContentContainer,
-  FormTitle,
-  Content,
-} from "./BaseLayoutStyles";
+import { Row, Column, FormTitle } from "@datapunt/asc-ui";
+import { Container, ContentContainer, Content } from "./BaseLayoutStyles";
 
 import Context from "../../context";
 import Header from "../Header";

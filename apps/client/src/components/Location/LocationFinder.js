@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Paragraph, Select } from "@datapunt/asc-ui";
+import {
+  Paragraph,
+  Select,
+  TextField,
+  ErrorMessage,
+  Alert,
+} from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 
+import { ComponentWrapper } from "../Atoms";
 import { requiredFieldText } from "../../config";
-import { StyledTextField, StyledAlert } from "./LocationFinderStyles";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 
 const findAddress = loader("./LocationFinder.graphql");
@@ -69,93 +75,112 @@ const LocationFinder = (props) => {
     }
   };
 
+  // Error messages
+  const postalCodeError = validate("postalCode", postalCode, true);
+  const houseNumberError = validate("houseNumberFull", houseNumberFull, true);
+  const suffixError = !notFoundAddress && props.errors?.suffix?.message;
+
   const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
   return (
     <>
-      <StyledTextField
-        onChange={(e) => {
-          setPostalCode(e.target.value);
-        }}
-        required={true}
-        onBlur={handleBlur}
-        label="Postcode"
-        defaultValue={postalCode}
-        name="postalCode"
-        errorMessage={validate("postalCode", postalCode, true)}
-      />
-      <StyledTextField
-        label="Huisnummer"
-        onChange={(e) => {
-          setHouseNumberFull(e.target.value);
-          setHouseNumber(e.target.value);
-        }}
-        required={true}
-        onBlur={handleBlur}
-        defaultValue={houseNumberFull}
-        name="houseNumberFull"
-        errorMessage={validate("houseNumberFull", houseNumberFull, true)}
-      />
+      <ComponentWrapper>
+        <TextField
+          name="postalCode"
+          label="Postcode"
+          defaultValue={postalCode}
+          error={postalCodeError}
+          required={true}
+          onBlur={handleBlur}
+          onChange={(e) => {
+            setPostalCode(e.target.value);
+          }}
+        />
+        {postalCodeError && <ErrorMessage message={postalCodeError} />}
+      </ComponentWrapper>
 
-      <Select
-        label="Toevoeging"
-        name="suffix"
-        value={exactMatch?.houseNumberFull}
-        onChange={(e) => {
-          setHouseNumberFull(e.target.value);
-          e.preventDefault();
-        }}
-        style={{ marginBottom: 35 }}
-        errorMessage={!notFoundAddress && props.errors?.suffix?.message}
-        disabled={
-          notFoundAddress || graphqlError || (exactMatch && !addressMatches)
-        }
-      >
-        {addressMatches && <option value={houseNumber}>Maak een keuze</option>}
-        {addressMatches?.map((match) => (
-          <option value={match.houseNumberFull} key={match.houseNumberFull}>
-            {match.houseNumberFull}
-          </option>
-        ))}
-      </Select>
+      <ComponentWrapper>
+        <TextField
+          name="houseNumberFull"
+          label="Huisnummer"
+          defaultValue={houseNumberFull}
+          error={houseNumberError}
+          required={true}
+          onBlur={handleBlur}
+          onChange={(e) => {
+            setHouseNumberFull(e.target.value);
+            setHouseNumber(e.target.value);
+          }}
+        />
+        {houseNumberError && <ErrorMessage message={houseNumberError} />}
+      </ComponentWrapper>
+
+      <ComponentWrapper>
+        <Select
+          name="suffix"
+          label="Toevoeging"
+          value={exactMatch?.houseNumberFull}
+          disabled={
+            notFoundAddress || graphqlError || (exactMatch && !addressMatches)
+          }
+          error={suffixError}
+          onChange={(e) => {
+            setHouseNumberFull(e.target.value);
+            e.preventDefault();
+          }}
+        >
+          {addressMatches && (
+            <option value={houseNumber}>Maak een keuze</option>
+          )}
+          {addressMatches?.map((match) => (
+            <option value={match.houseNumberFull} key={match.houseNumberFull}>
+              {match.houseNumberFull}
+            </option>
+          ))}
+        </Select>
+        {suffixError && <ErrorMessage message={suffixError} />}
+      </ComponentWrapper>
 
       {loading && (
-        <StyledAlert
-          heading="Laden..."
-          content="De resultaten worden ingeladen."
-        />
+        <ComponentWrapper>
+          <Alert heading="Laden..." content="De resultaten worden ingeladen." />
+        </ComponentWrapper>
       )}
 
       {notFoundAddress && !graphqlError && (
-        <StyledAlert
-          heading="Helaas. Wij kunnen geen adres vinden bij uw postcode en huisnummer combinatie. "
-          style={{
-            backgroundColor: "white",
-            border: "2px solid red",
-          }}
-        >
-          <Paragraph>
-            Probeer het opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer <a href="tel:14020">14 020</a>
-          </Paragraph>
-        </StyledAlert>
+        <ComponentWrapper>
+          <Alert
+            heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer "
+            style={{
+              backgroundColor: "white",
+              border: "2px solid red",
+            }}
+          >
+            <Paragraph>
+              Probeer het opnieuw. Of neem contact op met de gemeente op
+              telefoonnummer <a href="tel:14020">14 020</a>
+            </Paragraph>
+          </Alert>
+        </ComponentWrapper>
       )}
 
       {exactMatch && !loading && (
         <>
-          <StyledAlert
-            data-testid={LOCATION_FOUND}
-            level="attention"
-            heading="Dit is het gekozen adres:"
-          >
-            <Paragraph>
-              {exactMatch.streetName} {exactMatch.houseNumberFull}
-              <br />
-              {exactMatch.postalCode} {exactMatch.residence}
-            </Paragraph>
-          </StyledAlert>
+          <ComponentWrapper marginBottom={36}>
+            <Alert
+              data-testid={LOCATION_FOUND}
+              level="attention"
+              heading="Dit is het gekozen adres:"
+            >
+              <Paragraph>
+                {exactMatch.streetName} {exactMatch.houseNumberFull}
+                <br />
+                {exactMatch.postalCode} {exactMatch.residence}
+              </Paragraph>
+            </Alert>
+          </ComponentWrapper>
           <Paragraph>
             Klopt dit niet? Wijzig dan postcode of huisnummer.
           </Paragraph>
