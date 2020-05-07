@@ -50,6 +50,11 @@
     "redis-mock": "^0.49.0",
     "rewire": "^4.0.1"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "config/test"
+    ]
+  },
   "lint-staged": {
     "*.{js}": [
       "prettier --write",
