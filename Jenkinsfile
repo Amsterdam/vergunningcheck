@@ -13,16 +13,16 @@ String BACKEND_CONTAINERNAME = "ois/vergunningcheck_graphql:${env.BUILD_NUMBER}"
 String BACKEND_DOCKERFILE="ci/Dockerfile.graphql"
 String BRANCH = "${env.BRANCH_NAME}"
 
-def sendMessage(String message, String status, String color = "good") {
-  slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-vergunningcheck", color: color
-  slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-channel", color: color
+def sendMessage(String message, String color = "good") {
+  slackSend message: "${env.JOB_NAME}: ${message} ${env.BUILD_URL}", channel: "#ci-vergunningcheck", color: color
+  slackSend message: "${env.JOB_NAME}: ${message} ${env.BUILD_URL}", channel: "#ci-channel", color: color
 }
 
 def tryStep(String message, Closure block) {
   try {
     block()
   } catch (Throwable t) {
-    sendMessage message, "warning", "warning"
+    sendMessage "WARNING: ${message}", "warning"
     throw t
   }
 }
@@ -50,8 +50,8 @@ node {
 // Acceptance branch, fetch the container, label with acceptance and deploy to acceptance.
 if (BRANCH == "${ACCEPTANCE_BRANCH}") {
     node {
-        stage("Deploy to ACC") {
-            tryStep "deployment", {
+        stage("Deploy '${ACCEPTANCE_BRANCH}' to ACC") {
+            tryStep "Deploy '${ACCEPTANCE_BRANCH}' to ACC", {
                 docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                     nginx_image.push("acceptance")
                     backend_image.push("acceptance")
@@ -65,6 +65,7 @@ if (BRANCH == "${ACCEPTANCE_BRANCH}") {
                                 [$class: 'StringParameterValue', name: 'STATIC_CONTAINER', value: "${PROJECTNAME}"],
                         ]
             }
+            sendMessage "Build and deployment of '${ACCEPTANCE_BRANCH}' succeeded"
         }
     }
 }
@@ -72,8 +73,8 @@ if (BRANCH == "${ACCEPTANCE_BRANCH}") {
 // On master branch, fetch the container, tag with production and latest and deploy to production
 if (BRANCH == "${PRODUCTION_BRANCH}") {
     node {
-        stage("Deploy to ACC") {
-            tryStep "deployment", {
+        stage("Deploy ${PRODUCTION_BRANCH} to ACC") {
+            tryStep "Deploy ${PRODUCTION_BRANCH} to ACC", {
                 docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                     nginx_image.push("acceptance")
                     backend_image.push("acceptance")
@@ -91,13 +92,13 @@ if (BRANCH == "${PRODUCTION_BRANCH}") {
     }
 
     stage('Waiting for approval') {
-        slackSend channel: '#ci-vergunningcheck', color: 'warning', message: 'vergunningcheck is waiting for Production Release - please confirm'
+        slackSend channel: '#ci-vergunningcheck', color: 'warning', message: 'Vergunningcheck is waiting for Production Release - please confirm'
         input "Deploy to Production?"
     }
 
     node {
-        stage("Deploy to PROD") {
-            tryStep "deployment", {
+        stage("Deploy ${PRODUCTION_BRANCH} to PROD") {
+            tryStep "Deploy ${PRODUCTION_BRANCH} to PROD", {
                 docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                     nginx_image.push("production")
                     nginx_image.push("latest")
