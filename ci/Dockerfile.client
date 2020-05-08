@@ -5,7 +5,7 @@ WORKDIR /app/
 COPY apps/client/package*.json ./
 RUN npm ci --no-color -q
 COPY apps/client/ ./
-RUN npm test
+RUN CI=true npm test
 
 FROM base as build
 RUN npm run build --no-color
