@@ -18,7 +18,7 @@ npm start
 Starting from the `master` branch, follow these steps
 
 - `git merge develop`
-- update the [CHANGELOG.md] and commit that too
+- update the [CHANGELOG](CHANGELOG.md) and commit that too
 - `./node_modules/.bin/lerna publish`
 
 You have to approve the release in Jenkins.
