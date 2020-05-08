@@ -15,16 +15,15 @@ npm start
 
 ## Releasing
 
-On the `develop` branch, update the [CHANGELOG.md] and commit it.
+Starting from the `master` branch, follow these steps
 
-```
-./node_modules/.bin/lerna publish
-git checkout master
-git merge develop
-git push
-```
+- `git merge develop`
+- update the [CHANGELOG.md] and commit that too
+- `./node_modules/.bin/lerna publish`
 
 You have to approve the release in Jenkins.
+
+On `develop` run `git merge master`
 
 ## Tech stack
 
