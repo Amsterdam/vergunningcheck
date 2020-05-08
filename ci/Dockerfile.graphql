@@ -1,4 +1,4 @@
-FROM node:alpine AS builder
+FROM node:buster AS builder
 LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
