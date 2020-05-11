@@ -19,7 +19,6 @@ WORKDIR /app/
 COPY --from=builder /app/ /app/
 
 USER node
-ENV NODE_OPTIONS=--use-openssl-ca
 ENV PORT=8080
 ENV NODE_ENV=production
 CMD node .
