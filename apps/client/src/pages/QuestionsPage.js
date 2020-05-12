@@ -13,13 +13,12 @@ const QuestionsPage = ({ topic, checker }) => {
   const context = useContext(Context);
   const params = useParams();
   const history = useHistory();
-  console.log(checker.stack.length);
-  console.log(context.questionId);
   const [question, setQuestion] = useState(
     checker.stack[context.questionId > checker.stack.length - 1 ? checker.stack.length - 1 : context.questionId]
   );
-  console.log(question);
+
   useEffect(() => {
+    console.log(history);
     if (history.action === "POP") {
       const prev = checker.previous();
       setQuestion(prev);
@@ -61,7 +60,6 @@ const QuestionsPage = ({ topic, checker }) => {
       question.setAnswer(responseObj.value);
     }
 
-
     context.setData({ data: checker.getData() })
     context.setData({ questionId: checker.stack.length })
 
@@ -102,7 +100,7 @@ const QuestionsPage = ({ topic, checker }) => {
     <Layout>
       <Helmet>
         <title>
-          {topic.text.heading} - {question._text}
+          {topic.text.heading} - {question.text}
         </title>
       </Helmet>
       <Question

@@ -120,9 +120,7 @@ class Checker {
    * @param {number} index - The index in the stack to rewind to
    * @returns {Question} The last question in the stack
    */
-  rewindTo(index, page) {
-    console.log(index);
-    console.log(page);
+  rewindTo(index) {
     const lastIndex = this._stack.length - 1;
     if (index < 0 || index > lastIndex) {
       throw Error("'rewindTo' index out of bounds of current question stack.");
