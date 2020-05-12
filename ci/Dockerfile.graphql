@@ -5,17 +5,10 @@ WORKDIR /app/
 COPY apps/graphql/package*.json ./
 RUN npm ci --no-color -q
 COPY apps/graphql/ .
+RUN npm test
 
-# Test, disabled because of redis requirement
-# FROM builder
-# RUN npm test
-
-# Release
-
-# Enable when Node docker image is done
 FROM amsterdam/node
 WORKDIR /app/
-
 COPY --from=builder /app/ /app/
 
 USER node

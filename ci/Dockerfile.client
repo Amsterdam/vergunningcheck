@@ -5,7 +5,7 @@ WORKDIR /app/
 COPY apps/client/package*.json ./
 RUN npm ci --no-color -q
 COPY apps/client/ ./
-# RUN npm test, waiting for feature/mock-redis
+RUN CI=true npm test
 RUN npm run build --no-color
 
 # Release
