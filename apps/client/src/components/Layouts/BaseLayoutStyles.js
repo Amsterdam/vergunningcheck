@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoint } from "@datapunt/asc-ui";
+import { breakpoint, themeSpacing } from "@datapunt/asc-ui";
 
 export const Container = styled.div`
   max-width: 1400px;
@@ -14,8 +14,11 @@ export const ContentContainer = styled.div`
   margin: 0 auto;
   background-color: white;
 
-  @media screen and ${breakpoint("min-width", "tabletS")} {
-    padding: 0 25px;
+  @media screen and ${breakpoint("min-width", "tabletS")} and
+  ${breakpoint("max-width", "laptop")}
+  {
+    padding-left: ${themeSpacing(4)};
+    padding-right: ${themeSpacing(4)};
   }
 `;
 
