@@ -40,7 +40,7 @@ node {
                 nginx_image = docker.build("${NGINX_CONTAINERNAME}","-f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
                 nginx_image.push()
 
-                backend_image = docker.build("${BACKEND_CONTAINERNAME}","-f ${BACKEND_DOCKERFILE} ${CONTAINERDIR}")
+                backend_image = docker.build("${BACKEND_CONTAINERNAME}","--pull -f ${BACKEND_DOCKERFILE} ${CONTAINERDIR}")
                 backend_image.push()
             }
         }
