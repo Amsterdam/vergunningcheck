@@ -17,6 +17,7 @@ import {
   FooterBottomLinkListItem,
 } from "@datapunt/asc-ui";
 import { ContentContainer } from "./FooterStyles";
+import { FOOTER } from "../../utils/test-ids";
 
 const FirstColumn = () => (
   <FooterLinkList>
@@ -120,7 +121,7 @@ const ThirdColumn = () => (
 );
 
 const Footer = () => (
-  <FooterComp>
+  <FooterComp data-testid={FOOTER}>
     <FooterTop>
       <ContentContainer>
         <Row>
