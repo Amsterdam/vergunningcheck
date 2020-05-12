@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Paragraph, Button, Icon, themeColor } from "@datapunt/asc-ui";
+import { Paragraph, Button, Icon } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
 import uniqBy from "lodash.uniqby";
 
