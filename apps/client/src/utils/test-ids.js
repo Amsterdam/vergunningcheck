@@ -4,6 +4,8 @@ export const ADDRESS_PAGE = "address-form";
 
 export const LOADING_TEXT = "loading-text";
 
+export const FOOTER = "footer";
+
 export const QUESTION_PAGE = "question-form";
 export const QUESTION_ANSWERS = "question-answers";
 
