@@ -7,7 +7,6 @@ const {
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
-const accepted = ["kernzone", "bufferzone"];
 const loader = {
   reducer: (o) => ({
     _type: "CityScape",
