@@ -16,12 +16,8 @@ const loader = {
   load: (key) => {
     const [x, y] = key.split(" ");
     return fetchJson(
-      getUrl(`${URL}search/`, { item: "unesco", x, y })
-    ).then((data) =>
-      data.features
-        .filter(({ properties: { id } }) => accepted.includes(id))
-        .map(loader.reducer)
-    );
+      getUrl(URL, { datasets: "beschermdestadsdorpsgezichten", x, y })
+    ).then(({ features }) => features.map(loader.reducer));
   },
   cached: (key) => withCache(`geoSearch:${key}`, () => loader.load(key), TTL),
 };
