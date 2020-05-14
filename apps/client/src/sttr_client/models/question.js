@@ -165,7 +165,6 @@ class Question {
       );
     }
     /* eslint-enable valid-typeof */
-
     this._answer = value;
   }
 

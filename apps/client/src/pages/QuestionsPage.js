@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug } from "../routes";
 import { Helmet } from "react-helmet";
@@ -13,28 +13,39 @@ const QuestionsPage = ({ topic, checker }) => {
   const context = useContext(Context);
   const params = useParams();
   const history = useHistory();
-  const [question, setQuestion] = useState(
-    checker.stack[context.questionId > checker.stack.length - 1 ? checker.stack.length - 1 : context.questionId]
-  );
+  const { question: questionSlug } = params;
+  const [locationKeys, setLocationKeys] = useState([]);
+  const [question, setQuestion] = useState(checker.stack[context.questionId]);
 
   useEffect(() => {
-    console.log(history);
-    if (history.action === "POP") {
-      const prev = checker.previous();
-      setQuestion(prev);
-    }
-  }, [history.location, history.action, checker]);
+    return history.listen((location) => {
+      if (history.action === "PUSH") {
+        setLocationKeys([location.key]);
+      }
 
-  const { question: questionSlug } = params;
-  const currSlug = getslug(question.text);
+      if (history.action === "POP") {
+        if (locationKeys[1] === location.key) {
+          setLocationKeys(([_, ...keys]) => keys);
+          // Handle forward event
+          const next = checker.next();
+          setQuestion(next);
+        } else {
+          setLocationKeys((keys) => [location.key, ...keys]);
+          //handle back button
+          const prev = checker.previous();
+          setQuestion(prev);
+        }
+      }
+    });
+  }, [locationKeys, checker, history]);
 
   // Update URL based on question text
-  if (!questionSlug || questionSlug !== currSlug) {
+  if (!questionSlug) {
     return (
       <Redirect
         to={geturl(routes.questions, {
           slug: topic.slug,
-          question: currSlug,
+          question: getslug(question.text),
         })}
       />
     );
@@ -60,22 +71,22 @@ const QuestionsPage = ({ topic, checker }) => {
       question.setAnswer(responseObj.value);
     }
 
-    context.setData({ data: checker.getData() })
-    context.setData({ questionId: checker.stack.length })
-
     if (needContactPermits()) {
       history.push(geturl(routes.conclusion, { slug }));
     }
 
     if (!needContactPermits() && !back) {
       const next = checker.next();
-
       if (!next) {
         // Go to Result page
         history.push(geturl(routes.results, { slug }));
       } else {
         // Go to Next question
         setQuestion(next);
+
+        context.setData({ data: checker.getData() });
+        context.setData({ questionId: context.questionId + 1 });
+
         history.push(
           geturl(routes.questions, {
             slug: topic.slug,

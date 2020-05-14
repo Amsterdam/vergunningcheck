@@ -1,9 +1,9 @@
 import React, { useReducer, useEffect, createContext } from "react";
-const session = JSON.parse(localStorage.getItem("mySession"));
+const session = JSON.parse(sessionStorage.getItem("mySession"));
 
 let reducer = (data, newData) => {
   if (newData === null) {
-    localStorage.removeItem("mySession");
+    sessionStorage.removeItem("mySession");
     return defaultValues;
   }
   return { ...data, ...newData };
@@ -11,7 +11,7 @@ let reducer = (data, newData) => {
 
 const defaultValues = session
   ? session
-  : { topic: null, address: null, checker: null, questionId: 0};
+  : { topic: null, address: null, questionId: 0 };
 
 const Context = createContext();
 
@@ -19,7 +19,7 @@ function CheckerProvider(props) {
   const [data, setData] = useReducer(reducer, defaultValues);
 
   useEffect(() => {
-    localStorage.setItem("mySession", JSON.stringify(data));
+    sessionStorage.setItem("mySession", JSON.stringify(data));
   }, [data]);
 
   return (

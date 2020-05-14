@@ -1,10 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
-
 import { CONCLUSION_PAGE } from "../utils/test-ids";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
@@ -12,6 +11,7 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Helmet from "react-helmet";
+import Context from "../context";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
@@ -20,6 +20,7 @@ const outcomes = {
 };
 const ConclusionPage = ({ topic, checker }) => {
   const history = useHistory();
+  const context = useContext(Context);
   const { slug } = topic;
 
   // find conclusions we want to display to the user
@@ -66,6 +67,13 @@ const ConclusionPage = ({ topic, checker }) => {
     }
   };
 
+  const goBack = () => {
+    context.setData({ questionId: 0 });
+    // checker.previous();
+    checker.rewindTo(0);
+    history.replace(previousUrl);
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -87,7 +95,7 @@ const ConclusionPage = ({ topic, checker }) => {
         ))}
 
         <Nav
-          onGoToPrev={() => history.push(previousUrl)}
+          onGoToPrev={goBack}
           showPrev
           showNext
           nextText={needsPermit ? "Naar het omgevingsloket" : "Begin opnieuw"}
