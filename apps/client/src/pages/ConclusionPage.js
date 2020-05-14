@@ -68,9 +68,8 @@ const ConclusionPage = ({ topic, checker }) => {
   };
 
   const goBack = () => {
-    context.setData({ questionId: 0 });
-    // checker.previous();
-    checker.rewindTo(0);
+    context.setData({ questionId: context.questionId });
+    checker.rewindTo(context.questionId);
     history.replace(previousUrl);
   };
 
