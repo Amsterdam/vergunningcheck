@@ -1,29 +1,31 @@
 # Vergunningcheck
 
-This application is the permit checker [`vergunningcheck`] for Gemeente Amsterdam. This repo contains 2 apps, `client` and `graphql`. We use Lerna under the hood to install deps and run on both apps. But you can also run and configure then individually.
-
-# Project information:
-
 This application allows residents of Amsterdam to easily see if they need a permit for a construction activity for their specific building. For various activities, like installing a window or solar panels on the roof or extending the house, we ask a number of questions about the location and plans. This leads to an outcome, either license-free or licensing obligation, where it is clear which questions lead to this conclusion. This tool can therefore be used to see how in a specific location you could carry out a construction activity without the requirement of a permit.
 
 ## Install / run
+
+This repo contains 2 apps, `client` and `graphql`. We use Lerna under the hood to install deps and run on both apps. But you can also run and configure then individually.
 
 ```bash
 npm i
 npm start
 ```
 
+## Contributing
+
+If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)
+
 ## Releasing
 
-Starting from the `master` branch, follow these steps
+We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
 
-- `git merge develop`
-- update the [CHANGELOG](CHANGELOG.md) and commit that too
-- `./node_modules/.bin/lerna publish`
+`export GITHUB_AUTH="..."`
 
-You have to approve the release in Jenkins.
-
-On `develop` run `git merge master`
+To do the actual release from a `release/...` or `hotfix/...` branch.
+Push your changes to github.
+Run `npm run release`.
+Create a PR to the master-branch on github.
+After merging tou have to approve the release in Jenkins.
 
 ## Tech stack
 
