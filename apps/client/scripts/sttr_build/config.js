@@ -42,12 +42,12 @@ module.exports = {
     ],
     kozijn: [
       {
-        id: "5CJrbgbWZP6uZsouY",
-        name: "Kozijn plaatsen",
-      },
-      {
         id: "Xm2WwYeGkNN9w6rgQ",
         name: "Kozijn plaatsen in een monument",
+      },
+      {
+        id: "5CJrbgbWZP6uZsouY",
+        name: "Kozijn plaatsen",
       },
     ],
   },
