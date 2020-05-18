@@ -40,6 +40,16 @@ module.exports = {
         naam: "Zonnepaneel en warmtecollector bouwen",
       },
     ],
+    kozijn: [
+      {
+        id: "Xm2WwYeGkNN9w6rgQ",
+        name: "Kozijn plaatsen in een monument",
+      },
+      {
+        id: "5CJrbgbWZP6uZsouY",
+        name: "Kozijn plaatsen",
+      },
+    ],
   },
   staging: {
     dakkapel: [
