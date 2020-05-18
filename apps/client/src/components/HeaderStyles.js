@@ -53,10 +53,19 @@ export const StyledLogoWrapper = styled.a`
   margin-right: ${themeSpacing(3)};
 
   @media screen and ${breakpoint("min-width", "tabletS")} {
+    /* Hack to align logo with content */
+    margin-left: calc( -30px + ${themeSpacing(4)} );
+  }
+
+  @media screen and ${breakpoint("min-width", "laptop")} {
+    /* Hack to align logo with content */
+    margin-left: -30px;
+  }
+
+  @media screen and ${breakpoint("min-width", "tabletS")} {
     height: 68px;
     width: 152px;
     margin-right: ${themeSpacing(10)};
-    margin-left: -5px; /* Hack to align logo with content */
 
     ${StyledLogo} {
       background-image: url("${LogoDesktop}");

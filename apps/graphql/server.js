@@ -5,13 +5,15 @@ const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 
-const port = process.env.PORT || config.port;
 const app = express();
 
 // Hardening
 app.use(helmet());
-app.disable("x-powered-by");
-app.use(cors());
+
+// Loosening
+if (config.cors.enabled) {
+  app.use(cors());
+}
 
 // Basic access log, BUT no permission to log IP
 app.use(
@@ -34,10 +36,8 @@ app.use(`/${config.healthPath}`, (_, res) => {
   res.send("OK");
 });
 
-app.listen(port, () =>
+app.listen(config.port, () =>
   console.log(
-    `🚀 Server running at http://localhost:${port}/${config.path}`,
-    `config.cache = `,
-    config.cache
+    `🚀 Server running at http://localhost:${config.port}/${config.path}`
   )
 );

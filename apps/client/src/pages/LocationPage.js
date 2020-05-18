@@ -52,7 +52,7 @@ const LocationPage = ({ topic }) => {
       </Helmet>
       {errorMessage && (
         <Error
-          heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check niet kunt gebruiken."
+          heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check op dit moment niet kunt doen."
           stack={errorMessage?.stack}
         >
           <Paragraph>

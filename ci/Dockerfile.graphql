@@ -1,18 +1,17 @@
-FROM node:alpine AS builder
+FROM node:buster AS builder
 LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/graphql/package*.json ./
 RUN npm ci --no-color -q
 COPY apps/graphql/ .
+RUN npm test
 
-# Test
-FROM builder
-RUN cd apps/graphql/; npm test
+FROM amsterdam/node
+WORKDIR /app/
+COPY --from=builder /app/ /app/
 
-# Release
-FROM builder
-ARG NODE_ENV
 USER node
 ENV PORT=8080
+ENV NODE_ENV=production
 CMD node .

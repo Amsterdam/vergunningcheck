@@ -1,15 +1,12 @@
-FROM node:alpine AS builder
+FROM node:buster AS builder
 LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/client/package*.json ./
 RUN npm ci --no-color -q
 COPY apps/client/ ./
+RUN CI=true npm test
 RUN npm run build --no-color
-
-# Test
-# FROM builder
-# RUN npm test
 
 # Release
 FROM nginx:stable-alpine

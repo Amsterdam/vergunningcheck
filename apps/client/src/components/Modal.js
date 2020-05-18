@@ -35,17 +35,25 @@ const Modal = ({ modalText }) => {
         aria-labelledby="Toelichting"
         aria-describedby="Toelichting"
         open={explanationShown}
-        onClose={() => toggleExplanationShown(!explanationShown)}
+        onClose={() => {
+          toggleExplanationShown(!explanationShown);
+        }}
       >
         <div style={{ minHeight: "50vh" }}>
           <TopBar>
             <Heading forwardedAs="h4" style={{ flexGrow: 1 }}>
               Toelichting
-              <Button type="button" size={30} variant="blank">
+              <Button
+                type="button"
+                size={30}
+                variant="blank"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleExplanationShown(!explanationShown);
+                }}
+              >
                 <Icon size={20}>
-                  <Close
-                    onClick={() => toggleExplanationShown(!explanationShown)}
-                  />
+                  <Close />
                 </Icon>
               </Button>
             </Heading>

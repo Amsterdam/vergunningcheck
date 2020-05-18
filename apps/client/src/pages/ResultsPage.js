@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Paragraph, Button } from "@datapunt/asc-ui";
+import { Paragraph, Button, Icon } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
 import uniqBy from "lodash.uniqby";
 
@@ -13,11 +13,12 @@ import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import { booleanOptions } from "../components/Question";
 import {
-  Wrapper,
+  QuestionWrapper,
   MainWrapper,
   Question,
   UserAnswer,
   UserResult,
+  UserResultParagraph,
   Change,
 } from "./ResultsPageStyles";
 import Helmet from "react-helmet";
@@ -71,68 +72,63 @@ const ResultsPage = ({ topic, checker }) => {
           wijzigen. Als u een wijziging doet moet u misschien enkele vragen
           opnieuw beantwoorden.
         </Paragraph>
+
         <MainWrapper>
-          <Question>Vraag</Question>
-          <UserAnswer>Uw antwoord</UserAnswer>
+          <Question strong>Vraag</Question>
+          <UserAnswer strong>Uw antwoord</UserAnswer>
           <Change />
         </MainWrapper>
-        {checker?.stack?.map((question, index) => {
-          const isDecisiveForPermits =
-            uniqBy(permitsPerQuestion[index], "name") || [];
-
-          return (
-            <div key={question.id}>
-              {(typeof question.answer === "boolean" ||
-                typeof question.answer === "string") && (
-                <Wrapper>
-                  <Question>{question.text}</Question>
-                  {question.options ? (
-                    <UserAnswer>
-                      {question.answer.replace(/['"]+/g, "")}
-                    </UserAnswer>
-                  ) : (
-                    <UserAnswer>
-                      {
-                        booleanOptions.find(
-                          (option) => option.value === question.answer
-                        ).label
-                      }
-                    </UserAnswer>
-                  )}
+        <div>
+          {checker?.stack?.map((question, index) => {
+            const isDecisiveForPermits =
+              uniqBy(permitsPerQuestion[index], "name") || [];
+            return (
+              <QuestionWrapper key={question.id}>
+                <Question>{question.text}</Question>
+                {question.options ? (
+                  <UserAnswer>
+                    {question.answer.replace(/['"]+/g, "")}
+                  </UserAnswer>
+                ) : (
+                  <UserAnswer>
+                    {
+                      booleanOptions.find(
+                        (option) => option.value === question.answer
+                      ).label
+                    }
+                  </UserAnswer>
+                )}
+                <Change>
                   <Button
                     onClick={() => onGoToQuestion(index)}
                     variant="textButton"
                   >
                     Wijzig
                   </Button>
-                </Wrapper>
-              )}
+                </Change>
 
-              {isDecisiveForPermits.map((permit) => (
-                <UserResult key={permit}>
-                  <Alert
-                    style={{
-                      width: "20%",
-                      maxWidth: "30px",
-                      marginBottom: "8px",
-                      fill: "#ec0000",
-                    }}
-                  />
-                  <p
-                    style={{
-                      marginBottom: "25px",
-                      marginLeft: "7px",
-                      display: "inline-block",
-                    }}
-                  >
-                    Op basis van dit antwoord bent u vergunningplichtig voor{" "}
-                    {permit.name.replace("Conclusie", "").toLowerCase()}
-                  </p>
-                </UserResult>
-              ))}
-            </div>
-          );
-        })}
+                {isDecisiveForPermits.map((permit, index) => (
+                  <UserResult key={`${permit} ${index}`}>
+                    <Icon
+                      color="secondary"
+                      size={30}
+                      style={{
+                        flexShrink: 0, // IE11 Fix
+                      }}
+                    >
+                      <Alert />
+                    </Icon>
+                    <UserResultParagraph strong>
+                      Op basis van dit antwoord bent u vergunningplichtig voor{" "}
+                      {permit.name.replace("Conclusie", "").toLowerCase()}
+                    </UserResultParagraph>
+                  </UserResult>
+                ))}
+              </QuestionWrapper>
+            );
+          })}
+        </div>
+
         <Nav
           onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
           showPrev

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.0](https://github.com/Amsterdam/vergunningcheck/tree/v1.0.0) (2020-05-06)
+
+### Features
+
+...
+
 ### [0.1.19](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.18...v0.1.19) (2020-03-30)
 
 ### Features
