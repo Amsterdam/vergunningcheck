@@ -1,6 +1,5 @@
 import React from "react";
-// Component Alert has wrong export name `AlertMessage`. When the new update is released, just remove `AlertMessage as`
-import { AlertMessage as Alert } from "@datapunt/asc-ui";
+import { Alert } from "@datapunt/asc-ui";
 
 const Error = ({ heading, content, stack, children }) => (
   <Alert

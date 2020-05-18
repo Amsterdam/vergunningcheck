@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Label, Radio, RadioGroup } from "@datapunt/asc-ui";
+import { Label, Radio, RadioGroup, ErrorMessage } from "@datapunt/asc-ui";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
-import { StyledAnswerErrorText, StyledAnswer } from "./AnswersStyles";
+import { ComponentWrapper } from "./Atoms";
 
 const Answers = ({
   className,
@@ -13,12 +13,7 @@ const Answers = ({
   questionId,
   onChange,
 }) => (
-  <StyledAnswer hasError={errors[questionId]} data-testid={QUESTION_ANSWERS}>
-    {errors[questionId] && (
-      <StyledAnswerErrorText>
-        {errors[questionId].message}
-      </StyledAnswerErrorText>
-    )}
+  <ComponentWrapper data-testid={QUESTION_ANSWERS}>
     <RadioGroup className={className} name={questionId}>
       {answers &&
         answers.map((answer) => {
@@ -36,12 +31,16 @@ const Answers = ({
                 id={answerId}
                 onChange={(e) => onChange(e)}
                 checked={currentAnswer === answer.formValue}
+                error={errors[questionId]}
               />
             </Label>
           );
         })}
     </RadioGroup>
-  </StyledAnswer>
+    {errors[questionId] && (
+      <ErrorMessage message={errors[questionId].message} />
+    )}
+  </ComponentWrapper>
 );
 
 const StyledAnswers = styled(Answers)`

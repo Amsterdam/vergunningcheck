@@ -35,6 +35,11 @@ export const routeConfig = [
     component: process.env.NODE_ENV !== "production" && DevHomePage,
   },
   {
+    exact: true,
+    path: "/test",
+    component: DevHomePage,
+  },
+  {
     name: "intro",
     exact: true,
     path: "/:slug",

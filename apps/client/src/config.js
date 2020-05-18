@@ -1,6 +1,8 @@
+export const isProduction = "vergunningcheck.nl" === window.location.hostname;
+
 export const matomo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
-  siteId: 29,
+  siteId: isProduction ? 29 : 37,
 };
 
 const oloHome =

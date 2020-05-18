@@ -10,7 +10,7 @@
   "scripts": {
     "start": "lerna run --parallel --no-bail start",
     "start:prod": "lerna run --parallel start:prod",
-    "test": "lerna run test",
+    "test": "CI=true lerna run test",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "release": "lerna-changelog && lerna publish"

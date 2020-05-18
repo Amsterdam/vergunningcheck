@@ -24,8 +24,8 @@ We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md
 To do the actual release from a `release/...` or `hotfix/...` branch.
 Push your changes to github.
 Run `npm run release`.
-
-To be defined
+Create a PR to the master-branch on github.
+After merging tou have to approve the release in Jenkins.
 
 ## Tech stack
 

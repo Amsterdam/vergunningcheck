@@ -1,8 +1,5 @@
-const rewire = require("rewire");
-const bagSearch = require(".");
-
-const rewired = rewire(".");
-const { reducer } = rewired.__get__("loader");
+const bagSearch = require("rewire")(".");
+const { reducer } = bagSearch.__get__("loader");
 
 describe("bagsearch", () => {
   test("reducer", async () => {
