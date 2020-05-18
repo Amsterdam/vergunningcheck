@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph, Button } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
@@ -21,14 +21,17 @@ import {
   Change,
 } from "./ResultsPageStyles";
 import Helmet from "react-helmet";
+import Context from "../context";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
+  const context = useContext(Context);
   const { slug } = topic;
   const permitsPerQuestion = [];
 
   const onGoToQuestion = (index) => {
     const q = checker.rewindTo(index);
+    context.setData({ questionId: index });
     history.push(
       geturl(routes.questions, {
         slug,
@@ -76,30 +79,34 @@ const ResultsPage = ({ topic, checker }) => {
         {checker?.stack?.map((question, index) => {
           const isDecisiveForPermits =
             uniqBy(permitsPerQuestion[index], "name") || [];
+
           return (
             <div key={question.id}>
-              <Wrapper>
-                <Question>{question.text}</Question>
-                {question.options ? (
-                  <UserAnswer>
-                    {question.answer.replace(/['"]+/g, "")}
-                  </UserAnswer>
-                ) : (
-                  <UserAnswer>
-                    {
-                      booleanOptions.find(
-                        (option) => option.value === question.answer
-                      ).label
-                    }
-                  </UserAnswer>
-                )}
-                <Button
-                  onClick={() => onGoToQuestion(index)}
-                  variant="textButton"
-                >
-                  Wijzig
-                </Button>
-              </Wrapper>
+              {(typeof question.answer === "boolean" ||
+                typeof question.answer === "string") && (
+                <Wrapper>
+                  <Question>{question.text}</Question>
+                  {question.options ? (
+                    <UserAnswer>
+                      {question.answer.replace(/['"]+/g, "")}
+                    </UserAnswer>
+                  ) : (
+                    <UserAnswer>
+                      {
+                        booleanOptions.find(
+                          (option) => option.value === question.answer
+                        ).label
+                      }
+                    </UserAnswer>
+                  )}
+                  <Button
+                    onClick={() => onGoToQuestion(index)}
+                    variant="textButton"
+                  >
+                    Wijzig
+                  </Button>
+                </Wrapper>
+              )}
 
               {isDecisiveForPermits.map((permit) => (
                 <UserResult key={permit}>

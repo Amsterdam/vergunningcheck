@@ -80,6 +80,7 @@ const QuestionsPage = ({ topic, checker }) => {
       if (!next) {
         // Go to Result page
         history.push(geturl(routes.results, { slug }));
+        context.setData({ data: checker.getData() });
       } else {
         // Go to Next question
         setQuestion(next);
@@ -106,7 +107,6 @@ const QuestionsPage = ({ topic, checker }) => {
       setQuestion(prev);
     }
   };
-
   return (
     <Layout>
       <Helmet>
