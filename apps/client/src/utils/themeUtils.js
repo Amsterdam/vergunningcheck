@@ -13,3 +13,12 @@ export const focusOutlineStyle = css`
     ${outlineStyle}
   }
 `;
+
+export const printOnly = css`
+  display: none;
+
+  @media print {
+    display: block;
+    -webkit-print-color-adjust: exact;
+  }
+`;

@@ -1,14 +1,18 @@
 import React, { Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+import { Paragraph, Heading, Alert } from "@datapunt/asc-ui";
+import { isMobile } from "react-device-detect";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
 
 import { CONCLUSION_PAGE } from "../utils/test-ids";
+import DownloadButton from "../components/Atoms/DownloadButton";
+import PrintOnly from "../components/Atoms/PrintOnly";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
 import Form from "../components/Form";
+import ConclusionPrint from "../components/ConclusionPrint";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Helmet from "react-helmet";
@@ -72,6 +76,10 @@ const ConclusionPage = ({ topic, checker }) => {
         <title>Conclusie - {topic.text.heading}</title>
       </Helmet>
       <Form onSubmit={handleSubmit} data-testid={CONCLUSION_PAGE}>
+        <PrintOnly>
+          <ConclusionPrint checker={checker} />
+        </PrintOnly>
+
         <Heading forwardedAs="h1">Conclusie</Heading>
 
         <Paragraph>
@@ -85,6 +93,33 @@ const ConclusionPage = ({ topic, checker }) => {
             <Markdown source={description} />
           </Fragment>
         ))}
+
+        {!isMobile && (
+          <DownloadButton
+            type="button"
+            color="primary"
+            onClick={() => window.print()}
+            style={{ alignSelf: "flex-start" }}
+          >
+            Conclusie opslaan
+          </DownloadButton>
+        )}
+
+        <PrintOnly style={{ marginTop: 20 }} withBorder>
+          <Alert>
+            <Heading forwardedAs="h2">Proclaimer</Heading>
+            <Paragraph
+              style={{
+                maxWidth: 600,
+              }}
+            >
+              De Vergunningcheck is een hulpmiddel. Het geeft informatie over
+              situaties die veel voorkomen. U kunt er geen rechten aan ontlenen.
+              Dat betekent dat het geen zekerheid geeft. Wilt u het zeker weten?
+              Neem dan contact op met de gemeente.
+            </Paragraph>
+          </Alert>
+        </PrintOnly>
 
         <Nav
           onGoToPrev={() => history.push(previousUrl)}

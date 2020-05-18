@@ -13,6 +13,14 @@ export const QuestionWrapper = styled.div`
   &:last-of-type {
     border-bottom: 1px solid black;
   }
+
+  /* Try to avoid breaking over serarate pages */
+  @media print {
+    page-break-inside: avoid;
+    * {
+      page-break-inside: avoid;
+    }
+  }
 `;
 
 export const MainWrapper = styled(QuestionWrapper)`
