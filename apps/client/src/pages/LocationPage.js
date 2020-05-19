@@ -26,7 +26,7 @@ const LocationPage = ({ topic }) => {
 
   useEffect(() => {
     if (!address && !errorMessage) {
-      register({ name: "suffix" }, { required: "Kies een toevoeging" });
+      register({ name: "suffix" }, { required: "Kies een toevoeging." });
     } else {
       clearError("suffix");
     }

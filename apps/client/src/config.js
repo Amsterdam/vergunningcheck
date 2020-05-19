@@ -117,4 +117,4 @@ export { topics };
 // We need a place for general text as well
 // I know this is not the best place
 // For now I will place it here
-export const requiredFieldText = "Dit veld is verplicht";
+export const requiredFieldText = "Dit veld is verplicht.";
