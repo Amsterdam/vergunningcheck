@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import { Paragraph, Heading, Alert } from "@datapunt/asc-ui";
 import { isMobile } from "react-device-detect";
+import { Paragraph, Heading, Alert } from "@datapunt/asc-ui";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
@@ -24,6 +25,7 @@ const outcomes = {
 };
 const ConclusionPage = ({ topic, checker }) => {
   const history = useHistory();
+  const { trackEvent } = useMatomo();
   const { slug } = topic;
 
   // find conclusions we want to display to the user
@@ -70,6 +72,15 @@ const ConclusionPage = ({ topic, checker }) => {
     }
   };
 
+  const handleDownloadButton = () => {
+    trackEvent({
+      category: "conclusion",
+      action: "conclusie-opslaan",
+      name: slug,
+    });
+    window.print();
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -98,7 +109,7 @@ const ConclusionPage = ({ topic, checker }) => {
           <DownloadButton
             type="button"
             color="primary"
-            onClick={() => window.print()}
+            onClick={handleDownloadButton}
             style={{ alignSelf: "flex-start" }}
           >
             Conclusie opslaan
