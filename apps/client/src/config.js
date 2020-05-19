@@ -1,4 +1,5 @@
-export const isProduction = "vergunningcheck.nl" === window.location.hostname;
+export const isProduction =
+  "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
 export const matomo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
