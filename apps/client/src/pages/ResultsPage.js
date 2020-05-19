@@ -29,7 +29,7 @@ const ResultsPage = ({ topic, checker }) => {
   const context = useContext(Context);
   const { slug } = topic;
   const permitsPerQuestion = [];
-
+  context.setData({ resultsShown: true });
   const onGoToQuestion = (index) => {
     const q = checker.rewindTo(index);
     context.setData({ questionId: index });

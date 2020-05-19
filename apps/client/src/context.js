@@ -1,9 +1,9 @@
 import React, { useReducer, useEffect, createContext } from "react";
-const session = JSON.parse(sessionStorage.getItem("mySession"));
+const session = JSON.parse(sessionStorage.getItem("vergunningCheckData"));
 
 let reducer = (data, newData) => {
   if (newData === null) {
-    sessionStorage.removeItem("mySession");
+    sessionStorage.removeItem("vergunningCheckData");
     return defaultValues;
   }
   return { ...data, ...newData };
@@ -19,7 +19,7 @@ function CheckerProvider(props) {
   const [data, setData] = useReducer(reducer, defaultValues);
 
   useEffect(() => {
-    sessionStorage.setItem("mySession", JSON.stringify(data));
+    sessionStorage.setItem("vergunningCheckData", JSON.stringify(data));
   }, [data]);
 
   return (

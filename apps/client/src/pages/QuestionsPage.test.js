@@ -34,7 +34,6 @@ describe("<QuestionsPage />", () => {
 
   // Mock checker
   const checker = getChecker(debugChecker);
-  checker.next();
 
   // Mock URL
   const { text, options } = checker.stack[0];
@@ -48,7 +47,7 @@ describe("<QuestionsPage />", () => {
   const Wrapper = ({questionId}) => {
     const history = createMemoryHistory();
     return (
-      <Context topicMock={topic} addressMock={exactMatch} checker={checker} questionId={questionId}>
+      <Context topicMock={topic} addressMock={exactMatch} checker={checker} questionId={questionId || 0}>
         <Router history={history}>
           <QuestionsPage topic={topic} checker={checker} />
         </Router>
@@ -119,7 +118,7 @@ describe("<QuestionsPage />", () => {
 
   it("navigates correctly between different questions and Results Page", async () => {
     const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper questionId={0} />
+      <Wrapper questionId={1} />
     );
 
     // Click the THIRD `input` and go to the next question

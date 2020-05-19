@@ -30,8 +30,8 @@ const QuestionsPage = ({ topic, checker }) => {
           const next = checker.next();
           setQuestion(next);
         } else {
-          setLocationKeys((keys) => [location.key, ...keys]);
           //handle back button
+          setLocationKeys((keys) => [location.key, ...keys]);
           const prev = checker.previous();
           setQuestion(prev);
         }
@@ -50,6 +50,7 @@ const QuestionsPage = ({ topic, checker }) => {
       />
     );
   }
+
   const { slug } = topic;
 
   const needContactPermits = () =>
@@ -72,37 +73,39 @@ const QuestionsPage = ({ topic, checker }) => {
     }
 
     if (needContactPermits()) {
+      // go to to conclusion fall out
       history.push(geturl(routes.conclusion, { slug }));
     }
 
     if (!needContactPermits() && !back) {
-      const next = checker.next();
+      const next = context.resultsShown ? checker.stack[context.questionId] : checker.next();
+
+      console.log(context.resultsShown);
+
       if (!next) {
         // Go to Result page
-        history.push(geturl(routes.results, { slug }));
         context.setData({ data: checker.getData() });
-      } else {
+        history.push(geturl(routes.results, { slug }));
+      }
+      if (next) {
         // Go to Next question
         setQuestion(next);
-
-        context.setData({ data: checker.getData() });
         context.setData({ questionId: context.questionId + 1 });
-
         history.push(
           geturl(routes.questions, {
             slug: topic.slug,
-            question: getslug(next.text),
+            question: getslug(next),
           })
         );
       }
     }
 
     // Go back to Location page
-    if (back && checker?.stack?.length === 1) {
+    if (back && context.questionId === 0) {
       return history.push(geturl(routes.address, { slug }));
     }
     // Handle back option
-    if (!needContactPermits() && back && checker?.stack?.length > 0) {
+    if (!needContactPermits() && back && context.questionId > 0) {
       const prev = checker.previous();
       setQuestion(prev);
     }
