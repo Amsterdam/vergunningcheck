@@ -97,6 +97,7 @@ const LocationFinder = (props) => {
           onChange={(e) => {
             setPostalCode(e.target.value);
           }}
+          autoFocus
         />
         {postalCodeError && <ErrorMessage message={postalCodeError} />}
       </ComponentWrapper>
