@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Paragraph, themeSpacing } from "@datapunt/asc-ui";
+import { avoidPageBreak } from "../utils/themeUtils";
 
 export const QuestionWrapper = styled.div`
   display: flex;
@@ -14,13 +15,7 @@ export const QuestionWrapper = styled.div`
     border-bottom: 1px solid black;
   }
 
-  /* Try to avoid breaking over serarate pages */
-  @media print {
-    page-break-inside: avoid;
-    * {
-      page-break-inside: avoid;
-    }
-  }
+  ${avoidPageBreak}
 `;
 
 export const MainWrapper = styled(QuestionWrapper)`

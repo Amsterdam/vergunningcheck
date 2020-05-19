@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { Paragraph, Heading, Alert } from "@datapunt/asc-ui";
@@ -7,13 +7,15 @@ import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
 
+import Context from "../context";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
-import DownloadButton from "../components/Atoms/DownloadButton";
+import PrintButton from "../components/Atoms/PrintButton";
+import ComponentWrapper from "../components/Atoms/ComponentWrapper";
 import PrintOnly from "../components/Atoms/PrintOnly";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
 import Form from "../components/Form";
-import ConclusionPrint from "../components/ConclusionPrint";
+import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Helmet from "react-helmet";
@@ -24,9 +26,17 @@ const outcomes = {
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
 const ConclusionPage = ({ topic, checker }) => {
+  const context = useContext(Context);
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
+
+  const {
+    streetName,
+    houseNumberFull,
+    postalCode,
+    residence,
+  } = context.address;
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
@@ -72,7 +82,7 @@ const ConclusionPage = ({ topic, checker }) => {
     }
   };
 
-  const handleDownloadButton = () => {
+  const handlePrintButton = () => {
     trackEvent({
       category: "conclusion",
       action: "conclusie-opslaan",
@@ -81,6 +91,16 @@ const ConclusionPage = ({ topic, checker }) => {
     window.print();
   };
 
+  const date = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const currentDateTime = date.toLocaleDateString("nl-NL", options);
+
   return (
     <Layout>
       <Helmet>
@@ -88,11 +108,22 @@ const ConclusionPage = ({ topic, checker }) => {
       </Helmet>
       <Form onSubmit={handleSubmit} data-testid={CONCLUSION_PAGE}>
         <PrintOnly>
-          <ConclusionPrint checker={checker} />
+          <Paragraph fontSize={12}>{window.location.href}</Paragraph>
+
+          <Heading forwardedAs="h2" styleAs="h1">
+            Datum
+          </Heading>
+          <Paragraph>{currentDateTime} uur.</Paragraph>
+
+          <Heading forwardedAs="h2">Adresgegevens</Heading>
+          <Paragraph gutterBottom={30}>
+            {streetName} {houseNumberFull}
+            <br />
+            {postalCode} {residence}
+          </Paragraph>
         </PrintOnly>
 
         <Heading forwardedAs="h1">Conclusie</Heading>
-
         <Paragraph>
           Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
           van toepassing is.
@@ -106,30 +137,35 @@ const ConclusionPage = ({ topic, checker }) => {
         ))}
 
         {!isMobile && (
-          <DownloadButton
-            type="button"
-            color="primary"
-            onClick={handleDownloadButton}
-            style={{ alignSelf: "flex-start" }}
-          >
-            Conclusie opslaan
-          </DownloadButton>
+          <ComponentWrapper>
+            <PrintButton
+              type="button"
+              color="primary"
+              onClick={handlePrintButton}
+            >
+              Conclusie opslaan
+            </PrintButton>
+          </ComponentWrapper>
         )}
 
-        <PrintOnly style={{ marginTop: 20 }} withBorder>
-          <Alert>
-            <Heading forwardedAs="h2">Proclaimer</Heading>
-            <Paragraph
-              style={{
-                maxWidth: 600,
-              }}
-            >
-              De Vergunningcheck is een hulpmiddel. Het geeft informatie over
-              situaties die veel voorkomen. U kunt er geen rechten aan ontlenen.
-              Dat betekent dat het geen zekerheid geeft. Wilt u het zeker weten?
-              Neem dan contact op met de gemeente.
-            </Paragraph>
-          </Alert>
+        <PrintOnly>
+          <Heading forwardedAs="h2" styleAs="h1">
+            Uw antwoorden
+          </Heading>
+          <Paragraph>
+            Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
+          </Paragraph>
+          <QuestionAnswerTable checker={checker} />
+        </PrintOnly>
+
+        <PrintOnly style={{ marginTop: 20 }} withBorder avoidPageBreak>
+          <Alert
+            style={{
+              display: "block", // IE11 Fix
+            }}
+            heading="Let op"
+            content={`De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog geen zekerheid bieden dat de uitkomst correct is. Ook is de informatie nog niet voor iedereen goed te lezen of te beluisteren. Wilt u iets zeker weten of wilt u meer informatie? Bel het telefoonnummer 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.`}
+          />
         </PrintOnly>
 
         <Nav

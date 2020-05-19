@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { Paragraph, Heading, Icon } from "@datapunt/asc-ui";
+import React from "react";
+import { Button, Icon } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
 import uniqBy from "lodash.uniqby";
 
-import Context from "../context";
+import { booleanOptions } from "../components/Question";
+import ComponentWrapper from "../components/Atoms/ComponentWrapper";
 import {
   QuestionWrapper,
   MainWrapper,
@@ -11,28 +12,11 @@ import {
   UserAnswer,
   UserResult,
   UserResultParagraph,
-} from "../pages/ResultsPageStyles";
-import { booleanOptions } from "./Question";
+  Change,
+} from "./QuestionAnswerTableStyles";
 
-export default ({ checker }) => {
+export default ({ checker, onGoToQuestion }) => {
   const permitsPerQuestion = [];
-  const context = useContext(Context);
-  const {
-    streetName,
-    houseNumberFull,
-    postalCode,
-    residence,
-  } = context.address;
-
-  const event = new Date();
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  };
-  const today = event.toLocaleDateString("nl-NL", options);
 
   checker.permits.forEach((permit) => {
     const conclusionDecision = permit.getDecisionById("dummy");
@@ -50,28 +34,13 @@ export default ({ checker }) => {
 
   return (
     <>
-      <Paragraph fontSize={12}>{window.location.href}</Paragraph>
-
-      <Heading forwardedAs="h2">Datum</Heading>
-      <Paragraph strong>{today} uur.</Paragraph>
-
-      <Heading forwardedAs="h2">Adresgegevens</Heading>
-      <Paragraph strong>
-        {streetName} {houseNumberFull}
-        <br />
-        {postalCode} {residence}
-      </Paragraph>
-
-      <Heading forwardedAs="h2">Uw antwoorden</Heading>
-      <Paragraph>
-        Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
-      </Paragraph>
-
       <MainWrapper>
         <Question strong>Vraag</Question>
         <UserAnswer strong>Uw antwoord</UserAnswer>
+        {onGoToQuestion && <Change />}
       </MainWrapper>
-      <div style={{ marginBottom: 40 }}>
+
+      <ComponentWrapper marginBottom={40}>
         {checker?.stack?.map((question, index) => {
           const isDecisiveForPermits =
             uniqBy(permitsPerQuestion[index], "name") || [];
@@ -88,6 +57,16 @@ export default ({ checker }) => {
                     ).label
                   }
                 </UserAnswer>
+              )}
+              {onGoToQuestion && (
+                <Change>
+                  <Button
+                    onClick={() => onGoToQuestion(index)}
+                    variant="textButton"
+                  >
+                    Wijzig
+                  </Button>
+                </Change>
               )}
 
               {isDecisiveForPermits.map((permit, index) => (
@@ -110,7 +89,7 @@ export default ({ checker }) => {
             </QuestionWrapper>
           );
         })}
-      </div>
+      </ComponentWrapper>
     </>
   );
 };
