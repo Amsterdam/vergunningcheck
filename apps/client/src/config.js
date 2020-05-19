@@ -73,12 +73,12 @@ const topics = [
     intro: "KozijnenIntroTest",
   },
   {
-    slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
+    slug: "zonnepanelen-of-zonneboiler-plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {
-      heading: "Vergunningcheck zonnepanelen of warmtecollectoren plaatsen",
+      heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
-        "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen",
+        "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
     intro: "ZonnepanelenIntro",
   },

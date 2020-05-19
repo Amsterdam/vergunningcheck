@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import { routeConfig } from "../routes";
+import { routeConfig, redirectConfig } from "../routes";
 import ScrollToTop from "./ScrollToTop";
 
 const Router = (props) => {
@@ -9,6 +9,9 @@ const Router = (props) => {
     <BrowserRouter>
       <ScrollToTop />
       <Switch>
+        {redirectConfig.map(([from, to]) => (
+          <Redirect {...{ from, to }} />
+        ))}
         {routeConfig
           .filter((route) => route.component)
           .map((route, i) => (
