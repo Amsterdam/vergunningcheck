@@ -6,7 +6,7 @@ export const FigCaption = styled.figcaption`
 `;
 
 export const StyledCard = styled(Card)`
-  min-height: 1px; /* IE11 Bug */
+  min-height: 100px; /* IE11 Bug */
   margin: 0 0 24px 0;
 `;
 
