@@ -4,7 +4,7 @@ import { Alert } from "@datapunt/asc-assets";
 import uniqBy from "lodash.uniqby";
 
 import { booleanOptions } from "../components/Question";
-import ComponentWrapper from "../components/Atoms/ComponentWrapper";
+import { ComponentWrapper } from "../components/Atoms";
 import {
   QuestionWrapper,
   MainWrapper,

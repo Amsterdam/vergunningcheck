@@ -1,6 +1,5 @@
 import React from "react";
-import { Alert } from "@datapunt/asc-ui";
-import { ComponentWrapper } from "./Atoms";
+import { Alert, ComponentWrapper } from "./Atoms";
 
 const Error = ({ heading, content, stack, children }) => (
   <ComponentWrapper>
@@ -8,7 +7,6 @@ const Error = ({ heading, content, stack, children }) => (
       level="error"
       heading={heading || `Er is een fout opgetreden.`}
       content={content}
-      style={{ display: "block" }} // IE11 Fix
     >
       {children}
 

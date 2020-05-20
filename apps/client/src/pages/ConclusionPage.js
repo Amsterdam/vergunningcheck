@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { isMobile } from "react-device-detect";
-import { Paragraph, Heading, Alert } from "@datapunt/asc-ui";
+import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
@@ -9,9 +9,6 @@ import withFinalChecker from "../hoc/withFinalChecker";
 
 import Context from "../context";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
-import PrintButton from "../components/Atoms/PrintButton";
-import ComponentWrapper from "../components/Atoms/ComponentWrapper";
-import PrintOnly from "../components/Atoms/PrintOnly";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
 import Form from "../components/Form";
@@ -19,6 +16,12 @@ import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Helmet from "react-helmet";
+import {
+  PrintButton,
+  PrintOnly,
+  Alert,
+  ComponentWrapper,
+} from "../components/Atoms";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
@@ -160,9 +163,6 @@ const ConclusionPage = ({ topic, checker }) => {
 
         <PrintOnly style={{ marginTop: 20 }} withBorder avoidPageBreak>
           <Alert
-            style={{
-              display: "block", // IE11 Fix
-            }}
             heading="Let op"
             content={`De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog geen zekerheid bieden dat de uitkomst correct is. Ook is de informatie nog niet voor iedereen goed te lezen of te beluisteren. Wilt u iets zeker weten of wilt u meer informatie? Bel het telefoonnummer 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.`}
           />
