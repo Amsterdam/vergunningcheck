@@ -10,7 +10,7 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
