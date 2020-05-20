@@ -78,6 +78,13 @@ export const routeConfig = [
   },
 ];
 
+export const redirectConfig = [
+  [
+    "/zonnepanelen-of-warmtecollectoren-plaatsen",
+    "/zonnepanelen-of-zonneboiler-plaatsen",
+  ],
+];
+
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
 export const routes = Object.fromEntries(

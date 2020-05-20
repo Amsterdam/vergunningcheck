@@ -1,4 +1,5 @@
-export const isProduction = "vergunningcheck.nl" === window.location.hostname;
+export const isProduction =
+  "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
 export const matomo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
@@ -73,12 +74,12 @@ const topics = [
     intro: "KozijnenIntroTest",
   },
   {
-    slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
+    slug: "zonnepanelen-of-zonneboiler-plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {
-      heading: "Vergunningcheck zonnepanelen of warmtecollectoren plaatsen",
+      heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
-        "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen",
+        "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
     intro: "ZonnepanelenIntro",
   },
@@ -117,4 +118,4 @@ export { topics };
 // We need a place for general text as well
 // I know this is not the best place
 // For now I will place it here
-export const requiredFieldText = "Dit veld is verplicht";
+export const requiredFieldText = "Dit veld is verplicht.";
