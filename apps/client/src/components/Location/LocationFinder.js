@@ -70,7 +70,7 @@ const LocationFinder = (props) => {
       }
       const trimmed = value?.trim();
       if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
-        return "De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.";
+        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
   };
@@ -153,7 +153,7 @@ const LocationFinder = (props) => {
       {notFoundAddress && !graphqlError && (
         <ComponentWrapper>
           <Alert
-            heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer "
+            heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
             style={{
               backgroundColor: "white",
               border: "2px solid red",
@@ -161,7 +161,7 @@ const LocationFinder = (props) => {
           >
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
-              telefoonnummer <a href="tel:14020">14 020</a>
+              telefoonnummer <a href="tel:14020">14 020</a>.
             </Paragraph>
           </Alert>
         </ComponentWrapper>
