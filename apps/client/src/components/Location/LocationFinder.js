@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import {
-  Paragraph,
-  Select,
-  TextField,
-  ErrorMessage,
-  Alert,
-} from "@datapunt/asc-ui";
+import { Paragraph, Select, TextField, ErrorMessage } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 
-import { ComponentWrapper } from "../Atoms";
+import { Alert, ComponentWrapper } from "../Atoms";
 import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 
@@ -153,11 +147,8 @@ const LocationFinder = (props) => {
       {notFoundAddress && !graphqlError && (
         <ComponentWrapper>
           <Alert
+            level="warning"
             heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
-            style={{
-              backgroundColor: "white",
-              border: "2px solid red",
-            }}
           >
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
