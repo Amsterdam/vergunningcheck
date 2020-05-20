@@ -153,11 +153,9 @@ const LocationFinder = (props) => {
       {notFoundAddress && !graphqlError && (
         <ComponentWrapper>
           <Alert
+            level="warning"
             heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
-            style={{
-              backgroundColor: "white",
-              border: "2px solid red",
-            }}
+            style={{ display: "block" }} // IE11 Fix
           >
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
