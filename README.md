@@ -22,8 +22,9 @@ We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md
 Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
 - Run `npm run release`.
-- Create a PR to the master-branch on github.
-- After merging tou have to approve the release in Jenkins.
+- (Create a PR to the master-branch on github.)
+- Verify the changes on ACC.
+- After verify you have to approve the deploy to production in Jenkins.
 
 ## Tech stack
 

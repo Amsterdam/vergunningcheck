@@ -13,7 +13,7 @@
     "test": "CI=true lerna run test",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "release": "git checkout develop && git pull && lerna-changelog && lerna publish"
+    "release": "git checkout develop && git pull && lerna-changelog && lerna publish && git pull-request -m 'Release'"
   },
   "devDependencies": {
     "husky": "^4.2.5",
