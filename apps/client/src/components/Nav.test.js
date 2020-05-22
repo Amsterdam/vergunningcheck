@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import Form from "./Form";
 import { MemoryRouter } from "react-router-dom";
 import Context from "../__mocks__/context";
+import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();
@@ -24,30 +25,32 @@ const Wrapper = ({ children }) => {
 };
 
 it("Nav should render with no props", () => {
-  render(
+  const { queryByTestId } = render(
     <Wrapper>
       <Nav />
     </Wrapper>
   );
 
-  expect(screen.findByText("Vorige")).not.toBeFalsy();
-  expect(screen.findByText("Volgende")).not.toBeFalsy();
+  expect(queryByTestId(NEXT_BUTTON)).not.toBeInTheDocument();
+  expect(queryByTestId(PREV_BUTTON)).not.toBeInTheDocument();
 });
 
 it("Nav should render default values", () => {
-  render(
+  const { queryByTestId } = render(
     <Wrapper>
       <Nav showPrev showNext />
     </Wrapper>
   );
 
-  expect(screen.getByText("Vorige")).toBeTruthy();
-  expect(screen.getByText("Volgende")).toBeTruthy();
-  expect(screen.getByText("Volgende")).toHaveStyle("margin-right: 25px");
+  expect(queryByTestId(PREV_BUTTON)).toBeInTheDocument();
+
+  const nextButton = queryByTestId(NEXT_BUTTON);
+  expect(nextButton).toBeInTheDocument();
+  expect(nextButton).toHaveStyle("margin-right: 25px");
 });
 
 it("Nav should render with prop values and should fire events", () => {
-  render(
+  const { getByText } = render(
     <Wrapper>
       <Nav
         showPrev
@@ -60,13 +63,16 @@ it("Nav should render with prop values and should fire events", () => {
     </Wrapper>
   );
 
-  expect(screen.getByText("Prev")).toBeTruthy();
-  expect(screen.getByText("Next")).toBeTruthy();
-  expect(screen.getByText("Next")).toHaveStyle("margin-right: 10px");
+  const prevButton = getByText("Prev");
+  const nextButton = getByText("Next");
 
-  fireEvent.click(screen.getByText("Prev"));
+  expect(prevButton).toBeInTheDocument();
+  expect(nextButton).toBeInTheDocument();
+  expect(nextButton).toHaveStyle("margin-right: 10px");
+
+  fireEvent.click(prevButton);
   expect(onPrevClickMock).toHaveBeenCalledTimes(1);
 
-  fireEvent.click(screen.getByText("Next"));
+  fireEvent.click(nextButton);
   expect(onSubmitMock).toHaveBeenCalledTimes(1);
 });
