@@ -8,4 +8,8 @@ export const NavStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
+
+  @media print {
+    display: none;
+  }
 `;
