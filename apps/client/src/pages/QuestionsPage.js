@@ -78,12 +78,15 @@ const QuestionsPage = ({ topic, checker }) => {
     }
 
     if (!needContactPermits() && !back) {
-      const next = context.resultsShown ? checker.stack[context.questionId] : checker.next();
+      const next = context.resultsShown
+        ? checker.stack[context.questionId]
+        : checker.next();
 
-      console.log(context.resultsShown);
-
+      console.log("results shown", context.resultsShown);
+      console.log("next", next);
       if (!next) {
         // Go to Result page
+
         context.setData({ data: checker.getData() });
         history.push(geturl(routes.results, { slug }));
       }
@@ -91,10 +94,11 @@ const QuestionsPage = ({ topic, checker }) => {
         // Go to Next question
         setQuestion(next);
         context.setData({ questionId: context.questionId + 1 });
+        console.log(next);
         history.push(
           geturl(routes.questions, {
             slug: topic.slug,
-            question: getslug(next),
+            question: getslug(next.text),
           })
         );
       }

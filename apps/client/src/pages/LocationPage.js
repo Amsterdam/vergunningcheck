@@ -40,7 +40,12 @@ const LocationPage = ({ topic }) => {
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
       });
-      context.setData({ address, data: null, questionId: 0 });
+      context.setData({
+        address,
+        data: null,
+        resultsShown: false,
+        questionId: 0,
+      });
       history.push(geturl(routes.address, { slug }));
     }
   };
