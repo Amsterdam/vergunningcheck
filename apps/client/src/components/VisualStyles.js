@@ -8,26 +8,23 @@ export const FigCaption = styled.figcaption`
 export const Figure = styled.figure`
   min-height: 1px; /* IE11 Bug */
   margin: 0 0 24px 0;
-  ${({ isLoading, theme, animateLoading, backgroundImage }) =>
-    isLoading
-      ? css`
-          ${perceivedLoading(animateLoading)({ theme })}
-          height: 100px;
-          width: 100%;
-          & > * {
-            display: none;
-          }
-          &::before {
-            content: "";
-            display: block;
-            width: calc(100% - 30px);
-            height: 30px;
-            ${perceivedLoading(animateLoading)({ theme })}
-          }
-        `
-      : css`
-          background-image: url(${backgroundImage});
-        `}
+  ${({ isLoading, theme, animateLoading }) =>
+    isLoading &&
+    css`
+      ${perceivedLoading(animateLoading)}
+      height: 100px;
+      width: 100%;
+      & > * {
+        display: none;
+      }
+      &::before {
+        content: "";
+        display: block;
+        width: calc(100% - 30px);
+        height: 30px;
+        ${perceivedLoading(animateLoading)({ theme })}
+      }
+    `}
 `;
 
 export const Img = styled.img`
