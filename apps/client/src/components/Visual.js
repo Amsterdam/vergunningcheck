@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { StyledCard, Img, FigCaption } from "./VisualStyles";
+import { Figure, Img, FigCaption } from "./VisualStyles";
 
 export default ({ title, ...rest }) => {
   const [loading, setLoading] = useState(true);
   return (
-    <StyledCard isLoading={loading}>
+    <Figure isLoading={loading}>
       <Img {...rest} onLoad={() => setLoading(false)} />
       {title && <FigCaption>{title}</FigCaption>}
-    </StyledCard>
+    </Figure>
   );
 };
