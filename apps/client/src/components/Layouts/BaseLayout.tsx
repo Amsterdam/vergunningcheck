@@ -25,7 +25,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
       <Helmet>
         <title>Amsterdam Vergunningcheck</title>
       </Helmet>
-      <Header showLinks={showNavLink} />
+      <Header />
       <ContentContainer>
         <Row>
           <Column

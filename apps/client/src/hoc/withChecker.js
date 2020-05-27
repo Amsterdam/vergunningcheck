@@ -7,6 +7,9 @@ import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
 
+const dir =
+  process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
+
 const withChecker = (Component) =>
   withAddress(({ ...rest }) => {
     const context = useContext(Context);
@@ -20,14 +23,14 @@ const withChecker = (Component) =>
       return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
     }
 
-    const fetchData = (sttrFile) =>
-      fetch(`${window.location.origin}/sttr/${sttrFile}`).then((response) =>
-        response.json()
-      );
-
     useEffect(() => {
       if (!checker && !error) {
-        fetchData(topic.sttrFile)
+        fetch(
+          `${window.location.origin}/sttr/${dir.toLowerCase()}/${
+            topic.sttrFile
+          }`
+        )
+          .then((response) => response.json())
           .then((json) => {
             const checker = getChecker(json);
             checker.next();
