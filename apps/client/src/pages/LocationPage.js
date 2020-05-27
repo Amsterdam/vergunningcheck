@@ -44,7 +44,7 @@ const LocationPage = ({ topic }) => {
         address,
         data: null,
         resultsShown: false,
-        questionId: 0,
+        questionIndex: 0,
       });
       history.push(geturl(routes.address, { slug }));
     }

@@ -11,11 +11,11 @@ let reducer = (data, newData) => {
 
 const defaultValues = session
   ? session
-  : { topic: null, address: null, questionId: 0 };
+  : { topic: null, address: null, questionIndex: 0 };
 
 const Context = createContext();
 
-function CheckerProvider(props) {
+function CheckProvider(props) {
   const [data, setData] = useReducer(reducer, defaultValues);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ function CheckerProvider(props) {
 }
 
 export default Context;
-export { defaultValues, CheckerProvider };
+export { defaultValues, CheckProvider };

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph, Button, Icon } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
@@ -28,16 +28,11 @@ const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
   const context = useContext(Context);
   const { slug } = topic;
-  debugger;
   const permitsPerQuestion = [];
-
-  useEffect(() => {
-    context.setData({ resultsShown: true });
-  }, [context, context.checker, history]);
 
   const onGoToQuestion = (index) => {
     const q = checker.rewindTo(index);
-    context.setData({ questionId: index });
+    context.setData({ questionIndex: index, resultsShown: true });
     history.push(
       geturl(routes.questions, {
         slug,

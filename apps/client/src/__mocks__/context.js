@@ -7,10 +7,10 @@ export default ({
   topicMock = "dakraam-plaatsen",
   addressMock,
   checker,
-  questionId
+  questionIndex,
 }) => {
   const context = useContext(Context);
-  const setData = jest.fn()
+  const setData = jest.fn();
 
   context.topic = topics.find((t) => t.slug === topicMock);
   if (addressMock) {
@@ -19,8 +19,8 @@ export default ({
   if (checker) {
     context.checker = checker;
   }
-  if (questionId) {
-    context.questionId = questionId;
+  if (questionIndex) {
+    context.questionIndex = questionIndex;
   }
   context.setData = setData;
   return children;

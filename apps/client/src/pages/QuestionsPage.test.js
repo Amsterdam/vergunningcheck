@@ -36,7 +36,7 @@ describe("<QuestionsPage />", () => {
   const checker = getChecker(debugChecker);
 
   // Mock URL
-  const { text, options } = checker.stack[0];
+  const { text, options } = checker.next();
   const slug = getslug(text);
   const baseUrl = `/${topicMock}`;
   window.history.pushState({}, "questions", `${baseUrl}/vragen/`);
@@ -44,10 +44,15 @@ describe("<QuestionsPage />", () => {
   // Mock address
   const { exactMatch } = address[0].result.data.findAddress;
 
-  const Wrapper = ({questionId}) => {
+  const Wrapper = ({ questionIndex }) => {
     const history = createMemoryHistory();
     return (
-      <Context topicMock={topic} addressMock={exactMatch} checker={checker} questionId={questionId || 0}>
+      <Context
+        topicMock={topic}
+        addressMock={exactMatch}
+        checker={checker}
+        questionIndex={questionIndex || 0}
+      >
         <Router history={history}>
           <QuestionsPage topic={topic} checker={checker} />
         </Router>
@@ -57,7 +62,7 @@ describe("<QuestionsPage />", () => {
 
   it("renders correctly on first load", async () => {
     const { container, getByText, getByTestId, findByTestId } = render(
-      <Wrapper questionId={0} />
+      <Wrapper questionIndex={0} />
     );
 
     expect(container).toBeInTheDocument();
@@ -80,7 +85,7 @@ describe("<QuestionsPage />", () => {
 
   it("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
     const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper questionId={0} />
+      <Wrapper questionIndex={0} />
     );
 
     // Click `NEXT_BUTTON` and expect form validation to display `requiredFieldText`
@@ -118,7 +123,7 @@ describe("<QuestionsPage />", () => {
 
   it("navigates correctly between different questions and Results Page", async () => {
     const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper questionId={1} />
+      <Wrapper questionIndex={1} />
     );
 
     // Click the THIRD `input` and go to the next question

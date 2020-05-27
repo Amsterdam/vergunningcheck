@@ -10,7 +10,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { createGlobalStyle } from "@datapunt/asc-core";
-import { CheckerProvider } from "./context";
+import { CheckProvider } from "./context";
 
 import { matomo } from "./config";
 import apolloClient from "./apolloClient";
@@ -35,7 +35,7 @@ const AppGlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <CheckerProvider>
+  <CheckProvider>
     <ApolloProvider client={apolloClient}>
       <ThemeProvider>
         <GlobalStyle />
@@ -45,7 +45,7 @@ ReactDOM.render(
         </MatomoProvider>
       </ThemeProvider>
     </ApolloProvider>
-  </CheckerProvider>,
+  </CheckProvider>,
 
   document.getElementById("root")
 );

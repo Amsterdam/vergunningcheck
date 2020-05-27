@@ -15,7 +15,11 @@ const QuestionsPage = ({ topic, checker }) => {
   const history = useHistory();
   const { question: questionSlug } = params;
   const [locationKeys, setLocationKeys] = useState([]);
-  const [question, setQuestion] = useState(checker.stack[context.questionId]);
+  const [question, setQuestion] = useState(
+    checker.stack[context.questionIndex]
+      ? checker.stack[context.questionIndex]
+      : checker.stack[checker.stack.length - 1]
+  );
 
   useEffect(() => {
     return history.listen((location) => {
@@ -79,22 +83,23 @@ const QuestionsPage = ({ topic, checker }) => {
 
     if (!needContactPermits() && !back) {
       const next = context.resultsShown
-        ? checker.stack[context.questionId]
+        ? checker.stack[context.questionIndex]
         : checker.next();
 
-      console.log("results shown", context.resultsShown);
-      console.log("next", next);
       if (!next) {
         // Go to Result page
-
         context.setData({ data: checker.getData() });
         history.push(geturl(routes.results, { slug }));
       }
       if (next) {
         // Go to Next question
         setQuestion(next);
-        context.setData({ questionId: context.questionId + 1 });
-        console.log(next);
+
+        context.setData({
+          data: checker.getData(),
+          questionIndex: context.questionIndex + 1,
+        });
+
         history.push(
           geturl(routes.questions, {
             slug: topic.slug,
@@ -105,13 +110,19 @@ const QuestionsPage = ({ topic, checker }) => {
     }
 
     // Go back to Location page
-    if (back && context.questionId === 0) {
+    if (back && checker.stack.length === 1) {
       return history.push(geturl(routes.address, { slug }));
     }
-    // Handle back option
-    if (!needContactPermits() && back && context.questionId > 0) {
+    // Handle back button
+    if (!needContactPermits() && back && context.questionIndex > 0) {
       const prev = checker.previous();
       setQuestion(prev);
+      history.push(
+        geturl(routes.questions, {
+          slug: topic.slug,
+          question: getslug(prev.text),
+        })
+      );
     }
   };
   return (

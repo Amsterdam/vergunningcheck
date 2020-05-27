@@ -33,6 +33,7 @@ const withChecker = (Component) =>
             if (context.data) {
               checker.setData(context.data);
             }
+
             checker.next();
             context.checker = checker;
             setChecker(checker);

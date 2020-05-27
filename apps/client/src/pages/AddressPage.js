@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
@@ -14,6 +14,7 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 
 import { StyledAddressResult } from "./AddressPageStyles";
+import Context from "../context";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
@@ -33,6 +34,7 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
 };
 
 const AddressPage = ({ topic, address }) => {
+  const context = useContext(Context);
   const history = useHistory();
   const { slug } = topic;
   const useSTTR = !!topic.sttrFile;
@@ -40,6 +42,7 @@ const AddressPage = ({ topic, address }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
+      context.setData({ data: null });
       history.push(geturl(routes.questions, { slug }));
     } else {
       window.open(getOloUrl(address), "_blank");
