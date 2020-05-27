@@ -4,6 +4,10 @@ export const HiddenDiv = styled.div`
   display: none;
   background: #eee;
   padding: 1em;
+
+  @media print {
+    display: none;
+  }
 `;
 
 export const Title = styled.p`
