@@ -40,6 +40,7 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 ## Known issues
 
 - css sourcemaps (some issues exist in development, in prod it works, see https://github.com/facebook/create-react-app/issues/6399)
+- we are not on the latest version of `react-scripts` because 3.4.1 does not play well with Lerna. See https://github.com/facebook/create-react-app/issues/8685
 
 ## Thanks to
 
