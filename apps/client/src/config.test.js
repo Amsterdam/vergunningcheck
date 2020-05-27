@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup } from "./utils/test-utils";
-import { topics, isProduction, matomo } from "./config";
+import { topics, getMatomoSiteId } from "./config";
 
 afterEach(cleanup);
 
@@ -22,8 +22,9 @@ const AllIntroPages = () =>
 describe("Config", () => {
   afterEach(cleanup);
 
-  test("should load correct matomo siteId", () => {
-    expect(matomo.siteId).toBe(isProduction ? 29 : 37);
+  test("should load correct environment matomo siteId", () => {
+    expect(getMatomoSiteId(true)).toBe(29);
+    expect(getMatomoSiteId(false)).toBe(37);
   });
 
   it("should be able to find all Intro pages", () => {
