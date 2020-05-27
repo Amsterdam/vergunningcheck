@@ -34,7 +34,7 @@
     "start": "react-scripts start",
     "start:prod": "npm run build; serve -s build/",
     "build": "react-scripts build",
-    "sttr": "node scripts/sttr_build --output=./public/sttr && prettier public/sttr --write",
+    "sttr": "node scripts/sttr_build && prettier public/sttr --write",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
     "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",
@@ -75,8 +75,7 @@
     "prettier": "^2.0.4",
     "react-scripts": "3.4.0",
     "source-map-explorer": "^2.4.2",
-    "typescript": "^3.7.5",
-    "yargs": "^15.3.1"
+    "typescript": "^3.7.5"
   },
   "lint-staged": {
     "*.json": [
