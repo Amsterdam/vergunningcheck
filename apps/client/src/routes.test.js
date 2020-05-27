@@ -17,7 +17,7 @@ describe("Routes", () => {
   test("slugify dependency works as expected", () => {
     expect(
       slugify(text, {
-        remove: /[*+~,.()'"!?:@]/g, // regex to remove characters
+        strict: true, // remove special chars
         lower: true, // result in lower case
       })
     ).toBe(slug);

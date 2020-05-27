@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import slugify from "slugify";
 import { Button } from "@datapunt/asc-ui";
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
@@ -8,7 +7,7 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { NavStyle } from "./NavStyle";
 import { useRouteMatch } from "react-router-dom";
-import { routeConfig } from "../routes";
+import { routeConfig, getslug } from "../routes";
 import Context from "../context";
 
 const Nav = ({
@@ -29,7 +28,7 @@ const Nav = ({
 
   const handleNextClick = () => {
     const action = formEnds
-      ? slugify(nextText.toLowerCase())
+      ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
     trackEvent({
       category,
