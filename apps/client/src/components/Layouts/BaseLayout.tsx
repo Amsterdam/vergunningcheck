@@ -17,9 +17,6 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
   const { topic } = useContext(Context);
   const title = heading || topic?.text?.heading || null;
 
-  // const showNavLink = !topic || !topic.sttrPath;
-  const showNavLink = false;
-
   return (
     <Container>
       <Helmet>
