@@ -60,8 +60,12 @@ class Checker {
     }, {});
   }
 
+  /**
+   * Set data from context to the current stack
+   * @returns {void} -
+   */
   setData(answers) {
-    if(!isObject(answers)) {
+    if (!isObject(answers)) {
       throw Error("Answers must be of type object");
     }
     this._questions.forEach((question) => {
