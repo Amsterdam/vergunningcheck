@@ -20,6 +20,7 @@ const QuestionsPage = ({ topic, checker }) => {
       ? checker.stack[context.questionIndex]
       : checker.stack[checker.stack.length - 1]
   );
+  const { slug } = topic;
 
   useEffect(() => {
     return history.listen((location) => {
@@ -36,15 +37,22 @@ const QuestionsPage = ({ topic, checker }) => {
         } else {
           //handle back button
           setLocationKeys((keys) => [location.key, ...keys]);
-          const prev = checker.previous();
-          setQuestion(prev);
+          if (context.questionIndex > 0) {
+            const prev = checker.previous();
+            setQuestion(prev);
+          } else {
+            history.push(geturl(routes.address, { slug }));
+          }
         }
       }
     });
-  }, [locationKeys, checker, history]);
+  }, [locationKeys, checker, history, context.questionIndex, slug]);
 
   // Update URL based on question text
   if (!questionSlug) {
+    // first question
+    context.setData({ questionIndex: 0 });
+    checker.rewindTo(0);
     return (
       <Redirect
         to={geturl(routes.questions, {
@@ -54,8 +62,6 @@ const QuestionsPage = ({ topic, checker }) => {
       />
     );
   }
-
-  const { slug } = topic;
 
   const needContactPermits = () =>
     checker.permits.find((permit) => {

@@ -34,7 +34,6 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
 };
 
 const AddressPage = ({ topic, address }) => {
-  const context = useContext(Context);
   const history = useHistory();
   const { slug } = topic;
   const useSTTR = !!topic.sttrFile;
@@ -42,7 +41,6 @@ const AddressPage = ({ topic, address }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
-      context.setData({ data: null });
       history.push(geturl(routes.questions, { slug }));
     } else {
       window.open(getOloUrl(address), "_blank");
