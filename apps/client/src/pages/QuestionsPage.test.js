@@ -85,7 +85,7 @@ describe("<QuestionsPage />", () => {
     );
 
     // Click `NEXT_BUTTON` and expect form validation to display `requiredFieldText`
-    act(() => {
+    await act(async () => {
       fireEvent.click(getByTestId(NEXT_BUTTON));
     });
     await queryByText(requiredFieldText);
