@@ -121,8 +121,8 @@ describe("<LocationPage />", () => {
       houseNumberFull,
     } = mocks[0].result.data.findAddress.exactMatch;
 
-    const { container, getByText, findByTestId } = render(
-      <WrapperWithContext addressMock={mocks[0].result.data.findAddress.exactMatch}  />,
+    const { container, getByText, getByTestId } = render(
+      <Wrapper />,
       {},
       mocks
     );

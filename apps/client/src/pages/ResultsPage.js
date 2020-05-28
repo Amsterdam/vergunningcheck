@@ -10,17 +10,7 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import { booleanOptions } from "../components/Question";
-import {
-  QuestionWrapper,
-  MainWrapper,
-  Question,
-  UserAnswer,
-  UserResult,
-  UserResultParagraph,
-  Change,
-} from "./ResultsPageStyles";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import Context from "../context";
 
 const ResultsPage = ({ topic, checker }) => {

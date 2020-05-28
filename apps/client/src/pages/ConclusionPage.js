@@ -13,7 +13,7 @@ import Form from "../components/Form";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import Context from "../context";
 import {
   PrintButton,
@@ -28,7 +28,6 @@ const outcomes = {
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
 const ConclusionPage = ({ topic, checker }) => {
-  const context = useContext(Context);
   const history = useHistory();
   const context = useContext(Context);
   const { trackEvent } = useMatomo();
@@ -84,7 +83,7 @@ const ConclusionPage = ({ topic, checker }) => {
       history.push(geturl(routes.intro, { slug }) + "?resetChecker=true");
     }
   };
- 
+
   const goBack = () => {
     context.setData({ questionIndex: context.questionIndex });
     history.replace(previousUrl);

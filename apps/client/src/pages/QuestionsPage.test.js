@@ -34,9 +34,10 @@ describe("<QuestionsPage />", () => {
 
   // Mock checker
   const checker = getChecker(debugChecker);
+  checker.next();
 
   // Mock URL
-  const { text, options } = checker.next();
+  const { text, options } = checker.stack[0];
   const slug = getslug(text);
   const baseUrl = `/${topicMock}`;
   window.history.pushState({}, "questions", `${baseUrl}/vragen/`);
@@ -44,15 +45,10 @@ describe("<QuestionsPage />", () => {
   // Mock address
   const { exactMatch } = address[0].result.data.findAddress;
 
-  const Wrapper = ({ questionIndex }) => {
+  const Wrapper = () => {
     const history = createMemoryHistory();
     return (
-      <Context
-        topicMock={topic}
-        addressMock={exactMatch}
-        checker={checker}
-        questionIndex={questionIndex || 0}
-      >
+      <Context topicMock={topic} addressMock={exactMatch} checker={checker}>
         <Router history={history}>
           <QuestionsPage topic={topic} checker={checker} />
         </Router>
@@ -61,8 +57,8 @@ describe("<QuestionsPage />", () => {
   };
 
   it("renders correctly on first load", async () => {
-    const { container, getByText, getByTestId, findByTestId } = render(
-      <Wrapper questionIndex={0} />
+    const { container, getByText, getByTestId, queryByTestId } = render(
+      <Wrapper />
     );
 
     expect(container).toBeInTheDocument();
@@ -84,13 +80,12 @@ describe("<QuestionsPage />", () => {
   });
 
   it("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
-    const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper questionIndex={0} />
-
+    const { container, getByTestId, queryByText, queryByTestId } = render(
+      <Wrapper />
     );
 
     // Click `NEXT_BUTTON` and expect form validation to display `requiredFieldText`
-    act(() => {
+    await act(async () => {
       fireEvent.click(getByTestId(NEXT_BUTTON));
     });
     await queryByText(requiredFieldText);
@@ -130,13 +125,15 @@ describe("<QuestionsPage />", () => {
     expect(window.location.pathname).toBe(`${baseUrl}/adresgegevens`);
 
     // Return to the Question Page
-    fireEvent.click(getByTestId(NEXT_BUTTON));
+    await act(async () => {
+      fireEvent.click(getByTestId(NEXT_BUTTON));
+    });
     await queryByTestId(QUESTION_PAGE);
   });
 
   it("navigates correctly between different questions and Results Page", async () => {
-    const { container, getByTestId, findByText, findByTestId } = render(
-      <Wrapper questionIndex={1} />
+    const { container, getByTestId, getByText, queryByTestId } = render(
+      <Wrapper />
     );
 
     // Click the THIRD `input` and go to the next question
@@ -162,10 +159,15 @@ describe("<QuestionsPage />", () => {
     expect(window.location.pathname).toBe(`${baseUrl}/uitkomsten`);
 
     // Go back to the Question Page
-    fireEvent.click(getByTestId(PREV_BUTTON));
+    await act(async () => {
+      fireEvent.click(getByTestId(PREV_BUTTON));
+    });
+
     await queryByTestId(QUESTION_PAGE);
 
-    fireEvent.click(getByTestId(PREV_BUTTON));
+    await act(async () => {
+      fireEvent.click(getByTestId(PREV_BUTTON));
+    });
     await queryByTestId(QUESTION_PAGE);
   });
 });
