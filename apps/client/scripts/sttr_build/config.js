@@ -33,11 +33,21 @@ module.exports = {
     zonnepaneel: [
       {
         id: "TRhZrFexMjBW42Ky6",
-        naam: "Zonnepaneel en warmtecollector monument",
+        naam: "Zonnepaneel en zonneboiler monument",
       },
       {
         id: "skPG9qqTqWyX9tSY7",
-        naam: "Zonnepaneel en warmtecollector bouwen",
+        naam: "Zonnepaneel en zonneboiler bouwen",
+      },
+    ],
+    kozijn: [
+      {
+        id: "Xm2WwYeGkNN9w6rgQ",
+        name: "Kozijn plaatsen in een monument",
+      },
+      {
+        id: "5CJrbgbWZP6uZsouY",
+        name: "Kozijn plaatsen",
       },
     ],
   },

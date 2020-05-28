@@ -143,7 +143,7 @@ describe("<LocationPage />", () => {
       'input[name="houseNumberFull"]'
     );
 
-    act(() => {
+    await act(async () => {
       fireEvent.change(postalCodeInput, {
         target: { value: userInput.postalCode },
       });
@@ -153,14 +153,14 @@ describe("<LocationPage />", () => {
     });
 
     // After mocked data has been loaded, we expect the location to be found
-    await findByTestId(LOCATION_FOUND);
+    await getByTestId(LOCATION_FOUND);
 
     // Click on submit and go to the next page
-    act(() => {
+    await act(async () => {
       fireEvent.click(container.querySelector('button[type="submit"]'));
     });
 
-    await findByTestId(ADDRESS_PAGE);
+    await getByTestId(ADDRESS_PAGE);
 
     // Expect the full address to be found on the page
     expect(getByText(`${streetName} ${houseNumberFull}`)).toBeTruthy();

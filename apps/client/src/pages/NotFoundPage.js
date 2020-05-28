@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import Layout from "../components/Layouts/DefaultLayout";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 const NotFoundPage = () => (
   <Layout>

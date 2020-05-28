@@ -16,7 +16,7 @@ import DevHomePage from "./pages/DevHomePage";
 
 export const getslug = (text) =>
   slugify(text, {
-    remove: /[*+~,.()'"!?:@]/g, // regex to remove characters
+    strict: true, // remove special chars
     lower: true, // result in lower case
   });
 
@@ -76,6 +76,13 @@ export const routeConfig = [
     path: "*",
     component: NotFoundPage,
   },
+];
+
+export const redirectConfig = [
+  [
+    "/zonnepanelen-of-warmtecollectoren-plaatsen",
+    "/zonnepanelen-of-zonneboiler-plaatsen",
+  ],
 ];
 
 // build map of routes with `name` => `path`
