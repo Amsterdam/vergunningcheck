@@ -5,14 +5,14 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { ThemeProvider } from "@datapunt/asc-ui";
 
-import Context, { defaultValues } from "../context";
+import { CheckProvider, defaultValues } from "../context";
 import { matomo } from "../config";
 import { getTestClient } from "../apolloClient";
 
 dotenv.config();
 
 const AllTheProviders = ({ children, mocks }) => (
-  <Context.Provider value={defaultValues}>
+  <CheckProvider value={defaultValues}>
     <ApolloProvider client={getTestClient(mocks ? mocks : [])}>
       <ThemeProvider>
         <MatomoProvider value={createInstance(matomo)}>
@@ -20,7 +20,7 @@ const AllTheProviders = ({ children, mocks }) => (
         </MatomoProvider>
       </ThemeProvider>
     </ApolloProvider>
-  </Context.Provider>
+  </CheckProvider>
 );
 
 const customRender = (ui, options, mocks) => {
