@@ -19,13 +19,12 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 
 We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
 
-`export GITHUB_AUTH="..."`
+Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
-To do the actual release from a `release/...` or `hotfix/...` branch.
-Push your changes to github.
-Run `npm run release`.
-Create a PR to the master-branch on github.
-After merging tou have to approve the release in Jenkins.
+- Run `npm run release`.
+- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...develop) from develop to master on GitHub
+- After the merge and deploy, verify the changes on ACC.
+- After verify you have to approve the deploy to production in Jenkins.
 
 ## Tech stack
 
@@ -41,6 +40,7 @@ After merging tou have to approve the release in Jenkins.
 ## Known issues
 
 - css sourcemaps (some issues exist in development, in prod it works, see https://github.com/facebook/create-react-app/issues/6399)
+- we are not on the latest version of `react-scripts` because 3.4.1 does not play well with Lerna. See https://github.com/facebook/create-react-app/issues/8685
 
 ## Thanks to
 

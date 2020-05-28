@@ -10,7 +10,7 @@ const Router = (props) => {
       <ScrollToTop />
       <Switch>
         {redirectConfig.map(([from, to]) => (
-          <Redirect {...{ from, to }} />
+          <Redirect key={from} {...{ from, to }} />
         ))}
         {routeConfig
           .filter((route) => route.component)
