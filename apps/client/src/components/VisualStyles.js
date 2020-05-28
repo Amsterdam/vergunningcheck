@@ -1,33 +1,41 @@
 import styled, { css } from "styled-components";
-import { perceivedLoading } from "@datapunt/asc-ui";
+import { perceivedLoading, themeColor, themeSpacing } from "@datapunt/asc-ui";
 
 export const FigCaption = styled.figcaption`
   font-style: italic;
 `;
 
 export const Figure = styled.figure`
-  min-height: 1px; /* IE11 Bug */
-  margin: 0 0 24px 0;
-  ${({ isLoading, theme, animateLoading }) =>
-    isLoading &&
+  width: 100%;
+  height: auto;
+  margin: 0 0 ${themeSpacing(6)} 0;
+  padding: 0;
+  line-height: 0;
+  ${(props) =>
+    props.loading &&
     css`
-      ${perceivedLoading(animateLoading)}
-      height: 100px;
-      width: 100%;
-      & > * {
-        display: none;
-      }
-      &::before {
-        content: "";
-        display: block;
-        width: calc(100% - 30px);
-        height: 30px;
-        ${perceivedLoading(animateLoading)({ theme })}
-      }
+      ${perceivedLoading()}
+      height: 0;
+      padding-bottom: 75%; /* All our images are 4x3 aspect ratio, we need to fix this if this changes */
+    `}
+  ${(props) =>
+    !props.loading &&
+    css`
+      min-height: 1px; /* IE11 Bug: fixes height problem */
     `}
 `;
 
 export const Img = styled.img`
-  max-width: 100%;
-  border: 1px solid #aaa;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  /* Adding the border after succesful loading to fix a floating line */
+  transform: border 0.15s;
+  ${(props) =>
+    !props.loading &&
+    css`
+      border: 1px solid ${themeColor("tint", "level5")};
+    `}
 `;
