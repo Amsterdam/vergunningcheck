@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import {
-  Paragraph,
-  Select,
-  TextField,
-  ErrorMessage,
-  Alert,
-} from "@datapunt/asc-ui";
+import { Paragraph, Select, TextField, ErrorMessage } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 
-import { ComponentWrapper } from "../Atoms";
+import { Alert, ComponentWrapper } from "../Atoms";
 import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 
@@ -70,7 +64,7 @@ const LocationFinder = (props) => {
       }
       const trimmed = value?.trim();
       if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
-        return "De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.";
+        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
   };
@@ -153,15 +147,12 @@ const LocationFinder = (props) => {
       {notFoundAddress && !graphqlError && (
         <ComponentWrapper>
           <Alert
-            heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer "
-            style={{
-              backgroundColor: "white",
-              border: "2px solid red",
-            }}
+            level="warning"
+            heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
           >
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
-              telefoonnummer <a href="tel:14020">14 020</a>
+              telefoonnummer <a href="tel:14020">14 020</a>.
             </Paragraph>
           </Alert>
         </ComponentWrapper>
