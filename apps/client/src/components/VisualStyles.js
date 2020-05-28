@@ -12,14 +12,14 @@ export const Figure = styled.figure`
   padding: 0;
   line-height: 0;
   ${(props) =>
-    props.loading &&
+    !props.loaded &&
     css`
       ${perceivedLoading()}
       height: 0;
       padding-bottom: 75%; /* All our images are 4x3 aspect ratio, we need to fix this if this changes */
     `}
   ${(props) =>
-    !props.loading &&
+    props.loaded &&
     css`
       min-height: 1px; /* IE11 Bug: fixes height problem */
     `}
@@ -34,7 +34,7 @@ export const Img = styled.img`
   /* Adding the border after succesful loading to fix a floating line */
   transform: border 0.15s;
   ${(props) =>
-    !props.loading &&
+    props.loaded &&
     css`
       border: 1px solid ${themeColor("tint", "level5")};
     `}

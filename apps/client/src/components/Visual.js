@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Figure, Img, FigCaption } from "./VisualStyles";
 
 export default ({ title, ...rest }) => {
-  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   return (
-    <Figure loading={loading}>
-      <Img {...rest} loading={loading} onLoad={() => setLoading(false)} />
+    <Figure loaded={loaded}>
+      <Img {...rest} loaded={loaded} onLoad={() => setLoaded(true)} />
       {title && <FigCaption>{title}</FigCaption>}
     </Figure>
   );
