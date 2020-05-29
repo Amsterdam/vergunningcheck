@@ -1,8 +1,8 @@
 import React from "react";
 import { Paragraph } from "@datapunt/asc-ui";
 import AddressResult from "./AddressResult";
-import { List, ListItem } from "../components/Atoms";
-import { uniqueFilter } from "../sttr_client/util";
+import { List, ListItem } from "../atoms";
+import { uniqueFilter } from "../utils";
 
 const getRestrictionByTypeName = (address, typeName) =>
   address.restrictions.find(({ __typename }) => __typename === typeName);

@@ -12,7 +12,6 @@ const env = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
 const outputDir = path.join(
   __dirname,
   "..",
-  "..",
   "public",
   "sttr",
   env.toLowerCase()
