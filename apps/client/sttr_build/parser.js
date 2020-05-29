@@ -16,19 +16,6 @@ function feelTypeMap(feel) {
   return feel.replace("feel:", "");
 }
 
-const autoFillMap = {
-  monument: "monument",
-  cityScape: "dorpsgezicht",
-};
-
-const getAutoFill = (text) => {
-  const normalized = text.toLowerCase();
-  const res = Object.entries(autoFillMap).find(
-    ([, keyword]) => normalized.indexOf(keyword) > -1
-  );
-  return res ? res[0] : undefined;
-};
-
 /**
  * A parser for STTR-XML files
  */
@@ -145,7 +132,6 @@ class Parser {
             desc && desc.length && desc[0]["content:toelichting"]
               ? desc[0]["content:toelichting"].trim()
               : undefined,
-          autofill: getAutoFill(question["uitv:vraagTekst"]),
           longDescription:
             desc && desc.length && desc[0]["content:langeToelichting"]
               ? desc[0]["content:langeToelichting"].trim()
