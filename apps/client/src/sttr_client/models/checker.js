@@ -26,10 +26,6 @@ class Checker {
         firstEl.questions.length < secondEl.questions.length
     );
 
-    this._questions = this._permits
-      .flatMap((permit) => permit.questions) // getOpenInputs would be faster for the user
-      .filter(uniqueFilter);
-
     /**
      * @type {Question[]}
      */
@@ -58,8 +54,6 @@ class Checker {
   }
 
   _getUpcomingQuestions() {
-    // todo: filter duplicate questions
-    // todo: optimization would be to return only first value
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById("dummy");
@@ -89,7 +83,6 @@ class Checker {
    */
   _getNextQuestion() {
     return this._getUpcomingQuestions().shift();
-    // return this._questions.find(question => !this.stack.includes(question));
   }
 
   /**
@@ -116,6 +109,25 @@ class Checker {
    */
   previous() {
     return this.rewindTo(this._stack.length - (this._done === true ? 1 : 2));
+  }
+
+  /**
+   * XXX
+   * @param {*} onlyMissing
+   */
+  getDataNeeds(onlyMissing = false) {
+    const autofillMap = {
+      monument: "address",
+      cityScape: "address",
+      // geo: 'map', // for trees ?
+    };
+
+    // find one unfullfilled data need
+    return this._getQuestions()
+      .filter(({ autofill }) => !!autofill)
+      .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
+      .map(({ autofill }) => autofillMap[autofill])
+      .filter(uniqueFilter);
   }
 
   /**
