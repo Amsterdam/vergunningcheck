@@ -18,7 +18,7 @@ if (config.cors.enabled) {
 // Basic access log, BUT no permission to log IP
 app.use(
   morgan(
-    ':remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'
+    ':remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time/:total-time ms'
   )
 );
 

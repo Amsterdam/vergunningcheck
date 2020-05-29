@@ -12,7 +12,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import LocationFinder from "../components/Location/LocationFinder";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import Error from "../components/Error";
 
 const LocationPage = ({ topic }) => {

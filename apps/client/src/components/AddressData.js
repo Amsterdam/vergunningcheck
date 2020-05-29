@@ -2,6 +2,7 @@ import React from "react";
 import { Paragraph } from "@datapunt/asc-ui";
 import AddressResult from "./AddressResult";
 import { List, ListItem } from "../components/Atoms";
+import { uniqueFilter } from "../sttr_client/util";
 
 const getRestrictionByTypeName = (address, typeName) =>
   address.restrictions.find(({ __typename }) => __typename === typeName);
@@ -9,7 +10,9 @@ const getRestrictionByTypeName = (address, typeName) =>
 const AddressData = ({ address }) => {
   const monument = getRestrictionByTypeName(address, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(address, "CityScape")?.name;
-  const zoningPlans = address.zoningPlans.map((plan) => plan.name);
+  const zoningPlans = address.zoningPlans
+    .map((plan) => plan.name)
+    .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
     <div>

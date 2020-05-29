@@ -16,7 +16,7 @@ module.exports = {
   },
   loaders: {
     datapunt: {
-      HOST: "http://api.data.amsterdam.nl",
+      HOST: "https://api.data.amsterdam.nl",
       CACHE_TIMEOUT: 600,
 
       bag: {
