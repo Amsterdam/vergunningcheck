@@ -3,14 +3,12 @@ module.exports = {
   path: "graphql",
   healthPath: "health",
   graphql: { graphiql: false },
-  cors: {
-    enabled: false,
-  },
+  enableContentSecurityPolicy: true,
   cache: {
     dataLoaderEnabled: true,
     requestCacheEnabled: true,
     dnsCacheEnabled: true,
-    redis: {
+    redis: process.env.DISABLE_REDIS !== "1" && {
       url: process.env.REDIS_URL,
     },
   },
