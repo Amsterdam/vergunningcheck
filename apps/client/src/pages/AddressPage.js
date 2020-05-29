@@ -7,7 +7,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import { ADDRESS_PAGE } from "../utils/test-ids";
-import withAddress from "../hoc/withAddress";
+import withData from "../hoc/withData";
 import Layout from "../components/Layouts/DefaultLayout";
 import AddressData from "../components/AddressData";
 import Form from "../components/Form";
@@ -96,4 +96,4 @@ AddressPage.propTypes = {
   bagLoading: PropTypes.bool,
 };
 
-export default withAddress(AddressPage);
+export default withData(AddressPage);

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import Context from "../context";
 import { routes, geturl } from "../routes";
-import withAddress from "./withAddress";
+import withData from "./withData";
 import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
@@ -11,7 +11,7 @@ const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
 
 const withChecker = (Component) =>
-  withAddress(({ ...rest }) => {
+  withData(({ ...rest }) => {
     const context = useContext(Context);
     const [checker, setChecker] = useState(context.checker);
     const [error, setError] = useState();

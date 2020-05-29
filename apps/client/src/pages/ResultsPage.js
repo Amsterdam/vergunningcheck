@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
 
-import withFinalChecker from "../hoc/withFinalChecker";
+import withConclusion from "../hoc/withConclusion";
 import { routes, geturl, getslug } from "../routes";
 import { RESULTS_PAGE } from "../utils/test-ids";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -61,4 +61,4 @@ const ResultsPage = ({ topic, checker }) => {
   );
 };
 
-export default withFinalChecker(ResultsPage);
+export default withConclusion(ResultsPage);

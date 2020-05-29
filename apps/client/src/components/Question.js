@@ -42,6 +42,7 @@ const Question = ({
   headingAs,
   onSubmit: onSubmitProp,
   hideNavigation,
+  flashMessage,
   showNext,
   showPrev,
   onGoToPrev,
@@ -116,6 +117,8 @@ const Question = ({
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
+      {flashMessage}
+
       {questionTitle && (
         <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
       )}
@@ -158,6 +161,7 @@ Question.propTypes = {
   headingAs: PropTypes.string,
   onSubmit: PropTypes.func,
   hideNavigation: PropTypes.bool,
+  flashMessage: PropTypes.object,
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,

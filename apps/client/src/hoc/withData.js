@@ -4,7 +4,7 @@ import Context from "../context";
 import { routes, geturl } from "../routes";
 import withTopic from "./withTopic";
 
-const withAddress = (Component) =>
+const withData = (Component) =>
   withTopic(({ ...rest }) => {
     const { address } = useContext(Context);
     const { topic } = rest;
@@ -15,4 +15,4 @@ const withAddress = (Component) =>
     return <Component address={address} {...rest} />;
   });
 
-export default withAddress;
+export default withData;

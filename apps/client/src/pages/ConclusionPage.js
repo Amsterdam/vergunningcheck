@@ -5,7 +5,7 @@ import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
-import withFinalChecker from "../hoc/withFinalChecker";
+import withConclusion from "../hoc/withConclusion";
 
 import Context from "../context";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
@@ -181,4 +181,4 @@ const ConclusionPage = ({ topic, checker }) => {
   );
 };
 
-export default withFinalChecker(ConclusionPage);
+export default withConclusion(ConclusionPage);

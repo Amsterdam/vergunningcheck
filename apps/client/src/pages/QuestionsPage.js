@@ -7,6 +7,7 @@ import withChecker from "../hoc/withChecker";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
+import { Alert } from "../components/Atoms";
 // import ErrorPage from "./ErrorPage";
 
 const QuestionsPage = ({ topic, checker }) => {
@@ -87,6 +88,7 @@ const QuestionsPage = ({ topic, checker }) => {
       </Helmet>
       <Question
         question={question}
+        flashMessage={<Alert>test</Alert>}
         onSubmit={onQuestionNext}
         onGoToPrev={onQuestionPrev}
         showNext
