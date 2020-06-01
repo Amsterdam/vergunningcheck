@@ -14,12 +14,11 @@ export const matomo = {
   siteId: getMatomoSiteId(isProduction),
 };
 
-const oloHome =
-  process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
+const oloHome = process.env.REACT_APP_OLO_URL || "https://omgevingsloket.nl/";
 
 export const OLO = {
   home: oloHome,
-  intro: `${oloHome}Particulier/particulier/home/checken`,
+  intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
