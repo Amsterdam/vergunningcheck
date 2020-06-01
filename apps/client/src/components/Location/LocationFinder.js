@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Paragraph, Select, TextField, ErrorMessage } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 
-import { Alert, ComponentWrapper } from "../Atoms";
+import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 

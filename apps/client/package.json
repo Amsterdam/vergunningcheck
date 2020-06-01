@@ -37,7 +37,7 @@
     "start": "react-scripts start",
     "start:prod": "npm run build; serve -s build/",
     "build": "react-scripts build",
-    "sttr": "node scripts/sttr_build && prettier public/sttr --write",
+    "sttr": "node sttr_build && prettier public/sttr --write",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
     "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",

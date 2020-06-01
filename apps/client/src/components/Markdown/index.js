@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { ListItem } from "../Atoms";
+import { ListItem } from "../../atoms";
 import ListRenderer from "./renderers/ListRenderer";
 import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
