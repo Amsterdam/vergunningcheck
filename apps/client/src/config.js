@@ -19,7 +19,7 @@ const oloHome =
 
 export const OLO = {
   home: oloHome,
-  intro: `${oloHome}Particulier/particulier/home/checken`,
+  intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
