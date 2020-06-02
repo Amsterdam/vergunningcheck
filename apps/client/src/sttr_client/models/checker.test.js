@@ -17,28 +17,32 @@ const q2 = new Question({
   prio: 20,
 });
 
+function getDummyChecker() {
+  const d1 = new Decision(
+    "a",
+    [q1],
+    [new Rule([true], "fun!"), new Rule([false], "boring")]
+  );
+  const d2 = new Decision(
+    "b",
+    [q1, q2],
+    [new Rule([true, false], "non local"), new Rule([true, true], "local")]
+  );
+  const d3 = new Decision(
+    "dummy",
+    [d1, d2],
+    [
+      new Rule(["boring"], "Maybe you should move?"),
+      new Rule(["fun!", "non local"], "Hi Robin or Sven"),
+      new Rule(["fun!", "local"], "Hi André"),
+    ]
+  );
+  return new Checker([new Permit("some permit", [d1, d2, d3])]);
+}
+
 describe("Checker recursive", () => {
   test("initialization", () => {
-    const d1 = new Decision(
-      "a",
-      [q1],
-      [new Rule([true], "fun!"), new Rule([false], "boring")]
-    );
-    const d2 = new Decision(
-      "b",
-      [q1, q2],
-      [new Rule([true, false], "non local"), new Rule([true, true], "local")]
-    );
-    const d3 = new Decision(
-      "dummy",
-      [d1, d2],
-      [
-        new Rule(["boring"], "Maybe you should move?"),
-        new Rule(["fun!", "non local"], "Hi Robin or Sven"),
-        new Rule(["fun!", "local"], "Hi André"),
-      ]
-    );
-    const checker = new Checker([new Permit("some permit", [d1, d2, d3])]);
+    let checker = getDummyChecker();
 
     let question = checker.next();
     expect(question).toBe(q1);
@@ -60,5 +64,15 @@ describe("Checker recursive", () => {
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
       "Maybe you should move?"
     );
+  });
+  test("initialization after refresh", () => {
+    let checker = getDummyChecker();
+    let question = checker.next();
+    question.setAnswer(true);
+
+    let data = checker.getData();
+    let freshChecker = getDummyChecker();
+    freshChecker.setData(data);
+    expect(freshChecker.rewindTo(0).answer).toBe(true);
   });
 });

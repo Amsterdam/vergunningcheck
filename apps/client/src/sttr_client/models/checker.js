@@ -1,4 +1,4 @@
-import { collectionOfType, uniqueFilter } from "../../utils";
+import { collectionOfType, uniqueFilter, isObject } from "../../utils";
 
 /**
  * Step checker class for quiz
@@ -48,6 +48,32 @@ class Checker {
    */
   get stack() {
     return this._stack;
+  }
+
+  /**
+   * @returns {Question} -
+   */
+  getData() {
+    return this.stack.reduce((acc, question) => {
+      acc[question.id] = question.answer;
+      return acc;
+    }, {});
+  }
+
+  /**
+   * Set data from context to the current stack
+   * @returns {void} -
+   */
+  setData(answers) {
+    if (!isObject(answers)) {
+      throw Error("Answers must be of type object");
+    }
+    this._questions.forEach((question) => {
+      if (answers[question.id] !== undefined) {
+        question.setAnswer(answers[question.id]);
+        this._stack.push(question);
+      }
+    });
   }
 
   /**

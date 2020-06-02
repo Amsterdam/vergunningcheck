@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug } from "../routes";
 import { Helmet } from "react-helmet";
@@ -7,9 +7,11 @@ import withChecker from "../hoc/withChecker";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
+import Context from "../context";
 // import ErrorPage from "./ErrorPage";
 
 const QuestionsPage = ({ topic, checker }) => {
+  const context = useContext(Context);
   const params = useParams();
   const history = useHistory();
   const [question, setQuestion] = useState(
@@ -47,6 +49,10 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const onQuestionNext = (value) => {
     if (question.options) {
+      context.setData({
+        data: checker.getData(),
+        questionIndex: context.questionIndex + 1,
+      });
       question.setAnswer(value);
     } else {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
@@ -63,6 +69,10 @@ const QuestionsPage = ({ topic, checker }) => {
         history.push(geturl(routes.results, { slug }));
       } else {
         // Go to Next question
+        context.setData({
+          data: checker.getData(),
+          questionIndex: context.questionIndex + 1,
+        });
         setQuestion(next);
       }
     }
