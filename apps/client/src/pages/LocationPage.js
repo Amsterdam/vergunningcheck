@@ -43,8 +43,6 @@ const LocationPage = ({ topic }) => {
       context.setData({
         address,
         data: null,
-        resultsShown: false,
-        questionIndex: 0,
       });
       history.push(geturl(routes.address, { slug }));
     }

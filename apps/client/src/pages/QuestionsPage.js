@@ -71,7 +71,6 @@ const QuestionsPage = ({ topic, checker }) => {
         // Go to Next question
         context.setData({
           data: checker.getData(),
-          questionIndex: context.questionIndex + 1,
         });
         setQuestion(next);
       }

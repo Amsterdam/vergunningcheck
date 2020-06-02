@@ -9,9 +9,7 @@ let reducer = (data, newData) => {
   return { ...data, ...newData };
 };
 
-const defaultValues = session
-  ? session
-  : { topic: null, address: null, questionIndex: 0 };
+const defaultValues = session ? session : { topic: null, address: null };
 
 const Context = createContext();
 
