@@ -51,7 +51,6 @@ const QuestionsPage = ({ topic, checker }) => {
     if (question.options) {
       context.setData({
         data: checker.getData(),
-        questionIndex: context.questionIndex + 1,
       });
       question.setAnswer(value);
     } else {
