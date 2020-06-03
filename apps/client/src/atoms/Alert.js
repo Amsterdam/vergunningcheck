@@ -3,5 +3,5 @@ import { Alert } from "@datapunt/asc-ui";
 
 export default styled(Alert)`
   /* IE11 Fix */
-  display: "block";
+  display: block;
 `;
