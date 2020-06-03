@@ -51,11 +51,10 @@ export default () => (
         alt="Afbeelding met voorbeelden van verschillende kozijnen"
       />
       <OrderedList>
-        <ListItem>raam boven deur</ListItem>
-        <ListItem>deur</ListItem>
-        <ListItem>bovenraam</ListItem>
-        <ListItem>raam</ListItem>
-        <ListItem>paneel</ListItem>
+        <ListItem>Kozijn</ListItem>
+        <ListItem>Raam, vast glas</ListItem>
+        <ListItem>Deur</ListItem>
+        <ListItem>Paneel</ListItem>
       </OrderedList>
     </Pair>
 
