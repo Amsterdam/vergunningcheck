@@ -79,7 +79,7 @@ const topics = [
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
-    intro: "KozijnenIntroTest",
+    intro: "KozijnenIntroSTTR/index",
   },
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
