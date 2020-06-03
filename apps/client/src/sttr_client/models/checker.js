@@ -51,7 +51,8 @@ class Checker {
   }
 
   /**
-   * @returns {Question} -
+   * Get data from the stack and return a list of questionIds with the given answers.
+   * @returns {Answers[]} -
    */
   getData() {
     return this.stack.reduce((acc, question) => {
