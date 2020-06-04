@@ -14,15 +14,17 @@ const QuestionsPage = ({ topic, checker }) => {
   const context = useContext(Context);
   const params = useParams();
   const history = useHistory();
+  const { question: questionSlug } = params;
   const [question, setQuestion] = useState(
-    checker.stack[checker.stack.length - 1]
+    checker.stack[context.questionIndex]
+      ? checker.stack[context.questionIndex]
+      : checker.stack[checker.stack.length - 1]
   );
 
-  const { question: questionSlug } = params;
   const currSlug = getslug(question.text);
 
   // Update URL based on question text
-  if (!questionSlug || questionSlug !== currSlug) {
+  if (!questionSlug) {
     return (
       <Redirect
         to={geturl(routes.questions, {
@@ -48,10 +50,12 @@ const QuestionsPage = ({ topic, checker }) => {
     });
 
   const onQuestionNext = (value) => {
+    // Save to data to context on every answer, so we can always refresh
+    context.setData({
+      answers: checker.getData(),
+      questionIndex: context.questionIndex + 1
+    });
     if (question.options) {
-      context.setData({
-        data: checker.getData(),
-      });
       question.setAnswer(value);
     } else {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
@@ -68,9 +72,6 @@ const QuestionsPage = ({ topic, checker }) => {
         history.push(geturl(routes.results, { slug }));
       } else {
         // Go to Next question
-        context.setData({
-          data: checker.getData(),
-        });
         setQuestion(next);
       }
     }
@@ -80,6 +81,9 @@ const QuestionsPage = ({ topic, checker }) => {
     if (checker?.stack?.length > 1) {
       const prev = checker.previous();
       setQuestion(prev);
+      context.setData({
+        questionIndex: context.questionIndex - 1
+      })
     } else {
       // Go back to Location page
       history.push(geturl(routes.address, { slug }));

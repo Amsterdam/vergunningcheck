@@ -1,25 +1,28 @@
 import React, { useReducer, useEffect, createContext } from "react";
-const session = JSON.parse(sessionStorage.getItem("vergunningCheckData"));
+const session = JSON.parse(sessionStorage.getItem("sessionData"));
+const Context = createContext();
+const defaultValues = session ? session : { topic: null, address: {}, answers: null, questionIndex: 0};
 
-let reducer = (data, newData) => {
+const reducer = (data, newData) => {
+  // If newData is null. Clear current sessionData.
   if (newData === null) {
-    sessionStorage.removeItem("vergunningCheckData");
+    sessionStorage.removeItem("sessionData");
     return defaultValues;
   }
   return { ...data, ...newData };
 };
 
-const defaultValues = session ? session : { topic: null, address: null };
-
-const Context = createContext();
-
-function CheckProvider(props) {
+function SessionProvider(props) {
+  // We use the reducer to take care of too complex logic for setState.
+  // Because we sometimes need to clear the sessionStore.
   const [data, setData] = useReducer(reducer, defaultValues);
 
   useEffect(() => {
-    sessionStorage.setItem("vergunningCheckData", JSON.stringify(data));
+    sessionStorage.setItem("sessionData", JSON.stringify(data));
   }, [data]);
 
+  // The session provider makes the data from the context avaible on all pages.
+  // We can use the setData function to add new data to the sessionStorage.
   return (
     <Context.Provider value={{ ...data, setData }}>
       {props.children}
@@ -28,4 +31,4 @@ function CheckProvider(props) {
 }
 
 export default Context;
-export { defaultValues, CheckProvider };
+export { SessionProvider };

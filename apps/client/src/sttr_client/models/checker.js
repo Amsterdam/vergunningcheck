@@ -52,7 +52,7 @@ class Checker {
 
   /**
    * Get data from the stack and return a list of questionIds with the given answers.
-   * @returns {Answers[]} -
+   * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
   getData() {
     return this.stack.reduce((acc, question) => {

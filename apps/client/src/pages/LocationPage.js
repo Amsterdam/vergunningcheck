@@ -31,7 +31,7 @@ const LocationPage = ({ topic }) => {
       clearError("suffix");
     }
     return () => unregister("suffix");
-  }, [address, clearError, errorMessage, register, unregister]);
+  }, [address, clearError, context, errorMessage, register, unregister]);
 
   const onSubmit = () => {
     if (address) {
@@ -41,8 +41,9 @@ const LocationPage = ({ topic }) => {
         name: address.postalCode.substring(0, 4),
       });
       context.setData({
-        address,
-        data: null,
+        address: { ...context.address, [slug]: address},
+        answers: null,
+        questionIndex: 0
       });
       history.push(geturl(routes.address, { slug }));
     }
@@ -70,9 +71,9 @@ const LocationPage = ({ topic }) => {
         <LocationFinder
           setAddress={setAddress}
           setErrorMessage={setErrorMessage}
-          postalCode={context.address?.postalCode}
-          houseNumberFull={context.address?.houseNumberFull}
-          houseNumber={context.address?.houseNumberFull}
+          postalCode={context.address?.[slug]?.postalCode}
+          houseNumberFull={context.address?.[slug]?.houseNumberFull}
+          houseNumber={context.address?.[slug]?.houseNumberFull}
           errors={errors}
         />
         <Nav

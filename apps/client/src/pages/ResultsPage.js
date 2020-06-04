@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
 
@@ -11,12 +11,15 @@ import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import { Helmet } from "react-helmet";
+import Context from "../context";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
+  const context = useContext(Context);
   const { slug } = topic;
 
   const onGoToQuestion = (index) => {
+    context.setData({ questionIndex: index});
     const q = checker.rewindTo(index);
     history.push(
       geturl(routes.questions, {
