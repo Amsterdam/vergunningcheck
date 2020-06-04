@@ -41,9 +41,10 @@ const LocationPage = ({ topic }) => {
         name: address.postalCode.substring(0, 4),
       });
       context.setData({
-        address: { ...context.address, [slug]: address},
+        address: { ...context.address, [slug]: address },
         answers: null,
-        questionIndex: 0
+        questionIndex: 0,
+        resultsShown: false,
       });
       history.push(geturl(routes.address, { slug }));
     }

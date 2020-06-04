@@ -1,7 +1,15 @@
 import React, { useReducer, useEffect, createContext } from "react";
 const session = JSON.parse(sessionStorage.getItem("sessionData"));
 const Context = createContext();
-const defaultValues = session ? session : { topic: null, address: {}, answers: null, questionIndex: 0};
+const defaultValues = session
+  ? session
+  : {
+      topic: null,
+      address: {},
+      answers: null,
+      questionIndex: 0,
+      resultsShown: false,
+    };
 
 const reducer = (data, newData) => {
   // If newData is null. Clear current sessionData.

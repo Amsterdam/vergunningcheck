@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug } from "../routes";
 import { Helmet } from "react-helmet";
@@ -8,7 +8,6 @@ import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
 import Context from "../context";
-// import ErrorPage from "./ErrorPage";
 
 const QuestionsPage = ({ topic, checker }) => {
   const context = useContext(Context);
@@ -20,21 +19,32 @@ const QuestionsPage = ({ topic, checker }) => {
       ? checker.stack[context.questionIndex]
       : checker.stack[checker.stack.length - 1]
   );
+  const { slug } = topic;
 
-  const currSlug = getslug(question.text);
+  useEffect(() => {
+    return history.listen((location) => {
+      if (history.action === "POP") {
+        const next = checker.next();
+        setQuestion(next);
+      }
+    });
+  }, [checker, history, context.questionIndex, slug]);
 
   // Update URL based on question text
   if (!questionSlug) {
+    // first question
+    context.setData({ questionIndex: 0 });
+    checker.rewindTo(0);
     return (
       <Redirect
         to={geturl(routes.questions, {
           slug: topic.slug,
-          question: currSlug,
+          question: getslug(question.text),
         })}
       />
     );
   }
-  const { slug } = topic;
+
   // @TODO: We shouldn't need this check because of withChecker()
   // if (!checker) {
   //   return <ErrorPage error={new Error("Error! Geen checker...")}></ErrorPage>;
@@ -51,28 +61,42 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const onQuestionNext = (value) => {
     // Save to data to context on every answer, so we can always refresh
-    context.setData({
-      answers: checker.getData(),
-      questionIndex: context.questionIndex + 1
-    });
-    if (question.options) {
+    if (question.options && value) {
       question.setAnswer(value);
-    } else {
+    }
+    if (!question.options && value) {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
 
     if (needContactPermits()) {
+      // go to to conclusion fall out
       history.push(geturl(routes.conclusion, { slug }));
     } else {
-      const next = checker.next();
+      const next = context.resultsShown
+        ? checker.stack[context.questionIndex]
+        : checker.next();
 
       if (!next) {
         // Go to Result page
+        context.setData({
+          answers: checker.getData(),
+        });
         history.push(geturl(routes.results, { slug }));
       } else {
         // Go to Next question
+        context.setData({
+          answers: checker.getData(),
+          questionIndex: context.questionIndex + 1,
+        });
+
         setQuestion(next);
+        history.push(
+          geturl(routes.questions, {
+            slug: topic.slug,
+            question: getslug(next.text),
+          })
+        );
       }
     }
   };
@@ -82,8 +106,8 @@ const QuestionsPage = ({ topic, checker }) => {
       const prev = checker.previous();
       setQuestion(prev);
       context.setData({
-        questionIndex: context.questionIndex - 1
-      })
+        questionIndex: context.questionIndex - 1,
+      });
     } else {
       // Go back to Location page
       history.push(geturl(routes.address, { slug }));

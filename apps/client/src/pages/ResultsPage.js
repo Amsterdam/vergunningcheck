@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
 
@@ -18,9 +18,9 @@ const ResultsPage = ({ topic, checker }) => {
   const context = useContext(Context);
   const { slug } = topic;
 
-  const onGoToQuestion = (index) => {
-    context.setData({ questionIndex: index});
-    const q = checker.rewindTo(index);
+  const onGoToQuestion = (questionIndex) => {
+    context.setData({ questionIndex, resultsShown: true });
+    const q = checker.rewindTo(questionIndex);
     history.push(
       geturl(routes.questions, {
         slug,
