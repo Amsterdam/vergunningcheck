@@ -85,7 +85,7 @@ const LocationFinder = (props) => {
           name="postalCode"
           label="Postcode"
           defaultValue={postalCode}
-          error={postalCodeError || (notFoundAddress && !graphqlError)}
+          error={postalCodeError}
           required={true}
           onBlur={handleBlur}
           onChange={(e) => {
@@ -101,7 +101,7 @@ const LocationFinder = (props) => {
           name="houseNumberFull"
           label="Huisnummer"
           defaultValue={houseNumberFull}
-          error={houseNumberError || (notFoundAddress && !graphqlError)}
+          error={houseNumberError}
           required={true}
           onBlur={handleBlur}
           onChange={(e) => {
