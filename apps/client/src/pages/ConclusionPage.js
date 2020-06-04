@@ -16,12 +16,7 @@ import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import { Helmet } from "react-helmet";
-import {
-  PrintButton,
-  PrintOnly,
-  Alert,
-  ComponentWrapper,
-} from "../components/Atoms";
+import { PrintButton, PrintOnly, Alert, ComponentWrapper } from "../atoms";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',

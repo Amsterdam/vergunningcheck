@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Label, Radio, RadioGroup, ErrorMessage } from "@datapunt/asc-ui";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
-import { ComponentWrapper } from "./Atoms";
+import { ComponentWrapper } from "../atoms";
 
 const Answers = ({
   className,
