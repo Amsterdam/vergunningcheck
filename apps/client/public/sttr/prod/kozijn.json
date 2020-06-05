@@ -7,6 +7,7 @@
         {
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "autofill": "monument",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -57,7 +58,7 @@
         }
       },
       "decisions": {
-        "_dd08187b-f113-4183-a29a-e11feb9dc36a": {
+        "_50c8f45f-5d85-484f-8674-c11704f4dc37": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -86,7 +87,7 @@
             ]
           }
         },
-        "_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3": {
+        "_97e2feac-6155-49a2-971c-15e1c9e3ff00": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__41b859be-53b8-46b9-975f-80217808e89f"
@@ -117,8 +118,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_dd08187b-f113-4183-a29a-e11feb9dc36a",
-            "#_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3"
+            "#_50c8f45f-5d85-484f-8674-c11704f4dc37",
+            "#_97e2feac-6155-49a2-971c-15e1c9e3ff00"
           ],
           "decisionTable": {
             "rules": [
@@ -148,6 +149,7 @@
         {
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "autofill": "monument",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -185,6 +187,7 @@
         {
           "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
           "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "autofill": "cityScape",
           "type": "boolean",
           "id": "uitv__79e01ca4-21a2-4d16-bf23-720084f936ce",
           "prio": 40
@@ -299,7 +302,7 @@
         }
       },
       "decisions": {
-        "_d4ed2bf6-c44e-4403-8e48-6b7a32310303": {
+        "_6f20d86e-4e96-477c-bcb6-327936ba932c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -328,7 +331,7 @@
             ]
           }
         },
-        "_4742c8d6-8198-4cb0-9916-bedabe468d63": {
+        "_3c2efd09-3f4f-4bcc-90d5-1c9c00ff41e6": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
@@ -357,7 +360,7 @@
             ]
           }
         },
-        "_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673": {
+        "_c941f951-9b51-4c1f-b64d-4bf3e44ad967": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -392,7 +395,7 @@
             ]
           }
         },
-        "_d46bd003-0b97-43b0-956d-c70118e1ab98": {
+        "_8247d13a-7191-4da5-abfe-8a6e1c03db26": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -455,7 +458,7 @@
             ]
           }
         },
-        "_01e40b29-34b2-4e60-ad84-90e3300af681": {
+        "_c1546ffa-8804-4b08-8f81-9c9b92bd7df4": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -526,7 +529,7 @@
             ]
           }
         },
-        "_3ca7950f-fbcc-4b16-b453-b6bc936c5068": {
+        "_63b92111-5439-497a-8fbe-73e947e1ccc2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -597,7 +600,7 @@
             ]
           }
         },
-        "_c0344a92-d352-485b-a473-476f41057bb9": {
+        "_3d013d3a-6f62-4cf4-9a8f-5dc454219616": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -684,7 +687,7 @@
             ]
           }
         },
-        "_f8609238-6f2d-44c5-b6ec-afa9edee85d9": {
+        "_84bc1e6a-1f74-4238-bbb3-424354c602f8": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -771,7 +774,7 @@
             ]
           }
         },
-        "_7d6e80b7-5faa-48b0-b37a-5114e10e6268": {
+        "_d615e57d-ea99-4e04-93f6-cdb733178d16": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -876,7 +879,7 @@
             ]
           }
         },
-        "_7ce6c5fb-40b5-4249-8d23-80f46153fd86": {
+        "_6d680e99-e02c-4ba9-a042-7aefc28fd59e": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -983,16 +986,16 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d4ed2bf6-c44e-4403-8e48-6b7a32310303",
-            "#_4742c8d6-8198-4cb0-9916-bedabe468d63",
-            "#_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673",
-            "#_d46bd003-0b97-43b0-956d-c70118e1ab98",
-            "#_01e40b29-34b2-4e60-ad84-90e3300af681",
-            "#_3ca7950f-fbcc-4b16-b453-b6bc936c5068",
-            "#_c0344a92-d352-485b-a473-476f41057bb9",
-            "#_f8609238-6f2d-44c5-b6ec-afa9edee85d9",
-            "#_7d6e80b7-5faa-48b0-b37a-5114e10e6268",
-            "#_7ce6c5fb-40b5-4249-8d23-80f46153fd86"
+            "#_6f20d86e-4e96-477c-bcb6-327936ba932c",
+            "#_3c2efd09-3f4f-4bcc-90d5-1c9c00ff41e6",
+            "#_c941f951-9b51-4c1f-b64d-4bf3e44ad967",
+            "#_8247d13a-7191-4da5-abfe-8a6e1c03db26",
+            "#_c1546ffa-8804-4b08-8f81-9c9b92bd7df4",
+            "#_63b92111-5439-497a-8fbe-73e947e1ccc2",
+            "#_3d013d3a-6f62-4cf4-9a8f-5dc454219616",
+            "#_84bc1e6a-1f74-4238-bbb3-424354c602f8",
+            "#_d615e57d-ea99-4e04-93f6-cdb733178d16",
+            "#_6d680e99-e02c-4ba9-a042-7aefc28fd59e"
           ],
           "decisionTable": {
             "rules": [
