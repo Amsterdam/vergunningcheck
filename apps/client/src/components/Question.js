@@ -13,14 +13,14 @@ import Markdown from "./Markdown";
 
 export const booleanOptions = [
   {
-    label: "Nee",
-    formValue: "no",
-    value: false,
-  },
-  {
     label: "Ja",
     formValue: "yes",
     value: true,
+  },
+  {
+    label: "Nee",
+    formValue: "no",
+    value: false,
   },
 ];
 
