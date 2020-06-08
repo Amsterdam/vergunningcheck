@@ -24,6 +24,7 @@ const QuestionsPage = ({ topic, checker }) => {
   useEffect(() => {
     return history.listen((location) => {
       if (history.action === "POP") {
+        console.log("pop");
         const next = checker.next();
         setQuestion(next);
       }
@@ -106,6 +107,7 @@ const QuestionsPage = ({ topic, checker }) => {
       const prev = checker.previous();
       setQuestion(prev);
       context.setData({
+        answers: checker.getData(),
         questionIndex: context.questionIndex - 1,
       });
     } else {
