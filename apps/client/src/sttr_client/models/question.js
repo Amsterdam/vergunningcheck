@@ -3,6 +3,7 @@ import { collectionOfType } from "../../utils";
 import isNumber from "lodash.isnumber";
 
 const DESC_MAX_LENGTH = 2048;
+export const types = ["boolean", "string", "number", "geo"];
 
 // interface QuestionProps {
 //   id: string;
@@ -55,7 +56,7 @@ class Question {
     if (id !== undefined && !isString(id)) {
       throw Error(`'id' for Question must be a string (got "${id}"`);
     }
-    if (["boolean", "string", "number", "geo"].indexOf(type) === -1) {
+    if (types.indexOf(type) === -1) {
       throw Error(`Unsupported type for Question (${type})`);
     }
     if (text !== undefined && !isString(text)) {

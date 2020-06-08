@@ -54,6 +54,16 @@ class Checker {
   }
 
   _getUpcomingQuestions() {
+    return this._getUserQuestions().filter(
+      (question) => !this.stack.includes(question)
+    );
+  }
+
+  _getUserQuestions() {
+    return this._getQuestions().filter((q) => !q.autofill);
+  }
+
+  _getQuestions() {
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById("dummy");
@@ -93,8 +103,13 @@ class Checker {
    */
   rewindTo(index) {
     const lastIndex = this._stack.length - 1;
-    if (index < 0 || index > lastIndex) {
-      throw Error("'rewindTo' index out of bounds of current question stack.");
+    if (index < 0) {
+      throw Error("'rewindTo' index cannot be less then 0");
+    }
+    if (index > lastIndex) {
+      throw Error(
+        `'rewindTo' index cannot be bigger then it's length (${lastIndex})`
+      );
     }
     this._stack.splice(index + 1);
     this._done = false;
@@ -147,6 +162,44 @@ class Checker {
     }
     return question || null;
   }
+
+  // getPreviousUserQuestion() {
+  //   if (!AUTOFILL_ENABLED) {
+  //     return this.checker.next();
+  //   }
+
+  //   let next;
+  //   let done = false;
+  //   while (!done) {
+  //     next = this.checker.next();
+  //     // if there is no next question we're done
+  //     // if we do have a next question we're only done if it's not an autofill question
+  //     if (!next || (next && !next.autofill)) {
+  //       done = true;
+  //     }
+  //   }
+  //   return next;
+  // }
+
+  // getNextUserQuestion() {
+  //   let prev;
+  //   let done = false;
+  //   while (!done) {
+  //     if (this.checker.stack.length === 1) {
+  //       done = true;
+  //     } else {
+  //       prev = this.checker.previous();
+
+  //       // if autifill is disabled we're done
+  //       // if autofill is enabled and we don't have a prev, we're done
+  //       // if autofill is enabled, we DO have a prev but it's NOT autofilled, we're done
+  //       if (AUTOFILL_ENABLED === false || !prev || !prev.autofill) {
+  //         done = true;
+  //       }
+  //     }
+  //   }
+  //   return prev;
+  // }
 }
 
 export default Checker;

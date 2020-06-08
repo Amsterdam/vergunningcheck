@@ -32,10 +32,11 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
 };
 
-const AddressPage = ({ topic, address }) => {
+const AddressPage = ({ topic, data }) => {
   const history = useHistory();
   const { slug } = topic;
   const useSTTR = !!topic.sttrFile;
+  const { address } = data;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,21 +64,8 @@ const AddressPage = ({ topic, address }) => {
           <AddressData address={address} />
         </StyledAddressResult>
 
-        <Paragraph>
-          {useSTTR
-            ? `
-            U hebt deze informatie nodig om de vergunningcheck te doen. De
-            informatie over de bestemmingsplannen is pas nodig als u een
-            omgevingsvergunning gaat aanvragen.
-            `
-            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
-        </Paragraph>
+        {useSTTR && <Paragraph>{topic.text?.addressPage}</Paragraph>}
 
-        {useSTTR && (
-          <>
-            <Paragraph>{topic.text?.addressPage}</Paragraph>
-          </>
-        )}
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
           nextText={!useSTTR ? "Naar het omgevingsloket" : undefined}

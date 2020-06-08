@@ -2,6 +2,9 @@
 import React from "react";
 import HiddenDebugInfo from "./HiddenDebugInfo";
 
+const QuestionSummary = ({ question: { prio, text, autofill } }) =>
+  `${prio}: ${autofill ? ` [${autofill}]` : ""} ${text}`;
+
 export default ({ checker }) => {
   const decisionId = "dummy";
   window.checker = checker;
@@ -30,7 +33,7 @@ export default ({ checker }) => {
                 }}
               >
                 <td>
-                  {q.prio}: {q.text}
+                  <QuestionSummary question={q} />
                 </td>
                 <td>{q.answer !== undefined && q.answer.toString()}</td>
               </tr>
@@ -38,7 +41,7 @@ export default ({ checker }) => {
             {relevantOpenQuestions.map((q, i) => (
               <tr key={`open-${q.id}-${i}`}>
                 <td>
-                  {q.prio}: {q.text}
+                  <QuestionSummary question={q} />
                 </td>
                 <td>
                   <em>

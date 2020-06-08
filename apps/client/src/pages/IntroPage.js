@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { routes, geturl } from "../routes";
 import withTopic from "../hoc/withTopic";
-import withOloRedirect from "../hoc/withOloRedirect";
 
 import Loading from "../components/Loading";
 import Form from "../components/Form";
@@ -9,8 +8,11 @@ import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
 import { Helmet } from "react-helmet";
 
-const IntroPage = ({ topic: { text, slug, intro } }) => {
+const IntroPage = ({ topic }) => {
+  const { sttrFile, text, intro } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
+  const url = geturl(sttrFile ? routes.questions : routes.location, topic);
+
   return (
     <Layout>
       <Helmet>
@@ -19,11 +21,11 @@ const IntroPage = ({ topic: { text, slug, intro } }) => {
       <Suspense fallback={<Loading />}>
         <Intro />
       </Suspense>
-      <Form action={geturl(routes.location, { slug })}>
+      <Form action={url}>
         <Nav showNext />
       </Form>
     </Layout>
   );
 };
 
-export default withOloRedirect(withTopic(IntroPage));
+export default withTopic(IntroPage);

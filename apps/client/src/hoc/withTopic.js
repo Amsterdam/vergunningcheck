@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-import Context from "../context";
 import { useParams, Redirect, useLocation } from "react-router-dom";
+
+import Context from "../context";
 import { topics } from "../config";
-import NotFoundPage from "../pages/NotFoundPage";
 import { geturl, routes } from "../routes";
 
-const withTopic = (Component) => () => {
+import RedirectPage from "../pages/RedirectPage";
+import NotFoundPage from "../pages/NotFoundPage";
+
+const withTopic = (Component) => (props) => {
   const context = useContext(Context);
   const { slug } = useParams();
   const { search } = useLocation();
@@ -15,16 +18,21 @@ const withTopic = (Component) => () => {
 
   if (params.get("resetChecker")) {
     context.checker = null;
-    // TODO: Remove this warning?
-    console.warn("Resseting checker, redirecting to intro page");
+    console.log("Reset checker and redirect to intro page");
     return <Redirect to={geturl(routes.intro, { slug: topic.slug })} />;
   }
 
   if (topic) {
+    // redirect to olo if needed
+    if (topic.redirectToOlo) {
+      return <RedirectPage topic={topic} {...props} />;
+    }
+
     context.topic = topic;
-    return <Component topic={topic} />;
+    return <Component {...props} topic={topic} />;
   }
-  return <NotFoundPage />;
+
+  return <NotFoundPage {...props} />;
 };
 
 export default withTopic;

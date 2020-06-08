@@ -40,8 +40,9 @@ const LocationPage = ({ topic }) => {
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
       });
-      context.address = address;
-      history.push(geturl(routes.address, { slug }));
+
+      context.data.address = address;
+      history.push(geturl(routes.questions, { slug }));
     }
   };
 
@@ -67,9 +68,9 @@ const LocationPage = ({ topic }) => {
         <LocationFinder
           setAddress={setAddress}
           setErrorMessage={setErrorMessage}
-          postalCode={context.address?.postalCode}
-          houseNumberFull={context.address?.houseNumberFull}
-          houseNumber={context.address?.houseNumberFull}
+          postalCode={context.data.address?.postalCode}
+          houseNumberFull={context.data.address?.houseNumberFull}
+          houseNumber={context.data.address?.houseNumberFull}
           errors={errors}
         />
         <Nav

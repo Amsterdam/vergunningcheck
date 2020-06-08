@@ -6,6 +6,10 @@ import isString from "lodash.isstring";
 export const isSimpleType = (val) =>
   isBoolean(val) || isString(val) || isNumber(val);
 
+export const isEmptyObject = (obj) =>
+  // Check the constructor too wbecause Object.keys(new Date()).length === 0;
+  Object.keys(obj).length === 0 && obj.constructor === Object;
+
 // Array checks
 export const collectionOfSimpleTypes = (col) =>
   Array.isArray(col) && !col.find((val) => !isSimpleType(val));
@@ -23,3 +27,7 @@ export const collectionOfType = (col, type) => {
 // Filters
 export const uniqueFilter = (value, index, self) =>
   self.indexOf(value) === index;
+
+// Data utils
+export const getRestrictionByTypeName = (restrictions, typeName) =>
+  (restrictions || []).find(({ __typename }) => __typename === typeName);

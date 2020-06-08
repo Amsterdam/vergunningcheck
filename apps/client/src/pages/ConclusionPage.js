@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
@@ -7,7 +7,6 @@ import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withConclusion from "../hoc/withConclusion";
 
-import Context from "../context";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
@@ -23,18 +22,12 @@ const outcomes = {
   NEED_CONTACT: '"NeemContactOpMet"',
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
-const ConclusionPage = ({ topic, checker }) => {
-  const context = useContext(Context);
+
+const ConclusionPage = ({ topic, checker, data }) => {
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
-
-  const {
-    streetName,
-    houseNumberFull,
-    postalCode,
-    residence,
-  } = context.address;
+  const { address } = data;
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
@@ -112,13 +105,16 @@ const ConclusionPage = ({ topic, checker }) => {
             Datum
           </Heading>
           <Paragraph>{currentDateTime} uur.</Paragraph>
-
-          <Heading forwardedAs="h2">Adresgegevens</Heading>
-          <Paragraph gutterBottom={30}>
-            {streetName} {houseNumberFull}
-            <br />
-            {postalCode} {residence}
-          </Paragraph>
+          {address && (
+            <>
+              <Heading forwardedAs="h2">Adresgegevens</Heading>
+              <Paragraph gutterBottom={30}>
+                {address.streetName} {address.houseNumberFull}
+                <br />
+                {address.postalCode} {address.residence}
+              </Paragraph>
+            </>
+          )}
         </PrintOnly>
 
         <Heading forwardedAs="h1">Conclusie</Heading>
