@@ -5,7 +5,12 @@ export default ({ title, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Figure loaded={loaded}>
-      <Img {...rest} loaded={loaded} onLoad={() => setLoaded(true)} />
+      <Img
+        {...rest}
+        loaded={loaded}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+      />
       {title && <FigCaption>{title}</FigCaption>}
     </Figure>
   );
