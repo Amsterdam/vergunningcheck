@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon } from "@datapunt/asc-ui";
+import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
 import uniqBy from "lodash.uniqby";
 
@@ -48,11 +48,13 @@ export default ({ checker, onGoToQuestion }) => {
             typeof question.answer === "boolean" ||
             typeof question.answer === "string"
           ) {
-              return (
+            return (
               <QuestionWrapper key={question.id}>
                 <Question>{question.text}</Question>
                 {question.options ? (
-                  <UserAnswer>{question.answer.replace(/['"]+/g, "")}</UserAnswer>
+                  <UserAnswer>
+                    {question.answer.replace(/['"]+/g, "")}
+                  </UserAnswer>
                 ) : (
                   <UserAnswer>
                     {
@@ -72,11 +74,10 @@ export default ({ checker, onGoToQuestion }) => {
                     </Button>
                   </Change>
                 )}
-
                 {isDecisiveForPermits.map((permit, index) => (
                   <UserResult key={`${permit} ${index}`}>
                     <Icon
-                      color="secondary"
+                      color={themeColor("secondary", "main")}
                       size={30}
                       style={{
                         flexShrink: 0, // IE11 Fix
