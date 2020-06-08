@@ -1,6 +1,9 @@
 {
-  "name": "chappie-1.0",
+  "name": "vergunningcheck",
   "private": true,
+  "repository": {
+    "url": "https://github.com/Amsterdam/vergunningcheck"
+  },
   "engines": {
     "node": "13.1"
   },
@@ -9,17 +12,17 @@
     "start:prod": "lerna run --parallel start:prod",
     "test": "CI=true lerna run test",
     "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "release": "git checkout develop && git pull && lerna-changelog && lerna publish"
   },
   "devDependencies": {
-    "husky": "^4.2.3",
-    "lerna": "^3.20.2"
+    "husky": "^4.2.5",
+    "lerna": "^3.21.0",
+    "lerna-changelog": "^1.0.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": [
-        "lerna run --concurrency 1 --stream precommit"
-      ]
+      "pre-commit": "lerna run --concurrency 1 --stream precommit"
     }
   }
 }

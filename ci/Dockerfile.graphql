@@ -3,6 +3,7 @@ LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/graphql/package*.json ./
+RUN npm audit --production
 RUN npm ci --no-color -q
 COPY apps/graphql/ .
 RUN npm test
@@ -12,7 +13,6 @@ WORKDIR /app/
 COPY --from=builder /app/ /app/
 
 USER node
-ENV NODE_OPTIONS=--use-openssl-ca
 ENV PORT=8080
 ENV NODE_ENV=production
 CMD node .

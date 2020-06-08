@@ -6,7 +6,7 @@ import {
   StyledLogo,
 } from "./HeaderStyles";
 
-export const Header = ({ showLinks }) => (
+export const Header = () => (
   <StyledHeader
     tall
     css={StyledHeaderWrapper}

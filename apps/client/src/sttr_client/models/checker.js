@@ -1,4 +1,4 @@
-import { collectionOfType, uniqueFilter } from "../util";
+import { collectionOfType, uniqueFilter } from "../../utils";
 
 /**
  * Step checker class for quiz

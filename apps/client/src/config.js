@@ -1,6 +1,17 @@
+export const isProduction =
+  "vergunningcheck.amsterdam.nl" === window.location.hostname;
+
+const matomoSiteId = {
+  production: 29,
+  acceptence: 37,
+};
+
+export const getMatomoSiteId = (isProduction) =>
+  isProduction ? matomoSiteId.production : matomoSiteId.acceptence;
+
 export const matomo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
-  siteId: 29,
+  siteId: getMatomoSiteId(isProduction),
 };
 
 const oloHome =
@@ -8,7 +19,7 @@ const oloHome =
 
 export const OLO = {
   home: oloHome,
-  intro: `${oloHome}Particulier/particulier/home/checken`,
+  intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
@@ -61,12 +72,22 @@ const topics = [
     intro: "KozijnenIntro",
   },
   {
-    slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
+    slug: "kozijn-test",
+    sttrFile: "kozijn.json",
+    text: {
+      heading: "Vergunningcheck kozijnen plaatsen of vervangen",
+      locationIntro:
+        "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
+    },
+    intro: "KozijnenIntroSTTR/index",
+  },
+  {
+    slug: "zonnepanelen-of-zonneboiler-plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {
-      heading: "Vergunningcheck zonnepanelen of warmtecollectoren plaatsen",
+      heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
-        "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen",
+        "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
     intro: "ZonnepanelenIntro",
   },
@@ -105,4 +126,4 @@ export { topics };
 // We need a place for general text as well
 // I know this is not the best place
 // For now I will place it here
-export const requiredFieldText = "Dit veld is verplicht";
+export const requiredFieldText = "Dit veld is verplicht.";

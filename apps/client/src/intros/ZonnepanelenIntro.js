@@ -1,6 +1,6 @@
 import React from "react";
-import { Heading, Paragraph, OrderedList } from "@datapunt/asc-ui";
-import { ListItem } from "../components/Atoms";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { OrderedList, ListItem } from "../atoms";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
@@ -8,7 +8,7 @@ export default () => (
     <Paragraph gutterBottom={20}>
       U kunt deze vergunningcheck gebruiken voor zonnepanelen en zonneboiler.
     </Paragraph>
-    <Heading $as="h3">Hoe het werkt:</Heading>
+    <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.

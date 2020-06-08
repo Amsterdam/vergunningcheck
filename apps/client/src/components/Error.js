@@ -1,20 +1,21 @@
 import React from "react";
-import { Alert } from "@datapunt/asc-ui";
+import { Alert, ComponentWrapper } from "../atoms";
 
 const Error = ({ heading, content, stack, children }) => (
-  <Alert
-    level="error"
-    heading={heading || `Er is een fout opgetreden.`}
-    content={content}
-    style={{ marginBottom: 25 }}
-  >
-    {children}
+  <ComponentWrapper>
+    <Alert
+      level="error"
+      heading={heading || `Er is een fout opgetreden.`}
+      content={content}
+    >
+      {children}
 
-    {/* Display error stack in screen (not in production) */}
-    {stack && process.env.NODE_ENV !== "production" && (
-      <pre style={{ whiteSpace: "normal" }}>{stack}</pre>
-    )}
-  </Alert>
+      {/* Display error stack in screen (not in production) */}
+      {stack && process.env.NODE_ENV !== "production" && (
+        <pre style={{ whiteSpace: "normal" }}>{stack}</pre>
+      )}
+    </Alert>
+  </ComponentWrapper>
 );
 
 export default Error;

@@ -2,7 +2,7 @@ import React from "react";
 
 import Error from "../components/Error";
 import Layout from "../components/Layouts/DefaultLayout";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 const ErrorPage = ({ error }) => (
   <Layout>

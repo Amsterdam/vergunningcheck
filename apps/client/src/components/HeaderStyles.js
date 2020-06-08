@@ -1,22 +1,20 @@
 import LogoDesktop from "../static/media/logo-desktop.svg";
 import LogoMobile from "../static/media/logo-mobile.svg";
 import styled, { css } from "styled-components";
-import { breakpoint, themeSpacing } from "@datapunt/asc-ui";
+import { Header, breakpoint, themeSpacing } from "@datapunt/asc-ui";
 import { focusOutlineStyle } from "../utils/themeUtils";
-
-import { Header } from "@datapunt/asc-ui";
 
 export const StyledHeader = styled(Header)`
   max-width: 960px;
   padding: 0 ${themeSpacing(5)};
 
-  @media screen and ${breakpoint("min-width", "tabletM")} {
+  @media ${breakpoint("min-width", "tabletM")} {
     padding: 0 ${themeSpacing(6)};
   }
-  @media screen and ${breakpoint("min-width", "laptop")} {
+  @media ${breakpoint("min-width", "laptop")} {
     padding: 0 ${themeSpacing(8)};
   }
-  @media screen and ${breakpoint("min-width", "laptopM")} {
+  @media ${breakpoint("min-width", "laptopM")} {
     padding: 0 ${themeSpacing(11)};
   }
 `;
@@ -25,10 +23,10 @@ export const StyledHeaderWrapper = css`
   position: relative; /* Disable the sticky header */
   z-index: 2;
 
-  @media screen and ${breakpoint("max-width", "laptopM")} {
+  @media ${breakpoint("max-width", "laptopM")} {
     height: 115px;
   }
-  @media screen and ${breakpoint("max-width", "tabletS")} {
+  @media ${breakpoint("max-width", "tabletS")} {
     height: 69px;
   }
 
@@ -43,6 +41,10 @@ export const StyledLogo = styled.span`
   width: 100%;
   background-size: cover;
   background-image: url("${LogoMobile}");
+
+  @media print {
+   -webkit-print-color-adjust: exact;
+  }
 `;
 
 export const StyledLogoWrapper = styled.a`
@@ -52,11 +54,20 @@ export const StyledLogoWrapper = styled.a`
   flex-shrink: 0;
   margin-right: ${themeSpacing(3)};
 
-  @media screen and ${breakpoint("min-width", "tabletS")} {
+  @media ${breakpoint("min-width", "tabletS")} {
+    /* Hack to align logo with content */
+    margin-left: calc( -30px + ${themeSpacing(4)} );
+  }
+
+  @media ${breakpoint("min-width", "laptop")} {
+    /* Hack to align logo with content */
+    margin-left: -30px;
+  }
+
+  @media ${breakpoint("min-width", "tabletS")} {
     height: 68px;
     width: 152px;
     margin-right: ${themeSpacing(10)};
-    margin-left: -5px; /* Hack to align logo with content */
 
     ${StyledLogo} {
       background-image: url("${LogoDesktop}");
@@ -64,4 +75,8 @@ export const StyledLogoWrapper = styled.a`
   }
 
   ${focusOutlineStyle}
+
+  @media print {
+    -webkit-print-color-adjust: exact;
+  }
 `;

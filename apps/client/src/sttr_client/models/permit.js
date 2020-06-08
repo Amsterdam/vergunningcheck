@@ -1,5 +1,5 @@
 import isString from "lodash.isstring";
-import { collectionOfType } from "../util";
+import { collectionOfType } from "../../utils";
 
 /**
  * Step checker class for quiz

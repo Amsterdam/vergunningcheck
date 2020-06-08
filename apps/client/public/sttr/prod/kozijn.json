@@ -1,0 +1,1181 @@
+{
+  "id": "kozijn",
+  "permits": [
+    {
+      "name": "Conclusie Kozijn plaatsen in een monument",
+      "questions": [
+        {
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
+          "prio": 10,
+          "uuid": "kozijn monument"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. Het is ook onderhoud als u het kozijn repareert.\n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n*   de kleur\n*   het materiaal\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
+          "prio": 20,
+          "uuid": "kozijn rijksmonument"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. Het is ook onderhoud als u het kozijn repareert. En als u de kleur en het materiaal verandert. \n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__41b859be-53b8-46b9-975f-80217808e89f",
+          "prio": 30,
+          "uuid": "kozijn gemeentelijk monument"
+        }
+      ],
+      "inputs": {
+        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
+          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
+          "type": "string"
+        },
+        "input__6341d4bf-6629-4305-b077-79dd11cd5b7c": {
+          "href": "#uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
+          "type": "string"
+        },
+        "input__41b859be-53b8-46b9-975f-80217808e89f": {
+          "href": "#uitv__41b859be-53b8-46b9-975f-80217808e89f",
+          "type": "string"
+        }
+      },
+      "decisions": {
+        "_dd08187b-f113-4183-a29a-e11feb9dc36a": {
+          "requiredInputs": [
+            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
+            "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3": {
+          "requiredInputs": [
+            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
+            "#input__41b859be-53b8-46b9-975f-80217808e89f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_dd08187b-f113-4183-a29a-e11feb9dc36a",
+            "#_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Conclusie Kozijn plaatsen",
+      "questions": [
+        {
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
+          "prio": 10,
+          "uuid": "kozijn monument"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. Het is ook onderhoud als u het kozijn repareert.\n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n*   de kleur\n*   het materiaal\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__85ce6b97-ff25-455c-b279-b93ebe01e972",
+          "prio": 20,
+          "uuid": "kozijn rijksmonument"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. \n\nHet is ook onderhoud als u het kozijn repareert. En als u de kleur en het materiaal verandert. \n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+          "prio": 30,
+          "uuid": "kozijn gemeentelijk monument"
+        },
+        {
+          "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
+          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "type": "boolean",
+          "id": "uitv__79e01ca4-21a2-4d16-bf23-720084f936ce",
+          "prio": 40
+        },
+        {
+          "text": "Gaat u het kozijn plaatsen in een hoofdgebouw of bijgebouw?",
+          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein, vaak is dat de woning.\n\nEen bijgebouw is een gebouw dat bij het hoofdgebouw hoort. Het bijgebouw kan aan het hoofdgebouw vastzitten of losstaan. Voorbeelden van een bijgebouw zijn:\n\n*   garage\n*   schuur\n*   tuinhuis\n\nPer gebouw moet u een vergunningcheck doen.",
+          "options": ["In een hoofdgebouw", "In een bijgebouw"],
+          "type": "string",
+          "id": "uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+          "prio": 50
+        },
+        {
+          "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
+          "description": "Doe een vergunningcheck voor elke kant van het gebouw.\n\n![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Kozijn-kant-voorkant\")\n\nVoorkant\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Kozijn-kant-zijkant\")\n\nZijkant\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Kozijn-kant-achterkant\")\n\nAchterkant",
+          "options": ["Voorkant", "Zijkant", "Achterkant"],
+          "type": "string",
+          "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+          "prio": 60
+        },
+        {
+          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"OTG-zijkant-weg\")\n\nAls er direct naast uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+          "prio": 70
+        },
+        {
+          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"OTG-zijkant-water\")\n\nAls er direct naast uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
+          "prio": 80
+        },
+        {
+          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"OTG-zijkant-plantsoen\")\n\nAls er direct naast uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
+          "prio": 90
+        },
+        {
+          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"OTG-achterkant-weg\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
+          "prio": 100
+        },
+        {
+          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"OTG-achterkant-water\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
+          "prio": 110
+        },
+        {
+          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"OTG-achterkant-plantsoen\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
+          "prio": 120
+        }
+      ],
+      "inputs": {
+        "input__383f1988-b06b-4fe9-90d8-8041f01d832b": {
+          "href": "#uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
+          "type": "string"
+        },
+        "input__85ce6b97-ff25-455c-b279-b93ebe01e972": {
+          "href": "#uitv__85ce6b97-ff25-455c-b279-b93ebe01e972",
+          "type": "string"
+        },
+        "input__95fedeed-e4b3-4e63-b52f-8cf1573e167f": {
+          "href": "#uitv__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+          "type": "string"
+        },
+        "input__79e01ca4-21a2-4d16-bf23-720084f936ce": {
+          "href": "#uitv__79e01ca4-21a2-4d16-bf23-720084f936ce",
+          "type": "boolean"
+        },
+        "input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1": {
+          "href": "#uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+          "type": "string"
+        },
+        "input__61242aca-2bec-4fa9-bba4-b8f18f37c174": {
+          "href": "#uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+          "type": "string"
+        },
+        "input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60": {
+          "href": "#uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+          "type": "boolean"
+        },
+        "input__efdf42a1-eda9-478d-a6a2-f1b790520606": {
+          "href": "#uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
+          "type": "boolean"
+        },
+        "input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33": {
+          "href": "#uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
+          "type": "boolean"
+        },
+        "input__36aad415-6261-4996-8db5-20d4e2b999d1": {
+          "href": "#uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
+          "type": "boolean"
+        },
+        "input__4955c3f0-3d2c-4712-a838-7657afc8a982": {
+          "href": "#uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
+          "type": "boolean"
+        },
+        "input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f": {
+          "href": "#uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_d4ed2bf6-c44e-4403-8e48-6b7a32310303": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_4742c8d6-8198-4cb0-9916-bedabe468d63": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  "\"In een bijgebouw\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"In een hoofdgebouw\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d46bd003-0b97-43b0-956d-c70118e1ab98": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"In een hoofdgebouw\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"In een hoofdgebouw\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"In een hoofdgebouw\"",
+                  "\"Zijkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"In een bijgebouw\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_01e40b29-34b2-4e60-ad84-90e3300af681": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"In een hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"In een bijgebouw\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_3ca7950f-fbcc-4b16-b453-b6bc936c5068": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"In een hoofdgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"In een bijgebouw\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c0344a92-d352-485b-a473-476f41057bb9": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+            "#input__efdf42a1-eda9-478d-a6a2-f1b790520606"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"In een hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een bijgebouw\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f8609238-6f2d-44c5-b6ec-afa9edee85d9": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1",
+            "#input__4955c3f0-3d2c-4712-a838-7657afc8a982"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"In een hoofdgebouw\"",
+                  "\"Achterkant\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een bijgebouw\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7d6e80b7-5faa-48b0-b37a-5114e10e6268": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+            "#input__efdf42a1-eda9-478d-a6a2-f1b790520606",
+            "#input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"In een hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een bijgebouw\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7ce6c5fb-40b5-4249-8d23-80f46153fd86": {
+          "requiredInputs": [
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
+            "#input__79e01ca4-21a2-4d16-bf23-720084f936ce",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1",
+            "#input__4955c3f0-3d2c-4712-a838-7657afc8a982",
+            "#input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"In een hoofdgebouw\"",
+                  "\"Achterkant\"",
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een bijgebouw\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_d4ed2bf6-c44e-4403-8e48-6b7a32310303",
+            "#_4742c8d6-8198-4cb0-9916-bedabe468d63",
+            "#_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673",
+            "#_d46bd003-0b97-43b0-956d-c70118e1ab98",
+            "#_01e40b29-34b2-4e60-ad84-90e3300af681",
+            "#_3ca7950f-fbcc-4b16-b453-b6bc936c5068",
+            "#_c0344a92-d352-485b-a473-476f41057bb9",
+            "#_f8609238-6f2d-44c5-b6ec-afa9edee85d9",
+            "#_7d6e80b7-5faa-48b0-b37a-5114e10e6268",
+            "#_7ce6c5fb-40b5-4249-8d23-80f46153fd86"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U gaat een kozijn plaatsen in een bijgebouw. De regels die daarvoor gelden zijn erg ingewikkeld en hangen ook af van het bestemmingsplan dat voor uw gebouw geldt. Bel daarom met de gemeente op 14 020, maandag tot en met vrijdag van 08.00 tot 18.00 uur."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hebt geen vergunning nodig voor het plaatsen van het kozijn. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\nDit is waar u verder op moet letten:\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een kozijn voor de WOZ-waarde van uw huis."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

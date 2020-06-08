@@ -1,5 +1,5 @@
 import isString from "lodash.isstring";
-import { collectionOfType, uniqueFilter } from "../util";
+import { collectionOfType, uniqueFilter } from "../../utils";
 
 /**
  * A Decision in DMN is basically a table with inputs as columns

@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 const IntroPage = ({ topic: { text, slug, intro } }) => {
   const Intro = React.lazy(() => import(`../intros/${intro}`));

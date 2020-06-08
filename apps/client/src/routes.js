@@ -16,7 +16,7 @@ import DevHomePage from "./pages/DevHomePage";
 
 export const getslug = (text) =>
   slugify(text, {
-    remove: /[*+~,.()'"!?:@]/g, // regex to remove characters
+    strict: true, // remove special chars
     lower: true, // result in lower case
   });
 
@@ -78,8 +78,20 @@ export const routeConfig = [
   },
 ];
 
+export const redirectConfig = [
+  [
+    "/zonnepanelen-of-warmtecollectoren-plaatsen",
+    "/zonnepanelen-of-zonneboiler-plaatsen",
+  ],
+];
+
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
 export const routes = Object.fromEntries(
   routeConfig.map(({ name, path }) => [name, path])
 );
+
+export const autofillRoutes = {
+  address: routes.location,
+  // map: ...
+};
