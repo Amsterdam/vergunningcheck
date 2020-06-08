@@ -37,6 +37,7 @@
     "start": "react-scripts start",
     "start:prod": "npm run build; serve -s build/",
     "build": "react-scripts build",
+    "build:netlify": "REACT_APP_GRAPHQL_API_URL=http://localhost:8888/.netlify/functions/graphql npm run build",
     "sttr": "node sttr_build && prettier public/sttr --write",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",

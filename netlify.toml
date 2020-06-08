@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  functions = "apps"
+  framework = "#static"
+  publish = "apps/client/build"
+
