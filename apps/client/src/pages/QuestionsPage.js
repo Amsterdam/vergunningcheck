@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug } from "../routes";
 import { Helmet } from "react-helmet";
@@ -21,21 +21,13 @@ const QuestionsPage = ({ topic, checker }) => {
   );
   const { slug } = topic;
 
-  useEffect(() => {
-    return history.listen((location) => {
-      if (history.action === "POP") {
-        console.log("pop");
-        const next = checker.next();
-        setQuestion(next);
-      }
-    });
-  }, [checker, history, context.questionIndex, slug]);
-
   // Update URL based on question text
   if (!questionSlug) {
     // first question
-    context.setData({ questionIndex: 0 });
-    checker.rewindTo(0);
+    context.setData({
+      answers: checker.getData(),
+      questionIndex: 0,
+    });
     return (
       <Redirect
         to={geturl(routes.questions, {
@@ -74,15 +66,17 @@ const QuestionsPage = ({ topic, checker }) => {
       // go to to conclusion fall out
       history.push(geturl(routes.conclusion, { slug }));
     } else {
+      context.setData({
+        answers: checker.getData(),
+      });
+
+      // if results are shown, all questions are already on the stack, so change get the next question from stack.
       const next = context.resultsShown
-        ? checker.stack[context.questionIndex]
+        ? checker.stack[context.questionIndex + 1]
         : checker.next();
 
       if (!next) {
         // Go to Result page
-        context.setData({
-          answers: checker.getData(),
-        });
         history.push(geturl(routes.results, { slug }));
       } else {
         // Go to Next question
@@ -92,6 +86,7 @@ const QuestionsPage = ({ topic, checker }) => {
         });
 
         setQuestion(next);
+
         history.push(
           geturl(routes.questions, {
             slug: topic.slug,
@@ -103,13 +98,24 @@ const QuestionsPage = ({ topic, checker }) => {
   };
 
   const onQuestionPrev = () => {
-    if (checker?.stack?.length > 1) {
-      const prev = checker.previous();
+    const prev = checker.stack[context.questionIndex - 1];
+
+    if (prev && context.questionIndex > 0) {
+      // set prev question to state
       setQuestion(prev);
+
+      // set question id to next context
       context.setData({
         answers: checker.getData(),
         questionIndex: context.questionIndex - 1,
       });
+
+      history.push(
+        geturl(routes.questions, {
+          slug: topic.slug,
+          question: getslug(prev.text),
+        })
+      );
     } else {
       // Go back to Location page
       history.push(geturl(routes.address, { slug }));

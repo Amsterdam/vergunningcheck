@@ -1,8 +1,10 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import HiddenDebugInfo from "./HiddenDebugInfo";
+import Context from "../context";
 
 export default ({ checker }) => {
+  const context = useContext(Context);
   const decisionId = "dummy";
   window.checker = checker;
   if (!checker || !checker.permits) return <></>;
@@ -24,7 +26,7 @@ export default ({ checker }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[checker.stack.length - 1] === q
+                    checker.stack[context.questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}
