@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading } from "@datapunt/asc-ui";
-import { List, OrderedList, ListItem } from "../components/Atoms";
+import { List, OrderedList, ListItem } from "../atoms";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (

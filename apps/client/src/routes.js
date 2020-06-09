@@ -7,7 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 export const getslug = (text) =>
   slugify(text, {
-    remove: /[*+~,.()'"!?:@]/g, // regex to remove characters
+    strict: true, // remove special chars
     lower: true, // result in lower case
   });
 
@@ -95,3 +95,8 @@ export const redirectConfig = [
 export const routes = Object.fromEntries(
   routeConfig.map(({ name, path }) => [name, path])
 );
+
+export const autofillRoutes = {
+  address: routes.location,
+  // map: ...
+};

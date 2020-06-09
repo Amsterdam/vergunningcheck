@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const yargs = require("yargs");
+const mkdirp = require("mkdirp");
 const fs = require("fs");
 const path = require("path");
 const fetch = require("node-fetch");
@@ -7,23 +7,15 @@ const batchPromises = require("batch-promises");
 const sttrbuild = require("./parser");
 const topics = require("./config");
 
-const { argv } = yargs
-  .option("output", {
-    alias: "o",
-    description: "Directory to place json output.",
-    type: "string",
-  })
-  .help()
-  .alias("help", "h");
-
-const OUTPUT_DIR = argv.output;
-
-if (!OUTPUT_DIR) {
-  throw Error('"output" not specified. Please provide --output=./some/path');
-}
-
 const MAX_PARALLEL = 6;
 const env = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
+const outputDir = path.join(
+  __dirname,
+  "..",
+  "public",
+  "sttr",
+  env.toLowerCase()
+);
 const sttrApi = `https://sttr-builder${
   env === "PROD" ? "" : "-staging"
 }.eu.meteorapp.com/api`;
@@ -34,6 +26,8 @@ const headers = {
 };
 
 console.log("Using environment", env);
+mkdirp.sync(outputDir);
+const permitIds = Object.values(topics).flatMap((t) => t.map((a) => a.id));
 
 /**
  * @param {object} obj - an object to convert to json-string
@@ -62,10 +56,10 @@ function checkStatus(res) {
 }
 
 (async () => {
-  const permitIds = await fetch(listUrl, { headers })
+  fetch(listUrl, { headers })
     .then((res) => res.json())
     .then((json) => {
-      const target = path.join(OUTPUT_DIR, "topics.source.json");
+      const target = path.join(outputDir, "topics.source.json");
       fs.writeFile(target, jsonString(json), (err) => {
         if (err) throw err;
         console.log(`${target} has been saved`);
@@ -95,7 +89,7 @@ function checkStatus(res) {
 
   // write activity source xml files
   permitsXML.forEach(({ id, xml }) => {
-    fs.writeFile(path.join(OUTPUT_DIR, `${id}.xml`), xml, (err) => {
+    fs.writeFile(path.join(outputDir, `${id}.xml`), xml, (err) => {
       if (err) throw err;
       console.log(`${id}.xml has been saved!`);
     });
@@ -109,7 +103,7 @@ function checkStatus(res) {
         sttrbuild(permitsXML.find((p) => p.id === permit.id).xml)
       ),
     };
-    fs.writeFile(path.join(OUTPUT_DIR, file), jsonString(data), (err) => {
+    fs.writeFile(path.join(outputDir, file), jsonString(data), (err) => {
       if (err) throw err;
       console.log(`'${file}' has been saved!`);
     });
