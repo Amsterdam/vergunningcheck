@@ -6,7 +6,7 @@ import Context from "../context";
 export default ({ checker }) => {
   const context = useContext(Context);
   const decisionId = "dummy";
-  window.checker = checker;
+
   if (!checker || !checker.permits) return <></>;
   const relevantOpenQuestions = checker._getUpcomingQuestions();
   return (

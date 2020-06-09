@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
+
 import Context from "../context";
 import { routes, geturl } from "../routes";
 import withAddress from "./withAddress";
+import getChecker from "../sttr_client";
 import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
-import getChecker from "../sttr_client";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
@@ -34,10 +35,11 @@ const withChecker = (Component) =>
           .then((json) => {
             const checker = getChecker(json);
             if (context.answers) {
-              checker.setData(context.answers);
+              checker.setQuestionAnswers(context.answers);
+            } else {
+              checker.next();
             }
 
-            checker.next();
             context.checker = checker;
             setChecker(checker);
           })

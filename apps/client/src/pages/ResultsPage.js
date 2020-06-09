@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
+import { Helmet } from "react-helmet";
 
+import Context from "../context";
 import withFinalChecker from "../hoc/withFinalChecker";
 import { routes, geturl, getslug } from "../routes";
 import { RESULTS_PAGE } from "../utils/test-ids";
@@ -10,8 +12,6 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
-import Context from "../context";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
@@ -19,7 +19,8 @@ const ResultsPage = ({ topic, checker }) => {
   const { slug } = topic;
 
   const onGoToQuestion = (questionIndex) => {
-    context.setData({ questionIndex, resultsShown: true });
+    context.setData({ questionIndex });
+    // checker.rewindTo(questionIndex);
     const q = checker.stack[questionIndex];
     history.push(
       geturl(routes.questions, {

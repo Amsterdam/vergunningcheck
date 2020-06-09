@@ -138,6 +138,7 @@ describe("<QuestionsPage />", () => {
     await act(async () => {
       fireEvent.click(container.querySelectorAll('input[type="radio"]')[2]);
       fireEvent.click(getByTestId(NEXT_BUTTON));
+      console.log(window.location.pathname);
     });
     await getByText(`Question 2`);
     expect(window.scrollTo).toBeCalledWith(0, 0);
@@ -150,6 +151,12 @@ describe("<QuestionsPage />", () => {
 
     // Click and go to the Results Page
     await act(async () => {
+      console.log(window.location.pathname);
+      fireEvent.click(container.querySelectorAll('input[type="radio"]')[0]);
+      fireEvent.click(getByTestId(NEXT_BUTTON));
+    });
+    await act(async () => {
+      console.log(window.location.pathname);
       fireEvent.click(container.querySelectorAll('input[type="radio"]')[0]);
       fireEvent.click(getByTestId(NEXT_BUTTON));
     });

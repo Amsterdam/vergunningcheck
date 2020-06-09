@@ -70,9 +70,9 @@ describe("Checker recursive", () => {
     let question = checker.next();
     question.setAnswer(true);
 
-    let data = checker.getData();
+    let data = checker.getQuestionAnswers();
     let freshChecker = getDummyChecker();
-    freshChecker.setData(data);
+    freshChecker.setQuestionAnswers(data);
     expect(freshChecker.rewindTo(0).answer).toBe(true);
   });
 });

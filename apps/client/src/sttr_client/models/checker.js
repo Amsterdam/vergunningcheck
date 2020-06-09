@@ -54,7 +54,7 @@ class Checker {
    * Get data from the stack and return a list of questionIds with the given answers.
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
-  getData() {
+   getQuestionAnswers() {
     return this.stack.reduce((acc, question) => {
       acc[question.id] = question.answer;
       return acc;
@@ -65,16 +65,26 @@ class Checker {
    * Set data from context to the current stack
    * @returns {void} -
    */
-  setData(answers) {
+  setQuestionAnswers(answers, results) {
     if (!isObject(answers)) {
       throw Error("Answers must be of type object");
     }
-    this._questions.forEach((question) => {
-      if (answers[question.id] !== undefined) {
-        question.setAnswer(answers[question.id]);
-        this._stack.push(question);
+    if (!this._last) {
+      this.next();
+    }
+    let done = false;
+    while (done === false) {
+      const questionAnswer = answers[this._last.id];
+      console.log(this._questions);
+      console.log(Object.keys(answers).length === this.stack.length);
+      if (questionAnswer === undefined || Object.keys(answers).length === this.stack.length) {
+        console.log('set done true');
+        done = true;
+      } else {
+        this._last.setAnswer(questionAnswer);
+        // this.next();
       }
-    });
+    }
   }
 
   /**

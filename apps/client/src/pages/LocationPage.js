@@ -44,7 +44,6 @@ const LocationPage = ({ topic }) => {
         address: { ...context.address, [slug]: address },
         answers: null,
         questionIndex: 0,
-        resultsShown: false,
       });
       history.push(geturl(routes.address, { slug }));
     }

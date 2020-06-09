@@ -1,19 +1,21 @@
 import React, { useState, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
-import { geturl, routes, getslug } from "../routes";
 import { Helmet } from "react-helmet";
 
 import withChecker from "../hoc/withChecker";
+import Context from "../context";
+import { geturl, routes, getslug } from "../routes";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
-import Context from "../context";
 
 const QuestionsPage = ({ topic, checker }) => {
   const context = useContext(Context);
   const params = useParams();
   const history = useHistory();
   const { question: questionSlug } = params;
+  // Get the question from question Stack if a specific question is chosen.
+  // Else just get the last question
   const [question, setQuestion] = useState(
     checker.stack[context.questionIndex]
       ? checker.stack[context.questionIndex]
@@ -25,7 +27,7 @@ const QuestionsPage = ({ topic, checker }) => {
   if (!questionSlug) {
     // first question
     context.setData({
-      answers: checker.getData(),
+      answers: checker.getQuestionAnswers(),
       questionIndex: 0,
     });
     return (
@@ -66,12 +68,13 @@ const QuestionsPage = ({ topic, checker }) => {
       // go to to conclusion fall out
       history.push(geturl(routes.conclusion, { slug }));
     } else {
+      console.log(checker.getQuestionAnswers());
       context.setData({
-        answers: checker.getData(),
+        answers: checker.getQuestionAnswers(),
       });
 
-      // if results are shown, all questions are already on the stack, so change get the next question from stack.
-      const next = context.resultsShown
+      // If there is already a other question from the question stack, use it. Otherwise check for new question.
+      const next = checker.stack[context.questionIndex + 1]
         ? checker.stack[context.questionIndex + 1]
         : checker.next();
 
@@ -81,7 +84,7 @@ const QuestionsPage = ({ topic, checker }) => {
       } else {
         // Go to Next question
         context.setData({
-          answers: checker.getData(),
+          answers: checker.getQuestionAnswers(),
           questionIndex: context.questionIndex + 1,
         });
 
@@ -106,7 +109,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
       // set question id to next context
       context.setData({
-        answers: checker.getData(),
+        answers: checker.getQuestionAnswers(),
         questionIndex: context.questionIndex - 1,
       });
 

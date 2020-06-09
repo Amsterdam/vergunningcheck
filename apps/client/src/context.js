@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, createContext } from "react";
+
 const session = JSON.parse(sessionStorage.getItem("sessionData"));
 const Context = createContext();
 const defaultValues = session
@@ -8,7 +9,6 @@ const defaultValues = session
       address: {},
       answers: null,
       questionIndex: 0,
-      resultsShown: false,
     };
 
 const reducer = (data, newData) => {
