@@ -6,8 +6,8 @@ export const FigCaption = styled.figcaption`
 `;
 
 export const Figure = styled.figure`
-  width: 100%;
-  height: auto;
+  // width: 100%;
+  // height: auto;
   margin: 0 0 ${themeSpacing(6)} 0;
   padding: 0;
   line-height: 0;
@@ -37,5 +37,13 @@ export const Img = styled.img`
     props.loaded &&
     css`
       border: 1px solid ${themeColor("tint", "level5")};
+    `}
+  ${(props) =>
+    props.errored &&
+    css`
+      min-width: 100%;
+      padding: 33px;
+      text-align: center;
+      line-height: 17px;
     `}
 `;
