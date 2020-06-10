@@ -3,6 +3,7 @@ import { perceivedLoading, themeColor, themeSpacing } from "@datapunt/asc-ui";
 
 export const FigCaption = styled.figcaption`
   font-style: italic;
+  margin: ${themeSpacing(6)} 0 0 0;
 `;
 
 export const Figure = styled.figure`
