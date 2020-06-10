@@ -51,7 +51,7 @@ const withData = (Component) =>
         return null;
       }
     } else {
-      // old logic
+      // olo flow
       if (!data.address) {
         console.warn("No address found, redirecting to location page");
         return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;

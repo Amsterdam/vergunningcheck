@@ -42,7 +42,7 @@ const LocationPage = ({ topic }) => {
       });
 
       context.data.address = address;
-      history.push(geturl(routes.questions, { slug }));
+      history.push(geturl(routes.address, topic));
     }
   };
 
