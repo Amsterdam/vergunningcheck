@@ -7,8 +7,8 @@ import {
 } from "@datapunt/asc-ui";
 
 export const FigCaption = styled(Paragraph)`
+  margin: ${themeSpacing(2)} 0 0 0;
   font-style: italic;
-  margin: ${themeSpacing(6)} 0 0 0;
 `;
 
 export const Figure = styled.figure`

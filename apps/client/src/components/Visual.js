@@ -16,7 +16,11 @@ export default ({ title, ...rest }) => {
           setErrored(true);
         }}
       />
-      {title && !errored && <FigCaption as="figcaption">{title}</FigCaption>}
+      {title && !errored && (
+        <figcaption>
+          <FigCaption>{title}</FigCaption>
+        </figcaption>
+      )}
     </Figure>
   );
 };
