@@ -1,12 +1,18 @@
 import styled, { css } from "styled-components";
-import { perceivedLoading, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import {
+  perceivedLoading,
+  themeColor,
+  Paragraph,
+  themeSpacing,
+} from "@datapunt/asc-ui";
 
-export const FigCaption = styled.figcaption`
+export const FigCaption = styled(Paragraph)`
   font-style: italic;
   margin: ${themeSpacing(6)} 0 0 0;
 `;
 
 export const Figure = styled.figure`
+  height: auto;
   margin: 0 0 ${themeSpacing(6)} 0;
   padding: 0;
   line-height: 0;
@@ -15,6 +21,7 @@ export const Figure = styled.figure`
     css`
       ${perceivedLoading()}
       height: 0;
+      padding-top: 75%;
       padding-bottom: 75%; /* All our images are 4x3 aspect ratio, we need to fix this if this changes */
     `}
   ${(props) =>
