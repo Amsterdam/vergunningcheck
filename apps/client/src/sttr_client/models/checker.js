@@ -54,7 +54,7 @@ class Checker {
    * Get data from the stack and return a list of questionIds with the given answers.
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
-   getQuestionAnswers() {
+  getQuestionAnswers() {
     return this.stack.reduce((acc, question) => {
       acc[question.id] = question.answer;
       return acc;
@@ -75,10 +75,8 @@ class Checker {
     let done = false;
     while (done === false) {
       const questionAnswer = answers[this._last.id];
-      console.log(this._questions);
-      console.log(Object.keys(answers).length === this.stack.length);
-      if (questionAnswer === undefined || Object.keys(answers).length === this.stack.length) {
-        console.log('set done true');
+      if (answers !== undefined && questionAnswer === undefined) {
+        console.log("set done true");
         done = true;
       } else {
         this._last.setAnswer(questionAnswer);
