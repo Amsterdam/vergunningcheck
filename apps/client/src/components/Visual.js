@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Figure, Img, FigCaption } from "./VisualStyles";
+import { Figure, Img, Caption } from "./VisualStyles";
 
 export default ({ title, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -18,7 +18,7 @@ export default ({ title, ...rest }) => {
       />
       {title && !errored && (
         <figcaption>
-          <FigCaption>{title}</FigCaption>
+          <Caption>{title}</Caption>
         </figcaption>
       )}
     </Figure>

@@ -6,7 +6,7 @@ import {
   themeSpacing,
 } from "@datapunt/asc-ui";
 
-export const FigCaption = styled(Paragraph)`
+export const Caption = styled(Paragraph)`
   margin: ${themeSpacing(2)} 0 0 0;
   font-style: italic;
 `;
