@@ -64,7 +64,11 @@ const AddressPage = ({ topic, data }) => {
           <AddressData displayZoningPlans={!useSTTR} address={address} />
         </StyledAddressResult>
 
-        {useSTTR && <Paragraph>{topic.text?.addressPage}</Paragraph>}
+        <Paragraph>
+          {useSTTR
+            ? topic.text?.addressPage
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
+        </Paragraph>
 
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
