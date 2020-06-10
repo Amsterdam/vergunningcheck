@@ -37,7 +37,7 @@ node {
     stage("Build develop image") {
         tryStep "build", {
             docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
-                nginx_image = docker.build("${NGINX_CONTAINERNAME}","-f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
+                nginx_image = docker.build("${NGINX_CONTAINERNAME}","--pull -f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
                 nginx_image.push()
 
                 backend_image = docker.build("${BACKEND_CONTAINERNAME}","--pull -f ${BACKEND_DOCKERFILE} ${CONTAINERDIR}")

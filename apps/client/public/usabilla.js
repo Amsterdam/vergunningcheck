@@ -135,5 +135,11 @@ window.lightningjs ||
 window.usabilla_live = navigator.userAgent.match(
   /Android|BlackBerry|BB10|iPhone|iPad|iPod|Opera Mini|IEMobile/i
 )
-  ? lightningjs.require("usabilla_live", "//w.usabilla.com/71f77b6278cf.js") // MOBILE BUTTON OMGEVINGSWET
-  : lightningjs.require("usabilla_live", "//w.usabilla.com/820a17662379.js"); // DESKTOP BUTTON OMGEVINGSWET
+  ? lightningjs.require(
+      "usabilla_live",
+      "https://w.usabilla.com/71f77b6278cf.js"
+    ) // MOBILE BUTTON OMGEVINGSWET
+  : lightningjs.require(
+      "usabilla_live",
+      "https://w.usabilla.com/820a17662379.js"
+    ); // DESKTOP BUTTON OMGEVINGSWET
