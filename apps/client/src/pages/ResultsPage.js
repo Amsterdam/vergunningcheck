@@ -19,8 +19,7 @@ const ResultsPage = ({ topic, checker }) => {
   const { slug } = topic;
 
   const onGoToQuestion = (questionIndex) => {
-    context.setData({ questionIndex });
-    // checker.rewindTo(questionIndex);
+    context.setData({ questionIndex, answersSet: false });
     const q = checker.stack[questionIndex];
     history.push(
       geturl(routes.questions, {

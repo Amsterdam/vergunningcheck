@@ -1,21 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { routes, geturl } from "../routes";
-import Context from "../context";
+import withChecker from "./withChecker";
 
-const withFinalChecker = (Component) => () => {
-  const context = useContext(Context);
-
-  const finishedPermit = context.checker.permits.find(
-    (permit) => !!permit.getOutputByDecisionId("dummy")
-  );
-  if (!finishedPermit) {
-    console.warn("Checker not final, redirecting to question page");
-    return (
-      <Redirect to={geturl(routes.questions, { slug: context.topic.slug })} />
+const withFinalChecker = (Component) =>
+  withChecker((props) => {
+    const finishedPermit = props.checker.permits.find(
+      (permit) => !!permit.getOutputByDecisionId("dummy")
     );
-  }
-  return <Component checker={context.checker} topic={context.topic} />;
-};
+    if (!finishedPermit) {
+      console.warn("Checker not final, redirecting to question page");
+      return (
+        <Redirect to={geturl(routes.questions, { slug: props.topic.slug })} />
+      );
+    }
+    return <Component {...props} />;
+  });
 
 export default withFinalChecker;

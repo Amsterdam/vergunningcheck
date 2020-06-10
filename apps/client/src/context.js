@@ -8,6 +8,7 @@ const defaultValues = session
       topic: null,
       address: {},
       answers: null,
+      answersSet: false,
       questionIndex: 0,
     };
 

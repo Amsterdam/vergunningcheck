@@ -35,6 +35,7 @@ const withChecker = (Component) =>
           .then((json) => {
             const checker = getChecker(json);
             if (context.answers) {
+              context.setData({answersSet: true});
               checker.setQuestionAnswers(context.answers);
             } else {
               checker.next();

@@ -65,22 +65,24 @@ class Checker {
    * Set data from context to the current stack
    * @returns {void} -
    */
-  setQuestionAnswers(answers, results) {
+  setQuestionAnswers(answers) {
     if (!isObject(answers)) {
       throw Error("Answers must be of type object");
     }
     if (!this._last) {
       this.next();
     }
+    debugger;
     let done = false;
     while (done === false) {
       const questionAnswer = answers[this._last.id];
-      if (answers !== undefined && questionAnswer === undefined) {
+      console.log(answers[this._last.id])
+      if (questionAnswer === undefined) {
         console.log("set done true");
         done = true;
       } else {
         this._last.setAnswer(questionAnswer);
-        // this.next();
+        this.next();
       }
     }
   }
