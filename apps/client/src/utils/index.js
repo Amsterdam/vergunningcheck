@@ -7,7 +7,7 @@ export const isSimpleType = (val) =>
   isBoolean(val) || isString(val) || isNumber(val);
 
 export const isEmptyObject = (obj) =>
-  // Check the constructor too wbecause Object.keys(new Date()).length === 0;
+  // Check the constructor too because Object.keys(new Date()).length === 0;
   Object.keys(obj).length === 0 && obj.constructor === Object;
 
 // Array checks

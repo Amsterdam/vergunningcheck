@@ -16,17 +16,35 @@ function feelTypeMap(feel) {
   return feel.replace("feel:", "");
 }
 
+/*
+ * The key is the name/key for the autofill-resolver
+ * The value is the keyword (lowercased substring) to look for
+ **/
 const autoFillMap = {
   monument: "monument",
   cityScape: "dorpsgezicht",
 };
 
-const getAutoFill = (text) => {
-  const normalized = text.toLowerCase();
-  const res = Object.entries(autoFillMap).find(
-    ([, keyword]) => normalized.indexOf(keyword) > -1
+/**
+ * This function uses herbruikbaarId (which is in dutch) to get the key
+ * of the autofill resolver. Its basically a substring check
+ *
+ * Example:
+ *  getAutofill("MONUMENT-dakkapel") returns "monument"
+ *
+ * @param {string} reusableIdentifier - The string to look for in the autoFillMap
+ *
+ * @returns {undefined|string} - The matching resolver-key
+ */
+const getAutofillResolverKey = (reusableIdentifier) => {
+  const normalizedIdentifier = reusableIdentifier.toLowerCase();
+  const autofillMapEntries = Object.entries(autoFillMap);
+  const firstAutofillEntry = autofillMapEntries.find(
+    ([, keyword]) => normalizedIdentifier.indexOf(keyword) > -1
   );
-  return res ? res[0] : undefined;
+  if (firstAutofillEntry.length > 0) {
+    return firstAutofillEntry[0]; // from the [key, value] return the 'key' for the autofill-resolver
+  }
 };
 
 /**
@@ -145,7 +163,7 @@ class Parser {
             desc && desc.length && desc[0]["content:toelichting"]
               ? desc[0]["content:toelichting"].trim()
               : undefined,
-          autofill: getAutoFill(question["uitv:vraagTekst"]),
+          autofill: getAutofillResolverKey(question["uitv:herbruikbaarId"]),
           longDescription:
             desc && desc.length && desc[0]["content:langeToelichting"]
               ? desc[0]["content:langeToelichting"].trim()
