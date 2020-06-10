@@ -1,10 +1,10 @@
 import faker from "faker/locale/nl";
 
-import { types as questionDataTypes } from "../models/question";
+import { questionTypes } from "../models/question";
 
 export const getQuestionConfig = (data) => ({
   id: faker.random.uuid(),
-  type: faker.helpers.randomize(questionDataTypes),
+  type: faker.helpers.randomize(questionTypes),
   text: faker.lorem.sentence(),
   prio: faker.random.number(15) * 10,
   ...data,
