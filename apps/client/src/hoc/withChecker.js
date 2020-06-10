@@ -13,14 +13,15 @@ const withChecker = (Component) =>
     const context = useContext(Context);
     const [checker, setChecker] = useState(context.checker);
     const [error, setError] = useState();
+    const {
+      topic: { sttrFile },
+    } = props;
 
-    if (props.topic.sttrFile) {
+    if (sttrFile) {
       useEffect(() => {
         if (!checker && !error) {
           fetch(
-            `${window.location.origin}/sttr/${dir.toLowerCase()}/${
-              props.topic.sttrFile
-            }`
+            `${window.location.origin}/sttr/${dir.toLowerCase()}/${sttrFile}`
           )
             .then((response) => response.json())
             .then((json) => {
@@ -39,7 +40,7 @@ const withChecker = (Component) =>
     if (error) {
       console.error(error);
       return <ErrorPage error={error} {...props} />;
-    } else if (!props.topic.sttrFile) {
+    } else if (!sttrFile) {
       return <Component checker={null} {...props} />;
     } else if (checker) {
       return <Component checker={checker} {...props} />;
