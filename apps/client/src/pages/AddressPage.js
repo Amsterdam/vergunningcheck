@@ -35,8 +35,8 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
 const AddressPage = ({ topic, data }) => {
   const history = useHistory();
   const { slug } = topic;
-  const useSTTR = !!topic.sttrFile;
   const { address } = data;
+  const useSTTR = !!topic.sttrFile;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ const AddressPage = ({ topic, data }) => {
         </Paragraph>
 
         <StyledAddressResult>
-          <AddressData address={address} />
+          <AddressData displayZoningPlans={!useSTTR} address={address} />
         </StyledAddressResult>
 
         {useSTTR && <Paragraph>{topic.text?.addressPage}</Paragraph>}

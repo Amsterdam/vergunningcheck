@@ -35,9 +35,9 @@ fragment exactMatchFragment on Address {
       # type
     }
   }
-  # zoningPlans {
-  #   name
-  # }
+  zoningPlans {
+    name
+  }
 }
 fragment basicAddress on Address {
   __typename
