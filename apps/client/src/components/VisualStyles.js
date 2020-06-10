@@ -12,7 +12,6 @@ export const Caption = styled(Paragraph)`
 `;
 
 export const Figure = styled.figure`
-  height: auto;
   margin: 0 0 ${themeSpacing(6)} 0;
   padding: 0;
   line-height: 0;
