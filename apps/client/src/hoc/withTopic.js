@@ -25,7 +25,7 @@ const withTopic = (Component) => (props) => {
   if (topic) {
     // redirect to olo if needed
     if (topic.redirectToOlo) {
-      return <RedirectPage topic={topic} {...props} />;
+      return <RedirectPage topic={topic} />;
     }
 
     context.topic = topic;
