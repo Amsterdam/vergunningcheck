@@ -9,9 +9,8 @@ import Layout from "../components/Layouts/DefaultLayout";
 import { Helmet } from "react-helmet";
 
 const IntroPage = ({ topic }) => {
-  const { sttrFile, text, intro } = topic;
+  const { text, intro } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
-  const url = geturl(sttrFile ? routes.questions : routes.location, topic);
 
   return (
     <Layout>
@@ -21,7 +20,7 @@ const IntroPage = ({ topic }) => {
       <Suspense fallback={<Loading />}>
         <Intro />
       </Suspense>
-      <Form action={url}>
+      <Form action={geturl(routes.questions, topic)}>
         <Nav showNext />
       </Form>
     </Layout>
