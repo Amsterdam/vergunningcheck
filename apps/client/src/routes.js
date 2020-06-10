@@ -90,3 +90,8 @@ export const redirectConfig = [
 export const routes = Object.fromEntries(
   routeConfig.map(({ name, path }) => [name, path])
 );
+
+export const autofillRoutes = {
+  address: routes.location,
+  // map: ...
+};

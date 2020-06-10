@@ -22,9 +22,9 @@ We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md
 Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
 - Run `npm run release`.
-- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...develop) from develop to master on GitHub
-- After the merge and deploy, verify the changes on ACC.
-- After verify you have to approve the deploy to production in Jenkins.
+- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...develop) from release to master on GitHub.
+- After the merge and deploy, manually verify the changes on ACC.
+- Approve the deploy to production in Jenkins.
 
 ## Tech stack
 

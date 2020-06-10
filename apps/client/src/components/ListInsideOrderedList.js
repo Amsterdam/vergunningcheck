@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { List } from "../components/Atoms";
+import { List } from "../atoms";
 
 export default styled(List)`
   margin-top: 5px;

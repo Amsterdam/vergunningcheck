@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Icon } from "@datapunt/asc-ui";
+import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
 import uniqBy from "lodash.uniqby";
 
 import { booleanOptions } from "../components/Question";
-import { ComponentWrapper } from "../components/Atoms";
+import { ComponentWrapper } from "../atoms";
 import {
   QuestionWrapper,
   MainWrapper,
@@ -72,7 +72,7 @@ export default ({ checker, onGoToQuestion }) => {
               {isDecisiveForPermits.map((permit, index) => (
                 <UserResult key={`${permit} ${index}`}>
                   <Icon
-                    color="secondary"
+                    color={themeColor("secondary", "main")}
                     size={30}
                     style={{
                       flexShrink: 0, // IE11 Fix
