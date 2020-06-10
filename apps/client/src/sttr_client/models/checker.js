@@ -30,6 +30,8 @@ class Checker {
      * @type {Question[]}
      */
     this._stack = [];
+
+    this._autofilled = false;
   }
 
   /**
@@ -82,6 +84,26 @@ class Checker {
       }, [])
       .filter(uniqueFilter)
       .sort((a, b) => a.prio - b.prio);
+  }
+
+  /**
+   * For every questions see if we have data (from context)
+   * and see if the question can be autofilled
+   *
+   * @param {object} resolvers - A map of {[name]: resolver(data)}
+   * @param {object} data - the data that will be send to the resolver
+   **/
+  autofill(resolvers, data) {
+    if (!this._autofilled) {
+      this._getQuestions().forEach((question) => {
+        const resolver = resolvers[question.autofill];
+        const answer = resolver ? resolver(data) : undefined;
+        if (answer !== undefined) {
+          question.setAnswer(answer);
+        }
+      });
+      this._autofilled = true;
+    }
   }
 
   /**

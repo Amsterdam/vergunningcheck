@@ -24,22 +24,14 @@ const withData = (Component) =>
     const { data } = useContext(Context);
     const { topic, checker } = props;
 
-    // Only autofill data if it's enabled
+    // Only autofill data if this topic is an STTR-flow
     if (topic.sttrFile) {
-      if (!checker.autofilled && !isEmptyObject(data)) {
-        const questions = checker._getQuestions();
-
-        // For every questions see if we have data (from context)
-        // and see if the question can be autofilled
-        questions.forEach((question) => {
-          const resolver = autofillResolvers[question.autofill];
-          const answer = resolver ? resolver(data) : undefined;
-          if (answer !== undefined) {
-            question.setAnswer(answer);
-          }
-        });
-        checker.autofilled = true;
+      // if data from context is available call autofill on Checker with the resolver
+      // map and the data we have
+      if (!isEmptyObject(data)) {
+        checker.autofill(autofillResolvers, data);
       }
+
       const dataNeed = checker.getDataNeeds(true).shift();
 
       if (dataNeed) {
