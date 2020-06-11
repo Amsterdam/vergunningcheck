@@ -1,4 +1,8 @@
-const config = require("config");
+require("dotenv-flow").config({
+  path: "./config",
+});
+
+const config = require("./config");
 const app = require("./app");
 
 app.listen(config.port, () =>

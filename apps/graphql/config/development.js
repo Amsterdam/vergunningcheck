@@ -4,7 +4,10 @@
  * If you want to make changes for your env only create a `local.js`
  * file in this directory.
  */
-module.exports = {
+const merge = require("lodash/merge");
+const base = require("./default");
+
+const config = {
   cache: {
     redis: false,
   },
@@ -63,3 +66,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = merge(base, config);

@@ -1,10 +1,10 @@
 const express = require("express");
-const config = require("config");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 
+const config = require("./config");
 const { server } = require("./src/graphql");
 
 const app = express();
