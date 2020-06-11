@@ -4,9 +4,11 @@
   status = 200
 
 [build]
+  command = "npm run build:netlify"
+
+[dev]
   functions = "apps"
   framework = "#static"
   publish = "apps/client/build"
 
-# [dev]
 
