@@ -15,7 +15,7 @@
     "postinstall": "lerna bootstrap",
     "prepare": "git checkout develop && STTR_ENV=production lerna run sttr && echo 'Please commit changes and run \"npm run release\".'",
     "release": "git checkout release && git pull && git merge origin develop && git push",
-    "publish": "git checkout release && lerna-changelog && lerna publish",
+    "publish": "git checkout release && git pull && lerna-changelog && lerna publish",
     "post-publish": "git checkout develop && git merge release && git push"
   },
   "devDependencies": {
