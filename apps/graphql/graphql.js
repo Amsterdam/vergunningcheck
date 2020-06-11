@@ -1,8 +1,11 @@
-// process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
-
 const serverless = require("serverless-http");
+const express = require("express");
 
-const app = require("./app");
+const app = express();
+
+app.use(`/graphql`, (_, res) => {
+  res.send("OK");
+});
 
 exports.handler = serverless(app, {
   basePath: "/.netlify/functions",
