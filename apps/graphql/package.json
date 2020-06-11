@@ -10,7 +10,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon .",
     "start:prod": "NODE_ENV=production node .",
-    "build:netlify": "npm install --production",
+    "build:netlify": "npm install",
     "test": "CONFIG_FILE=test jest",
     "precommit": "lint-staged",
     "lint": "eslint ."

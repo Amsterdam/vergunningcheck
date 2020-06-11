@@ -4,10 +4,13 @@ const fetch = require("node-fetch");
 
 const { stringify } = require("querystring");
 const { promisify } = require("util");
-const redis =
-  process.env.NODE_ENV === "test" ? require("redis-mock") : require("redis");
+let redis = require("redis");
 
 const config = require("../config");
+
+if (process.env.NODE_ENV === "test") {
+  redis = require("redis-mock");
+}
 
 const parser = new xml2js.Parser();
 const { redis: redisConfig } = config.cache;
