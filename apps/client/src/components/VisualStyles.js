@@ -20,7 +20,6 @@ export const Figure = styled.figure`
     css`
       ${perceivedLoading()}
       height: 0;
-      padding-top: 75%;
       padding-bottom: 75%; /* All our images are 4x3 aspect ratio, we need to fix this if this changes */
     `}
   ${(props) =>
