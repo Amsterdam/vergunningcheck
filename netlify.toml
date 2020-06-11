@@ -3,8 +3,10 @@
   to = "/index.html"
   status = 200
 
-[dev]
+[build]
   functions = "apps"
   framework = "#static"
   publish = "apps/client/build"
+
+# [dev]
 
