@@ -13,7 +13,7 @@
     "test": "CI=true lerna run test",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "back-merge": "git fetch && git checkout release && git merge origin/master && git push && git checkout develop && git merge origin/release && git push",
+    "back-merge": "git fetch && git checkout master && git merge && git checkout release && git merge master && git push && git checkout develop && git merge release && git push",
     "prepare-release": "npm run back-merge && git checkout develop && STTR_ENV=production lerna run sttr && echo '\n\nPlease commit changes and run \"npm run release\".\n'",
     "release": "git checkout release && git pull && cli-confirm \"Are you sure you want to merge develop into release? (yN)\" && git merge origin/develop && git push",
     "publish": "git checkout release && git pull && lerna-changelog && lerna publish"
