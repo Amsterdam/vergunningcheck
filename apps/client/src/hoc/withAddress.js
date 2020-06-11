@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
+
 import Context from "../context";
-import { routes, geturl } from "../routes";
+import { geturl, routes } from "../routes";
 import withTopic from "./withTopic";
 
 const withAddress = (Component) =>

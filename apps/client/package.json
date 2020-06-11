@@ -49,6 +49,11 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -72,11 +77,13 @@
     "batch-promises": "0.0.3",
     "fast-xml-parser": "^3.17.4",
     "history": "^4.10.1",
+    "import-sort-style-module": "^6.0.0",
     "lint-staged": "^10.2.9",
     "lodash.get": "^4.4.2",
     "mkdirp": "^1.0.4",
     "node-fetch": "^2.6.0",
     "prettier": "^2.0.5",
+    "prettier-plugin-import-sort": "0.0.4",
     "prop-types": "^15.7.2",
     "react-scripts": "3.4.0",
     "source-map-explorer": "^2.4.2",
