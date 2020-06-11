@@ -1,48 +1,44 @@
-import React, { Suspense } from "react";
+import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup } from "./utils/test-utils";
-import { INTRO } from "./utils/test-ids";
-import { topics } from "./config";
+import { topics, getMatomoSiteId } from "./config";
+
+afterEach(cleanup);
+
+const tryIntroFile = (intro) => {
+  try {
+    require(`./intros/${intro}`);
+    return `Found: ${intro}`;
+  } catch {
+    return `Not found: ${intro}`;
+  }
+};
+
+const AllIntroPages = () =>
+  topics.map((t) =>
+    t.intro ? <p key={t.intro}>{tryIntroFile(t.intro)}</p> : null
+  );
 
 describe("Config", () => {
   afterEach(cleanup);
 
-  it("should be able to find all Intro pages", async () => {
-    // Add DebugIntro to topics if not already defined
-    if (!topics.find((t) => t.intro === "DebugIntro")) {
-      topics.push({
-        intro: "DebugIntro",
-      });
-    }
+  test("should load correct environment matomo siteId", () => {
+    expect(getMatomoSiteId(true)).toBe(29);
+    expect(getMatomoSiteId(false)).toBe(37);
+  });
 
-    const { getAllByText, findByTestId } = render(
-      <>
-        {topics.map((t) => {
-          const { intro } = t;
-          if (intro) {
-            // Use same load method as in IntroPage.js
-            const Intro = React.lazy(() => import(`./intros/${intro}`));
-            return (
-              <Suspense key={`${intro} - suspense`} fallback={<p>Loading</p>}>
-                <Intro key={intro} />
-              </Suspense>
-            );
-          }
-          return null;
-        })}
-      </>
-    );
+  it("should be able to find all Intro pages", () => {
+    const { queryAllByText } = render(<AllIntroPages />);
+    expect(queryAllByText(/Not found/i)).toHaveLength(0);
+  });
 
-    // Find Loading text fallback before the React.lazy has loaded the Intros
-    expect(getAllByText("Loading")).toBeTruthy();
+  it("should be able to detect a missing Intro page", () => {
+    topics.push({
+      slug: "test-slug-for-missing-intro-page",
+      intro: "IntroPageThatWillNeverExist",
+    });
 
-    // Find DebugIntro after React.lazy has loaded the Intros
-    // await findByTestId(INTRO);
-
-    // @Todo: Fix this test
-
-    // This test is to make sure all Intro files are found
-    // If errors occur, it means that one or more of the Intros specified in config.js has not been found.
-    // Check your error log in console
+    const { queryAllByText } = render(<AllIntroPages />);
+    expect(queryAllByText(/Not found/i)).toHaveLength(1);
   });
 });

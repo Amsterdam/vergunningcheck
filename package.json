@@ -13,11 +13,14 @@
     "test": "CI=true lerna run test",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "release": "git checkout develop && git pull && lerna-changelog && lerna publish"
+    "xprepare": "git checkout develop && STTR_ENV=production lerna run sttr && echo 'Please commit changes and run \"npm run release\".'",
+    "release": "git checkout release && git pull && git merge origin develop && git push",
+    "publish": "git checkout release && git pull && lerna-changelog && lerna publish",
+    "post-publish": "git checkout develop && git merge origin release && git push"
   },
   "devDependencies": {
     "husky": "^4.2.5",
-    "lerna": "^3.21.0",
+    "lerna": "^3.22.0",
     "lerna-changelog": "^1.0.1"
   },
   "husky": {

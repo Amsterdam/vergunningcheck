@@ -1,9 +1,17 @@
 export const isProduction =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
+const matomoSiteId = {
+  production: 29,
+  acceptence: 37,
+};
+
+export const getMatomoSiteId = (isProduction) =>
+  isProduction ? matomoSiteId.production : matomoSiteId.acceptence;
+
 export const matomo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
-  siteId: isProduction ? 29 : 37,
+  siteId: getMatomoSiteId(isProduction),
 };
 
 const oloHome =
@@ -11,7 +19,7 @@ const oloHome =
 
 export const OLO = {
   home: oloHome,
-  intro: `${oloHome}Particulier/particulier/home/checken`,
+  intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 

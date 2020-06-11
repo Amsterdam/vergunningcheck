@@ -15,17 +15,23 @@ npm start
 
 If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Releasing
+## Prepare a release
+
+Basically what we want to do is merge `develop` with `release` including the latest STTR-changes.
+Two commands make this easy for you. Run `npm run prepare`, commit changes if needed and `npm run release`.
+
+## Publish a release
 
 We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
 
-`export GITHUB_AUTH="..."`
+Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
-- To do the actual release from a `release/...` or `hotfix/...` branch.
-- Push your changes to github.
-- Run `npm run release` on develop.
-- Create a PR to the master-branch on github.
-- After merging tou have to approve the release in Jenkins.
+- Run `npm run publish`
+- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
+- After the merge the relase will be deployed to acceptance, manually verify the changes
+- Approve the release to production in Jenkins
+- Merge `release` back into `develop` in case there were changes, run `npm run post-publish`
+- Prepeare a new release
 
 ## Tech stack
 
@@ -41,6 +47,7 @@ We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md
 ## Known issues
 
 - css sourcemaps (some issues exist in development, in prod it works, see https://github.com/facebook/create-react-app/issues/6399)
+- we are not on the latest version of `react-scripts` because 3.4.1 does not play well with Lerna. See https://github.com/facebook/create-react-app/issues/8685
 
 ## Thanks to
 
