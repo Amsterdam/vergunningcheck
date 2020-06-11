@@ -9,6 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon .",
+    "build": "npm install",
     "start:prod": "NODE_ENV=production node .",
     "test": "jest",
     "precommit": "lint-staged",
