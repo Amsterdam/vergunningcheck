@@ -1,7 +1,5 @@
 const express = require("express");
-const cors = require("cors");
 const morgan = require("morgan");
-const helmet = require("helmet");
 const bodyParser = require("body-parser");
 
 const config = require("./config");

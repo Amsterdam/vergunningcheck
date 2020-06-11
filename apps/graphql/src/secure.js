@@ -1,6 +1,5 @@
-const config = require("config");
 const helmet = require("helmet");
-const cors = require("cors");
+const config = require("../config");
 
 module.exports = (app) => {
   app.use(
