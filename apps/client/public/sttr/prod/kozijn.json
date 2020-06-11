@@ -7,6 +7,7 @@
         {
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "autofill": "monument",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -57,7 +58,7 @@
         }
       },
       "decisions": {
-        "_dd08187b-f113-4183-a29a-e11feb9dc36a": {
+        "_8986404c-29e9-4950-90b4-bfd0623a6db4": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -86,7 +87,7 @@
             ]
           }
         },
-        "_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3": {
+        "_7c99f807-5f35-4db3-8578-151101873e26": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__41b859be-53b8-46b9-975f-80217808e89f"
@@ -117,8 +118,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_dd08187b-f113-4183-a29a-e11feb9dc36a",
-            "#_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3"
+            "#_8986404c-29e9-4950-90b4-bfd0623a6db4",
+            "#_7c99f807-5f35-4db3-8578-151101873e26"
           ],
           "decisionTable": {
             "rules": [
@@ -148,6 +149,7 @@
         {
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "autofill": "monument",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -184,7 +186,8 @@
         },
         {
           "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
-          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
+          "autofill": "cityScape",
           "type": "boolean",
           "id": "uitv__79e01ca4-21a2-4d16-bf23-720084f936ce",
           "prio": 40
@@ -199,7 +202,7 @@
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
-          "description": "Doe een vergunningcheck voor elke kant van het gebouw.\n\n![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Kozijn-kant-voorkant\")\n\nVoorkant\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Kozijn-kant-zijkant\")\n\nZijkant\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Kozijn-kant-achterkant\")\n\nAchterkant",
+          "description": "Doe een vergunningcheck voor elke kant van het gebouw.\n\n![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
@@ -207,42 +210,42 @@
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"OTG-zijkant-weg\")\n\nAls er direct naast uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"Zijkant aan een weg\")\n\nAls er direct naast uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
           "prio": 70
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"OTG-zijkant-water\")\n\nAls er direct naast uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"Zijkant aan water\")\n\nAls er direct naast uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
           "prio": 80
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"OTG-zijkant-plantsoen\")\n\nAls er direct naast uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"Zijkant aan een plantsoen\")\n\nAls er direct naast uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
           "prio": 90
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"OTG-achterkant-weg\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"Achterkant aan een weg\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
           "prio": 100
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"OTG-achterkant-water\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"Achterkant aan water\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
           "prio": 110
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"OTG-achterkant-plantsoen\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"Achterkant aan een plantsoen\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
           "prio": 120
@@ -299,7 +302,7 @@
         }
       },
       "decisions": {
-        "_d4ed2bf6-c44e-4403-8e48-6b7a32310303": {
+        "_eb1eea00-a848-4b6f-98d9-631804d62c14": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -328,7 +331,7 @@
             ]
           }
         },
-        "_4742c8d6-8198-4cb0-9916-bedabe468d63": {
+        "_cc9b7187-e00a-4bf9-80a1-a6b45725bdcb": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
@@ -357,7 +360,7 @@
             ]
           }
         },
-        "_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673": {
+        "_d297b5a8-7a77-49a0-aae6-6bb0f88751a4": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -392,7 +395,7 @@
             ]
           }
         },
-        "_d46bd003-0b97-43b0-956d-c70118e1ab98": {
+        "_9f8ecc9a-ac31-4a25-9377-e826972383d7": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -455,7 +458,7 @@
             ]
           }
         },
-        "_01e40b29-34b2-4e60-ad84-90e3300af681": {
+        "_cdfb4ab8-339e-471a-9837-c024ef5800be": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -526,7 +529,7 @@
             ]
           }
         },
-        "_3ca7950f-fbcc-4b16-b453-b6bc936c5068": {
+        "_24aee65b-701f-44c7-a55b-ed419460f087": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -597,7 +600,7 @@
             ]
           }
         },
-        "_c0344a92-d352-485b-a473-476f41057bb9": {
+        "_96d5945d-0305-4053-9d6c-740f5d6b1053": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -684,7 +687,7 @@
             ]
           }
         },
-        "_f8609238-6f2d-44c5-b6ec-afa9edee85d9": {
+        "_643aa235-f798-422f-b176-c4fda0e15234": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -771,7 +774,7 @@
             ]
           }
         },
-        "_7d6e80b7-5faa-48b0-b37a-5114e10e6268": {
+        "_19c0b271-20ad-4b52-b619-a9668a0fa910": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -876,7 +879,7 @@
             ]
           }
         },
-        "_7ce6c5fb-40b5-4249-8d23-80f46153fd86": {
+        "_24798e59-961b-4f0f-907e-ce13e1624a9e": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -983,16 +986,16 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d4ed2bf6-c44e-4403-8e48-6b7a32310303",
-            "#_4742c8d6-8198-4cb0-9916-bedabe468d63",
-            "#_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673",
-            "#_d46bd003-0b97-43b0-956d-c70118e1ab98",
-            "#_01e40b29-34b2-4e60-ad84-90e3300af681",
-            "#_3ca7950f-fbcc-4b16-b453-b6bc936c5068",
-            "#_c0344a92-d352-485b-a473-476f41057bb9",
-            "#_f8609238-6f2d-44c5-b6ec-afa9edee85d9",
-            "#_7d6e80b7-5faa-48b0-b37a-5114e10e6268",
-            "#_7ce6c5fb-40b5-4249-8d23-80f46153fd86"
+            "#_eb1eea00-a848-4b6f-98d9-631804d62c14",
+            "#_cc9b7187-e00a-4bf9-80a1-a6b45725bdcb",
+            "#_d297b5a8-7a77-49a0-aae6-6bb0f88751a4",
+            "#_9f8ecc9a-ac31-4a25-9377-e826972383d7",
+            "#_cdfb4ab8-339e-471a-9837-c024ef5800be",
+            "#_24aee65b-701f-44c7-a55b-ed419460f087",
+            "#_96d5945d-0305-4053-9d6c-740f5d6b1053",
+            "#_643aa235-f798-422f-b176-c4fda0e15234",
+            "#_19c0b271-20ad-4b52-b619-a9668a0fa910",
+            "#_24798e59-961b-4f0f-907e-ce13e1624a9e"
           ],
           "decisionTable": {
             "rules": [

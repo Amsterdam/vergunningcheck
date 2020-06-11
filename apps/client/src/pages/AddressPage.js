@@ -7,7 +7,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import { ADDRESS_PAGE } from "../utils/test-ids";
-import withAddress from "../hoc/withAddress";
+import withData from "../hoc/withData";
 import Layout from "../components/Layouts/DefaultLayout";
 import AddressData from "../components/AddressData";
 import Form from "../components/Form";
@@ -32,9 +32,10 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
 };
 
-const AddressPage = ({ topic, address }) => {
+const AddressPage = ({ topic, data }) => {
   const history = useHistory();
   const { slug } = topic;
+  const { address } = data;
   const useSTTR = !!topic.sttrFile;
 
   const handleSubmit = (e) => {
@@ -60,24 +61,15 @@ const AddressPage = ({ topic, address }) => {
         </Paragraph>
 
         <StyledAddressResult>
-          <AddressData address={address} />
+          <AddressData displayZoningPlans={!useSTTR} address={address} />
         </StyledAddressResult>
 
         <Paragraph>
           {useSTTR
-            ? `
-            U hebt deze informatie nodig om de vergunningcheck te doen. De
-            informatie over de bestemmingsplannen is pas nodig als u een
-            omgevingsvergunning gaat aanvragen.
-            `
+            ? topic.text?.addressPage
             : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
         </Paragraph>
 
-        {useSTTR && (
-          <>
-            <Paragraph>{topic.text?.addressPage}</Paragraph>
-          </>
-        )}
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
           nextText={!useSTTR ? "Naar het omgevingsloket" : undefined}
@@ -96,4 +88,4 @@ AddressPage.propTypes = {
   bagLoading: PropTypes.bool,
 };
 
-export default withAddress(AddressPage);
+export default withData(AddressPage);

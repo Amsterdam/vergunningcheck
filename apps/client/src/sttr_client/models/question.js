@@ -3,6 +3,7 @@ import { collectionOfType } from "../../utils";
 import isNumber from "lodash.isnumber";
 
 const DESC_MAX_LENGTH = 2048;
+export const questionTypes = ["boolean", "string", "number", "geo"];
 
 // interface QuestionProps {
 //   id: string;
@@ -34,6 +35,7 @@ class Question {
    * @param {string} text - the question itself
    * @param {string} [description] - a description for this question (mind the max-length)
    * @param {string} [longDescription] - a longer description for this question (mind the max-length)
+   * @param {string} [autofill] - name of autofill requirement
    * @param {(boolean|string|number|string[])} [answer] the values inputs should have
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
@@ -44,6 +46,7 @@ class Question {
     text,
     description,
     longDescription,
+    autofill,
     answer,
     options,
     uuid,
@@ -53,11 +56,16 @@ class Question {
     if (id !== undefined && !isString(id)) {
       throw Error(`'id' for Question must be a string (got "${id}"`);
     }
-    if (["boolean", "string", "number", "geo"].indexOf(type) === -1) {
+    if (questionTypes.indexOf(type) === -1) {
       throw Error(`Unsupported type for Question (${type})`);
     }
     if (text !== undefined && !isString(text)) {
       throw Error(`'text' for Question must be a string (got "${text}"`);
+    }
+    if (autofill !== undefined && !isString(autofill)) {
+      throw Error(
+        `'autofill' for Question must be a string (got "${autofill}"`
+      );
     }
     if (prio === undefined || !isNumber(prio)) {
       throw Error(`'prio' for Question must be a number (got "${prio}"`);
@@ -96,6 +104,7 @@ class Question {
     this._text = text;
     this._uuid = uuid;
     this._prio = prio;
+    this._autofill = autofill;
     this._multipleAnswers = multipleAnswers;
     this._options = options ? options.map((val) => `"${val}"`) : undefined;
     this._description = description;
@@ -109,6 +118,10 @@ class Question {
 
   get id() {
     return this._id;
+  }
+
+  get autofill() {
+    return this._autofill;
   }
 
   get prio() {

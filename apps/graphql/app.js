@@ -6,15 +6,12 @@ const bodyParser = require("body-parser");
 
 const config = require("./config");
 const { server } = require("./src/graphql");
+const secure = require("./src/secure");
+const development = require("./src/development");
 
-const app = express();
-
-// Hardening
-app.use(helmet());
-
-// Loosening
-if (config.cors.enabled) {
-  app.use(cors());
+const app = secure(express());
+if (process.env.NODE_ENV !== "production") {
+  development(app);
 }
 
 // Basic access log, BUT no permission to log IP

@@ -11,12 +11,10 @@ const config = {
   cache: {
     redis: false,
   },
-  cors: {
-    enabled: true,
-  },
+  enableContentSecurityPolicy: false,
   loaders: {
     datapunt: {
-      // host: "http:// .... use acceptance url if needed
+      // HOST: "https:// .... use acceptance url if needed
       CACHE_TIMEOUT: 10,
     },
   },

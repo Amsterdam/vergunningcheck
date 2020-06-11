@@ -26,14 +26,12 @@ class Checker {
         firstEl.questions.length < secondEl.questions.length
     );
 
-    this._questions = this._permits
-      .flatMap((permit) => permit.questions) // getOpenInputs would be faster for the user
-      .filter(uniqueFilter);
-
     /**
      * @type {Question[]}
      */
     this._stack = [];
+
+    this._autofilled = false;
   }
 
   /**
@@ -58,8 +56,16 @@ class Checker {
   }
 
   _getUpcomingQuestions() {
-    // todo: filter duplicate questions
-    // todo: optimization would be to return only first value
+    return this._getUserQuestions().filter(
+      (question) => !this.stack.includes(question)
+    );
+  }
+
+  _getUserQuestions() {
+    return this._getQuestions().filter((q) => !q.autofill);
+  }
+
+  _getQuestions() {
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById("dummy");
@@ -81,6 +87,26 @@ class Checker {
   }
 
   /**
+   * For every questions see if we have data (from context)
+   * and see if the question can be autofilled
+   *
+   * @param {object} resolvers - A map of {[name]: resolver(data)}
+   * @param {object} data - the data that will be send to the resolver
+   **/
+  autofill(resolvers, data) {
+    if (!this._autofilled) {
+      this._getQuestions().forEach((question) => {
+        const resolver = resolvers[question.autofill];
+        const answer = resolver ? resolver(data) : undefined;
+        if (answer !== undefined) {
+          question.setAnswer(answer);
+        }
+      });
+      this._autofilled = true;
+    }
+  }
+
+  /**
    * Our current implementation of getNextQuestion basically returns any question that is
    * not answered no matter if they make any impact on the outcome. So user always has to
    * answer all the questions.
@@ -89,7 +115,6 @@ class Checker {
    */
   _getNextQuestion() {
     return this._getUpcomingQuestions().shift();
-    // return this._questions.find(question => !this.stack.includes(question));
   }
 
   /**
@@ -100,8 +125,13 @@ class Checker {
    */
   rewindTo(index) {
     const lastIndex = this._stack.length - 1;
-    if (index < 0 || index > lastIndex) {
-      throw Error("'rewindTo' index out of bounds of current question stack.");
+    if (index < 0) {
+      throw Error("'rewindTo' index cannot be less then 0");
+    }
+    if (index > lastIndex) {
+      throw Error(
+        `'rewindTo' index cannot be bigger then it's length (${lastIndex})`
+      );
     }
     this._stack.splice(index + 1);
     this._done = false;
@@ -116,6 +146,25 @@ class Checker {
    */
   previous() {
     return this.rewindTo(this._stack.length - (this._done === true ? 1 : 2));
+  }
+
+  /**
+   * XXX
+   * @param {*} onlyMissing
+   */
+  getDataNeeds(onlyMissing = false) {
+    const autofillMap = {
+      monument: "address",
+      cityScape: "address",
+      // geo: 'map', // for trees ?
+    };
+
+    // find one unfullfilled data need
+    return this._getQuestions()
+      .filter(({ autofill }) => !!autofill)
+      .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
+      .map(({ autofill }) => autofillMap[autofill])
+      .filter(uniqueFilter);
   }
 
   /**
@@ -135,6 +184,44 @@ class Checker {
     }
     return question || null;
   }
+
+  // getPreviousUserQuestion() {
+  //   if (!AUTOFILL_ENABLED) {
+  //     return this.checker.next();
+  //   }
+
+  //   let next;
+  //   let done = false;
+  //   while (!done) {
+  //     next = this.checker.next();
+  //     // if there is no next question we're done
+  //     // if we do have a next question we're only done if it's not an autofill question
+  //     if (!next || (next && !next.autofill)) {
+  //       done = true;
+  //     }
+  //   }
+  //   return next;
+  // }
+
+  // getNextUserQuestion() {
+  //   let prev;
+  //   let done = false;
+  //   while (!done) {
+  //     if (this.checker.stack.length === 1) {
+  //       done = true;
+  //     } else {
+  //       prev = this.checker.previous();
+
+  //       // if autifill is disabled we're done
+  //       // if autofill is enabled and we don't have a prev, we're done
+  //       // if autofill is enabled, we DO have a prev but it's NOT autofilled, we're done
+  //       if (AUTOFILL_ENABLED === false || !prev || !prev.autofill) {
+  //         done = true;
+  //       }
+  //     }
+  //   }
+  //   return prev;
+  // }
 }
 
 export default Checker;

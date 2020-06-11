@@ -1,10 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { routes, geturl } from "../routes";
-import withChecker from "./withChecker";
+import withData from "./withData";
 
-const withFinalChecker = (Component) =>
-  withChecker((props) => {
+const withConclusion = (Component) =>
+  withData((props) => {
     const finishedPermit = props.checker.permits.find(
       (permit) => !!permit.getOutputByDecisionId("dummy")
     );
@@ -17,4 +17,4 @@ const withFinalChecker = (Component) =>
     return <Component {...props} />;
   });
 
-export default withFinalChecker;
+export default withConclusion;

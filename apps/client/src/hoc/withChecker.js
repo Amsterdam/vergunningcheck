@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
 import Context from "../context";
-import { routes, geturl } from "../routes";
-import withAddress from "./withAddress";
+import withTopic from "./withTopic";
 import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
@@ -11,45 +9,43 @@ const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
 
 const withChecker = (Component) =>
-  withAddress(({ ...rest }) => {
+  withTopic((props) => {
     const context = useContext(Context);
     const [checker, setChecker] = useState(context.checker);
     const [error, setError] = useState();
+    const {
+      topic: { sttrFile },
+    } = props;
 
-    const { topic } = rest;
-    if (!context.address) {
-      // TODO: doesn't withAddress already guarantee this? :-/
-      console.warn("Address not found, redirecting to location page");
-      return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
+    if (sttrFile) {
+      useEffect(() => {
+        if (!checker && !error) {
+          fetch(
+            `${window.location.origin}/sttr/${dir.toLowerCase()}/${sttrFile}`
+          )
+            .then((response) => response.json())
+            .then((json) => {
+              const newChecker = getChecker(json);
+              newChecker.next();
+              context.checker = newChecker;
+              setChecker(newChecker);
+            })
+            .catch((e) => {
+              setError(e);
+            });
+        }
+      });
     }
-
-    useEffect(() => {
-      if (!checker && !error) {
-        fetch(
-          `${window.location.origin}/sttr/${dir.toLowerCase()}/${
-            topic.sttrFile
-          }`
-        )
-          .then((response) => response.json())
-          .then((json) => {
-            const checker = getChecker(json);
-            checker.next();
-            context.checker = checker;
-            setChecker(checker);
-          })
-          .catch((e) => {
-            setError(e);
-          });
-      }
-    });
 
     if (error) {
       console.error(error);
-      return <ErrorPage error={error} />;
+      return <ErrorPage error={error} {...props} />;
+    } else if (!sttrFile) {
+      return <Component checker={null} {...props} />;
     } else if (checker) {
-      return <Component checker={checker} {...rest} />;
+      return <Component checker={checker} {...props} />;
     } else {
-      return <LoadingPage />;
+      return <LoadingPage {...props} />;
     }
   });
 
