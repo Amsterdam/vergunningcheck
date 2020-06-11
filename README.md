@@ -29,6 +29,7 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 - Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
 - After the merge the relase will be deployed to acceptance, manually verify the changes
 - Approve the release to production in Jenkins
+- Merge release back into develop in case there were changes, run `npm run post-publish`
 
 ## Tech stack
 
