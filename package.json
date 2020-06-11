@@ -13,7 +13,9 @@
     "test": "CI=true lerna run test",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "release": "git checkout release && git pull && lerna-changelog && lerna publish"
+    "prepare": "git checkout develop && STTR_ENV=production lerna run sttr && echo 'Please commit changes and run \"npm run release\".'",
+    "release": "git checkout release && git pull && git merge origin develop && git push",
+    "publish": "git checkout release && lerna-changelog && lerna publish"
   },
   "devDependencies": {
     "husky": "^4.2.5",
