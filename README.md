@@ -15,16 +15,23 @@ npm start
 
 If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Releasing
+## Prepare a release
+
+Basically what we want to do is merge `develop` with `release` including the latest STTR-changes.
+Two commands make this easy for you. Run `npm run prepare-release`, commit changes if needed and `npm run release`.
+
+## Publish a release
 
 We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
 
 Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
-- Run `npm run release`.
-- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...develop) from develop to master on GitHub
-- After the merge and deploy, verify the changes on ACC.
-- After verify you have to approve the deploy to production in Jenkins.
+- Run `npm run publish`
+- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
+- After the merge the relase will be deployed to acceptance, manually verify the changes
+- Approve the release to production in Jenkins
+- Back-merge `master` into `release` into `develop` in case there were changes, run `npm run back-merge`
+- Consider prepearing the next release in the section above
 
 ## Tech stack
 

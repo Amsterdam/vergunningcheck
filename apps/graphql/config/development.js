@@ -8,9 +8,7 @@ module.exports = {
   cache: {
     redis: false,
   },
-  cors: {
-    enabled: true,
-  },
+  enableContentSecurityPolicy: false,
   loaders: {
     datapunt: {
       // HOST: "https:// .... use acceptance url if needed
