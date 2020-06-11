@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+
 import Context from "../context";
-import { routes, geturl } from "../routes";
-import withAddress from "./withAddress";
-import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
+import LoadingPage from "../pages/LoadingPage";
+import { geturl, routes } from "../routes";
 import getChecker from "../sttr_client";
+import withAddress from "./withAddress";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";

@@ -1,9 +1,10 @@
 import React from "react";
+
 import {
   StyledHeader,
   StyledHeaderWrapper,
-  StyledLogoWrapper,
   StyledLogo,
+  StyledLogoWrapper,
 } from "./HeaderStyles";
 
 export const Header = () => (

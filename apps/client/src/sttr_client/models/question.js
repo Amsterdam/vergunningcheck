@@ -1,6 +1,7 @@
-import isString from "lodash.isstring";
-import { collectionOfType } from "../../utils";
 import isNumber from "lodash.isnumber";
+import isString from "lodash.isstring";
+
+import { collectionOfType } from "../../utils";
 
 const DESC_MAX_LENGTH = 2048;
 

@@ -1,7 +1,8 @@
+import { Header, breakpoint, themeSpacing } from "@datapunt/asc-ui";
+import styled, { css } from "styled-components";
+
 import LogoDesktop from "../static/media/logo-desktop.svg";
 import LogoMobile from "../static/media/logo-mobile.svg";
-import styled, { css } from "styled-components";
-import { Header, breakpoint, themeSpacing } from "@datapunt/asc-ui";
 import { focusOutlineStyle } from "../utils/themeUtils";
 
 export const StyledHeader = styled(Header)`

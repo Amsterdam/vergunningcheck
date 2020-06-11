@@ -1,9 +1,10 @@
-import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { List, OrderedList, ListItem } from "../../atoms";
+import React from "react";
+
+import { List, ListItem, OrderedList } from "../../atoms";
 import ListInsideOrderedList from "../../components/ListInsideOrderedList";
 import illustration from "./illustration.png";
-import { Pair, Illustration } from "./StyledKozijnenIntroSTTR";
+import { Illustration, Pair } from "./StyledKozijnenIntroSTTR";
 
 export default () => (
   <>

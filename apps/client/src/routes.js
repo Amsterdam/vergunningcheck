@@ -1,18 +1,17 @@
 import { reverse } from "named-urls";
 import slugify from "slugify";
 
+import AddressPage from "./pages/AddressPage";
+import ConclusionPage from "./pages/ConclusionPage";
+// Developer homepage, not used in production
+import DevHomePage from "./pages/DevHomePage";
 // Main application routes
 import IntroPage from "./pages/IntroPage";
 import LocationPage from "./pages/LocationPage";
-import AddressPage from "./pages/AddressPage";
-import QuestionsPage from "./pages/QuestionsPage";
-import ConclusionPage from "./pages/ConclusionPage";
-import ResultsPage from "./pages/ResultsPage";
-
 // System pages
 import NotFoundPage from "./pages/NotFoundPage";
-// Developer homepage, not used in production
-import DevHomePage from "./pages/DevHomePage";
+import QuestionsPage from "./pages/QuestionsPage";
+import ResultsPage from "./pages/ResultsPage";
 
 export const getslug = (text) =>
   slugify(text, {

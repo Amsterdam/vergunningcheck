@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+
 import { topics } from "../config";
 import RedirectPage from "../pages/RedirectPage";
 

@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
-import { routes, geturl } from "../routes";
-import withTopic from "../hoc/withTopic";
-import withOloRedirect from "../hoc/withOloRedirect";
-
-import Loading from "../components/Loading";
-import Form from "../components/Form";
-import Nav from "../components/Nav";
-import Layout from "../components/Layouts/DefaultLayout";
 import { Helmet } from "react-helmet";
+
+import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
+import Loading from "../components/Loading";
+import Nav from "../components/Nav";
+import withOloRedirect from "../hoc/withOloRedirect";
+import withTopic from "../hoc/withTopic";
+import { geturl, routes } from "../routes";
 
 const IntroPage = ({ topic: { text, slug, intro } }) => {
   const Intro = React.lazy(() => import(`../intros/${intro}`));

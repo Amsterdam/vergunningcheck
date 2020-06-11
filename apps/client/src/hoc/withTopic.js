@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import Context from "../context";
-import { useParams, Redirect, useLocation } from "react-router-dom";
+import { Redirect, useLocation, useParams } from "react-router-dom";
+
 import { topics } from "../config";
+import Context from "../context";
 import NotFoundPage from "../pages/NotFoundPage";
 import { geturl, routes } from "../routes";
 

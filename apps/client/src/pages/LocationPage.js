@@ -1,19 +1,18 @@
-import React, { useContext, useState, useEffect } from "react";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import withTopic from "../hoc/withTopic";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
 
-import Context from "../context";
-import { geturl, routes } from "../routes";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
-
-import Layout from "../components/Layouts/DefaultLayout";
-import Form from "../components/Form";
-import Nav from "../components/Nav";
-import LocationFinder from "../components/Location/LocationFinder";
-import { Helmet } from "react-helmet";
 import Error from "../components/Error";
+import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
+import LocationFinder from "../components/Location/LocationFinder";
+import Nav from "../components/Nav";
+import Context from "../context";
+import withTopic from "../hoc/withTopic";
+import { geturl, routes } from "../routes";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();

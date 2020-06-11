@@ -1,5 +1,5 @@
-import isNumber from "lodash.isnumber";
 import isBoolean from "lodash.isboolean";
+import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
 // Simple checks

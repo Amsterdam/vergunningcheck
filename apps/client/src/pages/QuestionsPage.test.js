@@ -1,27 +1,26 @@
-import React from "react";
-import { createMemoryHistory } from "history";
 import "@testing-library/jest-dom/extend-expect";
 
-import Router from "../components/Router";
-import { render, fireEvent, cleanup, act } from "../utils/test-utils";
-import Context from "../__mocks__/context";
-import address from "./__mocks__/address";
-import { getslug } from "../routes";
-import { topics, requiredFieldText } from "../config";
-import QuestionsPage from "./QuestionsPage";
+import { createMemoryHistory } from "history";
+import React from "react";
 
+import Context from "../__mocks__/context";
+import Router from "../components/Router";
+import { requiredFieldText, topics } from "../config";
+import { getslug } from "../routes";
+import getChecker from "../sttr_client";
 import {
-  QUESTION_PAGE,
-  QUESTION_ANSWERS,
-  NEXT_BUTTON,
-  PREV_BUTTON,
   ADDRESS_PAGE,
   CONCLUSION_PAGE,
+  NEXT_BUTTON,
+  PREV_BUTTON,
+  QUESTION_ANSWERS,
+  QUESTION_PAGE,
   RESULTS_PAGE,
 } from "../utils/test-ids";
-
+import { act, cleanup, fireEvent, render } from "../utils/test-utils";
+import address from "./__mocks__/address";
 import debugChecker from "./__mocks__/checker";
-import getChecker from "../sttr_client";
+import QuestionsPage from "./QuestionsPage";
 
 afterEach(cleanup);
 

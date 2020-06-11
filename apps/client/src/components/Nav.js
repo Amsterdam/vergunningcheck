@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { Button } from "@datapunt/asc-ui";
 import { ChevronLeft } from "@datapunt/asc-assets";
+import { Button } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-
-import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
-import { NavStyle, IconContainer, IconLeft } from "./NavStyle";
+import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import { useRouteMatch } from "react-router-dom";
-import { routeConfig, getslug } from "../routes";
+
 import Context from "../context";
+import { getslug, routeConfig } from "../routes";
+import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
+import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
 const Nav = ({
   prevText,

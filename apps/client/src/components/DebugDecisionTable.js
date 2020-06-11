@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from "react";
+
 import HiddenDebugInfo from "./HiddenDebugInfo";
 
 export default ({ checker }) => {

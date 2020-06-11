@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import Context from "../context";
+
 import { topics } from "../config";
+import Context from "../context";
 
 export default ({
   children,

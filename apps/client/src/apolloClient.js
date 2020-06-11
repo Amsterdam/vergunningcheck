@@ -1,12 +1,12 @@
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
+import { MockLink } from "@apollo/react-testing";
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
-import { MockLink } from "@apollo/react-testing";
+import { ApolloClient } from "apollo-client";
+import { ApolloLink } from "apollo-link";
+import { onError } from "apollo-link-error";
+import { HttpLink } from "apollo-link-http";
 
 // use a FragmentManager so we don't need to generate a schema with the
 // servers fragments. It uses introspection instead.

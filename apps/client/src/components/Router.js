@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import { routeConfig, redirectConfig } from "../routes";
+import { redirectConfig, routeConfig } from "../routes";
 import ScrollToTop from "./ScrollToTop";
 
 const Router = (props) => {

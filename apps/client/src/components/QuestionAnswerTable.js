@@ -1,18 +1,18 @@
-import React from "react";
-import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
+import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import uniqBy from "lodash.uniqby";
+import React from "react";
 
-import { booleanOptions } from "../components/Question";
 import { ComponentWrapper } from "../atoms";
+import { booleanOptions } from "../components/Question";
 import {
-  QuestionWrapper,
+  Change,
   MainWrapper,
   Question,
+  QuestionWrapper,
   UserAnswer,
   UserResult,
   UserResultParagraph,
-  Change,
 } from "./QuestionAnswerTableStyles";
 
 export default ({ checker, onGoToQuestion }) => {

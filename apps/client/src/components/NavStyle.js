@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Icon } from "@datapunt/asc-ui";
+import styled from "styled-components";
 
 export const NavStyle = styled.div`
   display: flex;

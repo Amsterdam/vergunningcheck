@@ -1,8 +1,8 @@
 import React from "react";
-
-import Loading from "../components/Loading";
-import Layout from "../components/Layouts/BaseLayout";
 import { Helmet } from "react-helmet";
+
+import Layout from "../components/Layouts/BaseLayout";
+import Loading from "../components/Loading";
 
 const IntroPage = () => (
   <Layout>

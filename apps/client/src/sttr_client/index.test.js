@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
+
 import getChecker from ".";
 
 const readdir = promisify(fs.readdir);

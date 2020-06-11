@@ -1,16 +1,16 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
+import React from "react";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import withFinalChecker from "../hoc/withFinalChecker";
-import { routes, geturl, getslug } from "../routes";
-import { RESULTS_PAGE } from "../utils/test-ids";
-import Layout from "../components/Layouts/DefaultLayout";
+import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
+import withFinalChecker from "../hoc/withFinalChecker";
+import { getslug, geturl, routes } from "../routes";
+import { RESULTS_PAGE } from "../utils/test-ids";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
