@@ -9,7 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon .",
-    "build:netlify": "npm install",
+    "build:netlify": "npm install --production",
     "start:prod": "NODE_ENV=production node .",
     "test": "jest",
     "precommit": "lint-staged",

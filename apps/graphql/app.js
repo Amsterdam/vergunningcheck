@@ -1,5 +1,5 @@
 const express = require("express");
-const config = require("config");
+const config = require("./node_modules/config");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
