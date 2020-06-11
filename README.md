@@ -18,7 +18,7 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 ## Prepare a release
 
 Basically what we want to do is merge `develop` with `release` including the latest STTR-changes.
-Two commands make this easy for you. Run `npm run xprepare`, commit changes if needed and `npm run release`.
+Two commands make this easy for you. Run `npm run prerelease`, commit changes if needed and `npm run release`.
 
 ## Publish a release
 
