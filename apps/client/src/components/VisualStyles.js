@@ -1,7 +1,13 @@
 import styled, { css } from "styled-components";
-import { perceivedLoading, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import {
+  perceivedLoading,
+  themeColor,
+  Paragraph,
+  themeSpacing,
+} from "@datapunt/asc-ui";
 
-export const FigCaption = styled.figcaption`
+export const Caption = styled(Paragraph)`
+  margin: ${themeSpacing(2)} 0 0 0;
   font-style: italic;
 `;
 
