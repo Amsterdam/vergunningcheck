@@ -1,6 +1,7 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 import { Helmet } from "react-helmet";
+
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 
 import Layout from "../components/Layouts/DefaultLayout";
 

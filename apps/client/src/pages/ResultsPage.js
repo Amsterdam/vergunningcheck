@@ -1,7 +1,8 @@
-import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
+
+import { Paragraph } from "@datapunt/asc-ui";
 
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";

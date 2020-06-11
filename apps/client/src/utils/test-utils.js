@@ -1,9 +1,10 @@
+import React from "react";
+
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ThemeProvider } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { render } from "@testing-library/react";
 import dotenv from "dotenv-flow";
-import React from "react";
 
 import { getTestClient } from "../apolloClient";
 import { matomo } from "../config";

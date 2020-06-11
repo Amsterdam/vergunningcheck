@@ -1,6 +1,7 @@
-import { Paragraph } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+
+import { Paragraph } from "@datapunt/asc-ui";
 
 const AddressResult = ({ title, loading, loadingText, children }) => (
   <>

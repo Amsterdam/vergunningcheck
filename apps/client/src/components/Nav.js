@@ -1,9 +1,10 @@
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
+import { useRouteMatch } from "react-router-dom";
+
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import PropTypes from "prop-types";
-import React, { useContext } from "react";
-import { useRouteMatch } from "react-router-dom";
 
 import Context from "../context";
 import { getslug, routeConfig } from "../routes";

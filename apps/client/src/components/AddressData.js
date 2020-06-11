@@ -1,5 +1,6 @@
-import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
+
+import { Paragraph } from "@datapunt/asc-ui";
 
 import { List, ListItem } from "../atoms";
 import { uniqueFilter } from "../utils";

@@ -1,7 +1,8 @@
+import React from "react";
+
 import { Alert } from "@datapunt/asc-assets";
 import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import uniqBy from "lodash.uniqby";
-import React from "react";
 
 import { ComponentWrapper } from "../atoms";
 import { booleanOptions } from "../components/Question";

@@ -1,7 +1,8 @@
+import React, { useEffect, useState } from "react";
+
 import { useQuery } from "@apollo/react-hooks";
 import { ErrorMessage, Paragraph, Select, TextField } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
-import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";

@@ -1,7 +1,8 @@
-import { Heading } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+
+import { Heading } from "@datapunt/asc-ui";
 
 import { requiredFieldText } from "../config";
 import { QUESTION_PAGE } from "../utils/test-ids";

@@ -1,6 +1,7 @@
-import { ErrorMessage, Label, Radio, RadioGroup } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+
+import { ErrorMessage, Label, Radio, RadioGroup } from "@datapunt/asc-ui";
 import styled from "styled-components";
 
 import { ComponentWrapper } from "../atoms";

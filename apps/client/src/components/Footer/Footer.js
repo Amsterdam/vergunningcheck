@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Column,
   CompactThemeProvider,
@@ -15,7 +17,6 @@ import {
   Paragraph,
   Row,
 } from "@datapunt/asc-ui";
-import React from "react";
 
 import { FOOTER } from "../../utils/test-ids";
 import { ContentContainer } from "./FooterStyles";

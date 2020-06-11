@@ -2,12 +2,13 @@ import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 import "@datapunt/asc-assets/static/fonts/fonts.css";
 
+import React from "react";
+import ReactDOM from "react-dom";
+
 import { ApolloProvider } from "@apollo/react-hooks";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import dotenv from "dotenv-flow";
-import React from "react";
-import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";

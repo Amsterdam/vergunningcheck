@@ -1,5 +1,6 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
+
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 
 import { ListItem, OrderedList } from "../atoms";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";

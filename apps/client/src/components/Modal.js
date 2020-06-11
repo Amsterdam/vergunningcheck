@@ -1,3 +1,6 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import { Close } from "@datapunt/asc-assets";
 import {
   Modal as BaseModal,
@@ -7,8 +10,6 @@ import {
   Icon,
   TopBar,
 } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
 import styled from "styled-components";
 
 import Markdown from "./Markdown";

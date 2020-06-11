@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
 
-import { createMemoryHistory } from "history";
 import React from "react";
+
+import { createMemoryHistory } from "history";
 
 import Context from "../__mocks__/context";
 import Router from "../components/Router";

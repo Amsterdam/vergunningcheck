@@ -1,9 +1,10 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { Fragment, useContext } from "react";
 import { isMobile } from "react-device-detect";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
+
+import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
 import DebugDecisionTable from "../components/DebugDecisionTable";

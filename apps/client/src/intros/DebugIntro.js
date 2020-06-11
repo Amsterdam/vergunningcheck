@@ -1,5 +1,6 @@
-import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
+
+import { Paragraph } from "@datapunt/asc-ui";
 
 import { INTRO } from "../utils/test-ids";
 
