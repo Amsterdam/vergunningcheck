@@ -21,6 +21,14 @@ function feelTypeMap(feel) {
  * The value is the keyword (lowercased substring) to look for
  **/
 const autoFillMap = {
+  /*
+   * The word 'monument is used in both the boolean and list version of the
+   * monument question and causes an error. Consider something like this:
+   * {
+   *   ??booleanMonument: "gemeentelijk of rijksmonument"
+   *   ??listMonument: "gebouw een monument"
+   * }
+   **/
   monument: "monument",
   cityScape: "dorpsgezicht",
 };
@@ -32,17 +40,17 @@ const autoFillMap = {
  * Example:
  *  getAutofill("MONUMENT-dakkapel") returns "monument"
  *
- * @param {string} reusableIdentifier - The string to look for in the autoFillMap
+ * @param {string} questionText - The string to look for in the autoFillMap
  *
  * @returns {undefined|string} - The matching resolver-key
  */
-const getAutofillResolverKey = (reusableIdentifier) => {
-  const normalizedIdentifier = reusableIdentifier.toLowerCase();
+const getAutofillResolverKey = (questionText) => {
+  const normalizedIdentifier = questionText.toLowerCase();
   const autofillMapEntries = Object.entries(autoFillMap);
   const firstAutofillEntry = autofillMapEntries.find(
     ([, keyword]) => normalizedIdentifier.indexOf(keyword) > -1
   );
-  if (firstAutofillEntry.length > 0) {
+  if (firstAutofillEntry) {
     return firstAutofillEntry[0]; // from the [key, value] return the 'key' for the autofill-resolver
   }
 };
@@ -163,12 +171,13 @@ class Parser {
             desc && desc.length && desc[0]["content:toelichting"]
               ? desc[0]["content:toelichting"].trim()
               : undefined,
-          autofill: getAutofillResolverKey(question["uitv:herbruikbaarId"]),
           longDescription:
             desc && desc.length && desc[0]["content:langeToelichting"]
               ? desc[0]["content:langeToelichting"].trim()
               : undefined,
         };
+
+        result.autofill = getAutofillResolverKey(result.text);
 
         if (sttrType === "list") {
           if (
@@ -187,6 +196,7 @@ class Parser {
       result.id = curr["@_id"];
       result.prio = curr["inter:prioriteit"];
       result.uuid = curr["uitv:herbruikbaarId"];
+
       return result;
     });
   }
