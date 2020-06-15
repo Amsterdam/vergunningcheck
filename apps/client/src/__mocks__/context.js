@@ -11,7 +11,7 @@ export default ({
   const context = useContext(Context);
   context.topic = topics.find((t) => t.slug === topicMock);
   if (addressMock) {
-    context.data.address = addressMock;
+    context.autofillData.address = addressMock;
   }
   if (checker) {
     context.checker = checker;

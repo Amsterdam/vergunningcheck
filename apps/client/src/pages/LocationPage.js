@@ -41,7 +41,7 @@ const LocationPage = ({ topic }) => {
         name: address.postalCode.substring(0, 4),
       });
 
-      context.data.address = address;
+      context.autofillData.address = address;
       history.push(geturl(routes.address, topic));
     }
   };
@@ -68,9 +68,9 @@ const LocationPage = ({ topic }) => {
         <LocationFinder
           setAddress={setAddress}
           setErrorMessage={setErrorMessage}
-          postalCode={context.data.address?.postalCode}
-          houseNumberFull={context.data.address?.houseNumberFull}
-          houseNumber={context.data.address?.houseNumberFull}
+          postalCode={context.autofillData.address?.postalCode}
+          houseNumberFull={context.autofillData.address?.houseNumberFull}
+          houseNumber={context.autofillData.address?.houseNumberFull}
           errors={errors}
         />
         <Nav

@@ -55,66 +55,24 @@ class Checker {
     return this.stack[this.stack.length - 1];
   }
 
-  _getUpcomingQuestions() {
-    return this._getUserQuestions().filter(
-      (question) => !this.stack.includes(question)
-    );
-  }
-
-  _getUserQuestions() {
-    return this._getQuestions().filter((q) => !q.autofill);
-  }
-
-  _getQuestions() {
-    return this.permits
-      .reduce((acc, permit) => {
-        const conclusion = permit.getDecisionById("dummy");
-        const inputReducer = (input) =>
-          this.stack.includes(input) ? input : {};
-        conclusion._inputs
-          .filter((d) => d.getMatchingRules(inputReducer).length === 0)
-          .forEach((decision) => {
-            decision.getQuestions().forEach((input) => {
-              if (this.stack.indexOf(input) === -1) {
-                acc.push(input);
-              }
-            });
-          });
-        return acc;
-      }, [])
-      .filter(uniqueFilter)
-      .sort((a, b) => a.prio - b.prio);
-  }
-
   /**
-   * For every questions see if we have data (from context)
+   * For every questions see if we have autofillData
    * and see if the question can be autofilled
    *
-   * @param {object} resolvers - A map of {[name]: resolver(data)}
-   * @param {object} data - the data that will be send to the resolver
+   * @param {object} resolvers - A map of {[name]: resolver(autofillData)}
+   * @param {object} autofillData - the autofill data that will be send to the resolver
    **/
-  autofill(resolvers, data) {
+  autofill(resolvers, autofillData) {
     if (!this._autofilled) {
-      this._getQuestions().forEach((question) => {
+      this._getAllQuestions().forEach((question) => {
         const resolver = resolvers[question.autofill];
-        const answer = resolver ? resolver(data) : undefined;
+        const answer = resolver ? resolver(autofillData) : undefined;
         if (answer !== undefined) {
           question.setAnswer(answer);
         }
       });
       this._autofilled = true;
     }
-  }
-
-  /**
-   * Our current implementation of getNextQuestion basically returns any question that is
-   * not answered no matter if they make any impact on the outcome. So user always has to
-   * answer all the questions.
-   *
-   * @returns {Question|null} - the next question for this checker
-   */
-  _getNextQuestion() {
-    return this._getUpcomingQuestions().shift();
   }
 
   /**
@@ -152,19 +110,73 @@ class Checker {
    * XXX
    * @param {*} onlyMissing
    */
-  getDataNeeds(onlyMissing = false) {
-    const autofillMap = {
-      monument: "address",
-      cityScape: "address",
-      // geo: 'map', // for trees ?
-    };
-
+  getAutofillDataNeeds(autofillMap, onlyMissing = false) {
     // find one unfullfilled data need
-    return this._getQuestions()
+    return this._getAllQuestions()
       .filter(({ autofill }) => !!autofill)
       .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
       .map(({ autofill }) => autofillMap[autofill])
       .filter(uniqueFilter);
+  }
+
+  /**
+   * XXX
+   */
+  dedupeAndSort(questions) {
+    return questions.filter(uniqueFilter).sort((a, b) => a.prio - b.prio);
+  }
+
+  /**
+   * XXX
+   */
+  _getConclusionDecisions() {
+    return this.permits
+      .map((permit) => permit.getDecisionById("dummy"))
+      .flatMap((conclusion) => conclusion._inputs);
+  }
+
+  /**
+   * XXX
+   */
+  _getAllQuestions() {
+    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // our accumulator, but only if it's not already on the stack
+    return this.dedupeAndSort(
+      this._getConclusionDecisions().flatMap((decision) =>
+        decision.getQuestions()
+      )
+    );
+  }
+
+  /**
+   * XXX
+   */
+  _getUpcomingQuestions() {
+    // take only questions/inputs into concideration that are autofilled or answered by the user
+    const inputReducer = (input) => {
+      return this.stack.includes(input) || input.autofill ? input : {};
+    };
+
+    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // our accumulator, but only if it's not already on the stack
+    return this.dedupeAndSort(
+      this._getConclusionDecisions()
+        .filter((d) => d.getMatchingRules(inputReducer).length === 0)
+        .flatMap((decision) => decision.getQuestions())
+        .filter((q) => !this.stack.includes(q) || q.autofill)
+    ).filter((q) => !q.autofill);
+  }
+
+  /**
+   * Our current implementation of getNextQuestion basically returns any question that is
+   * not answered no matter if they make any impact on the outcome. So user always has to
+   * answer all the questions.
+   *
+   * @returns {Question|null} - the next question for this checker
+   */
+  _getNextQuestion() {
+    return this._getUpcomingQuestions().shift();
+    // return this._questions.find(question => !this.stack.includes(question));
   }
 
   /**
@@ -174,7 +186,7 @@ class Checker {
    */
   next() {
     if (this._last !== undefined && this._last.answer === undefined) {
-      throw Error("Please answer the question first");
+      throw Error(`Please answer the question first ${this._last}`);
     }
     const question = this._getNextQuestion();
     if (question) {
@@ -184,44 +196,6 @@ class Checker {
     }
     return question || null;
   }
-
-  // getPreviousUserQuestion() {
-  //   if (!AUTOFILL_ENABLED) {
-  //     return this.checker.next();
-  //   }
-
-  //   let next;
-  //   let done = false;
-  //   while (!done) {
-  //     next = this.checker.next();
-  //     // if there is no next question we're done
-  //     // if we do have a next question we're only done if it's not an autofill question
-  //     if (!next || (next && !next.autofill)) {
-  //       done = true;
-  //     }
-  //   }
-  //   return next;
-  // }
-
-  // getNextUserQuestion() {
-  //   let prev;
-  //   let done = false;
-  //   while (!done) {
-  //     if (this.checker.stack.length === 1) {
-  //       done = true;
-  //     } else {
-  //       prev = this.checker.previous();
-
-  //       // if autifill is disabled we're done
-  //       // if autofill is enabled and we don't have a prev, we're done
-  //       // if autofill is enabled, we DO have a prev but it's NOT autofilled, we're done
-  //       if (AUTOFILL_ENABLED === false || !prev || !prev.autofill) {
-  //         done = true;
-  //       }
-  //     }
-  //   }
-  //   return prev;
-  // }
 }
 
 export default Checker;

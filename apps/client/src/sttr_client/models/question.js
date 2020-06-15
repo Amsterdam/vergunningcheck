@@ -31,7 +31,7 @@ class Question {
   // private __type: string;
 
   /**
-   * @param {string} type - data type of the question, eg. 'boolean', or 'geo'
+   * @param {string} type - datatype of the question, eg. 'boolean', or 'geo'
    * @param {string} text - the question itself
    * @param {string} [description] - a description for this question (mind the max-length)
    * @param {string} [longDescription] - a longer description for this question (mind the max-length)

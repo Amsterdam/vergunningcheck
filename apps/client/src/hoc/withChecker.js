@@ -26,7 +26,6 @@ const withChecker = (Component) =>
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
-              newChecker.next();
               context.checker = newChecker;
               setChecker(newChecker);
             })

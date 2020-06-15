@@ -23,13 +23,10 @@ function feelTypeMap(feel) {
 const autoFillMap = {
   /*
    * The word 'monument is used in both the boolean and list version of the
-   * monument question and causes an error. Consider something like this:
-   * {
-   *   ??booleanMonument: "gemeentelijk of rijksmonument"
-   *   ??listMonument: "gebouw een monument"
-   * }
+   * monument question
    **/
-  monument: "monument",
+  monumentBoolean: "gemeentelijk of rijksmonument",
+  monumentList: "gebouw een monument",
   cityScape: "dorpsgezicht",
 };
 

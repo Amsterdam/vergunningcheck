@@ -3,10 +3,11 @@ import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug, autofillRoutes } from "../routes";
 import { Helmet } from "react-helmet";
 
-import withData from "../hoc/withData";
+import withAutofillData from "../hoc/withAutofillData";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
+import { autofillMap } from "../autofill";
 
 const QuestionsPage = ({ topic, checker }) => {
   const params = useParams();
@@ -74,7 +75,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const goBack = () => {
     // Go back to Location page if needed or intropage otherwise
-    const dataNeed = checker.getDataNeeds().shift();
+    const dataNeed = checker.getAutofillDataNeeds(autofillMap).shift();
 
     // See if any questions have data needs
     if (dataNeed) {
@@ -105,4 +106,4 @@ const QuestionsPage = ({ topic, checker }) => {
   );
 };
 
-export default withData(QuestionsPage);
+export default withAutofillData(QuestionsPage);
