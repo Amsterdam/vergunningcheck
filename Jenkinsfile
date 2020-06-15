@@ -3,7 +3,7 @@
 String PROJECTNAME = "vergunningcheck"
 String CONTAINERDIR = "."
 String PRODUCTION_BRANCH = "master"
-String ACCEPTANCE_BRANCH = "develop"
+String ACCEPTANCE_BRANCH = "release"
 String PLAYBOOK = 'deploy.yml'
 
 // All other data uses variables, no changes needed for static
@@ -37,7 +37,7 @@ node {
     stage("Build develop image") {
         tryStep "build", {
             docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
-                nginx_image = docker.build("${NGINX_CONTAINERNAME}","-f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
+                nginx_image = docker.build("${NGINX_CONTAINERNAME}","--pull -f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
                 nginx_image.push()
 
                 backend_image = docker.build("${BACKEND_CONTAINERNAME}","--pull -f ${BACKEND_DOCKERFILE} ${CONTAINERDIR}")
