@@ -9,11 +9,10 @@ import { OLO } from "../config";
 import { ADDRESS_PAGE } from "../utils/test-ids";
 import withAutofillData from "../hoc/withAutofillData";
 import Layout from "../components/Layouts/DefaultLayout";
-import AddressData from "../components/AddressData";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
-
-import { StyledAddressResult } from "./AddressPageStyles";
+import AddressData from "../components/AddressData";
+import AddressLine from "../components/AddressLine";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
@@ -53,16 +52,11 @@ const AddressPage = ({ topic, autofillData }) => {
       </Helmet>
       <Form onSubmit={handleSubmit} data-testid={ADDRESS_PAGE}>
         <Paragraph>
-          Over{" "}
-          <strong>
-            {address.streetName} {address.houseNumberFull}
-          </strong>{" "}
-          hebben we de volgende informatie gevonden:
+          Over <AddressLine address={address} /> hebben we de volgende
+          informatie gevonden:
         </Paragraph>
 
-        <StyledAddressResult>
-          <AddressData displayZoningPlans={!useSTTR} address={address} />
-        </StyledAddressResult>
+        <AddressData displayZoningPlans={!useSTTR} address={address} />
 
         <Paragraph>
           {useSTTR

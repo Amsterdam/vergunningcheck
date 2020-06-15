@@ -11,10 +11,13 @@ import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import { Helmet } from "react-helmet";
+import AddressData from "../components/AddressData";
+import AddressLine from "../components/AddressLine";
 
-const ResultsPage = ({ topic, checker }) => {
+const ResultsPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const { slug } = topic;
+  const { address } = autofillData;
 
   const onGoToQuestion = (index) => {
     const q = checker.rewindTo(index);
@@ -38,6 +41,12 @@ const ResultsPage = ({ topic, checker }) => {
         }}
         data-testid={RESULTS_PAGE}
       >
+        <Paragraph>
+          Vergunningcheck uitgevoerd voor: <AddressLine address={address} />
+        </Paragraph>
+
+        <AddressData displayZoningPlans={false} address={address} />
+
         <Paragraph strong>
           Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel
           wijzigen. Als u een wijziging doet moet u misschien enkele vragen
