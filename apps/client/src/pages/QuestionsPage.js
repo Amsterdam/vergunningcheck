@@ -1,35 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import withChecker from "../hoc/withChecker";
-import Context from "../context";
+import { SessionContext } from "../context";
 import { geturl, routes, getslug } from "../routes";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
 
 const QuestionsPage = ({ topic, checker }) => {
-  const context = useContext(Context);
+  const context = useContext(SessionContext);
   const params = useParams();
   const history = useHistory();
   const { question: questionSlug } = params;
-  // Get the question from question Stack if a specific question is chosen.
-  // Else just get the last question
+
   const [question, setQuestion] = useState(
-    checker.stack[context.questionIndex]
-      ? checker.stack[context.questionIndex]
-      : checker.stack[checker.stack.length - 1]
+    checker.stack[checker.stack.length - 1]
   );
   const { slug } = topic;
 
+  useEffect(() => {
+    if (!questionSlug) {
+      context.setSessionData({
+        answers: checker.getQuestionAnswers(),
+      });
+    }
+  });
+
   // Update URL based on question text
   if (!questionSlug) {
-    // first question
-    context.setData({
-      answers: checker.getQuestionAnswers(),
-      questionIndex: 0,
-    });
     return (
       <Redirect
         to={geturl(routes.questions, {
@@ -39,11 +39,6 @@ const QuestionsPage = ({ topic, checker }) => {
       />
     );
   }
-
-  // @TODO: We shouldn't need this check because of withChecker()
-  // if (!checker) {
-  //   return <ErrorPage error={new Error("Error! Geen checker...")}></ErrorPage>;
-  // }
 
   const needContactPermits = () =>
     checker.permits.find((permit) => {
@@ -55,7 +50,7 @@ const QuestionsPage = ({ topic, checker }) => {
     });
 
   const onQuestionNext = (value) => {
-    // Save to data to context on every answer, so we can always refresh
+    // Provide the user answers to the `sttr-checker`
     if (question.options && value) {
       question.setAnswer(value);
     }
@@ -64,32 +59,31 @@ const QuestionsPage = ({ topic, checker }) => {
       question.setAnswer(responseObj.value);
     }
 
+    // Store all answers in the session context
+    context.setSessionData({
+      answers: checker.getQuestionAnswers(),
+    });
+
     if (needContactPermits()) {
-      // go to to conclusion fall out
+      // Go directly to the Conclusion Page, without passing the Results Page
       history.push(geturl(routes.conclusion, { slug }));
     } else {
-      console.log(checker.getQuestionAnswers());
-      context.setData({
-        answers: checker.getQuestionAnswers(),
-      });
-
-      // If there is already a other question from the question stack, use it. Otherwise check for new question.
-      const next = checker.stack[context.questionIndex + 1]
-        ? checker.stack[context.questionIndex + 1]
-        : checker.next();
+      // Load next question
+      const next = checker.next();
 
       if (!next) {
-        // Go to Result page
+        // Go to Result page if there is no new quesion
         history.push(geturl(routes.results, { slug }));
       } else {
-        // Go to Next question
-        context.setData({
-          answers: checker.getQuestionAnswers(),
+        // Store the new questionIndex in the session
+        context.setSessionData({
           questionIndex: context.questionIndex + 1,
         });
 
+        // Go to Next question
         setQuestion(next);
 
+        // Change the URL to the new question
         history.push(
           geturl(routes.questions, {
             slug: topic.slug,
@@ -101,18 +95,23 @@ const QuestionsPage = ({ topic, checker }) => {
   };
 
   const onQuestionPrev = () => {
-    const prev = checker.stack[context.questionIndex - 1];
+    // Store all answers in the session context
+    context.setSessionData({
+      answers: checker.getQuestionAnswers(),
+    });
 
-    if (prev && context.questionIndex > 0) {
-      // set prev question to state
-      setQuestion(prev);
+    if (checker?.stack?.length > 1) {
+      const prev = checker.previous();
 
-      // set question id to next context
-      context.setData({
-        answers: checker.getQuestionAnswers(),
+      // Store the new questionIndex in the session
+      context.setSessionData({
         questionIndex: context.questionIndex - 1,
       });
 
+      // Go to Prev question
+      setQuestion(prev);
+
+      // Change the URL to the new question
       history.push(
         geturl(routes.questions, {
           slug: topic.slug,
@@ -120,7 +119,7 @@ const QuestionsPage = ({ topic, checker }) => {
         })
       );
     } else {
-      // Go back to Location page
+      // Go back to the Location page
       history.push(geturl(routes.address, { slug }));
     }
   };

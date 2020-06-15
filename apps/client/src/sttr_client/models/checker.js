@@ -51,7 +51,8 @@ class Checker {
   }
 
   /**
-   * Get data from the stack and return a list of questionIds with the given answers.
+   * Returns a list of questionIds with the given answers.
+   * Useful to store in React.Context or in sessionStorage
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
   getQuestionAnswers() {
@@ -62,27 +63,44 @@ class Checker {
   }
 
   /**
-   * Set data from context to the current stack
+   * Loops through all questions and answers these questions based on provided `answers`
+   * Useful when you have stored the user answers and want to continue a particular session
    * @returns {void} -
    */
   setQuestionAnswers(answers) {
     if (!isObject(answers)) {
       throw Error("Answers must be of type object");
     }
+
+    // Load the first question
     if (!this._last) {
       this.next();
     }
-    debugger;
+
+    let counter = 0;
     let done = false;
+
+    // Loop through `sttr-checker` and answer all questions provided by `answers`
     while (done === false) {
       const questionAnswer = answers[this._last.id];
-      console.log(answers[this._last.id])
+
+      // The checker is completed when `questionAnswer` is undefined
       if (questionAnswer === undefined) {
-        console.log("set done true");
         done = true;
       } else {
+        // Answer the question and proceed
         this._last.setAnswer(questionAnswer);
         this.next();
+      }
+
+      // Prevent infinite loop, otherwise the browser will explode
+      // @TODO: Add this to monitoring in Sentry
+      counter++;
+      if (counter > 250) {
+        console.error(
+          "Infinite loop detected and prevented in setQuestionAnswers()"
+        );
+        done = true;
       }
     }
   }

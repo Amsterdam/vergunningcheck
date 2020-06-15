@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useContext } from "react";
 import HiddenDebugInfo from "./HiddenDebugInfo";
-import Context from "../context";
+import { SessionContext } from "../context";
 
 export default ({ checker }) => {
-  const context = useContext(Context);
+  const context = useContext(SessionContext);
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;

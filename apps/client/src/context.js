@@ -1,22 +1,25 @@
 import React, { useReducer, useEffect, createContext } from "react";
 
 const session = JSON.parse(sessionStorage.getItem("sessionData"));
-const Context = createContext();
-const defaultValues = session
+const SessionContext = createContext();
+const CheckerContext = createContext("checker");
+const defaultCheckerValue = {
+  checker: null,
+};
+const defaultSessionValues = session
   ? session
   : {
       topic: null,
       address: {},
       answers: null,
-      answersSet: false,
       questionIndex: 0,
     };
 
 const reducer = (data, newData) => {
-  // If newData is null. Clear current sessionData.
   if (newData === null) {
+    // Clear the current sessionData if incoming data is empty (instead of setting an empty item).
     sessionStorage.removeItem("sessionData");
-    return defaultValues;
+    return defaultSessionValues;
   }
   return { ...data, ...newData };
 };
@@ -24,20 +27,21 @@ const reducer = (data, newData) => {
 function SessionProvider(props) {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
-  const [data, setData] = useReducer(reducer, defaultValues);
+  const [data, setSessionData] = useReducer(reducer, defaultSessionValues);
 
   useEffect(() => {
     sessionStorage.setItem("sessionData", JSON.stringify(data));
   }, [data]);
 
   // The session provider makes the data from the context available on all pages.
-  // We can use the setData function to add new data to the sessionStorage.
+  // We can use the setSessionData function to add new data to the sessionStorage.
   return (
-    <Context.Provider value={{ ...data, setData }}>
-      {props.children}
-    </Context.Provider>
+    <SessionContext.Provider value={{ ...data, setSessionData }}>
+      <CheckerContext.Provider value={defaultCheckerValue}>
+        {props.children}
+      </CheckerContext.Provider>
+    </SessionContext.Provider>
   );
 }
 
-export default Context;
-export { SessionProvider };
+export { SessionProvider, SessionContext, CheckerContext };

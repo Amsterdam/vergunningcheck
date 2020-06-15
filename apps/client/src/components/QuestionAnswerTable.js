@@ -41,9 +41,9 @@ export default ({ checker, onGoToQuestion }) => {
       </MainWrapper>
 
       <ComponentWrapper marginBottom={40}>
-        {checker?.stack?.map((question, index) => {
+        {checker?.stack?.map((question, questionIndex) => {
           const isDecisiveForPermits =
-            uniqBy(permitsPerQuestion[index], "name") || [];
+            uniqBy(permitsPerQuestion[questionIndex], "name") || [];
           if (
             typeof question.answer === "boolean" ||
             typeof question.answer === "string"
@@ -67,7 +67,7 @@ export default ({ checker, onGoToQuestion }) => {
                 {onGoToQuestion && (
                   <Change>
                     <Button
-                      onClick={() => onGoToQuestion(index)}
+                      onClick={() => onGoToQuestion(questionIndex)}
                       variant="textButton"
                     >
                       Wijzig

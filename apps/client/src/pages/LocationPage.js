@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import withTopic from "../hoc/withTopic";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 
-import Context from "../context";
+import { SessionContext } from "../context";
 import { geturl, routes } from "../routes";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
@@ -17,7 +17,7 @@ import Error from "../components/Error";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
-  const context = useContext(Context);
+  const context = useContext(SessionContext);
   const history = useHistory();
   const [address, setAddress] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
@@ -40,10 +40,18 @@ const LocationPage = ({ topic }) => {
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
       });
-      context.setData({
+
+      // Either load previously given answers or reset the answers and start with a fresh check
+      // When the user changes the address (after answering questions) we assume he wants to restart the check
+      const answers =
+        context?.answers && context?.address[slug]?.id === address?.id
+          ? context.answers
+          : null;
+
+      context.setSessionData({
         address: { ...context.address, [slug]: address },
-        answers: null,
-        questionIndex: 0,
+        answers,
+        questionIndex: 0, // Reset to 0 because we're going to start with the first question
       });
       history.push(geturl(routes.address, { slug }));
     }

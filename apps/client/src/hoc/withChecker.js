@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 
-import Context from "../context";
+import { SessionContext, CheckerContext } from "../context";
 import { routes, geturl } from "../routes";
 import withAddress from "./withAddress";
 import getChecker from "../sttr_client";
@@ -13,18 +13,26 @@ const dir =
 
 const withChecker = (Component) =>
   withAddress(({ ...rest }) => {
-    const context = useContext(Context);
-    const [checker, setChecker] = useState(context.checker);
+    const sessionContext = useContext(SessionContext);
+    const checkerContext = useContext(CheckerContext);
+    const [checker, setChecker] = useState(checkerContext.checker);
     const [error, setError] = useState();
 
     const { topic } = rest;
-    if (!context.address) {
+    if (!sessionContext.address) {
       // TODO: doesn't withAddress already guarantee this? :-/
       console.warn("Address not found, redirecting to location page");
       return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
     }
 
     useEffect(() => {
+      // If `sttr-checker` has already been loaded but the answers have been cleared
+      if (checker && !sessionContext.answers) {
+        console.log("Reset the checker");
+        // @TODO: How to reset the checker and/or remove the user answers from the stack
+      }
+
+      // Load new `sttr-checker` file and store in the Context
       if (!checker && !error) {
         fetch(
           `${window.location.origin}/sttr/${dir.toLowerCase()}/${
@@ -34,14 +42,16 @@ const withChecker = (Component) =>
           .then((response) => response.json())
           .then((json) => {
             const checker = getChecker(json);
-            if (context.answers) {
-              context.setData({answersSet: true});
-              checker.setQuestionAnswers(context.answers);
+            if (sessionContext.answers) {
+              checker.setQuestionAnswers(sessionContext.answers);
+              // In case of reload, rewind to the current question
+              checker.rewindTo(sessionContext.questionIndex);
             } else {
               checker.next();
             }
 
-            context.checker = checker;
+            // Store the entire `sttr-checker` in React Context
+            checkerContext.checker = checker;
             setChecker(checker);
           })
           .catch((e) => {
