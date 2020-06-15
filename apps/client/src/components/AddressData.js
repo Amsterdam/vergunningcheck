@@ -1,9 +1,9 @@
 import React from "react";
 import { Paragraph } from "@datapunt/asc-ui";
-import AddressResult from "./AddressResult";
 import { getRestrictionByTypeName } from "../utils";
 import { List, ListItem } from "../atoms";
 import { uniqueFilter } from "../utils";
+import { StyledAddressData } from "./AddressDataStyles";
 
 const AddressData = ({ address, displayZoningPlans }) => {
   const { restrictions, zoningPlans } = address;
@@ -14,27 +14,28 @@ const AddressData = ({ address, displayZoningPlans }) => {
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <div>
-      <AddressResult title="Monument:">
-        <Paragraph>
-          {monument ? `Ja. ${monument}` : "Nee. Geen monument"}
-        </Paragraph>
-      </AddressResult>
+    <StyledAddressData>
+      <Paragraph strong style={{ marginBottom: "0px" }}>
+        Monument:
+      </Paragraph>
+      <Paragraph>
+        {monument ? `Ja. ${monument}` : "Nee. Geen monument"}
+      </Paragraph>
 
-      <AddressResult title="Beschermd stads- of dorpsgezicht:">
-        {cityScape ? (
-          <Paragraph>
-            Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.
-          </Paragraph>
-        ) : (
-          <Paragraph>
-            Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.
-          </Paragraph>
-        )}
-      </AddressResult>
+      <Paragraph strong style={{ marginBottom: "0px" }}>
+        Beschermd stads- of dorpsgezicht:
+      </Paragraph>
+      <Paragraph>
+        {cityScape
+          ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
+          : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+      </Paragraph>
 
       {displayZoningPlans && (
-        <AddressResult title="Bestemmingsplannen:">
+        <>
+          <Paragraph strong style={{ marginBottom: "0px" }}>
+            Bestemmingsplannen:
+          </Paragraph>
           {zoningPlanNames.length === 0 ? (
             <Paragraph>Geen bestemmingsplan</Paragraph>
           ) : (
@@ -51,9 +52,9 @@ const AddressData = ({ address, displayZoningPlans }) => {
               ))}
             </List>
           )}
-        </AddressResult>
+        </>
       )}
-    </div>
+    </StyledAddressData>
   );
 };
 
