@@ -1,10 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { routes, geturl } from "../routes";
-import withData from "./withData";
+import withAutofillData from "./withAutofillData";
 
 const withConclusion = (Component) =>
-  withData((props) => {
+  withAutofillData((props) => {
     const finishedPermit = props.checker.permits.find(
       (permit) => !!permit.getOutputByDecisionId("dummy")
     );

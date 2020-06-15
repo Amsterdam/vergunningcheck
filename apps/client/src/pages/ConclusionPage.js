@@ -23,11 +23,11 @@ const outcomes = {
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
 
-const ConclusionPage = ({ topic, checker, data }) => {
+const ConclusionPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
-  const { address } = data;
+  const { address } = autofillData;
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits

@@ -7,7 +7,7 @@
         {
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
-          "autofill": "monument",
+          "autofill": "monumentList",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -58,7 +58,7 @@
         }
       },
       "decisions": {
-        "_8986404c-29e9-4950-90b4-bfd0623a6db4": {
+        "_f8490a1e-5168-40d4-bee9-88234df52ff5": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -87,7 +87,7 @@
             ]
           }
         },
-        "_7c99f807-5f35-4db3-8578-151101873e26": {
+        "_187b2e81-f717-4ca3-be1f-77b950489745": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__41b859be-53b8-46b9-975f-80217808e89f"
@@ -118,8 +118,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_8986404c-29e9-4950-90b4-bfd0623a6db4",
-            "#_7c99f807-5f35-4db3-8578-151101873e26"
+            "#_f8490a1e-5168-40d4-bee9-88234df52ff5",
+            "#_187b2e81-f717-4ca3-be1f-77b950489745"
           ],
           "decisionTable": {
             "rules": [
@@ -149,7 +149,7 @@
         {
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
-          "autofill": "monument",
+          "autofill": "monumentList",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -302,7 +302,7 @@
         }
       },
       "decisions": {
-        "_eb1eea00-a848-4b6f-98d9-631804d62c14": {
+        "_877d1e92-ec67-4cab-9d7d-20d3984329c4": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -331,7 +331,7 @@
             ]
           }
         },
-        "_cc9b7187-e00a-4bf9-80a1-a6b45725bdcb": {
+        "_b324d702-14ea-4302-8009-764d3bb076db": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
@@ -360,7 +360,7 @@
             ]
           }
         },
-        "_d297b5a8-7a77-49a0-aae6-6bb0f88751a4": {
+        "_c614986f-02c7-41c8-8913-98422077f899": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -395,7 +395,7 @@
             ]
           }
         },
-        "_9f8ecc9a-ac31-4a25-9377-e826972383d7": {
+        "_6f4f55f2-5b8a-47ae-9850-c67fabefe59f": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -458,7 +458,7 @@
             ]
           }
         },
-        "_cdfb4ab8-339e-471a-9837-c024ef5800be": {
+        "_b4b251f4-965c-4ce2-ab71-54c32fa94bc2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -529,7 +529,7 @@
             ]
           }
         },
-        "_24aee65b-701f-44c7-a55b-ed419460f087": {
+        "_417f1930-665f-4727-bb83-cfd64d026d75": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -600,7 +600,7 @@
             ]
           }
         },
-        "_96d5945d-0305-4053-9d6c-740f5d6b1053": {
+        "_828857f9-230e-467f-a1d6-7fce029d0591": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -687,7 +687,7 @@
             ]
           }
         },
-        "_643aa235-f798-422f-b176-c4fda0e15234": {
+        "_4dc12563-5b6c-48ba-9465-2aed5af00de1": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -774,7 +774,7 @@
             ]
           }
         },
-        "_19c0b271-20ad-4b52-b619-a9668a0fa910": {
+        "_9a7567fa-9495-4290-a176-81c14c54371d": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -879,7 +879,7 @@
             ]
           }
         },
-        "_24798e59-961b-4f0f-907e-ce13e1624a9e": {
+        "_f815f1ad-f7f5-43bd-96e7-6a6d5e01ecca": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -986,16 +986,16 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_eb1eea00-a848-4b6f-98d9-631804d62c14",
-            "#_cc9b7187-e00a-4bf9-80a1-a6b45725bdcb",
-            "#_d297b5a8-7a77-49a0-aae6-6bb0f88751a4",
-            "#_9f8ecc9a-ac31-4a25-9377-e826972383d7",
-            "#_cdfb4ab8-339e-471a-9837-c024ef5800be",
-            "#_24aee65b-701f-44c7-a55b-ed419460f087",
-            "#_96d5945d-0305-4053-9d6c-740f5d6b1053",
-            "#_643aa235-f798-422f-b176-c4fda0e15234",
-            "#_19c0b271-20ad-4b52-b619-a9668a0fa910",
-            "#_24798e59-961b-4f0f-907e-ce13e1624a9e"
+            "#_877d1e92-ec67-4cab-9d7d-20d3984329c4",
+            "#_b324d702-14ea-4302-8009-764d3bb076db",
+            "#_c614986f-02c7-41c8-8913-98422077f899",
+            "#_6f4f55f2-5b8a-47ae-9850-c67fabefe59f",
+            "#_b4b251f4-965c-4ce2-ab71-54c32fa94bc2",
+            "#_417f1930-665f-4727-bb83-cfd64d026d75",
+            "#_828857f9-230e-467f-a1d6-7fce029d0591",
+            "#_4dc12563-5b6c-48ba-9465-2aed5af00de1",
+            "#_9a7567fa-9495-4290-a176-81c14c54371d",
+            "#_f815f1ad-f7f5-43bd-96e7-6a6d5e01ecca"
           ],
           "decisionTable": {
             "rules": [

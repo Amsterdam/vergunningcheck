@@ -5,19 +5,19 @@ import Rule from "./rule";
 import Decision from "./decision";
 import { getQuestionConfig } from "../utils/mocks";
 
-const q1 = new Question(getQuestionConfig());
-const q2 = new Question(getQuestionConfig());
+const getQuestions = () => {
+  return [
+    new Question(getQuestionConfig({ prio: 10, type: "boolean" })),
+    new Question(getQuestionConfig({ prio: 20, type: "boolean" })),
+  ];
+};
 
 const getChecker = (questions) => {
-  const d1 = new Decision(
-    "dummy",
-    [q1, q2],
-    [
-      new Rule([false], "no"),
-      new Rule([true, false], "not sure"),
-      new Rule([true, true], "yes"),
-    ]
-  );
+  const d1 = new Decision("dummy", questions, [
+    new Rule([false], "no"),
+    new Rule([true, false], "not sure"),
+    new Rule([true, true], "yes"),
+  ]);
   const dummy = new Decision(
     "dummy",
     [d1],
@@ -32,16 +32,17 @@ const getChecker = (questions) => {
 
 describe("Checker recursive", () => {
   test("initialization", () => {
+    const questions = getQuestions();
+
     const d1 = new Decision(
       "a",
-      [q1],
+      [questions[0]],
       [new Rule([true], "fun!"), new Rule([false], "boring")]
     );
-    const d2 = new Decision(
-      "b",
-      [q1, q2],
-      [new Rule([true, false], "non local"), new Rule([true, true], "local")]
-    );
+    const d2 = new Decision("b", questions, [
+      new Rule([true, false], "non local"),
+      new Rule([true, true], "local"),
+    ]);
     const d3 = new Decision(
       "dummy",
       [d1, d2],
@@ -54,7 +55,7 @@ describe("Checker recursive", () => {
     const checker = new Checker([new Permit("some permit", [d1, d2, d3])]);
 
     let question = checker.next();
-    expect(question).toBe(q1);
+    expect(question).toBe(questions[0]);
     question.setAnswer(true);
     question = checker.next();
     question.setAnswer(true);
@@ -76,9 +77,54 @@ describe("Checker recursive", () => {
   });
 });
 
+describe("Checker internals", () => {
+  //
+  const qShared = new Question(
+    getQuestionConfig({
+      text: "shared question",
+      prio: 10,
+      type: "boolean",
+      autofill: "yes please",
+    })
+  );
+
+  const q1 = new Question(getQuestionConfig({ prio: 20, type: "boolean" }));
+  const d1 = new Decision("d1", [qShared, q1], [new Rule([false], "z")]);
+  const dummy1 = new Decision("dummy", [d1], [new Rule([true], "y")]);
+  const permit1 = new Permit("x", [dummy1]);
+
+  const q2 = new Question(getQuestionConfig({ prio: 30, type: "boolean" }));
+  const d2 = new Decision("d2", [qShared, q2], [new Rule([false], "z")]);
+  const dummy2 = new Decision("dummy", [d2], [new Rule([false], "x")]);
+  const permit2 = new Permit("y", [dummy2]);
+
+  const checker = new Checker([permit1, permit2]);
+
+  test("_getConclusionDecisions", () => {
+    expect(checker._getConclusionDecisions()).toStrictEqual([d1, d2]);
+  });
+
+  test("_getAllQuestions", () => {
+    expect(checker._getAllQuestions()).toStrictEqual([qShared, q1, q2]);
+  });
+
+  test("_getUpcomingQuestions", () => {
+    expect(checker._getUpcomingQuestions()).toStrictEqual([q1, q2]);
+    checker.next();
+    expect(checker.stack).toStrictEqual([q1]);
+    q1.setAnswer(true);
+
+    expect(checker._getUpcomingQuestions()).toStrictEqual([q2]);
+    const next = checker.next();
+    expect(next).toStrictEqual(q2);
+    expect(checker._getUpcomingQuestions()).toStrictEqual([]);
+  });
+});
+
 describe("Checker navigation", () => {
   test("next", () => {
-    const checker = getChecker([q1, q2]);
+    const questions = getQuestions();
+    const checker = getChecker(questions);
     const question = checker.next(); // first
     expect(question).toBe(questions[0]);
     expect(question.answer).toBe(undefined);
@@ -86,8 +132,10 @@ describe("Checker navigation", () => {
 
     expect(() => checker.next()).toThrow("Please answer the question first");
   });
+
   test("rewindTo", () => {
-    const checker = getChecker([q1, q2]);
+    const questions = getQuestions();
+    const checker = getChecker(questions);
     let question = checker.next();
     question.setAnswer(true);
     question = checker.next();
@@ -99,7 +147,8 @@ describe("Checker navigation", () => {
   });
 
   test("remember answers", () => {
-    const checker = getChecker([q1, q2]);
+    const questions = getQuestions();
+    const checker = getChecker(questions);
     // set some answers
     let question = checker.next();
     question.setAnswer(true);
@@ -119,7 +168,8 @@ describe("Checker navigation", () => {
     expect(question.answer).toBe(false);
   });
   test("previous", () => {
-    const checker = getChecker([q1, q2]);
+    const questions = getQuestions();
+    const checker = getChecker(questions);
     let question = checker.next(); // first
     question.setAnswer(true);
     question = checker.next(); // second
@@ -131,7 +181,8 @@ describe("Checker navigation", () => {
     );
   });
   test("done + previous", () => {
-    const checker = getChecker([q1, q2]);
+    const questions = getQuestions();
+    const checker = getChecker(questions);
     let question = checker.next();
     question.setAnswer(true);
     question = checker.next();
