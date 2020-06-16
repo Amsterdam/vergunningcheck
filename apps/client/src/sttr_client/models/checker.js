@@ -63,7 +63,7 @@ class Checker {
    * @param {object} autofillData - the autofill data that will be send to the resolver
    **/
   autofill(resolvers, autofillData) {
-    if (!this._autofilled) {
+    if (JSON.stringify(autofillData) !== this._autofillData) {
       this._getAllQuestions().forEach((question) => {
         const resolver = resolvers[question.autofill];
         const answer = resolver ? resolver(autofillData) : undefined;
@@ -71,7 +71,7 @@ class Checker {
           question.setAnswer(answer);
         }
       });
-      this._autofilled = true;
+      this._autofillData = JSON.stringify(autofillData);
     }
   }
 

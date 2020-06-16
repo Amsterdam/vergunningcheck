@@ -15,6 +15,7 @@ export const autofillResolvers = {
         return `"${monumentData.name}"`;
       }
     }
+    return '"Geen monument"';
   },
   cityScape: ({ address }) =>
     address?.restrictions

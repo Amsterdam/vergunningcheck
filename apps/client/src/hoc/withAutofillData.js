@@ -21,7 +21,6 @@ const withAutofillData = (Component) =>
       if (!isEmptyObject(autofillData)) {
         checker.autofill(autofillResolvers, autofillData);
       }
-
       const dataNeed = checker.getAutofillDataNeeds(autofillMap, true).shift();
 
       if (dataNeed) {
