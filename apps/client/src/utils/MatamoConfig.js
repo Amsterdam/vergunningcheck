@@ -18,6 +18,5 @@ export const categories = {
 };
 
 export const actions = {
-  clickExternalLink: "klik externe link",
-  clickInternalLink: "klik interne link",
+  clickExternalLink: "Externe link",
 };
