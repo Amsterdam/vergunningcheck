@@ -1,4 +1,4 @@
-import { isProduction } from "./config";
+import { isProduction } from "../config";
 
 const matomoSiteId = {
   production: 29,
@@ -18,5 +18,6 @@ export const categories = {
 };
 
 export const actions = {
-  clickExternalLink: "click external link",
+  clickExternalLink: "klik externe link",
+  clickInternalLink: "klik interne link",
 };

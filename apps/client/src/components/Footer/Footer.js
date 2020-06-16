@@ -30,7 +30,7 @@ const FirstColumn = () => (
         Bel het telefoonnummer{" "}
         <Link
           href="tel:14020"
-          name="footer-telefoonnummer"
+          eventName="Footer telefoonnummer"
           variant="blank"
           strong
         >
@@ -44,12 +44,17 @@ const FirstColumn = () => (
         <Link
           href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
           variant="with-chevron"
+          eventName={"Footer contact formulier"}
         >
           Contactformulier
         </Link>
       </FooterLinkListItem>
       <FooterLinkListItem>
-        <Link href="https://www.amsterdam.nl/contact/" variant="with-chevron">
+        <Link
+          href="https://www.amsterdam.nl/contact/"
+          variant="with-chevron"
+          eventName={"Footer Contactgegevens en openingstijden"}
+        >
           Contactgegevens en openingstijden
         </Link>
       </FooterLinkListItem>
@@ -64,13 +69,17 @@ const SecondColumn = () => (
         <Link
           href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
           variant="with-chevron"
-          name="niewsbrief"
+          eventName="Footer nieuwsbrief"
         >
           Nieuwsbrief Amsterdam.nl
         </Link>
       </FooterLinkListItem>
       <FooterLinkListItem>
-        <Link href="https://twitter.com/AmsterdamNL" variant="with-chevron">
+        <Link
+          href="https://twitter.com/AmsterdamNL"
+          variant="with-chevron"
+          eventName="Twitter"
+        >
           Twitter
         </Link>
       </FooterLinkListItem>
@@ -78,6 +87,7 @@ const SecondColumn = () => (
         <Link
           href="https://www.facebook.com/gemeenteamsterdam"
           variant="with-chevron"
+          eventName={"Footer Facebook"}
         >
           Facebook
         </Link>
@@ -86,6 +96,7 @@ const SecondColumn = () => (
         <Link
           href="https://www.instagram.com/gemeenteamsterdam/"
           variant="with-chevron"
+          eventName={"Footer Instagram"}
         >
           Instagram
         </Link>
@@ -94,6 +105,7 @@ const SecondColumn = () => (
         <Link
           href="https://www.linkedin.com/company/gemeente-amsterdam"
           variant="with-chevron"
+          eventName={"Footer Linkedin"}
         >
           Linkedin
         </Link>
@@ -102,6 +114,7 @@ const SecondColumn = () => (
         <Link
           href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
           variant="with-chevron"
+          eventName={"Footer werken bij"}
         >
           Werken bij
         </Link>
@@ -117,7 +130,12 @@ const ThirdColumn = () => (
         <Paragraph>
           Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur,
           uitgaan, evenementen en meer vindt u op{" "}
-          <Link href="http://www.iamsterdam.com/" variant="blank" strong>
+          <Link
+            href="http://www.iamsterdam.com/"
+            eventName={"Footer Iamsterdam.com"}
+            variant="blank"
+            strong
+          >
             Iamsterdam.com
           </Link>
         </Paragraph>
@@ -196,6 +214,7 @@ const Footer = () => (
                 <Link
                   href="https://www.amsterdam.nl/overdezesite/"
                   variant="with-chevron"
+                  eventName={"Over deze site"}
                 >
                   Over deze site
                 </Link>
@@ -204,6 +223,7 @@ const Footer = () => (
                 <Link
                   href="https://www.amsterdam.nl/privacy/"
                   variant="with-chevron"
+                  eventName={"Privacy"}
                 >
                   Privacy
                 </Link>
@@ -212,6 +232,7 @@ const Footer = () => (
                 <Link
                   href="https://www.amsterdam.nl/privacy/cookies-site/"
                   variant="with-chevron"
+                  eventName={"Cookies"}
                 >
                   Cookies op deze site
                 </Link>
@@ -220,6 +241,7 @@ const Footer = () => (
                 <Link
                   href="https://www.amsterdam.nl/nieuwsarchief/"
                   variant="with-chevron"
+                  eventName={"Webarchief"}
                 >
                   Webarchief
                 </Link>
