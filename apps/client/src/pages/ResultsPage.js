@@ -15,13 +15,13 @@ import DebugDecisionTable from "../components/DebugDecisionTable";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
-  const context = useContext(SessionContext);
+  const sessionContext = useContext(SessionContext);
   const { slug } = topic;
 
   const onGoToQuestion = (questionIndex) => {
     // Go to the specific question in the stack
     const q = checker.rewindTo(questionIndex);
-    context.setSessionData({
+    sessionContext.setSessionData({
       questionIndex: questionIndex,
     });
 

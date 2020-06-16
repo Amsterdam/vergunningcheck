@@ -5,11 +5,11 @@ const SessionContext = createContext();
 const CheckerContext = createContext("checker");
 const defaultCheckerValue = {
   checker: null,
+  topic: null,
 };
 const defaultSessionValues = session
   ? session
   : {
-      topic: null,
       address: {},
       answers: null,
       questionIndex: 0,

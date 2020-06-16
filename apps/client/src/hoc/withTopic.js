@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { SessionContext, CheckerContext } from "../context";
+import { CheckerContext } from "../context";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 import { topics } from "../config";
 import NotFoundPage from "../pages/NotFoundPage";
 import { geturl, routes } from "../routes";
 
 const withTopic = (Component) => () => {
-  const context = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
   const { slug } = useParams();
   const { search } = useLocation();
@@ -22,7 +21,7 @@ const withTopic = (Component) => () => {
   }
 
   if (topic) {
-    context.topic = topic;
+    checkerContext.topic = topic;
     return <Component topic={topic} />;
   }
   return <NotFoundPage />;

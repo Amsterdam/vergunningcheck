@@ -24,7 +24,7 @@ const outcomes = {
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
 const ConclusionPage = ({ topic, checker }) => {
-  const context = useContext(SessionContext);
+  const sessionContext = useContext(SessionContext);
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
@@ -34,7 +34,7 @@ const ConclusionPage = ({ topic, checker }) => {
     houseNumberFull,
     postalCode,
     residence,
-  } = context.address;
+  } = sessionContext.address;
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits

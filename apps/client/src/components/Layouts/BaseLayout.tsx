@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Row, Column, FormTitle } from "@datapunt/asc-ui";
 import { Container, ContentContainer, Content } from "./BaseLayoutStyles";
 
-import { SessionContext } from "../../context";
+import { CheckerContext } from "../../context";
 import Header from "../Header";
 import Footer from "../Footer";
 import HiddenDebugInfo from "../HiddenDebugInfo";
@@ -14,7 +14,8 @@ export interface BaseLayoutProps {
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const { topic } = useContext(SessionContext);
+  const checkerContext = useContext(CheckerContext);
+  const { topic } = checkerContext as any;
   const title = heading || topic?.text?.heading || null;
 
   return (

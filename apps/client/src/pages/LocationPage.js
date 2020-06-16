@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import withTopic from "../hoc/withTopic";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 
-import { SessionContext } from "../context";
+import { SessionContext, CheckerContext } from "../context";
 import { geturl, routes } from "../routes";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
@@ -17,12 +17,14 @@ import Error from "../components/Error";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
-  const context = useContext(SessionContext);
+  const sessionContext = useContext(SessionContext);
+  const checkerContext = useContext(CheckerContext);
   const history = useHistory();
   const [address, setAddress] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
   const { clearError, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
+  const sessionAddress = sessionContext.address?.[slug];
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -31,7 +33,7 @@ const LocationPage = ({ topic }) => {
       clearError("suffix");
     }
     return () => unregister("suffix");
-  }, [address, clearError, context, errorMessage, register, unregister]);
+  }, [address, clearError, sessionContext, errorMessage, register, unregister]);
 
   const onSubmit = () => {
     if (address) {
@@ -41,17 +43,19 @@ const LocationPage = ({ topic }) => {
         name: address.postalCode.substring(0, 4),
       });
 
-      // Either load previously given answers or reset the answers and start with a fresh check
-      // When the user changes the address (after answering questions) we assume he wants to restart the check
-      const answers =
-        context?.answers && context?.address[slug]?.id === address?.id
-          ? context.answers
-          : null;
+      // Load given answers from sessionContext
+      let answers = sessionContext.answers;
 
-      context.setSessionData({
-        address: { ...context.address, [slug]: address },
-        answers,
-        questionIndex: 0, // Reset to 0 because we're going to start with the first question
+      // Reset the checker and answers when the address is changed
+      if (answers && sessionAddress?.id !== address?.id) {
+        checkerContext.checker = null;
+        answers = null;
+      }
+
+      sessionContext.setSessionData({
+        address: { ...sessionContext.address, [slug]: address },
+        answers, // Either null or filled with given answers
+        questionIndex: 0, // Reset to 0 to start with the first question
       });
       history.push(geturl(routes.address, { slug }));
     }
@@ -79,14 +83,16 @@ const LocationPage = ({ topic }) => {
         <LocationFinder
           setAddress={setAddress}
           setErrorMessage={setErrorMessage}
-          postalCode={context.address?.[slug]?.postalCode}
-          houseNumberFull={context.address?.[slug]?.houseNumberFull}
-          houseNumber={context.address?.[slug]?.houseNumberFull}
+          postalCode={sessionAddress?.postalCode}
+          houseNumberFull={sessionAddress?.houseNumberFull}
+          houseNumber={sessionAddress?.houseNumberFull}
           errors={errors}
         />
         <Nav
           onGoToPrev={() => {
-            context.address = address;
+            sessionContext.setSessionData({
+              address: { ...sessionContext.address, [slug]: address },
+            });
             history.push(geturl(routes.intro, { slug }));
           }}
           showPrev

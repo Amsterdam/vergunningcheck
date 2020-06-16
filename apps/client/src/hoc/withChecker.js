@@ -26,12 +26,6 @@ const withChecker = (Component) =>
     }
 
     useEffect(() => {
-      // If `sttr-checker` has already been loaded but the answers have been cleared
-      if (checker && !sessionContext.answers) {
-        console.log("Reset the checker");
-        // @TODO: How to reset the checker and/or remove the user answers from the stack
-      }
-
       // Load new `sttr-checker` file and store in the Context
       if (!checker && !error) {
         fetch(

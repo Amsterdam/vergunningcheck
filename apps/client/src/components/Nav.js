@@ -8,7 +8,7 @@ import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { NavStyle, IconContainer, IconLeft } from "./NavStyle";
 import { useRouteMatch } from "react-router-dom";
 import { routeConfig, getslug } from "../routes";
-import { SessionContext } from "../context";
+import { CheckerContext } from "../context";
 
 const Nav = ({
   prevText,
@@ -20,7 +20,7 @@ const Nav = ({
 }) => {
   const {
     topic: { slug: name },
-  } = useContext(SessionContext);
+  } = useContext(CheckerContext);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
   const route = routeConfig.find((route) => route.path === path);

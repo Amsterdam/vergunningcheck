@@ -17,7 +17,7 @@ export default ({
     checkerContext.checker = checker;
   }
 
-  sessionContext.topic = topics.find((t) => t.slug === topicMock);
+  checkerContext.topic = topics.find((t) => t.slug === topicMock);
   if (addressMock) {
     sessionContext.address[topicMock.slug] = addressMock;
   }

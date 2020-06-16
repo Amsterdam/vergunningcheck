@@ -10,7 +10,7 @@ import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
 
 const QuestionsPage = ({ topic, checker }) => {
-  const context = useContext(SessionContext);
+  const sessionContext = useContext(SessionContext);
   const params = useParams();
   const history = useHistory();
   const { question: questionSlug } = params;
@@ -22,7 +22,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
   useEffect(() => {
     if (!questionSlug) {
-      context.setSessionData({
+      sessionContext.setSessionData({
         answers: checker.getQuestionAnswers(),
       });
     }
@@ -60,7 +60,7 @@ const QuestionsPage = ({ topic, checker }) => {
     }
 
     // Store all answers in the session context
-    context.setSessionData({
+    sessionContext.setSessionData({
       answers: checker.getQuestionAnswers(),
     });
 
@@ -76,8 +76,8 @@ const QuestionsPage = ({ topic, checker }) => {
         history.push(geturl(routes.results, { slug }));
       } else {
         // Store the new questionIndex in the session
-        context.setSessionData({
-          questionIndex: context.questionIndex + 1,
+        sessionContext.setSessionData({
+          questionIndex: sessionContext.questionIndex + 1,
         });
 
         // Go to Next question
@@ -96,7 +96,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const onQuestionPrev = () => {
     // Store all answers in the session context
-    context.setSessionData({
+    sessionContext.setSessionData({
       answers: checker.getQuestionAnswers(),
     });
 
@@ -104,8 +104,8 @@ const QuestionsPage = ({ topic, checker }) => {
       const prev = checker.previous();
 
       // Store the new questionIndex in the session
-      context.setSessionData({
-        questionIndex: context.questionIndex - 1,
+      sessionContext.setSessionData({
+        questionIndex: sessionContext.questionIndex - 1,
       });
 
       // Go to Prev question

@@ -4,7 +4,7 @@ import HiddenDebugInfo from "./HiddenDebugInfo";
 import { SessionContext } from "../context";
 
 export default ({ checker }) => {
-  const context = useContext(SessionContext);
+  const sessionContext = useContext(SessionContext);
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;
@@ -26,7 +26,7 @@ export default ({ checker }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[context.questionIndex] === q
+                    checker.stack[sessionContext.questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}
