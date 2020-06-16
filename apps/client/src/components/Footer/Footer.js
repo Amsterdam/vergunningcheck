@@ -5,7 +5,6 @@ import {
   FooterTop,
   Row,
   Column,
-  Link,
   Paragraph,
   FooterToggle,
   FooterHeading,
@@ -16,6 +15,7 @@ import {
   FooterBottomLinkList,
   FooterBottomLinkListItem,
 } from "@datapunt/asc-ui";
+import Link from "../Link";
 import { ContentContainer } from "./FooterStyles";
 import { FOOTER } from "../../utils/test-ids";
 
@@ -28,7 +28,12 @@ const FirstColumn = () => (
       </Paragraph>
       <Paragraph strong gutterBottom={0}>
         Bel het telefoonnummer{" "}
-        <Link href="tel:14020" variant="blank" strong>
+        <Link
+          href="tel:14020"
+          name="footer-telefoonnummer"
+          variant="blank"
+          strong
+        >
           14 020
         </Link>
       </Paragraph>
@@ -59,6 +64,7 @@ const SecondColumn = () => (
         <Link
           href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
           variant="with-chevron"
+          name="niewsbrief"
         >
           Nieuwsbrief Amsterdam.nl
         </Link>
