@@ -17,8 +17,8 @@ export const Header = () => {
     if (href !== "/") {
       trackEvent({
         category: categories["navigate"],
-        action: `${actions["clickExternalLink"]} ${topic.slug || "home"}`,
-        name: "Header logo",
+        action: `${actions["clickExternalLink"]} - ${topic.slug || "home"}`,
+        name: "Logo - Header",
       });
     }
     window.location.href = href;

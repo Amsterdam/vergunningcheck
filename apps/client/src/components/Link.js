@@ -22,7 +22,7 @@ const Link = ({
   const onClick = () => {
     trackEvent({
       category,
-      action: `${action} ${topic.slug || "home"}`,
+      action: `${action} - ${topic.slug || "home"}`,
       name: eventName,
     });
     window.location.href = href;
