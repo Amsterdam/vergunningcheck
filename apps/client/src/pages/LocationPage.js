@@ -33,7 +33,7 @@ const LocationPage = ({ topic }) => {
       clearError("suffix");
     }
     return () => unregister("suffix");
-  }, [address, clearError, sessionContext, errorMessage, register, unregister]);
+  }, [address, clearError, errorMessage, register, unregister]);
 
   const onSubmit = () => {
     if (address) {

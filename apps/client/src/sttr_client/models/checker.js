@@ -56,10 +56,12 @@ class Checker {
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
   getQuestionAnswers() {
-    return this.stack.reduce((acc, question) => {
-      acc[question.id] = question.answer;
-      return acc;
-    }, {});
+    return this.stack
+      .concat(this._getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .reduce((acc, question) => {
+        acc[question.id] = question.answer;
+        return acc;
+      }, {});
   }
 
   /**
@@ -79,16 +81,19 @@ class Checker {
 
     let counter = 0;
     let done = false;
+    let prevId = null;
 
     // Loop through `sttr-checker` and answer all questions provided by `answers`
     while (done === false) {
       const questionAnswer = answers[this._last.id];
 
       // The checker is completed when `questionAnswer` is undefined
-      if (questionAnswer === undefined) {
+      // or if the same question is handled again (to allow `Contact` conclusions)
+      if (questionAnswer === undefined || prevId === this._last.id) {
         done = true;
       } else {
         // Answer the question and proceed
+        prevId = this._last.id;
         this._last.setAnswer(questionAnswer);
         this.next();
       }
@@ -96,7 +101,7 @@ class Checker {
       // Prevent infinite loop, otherwise the browser will explode
       // @TODO: Add this to monitoring in Sentry
       counter++;
-      if (counter > 250) {
+      if (counter > 1000) {
         console.error(
           "Infinite loop detected and prevented in setQuestionAnswers()"
         );

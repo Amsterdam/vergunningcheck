@@ -64,17 +64,20 @@ const QuestionsPage = ({ topic, checker }) => {
       answers: checker.getQuestionAnswers(),
     });
 
-    if (needContactPermits()) {
-      // Go directly to the Conclusion Page, without passing the Results Page
+    // Load next question
+    const next = checker.next();
+
+    // Go directly to the Conclusion Page, without passing the Results Page
+    // Only if the `sttr-checker` is the final question
+    if (needContactPermits() && !next) {
+      // Undo the next() with previous(), because we were already at the final question
+      checker.previous();
+
+      // Change the URL to the Conclusion Page
       history.push(geturl(routes.conclusion, { slug }));
     } else {
-      // Load next question
-      const next = checker.next();
-
-      if (!next) {
-        // Go to Result page if there is no new quesion
-        history.push(geturl(routes.results, { slug }));
-      } else {
+      // Load the next question or go to the Result Page
+      if (next) {
         // Store the new questionIndex in the session
         sessionContext.setSessionData({
           questionIndex: sessionContext.questionIndex + 1,
@@ -90,16 +93,15 @@ const QuestionsPage = ({ topic, checker }) => {
             question: getslug(next.text),
           })
         );
+      } else {
+        // Go to Result page if there is no new quesion
+        history.push(geturl(routes.results, { slug }));
       }
     }
   };
 
   const onQuestionPrev = () => {
-    // Store all answers in the session context
-    sessionContext.setSessionData({
-      answers: checker.getQuestionAnswers(),
-    });
-
+    // Load the previous question or go to the Location Page
     if (checker?.stack?.length > 1) {
       const prev = checker.previous();
 
