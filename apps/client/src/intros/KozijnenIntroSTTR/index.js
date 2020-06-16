@@ -7,7 +7,7 @@ import { Pair, Illustration } from "./StyledKozijnenIntroSTTR";
 
 export default () => (
   <>
-    <Heading forwardedAs="h3">Hoe werkt het?</Heading>
+    <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.
@@ -28,42 +28,24 @@ export default () => (
         aanvraag doet.
       </ListItem>
       <ListItem>Wij vertellen u waar u verder op moet letten.</ListItem>
-      <ListItem>
-        Vervolgens krijgt u informatie over het gebouw te zien.
-      </ListItem>
     </OrderedList>
 
     <Paragraph gutterBottom={8}>
-      U kunt de vergunningcheck kozijn gebruiken voor:
+      Deze vergunningcheck kozijn gaat over kozijnen en over gevelpanelen.
+      <br />
+      Hiervoor kunt u de check gebruiken:
     </Paragraph>
     <List variant="bullet">
-      <ListItem>het plaatsen van kozijnen</ListItem>
-      <ListItem>het veranderen, vergroten of verkleinen van kozijnen</ListItem>
-      <ListItem>het plaatsen van een paneel in een kozijn</ListItem>
+      <ListItem>U gaat een nieuw kozijn of paneel plaatsen.</ListItem>
       <ListItem>
-        het veranderen, vergroten of verkleinen van een paneel in een kozijn
+        U gaat een kozijn of paneel veranderen, vergroten of verkleinen.
       </ListItem>
     </List>
-
-    <Pair>
-      <Illustration
-        src={illustration}
-        alt="Afbeelding met voorbeelden van verschillende kozijnen"
-      />
-      <OrderedList>
-        <ListItem>Kozijn</ListItem>
-        <ListItem>Raam, vast glas</ListItem>
-        <ListItem>Deur</ListItem>
-        <ListItem>Paneel</ListItem>
-      </OrderedList>
-    </Pair>
 
     <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
-    <List variant="bullet">
-      <ListItem>
-        Gaat u de woning splitsen of samenvoegen? Neem contact op met de
-        gemeente op telefoonnummer <a href="tel:14020">14 020</a>.
-      </ListItem>
-    </List>
+    <Paragraph>
+      Gaat u de woning splitsen of samenvoegen? Neem dan contact op met de
+      gemeente: <a href="tel:14020">14 020</a>.
+    </Paragraph>
   </>
 );
