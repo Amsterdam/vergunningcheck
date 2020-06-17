@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { geturl, routes } from "../routes";
-import { OLO } from "../config";
+import { isProduction, OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
 
 import Context from "../context";
@@ -81,11 +81,13 @@ const ConclusionPage = ({ topic, checker }) => {
   };
 
   const handlePrintButton = () => {
-    trackEvent({
-      category: "conclusion",
-      action: "conclusie-opslaan",
-      name: slug,
-    });
+    if (context.trackEvents && isProduction) {
+      trackEvent({
+        category: "conclusion",
+        action: "conclusie-opslaan",
+        name: slug,
+      });
+    }
     window.print();
   };
 

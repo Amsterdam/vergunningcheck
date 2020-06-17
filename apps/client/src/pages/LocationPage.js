@@ -14,6 +14,7 @@ import Nav from "../components/Nav";
 import LocationFinder from "../components/Location/LocationFinder";
 import { Helmet } from "react-helmet";
 import Error from "../components/Error";
+import { isProduction } from "../config";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
@@ -34,15 +35,15 @@ const LocationPage = ({ topic }) => {
   }, [address, clearError, errorMessage, register, unregister]);
 
   const onSubmit = () => {
-    if (address) {
+    if (address && context.trackEvents && isProduction) {
       trackEvent({
         category: "postcode-input",
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
       });
-      context.address = address;
-      history.push(geturl(routes.address, { slug }));
     }
+    context.address = address;
+    history.push(geturl(routes.address, { slug }));
   };
 
   return (

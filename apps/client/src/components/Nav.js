@@ -9,6 +9,7 @@ import { NavStyle, IconContainer, IconLeft } from "./NavStyle";
 import { useRouteMatch } from "react-router-dom";
 import { routeConfig, getslug } from "../routes";
 import Context from "../context";
+import { isProduction } from "../config";
 
 const Nav = ({
   prevText,
@@ -20,6 +21,7 @@ const Nav = ({
 }) => {
   const {
     topic: { slug: name },
+    trackEvents,
   } = useContext(Context);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
@@ -30,18 +32,22 @@ const Nav = ({
     const action = formEnds
       ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
-    trackEvent({
-      category,
-      action,
-      name,
-    });
+    if (trackEvents && isProduction) {
+      trackEvent({
+        category,
+        action,
+        name,
+      });
+    }
   };
   const handlePrevClick = (e) => {
-    trackEvent({
-      category,
-      action: "form-vorige-knop",
-      name,
-    });
+    if (trackEvents && isProduction) {
+      trackEvent({
+        category,
+        action: "form-vorige-knop",
+        name,
+      });
+    }
     if (onGoToPrev) onGoToPrev(e);
   };
 

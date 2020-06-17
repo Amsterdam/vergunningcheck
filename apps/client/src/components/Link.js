@@ -3,6 +3,7 @@ import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { actions, categories } from "../utils/MatamoConfig";
+import { isProduction } from "../config";
 import Context from "../context";
 
 const Link = ({
@@ -14,17 +15,19 @@ const Link = ({
   ...rest
 }) => {
   const { trackEvent } = useMatomo();
-  const { topic } = useContext(Context);
+  const { topic, trackEvents } = useContext(Context);
 
   // The default category is navigate, it can be overwritten with the prop category.
   // The default action is clickExternalLink, it can be overwritten. The name in action is the topic name
   // There should always be a event name.
   const onClick = () => {
-    trackEvent({
-      category,
-      action: `${action} - ${topic.slug || "home"}`,
-      name: eventName,
-    });
+    if (trackEvents && isProduction) {
+      trackEvent({
+        category,
+        action: `${action} - ${topic.slug || "home"}`,
+        name: eventName,
+      });
+    }
     window.location.href = href;
   };
 
