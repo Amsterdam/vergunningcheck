@@ -32,7 +32,7 @@
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   U verandert het materiaal en daardoor verandert de vorm van het kozijn.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wijzigt doordat u het materiaal verandert.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -58,7 +58,7 @@
         }
       },
       "decisions": {
-        "_996dec59-76b7-49e5-bb7e-2e9dbfa66a42": {
+        "_72bcfc11-4d13-45e2-a746-bf73bbd9c02a": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -87,7 +87,7 @@
             ]
           }
         },
-        "_bc523a69-a98e-4a71-9e80-a82a9f1136d8": {
+        "_c04b6da4-7f52-4800-a748-7608b2257a54": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__41b859be-53b8-46b9-975f-80217808e89f"
@@ -118,8 +118,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_996dec59-76b7-49e5-bb7e-2e9dbfa66a42",
-            "#_bc523a69-a98e-4a71-9e80-a82a9f1136d8"
+            "#_72bcfc11-4d13-45e2-a746-bf73bbd9c02a",
+            "#_c04b6da4-7f52-4800-a748-7608b2257a54"
           ],
           "decisionTable": {
             "rules": [
@@ -174,7 +174,7 @@
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   U verandert het materiaal en daardoor verandert de vorm van het kozijn.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wijzigt doordat u het materiaal verandert.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -205,7 +205,7 @@
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
-          "description": "Doe een vergunningcheck voor elke kant van het gebouw.\n\n![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")",
+          "description": "![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, achterkant en zijkant. Gaat u aan meer dan 1 kant een kozijn plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
@@ -305,7 +305,7 @@
         }
       },
       "decisions": {
-        "_fc02f33e-687a-4cfb-a0e5-22f6d9e5e680": {
+        "_795e68cc-72bb-4327-8e56-e87dcd8d4362": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -334,7 +334,7 @@
             ]
           }
         },
-        "_8b12141e-65ec-479a-8ca3-11dd99530d4b": {
+        "_a0e44cb6-c200-498c-b899-6747d0933dd2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
@@ -363,7 +363,7 @@
             ]
           }
         },
-        "_e4985aa3-ec2b-4394-aa2c-5bb7494f0fd2": {
+        "_f3e1c2ca-4961-431f-bc17-ddb0f2596cb2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -398,7 +398,7 @@
             ]
           }
         },
-        "_2f426c55-8e25-4170-8cd0-fe7ab3303b4f": {
+        "_926b7250-cebe-49de-9ccd-cb022f6c99d0": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -467,7 +467,7 @@
             ]
           }
         },
-        "_ac239485-1fa3-4b28-bc67-451cfc2e0b58": {
+        "_f912110b-b510-4a88-b254-4b261a834ed9": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -545,7 +545,7 @@
             ]
           }
         },
-        "_9c903272-e144-4b14-b801-d3602c6cb5eb": {
+        "_77882ce6-8e9a-4373-8f34-42fc4ac36f17": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -623,7 +623,7 @@
             ]
           }
         },
-        "_bc5bcbc9-93af-4f51-ab68-345a3c2697f9": {
+        "_35b07c52-e6f8-485d-bcda-3a42ef7848e9": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -710,7 +710,7 @@
             ]
           }
         },
-        "_3dd6ab20-4594-4f4f-9d55-739f99f0e998": {
+        "_d96c597e-70b3-494e-b8a2-37bb58616c54": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -797,7 +797,7 @@
             ]
           }
         },
-        "_4a980600-99b5-41d2-8247-cb020077f291": {
+        "_560af9d5-fd73-4ba2-b821-023fcf4a477f": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -902,7 +902,7 @@
             ]
           }
         },
-        "_cb648059-85ed-494c-9840-86f890507608": {
+        "_338aafda-b7d1-4ba9-adf5-0fe46f0dd403": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -1009,16 +1009,16 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_fc02f33e-687a-4cfb-a0e5-22f6d9e5e680",
-            "#_8b12141e-65ec-479a-8ca3-11dd99530d4b",
-            "#_e4985aa3-ec2b-4394-aa2c-5bb7494f0fd2",
-            "#_2f426c55-8e25-4170-8cd0-fe7ab3303b4f",
-            "#_ac239485-1fa3-4b28-bc67-451cfc2e0b58",
-            "#_9c903272-e144-4b14-b801-d3602c6cb5eb",
-            "#_bc5bcbc9-93af-4f51-ab68-345a3c2697f9",
-            "#_3dd6ab20-4594-4f4f-9d55-739f99f0e998",
-            "#_4a980600-99b5-41d2-8247-cb020077f291",
-            "#_cb648059-85ed-494c-9840-86f890507608"
+            "#_795e68cc-72bb-4327-8e56-e87dcd8d4362",
+            "#_a0e44cb6-c200-498c-b899-6747d0933dd2",
+            "#_f3e1c2ca-4961-431f-bc17-ddb0f2596cb2",
+            "#_926b7250-cebe-49de-9ccd-cb022f6c99d0",
+            "#_f912110b-b510-4a88-b254-4b261a834ed9",
+            "#_77882ce6-8e9a-4373-8f34-42fc4ac36f17",
+            "#_35b07c52-e6f8-485d-bcda-3a42ef7848e9",
+            "#_d96c597e-70b3-494e-b8a2-37bb58616c54",
+            "#_560af9d5-fd73-4ba2-b821-023fcf4a477f",
+            "#_338aafda-b7d1-4ba9-adf5-0fe46f0dd403"
           ],
           "decisionTable": {
             "rules": [
