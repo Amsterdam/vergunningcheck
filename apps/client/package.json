@@ -88,7 +88,7 @@
     ],
     "*.{js,ts,tsx}": [
       "prettier --write",
-      "eslint --fix",
+      "eslint --fix --max-warnings=0",
       "react-scripts test --bail --findRelatedTests --watchAll=false"
     ]
   },
