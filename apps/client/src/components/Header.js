@@ -5,22 +5,15 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./HeaderStyles";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
-import { actions, categories } from "../utils/MatamoConfig";
-import Context from "../context";
+import { actions, categories, ClickTrackEvent } from "../utils/MatamoConfig";
 
 export const Header = () => {
-  const { trackEvent } = useMatomo();
-  const { topic } = useContext(Context);
-
   const onClick = (href) => {
-    if (href !== "/") {
-      trackEvent({
-        category: categories["navigate"],
-        action: `${actions["clickExternalLink"]} - ${topic.slug || "home"}`,
-        name: "Logo - Header",
-      });
-    }
+    ClickTrackEvent({
+      category: categories.navigate,
+      action: actions.clickExternalLink,
+      name: "Logo - Header",
+    });
     window.location.href = href;
   };
 
