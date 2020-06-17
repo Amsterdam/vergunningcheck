@@ -12,7 +12,7 @@ const withAddress = (Component) =>
       console.warn("No address found, redirecting to location page");
       return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
     }
-    return <Component address={address?.[topic.slug]} {...rest}></Component>;
+    return <Component address={address[topic.slug]} {...rest}></Component>;
   });
 
 export default withAddress;

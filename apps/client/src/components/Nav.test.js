@@ -5,6 +5,7 @@ import Form from "./Form";
 import { MemoryRouter } from "react-router-dom";
 import Context from "../__mocks__/context";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
+import { topics } from "../config";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();
@@ -14,9 +15,10 @@ afterEach(cleanup);
 const Wrapper = ({ children }) => {
   const topicMock = "dakraam-plaatsen";
   const topicUrlMock = `/${topicMock}`;
+  const topic = topics.find((t) => t.slug === topicMock);
 
   return (
-    <Context topicMock={topicMock}>
+    <Context topicMock={topic}>
       <MemoryRouter initialEntries={[topicUrlMock]}>
         <Form onSubmit={onSubmitMock}>{children}</Form>
       </MemoryRouter>

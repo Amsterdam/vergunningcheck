@@ -34,7 +34,7 @@ const ConclusionPage = ({ topic, checker }) => {
     houseNumberFull,
     postalCode,
     residence,
-  } = sessionContext.address;
+  } = sessionContext.address[slug];
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits

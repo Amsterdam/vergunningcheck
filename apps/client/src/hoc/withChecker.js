@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
 
 import { SessionContext, CheckerContext } from "../context";
-import { routes, geturl } from "../routes";
 import withAddress from "./withAddress";
 import getChecker from "../sttr_client";
 import LoadingPage from "../pages/LoadingPage";
@@ -19,11 +17,6 @@ const withChecker = (Component) =>
     const [error, setError] = useState();
 
     const { topic } = rest;
-    if (!sessionContext.address) {
-      // TODO: doesn't withAddress already guarantee this? :-/
-      console.warn("Address not found, redirecting to location page");
-      return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
-    }
 
     useEffect(() => {
       // Load new `sttr-checker` file and store in the Context

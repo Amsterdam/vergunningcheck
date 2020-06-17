@@ -10,7 +10,7 @@ const defaultCheckerValue = {
 const defaultSessionValues = session
   ? session
   : {
-      address: {},
+      address: null,
       answers: null,
       questionIndex: 0,
     };

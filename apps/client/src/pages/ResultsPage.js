@@ -20,16 +20,16 @@ const ResultsPage = ({ topic, checker }) => {
 
   const onGoToQuestion = (questionIndex) => {
     // Go to the specific question in the stack
-    const q = checker.rewindTo(questionIndex);
+    const question = checker.rewindTo(questionIndex);
     sessionContext.setSessionData({
-      questionIndex: questionIndex,
+      questionIndex,
     });
 
     // Change the URL to the new question
     history.push(
       geturl(routes.questions, {
         slug,
-        question: getslug(q.text),
+        question: getslug(question.text),
       })
     );
   };

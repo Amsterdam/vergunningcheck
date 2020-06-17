@@ -67,7 +67,6 @@ class Checker {
   /**
    * Loops through all questions and answers these questions based on provided `answers`
    * Useful when you have stored the user answers and want to continue a particular session
-   * @returns {void} -
    */
   setQuestionAnswers(answers) {
     if (!isObject(answers)) {

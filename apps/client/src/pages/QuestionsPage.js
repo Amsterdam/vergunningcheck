@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -14,27 +14,19 @@ const QuestionsPage = ({ topic, checker }) => {
   const params = useParams();
   const history = useHistory();
   const { question: questionSlug } = params;
-
   const [question, setQuestion] = useState(
     checker.stack[checker.stack.length - 1]
   );
   const { slug } = topic;
+  const currSlug = getslug(question.text);
 
-  useEffect(() => {
-    if (!questionSlug) {
-      sessionContext.setSessionData({
-        answers: checker.getQuestionAnswers(),
-      });
-    }
-  });
-
-  // Update URL based on question text
-  if (!questionSlug) {
+  // Update URL when it's not set (first question) and when URL differs from the current question
+  if (!questionSlug || questionSlug !== currSlug) {
     return (
       <Redirect
         to={geturl(routes.questions, {
           slug: topic.slug,
-          question: getslug(question.text),
+          question: currSlug,
         })}
       />
     );
@@ -51,7 +43,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const onQuestionNext = (value) => {
     // Provide the user answers to the `sttr-checker`
-    if (question.options && value) {
+    if (question.options && value !== undefined) {
       question.setAnswer(value);
     }
     if (!question.options && value) {
@@ -102,7 +94,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const onQuestionPrev = () => {
     // Load the previous question or go to the Location Page
-    if (checker?.stack?.length > 1) {
+    if (checker.stack.length > 1) {
       const prev = checker.previous();
 
       // Store the new questionIndex in the session

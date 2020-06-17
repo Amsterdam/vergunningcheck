@@ -24,7 +24,7 @@ const LocationPage = ({ topic }) => {
   const [errorMessage, setErrorMessage] = useState();
   const { clearError, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
-  const sessionAddress = sessionContext.address?.[slug];
+  const sessionAddress = sessionContext.address?.[slug] || {};
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -47,7 +47,7 @@ const LocationPage = ({ topic }) => {
       let answers = sessionContext.answers;
 
       // Reset the checker and answers when the address is changed
-      if (answers && sessionAddress?.id !== address?.id) {
+      if (answers && sessionAddress.id !== address.id) {
         checkerContext.checker = null;
         answers = null;
       }
@@ -83,9 +83,9 @@ const LocationPage = ({ topic }) => {
         <LocationFinder
           setAddress={setAddress}
           setErrorMessage={setErrorMessage}
-          postalCode={sessionAddress?.postalCode}
-          houseNumberFull={sessionAddress?.houseNumberFull}
-          houseNumber={sessionAddress?.houseNumberFull}
+          postalCode={sessionAddress.postalCode}
+          houseNumberFull={sessionAddress.houseNumberFull}
+          houseNumber={sessionAddress.houseNumberFull}
           errors={errors}
         />
         <Nav
