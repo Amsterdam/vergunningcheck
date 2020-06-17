@@ -17,7 +17,7 @@ const Link = ({
   const onClick = () => {
     ClickTrackEvent({
       category,
-      action: `${action}`,
+      action,
       name: eventName,
     });
     window.location.href = href;
