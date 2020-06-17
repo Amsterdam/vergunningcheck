@@ -3,9 +3,9 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { getRestrictionByTypeName } from "../utils";
 import { List, ListItem } from "../atoms";
 import { uniqueFilter } from "../utils";
-import { StyledAddressData } from "./AddressDataStyles";
+import { StyledRegisterLookupSummary } from "./RegisterLookupSummaryStyles";
 
-const AddressData = ({ address, displayZoningPlans }) => {
+const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -14,15 +14,15 @@ const AddressData = ({ address, displayZoningPlans }) => {
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <StyledAddressData>
-      <Paragraph strong style={{ marginBottom: "0px" }}>
+    <StyledRegisterLookupSummary>
+      <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
       <Paragraph>
         {monument ? `Ja. ${monument}` : "Nee. Geen monument"}
       </Paragraph>
 
-      <Paragraph strong style={{ marginBottom: "0px" }}>
+      <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
       <Paragraph>
@@ -33,7 +33,7 @@ const AddressData = ({ address, displayZoningPlans }) => {
 
       {displayZoningPlans && (
         <>
-          <Paragraph strong style={{ marginBottom: "0px" }}>
+          <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
           </Paragraph>
           {zoningPlanNames.length === 0 ? (
@@ -54,8 +54,8 @@ const AddressData = ({ address, displayZoningPlans }) => {
           )}
         </>
       )}
-    </StyledAddressData>
+    </StyledRegisterLookupSummary>
   );
 };
 
-export default AddressData;
+export default RegisterLookupSummary;

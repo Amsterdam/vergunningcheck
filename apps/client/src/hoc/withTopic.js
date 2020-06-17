@@ -32,7 +32,7 @@ const withTopic = (Component) => (props) => {
     return <Component {...props} topic={topic} />;
   }
 
-  return <NotFoundPage {...props} />;
+  return <NotFoundPage />;
 };
 
 export default withTopic;
