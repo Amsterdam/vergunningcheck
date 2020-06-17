@@ -109,8 +109,8 @@ class Checker {
   /**
    * Find all data needs
    *
-   * @param {*} autofillMap - the resolver map to determine if we can autofill
-   * @param {*} onlyMissing - return all or only missing dataneeds
+   * @param {object} autofillMap - the resolver map to determine if we can autofill
+   * @param {boolean} onlyMissing - return all or only missing dataneeds
    */
   getAutofillDataNeeds(autofillMap, onlyMissing = false) {
     return this._getAllQuestions()
