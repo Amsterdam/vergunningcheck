@@ -1,8 +1,18 @@
 const config = require("config");
 const helmet = require("helmet");
-const cors = require("cors");
+const featurePolicy = require("feature-policy");
 
 module.exports = (app) => {
+  app.use(
+    featurePolicy({
+      features: {
+        documentWrite: ["'self'"],
+        geolocation: ["'none'"],
+        camera: ["'none'"],
+        speaker: ["'none'"],
+      },
+    })
+  );
   app.use(
     helmet({
       contentSecurityPolicy: config.enableContentSecurityPolicy && {
@@ -20,11 +30,6 @@ module.exports = (app) => {
         enforce: false,
         maxAge: 0, // 604800 is used on parent site
         reportUri: "https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct",
-      },
-      featurePolicy: {
-        features: {
-          documentWrite: ["'self'"],
-        },
       },
       permittedCrossDomainPolicies: true,
       referrerPolicy: { policy: "no-referrer" },
