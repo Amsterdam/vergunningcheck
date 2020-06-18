@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { topics } from "../config";
+import { isProduction, topics } from "../config";
 import { routes, geturl } from "../routes";
 
 import Layout from "../components/Layouts/DefaultLayout";
 
 const DevHomePage = () => {
-  if (!localStorage.getItem("enterFromDev")) {
-    localStorage.setItem("enterFromDev", "true");
+  if (isProduction) {
+    localStorage.setItem("enterFromDevHomepage", "true");
   }
   return (
     <Layout heading="Hi Dev!">

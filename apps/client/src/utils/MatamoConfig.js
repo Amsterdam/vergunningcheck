@@ -9,7 +9,7 @@ const matomoSiteId = {
 };
 
 export const isProductionAndNotOurs =
-  isProduction && !localStorage.getItem("enterFromDev");
+  isProduction && !localStorage.getItem("enterFromDevHomepage");
 
 export const ClickTrackEvent = ({ category, action, name }) => {
   const { trackEvent } = useMatomo();

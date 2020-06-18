@@ -33,6 +33,8 @@ const Link = ({
 Link.propTypes = {
   eventName: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  category: PropTypes.string,
+  action: PropTypes.string,
   href: PropTypes.string,
   internal: PropTypes.bool,
 };
