@@ -10,7 +10,7 @@ import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 
 import Context, { defaultValues } from "./context";
-import { matomo } from "./MatamoConfig";
+import { matomo } from "./MatomoConfig";
 import apolloClient from "./apolloClient";
 import * as serviceWorker from "./serviceWorker";
 import Router from "./components/Router";

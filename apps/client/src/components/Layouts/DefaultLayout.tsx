@@ -1,20 +1,26 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import BaseLayout from "./BaseLayout";
+import withTracking from "../../hoc/withTracking";
 
-function DefaultLayout(props: { heading: string; children: React.ReactNode }) {
-  const { location } = useHistory();
-  const { trackPageView } = useMatomo();
-
-  useEffect(() => {
-    if (!localStorage.getItem("doNotTrack")) {
-      // @datapunt Track Page View https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
-      trackPageView({});
-    }
-  }, [location, trackPageView]);
-
-  return <BaseLayout {...props} />;
+interface DefaultLayoutProps {
+  heading: string;
+  children: React.ReactNode;
+  MatomoPageView: Function;
 }
 
-export default DefaultLayout;
+function DefaultLayout({
+  heading,
+  children,
+  MatomoPageView,
+}: DefaultLayoutProps) {
+  const { location } = useHistory();
+
+  useEffect(() => {
+    MatomoPageView();
+  }, [MatomoPageView, location]);
+
+  return <BaseLayout {...{ heading, children }} />;
+}
+
+export default withTracking(DefaultLayout);

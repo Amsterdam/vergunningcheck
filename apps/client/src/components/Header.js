@@ -5,12 +5,12 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./HeaderStyles";
-import { actions, categories } from "../MatamoConfig";
+import { actions, categories } from "../MatomoConfig";
 import withTracking from "../hoc/withTracking";
 
-export const Header = ({ ClickTrackEvent }) => {
+export const Header = ({ MatomoTrackEvent }) => {
   const onClick = (href) => {
-    ClickTrackEvent({
+    MatomoTrackEvent({
       category: categories.navigate,
       action: actions.clickExternalLink,
       name: "Logo - Header",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
-import { actions, categories } from "../MatamoConfig";
+import { actions, categories } from "../MatomoConfig";
 import withTracking from "../hoc/withTracking";
 
 const Link = ({
@@ -9,7 +9,7 @@ const Link = ({
   category = categories.navigate,
   action = actions.clickExternalLink,
   eventName,
-  ClickTrackEvent,
+  MatomoTrackEvent,
   href,
   ...rest
 }) => {
@@ -17,7 +17,7 @@ const Link = ({
   // The default action is clickExternalLink, it can be overwritten. The name in action is the topic name
   // There should always be a event name.
   const onClick = () => {
-    ClickTrackEvent({
+    MatomoTrackEvent({
       category,
       action,
       name: eventName,
@@ -36,6 +36,7 @@ Link.propTypes = {
   eventName: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   category: PropTypes.string,
+  MatomoTrackEvent: PropTypes.func,
   action: PropTypes.string,
   href: PropTypes.string,
   internal: PropTypes.bool,

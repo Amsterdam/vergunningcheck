@@ -4,9 +4,14 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 const withTracking = (Component) => ({ ...props }) => {
   const { topic } = useContext(Context);
-  const { trackEvent } = useMatomo();
+  const { trackEvent, trackPageView } = useMatomo();
 
-  const ClickTrackEvent = ({ category, action, name }) => {
+  const MatomoPageView = () => {
+    if (!localStorage.getItem("doNotTrack")) {
+      trackPageView({});
+    }
+  };
+  const MatomoTrackEvent = ({ category, action, name }) => {
     if (!localStorage.getItem("doNotTrack")) {
       trackEvent({
         category,
@@ -16,7 +21,13 @@ const withTracking = (Component) => ({ ...props }) => {
     }
   };
 
-  return <Component ClickTrackEvent={ClickTrackEvent} {...props} />;
+  return (
+    <Component
+      MatomoTrackEvent={MatomoTrackEvent}
+      MatomoPageView={MatomoPageView}
+      {...props}
+    />
+  );
 };
 
 export default withTracking;

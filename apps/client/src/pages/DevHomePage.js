@@ -28,9 +28,7 @@ const DevHomePage = () => {
                   {redirectToOlo ? "Redirect" : sttrFile ? "Checker" : "OLO"}
                 </td>
                 <td>
-                  <Link eventName={slug} to={geturl(routes.intro, { slug })}>
-                    {slug}
-                  </Link>
+                  <Link to={geturl(routes.intro, { slug })}>{slug}</Link>
                 </td>
               </tr>
             ))}
