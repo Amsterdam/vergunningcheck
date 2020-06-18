@@ -6,7 +6,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 const AddressResult = ({ title, loading, loadingText, children }) => (
   <>
     {title && (
-      <Paragraph strong style={{ marginBottom: "0px" }}>
+      <Paragraph strong style={{ marginBottom: 0 }}>
         {title}
       </Paragraph>
     )}
