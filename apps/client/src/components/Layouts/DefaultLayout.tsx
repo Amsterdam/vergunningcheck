@@ -6,19 +6,19 @@ import withTracking from "../../hoc/withTracking";
 interface DefaultLayoutProps {
   heading: string;
   children: React.ReactNode;
-  MatomoPageView: Function;
+  matomoPageView: Function;
 }
 
 function DefaultLayout({
   heading,
   children,
-  MatomoPageView,
+  matomoPageView,
 }: DefaultLayoutProps) {
   const { location } = useHistory();
 
   useEffect(() => {
-    MatomoPageView();
-  }, [MatomoPageView, location]);
+    matomoPageView();
+  }, [matomoPageView, location]);
 
   return <BaseLayout {...{ heading, children }} />;
 }

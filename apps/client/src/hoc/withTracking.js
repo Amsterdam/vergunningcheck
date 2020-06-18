@@ -6,12 +6,12 @@ const withTracking = (Component) => ({ ...props }) => {
   const { topic } = useContext(Context);
   const { trackEvent, trackPageView } = useMatomo();
 
-  const MatomoPageView = () => {
+  const matomoPageView = () => {
     if (!localStorage.getItem("doNotTrack")) {
       trackPageView({});
     }
   };
-  const MatomoTrackEvent = ({ category, action, name }) => {
+  const matomoTrackEvent = ({ category, action, name }) => {
     if (!localStorage.getItem("doNotTrack")) {
       trackEvent({
         category,
@@ -23,8 +23,8 @@ const withTracking = (Component) => ({ ...props }) => {
 
   return (
     <Component
-      MatomoTrackEvent={MatomoTrackEvent}
-      MatomoPageView={MatomoPageView}
+      matomoTrackEvent={matomoTrackEvent}
+      matomoPageView={matomoPageView}
       {...props}
     />
   );

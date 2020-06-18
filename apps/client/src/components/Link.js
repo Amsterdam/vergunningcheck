@@ -9,15 +9,15 @@ const Link = ({
   category = categories.navigate,
   action = actions.clickExternalLink,
   eventName,
-  MatomoTrackEvent,
+  matomoTrackEvent,
   href,
   ...rest
 }) => {
   // The default category is navigate, it can be overwritten with the prop category.
-  // The default action is clickExternalLink, it can be overwritten. The name in action is the topic name
-  // There should always be a event name.
+  // The default action is clickExternalLink, it can be overwritten.
+  // There should always be a eventName.
   const onClick = () => {
-    MatomoTrackEvent({
+    matomoTrackEvent({
       category,
       action,
       name: eventName,
@@ -36,7 +36,7 @@ Link.propTypes = {
   eventName: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   category: PropTypes.string,
-  MatomoTrackEvent: PropTypes.func,
+  matomoTrackEvent: PropTypes.func,
   action: PropTypes.string,
   href: PropTypes.string,
   internal: PropTypes.bool,

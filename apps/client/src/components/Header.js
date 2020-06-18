@@ -8,9 +8,9 @@ import {
 import { actions, categories } from "../MatomoConfig";
 import withTracking from "../hoc/withTracking";
 
-export const Header = ({ MatomoTrackEvent }) => {
-  const onClick = (href) => {
-    MatomoTrackEvent({
+export const Header = ({ matomoTrackEvent }) => {
+  const handleClick = (href) => {
+    matomoTrackEvent({
       category: categories.navigate,
       action: actions.clickExternalLink,
       name: "Logo - Header",
@@ -25,7 +25,7 @@ export const Header = ({ MatomoTrackEvent }) => {
       logo={() => (
         <StyledLogoWrapper
           onClick={() =>
-            onClick(
+            handleClick(
               process.env.NODE_ENV === "production"
                 ? "https://amsterdam.nl"
                 : "/"
