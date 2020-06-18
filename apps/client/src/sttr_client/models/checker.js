@@ -78,7 +78,6 @@ class Checker {
       this.next();
     }
 
-    let counter = 0;
     let done = false;
     let prevId = null;
 
@@ -95,16 +94,6 @@ class Checker {
         prevId = this._last.id;
         this._last.setAnswer(questionAnswer);
         this.next();
-      }
-
-      // Prevent infinite loop, otherwise the browser will explode
-      // @TODO: Add this to monitoring in Sentry
-      counter++;
-      if (counter > 1000) {
-        console.error(
-          "Infinite loop detected and prevented in setQuestionAnswers()"
-        );
-        done = true;
       }
     }
   }
