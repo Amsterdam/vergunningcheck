@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { isProduction, topics } from "../config";
 import { routes, geturl } from "../routes";
 
@@ -8,7 +7,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 
 const DevHomePage = () => {
   if (isProduction) {
-    localStorage.setItem("enterFromDevHomepage", "true");
+    localStorage.setItem("doNotTrack", "true");
   }
   return (
     <Layout heading="Hi Dev!">
@@ -29,7 +28,9 @@ const DevHomePage = () => {
                   {redirectToOlo ? "Redirect" : sttrFile ? "Checker" : "OLO"}
                 </td>
                 <td>
-                  <Link to={geturl(routes.intro, { slug })}>{slug}</Link>
+                  <Link eventName={slug} to={geturl(routes.intro, { slug })}>
+                    {slug}
+                  </Link>
                 </td>
               </tr>
             ))}

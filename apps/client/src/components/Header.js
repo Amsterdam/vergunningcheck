@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   StyledHeader,
   StyledHeaderWrapper,
   StyledLogoWrapper,
   StyledLogo,
 } from "./HeaderStyles";
-import { actions, categories, ClickTrackEvent } from "../utils/MatamoConfig";
+import { actions, categories } from "../MatamoConfig";
+import withTracking from "../hoc/withTracking";
 
-export const Header = () => {
+export const Header = ({ ClickTrackEvent }) => {
   const onClick = (href) => {
     ClickTrackEvent({
       category: categories.navigate,
@@ -39,4 +40,4 @@ export const Header = () => {
   );
 };
 
-export default Header;
+export default withTracking(Header);

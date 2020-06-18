@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import BaseLayout from "./BaseLayout";
-import { isProductionAndNotOurs } from "../../utils/MatamoConfig";
 
 function DefaultLayout(props: { heading: string; children: React.ReactNode }) {
   const { location } = useHistory();
   const { trackPageView } = useMatomo();
 
-  React.useEffect(() => {
-    if (isProductionAndNotOurs) {
+  useEffect(() => {
+    if (!localStorage.getItem("doNotTrack")) {
       // @datapunt Track Page View https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
       trackPageView({});
     }

@@ -1,13 +1,15 @@
 import React from "react";
 import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
-import { actions, categories, ClickTrackEvent } from "../utils/MatamoConfig";
+import { actions, categories } from "../MatamoConfig";
+import withTracking from "../hoc/withTracking";
 
 const Link = ({
   children,
   category = categories.navigate,
   action = actions.clickExternalLink,
   eventName,
+  ClickTrackEvent,
   href,
   ...rest
 }) => {
@@ -39,4 +41,4 @@ Link.propTypes = {
   internal: PropTypes.bool,
 };
 
-export default Link;
+export default withTracking(Link);
