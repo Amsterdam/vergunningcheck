@@ -18,7 +18,7 @@ function DefaultLayout({
 
   useEffect(() => {
     matomoPageView();
-  }, [matomoPageView, location]);
+  }, [location, matomoPageView]);
 
   return <BaseLayout {...{ heading, children }} />;
 }

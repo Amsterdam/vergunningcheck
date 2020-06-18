@@ -4,15 +4,6 @@ import Question from "./question";
 import Rule from "./rule";
 import Decision from "./decision";
 
-const getQuestions = () => [
-  new Question({
-    id: "aaa",
-    type: "boolean",
-    text: "Do you live in a well-being area (welstandsgebied)?",
-    prio: 10,
-  }),
-];
-
 describe("STTR specific", () => {
   test('"-" and "no hit" support', () => {
     const q1 = new Question({

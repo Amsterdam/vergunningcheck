@@ -1,12 +1,26 @@
 import React, { useState } from "react";
-import { Figure, Img, FigCaption } from "./VisualStyles";
+import { Figure, Img, Caption } from "./VisualStyles";
 
 export default ({ title, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
+  const [errored, setErrored] = useState(false);
   return (
-    <Figure loaded={loaded}>
-      <Img {...rest} loaded={loaded} onLoad={() => setLoaded(true)} />
-      {title && <FigCaption>{title}</FigCaption>}
+    <Figure loaded={loaded} errored={errored}>
+      <Img
+        {...rest}
+        loaded={loaded}
+        errored={errored}
+        onLoad={() => setLoaded(true)}
+        onError={() => {
+          setLoaded(true);
+          setErrored(true);
+        }}
+      />
+      {title && !errored && (
+        <figcaption>
+          <Caption>{title}</Caption>
+        </figcaption>
+      )}
     </Figure>
   );
 };

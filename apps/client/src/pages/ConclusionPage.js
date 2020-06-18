@@ -7,7 +7,7 @@ import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
 
-import Context from "../context";
+import { SessionContext } from "../context";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
@@ -24,7 +24,7 @@ const outcomes = {
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
 const ConclusionPage = ({ topic, checker }) => {
-  const context = useContext(Context);
+  const sessionContext = useContext(SessionContext);
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
@@ -34,7 +34,7 @@ const ConclusionPage = ({ topic, checker }) => {
     houseNumberFull,
     postalCode,
     residence,
-  } = context.address;
+  } = sessionContext.address[slug];
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits

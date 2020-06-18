@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
+import { Helmet } from "react-helmet";
 
+import { SessionContext } from "../context";
 import withFinalChecker from "../hoc/withFinalChecker";
 import { routes, geturl, getslug } from "../routes";
 import { RESULTS_PAGE } from "../utils/test-ids";
@@ -10,18 +12,24 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
+  const sessionContext = useContext(SessionContext);
   const { slug } = topic;
 
-  const onGoToQuestion = (index) => {
-    const q = checker.rewindTo(index);
+  const onGoToQuestion = (questionIndex) => {
+    // Go to the specific question in the stack
+    const question = checker.rewindTo(questionIndex);
+    sessionContext.setSessionData({
+      questionIndex,
+    });
+
+    // Change the URL to the new question
     history.push(
       geturl(routes.questions, {
         slug,
-        question: getslug(q.text),
+        question: getslug(question.text),
       })
     );
   };

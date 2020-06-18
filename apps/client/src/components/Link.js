@@ -15,7 +15,7 @@ const Link = ({
 }) => {
   // The default category is navigate, it can be overwritten with the prop category.
   // The default action is clickExternalLink, it can be overwritten.
-  // There should always be a eventName.
+  // There should always be an eventName.
   const onClick = () => {
     matomoTrackEvent({
       category,
