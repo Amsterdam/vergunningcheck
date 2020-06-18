@@ -1,5 +1,5 @@
-import { render, fireEvent, cleanup, screen } from "./utils/test-utils";
-import { getslug, geturl, routes } from "./routes";
+import { cleanup } from "./utils/test-utils";
+import { getslug, geturl } from "./routes";
 import slugify from "slugify";
 
 afterEach(cleanup);

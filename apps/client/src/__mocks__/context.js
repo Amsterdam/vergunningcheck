@@ -1,20 +1,34 @@
 import { useContext } from "react";
-import Context from "../context";
-import { topics } from "../config";
+import { SessionContext, CheckerContext } from "../context";
 
 export default ({
   children,
   topicMock = "dakraam-plaatsen",
   addressMock,
   checker,
+  questionIndex,
 }) => {
-  const context = useContext(Context);
-  context.topic = topics.find((t) => t.slug === topicMock);
-  if (addressMock) {
-    context.address = addressMock;
-  }
+  const checkerContext = useContext(CheckerContext);
+  const sessionContext = useContext(SessionContext);
+  const setSessionData = jest.fn();
+
   if (checker) {
-    context.checker = checker;
+    checkerContext.checker = checker;
   }
+
+  if (topicMock) {
+    checkerContext.topic = topicMock;
+  }
+
+  if (addressMock) {
+    sessionContext.address = {
+      [topicMock.slug]: addressMock,
+    };
+  }
+
+  if (questionIndex) {
+    sessionContext.questionIndex = questionIndex;
+  }
+  sessionContext.setSessionData = setSessionData;
   return children;
 };
