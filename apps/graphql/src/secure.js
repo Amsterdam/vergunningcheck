@@ -6,7 +6,7 @@ module.exports = (app) => {
   app.use(
     featurePolicy({
       features: {
-        documentWrite: ["'self'"],
+        documentWrite: ["'none'"],
         geolocation: ["'none'"],
         camera: ["'none'"],
         speaker: ["'none'"],
@@ -19,7 +19,7 @@ module.exports = (app) => {
         // based on pen-test findings we enable csp for our app even if we don't serve any html pages.
         directives: {
           // most strict settings possible
-          defaultSrc: ["'self'"],
+          defaultSrc: ["'none'"],
         },
       },
       frameguard: {
