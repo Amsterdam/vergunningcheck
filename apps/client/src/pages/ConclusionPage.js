@@ -140,7 +140,7 @@ const ConclusionPage = ({ topic, checker }) => {
       //   'chappie-unique-hash-839472342': "No, because",
       //   'chappie-unique-hash-839472343': true,
       // ]
-      // questionAnswers: getQuestionAnswers(),
+      questionAnswers: checker.getQuestionAnswers(),
 
       // The current `displayConclusions()` needs a rename and a small refactor
       // Example array:
@@ -156,41 +156,45 @@ const ConclusionPage = ({ topic, checker }) => {
       //     description: "U hebt...",
       //   },
       // ]
-      permitConclusions: displayConclusions, // needs to be refactored to permitConclusions
+      permitConclusions: displayConclusions, // needs to be refactored and renamed to permitConclusions
 
-      // See Trello card "Refactor Context"
+      // Temp fix until autofill is merged with develop
       registerLookups: {
-        monument: {},
-        cityScape: {},
-        bag: {
-          // We can only store information which it's imposible to relate to an individual
-          // `postalCode` and `streetname` are general information which we can store
-          postalCode: "",
-          streetname: "",
-          // All other information can only be stored when user agrees to save personal data
-          houseNumber: "",
-          houseNumberFull: "",
-          id: "",
-          // ...
-        },
+        bag: sessionContext.address?.[slug],
       },
+      // But. We need to refactor this.
+      // See Trello card "Refactor Context"
+      // registerLookups: {
+      //     monument: {},
+      //     cityScape: {},
+      //     bag: {
+      //       // We can only store information which it's imposible to relate to an individual
+      //       // `postalCode` and `streetname` are general information which we can store
+      //       postalCode: "",
+      //       streetname: "",
+      //       // All other information can only be stored when user agrees to save personal data
+      //       houseNumber: "",
+      //       houseNumberFull: "",
+      //       id: "",
+      //       // ...
+      //     },
+      // },
+      // userInput: {
+      //   address: {
+      //     // We can only store information which it's imposible to relate to an individual
+      //     // `postalCode` is general information which we can store
+      //     postalCode,
+      //     // All other information can only be stored when user agrees to save personal data
+      //     houseNumberFull,
 
-      userInput: {
-        address: {
-          // We can only store information which it's imposible to relate to an individual
-          // `postalCode` is general information which we can store
-          postalCode,
-          // All other information can only be stored when user agrees to save personal data
-          houseNumberFull,
+      //     // suffix, // We need to store this
+      //   },
 
-          // suffix, // We need to store this
-        },
-
-        // Store `geo`, because it's also free of personal information
-        // geo: {
-        // ...
-        // },
-      },
+      //   // Store `geo`, because it's also free of personal information
+      //   // geo: {
+      //   // ...
+      //   // },
+      // },
     };
 
     console.log(mutationData);
