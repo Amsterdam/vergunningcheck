@@ -20,6 +20,8 @@ export const collectionOfType = (col, type) => {
   return itemOfInvaldType === undefined;
 };
 
+export const isObject = (val) => typeof val === "object" && val !== null;
+
 // Filters
 export const uniqueFilter = (value, index, self) =>
   self.indexOf(value) === index;
