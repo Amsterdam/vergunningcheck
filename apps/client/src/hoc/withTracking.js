@@ -8,7 +8,6 @@ const withTracking = (Component) => ({ ...props }) => {
 
   const ClickTrackEvent = ({ category, action, name }) => {
     if (!localStorage.getItem("doNotTrack")) {
-      console.log("adssad");
       trackEvent({
         category,
         action: `${action} - ${topic.slug || "home"}`,
