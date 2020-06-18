@@ -5,7 +5,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { ThemeProvider } from "@datapunt/asc-ui";
 import { SessionProvider } from "../context";
-import { matomo } from "../config";
+import { matomo } from "../MatomoConfig";
 import { getTestClient } from "../apolloClient";
 
 dotenv.config();

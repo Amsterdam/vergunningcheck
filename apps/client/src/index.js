@@ -8,9 +8,8 @@ import { createGlobalStyle } from "styled-components";
 import dotenv from "dotenv-flow";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
-
+import { matomo } from "./MatomoConfig";
 import { SessionProvider } from "./context";
-import { matomo } from "./config";
 import apolloClient from "./apolloClient";
 import * as serviceWorker from "./serviceWorker";
 import Router from "./components/Router";
