@@ -1,12 +1,20 @@
-FROM node:buster AS builder
+FROM node:buster AS base
 LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/graphql/package*.json ./
 RUN npm audit --production
+
+FROM base
+COPY --from=base /app/ /app/
 RUN npm ci --no-color -q
 COPY apps/graphql/ .
 RUN npm test
+
+FROM base AS builder
+COPY --from=base /app/ /app/
+RUN npm ci --no-color -q --production
+COPY apps/graphql/ .
 
 FROM amsterdam/node
 WORKDIR /app/

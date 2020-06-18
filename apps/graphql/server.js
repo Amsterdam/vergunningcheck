@@ -1,18 +1,13 @@
 const express = require("express");
-const { server } = require("./src/graphql");
 const config = require("config");
-const cors = require("cors");
 const morgan = require("morgan");
-const helmet = require("helmet");
+const secure = require("./src/secure");
+const development = require("./src/development");
+const { server } = require("./src/graphql");
 
-const app = express();
-
-// Hardening
-app.use(helmet());
-
-// Loosening
-if (config.cors.enabled) {
-  app.use(cors());
+const app = secure(express());
+if (process.env.NODE_ENV !== "production") {
+  development(app);
 }
 
 // Basic access log, BUT no permission to log IP

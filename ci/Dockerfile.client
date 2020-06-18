@@ -8,6 +8,7 @@ RUN npm audit --production
 RUN npm ci --no-color -q
 COPY apps/client/ ./
 RUN CI=true npm test
+ARG REACT_APP_GRAPHQL_API_URL
 RUN npm run build --no-color
 
 # Release
