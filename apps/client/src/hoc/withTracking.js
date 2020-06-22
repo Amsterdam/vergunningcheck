@@ -15,7 +15,7 @@ const withTracking = (Component) => ({ ...props }) => {
     if (!localStorage.getItem("doNotTrack")) {
       trackEvent({
         category,
-        action: `${action} - ${topic.slug || "home"}`,
+        action: `${action} - ${topic?.slug || "home"}`,
         name,
       });
     }

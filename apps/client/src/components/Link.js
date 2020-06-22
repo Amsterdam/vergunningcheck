@@ -27,7 +27,7 @@ const Link = ({
   };
 
   return (
-    <StyledComponentLink href="#" onClick={href && onClick} {...rest}>
+    <StyledComponentLink href={href} onClick={href && onClick} {...rest}>
       {children}
     </StyledComponentLink>
   );
