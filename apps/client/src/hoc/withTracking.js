@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { SessionContext } from "../context";
+import { CheckerContext } from "../context";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 const withTracking = (Component) => ({ ...props }) => {
-  const { topic } = useContext(SessionContext);
+  const { topic } = useContext(CheckerContext);
   const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
