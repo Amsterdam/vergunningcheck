@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 - [#82](https://github.com/Amsterdam/vergunningcheck/pull/82) Implement helmet fixes and configure nginx accordingly ([@afjlambert](https://github.com/afjlambert))
 - Fixed the intro image scale
+- Hotfix: added usabilla url to nginx config
 
 #### :house: Internal
 
