@@ -39,6 +39,7 @@ export const StyledLogo = styled.span`
   display: block;
   height: 100%;
   width: 100%;
+  cursor: pointer;
   background-size: cover;
   background-image: url("${LogoMobile}");
 
