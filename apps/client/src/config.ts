@@ -1,16 +1,30 @@
-export const isProduction =
+type Topic = {
+  slug: string;
+  sttrFile?: string;
+  redirectToOlo?: boolean;
+  intro?: string;
+  text: Text;
+};
+
+type Text = {
+  heading: string;
+  locationIntro?: string;
+  addressPage?: string;
+};
+
+export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
-const oloHome =
+const oloHome: string =
   process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
-export const OLO = {
+export const OLO: object = {
   home: oloHome,
   intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
-const topics = [
+const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
     redirectToOlo: true,
@@ -113,4 +127,4 @@ export { topics };
 // We need a place for general text as well
 // I know this is not the best place
 // For now I will place it here
-export const requiredFieldText = "Dit veld is verplicht.";
+export const requiredFieldText: string = "Dit veld is verplicht.";
