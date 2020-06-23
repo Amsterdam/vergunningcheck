@@ -10,6 +10,7 @@
   "scripts": {
     "start": "lerna run --parallel --no-bail start",
     "start:prod": "lerna run --parallel start:prod",
+    "start:calculate-size": "DISABLE_REDIS=1 npm run start:prod",
     "test": "CI=true lerna run test",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
