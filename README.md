@@ -18,7 +18,7 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 ## Prepare a release
 
 Basically what we want to do is merge `develop` with `release` including the latest STTR-changes.
-Two commands make this easy for you. Run `npm run prepare`, commit changes if needed and `npm run release`.
+Two commands make this easy for you. Run `npm run prepare-release`, commit changes if needed and `npm run release`.
 
 ## Publish a release
 
@@ -26,12 +26,14 @@ We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md
 
 Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
+- Run `npm run version` and use the automatically generated changelog to update [CHANGELOG.md](CHANGELOG.md)
+- Commit the changelog.
 - Run `npm run publish`
 - Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
 - After the merge the relase will be deployed to acceptance, manually verify the changes
 - Approve the release to production in Jenkins
-- Merge `release` back into `develop` in case there were changes, run `npm run post-publish`
-- Prepeare a new release
+- Back-merge `master` into `release` into `develop` in case there were changes, run `npm run back-merge`
+- Consider prepearing the next release in the section above
 
 ## Tech stack
 
