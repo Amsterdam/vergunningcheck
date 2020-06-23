@@ -103,6 +103,7 @@ const LocationFinder = (props) => {
           defaultValue={houseNumberFull}
           error={houseNumberError}
           required={true}
+          enterkeyhint="done"
           onBlur={handleBlur}
           onChange={(e) => {
             setHouseNumberFull(e.target.value);
