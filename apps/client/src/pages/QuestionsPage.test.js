@@ -15,8 +15,8 @@ import {
   QUESTION_ANSWERS,
   NEXT_BUTTON,
   PREV_BUTTON,
-  // ADDRESS_PAGE,
-  // CONCLUSION_PAGE,
+  ADDRESS_PAGE,
+  CONCLUSION_PAGE,
   RESULTS_PAGE,
 } from "../utils/test-ids";
 
@@ -79,55 +79,55 @@ describe("<QuestionsPage />", () => {
     );
   });
 
-  // it("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
-  //   const { container, getByTestId, queryByText, queryByTestId } = render(
-  //     <Wrapper />
-  //   );
+  it("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
+    const { container, getByTestId, queryByText, queryByTestId } = render(
+      <Wrapper />
+    );
 
-  //   // Click `NEXT_BUTTON` and expect form validation to display `requiredFieldText`
-  //   await act(async () => {
-  //     fireEvent.click(getByTestId(NEXT_BUTTON));
-  //   });
-  //   await queryByText(requiredFieldText);
+    // Click `NEXT_BUTTON` and expect form validation to display `requiredFieldText`
+    await act(async () => {
+      fireEvent.click(getByTestId(NEXT_BUTTON));
+    });
+    await queryByText(requiredFieldText);
 
-  //   // Click the FIRST `input` and go to the Conclusion Page
-  //   await act(async () => {
-  //     fireEvent.click(container.querySelectorAll('input[type="radio"]')[0]);
-  //     fireEvent.click(getByTestId(NEXT_BUTTON));
-  //   });
-  //   await queryByTestId(CONCLUSION_PAGE);
-  //   expect(window.location.pathname).toBe(`${baseUrl}/conclusie`);
+    // Click the FIRST `input` and go to the Conclusion Page
+    await act(async () => {
+      fireEvent.click(container.querySelectorAll('input[type="radio"]')[0]);
+      fireEvent.click(getByTestId(NEXT_BUTTON));
+    });
+    await queryByTestId(CONCLUSION_PAGE);
+    expect(window.location.pathname).toBe(`${baseUrl}/conclusie`);
 
-  //   // Go back to the Question Page
-  //   await act(async () => {
-  //     fireEvent.click(getByTestId(PREV_BUTTON));
-  //   });
-  //   await queryByTestId(QUESTION_PAGE);
+    // Go back to the Question Page
+    await act(async () => {
+      fireEvent.click(getByTestId(PREV_BUTTON));
+    });
+    await queryByTestId(QUESTION_PAGE);
 
-  //   // Click the FIRST `input` and go to the Conclusion Page
-  //   await act(async () => {
-  //     fireEvent.click(container.querySelectorAll('input[type="radio"]')[0]);
-  //     fireEvent.click(getByTestId(NEXT_BUTTON));
-  //   });
-  //   await queryByTestId(CONCLUSION_PAGE);
+    // Click the FIRST `input` and go to the Conclusion Page
+    await act(async () => {
+      fireEvent.click(container.querySelectorAll('input[type="radio"]')[0]);
+      fireEvent.click(getByTestId(NEXT_BUTTON));
+    });
+    await queryByTestId(CONCLUSION_PAGE);
 
-  //   // Go back to the Question Page
-  //   await act(async () => {
-  //     fireEvent.click(getByTestId(PREV_BUTTON));
-  //   });
-  //   await queryByTestId(QUESTION_PAGE);
+    // Go back to the Question Page
+    await act(async () => {
+      fireEvent.click(getByTestId(PREV_BUTTON));
+    });
+    await queryByTestId(QUESTION_PAGE);
 
-  //   // Go even more back to the Address Page
-  //   await act(async () => {
-  //     fireEvent.click(getByTestId(PREV_BUTTON));
-  //   });
-  //   await queryByTestId(ADDRESS_PAGE);
-  //   expect(window.location.pathname).toBe(`${baseUrl}/adresgegevens`);
+    // Go even more back to the Address Page
+    await act(async () => {
+      fireEvent.click(getByTestId(PREV_BUTTON));
+    });
+    await queryByTestId(ADDRESS_PAGE);
+    expect(window.location.pathname).toBe(`${baseUrl}/adresgegevens`);
 
-  //   // Return to the Question Page
-  //   fireEvent.click(getByTestId(NEXT_BUTTON));
-  //   await queryByTestId(QUESTION_PAGE);
-  // });
+    // Return to the Question Page
+    fireEvent.click(getByTestId(NEXT_BUTTON));
+    await queryByTestId(QUESTION_PAGE);
+  });
 
   it("navigates correctly between different questions and Results Page", async () => {
     const { container, getByTestId, getByText, queryByTestId } = render(

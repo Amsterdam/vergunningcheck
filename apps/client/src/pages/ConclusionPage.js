@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { isMobile } from "react-device-detect";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+import { Paragraph, Heading, ShareButton, TopTaskLink } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
@@ -106,6 +106,8 @@ const ConclusionPage = ({ topic, checker }) => {
       </Helmet>
       <Form onSubmit={handleSubmit} data-testid={CONCLUSION_PAGE}>
         <PrintOnly>
+          <ShareButton />
+          <TopTaskLink />
           <Paragraph fontSize={12}>{window.location.href}</Paragraph>
 
           <Heading forwardedAs="h2" styleAs="h1">
