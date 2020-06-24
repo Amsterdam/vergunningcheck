@@ -12,3 +12,4 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           build-script: "build"
+          strip-hash: "\\.(\\w{8})\\.chunk\\.js$"
