@@ -11,13 +11,12 @@ on:
     branches: "*"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  install:
     strategy:
       matrix:
-        node-version: [13.x, 14.x]
-
+        node-version: [14]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -25,29 +24,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run build --if-present
+
+  build:
+    strategy:
+      matrix:
+        # node-version: [14]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - run: npm run build
+
+  coverage:
+    strategy:
+      matrix:
+        # node-version: [14]
+        platform: [ubuntu-latest]
+    steps:
       - run: npm run test:coverage
       - uses: codecov/codecov-action@v1
-# name: Codecov
-
-# on: [pull_request]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Generate coverage report
-#         run: npm run test:coverage
-#       - uses: codecov/codecov-action@v1
-#  with:
-#    token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-#    file: ./coverage.xml # optional
-#    flags: unittests # optional
-#    name: codecov-umbrella # optional
-#    fail_ci_if_error: true # optional (default = false)
-
-#- name: Codecov
-#  uses: codecov/codecov-action@v1.0.7
-
