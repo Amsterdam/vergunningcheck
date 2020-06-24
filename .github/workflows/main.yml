@@ -18,5 +18,5 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           files: '["apps/client/*.js", "apps/client/static/*"]'
-          with-same: "false"
+          with-same: "true"
           build-assets: "false"
