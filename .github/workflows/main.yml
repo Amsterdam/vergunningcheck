@@ -12,11 +12,11 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install dependencies
-        run: cd apps/client && npm install
+        run: cd apps/client && npm install && npm run build
       - name: Calculating size
         uses: chrysanthos/simple-asset-size-reporter@1.0.2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          files: '["apps/client/*.js", "public/css/*.css"]'
+          files: '["apps/client/*.js", "apps/client/static/*"]'
           with-same: "false"
-          build-assets: "cd apps/client && npm run build"
+          build-assets: "false"
