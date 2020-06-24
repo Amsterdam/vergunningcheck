@@ -107,11 +107,12 @@ class Checker {
   }
 
   /**
-   * XXX
-   * @param {*} onlyMissing
+   * Find all data needs
+   *
+   * @param {object} autofillMap - the resolver map to determine if we can autofill
+   * @param {boolean} onlyMissing - return all or only missing dataneeds
    */
   getAutofillDataNeeds(autofillMap, onlyMissing = false) {
-    // find one unfullfilled data need
     return this._getAllQuestions()
       .filter(({ autofill }) => !!autofill)
       .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
@@ -120,14 +121,16 @@ class Checker {
   }
 
   /**
-   * XXX
+   * Util function to deduplicate a question list, sort it by prio
+   *
+   * @param {Question[]} questions - the list of questions
    */
-  dedupeAndSort(questions) {
+  dedupeAndSortQuestions(questions) {
     return questions.filter(uniqueFilter).sort((a, b) => a.prio - b.prio);
   }
 
   /**
-   * XXX
+   * Get all decisions for the conclusion of every permit.
    */
   _getConclusionDecisions() {
     return this.permits
@@ -136,12 +139,12 @@ class Checker {
   }
 
   /**
-   * XXX
+   * Get all questions for the permits in this checker
    */
   _getAllQuestions() {
     // for every unanswsered decision in 'conclusion' we push it's questions on
     // our accumulator, but only if it's not already on the stack
-    return this.dedupeAndSort(
+    return this.dedupeAndSortQuestions(
       this._getConclusionDecisions().flatMap((decision) =>
         decision.getQuestions()
       )
@@ -149,7 +152,7 @@ class Checker {
   }
 
   /**
-   * XXX
+   * Get unanswered questions that we need before the checker is final
    */
   _getUpcomingQuestions() {
     // take only questions/inputs into concideration that are autofilled or answered by the user
@@ -159,7 +162,7 @@ class Checker {
 
     // for every unanswsered decision in 'conclusion' we push it's questions on
     // our accumulator, but only if it's not already on the stack
-    return this.dedupeAndSort(
+    return this.dedupeAndSortQuestions(
       this._getConclusionDecisions()
         .filter((d) => d.getMatchingRules(inputReducer).length === 0)
         .flatMap((decision) => decision.getQuestions())

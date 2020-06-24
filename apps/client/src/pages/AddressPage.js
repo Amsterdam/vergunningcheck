@@ -11,7 +11,7 @@ import withAutofillData from "../hoc/withAutofillData";
 import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
-import AddressData from "../components/AddressData";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import AddressLine from "../components/AddressLine";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
@@ -56,7 +56,10 @@ const AddressPage = ({ topic, autofillData }) => {
           informatie gevonden:
         </Paragraph>
 
-        <AddressData displayZoningPlans={!useSTTR} address={address} />
+        <RegisterLookupSummary
+          displayZoningPlans={!useSTTR}
+          address={address}
+        />
 
         <Paragraph>
           {useSTTR

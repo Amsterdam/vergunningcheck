@@ -11,7 +11,7 @@ import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import { Helmet } from "react-helmet";
-import AddressData from "../components/AddressData";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import AddressLine from "../components/AddressLine";
 
 const ResultsPage = ({ topic, checker, autofillData }) => {
@@ -45,7 +45,7 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
           Vergunningcheck uitgevoerd voor: <AddressLine address={address} />
         </Paragraph>
 
-        <AddressData displayZoningPlans={false} address={address} />
+        <RegisterLookupSummary address={address} />
 
         <Paragraph strong>
           Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel
