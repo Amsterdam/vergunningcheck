@@ -39,6 +39,7 @@ jobs:
       matrix:
         # node-version: [14]
         platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - run: npm run test:coverage
       - uses: codecov/codecov-action@v1
