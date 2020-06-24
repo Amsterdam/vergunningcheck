@@ -19,4 +19,4 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           files: '["apps/client/*.js", "public/css/*.css"]'
           with-same: "false"
-          build-assets: "npm run build"
+          build-assets: "cd apps/client && npm run build"
