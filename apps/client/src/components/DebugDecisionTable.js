@@ -1,10 +1,12 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import HiddenDebugInfo from "./HiddenDebugInfo";
+import { SessionContext } from "../context";
 
 export default ({ checker }) => {
+  const sessionContext = useContext(SessionContext);
   const decisionId = "dummy";
-  window.checker = checker;
+
   if (!checker || !checker.permits) return <></>;
   const relevantOpenQuestions = checker._getUpcomingQuestions();
   return (
@@ -24,7 +26,7 @@ export default ({ checker }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[checker.stack.length - 1] === q
+                    checker.stack[sessionContext.questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}

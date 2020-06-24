@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Icon } from "@datapunt/asc-ui";
+import { Icon, themeSpacing } from "@datapunt/asc-ui";
 
 export const NavStyle = styled.div`
   display: flex;
   height: 64px;
-  margin: 20px 0 40px;
+  margin: ${themeSpacing(5, 0, 10)};
   background-color: rgba(241, 241, 241, 1);
   justify-content: space-between;
   align-items: center;
@@ -25,5 +25,5 @@ export const IconContainer = styled.span`
 `;
 
 export const IconLeft = styled(Icon)`
-  margin-right: 4px;
+  margin-right: ${themeSpacing(1)};
 `;

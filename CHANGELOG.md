@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](2020-06-23)
+
+#### :rocket: Enhancement
+
+- [#82](https://github.com/Amsterdam/vergunningcheck/pull/82) Implement helmet fixes and configure nginx accordingly ([@afjlambert](https://github.com/afjlambert))
+- Fixed the intro image scale
+- Hotfix: added usabilla url to nginx config
+
+#### :house: Internal
+
+- [#160](https://github.com/Amsterdam/vergunningcheck/pull/160) Implement fixes for new headers ([@afjlambert](https://github.com/afjlambert))
+
 ### [1.0.0](https://github.com/Amsterdam/vergunningcheck/tree/v1.0.0) (2020-05-06)
 
 ### Features
