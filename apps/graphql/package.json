@@ -52,6 +52,9 @@
     "rewire": "^5.0.0"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
     "testPathIgnorePatterns": [
       "config/test"
     ]
