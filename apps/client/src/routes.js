@@ -6,7 +6,7 @@ import IntroPage from "./pages/IntroPage";
 import LocationPage from "./pages/LocationPage";
 import AddressPage from "./pages/AddressPage";
 import QuestionsPage from "./pages/QuestionsPage";
-import ConclusionPage from "./pages/ConclusionPage";
+// import ConclusionPage from "./pages/ConclusionPage";
 import ResultsPage from "./pages/ResultsPage";
 
 // System pages
@@ -66,11 +66,11 @@ export const routeConfig = [
     path: "/:slug/uitkomsten",
     component: ResultsPage,
   },
-  {
-    name: "conclusion",
-    path: "/:slug/conclusie",
-    component: ConclusionPage,
-  },
+  // {
+  //   name: "conclusion",
+  //   path: "/:slug/conclusie",
+  //   component: ConclusionPage,
+  // },
   {
     name: "notfound",
     path: "*",
