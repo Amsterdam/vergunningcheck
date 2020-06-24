@@ -42,15 +42,19 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
         data-testid={RESULTS_PAGE}
       >
         <Paragraph>
-          Vergunningcheck uitgevoerd voor: <AddressLine address={address} />
+          Vergunningcheck uitgevoerd voor: <AddressLine address={address} />.
+        </Paragraph>
+
+        <Paragraph>
+          Deze informatie hebben we gebruikt bij het invullen van de check:
         </Paragraph>
 
         <AddressData displayZoningPlans={false} address={address} />
 
-        <Paragraph strong>
-          Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel
-          wijzigen. Als u een wijziging doet moet u misschien enkele vragen
-          opnieuw beantwoorden.
+        <Paragraph>
+          Deze antwoorden heeft u gegeven bij het invullen van de
+          vergunningcheck. U kunt deze antwoorden nog wijzigen. Als u een
+          wijziging doet moet u misschien enkele vragen opnieuw beantwoorden.
         </Paragraph>
 
         <QuestionAnswerTable
