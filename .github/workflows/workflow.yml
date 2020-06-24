@@ -1,0 +1,14 @@
+steps:
+- uses: actions/checkout@feature/codecov-github-action
+- uses: codecov/codecov-action@v1
+
+#  with:
+#    token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+#    file: ./coverage.xml # optional
+#    flags: unittests # optional
+#    name: codecov-umbrella # optional
+#    fail_ci_if_error: true # optional (default = false)
+
+#- name: Codecov
+#  uses: codecov/codecov-action@v1.0.7
+
