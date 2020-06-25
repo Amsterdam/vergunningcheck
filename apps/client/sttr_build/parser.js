@@ -1,5 +1,9 @@
-const parser = require("fast-xml-parser");
+const path = require("path");
+const url = require("url");
 const get = require("lodash.get");
+const visit = require("unist-util-visit");
+const remark = require("remark");
+const parser = require("fast-xml-parser");
 
 /**
  * Convert field-types from 'feel'-spec to our representation.
@@ -15,6 +19,26 @@ const get = require("lodash.get");
 function feelTypeMap(feel) {
   return feel.replace("feel:", "");
 }
+
+const imgPlugin = (_options) => (tree) => {
+  return visit(
+    tree,
+    // only visit p tags that contain an img element
+    (node) =>
+      node.type === "paragraph" &&
+      node.children.some((n) => n.type === "image"),
+    (node) => {
+      node.children.forEach((child) => {
+        if (child.type === "image") {
+          child.url = path.basename(url.parse(child.url).pathname);
+        }
+      });
+    }
+  );
+};
+
+const processMarkdown = (content) =>
+  remark().use(imgPlugin).processSync(content).toString();
 
 /**
  * A parser for STTR-XML files
@@ -61,9 +85,11 @@ class Parser {
       const table = xmlDecision["dmn:decisionTable"][0];
       const rules = table["dmn:rule"].reduce((acc, rule) => {
         const outputEntry = get(rule, "dmn:outputEntry.0");
-        const description = get(
-          outputEntry,
-          "dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting"
+        const description = processMarkdown(
+          get(
+            outputEntry,
+            "dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting"
+          )
         );
         acc.push({
           inputs: rule["dmn:inputEntry"].reduce((inputEntry, ie) => {
@@ -130,11 +156,11 @@ class Parser {
           text: question["uitv:vraagTekst"],
           description:
             desc && desc.length && desc[0]["content:toelichting"]
-              ? desc[0]["content:toelichting"].trim()
+              ? processMarkdown(desc[0]["content:toelichting"])
               : undefined,
           longDescription:
             desc && desc.length && desc[0]["content:langeToelichting"]
-              ? desc[0]["content:langeToelichting"].trim()
+              ? processMarkdown(desc[0]["content:langeToelichting"])
               : undefined,
         };
 

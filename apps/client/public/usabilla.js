@@ -131,15 +131,16 @@ window.lightningjs ||
     k.modules = c;
   })({});
 
-// This custom logic is copied directly from amsterdam.nl
-window.usabilla_live = navigator.userAgent.match(
-  /Android|BlackBerry|BB10|iPhone|iPad|iPod|Opera Mini|IEMobile/i
-)
-  ? lightningjs.require(
-      "usabilla_live",
-      "https://w.usabilla.com/71f77b6278cf.js"
-    ) // MOBILE BUTTON OMGEVINGSWET
-  : lightningjs.require(
-      "usabilla_live",
-      "https://w.usabilla.com/820a17662379.js"
-    ); // DESKTOP BUTTON OMGEVINGSWET
+(function (d, n) {
+  const s = d.createElement("script");
+  // This custom logic is copied directly from amsterdam.nl
+  s.src =
+    "https://w.usabilla.com/" +
+    (n.userAgent.match(
+      /Android|BlackBerry|BB10|iPhone|iPad|iPod|Opera Mini|IEMobile/i
+    )
+      ? "71f77b6278cf"
+      : "820a17662379") +
+    ".js";
+  d.head.appendChild(s);
+})(document, navigator);
