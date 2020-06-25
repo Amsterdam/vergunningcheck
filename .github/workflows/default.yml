@@ -15,11 +15,26 @@ jobs:
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2-beta
+        with:
+          fetch-depth: 0
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run test:coverage
-      - uses: codecov/codecov-action@v1
+      - name: Running code coverage
+        uses: codecov/codecov-action@v1
+
+      - name: Install dependencies
+        run: npm install
+      - name: Calculating size
+        uses: chrysanthos/simple-asset-size-reporter@1.0.2
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          files: '["apps/client/build/static/js/*.js", "apps/client/build/static/css/*.css"]'
+          with-same: "false"
+          build-assets: "npm run build:size-report"
