@@ -33,6 +33,7 @@ jobs:
 
       # Start running the calculation of the bundle size action
       - name: Calculating size
+        if: ${{ github.event_name == 'pull_request'}} # Only calculate size on PRs
         uses: chrysanthos/simple-asset-size-reporter@1.0.2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
