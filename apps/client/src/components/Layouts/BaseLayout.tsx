@@ -5,7 +5,7 @@ import { Container, ContentContainer, Content } from "./BaseLayoutStyles";
 
 import { CheckerContext } from "../../context";
 import Header from "../Header";
-// import Footer from "../Footer";
+import Footer from "../Footer";
 import HiddenDebugInfo from "../HiddenDebugInfo";
 
 export interface BaseLayoutProps {
@@ -57,7 +57,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           </HiddenDebugInfo>
         )}
       </ContentContainer>
-      {/* <Footer /> */}
+      <Footer />
       <div
         // comment to see app version and environment
         // eslint-disable-next-line react/no-danger
