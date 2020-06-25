@@ -39,6 +39,7 @@
     "start": "react-scripts start",
     "start:prod": "npm run build; serve -s build/",
     "build": "react-scripts build",
+    "build:size-report": "npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
     "sttr": "node sttr_build && prettier public/sttr --write",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
