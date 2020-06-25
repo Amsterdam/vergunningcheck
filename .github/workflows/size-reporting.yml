@@ -17,6 +17,6 @@ jobs:
         uses: chrysanthos/simple-asset-size-reporter@1.0.2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          files: '["apps/client/src/*", "apps/client/src/atoms/*", "apps/client/src/components/*", "apps/client/src/hoc/*", "apps/client/src/intros/*", "apps/client/src/pages/*", "apps/client/src/static/*"]'
+          files: '["apps/client/build/static/js/*.js"]'
           with-same: "false"
           build-assets: "npm run build"
