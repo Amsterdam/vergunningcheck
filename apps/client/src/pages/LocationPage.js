@@ -21,6 +21,7 @@ const LocationPage = ({ topic }) => {
   const checkerContext = useContext(CheckerContext);
   const history = useHistory();
   const [address, setAddress] = useState(null);
+  const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearError, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
@@ -35,7 +36,7 @@ const LocationPage = ({ topic }) => {
     return () => unregister("suffix");
   }, [address, clearError, errorMessage, register, unregister]);
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
     if (address) {
       trackEvent({
         category: "postcode-input",
@@ -57,7 +58,11 @@ const LocationPage = ({ topic }) => {
         answers, // Either null or filled with given answers
         questionIndex: 0, // Reset to 0 to start with the first question
       });
-      history.push(geturl(routes.address, { slug }));
+      if (focus) {
+        document.activeElement.blur();
+      } else {
+        history.push(geturl(routes.address, { slug }));
+      }
     }
   };
 
@@ -82,6 +87,7 @@ const LocationPage = ({ topic }) => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           setAddress={setAddress}
+          setFocus={setFocus}
           setErrorMessage={setErrorMessage}
           postalCode={sessionAddress.postalCode}
           houseNumberFull={sessionAddress.houseNumberFull}

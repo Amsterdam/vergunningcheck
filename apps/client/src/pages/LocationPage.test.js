@@ -150,6 +150,7 @@ describe("<LocationPage />", () => {
       fireEvent.change(houseNumberInput, {
         target: { value: userInput.houseNumberFull },
       });
+      fireEvent.blur(houseNumberInput);
     });
 
     // After mocked data has been loaded, we expect the location to be found
