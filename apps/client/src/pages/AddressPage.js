@@ -60,9 +60,12 @@ const AddressPage = ({ topic, autofillData }) => {
 
         <Paragraph>
           {useSTTR
-            ? topic.text?.addressPage
-            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
+            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
         </Paragraph>
+        {topic.text?.addressPage && (
+          <Paragraph>{topic.text?.addressPage}</Paragraph>
+        )}
 
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
