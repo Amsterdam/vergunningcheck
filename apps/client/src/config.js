@@ -51,12 +51,13 @@ const topics = [
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
+    sttrFile: "kozijn.json",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen of vervangen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
-    intro: "KozijnenIntro",
+    intro: "KozijnenIntroSTTR/index",
   },
   {
     slug: "kozijn-test",
