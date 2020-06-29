@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 import withChecker from "./withChecker";
-import Context from "../context";
+import { CheckerContext } from "../context";
 import { routes, geturl, autofillRoutes } from "../routes";
 import { isEmptyObject } from "../utils";
 import { autofillResolvers, autofillMap } from "../autofill";
@@ -11,7 +11,8 @@ import { autofillResolvers, autofillMap } from "../autofill";
 const withAutofillData = (Component) =>
   withChecker((props) => {
     const history = useHistory();
-    const { autofillData } = useContext(Context);
+    const { autofillData } = useContext(CheckerContext);
+
     const { topic, checker } = props;
 
     // Only autofill data if this topic is an STTR-flow
@@ -39,7 +40,7 @@ const withAutofillData = (Component) =>
       // olo flow
       if (!autofillData.address) {
         console.warn("No address found, redirecting to location page");
-        return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
+        return <Redirect to={geturl(routes.location, topic)} />;
       }
     }
 

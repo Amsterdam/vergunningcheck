@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
-import { geturl, routes, getslug, autofillRoutes } from "../routes";
 import { Helmet } from "react-helmet";
 
+import { autofillMap } from "../autofill";
+import { geturl, routes, getslug, autofillRoutes } from "../routes";
 import withAutofillData from "../hoc/withAutofillData";
+
+import { SessionContext } from "../context";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
-import { autofillMap } from "../autofill";
 
 const QuestionsPage = ({ topic, checker }) => {
+  const sessionContext = useContext(SessionContext);
   const params = useParams();
   const history = useHistory();
+  const { question: questionSlug } = params;
   const [question, setQuestion] = useState(
     checker.stack[checker.stack.length - 1]
   );
 
-  const { question: questionSlug } = params;
   const currSlug = getslug(question.text);
 
-  // Update URL based on question text
+  // Update URL when it's not set (first question) and when URL differs from the current question
   if (!questionSlug || questionSlug !== currSlug) {
     return (
       <Redirect
@@ -30,7 +33,6 @@ const QuestionsPage = ({ topic, checker }) => {
       />
     );
   }
-  const { slug } = topic;
 
   const needContactPermits = () =>
     checker.permits.find((permit) => {
@@ -42,32 +44,76 @@ const QuestionsPage = ({ topic, checker }) => {
     });
 
   const onQuestionNext = (value) => {
-    if (question.options) {
+    // Provide the user answers to the `sttr-checker`
+    if (question.options && value !== undefined) {
       question.setAnswer(value);
-    } else {
+    }
+    if (!question.options && value) {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
 
-    if (needContactPermits()) {
-      history.push(geturl(routes.conclusion, { slug }));
-    } else {
-      const next = checker.next();
+    // Store all answers in the session context
+    sessionContext.setSessionData({
+      answers: checker.getQuestionAnswers(),
+    });
 
+    // Load next question
+    const next = checker.next();
+
+    // Go directly to the Conclusion Page, without passing the Results Page
+    // Only if the `sttr-checker` is the final question
+    if (needContactPermits() && !next) {
+      // Undo the next() with previous(), because we were already at the final question
+      checker.previous();
+
+      // Change the URL to the Conclusion Page
+      history.push(geturl(routes.conclusion, topic));
+    } else {
+      // Load the next question or go to the Result Page
       if (next) {
+        // Store the new questionIndex in the session
+        sessionContext.setSessionData({
+          questionIndex: sessionContext.questionIndex + 1,
+        });
+
         // Go to Next question
         setQuestion(next);
+
+        // Change the URL to the new question
+        history.push(
+          geturl(routes.questions, {
+            slug: topic.slug,
+            question: getslug(next.text),
+          })
+        );
       } else {
-        // Go to Result page
-        history.push(geturl(routes.results, { slug }));
+        // Go to Result page if there is no new quesion
+        history.push(geturl(routes.results, topic));
       }
     }
   };
 
   const onQuestionPrev = () => {
-    if (checker?.stack?.length > 1) {
+    // Load the previous question or go to the Location Page
+    if (checker.stack.length > 1) {
       const prev = checker.previous();
+
+      // Store the new questionIndex in the session
+      sessionContext.setSessionData({
+        questionIndex: sessionContext.questionIndex - 1,
+      });
+
+      // Go to Prev question
       setQuestion(prev);
+
+      // Change the URL to the new question
+      history.push(
+        geturl(routes.questions, {
+          slug: topic.slug,
+          question: getslug(prev.text),
+        })
+      );
     } else {
       goBack();
     }
@@ -79,10 +125,10 @@ const QuestionsPage = ({ topic, checker }) => {
 
     // See if any questions have data needs
     if (dataNeed) {
-      history.push(geturl(autofillRoutes[dataNeed], { slug }));
+      history.push(geturl(autofillRoutes[dataNeed], topic));
     } else {
       // No data needs, send back to intro
-      history.push(geturl(routes.intro, { slug }));
+      history.push(geturl(routes.intro, topic));
     }
   };
 

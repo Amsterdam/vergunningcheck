@@ -7,6 +7,7 @@ import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withConclusion from "../hoc/withConclusion";
 
+// import { SessionContext } from "../context";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
@@ -24,10 +25,18 @@ const outcomes = {
 };
 
 const ConclusionPage = ({ topic, checker, autofillData }) => {
+  // const sessionContext = useContext(SessionContext);
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
   const { address } = autofillData;
+
+  //   const {
+  //     streetName,
+  //     houseNumberFull,
+  //     postalCode,
+  //     residence,
+  //   } = sessionContext.address[slug];
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits

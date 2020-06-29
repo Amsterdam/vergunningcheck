@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
+import { Helmet } from "react-helmet";
 
 import withConclusion from "../hoc/withConclusion";
+import { SessionContext } from "../context";
 import { routes, geturl, getslug } from "../routes";
 import { RESULTS_PAGE } from "../utils/test-ids";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -10,21 +12,27 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
 import AddressData from "../components/AddressData";
 import AddressLine from "../components/AddressLine";
 
 const ResultsPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
+  const sessionContext = useContext(SessionContext);
   const { slug } = topic;
   const { address } = autofillData;
 
-  const onGoToQuestion = (index) => {
-    const q = checker.rewindTo(index);
+  const onGoToQuestion = (questionIndex) => {
+    // Go to the specific question in the stack
+    const question = checker.rewindTo(questionIndex);
+    sessionContext.setSessionData({
+      questionIndex,
+    });
+
+    // Change the URL to the new question
     history.push(
       geturl(routes.questions, {
         slug,
-        question: getslug(q.text),
+        question: getslug(question.text),
       })
     );
   };

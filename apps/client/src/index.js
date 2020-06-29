@@ -9,7 +9,7 @@ import dotenv from "dotenv-flow";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 
-import Context, { defaultValues } from "./context";
+import { SessionProvider } from "./context";
 import { matomo } from "./config";
 import apolloClient from "./apolloClient";
 import * as serviceWorker from "./serviceWorker";
@@ -31,7 +31,7 @@ const AppGlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <Context.Provider value={defaultValues}>
+  <SessionProvider>
     <ApolloProvider client={apolloClient}>
       <ThemeProvider>
         <GlobalStyle />
@@ -41,7 +41,7 @@ ReactDOM.render(
         </MatomoProvider>
       </ThemeProvider>
     </ApolloProvider>
-  </Context.Provider>,
+  </SessionProvider>,
 
   document.getElementById("root")
 );

@@ -72,7 +72,7 @@
     "batch-promises": "0.0.3",
     "faker": "^4.1.0",
     "fast-xml-parser": "^3.17.4",
-    "history": "^4.10.1",
+    "history": "^5.0.0",
     "lint-staged": "^10.2.9",
     "lodash.get": "^4.4.2",
     "mkdirp": "^1.0.4",
@@ -89,7 +89,7 @@
     ],
     "*.{js,ts,tsx}": [
       "prettier --write",
-      "eslint --fix",
+      "eslint --fix --max-warnings=0",
       "react-scripts test --bail --findRelatedTests --watchAll=false"
     ]
   },

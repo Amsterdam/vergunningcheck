@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
-import Context from "../context";
 import withTopic from "./withTopic";
+
+import { SessionContext, CheckerContext } from "../context";
+import getChecker from "../sttr_client";
 import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
-import getChecker from "../sttr_client";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
 
 const withChecker = (Component) =>
   withTopic((props) => {
-    const context = useContext(Context);
-    const [checker, setChecker] = useState(context.checker);
+    const sessionContext = useContext(SessionContext);
+    const checkerContext = useContext(CheckerContext);
+    const [checker, setChecker] = useState(checkerContext.checker);
     const [error, setError] = useState();
-    const {
-      topic: { sttrFile },
-    } = props;
+    const { topic } = props;
+    const { sttrFile } = topic;
 
     if (sttrFile) {
       useEffect(() => {
@@ -26,7 +27,15 @@ const withChecker = (Component) =>
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
-              context.checker = newChecker;
+              if (sessionContext.answers) {
+                checker.setQuestionAnswers(sessionContext.answers);
+                // In case of reload, rewind to the current question
+                checker.rewindTo(sessionContext.questionIndex);
+                // } else {
+                //   checker.next();
+              }
+              // Store the entire `sttr-checker` in React Context
+              checkerContext.checker = checker;
               setChecker(newChecker);
             })
             .catch((e) => {

@@ -75,6 +75,18 @@ describe("Checker recursive", () => {
       "Maybe you should move?"
     );
   });
+
+  test("initialization after refresh", () => {
+    let questions = getQuestions();
+    const checker = getChecker(questions);
+    let question = checker.next();
+    question.setAnswer(true);
+
+    let data = checker.getQuestionAnswers(questions);
+    let freshChecker = getChecker(questions);
+    freshChecker.setQuestionAnswers(data);
+    expect(freshChecker.rewindTo(0).answer).toBe(true);
+  });
 });
 
 describe("Checker internals", () => {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { CheckerContext } from "../context";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 
-import Context from "../context";
 import { topics } from "../config";
 import { geturl, routes } from "../routes";
 
@@ -9,7 +9,7 @@ import RedirectPage from "../pages/RedirectPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const withTopic = (Component) => (props) => {
-  const context = useContext(Context);
+  const checkerContext = useContext(CheckerContext);
   const { slug } = useParams();
   const { search } = useLocation();
 
@@ -17,9 +17,9 @@ const withTopic = (Component) => (props) => {
   const params = new URLSearchParams(search);
 
   if (params.get("resetChecker")) {
-    context.checker = null;
-    console.log("Reset checker and redirect to intro page");
-    return <Redirect to={geturl(routes.intro, { slug: topic.slug })} />;
+    checkerContext.checker = null;
+    console.warn("Resseting checker, redirecting to intro page");
+    return <Redirect to={geturl(routes.intro, topic)} />;
   }
 
   if (topic) {
@@ -28,11 +28,11 @@ const withTopic = (Component) => (props) => {
       return <RedirectPage topic={topic} />;
     }
 
-    context.topic = topic;
+    checkerContext.topic = topic;
     return <Component {...props} topic={topic} />;
   }
 
-  return <NotFoundPage {...props} />;
+  return <NotFoundPage />;
 };
 
 export default withTopic;
