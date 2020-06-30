@@ -17,6 +17,7 @@ export default ({ title, src, ...rest }) => {
     <Figure loaded={loaded} errored={errored}>
       <Img
         {...rest}
+        src={src}
         loaded={loaded}
         errored={errored}
         onLoad={() => setLoaded(true)}

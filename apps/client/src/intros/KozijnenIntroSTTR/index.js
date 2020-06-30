@@ -1,9 +1,8 @@
-import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { List, OrderedList, ListItem } from "../../atoms";
+import React from "react";
+
+import { List, ListItem, OrderedList } from "../../atoms";
 import ListInsideOrderedList from "../../components/ListInsideOrderedList";
-import illustration from "./illustration.png";
-import { Pair, Illustration } from "./StyledKozijnenIntroSTTR";
 
 export default () => (
   <>
@@ -28,42 +27,37 @@ export default () => (
         aanvraag doet.
       </ListItem>
       <ListItem>Wij vertellen u waar u verder op moet letten.</ListItem>
-      <ListItem>
-        Vervolgens krijgt u informatie over het gebouw te zien.
-      </ListItem>
     </OrderedList>
 
     <Paragraph gutterBottom={8}>
-      U kunt de vergunningcheck kozijn gebruiken voor:
+      De vergunningcheck kozijn gaat over kozijnen, deuren, ramen en panelen.
+      Voor deze situaties kunt u de vergunningcheck gebruiken:
     </Paragraph>
     <List variant="bullet">
-      <ListItem>het plaatsen van kozijnen</ListItem>
-      <ListItem>het veranderen, vergroten of verkleinen van kozijnen</ListItem>
-      <ListItem>het plaatsen van een paneel in een kozijn</ListItem>
       <ListItem>
-        het veranderen, vergroten of verkleinen van een paneel in een kozijn
+        U gaat een nieuw kozijn, deur, raam of paneel plaatsen.
+      </ListItem>
+      <ListItem>
+        U gaat een bestaand kozijn, deur, raam of paneel vervangen of
+        veranderen.
       </ListItem>
     </List>
-
-    <Pair>
-      <Illustration
-        src={illustration}
-        alt="Afbeelding met voorbeelden van verschillende kozijnen"
-      />
-      <OrderedList>
-        <ListItem>Kozijn</ListItem>
-        <ListItem>Raam, vast glas</ListItem>
-        <ListItem>Deur</ListItem>
-        <ListItem>Paneel</ListItem>
-      </OrderedList>
-    </Pair>
 
     <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
+    <Paragraph gutterBottom={8}>
+      Voor deze situaties kunt u de vergunningcheck niet gebruiken:
+    </Paragraph>
     <List variant="bullet">
+      <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Gaat u de woning splitsen of samenvoegen? Neem contact op met de
-        gemeente op telefoonnummer <a href="tel:14020">14 020</a>.
+        Het deel van het gebouw waarin het kozijn komt, is zonder vergunning
+        gebouwd.
       </ListItem>
     </List>
+    <Paragraph gutterBottom={8}>
+      Hebt u een vraag of twijfelt u? Bel dan de gemeente op{" "}
+      <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
+      tot 18.00 uur.
+    </Paragraph>
   </>
 );

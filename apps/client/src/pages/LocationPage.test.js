@@ -1,20 +1,20 @@
-import React from "react";
-import { createMemoryHistory } from "history";
 import "@testing-library/jest-dom/extend-expect";
 
-import Router from "../components/Router";
-import { render, fireEvent, cleanup, screen, act } from "../utils/test-utils";
-import Context from "../__mocks__/context";
+import { createMemoryHistory } from "history";
+import React from "react";
 
+import Context from "../__mocks__/context";
+import Router from "../components/Router";
 import { topics } from "../config";
-import LocationPage from "./LocationPage";
-import mocks from "./__mocks__/address";
 import {
-  LOCATION_FOUND,
   ADDRESS_PAGE,
+  LOCATION_FOUND,
   NEXT_BUTTON,
   PREV_BUTTON,
 } from "../utils/test-ids";
+import { act, cleanup, fireEvent, render, screen } from "../utils/test-utils";
+import mocks from "./__mocks__/address";
+import LocationPage from "./LocationPage";
 
 afterEach(cleanup);
 
@@ -150,6 +150,7 @@ describe("<LocationPage />", () => {
       fireEvent.change(houseNumberInput, {
         target: { value: userInput.houseNumberFull },
       });
+      fireEvent.blur(houseNumberInput);
     });
 
     // After mocked data has been loaded, we expect the location to be found

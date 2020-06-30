@@ -32,8 +32,12 @@
       "pre-commit": "lerna run --concurrency 1 --stream precommit"
     }
   },
-  "dependencies": {
-    "@sentry/apm": "^5.18.1",
-    "@sentry/browser": "^5.18.1"
+  "changelog": {
+    "labels": {
+      "feature": "New Features",
+      "bug": "Bug fixes",
+      "chore": "Chores",
+      "docs": "Documentation changes"
+    }
   }
 }
