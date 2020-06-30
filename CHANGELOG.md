@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.3.2](2020-06-30)
+## [1.3.3](2020-06-30)
 #### New Features
 * [Kozijncheck to production](https://github.com/Amsterdam/vergunningcheck/commit/9564e90403ee06fc79bcb6e633ac8307b050632e) 
 * [#152](https://github.com/Amsterdam/vergunningcheck/pull/152) Updated Matomo track events + refactor ([@svenjens](https://github.com/svenjens))
