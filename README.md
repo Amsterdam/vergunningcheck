@@ -23,6 +23,7 @@ Two commands make this easy for you. Run `npm run prepare-release`, commit chang
 ## Publish a release
 
 We use lerna-changelog to generate our changes we can use in [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
+Make sure you are logged in by npm command line. If not, log in with `npm adduser`.
 
 Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
