@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CheckerContext } from "../context";
+import { CheckerContext, SessionContext } from "../context";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 import { topics } from "../config";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -7,6 +7,7 @@ import { geturl, routes } from "../routes";
 
 const withTopic = (Component) => () => {
   const checkerContext = useContext(CheckerContext);
+  const sessionContext = useContext(SessionContext);
   const { slug } = useParams();
   const { search } = useLocation();
 
@@ -15,6 +16,7 @@ const withTopic = (Component) => () => {
 
   if (params.get("resetChecker")) {
     checkerContext.checker = null;
+    sessionContext.answers = null;
     // TODO: Remove this warning?
     console.warn("Resseting checker, redirecting to intro page");
     return <Redirect to={geturl(routes.intro, { slug: topic.slug })} />;
