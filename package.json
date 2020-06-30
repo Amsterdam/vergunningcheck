@@ -31,5 +31,8 @@
     "hooks": {
       "pre-commit": "lerna run --concurrency 1 --stream precommit"
     }
+  },
+  "dependencies": {
+    "@sentry/apm": "^5.18.1"
   }
 }

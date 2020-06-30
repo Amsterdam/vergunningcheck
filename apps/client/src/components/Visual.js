@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { Figure, Img, Caption } from "./VisualStyles";
+
+import { Caption, Figure, Img } from "./VisualStyles";
 
 export default ({ title, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
+  const setError = () => {
+    setLoaded(true);
+    setErrored(true);
+    // Sentry.captureException(err);
+  };
   return (
     <Figure loaded={loaded} errored={errored}>
       <Img
@@ -11,10 +17,7 @@ export default ({ title, ...rest }) => {
         loaded={loaded}
         errored={errored}
         onLoad={() => setLoaded(true)}
-        onError={() => {
-          setLoaded(true);
-          setErrored(true);
-        }}
+        onError={setError}
       />
       {title && !errored && (
         <figcaption>
