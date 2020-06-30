@@ -1,29 +1,30 @@
-export const isProduction =
+type Topic = {
+  slug: string;
+  sttrFile?: string;
+  redirectToOlo?: boolean;
+  intro?: string;
+  text: Text;
+};
+
+type Text = {
+  heading: string;
+  locationIntro?: string;
+  addressPage?: string;
+};
+
+export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
-const matomoSiteId = {
-  production: 29,
-  acceptence: 37,
-};
-
-export const getMatomoSiteId = (isProduction) =>
-  isProduction ? matomoSiteId.production : matomoSiteId.acceptence;
-
-export const matomo = {
-  urlBase: "https://analytics.data.amsterdam.nl/",
-  siteId: getMatomoSiteId(isProduction),
-};
-
-const oloHome =
+const oloHome: string =
   process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
-export const OLO = {
+export const OLO: object = {
   home: oloHome,
   intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
-const topics = [
+const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
     redirectToOlo: true,
@@ -64,12 +65,13 @@ const topics = [
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
+    sttrFile: "kozijn.json",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen of vervangen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
-    intro: "KozijnenIntro",
+    intro: "KozijnenIntroSTTR/index",
   },
   {
     slug: "kozijn-test",
@@ -126,4 +128,4 @@ export { topics };
 // We need a place for general text as well
 // I know this is not the best place
 // For now I will place it here
-export const requiredFieldText = "Dit veld is verplicht.";
+export const requiredFieldText: string = "Dit veld is verplicht.";

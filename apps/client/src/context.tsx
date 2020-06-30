@@ -1,8 +1,8 @@
 import React, { useReducer, useEffect, createContext } from "react";
 
-const session = JSON.parse(sessionStorage.getItem("sessionData"));
-const SessionContext = createContext();
-const CheckerContext = createContext("checker");
+const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
+const SessionContext = createContext({});
+const CheckerContext = createContext({});
 const defaultCheckerValue = {
   checker: null,
   topic: null,
@@ -16,7 +16,7 @@ const defaultSessionValues = session
       questionIndex: 0,
     };
 
-const reducer = (data, newData) => {
+const reducer = (data: object, newData: object) => {
   if (newData === null) {
     // Clear the current sessionData if incoming data is empty (instead of setting an empty item).
     sessionStorage.removeItem("sessionData");
@@ -25,7 +25,7 @@ const reducer = (data, newData) => {
   return { ...data, ...newData };
 };
 
-function SessionProvider(props) {
+function SessionProvider(props: { children: React.ReactNode }) {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
   const [data, setSessionData] = useReducer(reducer, defaultSessionValues);

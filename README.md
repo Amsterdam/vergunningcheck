@@ -1,4 +1,4 @@
-# Vergunningcheck
+# Vergunningcheck [![codecov](https://codecov.io/gh/Amsterdam/vergunningcheck/branch/develop/graph/badge.svg)](https://codecov.io/gh/Amsterdam/vergunningcheck) [![Github CI](https://github.com/Amsterdam/vergunningcheck/workflows/Github%20CI/badge.svg)](https://github.com/Amsterdam/vergunningcheck/actions)
 
 This application allows residents of Amsterdam to easily see if they need a permit for a construction activity for their specific building. For various activities, like installing a window or solar panels on the roof or extending the house, we ask a number of questions about the location and plans. This leads to an outcome, either license-free or licensing obligation, where it is clear which questions lead to this conclusion. This tool can therefore be used to see how in a specific location you could carry out a construction activity without the requirement of a permit.
 
@@ -26,18 +26,20 @@ We use lerna-changelog to automatically generate our [CHANGELOG.md](CHANGELOG.md
 
 Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
+- Run `npm run version` and use the automatically generated changelog to update [CHANGELOG.md](CHANGELOG.md)
+- Commit the changelog.
 - Run `npm run publish`
 - Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
 - After the merge the relase will be deployed to acceptance, manually verify the changes
 - Approve the release to production in Jenkins
 - Back-merge `master` into `release` into `develop` in case there were changes, run `npm run back-merge`
-- Consider prepearing the next release in the section above
+- Consider [preparing](#prepare-a-release) the next release in the section above
 
 ## Tech stack
 
 - React
 - React Hook Form
-- GraphQL + Apollo
+- GraphQL + ApolloClient
 - Lerna
 - [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/)
 - [Matomo Tracker React](https://github.com/Amsterdam/matomo-tracker)
