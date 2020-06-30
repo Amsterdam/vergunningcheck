@@ -76,6 +76,7 @@ const LocationFinder = (props) => {
 
   const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
+    props.setFocus(false);
   };
 
   return (
@@ -88,6 +89,7 @@ const LocationFinder = (props) => {
           error={postalCodeError}
           required={true}
           onBlur={handleBlur}
+          onFocus={() => props.setFocus(true)}
           onChange={(e) => {
             setPostalCode(e.target.value);
           }}
@@ -104,6 +106,7 @@ const LocationFinder = (props) => {
           error={houseNumberError}
           required={true}
           onBlur={handleBlur}
+          onFocus={() => props.setFocus(true)}
           onChange={(e) => {
             setHouseNumberFull(e.target.value);
             setHouseNumber(e.target.value);
