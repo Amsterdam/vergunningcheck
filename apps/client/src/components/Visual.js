@@ -1,15 +1,18 @@
+import * as Sentry from "@sentry/browser";
 import React, { useState } from "react";
 
 import { Caption, Figure, Img } from "./VisualStyles";
 
-export default ({ title, ...rest }) => {
+export default ({ title, src, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
+
   const setError = () => {
     setLoaded(true);
     setErrored(true);
-    // Sentry.captureException(err);
+    Sentry.captureException(`${src} niet gevonden`);
   };
+
   return (
     <Figure loaded={loaded} errored={errored}>
       <Img
