@@ -31,5 +31,13 @@
     "hooks": {
       "pre-commit": "lerna run --concurrency 1 --stream precommit"
     }
+  },
+  "changelog": {
+    "labels": {
+      "feature": "New Features",
+      "bug": "Bug fixes",
+      "chore": "Chores",
+      "docs": "Documentation changes"
+    }
   }
 }

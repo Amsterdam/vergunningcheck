@@ -41,7 +41,7 @@
         }
       },
       "decisions": {
-        "_9f8154da-6553-499e-95ab-cbd26cee67e5": {
+        "_f1515fea-3a06-4c25-886e-d9e49d103472": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -74,7 +74,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_9f8154da-6553-499e-95ab-cbd26cee67e5"],
+          "requiredDecisions": ["#_f1515fea-3a06-4c25-886e-d9e49d103472"],
           "decisionTable": {
             "rules": [
               {
@@ -85,7 +85,7 @@
               {
                 "inputs": ["\"no hit\""],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }
@@ -152,7 +152,7 @@
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
-          "description": "test\n\n![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, achterkant en zijkant. Gaat u aan meer dan 1 kant een kozijn plaatsen? Doe voor iedere kant een vergunningcheck.",
+          "description": "![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, achterkant en zijkant. Gaat u aan meer dan 1 kant een kozijn plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
@@ -252,7 +252,7 @@
         }
       },
       "decisions": {
-        "_f1b02e38-e3bc-45e5-9111-a1fbfbd0d1ee": {
+        "_dc66ce10-24a3-47de-8ec4-ee723a9ce41d": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -284,7 +284,7 @@
             ]
           }
         },
-        "_c242fa8f-f74f-46f5-af8d-47ef200c1662": {
+        "_e4de972a-8e05-495c-a861-0f1172edda87": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -319,7 +319,7 @@
             ]
           }
         },
-        "_9fa2383a-1831-4874-9862-9bc5b1c91ed9": {
+        "_a8ee73ef-491e-49b5-8bf0-fee1e94c2616": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -388,7 +388,7 @@
             ]
           }
         },
-        "_78b1aa4a-b4dc-4169-a072-fc9002a89b59": {
+        "_d1d47bbf-8169-4266-8947-a66075e6cd0b": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -466,7 +466,7 @@
             ]
           }
         },
-        "_2d6bd9cf-a4d8-4f63-9d33-ceb1e7b3d3b7": {
+        "_976238c7-6831-44fb-a079-14dbfc7ceffd": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -544,7 +544,7 @@
             ]
           }
         },
-        "_a71bbdbd-b2c6-4924-b32b-306a1c06b558": {
+        "_15cddf2d-7242-4e93-91b4-8b7cc0ae712c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -631,7 +631,7 @@
             ]
           }
         },
-        "_7d3b85d4-8fa2-49f3-92e8-ee32ec0424a6": {
+        "_1c820b79-8734-4ac8-bf9e-d636dc373d45": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -718,7 +718,7 @@
             ]
           }
         },
-        "_26fd4282-5dc0-4e68-9eb8-fbee8faa2720": {
+        "_8d6058aa-8c26-423d-b907-2316dd2238de": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -823,7 +823,7 @@
             ]
           }
         },
-        "_026f01e3-413b-4eb5-8d58-c63bff2e2e2c": {
+        "_6ac9a44a-4456-49d2-88c4-3bb575cacbfc": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -930,15 +930,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_f1b02e38-e3bc-45e5-9111-a1fbfbd0d1ee",
-            "#_c242fa8f-f74f-46f5-af8d-47ef200c1662",
-            "#_9fa2383a-1831-4874-9862-9bc5b1c91ed9",
-            "#_78b1aa4a-b4dc-4169-a072-fc9002a89b59",
-            "#_2d6bd9cf-a4d8-4f63-9d33-ceb1e7b3d3b7",
-            "#_a71bbdbd-b2c6-4924-b32b-306a1c06b558",
-            "#_7d3b85d4-8fa2-49f3-92e8-ee32ec0424a6",
-            "#_26fd4282-5dc0-4e68-9eb8-fbee8faa2720",
-            "#_026f01e3-413b-4eb5-8d58-c63bff2e2e2c"
+            "#_dc66ce10-24a3-47de-8ec4-ee723a9ce41d",
+            "#_e4de972a-8e05-495c-a861-0f1172edda87",
+            "#_a8ee73ef-491e-49b5-8bf0-fee1e94c2616",
+            "#_d1d47bbf-8169-4266-8947-a66075e6cd0b",
+            "#_976238c7-6831-44fb-a079-14dbfc7ceffd",
+            "#_15cddf2d-7242-4e93-91b4-8b7cc0ae712c",
+            "#_1c820b79-8734-4ac8-bf9e-d636dc373d45",
+            "#_8d6058aa-8c26-423d-b907-2316dd2238de",
+            "#_6ac9a44a-4456-49d2-88c4-3bb575cacbfc"
           ],
           "decisionTable": {
             "rules": [
