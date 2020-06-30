@@ -4,15 +4,14 @@ import { render } from "@testing-library/react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { ThemeProvider } from "@datapunt/asc-ui";
-
-import Context, { defaultValues } from "../context";
-import { matomo } from "../config";
+import { SessionProvider } from "../context";
+import { matomo } from "../MatomoConfig";
 import { getTestClient } from "../apolloClient";
 
 dotenv.config();
 
 const AllTheProviders = ({ children, mocks }) => (
-  <Context.Provider value={defaultValues}>
+  <SessionProvider>
     <ApolloProvider client={getTestClient(mocks ? mocks : [])}>
       <ThemeProvider>
         <MatomoProvider value={createInstance(matomo)}>
@@ -20,7 +19,7 @@ const AllTheProviders = ({ children, mocks }) => (
         </MatomoProvider>
       </ThemeProvider>
     </ApolloProvider>
-  </Context.Provider>
+  </SessionProvider>
 );
 
 const customRender = (ui, options, mocks) => {

@@ -1,19 +1,6 @@
 export const isProduction =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
-const matomoSiteId = {
-  production: 29,
-  acceptence: 37,
-};
-
-export const getMatomoSiteId = (isProduction) =>
-  isProduction ? matomoSiteId.production : matomoSiteId.acceptence;
-
-export const matomo = {
-  urlBase: "https://analytics.data.amsterdam.nl/",
-  siteId: getMatomoSiteId(isProduction),
-};
-
 const oloHome =
   process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
@@ -64,12 +51,13 @@ const topics = [
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
+    sttrFile: "kozijn.json",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen of vervangen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
-    intro: "KozijnenIntro",
+    intro: "KozijnenIntroSTTR/index",
   },
   {
     slug: "kozijn-test",

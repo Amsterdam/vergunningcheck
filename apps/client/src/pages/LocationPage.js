@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import withTopic from "../hoc/withTopic";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 
-import Context from "../context";
+import { SessionContext, CheckerContext } from "../context";
 import { geturl, routes } from "../routes";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
@@ -17,12 +17,14 @@ import Error from "../components/Error";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
-  const context = useContext(Context);
+  const sessionContext = useContext(SessionContext);
+  const checkerContext = useContext(CheckerContext);
   const history = useHistory();
   const [address, setAddress] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
   const { clearError, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
+  const sessionAddress = sessionContext.address?.[slug] || {};
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -40,7 +42,21 @@ const LocationPage = ({ topic }) => {
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
       });
-      context.address = address;
+
+      // Load given answers from sessionContext
+      let answers = sessionContext.answers;
+
+      // Reset the checker and answers when the address is changed
+      if (answers && sessionAddress.id !== address.id) {
+        checkerContext.checker = null;
+        answers = null;
+      }
+
+      sessionContext.setSessionData({
+        address: { ...sessionContext.address, [slug]: address },
+        answers, // Either null or filled with given answers
+        questionIndex: 0, // Reset to 0 to start with the first question
+      });
       history.push(geturl(routes.address, { slug }));
     }
   };
@@ -67,14 +83,16 @@ const LocationPage = ({ topic }) => {
         <LocationFinder
           setAddress={setAddress}
           setErrorMessage={setErrorMessage}
-          postalCode={context.address?.postalCode}
-          houseNumberFull={context.address?.houseNumberFull}
-          houseNumber={context.address?.houseNumberFull}
+          postalCode={sessionAddress.postalCode}
+          houseNumberFull={sessionAddress.houseNumberFull}
+          houseNumber={sessionAddress.houseNumberFull}
           errors={errors}
         />
         <Nav
           onGoToPrev={() => {
-            context.address = address;
+            sessionContext.setSessionData({
+              address: { ...sessionContext.address, [slug]: address },
+            });
             history.push(geturl(routes.intro, { slug }));
           }}
           showPrev
