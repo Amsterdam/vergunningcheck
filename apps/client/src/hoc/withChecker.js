@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import withTopic from "./withTopic";
+import React, { useContext, useEffect, useState } from "react";
 
-import { SessionContext, CheckerContext } from "../context";
-import getChecker from "../sttr_client";
-import LoadingPage from "../pages/LoadingPage";
+import { CheckerContext, SessionContext } from "../context";
 import ErrorPage from "../pages/ErrorPage";
+import LoadingPage from "../pages/LoadingPage";
+import getChecker from "../sttr_client";
+import withTopic from "./withTopic";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
@@ -28,14 +28,12 @@ const withChecker = (Component) =>
             .then((json) => {
               const newChecker = getChecker(json);
               if (sessionContext.answers) {
-                checker.setQuestionAnswers(sessionContext.answers);
+                newChecker.setQuestionAnswers(sessionContext.answers);
                 // In case of reload, rewind to the current question
-                checker.rewindTo(sessionContext.questionIndex);
-                // } else {
-                //   checker.next();
+                newChecker.rewindTo(sessionContext.questionIndex);
               }
               // Store the entire `sttr-checker` in React Context
-              checkerContext.checker = checker;
+              checkerContext.checker = newChecker;
               setChecker(newChecker);
             })
             .catch((e) => {
@@ -53,7 +51,7 @@ const withChecker = (Component) =>
     } else if (checker) {
       return <Component checker={checker} {...props} />;
     } else {
-      return <LoadingPage {...props} />;
+      return <LoadingPage />;
     }
   });
 

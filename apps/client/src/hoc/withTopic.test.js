@@ -1,6 +1,7 @@
 import React from "react";
-import { render } from "../utils/test-utils";
 import ReactRouter from "react-router-dom";
+
+import { render } from "../utils/test-utils";
 import withTopic from "./withTopic";
 
 // ReactRouter.useParams = () => {

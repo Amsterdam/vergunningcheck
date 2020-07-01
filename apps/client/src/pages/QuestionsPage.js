@@ -1,15 +1,14 @@
-import React, { useState, useContext } from "react";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 
-import { autofillMap } from "../autofill";
-import { geturl, routes, getslug, autofillRoutes } from "../routes";
-import withAutofillData from "../hoc/withAutofillData";
-
-import { SessionContext } from "../context";
-import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
+import Layout from "../components/Layouts/DefaultLayout";
 import Question, { booleanOptions } from "../components/Question";
+import { getDataNeedResultPageOrPrevious } from "../config/autofill";
+import { SessionContext } from "../context";
+import withAutofillData from "../hoc/withAutofillData";
+import { autofillRoutes, getslug, geturl, routes } from "../routes";
 
 const QuestionsPage = ({ topic, checker }) => {
   const sessionContext = useContext(SessionContext);
@@ -120,16 +119,13 @@ const QuestionsPage = ({ topic, checker }) => {
   };
 
   const goBack = () => {
-    // Go back to Location page if needed or intropage otherwise
-    const dataNeed = checker.getAutofillDataNeeds(autofillMap).shift();
-
-    // See if any questions have data needs
-    if (dataNeed) {
-      history.push(geturl(autofillRoutes[dataNeed], topic));
-    } else {
-      // No data needs, send back to intro
-      history.push(geturl(routes.intro, topic));
-    }
+    const route = getDataNeedResultPageOrPrevious(
+      checker,
+      autofillRoutes,
+      routes
+    );
+    const url = geturl(route, topic);
+    history.push(url);
   };
 
   return (

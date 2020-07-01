@@ -1,19 +1,20 @@
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
+import "@datapunt/asc-assets/static/fonts/fonts.css";
 
+import { ApolloProvider } from "@apollo/react-hooks";
+import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
+import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import dotenv from "dotenv-flow";
 import React from "react";
 import ReactDOM from "react-dom";
-import { ApolloProvider } from "@apollo/react-hooks";
 import { createGlobalStyle } from "styled-components";
-import dotenv from "dotenv-flow";
-import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
-import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
-import { matomo } from "./MatomoConfig";
-import { SessionProvider } from "./context";
+
 import apolloClient from "./apolloClient";
-import * as serviceWorker from "./serviceWorker";
 import Router from "./components/Router";
-import "@datapunt/asc-assets/static/fonts/fonts.css";
+import { matomo } from "./config/matomo";
+import { SessionProvider } from "./context";
+import * as serviceWorker from "./serviceWorker";
 
 dotenv.config();
 

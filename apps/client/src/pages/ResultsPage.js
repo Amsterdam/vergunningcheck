@@ -1,25 +1,25 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import withConclusion from "../hoc/withConclusion";
-import { SessionContext } from "../context";
-import { routes, geturl, getslug } from "../routes";
-import { RESULTS_PAGE } from "../utils/test-ids";
-import Layout from "../components/Layouts/DefaultLayout";
-import Form from "../components/Form";
-import Nav from "../components/Nav";
-import QuestionAnswerTable from "../components/QuestionAnswerTable";
-import DebugDecisionTable from "../components/DebugDecisionTable";
 import AddressData from "../components/AddressData";
 import AddressLine from "../components/AddressLine";
+import DebugDecisionTable from "../components/DebugDecisionTable";
+import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
+import Nav from "../components/Nav";
+import QuestionAnswerTable from "../components/QuestionAnswerTable";
+import { SessionContext } from "../context";
+import withConclusion from "../hoc/withConclusion";
+import { getslug, geturl, routes } from "../routes";
+import { RESULTS_PAGE } from "../utils/test-ids";
 
 const ResultsPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const sessionContext = useContext(SessionContext);
   const { slug } = topic;
-  const { address } = autofillData;
+  const address = sessionContext.address[slug];
 
   const onGoToQuestion = (questionIndex) => {
     // Go to the specific question in the stack

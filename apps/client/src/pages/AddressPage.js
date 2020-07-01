@@ -1,18 +1,18 @@
+import { Paragraph } from "@datapunt/asc-ui";
+import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { Paragraph } from "@datapunt/asc-ui";
 
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import { ADDRESS_PAGE } from "../utils/test-ids";
-import withAutofillData from "../hoc/withAutofillData";
-import Layout from "../components/Layouts/DefaultLayout";
-import Form from "../components/Form";
-import Nav from "../components/Nav";
 import AddressData from "../components/AddressData";
 import AddressLine from "../components/AddressLine";
+import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
+import Nav from "../components/Nav";
+import { OLO } from "../config";
+import withAutofillData from "../hoc/withAutofillData";
+import { geturl, routes } from "../routes";
+import { ADDRESS_PAGE } from "../utils/test-ids";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed

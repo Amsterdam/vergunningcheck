@@ -43,8 +43,6 @@ const LocationPage = ({ topic }) => {
         name: address.postalCode.substring(0, 4),
       });
 
-      checkerContext.autofillData.address = address;
-
       // Load given answers from sessionContext
       let answers = sessionContext.answers;
 
@@ -53,6 +51,8 @@ const LocationPage = ({ topic }) => {
         checkerContext.checker = null;
         answers = null;
       }
+
+      checkerContext.autofillData.address = address;
 
       sessionContext.setSessionData({
         address: { ...sessionContext.address, [slug]: address },
@@ -100,7 +100,7 @@ const LocationPage = ({ topic }) => {
             sessionContext.setSessionData({
               address: { ...sessionContext.address, [slug]: address },
             });
-            history.push(geturl(routes.intro, { slug }));
+            history.push(geturl(routes.intro, topic));
           }}
           showPrev
           showNext

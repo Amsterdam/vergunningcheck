@@ -1,7 +1,8 @@
-import React from "react";
 import { Paragraph } from "@datapunt/asc-ui";
-import { getRestrictionByTypeName } from "../utils";
+import React from "react";
+
 import { List, ListItem } from "../atoms";
+import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import { StyledAddressData } from "./AddressDataStyles";
 
@@ -15,14 +16,14 @@ const AddressData = ({ address, displayZoningPlans }) => {
 
   return (
     <StyledAddressData>
-      <Paragraph strong style={{ marginBottom: "0px" }}>
+      <Paragraph strong style={{ marginBottom: 0 }}>
         Monument:
       </Paragraph>
       <Paragraph>
         {monument ? `Ja. ${monument}.` : "Nee. Geen monument."}
       </Paragraph>
 
-      <Paragraph strong style={{ marginBottom: "0px" }}>
+      <Paragraph strong style={{ marginBottom: 0 }}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
       <Paragraph style={{ marginBottom: 0 }}>
@@ -33,7 +34,7 @@ const AddressData = ({ address, displayZoningPlans }) => {
 
       {displayZoningPlans && (
         <>
-          <Paragraph strong style={{ marginBottom: "0px" }}>
+          <Paragraph strong style={{ marginBottom: 0 }}>
             Bestemmingsplannen:
           </Paragraph>
           {zoningPlanNames.length === 0 ? (

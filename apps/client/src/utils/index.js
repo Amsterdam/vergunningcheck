@@ -1,14 +1,10 @@
-import isNumber from "lodash.isnumber";
 import isBoolean from "lodash.isboolean";
+import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
 // Simple checks
 export const isSimpleType = (val) =>
   isBoolean(val) || isString(val) || isNumber(val);
-
-export const isEmptyObject = (obj) =>
-  // Check the constructor too because Object.keys(new Date()).length === 0;
-  Object.keys(obj).length === 0 && obj.constructor === Object;
 
 // Array checks
 export const collectionOfSimpleTypes = (col) =>

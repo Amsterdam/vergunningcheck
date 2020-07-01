@@ -1,23 +1,22 @@
-import React, { Fragment } from "react";
-import { useHistory } from "react-router-dom";
-import { isMobile } from "react-device-detect";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import { geturl, routes } from "../routes";
+import React, { Fragment } from "react";
+import { isMobile } from "react-device-detect";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
+
+import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import AddressData from "../components/AddressData";
+import DebugDecisionTable from "../components/DebugDecisionTable";
+import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
+import Markdown from "../components/Markdown";
+import Nav from "../components/Nav";
+import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import { OLO } from "../config";
 import withConclusion from "../hoc/withConclusion";
-
-// import { SessionContext } from "../context";
+import { geturl, routes } from "../routes";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
-import Layout from "../components/Layouts/DefaultLayout";
-import AddressData from "../components/AddressData";
-import Markdown from "../components/Markdown";
-import Form from "../components/Form";
-import QuestionAnswerTable from "../components/QuestionAnswerTable";
-import Nav from "../components/Nav";
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
-import { PrintButton, PrintOnly, Alert, ComponentWrapper } from "../atoms";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
@@ -26,18 +25,10 @@ const outcomes = {
 };
 
 const ConclusionPage = ({ topic, checker, autofillData }) => {
-  // const sessionContext = useContext(SessionContext);
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
   const { address } = autofillData;
-
-  //   const {
-  //     streetName,
-  //     houseNumberFull,
-  //     postalCode,
-  //     residence,
-  //   } = sessionContext.address[slug];
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
@@ -111,7 +102,9 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
         <PrintOnly>
           <Paragraph fontSize={12}>{window.location.href}</Paragraph>
 
-          <Heading forwardedAs="h2">Datum</Heading>
+          <Heading forwardedAs="h2" styleAs="h1">
+            Datum
+          </Heading>
           <Paragraph>{currentDateTime} uur.</Paragraph>
           {address && (
             <>

@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { SessionContext, CheckerContext } from "../context";
+
+import { CheckerContext, SessionContext } from "../context";
 
 export default ({
   children,
@@ -21,7 +22,7 @@ export default ({
   }
 
   if (addressMock) {
-    checkerContext.autofillData.address = {
+    sessionContext.address = {
       [topicMock.slug]: addressMock,
     };
   }
