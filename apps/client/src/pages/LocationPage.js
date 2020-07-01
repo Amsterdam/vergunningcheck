@@ -1,28 +1,30 @@
-import React, { useContext, useState, useEffect } from "react";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import withTopic from "../hoc/withTopic";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
 
-import Context from "../context";
-import { geturl, routes } from "../routes";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
-
-import Layout from "../components/Layouts/DefaultLayout";
-import Form from "../components/Form";
-import Nav from "../components/Nav";
-import LocationFinder from "../components/Location/LocationFinder";
-import { Helmet } from "react-helmet";
 import Error from "../components/Error";
+import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
+import LocationFinder from "../components/Location/LocationFinder";
+import Nav from "../components/Nav";
+import { CheckerContext, SessionContext } from "../context";
+import withTopic from "../hoc/withTopic";
+import { geturl, routes } from "../routes";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
-  const context = useContext(Context);
+  const sessionContext = useContext(SessionContext);
+  const checkerContext = useContext(CheckerContext);
   const history = useHistory();
   const [address, setAddress] = useState(null);
+  const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearError, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
+  const sessionAddress = sessionContext.address?.[slug] || {};
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -33,7 +35,7 @@ const LocationPage = ({ topic }) => {
     return () => unregister("suffix");
   }, [address, clearError, errorMessage, register, unregister]);
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
     if (address) {
       trackEvent({
         category: "postcode-input",
@@ -41,8 +43,27 @@ const LocationPage = ({ topic }) => {
         name: address.postalCode.substring(0, 4),
       });
 
-      context.autofillData.address = address;
-      history.push(geturl(routes.address, topic));
+      // Load given answers from sessionContext
+      let answers = sessionContext.answers;
+
+      // Reset the checker and answers when the address is changed
+      if (answers && sessionAddress.id !== address.id) {
+        checkerContext.checker = null;
+        answers = null;
+      }
+
+      checkerContext.autofillData.address = address;
+
+      sessionContext.setSessionData({
+        address: { ...sessionContext.address, [slug]: address },
+        answers, // Either null or filled with given answers
+        questionIndex: 0, // Reset to 0 to start with the first question
+      });
+      if (focus) {
+        document.activeElement.blur();
+      } else {
+        history.push(geturl(routes.address, topic));
+      }
     }
   };
 
@@ -67,16 +88,19 @@ const LocationPage = ({ topic }) => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           setAddress={setAddress}
+          setFocus={setFocus}
           setErrorMessage={setErrorMessage}
-          postalCode={context.autofillData.address?.postalCode}
-          houseNumberFull={context.autofillData.address?.houseNumberFull}
-          houseNumber={context.autofillData.address?.houseNumberFull}
+          postalCode={sessionAddress.postalCode}
+          houseNumberFull={sessionAddress.houseNumberFull}
+          houseNumber={sessionAddress.houseNumberFull}
           errors={errors}
         />
         <Nav
           onGoToPrev={() => {
-            context.address = address;
-            history.push(geturl(routes.intro, { slug }));
+            sessionContext.setSessionData({
+              address: { ...sessionContext.address, [slug]: address },
+            });
+            history.push(geturl(routes.intro, topic));
           }}
           showPrev
           showNext

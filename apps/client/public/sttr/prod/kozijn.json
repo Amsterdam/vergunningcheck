@@ -20,7 +20,7 @@
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm wordt anders.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -28,19 +28,7 @@
           "type": "string",
           "id": "uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
           "prio": 20,
-          "uuid": "kozijn rijksmonument"
-        },
-        {
-          "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wijzigt doordat u het materiaal verandert.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
-          "options": [
-            "Ja, ik ga onderhoud doen",
-            "Nee, ik ga geen onderhoud doen"
-          ],
-          "type": "string",
-          "id": "uitv__41b859be-53b8-46b9-975f-80217808e89f",
-          "prio": 30,
-          "uuid": "kozijn gemeentelijk monument"
+          "uuid": "kozijn monument onderhoud"
         }
       ],
       "inputs": {
@@ -51,14 +39,10 @@
         "input__6341d4bf-6629-4305-b077-79dd11cd5b7c": {
           "href": "#uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
           "type": "string"
-        },
-        "input__41b859be-53b8-46b9-975f-80217808e89f": {
-          "href": "#uitv__41b859be-53b8-46b9-975f-80217808e89f",
-          "type": "string"
         }
       },
       "decisions": {
-        "_72bcfc11-4d13-45e2-a746-bf73bbd9c02a": {
+        "_2ee1c1e5-f18b-438c-86b4-49efd663556c": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -73,37 +57,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Gemeentelijk monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"Geen monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_c04b6da4-7f52-4800-a748-7608b2257a54": {
-          "requiredInputs": [
-            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
-            "#input__41b859be-53b8-46b9-975f-80217808e89f"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
                 "inputs": [
                   "\"Gemeentelijk monument\"",
                   "\"Nee, ik ga geen onderhoud doen\""
                 ],
                 "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"Rijksmonument\"", "-"],
-                "output": "\"no hit\""
               },
               {
                 "inputs": ["\"Geen monument\"", "-"],
@@ -117,26 +75,18 @@
           }
         },
         "dummy": {
-          "requiredDecisions": [
-            "#_72bcfc11-4d13-45e2-a746-bf73bbd9c02a",
-            "#_c04b6da4-7f52-4800-a748-7608b2257a54"
-          ],
+          "requiredDecisions": ["#_2ee1c1e5-f18b-438c-86b4-49efd663556c"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-"],
+                "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\"",
-                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": ["\"no hit\"", "\"no hit\""],
+                "inputs": ["\"no hit\""],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }
@@ -162,7 +112,7 @@
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm wordt anders.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -170,11 +120,11 @@
           "type": "string",
           "id": "uitv__85ce6b97-ff25-455c-b279-b93ebe01e972",
           "prio": 20,
-          "uuid": "kozijn rijksmonument"
+          "uuid": "kozijn monument onderhoud"
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wijzigt doordat u het materiaal verandert.\n*   U vervangt enkel glas door dubbel glas en daardoor verandert de dikte.\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -182,7 +132,7 @@
           "type": "string",
           "id": "uitv__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
           "prio": 30,
-          "uuid": "kozijn gemeentelijk monument"
+          "uuid": "kozijn geen monument"
         },
         {
           "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
@@ -305,7 +255,7 @@
         }
       },
       "decisions": {
-        "_795e68cc-72bb-4327-8e56-e87dcd8d4362": {
+        "_0f42c8dd-6073-49c7-ac62-7b7217916111": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -320,28 +270,6 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Gemeentelijk monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"Geen monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_a0e44cb6-c200-498c-b899-6747d0933dd2": {
-          "requiredInputs": [
-            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
-            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
                 "inputs": [
                   "\"Gemeentelijk monument\"",
                   "\"Nee, ik ga geen onderhoud doen\""
@@ -349,10 +277,6 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Rijksmonument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
                 "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
@@ -363,7 +287,7 @@
             ]
           }
         },
-        "_f3e1c2ca-4961-431f-bc17-ddb0f2596cb2": {
+        "_93739ffd-bd76-4e15-b06d-0a72ccb565da": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -398,7 +322,7 @@
             ]
           }
         },
-        "_926b7250-cebe-49de-9ccd-cb022f6c99d0": {
+        "_962b4dee-fc8c-43dc-aeb9-741985b6d5a5": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -467,7 +391,7 @@
             ]
           }
         },
-        "_f912110b-b510-4a88-b254-4b261a834ed9": {
+        "_2aac0af0-cc9b-4dd8-a9f3-1ae4d170522c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -545,7 +469,7 @@
             ]
           }
         },
-        "_77882ce6-8e9a-4373-8f34-42fc4ac36f17": {
+        "_290006b3-f7ec-4d4f-9067-932ef523179e": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -623,7 +547,7 @@
             ]
           }
         },
-        "_35b07c52-e6f8-485d-bcda-3a42ef7848e9": {
+        "_115810ff-8787-4508-9491-a0829264e5a3": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -710,7 +634,7 @@
             ]
           }
         },
-        "_d96c597e-70b3-494e-b8a2-37bb58616c54": {
+        "_bd1896b8-b2b9-4d1a-a6a6-99c25aa3beac": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -797,7 +721,7 @@
             ]
           }
         },
-        "_560af9d5-fd73-4ba2-b821-023fcf4a477f": {
+        "_19d69a47-832c-4dc5-be55-c2f174b26746": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -902,7 +826,7 @@
             ]
           }
         },
-        "_338aafda-b7d1-4ba9-adf5-0fe46f0dd403": {
+        "_587c8b27-62c5-44e3-82d8-f7e18afab061": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -1009,16 +933,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_795e68cc-72bb-4327-8e56-e87dcd8d4362",
-            "#_a0e44cb6-c200-498c-b899-6747d0933dd2",
-            "#_f3e1c2ca-4961-431f-bc17-ddb0f2596cb2",
-            "#_926b7250-cebe-49de-9ccd-cb022f6c99d0",
-            "#_f912110b-b510-4a88-b254-4b261a834ed9",
-            "#_77882ce6-8e9a-4373-8f34-42fc4ac36f17",
-            "#_35b07c52-e6f8-485d-bcda-3a42ef7848e9",
-            "#_d96c597e-70b3-494e-b8a2-37bb58616c54",
-            "#_560af9d5-fd73-4ba2-b821-023fcf4a477f",
-            "#_338aafda-b7d1-4ba9-adf5-0fe46f0dd403"
+            "#_0f42c8dd-6073-49c7-ac62-7b7217916111",
+            "#_93739ffd-bd76-4e15-b06d-0a72ccb565da",
+            "#_962b4dee-fc8c-43dc-aeb9-741985b6d5a5",
+            "#_2aac0af0-cc9b-4dd8-a9f3-1ae4d170522c",
+            "#_290006b3-f7ec-4d4f-9067-932ef523179e",
+            "#_115810ff-8787-4508-9491-a0829264e5a3",
+            "#_bd1896b8-b2b9-4d1a-a6a6-99c25aa3beac",
+            "#_19d69a47-832c-4dc5-be55-c2f174b26746",
+            "#_587c8b27-62c5-44e3-82d8-f7e18afab061"
           ],
           "decisionTable": {
             "rules": [
@@ -1032,7 +955,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1040,23 +962,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
                   "-",
                   "\"NeemContactOpMet\"",
                   "-",
@@ -1074,9 +979,23 @@
                 "inputs": [
                   "-",
                   "-",
-                  "-",
                   "\"Vergunningplicht\"",
                   "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
                   "-",
                   "-",
                   "-",
@@ -1096,7 +1015,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1112,7 +1030,6 @@
                   "\"Vergunningplicht\"",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1120,23 +1037,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -1159,7 +1059,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "\"Vergunningplicht\"",
                   "-"
                 ],
@@ -1168,7 +1067,6 @@
               },
               {
                 "inputs": [
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -1184,7 +1082,6 @@
               },
               {
                 "inputs": [
-                  "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",

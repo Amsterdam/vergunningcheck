@@ -1,21 +1,22 @@
-import React, { Fragment } from "react";
-import { useHistory } from "react-router-dom";
-import { isMobile } from "react-device-detect";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import withConclusion from "../hoc/withConclusion";
+import React, { Fragment } from "react";
+import { isMobile } from "react-device-detect";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import { CONCLUSION_PAGE } from "../utils/test-ids";
+import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import AddressData from "../components/AddressData";
+import DebugDecisionTable from "../components/DebugDecisionTable";
+import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
-import Form from "../components/Form";
-import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
-import { PrintButton, PrintOnly, Alert, ComponentWrapper } from "../atoms";
+import QuestionAnswerTable from "../components/QuestionAnswerTable";
+import { OLO } from "../config";
+import withConclusion from "../hoc/withConclusion";
+import { geturl, routes } from "../routes";
+import { CONCLUSION_PAGE } from "../utils/test-ids";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
@@ -113,11 +114,25 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
                 <br />
                 {address.postalCode} {address.residence}
               </Paragraph>
+              <Paragraph>
+                Deze informatie hebben we gebruikt bij het invullen van de
+                check:
+              </Paragraph>
+
+              <AddressData displayZoningPlans={false} address={address} />
             </>
           )}
+
+          <Heading forwardedAs="h2">Uw antwoorden</Heading>
+          <Paragraph>
+            Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
+          </Paragraph>
+          <QuestionAnswerTable checker={checker} />
         </PrintOnly>
 
-        <Heading forwardedAs="h1">Conclusie</Heading>
+        <Heading forwardedAs="h1" styleAs="h2">
+          Conclusie
+        </Heading>
         <Paragraph>
           Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
           van toepassing is.
@@ -141,16 +156,6 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
             </PrintButton>
           </ComponentWrapper>
         )}
-
-        <PrintOnly>
-          <Heading forwardedAs="h2" styleAs="h1">
-            Uw antwoorden
-          </Heading>
-          <Paragraph>
-            Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
-          </Paragraph>
-          <QuestionAnswerTable checker={checker} />
-        </PrintOnly>
 
         <PrintOnly style={{ marginTop: 20 }} withBorder avoidPageBreak>
           <Alert

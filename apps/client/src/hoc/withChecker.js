@@ -1,21 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import Context from "../context";
-import withTopic from "./withTopic";
-import LoadingPage from "../pages/LoadingPage";
+import React, { useContext, useEffect, useState } from "react";
+
+import { CheckerContext, SessionContext } from "../context";
 import ErrorPage from "../pages/ErrorPage";
+import LoadingPage from "../pages/LoadingPage";
 import getChecker from "../sttr_client";
+import withTopic from "./withTopic";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
 
 const withChecker = (Component) =>
   withTopic((props) => {
-    const context = useContext(Context);
-    const [checker, setChecker] = useState(context.checker);
+    const sessionContext = useContext(SessionContext);
+    const checkerContext = useContext(CheckerContext);
+    const [checker, setChecker] = useState(checkerContext.checker);
     const [error, setError] = useState();
-    const {
-      topic: { sttrFile },
-    } = props;
+    const { topic } = props;
+    const { sttrFile } = topic;
 
     if (sttrFile) {
       useEffect(() => {
@@ -26,7 +27,13 @@ const withChecker = (Component) =>
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
-              context.checker = newChecker;
+              if (sessionContext.answers) {
+                newChecker.setQuestionAnswers(sessionContext.answers);
+                // In case of reload, rewind to the current question
+                newChecker.rewindTo(sessionContext.questionIndex);
+              }
+              // Store the entire `sttr-checker` in React Context
+              checkerContext.checker = newChecker;
               setChecker(newChecker);
             })
             .catch((e) => {
@@ -44,7 +51,7 @@ const withChecker = (Component) =>
     } else if (checker) {
       return <Component checker={checker} {...props} />;
     } else {
-      return <LoadingPage {...props} />;
+      return <LoadingPage />;
     }
   });
 

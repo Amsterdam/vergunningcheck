@@ -1,7 +1,8 @@
-import React from "react";
 import { Paragraph } from "@datapunt/asc-ui";
-import { getRestrictionByTypeName } from "../utils";
+import React from "react";
+
 import { List, ListItem } from "../atoms";
+import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import { StyledRegisterLookupSummary } from "./RegisterLookupSummaryStyles";
 
@@ -19,13 +20,13 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
         Monument:
       </Paragraph>
       <Paragraph>
-        {monument ? `Ja. ${monument}` : "Nee. Geen monument"}
+        {monument ? `Ja. ${monument}.` : "Nee. Geen monument."}
       </Paragraph>
 
       <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
-      <Paragraph>
+      <Paragraph style={{ marginBottom: 0 }}>
         {cityScape
           ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
           : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Paragraph, Select, TextField, ErrorMessage } from "@datapunt/asc-ui";
+import { ErrorMessage, Paragraph, Select, TextField } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
+import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
@@ -76,6 +76,7 @@ const LocationFinder = (props) => {
 
   const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
+    props.setFocus(false);
   };
 
   return (
@@ -88,6 +89,7 @@ const LocationFinder = (props) => {
           error={postalCodeError}
           required={true}
           onBlur={handleBlur}
+          onFocus={() => props.setFocus(true)}
           onChange={(e) => {
             setPostalCode(e.target.value);
           }}
@@ -104,6 +106,7 @@ const LocationFinder = (props) => {
           error={houseNumberError}
           required={true}
           onBlur={handleBlur}
+          onFocus={() => props.setFocus(true)}
           onChange={(e) => {
             setHouseNumberFull(e.target.value);
             setHouseNumber(e.target.value);

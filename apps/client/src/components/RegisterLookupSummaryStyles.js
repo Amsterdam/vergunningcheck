@@ -1,8 +1,8 @@
+import { themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled from "styled-components";
-import { themeColor } from "@datapunt/asc-ui";
 
 export const StyledRegisterLookupSummary = styled.div`
-  margin-bottom: 24px;
-  padding: 30px;
+  margin-bottom: ${themeSpacing(6)};
+  padding: ${themeSpacing(7)};
   border: 1px solid ${themeColor("tint", "level3")};
 `;

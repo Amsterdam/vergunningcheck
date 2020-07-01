@@ -1,13 +1,16 @@
-import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import { render, cleanup } from "./utils/test-utils";
-import { topics, getMatomoSiteId } from "./config";
+
+import React from "react";
+
+import { cleanup, render } from "../utils/test-utils";
+import { getMatomoSiteId } from "./matomo";
+import { topics } from ".";
 
 afterEach(cleanup);
 
 const tryIntroFile = (intro) => {
   try {
-    require(`./intros/${intro}`);
+    require(`../intros/${intro}`);
     return `Found: ${intro}`;
   } catch {
     return `Not found: ${intro}`;

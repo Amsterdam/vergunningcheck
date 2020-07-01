@@ -1,6 +1,7 @@
-import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { List, OrderedList, ListItem } from "../../atoms";
+import React from "react";
+
+import { List, ListItem, OrderedList } from "../../atoms";
 import ListInsideOrderedList from "../../components/ListInsideOrderedList";
 
 export default () => (
@@ -29,21 +30,34 @@ export default () => (
     </OrderedList>
 
     <Paragraph gutterBottom={8}>
-      Deze vergunningcheck kozijn gaat over kozijnen en over gevelpanelen.
-      <br />
-      Hiervoor kunt u de check gebruiken:
+      De vergunningcheck kozijn gaat over kozijnen, deuren, ramen en panelen.
+      Voor deze situaties kunt u de vergunningcheck gebruiken:
     </Paragraph>
     <List variant="bullet">
-      <ListItem>U gaat een nieuw kozijn of paneel plaatsen.</ListItem>
       <ListItem>
-        U gaat een kozijn of paneel veranderen, vergroten of verkleinen.
+        U gaat een nieuw kozijn, deur, raam of paneel plaatsen.
+      </ListItem>
+      <ListItem>
+        U gaat een bestaand kozijn, deur, raam of paneel vervangen of
+        veranderen.
       </ListItem>
     </List>
 
     <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
-    <Paragraph>
-      Gaat u de woning splitsen of samenvoegen? Neem dan contact op met de
-      gemeente: <a href="tel:14020">14 020</a>.
+    <Paragraph gutterBottom={8}>
+      Voor deze situaties kunt u de vergunningcheck niet gebruiken:
+    </Paragraph>
+    <List variant="bullet">
+      <ListItem>Het aantal woningen verandert.</ListItem>
+      <ListItem>
+        Het deel van het gebouw waarin het kozijn komt, is zonder vergunning
+        gebouwd.
+      </ListItem>
+    </List>
+    <Paragraph gutterBottom={8}>
+      Hebt u een vraag of twijfelt u? Bel dan de gemeente op{" "}
+      <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
+      tot 18.00 uur.
     </Paragraph>
   </>
 );

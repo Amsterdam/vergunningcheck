@@ -41,9 +41,10 @@ export default ({ checker, onGoToQuestion }) => {
       </MainWrapper>
 
       <ComponentWrapper marginBottom={40}>
-        {checker?.stack?.map((question, index) => {
-          const isDecisiveForPermits =
-            uniqBy(permitsPerQuestion[index], "name") || [];
+        {checker.stack.map((question, questionIndex) => {
+          const decisivePermits =
+            uniqBy(permitsPerQuestion[questionIndex], "name") || [];
+
           return (
             <QuestionWrapper key={question.id}>
               <Question>{question.text}</Question>
@@ -61,15 +62,14 @@ export default ({ checker, onGoToQuestion }) => {
               {onGoToQuestion && (
                 <Change>
                   <Button
-                    onClick={() => onGoToQuestion(index)}
+                    onClick={() => onGoToQuestion(questionIndex)}
                     variant="textButton"
                   >
                     Wijzig
                   </Button>
                 </Change>
               )}
-
-              {isDecisiveForPermits.map((permit, index) => (
+              {decisivePermits.map((permit, index) => (
                 <UserResult key={`${permit} ${index}`}>
                   <Icon
                     color={themeColor("secondary", "main")}

@@ -1,4 +1,21 @@
-import { getRestrictionByTypeName } from "./utils";
+import { getRestrictionByTypeName } from "../utils";
+
+const getDataNeed = (checker) =>
+  checker.getAutofillDataNeeds(autofillMap).shift();
+
+export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
+  const dataNeed = getDataNeed(checker);
+  return dataNeed ? autofillRoutes[dataNeed].shift() : routes.questions;
+};
+
+export const getDataNeedResultPageOrPrevious = (
+  checker,
+  autofillRoutes,
+  routes
+) => {
+  const dataNeed = getDataNeed(checker);
+  return dataNeed ? autofillRoutes[dataNeed].pop() : routes.intro;
+};
 
 /**
  * This object contains a resolver map from key to the function that

@@ -22,7 +22,7 @@ const Modal = ({ modalText }) => {
   const [explanationShown, toggleExplanationShown] = useState(false);
 
   return (
-    <div style={{ marginBottom: "24px" }}>
+    <div style={{ marginBottom: 24 }}>
       <Button
         type="button"
         color="primary"

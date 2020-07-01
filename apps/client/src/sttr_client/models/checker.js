@@ -1,4 +1,4 @@
-import { collectionOfType, uniqueFilter } from "../../utils";
+import { collectionOfType, isObject, uniqueFilter } from "../../utils";
 
 /**
  * Step checker class for quiz
@@ -49,6 +49,55 @@ class Checker {
   }
 
   /**
+   * Returns a list of questionIds with the given answers.
+   * Useful to store in React.Context or in sessionStorage
+   *
+   * @returns {({string: boolean|string|number|[string]})}  - a list of answers
+   */
+  getQuestionAnswers() {
+    return this.stack
+      .concat(this._getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .reduce((acc, question) => {
+        acc[question.id] = question.answer;
+        return acc;
+      }, {});
+  }
+
+  /**
+   * Loops through all questions and answers these questions based on provided `answers`
+   * Useful when you have stored the user answers and want to continue a particular session
+   */
+  setQuestionAnswers(answers) {
+    if (!isObject(answers)) {
+      throw Error("Answers must be of type object");
+    }
+
+    // Load the first question
+    if (!this._last) {
+      this.next();
+    }
+
+    let done = false;
+    let prevId = null;
+
+    // Loop through `sttr-checker` and answer all questions provided by `answers`
+    while (done === false) {
+      const questionAnswer = answers[this._last.id];
+
+      // The checker is completed when `questionAnswer` is undefined
+      // or if the same question is handled again (to allow `Contact` conclusions)
+      if (questionAnswer === undefined || prevId === this._last.id) {
+        done = true;
+      } else {
+        // Answer the question and proceed
+        prevId = this._last.id;
+        this._last.setAnswer(questionAnswer);
+        this.next();
+      }
+    }
+  }
+
+  /**
    * @returns {Question} - last question in the stack
    */
   get _last() {
@@ -87,8 +136,9 @@ class Checker {
       throw Error("'rewindTo' index cannot be less then 0");
     }
     if (index > lastIndex) {
+      debugger;
       throw Error(
-        `'rewindTo' index cannot be bigger then it's length (${lastIndex})`
+        `'rewindTo' index (${index}) cannot be bigger then the last index (${lastIndex})`
       );
     }
     this._stack.splice(index + 1);

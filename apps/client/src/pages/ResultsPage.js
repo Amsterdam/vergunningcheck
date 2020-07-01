@@ -1,30 +1,38 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
+import React, { useContext } from "react";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import withConclusion from "../hoc/withConclusion";
-import { routes, geturl, getslug } from "../routes";
-import { RESULTS_PAGE } from "../utils/test-ids";
-import Layout from "../components/Layouts/DefaultLayout";
+import AddressLine from "../components/AddressLine";
+import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
 import RegisterLookupSummary from "../components/RegisterLookupSummary";
-import AddressLine from "../components/AddressLine";
+import { SessionContext } from "../context";
+import withConclusion from "../hoc/withConclusion";
+import { getslug, geturl, routes } from "../routes";
+import { RESULTS_PAGE } from "../utils/test-ids";
 
-const ResultsPage = ({ topic, checker, autofillData }) => {
+const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
+  const sessionContext = useContext(SessionContext);
   const { slug } = topic;
-  const { address } = autofillData;
+  const address = sessionContext.address[slug];
 
-  const onGoToQuestion = (index) => {
-    const q = checker.rewindTo(index);
+  const onGoToQuestion = (questionIndex) => {
+    // Go to the specific question in the stack
+    const question = checker.rewindTo(questionIndex);
+    sessionContext.setSessionData({
+      questionIndex,
+    });
+
+    // Change the URL to the new question
     history.push(
       geturl(routes.questions, {
         slug,
-        question: getslug(q.text),
+        question: getslug(question.text),
       })
     );
   };
@@ -42,15 +50,19 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
         data-testid={RESULTS_PAGE}
       >
         <Paragraph>
-          Vergunningcheck uitgevoerd voor: <AddressLine address={address} />
+          Vergunningcheck uitgevoerd voor: <AddressLine address={address} />.
+        </Paragraph>
+
+        <Paragraph>
+          Deze informatie hebben we gebruikt bij het invullen van de check:
         </Paragraph>
 
         <RegisterLookupSummary address={address} />
 
-        <Paragraph strong>
-          Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel
-          wijzigen. Als u een wijziging doet moet u misschien enkele vragen
-          opnieuw beantwoorden.
+        <Paragraph>
+          Deze antwoorden heeft u gegeven bij het invullen van de
+          vergunningcheck. U kunt deze antwoorden nog wijzigen. Als u een
+          wijziging doet moet u misschien enkele vragen opnieuw beantwoorden.
         </Paragraph>
 
         <QuestionAnswerTable

@@ -1,14 +1,25 @@
 const helmet = require("helmet");
+const featurePolicy = require("feature-policy");
 const config = require("../config");
 
 module.exports = (app) => {
+  app.use(
+    featurePolicy({
+      features: {
+        documentWrite: ["'none'"],
+        geolocation: ["'none'"],
+        camera: ["'none'"],
+        speaker: ["'none'"],
+      },
+    })
+  );
   app.use(
     helmet({
       contentSecurityPolicy: config.enableContentSecurityPolicy && {
         // based on pen-test findings we enable csp for our app even if we don't serve any html pages.
         directives: {
           // most strict settings possible
-          defaultSrc: ["'self'"],
+          defaultSrc: ["'none'"],
         },
       },
       frameguard: {
@@ -19,11 +30,6 @@ module.exports = (app) => {
         enforce: false,
         maxAge: 0, // 604800 is used on parent site
         reportUri: "https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct",
-      },
-      featurePolicy: {
-        features: {
-          documentWrite: ["'self'"],
-        },
       },
       permittedCrossDomainPolicies: true,
       referrerPolicy: { policy: "no-referrer" },

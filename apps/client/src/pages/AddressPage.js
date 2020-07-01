@@ -1,18 +1,18 @@
+import { Paragraph } from "@datapunt/asc-ui";
+import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { Paragraph } from "@datapunt/asc-ui";
 
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import { ADDRESS_PAGE } from "../utils/test-ids";
-import withAutofillData from "../hoc/withAutofillData";
-import Layout from "../components/Layouts/DefaultLayout";
+import AddressLine from "../components/AddressLine";
 import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
 import RegisterLookupSummary from "../components/RegisterLookupSummary";
-import AddressLine from "../components/AddressLine";
+import { OLO } from "../config";
+import withAutofillData from "../hoc/withAutofillData";
+import { geturl, routes } from "../routes";
+import { ADDRESS_PAGE } from "../utils/test-ids";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
@@ -63,9 +63,12 @@ const AddressPage = ({ topic, autofillData }) => {
 
         <Paragraph>
           {useSTTR
-            ? topic.text?.addressPage
-            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
+            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
         </Paragraph>
+        {topic.text?.addressPage && (
+          <Paragraph>{topic.text?.addressPage}</Paragraph>
+        )}
 
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
