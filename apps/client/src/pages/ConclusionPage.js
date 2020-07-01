@@ -6,13 +6,13 @@ import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
-import AddressData from "../components/AddressData";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import { OLO } from "../config";
 import withConclusion from "../hoc/withConclusion";
 import { geturl, routes } from "../routes";
@@ -119,7 +119,10 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
                 check:
               </Paragraph>
 
-              <AddressData displayZoningPlans={false} address={address} />
+              <RegisterLookupSummary
+                displayZoningPlans={false}
+                address={address}
+              />
             </>
           )}
 
