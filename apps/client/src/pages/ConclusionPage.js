@@ -102,9 +102,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
         <PrintOnly>
           <Paragraph fontSize={12}>{window.location.href}</Paragraph>
 
-          <Heading forwardedAs="h2" styleAs="h1">
-            Datum
-          </Heading>
+          <Heading forwardedAs="h2">Datum</Heading>
           <Paragraph>{currentDateTime} uur.</Paragraph>
           {address && (
             <>

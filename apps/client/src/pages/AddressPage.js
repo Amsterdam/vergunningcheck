@@ -67,7 +67,7 @@ const AddressPage = ({ topic, autofillData }) => {
             : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
         </Paragraph>
         {topic.text?.addressPage && (
-          <Paragraph>{topic.text?.addressPage}</Paragraph>
+          <Paragraph>{topic.text.addressPage}</Paragraph>
         )}
 
         <Nav
