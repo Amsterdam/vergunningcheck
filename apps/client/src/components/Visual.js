@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/browser";
+import { captureException } from "@sentry/browser";
 import React, { useState } from "react";
 
 import { Caption, Figure, Img } from "./VisualStyles";
@@ -10,7 +10,7 @@ export default ({ title, src, ...rest }) => {
   const setError = () => {
     setLoaded(true);
     setErrored(true);
-    Sentry.captureException(`${src} niet gevonden`);
+    captureException(`${src} not found`);
   };
 
   return (

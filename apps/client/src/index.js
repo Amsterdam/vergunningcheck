@@ -5,7 +5,6 @@ import "@datapunt/asc-assets/static/fonts/fonts.css";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
-import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
 import dotenv from "dotenv-flow";
 import React from "react";
@@ -14,6 +13,7 @@ import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";
 import Router from "./components/Router";
+import { sentryConfig } from "./config/sentry";
 import { SessionProvider } from "./context";
 import { matomo } from "./MatomoConfig";
 import * as serviceWorker from "./serviceWorker";
@@ -32,13 +32,7 @@ const AppGlobalStyle = createGlobalStyle`
   }
 `;
 
-Sentry.init({
-  dsn: "https://2996729fb40e46d18b20f85cd57b4dd3@sentry.data.amsterdam.nl/49",
-  release: process.env.REACT_APP_VERSION,
-  environment: document.domain,
-  integrations: [new ApmIntegrations.Tracing()],
-  tracesSampleRate: 0.25, // must be present and non-zero
-});
+Sentry.init(sentryConfig);
 
 ReactDOM.render(
   <SessionProvider>
