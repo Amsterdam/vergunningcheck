@@ -26,8 +26,8 @@ export const isObject = (val) => typeof val === "object" && val !== null;
 export const uniqueFilter = (value, index, self) =>
   self.indexOf(value) === index;
 
-// We use the uniqBy to filter and reduce to array by it's predicate.
-// And we return it as a array of unique objects.
+// `uniqBy` removes duplicates from an array (of objects) and is based on lodash.uniqBy
+// see: https://stackoverflow.com/a/40808569
 export const uniqBy = (arr, predicate) => {
   if (!Array.isArray(arr)) {
     return [];
