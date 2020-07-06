@@ -1,7 +1,6 @@
 type config = {
   dsn: string;
   environment: string;
-  tracesSampleRate: number;
   release?: string;
 };
 
