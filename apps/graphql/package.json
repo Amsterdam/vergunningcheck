@@ -8,6 +8,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "prestart": "npm install",
     "start": "nodemon .",
     "start:prod": "NODE_ENV=production node .",
     "test": "jest",
