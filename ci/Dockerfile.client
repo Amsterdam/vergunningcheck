@@ -3,7 +3,7 @@ LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/client/package*.json ./
-RUN npm audit --production
+# RUN npm audit --production # waiting for lodash fix https://github.com/lodash/lodash/issues/4837
 
 RUN npm ci --no-color -q
 COPY apps/client/ ./
@@ -16,4 +16,4 @@ FROM nginx:stable-alpine
 COPY ci/nginx-deployed.conf /etc/nginx/conf.d/vergunningcheck.template
 COPY --from=builder /app/build /usr/share/nginx/html/
 
-CMD envsubst '$NAMESERVER' < /etc/nginx/conf.d/vergunningcheck.template | envsubst '$BACKEND_URI' > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'
+CMD envsubst '$NAMESERVER' </etc/nginx/conf.d/vergunningcheck.template | envsubst '$BACKEND_URI' >/etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'
