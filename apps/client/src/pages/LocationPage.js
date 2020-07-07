@@ -22,7 +22,7 @@ const LocationPage = ({ topic }) => {
   const [address, setAddress] = useState(null);
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const { clearError, errors, register, unregister, handleSubmit } = useForm();
+  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
   const sessionAddress = sessionContext.address?.[slug] || {};
 
@@ -30,10 +30,10 @@ const LocationPage = ({ topic }) => {
     if (!address && !errorMessage) {
       register({ name: "suffix" }, { required: "Kies een toevoeging." });
     } else {
-      clearError("suffix");
+      clearErrors("suffix");
     }
     return () => unregister("suffix");
-  }, [address, clearError, errorMessage, register, unregister]);
+  }, [address, clearErrors, errorMessage, register, unregister]);
 
   const onSubmit = (event) => {
     if (address) {
