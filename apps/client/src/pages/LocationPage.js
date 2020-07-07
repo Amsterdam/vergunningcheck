@@ -60,7 +60,7 @@ const LocationPage = ({ topic }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        history.push(geturl(routes.address, { slug }));
+        history.push(geturl(routes.wrapper, { slug }));
       }
     }
   };

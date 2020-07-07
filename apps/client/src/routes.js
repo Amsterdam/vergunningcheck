@@ -44,12 +44,6 @@ export const routeConfig = [
     component: StepperPage,
   },
   {
-    exact: true,
-    name: "wrapper",
-    path: "/wrapper",
-    component: WrapperPage,
-  },
-  {
     name: "intro",
     exact: true,
     path: "/:slug",
@@ -59,6 +53,12 @@ export const routeConfig = [
     name: "location",
     path: "/:slug/locatie",
     component: LocationPage,
+  },
+  {
+    exact: true,
+    name: "wrapper",
+    path: "/:slug/wrapper",
+    component: WrapperPage,
   },
   {
     name: "address",
