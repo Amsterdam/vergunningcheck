@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { Heading } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 
 import { requiredFieldText } from "../config";
 import { QUESTION_PAGE } from "../utils/test-ids";
@@ -40,6 +40,7 @@ const Question = ({
                     },
                     className,
                     headingAs,
+                    open,
                     onSubmit: onSubmitProp,
                     hideNavigation,
                     showNext,
@@ -119,16 +120,18 @@ const Question = ({
       {questionTitle && (
         <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
       )}
-      {description && <Markdown source={description} />}
-      {longDescription && <Modal modalText={longDescription} />}
+      { !open && answer && <Paragraph>{answer.replace(/['"]+/g, "")}</Paragraph>}
+      { open && description && <Markdown source={description} />}
+      { open && longDescription && <Modal modalText={longDescription} />}
+      { open &&
       <Answers
         questionId={questionId}
         onChange={handleChange}
         errors={errors}
         answers={answers}
         currentAnswer={answer}
-      />
-      {!hideNavigation && (
+      /> }
+      {!hideNavigation && open && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}
     </Form>
