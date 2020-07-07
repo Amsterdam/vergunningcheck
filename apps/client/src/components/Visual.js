@@ -1,4 +1,4 @@
-// import { captureException } from "@sentry/browser";
+import { captureException } from "@sentry/browser";
 import React, { useState } from "react";
 
 import { Caption, Figure, Img } from "./VisualStyles";
@@ -10,7 +10,7 @@ export default ({ title, src, ...rest }) => {
   const setError = () => {
     setLoaded(true);
     setErrored(true);
-    // captureException(`${src} not found`);
+    captureException(`${src} not found`);
   };
 
   return (
