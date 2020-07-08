@@ -1,9 +1,9 @@
+import { getQuestionConfig } from "../utils/mocks";
 import Checker from "./checker";
+import Decision from "./decision";
 import Permit from "./permit";
 import Question from "./question";
 import Rule from "./rule";
-import Decision from "./decision";
-import { getQuestionConfig } from "../utils/mocks";
 
 const getQuestions = () => {
   return [

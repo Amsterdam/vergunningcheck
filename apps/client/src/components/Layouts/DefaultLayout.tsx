@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import BaseLayout from "./BaseLayout";
+
 import withTracking from "../../hoc/withTracking";
+import BaseLayout from "./BaseLayout";
 
 interface DefaultLayoutProps {
   heading: string;

@@ -1,4 +1,4 @@
-import { isSimpleType, collectionOfSimpleTypes } from "../../utils";
+import { collectionOfSimpleTypes, isSimpleType } from "../../utils";
 
 /**
  * A rule is a record in the decisionTable.

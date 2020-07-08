@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React, { useContext } from "react";
-import HiddenDebugInfo from "./HiddenDebugInfo";
+
 import { SessionContext } from "../context";
+import HiddenDebugInfo from "./HiddenDebugInfo";
 
 const QuestionSummary = ({ question: { prio, text, autofill } }) =>
   `${prio}: ${autofill ? ` [${autofill}]` : ""} ${text}`;

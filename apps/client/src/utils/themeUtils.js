@@ -1,5 +1,5 @@
-import { css } from "styled-components";
 import { themeColor } from "@datapunt/asc-ui";
+import { css } from "styled-components";
 
 export const outlineStyle = css`
   outline-color: ${themeColor("support", "focus")};
