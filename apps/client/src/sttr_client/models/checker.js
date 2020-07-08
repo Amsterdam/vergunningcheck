@@ -136,7 +136,6 @@ class Checker {
       throw Error("'rewindTo' index cannot be less then 0");
     }
     if (index > lastIndex) {
-      debugger;
       throw Error(
         `'rewindTo' index (${index}) cannot be bigger then the last index (${lastIndex})`
       );
