@@ -6,7 +6,7 @@
       "questions": [
         {
           "text": "Is het gebouw een monument?",
-          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
           "autofill": "monumentList",
           "options": [
             "Rijksmonument",
@@ -42,7 +42,7 @@
         }
       },
       "decisions": {
-        "_7c2a97f6-0f97-4da1-883d-88d4369d3c2f": {
+        "_429616bb-990e-4238-b009-47cb0cafc46d": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -75,7 +75,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_7c2a97f6-0f97-4da1-883d-88d4369d3c2f"],
+          "requiredDecisions": ["#_429616bb-990e-4238-b009-47cb0cafc46d"],
           "decisionTable": {
             "rules": [
               {
@@ -98,7 +98,7 @@
       "questions": [
         {
           "text": "Is het gebouw een monument?",
-          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
           "autofill": "monumentList",
           "options": [
             "Rijksmonument",
@@ -255,7 +255,7 @@
         }
       },
       "decisions": {
-        "_03e22c4e-7cfb-475b-aff1-0fb82d24c88f": {
+        "_7c99c49b-274d-4d64-84a8-16daf86d7231": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -287,7 +287,7 @@
             ]
           }
         },
-        "_2184b429-cb73-41bb-b329-2cf303a06613": {
+        "_79de6d75-d8f5-4d5a-9e6e-2314e1dd6d90": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -322,7 +322,7 @@
             ]
           }
         },
-        "_121ae90d-22a8-42c4-92e6-691fed7a225f": {
+        "_6506a813-3639-40c4-9f80-cc51705af81b": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -391,7 +391,7 @@
             ]
           }
         },
-        "_eee90d10-3678-44f9-8d2c-8a8234e63a2a": {
+        "_cc95394a-8548-46a8-ae14-43b0416053ae": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -469,7 +469,7 @@
             ]
           }
         },
-        "_341b4c2e-6fd7-4ef9-b212-19256ea0f799": {
+        "_263588fe-ff51-461f-b750-28f4b731ab47": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -547,7 +547,7 @@
             ]
           }
         },
-        "_320cfb26-2a4c-4eae-b0e6-7a9e346d7c72": {
+        "_94b30aba-4826-49ea-8568-30c83bb69319": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -634,7 +634,7 @@
             ]
           }
         },
-        "_17667699-87da-40e9-a600-156a09a6724a": {
+        "_9831e1ce-440f-434e-9518-5b34f4d018dd": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -721,7 +721,7 @@
             ]
           }
         },
-        "_231dd646-1479-4de8-8e24-0a0aaf3a5bbf": {
+        "_564f3bb2-59b3-4bdd-8c19-c7ad8b7ec0d5": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -826,7 +826,7 @@
             ]
           }
         },
-        "_d8e163bd-5438-463d-824a-6acbff31a530": {
+        "_0546bb15-fe7d-4115-9c83-c3f4cc90da5e": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -933,15 +933,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_03e22c4e-7cfb-475b-aff1-0fb82d24c88f",
-            "#_2184b429-cb73-41bb-b329-2cf303a06613",
-            "#_121ae90d-22a8-42c4-92e6-691fed7a225f",
-            "#_eee90d10-3678-44f9-8d2c-8a8234e63a2a",
-            "#_341b4c2e-6fd7-4ef9-b212-19256ea0f799",
-            "#_320cfb26-2a4c-4eae-b0e6-7a9e346d7c72",
-            "#_17667699-87da-40e9-a600-156a09a6724a",
-            "#_231dd646-1479-4de8-8e24-0a0aaf3a5bbf",
-            "#_d8e163bd-5438-463d-824a-6acbff31a530"
+            "#_7c99c49b-274d-4d64-84a8-16daf86d7231",
+            "#_79de6d75-d8f5-4d5a-9e6e-2314e1dd6d90",
+            "#_6506a813-3639-40c4-9f80-cc51705af81b",
+            "#_cc95394a-8548-46a8-ae14-43b0416053ae",
+            "#_263588fe-ff51-461f-b750-28f4b731ab47",
+            "#_94b30aba-4826-49ea-8568-30c83bb69319",
+            "#_9831e1ce-440f-434e-9518-5b34f4d018dd",
+            "#_564f3bb2-59b3-4bdd-8c19-c7ad8b7ec0d5",
+            "#_0546bb15-fe7d-4115-9c83-c3f4cc90da5e"
           ],
           "decisionTable": {
             "rules": [
