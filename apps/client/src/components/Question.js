@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { useForm } from "react-hook-form";
 import { Heading } from "@datapunt/asc-ui";
+import PropTypes from "prop-types";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 import { requiredFieldText } from "../config";
 import { QUESTION_PAGE } from "../utils/test-ids";
-import Modal from "./Modal";
-import Form from "./Form";
-import Nav from "./Nav";
 import Answers from "./Answers";
+import Form from "./Form";
 import Markdown from "./Markdown";
+import Modal from "./Modal";
+import Nav from "./Nav";
 
 export const booleanOptions = [
   {

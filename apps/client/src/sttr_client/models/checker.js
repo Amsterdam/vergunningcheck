@@ -1,4 +1,4 @@
-import { collectionOfType, uniqueFilter, isObject } from "../../utils";
+import { collectionOfType, isObject, uniqueFilter } from "../../utils";
 
 /**
  * Step checker class for quiz
@@ -26,14 +26,12 @@ class Checker {
         firstEl.questions.length < secondEl.questions.length
     );
 
-    this._questions = this._permits
-      .flatMap((permit) => permit.questions) // getOpenInputs would be faster for the user
-      .filter(uniqueFilter);
-
     /**
      * @type {Question[]}
      */
     this._stack = [];
+
+    this._autofilled = false;
   }
 
   /**
@@ -53,6 +51,7 @@ class Checker {
   /**
    * Returns a list of questionIds with the given answers.
    * Useful to store in React.Context or in sessionStorage
+   *
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
   getQuestionAnswers() {
@@ -105,39 +104,24 @@ class Checker {
     return this.stack[this.stack.length - 1];
   }
 
-  _getUpcomingQuestions() {
-    // todo: filter duplicate questions
-    // todo: optimization would be to return only first value
-    return this.permits
-      .reduce((acc, permit) => {
-        const conclusion = permit.getDecisionById("dummy");
-        const inputReducer = (input) =>
-          this.stack.includes(input) ? input : {};
-        conclusion._inputs
-          .filter((d) => d.getMatchingRules(inputReducer).length === 0)
-          .forEach((decision) => {
-            decision.getQuestions().forEach((input) => {
-              if (this.stack.indexOf(input) === -1) {
-                acc.push(input);
-              }
-            });
-          });
-        return acc;
-      }, [])
-      .filter(uniqueFilter)
-      .sort((a, b) => a.prio - b.prio);
-  }
-
   /**
-   * Our current implementation of getNextQuestion basically returns any question that is
-   * not answered no matter if they make any impact on the outcome. So user always has to
-   * answer all the questions.
+   * For every questions see if we have autofillData
+   * and see if the question can be autofilled
    *
-   * @returns {Question|null} - the next question for this checker
-   */
-  _getNextQuestion() {
-    return this._getUpcomingQuestions().shift();
-    // return this._questions.find(question => !this.stack.includes(question));
+   * @param {object} resolvers - A map of {[name]: resolver(autofillData)}
+   * @param {object} autofillData - the autofill data that will be send to the resolver
+   **/
+  autofill(resolvers, autofillData) {
+    if (JSON.stringify(autofillData) !== this._autofillData) {
+      this._getAllQuestions().forEach((question) => {
+        const resolver = resolvers[question.autofill];
+        const answer = resolver ? resolver(autofillData) : undefined;
+        if (answer !== undefined) {
+          question.setAnswer(answer);
+        }
+      });
+      this._autofillData = JSON.stringify(autofillData);
+    }
   }
 
   /**
@@ -148,8 +132,13 @@ class Checker {
    */
   rewindTo(index) {
     const lastIndex = this._stack.length - 1;
-    if (index < 0 || index > lastIndex) {
-      throw Error("'rewindTo' index out of bounds of current question stack.");
+    if (index < 0) {
+      throw Error("'rewindTo' index cannot be less then 0");
+    }
+    if (index > lastIndex) {
+      throw Error(
+        `'rewindTo' index (${index}) cannot be bigger then the last index (${lastIndex})`
+      );
     }
     this._stack.splice(index + 1);
     this._done = false;
@@ -167,13 +156,86 @@ class Checker {
   }
 
   /**
+   * XXX
+   * @param {*} onlyMissing
+   */
+  getAutofillDataNeeds(autofillMap, onlyMissing = false) {
+    // find one unfullfilled data need
+    return this._getAllQuestions()
+      .filter(({ autofill }) => !!autofill)
+      .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
+      .map(({ autofill }) => autofillMap[autofill])
+      .filter(uniqueFilter);
+  }
+
+  /**
+   * XXX
+   */
+  dedupeAndSort(questions) {
+    return questions.filter(uniqueFilter).sort((a, b) => a.prio - b.prio);
+  }
+
+  /**
+   * XXX
+   */
+  _getConclusionDecisions() {
+    return this.permits
+      .map((permit) => permit.getDecisionById("dummy"))
+      .flatMap((conclusion) => conclusion._inputs);
+  }
+
+  /**
+   * XXX
+   */
+  _getAllQuestions() {
+    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // our accumulator, but only if it's not already on the stack
+    return this.dedupeAndSort(
+      this._getConclusionDecisions().flatMap((decision) =>
+        decision.getQuestions()
+      )
+    );
+  }
+
+  /**
+   * XXX
+   */
+  _getUpcomingQuestions() {
+    // take only questions/inputs into concideration that are autofilled or answered by the user
+    const inputReducer = (input) => {
+      return this.stack.includes(input) || input.autofill ? input : {};
+    };
+
+    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // our accumulator, but only if it's not already on the stack
+    return this.dedupeAndSort(
+      this._getConclusionDecisions()
+        .filter((d) => d.getMatchingRules(inputReducer).length === 0)
+        .flatMap((decision) => decision.getQuestions())
+        .filter((q) => !this.stack.includes(q) || q.autofill)
+    ).filter((q) => !q.autofill);
+  }
+
+  /**
+   * Our current implementation of getNextQuestion basically returns any question that is
+   * not answered no matter if they make any impact on the outcome. So user always has to
+   * answer all the questions.
+   *
+   * @returns {Question|null} - the next question for this checker
+   */
+  _getNextQuestion() {
+    return this._getUpcomingQuestions().shift();
+    // return this._questions.find(question => !this.stack.includes(question));
+  }
+
+  /**
    * Get the next question for this checker
    *
    * @returns {!(Question|null)} The next question or null if done
    */
   next() {
     if (this._last !== undefined && this._last.answer === undefined) {
-      throw Error("Please answer the question first");
+      throw Error(`Please answer the question first ${this._last}`);
     }
     const question = this._getNextQuestion();
     if (question) {

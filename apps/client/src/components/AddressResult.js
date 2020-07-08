@@ -1,29 +1,62 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Paragraph } from "@datapunt/asc-ui";
+import React from "react";
 
-const AddressResult = ({ title, loading, loadingText, children }) => (
-  <>
-    {title && (
+import { List, ListItem } from "../atoms";
+import { getRestrictionByTypeName } from "../utils";
+import { uniqueFilter } from "../utils";
+import { StyledAddressResult } from "./AddressResultStyles";
+
+const AddressResult = ({ address, displayZoningPlans }) => {
+  const { restrictions, zoningPlans } = address;
+  const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
+  const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
+  const zoningPlanNames = zoningPlans
+    .map((plan) => plan.name)
+    .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
+
+  return (
+    <StyledAddressResult>
       <Paragraph strong style={{ marginBottom: 0 }}>
-        {title}
+        Monument:
       </Paragraph>
-    )}
-    {loading && <Paragraph>{loadingText}</Paragraph>}
-    {children && !loading && children}
-  </>
-);
+      <Paragraph>
+        {monument ? `Ja. ${monument}.` : "Nee. Geen monument."}
+      </Paragraph>
 
-AddressResult.defaultProps = {
-  loadingText: "Laden...",
-};
+      <Paragraph strong style={{ marginBottom: 0 }}>
+        Beschermd stads- of dorpsgezicht:
+      </Paragraph>
+      <Paragraph style={{ marginBottom: 0 }}>
+        {cityScape
+          ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
+          : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+      </Paragraph>
 
-AddressResult.propTypes = {
-  title: PropTypes.string,
-  loading: PropTypes.bool,
-  loadingText: PropTypes.string,
-  children: PropTypes.node,
+      {displayZoningPlans && (
+        <>
+          <Paragraph strong style={{ marginBottom: 0 }}>
+            Bestemmingsplannen:
+          </Paragraph>
+          {zoningPlanNames.length === 0 ? (
+            <Paragraph>Geen bestemmingsplan</Paragraph>
+          ) : (
+            <List
+              variant="bullet"
+              style={{
+                backgroundColor: "inherit",
+                marginTop: 10,
+                marginBottom: 0,
+              }}
+            >
+              {zoningPlanNames.map((plan) => (
+                <ListItem key={plan}>{plan}</ListItem>
+              ))}
+            </List>
+          )}
+        </>
+      )}
+    </StyledAddressResult>
+  );
 };
 
 export default AddressResult;

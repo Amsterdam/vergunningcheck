@@ -52,6 +52,8 @@ const LocationPage = ({ topic }) => {
         answers = null;
       }
 
+      checkerContext.autofillData.address = address;
+
       sessionContext.setSessionData({
         address: { ...sessionContext.address, [slug]: address },
         answers, // Either null or filled with given answers
@@ -60,7 +62,7 @@ const LocationPage = ({ topic }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        history.push(geturl(routes.address, { slug }));
+        history.push(geturl(routes.address, topic));
       }
     }
   };
@@ -98,7 +100,7 @@ const LocationPage = ({ topic }) => {
             sessionContext.setSessionData({
               address: { ...sessionContext.address, [slug]: address },
             });
-            history.push(geturl(routes.intro, { slug }));
+            history.push(geturl(routes.intro, topic));
           }}
           showPrev
           showNext

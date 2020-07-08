@@ -6,6 +6,7 @@ const CheckerContext = createContext({});
 const defaultCheckerValue = {
   checker: null,
   topic: null,
+  autofillData: {},
 };
 const defaultSessionValues = session
   ? session
