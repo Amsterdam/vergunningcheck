@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading } from "@datapunt/asc-ui";
 
-import { requiredFieldText } from "../config";
-import { QUESTION_PAGE } from "../utils/test-ids";
-import Modal from "./Modal";
-import Form from "./Form";
-import Nav from "./Nav";
-import Answers from "./Answers";
-import Markdown from "./Markdown";
+import { requiredFieldText } from "../../config";
+import { QUESTION_PAGE } from "../../utils/test-ids";
+import Modal from "../../components/Modal";
+import Form from "../../components/Form";
+import Nav from "../../components/Nav";
+import Answers from "../../components/Answers";
+import Markdown from "../../components/Markdown";
 
 export const booleanOptions = [
   {
@@ -40,7 +40,6 @@ const Question = ({
                     },
                     className,
                     headingAs,
-                    open,
                     onSubmit: onSubmitProp,
                     hideNavigation,
                     showNext,
@@ -94,7 +93,6 @@ const Question = ({
   const onSubmit = (data) => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
-    window.scrollTo(0, 0);
     if (
       (onSubmitProp && !hasKeys(data)) ||
       (hasKeys(data) && data[questionId])
@@ -120,18 +118,16 @@ const Question = ({
       {questionTitle && (
         <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
       )}
-      { !open && answer && <Paragraph>{answer.replace(/['"]+/g, "")}</Paragraph>}
-      { open && description && <Markdown source={description} />}
-      { open && longDescription && <Modal modalText={longDescription} />}
-      { open &&
+      { description && <Markdown source={description} />}
+      { longDescription && <Modal modalText={longDescription} />}
       <Answers
         questionId={questionId}
         onChange={handleChange}
         errors={errors}
         answers={answers}
         currentAnswer={answer}
-      /> }
-      {!hideNavigation && open && (
+      />
+      {!hideNavigation && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}
     </Form>
