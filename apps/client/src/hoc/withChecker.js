@@ -7,7 +7,7 @@ import getChecker from "../sttr_client";
 import withTopic from "./withTopic";
 
 const dir =
-  process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
+  process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";
 
 const withChecker = (Component) =>
   withTopic((props) => {
@@ -21,9 +21,7 @@ const withChecker = (Component) =>
     if (sttrFile) {
       useEffect(() => {
         if (!checker && !error) {
-          fetch(
-            `${window.location.origin}/sttr/${dir.toLowerCase()}/${sttrFile}`
-          )
+          fetch(`${window.location.origin}/sttr/${dir}/${sttrFile}`)
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
