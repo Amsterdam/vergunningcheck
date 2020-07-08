@@ -1,7 +1,7 @@
 import { getRestrictionByTypeName } from "../utils";
 
 const getDataNeed = (checker) =>
-  checker.getAutofillDataNeeds(autofillMap).shift();
+  checker && checker.getAutofillDataNeeds(autofillMap).shift();
 
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
   const dataNeed = getDataNeed(checker);
