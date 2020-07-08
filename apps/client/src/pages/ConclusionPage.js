@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
-import AddressData from "../components/AddressData";
+import AddressResult from "../components/AddressResult";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -119,7 +119,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
                 check:
               </Paragraph>
 
-              <AddressData displayZoningPlans={false} address={address} />
+              <AddressResult displayZoningPlans={false} address={address} />
             </>
           )}
 

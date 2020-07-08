@@ -4,8 +4,8 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-import AddressData from "../components/AddressData";
 import AddressLine from "../components/AddressLine";
+import AddressResult from "../components/AddressResult";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
@@ -56,7 +56,7 @@ const AddressPage = ({ topic, autofillData }) => {
           informatie gevonden:
         </Paragraph>
 
-        <AddressData displayZoningPlans={!useSTTR} address={address} />
+        <AddressResult displayZoningPlans={!useSTTR} address={address} />
 
         <Paragraph>
           {useSTTR

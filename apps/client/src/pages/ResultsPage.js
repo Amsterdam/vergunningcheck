@@ -3,8 +3,8 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-import AddressData from "../components/AddressData";
 import AddressLine from "../components/AddressLine";
+import AddressResult from "../components/AddressResult";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -57,7 +57,7 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
           Deze informatie hebben we gebruikt bij het invullen van de check:
         </Paragraph>
 
-        <AddressData displayZoningPlans={false} address={address} />
+        <AddressResult displayZoningPlans={false} address={address} />
 
         <Paragraph>
           Deze antwoorden heeft u gegeven bij het invullen van de
