@@ -122,12 +122,6 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
               <AddressResult displayZoningPlans={false} address={address} />
             </>
           )}
-
-          <Heading forwardedAs="h2">Uw antwoorden</Heading>
-          <Paragraph>
-            Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
-          </Paragraph>
-          <QuestionAnswerTable checker={checker} />
         </PrintOnly>
 
         <Heading forwardedAs="h1" styleAs="h2">
@@ -156,6 +150,14 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
             </PrintButton>
           </ComponentWrapper>
         )}
+
+        <PrintOnly>
+          <Heading forwardedAs="h2">Uw antwoorden</Heading>
+          <Paragraph>
+            Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
+          </Paragraph>
+          <QuestionAnswerTable checker={checker} />
+        </PrintOnly>
 
         <PrintOnly style={{ marginTop: 20 }} withBorder avoidPageBreak>
           <Alert
