@@ -2,18 +2,27 @@ import { Icon, breakpoint, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
 type NestedProps = {
-  disableFadeEffect?: boolean;
-  done?: boolean;
   active?: boolean;
   checked?: boolean;
-  circleBackground?: string;
+  circleBackgroundColor?: string;
+  clickable?: boolean;
+  disabled?: boolean;
+  disabledTextColor?: string;
+  done?: boolean;
+  doneTextColor?: string;
+  highlightActive?: boolean;
+  hoverable?: boolean;
+  largeCircle?: boolean;
   small?: boolean;
-  titleProps?: any;
+  unfinished?: boolean;
 };
 
 export type Props = {
-  customCircleSizes?: boolean;
-  title: string;
+  customSize?: boolean;
+  heading: string;
+  headingProps?: any;
+  href?: string;
+  onClick?: Function;
 } & NestedProps;
 
 const circleSize = {
@@ -28,11 +37,49 @@ const circleSize = {
 };
 
 export default styled.div<Props>`
+  position: relative;
   display: flex;
   height: 100%;
   padding-top: ${themeSpacing(4)};
   padding-bottom: ${themeSpacing(5)};
-  /* background-color: rgba(57.3%, 100%, 57.3%, 0.5); */
+  text-decoration: none;
+  cursor: initial;
+
+  ${({ active, highlightActive }) =>
+    active &&
+    highlightActive &&
+    css`
+      background-color: ${themeColor("tint", "level2")};
+    `}
+  ${({ clickable }) =>
+    clickable &&
+    css`
+      cursor: pointer;
+    `}
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+    `}
+  ${({ hoverable }) =>
+    hoverable &&
+    css`
+      &:hover {
+        text-decoration: underline;
+      }
+    `}
+  ${({ active, done, doneTextColor }) =>
+    (active || done) &&
+    css`
+      color: ${doneTextColor};
+    `}
+  ${({ unfinished, disabledTextColor }) =>
+    unfinished &&
+    css`
+      * {
+        color: ${disabledTextColor};
+      }
+    `}
 `;
 
 const CircleWrapperStyle = styled.div<NestedProps>`
@@ -41,8 +88,9 @@ const CircleWrapperStyle = styled.div<NestedProps>`
   width: ${circleSize.mobile.large};
   flex: 0 0 ${circleSize.mobile.large};
   margin-right: ${themeSpacing(2)};
-  /* background-color: rgba(67%, 86.6%, 34.8%, 0.5); */
   justify-content: center;
+  z-index: 1;
+  /* background-color: rgba(67%, 86.6%, 34.8%, 0.25); */
 
   @media ${breakpoint("min-width", "tabletM")} {
     width: 60px;
@@ -54,12 +102,14 @@ const CircleWrapperStyle = styled.div<NestedProps>`
     content: "";
     position: absolute;
     display: block;
-    left: calc(50% - 1px);
-    top: ${themeSpacing(4)};
     width: 2px;
     height: calc(100% + ${themeSpacing(9)});
-    background-color: ${({ done }) =>
-      done ? themeColor("primary", "main") : themeColor("tint", "level4")};
+    top: ${themeSpacing(3)};
+    left: calc(50% - 1px);
+    background-color: ${({ active, done }) =>
+      active || done
+        ? themeColor("primary", "main")
+        : themeColor("tint", "level4")};
   }
 `;
 
@@ -73,6 +123,7 @@ const CircleStyle = styled(Icon)<NestedProps>`
   justify-content: center;
   transition: background-color 0.2s ease-in-out;
   z-index: 1;
+  /* opacity: 0.2; */
 
   @media ${breakpoint("min-width", "tabletM")} {
     width: ${circleSize.desktop.large};
@@ -100,26 +151,20 @@ const CircleStyle = styled(Icon)<NestedProps>`
     css`
       fill: ${themeColor("tint", "level1")};
     `}
-  ${({ circleBackground }) =>
-    circleBackground &&
+  ${({ circleBackgroundColor }) =>
+    circleBackgroundColor &&
     css`
-      background-color: ${circleBackground};
+      background-color: ${circleBackgroundColor};
     `}
 `;
 
 const ContentWrapperStyle = styled.div<NestedProps>`
+  display: flex;
+  max-width: 620px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
   /* background-color: rgba(68.3%, 10.1%, 64.9%, 0.5); */
-
-  ${({ disableFadeEffect, done }) =>
-    !disableFadeEffect &&
-    done &&
-    // These hardcoded tags need to be transformed to ParagraphStyle and HeadingStyle in `asc-ui`
-    css`
-      p,
-      h3 {
-        color: ${themeColor("tint", "level4")};
-      }
-    `}
 `;
 
 export { CircleStyle, ContentWrapperStyle, CircleWrapperStyle };

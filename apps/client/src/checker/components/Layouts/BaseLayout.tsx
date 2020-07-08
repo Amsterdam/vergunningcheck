@@ -2,10 +2,10 @@ import { Column, FormTitle, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import { CheckerContext } from "../../context";
-import Footer from "../Footer";
-import Header from "../Header";
-import HiddenDebugInfo from "../HiddenDebugInfo";
+import Footer from "../../../components/Footer";
+import Header from "../../../components/Header";
+import HiddenDebugInfo from "../../../components/HiddenDebugInfo";
+import { CheckerContext } from "../../../context";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
@@ -31,9 +31,9 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             span={{
               small: 1,
               medium: 2,
-              big: 5,
-              large: 9,
-              xLarge: 9,
+              big: 6,
+              large: 12,
+              xLarge: 12,
             }}
           >
             <Content>

@@ -40,7 +40,7 @@ export const routeConfig = [
   {
     exact: true,
     name: "stepper",
-    path: "/stepper",
+    path: "/:slug/stepper",
     component: StepperPage,
   },
   {
