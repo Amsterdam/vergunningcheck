@@ -1,18 +1,16 @@
 import { reverse } from "named-urls";
 import slugify from "slugify";
 
-// Main application routes
+import AddressPage from "./pages/AddressPage";
+import ConclusionPage from "./pages/ConclusionPage";
+import DevHomePage from "./pages/DevHomePage";
 import IntroPage from "./pages/IntroPage";
 import LocationPage from "./pages/LocationPage";
-import AddressPage from "./pages/AddressPage";
-import QuestionsPage from "./pages/QuestionsPage";
-import ConclusionPage from "./pages/ConclusionPage";
-import ResultsPage from "./pages/ResultsPage";
-
-// System pages
 import NotFoundPage from "./pages/NotFoundPage";
-// Developer homepage, not used in production
-import DevHomePage from "./pages/DevHomePage";
+import QuestionsPage from "./pages/QuestionsPage";
+import ResultsPage from "./pages/ResultsPage";
+import StepperPage from "./pages/StepperPage";
+import WrapperPage from "./pages/WrapperPage";
 
 export const getslug = (text) =>
   slugify(text, {
@@ -38,6 +36,18 @@ export const routeConfig = [
     exact: true,
     path: "/test",
     component: DevHomePage,
+  },
+  {
+    exact: true,
+    name: "stepper",
+    path: "/stepper",
+    component: StepperPage,
+  },
+  {
+    exact: true,
+    name: "wrapper",
+    path: "/wrapper",
+    component: WrapperPage,
   },
   {
     name: "intro",

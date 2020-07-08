@@ -1,5 +1,5 @@
-import isNumber from "lodash.isnumber";
 import isBoolean from "lodash.isboolean";
+import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
 // Simple checks
@@ -25,3 +25,28 @@ export const isObject = (val) => typeof val === "object" && val !== null;
 // Filters
 export const uniqueFilter = (value, index, self) =>
   self.indexOf(value) === index;
+
+// `uniqBy` removes duplicates from an array (of objects) and is based on lodash.uniqBy
+// see: https://stackoverflow.com/a/40808569
+export const uniqBy = (arr, predicate) => {
+  if (!Array.isArray(arr)) {
+    return [];
+  }
+
+  const cb = typeof predicate === "function" ? predicate : (o) => o[predicate];
+
+  const pickedObjects = arr
+    .filter((item) => item)
+    .reduce((map, item) => {
+      const key = cb(item);
+
+      if (!key) {
+        return map;
+      }
+
+      return map.has(key) ? map : map.set(key, item);
+    }, new Map())
+    .values();
+
+  return [...pickedObjects];
+};
