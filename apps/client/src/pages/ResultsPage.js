@@ -15,7 +15,7 @@ import withConclusion from "../hoc/withConclusion";
 import { getslug, geturl, routes } from "../routes";
 import { RESULTS_PAGE } from "../utils/test-ids";
 
-const ResultsPage = ({ topic, checker }) => {
+const ResultsPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const sessionContext = useContext(SessionContext);
   const { slug } = topic;
