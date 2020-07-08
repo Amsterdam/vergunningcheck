@@ -79,9 +79,6 @@ const fixtures = [
   // Address with one exact match with noun addition
   ["1077JH", 26, [VALID_WITH_ADDITION, HAS_NOUN_ADDITION, EXACT_MATCH]],
   ["1073ER", 151, [VALID_WITH_ADDITION, HAS_NOUN_ADDITION, EXACT_MATCH]],
-
-  // A metro station
-  ["1018XA", 1, [IS_METRO_STATION, EXACT_MATCH, VALID_WITH_ADDITION]],
 ];
 
 module.exports = fixtures;
