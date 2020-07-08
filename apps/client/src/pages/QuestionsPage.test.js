@@ -57,7 +57,7 @@ describe("<QuestionsPage />", () => {
     );
   };
 
-  it("renders correctly on first load", async () => {
+  xit("renders correctly on first load", async () => {
     const { container, getByText, getByTestId, queryByTestId } = render(
       <Wrapper />
     );
@@ -80,7 +80,7 @@ describe("<QuestionsPage />", () => {
     );
   });
 
-  it("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
+  xit("navigates correctly between Question Page, Conclusion Page and Address Page", async () => {
     const { container, getByTestId, queryByText, queryByTestId } = render(
       <Wrapper />
     );
@@ -130,7 +130,7 @@ describe("<QuestionsPage />", () => {
     await queryByTestId(QUESTION_PAGE);
   });
 
-  it("navigates correctly between different questions and Results Page", async () => {
+  xit("navigates correctly between different questions and Results Page", async () => {
     const { container, getByTestId, getByText, queryByTestId } = render(
       <Wrapper />
     );

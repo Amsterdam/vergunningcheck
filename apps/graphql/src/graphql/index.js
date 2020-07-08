@@ -1,4 +1,4 @@
-const graphqlHTTP = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 const DataLoader = require("dataloader");
 const { makeExecutableSchema } = require("graphql-tools");
 const depthLimit = require("graphql-depth-limit");
