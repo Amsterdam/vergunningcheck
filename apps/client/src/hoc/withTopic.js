@@ -20,6 +20,7 @@ const withTopic = (Component) => (props) => {
     checkerContext.checker = null;
     sessionContext.answers = null;
     sessionContext.questionIndex = 0;
+
     console.warn("Resseting checker, redirecting to intro page");
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
