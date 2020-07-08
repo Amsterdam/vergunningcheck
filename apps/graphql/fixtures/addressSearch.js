@@ -9,8 +9,6 @@ const HAS_NUM_ADDITION = "HAS_NUM_ADDITION"; // One or more 1 1, 1 2, etc. (an i
 const HAS_ALPHANUM_ADDITION = "HAS_ALPHANUM_ADDITION"; // One or more a 1, b 2, rood etc. (a string)
 const HAS_PLURAL_NOUN_ADDITION = "HAS_PLURAL_NOUN_ADDITION"; // One or more 20 H L, 20 H R
 
-const IS_METRO_STATION = "IS_METRO_STATION";
-
 const fixtures = [
   // Addresses without additions
   ["1031VA", 2, [NO_ADDITIONS, EXACT_MATCH, VALID_WITHOUT_ADDITION]],
