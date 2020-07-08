@@ -57,7 +57,7 @@ const ResultsPage = ({ topic, checker }) => {
           Deze informatie hebben we gebruikt bij het invullen van de check:
         </Paragraph>
 
-        <RegisterLookupSummary address={address} />
+        <RegisterLookupSummary displayZoningPlans={false} address={address} />
 
         <Paragraph>
           Deze antwoorden heeft u gegeven bij het invullen van de

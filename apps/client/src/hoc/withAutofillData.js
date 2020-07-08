@@ -21,14 +21,19 @@ const withAutofillData = (Component) =>
       if (address) {
         checker.autofill(autofillResolvers, { address });
       }
-      const dataNeed = checker.getAutofillDataNeeds(autofillMap, true).shift();
 
-      if (dataNeed) {
+      // Find if we have missing data needs
+      const unfulfilledDataNeed = checker
+        .getAutofillDataNeeds(autofillMap, true)
+        .shift();
+
+      // If we have unfulfilled data needs, send the user to the page where it can be resolved
+      if (unfulfilledDataNeed) {
         console.warn(
-          `Data not provided (${dataNeed}), send browser back to data-need provider.`
+          `Data not provided (${unfulfilledDataNeed}), send browser back to data-need provider.`
         );
         // The following line gives a client-side console error but it works.
-        const route = autofillRoutes[dataNeed].shift();
+        const route = autofillRoutes[unfulfilledDataNeed].shift();
         history.replace(geturl(route, topic));
         return null;
       } else {

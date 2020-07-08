@@ -93,6 +93,16 @@ const QuestionsPage = ({ topic, checker }) => {
     }
   };
 
+  const goBack = () => {
+    const route = getDataNeedResultPageOrPrevious(
+      checker,
+      autofillRoutes,
+      routes
+    );
+    const url = geturl(route, topic);
+    history.push(url);
+  };
+
   const onQuestionPrev = () => {
     // Load the previous question or go to the Location Page
     if (checker.stack.length > 1) {
@@ -116,16 +126,6 @@ const QuestionsPage = ({ topic, checker }) => {
     } else {
       goBack();
     }
-  };
-
-  const goBack = () => {
-    const route = getDataNeedResultPageOrPrevious(
-      checker,
-      autofillRoutes,
-      routes
-    );
-    const url = geturl(route, topic);
-    history.push(url);
   };
 
   return (
