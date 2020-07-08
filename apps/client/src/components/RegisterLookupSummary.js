@@ -4,9 +4,9 @@ import React from "react";
 import { List, ListItem } from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
-import { StyledAddressResult } from "./AddressResultStyles";
+import { StyledRegisterLookupSummary } from "./RegisterLookupSummaryStyles";
 
-const AddressResult = ({ address, displayZoningPlans }) => {
+const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -15,15 +15,15 @@ const AddressResult = ({ address, displayZoningPlans }) => {
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <StyledAddressResult>
-      <Paragraph strong style={{ marginBottom: 0 }}>
+    <StyledRegisterLookupSummary>
+      <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
       <Paragraph>
         {monument ? `Ja. ${monument}.` : "Nee. Geen monument."}
       </Paragraph>
 
-      <Paragraph strong style={{ marginBottom: 0 }}>
+      <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
       <Paragraph style={{ marginBottom: 0 }}>
@@ -34,7 +34,7 @@ const AddressResult = ({ address, displayZoningPlans }) => {
 
       {displayZoningPlans && (
         <>
-          <Paragraph strong style={{ marginBottom: 0 }}>
+          <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
           </Paragraph>
           {zoningPlanNames.length === 0 ? (
@@ -55,8 +55,8 @@ const AddressResult = ({ address, displayZoningPlans }) => {
           )}
         </>
       )}
-    </StyledAddressResult>
+    </StyledRegisterLookupSummary>
   );
 };
 
-export default AddressResult;
+export default RegisterLookupSummary;

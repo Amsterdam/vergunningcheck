@@ -5,10 +5,10 @@ import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import AddressLine from "../components/AddressLine";
-import AddressResult from "../components/AddressResult";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import { OLO } from "../config";
 import withAutofillData from "../hoc/withAutofillData";
 import { geturl, routes } from "../routes";
@@ -56,7 +56,10 @@ const AddressPage = ({ topic, autofillData }) => {
           informatie gevonden:
         </Paragraph>
 
-        <AddressResult displayZoningPlans={!useSTTR} address={address} />
+        <RegisterLookupSummary
+          displayZoningPlans={!useSTTR}
+          address={address}
+        />
 
         <Paragraph>
           {useSTTR
@@ -64,7 +67,7 @@ const AddressPage = ({ topic, autofillData }) => {
             : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
         </Paragraph>
         {topic.text?.addressPage && (
-          <Paragraph>{topic.text?.addressPage}</Paragraph>
+          <Paragraph>{topic.text.addressPage}</Paragraph>
         )}
 
         <Nav

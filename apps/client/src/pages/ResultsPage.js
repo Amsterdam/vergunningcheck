@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import AddressLine from "../components/AddressLine";
-import AddressResult from "../components/AddressResult";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import { SessionContext } from "../context";
 import withConclusion from "../hoc/withConclusion";
 import { getslug, geturl, routes } from "../routes";
@@ -57,7 +57,7 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
           Deze informatie hebben we gebruikt bij het invullen van de check:
         </Paragraph>
 
-        <AddressResult displayZoningPlans={false} address={address} />
+        <RegisterLookupSummary displayZoningPlans={false} address={address} />
 
         <Paragraph>
           Deze antwoorden heeft u gegeven bij het invullen van de
