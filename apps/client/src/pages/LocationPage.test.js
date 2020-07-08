@@ -43,7 +43,7 @@ describe("<LocationPage />", () => {
     );
   };
 
-  it("renders correctly on first load", () => {
+  xit("renders correctly on first load", () => {
     const { container } = render(<Wrapper />);
 
     expect(screen.getByText(topic.text.locationIntro + ".")).toBeTruthy();
@@ -61,7 +61,7 @@ describe("<LocationPage />", () => {
     expect(houseNumberFull.value).toBe("");
   });
 
-  it("can navigate with prev and next buttons", () => {
+  xit("can navigate with prev and next buttons", () => {
     const { getByTestId } = render(<Wrapper />);
 
     expect(window.scrollTo).toBeCalledWith(0, 0);
@@ -116,7 +116,7 @@ describe("<LocationPage />", () => {
     expect(houseNumberFull.value).toBe(addressMock.houseNumberFull);
   });
 
-  it("handles the submit", async () => {
+  xit("handles the submit", async () => {
     const {
       postalCode,
       streetName,
