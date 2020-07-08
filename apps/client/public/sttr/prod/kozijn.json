@@ -19,7 +19,7 @@
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. Het is ook onderhoud als u het kozijn repareert.\n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n*   de kleur\n*   het materiaal\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -27,19 +27,7 @@
           "type": "string",
           "id": "uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
           "prio": 20,
-          "uuid": "kozijn rijksmonument"
-        },
-        {
-          "text": "Gaat u onderhoud doen?",
-          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. Het is ook onderhoud als u het kozijn repareert. En als u de kleur en het materiaal verandert. \n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
-          "options": [
-            "Ja, ik ga onderhoud doen",
-            "Nee, ik ga geen onderhoud doen"
-          ],
-          "type": "string",
-          "id": "uitv__41b859be-53b8-46b9-975f-80217808e89f",
-          "prio": 30,
-          "uuid": "kozijn gemeentelijk monument"
+          "uuid": "kozijn monument onderhoud"
         }
       ],
       "inputs": {
@@ -50,14 +38,10 @@
         "input__6341d4bf-6629-4305-b077-79dd11cd5b7c": {
           "href": "#uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
           "type": "string"
-        },
-        "input__41b859be-53b8-46b9-975f-80217808e89f": {
-          "href": "#uitv__41b859be-53b8-46b9-975f-80217808e89f",
-          "type": "string"
         }
       },
       "decisions": {
-        "_dd08187b-f113-4183-a29a-e11feb9dc36a": {
+        "_f1515fea-3a06-4c25-886e-d9e49d103472": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -72,37 +56,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Gemeentelijk monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"Geen monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3": {
-          "requiredInputs": [
-            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
-            "#input__41b859be-53b8-46b9-975f-80217808e89f"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
                 "inputs": [
                   "\"Gemeentelijk monument\"",
                   "\"Nee, ik ga geen onderhoud doen\""
                 ],
                 "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"Rijksmonument\"", "-"],
-                "output": "\"no hit\""
               },
               {
                 "inputs": ["\"Geen monument\"", "-"],
@@ -116,26 +74,18 @@
           }
         },
         "dummy": {
-          "requiredDecisions": [
-            "#_dd08187b-f113-4183-a29a-e11feb9dc36a",
-            "#_76f9d7c7-a4a4-4b2f-ae49-4910e727efb3"
-          ],
+          "requiredDecisions": ["#_f1515fea-3a06-4c25-886e-d9e49d103472"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-"],
+                "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\"",
-                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": ["\"no hit\"", "\"no hit\""],
+                "inputs": ["\"no hit\""],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }
@@ -160,7 +110,7 @@
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. Het is ook onderhoud als u het kozijn repareert.\n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n*   de kleur\n*   het materiaal\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -168,11 +118,11 @@
           "type": "string",
           "id": "uitv__85ce6b97-ff25-455c-b279-b93ebe01e972",
           "prio": 20,
-          "uuid": "kozijn rijksmonument"
+          "uuid": "kozijn monument onderhoud"
         },
         {
           "text": "Gaat u onderhoud doen?",
-          "description": "U doet onderhoud als u een bestaand kozijn helemaal vervangt of voor een deel vervangt. \n\nHet is ook onderhoud als u het kozijn repareert. En als u de kleur en het materiaal verandert. \n\nBij onderhoud van het kozijn blijven gelijk:\n\n*   de plaats en de vorm\n*   de maten\n*   de detaillering, zoals de indeling en de dikte van het kozijn\n\nVoor het bestaande kozijn is in het verleden een vergunning verleend of dat was toen niet nodig.",
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.",
           "options": [
             "Ja, ik ga onderhoud doen",
             "Nee, ik ga geen onderhoud doen"
@@ -180,69 +130,72 @@
           "type": "string",
           "id": "uitv__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
           "prio": 30,
-          "uuid": "kozijn gemeentelijk monument"
+          "uuid": "kozijn geen monument"
         },
         {
           "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
-          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
           "type": "boolean",
           "id": "uitv__79e01ca4-21a2-4d16-bf23-720084f936ce",
           "prio": 40
         },
         {
-          "text": "Gaat u het kozijn plaatsen in een hoofdgebouw of bijgebouw?",
-          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein, vaak is dat de woning.\n\nEen bijgebouw is een gebouw dat bij het hoofdgebouw hoort. Het bijgebouw kan aan het hoofdgebouw vastzitten of losstaan. Voorbeelden van een bijgebouw zijn:\n\n*   garage\n*   schuur\n*   tuinhuis\n\nPer gebouw moet u een vergunningcheck doen.",
-          "options": ["In een hoofdgebouw", "In een bijgebouw"],
+          "text": "Gaat u het kozijn plaatsen in een hoofdgebouw of in een aanbouw, uitbouw of bijgebouw?",
+          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein, vaak is dat de woning.\n\nGaat u een kozijn plaatsen in een hoofdgebouw en in een aanbouw, uitbouw of bijgebouw? Doe dan een vergunningcheck voor het hoofdgebouw en een vergunningcheck voor de aanbouw, de uitbouw of het bijgebouw.",
+          "options": [
+            "In een hoofdgebouw",
+            "In een aanbouw, uitbouw of bijgebouw"
+          ],
           "type": "string",
           "id": "uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
           "prio": 50
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
-          "description": "Doe een vergunningcheck voor elke kant van het gebouw.\n\n![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Kozijn-kant-voorkant\")\n\nVoorkant\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Kozijn-kant-zijkant\")\n\nZijkant\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Kozijn-kant-achterkant\")\n\nAchterkant",
+          "description": "![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, achterkant en zijkant. Gaat u aan meer dan 1 kant een kozijn plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
           "prio": 60
         },
         {
-          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"OTG-zijkant-weg\")\n\nAls er direct naast uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
+          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"Zijkant aan een weg\")\n\nAls er direct naast uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
           "prio": 70
         },
         {
-          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"OTG-zijkant-water\")\n\nAls er direct naast uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
+          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"Zijkant aan water\")\n\nAls er direct naast uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
           "prio": 80
         },
         {
-          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"OTG-zijkant-plantsoen\")\n\nAls er direct naast uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
+          "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"Zijkant aan een plantsoen\")\n\nAls er direct naast uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
           "prio": 90
         },
         {
-          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"OTG-achterkant-weg\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
+          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"Achterkant aan een weg\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
           "prio": 100
         },
         {
-          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"OTG-achterkant-water\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
+          "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"Achterkant aan water\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
           "prio": 110
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"OTG-achterkant-plantsoen\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
+          "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"Achterkant aan een plantsoen\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
           "prio": 120
@@ -299,7 +252,7 @@
         }
       },
       "decisions": {
-        "_d4ed2bf6-c44e-4403-8e48-6b7a32310303": {
+        "_dc66ce10-24a3-47de-8ec4-ee723a9ce41d": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -314,28 +267,6 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Gemeentelijk monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"Geen monument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_4742c8d6-8198-4cb0-9916-bedabe468d63": {
-          "requiredInputs": [
-            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
-            "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
                 "inputs": [
                   "\"Gemeentelijk monument\"",
                   "\"Nee, ik ga geen onderhoud doen\""
@@ -343,10 +274,6 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Rijksmonument\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
                 "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
@@ -357,7 +284,7 @@
             ]
           }
         },
-        "_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673": {
+        "_e4de972a-8e05-495c-a861-0f1172edda87": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -369,7 +296,7 @@
                 "inputs": [
                   "\"Geen monument\"",
                   "\"Nee, ik ga geen onderhoud doen\"",
-                  "\"In een bijgebouw\""
+                  "\"In een aanbouw, uitbouw of bijgebouw\""
                 ],
                 "output": "\"NeemContactOpMet\""
               },
@@ -392,7 +319,7 @@
             ]
           }
         },
-        "_d46bd003-0b97-43b0-956d-c70118e1ab98": {
+        "_a8ee73ef-491e-49b5-8bf0-fee1e94c2616": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -445,7 +372,13 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "\"In een bijgebouw\"", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -455,7 +388,7 @@
             ]
           }
         },
-        "_01e40b29-34b2-4e60-ad84-90e3300af681": {
+        "_d1d47bbf-8169-4266-8947-a66075e6cd0b": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -508,7 +441,14 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "\"In een bijgebouw\"", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -526,7 +466,7 @@
             ]
           }
         },
-        "_3ca7950f-fbcc-4b16-b453-b6bc936c5068": {
+        "_976238c7-6831-44fb-a079-14dbfc7ceffd": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -579,7 +519,14 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "\"In een bijgebouw\"", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -597,7 +544,7 @@
             ]
           }
         },
-        "_c0344a92-d352-485b-a473-476f41057bb9": {
+        "_15cddf2d-7242-4e93-91b4-8b7cc0ae712c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -658,7 +605,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"In een bijgebouw\"",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
                   "-",
                   "-",
                   "-"
@@ -684,7 +631,7 @@
             ]
           }
         },
-        "_f8609238-6f2d-44c5-b6ec-afa9edee85d9": {
+        "_1c820b79-8734-4ac8-bf9e-d636dc373d45": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -745,7 +692,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"In een bijgebouw\"",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
                   "-",
                   "-",
                   "-"
@@ -771,7 +718,7 @@
             ]
           }
         },
-        "_7d6e80b7-5faa-48b0-b37a-5114e10e6268": {
+        "_8d6058aa-8c26-423d-b907-2316dd2238de": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -845,7 +792,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"In een bijgebouw\"",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
                   "-",
                   "-",
                   "-",
@@ -876,7 +823,7 @@
             ]
           }
         },
-        "_7ce6c5fb-40b5-4249-8d23-80f46153fd86": {
+        "_6ac9a44a-4456-49d2-88c4-3bb575cacbfc": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -950,7 +897,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"In een bijgebouw\"",
+                  "\"In een aanbouw, uitbouw of bijgebouw\"",
                   "-",
                   "-",
                   "-",
@@ -983,16 +930,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d4ed2bf6-c44e-4403-8e48-6b7a32310303",
-            "#_4742c8d6-8198-4cb0-9916-bedabe468d63",
-            "#_fcb735ff-a7c7-4f63-83f8-a2a40b2b5673",
-            "#_d46bd003-0b97-43b0-956d-c70118e1ab98",
-            "#_01e40b29-34b2-4e60-ad84-90e3300af681",
-            "#_3ca7950f-fbcc-4b16-b453-b6bc936c5068",
-            "#_c0344a92-d352-485b-a473-476f41057bb9",
-            "#_f8609238-6f2d-44c5-b6ec-afa9edee85d9",
-            "#_7d6e80b7-5faa-48b0-b37a-5114e10e6268",
-            "#_7ce6c5fb-40b5-4249-8d23-80f46153fd86"
+            "#_dc66ce10-24a3-47de-8ec4-ee723a9ce41d",
+            "#_e4de972a-8e05-495c-a861-0f1172edda87",
+            "#_a8ee73ef-491e-49b5-8bf0-fee1e94c2616",
+            "#_d1d47bbf-8169-4266-8947-a66075e6cd0b",
+            "#_976238c7-6831-44fb-a079-14dbfc7ceffd",
+            "#_15cddf2d-7242-4e93-91b4-8b7cc0ae712c",
+            "#_1c820b79-8734-4ac8-bf9e-d636dc373d45",
+            "#_8d6058aa-8c26-423d-b907-2316dd2238de",
+            "#_6ac9a44a-4456-49d2-88c4-3bb575cacbfc"
           ],
           "decisionTable": {
             "rules": [
@@ -1006,7 +952,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1014,23 +959,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
                   "-",
                   "\"NeemContactOpMet\"",
                   "-",
@@ -1048,9 +976,23 @@
                 "inputs": [
                   "-",
                   "-",
-                  "-",
                   "\"Vergunningplicht\"",
                   "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
                   "-",
                   "-",
                   "-",
@@ -1070,7 +1012,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1086,7 +1027,6 @@
                   "\"Vergunningplicht\"",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1094,23 +1034,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -1133,7 +1056,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "\"Vergunningplicht\"",
                   "-"
                 ],
@@ -1142,7 +1064,6 @@
               },
               {
                 "inputs": [
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -1158,7 +1079,6 @@
               },
               {
                 "inputs": [
-                  "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",

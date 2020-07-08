@@ -1,6 +1,32 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+
+## [1.3.3](2020-06-30)
+#### New Features
+* [Kozijncheck to production](https://github.com/Amsterdam/vergunningcheck/commit/9564e90403ee06fc79bcb6e633ac8307b050632e) 
+* [#152](https://github.com/Amsterdam/vergunningcheck/pull/152) Updated Matomo track events + refactor ([@svenjens](https://github.com/svenjens))
+* [#101](https://github.com/Amsterdam/vergunningcheck/pull/101) Added browser refresh button support ([@svenjens](https://github.com/svenjens))
+* [#156](https://github.com/Amsterdam/vergunningcheck/pull/156) Create LICENSE ([@afjlambert](https://github.com/afjlambert))
+
+#### Bug fixes
+* [#162](https://github.com/Amsterdam/vergunningcheck/pull/162) Fixed the cursor with Links and fetched the correct context ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+* [#100](https://github.com/Amsterdam/vergunningcheck/pull/100) Adding themeSpacing() ([@robinpiets](https://github.com/robinpiets))
+* [#153](https://github.com/Amsterdam/vergunningcheck/pull/153) Improve eslint configuration, fix some warnings ([@afjlambert](https://github.com/afjlambert))
+
+## [1.3.1](2020-06-23)
+
+#### :rocket: Enhancement
+
+- [#82](https://github.com/Amsterdam/vergunningcheck/pull/82) Implement helmet fixes and configure nginx accordingly ([@afjlambert](https://github.com/afjlambert))
+- Fixed the intro image scale
+- Hotfix: added usabilla url to nginx config
+
+#### :house: Internal
+
+- [#160](https://github.com/Amsterdam/vergunningcheck/pull/160) Implement fixes for new headers ([@afjlambert](https://github.com/afjlambert))
 
 ### [1.0.0](https://github.com/Amsterdam/vergunningcheck/tree/v1.0.0) (2020-05-06)
 

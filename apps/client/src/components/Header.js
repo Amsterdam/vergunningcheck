@@ -5,22 +5,39 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./HeaderStyles";
+import { actions, categories } from "../MatomoConfig";
+import withTracking from "../hoc/withTracking";
 
-export const Header = () => (
-  <StyledHeader
-    tall
-    css={StyledHeaderWrapper}
-    logo={() => (
-      <StyledLogoWrapper
-        href={
-          process.env.NODE_ENV === "production" ? "https://amsterdam.nl" : "/"
-        }
-        tabIndex={4}
-      >
-        <StyledLogo />
-      </StyledLogoWrapper>
-    )}
-  />
-);
+export const Header = ({ matomoTrackEvent }) => {
+  const handleClick = (href) => {
+    matomoTrackEvent({
+      category: categories.navigate,
+      action: actions.clickExternalLink,
+      name: "Logo - Header",
+    });
+    window.location.href = href;
+  };
 
-export default Header;
+  return (
+    <StyledHeader
+      tall
+      css={StyledHeaderWrapper}
+      logo={() => (
+        <StyledLogoWrapper
+          onClick={() =>
+            handleClick(
+              process.env.NODE_ENV === "production"
+                ? "https://amsterdam.nl"
+                : "/"
+            )
+          }
+          tabIndex={4}
+        >
+          <StyledLogo />
+        </StyledLogoWrapper>
+      )}
+    />
+  );
+};
+
+export default withTracking(Header);

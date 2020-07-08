@@ -5,24 +5,39 @@
     "url": "https://github.com/Amsterdam/vergunningcheck"
   },
   "engines": {
-    "node": "13.1"
+    "node": "14"
   },
   "scripts": {
     "start": "lerna run --parallel --no-bail start",
     "start:prod": "lerna run --parallel start:prod",
+    "build:size-report": "lerna run build:size-report",
     "test": "CI=true lerna run test",
+    "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "release": "git checkout develop && git pull && lerna-changelog && lerna publish"
+    "back-merge": "git fetch && git checkout master && git merge && git checkout release && git merge && git merge master && git push && git checkout develop && git merge && git merge release && git push",
+    "prepare-release": "npm run back-merge && git checkout develop && STTR_ENV=production lerna run sttr && echo '\n\nPlease commit changes and run \"npm run release\".\n'",
+    "release": "git checkout release && git pull && cli-confirm \"Are you sure you want to merge develop into release? (yN)\" && git merge origin/develop && git push",
+    "version": "git checkout release && git pull && lerna-changelog",
+    "publish": "git checkout release && git pull && lerna publish"
   },
   "devDependencies": {
+    "cli-confirm": "^1.0.1",
     "husky": "^4.2.5",
-    "lerna": "^3.21.0",
+    "lerna": "^3.22.0",
     "lerna-changelog": "^1.0.1"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lerna run --concurrency 1 --stream precommit"
+    }
+  },
+  "changelog": {
+    "labels": {
+      "feature": "New Features",
+      "bug": "Bug fixes",
+      "chore": "Chores",
+      "docs": "Documentation changes"
     }
   }
 }
