@@ -1,6 +1,6 @@
-const config = require("config");
 const helmet = require("helmet");
 const featurePolicy = require("feature-policy");
+const config = require("../config");
 
 module.exports = (app) => {
   app.use(

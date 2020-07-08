@@ -17,11 +17,18 @@ export const getDataNeedResultPageOrPrevious = (
   return dataNeed ? autofillRoutes[dataNeed].pop() : routes.intro;
 };
 
+/**
+ * This object contains a resolver map from key to the function that
+ * resolves. The function accepts autofill data to do it's thing.
+ * Monument can either be a bool or list question, that why we need 2.
+ */
 export const autofillResolvers = {
+  cityScape: ({ address }) =>
+    address?.restrictions &&
+    !!getRestrictionByTypeName(address.restrictions, "CityScape"),
   monumentBoolean: ({ address }) =>
-    address?.restrictions
-      ? !!getRestrictionByTypeName(address.restrictions, "Monument")
-      : undefined,
+    address?.restrictions &&
+    !!getRestrictionByTypeName(address.restrictions, "Monument"),
   monumentList: ({ address }) => {
     if (address?.restrictions) {
       const monumentData = getRestrictionByTypeName(
@@ -34,12 +41,11 @@ export const autofillResolvers = {
     }
     return '"Geen monument"';
   },
-  cityScape: ({ address }) =>
-    address?.restrictions
-      ? !!getRestrictionByTypeName(address.restrictions, "CityScape")
-      : undefined,
 };
 
+/**
+ * map from autofill-resolver key to the data-need it has.
+ */
 export const autofillMap = {
   monumentList: "address",
   monumentBoolean: "address",
