@@ -124,9 +124,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
           )}
         </PrintOnly>
 
-        <Heading forwardedAs="h1" styleAs="h2">
-          Conclusie
-        </Heading>
+        <Heading forwardedAs="h1">Conclusie</Heading>
         <Paragraph>
           Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
           van toepassing is.
@@ -152,7 +150,9 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
         )}
 
         <PrintOnly>
-          <Heading forwardedAs="h2">Uw antwoorden</Heading>
+          <Heading forwardedAs="h2" styleAs="h1">
+            Uw antwoorden
+          </Heading>
           <Paragraph>
             Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
           </Paragraph>
