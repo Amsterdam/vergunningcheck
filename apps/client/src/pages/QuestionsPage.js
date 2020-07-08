@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 
-import withChecker from "../hoc/withChecker";
-import { SessionContext } from "../context";
-import { geturl, routes, getslug } from "../routes";
-import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
+import Layout from "../components/Layouts/DefaultLayout";
 import Question, { booleanOptions } from "../components/Question";
+import { SessionContext } from "../context";
+import withChecker from "../hoc/withChecker";
+import { getslug, geturl, routes } from "../routes";
 
 const QuestionsPage = ({ topic, checker }) => {
   const sessionContext = useContext(SessionContext);

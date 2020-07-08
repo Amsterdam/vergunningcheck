@@ -1,6 +1,6 @@
 import Checker from "./models/checker";
-import Permit from "./models/permit";
 import Decision from "./models/decision";
+import Permit from "./models/permit";
 import Question from "./models/question";
 import Rule from "./models/rule";
 

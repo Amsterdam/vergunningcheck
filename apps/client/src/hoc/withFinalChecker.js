@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { routes, geturl } from "../routes";
+
+import { geturl, routes } from "../routes";
 import withChecker from "./withChecker";
 
 const withFinalChecker = (Component) =>

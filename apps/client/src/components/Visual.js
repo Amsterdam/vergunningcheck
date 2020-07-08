@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Figure, Img, Caption } from "./VisualStyles";
+
+import { Caption, Figure, Img } from "./VisualStyles";
 
 export default ({ title, ...rest }) => {
   const [loaded, setLoaded] = useState(false);

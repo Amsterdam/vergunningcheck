@@ -1,8 +1,10 @@
-import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import { render, cleanup } from "./utils/test-utils";
+
+import React from "react";
+
 import { topics } from "./config";
 import { getMatomoSiteId } from "./MatomoConfig";
+import { cleanup, render } from "./utils/test-utils";
 
 afterEach(cleanup);
 

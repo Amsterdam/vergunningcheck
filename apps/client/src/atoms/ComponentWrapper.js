@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
 import { themeSpacing } from "@datapunt/asc-ui";
+import styled, { css } from "styled-components";
 
 export default styled.div`
   ${(props) =>

@@ -1,18 +1,17 @@
+import { Paragraph } from "@datapunt/asc-ui";
+import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { Paragraph } from "@datapunt/asc-ui";
 
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import { ADDRESS_PAGE } from "../utils/test-ids";
-import withAddress from "../hoc/withAddress";
-import Layout from "../components/Layouts/DefaultLayout";
 import AddressData from "../components/AddressData";
 import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
-
+import { OLO } from "../config";
+import withAddress from "../hoc/withAddress";
+import { geturl, routes } from "../routes";
+import { ADDRESS_PAGE } from "../utils/test-ids";
 import { StyledAddressResult } from "./AddressPageStyles";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {

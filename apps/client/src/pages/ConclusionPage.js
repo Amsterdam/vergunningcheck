@@ -1,22 +1,22 @@
-import React, { Fragment, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { isMobile } from "react-device-detect";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import withFinalChecker from "../hoc/withFinalChecker";
+import React, { Fragment, useContext } from "react";
+import { isMobile } from "react-device-detect";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import { SessionContext } from "../context";
-import { CONCLUSION_PAGE } from "../utils/test-ids";
+import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import DebugDecisionTable from "../components/DebugDecisionTable";
+import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
-import Form from "../components/Form";
-import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
-import { PrintButton, PrintOnly, Alert, ComponentWrapper } from "../atoms";
+import QuestionAnswerTable from "../components/QuestionAnswerTable";
+import { OLO } from "../config";
+import { SessionContext } from "../context";
+import withFinalChecker from "../hoc/withFinalChecker";
+import { geturl, routes } from "../routes";
+import { CONCLUSION_PAGE } from "../utils/test-ids";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',

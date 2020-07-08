@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { breakpoint, themeSpacing } from "@datapunt/asc-ui";
+import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 1400px;

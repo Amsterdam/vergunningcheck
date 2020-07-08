@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React, { useContext } from "react";
-import HiddenDebugInfo from "./HiddenDebugInfo";
+
 import { SessionContext } from "../context";
+import HiddenDebugInfo from "./HiddenDebugInfo";
 
 export default ({ checker }) => {
   const sessionContext = useContext(SessionContext);
