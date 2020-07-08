@@ -1,23 +1,25 @@
-import React from "react";
 import {
-  CompactThemeProvider,
-  Footer as FooterComp,
-  FooterTop,
-  Row,
   Column,
-  Paragraph,
-  FooterToggle,
-  FooterHeading,
-  FooterContent,
-  FooterLinkList,
-  FooterLinkListItem,
+  CompactThemeProvider,
   FooterBottom,
   FooterBottomLinkList,
   FooterBottomLinkListItem,
+  Footer as FooterComp,
+  FooterContent,
+  FooterHeading,
+  FooterLinkList,
+  FooterLinkListItem,
+  FooterToggle,
+  FooterTop,
+  Paragraph,
+  Row,
 } from "@datapunt/asc-ui";
+import React from "react";
+
+import { FOOTER } from "../../utils/test-ids";
 import Link from "../Link";
 import { ContentContainer } from "./FooterStyles";
-import { FOOTER } from "../../utils/test-ids";
+
 const eventNameSuffix = "- Footer";
 
 const FirstColumn = () => (

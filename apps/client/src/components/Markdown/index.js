@@ -2,10 +2,10 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 import { ListItem } from "../../atoms";
-import ListRenderer from "./renderers/ListRenderer";
+import Visual from "../Visual";
 import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
-import Visual from "../Visual";
+import ListRenderer from "./renderers/ListRenderer";
 
 export default ({ source }) => (
   <ReactMarkdown
