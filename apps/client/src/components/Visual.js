@@ -7,7 +7,7 @@ export default ({ title, src, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
 
-  const setError = () => {
+  const handleError = () => {
     setLoaded(true);
     setErrored(true);
     captureException(`${src} not found`);
@@ -21,7 +21,7 @@ export default ({ title, src, ...rest }) => {
         loaded={loaded}
         errored={errored}
         onLoad={() => setLoaded(true)}
-        onError={setError}
+        onError={handleError}
       />
       {title && !errored && (
         <figcaption>
