@@ -5,6 +5,7 @@ import "@datapunt/asc-assets/static/fonts/fonts.css";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import * as Sentry from "@sentry/browser";
 import dotenv from "dotenv-flow";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -13,6 +14,7 @@ import { createGlobalStyle } from "styled-components";
 import apolloClient from "./apolloClient";
 import Router from "./components/Router";
 import { matomo } from "./config/matomo";
+import { sentryConfig } from "./config/sentry";
 import { SessionProvider } from "./context";
 import * as serviceWorker from "./serviceWorker";
 
@@ -29,6 +31,8 @@ const AppGlobalStyle = createGlobalStyle`
     background-color: ${themeColor("tint", "level3")};
   }
 `;
+
+Sentry.init(sentryConfig);
 
 ReactDOM.render(
   <SessionProvider>
