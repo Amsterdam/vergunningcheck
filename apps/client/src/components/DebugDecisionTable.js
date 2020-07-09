@@ -17,8 +17,9 @@ const Answer = ({ question: { answer } }) => (
   </>
 );
 
-export default ({ checker }) => {
+export default ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
+  const { slug } = topic;
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;
@@ -32,7 +33,7 @@ export default ({ checker }) => {
           <>
             <h1>Autofilled</h1>
             {autofilled.map((q) => (
-              <p>
+              <p key={q.id}>
                 <QuestionSummary question={q} />: <Answer question={q} />
               </p>
             ))}
@@ -53,7 +54,7 @@ export default ({ checker }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[sessionContext.questionIndex] === q
+                    checker.stack[sessionContext[slug].questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}
@@ -177,12 +178,6 @@ export default ({ checker }) => {
                 decision.getDecisiveInputs().map((question) => question.text)
               )}
             </p>
-            <h3>Notes:</h3>
-            {conclusionMatchingRules.map(
-              ({ description, inputConditions, outputValue }) => (
-                <p key={{ inputConditions, outputValue }}>- {description}</p>
-              )
-            )}
           </div>
         );
       })}

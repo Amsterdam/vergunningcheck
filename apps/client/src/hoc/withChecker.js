@@ -16,7 +16,7 @@ const withChecker = (Component) =>
     const [checker, setChecker] = useState(checkerContext.checker);
     const [error, setError] = useState();
     const { topic } = props;
-    const { sttrFile } = topic;
+    const { sttrFile, slug } = topic;
 
     if (sttrFile) {
       useEffect(() => {
@@ -25,10 +25,10 @@ const withChecker = (Component) =>
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
-              if (sessionContext.answers) {
-                newChecker.setQuestionAnswers(sessionContext.answers);
+              if (sessionContext[slug]?.answers) {
+                newChecker.setQuestionAnswers(sessionContext[slug].answers);
                 // In case of reload, rewind to the current question
-                newChecker.rewindTo(sessionContext.questionIndex);
+                newChecker.rewindTo(sessionContext[slug].questionIndex);
               }
               // Store the entire `sttr-checker` in React Context
               checkerContext.checker = newChecker;
