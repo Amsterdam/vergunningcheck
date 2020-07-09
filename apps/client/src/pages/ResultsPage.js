@@ -19,14 +19,18 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const sessionContext = useContext(SessionContext);
   const { slug } = topic;
-  const address = sessionContext.address[slug];
+  const address = sessionContext[slug]?.address;
 
   const onGoToQuestion = (questionIndex) => {
     // Go to the specific question in the stack
     const question = checker.rewindTo(questionIndex);
-    sessionContext.setSessionData({
-      questionIndex,
-    });
+
+    sessionContext.setSessionData([
+      slug,
+      {
+        questionIndex,
+      },
+    ]);
 
     // Change the URL to the new question
     history.push(
@@ -49,15 +53,23 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
         }}
         data-testid={RESULTS_PAGE}
       >
-        <Paragraph>
-          Vergunningcheck uitgevoerd voor: <AddressLine address={address} />.
-        </Paragraph>
+        {address && (
+          <>
+            <Paragraph>
+              Vergunningcheck uitgevoerd voor: <AddressLine address={address} />
+              .
+            </Paragraph>
 
-        <Paragraph>
-          Deze informatie hebben we gebruikt bij het invullen van de check:
-        </Paragraph>
+            <Paragraph>
+              Deze informatie hebben we gebruikt bij het invullen van de check:
+            </Paragraph>
 
-        <RegisterLookupSummary displayZoningPlans={false} address={address} />
+            <RegisterLookupSummary
+              displayZoningPlans={false}
+              address={address}
+            />
+          </>
+        )}
 
         <Paragraph>
           Deze antwoorden heeft u gegeven bij het invullen van de
@@ -76,7 +88,7 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
           showPrev
           showNext
         />
-        <DebugDecisionTable checker={checker} />
+        <DebugDecisionTable {...{ topic, checker }} />
       </Form>
     </Layout>
   );

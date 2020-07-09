@@ -34,9 +34,13 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
   const conclusions = checker.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
     .map((permit) => {
-      const outcome = permit.getOutputByDecisionId("dummy");
-      const dummyDecision = permit.getDecisionById("dummy");
-      const matchingRules = dummyDecision.getMatchingRules();
+      const conclusion = permit.getDecisionById("dummy");
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      const contactOutcome = conclusionMatchingRules.find(
+        (rule) => rule.outputValue === '"NeemContactOpMet"'
+      );
+      const outcome =
+        contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
 
       return {
         outcome,
@@ -47,7 +51,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
                 /['"]+/g,
                 ""
               )}`,
-        description: matchingRules[0].description,
+        description: conclusionMatchingRules[0].description,
       };
     });
 
@@ -176,7 +180,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
           nextText={needsPermit ? "Naar het omgevingsloket" : "Begin opnieuw"}
           formEnds
         />
-        <DebugDecisionTable checker={checker} />
+        <DebugDecisionTable {...{ topic, checker }} />
       </Form>
     </Layout>
   );

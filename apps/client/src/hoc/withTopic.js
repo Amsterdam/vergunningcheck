@@ -18,8 +18,15 @@ const withTopic = (Component) => (props) => {
 
   if (params.get("resetChecker")) {
     checkerContext.checker = null;
-    sessionContext.answers = null;
-    sessionContext.questionIndex = 0;
+
+    // Reset all but address from session
+    sessionContext.setSessionData([
+      slug,
+      {
+        answers: null,
+        questionIndex: 0,
+      },
+    ]);
 
     console.warn("Resseting checker, redirecting to intro page");
     return <Redirect to={geturl(routes.intro, topic)} />;

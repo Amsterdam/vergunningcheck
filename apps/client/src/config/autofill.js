@@ -1,11 +1,11 @@
 import { getRestrictionByTypeName } from "../utils";
 
 const getDataNeed = (checker) =>
-  checker && checker.getAutofillDataNeeds(autofillMap).shift();
+  checker && checker.getAutofillDataNeeds(autofillMap)[0];
 
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
   const dataNeed = getDataNeed(checker);
-  return dataNeed ? autofillRoutes[dataNeed].shift() : routes.questions;
+  return dataNeed ? autofillRoutes[dataNeed][0] : routes.questions;
 };
 
 export const getDataNeedResultPageOrPrevious = (
@@ -14,7 +14,11 @@ export const getDataNeedResultPageOrPrevious = (
   routes
 ) => {
   const dataNeed = getDataNeed(checker);
-  return dataNeed ? autofillRoutes[dataNeed].pop() : routes.intro;
+  if (dataNeed) {
+    const routesForDataNeed = autofillRoutes[dataNeed];
+    return routesForDataNeed[routesForDataNeed.length - 1];
+  }
+  return routes.intro;
 };
 
 /**

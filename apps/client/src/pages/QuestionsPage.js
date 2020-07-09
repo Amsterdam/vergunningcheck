@@ -19,6 +19,7 @@ const QuestionsPage = ({ topic, checker }) => {
     checker.stack[checker.stack.length - 1]
   );
 
+  const { slug } = topic;
   const currSlug = getslug(question.text);
 
   // Update URL when it's not set (first question) and when URL differs from the current question
@@ -26,7 +27,7 @@ const QuestionsPage = ({ topic, checker }) => {
     return (
       <Redirect
         to={geturl(routes.questions, {
-          slug: topic.slug,
+          slug,
           question: currSlug,
         })}
       />
@@ -53,9 +54,12 @@ const QuestionsPage = ({ topic, checker }) => {
     }
 
     // Store all answers in the session context
-    sessionContext.setSessionData({
-      answers: checker.getQuestionAnswers(),
-    });
+    sessionContext.setSessionData([
+      slug,
+      {
+        answers: checker.getQuestionAnswers(),
+      },
+    ]);
 
     // Load next question
     const next = checker.next();
@@ -72,9 +76,12 @@ const QuestionsPage = ({ topic, checker }) => {
       // Load the next question or go to the Result Page
       if (next) {
         // Store the new questionIndex in the session
-        sessionContext.setSessionData({
-          questionIndex: sessionContext.questionIndex + 1,
-        });
+        sessionContext.setSessionData([
+          slug,
+          {
+            questionIndex: sessionContext.questionIndex + 1,
+          },
+        ]);
 
         // Go to Next question
         setQuestion(next);
@@ -82,7 +89,7 @@ const QuestionsPage = ({ topic, checker }) => {
         // Change the URL to the new question
         history.push(
           geturl(routes.questions, {
-            slug: topic.slug,
+            slug,
             question: getslug(next.text),
           })
         );
@@ -109,9 +116,12 @@ const QuestionsPage = ({ topic, checker }) => {
       const prev = checker.previous();
 
       // Store the new questionIndex in the session
-      sessionContext.setSessionData({
-        questionIndex: sessionContext.questionIndex - 1,
-      });
+      sessionContext.setSessionData([
+        slug,
+        {
+          questionIndex: sessionContext[slug].questionIndex - 1,
+        },
+      ]);
 
       // Go to Prev question
       setQuestion(prev);
@@ -119,7 +129,7 @@ const QuestionsPage = ({ topic, checker }) => {
       // Change the URL to the new question
       history.push(
         geturl(routes.questions, {
-          slug: topic.slug,
+          slug,
           question: getslug(prev.text),
         })
       );
@@ -143,7 +153,7 @@ const QuestionsPage = ({ topic, checker }) => {
         showPrev
       />
 
-      <DebugDecisionTable checker={checker} />
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };

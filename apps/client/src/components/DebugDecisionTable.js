@@ -32,7 +32,7 @@ export default ({ checker }) => {
           <>
             <h1>Autofilled</h1>
             {autofilled.map((q) => (
-              <p>
+              <p key={q.id}>
                 <QuestionSummary question={q} />: <Answer question={q} />
               </p>
             ))}
@@ -177,12 +177,6 @@ export default ({ checker }) => {
                 decision.getDecisiveInputs().map((question) => question.text)
               )}
             </p>
-            <h3>Notes:</h3>
-            {conclusionMatchingRules.map(
-              ({ description, inputConditions, outputValue }) => (
-                <p key={{ inputConditions, outputValue }}>- {description}</p>
-              )
-            )}
           </div>
         );
       })}
