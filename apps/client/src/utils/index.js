@@ -26,6 +26,10 @@ export const isObject = (val) => typeof val === "object" && val !== null;
 export const uniqueFilter = (value, index, self) =>
   self.indexOf(value) === index;
 
+// Data utils
+export const getRestrictionByTypeName = (restrictions, typeName) =>
+  (restrictions || []).find(({ __typename }) => __typename === typeName);
+
 // `uniqBy` removes duplicates from an array (of objects) and is based on lodash.uniqBy
 // see: https://stackoverflow.com/a/40808569
 export const uniqBy = (arr, predicate) => {

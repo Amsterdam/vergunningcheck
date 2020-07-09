@@ -4,7 +4,7 @@ const {
   monument: config,
   CACHE_TIMEOUT,
   HOST,
-} = require("config").loaders.datapunt;
+} = require("../../../config").loaders.datapunt;
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 

@@ -1,6 +1,6 @@
 import Checker from "./models/checker";
-import Permit from "./models/permit";
 import Decision from "./models/decision";
+import Permit from "./models/permit";
 import Question from "./models/question";
 import Rule from "./models/rule";
 
@@ -19,6 +19,7 @@ function getQuestions(questionConfig) {
       type,
       collection,
       options,
+      autofill,
       description,
       longDescription,
       ids,
@@ -33,6 +34,7 @@ function getQuestions(questionConfig) {
         longDescription,
         collection,
         options,
+        autofill,
         uuid,
         prio,
       }),

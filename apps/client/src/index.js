@@ -13,9 +13,9 @@ import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";
 import Router from "./components/Router";
+import { matomo } from "./config/matomo";
 import { sentryConfig } from "./config/sentry";
 import { SessionProvider } from "./context";
-import { matomo } from "./MatomoConfig";
 import * as serviceWorker from "./serviceWorker";
 
 dotenv.config();

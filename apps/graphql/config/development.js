@@ -4,14 +4,17 @@
  * If you want to make changes for your env only create a `local.js`
  * file in this directory.
  */
-module.exports = {
+const merge = require("lodash/merge");
+const base = require("./default");
+
+const config = {
   cache: {
     redis: false,
   },
   enableContentSecurityPolicy: false,
   loaders: {
     datapunt: {
-      // host: "http:// .... use acceptance url if needed
+      // HOST: "https:// .... use acceptance url if needed
       CACHE_TIMEOUT: 10,
     },
   },
@@ -61,3 +64,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = merge(base, config);

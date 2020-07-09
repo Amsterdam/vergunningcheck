@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
-import { CheckerContext } from "../context";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
+import React, { useContext } from "react";
+
+import { CheckerContext } from "../context";
 
 const withTracking = (Component) => ({ ...props }) => {
   const { topic } = useContext(CheckerContext);

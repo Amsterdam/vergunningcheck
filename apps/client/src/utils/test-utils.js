@@ -1,12 +1,13 @@
-import React from "react";
-import dotenv from "dotenv-flow";
-import { render } from "@testing-library/react";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { ThemeProvider } from "@datapunt/asc-ui";
-import { SessionProvider } from "../context";
-import { matomo } from "../MatomoConfig";
+import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import { render } from "@testing-library/react";
+import dotenv from "dotenv-flow";
+import React from "react";
+
 import { getTestClient } from "../apolloClient";
+import { matomo } from "../config/matomo";
+import { SessionProvider } from "../context";
 
 dotenv.config();
 

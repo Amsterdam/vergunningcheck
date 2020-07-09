@@ -8,9 +8,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon .",
+    "prestart": "npm install",
+    "start": "NODE_ENV=development nodemon .",
     "start:prod": "NODE_ENV=production node .",
-    "test": "jest",
+    "build:netlify": "npm install",
+    "test": "CONFIG_FILE=test jest",
     "test:coverage": "npm test -- --watchAll=false --collect-coverage",
     "precommit": "lint-staged",
     "lint": "eslint ."
@@ -19,12 +21,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "config": "^3.3.1",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dataloader": "^2.0.0",
     "debug": "^4.1.1",
+    "dotenv-flow": "^3.1.0",
     "express": "^4.17.1",
-    "express-graphql": "^0.10.2",
+    "express-graphql": "^0.11.0",
+    "feature-policy": "^0.5.0",
     "graphql": "^15.1.0",
     "graphql-depth-limit": "^1.1.0",
     "graphql-tools": "^6.0.9",
@@ -36,6 +40,7 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
     "redis": "^3.0.2",
+    "serverless-http": "^2.5.0",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
