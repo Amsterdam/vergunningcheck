@@ -66,7 +66,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
     // Go directly to the Conclusion Page, without passing the Results Page
     // Only if the `sttr-checker` is the final question
-    if (needContactPermits() && !next) {
+    if (needContactPermits()) {
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
 
@@ -79,7 +79,7 @@ const QuestionsPage = ({ topic, checker }) => {
         sessionContext.setSessionData([
           slug,
           {
-            questionIndex: sessionContext.questionIndex + 1,
+            questionIndex: sessionContext[slug].questionIndex + 1,
           },
         ]);
 

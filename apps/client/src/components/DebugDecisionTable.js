@@ -17,8 +17,9 @@ const Answer = ({ question: { answer } }) => (
   </>
 );
 
-export default ({ checker }) => {
+export default ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
+  const { slug } = topic;
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;
@@ -53,7 +54,7 @@ export default ({ checker }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[sessionContext.questionIndex] === q
+                    checker.stack[sessionContext[slug].questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}
