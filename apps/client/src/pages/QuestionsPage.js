@@ -21,6 +21,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const { slug } = topic;
   const currSlug = getslug(question.text);
+  const sessionTopic = sessionContext[slug] || { questionIndex: 0 };
 
   // Update URL when it's not set (first question) and when URL differs from the current question
   if (!questionSlug || questionSlug !== currSlug) {
@@ -79,7 +80,7 @@ const QuestionsPage = ({ topic, checker }) => {
         sessionContext.setSessionData([
           slug,
           {
-            questionIndex: sessionContext[slug].questionIndex + 1,
+            questionIndex: sessionTopic.questionIndex + 1,
           },
         ]);
 
@@ -119,7 +120,7 @@ const QuestionsPage = ({ topic, checker }) => {
       sessionContext.setSessionData([
         slug,
         {
-          questionIndex: sessionContext[slug].questionIndex - 1,
+          questionIndex: sessionTopic.questionIndex - 1,
         },
       ]);
 
