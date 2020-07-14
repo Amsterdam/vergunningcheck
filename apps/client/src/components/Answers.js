@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { ComponentWrapper } from "../atoms";
+import { removeQuotes } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 const Answers = ({
@@ -24,7 +25,7 @@ const Answers = ({
             <Label
               htmlFor={answerId}
               key={answerId}
-              label={label.replace(/['"]+/g, "")}
+              label={removeQuotes(label)}
             >
               <Radio
                 key={answerId}
