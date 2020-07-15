@@ -101,7 +101,6 @@ class Checker {
    * @returns {Question} - last question in the stack
    */
   get _last() {
-    console.log(this.stack);
     return this.stack[this.stack.length - 1];
   }
 
@@ -143,7 +142,6 @@ class Checker {
     }
     this._stack.splice(index);
     this._done = false;
-    // console.log(this._last)
     return this._last;
   }
 

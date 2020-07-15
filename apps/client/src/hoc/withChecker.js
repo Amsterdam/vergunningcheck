@@ -40,8 +40,6 @@ const withChecker = (Component) =>
                 newChecker.setQuestionAnswers(sessionContext[slug].answers);
                 // In case of reload, rewind to the current question
                 newChecker.rewindTo(sessionContext[slug].questionIndex);
-              } else {
-                console.error('unfulfilled data needs');
               }
               // Store the entire `sttr-checker` in React Context
               checkerContext.checker = newChecker;
