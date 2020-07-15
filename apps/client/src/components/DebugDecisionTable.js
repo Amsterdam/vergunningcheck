@@ -1,18 +1,45 @@
 /* eslint-disable */
 import React, { useContext } from "react";
-import HiddenDebugInfo from "./HiddenDebugInfo";
-import { SessionContext } from "../context";
 
-export default ({ checker }) => {
+import { SessionContext } from "../context";
+import HiddenDebugInfo from "./HiddenDebugInfo";
+
+const QuestionSummary = ({ question: { prio, text, autofill } }) =>
+  `${prio}: ${autofill ? ` [${autofill}]` : ""} ${text}`;
+
+const Answer = ({ question: { answer } }) => (
+  <>
+    {answer === null ? (
+      "NULL"
+    ) : (
+      <b>{answer !== undefined ? answer.toString() : "..."}</b>
+    )}
+  </>
+);
+
+export default ({ checker, slug }) => {
   const sessionContext = useContext(SessionContext);
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;
-  const relevantOpenQuestions = checker._getUpcomingQuestions();
+  const allQuestions = checker._getAllQuestions();
+  const autofilled = allQuestions.filter((q) => q.autofill);
+
   return (
     <HiddenDebugInfo>
       <div style={{ display: "block" }}>
-        <h1>Questions</h1>
+        {autofilled.filter((q) => q.autofill).length > 0 && (
+          <>
+            <h1>Autofilled</h1>
+            {autofilled.map((q) => (
+              <p key={q.id}>
+                <QuestionSummary question={q} />: <Answer question={q} />
+              </p>
+            ))}
+          </>
+        )}
+
+        <h1>Stack</h1>
         <table cellPadding="1" cellSpacing="1">
           <thead>
             <tr>
@@ -26,32 +53,46 @@ export default ({ checker }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[sessionContext.questionIndex] === q
+                    checker.stack[sessionContext[slug]?.questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}
               >
                 <td>
-                  {q.prio}: {q.text}
-                </td>
-                <td>{q.answer !== undefined && q.answer.toString()}</td>
-              </tr>
-            ))}
-            {relevantOpenQuestions.map((q, i) => (
-              <tr key={`open-${q.id}-${i}`}>
-                <td>
-                  {q.prio}: {q.text}
+                  <QuestionSummary question={q} />
                 </td>
                 <td>
-                  <em>
-                    {q.answer !== undefined ? q.answer.toString() : "..."}
-                  </em>
+                  <Answer question={q} />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      <h1>Upcoming (user) questions</h1>
+      <table cellPadding="1" cellSpacing="1">
+        <thead>
+          <tr>
+            <th>Vraag</th>
+            <th>Antwoord</th>
+          </tr>
+        </thead>
+        <tbody>
+          {checker._getUpcomingQuestions().map((q, i) => (
+            <tr key={`open-${q.id}-${i}`}>
+              <td>
+                <QuestionSummary question={q} />
+              </td>
+              <td>
+                <em>
+                  <Answer question={q} />
+                </em>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <h1>Permits</h1>
       {checker.permits.map((permit, index) => {
@@ -96,12 +137,7 @@ export default ({ checker }) => {
                             >
                               {q.text}
                               <br />
-                              Antwoord:{" "}
-                              {q.answer !== undefined ? (
-                                <b>{JSON.stringify(q.answer)}</b>
-                              ) : (
-                                <em>undefined</em>
-                              )}
+                              Antwoord: <Answer question={q} />
                             </li>
                           ))}
                         </ol>
@@ -141,12 +177,6 @@ export default ({ checker }) => {
                 decision.getDecisiveInputs().map((question) => question.text)
               )}
             </p>
-            <h3>Notes:</h3>
-            {conclusionMatchingRules.map(
-              ({ description, inputConditions, outputValue }) => (
-                <p key={{ inputConditions, outputValue }}>- {description}</p>
-              )
-            )}
           </div>
         );
       })}

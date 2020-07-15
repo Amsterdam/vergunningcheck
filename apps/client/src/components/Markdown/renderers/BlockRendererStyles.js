@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Paragraph, themeSpacing } from "@datapunt/asc-ui";
+import styled from "styled-components";
 
 export const StyledParagraph = styled(Paragraph)`
   /* IE11 Fix */

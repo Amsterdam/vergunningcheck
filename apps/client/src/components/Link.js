@@ -1,7 +1,8 @@
-import React from "react";
 import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
-import { actions, categories } from "../MatomoConfig";
+import React from "react";
+
+import { actions, categories } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 
 const Link = ({

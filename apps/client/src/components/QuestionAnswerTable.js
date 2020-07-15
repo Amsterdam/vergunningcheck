@@ -4,7 +4,7 @@ import React from "react";
 
 import { ComponentWrapper } from "../atoms";
 import { booleanOptions } from "./Question";
-import { uniqBy } from "../utils";
+import { removeQuotes, uniqBy } from "../utils";
 import {
   Change,
   MainWrapper,
@@ -49,7 +49,7 @@ export default ({ checker, onGoToQuestion }) => {
             <QuestionWrapper key={question.id}>
               <Question>{question.text}</Question>
               {question.options ? (
-                <UserAnswer>{question.answer.replace(/['"]+/g, "")}</UserAnswer>
+                <UserAnswer>{removeQuotes(question.answer)}</UserAnswer>
               ) : (
                 <UserAnswer>
                   {

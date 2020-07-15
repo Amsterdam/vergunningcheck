@@ -1,4 +1,4 @@
-import { isProduction } from "./config";
+import { isProduction } from ".";
 
 const matomoSiteId = {
   production: 29,

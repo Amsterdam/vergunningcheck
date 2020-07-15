@@ -1,11 +1,12 @@
 import React from "react";
-import { render, fireEvent, cleanup } from "../utils/test-utils";
-import Nav from "./Nav";
-import Form from "./Form";
 import { MemoryRouter } from "react-router-dom";
+
 import Context from "../__mocks__/context";
-import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { topics } from "../config";
+import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
+import { cleanup, fireEvent, render } from "../utils/test-utils";
+import Form from "./Form";
+import Nav from "./Nav";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();

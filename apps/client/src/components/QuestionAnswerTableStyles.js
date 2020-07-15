@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { Paragraph, themeSpacing } from "@datapunt/asc-ui";
+import styled from "styled-components";
+
 import { avoidPageBreak } from "../utils/themeUtils";
 
 export const QuestionWrapper = styled.div`

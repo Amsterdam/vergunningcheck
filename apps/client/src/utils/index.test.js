@@ -1,8 +1,8 @@
 import {
-  uniqueFilter,
-  isSimpleType,
   collectionOfSimpleTypes,
   collectionOfType,
+  isSimpleType,
+  uniqueFilter,
 } from "../utils";
 
 describe("util", () => {

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Alert, ComponentWrapper } from "../atoms";
 
 const Error = ({ heading, content, stack, children }) => (

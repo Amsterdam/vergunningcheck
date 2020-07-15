@@ -6,7 +6,8 @@
       "questions": [
         {
           "text": "Is het gebouw een monument?",
-          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -41,7 +42,7 @@
         }
       },
       "decisions": {
-        "_f1515fea-3a06-4c25-886e-d9e49d103472": {
+        "_dd3c7ba0-95ce-40ea-a05a-9cc13753543a": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -74,7 +75,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_f1515fea-3a06-4c25-886e-d9e49d103472"],
+          "requiredDecisions": ["#_dd3c7ba0-95ce-40ea-a05a-9cc13753543a"],
           "decisionTable": {
             "rules": [
               {
@@ -97,7 +98,8 @@
       "questions": [
         {
           "text": "Is het gebouw een monument?",
-          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen. Voor onderhoud aan rijksmonumenten gelden andere regels dan voor gemeentelijke monumenten.",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -135,6 +137,7 @@
         {
           "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
           "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
+          "autofill": "cityScape",
           "type": "boolean",
           "id": "uitv__79e01ca4-21a2-4d16-bf23-720084f936ce",
           "prio": 40
@@ -252,7 +255,7 @@
         }
       },
       "decisions": {
-        "_dc66ce10-24a3-47de-8ec4-ee723a9ce41d": {
+        "_261b60cc-d892-4bc7-9fd8-dbe6277e34aa": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -284,7 +287,7 @@
             ]
           }
         },
-        "_e4de972a-8e05-495c-a861-0f1172edda87": {
+        "_77138b81-1b05-4f33-b14f-320fd9d9a20c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -319,7 +322,7 @@
             ]
           }
         },
-        "_a8ee73ef-491e-49b5-8bf0-fee1e94c2616": {
+        "_7aa29d3b-b3df-455c-83fc-f35f2d21ee24": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -388,7 +391,7 @@
             ]
           }
         },
-        "_d1d47bbf-8169-4266-8947-a66075e6cd0b": {
+        "_a4a31092-919e-45b1-b0ec-077443bb78cd": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -466,7 +469,7 @@
             ]
           }
         },
-        "_976238c7-6831-44fb-a079-14dbfc7ceffd": {
+        "_a0019ff5-8606-41c5-8f68-8009b1fb1814": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -544,7 +547,7 @@
             ]
           }
         },
-        "_15cddf2d-7242-4e93-91b4-8b7cc0ae712c": {
+        "_979f627b-07d4-4d46-96eb-0752d4c9909f": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -631,7 +634,7 @@
             ]
           }
         },
-        "_1c820b79-8734-4ac8-bf9e-d636dc373d45": {
+        "_3097220c-afb2-4212-828e-cb7cca837c0d": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -718,7 +721,7 @@
             ]
           }
         },
-        "_8d6058aa-8c26-423d-b907-2316dd2238de": {
+        "_f5802ca8-3be3-4a68-91fd-6c3d4bc48ea2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -823,7 +826,7 @@
             ]
           }
         },
-        "_6ac9a44a-4456-49d2-88c4-3bb575cacbfc": {
+        "_616fadce-f3dd-4bee-84aa-383582ba950b": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -930,15 +933,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_dc66ce10-24a3-47de-8ec4-ee723a9ce41d",
-            "#_e4de972a-8e05-495c-a861-0f1172edda87",
-            "#_a8ee73ef-491e-49b5-8bf0-fee1e94c2616",
-            "#_d1d47bbf-8169-4266-8947-a66075e6cd0b",
-            "#_976238c7-6831-44fb-a079-14dbfc7ceffd",
-            "#_15cddf2d-7242-4e93-91b4-8b7cc0ae712c",
-            "#_1c820b79-8734-4ac8-bf9e-d636dc373d45",
-            "#_8d6058aa-8c26-423d-b907-2316dd2238de",
-            "#_6ac9a44a-4456-49d2-88c4-3bb575cacbfc"
+            "#_261b60cc-d892-4bc7-9fd8-dbe6277e34aa",
+            "#_77138b81-1b05-4f33-b14f-320fd9d9a20c",
+            "#_7aa29d3b-b3df-455c-83fc-f35f2d21ee24",
+            "#_a4a31092-919e-45b1-b0ec-077443bb78cd",
+            "#_a0019ff5-8606-41c5-8f68-8009b1fb1814",
+            "#_979f627b-07d4-4d46-96eb-0752d4c9909f",
+            "#_3097220c-afb2-4212-828e-cb7cca837c0d",
+            "#_f5802ca8-3be3-4a68-91fd-6c3d4bc48ea2",
+            "#_616fadce-f3dd-4bee-84aa-383582ba950b"
           ],
           "decisionTable": {
             "rules": [

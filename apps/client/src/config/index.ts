@@ -74,16 +74,6 @@ const topics: Topic[] = [
     intro: "KozijnenIntroSTTR/index",
   },
   {
-    slug: "kozijn-test",
-    sttrFile: "kozijn.json",
-    text: {
-      heading: "Vergunningcheck kozijnen plaatsen of vervangen",
-      locationIntro:
-        "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
-    },
-    intro: "KozijnenIntroSTTR/index",
-  },
-  {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {

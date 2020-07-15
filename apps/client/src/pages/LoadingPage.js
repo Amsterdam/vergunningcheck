@@ -1,10 +1,10 @@
 import React from "react";
-
-import Loading from "../components/Loading";
-import Layout from "../components/Layouts/BaseLayout";
 import { Helmet } from "react-helmet";
 
-const IntroPage = () => (
+import Layout from "../components/Layouts/BaseLayout";
+import Loading from "../components/Loading";
+
+const LoadingPage = () => (
   <Layout>
     <Helmet>
       <title>Laden... - Amsterdam Vergunningcheck</title>
@@ -13,4 +13,4 @@ const IntroPage = () => (
   </Layout>
 );
 
-export default IntroPage;
+export default LoadingPage;

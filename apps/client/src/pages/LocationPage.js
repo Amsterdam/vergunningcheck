@@ -24,7 +24,7 @@ const LocationPage = ({ topic }) => {
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
-  const sessionAddress = sessionContext.address?.[slug] || {};
+  const sessionAddress = sessionContext[slug]?.address || {};
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -44,7 +44,7 @@ const LocationPage = ({ topic }) => {
       });
 
       // Load given answers from sessionContext
-      let answers = sessionContext.answers;
+      let answers = sessionContext[slug]?.answers;
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
@@ -52,15 +52,21 @@ const LocationPage = ({ topic }) => {
         answers = null;
       }
 
-      sessionContext.setSessionData({
-        address: { ...sessionContext.address, [slug]: address },
-        answers, // Either null or filled with given answers
-        questionIndex: 0, // Reset to 0 to start with the first question
-      });
+      checkerContext.autofillData.address = address;
+
+      sessionContext.setSessionData([
+        slug,
+        {
+          address,
+          answers, // Either null or filled with given answers
+          questionIndex: 0, // Reset to 0 to start with the first question
+        },
+      ]);
+
       if (focus) {
         document.activeElement.blur();
       } else {
-        history.push(geturl(routes.wrapper, { slug }));
+        history.push(geturl(routes.address, topic));
       }
     }
   };
@@ -95,10 +101,13 @@ const LocationPage = ({ topic }) => {
         />
         <Nav
           onGoToPrev={() => {
-            sessionContext.setSessionData({
-              address: { ...sessionContext.address, [slug]: address },
-            });
-            history.push(geturl(routes.intro, { slug }));
+            sessionContext.setSessionData([
+              slug,
+              {
+                address,
+              },
+            ]);
+            history.push(geturl(routes.intro, topic));
           }}
           showPrev
           showNext
