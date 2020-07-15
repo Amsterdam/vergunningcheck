@@ -131,7 +131,7 @@ class Checker {
    * @returns {Question} The last question in the stack
    */
   rewindTo(index) {
-    const lastIndex = this._stack.length;
+    const lastIndex = this._stack.length - 1;
     if (index < 0) {
       throw Error("'rewindTo' index cannot be less then 0");
     }
@@ -140,7 +140,7 @@ class Checker {
         `'rewindTo' index (${index}) cannot be bigger then the last index (${lastIndex})`
       );
     }
-    this._stack.splice(index);
+    this._stack.splice(index + 1);
     this._done = false;
     return this._last;
   }
@@ -152,7 +152,7 @@ class Checker {
    * @returns {Question} The previous question
    */
   previous() {
-    return this.rewindTo(this._stack.length - (this._done === true ? 1 : 1));
+    return this.rewindTo(this._stack.length - (this._done === true ? 1 : 2));
   }
 
   /**
