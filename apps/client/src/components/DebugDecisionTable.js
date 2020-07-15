@@ -54,7 +54,7 @@ export default ({ checker, topic }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[sessionContext[slug].questionIndex] === q
+                    checker.stack[sessionContext[slug]?.questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}
