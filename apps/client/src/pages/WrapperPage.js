@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
 
-import Question, { booleanOptions } from "../checker/components/question";
+import Question, { booleanOptions } from "../checker/components/Question";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import {Button, Heading, Paragraph} from "@datapunt/asc-ui";
