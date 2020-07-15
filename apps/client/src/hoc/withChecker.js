@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import getChecker from "../sttr_client";
 import withTopic from "./withTopic";
+import {autofillMap, autofillResolvers} from "../config/autofill";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";
@@ -17,6 +18,7 @@ const withChecker = (Component) =>
     const [error, setError] = useState();
     const { topic } = props;
     const { sttrFile, slug } = topic;
+    const address = sessionContext[topic.slug]?.address;
 
     if (sttrFile) {
       useEffect(() => {
@@ -25,7 +27,16 @@ const withChecker = (Component) =>
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
-              if (sessionContext[slug]?.answers) {
+              // Find if we have missing data needs
+              if (address) {
+                newChecker.autofill(autofillResolvers, { address });
+              }
+              const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
+                autofillMap,
+                true
+              )[0];
+
+              if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
                 newChecker.setQuestionAnswers(sessionContext[slug].answers);
                 // In case of reload, rewind to the current question
                 newChecker.rewindTo(sessionContext[slug].questionIndex);
