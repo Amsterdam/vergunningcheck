@@ -1,15 +1,40 @@
 import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 
+import Layout from "../checker/components/Layouts/DefaultLayout";
+import Nav from "../checker/components/Nav";
 import Question, { booleanOptions } from "../checker/components/Question";
+import {
+  StepByStepItem,
+  StepByStepNavigation,
+} from "../checker/components/StepByStepNavigation";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import Layout from "../components/Layouts/DefaultLayout";
+// import Layout from "../components/Layouts/DefaultLayout";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 
+const StepperNav = ({
+  step,
+  stepper,
+  updateStepper,
+  showPrev = true,
+  showNext = true,
+}) =>
+  step === stepper ? (
+    <>
+      <Nav
+        onGoToPrev={() => updateStepper(stepper - 1)}
+        onGoToNext={() => updateStepper(stepper + 1)}
+        {...{ showPrev, showNext }}
+      />
+    </>
+  ) : null;
+
 const WrapperPage = ({ checker, topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
+
+  const [stepper1, updateStepper1] = useState(1);
 
   const needContactPermits = () =>
     checker.permits.find((permit) => {
@@ -104,45 +129,127 @@ const WrapperPage = ({ checker, topic: { slug } }) => {
       <Helmet>
         <title>Wrapper Page</title>
       </Helmet>
-      {checker.stack.map((q, i) => {
-        if (q === checker.stack[sessionContext[slug].questionIndex]) {
-          return (
-            <Question
-              question={q}
-              key={`question-${q.id}-${i}`}
-              onSubmit={onQuestionNext}
-              onGoToPrev={onQuestionPrev}
-              showPrev
-              showNext
-            />
-          );
-        } else {
-          let answer;
-          if (q.options) {
-            answer = q.answer;
-          } else {
-            const responseObj = booleanOptions.find(
-              (o) => o.value === q.answer
-            );
-            answer = responseObj?.label;
+      <StepByStepNavigation
+        customSize
+        disabledTextColor="inherit"
+        doneTextColor="inherit"
+        highlightActive
+        style={{ margin: "40px 0" }}
+      >
+        <StepByStepItem
+          active={stepper1 === 1}
+          checked={stepper1 > 1}
+          heading="Locatie"
+          onClick={
+            stepper1 > 1
+              ? () => {
+                  updateStepper1(1);
+                }
+              : null
           }
-          return (
+          largeCircle
+        >
+          <Paragraph>
+            Over <strong>Prinsengracht 731 E</strong> hebben we de volgende
+            informatie gevonden:
+          </Paragraph>
+          <Paragraph gutterBottom={0} strong>
+            Monument:
+          </Paragraph>
+          <Paragraph>Nee. Geen monument</Paragraph>
+          <Paragraph gutterBottom={0} strong>
+            Beschermd stads- of dorpsgezicht:
+          </Paragraph>
+          <Paragraph gutterBottom={0}>
+            Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.
+          </Paragraph>
+
+          <StepperNav
+            step={1}
+            updateStepper={updateStepper1}
+            stepper={stepper1}
+            showPrev={false}
+          />
+        </StepByStepItem>
+
+        <StepByStepItem
+          heading="Vragen"
+          largeCircle
+          done={stepper1 >= 2 && stepper1 <= 6}
+          checked={stepper1 > 6}
+          disabled={stepper1 < 2}
+        />
+
+        {checker.stack.map((q, i) => {
+          if (q === checker.stack[sessionContext[slug].questionIndex]) {
+            return (
+              <StepByStepItem
+                heading={stepper1 >= 2 && `Vraag`}
+                active
+                // checked={stepper1 > 3}
+              >
+                <Question
+                  question={q}
+                  key={`question-${q.id}-${i}`}
+                  onSubmit={onQuestionNext}
+                  onGoToPrev={onQuestionPrev}
+                  showPrev
+                  showNext
+                />
+              </StepByStepItem>
+            );
+          } else {
+            let answer;
+            if (q.options) {
+              answer = q.answer;
+            } else {
+              const responseObj = booleanOptions.find(
+                (o) => o.value === q.answer
+              );
+              answer = responseObj?.label;
+            }
+            return (
+              <StepByStepItem heading={stepper1 >= 2 && q.text} checked>
+                {/* <Heading forwardedAs="h3">{q.text}</Heading> */}
+                <Paragraph>
+                  {answer?.replace(/['"]+/g, "")}
+                  <Button
+                    style={{ marginLeft: 20 }}
+                    onClick={() => onGoToQuestion(i)}
+                    variant="textButton"
+                  >
+                    Wijzig
+                  </Button>
+                </Paragraph>
+              </StepByStepItem>
+            );
+          }
+        })}
+
+        <StepByStepItem
+          heading="Conclusie"
+          largeCircle
+          active={stepper1 === 7}
+          checked={stepper1 === 7}
+          disabled={stepper1 < 7}
+        >
+          {stepper1 === 7 && (
             <>
-              <Heading forwardedAs="h3">{q.text}</Heading>
               <Paragraph>
-                {answer?.replace(/['"]+/g, "")}
-                <Button
-                  style={{ marginLeft: 20 }}
-                  onClick={() => onGoToQuestion(i)}
-                  variant="textButton"
-                >
-                  Wijzig
-                </Button>
+                U bent klaar met de vergunningcheck. Dit is de uitkomst:
               </Paragraph>
+              <Heading as="h2">U hebt geen vergunning nodig. </Heading>
             </>
-          );
-        }
-      })}
+          )}
+          <StepperNav
+            step={7}
+            updateStepper={updateStepper1}
+            stepper={stepper1}
+            showRadio
+            showNext={false}
+          />
+        </StepByStepItem>
+      </StepByStepNavigation>
       <DebugDecisionTable checker={checker} />
     </Layout>
   );
