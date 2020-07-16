@@ -1,12 +1,13 @@
 import React from "react";
+
+import { actions, categories } from "../config/matomo";
+import withTracking from "../hoc/withTracking";
 import {
   StyledHeader,
   StyledHeaderWrapper,
-  StyledLogoWrapper,
   StyledLogo,
+  StyledLogoWrapper,
 } from "./HeaderStyles";
-import { actions, categories } from "../MatomoConfig";
-import withTracking from "../hoc/withTracking";
 
 export const Header = ({ matomoTrackEvent }) => {
   const handleClick = (href) => {

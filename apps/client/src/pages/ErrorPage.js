@@ -1,8 +1,8 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 import Error from "../components/Error";
 import Layout from "../components/Layouts/DefaultLayout";
-import { Helmet } from "react-helmet";
 
 const ErrorPage = ({ error }) => (
   <Layout>

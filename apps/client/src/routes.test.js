@@ -1,6 +1,7 @@
-import { cleanup } from "./utils/test-utils";
-import { getslug, geturl } from "./routes";
 import slugify from "slugify";
+
+import { getslug, geturl } from "./routes";
+import { cleanup } from "./utils/test-utils";
 
 afterEach(cleanup);
 

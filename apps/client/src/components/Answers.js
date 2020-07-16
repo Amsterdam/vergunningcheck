@@ -1,9 +1,11 @@
-import React from "react";
+import { ErrorMessage, Label, Radio, RadioGroup } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
-import { Label, Radio, RadioGroup, ErrorMessage } from "@datapunt/asc-ui";
-import { QUESTION_ANSWERS } from "../utils/test-ids";
+
 import { ComponentWrapper } from "../atoms";
+import { removeQuotes } from "../utils";
+import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 const Answers = ({
   className,
@@ -23,7 +25,7 @@ const Answers = ({
             <Label
               htmlFor={answerId}
               key={answerId}
-              label={label.replace(/['"]+/g, "")}
+              label={removeQuotes(label)}
             >
               <Radio
                 key={answerId}

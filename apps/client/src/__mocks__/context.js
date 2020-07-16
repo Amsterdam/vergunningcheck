@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { SessionContext, CheckerContext } from "../context";
+
+import { CheckerContext, SessionContext } from "../context";
 
 export default ({
   children,
-  topicMock = "dakraam-plaatsen",
+  topicMock,
   addressMock,
   checker,
   questionIndex,
@@ -11,6 +12,8 @@ export default ({
   const checkerContext = useContext(CheckerContext);
   const sessionContext = useContext(SessionContext);
   const setSessionData = jest.fn();
+
+  const { slug } = topicMock;
 
   if (checker) {
     checkerContext.checker = checker;
@@ -20,15 +23,15 @@ export default ({
     checkerContext.topic = topicMock;
   }
 
-  if (addressMock) {
-    sessionContext.address = {
-      [topicMock.slug]: addressMock,
-    };
+  if (slug && addressMock) {
+    Object.assign(sessionContext, { [slug]: { address: addressMock } });
   }
 
-  if (questionIndex) {
-    sessionContext.questionIndex = questionIndex;
+  if (slug && questionIndex) {
+    Object.assign(sessionContext, { [slug]: { questionIndex } });
   }
+
   sessionContext.setSessionData = setSessionData;
+
   return children;
 };

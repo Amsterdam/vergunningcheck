@@ -1,11 +1,12 @@
-import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { List, OrderedList, ListItem } from "../../atoms";
+import React from "react";
+
+import { List, ListItem, OrderedList } from "../../atoms";
 import ListInsideOrderedList from "../../components/ListInsideOrderedList";
 
 export default () => (
   <>
-    <Heading forwardedAs="h3">Hoe werkt het?</Heading>
+    <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.

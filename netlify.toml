@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build:netlify"
+  functions = "apps"
+  framework = "#static"
+  publish = "apps/client/build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

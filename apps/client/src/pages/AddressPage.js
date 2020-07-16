@@ -1,19 +1,18 @@
+import { Paragraph } from "@datapunt/asc-ui";
+import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { Paragraph } from "@datapunt/asc-ui";
 
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import { ADDRESS_PAGE } from "../utils/test-ids";
-import withAddress from "../hoc/withAddress";
-import Layout from "../components/Layouts/DefaultLayout";
-import AddressData from "../components/AddressData";
+import AddressLine from "../components/AddressLine";
 import Form from "../components/Form";
+import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
-
-import { StyledAddressResult } from "./AddressPageStyles";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
+import { OLO } from "../config";
+import withAutofillData from "../hoc/withAutofillData";
+import { geturl, routes } from "../routes";
+import { ADDRESS_PAGE } from "../utils/test-ids";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
@@ -32,9 +31,10 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
 };
 
-const AddressPage = ({ topic, address }) => {
+const AddressPage = ({ topic, autofillData }) => {
   const history = useHistory();
   const { slug } = topic;
+  const { address } = autofillData;
   const useSTTR = !!topic.sttrFile;
 
   const handleSubmit = (e) => {
@@ -52,32 +52,24 @@ const AddressPage = ({ topic, address }) => {
       </Helmet>
       <Form onSubmit={handleSubmit} data-testid={ADDRESS_PAGE}>
         <Paragraph>
-          Over{" "}
-          <strong>
-            {address.streetName} {address.houseNumberFull}
-          </strong>{" "}
-          hebben we de volgende informatie gevonden:
+          Over <AddressLine address={address} /> hebben we de volgende
+          informatie gevonden:
         </Paragraph>
 
-        <StyledAddressResult>
-          <AddressData address={address} />
-        </StyledAddressResult>
+        <RegisterLookupSummary
+          displayZoningPlans={!useSTTR}
+          address={address}
+        />
 
         <Paragraph>
           {useSTTR
-            ? `
-            U hebt deze informatie nodig om de vergunningcheck te doen. De
-            informatie over de bestemmingsplannen is pas nodig als u een
-            omgevingsvergunning gaat aanvragen.
-            `
-            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
+            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
         </Paragraph>
-
-        {useSTTR && (
-          <>
-            <Paragraph>{topic.text?.addressPage}</Paragraph>
-          </>
+        {topic.text?.addressPage && (
+          <Paragraph>{topic.text.addressPage}</Paragraph>
         )}
+
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
           nextText={!useSTTR ? "Naar het omgevingsloket" : undefined}
@@ -96,4 +88,4 @@ AddressPage.propTypes = {
   bagLoading: PropTypes.bool,
 };
 
-export default withAddress(AddressPage);
+export default withAutofillData(AddressPage);

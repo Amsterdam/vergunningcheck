@@ -1,4 +1,18 @@
-import React, { useReducer, useEffect, createContext } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
+
+type QuestionAnswerType = {
+  [key: string]: any;
+};
+
+type TopicSessionData = {
+  questionIndex: Number;
+  answers: QuestionAnswerType[];
+  address: any;
+};
+
+type SessionDataType = {
+  [slug: string]: TopicSessionData;
+};
 
 const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
 const SessionContext = createContext({});
@@ -6,22 +20,24 @@ const CheckerContext = createContext({});
 const defaultCheckerValue = {
   checker: null,
   topic: null,
+  autofillData: {},
 };
-const defaultSessionValues = session
-  ? session
-  : {
-      address: null,
-      answers: null,
-      questionIndex: 0,
-    };
+const defaultSessionValues = session ? session : {};
 
-const reducer = (data: object, newData: object) => {
-  if (newData === null) {
-    // Clear the current sessionData if incoming data is empty (instead of setting an empty item).
-    sessionStorage.removeItem("sessionData");
-    return defaultSessionValues;
+const reducer = (
+  data: SessionDataType,
+  [slug, topicData]: [string, TopicSessionData]
+) => {
+  if (topicData === null) {
+    throw new Error("Resetting topic data this way is not supported.");
   }
-  return { ...data, ...newData };
+  return {
+    ...data,
+    [slug]: {
+      ...data[slug],
+      ...topicData,
+    },
+  };
 };
 
 function SessionProvider(props: { children: React.ReactNode }) {

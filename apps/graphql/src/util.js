@@ -1,10 +1,16 @@
 const debug = require("debug")("graphql:util");
 const xml2js = require("xml2js");
 const fetch = require("node-fetch");
-const config = require("config");
-const redis = require(process.env.NODE_ENV === "test" ? "redis-mock" : "redis");
+
 const { stringify } = require("querystring");
 const { promisify } = require("util");
+let redis = require("redis");
+
+const config = require("../config");
+
+if (process.env.NODE_ENV === "test") {
+  redis = require("redis-mock");
+}
 
 const parser = new xml2js.Parser();
 const { redis: redisConfig } = config.cache;

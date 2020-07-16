@@ -43,6 +43,7 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 - React Hook Form
 - GraphQL + ApolloClient
 - Lerna
+- Sentry
 - [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/)
 - [Matomo Tracker React](https://github.com/Amsterdam/matomo-tracker)
 - Prettier
