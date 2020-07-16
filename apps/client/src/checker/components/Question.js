@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Heading } from "@datapunt/asc-ui";
 
+import Answers from "../../components/Answers";
+import Form from "../../components/Form";
+import Markdown from "../../components/Markdown";
+import Modal from "../../components/Modal";
+import Nav from "../../components/Nav";
 import { requiredFieldText } from "../../config";
 import { QUESTION_PAGE } from "../../utils/test-ids";
-import Modal from "../../components/Modal";
-import Form from "../../components/Form";
-import Nav from "../../components/Nav";
-import Answers from "../../components/Answers";
-import Markdown from "../../components/Markdown";
 
 export const booleanOptions = [
   {
@@ -29,23 +28,23 @@ const hasKeys = (obj) =>
   Object.entries(obj).map(([key, value]) => [key, value]).length;
 
 const Question = ({
-                    question: {
-                      id: questionId,
-                      type: questionType,
-                      text: questionTitle,
-                      options: questionAnswers,
-                      answer: currentAnswer,
-                      description,
-                      longDescription,
-                    },
-                    className,
-                    headingAs,
-                    onSubmit: onSubmitProp,
-                    hideNavigation,
-                    showNext,
-                    showPrev,
-                    onGoToPrev,
-                  }) => {
+  question: {
+    id: questionId,
+    type: questionType,
+    text: questionTitle,
+    options: questionAnswers,
+    answer: currentAnswer,
+    description,
+    longDescription,
+  },
+  className,
+  headingAs,
+  onSubmit: onSubmitProp,
+  hideNavigation,
+  showNext,
+  showPrev,
+  onGoToPrev,
+}) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
     label: answer,
@@ -115,11 +114,11 @@ const Question = ({
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
-      {questionTitle && (
+      {/* {questionTitle && (
         <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
-      )}
-      { description && <Markdown source={description} />}
-      { longDescription && <Modal modalText={longDescription} />}
+      )} */}
+      {description && <Markdown source={description} />}
+      {longDescription && <Modal modalText={longDescription} />}
       <Answers
         questionId={questionId}
         onChange={handleChange}

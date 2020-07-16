@@ -184,7 +184,7 @@ const WrapperPage = ({ checker, topic: { slug } }) => {
           if (q === checker.stack[sessionContext[slug].questionIndex]) {
             return (
               <StepByStepItem
-                heading={stepper1 >= 2 && `Vraag`}
+                heading={stepper1 >= 2 && q.text}
                 active
                 // checked={stepper1 > 3}
               >
@@ -210,7 +210,6 @@ const WrapperPage = ({ checker, topic: { slug } }) => {
             }
             return (
               <StepByStepItem heading={stepper1 >= 2 && q.text} checked>
-                {/* <Heading forwardedAs="h3">{q.text}</Heading> */}
                 <Paragraph>
                   {answer?.replace(/['"]+/g, "")}
                   <Button
