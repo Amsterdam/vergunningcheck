@@ -71,7 +71,7 @@ const topics: Topic[] = [
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
-    intro: "KozijnenIntroSTTR/index",
+    intro: "KozijnenIntro",
   },
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
