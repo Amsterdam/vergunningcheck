@@ -29,14 +29,14 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
   ...otherProps
 }) => {
   if (!heading) return null;
-  const as = href ? "a" : "div";
+  const clickable = !!(href || onClick);
+  const as = clickable ? "a" : "div";
   const done = (doneProp || checked) && !active;
   const handleOnClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (onClick) {
       onClick(e);
     }
   };
-  const clickable = !!(href || onClick);
   const hoverable = !children && !disabled && !active && clickable;
   const small = (customSize && !largeCircle) || (!customSize && !active);
   const unfinished = !done && !active;
@@ -57,6 +57,7 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
         unfinished,
       }}
       onClick={handleOnClick}
+      tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >
       <CircleWrapperStyle {...{ active, done }} data-testid={STEPBYSTEPITEM}>

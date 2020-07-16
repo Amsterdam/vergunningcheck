@@ -1,6 +1,8 @@
 import { Icon, breakpoint, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
+import { focusOutlineStyle } from "../../../utils/themeUtils";
+
 type NestedProps = {
   active?: boolean;
   checked?: boolean;
@@ -54,6 +56,7 @@ export default styled.div<Props>`
   ${({ clickable }) =>
     clickable &&
     css`
+      ${focusOutlineStyle}
       cursor: pointer;
     `}
   ${({ disabled }) =>

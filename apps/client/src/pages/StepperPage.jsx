@@ -1,3 +1,6 @@
+// THIS PAGE IS FOR DEMO PURPOSES ONLY
+// DONT REVIEW THIS PAGE EXTENSIVELY
+
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
@@ -15,14 +18,11 @@ import withTopic from "../hoc/withTopic";
  *
  * To fix:
  * - add aria-roles
- * - add animateLoading?
- * - add "Wijzig" button?
- * - highlightActive on mobile
- * - focus state
  * - write tests
  *
- * Questions design team:
+ * Questions to designer:
  * - circles desktop 36px?
+ * - highlightActive on mobile?
  *
  *
  * See: *
@@ -49,7 +49,7 @@ const StepperNav = ({
     </>
   ) : null;
 
-const StepperPage = ({ checker }) => {
+const StepperPage = ({ checker, topic }) => {
   const [stepper1, updateStepper1] = useState(1);
 
   return (
@@ -236,11 +236,11 @@ const StepperPage = ({ checker }) => {
         />
         <StepByStepItem heading="Step 3" checked href="#" />
         <StepByStepItem heading="Step 4" checked href="#" />
-        <StepByStepItem heading="Step 5" active href="#" />
-        <StepByStepItem heading="Step 6" disabled href="#" />
+        <StepByStepItem heading="Step 5" active />
+        <StepByStepItem heading="Step 6" disabled />
       </StepByStepNavigation>
 
-      <DebugDecisionTable checker={checker} />
+      <DebugDecisionTable checker={checker} topic={topic} />
     </Layout>
   );
 };

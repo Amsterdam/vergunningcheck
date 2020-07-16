@@ -26,8 +26,8 @@ const StepByStepNavigation: React.FC<
 
   return (
     <StepByStepNavigationStyle
-      {...otherProps}
       data-testid={STEPBYSTEPNAVIGATION}
+      {...otherProps}
     >
       {children}
     </StepByStepNavigationStyle>
