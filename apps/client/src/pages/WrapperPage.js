@@ -1,15 +1,14 @@
-import React, {useContext } from "react";
+import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
+import Question, { booleanOptions } from "../checker/components/Question";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
-
-import Question, { booleanOptions } from "../checker/components/Question";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
-import {Button, Heading, Paragraph} from "@datapunt/asc-ui";
 
-const WrapperPage = ({ checker }) => {
+const WrapperPage = ({ checker, topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
 
   const needContactPermits = () =>
@@ -22,7 +21,7 @@ const WrapperPage = ({ checker }) => {
     });
 
   const onQuestionNext = (value) => {
-    const question = checker.stack[sessionContext.questionIndex];
+    const question = checker.stack[sessionContext[slug].questionIndex];
 
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
@@ -34,9 +33,12 @@ const WrapperPage = ({ checker }) => {
     }
 
     // Store all answers in the session context
-    sessionContext.setSessionData({
-      answers: checker.getQuestionAnswers(),
-    });
+    sessionContext.setSessionData([
+      slug,
+      {
+        answers: checker.getQuestionAnswers(),
+      },
+    ]);
 
     const next = checker.next();
 
@@ -52,9 +54,12 @@ const WrapperPage = ({ checker }) => {
       // Load the next question or go to the Result Page
       if (next) {
         // Store the new questionIndex in the session
-        sessionContext.setSessionData({
-          questionIndex: sessionContext.questionIndex + 1,
-        });
+        sessionContext.setSessionData([
+          slug,
+          {
+            questionIndex: sessionContext[slug].questionIndex + 1,
+          },
+        ]);
 
         // Go to Next question
         // go go go
@@ -69,9 +74,12 @@ const WrapperPage = ({ checker }) => {
     // Load the previous question or go to the Location Page
     if (checker.stack.length > 1) {
       // Store the new questionIndex in the session
-      sessionContext.setSessionData({
-        questionIndex: sessionContext.questionIndex - 1,
-      });
+      sessionContext.setSessionData([
+        slug,
+        {
+          questionIndex: sessionContext[slug].questionIndex - 1,
+        },
+      ]);
 
       // go open te location page
     } else {
@@ -83,9 +91,12 @@ const WrapperPage = ({ checker }) => {
   const onGoToQuestion = (questionIndex) => {
     // Go to the specific question in the stack
     checker.rewindTo(questionIndex);
-    sessionContext.setSessionData({
-      questionIndex,
-    });
+    sessionContext.setSessionData([
+      slug,
+      {
+        questionIndex,
+      },
+    ]);
   };
 
   return (
@@ -94,7 +105,7 @@ const WrapperPage = ({ checker }) => {
         <title>Wrapper Page</title>
       </Helmet>
       {checker.stack.map((q, i) => {
-        if (q === checker.stack[sessionContext.questionIndex]) {
+        if (q === checker.stack[sessionContext[slug].questionIndex]) {
           return (
             <Question
               question={q}
@@ -104,31 +115,34 @@ const WrapperPage = ({ checker }) => {
               showPrev
               showNext
             />
-          )
+          );
         } else {
           let answer;
           if (q.options) {
             answer = q.answer;
           } else {
-            const responseObj = booleanOptions.find((o) => o.value === q.answer);
+            const responseObj = booleanOptions.find(
+              (o) => o.value === q.answer
+            );
             answer = responseObj?.label;
           }
           return (
-              <>
-                <Heading forwardedAs="h3">{q.text}</Heading>
-                <Paragraph>{answer?.replace(/['"]+/g, "")}
-                  <Button
-                    style={{marginLeft: 20 }}
-                    onClick={() => onGoToQuestion(i)}
-                    variant="textButton"
-                  >
-                    Wijzig
-                  </Button>
-                </Paragraph>
-              </>
-            )
-          }
-        })}
+            <>
+              <Heading forwardedAs="h3">{q.text}</Heading>
+              <Paragraph>
+                {answer?.replace(/['"]+/g, "")}
+                <Button
+                  style={{ marginLeft: 20 }}
+                  onClick={() => onGoToQuestion(i)}
+                  variant="textButton"
+                >
+                  Wijzig
+                </Button>
+              </Paragraph>
+            </>
+          );
+        }
+      })}
       <DebugDecisionTable checker={checker} />
     </Layout>
   );

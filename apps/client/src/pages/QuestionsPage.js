@@ -50,7 +50,6 @@ const QuestionsPage = ({ topic, checker }) => {
       question.setAnswer(value);
     }
     if (!question.options && value) {
-      console.log(question.options)
       const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
