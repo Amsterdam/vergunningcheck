@@ -49,7 +49,7 @@ const StepperNav = ({
     </>
   ) : null;
 
-const StepperPage = ({ checker }) => {
+const StepperPage = ({ checker, topic }) => {
   const [stepper1, updateStepper1] = useState(1);
 
   return (
@@ -240,7 +240,7 @@ const StepperPage = ({ checker }) => {
         <StepByStepItem heading="Step 6" disabled href="#" />
       </StepByStepNavigation>
 
-      <DebugDecisionTable checker={checker} />
+      <DebugDecisionTable checker={checker} topic={topic} />
     </Layout>
   );
 };
