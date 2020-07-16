@@ -1,26 +1,26 @@
-import { Heading } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+import { Heading } from "@datapunt/asc-ui";
 
-import { requiredFieldText } from "../config";
-import { QUESTION_PAGE } from "../utils/test-ids";
-import Answers from "./Answers";
-import Form from "./Form";
-import Markdown from "./Markdown";
-import Modal from "./Modal";
-import Nav from "./Nav";
+import { requiredFieldText } from "../../config";
+import { QUESTION_PAGE } from "../../utils/test-ids";
+import Modal from "../../components/Modal";
+import Form from "../../components/Form";
+import Nav from "../../components/Nav";
+import Answers from "../../components/Answers";
+import Markdown from "../../components/Markdown";
 
 export const booleanOptions = [
-  {
-    label: "Ja",
-    formValue: "yes",
-    value: true,
-  },
   {
     label: "Nee",
     formValue: "no",
     value: false,
+  },
+  {
+    label: "Ja",
+    formValue: "yes",
+    value: true,
   },
 ];
 
@@ -93,7 +93,6 @@ const Question = ({
   const onSubmit = (data) => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
-    window.scrollTo(0, 0);
     if (
       (onSubmitProp && !hasKeys(data)) ||
       (hasKeys(data) && data[questionId])
@@ -119,8 +118,8 @@ const Question = ({
       {questionTitle && (
         <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
       )}
-      {description && <Markdown source={description} />}
-      {longDescription && <Modal modalText={longDescription} />}
+      { description && <Markdown source={description} />}
+      { longDescription && <Modal modalText={longDescription} />}
       <Answers
         questionId={questionId}
         onChange={handleChange}

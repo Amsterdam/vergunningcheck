@@ -17,9 +17,8 @@ const Answer = ({ question: { answer } }) => (
   </>
 );
 
-export default ({ checker, topic }) => {
+export default ({ checker, slug }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug } = topic;
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;
