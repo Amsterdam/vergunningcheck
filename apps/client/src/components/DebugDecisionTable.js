@@ -19,8 +19,8 @@ const Answer = ({ question: { answer } }) => (
 
 export default ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
-  const decisionId = "dummy";
   const { slug } = topic;
+  const decisionId = "dummy";
 
   if (!checker || !checker.permits) return <></>;
   const allQuestions = checker._getAllQuestions();
