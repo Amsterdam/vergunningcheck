@@ -3,8 +3,8 @@ import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import React from "react";
 
 import { ComponentWrapper } from "../atoms";
-import { booleanOptions } from "../components/Question";
 import { removeQuotes, uniqBy } from "../utils";
+import { booleanOptions } from "./Question";
 import {
   Change,
   MainWrapper,

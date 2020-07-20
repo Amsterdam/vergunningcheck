@@ -93,7 +93,6 @@ const Question = ({
   const onSubmit = (data) => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
-    window.scrollTo(0, 0);
     if (
       (onSubmitProp && !hasKeys(data)) ||
       (hasKeys(data) && data[questionId])
