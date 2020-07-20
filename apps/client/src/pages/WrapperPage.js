@@ -42,14 +42,13 @@ const WrapperPage = ({ checker, topic }) => {
 
     const next = checker.next();
 
-    // Go directly to the Conclusion Page, without passing the Results Page
+    // Go directly to "Conclusion" and skip other questions
     // Only if the `sttr-checker` is the final question
     if (needContactPermits() && !next) {
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
 
-      // Change the URL to the Conclusion Page
-      // open the conclusion page
+      // Go to "Conclusion"
     } else {
       // Load the next question or go to the Result Page
       if (next) {
@@ -60,14 +59,13 @@ const WrapperPage = ({ checker, topic }) => {
             questionIndex: sessionContext[slug].questionIndex + 1,
           },
         ]);
-
-        // Go to Next question
       }
+      // Go to "Next question"
     }
   };
 
   const onQuestionPrev = () => {
-    // Load the previous question or go to the Location Page
+    // Load the previous question or go to "Location"
     if (checker.stack.length > 1) {
       // Store the new questionIndex in the session
       sessionContext.setSessionData([
@@ -76,9 +74,8 @@ const WrapperPage = ({ checker, topic }) => {
           questionIndex: sessionContext[slug].questionIndex - 1,
         },
       ]);
-
-      // go open te location page
     }
+    // Go to "Location"
   };
 
   const onGoToQuestion = (questionIndex) => {
