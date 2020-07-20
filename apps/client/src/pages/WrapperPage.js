@@ -2,9 +2,9 @@ import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import Question, { booleanOptions } from "../checker/components/Question";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
+import Question, { booleanOptions } from "../components/Question";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 
