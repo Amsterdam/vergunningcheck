@@ -16,6 +16,8 @@ import { act, cleanup, fireEvent, render, screen } from "../utils/test-utils";
 import mocks from "./__mocks__/address";
 import LocationPage from "./LocationPage";
 
+require("../__mocks__/matchMedia");
+
 afterEach(cleanup);
 
 describe("<LocationPage />", () => {
