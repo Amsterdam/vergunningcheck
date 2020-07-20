@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 
+import { autofillMap, autofillResolvers } from "../config/autofill";
 import { CheckerContext, SessionContext } from "../context";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import getChecker from "../sttr_client";
 import withTopic from "./withTopic";
-import {autofillMap, autofillResolvers} from "../config/autofill";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";

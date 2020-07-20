@@ -17,3 +17,6 @@ export const NEXT_BUTTON = "next-button";
 export const PREV_BUTTON = "prev-button";
 
 export const INTRO = "intro";
+
+export const STEPBYSTEPNAVIGATION = "step-by-step-navigation";
+export const STEPBYSTEPITEM = "step-by-step-item";
