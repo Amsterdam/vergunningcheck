@@ -5,13 +5,13 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../checker/components/Layouts/DefaultLayout";
-import Nav from "../checker/components/Nav";
+import DebugDecisionTable from "../components/DebugDecisionTable";
+import Layout from "../components/Layouts/DefaultLayout";
+import Nav from "../components/Nav";
 import {
   StepByStepItem,
   StepByStepNavigation,
-} from "../checker/components/StepByStepNavigation";
-import DebugDecisionTable from "../components/DebugDecisionTable";
+} from "../components/StepByStepNavigation";
 import withTopic from "../hoc/withTopic";
 
 /**
@@ -53,7 +53,7 @@ const StepperPage = ({ checker, topic }) => {
   const [stepper1, updateStepper1] = useState(1);
 
   return (
-    <Layout>
+    <Layout checker={checker}>
       <Helmet>
         <title>Stepper Page</title>
       </Helmet>

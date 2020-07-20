@@ -1,7 +1,7 @@
 import { Icon, breakpoint, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
-import { focusOutlineStyle } from "../../../utils/themeUtils";
+import { focusOutlineStyle } from "../../utils/themeUtils";
 
 type NestedProps = {
   active?: boolean;

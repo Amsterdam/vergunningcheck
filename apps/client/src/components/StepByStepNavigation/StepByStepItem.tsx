@@ -1,7 +1,7 @@
 import { Checkmark } from "@datapunt/asc-assets";
 import React from "react";
 
-import { STEPBYSTEPITEM } from "../../../utils/test-ids";
+import { STEPBYSTEPITEM } from "../../utils/test-ids";
 import StepByStepItemStyle, {
   CircleStyle,
   CircleWrapperStyle,

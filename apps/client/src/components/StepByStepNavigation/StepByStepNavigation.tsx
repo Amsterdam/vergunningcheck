@@ -1,8 +1,8 @@
 import { themeColor } from "@datapunt/asc-ui";
 import React from "react";
 
-import { STEPBYSTEPNAVIGATION } from "../../../utils/test-ids";
-import usePassPropsToChildren from "../../../utils/usePassPropsToChildren";
+import { STEPBYSTEPNAVIGATION } from "../../utils/test-ids";
+import usePassPropsToChildren from "../../utils/usePassPropsToChildren";
 import StepByStepNavigationStyle, { Props } from "./StepByStepNavigationStyle";
 
 const StepByStepNavigation: React.FC<

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { STEPBYSTEPITEM, STEPBYSTEPNAVIGATION } from "../../../utils/test-ids";
-import { cleanup, render } from "../../../utils/test-utils";
+import { STEPBYSTEPITEM, STEPBYSTEPNAVIGATION } from "../../utils/test-ids";
+import { cleanup, render } from "../../utils/test-utils";
 import { StepByStepItem, StepByStepNavigation } from ".";
 
 afterEach(cleanup);
