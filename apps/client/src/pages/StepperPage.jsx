@@ -1,7 +1,7 @@
 // THIS PAGE IS FOR DEMO PURPOSES ONLY
 // DONT REVIEW THIS PAGE EXTENSIVELY
 
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph, themeColor } from "@datapunt/asc-ui";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
@@ -40,17 +40,20 @@ const StepperNav = ({
   showNext = true,
 }) =>
   step === stepper ? (
-    <>
-      <Nav
-        onGoToPrev={() => updateStepper(stepper - 1)}
-        onGoToNext={() => updateStepper(stepper + 1)}
-        {...{ showPrev, showNext }}
-      />
-    </>
+    <Nav
+      onGoToPrev={() => updateStepper(stepper - 1)}
+      onGoToNext={() => updateStepper(stepper + 1)}
+      {...{ showPrev, showNext }}
+    />
   ) : null;
 
 const StepperPage = ({ checker, topic }) => {
-  const [stepper1, updateStepper1] = useState(1);
+  const [step, updateStep] = useState(1);
+  const handleClick = () => {
+    if (step > 1) {
+      updateStep(1);
+    }
+  };
 
   return (
     <Layout checker={checker}>
@@ -72,16 +75,10 @@ const StepperPage = ({ checker, topic }) => {
         style={{ margin: "40px 0" }}
       >
         <StepByStepItem
-          active={stepper1 === 1}
-          checked={stepper1 > 1}
+          active={step === 1}
+          checked={step > 1}
           heading="Locatie"
-          onClick={
-            stepper1 > 1
-              ? () => {
-                  updateStepper1(1);
-                }
-              : null
-          }
+          onClick={() => handleClick(step)}
           largeCircle
         >
           <Paragraph>
@@ -101,8 +98,8 @@ const StepperPage = ({ checker, topic }) => {
 
           <StepperNav
             step={1}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showPrev={false}
           />
         </StepByStepItem>
@@ -110,90 +107,90 @@ const StepperPage = ({ checker, topic }) => {
         <StepByStepItem
           heading="Vragen"
           largeCircle
-          done={stepper1 >= 2 && stepper1 <= 6}
-          checked={stepper1 > 6}
-          disabled={stepper1 < 2}
+          done={step >= 2 && step <= 6}
+          checked={step > 6}
+          disabled={step < 2}
         />
 
         <StepByStepItem
-          // circleBackgroundColor={themeColor("secondary", "main")}
           heading={
-            stepper1 >= 2 &&
+            step >= 2 &&
             `Aan welke kant van het gebouw gaat u de dakkapel plaatsen?`
           }
-          active={stepper1 === 2}
-          checked={stepper1 > 2}
+          active={step === 2}
+          checked={step > 2}
         >
           <Paragraph gutterBottom={0}>Zijkant</Paragraph>
 
           <StepperNav
             step={2}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showRadio
           />
         </StepByStepItem>
 
         <StepByStepItem
           heading={
-            stepper1 >= 3 &&
+            step >= 3 &&
             `U gaat dakkapel plaatsen aan de zijkant van het gebouw. Wat is de ligging?`
           }
-          active={stepper1 === 3}
-          checked={stepper1 > 3}
+          active={step === 3}
+          checked={step > 3}
         >
           <Paragraph gutterBottom={0}>
             Aan een plein, park of parkeerplaats waar iedereen mag komen
           </Paragraph>
           <StepperNav
             step={3}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showRadio
           />
         </StepByStepItem>
 
         <StepByStepItem
-          heading={stepper1 >= 4 && `Krijgt de dakkapel een plat dak?`}
-          active={stepper1 === 4}
-          checked={stepper1 > 4}
+          heading={step >= 4 && `Krijgt de dakkapel een plat dak?`}
+          active={step === 4}
+          checked={step > 4}
         >
           <Paragraph gutterBottom={0}>Ja</Paragraph>
           <StepperNav
             step={4}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showRadio
           />
         </StepByStepItem>
 
         <StepByStepItem
-          heading={stepper1 >= 5 && `Wordt de dakkapel hoger dan 1,75 meter?`}
-          active={stepper1 === 5}
-          checked={stepper1 > 5}
+          heading={step >= 5 && `Wordt de dakkapel hoger dan 1,75 meter?`}
+          active={step === 5}
+          checked={step > 5}
+          circleBackgroundColor={themeColor("secondary", "main")} // Use this in case of a red circle
         >
           <Paragraph gutterBottom={0}>Nee</Paragraph>
           <StepperNav
             step={5}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showRadio
           />
         </StepByStepItem>
 
         <StepByStepItem
           heading={
-            stepper1 >= 6 &&
+            step >= 6 &&
             `Wordt de afstand van het laagste punt van het dak tot de onderkant van de dakkapel tussen de 50 en 100 centimeter?`
           }
-          active={stepper1 === 6}
-          checked={stepper1 > 6}
+          active={step === 6}
+          checked={step > 6}
         >
           <Paragraph gutterBottom={0}>Ja</Paragraph>
           <StepperNav
             step={6}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showRadio
           />
         </StepByStepItem>
@@ -201,11 +198,11 @@ const StepperPage = ({ checker, topic }) => {
         <StepByStepItem
           heading="Conclusie"
           largeCircle
-          active={stepper1 === 7}
-          checked={stepper1 === 7}
-          disabled={stepper1 < 7}
+          active={step === 7}
+          checked={step === 7}
+          disabled={step < 7}
         >
-          {stepper1 === 7 && (
+          {step === 7 && (
             <>
               <Paragraph>
                 U bent klaar met de vergunningcheck. Dit is de uitkomst:
@@ -215,8 +212,8 @@ const StepperPage = ({ checker, topic }) => {
           )}
           <StepperNav
             step={7}
-            updateStepper={updateStepper1}
-            stepper={stepper1}
+            updateStepper={updateStep}
+            stepper={step}
             showRadio
             showNext={false}
           />

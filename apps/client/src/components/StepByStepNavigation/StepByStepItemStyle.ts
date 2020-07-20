@@ -44,6 +44,7 @@ export default styled.div<Props>`
   height: 100%;
   padding-top: ${themeSpacing(4)};
   padding-bottom: ${themeSpacing(5)};
+  padding-right: ${themeSpacing(4)};
   text-decoration: none;
   cursor: initial;
 
@@ -93,7 +94,6 @@ const CircleWrapperStyle = styled.div<NestedProps>`
   margin-right: ${themeSpacing(2)};
   justify-content: center;
   z-index: 1;
-  /* background-color: rgba(67%, 86.6%, 34.8%, 0.25); */
 
   @media ${breakpoint("min-width", "tabletM")} {
     width: 60px;
@@ -126,7 +126,6 @@ const CircleStyle = styled(Icon)<NestedProps>`
   justify-content: center;
   transition: background-color 0.2s ease-in-out;
   z-index: 1;
-  /* opacity: 0.2; */
 
   @media ${breakpoint("min-width", "tabletM")} {
     width: ${circleSize.desktop.large};
@@ -167,7 +166,6 @@ const ContentWrapperStyle = styled.div<NestedProps>`
   width: 100%;
   flex-direction: column;
   justify-content: center;
-  /* background-color: rgba(68.3%, 10.1%, 64.9%, 0.5); */
 `;
 
 export { CircleStyle, ContentWrapperStyle, CircleWrapperStyle };

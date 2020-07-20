@@ -31,11 +31,10 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
   if (!heading) return null;
   const clickable = !!(href || onClick);
   const as = clickable ? "a" : "div";
+  // The currect item can never be `done` when it's `active`
   const done = (doneProp || checked) && !active;
   const handleOnClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (onClick) {
-      onClick(e);
-    }
+    onClick && onClick(e);
   };
   const hoverable = !children && !disabled && !active && clickable;
   const small = (customSize && !largeCircle) || (!customSize && !active);
