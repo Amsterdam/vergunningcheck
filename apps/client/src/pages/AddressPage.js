@@ -40,7 +40,7 @@ const AddressPage = ({ topic, autofillData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
-      history.push(geturl(routes.questions, { slug }));
+      history.push(geturl(routes.wrapper, { slug }));
     } else {
       window.open(getOloUrl(address), "_blank");
     }

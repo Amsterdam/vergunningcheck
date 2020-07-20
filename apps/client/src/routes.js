@@ -40,7 +40,7 @@ export const routeConfig = [
   {
     exact: true,
     name: "wrapper",
-    path: "/wrapper",
+    path: "/:slug/wrapper",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/WrapperPage`)
     ),

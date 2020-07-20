@@ -1,137 +1,141 @@
-import React from "react";
+import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import Wrapper from "../checker/Wrapper";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
+import Question, { booleanOptions } from "../components/Question";
+import { SessionContext } from "../context";
+import withChecker from "../hoc/withChecker";
 
-// import Question, { booleanOptions } from "../components/Question";
-// import { SessionContext } from "../context";
-// import withChecker from "../hoc/withChecker";
+const WrapperPage = ({ checker, topic }) => {
+  const sessionContext = useContext(SessionContext);
+  const { slug } = topic;
+  const needContactPermits = () =>
+    checker.permits.find((permit) => {
+      const conclusion = permit.getDecisionById("dummy");
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      return conclusionMatchingRules.find(
+        (rule) => rule.outputValue === '"NeemContactOpMet"'
+      );
+    });
 
-// import { Redirect, useHistory, useParams } from "react-router-dom";
+  const onQuestionNext = (value) => {
+    const question = checker.stack[sessionContext[slug].questionIndex];
 
-// import { getslug, geturl, routes } from "../routes";
+    // Provide the user answers to the `sttr-checker`
+    if (question.options && value !== undefined) {
+      question.setAnswer(value);
+    }
+    if (!question.options && value) {
+      const responseObj = booleanOptions.find((o) => o.formValue === value);
+      question.setAnswer(responseObj.value);
+    }
 
-const WrapperPage = ({ topic, checker }) => {
-  // const sessionContext = useContext(SessionContext);
-  // const params = useParams();
-  // const history = useHistory();
-  // const { question: questionSlug } = params;
-  // const [question, setQuestion] = useState(
-  //   checker.stack[checker.stack.length - 1]
-  // );
-  // const { slug } = topic;
-  // const currSlug = getslug(question.text);
+    // Store all answers in the session context
+    sessionContext.setSessionData([
+      slug,
+      {
+        answers: checker.getQuestionAnswers(),
+      },
+    ]);
 
-  // // Update URL when it's not set (first question) and when URL differs from the current question
-  // if (!questionSlug || questionSlug !== currSlug) {
-  //   return (
-  //     <Redirect
-  //       to={geturl(routes.questions, {
-  //         slug: topic.slug,
-  //         question: currSlug,
-  //       })}
-  //     />
-  //   );
-  // }
+    const next = checker.next();
 
-  // const needContactPermits = () =>
-  //   checker.permits.find((permit) => {
-  //     const conclusion = permit.getDecisionById("dummy");
-  //     const conclusionMatchingRules = conclusion.getMatchingRules();
-  //     return conclusionMatchingRules.find(
-  //       (rule) => rule.outputValue === '"NeemContactOpMet"'
-  //     );
-  //   });
+    // Go directly to "Conclusion" and skip other questions
+    // Only if the `sttr-checker` is the final question
+    if (needContactPermits() && !next) {
+      // Undo the next() with previous(), because we were already at the final question
+      checker.previous();
 
-  // const onQuestionNext = (value) => {
-  //   // Provide the user answers to the `sttr-checker`
-  //   if (question.options && value !== undefined) {
-  //     question.setAnswer(value);
-  //   }
-  //   if (!question.options && value) {
-  //     const responseObj = booleanOptions.find((o) => o.formValue === value);
-  //     question.setAnswer(responseObj.value);
-  //   }
+      // Go to "Conclusion"
+    } else {
+      // Load the next question or go to the Result Page
+      if (next) {
+        // Store the new questionIndex in the session
+        sessionContext.setSessionData([
+          slug,
+          {
+            questionIndex: sessionContext[slug].questionIndex + 1,
+          },
+        ]);
+      }
+      // Go to "Next question"
+    }
+  };
 
-  //   // Store all answers in the session context
-  //   sessionContext.setSessionData({
-  //     answers: checker.getQuestionAnswers(),
-  //   });
+  const onQuestionPrev = () => {
+    // Load the previous question or go to "Location"
+    if (checker.stack.length > 1) {
+      // Store the new questionIndex in the session
+      sessionContext.setSessionData([
+        slug,
+        {
+          questionIndex: sessionContext[slug].questionIndex - 1,
+        },
+      ]);
+    }
+    // Go to "Location"
+  };
 
-  //   // Load next question
-  //   const next = checker.next();
-
-  //   // Go directly to the Conclusion Page, without passing the Results Page
-  //   // Only if the `sttr-checker` is the final question
-  //   if (needContactPermits() && !next) {
-  //     // Undo the next() with previous(), because we were already at the final question
-  //     checker.previous();
-
-  //     // Change the URL to the Conclusion Page
-  //     history.push(geturl(routes.conclusion, { slug }));
-  //   } else {
-  //     // Load the next question or go to the Result Page
-  //     if (next) {
-  //       // Store the new questionIndex in the session
-  //       sessionContext.setSessionData({
-  //         questionIndex: sessionContext.questionIndex + 1,
-  //       });
-
-  //       // Go to Next question
-  //       setQuestion(next);
-
-  //       // Change the URL to the new question
-  //       history.push(
-  //         geturl(routes.questions, {
-  //           slug: topic.slug,
-  //           question: getslug(next.text),
-  //         })
-  //       );
-  //     } else {
-  //       // Go to Result page if there is no new quesion
-  //       history.push(geturl(routes.results, { slug }));
-  //     }
-  //   }
-  // };
-
-  // const onQuestionPrev = () => {
-  //   // Load the previous question or go to the Location Page
-  //   if (checker.stack.length > 1) {
-  //     const prev = checker.previous();
-
-  //     // Store the new questionIndex in the session
-  //     sessionContext.setSessionData({
-  //       questionIndex: sessionContext.questionIndex - 1,
-  //     });
-
-  //     // Go to Prev question
-  //     setQuestion(prev);
-
-  //     // Change the URL to the new question
-  //     history.push(
-  //       geturl(routes.questions, {
-  //         slug: topic.slug,
-  //         question: getslug(prev.text),
-  //       })
-  //     );
-  //   } else {
-  //     // Go back to the Location page
-  //     history.push(geturl(routes.address, { slug }));
-  //   }
-  // };
+  const onGoToQuestion = (questionIndex) => {
+    // Go to the specific question in the stack
+    checker.rewindTo(questionIndex);
+    sessionContext.setSessionData([
+      slug,
+      {
+        questionIndex,
+      },
+    ]);
+  };
 
   return (
     <Layout>
       <Helmet>
         <title>Wrapper Page</title>
       </Helmet>
-      <Wrapper />
-
-      <DebugDecisionTable checker={checker} />
+      {checker.stack.map((q, i) => {
+        if (q === checker.stack[sessionContext[slug].questionIndex]) {
+          return (
+            <Question
+              question={q}
+              key={`question-${q.id}-${i}`}
+              onSubmit={onQuestionNext}
+              onGoToPrev={onQuestionPrev}
+              showPrev
+              showNext
+            />
+          );
+        } else {
+          let answer;
+          if (q.options) {
+            answer = q.answer;
+          } else {
+            const responseObj = booleanOptions.find(
+              (o) => o.value === q.answer
+            );
+            answer = responseObj?.label;
+          }
+          return (
+            <>
+              <Heading forwardedAs="h3">{q.text}</Heading>
+              <Paragraph>
+                {answer?.replace(/['"]+/g, "")}
+                <Button
+                  style={{ marginLeft: 20 }}
+                  onClick={() => onGoToQuestion(i)}
+                  variant="textButton"
+                >
+                  Wijzig
+                </Button>
+              </Paragraph>
+            </>
+          );
+        }
+      })}
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };
 
-export default WrapperPage;
+export default withChecker(WrapperPage);
