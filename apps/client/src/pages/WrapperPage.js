@@ -8,9 +8,9 @@ import Question, { booleanOptions } from "../components/Question";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 
-const WrapperPage = ({ checker, topic: { slug } }) => {
+const WrapperPage = ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
-
+  const { slug } = topic;
   const needContactPermits = () =>
     checker.permits.find((permit) => {
       const conclusion = permit.getDecisionById("dummy");
@@ -136,7 +136,7 @@ const WrapperPage = ({ checker, topic: { slug } }) => {
           );
         }
       })}
-      <DebugDecisionTable checker={checker} />
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };
