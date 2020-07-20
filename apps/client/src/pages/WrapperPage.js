@@ -62,10 +62,6 @@ const WrapperPage = ({ checker, topic: { slug } }) => {
         ]);
 
         // Go to Next question
-        // go go go
-      } else {
-        // Go to Result page if there is no new quesion
-        // Go open the conclusion
       }
     }
   };
@@ -81,9 +77,6 @@ const WrapperPage = ({ checker, topic: { slug } }) => {
         },
       ]);
 
-      // go open te location page
-    } else {
-      // Go back to the Location page
       // go open te location page
     }
   };

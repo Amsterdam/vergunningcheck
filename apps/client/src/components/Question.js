@@ -13,14 +13,14 @@ import Nav from "./Nav";
 
 export const booleanOptions = [
   {
-    label: "Ja",
-    formValue: "yes",
-    value: true,
-  },
-  {
     label: "Nee",
     formValue: "no",
     value: false,
+  },
+  {
+    label: "Ja",
+    formValue: "yes",
+    value: true,
   },
 ];
 
@@ -29,23 +29,23 @@ const hasKeys = (obj) =>
   Object.entries(obj).map(([key, value]) => [key, value]).length;
 
 const Question = ({
-                    question: {
-                      id: questionId,
-                      type: questionType,
-                      text: questionTitle,
-                      options: questionAnswers,
-                      answer: currentAnswer,
-                      description,
-                      longDescription,
-                    },
-                    className,
-                    headingAs,
-                    onSubmit: onSubmitProp,
-                    hideNavigation,
-                    showNext,
-                    showPrev,
-                    onGoToPrev,
-                  }) => {
+  question: {
+    id: questionId,
+    type: questionType,
+    text: questionTitle,
+    options: questionAnswers,
+    answer: currentAnswer,
+    description,
+    longDescription,
+  },
+  className,
+  headingAs,
+  onSubmit: onSubmitProp,
+  hideNavigation,
+  showNext,
+  showPrev,
+  onGoToPrev,
+}) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
     label: answer,
@@ -93,7 +93,6 @@ const Question = ({
   const onSubmit = (data) => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
-    window.scrollTo(0, 0);
     if (
       (onSubmitProp && !hasKeys(data)) ||
       (hasKeys(data) && data[questionId])
