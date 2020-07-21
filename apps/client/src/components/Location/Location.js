@@ -94,7 +94,7 @@ const LocationPage = ({ topic }) => {
   const handleAddressSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
-      history.push(geturl(routes.questions, { slug }));
+      window.scrollBy(0, 100);
     } else {
       window.open(getOloUrl(address), "_blank");
     }
