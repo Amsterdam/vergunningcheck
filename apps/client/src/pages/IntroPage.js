@@ -22,15 +22,10 @@ const IntroPage = ({ topic, checker }) => {
         <Intro />
       </Suspense>
       <Form
-        action={() => {
-          const response = geturl(
-            getDataNeedPageOrNext(checker, autofillRoutes, routes),
-            topic
-          );
-          checker.next();
-          console.log(response);
-          return response;
-        }}
+        action={geturl(
+          getDataNeedPageOrNext(checker, autofillRoutes, routes),
+          topic
+        )}
       >
         <Nav showNext />
       </Form>

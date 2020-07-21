@@ -1,4 +1,4 @@
-import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
+import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
@@ -110,7 +110,7 @@ const WrapperPage = ({ checker, topic }) => {
             return (
               <StepByStepItem
                 active
-                heading="Locatie"
+                heading={q.text}
                 onClick={() => onGoToQuestion(i)}
                 largeCircle
               >
@@ -137,10 +137,9 @@ const WrapperPage = ({ checker, topic }) => {
             return (
               <StepByStepItem
                 checked
-                heading="Vragen"
+                heading={q.text}
                 onClick={() => onGoToQuestion(i)}
               >
-                <Heading forwardedAs="h3">{q.text}</Heading>
                 <Paragraph>
                   {answer?.replace(/['"]+/g, "")}
                   <Button

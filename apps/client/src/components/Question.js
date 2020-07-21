@@ -1,4 +1,3 @@
-import { Heading } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -115,9 +114,6 @@ const Question = ({
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
-      {questionTitle && (
-        <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
-      )}
       {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
