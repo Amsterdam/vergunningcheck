@@ -135,7 +135,7 @@ const ThirdColumn = () => (
       uitgaan, evenementen en meer vindt u op{" "}
       <Link
         darkBackground
-        href="http://www.iamsterdam.com/"
+        href="https://www.iamsterdam.com/"
         eventName={`iamsterdam.com ${eventNameSuffix}`}
         strong
       >
