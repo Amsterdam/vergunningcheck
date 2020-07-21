@@ -31,14 +31,6 @@ export const routeConfig = [
   },
   {
     exact: true,
-    name: "stepper",
-    path: "/:slug/stepper",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/StepperPage`)
-    ),
-  },
-  {
-    exact: true,
     name: "wrapper",
     path: "/:slug/wrapper",
     component: React.lazy(() =>
@@ -51,27 +43,6 @@ export const routeConfig = [
     path: "/:slug",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/IntroPage`)
-    ),
-  },
-  {
-    name: "questions",
-    path: "/:slug/vragen/:question?",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/QuestionsPage`)
-    ),
-  },
-  {
-    name: "results",
-    path: "/:slug/uitkomsten",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/ResultsPage`)
-    ),
-  },
-  {
-    name: "conclusion",
-    path: "/:slug/conclusie",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/ConclusionPage`)
     ),
   },
   {

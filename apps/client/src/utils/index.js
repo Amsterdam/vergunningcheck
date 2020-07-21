@@ -22,6 +22,9 @@ export const collectionOfType = (col, type) => {
 
 export const isObject = (val) => typeof val === "object" && val !== null;
 
+export const dir =
+  process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";
+
 // Filters
 export const uniqueFilter = (value, index, self) =>
   self.indexOf(value) === index;
