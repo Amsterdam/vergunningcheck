@@ -105,6 +105,42 @@ class Checker {
   }
 
   /**
+   * find all permits that need contact,
+   * for evert permit see if the decisiveQuestion for contact
+   * equals the current (recently answered) question
+   *
+   * @param {Question} currentQuestion - the question to check for exit
+   *
+   * @returns {boolean} - if checker has a 'contact' outcome
+   * consumer can exit if wanted
+   */
+  needContactExit(currentQuestion) {
+    return !!this.permits.find((permit) => {
+      const conclusion = permit.getDecisionById("dummy");
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      const matchingContactRule = conclusionMatchingRules.find(
+        (rule) => rule.outputValue === '"NeemContactOpMet"'
+      );
+      if (matchingContactRule) {
+        const decisiveDecisions = conclusion.getDecisiveInputs();
+
+        // find the contact decision
+        const contactDecision = decisiveDecisions.find((decision) =>
+          decision._rules.find(
+            (rule) => rule._outputValue === '"NeemContactOpMet"'
+          )
+        );
+
+        // get inputs from contact decision
+        const lastIndex = contactDecision._inputs.length - 1;
+        // if currentQuestion equals the last input in decision, it's a match
+        return contactDecision._inputs[lastIndex] === currentQuestion;
+      }
+      return false;
+    });
+  }
+
+  /**
    * For every questions see if we have autofillData
    * and see if the question can be autofilled
    *

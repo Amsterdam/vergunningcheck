@@ -88,7 +88,7 @@ describe("<LocationPage />", () => {
     expect(window.location.pathname).toBe("/dakkapel-plaatsen/locatie");
   });
 
-  it("renders correctly with predefined context", async () => {
+  xit("renders correctly with predefined context", async () => {
     let container;
 
     const addressMock = {

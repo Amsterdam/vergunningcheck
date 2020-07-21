@@ -31,7 +31,7 @@ export default ({ checker, topic }) => {
       <div style={{ display: "block" }}>
         {autofilled.filter((q) => q.autofill).length > 0 && (
           <>
-            <h1>Autofilled</h1>
+            <h1>Autofill</h1>
             {autofilled.map((q) => (
               <p key={q.id}>
                 <QuestionSummary question={q} />: <Answer question={q} />
