@@ -1,5 +1,11 @@
 import { collectionOfType, isObject, uniqueFilter } from "../../utils";
 
+export const sttrOutcomes = {
+  NEED_PERMIT: '"Vergunningplicht"',
+  NEED_CONTACT: '"NeemContactOpMet"',
+  PERMIT_FREE: '"Toestemmingsvrij"',
+};
+
 /**
  * Step checker class for quiz
  *
@@ -105,9 +111,9 @@ class Checker {
   }
 
   /**
-   * find all permits that need contact,
-   * for evert permit see if the decisiveQuestion for contact
-   * equals the current (recently answered) question
+   * Find all permits that have a "contact" conclusion,
+   * for every permit see if the decisive decision's last question
+   * equals the currentQuestion.
    *
    * @param {Question} currentQuestion - the question to check for exit
    *
@@ -119,7 +125,7 @@ class Checker {
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       const matchingContactRule = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === '"NeemContactOpMet"'
+        (rule) => rule.outputValue === sttrOutcomes.NEED_CONTACT
       );
       if (matchingContactRule) {
         const decisiveDecisions = conclusion.getDecisiveInputs();
@@ -127,7 +133,7 @@ class Checker {
         // find the contact decision
         const contactDecision = decisiveDecisions.find((decision) =>
           decision._rules.find(
-            (rule) => rule._outputValue === '"NeemContactOpMet"'
+            (rule) => rule._outputValue === sttrOutcomes.NEED_CONTACT
           )
         );
 
