@@ -5,6 +5,8 @@ const getDataNeed = (checker) =>
 
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
   const dataNeed = getDataNeed(checker);
+  console.log(dataNeed);
+  console.log(autofillRoutes);
   return dataNeed ? autofillRoutes[dataNeed][0] : routes.questions;
 };
 
@@ -51,7 +53,7 @@ export const autofillResolvers = {
  * map from autofill-resolver key to the data-need it has.
  */
 export const autofillMap = {
-  monumentList: "address",
-  monumentBoolean: "address",
-  cityScape: "address",
+  monumentList: "wrapper",
+  monumentBoolean: "wrapper",
+  cityScape: "wrapper",
 };

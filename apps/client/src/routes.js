@@ -46,27 +46,20 @@ export const routeConfig = [
     ),
   },
   {
-    name: "intro",
-    exact: true,
-    path: "/:slug",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
-    ),
-  },
-  {
-    name: "location",
-    path: "/:slug/locatie",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/LocationPage`)
-    ),
-  },
-  {
     name: "address",
     path: "/:slug/adresgegevens",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/AddressPage`)
     ),
     matomoPage: "location-results",
+  },
+  {
+    name: "intro",
+    exact: true,
+    path: "/:slug",
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
+    ),
   },
   {
     name: "questions",
@@ -110,5 +103,5 @@ export const routes = Object.fromEntries(
 );
 
 export const autofillRoutes = {
-  address: [routes.location, routes.address],
+  wrapper: [routes.wrapper],
 };
