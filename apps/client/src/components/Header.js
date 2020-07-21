@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { actions, categories } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
@@ -41,4 +41,4 @@ export const Header = ({ matomoTrackEvent }) => {
   );
 };
 
-export default withTracking(Header);
+export default memo(withTracking(Header));
