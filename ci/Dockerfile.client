@@ -3,7 +3,7 @@ LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/client/package*.json ./
-# RUN npm audit --production # waiting for lodash fix https://github.com/lodash/lodash/issues/4837
+RUN npm audit --production
 
 RUN npm ci --no-color -q
 COPY apps/client/ ./
