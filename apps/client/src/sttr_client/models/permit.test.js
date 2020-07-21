@@ -19,7 +19,7 @@ const getChecker = (questions) => {
       new Rule(["yes"], "hell yeah"),
     ]
   );
-  return new Checker([new Permit("drivers-licence", [dummy])]);
+  return new Checker([new Permit("drivers-licence", 1, [dummy])]);
 };
 const getQuestions = () => [
   new Question({
@@ -41,7 +41,7 @@ describe("Permit", () => {
     const d = new Decision("somedummy", getQuestions(), [
       new Rule([false], "no"),
     ]);
-    const permit = new Permit("myperm", [d]);
+    const permit = new Permit("myperm", 1, [d]);
     expect(permit.getDecisionById("somedummy")).toBe(d);
   });
   test("simple sttr checker", () => {

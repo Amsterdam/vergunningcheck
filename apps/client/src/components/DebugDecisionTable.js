@@ -104,7 +104,9 @@ export default ({ checker, topic }) => {
 
         return (
           <div key={`${permit.name} - ${index}`}>
-            <h2>{permit.name}</h2>
+            <h2>
+              {permit.name} (v{permit.version})
+            </h2>
             {permit._decisions
               .sort(
                 // loosely order decisions based on their question prios

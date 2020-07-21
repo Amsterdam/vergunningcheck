@@ -1,3 +1,5 @@
+import { isNumber } from "util";
+
 import isString from "lodash.isstring";
 
 import { collectionOfType } from "../../utils";
@@ -15,17 +17,22 @@ class Permit {
   /**
    * Constructor for Checker
    *
-   * @param {string} name - A namve for this checker;
+   * @param {string} name - A name for this checker
+   * @param {Number} version - STTR version number
    * @param {Decision[]} decisions - Decisions for this quiz
    */
-  constructor(name, decisions) {
+  constructor(name, version, decisions) {
     if (!isString(name)) {
       throw Error("'name' must be a String");
+    }
+    if (!isNumber(version) || version < 1) {
+      throw Error("'version' must be a Number >= 1");
     }
     if (!collectionOfType(decisions, "Decision")) {
       throw Error("'decisions' must be an array of type 'Decision'");
     }
     this.name = name;
+    this._version = version;
     this._questions = decisions.flatMap((decision) => decision.getQuestions());
     this._decisions = decisions;
 
@@ -38,6 +45,10 @@ class Permit {
 
   get questions() {
     return this._questions;
+  }
+
+  get version() {
+    return this._version;
   }
 
   /**
