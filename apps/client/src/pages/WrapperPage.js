@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
+import Location from "../components/Location/Location";
 import Question, { booleanOptions } from "../components/Question";
 import {
   StepByStepItem,
@@ -105,6 +106,11 @@ const WrapperPage = ({ checker, topic }) => {
         highlightActive
         style={{ margin: "40px 0" }}
       >
+        <StepByStepItem active heading="Adres gegevens" largeCircle>
+          <Location />
+        </StepByStepItem>
+        <StepByStepItem active heading="Vragen" largeCircle />
+
         {checker.stack.map((q, i) => {
           if (q === checker.stack[sessionContext[slug].questionIndex]) {
             return (
@@ -112,7 +118,6 @@ const WrapperPage = ({ checker, topic }) => {
                 active
                 heading={q.text}
                 onClick={() => onGoToQuestion(i)}
-                largeCircle
               >
                 <Question
                   question={q}
@@ -154,6 +159,7 @@ const WrapperPage = ({ checker, topic }) => {
             );
           }
         })}
+        <StepByStepItem active heading="Conclusie" largeCircle />
       </StepByStepNavigation>
       <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
