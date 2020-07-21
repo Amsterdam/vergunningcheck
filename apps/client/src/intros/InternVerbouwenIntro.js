@@ -1,9 +1,9 @@
 import React from "react";
 
-import DefaultIntroFooter from "../components/DefaultIntro";
+import DefaultOloIntro from "./shared/DefaultOloIntro";
 
 export default () => (
-  <DefaultIntroFooter>
+  <DefaultOloIntro>
     U wilt weten of u een vergunning nodig hebt om intern te verbouwen.
-  </DefaultIntroFooter>
+  </DefaultOloIntro>
 );
