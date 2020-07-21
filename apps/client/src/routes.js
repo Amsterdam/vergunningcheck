@@ -46,14 +46,6 @@ export const routeConfig = [
     ),
   },
   {
-    name: "address",
-    path: "/:slug/adresgegevens",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/AddressPage`)
-    ),
-    matomoPage: "location-results",
-  },
-  {
     name: "intro",
     exact: true,
     path: "/:slug",
