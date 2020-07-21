@@ -26,7 +26,7 @@ const WrapperPage = ({ topic }) => (
         <Location />
       </StepByStepItem>
       <StepByStepItem active heading="Vragen" largeCircle />
-      <Questions />
+      <Questions topic={topic} />
       <StepByStepItem active heading="Conclusie" largeCircle />
     </StepByStepNavigation>
   </Layout>

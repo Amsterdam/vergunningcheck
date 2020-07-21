@@ -39,7 +39,7 @@ const LocationPage = ({ topic }) => {
     return () => unregister("suffix");
   }, [address, clearErrors, errorMessage, register, unregister]);
 
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     if (address) {
       trackEvent({
         category: "postcode-input",
@@ -71,6 +71,7 @@ const LocationPage = ({ topic }) => {
         document.activeElement.blur();
       } else {
         setAddressShown(true);
+        checkerContext.checker.next();
       }
     }
   };
@@ -123,13 +124,15 @@ const LocationPage = ({ topic }) => {
             <Paragraph>{topic.text.addressPage}</Paragraph>
           )}
 
-          <Nav
-            onGoToPrev={() => setAddressShown(false)}
-            nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
-            formEnds={!useSTTR}
-            showPrev
-            showNext
-          />
+          {!setAddressShown && (
+            <Nav
+              onGoToPrev={() => setAddressShown(false)}
+              nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+              formEnds={!useSTTR}
+              showPrev
+              showNext
+            />
+          )}
         </Form>
       </>
     );

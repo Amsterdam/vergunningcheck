@@ -1,17 +1,19 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
-import { SessionContext } from "../context";
-import withChecker from "../hoc/withChecker";
+import { CheckerContext, SessionContext } from "../context";
+import withTopic from "../hoc/withTopic";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({ checker, topic }) => {
-  const sessionContext = useContext(SessionContext);
+const Questions = ({ topic }) => {
   const { slug } = topic;
+  const { checker } = useContext(CheckerContext);
+  const sessionContext = useContext(SessionContext);
+  const { questionIndex } = sessionContext[slug] || 0;
 
   const onQuestionNext = (value) => {
-    const question = checker.stack[sessionContext[slug].questionIndex];
+    const question = checker.stack[questionIndex];
 
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
@@ -46,7 +48,7 @@ const Questions = ({ checker, topic }) => {
         sessionContext.setSessionData([
           slug,
           {
-            questionIndex: sessionContext[slug].questionIndex + 1,
+            questionIndex: questionIndex + 1,
           },
         ]);
       }
@@ -61,7 +63,7 @@ const Questions = ({ checker, topic }) => {
       sessionContext.setSessionData([
         slug,
         {
-          questionIndex: sessionContext[slug].questionIndex - 1,
+          questionIndex: questionIndex - 1,
         },
       ]);
     }
@@ -81,8 +83,8 @@ const Questions = ({ checker, topic }) => {
 
   return (
     <>
-      {checker.stack.map((q, i) => {
-        if (q === checker.stack[sessionContext[slug].questionIndex]) {
+      {checker?.stack.map((q, i) => {
+        if (q === checker.stack[questionIndex]) {
           return (
             <StepByStepItem
               active
@@ -133,4 +135,4 @@ const Questions = ({ checker, topic }) => {
   );
 };
 
-export default withChecker(Questions);
+export default withTopic(Questions);
