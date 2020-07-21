@@ -4,6 +4,7 @@ import { createMemoryHistory } from "history";
 import React, { Suspense } from "react";
 
 import Context from "../__mocks__/context";
+import matchMedia from "../__mocks__/matchMedia";
 import Router from "../components/Router";
 import { topics } from "../config";
 import {
@@ -15,6 +16,8 @@ import {
 import { act, cleanup, fireEvent, render, screen } from "../utils/test-utils";
 import mocks from "./__mocks__/address";
 import LocationPage from "./LocationPage";
+
+Object.defineProperty(window, "matchMedia", matchMedia);
 
 afterEach(cleanup);
 
