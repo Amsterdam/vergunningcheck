@@ -35,15 +35,6 @@ const QuestionsPage = ({ topic, checker }) => {
     );
   }
 
-  const needContactPermits = () =>
-    checker.permits.find((permit) => {
-      const conclusion = permit.getDecisionById("dummy");
-      const conclusionMatchingRules = conclusion.getMatchingRules();
-      return conclusionMatchingRules.find(
-        (rule) => rule.outputValue === '"NeemContactOpMet"'
-      );
-    });
-
   const onQuestionNext = (value) => {
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
@@ -67,7 +58,7 @@ const QuestionsPage = ({ topic, checker }) => {
 
     // Go directly to the Conclusion Page, without passing the Results Page
     // Only if the `sttr-checker` is the final question
-    if (needContactPermits()) {
+    if (checker.needContactExit(question)) {
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
 

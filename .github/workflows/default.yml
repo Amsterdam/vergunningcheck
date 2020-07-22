@@ -16,12 +16,12 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2-beta
+        uses: actions/checkout@v2.3.1
         with:
           fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.1.1
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
@@ -29,7 +29,7 @@ jobs:
       # Start running the test coverage action
       - run: npm run test:coverage
       - name: Running code coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1.0.11
 
       # Start running the calculation of the bundle size action
       - name: Calculating size

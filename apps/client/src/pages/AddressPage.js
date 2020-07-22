@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import AddressLine from "../components/AddressLine";
+import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
@@ -31,7 +32,7 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
 };
 
-const AddressPage = ({ topic, autofillData }) => {
+const AddressPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const { slug } = topic;
   const { address } = autofillData;
@@ -78,6 +79,8 @@ const AddressPage = ({ topic, autofillData }) => {
           showNext
         />
       </Form>
+
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };

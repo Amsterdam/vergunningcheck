@@ -99,6 +99,15 @@ const topics: Topic[] = [
     },
     intro: "InternVerbouwenIntro",
   },
+  {
+    slug: "zonwering-of-rolluik-plaatsen",
+    text: {
+      heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
+      locationIntro:
+        "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
+    },
+    intro: "ZonweringRolluikIntro",
+  },
 ];
 
 if (process.env.NODE_ENV !== "production") {
