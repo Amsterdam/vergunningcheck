@@ -12,7 +12,12 @@ import Form from "./Form";
 import Markdown from "./Markdown";
 import Nav from "./Nav";
 
-const Conclusion = ({ topic, checker, finishedQuestions }) => {
+const Conclusion = ({
+  topic,
+  checker,
+  setFinishedQuestions,
+  finishedQuestions,
+}) => {
   const { trackEvent } = useMatomo();
   const { slug } = topic;
 
@@ -59,8 +64,6 @@ const Conclusion = ({ topic, checker, finishedQuestions }) => {
     e.preventDefault();
     if (needsPermit) {
       window.open(OLO.home, "_blank");
-    } else {
-      // history.push(geturl(routes.intro, { slug }) + "?resetChecker=true");
     }
   };
 
@@ -73,47 +76,10 @@ const Conclusion = ({ topic, checker, finishedQuestions }) => {
     window.print();
   };
 
-  // const date = new Date();
-  // const options = {
-  //   year: "numeric",
-  //   month: "long",
-  //   day: "numeric",
-  //   hour: "numeric",
-  //   minute: "numeric",
-  // };
-  // const currentDateTime = date.toLocaleDateString("nl-NL", options);
   if (!finishedQuestions) return false;
 
   return (
     <Form onSubmit={handleSubmit} data-testid={CONCLUSION_PAGE}>
-      {/*<PrintOnly>*/}
-      {/*  <Paragraph fontSize={12}>{window.location.href}</Paragraph>*/}
-
-      {/*  <Heading forwardedAs="h2" styleAs="h1">*/}
-      {/*    Datum*/}
-      {/*  </Heading>*/}
-      {/*  <Paragraph>{currentDateTime} uur.</Paragraph>*/}
-      {/*  {address && (*/}
-      {/*    <>*/}
-      {/*      <Heading forwardedAs="h2">Adresgegevens</Heading>*/}
-      {/*      <Paragraph gutterBottom={30}>*/}
-      {/*        {address.streetName} {address.houseNumberFull}*/}
-      {/*        <br />*/}
-      {/*        {address.postalCode} {address.residence}*/}
-      {/*      </Paragraph>*/}
-      {/*      <Paragraph>*/}
-      {/*        Deze informatie hebben we gebruikt bij het invullen van de*/}
-      {/*        check:*/}
-      {/*      </Paragraph>*/}
-
-      {/*      <RegisterLookupSummary*/}
-      {/*        displayZoningPlans={false}*/}
-      {/*        address={address}*/}
-      {/*      />*/}
-      {/*    </>*/}
-      {/*  )}*/}
-      {/*</PrintOnly>*/}
-
       <Paragraph>
         Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
         toepassing is.
@@ -155,7 +121,7 @@ const Conclusion = ({ topic, checker, finishedQuestions }) => {
       </PrintOnly>
 
       <Nav
-        // onGoToPrev={() => history.push(previousUrl)}
+        onGoToPrev={() => setFinishedQuestions(false)}
         showPrev
         showNext
         nextText={needsPermit ? "Naar het omgevingsloket" : "Begin opnieuw"}
