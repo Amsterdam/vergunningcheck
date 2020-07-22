@@ -8,7 +8,7 @@ import {
   Paragraph,
   Row,
 } from "@datapunt/asc-ui";
-import React from "react";
+import React, { memo } from "react";
 
 import { List, ListItem } from "../../atoms";
 import { FOOTER } from "../../utils/test-ids";
@@ -215,4 +215,4 @@ const Footer = () => (
   </CompactThemeProvider>
 );
 
-export default Footer;
+export default memo(Footer);
