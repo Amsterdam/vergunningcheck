@@ -21,6 +21,10 @@ const Conclusion = ({
   const { trackEvent } = useMatomo();
   const { slug } = topic;
 
+  // if there is no checker.
+  // You are on the olo flow, so no conclusions.
+  if (!checker) return false;
+
   // find conclusions we want to display to the user
   const conclusions = checker.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))

@@ -5,7 +5,7 @@ const getDataNeed = (checker) =>
 
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
   const dataNeed = getDataNeed(checker);
-  return dataNeed ? autofillRoutes[dataNeed][0] : routes.questions;
+  return dataNeed ? autofillRoutes[dataNeed][0] : routes.wrapper;
 };
 
 const strings = {

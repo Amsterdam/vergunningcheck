@@ -71,7 +71,9 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
         document.activeElement.blur();
       } else {
         setAddressShown(true);
-        checkerContext.checker.next();
+        if (checkerContext.checker) {
+          checkerContext.checker.next();
+        }
       }
     }
   };
