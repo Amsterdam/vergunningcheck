@@ -99,12 +99,17 @@ function checkStatus(res) {
 
   Object.entries(topics).forEach(([id, permits]) => {
     const file = `${id}.json`;
+
     const data = {
       id,
       permits: permits.map((permit) => {
         const res = permitsConfig.find((p) => p.id === permit.id);
+        const version = res.json.version;
+        if (typeof version !== "number") {
+          throw new Error("version should be a number");
+        }
         return {
-          version: res.json.version,
+          version,
           ...sttrbuild(res.json.sttr),
         };
       }),

@@ -1,5 +1,4 @@
-import { isNumber } from "util";
-
+import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
 import { collectionOfType } from "../../utils";
