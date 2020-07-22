@@ -119,13 +119,13 @@ const LocationFinder = (props) => {
         <Select
           name="suffix"
           label="Toevoeging"
-          value={exactMatch?.houseNumberFull}
+          value={exactMatch?.houseNumberFull || houseNumber}
           disabled={
             notFoundAddress || graphqlError || (exactMatch && !addressMatches)
           }
           error={suffixError}
           onChange={(e) => {
-            setHouseNumberFull(e.target.value);
+            e.target.value && setHouseNumberFull(e.target.value);
             e.preventDefault();
           }}
         >

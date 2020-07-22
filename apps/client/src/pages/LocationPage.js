@@ -35,7 +35,7 @@ const LocationPage = ({ topic }) => {
     return () => unregister("suffix");
   }, [address, clearErrors, errorMessage, register, unregister]);
 
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     if (address) {
       trackEvent({
         category: "postcode-input",

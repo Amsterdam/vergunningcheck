@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Helmet } from "react-helmet";
 
+import DebugDecisionTable from "../components/DebugDecisionTable";
 import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
@@ -29,6 +30,8 @@ const IntroPage = ({ topic, checker }) => {
       >
         <Nav showNext />
       </Form>
+
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };
