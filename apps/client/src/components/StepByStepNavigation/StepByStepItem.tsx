@@ -55,11 +55,12 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
         href,
         unfinished,
       }}
+      data-testid={STEPBYSTEPITEM}
       onClick={handleOnClick}
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >
-      <CircleWrapperStyle {...{ active, done }} data-testid={STEPBYSTEPITEM}>
+      <CircleWrapperStyle {...{ active, done }}>
         <CircleStyle
           size={13}
           {...{ active, checked, circleBackgroundColor, done, small }}
