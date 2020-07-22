@@ -11,14 +11,10 @@ import { CONCLUSION_PAGE } from "../utils/test-ids";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Nav from "./Nav";
-import QuestionAnswerTable from "./QuestionAnswerTable";
-// import { useHistory } from "react-router-dom";
 
-const Conclusion = ({ topic, checker }) => {
-  // const history = useHistory();
+const Conclusion = ({ topic, checker, finishedQuestions }) => {
   const { trackEvent } = useMatomo();
   const { slug } = topic;
-  // const { address } = autofillData;
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
@@ -48,16 +44,15 @@ const Conclusion = ({ topic, checker }) => {
   const needsPermit = !!conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
+
   const contactConclusion = conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
+
   const displayConclusions = contactConclusion
     ? [contactConclusion]
     : conclusions;
 
-  // const previousUrl = contactConclusion
-  //   ? geturl(routes.questions, { slug })
-  //   : geturl(routes.results, { slug });
   // go back to prev container
 
   const handleSubmit = (e) => {
@@ -87,6 +82,7 @@ const Conclusion = ({ topic, checker }) => {
   //   minute: "numeric",
   // };
   // const currentDateTime = date.toLocaleDateString("nl-NL", options);
+  if (!finishedQuestions) return false;
 
   return (
     <Form onSubmit={handleSubmit} data-testid={CONCLUSION_PAGE}>
@@ -149,7 +145,6 @@ const Conclusion = ({ topic, checker }) => {
         <Paragraph>
           Hieronder kunt u per vraag uw gegeven antwoord teruglezen.
         </Paragraph>
-        <QuestionAnswerTable checker={checker} />
       </PrintOnly>
 
       <PrintOnly style={{ marginTop: 20 }} withBorder avoidPageBreak>

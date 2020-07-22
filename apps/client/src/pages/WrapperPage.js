@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
 import Conclusion from "../components/Conclusion";
@@ -10,28 +10,54 @@ import {
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
 
-const WrapperPage = ({ topic }) => (
-  <Layout>
-    <Helmet>
-      <title>Wrapper Page</title>
-    </Helmet>
-    <StepByStepNavigation
-      customSize
-      disabledTextColor="inherit"
-      doneTextColor="inherit"
-      highlightActive
-      style={{ margin: "40px 0" }}
-    >
-      <StepByStepItem active heading="Adres gegevens" largeCircle>
-        <Location />
-      </StepByStepItem>
-      <StepByStepItem active heading="Vragen" largeCircle />
-      <Questions />
-      <StepByStepItem active heading="Conclusie" largeCircle>
-        <Conclusion />
-      </StepByStepItem>
-    </StepByStepNavigation>
-  </Layout>
-);
+const WrapperPage = () => {
+  const [finishedLocation, setFinishedLocation] = useState(false);
+  const [finishedQuestions, setFinishedQuestions] = useState(false);
+
+  return (
+    <Layout>
+      <Helmet>
+        <title>Wrapper Page</title>
+      </Helmet>
+      <StepByStepNavigation
+        customSize
+        disabledTextColor="inherit"
+        doneTextColor="inherit"
+        highlightActive
+        style={{ margin: "40px 0" }}
+      >
+        <StepByStepItem
+          active
+          checked={finishedLocation}
+          heading="Adres gegevens"
+          largeCircle
+        >
+          <Location
+            finishedLocation={finishedLocation}
+            setFinishedLocation={setFinishedLocation}
+          />
+        </StepByStepItem>
+        <StepByStepItem
+          active
+          checked={finishedQuestions}
+          heading="Vragen"
+          largeCircle
+        />
+        <Questions
+          finishedLocation={finishedLocation}
+          finishedQuestions={finishedQuestions}
+          setFinishedLocation={setFinishedLocation}
+          setFinishedQuestions={setFinishedQuestions}
+        />
+        <StepByStepItem active heading="Conclusie" largeCircle>
+          <Conclusion
+            setFinishedQuestions={setFinishedQuestions}
+            finishedQuestions={finishedQuestions}
+          />
+        </StepByStepItem>
+      </StepByStepNavigation>
+    </Layout>
+  );
+};
 
 export default WrapperPage;

@@ -16,7 +16,7 @@ import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const LocationPage = ({ topic }) => {
+const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -95,6 +95,7 @@ const LocationPage = ({ topic }) => {
   const handleAddressSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
+      setFinishedLocation(true);
       window.scrollBy(0, 100);
     } else {
       window.open(getOloUrl(address), "_blank");
@@ -124,7 +125,7 @@ const LocationPage = ({ topic }) => {
             <Paragraph>{topic.text.addressPage}</Paragraph>
           )}
 
-          {!setAddressShown && (
+          {!finishedLocation && (
             <Nav
               onGoToPrev={() => setAddressShown(false)}
               nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
@@ -179,4 +180,4 @@ const LocationPage = ({ topic }) => {
   );
 };
 
-export default withTopic(LocationPage);
+export default withTopic(Location);

@@ -3,10 +3,17 @@ import React, { useContext } from "react";
 
 import { CheckerContext, SessionContext } from "../context";
 import withTopic from "../hoc/withTopic";
+import { removeQuotes } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({ topic }) => {
+const Questions = ({
+  topic,
+  finishedLocation,
+  finishedQuestions,
+  setFinishedQuestions,
+  setFinishedLocation,
+}) => {
   const { slug } = topic;
   const { checker } = useContext(CheckerContext);
   const sessionContext = useContext(SessionContext);
@@ -39,8 +46,8 @@ const Questions = ({ topic }) => {
     if (checker.needContactExit(question) && !next) {
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
-
       // Go to "Conclusion"
+      setFinishedQuestions(true);
     } else {
       // Load the next question or go to the Result Page
       if (next) {
@@ -51,8 +58,9 @@ const Questions = ({ topic }) => {
             questionIndex: questionIndex + 1,
           },
         ]);
+      } else {
+        setFinishedQuestions(true);
       }
-      // Go to "Next question"
     }
   };
 
@@ -66,8 +74,10 @@ const Questions = ({ topic }) => {
           questionIndex: questionIndex - 1,
         },
       ]);
+    } else {
+      setFinishedLocation(false);
+      setFinishedQuestions(false);
     }
-    // Go to "Location"
   };
 
   const onGoToQuestion = (questionIndex) => {
@@ -81,10 +91,12 @@ const Questions = ({ topic }) => {
     ]);
   };
 
+  if (!finishedLocation) return false;
+
   return (
     <>
       {checker?.stack.map((q, i) => {
-        if (q === checker.stack[questionIndex]) {
+        if (q === checker.stack[questionIndex] && !finishedQuestions) {
           return (
             <StepByStepItem
               active
@@ -118,7 +130,7 @@ const Questions = ({ topic }) => {
               onClick={() => onGoToQuestion(i)}
             >
               <Paragraph>
-                {answer?.replace(/['"]+/g, "")}
+                {removeQuotes(answer)}
                 <Button
                   style={{ marginLeft: 20 }}
                   onClick={() => onGoToQuestion(i)}
