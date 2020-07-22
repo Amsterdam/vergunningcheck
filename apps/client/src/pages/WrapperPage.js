@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
+import Conclusion from "../components/Conclusion";
 import Layout from "../components/Layouts/DefaultLayout";
 import Location from "../components/Location/Location";
 import Questions from "../components/Questions";
@@ -8,7 +9,6 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-import withTopic from "../hoc/withTopic";
 
 const WrapperPage = ({ topic }) => (
   <Layout>
@@ -26,10 +26,12 @@ const WrapperPage = ({ topic }) => (
         <Location />
       </StepByStepItem>
       <StepByStepItem active heading="Vragen" largeCircle />
-      <Questions topic={topic} />
-      <StepByStepItem active heading="Conclusie" largeCircle />
+      <Questions />
+      <StepByStepItem active heading="Conclusie" largeCircle>
+        <Conclusion />
+      </StepByStepItem>
     </StepByStepNavigation>
   </Layout>
 );
 
-export default withTopic(WrapperPage);
+export default WrapperPage;
