@@ -27,7 +27,7 @@ const WrapperPage = () => {
         style={{ margin: "40px 0" }}
       >
         <StepByStepItem
-          active
+          active={!finishedLocation}
           checked={finishedLocation}
           heading="Adres gegevens"
           largeCircle
@@ -38,7 +38,7 @@ const WrapperPage = () => {
           />
         </StepByStepItem>
         <StepByStepItem
-          active
+          active={finishedLocation && !finishedQuestions}
           checked={finishedQuestions}
           heading="Vragen"
           largeCircle
@@ -49,7 +49,11 @@ const WrapperPage = () => {
           setFinishedLocation={setFinishedLocation}
           setFinishedQuestions={setFinishedQuestions}
         />
-        <StepByStepItem active heading="Conclusie" largeCircle>
+        <StepByStepItem
+          active={finishedLocation && finishedQuestions}
+          heading="Conclusie"
+          largeCircle
+        >
           <Conclusion
             setFinishedQuestions={setFinishedQuestions}
             finishedQuestions={finishedQuestions}
