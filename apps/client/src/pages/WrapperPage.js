@@ -9,11 +9,9 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-
 const WrapperPage = () => {
   const [finishedLocation, setFinishedLocation] = useState(false);
   const [finishedQuestions, setFinishedQuestions] = useState(false);
-
   return (
     <Layout>
       <Helmet>
@@ -63,5 +61,4 @@ const WrapperPage = () => {
     </Layout>
   );
 };
-
 export default WrapperPage;
