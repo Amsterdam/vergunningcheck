@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1](2020-07-23)
+
+#### Bug fixes
+
+- [#313](https://github.com/Amsterdam/vergunningcheck/pull/313) Hotfix: Some small improvements #313
+- [#312](https://github.com/Amsterdam/vergunningcheck/pull/312) Hotfix: Removed unneccesary chappie2.0 files #312
+
 ## [1.4.0](2020-07-23)
 
 #### New Features
