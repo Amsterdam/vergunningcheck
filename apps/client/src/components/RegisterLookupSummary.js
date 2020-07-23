@@ -26,7 +26,7 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
       <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
-      <Paragraph style={{ marginBottom: 0 }}>
+      <Paragraph gutterBottom={displayZoningPlans ? null : 0}>
         {cityScape
           ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
           : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}

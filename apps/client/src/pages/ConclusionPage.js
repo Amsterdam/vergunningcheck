@@ -16,13 +16,8 @@ import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import { OLO } from "../config";
 import withConclusion from "../hoc/withConclusion";
 import { geturl, routes } from "../routes";
+import { sttrOutcomes } from "../sttr_client/models/checker";
 import { CONCLUSION_PAGE } from "../utils/test-ids";
-
-const outcomes = {
-  NEED_PERMIT: '"Vergunningplicht"',
-  NEED_CONTACT: '"NeemContactOpMet"',
-  PERMIT_FREE: '"Toestemmingsvrij"',
-};
 
 const ConclusionPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
@@ -37,7 +32,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       const contactOutcome = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === '"NeemContactOpMet"'
+        (rule) => rule.outputValue === sttrOutcomes.NEED_CONTACT
       );
       const outcome =
         contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
@@ -45,7 +40,7 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
       return {
         outcome,
         title:
-          outcome === outcomes.NEED_CONTACT
+          outcome === sttrOutcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
             : `${permit.name.replace("Conclusie", "")}: ${outcome.replace(
                 /['"]+/g,
@@ -56,10 +51,10 @@ const ConclusionPage = ({ topic, checker, autofillData }) => {
     });
 
   const needsPermit = !!conclusions.find(
-    ({ outcome }) => outcome === outcomes.NEED_PERMIT
+    ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
   const contactConclusion = conclusions.find(
-    ({ outcome }) => outcome === outcomes.NEED_CONTACT
+    ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
   const displayConclusions = contactConclusion
     ? [contactConclusion]

@@ -1,5 +1,11 @@
 import { collectionOfType, isObject, uniqueFilter } from "../../utils";
 
+export const sttrOutcomes = {
+  NEED_PERMIT: '"Vergunningplicht"',
+  NEED_CONTACT: '"NeemContactOpMet"',
+  PERMIT_FREE: '"Toestemmingsvrij"',
+};
+
 /**
  * Step checker class for quiz
  *
@@ -102,6 +108,42 @@ class Checker {
    */
   get _last() {
     return this.stack[this.stack.length - 1];
+  }
+
+  /**
+   * Find all permits that have a "contact" conclusion,
+   * for every permit see if the decisive decision's last question
+   * equals the currentQuestion.
+   *
+   * @param {Question} currentQuestion - the question to check for exit
+   *
+   * @returns {boolean} - if checker has a 'contact' outcome
+   * consumer can exit if wanted
+   */
+  needContactExit(currentQuestion) {
+    return !!this.permits.find((permit) => {
+      const conclusion = permit.getDecisionById("dummy");
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      const matchingContactRule = conclusionMatchingRules.find(
+        (rule) => rule.outputValue === sttrOutcomes.NEED_CONTACT
+      );
+      if (matchingContactRule) {
+        const decisiveDecisions = conclusion.getDecisiveInputs();
+
+        // find the contact decision
+        const contactDecision = decisiveDecisions.find((decision) =>
+          decision._rules.find(
+            (rule) => rule._outputValue === sttrOutcomes.NEED_CONTACT
+          )
+        );
+
+        // get inputs from contact decision
+        const lastIndex = contactDecision._inputs.length - 1;
+        // if currentQuestion equals the last input in decision, it's a match
+        return contactDecision._inputs[lastIndex] === currentQuestion;
+      }
+      return false;
+    });
   }
 
   /**
@@ -228,7 +270,6 @@ class Checker {
    */
   _getNextQuestion() {
     return this._getUpcomingQuestions().shift();
-    // return this._questions.find(question => !this.stack.includes(question));
   }
 
   /**

@@ -71,7 +71,7 @@ const topics: Topic[] = [
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
-    intro: "KozijnenIntroSTTR/index",
+    intro: "KozijnenIntro",
   },
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
@@ -98,6 +98,15 @@ const topics: Topic[] = [
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
     },
     intro: "InternVerbouwenIntro",
+  },
+  {
+    slug: "zonwering-of-rolluik-plaatsen",
+    text: {
+      heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
+      locationIntro:
+        "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
+    },
+    intro: "ZonweringRolluikIntro",
   },
 ];
 
