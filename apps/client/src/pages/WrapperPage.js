@@ -42,13 +42,15 @@ const WrapperPage = () => {
           heading="Vragen"
           largeCircle
         />
-        {!finishedQuestions && (
+        {!finishedQuestions && finishedLocation ? (
           <Questions
             finishedLocation={finishedLocation}
             finishedQuestions={finishedQuestions}
             setFinishedLocation={setFinishedLocation}
             setFinishedQuestions={setFinishedQuestions}
           />
+        ) : (
+          <></>
         )}
         <StepByStepItem
           active={finishedLocation && finishedQuestions}
