@@ -23,7 +23,6 @@ const WrapperPage = () => {
         disabledTextColor="inherit"
         doneTextColor="inherit"
         highlightActive
-        style={{ margin: "40px 0" }}
       >
         <StepByStepItem
           active={!finishedLocation}
@@ -37,20 +36,16 @@ const WrapperPage = () => {
           />
         </StepByStepItem>
         <StepByStepItem
-          active={finishedLocation && !finishedQuestions}
           checked={finishedQuestions}
           heading="Vragen"
           largeCircle
         />
-        {!finishedQuestions && finishedLocation ? (
+        {!finishedQuestions && finishedLocation && (
           <Questions
-            finishedLocation={finishedLocation}
             finishedQuestions={finishedQuestions}
             setFinishedLocation={setFinishedLocation}
             setFinishedQuestions={setFinishedQuestions}
           />
-        ) : (
-          <></>
         )}
         <StepByStepItem
           active={finishedLocation && finishedQuestions}

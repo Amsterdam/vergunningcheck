@@ -9,7 +9,6 @@ import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
   topic,
-  finishedLocation,
   finishedQuestions,
   setFinishedQuestions,
   setFinishedLocation,
@@ -43,7 +42,7 @@ const Questions = ({
 
     // Go directly to "Conclusion" and skip other questions
     // Only if the `sttr-checker` is the final question
-    if (checker.needContactExit(question) && !next) {
+    if (checker.needContactExit(question)) {
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
       // Go to "Conclusion"
@@ -91,58 +90,52 @@ const Questions = ({
     ]);
   };
 
-  return (
-    <>
-      {checker?.stack.map((q, i) => {
-        if (q === checker.stack[questionIndex] && !finishedQuestions) {
-          return (
-            <StepByStepItem
-              active
-              heading={q.text}
+  return checker.stack.map((q, i) => {
+    if (q === checker.stack[questionIndex] && !finishedQuestions) {
+      return (
+        <StepByStepItem
+          active
+          heading={q.text}
+          onClick={() => onGoToQuestion(i)}
+        >
+          <Question
+            question={q}
+            key={`question-${q.id}-${i}`}
+            onSubmit={onQuestionNext}
+            onGoToPrev={onQuestionPrev}
+            showPrev
+            showNext
+          />
+        </StepByStepItem>
+      );
+    } else {
+      let answer;
+      if (q.options) {
+        answer = q.answer;
+      } else {
+        const responseObj = booleanOptions.find((o) => o.value === q.answer);
+        answer = responseObj?.label;
+      }
+      return (
+        <StepByStepItem
+          checked
+          heading={q.text}
+          onClick={() => onGoToQuestion(i)}
+        >
+          <Paragraph>
+            {removeQuotes(answer)}
+            <Button
+              style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}
+              variant="textButton"
             >
-              <Question
-                question={q}
-                key={`question-${q.id}-${i}`}
-                onSubmit={onQuestionNext}
-                onGoToPrev={onQuestionPrev}
-                showPrev
-                showNext
-              />
-            </StepByStepItem>
-          );
-        } else {
-          let answer;
-          if (q.options) {
-            answer = q.answer;
-          } else {
-            const responseObj = booleanOptions.find(
-              (o) => o.value === q.answer
-            );
-            answer = responseObj?.label;
-          }
-          return (
-            <StepByStepItem
-              checked
-              heading={q.text}
-              onClick={() => onGoToQuestion(i)}
-            >
-              <Paragraph>
-                {removeQuotes(answer)}
-                <Button
-                  style={{ marginLeft: 20 }}
-                  onClick={() => onGoToQuestion(i)}
-                  variant="textButton"
-                >
-                  Wijzig
-                </Button>
-              </Paragraph>
-            </StepByStepItem>
-          );
-        }
-      })}
-    </>
-  );
+              Wijzig
+            </Button>
+          </Paragraph>
+        </StepByStepItem>
+      );
+    }
+  });
 };
 
 export default withTopic(Questions);

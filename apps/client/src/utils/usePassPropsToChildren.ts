@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 
 type Callback = (index?: number) => any;
 
@@ -7,21 +7,23 @@ type Callback = (index?: number) => any;
  * We can remove it if we don't need it anymore.
  *
  * Use in case we need to pass props to children.
- * @param childrenProps React children
  * @param propsOrCallback this could be an object or a callback with the index as a parameter
+ * @param childrenProps React children
  */
 const usePassPropsToChildren = (
-  childrenProps: React.ReactNode,
+  childrenProps: React.ReactNode | boolean,
   propsOrCallback: React.PropsWithoutRef<{}> | Callback
 ) => {
-  const children = React.Children.map(childrenProps, (child, index) =>
-    React.cloneElement(
-      child as React.ReactElement<any>,
-      typeof propsOrCallback === "function"
-        ? propsOrCallback(index)
-        : propsOrCallback
-    )
-  );
+  const children = Children.map(childrenProps, (child, index) => {
+    if (child) {
+      return React.cloneElement(
+        child as React.ReactElement<any>,
+        typeof propsOrCallback === "function"
+          ? propsOrCallback(index)
+          : propsOrCallback
+      );
+    }
+  });
 
   return { children };
 };

@@ -98,7 +98,6 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
     e.preventDefault();
     if (useSTTR) {
       setFinishedLocation(true);
-      window.scrollBy(0, 100);
     } else {
       window.open(getOloUrl(address), "_blank");
     }
@@ -106,38 +105,36 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
 
   if (addressShown) {
     return (
-      <>
-        <Form onSubmit={handleAddressSubmit} data-testid={ADDRESS_PAGE}>
-          <Paragraph>
-            Over <AddressLine address={address} /> hebben we de volgende
-            informatie gevonden:
-          </Paragraph>
+      <Form onSubmit={handleAddressSubmit} data-testid={ADDRESS_PAGE}>
+        <Paragraph>
+          Over <AddressLine address={address} /> hebben we de volgende
+          informatie gevonden:
+        </Paragraph>
 
-          <RegisterLookupSummary
-            displayZoningPlans={!useSTTR}
-            address={address}
+        <RegisterLookupSummary
+          displayZoningPlans={!useSTTR}
+          address={address}
+        />
+
+        <Paragraph>
+          {useSTTR
+            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
+        </Paragraph>
+        {topic.text?.addressPage && (
+          <Paragraph>{topic.text.addressPage}</Paragraph>
+        )}
+
+        {!finishedLocation && (
+          <Nav
+            onGoToPrev={() => setAddressShown(false)}
+            nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+            formEnds={!useSTTR}
+            showPrev
+            showNext
           />
-
-          <Paragraph>
-            {useSTTR
-              ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
-              : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
-          </Paragraph>
-          {topic.text?.addressPage && (
-            <Paragraph>{topic.text.addressPage}</Paragraph>
-          )}
-
-          {!finishedLocation && (
-            <Nav
-              onGoToPrev={() => setAddressShown(false)}
-              nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
-              formEnds={!useSTTR}
-              showPrev
-              showNext
-            />
-          )}
-        </Form>
-      </>
+        )}
+      </Form>
     );
   }
 
