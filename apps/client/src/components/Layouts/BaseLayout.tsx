@@ -1,12 +1,12 @@
+import { Column, FormTitle, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { Row, Column, FormTitle } from "@datapunt/asc-ui";
-import { Container, ContentContainer, Content } from "./BaseLayoutStyles";
 
 import { CheckerContext } from "../../context";
-import Header from "../Header";
 import Footer from "../Footer";
+import Header from "../Header";
 import HiddenDebugInfo from "../HiddenDebugInfo";
+import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
   children: React.ReactNode;

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { isProduction, topics } from "../config";
-import { routes, geturl } from "../routes";
 
 import Layout from "../components/Layouts/DefaultLayout";
+import { isProduction, topics } from "../config";
+import { geturl, routes } from "../routes";
 
 const DevHomePage = () => {
   if (isProduction) {

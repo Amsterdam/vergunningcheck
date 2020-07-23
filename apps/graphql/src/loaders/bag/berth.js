@@ -1,5 +1,9 @@
 const { withCache, fetchJson, getUrl } = require("../../util");
-const { bag: config, CACHE_TIMEOUT, HOST } = require("config").loaders.datapunt;
+const {
+  bag: config,
+  CACHE_TIMEOUT,
+  HOST,
+} = require("../../../config").loaders.datapunt;
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 

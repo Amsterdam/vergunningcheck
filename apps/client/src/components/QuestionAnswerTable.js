@@ -1,18 +1,18 @@
-import React from "react";
-import { Button, Icon, themeColor } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
-import uniqBy from "lodash.uniqby";
+import { Button, Icon, themeColor } from "@datapunt/asc-ui";
+import React from "react";
 
-import { booleanOptions } from "../components/Question";
 import { ComponentWrapper } from "../atoms";
+import { booleanOptions } from "../components/Question";
+import { removeQuotes, uniqBy } from "../utils";
 import {
-  QuestionWrapper,
+  Change,
   MainWrapper,
   Question,
+  QuestionWrapper,
   UserAnswer,
   UserResult,
   UserResultParagraph,
-  Change,
 } from "./QuestionAnswerTableStyles";
 
 export default ({ checker, onGoToQuestion }) => {
@@ -49,7 +49,7 @@ export default ({ checker, onGoToQuestion }) => {
             <QuestionWrapper key={question.id}>
               <Question>{question.text}</Question>
               {question.options ? (
-                <UserAnswer>{question.answer.replace(/['"]+/g, "")}</UserAnswer>
+                <UserAnswer>{removeQuotes(question.answer)}</UserAnswer>
               ) : (
                 <UserAnswer>
                   {

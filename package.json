@@ -5,12 +5,16 @@
     "url": "https://github.com/Amsterdam/vergunningcheck"
   },
   "engines": {
-    "node": "13.1"
+    "node": "14"
   },
   "scripts": {
     "start": "lerna run --parallel --no-bail start",
     "start:prod": "lerna run --parallel start:prod",
+    "build:netlify": "lerna run build:netlify",
+    "start:netlify": "netlify dev",
+    "build:size-report": "lerna run build:size-report",
     "test": "CI=true lerna run test",
+    "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "back-merge": "git fetch && git checkout master && git merge && git checkout release && git merge && git merge master && git push && git checkout develop && git merge && git merge release && git push",

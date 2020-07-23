@@ -1,8 +1,8 @@
-const graphqlHTTP = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 const DataLoader = require("dataloader");
 const { makeExecutableSchema } = require("graphql-tools");
-const { graphql: config } = require("config");
 const depthLimit = require("graphql-depth-limit");
+const { graphql: config } = require("../../config");
 
 const bagSearch = require("../loaders/bagSearch");
 const bag = require("../loaders/bag");

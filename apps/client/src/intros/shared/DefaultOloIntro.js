@@ -1,6 +1,7 @@
-import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { List, ListItem } from "../atoms";
+import React from "react";
+
+import { List, ListItem } from "../../atoms";
 
 export default ({ children }) => (
   <>

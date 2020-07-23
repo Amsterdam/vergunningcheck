@@ -1,4 +1,5 @@
 import React from "react";
+
 import { HiddenDiv, Title } from "./HiddenDebugInfoStyles";
 
 export default ({ children, title }) => (

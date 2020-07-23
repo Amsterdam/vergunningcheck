@@ -1,18 +1,6 @@
 import { reverse } from "named-urls";
+import React from "react";
 import slugify from "slugify";
-
-// Main application routes
-import IntroPage from "./pages/IntroPage";
-import LocationPage from "./pages/LocationPage";
-import AddressPage from "./pages/AddressPage";
-import QuestionsPage from "./pages/QuestionsPage";
-import ConclusionPage from "./pages/ConclusionPage";
-import ResultsPage from "./pages/ResultsPage";
-
-// System pages
-import NotFoundPage from "./pages/NotFoundPage";
-// Developer homepage, not used in production
-import DevHomePage from "./pages/DevHomePage";
 
 export const getslug = (text) =>
   slugify(text, {
@@ -32,49 +20,63 @@ export const routeConfig = [
     name: "home",
     exact: true,
     path: "/",
-    component: process.env.NODE_ENV !== "production" && DevHomePage,
+    component:
+      process.env.NODE_ENV !== "production" &&
+      React.lazy(() => import(`./pages/DevHomePage`)),
   },
   {
     exact: true,
     path: "/test",
-    component: DevHomePage,
+    component: React.lazy(() => import(`./pages/DevHomePage`)),
   },
   {
     name: "intro",
     exact: true,
     path: "/:slug",
-    component: IntroPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
+    ),
   },
   {
     name: "location",
     path: "/:slug/locatie",
-    component: LocationPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/LocationPage`)
+    ),
   },
   {
     name: "address",
     path: "/:slug/adresgegevens",
-    component: AddressPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/AddressPage`)
+    ),
     matomoPage: "location-results",
   },
   {
     name: "questions",
     path: "/:slug/vragen/:question?",
-    component: QuestionsPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/QuestionsPage`)
+    ),
   },
   {
     name: "results",
     path: "/:slug/uitkomsten",
-    component: ResultsPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/ResultsPage`)
+    ),
   },
   {
     name: "conclusion",
     path: "/:slug/conclusie",
-    component: ConclusionPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/ConclusionPage`)
+    ),
   },
   {
     name: "notfound",
     path: "*",
-    component: NotFoundPage,
+    component: React.lazy(() => import("./pages/NotFoundPage")),
   },
 ];
 
@@ -92,6 +94,5 @@ export const routes = Object.fromEntries(
 );
 
 export const autofillRoutes = {
-  address: routes.location,
-  // map: ...
+  address: [routes.location, routes.address],
 };

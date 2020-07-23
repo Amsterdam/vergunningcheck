@@ -1,67 +1,60 @@
-import React, { Fragment, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { isMobile } from "react-device-detect";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import { geturl, routes } from "../routes";
-import { OLO } from "../config";
-import withFinalChecker from "../hoc/withFinalChecker";
+import React, { Fragment } from "react";
+import { isMobile } from "react-device-detect";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import { SessionContext } from "../context";
-import { CONCLUSION_PAGE } from "../utils/test-ids";
+import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import DebugDecisionTable from "../components/DebugDecisionTable";
+import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Markdown from "../components/Markdown";
-import Form from "../components/Form";
-import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import Nav from "../components/Nav";
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import { Helmet } from "react-helmet";
-import { PrintButton, PrintOnly, Alert, ComponentWrapper } from "../atoms";
+import QuestionAnswerTable from "../components/QuestionAnswerTable";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
+import { OLO } from "../config";
+import withConclusion from "../hoc/withConclusion";
+import { geturl, routes } from "../routes";
+import { sttrOutcomes } from "../sttr_client/models/checker";
+import { CONCLUSION_PAGE } from "../utils/test-ids";
 
-const outcomes = {
-  NEED_PERMIT: '"Vergunningplicht"',
-  NEED_CONTACT: '"NeemContactOpMet"',
-  PERMIT_FREE: '"Toestemmingsvrij"',
-};
-const ConclusionPage = ({ topic, checker }) => {
-  const sessionContext = useContext(SessionContext);
+const ConclusionPage = ({ topic, checker, autofillData }) => {
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { slug } = topic;
-
-  const {
-    streetName,
-    houseNumberFull,
-    postalCode,
-    residence,
-  } = sessionContext.address[slug];
+  const { address } = autofillData;
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
     .map((permit) => {
-      const outcome = permit.getOutputByDecisionId("dummy");
-      const dummyDecision = permit.getDecisionById("dummy");
-      const matchingRules = dummyDecision.getMatchingRules();
+      const conclusion = permit.getDecisionById("dummy");
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      const contactOutcome = conclusionMatchingRules.find(
+        (rule) => rule.outputValue === sttrOutcomes.NEED_CONTACT
+      );
+      const outcome =
+        contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
 
       return {
         outcome,
         title:
-          outcome === outcomes.NEED_CONTACT
+          outcome === sttrOutcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
             : `${permit.name.replace("Conclusie", "")}: ${outcome.replace(
                 /['"]+/g,
                 ""
               )}`,
-        description: matchingRules[0].description,
+        description: conclusionMatchingRules[0].description,
       };
     });
 
   const needsPermit = !!conclusions.find(
-    ({ outcome }) => outcome === outcomes.NEED_PERMIT
+    ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
   const contactConclusion = conclusions.find(
-    ({ outcome }) => outcome === outcomes.NEED_CONTACT
+    ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
   const displayConclusions = contactConclusion
     ? [contactConclusion]
@@ -112,13 +105,25 @@ const ConclusionPage = ({ topic, checker }) => {
             Datum
           </Heading>
           <Paragraph>{currentDateTime} uur.</Paragraph>
+          {address && (
+            <>
+              <Heading forwardedAs="h2">Adresgegevens</Heading>
+              <Paragraph gutterBottom={30}>
+                {address.streetName} {address.houseNumberFull}
+                <br />
+                {address.postalCode} {address.residence}
+              </Paragraph>
+              <Paragraph>
+                Deze informatie hebben we gebruikt bij het invullen van de
+                check:
+              </Paragraph>
 
-          <Heading forwardedAs="h2">Adresgegevens</Heading>
-          <Paragraph gutterBottom={30}>
-            {streetName} {houseNumberFull}
-            <br />
-            {postalCode} {residence}
-          </Paragraph>
+              <RegisterLookupSummary
+                displayZoningPlans={false}
+                address={address}
+              />
+            </>
+          )}
         </PrintOnly>
 
         <Heading forwardedAs="h1">Conclusie</Heading>
@@ -170,10 +175,10 @@ const ConclusionPage = ({ topic, checker }) => {
           nextText={needsPermit ? "Naar het omgevingsloket" : "Begin opnieuw"}
           formEnds
         />
-        <DebugDecisionTable checker={checker} />
+        <DebugDecisionTable {...{ topic, checker }} />
       </Form>
     </Layout>
   );
 };
 
-export default withFinalChecker(ConclusionPage);
+export default withConclusion(ConclusionPage);

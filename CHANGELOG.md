@@ -2,19 +2,82 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.3.3](2020-06-30)
-#### New Features
-* [Kozijncheck to production](https://github.com/Amsterdam/vergunningcheck/commit/9564e90403ee06fc79bcb6e633ac8307b050632e) 
-* [#152](https://github.com/Amsterdam/vergunningcheck/pull/152) Updated Matomo track events + refactor ([@svenjens](https://github.com/svenjens))
-* [#101](https://github.com/Amsterdam/vergunningcheck/pull/101) Added browser refresh button support ([@svenjens](https://github.com/svenjens))
-* [#156](https://github.com/Amsterdam/vergunningcheck/pull/156) Create LICENSE ([@afjlambert](https://github.com/afjlambert))
+## [1.4.1](2020-07-23)
 
 #### Bug fixes
-* [#162](https://github.com/Amsterdam/vergunningcheck/pull/162) Fixed the cursor with Links and fetched the correct context ([@svenjens](https://github.com/svenjens))
+
+- [#313](https://github.com/Amsterdam/vergunningcheck/pull/313) Hotfix: Some small improvements #313
+- [#312](https://github.com/Amsterdam/vergunningcheck/pull/312) Hotfix: Removed unneccesary chappie2.0 files #312
+
+## [1.4.0](2020-07-23)
+
+#### New Features
+
+- [#295](https://github.com/Amsterdam/vergunningcheck/pull/295) Feature: Added `zonwering-of-rolluik-plaatsen` OLO flow check ([@robinpiets](https://github.com/robinpiets))
+- [#273](https://github.com/Amsterdam/vergunningcheck/pull/273) Updated Footer from ASC-UI and updated List ([@robinpiets](https://github.com/robinpiets))
+- [#230](https://github.com/Amsterdam/vergunningcheck/pull/230) Add address fixtures for testing ([@afjlambert](https://github.com/afjlambert))
+- [#210](https://github.com/Amsterdam/vergunningcheck/pull/210) Added Sentry to monitor errors and security ([@svenjens](https://github.com/svenjens))
+- [#144](https://github.com/Amsterdam/vergunningcheck/pull/144) Netlify (including Autofill) ([@afjlambert](https://github.com/afjlambert))
+- [#127](https://github.com/Amsterdam/vergunningcheck/pull/127) Autofill questions ([@afjlambert](https://github.com/afjlambert))
+- [#229](https://github.com/Amsterdam/vergunningcheck/pull/229) Improve Boolean answer order (yes/no) ([@afjlambert](https://github.com/afjlambert))
+- [#226](https://github.com/Amsterdam/vergunningcheck/pull/226) Add prestart script to install deps ([@afjlambert](https://github.com/afjlambert))
+- [#196](https://github.com/Amsterdam/vergunningcheck/pull/196) feat: prevent submit when keyboard is open ([@svenjens](https://github.com/svenjens))
+- [#179](https://github.com/Amsterdam/vergunningcheck/pull/179) feature: Added image group support ([@svenjens](https://github.com/svenjens))
+- [#197](https://github.com/Amsterdam/vergunningcheck/pull/197) Kozijn check to production (develop branch) ([@svenjens](https://github.com/svenjens))
+- [#142](https://github.com/Amsterdam/vergunningcheck/pull/142) Prettier import order ([@afjlambert](https://github.com/afjlambert))
+
+#### Bug fixes
+
+- [#278](https://github.com/Amsterdam/vergunningcheck/pull/278) Fix back-back-forward bug, add DDTable for easier debuggin ([@afjlambert](https://github.com/afjlambert))
+- [#290](https://github.com/Amsterdam/vergunningcheck/pull/290) Revert "Bump react-scripts from 3.4.0 to 3.4.1" ([@afjlambert](https://github.com/afjlambert))
+- [#288](https://github.com/Amsterdam/vergunningcheck/pull/288) Fix: Select kept firing empty onChange events making the form unable to submit ([@robinpiets](https://github.com/robinpiets))
+- [#259](https://github.com/Amsterdam/vergunningcheck/pull/259) Fix: autofill after refresh ([@svenjens](https://github.com/svenjens))
+- [#252](https://github.com/Amsterdam/vergunningcheck/pull/252) Fix sttr-flow without address page ([@afjlambert](https://github.com/afjlambert))
+- [#249](https://github.com/Amsterdam/vergunningcheck/pull/249) fix: Remove legacy lru-cache dependency ([@afjlambert](https://github.com/afjlambert))
+- [#238](https://github.com/Amsterdam/vergunningcheck/pull/238) Fix several bugs ([@afjlambert](https://github.com/afjlambert))
+- [#237](https://github.com/Amsterdam/vergunningcheck/pull/237) bug: Fix olo flow after autofill ([@afjlambert](https://github.com/afjlambert))
+- [#223](https://github.com/Amsterdam/vergunningcheck/pull/223) Bug: fixed default export with graphqlHTTP ([@robinpiets](https://github.com/robinpiets))
+- [#207](https://github.com/Amsterdam/vergunningcheck/pull/207) fix: Remove stored answers after checker reset ([@robinpiets](https://github.com/robinpiets))
 
 #### Chores
-* [#100](https://github.com/Amsterdam/vergunningcheck/pull/100) Adding themeSpacing() ([@robinpiets](https://github.com/robinpiets))
-* [#153](https://github.com/Amsterdam/vergunningcheck/pull/153) Improve eslint configuration, fix some warnings ([@afjlambert](https://github.com/afjlambert))
+
+- [#236](https://github.com/Amsterdam/vergunningcheck/pull/236) chore: Create dependabot.yml ([@afjlambert](https://github.com/afjlambert))
+- [#239](https://github.com/Amsterdam/vergunningcheck/pull/239) [Security] Chore(deps): Bump lodash from 4.17.15 to 4.17.19 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#270](https://github.com/Amsterdam/vergunningcheck/pull/270) Chore(deps): Bump react-hook-form from 6.0.6 to 6.0.8 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#268](https://github.com/Amsterdam/vergunningcheck/pull/268) Chore(deps): Bump graphql-tools from 6.0.13 to 6.0.14 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#258](https://github.com/Amsterdam/vergunningcheck/pull/258) Chore(deps): Bump react-hook-form from 6.0.5 to 6.0.6 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#253](https://github.com/Amsterdam/vergunningcheck/pull/253) Chore(deps): Bump @sentry/browser from 5.19.1 to 5.19.2 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#257](https://github.com/Amsterdam/vergunningcheck/pull/257) Chore(deps): Bump react-hook-form from 6.0.4 to 6.0.5 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#255](https://github.com/Amsterdam/vergunningcheck/pull/255) Chore(deps): Bump graphql-tools from 6.0.12 to 6.0.13 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#244](https://github.com/Amsterdam/vergunningcheck/pull/244) Chore(deps): Bump @sentry/browser from 5.18.1 to 5.19.1 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#248](https://github.com/Amsterdam/vergunningcheck/pull/248) Chore(deps): Bump react-hook-form from 6.0.2 to 6.0.4 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#240](https://github.com/Amsterdam/vergunningcheck/pull/240) Chore(deps): [Security] Bump websocket-extensions from 0.1.3 to 0.1.4 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#235](https://github.com/Amsterdam/vergunningcheck/pull/235) Import order ([@afjlambert](https://github.com/afjlambert))
+- [#233](https://github.com/Amsterdam/vergunningcheck/pull/233) Chore(deps): Bump react-hook-form from 6.0.1 to 6.0.2 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- [#213](https://github.com/Amsterdam/vergunningcheck/pull/213) Make bundle size smaller (replaced uniqBy and updated react-hook-form) ([@svenjens](https://github.com/svenjens))
+- [#214](https://github.com/Amsterdam/vergunningcheck/pull/214) Chore: added npm install to build:size-report script ([@robinpiets](https://github.com/robinpiets))
+- [#208](https://github.com/Amsterdam/vergunningcheck/pull/208) chore: Updated PR/commit badges ([@robinpiets](https://github.com/robinpiets))
+- [#182](https://github.com/Amsterdam/vergunningcheck/pull/182) chore: Added bundle size reporting on PRs ([@robinpiets](https://github.com/robinpiets))
+- [#190](https://github.com/Amsterdam/vergunningcheck/pull/190) chore: Prepare size report with build script ([@robinpiets](https://github.com/robinpiets))
+- [#180](https://github.com/Amsterdam/vergunningcheck/pull/180) Feature/codecov GitHub action ([@afjlambert](https://github.com/afjlambert))
+
+## [1.3.3](2020-06-30)
+
+#### New Features
+
+- [Kozijncheck to production](https://github.com/Amsterdam/vergunningcheck/commit/9564e90403ee06fc79bcb6e633ac8307b050632e)
+- [#152](https://github.com/Amsterdam/vergunningcheck/pull/152) Updated Matomo track events + refactor ([@svenjens](https://github.com/svenjens))
+- [#101](https://github.com/Amsterdam/vergunningcheck/pull/101) Added browser refresh button support ([@svenjens](https://github.com/svenjens))
+- [#156](https://github.com/Amsterdam/vergunningcheck/pull/156) Create LICENSE ([@afjlambert](https://github.com/afjlambert))
+
+#### Bug fixes
+
+- [#162](https://github.com/Amsterdam/vergunningcheck/pull/162) Fixed the cursor with Links and fetched the correct context ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+
+- [#100](https://github.com/Amsterdam/vergunningcheck/pull/100) Adding themeSpacing() ([@robinpiets](https://github.com/robinpiets))
+- [#153](https://github.com/Amsterdam/vergunningcheck/pull/153) Improve eslint configuration, fix some warnings ([@afjlambert](https://github.com/afjlambert))
 
 ## [1.3.1](2020-06-23)
 
@@ -28,7 +91,7 @@ All notable changes to this project will be documented in this file.
 
 - [#160](https://github.com/Amsterdam/vergunningcheck/pull/160) Implement fixes for new headers ([@afjlambert](https://github.com/afjlambert))
 
-### [1.0.0](https://github.com/Amsterdam/vergunningcheck/tree/v1.0.0) (2020-05-06)
+## [1.0.0](https://github.com/Amsterdam/vergunningcheck/tree/v1.0.0) (2020-05-06)
 
 ### Features
 
