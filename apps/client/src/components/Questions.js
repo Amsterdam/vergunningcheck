@@ -91,8 +91,6 @@ const Questions = ({
     ]);
   };
 
-  if (!finishedLocation) return false;
-
   return (
     <>
       {checker?.stack.map((q, i) => {

@@ -9,6 +9,7 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+
 const WrapperPage = () => {
   const [finishedLocation, setFinishedLocation] = useState(false);
   const [finishedQuestions, setFinishedQuestions] = useState(false);
@@ -41,21 +42,20 @@ const WrapperPage = () => {
           heading="Vragen"
           largeCircle
         />
-        <Questions
-          finishedLocation={finishedLocation}
-          finishedQuestions={finishedQuestions}
-          setFinishedLocation={setFinishedLocation}
-          setFinishedQuestions={setFinishedQuestions}
-        />
+        {!finishedQuestions && (
+          <Questions
+            finishedLocation={finishedLocation}
+            finishedQuestions={finishedQuestions}
+            setFinishedLocation={setFinishedLocation}
+            setFinishedQuestions={setFinishedQuestions}
+          />
+        )}
         <StepByStepItem
           active={finishedLocation && finishedQuestions}
           heading="Conclusie"
           largeCircle
         >
-          <Conclusion
-            setFinishedQuestions={setFinishedQuestions}
-            finishedQuestions={finishedQuestions}
-          />
+          {finishedQuestions && <Conclusion />}
         </StepByStepItem>
       </StepByStepNavigation>
     </Layout>

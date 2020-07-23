@@ -3,10 +3,10 @@ import { addQuotes, getRestrictionByTypeName } from "../utils";
 const getDataNeed = (checker) =>
   checker && checker.getAutofillDataNeeds(autofillMap)[0];
 
-export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
-  const dataNeed = getDataNeed(checker);
-  return dataNeed ? autofillRoutes[dataNeed][0] : routes.wrapper;
-};
+export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
+  getDataNeed(checker)
+    ? autofillRoutes[getDataNeed(checker)][0]
+    : routes.wrapper;
 
 const strings = {
   NO_MONUMENT: "Geen monument",
