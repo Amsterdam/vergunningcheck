@@ -270,7 +270,6 @@ class Checker {
    */
   _getNextQuestion() {
     return this._getUpcomingQuestions().shift();
-    // return this._questions.find(question => !this.stack.includes(question));
   }
 
   /**
