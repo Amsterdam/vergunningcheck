@@ -183,7 +183,6 @@ describe("StepByStepNavigation", () => {
       "margin-bottom",
       themeSpacing(3)({ theme: ascDefaultTheme })
     );
-
     expect(
       queryByTestId("activeWithChildren").querySelector("h3")
     ).toHaveStyleRule(
