@@ -41,7 +41,11 @@ const AddressPage = ({ topic, checker, autofillData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
-      history.push(geturl(routes.questions, { slug }));
+      if (checker.isConclusive()) {
+        history.push(geturl(routes.results, topic));
+      } else {
+        history.push(geturl(routes.questions, topic));
+      }
     } else {
       window.open(getOloUrl(address), "_blank");
     }

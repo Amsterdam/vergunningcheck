@@ -6,14 +6,11 @@ import withAutofillData from "./withAutofillData";
 
 const withConclusion = (Component) =>
   withAutofillData((props) => {
-    const finishedPermit = props.checker.permits.find(
-      (permit) => !!permit.getOutputByDecisionId("dummy")
-    );
-    if (!finishedPermit) {
+    const { checker, topic } = props;
+    // If we have an unfinshed permit and no contact-permits -> redirect.
+    if (!checker.isConclusive()) {
       console.warn("Checker not final, redirecting to question page");
-      return (
-        <Redirect to={geturl(routes.questions, { slug: props.topic.slug })} />
-      );
+      return <Redirect to={geturl(routes.questions, topic)} />;
     }
     return <Component {...props} />;
   });

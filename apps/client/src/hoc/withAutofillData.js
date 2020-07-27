@@ -38,7 +38,7 @@ const withAutofillData = (Component) =>
         history.replace(geturl(route, topic));
         return null;
       } else {
-        if (checker.stack.length === 0) {
+        if (!checker.isConclusive() && checker.stack.length === 0) {
           checker.next();
         }
       }

@@ -10,9 +10,10 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Nav from "../components/Nav";
 import QuestionAnswerTable from "../components/QuestionAnswerTable";
 import RegisterLookupSummary from "../components/RegisterLookupSummary";
+import { getDataNeedResultPageOrPrevious } from "../config/autofill";
 import { SessionContext } from "../context";
 import withConclusion from "../hoc/withConclusion";
-import { getslug, geturl, routes } from "../routes";
+import { autofillRoutes, getslug, geturl, routes } from "../routes";
 import { RESULTS_PAGE } from "../utils/test-ids";
 
 const ResultsPage = ({ topic, checker, autofillData }) => {
@@ -22,23 +23,33 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
   const address = sessionContext[slug]?.address;
 
   const onGoToQuestion = (questionIndex) => {
-    // Go to the specific question in the stack
-    const question = checker.rewindTo(questionIndex);
+    if (checker.stack.length === 0) {
+      const route = getDataNeedResultPageOrPrevious(
+        checker,
+        autofillRoutes,
+        routes
+      );
+      const url = geturl(route, topic);
+      history.push(url);
+    } else {
+      // Go to the specific question in the stack
+      const question = checker.rewindTo(questionIndex);
 
-    sessionContext.setSessionData([
-      slug,
-      {
-        questionIndex,
-      },
-    ]);
-
-    // Change the URL to the new question
-    history.push(
-      geturl(routes.questions, {
+      sessionContext.setSessionData([
         slug,
-        question: getslug(question.text),
-      })
-    );
+        {
+          questionIndex,
+        },
+      ]);
+
+      // Change the URL to the new question
+      history.push(
+        geturl(routes.questions, {
+          slug,
+          question: getslug(question.text),
+        })
+      );
+    }
   };
 
   return (
@@ -71,17 +82,22 @@ const ResultsPage = ({ topic, checker, autofillData }) => {
           </>
         )}
 
-        <Paragraph>
-          Deze antwoorden heeft u gegeven bij het invullen van de
-          vergunningcheck. U kunt deze antwoorden nog wijzigen. Als u een
-          wijziging doet moet u misschien enkele vragen opnieuw beantwoorden.
-        </Paragraph>
+        {checker.stack.length > 0 && (
+          <>
+            <Paragraph>
+              Deze antwoorden heeft u gegeven bij het invullen van de
+              vergunningcheck. U kunt deze antwoorden nog wijzigen. Als u een
+              wijziging doet moet u misschien enkele vragen opnieuw
+              beantwoorden.
+            </Paragraph>
 
-        <QuestionAnswerTable
-          topic={topic}
-          checker={checker}
-          onGoToQuestion={onGoToQuestion}
-        />
+            <QuestionAnswerTable
+              topic={topic}
+              checker={checker}
+              onGoToQuestion={onGoToQuestion}
+            />
+          </>
+        )}
 
         <Nav
           onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
