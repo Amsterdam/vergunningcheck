@@ -1,30 +1,34 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import Error from "../components/Error";
-import Form from "../components/Form";
-import Layout from "../components/Layouts/DefaultLayout";
-import LocationFinder from "../components/Location/LocationFinder";
-import Nav from "../components/Nav";
-import { CheckerContext, SessionContext } from "../context";
-import withTopic from "../hoc/withTopic";
-import { geturl, routes } from "../routes";
+import { OLO } from "../../config";
+import { CheckerContext, SessionContext } from "../../context";
+import withTopic from "../../hoc/withTopic";
+import { geturl, routes } from "../../routes";
+import { ADDRESS_PAGE } from "../../utils/test-ids";
+import AddressLine from "../AddressLine";
+import Error from "../Error";
+import Form from "../Form";
+import Nav from "../Nav";
+import RegisterLookupSummary from "../RegisterLookupSummary";
+import LocationFinder from "./LocationFinder";
 
-const LocationPage = ({ topic }) => {
+const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
   const history = useHistory();
+  const [addressShown, setAddressShown] = useState(false);
   const [address, setAddress] = useState(null);
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
+  const useSTTR = !!topic.sttrFile;
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -66,16 +70,76 @@ const LocationPage = ({ topic }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        history.push(geturl(routes.address, topic));
+        setAddressShown(true);
+        if (checkerContext.checker) {
+          checkerContext.checker.next();
+        }
       }
     }
   };
+  const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
+    // Form is validated, we can proceed
+
+    // Generate OLO parameter "postalCode"
+    const oloPostalCode = `facet_locatie_postcode=${postalCode}`;
+
+    // Generate OLO parameter "streetNumber"
+    const oloStreetNumber = `facet_locatie_huisnummer=${houseNumber}`;
+
+    const oloSuffix = `facet_locatie_huisnummertoevoeging=${houseNumberFull
+      .replace(houseNumber, "")
+      .trim()}`;
+
+    // Redirect user to OLO with all parameters
+    return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
+  };
+
+  const handleAddressSubmit = (e) => {
+    e.preventDefault();
+    if (useSTTR) {
+      setFinishedLocation(true);
+    } else {
+      window.open(getOloUrl(address), "_blank");
+    }
+  };
+
+  if (addressShown) {
+    return (
+      <Form onSubmit={handleAddressSubmit} data-testid={ADDRESS_PAGE}>
+        <Paragraph>
+          Over <AddressLine address={address} /> hebben we de volgende
+          informatie gevonden:
+        </Paragraph>
+
+        <RegisterLookupSummary
+          displayZoningPlans={!useSTTR}
+          address={address}
+        />
+
+        <Paragraph>
+          {useSTTR
+            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
+        </Paragraph>
+        {topic.text?.addressPage && (
+          <Paragraph>{topic.text.addressPage}</Paragraph>
+        )}
+
+        {!finishedLocation && (
+          <Nav
+            onGoToPrev={() => setAddressShown(false)}
+            nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+            formEnds={!useSTTR}
+            showPrev
+            showNext
+          />
+        )}
+      </Form>
+    );
+  }
 
   return (
-    <Layout>
-      <Helmet>
-        <title>Invullen adres - {text.heading}</title>
-      </Helmet>
+    <>
       {errorMessage && (
         <Error
           heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check op dit moment niet kunt doen."
@@ -87,7 +151,6 @@ const LocationPage = ({ topic }) => {
           </Paragraph>
         </Error>
       )}
-      <Heading forwardedAs="h4">Invullen adres</Heading>
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
@@ -109,12 +172,11 @@ const LocationPage = ({ topic }) => {
             ]);
             history.push(geturl(routes.intro, topic));
           }}
-          showPrev
           showNext
         />
       </Form>
-    </Layout>
+    </>
   );
 };
 
-export default withTopic(LocationPage);
+export default withTopic(Location);
