@@ -49,7 +49,9 @@ export default ({ checker, onGoToQuestion }) => {
             <QuestionWrapper key={question.id}>
               <Question>{question.text}</Question>
               {question.options ? (
-                <UserAnswer>{removeQuotes(question.answer)}</UserAnswer>
+                <UserAnswer>
+                  {question.answer && removeQuotes(question.answer)}
+                </UserAnswer>
               ) : (
                 <UserAnswer>
                   {
