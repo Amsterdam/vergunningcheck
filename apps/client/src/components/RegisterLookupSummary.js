@@ -1,12 +1,16 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Button, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { List, ListItem } from "../atoms";
+import { ComponentWrapper, List, ListItem } from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
-import { StyledRegisterLookupSummary } from "./RegisterLookupSummaryStyles";
+import AddressLine from "./AddressLine";
 
-const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
+const RegisterLookupSummary = ({
+  address,
+  displayZoningPlans,
+  setAddressShown,
+}) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -15,7 +19,21 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <StyledRegisterLookupSummary>
+    <ComponentWrapper>
+      <Paragraph strong gutterBottom={0}>
+        Gekozen adres:
+      </Paragraph>
+      <Paragraph>
+        <AddressLine address={address} />
+        <Button
+          variant="textButton"
+          style={{ marginLeft: 12 }}
+          onClick={() => setAddressShown(false)}
+          type="button"
+        >
+          Wijzig
+        </Button>
+      </Paragraph>
       <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
@@ -26,7 +44,7 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
       <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
-      <Paragraph gutterBottom={displayZoningPlans ? null : 0}>
+      <Paragraph gutterBottom={0}>
         {cityScape
           ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
           : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
@@ -55,7 +73,7 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
           )}
         </>
       )}
-    </StyledRegisterLookupSummary>
+    </ComponentWrapper>
   );
 };
 
