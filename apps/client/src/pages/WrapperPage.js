@@ -35,6 +35,9 @@ const WrapperPage = () => {
             setFinishedLocation={setFinishedLocation}
           />
         </StepByStepItem>
+
+        {/* All the components below only needs to be shown in STTR flow: */}
+        {/* {isSTTR && } */}
         <StepByStepItem
           checked={finishedQuestions}
           heading="Vragen"

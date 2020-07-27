@@ -6,7 +6,7 @@ const getDataNeed = (checker) =>
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
   getDataNeed(checker)
     ? autofillRoutes[getDataNeed(checker)][0]
-    : routes.address;
+    : routes.wrapper;
 
 const strings = {
   NO_MONUMENT: "Geen monument",

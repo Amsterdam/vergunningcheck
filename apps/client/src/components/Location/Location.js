@@ -170,6 +170,7 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
         />
         <Nav
           onGoToPrev={() => {
+            // @TODO: We need to give a warning or we need to store the checker data as well
             sessionContext.setSessionData([
               slug,
               {
@@ -179,6 +180,7 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
             history.push(geturl(routes.intro, topic));
           }}
           showNext
+          showPrev
         />
       </Form>
     </>
