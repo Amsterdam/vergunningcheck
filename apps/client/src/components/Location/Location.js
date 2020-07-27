@@ -71,6 +71,8 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
       } else {
         setAddressShown(true);
         if (checkerContext.checker) {
+          // Added rewindTo fix errrors on (hot) reloading
+          checkerContext.checker.rewindTo(0);
           checkerContext.checker.next();
         }
       }

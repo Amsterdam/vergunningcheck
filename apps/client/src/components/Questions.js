@@ -80,6 +80,8 @@ const Questions = ({
   };
 
   const onGoToQuestion = (questionIndex) => {
+    // Checker rewinding also needs to work when you already have a conlusion
+    setFinishedQuestions(false);
     // Go to the specific question in the stack
     checker.rewindTo(questionIndex);
     sessionContext.setSessionData([
@@ -90,17 +92,19 @@ const Questions = ({
     ]);
   };
 
+  // @TODO: Refactor this map function
   return checker.stack.map((q, i) => {
     if (q === checker.stack[questionIndex] && !finishedQuestions) {
       return (
         <StepByStepItem
           active
+          highlightActive
+          customSize
           heading={q.text}
-          onClick={() => onGoToQuestion(i)}
+          key={`question-${q.id}-${i}`}
         >
           <Question
             question={q}
-            key={`question-${q.id}-${i}`}
             onSubmit={onQuestionNext}
             onGoToPrev={onQuestionPrev}
             showPrev
@@ -119,11 +123,12 @@ const Questions = ({
       return (
         <StepByStepItem
           checked
+          customSize
           heading={q.text}
-          onClick={() => onGoToQuestion(i)}
+          key={`question-${q.id}-${i}`}
         >
           <Paragraph>
-            {removeQuotes(answer)}
+            {answer && removeQuotes(answer)}
             <Button
               style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}

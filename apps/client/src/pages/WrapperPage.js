@@ -9,6 +9,7 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import withChecker from "../hoc/withChecker";
 
 const WrapperPage = () => {
   const [finishedLocation, setFinishedLocation] = useState(false);
@@ -40,10 +41,11 @@ const WrapperPage = () => {
         {/* {isSTTR && } */}
         <StepByStepItem
           checked={finishedQuestions}
+          done={finishedLocation}
           heading="Vragen"
           largeCircle
         />
-        {!finishedQuestions && finishedLocation && (
+        {finishedLocation && (
           <Questions
             finishedQuestions={finishedQuestions}
             setFinishedLocation={setFinishedLocation}
@@ -61,4 +63,5 @@ const WrapperPage = () => {
     </Layout>
   );
 };
-export default WrapperPage;
+// Added withChecker() to fix errors on (hot) reloading
+export default withChecker(WrapperPage);
