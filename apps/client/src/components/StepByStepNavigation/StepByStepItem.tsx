@@ -55,6 +55,7 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
         highlightActive,
         href,
       }}
+      data-testid={STEPBYSTEPITEM}
       aria-label={clickable ? heading : ""}
       as={clickable ? "a" : "div"}
       onClick={handleOnClick}
@@ -62,7 +63,7 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >
-      <CircleWrapperStyle {...{ done }} data-testid={STEPBYSTEPITEM}>
+      <CircleWrapperStyle {...{ done }}>
         <CircleStyle
           size={13}
           {...{ active, checked, circleBackgroundColor, done, small }}
