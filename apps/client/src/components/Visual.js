@@ -23,7 +23,7 @@ export default ({ title, src, ...rest }) => {
         onLoad={() => setLoaded(true)}
         onError={handleError}
       />
-      {title && !errored && (
+      {title && (
         <figcaption>
           <Caption>{title}</Caption>
         </figcaption>
