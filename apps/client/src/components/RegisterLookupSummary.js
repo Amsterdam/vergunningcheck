@@ -1,12 +1,18 @@
-import { Paragraph } from "@datapunt/asc-ui";
-import React from "react";
+import { Button, Paragraph } from "@datapunt/asc-ui";
+import React, { useContext } from "react";
 
-import { List, ListItem } from "../atoms";
+import { ComponentWrapper, List, ListItem } from "../atoms";
+import { SessionContext } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
-import { StyledRegisterLookupSummary } from "./RegisterLookupSummaryStyles";
+import AddressLine from "./AddressLine";
 
-const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
+const RegisterLookupSummary = ({
+  address,
+  displayZoningPlans,
+  topic: { slug },
+}) => {
+  const sessionContext = useContext(SessionContext);
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -15,7 +21,28 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <StyledRegisterLookupSummary>
+    <ComponentWrapper>
+      <Paragraph strong gutterBottom={0}>
+        Gekozen adres:
+      </Paragraph>
+      <Paragraph>
+        <AddressLine address={address} />
+        <Button
+          variant="textButton"
+          style={{ marginLeft: 12 }}
+          onClick={() =>
+            sessionContext.setSessionData([
+              slug,
+              {
+                addressShown: false,
+              },
+            ])
+          }
+          type="button"
+        >
+          Wijzig
+        </Button>
+      </Paragraph>
       <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
@@ -55,7 +82,7 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
           )}
         </>
       )}
-    </StyledRegisterLookupSummary>
+    </ComponentWrapper>
   );
 };
 

@@ -17,8 +17,6 @@ const WrapperPage = ({ checker, topic }) => {
   const { slug } = topic;
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
 
-  console.log(checker);
-  console.log(sessionContext[slug]);
   return (
     <Layout>
       <Helmet>
@@ -38,8 +36,12 @@ const WrapperPage = ({ checker, topic }) => {
         >
           <Location />
         </StepByStepItem>
+
+        {/* All the components below only needs to be shown in STTR flow: */}
+        {/* {isSTTR && } */}
         <StepByStepItem
           checked={finishedQuestions}
+          done={finishedLocation}
           heading="Vragen"
           largeCircle
         />
@@ -55,4 +57,5 @@ const WrapperPage = ({ checker, topic }) => {
     </Layout>
   );
 };
+// Added withChecker() to fix errors on (hot) reloading
 export default withChecker(WrapperPage);
