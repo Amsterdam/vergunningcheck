@@ -15,7 +15,7 @@ import withChecker from "../hoc/withChecker";
 
 const WrapperPage = ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug } = topic;
+  const { slug, sttrFile } = topic;
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
 
   return (
@@ -38,26 +38,35 @@ const WrapperPage = ({ checker, topic }) => {
           <Location />
         </StepByStepItem>
 
-        {/* All the components below only needs to be shown in STTR flow: */}
-        {/* {isSTTR && } */}
-        <StepByStepItem
-          checked={finishedQuestions}
-          done={finishedLocation}
-          heading="Vragen"
-          largeCircle
-        />
-        {finishedLocation && <Questions checker={checker} topic={topic} />}
-        <StepByStepItem
-          active={finishedLocation && finishedQuestions}
-          heading="Conclusie"
-          largeCircle
-        >
-          {finishedQuestions && <Conclusion checker={checker} topic={topic} />}
-        </StepByStepItem>
+        {/* Only show questions and conclusion in STTR-flow */}
+        {sttrFile && (
+          <>
+            <StepByStepItem
+              checked={finishedQuestions}
+              customSize
+              done={finishedLocation}
+              heading="Vragen"
+              highlightActive
+              largeCircle
+            />
+            {finishedLocation && <Questions checker={checker} topic={topic} />}
+            <StepByStepItem
+              active={finishedLocation && finishedQuestions}
+              checked={finishedLocation && finishedQuestions}
+              customSize
+              heading="Conclusie"
+              highlightActive
+              largeCircle
+            >
+              {finishedQuestions && (
+                <Conclusion checker={checker} topic={topic} />
+              )}
+            </StepByStepItem>
+          </>
+        )}
       </StepByStepNavigation>
       <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };
-// Added withChecker() to fix errors on (hot) reloading
 export default withChecker(WrapperPage);
