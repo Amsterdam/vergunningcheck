@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
 import Conclusion from "../components/Conclusion";
+import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
 import Location from "../components/Location/Location";
 import Questions from "../components/Questions";
@@ -54,6 +55,7 @@ const WrapperPage = ({ checker, topic }) => {
           {finishedQuestions && <Conclusion checker={checker} topic={topic} />}
         </StepByStepItem>
       </StepByStepNavigation>
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };

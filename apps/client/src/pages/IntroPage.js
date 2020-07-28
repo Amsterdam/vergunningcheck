@@ -2,7 +2,6 @@ import React, { Suspense, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-// import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
@@ -35,7 +34,6 @@ const IntroPage = ({ topic }) => {
         <Intro />
       </Suspense>
       <Nav showNext onGoToNext={() => goToNext()} />
-      {/*<DebugDecisionTable {...{ topic, checker }} />*/}
     </Layout>
   );
 };
