@@ -171,7 +171,7 @@ describe("StepByStepNavigation", () => {
     expect(colorCircle).toHaveStyleRule("background-color", "red");
 
     // The `active` item should be styled with a custom background
-    expect(queryByTestId("active")).toHaveStyleRule(
+    expect(queryByTestId("active").querySelector("div")).toHaveStyleRule(
       "background-color",
       themeColor("tint", "level2")({ theme: ascDefaultTheme })
     );
