@@ -30,11 +30,11 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 - Run `npm run version` and use the generate our changes we can use in [CHANGELOG.md](CHANGELOG.md)
 - Determine the version number.
 - Commit the changelog.
-- Run `npm run publish`
+- Run `npm run publish` and answer `y` to the prompt
 - Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
-- After the merge the relase will be deployed to acceptance, manually verify the changes
+- After the merge the release will be deployed to acceptance, manually verify the changes
 - Approve the release to production in Jenkins
-- Back-merge `master` into `release` into `develop` in case there were changes, run `npm run back-merge`
+- Back-merge `master` into `release` into `develop` by running `npm run back-merge`
 - Consider [preparing](#prepare-a-release) the next release in the section above
 
 ## Tech stack

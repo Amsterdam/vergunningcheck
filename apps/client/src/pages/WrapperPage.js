@@ -15,6 +15,7 @@ import withTopic from "../hoc/withTopic";
 const WrapperPage = ({ topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
+
   return (
     <Layout>
       <Helmet>

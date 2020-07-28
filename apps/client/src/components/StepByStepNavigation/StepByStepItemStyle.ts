@@ -3,29 +3,23 @@ import styled, { css } from "styled-components";
 
 import { focusOutlineStyle } from "../../utils/themeUtils";
 
-type NestedProps = {
+export type Props = {
   active?: boolean;
   checked?: boolean;
   circleBackgroundColor?: string;
   clickable?: boolean;
+  customSize?: boolean;
   disabled?: boolean;
   disabledTextColor?: string;
   done?: boolean;
   doneTextColor?: string;
+  heading?: string;
+  headingProps?: any;
   highlightActive?: boolean;
-  hoverable?: boolean;
   largeCircle?: boolean;
   small?: boolean;
-  unfinished?: boolean;
-};
-
-export type Props = {
-  customSize?: boolean;
-  heading: string;
-  headingProps?: any;
-  href?: string;
-  onClick?: Function;
-} & NestedProps;
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.HTMLAttributes<HTMLDivElement>;
 
 const circleSize = {
   desktop: {
@@ -65,8 +59,12 @@ export default styled.div<Props>`
     css`
       cursor: not-allowed;
     `}
-  ${({ hoverable }) =>
-    hoverable &&
+  ${({ active, children, clickable, disabled }) =>
+    // Conditions to be hoverable
+    !active &&
+    !children &&
+    !disabled &&
+    clickable &&
     css`
       &:hover {
         text-decoration: underline;
@@ -77,8 +75,9 @@ export default styled.div<Props>`
     css`
       color: ${doneTextColor};
     `}
-  ${({ unfinished, disabledTextColor }) =>
-    unfinished &&
+  ${({ active, disabledTextColor, done }) =>
+    !active &&
+    !done &&
     css`
       * {
         color: ${disabledTextColor};
@@ -86,7 +85,7 @@ export default styled.div<Props>`
     `}
 `;
 
-const CircleWrapperStyle = styled.div<NestedProps>`
+const CircleWrapperStyle = styled.div<Props>`
   position: relative;
   display: flex;
   width: ${circleSize.mobile.large};
@@ -109,14 +108,12 @@ const CircleWrapperStyle = styled.div<NestedProps>`
     height: calc(100% + ${themeSpacing(9)});
     top: ${themeSpacing(3)};
     left: calc(50% - 1px);
-    background-color: ${({ active, done }) =>
-      active || done
-        ? themeColor("primary", "main")
-        : themeColor("tint", "level4")};
+    background-color: ${({ done }) =>
+      done ? themeColor("primary", "main") : themeColor("tint", "level4")};
   }
 `;
 
-const CircleStyle = styled(Icon)<NestedProps>`
+const CircleStyle = styled(Icon)<Props>`
   position: relative;
   width: ${circleSize.mobile.large};
   height: ${circleSize.mobile.large};
@@ -160,7 +157,7 @@ const CircleStyle = styled(Icon)<NestedProps>`
     `}
 `;
 
-const ContentWrapperStyle = styled.div<NestedProps>`
+const ContentWrapperStyle = styled.div<Props>`
   display: flex;
   max-width: 620px;
   width: 100%;

@@ -29,21 +29,23 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
   ...otherProps
 }) => {
   if (!heading) return null;
+
   const clickable = !!(href || onClick);
-  const as = clickable ? "a" : "div";
-  // The currect item can never be `done` when it's `active`
+
+  // The `checked` item is `done`, but the `active` item is not `done`
   const done = (doneProp || checked) && !active;
-  const handleOnClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    onClick && onClick(e);
+
+  // All "inactive" items are `small` by default, except when `customSize` has been set
+  const small = (!customSize && !active) || (customSize && !largeCircle);
+
+  const handleOnClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    onClick && onClick(event);
   };
-  const hoverable = !children && !disabled && !active && clickable;
-  const small = (customSize && !largeCircle) || (!customSize && !active);
-  const unfinished = !done && !active;
+
   return (
     <StepByStepItemStyle
       {...{
         active,
-        as,
         clickable,
         disabled,
         disabledTextColor,
@@ -51,15 +53,17 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
         doneTextColor,
         heading,
         highlightActive,
-        hoverable,
         href,
-        unfinished,
       }}
+      data-testid={STEPBYSTEPITEM}
+      aria-label={clickable ? heading : ""}
+      as={clickable ? "a" : "div"}
       onClick={handleOnClick}
+      role={clickable ? "menuitem" : ""}
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >
-      <CircleWrapperStyle {...{ active, done }} data-testid={STEPBYSTEPITEM}>
+      <CircleWrapperStyle {...{ done }}>
         <CircleStyle
           size={13}
           {...{ active, checked, circleBackgroundColor, done, small }}

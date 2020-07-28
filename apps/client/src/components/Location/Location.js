@@ -16,18 +16,18 @@ import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic }) => {
+const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
   const history = useHistory();
-  const { slug, text } = topic;
-  const sessionAddress = sessionContext[slug]?.address || {};
-  const [address, setAddress] = useState(sessionAddress);
+  const [addressShown, setAddressShown] = useState(false);
+  const [address, setAddress] = useState(null);
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { finishedLocation, addressShown } = sessionContext?.[slug] || false;
+  const { slug, text } = topic;
+  const sessionAddress = sessionContext[slug]?.address || {};
   const useSTTR = !!topic.sttrFile;
 
   useEffect(() => {
@@ -70,12 +70,7 @@ const Location = ({ topic }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        sessionContext.setSessionData([
-          slug,
-          {
-            addressShown: true,
-          },
-        ]);
+        setAddressShown(true);
         if (checkerContext.checker) {
           checkerContext.checker.next();
         }
@@ -102,12 +97,7 @@ const Location = ({ topic }) => {
   const handleAddressSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
-      sessionContext.setSessionData([
-        slug,
-        {
-          finishedLocation: true,
-        },
-      ]);
+      setFinishedLocation(true);
     } else {
       window.open(getOloUrl(address), "_blank");
     }
@@ -137,14 +127,7 @@ const Location = ({ topic }) => {
 
         {!finishedLocation && (
           <Nav
-            onGoToPrev={() =>
-              sessionContext.setSessionData([
-                slug,
-                {
-                  addressShown: false,
-                },
-              ])
-            }
+            onGoToPrev={() => setAddressShown(false)}
             nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
             formEnds={!useSTTR}
             showPrev

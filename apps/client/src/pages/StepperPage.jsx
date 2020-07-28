@@ -25,8 +25,8 @@ import withTopic from "../hoc/withTopic";
  * - highlightActive on mobile?
  *
  *
- * See: *
- * - https://formulier.amsterdam.nl/thema/bestuur-organisatie/stadsdelen/centrum/aanmelden-spreekuur/Uw-gegevens/ *
+ * See:
+ * - https://formulier.amsterdam.nl/thema/bestuur-organisatie/stadsdelen/centrum/aanmelden-spreekuur/Uw-gegevens/
  * - https://designsystem.amsterdam.nl/7awj1hc9f/p/0659fc-step-by-step-navigation
  *
  *
