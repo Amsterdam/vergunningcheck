@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
 import Conclusion from "../components/Conclusion";
@@ -9,10 +9,12 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import { SessionContext } from "../context";
+import withTopic from "../hoc/withTopic";
 
-const WrapperPage = () => {
-  const [finishedLocation, setFinishedLocation] = useState(false);
-  const [finishedQuestions, setFinishedQuestions] = useState(false);
+const WrapperPage = ({ topic: { slug } }) => {
+  const sessionContext = useContext(SessionContext);
+  const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
   return (
     <Layout>
       <Helmet>
@@ -30,23 +32,14 @@ const WrapperPage = () => {
           heading="Adres gegevens"
           largeCircle
         >
-          <Location
-            finishedLocation={finishedLocation}
-            setFinishedLocation={setFinishedLocation}
-          />
+          <Location />
         </StepByStepItem>
         <StepByStepItem
           checked={finishedQuestions}
           heading="Vragen"
           largeCircle
         />
-        {!finishedQuestions && finishedLocation && (
-          <Questions
-            finishedQuestions={finishedQuestions}
-            setFinishedLocation={setFinishedLocation}
-            setFinishedQuestions={setFinishedQuestions}
-          />
-        )}
+        {finishedLocation && <Questions />}
         <StepByStepItem
           active={finishedLocation && finishedQuestions}
           heading="Conclusie"
@@ -58,4 +51,4 @@ const WrapperPage = () => {
     </Layout>
   );
 };
-export default WrapperPage;
+export default withTopic(WrapperPage);
