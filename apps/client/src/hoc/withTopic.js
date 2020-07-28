@@ -24,6 +24,8 @@ const withTopic = (Component) => (props) => {
       slug,
       {
         answers: null,
+        finishedQuestions: false,
+        finishedLocation: false,
         questionIndex: 0,
       },
     ]);

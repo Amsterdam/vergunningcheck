@@ -1,22 +1,14 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
-import { CheckerContext, SessionContext } from "../context";
-import withTopic from "../hoc/withTopic";
-import { removeQuotes } from "../utils";
+import { SessionContext } from "../context";
+import { removeQuotes, uniqueFilter } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({
-  topic,
-  finishedQuestions,
-  setFinishedQuestions,
-  setFinishedLocation,
-}) => {
-  const { slug } = topic;
-  const { checker } = useContext(CheckerContext);
+const Questions = ({ checker, topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
-  const { questionIndex } = sessionContext[slug] || 0;
+  const { questionIndex, finishedQuestions } = sessionContext[slug];
 
   const onQuestionNext = (value) => {
     const question = checker.stack[questionIndex];
@@ -46,7 +38,12 @@ const Questions = ({
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
       // Go to "Conclusion"
-      setFinishedQuestions(true);
+      sessionContext.setSessionData([
+        slug,
+        {
+          finishedQuestions: true,
+        },
+      ]);
     } else {
       // Load the next question or go to the Result Page
       if (next) {
@@ -58,7 +55,12 @@ const Questions = ({
           },
         ]);
       } else {
-        setFinishedQuestions(true);
+        sessionContext.setSessionData([
+          slug,
+          {
+            finishedQuestions: true,
+          },
+        ]);
       }
     }
   };
@@ -74,36 +76,44 @@ const Questions = ({
         },
       ]);
     } else {
-      setFinishedLocation(false);
-      setFinishedQuestions(false);
+      sessionContext.setSessionData([
+        slug,
+        {
+          finishedLocation: false,
+          finishedQuestions: false,
+        },
+      ]);
     }
   };
 
   const onGoToQuestion = (questionIndex) => {
+    // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
     checker.rewindTo(questionIndex);
     sessionContext.setSessionData([
       slug,
       {
         questionIndex,
+        finishedQuestions: false,
       },
     ]);
   };
 
-  return checker.stack.map((q, i) => {
+  // @TODO: Refactor this map function
+  return checker.stack.filter(uniqueFilter).map((q, i) => {
     if (q === checker.stack[questionIndex] && !finishedQuestions) {
       return (
         <StepByStepItem
           active
+          highlightActive
+          customSize
           heading={q.text}
-          onClick={() => onGoToQuestion(i)}
+          key={`question-${q.id}-${i}`}
         >
           <Question
             question={q}
-            key={`question-${q.id}-${i}`}
             onSubmit={onQuestionNext}
             onGoToPrev={onQuestionPrev}
-            showPrev
             showNext
           />
         </StepByStepItem>
@@ -119,11 +129,12 @@ const Questions = ({
       return (
         <StepByStepItem
           checked
+          customSize
           heading={q.text}
-          onClick={() => onGoToQuestion(i)}
+          key={`question-${q.id}-${i}`}
         >
           <Paragraph>
-            {removeQuotes(answer)}
+            {answer && removeQuotes(answer)}
             <Button
               style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}
@@ -138,4 +149,4 @@ const Questions = ({
   });
 };
 
-export default withTopic(Questions);
+export default Questions;

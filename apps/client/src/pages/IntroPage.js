@@ -1,19 +1,30 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useContext } from "react";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import Form from "../components/Form";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
-import { getDataNeedPageOrNext } from "../config/autofill";
-import withChecker from "../hoc/withChecker";
-import { autofillRoutes, geturl, routes } from "../routes";
+import { SessionContext } from "../context";
+import withTopic from "../hoc/withTopic";
+import { geturl, routes } from "../routes";
 
-const IntroPage = ({ topic, checker }) => {
-  const { text, intro } = topic;
+const IntroPage = ({ topic }) => {
+  const sessionContext = useContext(SessionContext);
+  const history = useHistory();
+  const { text, intro, slug } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
 
+  const goToNext = () => {
+    sessionContext.setSessionData([
+      slug,
+      {
+        finishedLocation: false,
+        finishedQuestions: false,
+      },
+    ]);
+    history.push(geturl(routes.wrapper, topic));
+  };
   return (
     <Layout>
       <Helmet>
@@ -22,18 +33,9 @@ const IntroPage = ({ topic, checker }) => {
       <Suspense fallback={<Loading />}>
         <Intro />
       </Suspense>
-      <Form
-        action={geturl(
-          getDataNeedPageOrNext(checker, autofillRoutes, routes),
-          topic
-        )}
-      >
-        <Nav showNext />
-      </Form>
-
-      <DebugDecisionTable {...{ topic, checker }} />
+      <Nav showNext onGoToNext={() => goToNext()} />
     </Layout>
   );
 };
 
-export default withChecker(IntroPage);
+export default withTopic(IntroPage);

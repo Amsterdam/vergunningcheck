@@ -9,25 +9,24 @@ import { CheckerContext, SessionContext } from "../../context";
 import withTopic from "../../hoc/withTopic";
 import { geturl, routes } from "../../routes";
 import { ADDRESS_PAGE } from "../../utils/test-ids";
-import AddressLine from "../AddressLine";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
+const Location = ({ topic }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
   const history = useHistory();
-  const [addressShown, setAddressShown] = useState(false);
-  const [address, setAddress] = useState(null);
+  const { slug, text } = topic;
+  const sessionAddress = sessionContext[slug]?.address || {};
+  const [address, setAddress] = useState(sessionAddress);
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { slug, text } = topic;
-  const sessionAddress = sessionContext[slug]?.address || {};
+  const { finishedLocation, addressShown } = sessionContext[slug] || false;
   const useSTTR = !!topic.sttrFile;
 
   useEffect(() => {
@@ -70,7 +69,12 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        setAddressShown(true);
+        sessionContext.setSessionData([
+          slug,
+          {
+            addressShown: true,
+          },
+        ]);
         if (checkerContext.checker) {
           checkerContext.checker.next();
         }
@@ -97,7 +101,12 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   const handleAddressSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
-      setFinishedLocation(true);
+      sessionContext.setSessionData([
+        slug,
+        {
+          finishedLocation: true,
+        },
+      ]);
     } else {
       window.open(getOloUrl(address), "_blank");
     }
@@ -106,33 +115,47 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   if (addressShown) {
     return (
       <Form onSubmit={handleAddressSubmit} data-testid={ADDRESS_PAGE}>
-        <Paragraph>
-          Over <AddressLine address={address} /> hebben we de volgende
-          informatie gevonden:
-        </Paragraph>
-
         <RegisterLookupSummary
           displayZoningPlans={!useSTTR}
           address={address}
+          topic={topic}
         />
 
-        <Paragraph>
-          {useSTTR
-            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
-            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
-        </Paragraph>
-        {topic.text?.addressPage && (
-          <Paragraph>{topic.text.addressPage}</Paragraph>
-        )}
-
         {!finishedLocation && (
-          <Nav
-            onGoToPrev={() => setAddressShown(false)}
-            nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
-            formEnds={!useSTTR}
-            showPrev
-            showNext
-          />
+          <>
+            <Paragraph
+              gutterBottom={useSTTR && topic.text?.addressPage ? null : 0}
+            >
+              {useSTTR
+                ? // STTR Flow text (text we need to discuss because it's not in new design)
+                  `We gebruiken deze informatie bij het invullen van de
+                vergunningcheck.`
+                : // OLO Flow text
+                  ` U hebt deze informatie nodig om de vergunningcheck te doen op
+                het Omgevingsloket.`}
+            </Paragraph>
+
+            {/* Extra text about this activity (text that can be in both flows) */}
+            {/* This is also text we need to discuss because it's not in new design */}
+            {topic.text?.addressPage && (
+              <Paragraph gutterBottom={0}>{topic.text.addressPage}</Paragraph>
+            )}
+
+            <Nav
+              onGoToPrev={() =>
+                sessionContext.setSessionData([
+                  slug,
+                  {
+                    addressShown: false,
+                  },
+                ])
+              }
+              nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+              formEnds={!useSTTR}
+              showPrev
+              showNext
+            />
+          </>
         )}
       </Form>
     );
@@ -164,6 +187,7 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
         />
         <Nav
           onGoToPrev={() => {
+            // @TODO: We need to give a warning or we need to store the checker data as well
             sessionContext.setSessionData([
               slug,
               {
@@ -173,6 +197,7 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
             history.push(geturl(routes.intro, topic));
           }}
           showNext
+          showPrev
         />
       </Form>
     </>
