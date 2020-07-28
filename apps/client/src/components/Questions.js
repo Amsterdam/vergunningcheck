@@ -1,14 +1,12 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
-import { CheckerContext, SessionContext } from "../context";
-import withChecker from "../hoc/withChecker";
-import { removeQuotes } from "../utils";
+import { SessionContext } from "../context";
+import { removeQuotes, uniqueFilter } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({ topic: { slug } }) => {
-  const { checker } = useContext(CheckerContext);
+const Questions = ({ checker, topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
   const { questionIndex, finishedQuestions } = sessionContext[slug];
 
@@ -95,11 +93,12 @@ const Questions = ({ topic: { slug } }) => {
       slug,
       {
         questionIndex,
+        finishedQuestions: false,
       },
     ]);
   };
 
-  return checker.stack.map((q, i) => {
+  return checker.stack.filter(uniqueFilter).map((q, i) => {
     if (q === checker.stack[questionIndex] && !finishedQuestions) {
       return (
         <StepByStepItem
@@ -112,7 +111,6 @@ const Questions = ({ topic: { slug } }) => {
             key={`question-${q.id}-${i}`}
             onSubmit={onQuestionNext}
             onGoToPrev={onQuestionPrev}
-            showPrev
             showNext
           />
         </StepByStepItem>
@@ -132,7 +130,7 @@ const Questions = ({ topic: { slug } }) => {
           onClick={() => onGoToQuestion(i)}
         >
           <Paragraph>
-            {removeQuotes(answer)}
+            {removeQuotes(answer || "")}
             <Button
               style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}
@@ -147,4 +145,4 @@ const Questions = ({ topic: { slug } }) => {
   });
 };
 
-export default withChecker(Questions);
+export default Questions;

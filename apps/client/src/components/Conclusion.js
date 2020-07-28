@@ -4,16 +4,14 @@ import React, { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 
 import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
-import withChecker from "../hoc/withChecker";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ topic, checker }) => {
+const Conclusion = ({ checker, topic: { slug } }) => {
   const { trackEvent } = useMatomo();
-  const { slug } = topic;
 
   // find conclusions we want to display to the user
-  const conclusions = checker.permits
+  const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
     .map((permit) => {
       const conclusion = permit.getDecisionById("dummy");
@@ -90,4 +88,4 @@ const Conclusion = ({ topic, checker }) => {
   );
 };
 
-export default withChecker(Conclusion);
+export default Conclusion;

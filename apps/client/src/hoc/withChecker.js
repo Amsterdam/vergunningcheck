@@ -38,8 +38,14 @@ const withChecker = (Component) =>
 
               if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
                 newChecker.setQuestionAnswers(sessionContext[slug].answers);
+                // sessionContext.setSessionData([
+                //   slug,
+                //   {
+                //     addressShown: true,
+                //   },
+                // ]);
                 // In case of reload, rewind to the current question
-                newChecker.rewindTo(sessionContext[slug].questionIndex);
+                newChecker.rewindTo(sessionContext[slug].questionIndex - 1);
               }
               // Store the entire `sttr-checker` in React Context
               checkerContext.checker = newChecker;

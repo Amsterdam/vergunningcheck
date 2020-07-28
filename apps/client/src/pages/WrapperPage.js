@@ -10,12 +10,15 @@ import {
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
 import { SessionContext } from "../context";
-import withTopic from "../hoc/withTopic";
+import withChecker from "../hoc/withChecker";
 
-const WrapperPage = ({ topic: { slug } }) => {
+const WrapperPage = ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
+  const { slug } = topic;
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
 
+  console.log(checker);
+  console.log(sessionContext[slug]);
   return (
     <Layout>
       <Helmet>
@@ -40,16 +43,16 @@ const WrapperPage = ({ topic: { slug } }) => {
           heading="Vragen"
           largeCircle
         />
-        {finishedLocation && <Questions />}
+        {finishedLocation && <Questions checker={checker} topic={topic} />}
         <StepByStepItem
           active={finishedLocation && finishedQuestions}
           heading="Conclusie"
           largeCircle
         >
-          {finishedQuestions && <Conclusion />}
+          {finishedQuestions && <Conclusion checker={checker} topic={topic} />}
         </StepByStepItem>
       </StepByStepNavigation>
     </Layout>
   );
 };
-export default withTopic(WrapperPage);
+export default withChecker(WrapperPage);
