@@ -35,14 +35,6 @@ export const routeConfig = [
     ),
   },
   {
-    exact: true,
-    name: "Stepper",
-    path: "/:slug/Stepper",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/StepperPage`)
-    ),
-  },
-  {
     name: "intro",
     exact: true,
     path: "/:slug",

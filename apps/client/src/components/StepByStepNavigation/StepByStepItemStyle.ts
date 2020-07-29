@@ -174,6 +174,6 @@ const BackgroundStyle = styled.div<Props>`
 export {
   BackgroundStyle,
   CircleStyle,
-  ContentWrapperStyle,
   CircleWrapperStyle,
+  ContentWrapperStyle,
 };
