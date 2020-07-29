@@ -6,11 +6,6 @@ import LocationIntro from "./shared/LocationIntro";
 
 export default () => (
   <>
-    <Paragraph gutterBottom={20}>
-      U kunt deze vergunningcheck gebruiken voor dakramen, daklichten en
-      lichtstraten.
-    </Paragraph>
-
     <LocationIntro />
 
     <Heading forwardedAs="h4">Onderhoud:</Heading>

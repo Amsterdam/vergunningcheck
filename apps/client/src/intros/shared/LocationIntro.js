@@ -6,7 +6,7 @@ import ListInsideOrderedList from "../../components/ListInsideOrderedList";
 
 export default () => (
   <>
-    <Heading forwardedAs="h3">Hoe het werkt:</Heading>
+    <Heading forwardedAs="h4">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.

@@ -5,7 +5,7 @@ import { List, ListItem } from "../../atoms";
 
 export default ({ children }) => (
   <>
-    <Heading forwardedAs="h3">Hoe werkt het?</Heading>
+    <Heading forwardedAs="h4">Hoe werkt het?</Heading>
     <Paragraph gutterBottom={8}>{children}</Paragraph>
     <List variant="bullet">
       <ListItem>U voert eerst het adres van het gebouw in.</ListItem>

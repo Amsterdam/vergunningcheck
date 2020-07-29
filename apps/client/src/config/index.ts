@@ -29,14 +29,14 @@ const topics: Topic[] = [
     slug: "kappen-of-snoeien",
     redirectToOlo: true,
     text: {
-      heading: "Vergunningcheck kappen of snoeien",
+      heading: "Kappen of snoeien",
     },
   },
   {
     slug: "dakkapel-plaatsen",
     sttrFile: "dakkapel.json",
     text: {
-      heading: "Vergunningcheck dakkapel plaatsen",
+      heading: "Dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
       addressPage:
         "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck.",
@@ -47,7 +47,7 @@ const topics: Topic[] = [
     slug: "dakraam-plaatsen",
     sttrFile: "dakraam.json",
     text: {
-      heading: "Vergunningcheck dakraam plaatsen",
+      heading: "Dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
       addressPage:
         "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.",
@@ -57,7 +57,7 @@ const topics: Topic[] = [
   {
     slug: "aanbouw-of-uitbouw-maken",
     text: {
-      heading: "Vergunningcheck aanbouw of uitbouw maken",
+      heading: "Aanbouw of uitbouw maken",
       locationIntro:
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
     },
@@ -67,7 +67,7 @@ const topics: Topic[] = [
     slug: "kozijnen-plaatsen-of-vervangen",
     sttrFile: "kozijn.json",
     text: {
-      heading: "Vergunningcheck kozijnen plaatsen of vervangen",
+      heading: "Kozijnen plaatsen of vervangen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },
@@ -77,7 +77,7 @@ const topics: Topic[] = [
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {
-      heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
+      heading: "Zonnepanelen of zonneboiler plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
@@ -86,7 +86,7 @@ const topics: Topic[] = [
   {
     slug: "bouwwerk-slopen",
     text: {
-      heading: "Vergunningcheck bouwwerk slopen",
+      heading: "Bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
     },
     intro: "BouwwerkSlopenIntro",
@@ -94,7 +94,7 @@ const topics: Topic[] = [
   {
     slug: "intern-verbouwen",
     text: {
-      heading: "Vergunningcheck intern verbouwen",
+      heading: "Intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
     },
     intro: "InternVerbouwenIntro",
@@ -102,7 +102,7 @@ const topics: Topic[] = [
   {
     slug: "zonwering-of-rolluik-plaatsen",
     text: {
-      heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
+      heading: "Zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },

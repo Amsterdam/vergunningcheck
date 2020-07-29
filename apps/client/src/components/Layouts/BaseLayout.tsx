@@ -1,4 +1,4 @@
-import { Column, FormTitle, Row } from "@datapunt/asc-ui";
+import { Column, FormTitle, Heading, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
@@ -38,7 +38,18 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
             }}
           >
             <Content>
-              {title && <FormTitle>{title}</FormTitle>}
+              <FormTitle style={{ marginBottom: 16 }}>
+                Amsterdam vergunningcheck
+              </FormTitle>
+              {title && (
+                <Heading
+                  forwardedAs="h2"
+                  styleAs="h1"
+                  style={{ marginBottom: 12 }}
+                >
+                  {title}
+                </Heading>
+              )}
               {children}
             </Content>
           </Column>

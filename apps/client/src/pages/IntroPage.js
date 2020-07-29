@@ -28,7 +28,7 @@ const IntroPage = ({ topic }) => {
   return (
     <Layout>
       <Helmet>
-        <title>Inleiding - {text.heading}</title>
+        <title>Inleiding - Vergunningcheck {text.heading}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />

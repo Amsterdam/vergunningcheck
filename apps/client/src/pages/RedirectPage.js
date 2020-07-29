@@ -19,7 +19,7 @@ const RedirectPage = ({ topic }) => {
   return (
     <Layout heading="Een ogenblik geduld alstublieft">
       <Helmet>
-        <title>Redirect naar OLO - {topic.text.heading}</title>
+        <title>Redirect naar OLO - Vergunningcheck {topic.text.heading}</title>
       </Helmet>
       <Paragraph>
         Wij sturen u automatisch door naar de website van het{" "}
