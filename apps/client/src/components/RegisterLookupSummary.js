@@ -10,7 +10,7 @@ import AddressLine from "./AddressLine";
 const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
-  topic: { slug },
+  topic: { slug, sttrFile },
 }) => {
   const sessionContext = useContext(SessionContext);
   const { restrictions, zoningPlans } = address;
@@ -21,11 +21,8 @@ const RegisterLookupSummary = ({
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <ComponentWrapper>
-      <Paragraph strong gutterBottom={0}>
-        Gekozen adres:
-      </Paragraph>
-      <Paragraph>
+    <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
+      <Paragraph gutterBottom={16}>
         <AddressLine address={address} />
         <Button
           variant="textButton"
@@ -43,20 +40,25 @@ const RegisterLookupSummary = ({
           Wijzig
         </Button>
       </Paragraph>
+      <Paragraph gutterBottom={16}>
+        Over dit adres hebben we de volgende gegevens gevonden:
+      </Paragraph>
       <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
-      <Paragraph>
-        {monument ? `Ja. ${monument}.` : "Nee. Geen monument."}
+      <Paragraph gutterBottom={16}>
+        {monument
+          ? `Het gebouw is een ${monument.toLowerCase()}.`
+          : "Het gebouw is geen monument."}
       </Paragraph>
 
       <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
-      <Paragraph gutterBottom={displayZoningPlans ? null : 0}>
+      <Paragraph gutterBottom={displayZoningPlans ? 16 : 0}>
         {cityScape
-          ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
-          : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+          ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
+          : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
       </Paragraph>
 
       {displayZoningPlans && (
@@ -65,7 +67,7 @@ const RegisterLookupSummary = ({
             Bestemmingsplannen:
           </Paragraph>
           {zoningPlanNames.length === 0 ? (
-            <Paragraph>Geen bestemmingsplan</Paragraph>
+            <Paragraph>Geen bestemmingsplannen</Paragraph>
           ) : (
             <List
               variant="bullet"
