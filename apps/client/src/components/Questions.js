@@ -6,9 +6,9 @@ import { removeQuotes, uniqueFilter } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({ checker, topic: { slug } }) => {
+const Questions = ({ checker, topic: { slug }, setFinishedState }) => {
   const sessionContext = useContext(SessionContext);
-  const { questionIndex, finishedQuestions } = sessionContext[slug];
+  const { questionIndex } = sessionContext[slug];
 
   const onQuestionNext = (value) => {
     const question = checker.stack[questionIndex];
@@ -55,12 +55,7 @@ const Questions = ({ checker, topic: { slug } }) => {
           },
         ]);
       } else {
-        sessionContext.setSessionData([
-          slug,
-          {
-            finishedQuestions: true,
-          },
-        ]);
+        setFinishedState('questions', true)
       }
     }
   };
@@ -76,13 +71,7 @@ const Questions = ({ checker, topic: { slug } }) => {
         },
       ]);
     } else {
-      sessionContext.setSessionData([
-        slug,
-        {
-          finishedLocation: false,
-          finishedQuestions: false,
-        },
-      ]);
+      setFinishedState('questions', false);
     }
   };
 
@@ -101,7 +90,7 @@ const Questions = ({ checker, topic: { slug } }) => {
 
   // @TODO: Refactor this map function
   return checker.stack.filter(uniqueFilter).map((q, i) => {
-    if (q === checker.stack[questionIndex] && !finishedQuestions) {
+    if (q === checker.stack[questionIndex]) {
       return (
         <StepByStepItem
           active

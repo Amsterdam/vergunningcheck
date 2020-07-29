@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
-import Link from "../components/Link";
 import Location from "../components/Location/Location";
 import Questions from "../components/Questions";
 import {
@@ -13,29 +12,33 @@ import {
 } from "../components/StepByStepNavigation";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
+import Address from "../components/Location/Address";
 
 const WrapperPage = ({ checker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
   const {
-    finishedLocation,
-    finishedQuestions,
     activeComponents,
     finishedComponents,
-  } = sessionContext[slug];
+  } = sessionContext[slug] || ['location'];
+
 
   const setActiveState = (component, value) => {
-    let setActiveComponents = activeComponents || [];
+    let setActiveComponents = activeComponents || ['location'];
     if (!value) {
       setActiveComponents.filter((c) => c !== component);
     } else {
       setActiveComponents.push(component);
     }
+    console.log(finishedComponents);
+    console.log(activeComponents);
+
     sessionContext.setSessionData([
       slug,
       { activeComponents: setActiveComponents },
     ]);
   };
+
   const setFinishedState = (component, value) => {
     let setFinishedComponents = finishedComponents || [];
     if (!value) {
@@ -49,17 +52,14 @@ const WrapperPage = ({ checker, topic }) => {
     ]);
   };
 
+  const isActive = (component) => activeComponents?.includes(component) || false;
+  const isFinished = (component) => finishedComponents?.includes(component) || false;
+
   return (
     <Layout>
       <Helmet>
         <title>Wrapper Page</title>
       </Helmet>
-      <Link onClick={() => setActiveState("locationInput", false)}>
-        set active state
-      </Link>
-      <Link onClick={() => setFinishedState("locationInput", true)}>
-        setFinishedState
-      </Link>
       <StepByStepNavigation
         customSize
         disabledTextColor="inherit"
@@ -67,35 +67,35 @@ const WrapperPage = ({ checker, topic }) => {
         highlightActive
       >
         <StepByStepItem
-          active={!finishedLocation}
-          checked={finishedLocation}
+          active={() => { isActive('location') || isActive('address')}}
+          checked={() => isFinished('location', 'address')}
           heading="Adres gegevens"
           largeCircle
-        >
-          <Location />
+        >{console.log('isActive', isActive('location'))}
+          { isActive('location') && <Location topic={topic} setActiveState={setActiveState} /> }
+          { isActive('address') && <Address topic={topic} setActiveState={setActiveState} setFinishedState={setFinishedState} /> }
         </StepByStepItem>
 
         {/* Only show questions and conclusion in STTR-flow */}
         {sttrFile && (
           <>
             <StepByStepItem
-              checked={finishedQuestions}
+              checked={() => isFinished('questions')}
               customSize
-              done={finishedLocation}
+              done={() => isFinished('location')}
               heading="Vragen"
               highlightActive
               largeCircle
             />
-            {finishedLocation && <Questions checker={checker} topic={topic} />}
+            {isFinished('location') && !isFinished('questions') && <Questions checker={checker} topic={topic} setFinishedState={setFinishedState} />}
             <StepByStepItem
-              active={finishedLocation && finishedQuestions}
-              checked={finishedLocation && finishedQuestions}
+              active={() => isActive('conclusion')}
               customSize
               heading="Conclusie"
               highlightActive
               largeCircle
             >
-              {finishedQuestions && (
+              {isFinished('questions') && (
                 <Conclusion checker={checker} topic={topic} />
               )}
             </StepByStepItem>
