@@ -15,7 +15,7 @@ import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic }) => {
+const Location = ({ topic, clearChecker }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -75,6 +75,7 @@ const Location = ({ topic }) => {
             addressShown: true,
           },
         ]);
+        clearChecker();
         if (checkerContext.checker) {
           checkerContext.checker.next();
         }

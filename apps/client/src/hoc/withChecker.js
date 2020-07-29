@@ -22,34 +22,38 @@ const withChecker = (Component) =>
 
     if (sttrFile) {
       useEffect(() => {
-        if (!checker && !error) {
-          fetch(`${window.location.origin}/sttr/${dir}/${sttrFile}`)
-            .then((response) => response.json())
-            .then((json) => {
-              const newChecker = getChecker(json);
-              // Find if we have missing data needs
-              if (address) {
-                newChecker.autofill(autofillResolvers, { address });
-              }
-              const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
-                autofillMap,
-                true
-              )[0];
-
-              if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
-                newChecker.setQuestionAnswers(sessionContext[slug].answers);
-                // @TODO In case of reload, rewind to the current question
-              }
-              // Store the entire `sttr-checker` in React Context
-              checkerContext.checker = newChecker;
-              setChecker(newChecker);
-            })
-            .catch((e) => {
-              setError(e);
-            });
-        }
+        clearChecker();
       });
     }
+
+    const clearChecker = () => {
+      if (!checker && !error) {
+        fetch(`${window.location.origin}/sttr/${dir}/${sttrFile}`)
+          .then((response) => response.json())
+          .then((json) => {
+            const newChecker = getChecker(json);
+            // Find if we have missing data needs
+            if (address) {
+              newChecker.autofill(autofillResolvers, { address });
+            }
+            const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
+              autofillMap,
+              true
+            )[0];
+
+            if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
+              newChecker.setQuestionAnswers(sessionContext[slug].answers);
+              // @TODO In case of reload, rewind to the current question
+            }
+            // Store the entire `sttr-checker` in React Context
+            checkerContext.checker = newChecker;
+            setChecker(newChecker);
+          })
+          .catch((e) => {
+            setError(e);
+          });
+      }
+    };
 
     if (error) {
       console.error(error);
@@ -57,7 +61,9 @@ const withChecker = (Component) =>
     } else if (!sttrFile) {
       return <Component checker={null} {...props} />;
     } else if (checker) {
-      return <Component checker={checker} {...props} />;
+      return (
+        <Component checker={checker} clearChecker={clearChecker} {...props} />
+      );
     } else {
       return <LoadingPage />;
     }
