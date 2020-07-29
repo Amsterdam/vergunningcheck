@@ -101,6 +101,7 @@ const topics: Topic[] = [
   },
   {
     slug: "zonwering-of-rolluik-plaatsen",
+    sttrFile: "zonwering.json",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
