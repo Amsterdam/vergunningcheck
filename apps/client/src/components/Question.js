@@ -37,11 +37,15 @@ const Question = ({
     longDescription,
   },
   className,
+  checker,
+  editQuestion,
+  setEditQuestion,
   onSubmit: onSubmitProp,
   hideNavigation,
   showNext,
   showPrev,
   onGoToPrev,
+  questionIndex,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -84,6 +88,10 @@ const Question = ({
   ]); // IE11 fix to put all dependencies here
 
   const handleChange = (e) => {
+    if (editQuestion) {
+      checker.rewindTo(questionIndex);
+      setEditQuestion(false);
+    }
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
