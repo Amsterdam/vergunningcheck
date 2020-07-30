@@ -13,7 +13,7 @@ import {
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 
-const WrapperPage = ({ checker, topic, clearChecker }) => {
+const WrapperPage = ({ checker, topic, initChecker, setChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
@@ -35,7 +35,11 @@ const WrapperPage = ({ checker, topic, clearChecker }) => {
           heading="Adres gegevens"
           largeCircle
         >
-          <Location clearChecker={clearChecker} checker={checker} />
+          <Location
+            initChecker={initChecker}
+            checker={checker}
+            setChecker={setChecker}
+          />
         </StepByStepItem>
 
         {/* Only show questions and conclusion in STTR-flow */}
