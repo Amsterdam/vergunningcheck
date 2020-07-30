@@ -8,16 +8,20 @@ import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { getDataNeedPageOrNext } from "../config/autofill";
 import withChecker from "../hoc/withChecker";
+import DefaultIntro from "../intros/shared/DefaultIntro";
 import { autofillRoutes, geturl, routes } from "../routes";
 
 const IntroPage = ({ topic, checker }) => {
   const { text, intro } = topic;
-  const Intro = React.lazy(() => import(`../intros/${intro}`));
+  const title = `Inleiding${text?.heading && ` - ${text.heading}`}`;
+  const Intro = intro
+    ? React.lazy(() => import(`../intros/${intro}`))
+    : DefaultIntro;
 
   return (
     <Layout>
       <Helmet>
-        <title>Inleiding - {text.heading}</title>
+        <title>{title}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />

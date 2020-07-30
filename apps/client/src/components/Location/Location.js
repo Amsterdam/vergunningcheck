@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { OLO } from "../../config";
+import { Flow, OLO } from "../../config";
 import { CheckerContext, SessionContext } from "../../context";
 import withTopic from "../../hoc/withTopic";
 import { geturl, routes } from "../../routes";
@@ -26,9 +26,10 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { slug, text } = topic;
+  const { slug } = topic;
+  const text = topic.text || {};
   const sessionAddress = sessionContext[slug]?.address || {};
-  const useSTTR = !!topic.sttrFile;
+  const useOLO = topic.flow === Flow.olo;
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -96,10 +97,10 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
 
   const handleAddressSubmit = (e) => {
     e.preventDefault();
-    if (useSTTR) {
-      setFinishedLocation(true);
-    } else {
+    if (useOLO) {
       window.open(getOloUrl(address), "_blank");
+    } else {
+      setFinishedLocation(true);
     }
   };
 
@@ -111,15 +112,12 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
           informatie gevonden:
         </Paragraph>
 
-        <RegisterLookupSummary
-          displayZoningPlans={!useSTTR}
-          address={address}
-        />
+        <RegisterLookupSummary displayZoningPlans={useOLO} address={address} />
 
         <Paragraph>
-          {useSTTR
-            ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
-            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
+          {useOLO
+            ? `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `
+            : `We gebruiken deze informatie bij het invullen van de vergunningcheck. `}
         </Paragraph>
         {topic.text?.addressPage && (
           <Paragraph>{topic.text.addressPage}</Paragraph>
@@ -128,8 +126,8 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
         {!finishedLocation && (
           <Nav
             onGoToPrev={() => setAddressShown(false)}
-            nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
-            formEnds={!useSTTR}
+            nextText={useOLO ? "Naar het omgevingsloket" : "Naar de Vragen"}
+            formEnds={useOLO}
             showPrev
             showNext
           />
@@ -151,7 +149,8 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
           </Paragraph>
         </Error>
       )}
-      <Paragraph>{text.locationIntro}.</Paragraph>
+      {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           setAddress={setAddress}

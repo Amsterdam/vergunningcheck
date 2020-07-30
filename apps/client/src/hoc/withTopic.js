@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Redirect, useLocation, useParams } from "react-router-dom";
 
 import { topics } from "../config";
+import { Flow } from "../config/";
 import { CheckerContext, SessionContext } from "../context";
 import NotFoundPage from "../pages/NotFoundPage";
 import RedirectPage from "../pages/RedirectPage";
@@ -34,12 +35,15 @@ const withTopic = (Component) => (props) => {
 
   if (topic) {
     // redirect to olo if needed
-    if (topic.redirectToOlo) {
+    if (topic.flow === Flow.oloRedirect) {
       return <RedirectPage topic={topic} />;
     }
 
     checkerContext.topic = topic;
     return <Component {...props} topic={topic} />;
+  } else if (slug) {
+    // must be simple checker
+    return <Component {...props} topic={{ slug }} />;
   }
 
   return <NotFoundPage />;

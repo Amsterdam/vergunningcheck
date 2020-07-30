@@ -2,6 +2,7 @@ import { Column, FormTitle, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
+import { Flow } from "../../config";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
@@ -53,7 +54,9 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
         {topic && (
           <HiddenDebugInfo title="Topic">
             <p>slug: {topic.slug}</p>
-            <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
+            <p>
+              redir to olo: {JSON.stringify(topic.flow === Flow.oloRedirect)}
+            </p>
             <p>sttrFile: {topic.sttrFile}</p>
           </HiddenDebugInfo>
         )}

@@ -2,10 +2,9 @@ import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
-import { useRouteMatch } from "react-router-dom";
+import React from "react";
+import { useParams, useRouteMatch } from "react-router-dom";
 
-import { CheckerContext } from "../context";
 import { getslug, routeConfig } from "../routes";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
@@ -19,9 +18,8 @@ const Nav = ({
   nextText,
   formEnds,
 }) => {
-  const {
-    topic: { slug: name },
-  } = useContext(CheckerContext);
+  const { slug: name } = useParams();
+
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
   const route = routeConfig.find((route) => route.path === path);

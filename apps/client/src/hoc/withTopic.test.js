@@ -1,13 +1,14 @@
 import React from "react";
 import ReactRouter from "react-router-dom";
 
+import { Flow } from "../config";
 import { render } from "../utils/test-utils";
 import withTopic from "./withTopic";
 
 const { MemoryRouter } = ReactRouter;
 
 require("../config").topics = [
-  { slug: "with-redirect", redirectToOlo: true },
+  { slug: "with-redirect", flow: Flow.oloRedirect },
   { slug: "without-redirect" },
 ];
 

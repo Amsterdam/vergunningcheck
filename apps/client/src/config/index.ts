@@ -1,7 +1,7 @@
 type Topic = {
   slug: string;
+  flow: Flow;
   sttrFile?: string;
-  redirectToOlo?: boolean;
   intro?: string;
   text: Text;
 };
@@ -11,6 +11,12 @@ type Text = {
   locationIntro?: string;
   addressPage?: string;
 };
+
+export enum Flow {
+  olo,
+  oloRedirect,
+  sttr,
+}
 
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
@@ -24,17 +30,17 @@ export const OLO: object = {
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
-const topics: Topic[] = [
+export const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
-    redirectToOlo: true,
+    flow: Flow.oloRedirect,
     text: {
       heading: "Vergunningcheck kappen of snoeien",
     },
   },
   {
     slug: "dakkapel-plaatsen",
-    sttrFile: "dakkapel.json",
+    flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
@@ -45,7 +51,7 @@ const topics: Topic[] = [
   },
   {
     slug: "dakraam-plaatsen",
-    sttrFile: "dakraam.json",
+    flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
@@ -56,6 +62,7 @@ const topics: Topic[] = [
   },
   {
     slug: "aanbouw-of-uitbouw-maken",
+    flow: Flow.olo,
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
       locationIntro:
@@ -65,7 +72,7 @@ const topics: Topic[] = [
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
-    sttrFile: "kozijn.json",
+    flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck kozijnen plaatsen of vervangen",
       locationIntro:
@@ -75,7 +82,7 @@ const topics: Topic[] = [
   },
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
-    sttrFile: "zonnepaneel.json",
+    flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
@@ -85,6 +92,7 @@ const topics: Topic[] = [
   },
   {
     slug: "bouwwerk-slopen",
+    flow: Flow.olo,
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
@@ -93,6 +101,7 @@ const topics: Topic[] = [
   },
   {
     slug: "intern-verbouwen",
+    flow: Flow.olo,
     text: {
       heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
@@ -101,6 +110,7 @@ const topics: Topic[] = [
   },
   {
     slug: "zonwering-of-rolluik-plaatsen",
+    flow: Flow.olo,
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
@@ -109,20 +119,6 @@ const topics: Topic[] = [
     intro: "ZonweringRolluikIntro",
   },
 ];
-
-if (process.env.NODE_ENV !== "production") {
-  topics.push({
-    slug: "test-outcomes",
-    sttrFile: "outcomes.json",
-    text: {
-      heading: "Testing different outcomes/conclusions",
-      locationIntro: "Pick a random address...",
-    },
-    intro: "DebugIntro",
-  });
-}
-
-export { topics };
 
 // We need a place for general text as well
 // I know this is not the best place

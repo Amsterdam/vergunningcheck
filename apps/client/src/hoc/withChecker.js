@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 
+import { Flow } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
 import { CheckerContext, SessionContext } from "../context";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import getChecker from "../sttr_client";
 import withTopic from "./withTopic";
-
-const dir =
-  process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";
 
 const withChecker = (Component) =>
   withTopic((props) => {
@@ -17,13 +15,13 @@ const withChecker = (Component) =>
     const [checker, setChecker] = useState(checkerContext.checker);
     const [error, setError] = useState();
     const { topic } = props;
-    const { sttrFile, slug } = topic;
+    const { flow, slug } = topic;
     const address = sessionContext[topic.slug]?.address;
 
-    if (sttrFile) {
+    if (flow !== Flow.olo) {
       useEffect(() => {
         if (!checker && !error) {
-          fetch(`${window.location.origin}/sttr/${dir}/${sttrFile}`)
+          fetch(`${window.location.origin}/sttr/sttr/${slug}.json`)
             .then((response) => response.json())
             .then((json) => {
               const newChecker = getChecker(json);
@@ -55,7 +53,7 @@ const withChecker = (Component) =>
     if (error) {
       console.error(error);
       return <ErrorPage error={error} {...props} />;
-    } else if (!sttrFile) {
+    } else if (flow === Flow.olo) {
       return <Component checker={null} {...props} />;
     } else if (checker) {
       return <Component checker={checker} {...props} />;

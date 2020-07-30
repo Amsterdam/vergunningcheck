@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
+import { Flow } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
 import { SessionContext } from "../context";
 import { autofillRoutes, geturl, routes } from "../routes";
@@ -15,7 +16,13 @@ const withAutofillData = (Component) =>
     const address = sessionContext[topic.slug]?.address;
 
     // Only autofill data if this topic is an STTR-flow
-    if (topic.sttrFile) {
+    if (topic.flow === Flow.olo) {
+      // olo flow
+      if (!address) {
+        console.warn("No address found, redirecting to location page");
+        return <Redirect to={geturl(routes.location, topic)} />;
+      }
+    } else {
       // if autofillData from context is available call autofill on Checker with the resolver
       // map and the autofillData we have
       if (address) {
@@ -41,12 +48,6 @@ const withAutofillData = (Component) =>
         if (checker.stack.length === 0) {
           checker.next();
         }
-      }
-    } else {
-      // olo flow
-      if (!address) {
-        console.warn("No address found, redirecting to location page");
-        return <Redirect to={geturl(routes.location, topic)} />;
       }
     }
 
