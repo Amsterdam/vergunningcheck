@@ -43,8 +43,6 @@ const withChecker = (Component) =>
 
             if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
               newChecker.setQuestionAnswers(sessionContext[slug].answers);
-              newChecker.next();
-              // @TODO In case of reload, rewind to the current question
             }
             // Store the entire `sttr-checker` in React Context
             checkerContext.checker = newChecker;
@@ -56,6 +54,11 @@ const withChecker = (Component) =>
       }
     };
 
+    const resetChecker = () => {
+      setChecker(null);
+      initChecker();
+    };
+
     if (error) {
       console.error(error);
       return <ErrorPage error={error} {...props} />;
@@ -63,12 +66,7 @@ const withChecker = (Component) =>
       return <Component checker={null} {...props} />;
     } else if (checker) {
       return (
-        <Component
-          checker={checker}
-          initChecker={initChecker}
-          setChecker={setChecker}
-          {...props}
-        />
+        <Component checker={checker} resetChecker={resetChecker} {...props} />
       );
     } else {
       return <LoadingPage />;

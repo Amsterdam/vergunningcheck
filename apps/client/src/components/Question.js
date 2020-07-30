@@ -88,7 +88,7 @@ const Question = ({
   ]); // IE11 fix to put all dependencies here
 
   const handleChange = (e) => {
-    // Untill we change the current question answer keep current stack. If answer is changed on edited question rewind the stack to question.
+    // On edit question, keep the current stack until the answer is changed.
     if (editQuestion) {
       checker.rewindTo(questionIndex);
       setEditQuestion(false);

@@ -15,7 +15,7 @@ import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic, initChecker, setChecker }) => {
+const Location = ({ topic, resetChecker }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -59,8 +59,7 @@ const Location = ({ topic, initChecker, setChecker }) => {
           },
         ]);
         answers = null;
-        setChecker(null);
-        initChecker();
+        resetChecker();
       }
 
       checkerContext.autofillData.address = address;

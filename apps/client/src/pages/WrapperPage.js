@@ -14,7 +14,7 @@ import {
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 
-const WrapperPage = ({ checker, topic, initChecker, setChecker }) => {
+const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
@@ -40,11 +40,7 @@ const WrapperPage = ({ checker, topic, initChecker, setChecker }) => {
               heading="Adres gegevens"
               largeCircle
             >
-              <Location
-                initChecker={initChecker}
-                checker={checker}
-                setChecker={setChecker}
-              />
+              <Location resetChecker={resetChecker} checker={checker} />
             </StepByStepItem>
 
             <StepByStepItem
