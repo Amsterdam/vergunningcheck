@@ -22,17 +22,12 @@ const withChecker = (Component) =>
 
     if (sttrFile) {
       useEffect(() => {
-        clearChecker();
+        initChecker();
       });
     }
 
-    const clearChecker = (reset = false) => {
-      if (reset === true) {
-        setChecker(null);
-      }
-
+    const initChecker = () => {
       if (!checker && !error) {
-        console.log("fetch new checker");
         fetch(`${window.location.origin}/sttr/${dir}/${sttrFile}`)
           .then((response) => response.json())
           .then((json) => {
@@ -68,7 +63,12 @@ const withChecker = (Component) =>
       return <Component checker={null} {...props} />;
     } else if (checker) {
       return (
-        <Component checker={checker} clearChecker={clearChecker} {...props} />
+        <Component
+          checker={checker}
+          initChecker={initChecker}
+          setChecker={setChecker}
+          {...props}
+        />
       );
     } else {
       return <LoadingPage />;

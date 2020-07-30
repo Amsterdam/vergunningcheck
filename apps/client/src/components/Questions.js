@@ -99,7 +99,6 @@ const Questions = ({ checker, topic: { slug } }) => {
     ]);
   };
 
-  console.log(checker);
   if (checker.stack.length === 0) {
     checker.next();
   }
