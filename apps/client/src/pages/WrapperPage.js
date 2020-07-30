@@ -35,7 +35,7 @@ const WrapperPage = ({ checker, topic, clearChecker }) => {
           heading="Adres gegevens"
           largeCircle
         >
-          <Location clearChecker={clearChecker} />
+          <Location clearChecker={clearChecker} checker={checker} />
         </StepByStepItem>
 
         {/* Only show questions and conclusion in STTR-flow */}

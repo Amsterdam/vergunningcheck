@@ -99,6 +99,10 @@ const Questions = ({ checker, topic: { slug } }) => {
     ]);
   };
 
+  console.log(checker);
+  if (checker.stack.length === 0) {
+    checker.next();
+  }
   // @TODO: Refactor this map function
   return checker.stack.filter(uniqueFilter).map((q, i) => {
     if (q === checker.stack[questionIndex] && !finishedQuestions) {

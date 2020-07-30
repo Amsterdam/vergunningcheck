@@ -26,8 +26,13 @@ const withChecker = (Component) =>
       });
     }
 
-    const clearChecker = () => {
+    const clearChecker = (reset = false) => {
+      if (reset === true) {
+        setChecker(null);
+      }
+
       if (!checker && !error) {
+        console.log("fetch new checker");
         fetch(`${window.location.origin}/sttr/${dir}/${sttrFile}`)
           .then((response) => response.json())
           .then((json) => {
@@ -43,6 +48,7 @@ const withChecker = (Component) =>
 
             if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
               newChecker.setQuestionAnswers(sessionContext[slug].answers);
+              newChecker.next();
               // @TODO In case of reload, rewind to the current question
             }
             // Store the entire `sttr-checker` in React Context

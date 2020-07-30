@@ -51,8 +51,15 @@ const Location = ({ topic, clearChecker }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        checkerContext.checker = null;
+        sessionContext.setSessionData([
+          slug,
+          {
+            finishedLocation: false,
+            finishedQuestions: false,
+          },
+        ]);
         answers = null;
+        clearChecker(true);
       }
 
       checkerContext.autofillData.address = address;
@@ -75,7 +82,7 @@ const Location = ({ topic, clearChecker }) => {
             addressShown: true,
           },
         ]);
-        clearChecker();
+        // this should be somewhere else
         if (checkerContext.checker) {
           checkerContext.checker.next();
         }
