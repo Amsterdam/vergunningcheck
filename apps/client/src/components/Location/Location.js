@@ -128,23 +128,12 @@ const Location = ({ topic, initChecker, setChecker }) => {
 
         {!finishedLocation && (
           <>
-            <Paragraph
-              gutterBottom={useSTTR && topic.text?.addressPage ? null : 0}
-            >
-              {useSTTR
-                ? // STTR Flow text (text we need to discuss because it's not in new design)
-                  `We gebruiken deze informatie bij het invullen van de
-                vergunningcheck.`
-                : // OLO Flow text
-                  ` U hebt deze informatie nodig om de vergunningcheck te doen op
+            <Paragraph gutterBottom={useSTTR ? null : 0}>
+              {/* OLO Flow text */}
+              {!useSTTR &&
+                ` U hebt deze informatie nodig om de vergunningcheck te doen op
                 het Omgevingsloket.`}
             </Paragraph>
-
-            {/* Extra text about this activity (text that can be in both flows) */}
-            {/* This is also text we need to discuss because it's not in new design */}
-            {topic.text?.addressPage && (
-              <Paragraph gutterBottom={0}>{topic.text.addressPage}</Paragraph>
-            )}
 
             <Nav
               onGoToPrev={() =>

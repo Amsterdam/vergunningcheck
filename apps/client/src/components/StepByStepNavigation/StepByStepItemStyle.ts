@@ -36,9 +36,7 @@ export default styled.div<Props>`
   position: relative;
   display: flex;
   height: 100%;
-  padding-top: ${themeSpacing(4)};
-  padding-bottom: ${themeSpacing(5)};
-  padding-right: ${themeSpacing(4)};
+  padding: ${themeSpacing(4, 4, 4, 0)};
   text-decoration: none;
   cursor: initial;
 
