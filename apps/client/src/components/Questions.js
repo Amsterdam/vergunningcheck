@@ -87,16 +87,17 @@ const Questions = ({ checker, topic: { slug } }) => {
     }
   };
 
-  const onGoToQuestion = (questionIndex) => {
+  const onGoToQuestion = (questionId) => {
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
     sessionContext.setSessionData([
       slug,
       {
-        questionIndex,
+        questionIndex: questionId,
         finishedQuestions: false,
       },
     ]);
+    checker.rewindTo(questionIndex - 1);
     setEditQuestion(true);
   };
 
