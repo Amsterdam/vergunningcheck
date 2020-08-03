@@ -15,7 +15,7 @@ import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic }) => {
+const Location = ({ topic, resetChecker }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -51,8 +51,15 @@ const Location = ({ topic }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        checkerContext.checker = null;
+        sessionContext.setSessionData([
+          slug,
+          {
+            finishedLocation: false,
+            finishedQuestions: false,
+          },
+        ]);
         answers = null;
+        resetChecker();
       }
 
       checkerContext.autofillData.address = address;
@@ -75,9 +82,6 @@ const Location = ({ topic }) => {
             addressShown: true,
           },
         ]);
-        if (checkerContext.checker) {
-          checkerContext.checker.next();
-        }
       }
     }
   };

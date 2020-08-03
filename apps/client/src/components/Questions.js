@@ -1,5 +1,5 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { SessionContext } from "../context";
 import { removeQuotes, uniqueFilter } from "../utils";
@@ -8,6 +8,7 @@ import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({ checker, topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
+  const [editQuestion, setEditQuestion] = useState(false);
   const { questionIndex, finishedQuestions } = sessionContext[slug];
 
   const onQuestionNext = (value) => {
@@ -86,19 +87,23 @@ const Questions = ({ checker, topic: { slug } }) => {
     }
   };
 
-  const onGoToQuestion = (questionIndex) => {
+  const onGoToQuestion = (questionId) => {
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
-    checker.rewindTo(questionIndex);
     sessionContext.setSessionData([
       slug,
       {
-        questionIndex,
+        questionIndex: questionId,
         finishedQuestions: false,
       },
     ]);
+    checker.rewindTo(questionIndex - 1);
+    setEditQuestion(true);
   };
 
+  if (checker.stack.length === 0) {
+    checker.next();
+  }
   // @TODO: Refactor this map function
   return checker.stack.filter(uniqueFilter).map((q, i) => {
     if (q === checker.stack[questionIndex] && !finishedQuestions) {
@@ -112,7 +117,11 @@ const Questions = ({ checker, topic: { slug } }) => {
         >
           <Question
             question={q}
+            questionIndex={questionIndex}
+            checker={checker}
             onSubmit={onQuestionNext}
+            setEditQuestion={setEditQuestion}
+            editQuestion={editQuestion}
             onGoToPrev={onQuestionPrev}
             showNext
           />

@@ -14,7 +14,7 @@ import {
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 
-const WrapperPage = ({ checker, topic }) => {
+const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
   const { finishedLocation, finishedQuestions } = sessionContext[slug] || false;
@@ -40,34 +40,26 @@ const WrapperPage = ({ checker, topic }) => {
               heading="Adres gegevens"
               largeCircle
             >
-              <Location />
+              <Location resetChecker={resetChecker} checker={checker} />
             </StepByStepItem>
 
-            <>
-              <StepByStepItem
-                checked={finishedQuestions}
-                customSize
-                done={finishedLocation}
-                heading="Vragen"
-                highlightActive
-                largeCircle
-              />
-              {finishedLocation && (
-                <Questions checker={checker} topic={topic} />
+            <StepByStepItem
+              checked={finishedQuestions}
+              done={finishedLocation}
+              heading="Vragen"
+              largeCircle
+            />
+            {finishedLocation && <Questions checker={checker} topic={topic} />}
+            <StepByStepItem
+              active={finishedLocation && finishedQuestions}
+              checked={finishedLocation && finishedQuestions}
+              heading="Conclusie"
+              largeCircle
+            >
+              {finishedQuestions && (
+                <Conclusion checker={checker} topic={topic} />
               )}
-              <StepByStepItem
-                active={finishedLocation && finishedQuestions}
-                checked={finishedLocation && finishedQuestions}
-                customSize
-                heading="Conclusie"
-                highlightActive
-                largeCircle
-              >
-                {finishedQuestions && (
-                  <Conclusion checker={checker} topic={topic} />
-                )}
-              </StepByStepItem>
-            </>
+            </StepByStepItem>
           </StepByStepNavigation>
         )}
 
