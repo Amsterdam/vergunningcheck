@@ -11,7 +11,7 @@ import Form from "../Form";
 import Nav from "../Nav";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic, setActiveState}) => {
+const Location = ({ topic, setActiveState }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -63,8 +63,7 @@ const Location = ({ topic, setActiveState}) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        setActiveState('location', false);
-        setActiveState('address', true)
+        setActiveState("address", true);
         if (checkerContext.checker) {
           checkerContext.checker.next();
         }

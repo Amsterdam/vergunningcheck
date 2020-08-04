@@ -6,7 +6,13 @@ import { removeQuotes, uniqueFilter } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({ checker, topic: { slug }, setFinishedState }) => {
+const Questions = ({
+  checker,
+  topic: { slug },
+  setFinishedState,
+  setActiveState,
+  isFinished,
+}) => {
   const sessionContext = useContext(SessionContext);
   const { questionIndex } = sessionContext[slug];
 
@@ -38,12 +44,7 @@ const Questions = ({ checker, topic: { slug }, setFinishedState }) => {
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
       // Go to "Conclusion"
-      sessionContext.setSessionData([
-        slug,
-        {
-          finishedQuestions: true,
-        },
-      ]);
+      setFinishedState(["questions", "conslusion"], true);
     } else {
       // Load the next question or go to the Result Page
       if (next) {
@@ -55,7 +56,9 @@ const Questions = ({ checker, topic: { slug }, setFinishedState }) => {
           },
         ]);
       } else {
-        setFinishedState('questions', true)
+        setActiveState("conclusion", true);
+
+        setFinishedState(["questions", "conclusion"], true);
       }
     }
   };
@@ -70,8 +73,6 @@ const Questions = ({ checker, topic: { slug }, setFinishedState }) => {
           questionIndex: questionIndex - 1,
         },
       ]);
-    } else {
-      setFinishedState('questions', false);
     }
   };
 
@@ -79,18 +80,24 @@ const Questions = ({ checker, topic: { slug }, setFinishedState }) => {
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
     checker.rewindTo(questionIndex);
+    setActiveState("questions", true);
+    setFinishedState(["conclusion", "questions"], false);
+
     sessionContext.setSessionData([
       slug,
       {
         questionIndex,
-        finishedQuestions: false,
       },
     ]);
   };
 
   // @TODO: Refactor this map function
   return checker.stack.filter(uniqueFilter).map((q, i) => {
-    if (q === checker.stack[questionIndex]) {
+    if (
+      q === checker.stack[questionIndex] &&
+      !isFinished("questions") &&
+      isFinished("address")
+    ) {
       return (
         <StepByStepItem
           active

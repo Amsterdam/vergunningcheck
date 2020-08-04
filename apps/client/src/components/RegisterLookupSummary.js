@@ -1,8 +1,7 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext } from "react";
+import React from "react";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
-import { SessionContext } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -10,9 +9,9 @@ import AddressLine from "./AddressLine";
 const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
-  topic: { slug },
+  setActiveState,
+  setFinishedState,
 }) => {
-  const sessionContext = useContext(SessionContext);
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -30,14 +29,10 @@ const RegisterLookupSummary = ({
         <Button
           variant="textButton"
           style={{ marginLeft: 12 }}
-          onClick={() =>
-            sessionContext.setSessionData([
-              slug,
-              {
-                addressShown: false,
-              },
-            ])
-          }
+          onClick={() => {
+            setActiveState("location", true);
+            setFinishedState(["address", "questions", "conclusion"], false);
+          }}
           type="button"
         >
           Wijzig
