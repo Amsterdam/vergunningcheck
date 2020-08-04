@@ -18,7 +18,7 @@ import withChecker from "../hoc/withChecker";
 const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
-  const { activeComponents, finishedComponents } = sessionContext[slug];
+  const { activeComponents, finishedComponents } = sessionContext[slug] || [];
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
