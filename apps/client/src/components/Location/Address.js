@@ -34,6 +34,7 @@ const Address = ({ topic, setFinishedState, setActiveState, isFinished }) => {
     e.preventDefault();
     if (useSTTR) {
       setFinishedState("address", true);
+      setActiveState("questions");
     } else {
       window.open(getOloUrl(address), "_blank");
     }

@@ -26,7 +26,7 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
       </Helmet>
       <Header />
       <ContentContainer>
-        <Row>
+        <Row hasMargin={false}>
           <Column
             wrap
             span={{

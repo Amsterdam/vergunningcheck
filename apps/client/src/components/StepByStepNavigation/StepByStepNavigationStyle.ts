@@ -10,13 +10,8 @@ export type Props = {
 };
 
 export default styled.div<Props>`
-  ${StepByStepItemStyle} {
-    &:last-child {
-      padding-bottom: 0;
-
-      ${CircleWrapperStyle}:after {
-        content: none;
-      }
-    }
+  /* Remove the line (going downwards) only from the last Item */
+  ${StepByStepItemStyle}:last-child ${CircleWrapperStyle}:after {
+    content: none;
   }
 `;
