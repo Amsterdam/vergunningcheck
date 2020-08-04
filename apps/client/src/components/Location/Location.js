@@ -63,7 +63,7 @@ const Location = ({ topic, setActiveState }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        setActiveState("address", true);
+        setActiveState("address");
         if (checkerContext.checker) {
           checkerContext.checker.next();
         }

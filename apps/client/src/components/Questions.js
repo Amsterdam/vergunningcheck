@@ -56,7 +56,7 @@ const Questions = ({
           },
         ]);
       } else {
-        setActiveState("conclusion", true);
+        setActiveState("conclusion");
 
         setFinishedState(["questions", "conclusion"], true);
       }
@@ -80,7 +80,7 @@ const Questions = ({
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
     checker.rewindTo(questionIndex);
-    setActiveState("questions", true);
+    setActiveState("questions");
     setFinishedState(["conclusion", "questions"], false);
 
     sessionContext.setSessionData([

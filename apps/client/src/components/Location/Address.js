@@ -67,7 +67,7 @@ const Address = ({ topic, setFinishedState, setActiveState, isFinished }) => {
       {!isFinished("address") && (
         <Nav
           onGoToPrev={() => {
-            setActiveState("location", true);
+            setActiveState("location");
           }}
           nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
           formEnds={!useSTTR}
