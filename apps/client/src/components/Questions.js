@@ -92,14 +92,14 @@ const Questions = ({
   const onGoToQuestion = (questionId) => {
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
-    checker.rewindTo(questionIndex);
+    checker.rewindTo(questionId);
     setActiveState("questions");
     setFinishedState(["conclusion", "questions"], false);
 
     sessionContext.setSessionData([
       slug,
       {
-        questionIndex,
+        questionIndex: questionId,
       },
     ]);
     checker.rewindTo(questionId);
