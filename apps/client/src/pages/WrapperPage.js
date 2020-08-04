@@ -33,6 +33,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
             disabledTextColor="inherit"
             doneTextColor="inherit"
             highlightActive
+            lineBetweenItems
           >
             <StepByStepItem
               active={!finishedLocation}
@@ -48,6 +49,8 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
               done={finishedLocation}
               heading="Vragen"
               largeCircle
+              // Overwrite the line between the Items
+              style={{ borderColor: "white" }}
             />
             {finishedLocation && <Questions checker={checker} topic={topic} />}
             <StepByStepItem
@@ -55,6 +58,8 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
               checked={finishedLocation && finishedQuestions}
               heading="Conclusie"
               largeCircle
+              // Overwrite the line between the Items
+              style={{ marginTop: -1 }}
             >
               {finishedQuestions && (
                 <Conclusion checker={checker} topic={topic} />
