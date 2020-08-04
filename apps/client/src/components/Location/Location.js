@@ -53,10 +53,11 @@ const Location = ({ topic, setActiveState, resetChecker }) => {
           },
         ]);
         answers = null;
-        resetChecker();
       }
 
       checkerContext.autofillData.address = address;
+
+      resetChecker();
 
       sessionContext.setSessionData([
         slug,

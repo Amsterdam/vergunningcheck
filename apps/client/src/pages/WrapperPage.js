@@ -18,7 +18,8 @@ import withChecker from "../hoc/withChecker";
 const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
-  const { activeComponents, finishedComponents } = sessionContext[slug] || [];
+  console.log(topic);
+  const { activeComponents, finishedComponents } = sessionContext[slug] || []; // At startup we don't have activeComponent or finishedComponents, so start with empty array.
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
@@ -124,7 +125,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
         )}
 
         {/* OLO-flow only needs the Location component */}
-        {!sttrFile && <Location />}
+        {!sttrFile && <Location topic={topic} />}
       </ComponentWrapper>
 
       <DebugDecisionTable {...{ topic, checker }} />

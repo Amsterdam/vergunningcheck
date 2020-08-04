@@ -41,6 +41,7 @@ const Questions = ({
       // Undo the next() with previous(), because we were already at the final question
       checker.previous();
       // Go to "Conclusion"
+      setActiveState("conclusion");
       setFinishedState(["questions", "conslusion"], true);
     } else {
       // Load the next question or go to the "Conclusion"
@@ -63,7 +64,6 @@ const Questions = ({
         }
       } else {
         setActiveState("conclusion");
-
         setFinishedState(["questions", "conclusion"], true);
         // In this case, the user is changing a previously answered question and we don't want to load a new question
         sessionContext.setSessionData([
