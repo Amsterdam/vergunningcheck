@@ -134,6 +134,8 @@ const Questions = ({ checker, topic: { slug } }) => {
           customSize
           heading={q.text}
           key={`question-${q.id}-${i}`}
+          // Overwrite the line between the Items
+          style={{ marginTop: -1, borderColor: "white" }}
         >
           <Question
             question={q}
@@ -157,8 +159,9 @@ const Questions = ({ checker, topic: { slug } }) => {
           heading={q.text}
           key={`question-${q.id}-${i}`}
         >
-          <Paragraph>
+          <Paragraph gutterBottom={0}>
             {removeQuotes(userAnswer)}
+
             <Button
               style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}
