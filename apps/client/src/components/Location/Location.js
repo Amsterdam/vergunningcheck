@@ -16,7 +16,7 @@ const Location = ({ topic, setActiveState, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
   const history = useHistory();
-  const { slug, text } = topic;
+  const { slug, text, sttrFile } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
   const [address, setAddress] = useState(sessionAddress);
   const [focus, setFocus] = useState(false);
@@ -45,19 +45,14 @@ const Location = ({ topic, setActiveState, resetChecker }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        sessionContext.setSessionData([
-          slug,
-          {
-            finishedLocation: false,
-            finishedQuestions: false,
-          },
-        ]);
         answers = null;
       }
 
       checkerContext.autofillData.address = address;
 
-      resetChecker();
+      if (sttrFile) {
+        resetChecker();
+      }
 
       sessionContext.setSessionData([
         slug,

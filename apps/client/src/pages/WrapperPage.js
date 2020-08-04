@@ -18,7 +18,6 @@ import withChecker from "../hoc/withChecker";
 const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
-  console.log(topic);
   const { activeComponents, finishedComponents } = sessionContext[slug] || []; // At startup we don't have activeComponent or finishedComponents, so start with empty array.
 
   // Only one component can be active at the same time.
@@ -32,7 +31,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
     const allComponents = Array.isArray(component) ? component : [component];
     if (typeof value === "boolean" && value === false) {
       newFinishedComponents =
-        finishedComponents.filter((c) => !allComponents.includes(c)) || [];
+        finishedComponents?.filter((c) => !allComponents.includes(c)) || [];
     } else {
       newFinishedComponents = [...newFinishedComponents, ...allComponents];
     }
@@ -125,7 +124,17 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
         )}
 
         {/* OLO-flow only needs the Location component */}
-        {!sttrFile && <Location topic={topic} />}
+        {!sttrFile && (!activeComponents || isActive("location")) && (
+          <Location topic={topic} setActiveState={setActiveState} />
+        )}
+        {!sttrFile && isActive("address") && (
+          <Address
+            topic={topic}
+            isFinished={isFinished}
+            setActiveState={setActiveState}
+            setFinishedState={setFinishedState}
+          />
+        )}
       </ComponentWrapper>
 
       <DebugDecisionTable {...{ topic, checker }} />

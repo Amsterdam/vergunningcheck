@@ -32,7 +32,6 @@ const withChecker = (Component) =>
           .then((response) => response.json())
           .then((json) => {
             const newChecker = getChecker(json);
-            debugger;
             // Find if we have missing data needs
             if (address) {
               newChecker.autofill(autofillResolvers, { address });
