@@ -62,8 +62,6 @@ const Questions = ({
           setFinishedState(["questions", "conclusion"], true);
         }
       } else {
-        setActiveState("conclusion");
-        setFinishedState(["questions", "conclusion"], true);
         // In this case, the user is changing a previously answered question and we don't want to load a new question
         sessionContext.setSessionData([
           slug,
@@ -91,12 +89,9 @@ const Questions = ({
   const onGoToQuestion = (questionId) => {
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
-    checker.rewindTo(questionId);
+    setActiveState("questions");
+    setFinishedState(["conclusion", "questions"], false);
 
-    if (isFinished("conclusion")) {
-      setActiveState("questions");
-      setFinishedState(["conclusion", "questions"], false);
-    }
     sessionContext.setSessionData([
       slug,
       {
