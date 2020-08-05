@@ -35,9 +35,7 @@ const LocationResult = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("noo");
     if (useSTTR) {
-      console.log("set finished");
       setFinishedState("locationResult", true);
       setActiveState("questions");
     } else {
