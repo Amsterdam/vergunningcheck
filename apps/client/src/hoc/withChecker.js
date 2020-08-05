@@ -20,11 +20,17 @@ const withChecker = (Component) =>
     const { sttrFile, slug } = topic;
     const address = sessionContext[topic.slug]?.address;
 
-    if (sttrFile) {
-      useEffect(() => {
+    useEffect(() => {
+      if (sttrFile) {
         initChecker();
-      });
-    }
+      }
+      if (!sessionContext[slug]) {
+        sessionContext.setSessionData([
+          slug,
+          { activeComponents: ["locationInput"], finishedComponents: [] },
+        ]);
+      }
+    });
 
     const initChecker = () => {
       if (!checker && !error) {
@@ -40,16 +46,6 @@ const withChecker = (Component) =>
               autofillMap,
               true
             )[0];
-
-            if (!sessionContext[slug]?.activeComponents) {
-              sessionContext.setSessionData([
-                slug,
-                {
-                  activeComponents: ["locationInput"],
-                  finishedComponents: [],
-                },
-              ]);
-            }
 
             if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
               newChecker.setQuestionAnswers(sessionContext[slug].answers);

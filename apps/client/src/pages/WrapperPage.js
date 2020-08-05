@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
+import { Redirect } from "react-router-dom";
 
 import { ComponentWrapper } from "../atoms";
 import Conclusion from "../components/Conclusion";
@@ -14,11 +15,16 @@ import {
 } from "../components/StepByStepNavigation";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
+import { geturl, routes } from "../routes";
 
 const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
-  // At startup we don't have activeComponent or finishedComponents, so start with empty array.
+
+  //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
+  if (!sessionContext[slug]) {
+    return <Redirect to={geturl(routes.intro, topic)} />;
+  }
   const { activeComponents, finishedComponents } = sessionContext[slug];
 
   // Only one component can be active at the same time.

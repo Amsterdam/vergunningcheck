@@ -33,6 +33,12 @@ const withTopic = (Component) => (props) => {
   }
 
   if (topic) {
+    if (!sessionContext[slug]) {
+      sessionContext.setSessionData([
+        slug,
+        { activeComponents: ["locationInput"], finishedComponents: [] },
+      ]);
+    }
     // redirect to olo if needed
     if (topic.redirectToOlo) {
       return <RedirectPage topic={topic} />;
