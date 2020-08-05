@@ -1,7 +1,7 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
-import { OLO } from "../../config";
+import { generateOloUrl } from "../../config";
 import { SessionContext } from "../../context";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
@@ -18,33 +18,19 @@ const LocationResult = ({
   const address = sessionContext[topic.slug].address || {};
   const useSTTR = !!topic.sttrFile;
 
-  const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
-    // Generate OLO parameter "postalCode"
-    const oloPostalCode = `facet_locatie_postcode=${postalCode}`;
-
-    // Generate OLO parameter "streetNumber"
-    const oloStreetNumber = `facet_locatie_huisnummer=${houseNumber}`;
-
-    const oloSuffix = `facet_locatie_huisnummertoevoeging=${houseNumberFull
-      .replace(houseNumber, "")
-      .trim()}`;
-
-    // Redirect user to OLO with all parameters
-    return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
       setFinishedState("locationResult", true);
       setActiveState("questions");
     } else {
-      window.open(getOloUrl(address), "_blank");
+      window.open(generateOloUrl(address), "_blank");
     }
   };
 
   return (
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
+      {!useSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
         displayZoningPlans={!useSTTR}
         address={address}

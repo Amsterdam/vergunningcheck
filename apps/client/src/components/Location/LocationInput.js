@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,16 +12,19 @@ import Nav from "../Nav";
 import LocationFinder from "./LocationFinder";
 
 const LocationInput = ({ topic, setActiveState, resetChecker }) => {
+  const history = useHistory();
   const { trackEvent } = useMatomo();
+  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
-  const history = useHistory();
+
   const { slug, text, sttrFile } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
+  const useSTTR = !!sttrFile;
+
   const [address, setAddress] = useState(sessionAddress);
-  const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
+  const [focus, setFocus] = useState(false);
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -50,7 +53,7 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
 
       checkerContext.autofillData.address = address;
 
-      if (sttrFile) {
+      if (useSTTR) {
         resetChecker();
       }
 
@@ -84,6 +87,7 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
           </Paragraph>
         </Error>
       )}
+      {!useSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder

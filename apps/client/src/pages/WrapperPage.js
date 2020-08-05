@@ -84,7 +84,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
             <StepByStepItem
               active={isActive("locationInput") || isActive("locationResult")}
               checked={isFinished("locationResult")}
-              heading="Adres gegevens"
+              heading="Adresgegevens"
               largeCircle
             >
               {isActive("locationInput") && (
