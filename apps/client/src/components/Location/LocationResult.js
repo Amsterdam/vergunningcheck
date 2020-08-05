@@ -52,15 +52,12 @@ const LocationResult = ({
         setFinishedState={setFinishedState}
         topic={topic}
       />
-      <Paragraph>
-        {useSTTR
-          ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
-          : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
+      <Paragraph gutterBottom={useSTTR ? null : 0}>
+        {/* OLO Flow text */}
+        {!useSTTR &&
+          ` U hebt deze informatie nodig om de vergunningcheck te doen op
+                het Omgevingsloket.`}
       </Paragraph>
-
-      {topic.text?.addressPage && (
-        <Paragraph>{topic.text.addressPage}</Paragraph>
-      )}
 
       {!isFinished("locationResult") && (
         <Nav
