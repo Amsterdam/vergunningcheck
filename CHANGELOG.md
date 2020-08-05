@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-o
+
 ## [1.4.1](2020-07-23)
 
 #### Bug fixes
