@@ -12,7 +12,6 @@ const Questions = ({
   setFinishedState,
   setActiveState,
   isActive,
-  isFinished,
 }) => {
   const sessionContext = useContext(SessionContext);
   const { questionIndex } = sessionContext[slug];
