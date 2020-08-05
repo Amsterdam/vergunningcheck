@@ -43,7 +43,10 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
         : [...finishedComponents, ...allComponents];
 
     // Save the new array to the context
-    sessionContext.setSessionData([slug, ...newFinishedComponents]);
+    sessionContext.setSessionData([
+      slug,
+      { finishedComponents: newFinishedComponents },
+    ]);
   };
 
   const isActive = (component, finished = false) => {

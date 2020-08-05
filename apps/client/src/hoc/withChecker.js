@@ -41,6 +41,16 @@ const withChecker = (Component) =>
               true
             )[0];
 
+            if (!sessionContext[slug]?.activeComponents) {
+              sessionContext.setSessionData([
+                slug,
+                {
+                  activeComponents: ["locationInput"],
+                  finishedComponents: [],
+                },
+              ]);
+            }
+
             if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
               newChecker.setQuestionAnswers(sessionContext[slug].answers);
             }
