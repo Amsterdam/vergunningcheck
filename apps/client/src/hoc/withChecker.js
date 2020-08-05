@@ -36,17 +36,19 @@ const withChecker = (Component) =>
             if (address) {
               newChecker.autofill(autofillResolvers, { address });
             }
+            if (!sessionContext[slug]?.activeComponents) {
+              sessionContext.setSessionData([
+                slug,
+                {
+                  activeComponents: ["locationInput"],
+                  finishedComponents: [],
+                },
+              ]);
+            }
             const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
               autofillMap,
               true
             )[0];
-            sessionContext.setSessionData([
-              slug,
-              {
-                activeComponents: ["locationInput"],
-                finishedComponents: [],
-              },
-            ]);
 
             if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
               newChecker.setQuestionAnswers(sessionContext[slug].answers);
