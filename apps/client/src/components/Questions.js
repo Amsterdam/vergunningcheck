@@ -1,15 +1,21 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { SessionContext } from "../context";
 import { removeQuotes, uniqueFilter } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({ checker, topic: { slug } }) => {
+const Questions = ({
+  checker,
+  topic: { slug },
+  setFinishedState,
+  setActiveState,
+  isActive,
+  isFinished,
+}) => {
   const sessionContext = useContext(SessionContext);
-  const [editQuestion, setEditQuestion] = useState(false);
-  const { questionIndex, finishedQuestions } = sessionContext[slug];
+  const { questionIndex } = sessionContext[slug];
 
   const onQuestionNext = (value) => {
     // @TODO: Let's refacter this function as well
@@ -34,12 +40,8 @@ const Questions = ({ checker, topic: { slug } }) => {
 
     if (checker.needContactExit(question)) {
       // Go directly to "Contact Conclusion" and skip other questions
-      sessionContext.setSessionData([
-        slug,
-        {
-          finishedQuestions: true,
-        },
-      ]);
+      setActiveState("conclusion");
+      setFinishedState(["questions", "conslusion"], true);
     } else {
       // Load the next question or go to the "Conclusion"
       if (checker.stack.length - 1 === questionIndex) {
@@ -56,12 +58,8 @@ const Questions = ({ checker, topic: { slug } }) => {
           ]);
         } else {
           // Go to the "Conclusion"
-          sessionContext.setSessionData([
-            slug,
-            {
-              finishedQuestions: true,
-            },
-          ]);
+          setActiveState("conclusion");
+          setFinishedState(["questions", "conclusion"], true);
         }
       } else {
         // In this case, the user is changing a previously answered question and we don't want to load a new question
@@ -85,29 +83,22 @@ const Questions = ({ checker, topic: { slug } }) => {
           questionIndex: questionIndex - 1,
         },
       ]);
-    } else {
-      sessionContext.setSessionData([
-        slug,
-        {
-          finishedLocation: false,
-          finishedQuestions: false,
-        },
-      ]);
     }
   };
 
   const onGoToQuestion = (questionId) => {
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
+    setActiveState("questions");
+    setFinishedState(["conclusion", "questions"], false);
+
     sessionContext.setSessionData([
       slug,
       {
         questionIndex: questionId,
-        finishedQuestions: false,
       },
     ]);
     checker.rewindTo(questionId);
-    setEditQuestion(true);
   };
 
   if (checker.stack.length === 0) {
@@ -126,7 +117,7 @@ const Questions = ({ checker, topic: { slug } }) => {
     }
 
     // Show the current active question
-    if (q === checker.stack[questionIndex] && !finishedQuestions) {
+    if (q === checker.stack[questionIndex] && isActive("questions")) {
       return (
         <StepByStepItem
           active
@@ -142,8 +133,6 @@ const Questions = ({ checker, topic: { slug } }) => {
             questionIndex={questionIndex}
             checker={checker}
             onSubmit={onQuestionNext}
-            setEditQuestion={setEditQuestion}
-            editQuestion={editQuestion}
             onGoToPrev={onQuestionPrev}
             userAnswer={userAnswer}
             showNext

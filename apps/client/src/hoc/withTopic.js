@@ -24,17 +24,21 @@ const withTopic = (Component) => (props) => {
       slug,
       {
         answers: null,
-        finishedQuestions: false,
-        finishedLocation: false,
         questionIndex: 0,
       },
     ]);
 
-    console.warn("Resseting checker, redirecting to intro page");
+    console.warn("Resetting checker, redirecting to intro page");
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
 
   if (topic) {
+    if (!sessionContext[slug]) {
+      sessionContext.setSessionData([
+        slug,
+        { activeComponents: ["locationInput"], finishedComponents: [] },
+      ]);
+    }
     // redirect to olo if needed
     if (topic.redirectToOlo) {
       return <RedirectPage topic={topic} />;
