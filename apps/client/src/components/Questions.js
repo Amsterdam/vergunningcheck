@@ -12,6 +12,7 @@ const Questions = ({
   setFinishedState,
   setActiveState,
   isActive,
+  isFinished,
 }) => {
   const sessionContext = useContext(SessionContext);
   const { questionIndex } = sessionContext[slug];
@@ -38,9 +39,7 @@ const Questions = ({
     ]);
 
     if (checker.needContactExit(question)) {
-      // Undo the next() with previous(), because we were already at the final question
-      checker.previous();
-      // Go to "Conclusion"
+      // Go directly to "Contact Conclusion" and skip other questions
       setActiveState("conclusion");
       setFinishedState(["questions", "conslusion"], true);
     } else {
@@ -93,9 +92,11 @@ const Questions = ({
     // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
     checker.rewindTo(questionId);
-    setActiveState("questions");
-    setFinishedState(["conclusion", "questions"], false);
 
+    if (isFinished("conclusion")) {
+      setActiveState("questions");
+      setFinishedState(["conclusion", "questions"], false);
+    }
     sessionContext.setSessionData([
       slug,
       {

@@ -267,8 +267,8 @@ All notable changes to this project will be documented in this file.
 ### Features
 
 - Added current topic to Matomo tracking ([567f057](https://github.com/Amsterdam/Vergunningschecker/commit/567f05784cb4dcc7b55487966d7ebe638e013e11))
-- Location Page improvements: flow, text and bugs ([8219b33](https://github.com/Amsterdam/Vergunningschecker/commit/8219b33538bcb2ea59ed09fc0b362b0373a4c1b4))
-- Location Page updates: styling and text changes ([32c719e](https://github.com/Amsterdam/Vergunningschecker/commit/32c719e88ce4d17e27ac2df4a899176303f77cf7))
+- LocationInput Page improvements: flow, text and bugs ([8219b33](https://github.com/Amsterdam/Vergunningschecker/commit/8219b33538bcb2ea59ed09fc0b362b0373a4c1b4))
+- LocationInput Page updates: styling and text changes ([32c719e](https://github.com/Amsterdam/Vergunningschecker/commit/32c719e88ce4d17e27ac2df4a899176303f77cf7))
 - Split up the location page ([168f7a4](https://github.com/Amsterdam/Vergunningschecker/commit/168f7a4158800eb8b52b0a984e27bd0b96510fad))
 - Split up the location page in 3 pages ([8e769e2](https://github.com/Amsterdam/Vergunningschecker/commit/8e769e279eaafceb4e61ccab9d8be9993220fe89))
 - textual changes on location intro page ([dd7d158](https://github.com/Amsterdam/Vergunningschecker/commit/dd7d158625ca86d4c2099414616e295d33146f81))

@@ -28,8 +28,11 @@ const RegisterLookupSummary = ({
           variant="textButton"
           style={{ marginLeft: 12 }}
           onClick={() => {
-            setActiveState("location");
-            setFinishedState(["address", "questions", "conclusion"], false);
+            setActiveState("locationInput");
+            setFinishedState(
+              ["locationResult", "questions", "conclusion"],
+              false
+            );
           }}
           type="button"
         >

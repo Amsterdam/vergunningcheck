@@ -11,7 +11,7 @@ import Form from "../Form";
 import Nav from "../Nav";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic, setActiveState, resetChecker }) => {
+const LocationInput = ({ topic, setActiveState, resetChecker }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -66,7 +66,7 @@ const Location = ({ topic, setActiveState, resetChecker }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        setActiveState("address");
+        setActiveState("locationResult");
       }
     }
   };
@@ -114,4 +114,4 @@ const Location = ({ topic, setActiveState, resetChecker }) => {
   );
 };
 
-export default Location;
+export default LocationInput;

@@ -8,14 +8,17 @@ import Form from "../Form";
 import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 
-const Address = ({ topic, setFinishedState, setActiveState, isFinished }) => {
+const LocationResult = ({
+  topic,
+  setFinishedState,
+  setActiveState,
+  isFinished,
+}) => {
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
   const useSTTR = !!topic.sttrFile;
 
   const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
-    // Form is validated, we can proceed
-
     // Generate OLO parameter "postalCode"
     const oloPostalCode = `facet_locatie_postcode=${postalCode}`;
 
@@ -32,8 +35,10 @@ const Address = ({ topic, setFinishedState, setActiveState, isFinished }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("noo");
     if (useSTTR) {
-      setFinishedState("address", true);
+      console.log("set finished");
+      setFinishedState("locationResult", true);
       setActiveState("questions");
     } else {
       window.open(getOloUrl(address), "_blank");
@@ -49,26 +54,20 @@ const Address = ({ topic, setFinishedState, setActiveState, isFinished }) => {
         setFinishedState={setFinishedState}
         topic={topic}
       />
-      <Paragraph gutterBottom={useSTTR && topic.text?.addressPage ? null : 0}>
+      <Paragraph>
         {useSTTR
-          ? // STTR Flow text (text we need to discuss because it's not in new design)
-            `We gebruiken deze informatie bij het invullen van de
-              vergunningcheck.`
-          : // OLO Flow text
-            ` U hebt deze informatie nodig om de vergunningcheck te doen op
-              het Omgevingsloket.`}
+          ? `We gebruiken deze informatie bij het invullen van de vergunningcheck. `
+          : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `}
       </Paragraph>
 
-      {/* Extra text about this activity (text that can be in both flows) */}
-      {/* This is also text we need to discuss because it's not in new design */}
       {topic.text?.addressPage && (
-        <Paragraph gutterBottom={0}>{topic.text.addressPage}</Paragraph>
+        <Paragraph>{topic.text.addressPage}</Paragraph>
       )}
 
-      {!isFinished("address") && (
+      {!isFinished("locationResult") && (
         <Nav
           onGoToPrev={() => {
-            setActiveState("location");
+            setActiveState("locationInput");
           }}
           nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
           formEnds={!useSTTR}
@@ -79,4 +78,4 @@ const Address = ({ topic, setFinishedState, setActiveState, isFinished }) => {
     </Form>
   );
 };
-export default Address;
+export default LocationResult;
