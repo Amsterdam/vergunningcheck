@@ -2,14 +2,17 @@ import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext, useState } from "react";
 
 import { SessionContext } from "../context";
-import { removeQuotes, uniqueFilter } from "../utils";
+import { removeQuotes } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({ checker, topic: { slug } }) => {
   const sessionContext = useContext(SessionContext);
   const [editQuestion, setEditQuestion] = useState(false);
-  const { questionIndex, finishedQuestions } = sessionContext[slug];
+  const { questionIndex } = sessionContext[slug];
+
+  // Styling to overwrite the line between the Items
+  const activeStyle = { marginTop: -1, borderColor: "white" };
 
   const onQuestionNext = (value) => {
     // @TODO: Let's refacter this function as well
@@ -114,67 +117,61 @@ const Questions = ({ checker, topic: { slug } }) => {
     checker.next();
   }
 
-  // @TODO: Refactor this map function
-  return checker.stack.filter(uniqueFilter).map((q, i) => {
+  // Loop through all questions
+  return checker.stack.map((q, i) => {
     // Define userAnswer
-    let userAnswer;
-    if (q.options) {
-      userAnswer = q.answer;
-    } else {
-      const responseObj = booleanOptions.find((o) => o.value === q.answer);
-      userAnswer = responseObj?.label;
-    }
+    const booleanAnswers =
+      !q.options && booleanOptions.find((o) => o.value === q.answer);
+    const userAnswer = q.options ? q.answer : booleanAnswers?.label;
 
-    // Show the current active question
-    if (q === checker.stack[questionIndex] && !finishedQuestions) {
-      return (
-        <StepByStepItem
-          active
-          highlightActive
-          customSize
-          heading={q.text}
-          key={`question-${q.id}-${i}`}
-          // Overwrite the line between the Items
-          style={{ marginTop: -1, borderColor: "white" }}
-        >
+    // Define if question is the current one
+    const isCurrentQuestion = q === checker.stack[questionIndex];
+    // && isActive("questions"); @TODO needs to be added (in branch feature/refactor-stepper-logic)
+
+    // Hide unanswered questions (eg: on browser refresh)
+    if (!isCurrentQuestion && !userAnswer) return null;
+
+    return (
+      <StepByStepItem
+        active={isCurrentQuestion}
+        checked={userAnswer}
+        customSize
+        heading={q.text}
+        highlightActive={isCurrentQuestion}
+        key={`question-${q.id}-${i}`}
+        style={isCurrentQuestion ? activeStyle : {}}
+      >
+        {isCurrentQuestion ? (
+          // Show the current question
           <Question
             question={q}
-            questionIndex={questionIndex}
-            checker={checker}
-            onSubmit={onQuestionNext}
-            setEditQuestion={setEditQuestion}
-            editQuestion={editQuestion}
             onGoToPrev={onQuestionPrev}
-            userAnswer={userAnswer}
+            onSubmit={onQuestionNext}
             showNext
+            {...{
+              checker,
+              editQuestion, // @TODO needs to be removed (in branch feature/refactor-stepper-logic)
+              questionIndex,
+              setEditQuestion, // @TODO needs to be removed (in branch feature/refactor-stepper-logic)
+              userAnswer,
+            }}
           />
-        </StepByStepItem>
-      );
-    } else if (userAnswer) {
-      // Show answered questions (beware: boolean `false` is a possible answer)
-      return (
-        <StepByStepItem
-          checked
-          customSize
-          heading={q.text}
-          key={`question-${q.id}-${i}`}
-        >
+        ) : (
+          // Show the userAnswer with an Edit button
           <Paragraph gutterBottom={0}>
             {removeQuotes(userAnswer)}
 
             <Button
-              style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}
+              style={{ marginLeft: 20 }}
               variant="textButton"
             >
               Wijzig
             </Button>
           </Paragraph>
-        </StepByStepItem>
-      );
-    }
-    // Hide unanswered questions (eg: on browser refresh)
-    return null;
+        )}
+      </StepByStepItem>
+    );
   });
 };
 
