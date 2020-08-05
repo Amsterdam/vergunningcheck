@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 import { OLO } from "../../config";
 import { SessionContext } from "../../context";
-import { ADDRESS_PAGE } from "../../utils/test-ids";
+import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
 import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
@@ -44,7 +44,7 @@ const LocationResult = ({
   };
 
   return (
-    <Form onSubmit={onSubmit} data-testid={ADDRESS_PAGE}>
+    <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
       <RegisterLookupSummary
         displayZoningPlans={!useSTTR}
         address={address}
@@ -52,12 +52,12 @@ const LocationResult = ({
         setFinishedState={setFinishedState}
         topic={topic}
       />
-      <Paragraph gutterBottom={useSTTR ? null : 0}>
-        {/* OLO Flow text */}
-        {!useSTTR &&
-          ` U hebt deze informatie nodig om de vergunningcheck te doen op
-                het Omgevingsloket.`}
-      </Paragraph>
+      {!useSTTR && (
+        <Paragraph gutterBottom={0}>
+          {/* OLO Flow text */}U hebt deze informatie nodig om de
+          vergunningcheck te doen op het Omgevingsloket.
+        </Paragraph>
+      )}
 
       {!isFinished("locationResult") && (
         <Nav

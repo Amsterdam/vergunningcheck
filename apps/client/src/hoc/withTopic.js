@@ -42,6 +42,7 @@ const withTopic = (Component) => (props) => {
         },
       ]);
     }
+
     // redirect to olo if needed
     if (topic.redirectToOlo) {
       return <RedirectPage topic={topic} />;

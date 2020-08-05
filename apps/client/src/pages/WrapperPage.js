@@ -18,7 +18,6 @@ import withChecker from "../hoc/withChecker";
 const WrapperPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
-
   // At startup we don't have activeComponent or finishedComponents, so start with empty array.
   const { activeComponents, finishedComponents } = sessionContext[slug];
 
@@ -30,28 +29,29 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
   /**
    * Set given components to the given finished state
    *
-   * @param { Object[] | string } component - name of names of the components
+   * @param { Object[] | string } component - name or names of the components
    * @param { boolean } value - Set components to finished state or remove from finished state.
    */
   const setFinishedState = (component, value) => {
-    let newFinishedComponents = finishedComponents; // If there are no finishedComponents start with a empty array.
+    // If component is only a string, we make it a array first
     const allComponents = Array.isArray(component) ? component : [component];
-    if (typeof value === "boolean" && value === false) {
-      newFinishedComponents =
-        finishedComponents?.filter((c) => !allComponents.includes(c)) || [];
-    } else {
-      newFinishedComponents = [...newFinishedComponents, ...allComponents];
-    }
-    // Save the new sessionData to the context
-    sessionContext.setSessionData([
-      slug,
-      { finishedComponents: newFinishedComponents },
-    ]);
+
+    // If value is false, remove the components from the fishedComponents array
+    const newFinishedComponents =
+      typeof value === "boolean" && value === false
+        ? finishedComponents?.filter((c) => !allComponents.includes(c)) || []
+        : [...finishedComponents, ...allComponents];
+
+    // Save the new array to the context
+    sessionContext.setSessionData([slug, ...newFinishedComponents]);
   };
 
   const isActive = (component, finished = false) => {
-    const components = finished ? finishedComponents : activeComponents;
+    // If component is only a string, we make it a array first
     const allComponents = Array.isArray(component) ? component : [component];
+
+    // If finished is true we check if it's finished, else check activeComponents.
+    const components = finished ? finishedComponents : activeComponents;
     return components.includes(...allComponents) || false;
   };
 
@@ -77,7 +77,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
               heading="Adres gegevens"
               largeCircle
             >
-              {(!activeComponents || isActive("locationInput")) && (
+              {isActive("locationInput") && (
                 <LocationInput
                   {...{
                     topic,
