@@ -4,30 +4,24 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { OLO } from "../../config";
 import { CheckerContext, SessionContext } from "../../context";
-import withTopic from "../../hoc/withTopic";
 import { geturl, routes } from "../../routes";
-import { ADDRESS_PAGE } from "../../utils/test-ids";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
-import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic, resetChecker }) => {
+const LocationInput = ({ topic, setActiveState, resetChecker }) => {
   const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
   const history = useHistory();
-  const { slug, text } = topic;
+  const { slug, text, sttrFile } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
   const [address, setAddress] = useState(sessionAddress);
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { finishedLocation, addressShown } = sessionContext[slug] || false;
-  const useSTTR = !!topic.sttrFile;
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -51,18 +45,14 @@ const Location = ({ topic, resetChecker }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        sessionContext.setSessionData([
-          slug,
-          {
-            finishedLocation: false,
-            finishedQuestions: false,
-          },
-        ]);
         answers = null;
-        resetChecker();
       }
 
       checkerContext.autofillData.address = address;
+
+      if (sttrFile) {
+        resetChecker();
+      }
 
       sessionContext.setSessionData([
         slug,
@@ -76,83 +66,10 @@ const Location = ({ topic, resetChecker }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        sessionContext.setSessionData([
-          slug,
-          {
-            addressShown: true,
-          },
-        ]);
+        setActiveState("locationResult");
       }
     }
   };
-  const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
-    // Form is validated, we can proceed
-
-    // Generate OLO parameter "postalCode"
-    const oloPostalCode = `facet_locatie_postcode=${postalCode}`;
-
-    // Generate OLO parameter "streetNumber"
-    const oloStreetNumber = `facet_locatie_huisnummer=${houseNumber}`;
-
-    const oloSuffix = `facet_locatie_huisnummertoevoeging=${houseNumberFull
-      .replace(houseNumber, "")
-      .trim()}`;
-
-    // Redirect user to OLO with all parameters
-    return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
-  };
-
-  const handleAddressSubmit = (e) => {
-    e.preventDefault();
-    if (useSTTR) {
-      sessionContext.setSessionData([
-        slug,
-        {
-          finishedLocation: true,
-        },
-      ]);
-    } else {
-      window.open(getOloUrl(address), "_blank");
-    }
-  };
-
-  if (addressShown) {
-    return (
-      <Form onSubmit={handleAddressSubmit} data-testid={ADDRESS_PAGE}>
-        <RegisterLookupSummary
-          displayZoningPlans={!useSTTR}
-          address={address}
-          topic={topic}
-        />
-
-        {!finishedLocation && (
-          <>
-            <Paragraph gutterBottom={useSTTR ? null : 0}>
-              {/* OLO Flow text */}
-              {!useSTTR &&
-                ` U hebt deze informatie nodig om de vergunningcheck te doen op
-                het Omgevingsloket.`}
-            </Paragraph>
-
-            <Nav
-              onGoToPrev={() =>
-                sessionContext.setSessionData([
-                  slug,
-                  {
-                    addressShown: false,
-                  },
-                ])
-              }
-              nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
-              formEnds={!useSTTR}
-              showPrev
-              showNext
-            />
-          </>
-        )}
-      </Form>
-    );
-  }
 
   return (
     <>
@@ -197,4 +114,4 @@ const Location = ({ topic, resetChecker }) => {
   );
 };
 
-export default withTopic(Location);
+export default LocationInput;
