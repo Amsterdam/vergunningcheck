@@ -17,22 +17,19 @@ const LocationFinder = (props) => {
   const [touched, setTouched] = useState({});
   const { setAddress, setErrorMessage } = props;
 
-  const skip = !postalCode || !houseNumberFull || !houseNumber;
+  const variables = {
+    postalCode,
+    houseNumberFull,
+    extraHouseNumberFull: houseNumber,
+    queryExtra: houseNumber !== houseNumberFull,
+  };
 
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
      Workaround is not giving any variables if the query should be skipped. */
-  const variables = skip
-    ? undefined
-    : {
-        postalCode,
-        houseNumberFull,
-        extraHouseNumberFull: houseNumber,
-        queryExtra: houseNumber !== houseNumberFull,
-      };
-
+  const skip = !postalCode || !houseNumberFull || !houseNumber;
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
-    variables,
+    variables: skip ? undefined : variables,
     skip,
   });
 
