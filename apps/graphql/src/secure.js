@@ -31,7 +31,7 @@ module.exports = (app) => {
         maxAge: 0, // 604800 is used on parent site
         reportUri: "https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct",
       },
-      permittedCrossDomainPolicies: true,
+      permittedCrossDomainPolicies: "all",
       referrerPolicy: { policy: "no-referrer" },
     })
   );
