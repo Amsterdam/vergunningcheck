@@ -101,13 +101,16 @@ const topics: Topic[] = [
   },
   {
     slug: "zonwering-of-rolluik-plaatsen",
-    sttrFile: "zonwering.json",
+    // Temporary disabled the STTR Flow:
+    // sttrFile: "zonwering.json",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },
-    intro: "ZonweringRolluikIntro",
+    // Temporary added an Intro for the Olo flow
+    intro: "ZonweringRolluikIntroOlo",
+    // intro: "ZonweringRolluikIntro",
   },
 ];
 
