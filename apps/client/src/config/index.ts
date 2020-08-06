@@ -12,16 +12,39 @@ type Text = {
   addressPage?: string;
 };
 
+type OloProps = {
+  home: string;
+  intro: string;
+  location: string;
+};
+
+type OloUrlProps = {
+  houseNumber: string;
+  houseNumberFull: string;
+  postalCode: string;
+};
+
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
 const oloHome: string =
   process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
-export const OLO: object = {
+export const Olo: OloProps = {
   home: oloHome,
   intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
+};
+
+export const generateOloUrl = ({
+  houseNumber,
+  houseNumberFull,
+  postalCode,
+}: OloUrlProps) => {
+  // Get correct suffix
+  const suffix = houseNumberFull.replace(houseNumber, "").trim();
+  // Redirect user to OLO with all parameters
+  return `${Olo.location}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
 const topics: Topic[] = [
