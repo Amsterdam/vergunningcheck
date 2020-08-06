@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { Flow, OLO } from "../../config";
+import { Flow as FlowType, OLO } from "../../config";
 import { CheckerContext, SessionContext } from "../../context";
 import withTopic from "../../hoc/withTopic";
 import { geturl, routes } from "../../routes";
@@ -26,10 +26,9 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
   const [focus, setFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { slug } = topic;
-  const text = topic.text || {};
+  const { slug, flow, text = {} } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
-  const useOLO = topic.flow === Flow.olo;
+  const useOLO = flow === FlowType.olo;
 
   useEffect(() => {
     if (!address && !errorMessage) {

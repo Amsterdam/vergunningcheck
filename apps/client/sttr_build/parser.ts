@@ -1,5 +1,4 @@
 import { createHash } from "https://deno.land/std/hash/mod.ts";
-// import parse from "https://denopkg.com/nekobato/deno-xml-parser/index.ts";
 import { DomHandler } from "https://deno.land/x/domhandler/mod.ts";
 import get from "https://raw.githubusercontent.com/lodash/lodash/master/get.js";
 import { Parser } from "https://rawcdn.githack.com/tbjgolden/deno-htmlparser2/5522f6286a17cc3857c5f1aa30e59e82968de822/htmlparser2/index.ts";
@@ -83,12 +82,24 @@ const log = (obj) => {
   }
 };
 
+type XMLDecisionType = {
+  "dmn:informationRequirement": XMLInformationRequirement[];
+};
+
+type XMLInformationRequirementAttribute = {
+  href: string;
+};
+
+type XMLInformationRequirement = {
+  attributes: XMLInformationRequirementAttribute[];
+};
+
 /**
  * Get decisions configuration
  *
  * @returns {any} a configuration object for decisions
  */
-function getDecisions(xmlDecisions) {
+function getDecisions(xmlDecisions: XMLDecisionType[]) {
   return xmlDecisions.reduce((xmlDecisions, xmlDecision) => {
     const res = xmlDecision["dmn:informationRequirement"].reduce((acc, ir) => {
       const key = Object.keys(ir)[0]; // get the tagName

@@ -1,7 +1,7 @@
 import { readJson, writeJson } from "https://deno.land/std/fs/mod.ts";
 import { join } from "https://deno.land/std/path/mod.ts";
 
-import sttrbuild from "./parser.js";
+import sttrbuild from "./parser.ts";
 import { APIConfig } from "./types.d.ts";
 
 // XXX npm run sttr moet deno aanroepen
