@@ -2,7 +2,7 @@ import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 import "@datapunt/asc-assets/static/fonts/fonts.css";
 
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "@apollo/client";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import * as Sentry from "@sentry/browser";
