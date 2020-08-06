@@ -16,11 +16,11 @@ const LocationResult = ({
 }) => {
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
-  const useSTTR = !!topic.sttrFile;
+  const hasSTTR = !!topic.sttrFile;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (useSTTR) {
+    if (hasSTTR) {
       setFinishedState("locationResult", true);
       setActiveState("questions");
     } else {
@@ -30,15 +30,15 @@ const LocationResult = ({
 
   return (
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
-      {!useSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
+      {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        displayZoningPlans={!useSTTR}
+        displayZoningPlans={!hasSTTR}
         address={address}
         setActiveState={setActiveState}
         setFinishedState={setFinishedState}
         topic={topic}
       />
-      {!useSTTR && (
+      {!hasSTTR && (
         <Paragraph gutterBottom={0}>
           {/* OLO Flow text */}U hebt deze informatie nodig om de
           vergunningcheck te doen op het Omgevingsloket.
@@ -50,8 +50,8 @@ const LocationResult = ({
           onGoToPrev={() => {
             setActiveState("locationInput");
           }}
-          nextText={!useSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
-          formEnds={!useSTTR}
+          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+          formEnds={!hasSTTR}
           showPrev
           showNext
         />

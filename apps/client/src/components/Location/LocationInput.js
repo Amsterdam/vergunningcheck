@@ -20,7 +20,7 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
 
   const { slug, text, sttrFile } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
-  const useSTTR = !!sttrFile;
+  const hasSTTR = !!sttrFile;
 
   const [address, setAddress] = useState(sessionAddress);
   const [errorMessage, setErrorMessage] = useState();
@@ -53,7 +53,7 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
 
       checkerContext.autofillData.address = address;
 
-      if (useSTTR) {
+      if (hasSTTR) {
         resetChecker();
       }
 
@@ -87,7 +87,7 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
           </Paragraph>
         </Error>
       )}
-      {!useSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
