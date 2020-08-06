@@ -3,10 +3,10 @@ import { addQuotes, getRestrictionByTypeName } from "../utils";
 const getDataNeed = (checker) =>
   checker && checker.getAutofillDataNeeds(autofillMap)[0];
 
-export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
-  const dataNeed = getDataNeed(checker);
-  return dataNeed ? autofillRoutes[dataNeed][0] : routes.questions;
-};
+export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
+  getDataNeed(checker)
+    ? autofillRoutes[getDataNeed(checker)][0]
+    : routes.wrapper;
 
 const strings = {
   NO_MONUMENT: "Geen monument",
@@ -55,7 +55,7 @@ export const autofillResolvers = {
  * Map from autofill-resolver key to the data-need it has.
  */
 export const autofillMap = {
-  monumentList: "address",
-  monumentBoolean: "address",
-  cityScape: "address",
+  monumentList: "wrapper",
+  monumentBoolean: "wrapper",
+  cityScape: "wrapper",
 };

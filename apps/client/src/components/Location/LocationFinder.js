@@ -36,7 +36,15 @@ const LocationFinder = (props) => {
     if (postalCode && houseNumberFull && !loading && (data || graphqlError)) {
       setAddress(data?.findAddress?.exactMatch);
     }
-  });
+  }, [
+    data,
+    graphqlError,
+    houseNumberFull,
+    loading,
+    postalCode,
+    setAddress,
+    setErrorMessage,
+  ]);
 
   const exactMatch = data?.findAddress?.exactMatch;
   const findAddressMatches = data?.findAddress?.matches || [];
