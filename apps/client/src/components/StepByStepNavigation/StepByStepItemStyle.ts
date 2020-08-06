@@ -36,18 +36,10 @@ export default styled.div<Props>`
   position: relative;
   display: flex;
   height: 100%;
-  padding-top: ${themeSpacing(4)};
-  padding-bottom: ${themeSpacing(5)};
-  padding-right: ${themeSpacing(4)};
+  padding: ${themeSpacing(4, 4, 4, 0)};
   text-decoration: none;
   cursor: initial;
 
-  ${({ active, highlightActive }) =>
-    active &&
-    highlightActive &&
-    css`
-      background-color: ${themeColor("tint", "level2")};
-    `}
   ${({ clickable }) =>
     clickable &&
     css`
@@ -158,6 +150,7 @@ const CircleStyle = styled(Icon)<Props>`
 `;
 
 const ContentWrapperStyle = styled.div<Props>`
+  position: relative;
   display: flex;
   max-width: 620px;
   width: 100%;
@@ -165,4 +158,20 @@ const ContentWrapperStyle = styled.div<Props>`
   justify-content: center;
 `;
 
-export { CircleStyle, ContentWrapperStyle, CircleWrapperStyle };
+const BackgroundStyle = styled.div<Props>`
+  position: absolute;
+  height: 100%;
+  width: 300vw;
+  top: 0;
+  left: -100vw;
+  right: 100vw;
+  background-color: ${themeColor("tint", "level2")};
+  pointer-events: none;
+`;
+
+export {
+  BackgroundStyle,
+  CircleStyle,
+  CircleWrapperStyle,
+  ContentWrapperStyle,
+};

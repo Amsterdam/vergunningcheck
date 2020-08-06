@@ -36,12 +36,17 @@ const Question = ({
     description,
     longDescription,
   },
+  userAnswer,
   className,
+  checker,
+  editQuestion,
+  setEditQuestion,
   onSubmit: onSubmitProp,
   hideNavigation,
   showNext,
   showPrev,
   onGoToPrev,
+  questionIndex,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -50,7 +55,6 @@ const Question = ({
     value: answer,
   }));
   const answers = questionType === "string" ? listAnswers : booleanOptions;
-  let answer;
 
   useEffect(() => {
     if (questionId) {
@@ -81,9 +85,14 @@ const Question = ({
     currentAnswer,
     questionAnswers,
     setValue,
-  ]); // IE11 fix to put all dependencies here
+  ]);
 
   const handleChange = (e) => {
+    // On edit question, keep the current stack until the answer is changed.
+    if (editQuestion) {
+      checker.rewindTo(questionIndex);
+      setEditQuestion(false);
+    }
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
@@ -97,13 +106,6 @@ const Question = ({
       onSubmitProp(data[questionId]);
     }
   };
-
-  if (questionAnswers) {
-    answer = currentAnswer;
-  } else {
-    const responseObj = booleanOptions.find((o) => o.value === currentAnswer);
-    answer = responseObj?.formValue;
-  }
 
   return (
     <Form
@@ -119,7 +121,7 @@ const Question = ({
         onChange={handleChange}
         errors={errors}
         answers={answers}
-        currentAnswer={answer}
+        userAnswer={userAnswer}
       />
       {!hideNavigation && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
@@ -149,12 +151,13 @@ Question.propTypes = {
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
-  onSubmit: PropTypes.func,
   hideNavigation: PropTypes.bool,
+  onGoToPrev: PropTypes.func,
+  onSubmit: PropTypes.func,
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
+  userAnswer: PropTypes.string,
 };
 
 export default Question;

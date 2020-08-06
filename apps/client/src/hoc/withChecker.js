@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Flow } from "../config";
+import { Flow as FlowType } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
 import { CheckerContext, SessionContext } from "../context";
 import ErrorPage from "../pages/ErrorPage";
@@ -18,45 +18,60 @@ const withChecker = (Component) =>
     const { flow, slug } = topic;
     const address = sessionContext[topic.slug]?.address;
 
-    if (flow !== Flow.olo) {
-      useEffect(() => {
-        if (!checker && !error) {
-          fetch(`${window.location.origin}/sttr/sttr/${slug}.json`)
-            .then((response) => response.json())
-            .then((json) => {
-              const newChecker = getChecker(json);
-              // Find if we have missing data needs
-              if (address) {
-                newChecker.autofill(autofillResolvers, { address });
-              }
-              const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
-                autofillMap,
-                true
-              )[0];
+    useEffect(() => {
+      if (flow !== FlowType.olo) {
+        initChecker();
+      }
+      if (!sessionContext[slug]) {
+        sessionContext.setSessionData([
+          slug,
+          { activeComponents: ["locationInput"], finishedComponents: [] },
+        ]);
+      }
+    });
 
-              if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
-                newChecker.setQuestionAnswers(sessionContext[slug].answers);
-                // In case of reload, rewind to the current question
-                newChecker.rewindTo(sessionContext[slug].questionIndex);
-              }
-              // Store the entire `sttr-checker` in React Context
-              checkerContext.checker = newChecker;
-              setChecker(newChecker);
-            })
-            .catch((e) => {
-              setError(e);
-            });
-        }
-      });
-    }
+    const initChecker = () => {
+      if (!checker && !error) {
+        fetch(`${window.location.origin}/sttr/sttr/${slug}.json`)
+          .then((response) => response.json())
+          .then((json) => {
+            const newChecker = getChecker(json);
+            // Find if we have missing data needs
+            if (address) {
+              newChecker.autofill(autofillResolvers, { address });
+            }
+            const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
+              autofillMap,
+              true
+            )[0];
+
+            if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
+              newChecker.setQuestionAnswers(sessionContext[slug].answers);
+            }
+            // Store the entire `sttr-checker` in React Context
+            checkerContext.checker = newChecker;
+            setChecker(newChecker);
+          })
+          .catch((e) => {
+            setError(e);
+          });
+      }
+    };
+
+    const resetChecker = () => {
+      setChecker(null);
+      initChecker();
+    };
 
     if (error) {
       console.error(error);
       return <ErrorPage error={error} {...props} />;
-    } else if (flow === Flow.olo) {
+    } else if (flow === FlowType.olo) {
       return <Component checker={null} {...props} />;
     } else if (checker) {
-      return <Component checker={checker} {...props} />;
+      return (
+        <Component checker={checker} resetChecker={resetChecker} {...props} />
+      );
     } else {
       return <LoadingPage />;
     }

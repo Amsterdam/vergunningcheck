@@ -1,3 +1,9 @@
+export enum Flow {
+  olo,
+  oloRedirect,
+  sttr,
+}
+
 type Topic = {
   slug: string;
   flow: Flow;
@@ -12,11 +18,17 @@ type Text = {
   addressPage?: string;
 };
 
-export enum Flow {
-  olo,
-  oloRedirect,
-  sttr,
-}
+type OloProps = {
+  home: string;
+  intro: string;
+  location: string;
+};
+
+type OloUrlProps = {
+  houseNumber: string;
+  houseNumberFull: string;
+  postalCode: string;
+};
 
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
@@ -24,10 +36,21 @@ export const isProduction: boolean =
 const oloHome: string =
   process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
-export const OLO: object = {
+export const Olo: OloProps = {
   home: oloHome,
   intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
+};
+
+export const generateOloUrl = ({
+  houseNumber,
+  houseNumberFull,
+  postalCode,
+}: OloUrlProps) => {
+  // Get correct suffix
+  const suffix = houseNumberFull.replace(houseNumber, "").trim();
+  // Redirect user to OLO with all parameters
+  return `${Olo.location}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
 export const topics: Topic[] = [
@@ -44,6 +67,7 @@ export const topics: Topic[] = [
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+      // @TODO: The text `addressPage` is now unused > What to do with this text?
       addressPage:
         "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck.",
     },
@@ -55,6 +79,7 @@ export const topics: Topic[] = [
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
+      // @TODO: The text `addressPage` is now unused > What to do with this text?
       addressPage:
         "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.",
     },

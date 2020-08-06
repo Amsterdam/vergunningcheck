@@ -3,6 +3,7 @@ import React from "react";
 
 import { STEPBYSTEPITEM } from "../../utils/test-ids";
 import StepByStepItemStyle, {
+  BackgroundStyle,
   CircleStyle,
   CircleWrapperStyle,
   ContentWrapperStyle,
@@ -63,6 +64,7 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >
+      {active && highlightActive && <BackgroundStyle />}
       <CircleWrapperStyle {...{ done }}>
         <CircleStyle
           size={13}

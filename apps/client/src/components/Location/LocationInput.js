@@ -1,34 +1,31 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { Flow as FlowType, OLO } from "../../config";
+import { Flow as FlowType } from "../../config";
 import { CheckerContext, SessionContext } from "../../context";
-import withTopic from "../../hoc/withTopic";
 import { geturl, routes } from "../../routes";
-import { ADDRESS_PAGE } from "../../utils/test-ids";
-import AddressLine from "../AddressLine";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
-import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationFinder from "./LocationFinder";
 
-const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
+const LocationInput = ({ topic, setActiveState, resetChecker }) => {
+  const history = useHistory();
   const { trackEvent } = useMatomo();
+  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
-  const history = useHistory();
-  const [addressShown, setAddressShown] = useState(false);
-  const [address, setAddress] = useState(null);
-  const [focus, setFocus] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
-  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
+
   const { slug, flow, text = {} } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
-  const useOLO = flow === FlowType.olo;
+  const hasSTTR = flow === FlowType.sttr;
+
+  const [address, setAddress] = useState(sessionAddress);
+  const [errorMessage, setErrorMessage] = useState();
+  const [focus, setFocus] = useState(false);
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -52,11 +49,14 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        checkerContext.checker = null;
         answers = null;
       }
 
       checkerContext.autofillData.address = address;
+
+      if (hasSTTR) {
+        resetChecker();
+      }
 
       sessionContext.setSessionData([
         slug,
@@ -70,70 +70,10 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        setAddressShown(true);
-        if (checkerContext.checker) {
-          checkerContext.checker.next();
-        }
+        setActiveState("locationResult");
       }
     }
   };
-  const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
-    // Form is validated, we can proceed
-
-    // Generate OLO parameter "postalCode"
-    const oloPostalCode = `facet_locatie_postcode=${postalCode}`;
-
-    // Generate OLO parameter "streetNumber"
-    const oloStreetNumber = `facet_locatie_huisnummer=${houseNumber}`;
-
-    const oloSuffix = `facet_locatie_huisnummertoevoeging=${houseNumberFull
-      .replace(houseNumber, "")
-      .trim()}`;
-
-    // Redirect user to OLO with all parameters
-    return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
-  };
-
-  const handleAddressSubmit = (e) => {
-    e.preventDefault();
-    if (useOLO) {
-      window.open(getOloUrl(address), "_blank");
-    } else {
-      setFinishedLocation(true);
-    }
-  };
-
-  if (addressShown) {
-    return (
-      <Form onSubmit={handleAddressSubmit} data-testid={ADDRESS_PAGE}>
-        <Paragraph>
-          Over <AddressLine address={address} /> hebben we de volgende
-          informatie gevonden:
-        </Paragraph>
-
-        <RegisterLookupSummary displayZoningPlans={useOLO} address={address} />
-
-        <Paragraph>
-          {useOLO
-            ? `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket. `
-            : `We gebruiken deze informatie bij het invullen van de vergunningcheck. `}
-        </Paragraph>
-        {topic.text?.addressPage && (
-          <Paragraph>{topic.text.addressPage}</Paragraph>
-        )}
-
-        {!finishedLocation && (
-          <Nav
-            onGoToPrev={() => setAddressShown(false)}
-            nextText={useOLO ? "Naar het omgevingsloket" : "Naar de Vragen"}
-            formEnds={useOLO}
-            showPrev
-            showNext
-          />
-        )}
-      </Form>
-    );
-  }
 
   return (
     <>
@@ -148,6 +88,8 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
           </Paragraph>
         </Error>
       )}
+
+      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -162,6 +104,7 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
         />
         <Nav
           onGoToPrev={() => {
+            // @TODO: We need to give a warning or we need to store the checker data as well
             sessionContext.setSessionData([
               slug,
               {
@@ -171,10 +114,11 @@ const Location = ({ topic, finishedLocation, setFinishedLocation }) => {
             history.push(geturl(routes.intro, topic));
           }}
           showNext
+          showPrev
         />
       </Form>
     </>
   );
 };
 
-export default withTopic(Location);
+export default LocationInput;

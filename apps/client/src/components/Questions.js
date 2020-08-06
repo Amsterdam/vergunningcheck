@@ -1,24 +1,26 @@
 import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
-import { CheckerContext, SessionContext } from "../context";
-import withTopic from "../hoc/withTopic";
+import { SessionContext } from "../context";
 import { removeQuotes } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
-  topic,
-  finishedQuestions,
-  setFinishedQuestions,
-  setFinishedLocation,
+  checker,
+  topic: { slug },
+  setFinishedState,
+  setActiveState,
+  isActive,
 }) => {
-  const { slug } = topic;
-  const { checker } = useContext(CheckerContext);
   const sessionContext = useContext(SessionContext);
-  const { questionIndex } = sessionContext[slug] || 0;
+  const { questionIndex } = sessionContext[slug];
+
+  // Styling to overwrite the line between the Items
+  const activeStyle = { marginTop: -1, borderColor: "white" };
 
   const onQuestionNext = (value) => {
+    // @TODO: Let's refacter this function as well
     const question = checker.stack[questionIndex];
 
     // Provide the user answers to the `sttr-checker`
@@ -38,27 +40,37 @@ const Questions = ({
       },
     ]);
 
-    const next = checker.next();
-
-    // Go directly to "Conclusion" and skip other questions
-    // Only if the `sttr-checker` is the final question
     if (checker.needContactExit(question)) {
-      // Undo the next() with previous(), because we were already at the final question
-      checker.previous();
-      // Go to "Conclusion"
-      setFinishedQuestions(true);
+      // Go directly to "Contact Conclusion" and skip other questions
+      setActiveState("conclusion");
+      setFinishedState(["questions", "conslusion"], true);
     } else {
-      // Load the next question or go to the Result Page
-      if (next) {
-        // Store the new questionIndex in the session
+      // Load the next question or go to the "Conclusion"
+      if (checker.stack.length - 1 === questionIndex) {
+        // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
+        const next = checker.next();
+
+        if (next) {
+          // Store the new questionIndex in the session
+          sessionContext.setSessionData([
+            slug,
+            {
+              questionIndex: questionIndex + 1,
+            },
+          ]);
+        } else {
+          // Go to the "Conclusion"
+          setActiveState("conclusion");
+          setFinishedState(["questions", "conclusion"], true);
+        }
+      } else {
+        // In this case, the user is changing a previously answered question and we don't want to load a new question
         sessionContext.setSessionData([
           slug,
           {
             questionIndex: questionIndex + 1,
           },
         ]);
-      } else {
-        setFinishedQuestions(true);
       }
     }
   };
@@ -73,69 +85,82 @@ const Questions = ({
           questionIndex: questionIndex - 1,
         },
       ]);
-    } else {
-      setFinishedLocation(false);
-      setFinishedQuestions(false);
     }
   };
 
-  const onGoToQuestion = (questionIndex) => {
+  const onGoToQuestion = (questionId) => {
+    // Checker rewinding also needs to work when you already have a conlusion
     // Go to the specific question in the stack
-    checker.rewindTo(questionIndex);
+    setActiveState("questions");
+    setFinishedState(["conclusion", "questions"], false);
+
     sessionContext.setSessionData([
       slug,
       {
-        questionIndex,
+        questionIndex: questionId,
       },
     ]);
+    checker.rewindTo(questionId);
   };
 
+  if (checker.stack.length === 0) {
+    checker.next();
+  }
+
+  // Loop through all questions
   return checker.stack.map((q, i) => {
-    if (q === checker.stack[questionIndex] && !finishedQuestions) {
-      return (
-        <StepByStepItem
-          active
-          heading={q.text}
-          onClick={() => onGoToQuestion(i)}
-        >
+    // Define userAnswer
+    const booleanAnswers =
+      !q.options && booleanOptions.find((o) => o.value === q.answer);
+    const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+
+    // Define if question is the current one
+    const isCurrentQuestion =
+      q === checker.stack[questionIndex] && isActive("questions");
+
+    // Hide unanswered questions (eg: on browser refresh)
+    if (!isCurrentQuestion && !userAnswer) return null;
+
+    return (
+      <StepByStepItem
+        active={isCurrentQuestion}
+        checked={userAnswer}
+        customSize
+        heading={q.text}
+        highlightActive={isCurrentQuestion}
+        key={`question-${q.id}-${i}`}
+        style={isCurrentQuestion ? activeStyle : {}}
+      >
+        {isCurrentQuestion ? (
+          // Show the current question
           <Question
             question={q}
-            key={`question-${q.id}-${i}`}
-            onSubmit={onQuestionNext}
             onGoToPrev={onQuestionPrev}
-            showPrev
+            onSubmit={onQuestionNext}
             showNext
+            {...{
+              checker,
+              questionIndex,
+              userAnswer,
+            }}
           />
-        </StepByStepItem>
-      );
-    } else {
-      let answer;
-      if (q.options) {
-        answer = q.answer;
-      } else {
-        const responseObj = booleanOptions.find((o) => o.value === q.answer);
-        answer = responseObj?.label;
-      }
-      return (
-        <StepByStepItem
-          checked
-          heading={q.text}
-          onClick={() => onGoToQuestion(i)}
-        >
-          <Paragraph>
-            {removeQuotes(answer)}
+        ) : (
+          // Show the userAnswer with an Edit button
+          <Paragraph gutterBottom={0}>
+            {removeQuotes(userAnswer)}
+
             <Button
-              style={{ marginLeft: 20 }}
               onClick={() => onGoToQuestion(i)}
+              style={{ marginLeft: 20 }}
               variant="textButton"
             >
               Wijzig
             </Button>
           </Paragraph>
-        </StepByStepItem>
-      );
-    }
+        )}
+      </StepByStepItem>
+    );
   });
 };
 
-export default withTopic(Questions);
+export default Questions;

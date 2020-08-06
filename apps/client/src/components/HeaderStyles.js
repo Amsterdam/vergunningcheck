@@ -7,16 +7,16 @@ import { focusOutlineStyle } from "../utils/themeUtils";
 
 export const StyledHeader = styled(Header)`
   max-width: 960px;
-  padding: 0 ${themeSpacing(5)};
+  padding: 0 ${themeSpacing(4)};
 
+  @media ${breakpoint("min-width", "tabletS")} {
+    padding: 0 ${themeSpacing(5)};
+  }
   @media ${breakpoint("min-width", "tabletM")} {
     padding: 0 ${themeSpacing(6)};
   }
   @media ${breakpoint("min-width", "laptop")} {
     padding: 0 ${themeSpacing(8)};
-  }
-  @media ${breakpoint("min-width", "laptopM")} {
-    padding: 0 ${themeSpacing(11)};
   }
 `;
 
