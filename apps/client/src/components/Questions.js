@@ -29,6 +29,9 @@ const Questions = ({
       const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
+    if (checker.stack.length !== questionIndex + 1) {
+      checker.rewindTo(questionIndex);
+    }
   };
 
   const onQuestionNext = () => {
@@ -78,7 +81,7 @@ const Questions = ({
     }
   };
 
-  const onQuestionPrev = (value) => {
+  const onQuestionPrev = () => {
     // Load the previous question or go to "Location"
     if (checker.stack.length > 1) {
       // Store the new questionIndex in the session
@@ -88,7 +91,8 @@ const Questions = ({
           questionIndex: questionIndex - 1,
         },
       ]);
-    } else {
+    }
+    if (questionIndex === 0) {
       setActiveState("locationResult");
       setFinishedState(["questions", "locationResult"], false);
     }
@@ -106,7 +110,6 @@ const Questions = ({
         questionIndex: questionId,
       },
     ]);
-    checker.rewindTo(questionId);
   };
 
   if (checker.stack.length === 0) {
