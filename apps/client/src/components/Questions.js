@@ -19,10 +19,8 @@ const Questions = ({
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
-  const onQuestionNext = (value) => {
-    // @TODO: Let's refacter this function as well
+  const saveAnswer = (value) => {
     const question = checker.stack[questionIndex];
-
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
       question.setAnswer(value);
@@ -31,6 +29,11 @@ const Questions = ({
       const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
+  };
+
+  const onQuestionNext = () => {
+    // @TODO: Let's refacter this function as well
+    const question = checker.stack[questionIndex];
 
     // Store all answers in the session context
     sessionContext.setSessionData([
@@ -75,7 +78,7 @@ const Questions = ({
     }
   };
 
-  const onQuestionPrev = () => {
+  const onQuestionPrev = (value) => {
     // Load the previous question or go to "Location"
     if (checker.stack.length > 1) {
       // Store the new questionIndex in the session
@@ -139,7 +142,8 @@ const Questions = ({
           <Question
             question={q}
             onGoToPrev={onQuestionPrev}
-            onSubmit={onQuestionNext}
+            onGoToNext={onQuestionNext}
+            saveAnswer={saveAnswer}
             showNext
             showPrev
             {...{

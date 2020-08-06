@@ -23,10 +23,6 @@ export const booleanOptions = [
   },
 ];
 
-const hasKeys = (obj) =>
-  // convert to array, map, and then give the length
-  Object.entries(obj).map(([key, value]) => [key, value]).length;
-
 const Question = ({
   question: {
     id: questionId,
@@ -41,7 +37,8 @@ const Question = ({
   checker,
   editQuestion,
   setEditQuestion,
-  onSubmit: onSubmitProp,
+  onGoToNext,
+  saveAnswer,
   hideNavigation,
   showNext,
   showPrev,
@@ -93,24 +90,16 @@ const Question = ({
       checker.rewindTo(questionIndex);
       setEditQuestion(false);
     }
-    if (e.target.type === "radio") setValue(e.target.name, e.target.value);
-  };
 
-  const onSubmit = (data) => {
-    // Is only triggered with validated form
-    // Check if data has a key that matches the questionId
-    if (
-      (onSubmitProp && !hasKeys(data)) ||
-      (hasKeys(data) && data[questionId])
-    ) {
-      onSubmitProp(data[questionId]);
-    }
+    saveAnswer(e.target.value);
+
+    if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
   return (
     <Form
       className={className}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onGoToNext)}
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
