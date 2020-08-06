@@ -52,12 +52,12 @@ module.exports = {
     ],
     zonwering: [
       {
-        id: "TuP6ido9xpJSSxjLi",
-        name: "Zonwering, rolhek, luik of rolluik bouwen",
-      },
-      {
         id: "AkxinYRNNo679qi6T",
         name: "Zonwering, rolhek, luik of rolluik monument",
+      },
+      {
+        id: "TuP6ido9xpJSSxjLi",
+        name: "Zonwering, rolhek, luik of rolluik bouwen",
       },
     ],
   },
