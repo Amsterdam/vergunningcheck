@@ -85,6 +85,9 @@ const Questions = ({
           questionIndex: questionIndex - 1,
         },
       ]);
+    } else {
+      setActiveState("locationResult");
+      setFinishedState(["questions", "locationResult"], false);
     }
   };
 
@@ -138,6 +141,7 @@ const Questions = ({
             onGoToPrev={onQuestionPrev}
             onSubmit={onQuestionNext}
             showNext
+            showPrev
             {...{
               checker,
               questionIndex,
