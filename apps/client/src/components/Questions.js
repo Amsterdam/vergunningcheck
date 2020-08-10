@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { SessionContext } from "../context";
 import { removeQuotes } from "../utils";
 import Question, { booleanOptions } from "./Question";
+import QuestionNeedsPermit from "./QuestionNeedsPermit";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
@@ -15,6 +16,25 @@ const Questions = ({
 }) => {
   const sessionContext = useContext(SessionContext);
   const { questionIndex } = sessionContext[slug];
+
+  // Check which questions are causing the need for a permit
+  // @TODO: We can refactor this and move to checker.js
+  const permitsPerQuestion = [];
+  checker.isConclusive() &&
+    checker.permits.forEach((permit) => {
+      const conclusionDecision = permit.getDecisionById("dummy");
+      if (
+        conclusionDecision.getOutput() === '"Vergunningplicht"' ||
+        conclusionDecision.getOutput() === '"NeemContactOpMet"'
+      ) {
+        const decisiveDecisions = conclusionDecision.getDecisiveInputs();
+        decisiveDecisions.forEach((decision) => {
+          const decisiveQuestion = decision.getDecisiveInputs().pop();
+          const index = checker.stack.indexOf(decisiveQuestion);
+          permitsPerQuestion[index] = true;
+        });
+      }
+    });
 
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
@@ -121,6 +141,9 @@ const Questions = ({
     // Hide unanswered questions (eg: on browser refresh)
     if (!isCurrentQuestion && !userAnswer) return null;
 
+    // Check if currect question is causing a permit requirement
+    const questionNeedsPermit = !!permitsPerQuestion[i];
+
     return (
       <StepByStepItem
         active={isCurrentQuestion}
@@ -141,22 +164,27 @@ const Questions = ({
             {...{
               checker,
               questionIndex,
+              questionNeedsPermit,
               userAnswer,
             }}
           />
         ) : (
           // Show the userAnswer with an Edit button
-          <Paragraph gutterBottom={0}>
-            {removeQuotes(userAnswer)}
+          // @TODO: refactor this in a separate component
+          <>
+            <Paragraph gutterBottom={0}>
+              {removeQuotes(userAnswer)}
 
-            <Button
-              onClick={() => onGoToQuestion(i)}
-              style={{ marginLeft: 20 }}
-              variant="textButton"
-            >
-              Wijzig
-            </Button>
-          </Paragraph>
+              <Button
+                onClick={() => onGoToQuestion(i)}
+                style={{ marginLeft: 20 }}
+                variant="textButton"
+              >
+                Wijzig
+              </Button>
+            </Paragraph>
+            {questionNeedsPermit && <QuestionNeedsPermit />}
+          </>
         )}
       </StepByStepItem>
     );
