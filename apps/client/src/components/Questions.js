@@ -32,12 +32,6 @@ const Questions = ({
     if (checker.stack.length !== questionIndex + 1) {
       checker.rewindTo(questionIndex);
     }
-  };
-
-  const onQuestionNext = () => {
-    // @TODO: Let's refacter this function as well
-    const question = checker.stack[questionIndex];
-
     // Store all answers in the session context
     sessionContext.setSessionData([
       slug,
@@ -45,6 +39,11 @@ const Questions = ({
         answers: checker.getQuestionAnswers(),
       },
     ]);
+  };
+
+  const onQuestionNext = () => {
+    // @TODO: Let's refacter this function as well
+    const question = checker.stack[questionIndex];
 
     if (checker.needContactExit(question)) {
       // Go directly to "Contact Conclusion" and skip other questions
