@@ -129,6 +129,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
             <StepByStepItem
               active={isActive("conclusion")}
               checked={isActive("conclusion")}
+              done={isFinished("conclusion")}
               customSize
               heading="Conclusie"
               largeCircle
