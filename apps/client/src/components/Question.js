@@ -91,8 +91,10 @@ const Question = ({
       setEditQuestion(false);
     }
 
+    // Save the changed answer to the question.
     saveAnswer(e.target.value);
 
+    // Set the value of the radio group to the selected value with react-hook-form's setValue
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
