@@ -102,6 +102,7 @@ const Questions = ({
     // Go to the specific question in the stack
     setActiveState("questions");
     setFinishedState(["conclusion", "questions"], false);
+    setFinishedState("locationResult", true);
 
     sessionContext.setSessionData([
       slug,

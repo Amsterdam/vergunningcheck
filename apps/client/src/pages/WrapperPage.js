@@ -110,7 +110,7 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={isFinished("locationResult")}
+              done={isFinished("locationResult") || checker.stack.length > 0}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
