@@ -50,6 +50,16 @@ module.exports = {
         name: "Kozijn plaatsen",
       },
     ],
+    zonwering: [
+      {
+        id: "AkxinYRNNo679qi6T",
+        name: "Zonwering, rolhek, luik of rolluik monument",
+      },
+      {
+        id: "TuP6ido9xpJSSxjLi",
+        name: "Zonwering, rolhek, luik of rolluik bouwen",
+      },
+    ],
   },
   staging: {
     dakkapel: [
