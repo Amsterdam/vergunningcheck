@@ -6,7 +6,7 @@ const getDataNeed = (checker) =>
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
   getDataNeed(checker)
     ? autofillRoutes[getDataNeed(checker)][0]
-    : routes.wrapper;
+    : routes.checker;
 
 const strings = {
   NO_MONUMENT: "Geen monument",
@@ -55,7 +55,7 @@ export const autofillResolvers = {
  * Map from autofill-resolver key to the data-need it has.
  */
 export const autofillMap = {
-  monumentList: "wrapper",
-  monumentBoolean: "wrapper",
-  cityScape: "wrapper",
+  monumentList: "checker",
+  monumentBoolean: "checker",
+  cityScape: "checker",
 };
