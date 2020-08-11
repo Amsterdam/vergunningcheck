@@ -9,6 +9,7 @@ import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
+import QuestionNeedsPermit from "./QuestionNeedsPermit";
 
 export const booleanOptions = [
   {
@@ -44,6 +45,7 @@ const Question = ({
   showPrev,
   onGoToPrev,
   questionIndex,
+  questionNeedsPermit,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -114,6 +116,7 @@ const Question = ({
         answers={answers}
         userAnswer={userAnswer}
       />
+      {questionNeedsPermit && <QuestionNeedsPermit />}
       {!hideNavigation && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}
@@ -143,6 +146,7 @@ Question.propTypes = {
   className: PropTypes.string,
   headingAs: PropTypes.string,
   hideNavigation: PropTypes.bool,
+  questionNeedsPermit: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
   required: PropTypes.bool,
