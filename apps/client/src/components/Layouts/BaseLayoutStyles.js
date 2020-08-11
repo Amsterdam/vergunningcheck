@@ -7,6 +7,11 @@ export const Container = styled.div`
   margin: 0 auto;
   background-color: ${themeColor("tint", "level1")};
   overflow: hidden;
+
+  /* Try to fit as much as possible on one paper */
+  @media print {
+    zoom: 0.7;
+  }
 `;
 
 export const ContentContainer = styled.div`

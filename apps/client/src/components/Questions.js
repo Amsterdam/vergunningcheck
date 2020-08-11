@@ -1,10 +1,8 @@
-import { Button, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
 import { SessionContext } from "../context";
-import { removeQuotes } from "../utils";
 import Question, { booleanOptions } from "./Question";
-import QuestionNeedsPermit from "./QuestionNeedsPermit";
+import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
@@ -180,22 +178,11 @@ const Questions = ({
             }}
           />
         ) : (
-          // Show the userAnswer with an Edit button
-          // @TODO: refactor this in a separate component
-          <>
-            <Paragraph gutterBottom={0}>
-              {removeQuotes(userAnswer)}
-
-              <Button
-                onClick={() => onGoToQuestion(i)}
-                style={{ marginLeft: 20 }}
-                variant="textButton"
-              >
-                Wijzig
-              </Button>
-            </Paragraph>
-            {questionNeedsPermit && <QuestionNeedsPermit />}
-          </>
+          // Show the answer with an edit button
+          <QuestionAnswer
+            onClick={() => onGoToQuestion(i)}
+            {...{ questionNeedsPermit, userAnswer }}
+          />
         )}
       </StepByStepItem>
     );
