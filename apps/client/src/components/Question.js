@@ -9,7 +9,7 @@ import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
-import QuestionNeedsPermit from "./QuestionNeedsPermit";
+import PermitAlert from "./PermitAlert";
 
 export const booleanOptions = [
   {
@@ -116,7 +116,7 @@ const Question = ({
         answers={answers}
         userAnswer={userAnswer}
       />
-      {questionNeedsPermit && <QuestionNeedsPermit />}
+      {questionNeedsPermit && <PermitAlert />}
       {!hideNavigation && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}

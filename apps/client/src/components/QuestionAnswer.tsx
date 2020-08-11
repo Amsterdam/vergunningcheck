@@ -2,8 +2,8 @@ import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { removeQuotes } from "../utils";
+import PermitAlert from "./PermitAlert";
 import { EditQuestionButton } from "./QuestionAnswerStyles";
-import QuestionNeedsPermit from "./QuestionNeedsPermit";
 
 type QuestionAnswerProps = {
   onClick: Function;
@@ -25,7 +25,7 @@ const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
           Wijzig
         </EditQuestionButton>
       </Paragraph>
-      {questionNeedsPermit && <QuestionNeedsPermit />}
+      {questionNeedsPermit && <PermitAlert />}
     </>
   );
 };
