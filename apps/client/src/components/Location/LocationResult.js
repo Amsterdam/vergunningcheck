@@ -21,6 +21,12 @@ const LocationResult = ({
   const onSubmit = (e) => {
     e.preventDefault();
     if (hasSTTR) {
+      sessionContext.setSessionData([
+        topic.slug,
+        {
+          questionIndex: 0,
+        },
+      ]);
       setFinishedState("locationResult", true);
       setActiveState("questions");
     } else {

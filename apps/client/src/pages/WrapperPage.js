@@ -110,27 +110,26 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={isFinished("locationResult")}
+              done={checker.stack.length}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
               style={{ borderColor: "white" }}
             />
-            {isFinished("locationResult") && (
-              <Questions
-                {...{
-                  checker,
-                  topic,
-                  setFinishedState,
-                  setActiveState,
-                  isActive,
-                  isFinished,
-                }}
-              />
-            )}
+            <Questions
+              {...{
+                checker,
+                topic,
+                setFinishedState,
+                setActiveState,
+                isActive,
+                isFinished,
+              }}
+            />
             <StepByStepItem
               active={isActive("conclusion")}
               checked={isActive("conclusion")}
+              done={isFinished("questions")}
               customSize
               heading="Conclusie"
               largeCircle
