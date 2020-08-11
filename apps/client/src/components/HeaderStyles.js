@@ -18,6 +18,10 @@ export const StyledHeader = styled(Header)`
   @media ${breakpoint("min-width", "laptop")} {
     padding: 0 ${themeSpacing(8)};
   }
+
+  @media print {
+    -webkit-print-color-adjust: exact;
+  }
 `;
 
 export const StyledHeaderWrapper = css`
@@ -43,10 +47,6 @@ export const StyledLogo = styled.span`
   cursor: pointer;
   background-size: cover;
   background-image: url("${LogoMobile}");
-
-  @media print {
-   -webkit-print-color-adjust: exact;
-  }
 `;
 
 export const StyledLogoWrapper = styled.a`
