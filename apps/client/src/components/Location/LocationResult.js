@@ -41,7 +41,6 @@ const LocationResult = ({
         displayZoningPlans={!hasSTTR}
         address={address}
         setActiveState={setActiveState}
-        setFinishedState={setFinishedState}
         topic={topic}
       />
       {!hasSTTR && (

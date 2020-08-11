@@ -11,7 +11,13 @@ import Form from "../Form";
 import Nav from "../Nav";
 import LocationFinder from "./LocationFinder";
 
-const LocationInput = ({ topic, setActiveState, resetChecker }) => {
+const LocationInput = ({
+  isFinished,
+  resetChecker,
+  setActiveState,
+  setFinishedState,
+  topic,
+}) => {
   const history = useHistory();
   const { trackEvent } = useMatomo();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
@@ -37,6 +43,19 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
 
   const onSubmit = () => {
     if (address.postalCode) {
+      // Detect if user is submitting the same address as currenly stored
+      if (sessionAddress.id && sessionAddress.id === address.id) {
+        if (isFinished("questions")) {
+          setActiveState("conclusion");
+        } else {
+          setActiveState("questions");
+        }
+        return;
+      }
+
+      // Reset all previous finished states
+      setFinishedState(["locationResult", "questions", "conclusion"], false);
+
       trackEvent({
         category: "postcode-input",
         action: `postcode - ${slug.replace("-", " ")}`,
