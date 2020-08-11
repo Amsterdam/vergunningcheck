@@ -17,7 +17,7 @@ import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import { geturl, routes } from "../routes";
 
-const WrapperPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
 
@@ -167,4 +167,4 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
     </Layout>
   );
 };
-export default withChecker(WrapperPage);
+export default withChecker(CheckerPage);

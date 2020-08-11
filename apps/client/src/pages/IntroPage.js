@@ -23,7 +23,7 @@ const IntroPage = ({ topic }) => {
       </Suspense>
       <Nav
         showNext
-        onGoToNext={() => history.push(geturl(routes.wrapper, topic))}
+        onGoToNext={() => history.push(geturl(routes.checker, topic))}
       />
     </Layout>
   );
