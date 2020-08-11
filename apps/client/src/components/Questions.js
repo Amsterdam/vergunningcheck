@@ -3,8 +3,8 @@ import React, { useContext } from "react";
 
 import { SessionContext } from "../context";
 import { removeQuotes } from "../utils";
+import PermitAlert from "./PermitAlert";
 import Question, { booleanOptions } from "./Question";
-import QuestionNeedsPermit from "./QuestionNeedsPermit";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
@@ -194,7 +194,7 @@ const Questions = ({
                 Wijzig
               </Button>
             </Paragraph>
-            {questionNeedsPermit && <QuestionNeedsPermit />}
+            {questionNeedsPermit && <PermitAlert />}
           </>
         )}
       </StepByStepItem>
