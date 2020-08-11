@@ -31,7 +31,10 @@ const Conclusion = ({ checker, topic: { slug } }) => {
                 /['"]+/g,
                 ""
               )}`,
-        description: conclusionMatchingRules[0].description,
+        description:
+          outcome === sttrOutcomes.NEED_CONTACT
+            ? contactOutcome.description
+            : conclusionMatchingRules[0].description,
       };
     });
 
