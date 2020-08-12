@@ -117,7 +117,11 @@ const Questions = ({
     }
     if (questionIndex === 0) {
       setActiveState("locationResult");
-      setFinishedState(["questions", "locationResult"], false);
+      setFinishedState("locationResult", false);
+      // This prevents to uncheck the Item that holds "questions" (when all questions are answered)
+      if (!isFinished("questions")) {
+        setFinishedState("questions", false);
+      }
     }
   };
 
