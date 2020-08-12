@@ -135,7 +135,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             />
             <StepByStepItem
               active={isActive("conclusion")}
-              checked={isActive("conclusion")}
+              checked={isFinished("questions")}
               done={isFinished("questions")}
               customSize
               heading="Conclusie"
