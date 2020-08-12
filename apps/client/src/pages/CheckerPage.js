@@ -90,9 +90,11 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               {isActive("locationInput") && (
                 <LocationInput
                   {...{
-                    topic,
+                    isFinished,
                     resetChecker,
                     setActiveState,
+                    setFinishedState,
+                    topic,
                   }}
                 />
               )}

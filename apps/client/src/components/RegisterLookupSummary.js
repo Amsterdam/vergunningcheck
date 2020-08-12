@@ -10,7 +10,6 @@ const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
   setActiveState,
-  setFinishedState,
   topic: { sttrFile },
 }) => {
   const { restrictions, zoningPlans } = address;
@@ -24,15 +23,12 @@ const RegisterLookupSummary = ({
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
         <AddressLine address={address} />
+        {/* @TODO: Refactor into EditButton because it's used multiple times */}
         <Button
           variant="textButton"
           style={{ marginLeft: 12 }}
           onClick={() => {
             setActiveState("locationInput");
-            setFinishedState(
-              ["locationResult", "questions", "conclusion"],
-              false
-            );
           }}
           type="button"
         >
