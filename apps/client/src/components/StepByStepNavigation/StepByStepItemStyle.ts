@@ -92,6 +92,11 @@ const CircleWrapperStyle = styled.div<Props>`
     flex: 0 0 60px;
   }
 
+  /* Force print the background colors on webkit browsers */
+  @media print {
+    -webkit-print-color-adjust: exact;
+  }
+
   &:after {
     content: "";
     position: absolute;

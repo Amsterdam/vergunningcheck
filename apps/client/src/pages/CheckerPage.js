@@ -17,7 +17,7 @@ import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import { geturl, routes } from "../routes";
 
-const WrapperPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
 
@@ -110,27 +110,26 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={isFinished("locationResult")}
+              done={checker.stack.length}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
               style={{ borderColor: "white" }}
             />
-            {isFinished("locationResult") && (
-              <Questions
-                {...{
-                  checker,
-                  topic,
-                  setFinishedState,
-                  setActiveState,
-                  isActive,
-                  isFinished,
-                }}
-              />
-            )}
+            <Questions
+              {...{
+                checker,
+                topic,
+                setFinishedState,
+                setActiveState,
+                isActive,
+                isFinished,
+              }}
+            />
             <StepByStepItem
               active={isActive("conclusion")}
               checked={isActive("conclusion")}
+              done={isFinished("questions")}
               customSize
               heading="Conclusie"
               largeCircle
@@ -168,4 +167,4 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
     </Layout>
   );
 };
-export default withChecker(WrapperPage);
+export default withChecker(CheckerPage);

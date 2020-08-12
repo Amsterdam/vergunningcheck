@@ -36,7 +36,7 @@ const LocationInput = ({ topic, setActiveState, resetChecker }) => {
   }, [address, clearErrors, errorMessage, register, unregister]);
 
   const onSubmit = () => {
-    if (address) {
+    if (address.postalCode) {
       trackEvent({
         category: "postcode-input",
         action: `postcode - ${slug.replace("-", " ")}`,

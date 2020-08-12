@@ -9,6 +9,7 @@ import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
+import PermitAlert from "./PermitAlert";
 
 export const booleanOptions = [
   {
@@ -22,10 +23,6 @@ export const booleanOptions = [
     value: false,
   },
 ];
-
-const hasKeys = (obj) =>
-  // convert to array, map, and then give the length
-  Object.entries(obj).map(([key, value]) => [key, value]).length;
 
 const Question = ({
   question: {
@@ -41,12 +38,14 @@ const Question = ({
   checker,
   editQuestion,
   setEditQuestion,
-  onSubmit: onSubmitProp,
+  onGoToNext,
+  saveAnswer,
   hideNavigation,
   showNext,
   showPrev,
   onGoToPrev,
   questionIndex,
+  questionNeedsPermit,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -93,24 +92,18 @@ const Question = ({
       checker.rewindTo(questionIndex);
       setEditQuestion(false);
     }
-    if (e.target.type === "radio") setValue(e.target.name, e.target.value);
-  };
 
-  const onSubmit = (data) => {
-    // Is only triggered with validated form
-    // Check if data has a key that matches the questionId
-    if (
-      (onSubmitProp && !hasKeys(data)) ||
-      (hasKeys(data) && data[questionId])
-    ) {
-      onSubmitProp(data[questionId]);
-    }
+    // Save the changed answer to the question.
+    saveAnswer(e.target.value);
+
+    // Set the value of the radio group to the selected value with react-hook-form's setValue
+    if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
   return (
     <Form
       className={className}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onGoToNext)}
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
@@ -123,6 +116,7 @@ const Question = ({
         answers={answers}
         userAnswer={userAnswer}
       />
+      {questionNeedsPermit && <PermitAlert />}
       {!hideNavigation && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}
@@ -152,6 +146,7 @@ Question.propTypes = {
   className: PropTypes.string,
   headingAs: PropTypes.string,
   hideNavigation: PropTypes.bool,
+  questionNeedsPermit: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
   required: PropTypes.bool,

@@ -31,7 +31,10 @@ const Conclusion = ({ checker, topic: { slug } }) => {
                 /['"]+/g,
                 ""
               )}`,
-        description: conclusionMatchingRules[0].description,
+        description:
+          outcome === sttrOutcomes.NEED_CONTACT
+            ? contactOutcome.description
+            : conclusionMatchingRules[0].description,
       };
     });
 
@@ -78,7 +81,7 @@ const Conclusion = ({ checker, topic: { slug } }) => {
         </ComponentWrapper>
       )}
 
-      <PrintOnly style={{ marginTop: 20 }} withBorder avoidPageBreak>
+      <PrintOnly withBorder avoidPageBreak>
         <Alert
           heading="Let op"
           content={`De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog geen zekerheid bieden dat de uitkomst correct is. Ook is de informatie nog niet voor iedereen goed te lezen of te beluisteren. Wilt u iets zeker weten of wilt u meer informatie? Bel het telefoonnummer 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.`}
