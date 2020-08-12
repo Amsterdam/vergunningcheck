@@ -55,7 +55,7 @@ const LocationResult = ({
           onGoToPrev={() => {
             setActiveState("locationInput");
           }}
-          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de vragen"}
           formEnds={!hasSTTR}
           showPrev
           showNext

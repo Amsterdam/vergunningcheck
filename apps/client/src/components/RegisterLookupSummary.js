@@ -1,7 +1,8 @@
-import { Button, Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
+import EditButton from "../atoms/EditButton";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -23,17 +24,11 @@ const RegisterLookupSummary = ({
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
         <AddressLine address={address} />
-        {/* @TODO: Refactor into EditButton because it's used multiple times */}
-        <Button
-          variant="textButton"
-          style={{ marginLeft: 12 }}
+        <EditButton
           onClick={() => {
             setActiveState("locationInput");
           }}
-          type="button"
-        >
-          Wijzig
-        </Button>
+        />
       </Paragraph>
       <Paragraph gutterBottom={16}>
         Over dit adres hebben we de volgende gegevens gevonden:

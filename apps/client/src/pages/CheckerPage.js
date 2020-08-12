@@ -83,7 +83,10 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           >
             <StepByStepItem
               active={isActive("locationInput") || isActive("locationResult")}
-              checked={isFinished("locationResult")}
+              checked={
+                isActive("locationResult") || isFinished("locationResult")
+              }
+              done={isActive("locationInput") || isActive("locationResult")}
               heading="Adresgegevens"
               largeCircle
             >
@@ -98,21 +101,23 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
                   }}
                 />
               )}
-              {(isActive("locationResult") || isFinished("locationResult")) && (
-                <LocationResult
-                  {...{
-                    topic,
-                    isFinished,
-                    setActiveState,
-                    setFinishedState,
-                  }}
-                />
-              )}
+              {!isActive("locationInput") &&
+                (isActive("locationResult") ||
+                  isFinished("locationResult")) && (
+                  <LocationResult
+                    {...{
+                      topic,
+                      isFinished,
+                      setActiveState,
+                      setFinishedState,
+                    }}
+                  />
+                )}
             </StepByStepItem>
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={checker.stack.length}
+              done={isActive("questions") || checker.stack.length > 1}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
@@ -130,7 +135,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             />
             <StepByStepItem
               active={isActive("conclusion")}
-              checked={isActive("conclusion")}
+              checked={isFinished("questions")}
               done={isFinished("questions")}
               customSize
               heading="Conclusie"

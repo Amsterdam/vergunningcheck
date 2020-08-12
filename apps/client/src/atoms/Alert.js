@@ -5,4 +5,8 @@ export default styled(Alert)`
   /* IE11 Fix */
   white-space: pre-line;
   display: "block";
+
+  @media print {
+    -webkit-print-color-adjust: exact;
+  }
 `;
