@@ -77,7 +77,10 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       ? value
       : value === "next"
       ? questionIndex + 1
-      : questionIndex - 1;
+      : value === "prev"
+      ? questionIndex - 1
+      : console.error(`${value} is not a int, 'next' or 'prev'`);
+
     sessionContext.setSessionData([
       slug,
       {
