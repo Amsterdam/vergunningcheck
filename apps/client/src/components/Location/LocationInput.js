@@ -1,30 +1,30 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import Error from "../components/Error";
-import Form from "../components/Form";
-import Layout from "../components/Layouts/DefaultLayout";
-import LocationFinder from "../components/Location/LocationFinder";
-import Nav from "../components/Nav";
-import { CheckerContext, SessionContext } from "../context";
-import withTopic from "../hoc/withTopic";
-import { geturl, routes } from "../routes";
+import { CheckerContext, SessionContext } from "../../context";
+import { geturl, routes } from "../../routes";
+import Error from "../Error";
+import Form from "../Form";
+import Nav from "../Nav";
+import LocationFinder from "./LocationFinder";
 
-const LocationPage = ({ topic }) => {
+const LocationInput = ({ topic, setActiveState, resetChecker }) => {
+  const history = useHistory();
   const { trackEvent } = useMatomo();
+  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
-  const history = useHistory();
-  const [address, setAddress] = useState(null);
-  const [focus, setFocus] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
-  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { slug, text } = topic;
+
+  const { slug, text, sttrFile } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
+  const hasSTTR = !!sttrFile;
+
+  const [address, setAddress] = useState(sessionAddress);
+  const [errorMessage, setErrorMessage] = useState();
+  const [focus, setFocus] = useState(false);
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -35,7 +35,7 @@ const LocationPage = ({ topic }) => {
     return () => unregister("suffix");
   }, [address, clearErrors, errorMessage, register, unregister]);
 
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     if (address) {
       trackEvent({
         category: "postcode-input",
@@ -48,11 +48,14 @@ const LocationPage = ({ topic }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        checkerContext.checker = null;
         answers = null;
       }
 
       checkerContext.autofillData.address = address;
+
+      if (hasSTTR) {
+        resetChecker();
+      }
 
       sessionContext.setSessionData([
         slug,
@@ -66,16 +69,13 @@ const LocationPage = ({ topic }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        history.push(geturl(routes.address, topic));
+        setActiveState("locationResult");
       }
     }
   };
 
   return (
-    <Layout>
-      <Helmet>
-        <title>Invullen adres - {text.heading}</title>
-      </Helmet>
+    <>
       {errorMessage && (
         <Error
           heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check op dit moment niet kunt doen."
@@ -87,7 +87,7 @@ const LocationPage = ({ topic }) => {
           </Paragraph>
         </Error>
       )}
-      <Heading forwardedAs="h4">Invullen adres</Heading>
+      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
@@ -101,6 +101,7 @@ const LocationPage = ({ topic }) => {
         />
         <Nav
           onGoToPrev={() => {
+            // @TODO: We need to give a warning or we need to store the checker data as well
             sessionContext.setSessionData([
               slug,
               {
@@ -109,12 +110,12 @@ const LocationPage = ({ topic }) => {
             ]);
             history.push(geturl(routes.intro, topic));
           }}
-          showPrev
           showNext
+          showPrev
         />
       </Form>
-    </Layout>
+    </>
   );
 };
 
-export default withTopic(LocationPage);
+export default LocationInput;

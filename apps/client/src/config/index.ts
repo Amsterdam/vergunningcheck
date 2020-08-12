@@ -12,16 +12,39 @@ type Text = {
   addressPage?: string;
 };
 
+type OloProps = {
+  home: string;
+  intro: string;
+  location: string;
+};
+
+type OloUrlProps = {
+  houseNumber: string;
+  houseNumberFull: string;
+  postalCode: string;
+};
+
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
 const oloHome: string =
   process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
-export const OLO: object = {
+export const Olo: OloProps = {
   home: oloHome,
   intro: `${oloHome}Particulier/particulier/home?init=true`,
   location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
+};
+
+export const generateOloUrl = ({
+  houseNumber,
+  houseNumberFull,
+  postalCode,
+}: OloUrlProps) => {
+  // Get correct suffix
+  const suffix = houseNumberFull.replace(houseNumber, "").trim();
+  // Redirect user to OLO with all parameters
+  return `${Olo.location}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
 const topics: Topic[] = [
@@ -38,6 +61,7 @@ const topics: Topic[] = [
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+      // @TODO: The text `addressPage` is now unused > What to do with this text?
       addressPage:
         "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck.",
     },
@@ -49,6 +73,7 @@ const topics: Topic[] = [
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
+      // @TODO: The text `addressPage` is now unused > What to do with this text?
       addressPage:
         "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.",
     },
@@ -98,6 +123,15 @@ const topics: Topic[] = [
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
     },
     intro: "InternVerbouwenIntro",
+  },
+  {
+    slug: "zonwering-of-rolluik-plaatsen",
+    text: {
+      heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
+      locationIntro:
+        "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
+    },
+    intro: "ZonweringRolluikIntro",
   },
 ];
 

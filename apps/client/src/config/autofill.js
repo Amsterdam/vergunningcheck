@@ -1,11 +1,15 @@
-import { getRestrictionByTypeName } from "../utils";
+import { addQuotes, getRestrictionByTypeName } from "../utils";
 
 const getDataNeed = (checker) =>
   checker && checker.getAutofillDataNeeds(autofillMap)[0];
 
-export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) => {
-  const dataNeed = getDataNeed(checker);
-  return dataNeed ? autofillRoutes[dataNeed][0] : routes.questions;
+export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
+  getDataNeed(checker)
+    ? autofillRoutes[getDataNeed(checker)][0]
+    : routes.wrapper;
+
+const strings = {
+  NO_MONUMENT: "Geen monument",
 };
 
 export const getDataNeedResultPageOrPrevious = (
@@ -40,18 +44,18 @@ export const autofillResolvers = {
         "Monument"
       );
       if (monumentData) {
-        return `"${monumentData.name}"`;
+        return addQuotes(monumentData.name);
       }
     }
-    return '"Geen monument"';
+    return addQuotes(strings.NO_MONUMENT);
   },
 };
 
 /**
- * map from autofill-resolver key to the data-need it has.
+ * Map from autofill-resolver key to the data-need it has.
  */
 export const autofillMap = {
-  monumentList: "address",
-  monumentBoolean: "address",
-  cityScape: "address",
+  monumentList: "wrapper",
+  monumentBoolean: "wrapper",
+  cityScape: "wrapper",
 };

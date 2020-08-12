@@ -1,137 +1,171 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
+import { Redirect } from "react-router-dom";
 
-import Wrapper from "../checker/Wrapper";
+import { ComponentWrapper } from "../atoms";
+import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
+import LocationInput from "../components/Location/LocationInput";
+import LocationResult from "../components/Location/LocationResult";
+import Questions from "../components/Questions";
+import {
+  StepByStepItem,
+  StepByStepNavigation,
+} from "../components/StepByStepNavigation";
+import { SessionContext } from "../context";
+import withChecker from "../hoc/withChecker";
+import { geturl, routes } from "../routes";
 
-// import Question, { booleanOptions } from "../components/Question";
-// import { SessionContext } from "../context";
-// import withChecker from "../hoc/withChecker";
+const WrapperPage = ({ checker, topic, resetChecker }) => {
+  const sessionContext = useContext(SessionContext);
+  const { slug, sttrFile } = topic;
 
-// import { Redirect, useHistory, useParams } from "react-router-dom";
+  //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
+  if (!sessionContext[slug]) {
+    return <Redirect to={geturl(routes.intro, topic)} />;
+  }
+  const { activeComponents, finishedComponents } = sessionContext[slug];
 
-// import { getslug, geturl, routes } from "../routes";
+  // Only one component can be active at the same time.
+  const setActiveState = (component) => {
+    sessionContext.setSessionData([slug, { activeComponents: [component] }]);
+  };
 
-const WrapperPage = ({ topic, checker }) => {
-  // const sessionContext = useContext(SessionContext);
-  // const params = useParams();
-  // const history = useHistory();
-  // const { question: questionSlug } = params;
-  // const [question, setQuestion] = useState(
-  //   checker.stack[checker.stack.length - 1]
-  // );
-  // const { slug } = topic;
-  // const currSlug = getslug(question.text);
+  /**
+   * Set given components to the given finished state
+   *
+   * @param { Object[] | string } component - name or names of the components
+   * @param { boolean } value - Set components to finished state or remove from finished state.
+   */
+  const setFinishedState = (component, value) => {
+    // If component is only a string, we make it a array first
+    const allComponents = Array.isArray(component) ? component : [component];
 
-  // // Update URL when it's not set (first question) and when URL differs from the current question
-  // if (!questionSlug || questionSlug !== currSlug) {
-  //   return (
-  //     <Redirect
-  //       to={geturl(routes.questions, {
-  //         slug: topic.slug,
-  //         question: currSlug,
-  //       })}
-  //     />
-  //   );
-  // }
+    // If value is false, remove the components from the fishedComponents array
+    const newFinishedComponents =
+      typeof value === "boolean" && value === false
+        ? finishedComponents?.filter((c) => !allComponents.includes(c)) || []
+        : [...finishedComponents, ...allComponents];
 
-  // const needContactPermits = () =>
-  //   checker.permits.find((permit) => {
-  //     const conclusion = permit.getDecisionById("dummy");
-  //     const conclusionMatchingRules = conclusion.getMatchingRules();
-  //     return conclusionMatchingRules.find(
-  //       (rule) => rule.outputValue === '"NeemContactOpMet"'
-  //     );
-  //   });
+    // Save the new array to the context
+    sessionContext.setSessionData([
+      slug,
+      { finishedComponents: newFinishedComponents },
+    ]);
+  };
 
-  // const onQuestionNext = (value) => {
-  //   // Provide the user answers to the `sttr-checker`
-  //   if (question.options && value !== undefined) {
-  //     question.setAnswer(value);
-  //   }
-  //   if (!question.options && value) {
-  //     const responseObj = booleanOptions.find((o) => o.formValue === value);
-  //     question.setAnswer(responseObj.value);
-  //   }
+  const isActive = (component, finished = false) => {
+    // If component is only a string, we make it a array first
+    const allComponents = Array.isArray(component) ? component : [component];
 
-  //   // Store all answers in the session context
-  //   sessionContext.setSessionData({
-  //     answers: checker.getQuestionAnswers(),
-  //   });
+    // If finished is true we check if it's finished, else check activeComponents.
+    const components = finished ? finishedComponents : activeComponents;
+    return components.includes(...allComponents) || false;
+  };
 
-  //   // Load next question
-  //   const next = checker.next();
-
-  //   // Go directly to the Conclusion Page, without passing the Results Page
-  //   // Only if the `sttr-checker` is the final question
-  //   if (needContactPermits() && !next) {
-  //     // Undo the next() with previous(), because we were already at the final question
-  //     checker.previous();
-
-  //     // Change the URL to the Conclusion Page
-  //     history.push(geturl(routes.conclusion, { slug }));
-  //   } else {
-  //     // Load the next question or go to the Result Page
-  //     if (next) {
-  //       // Store the new questionIndex in the session
-  //       sessionContext.setSessionData({
-  //         questionIndex: sessionContext.questionIndex + 1,
-  //       });
-
-  //       // Go to Next question
-  //       setQuestion(next);
-
-  //       // Change the URL to the new question
-  //       history.push(
-  //         geturl(routes.questions, {
-  //           slug: topic.slug,
-  //           question: getslug(next.text),
-  //         })
-  //       );
-  //     } else {
-  //       // Go to Result page if there is no new quesion
-  //       history.push(geturl(routes.results, { slug }));
-  //     }
-  //   }
-  // };
-
-  // const onQuestionPrev = () => {
-  //   // Load the previous question or go to the Location Page
-  //   if (checker.stack.length > 1) {
-  //     const prev = checker.previous();
-
-  //     // Store the new questionIndex in the session
-  //     sessionContext.setSessionData({
-  //       questionIndex: sessionContext.questionIndex - 1,
-  //     });
-
-  //     // Go to Prev question
-  //     setQuestion(prev);
-
-  //     // Change the URL to the new question
-  //     history.push(
-  //       geturl(routes.questions, {
-  //         slug: topic.slug,
-  //         question: getslug(prev.text),
-  //       })
-  //     );
-  //   } else {
-  //     // Go back to the Location page
-  //     history.push(geturl(routes.address, { slug }));
-  //   }
-  // };
+  const isFinished = (component) => isActive(component, true);
 
   return (
     <Layout>
       <Helmet>
         <title>Wrapper Page</title>
       </Helmet>
-      <Wrapper />
+      <ComponentWrapper>
+        {/* STTR-flow with the StepByStepNavigation */}
+        {sttrFile && (
+          <StepByStepNavigation
+            customSize
+            disabledTextColor="inherit"
+            doneTextColor="inherit"
+            highlightActive
+            lineBetweenItems
+          >
+            <StepByStepItem
+              active={isActive("locationInput") || isActive("locationResult")}
+              checked={isFinished("locationResult")}
+              heading="Adresgegevens"
+              largeCircle
+            >
+              {isActive("locationInput") && (
+                <LocationInput
+                  {...{
+                    topic,
+                    resetChecker,
+                    setActiveState,
+                  }}
+                />
+              )}
+              {(isActive("locationResult") || isFinished("locationResult")) && (
+                <LocationResult
+                  {...{
+                    topic,
+                    isFinished,
+                    setActiveState,
+                    setFinishedState,
+                  }}
+                />
+              )}
+            </StepByStepItem>
+            <StepByStepItem
+              checked={isFinished("questions")}
+              customSize
+              done={isFinished("locationResult")}
+              heading="Vragen"
+              largeCircle
+              // Overwrite the line between the Items
+              style={{ borderColor: "white" }}
+            />
+            {isFinished("locationResult") && (
+              <Questions
+                {...{
+                  checker,
+                  topic,
+                  setFinishedState,
+                  setActiveState,
+                  isActive,
+                  isFinished,
+                }}
+              />
+            )}
+            <StepByStepItem
+              active={isActive("conclusion")}
+              checked={isActive("conclusion")}
+              customSize
+              heading="Conclusie"
+              largeCircle
+              // Overwrite the line between the Items
+              style={{ marginTop: -1 }}
+            >
+              {isFinished("questions") && (
+                <Conclusion {...{ topic, checker }} />
+              )}
+            </StepByStepItem>
+          </StepByStepNavigation>
+        )}
 
-      <DebugDecisionTable checker={checker} />
+        {/* OLO-flow only needs the Location component */}
+        {!sttrFile && (
+          <>
+            {isActive("locationInput") && (
+              <LocationInput {...{ topic, setActiveState }} />
+            )}
+            {isActive("locationResult") && (
+              <LocationResult
+                {...{
+                  topic,
+                  isFinished,
+                  setActiveState,
+                  setFinishedState,
+                }}
+              />
+            )}
+          </>
+        )}
+      </ComponentWrapper>
+
+      <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
   );
 };
-
-export default WrapperPage;
+export default withChecker(WrapperPage);

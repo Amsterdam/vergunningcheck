@@ -1,4 +1,3 @@
-import { Heading } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -32,19 +31,22 @@ const Question = ({
   question: {
     id: questionId,
     type: questionType,
-    text: questionTitle,
     options: questionAnswers,
     answer: currentAnswer,
     description,
     longDescription,
   },
+  userAnswer,
   className,
-  headingAs,
+  checker,
+  editQuestion,
+  setEditQuestion,
   onSubmit: onSubmitProp,
   hideNavigation,
   showNext,
   showPrev,
   onGoToPrev,
+  questionIndex,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -53,7 +55,6 @@ const Question = ({
     value: answer,
   }));
   const answers = questionType === "string" ? listAnswers : booleanOptions;
-  let answer;
 
   useEffect(() => {
     if (questionId) {
@@ -84,16 +85,20 @@ const Question = ({
     currentAnswer,
     questionAnswers,
     setValue,
-  ]); // IE11 fix to put all dependencies here
+  ]);
 
   const handleChange = (e) => {
+    // On edit question, keep the current stack until the answer is changed.
+    if (editQuestion) {
+      checker.rewindTo(questionIndex);
+      setEditQuestion(false);
+    }
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
   const onSubmit = (data) => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
-    window.scrollTo(0, 0);
     if (
       (onSubmitProp && !hasKeys(data)) ||
       (hasKeys(data) && data[questionId])
@@ -102,13 +107,6 @@ const Question = ({
     }
   };
 
-  if (questionAnswers) {
-    answer = currentAnswer;
-  } else {
-    const responseObj = booleanOptions.find((o) => o.value === currentAnswer);
-    answer = responseObj?.formValue;
-  }
-
   return (
     <Form
       className={className}
@@ -116,9 +114,6 @@ const Question = ({
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
-      {questionTitle && (
-        <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
-      )}
       {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
@@ -126,7 +121,7 @@ const Question = ({
         onChange={handleChange}
         errors={errors}
         answers={answers}
-        currentAnswer={answer}
+        userAnswer={userAnswer}
       />
       {!hideNavigation && (
         <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
@@ -156,12 +151,13 @@ Question.propTypes = {
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
-  onSubmit: PropTypes.func,
   hideNavigation: PropTypes.bool,
+  onGoToPrev: PropTypes.func,
+  onSubmit: PropTypes.func,
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
+  userAnswer: PropTypes.string,
 };
 
 export default Question;

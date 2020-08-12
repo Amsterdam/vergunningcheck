@@ -14,6 +14,7 @@ const Nav = ({
   prevText,
   showPrev,
   onGoToPrev,
+  onGoToNext,
   showNext,
   nextText,
   formEnds,
@@ -26,7 +27,7 @@ const Nav = ({
   const route = routeConfig.find((route) => route.path === path);
   const category = route.matomoPage || route.name;
 
-  const handleNextClick = () => {
+  const handleNextClick = (e) => {
     const action = formEnds
       ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
@@ -35,6 +36,7 @@ const Nav = ({
       action,
       name,
     });
+    if (onGoToNext) onGoToNext(e);
   };
   const handlePrevClick = (e) => {
     trackEvent({
@@ -94,6 +96,7 @@ Nav.propTypes = {
   page: PropTypes.string,
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
+  onGoToNext: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
   prevText: PropTypes.string,

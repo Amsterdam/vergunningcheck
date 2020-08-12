@@ -90,7 +90,6 @@ describe("Checker recursive", () => {
 });
 
 describe("Checker internals", () => {
-  //
   const qShared = new Question(
     getQuestionConfig({
       text: "shared question",
