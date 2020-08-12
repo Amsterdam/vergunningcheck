@@ -2,8 +2,10 @@ import React from "react";
 
 import { EditButtonStyle } from "./EditButtonStyle";
 
-const EditButton: React.FC<{ onClick: Function }> = ({ onClick }) => (
-  <EditButtonStyle onClick={() => onClick()} variant="textButton">
+const EditButton: React.FC<React.HTMLAttributes<HTMLElement>> = ({
+  onClick,
+}) => (
+  <EditButtonStyle {...{ onClick }} variant="textButton">
     Wijzig
   </EditButtonStyle>
 );

@@ -6,21 +6,18 @@ import { removeQuotes } from "../utils";
 import PermitAlert from "./PermitAlert";
 
 type QuestionAnswerProps = {
-  onClick: Function;
   questionNeedsPermit: Boolean;
   userAnswer: string;
 };
 
-const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
-  onClick,
-  questionNeedsPermit,
-  userAnswer,
-}) => {
+const QuestionAnswer: React.FC<
+  QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
+> = ({ onClick, questionNeedsPermit, userAnswer }) => {
   return (
     <>
       <Paragraph gutterBottom={0}>
         {removeQuotes(userAnswer)}
-        <EditButton onClick={onClick} />
+        <EditButton {...{ onClick }} />
       </Paragraph>
       {questionNeedsPermit && <PermitAlert />}
     </>
