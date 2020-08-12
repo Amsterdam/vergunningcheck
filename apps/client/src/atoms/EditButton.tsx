@@ -1,11 +1,11 @@
 import React from "react";
 
-import { EditQuestionButton } from "./EditButtonStyle";
+import { EditButtonStyle } from "./EditButtonStyle";
 
-const QuestionAnswer: React.FC<{ onClick: Function }> = ({ onClick }) => (
-  <EditQuestionButton onClick={() => onClick()} variant="textButton">
+const EditButton: React.FC<{ onClick: Function }> = ({ onClick }) => (
+  <EditButtonStyle onClick={() => onClick()} variant="textButton">
     Wijzig
-  </EditQuestionButton>
+  </EditButtonStyle>
 );
 
-export default QuestionAnswer;
+export default EditButton;
