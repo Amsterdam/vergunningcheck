@@ -48,6 +48,7 @@ const LocationInput = ({
         if (isFinished("questions")) {
           setActiveState("conclusion");
         } else {
+          setFinishedState("locationResult", true);
           setActiveState("questions");
         }
         return;
