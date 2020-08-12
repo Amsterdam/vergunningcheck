@@ -10,6 +10,7 @@ const Questions = ({
   topic: { slug },
   setFinishedState,
   setActiveState,
+  goToQuestion,
   isActive,
   isFinished,
 }) => {
@@ -65,14 +66,17 @@ const Questions = ({
     ]);
   };
 
+  const goToConclusion = () => {
+    setActiveState("conclusion");
+    setFinishedState(["questions", "conslusion"], true);
+  };
+
   const onQuestionNext = () => {
-    // @TODO: Let's refacter this function as well
     const question = checker.stack[questionIndex];
 
     if (checker.needContactExit(question)) {
       // Go directly to "Contact Conclusion" and skip other questions
-      setActiveState("conclusion");
-      setFinishedState(["questions", "conslusion"], true);
+      goToConclusion();
     } else {
       // Load the next question or go to the "Conclusion"
       if (checker.stack.length - 1 === questionIndex) {
@@ -80,26 +84,15 @@ const Questions = ({
         const next = checker.next();
 
         if (next) {
-          // Store the new questionIndex in the session
-          sessionContext.setSessionData([
-            slug,
-            {
-              questionIndex: questionIndex + 1,
-            },
-          ]);
+          // Go to next question
+          goToQuestion("next");
         } else {
           // Go to the "Conclusion"
-          setActiveState("conclusion");
-          setFinishedState(["questions", "conclusion"], true);
+          goToConclusion();
         }
       } else {
         // In this case, the user is changing a previously answered question and we don't want to load a new question
-        sessionContext.setSessionData([
-          slug,
-          {
-            questionIndex: questionIndex + 1,
-          },
-        ]);
+        goToQuestion("next");
       }
     }
   };
@@ -108,12 +101,7 @@ const Questions = ({
     // Load the previous question or go to "Location"
     if (checker.stack.length > 1) {
       // Store the new questionIndex in the session
-      sessionContext.setSessionData([
-        slug,
-        {
-          questionIndex: questionIndex - 1,
-        },
-      ]);
+      goToQuestion("prev");
     }
     if (questionIndex === 0) {
       setActiveState("locationResult");
@@ -128,12 +116,7 @@ const Questions = ({
     setFinishedState(["conclusion", "questions"], false);
     setFinishedState("locationResult", true);
 
-    sessionContext.setSessionData([
-      slug,
-      {
-        questionIndex: questionId,
-      },
-    ]);
+    goToQuestion(questionId);
   };
 
   if (checker.stack.length === 0) {
