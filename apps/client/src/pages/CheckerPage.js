@@ -19,6 +19,7 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
+  const { questionIndex } = sessionContext[topic.slug];
   const { slug, sttrFile } = topic;
 
   //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
@@ -65,6 +66,30 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   };
 
   const isFinished = (component) => isActive(component, true);
+
+  /**
+   * Set the questionIndex the next questionId, previous questionId, or the given id.
+   *
+   * @param { int | ('next'|'prev') } value - This van be, 'next, prev or a int`
+   */
+  const goToQuestion = (value) => {
+    const newIndex = Number.isInteger(value)
+      ? value // Return the value if value isInteger()
+      : value === "next"
+      ? questionIndex + 1
+      : value === "prev"
+      ? questionIndex - 1
+      : console.error(
+          `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
+        );
+
+    sessionContext.setSessionData([
+      slug,
+      {
+        questionIndex: newIndex,
+      },
+    ]);
+  };
 
   return (
     <Layout>
@@ -130,6 +155,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
                 setFinishedState,
                 setActiveState,
                 isActive,
+                goToQuestion,
                 isFinished,
               }}
             />
