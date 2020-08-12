@@ -1,9 +1,9 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
+import EditButton from "../atoms/EditButton";
 import { removeQuotes } from "../utils";
 import PermitAlert from "./PermitAlert";
-import { EditQuestionButton } from "./QuestionAnswerStyles";
 
 type QuestionAnswerProps = {
   onClick: Function;
@@ -20,10 +20,7 @@ const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
     <>
       <Paragraph gutterBottom={0}>
         {removeQuotes(userAnswer)}
-
-        <EditQuestionButton onClick={() => onClick()} variant="textButton">
-          Wijzig
-        </EditQuestionButton>
+        <EditButton onClick={onClick} />
       </Paragraph>
       {questionNeedsPermit && <PermitAlert />}
     </>
