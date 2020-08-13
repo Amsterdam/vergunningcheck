@@ -30,7 +30,7 @@ class Decision {
       !collectionOfType(inputs, "Question")
     ) {
       throw Error(
-        `'inputs' must be an array of Question's or Decision's, got: ${inputs} for Decision: ${id}.`
+        `'inputs' must be an array of Question's or Decision's, got: '${inputs}' for Decision: ${id}.`
       );
     }
     if (!Array.isArray(rules) || !collectionOfType(rules, "Rule")) {

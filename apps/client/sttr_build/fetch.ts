@@ -4,7 +4,7 @@ import { assert } from "https://deno.land/std/testing/asserts.ts";
 import parser from "https://deno.land/x/yargs_parser/deno.ts";
 import { makeRunWithLimit } from "https://denopkg.com/alextes/run-with-limit/mod.ts";
 
-import { APIConfig, ApiResult } from "./types.d.ts";
+import { APIConfig, ApiResult } from "./types.ts";
 
 // TODO: Improve 'usage', waiting for yargs to be ported https://github.com/yargs/yargs/issues/1661
 const argv = parser(Deno.args, {
@@ -56,7 +56,7 @@ const apisMap = apis.map(
           // XXX change any to callback???
           // console.log("fetch", permitId);
 
-          const requestPromise = async (): Promise<ApiResult> => {
+          const requestPromise = async () => {
             const result = await fetch(`${host}/conclusie/sttr`, {
               method: "POST",
               body: `activiteitId=${permitId}`,

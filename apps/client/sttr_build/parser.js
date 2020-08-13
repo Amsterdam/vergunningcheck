@@ -1,13 +1,12 @@
-import { createHash } from "https://deno.land/std/hash/mod.ts";
+// import { createHash } from "https://deno.land/std/hash/mod.ts";
 import { DomHandler } from "https://deno.land/x/domhandler/mod.ts";
-import get from "https://raw.githubusercontent.com/lodash/lodash/master/get.js";
 import { Parser } from "https://rawcdn.githack.com/tbjgolden/deno-htmlparser2/5522f6286a17cc3857c5f1aa30e59e82968de822/htmlparser2/index.ts";
 
-const getId = ({ "@_id": _, ...rest }) => {
-  const hash = createHash("md5");
-  hash.update(JSON.stringify(rest));
-  return hash.toString();
-};
+// const getId = ({ "@_id": _, ...rest }) => {
+//   const hash = createHash("md5");
+//   hash.update(JSON.stringify(rest));
+//   return hash.toString();
+// };
 
 /**
  * Convert field-types from 'feel'-spec to our representation.
@@ -62,7 +61,7 @@ const getAutofillResolverKey = (questionText) => {
 
 const filt = (arr, tagName) => arr.filter(({ name }) => name === tagName);
 const find = (arr, tagName) => arr.find(({ name }) => name === tagName);
-const getAttr = (xmlNode, attrName) => xmlNode.attribs[attrName].trim();
+// const getAttr = (xmlNode, attrName) => xmlNode.attribs[attrName].trim();
 const log = (obj) => {
   if (obj === undefined) return "undefined";
   if (obj.hasOwnProperty("length") && typeof obj === "object") {
@@ -128,34 +127,56 @@ function getDecisions(xmlDecisions) {
       console.log("rule", log(rule));
       const outputEntry = filt(rule.children, "dmn:outputEntry")[0];
       console.log("outputEntry", log(outputEntry));
-      const description = get(
-        outputEntry,
-        "dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting"
+
+      const extensionElements = find(
+        outputEntry.children,
+        "dmn:extensionElements"
       );
+      let descriptionText = undefined;
+      if (extensionElements) {
+        console.log("extensionElements", log(extensionElements));
+        const conclusionDescription = find(
+          extensionElements.children,
+          "content:conclusieToelichting"
+        );
+        console.log("conclusionDescription", log(conclusionDescription));
+        const description = find(
+          conclusionDescription.children,
+          "content:toelichting"
+        ).children[0].children;
+        console.log("ruledescription", log(description));
+        descriptionText = description[0].data;
+      }
+
       const output = find(outputEntry.children, "dmn:text");
       console.log("output", log(output));
       rules.push({
         inputs: filt(rule.children, "dmn:inputEntry").reduce(
           (inputEntries, inputEntry) => {
             const text = find(inputEntry.children, "dmn:text").children[0].data;
-            console.log("text", text);
-            inputEntries.push(text);
+            console.log("inputtext", text);
+            const map = {
+              true: true,
+              false: false,
+            };
+            inputEntries.push(map[text] !== undefined ? map[text] : text);
             return inputEntries;
           },
           []
         ),
         output: output.children[0].data,
-        description,
+        description: descriptionText,
       });
       return rules;
     }, []);
     res.decisionTable = {
       rules,
     };
-    const { "@_id": _, ...copy } = xmlDecisions;
+    // const { "@_id": id, ...copy } = xmlDecisions;
 
-    copy[getId(res)] = res;
-    return copy;
+    // copy[getId(res)] = res;
+    xmlDecisions[xmlDecision.attribs.id] = res;
+    return xmlDecisions;
   }, {});
 }
 
@@ -209,26 +230,30 @@ function getExtensionElements(xmlExtensionElements) {
       const question = find(rule.children, "uitv:vraag");
       console.log("question", log(question));
       const dataType = find(question.children, "uitv:gegevensType");
-      console.log("dataType", dataType);
+      console.log("dataType", log(dataType));
       const sttrType = dataType.children[0].data;
 
       const desc = find(rule.children, "content:uitvoeringsregelToelichting");
       console.log("desc", log(desc));
-      const explanation = desc
-        ? find(desc.children, "content:toelichting").children[0].data
-        : undefined;
-      console.log("explanation", log(explanation));
+      let explanation = undefined;
+      if (desc) {
+        const descrip = find(desc.children, "content:toelichting").children[0];
+        console.log("descrip", log(descrip));
+
+        explanation = descrip ? descrip.children[0].data : undefined;
+        console.log("explanation", explanation);
+      }
 
       // if (desc) {
       //   const important = find(desc.children, "content:belangrijk").children[0]; // XXX no clue what this is
       //   console.log("important", log(important));
       // }
       const text = find(question.children, "uitv:vraagTekst").children[0].data;
-      console.log("text", text);
+      console.log("questiontext", text);
 
       result = {
         text,
-        desc: explanation,
+        description: explanation,
         longDescription:
           desc && desc.length && desc[0]["content:langeToelichting"]
             ? desc[0]["content:langeToelichting"].trim()
@@ -243,22 +268,27 @@ function getExtensionElements(xmlExtensionElements) {
         if (find(options.children, "uitv:optieType").data !== "enkelAntwoord") {
           result.collection = true;
         }
-        result.options = find(options.children, "uitv:optie").children.map(
-          (option) => find(option, "uitv:optieText").children[0].data
-        );
+        const optionList = filt(options.children, "uitv:optie");
+        console.log("optionList", log(optionList));
+        result.options = optionList.map((option) => {
+          const textNode = find(option.children, "uitv:optieText");
+          console.log(textNode, log(textNode));
+          return textNode.children[0].data;
+        });
       }
 
       // because of current sttr 'list'-implementation we only accept lists of strings
       result.type = sttrType === "list" ? "string" : sttrType;
     }
 
-    result.id = getId(rule.attribs.id); // generate our own hash for id's
+    // result.id = getId(rule.attribs.id); // generate our own hash for id's
+    result.id = rule.attribs.id; // generate our own hash for id's
     // console.log("==generate hash==");
     // console.log(curr);
     // console.log(getId(curr));
     // console.log(getId(curr));
 
-    result.prio = find(rule.children, "inter:prioriteit").children[0].data;
+    result.prio = find(rule.children, "inter:prioriteit").children[0].data / 1;
     result.uuid = find(rule.children, "uitv:herbruikbaarId")?.children[0]?.data;
 
     return result;
@@ -281,8 +311,10 @@ export default (xml) => {
           return reject(new Error("Parser error, no dmn:definition found."));
         }
 
-        const id = getAttr(root, "id");
-        const name = getAttr(root, "name");
+        console.log(root);
+
+        const id = root.attribs.id;
+        const name = root.attribs.name;
         if (!id || !name) {
           return reject(
             new Error('Parser error, no "id" and/or "name" attribute found.')
@@ -301,17 +333,17 @@ export default (xml) => {
 
           console.log("xmlExtensionElements", log(xmlExtensionElements));
 
-          if (id === "_5c4f8719-9d31-4ca4-953b-89d1103d3f17") {
-            console.log({
-              id,
-              name,
-              questions: xmlExtensionElements,
-              inputs: xmlInputData,
-              decisions: xmlDecisions,
-            });
-          }
+          // if (id === "_5c4f8719-9d31-4ca4-953b-89d1103d3f17") {
+          //   console.log({
+          //     id,
+          //     name,
+          //     questions: xmlExtensionElements,
+          //     inputs: xmlInputData,
+          //     decisions: xmlDecisions,
+          //   });
+          // }
           const result = {
-            name: this.name,
+            name,
             questions: getExtensionElements(xmlExtensionElements),
             inputs: getInputData(xmlInputData),
             decisions: getDecisions(xmlDecisions),

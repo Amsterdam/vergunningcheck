@@ -17,8 +17,9 @@ import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import { geturl, routes } from "../routes";
 
-const WrapperPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
+  const { questionIndex } = sessionContext[topic.slug];
   const { slug, sttrFile } = topic;
 
   //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
@@ -66,6 +67,30 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
 
   const isFinished = (component) => isActive(component, true);
 
+  /**
+   * Set the questionIndex the next questionId, previous questionId, or the given id.
+   *
+   * @param { int | ('next'|'prev') } value - This van be, 'next, prev or a int`
+   */
+  const goToQuestion = (value) => {
+    const newIndex = Number.isInteger(value)
+      ? value // Return the value if value isInteger()
+      : value === "next"
+      ? questionIndex + 1
+      : value === "prev"
+      ? questionIndex - 1
+      : console.error(
+          `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
+        );
+
+    sessionContext.setSessionData([
+      slug,
+      {
+        questionIndex: newIndex,
+      },
+    ]);
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -83,54 +108,61 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
           >
             <StepByStepItem
               active={isActive("locationInput") || isActive("locationResult")}
-              checked={isFinished("locationResult")}
+              checked={
+                isActive("locationResult") || isFinished("locationResult")
+              }
+              done={isActive("locationInput") || isActive("locationResult")}
               heading="Adresgegevens"
               largeCircle
             >
               {isActive("locationInput") && (
                 <LocationInput
                   {...{
-                    topic,
+                    isFinished,
                     resetChecker,
                     setActiveState,
-                  }}
-                />
-              )}
-              {(isActive("locationResult") || isFinished("locationResult")) && (
-                <LocationResult
-                  {...{
-                    topic,
-                    isFinished,
-                    setActiveState,
                     setFinishedState,
+                    topic,
                   }}
                 />
               )}
+              {!isActive("locationInput") &&
+                (isActive("locationResult") ||
+                  isFinished("locationResult")) && (
+                  <LocationResult
+                    {...{
+                      topic,
+                      isFinished,
+                      setActiveState,
+                      setFinishedState,
+                    }}
+                  />
+                )}
             </StepByStepItem>
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={isFinished("locationResult")}
+              done={isActive("questions") || checker.stack.length > 1}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
               style={{ borderColor: "white" }}
             />
-            {isFinished("locationResult") && (
-              <Questions
-                {...{
-                  checker,
-                  topic,
-                  setFinishedState,
-                  setActiveState,
-                  isActive,
-                  isFinished,
-                }}
-              />
-            )}
+            <Questions
+              {...{
+                checker,
+                topic,
+                setFinishedState,
+                setActiveState,
+                isActive,
+                goToQuestion,
+                isFinished,
+              }}
+            />
             <StepByStepItem
               active={isActive("conclusion")}
-              checked={isActive("conclusion")}
+              checked={isFinished("questions")}
+              done={isFinished("questions")}
               customSize
               heading="Conclusie"
               largeCircle
@@ -168,4 +200,4 @@ const WrapperPage = ({ checker, topic, resetChecker }) => {
     </Layout>
   );
 };
-export default withChecker(WrapperPage);
+export default withChecker(CheckerPage);

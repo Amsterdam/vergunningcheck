@@ -21,6 +21,12 @@ const LocationResult = ({
   const onSubmit = (e) => {
     e.preventDefault();
     if (hasSTTR) {
+      sessionContext.setSessionData([
+        topic.slug,
+        {
+          questionIndex: 0,
+        },
+      ]);
       setFinishedState("locationResult", true);
       setActiveState("questions");
     } else {
@@ -35,7 +41,6 @@ const LocationResult = ({
         displayZoningPlans={!hasSTTR}
         address={address}
         setActiveState={setActiveState}
-        setFinishedState={setFinishedState}
         topic={topic}
       />
       {!hasSTTR && (
@@ -50,7 +55,7 @@ const LocationResult = ({
           onGoToPrev={() => {
             setActiveState("locationInput");
           }}
-          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de vragen"}
           formEnds={!hasSTTR}
           showPrev
           showNext

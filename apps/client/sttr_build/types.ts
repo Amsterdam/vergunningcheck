@@ -9,14 +9,14 @@ type PermitConfig = Map<PermitId, PermitName>;
 //   active: boolean
 // };
 
-type APIConfig = {
-  // XXX why no export needed here?
+export type APIConfig = {
+  version: number;
   outputDir: string;
   host: string;
-  topics: Map<string, string[]>;
+  topics: { [key: string]: string[] };
 };
 
-type ApiResult = {
+export type ApiResult = {
   permitId: string;
   version: number;
   xml: string;

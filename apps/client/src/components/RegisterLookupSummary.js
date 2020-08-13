@@ -1,7 +1,8 @@
-import { Button, Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
+import EditButton from "../atoms/EditButton";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -10,7 +11,6 @@ const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
   setActiveState,
-  setFinishedState,
   topic: { sttrFile },
 }) => {
   const { restrictions, zoningPlans } = address;
@@ -24,20 +24,11 @@ const RegisterLookupSummary = ({
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
         <AddressLine address={address} />
-        <Button
-          variant="textButton"
-          style={{ marginLeft: 12 }}
+        <EditButton
           onClick={() => {
             setActiveState("locationInput");
-            setFinishedState(
-              ["locationResult", "questions", "conclusion"],
-              false
-            );
           }}
-          type="button"
-        >
-          Wijzig
-        </Button>
+        />
       </Paragraph>
       <Paragraph gutterBottom={16}>
         Over dit adres hebben we de volgende gegevens gevonden:

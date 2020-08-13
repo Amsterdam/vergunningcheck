@@ -30,31 +30,41 @@ const withChecker = (Component) =>
       }
     });
 
-    const initChecker = () => {
+    const initChecker = async () => {
       if (!checker && !error) {
-        fetch(`${window.location.origin}/sttr/sttr/${slug}.json`)
-          .then((response) => response.json())
-          .then((json) => {
-            const newChecker = getChecker(json);
-            // Find if we have missing data needs
-            if (address) {
-              newChecker.autofill(autofillResolvers, { address });
-            }
-            const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
-              autofillMap,
-              true
-            )[0];
+        try {
+          const topicsRequest = await fetch(
+            `${window.location.origin}/topics.json`
+          );
+          const topics = await topicsRequest.json();
 
-            if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
-              newChecker.setQuestionAnswers(sessionContext[slug].answers);
-            }
-            // Store the entire `sttr-checker` in React Context
-            checkerContext.checker = newChecker;
-            setChecker(newChecker);
-          })
-          .catch((e) => {
-            setError(e);
-          });
+          const topicConfig = topics
+            .flat()
+            .find((topic) => topic.slug === slug);
+          const topicRequest = await fetch(
+            `${window.location.origin}/${topicConfig.path}.json`
+          );
+          const topic = await topicRequest.json();
+
+          const newChecker = getChecker(topic);
+          // Find if we have missing data needs
+          if (address) {
+            newChecker.autofill(autofillResolvers, { address });
+          }
+          const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
+            autofillMap,
+            true
+          )[0];
+
+          if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
+            newChecker.setQuestionAnswers(sessionContext[slug].answers);
+          }
+          // Store the entire `sttr-checker` in React Context
+          checkerContext.checker = newChecker;
+          setChecker(newChecker);
+        } catch (e) {
+          setError(e);
+        }
       }
     };
 

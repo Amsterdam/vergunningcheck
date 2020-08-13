@@ -11,34 +11,16 @@ const DevHomePage = () => {
   if (isProduction) {
     localStorage.setItem("doNotTrack", "true");
   }
+  console.log({ config });
   useEffect(() => {
-    fetch(`${window.location.origin}/sttr/topics.json`)
+    fetch(`${window.location.origin}/topics.json`)
       .then((res) => res.json())
       .then(setConfig);
   }, []);
 
   return (
     <Layout heading="Hi Dev!">
-      <p>Welcome to CHAPPIE 1.0</p>
-
-      <table>
-        <thead>
-          <th>Checkers</th>
-          <th>slug</th>
-        </thead>
-        <tbody>
-          {config.map((apiConfig) =>
-            Object.entries(apiConfig).map(([slug, permitIds]) => (
-              <tr>
-                <td>
-                  <Link to={geturl(routes.intro, { slug })}>{slug}</Link>
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-
+      <p>Welcome to CHAPPIE 2.0</p>
       <table>
         <thead>
           <tr>
@@ -63,6 +45,29 @@ const DevHomePage = () => {
             ))}
         </tbody>
       </table>
+      {config.map((apiConfig) => (
+        <>
+          <table>
+            <thead>
+              <th>Checkers</th>
+              <th>slug</th>
+            </thead>
+            <tbody>
+              {apiConfig.map(({ slug, path }) => (
+                <tr>
+                  <td>
+                    <Link
+                      to={geturl(routes.intro, { prefix: "staging", slug })}
+                    >
+                      {path}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ))}
     </Layout>
   );
 };

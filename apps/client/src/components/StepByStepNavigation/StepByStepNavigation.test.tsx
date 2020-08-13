@@ -130,7 +130,7 @@ describe("StepByStepNavigation", () => {
 
   it("should render customSize states correctly", () => {
     const { queryByTestId } = render(
-      <StepByStepNavigation cdata-testid="wrapper" customSize highlightActive>
+      <StepByStepNavigation customSize highlightActive>
         <StepByStepItem data-testid="small" heading="small" done />
         <StepByStepItem data-testid="large" heading="large" largeCircle />
         <StepByStepItem data-testid="active" heading="active" active />

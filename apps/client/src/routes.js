@@ -28,15 +28,15 @@ export const routeConfig = [
   },
   {
     exact: true,
-    name: "wrapper",
-    path: "/:slug/wrapper",
+    name: "checker",
+    path: "/:slug/checker",
     component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/WrapperPage`)
+      import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
   },
   {
     name: "intro",
-    exact: true,
+    // exact: true,
     path: "/:slug",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/IntroPage`)
@@ -60,5 +60,5 @@ export const routes = Object.fromEntries(
   routeConfig.map(({ name, path }) => [name, path])
 );
 export const autofillRoutes = {
-  wrapper: [routes.wrapper],
+  checker: [routes.checker],
 };
