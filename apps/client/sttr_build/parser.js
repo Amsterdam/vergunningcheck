@@ -82,57 +82,79 @@ const log = (obj) => {
   }
 };
 
-type XMLDecisionType = {
-  "dmn:informationRequirement": XMLInformationRequirement[];
-};
+// type XMLDecisionType = {
+//   "dmn:informationRequirement": XMLInformationRequirement[];
+// };
 
-type XMLInformationRequirementAttribute = {
-  href: string;
-};
+// type XMLInformationRequirementAttribute = {
+//   href: string;
+// };
 
-type XMLInformationRequirement = {
-  attributes: XMLInformationRequirementAttribute[];
-};
+// type XMLInformationRequirement = {
+//   attributes: XMLInformationRequirementAttribute[];
+// };
 
 /**
  * Get decisions configuration
  *
  * @returns {any} a configuration object for decisions
  */
-function getDecisions(xmlDecisions: XMLDecisionType[]) {
+// function getDecisions(xmlDecisions: XMLDecisionType[]) {
+function getDecisions(xmlDecisions) {
+  console.log("xmlDecisions", log(xmlDecisions));
   return xmlDecisions.reduce((xmlDecisions, xmlDecision) => {
-    const res = xmlDecision["dmn:informationRequirement"].reduce((acc, ir) => {
-      const key = Object.keys(ir)[0]; // get the tagName
-      const shortKey = `${key.split(":")[1]}s`;
-      const href = ir[key][0]["@_href"];
+    console.log("xmlDecision", log(xmlDecision));
 
-      const result = acc;
-      result[shortKey] = (result[shortKey] || []).concat(href);
-      return result;
-    }, {});
+    // What does this do?
+    const res = filt(xmlDecision.children, "dmn:informationRequirement").reduce(
+      (acc, informationRequirement) => {
+        console.log("informationRequirement", log(informationRequirement));
+        const requiredElement = informationRequirement.children[0];
+        const shortKey = `${requiredElement.name.split(":")[1]}s`;
 
-    const table = xmlDecision["dmn:decisionTable"][0];
-    const rules = table["dmn:rule"].reduce((acc, rule) => {
-      const outputEntry = get(rule, "dmn:outputEntry.0");
+        const result = acc;
+        result[shortKey] = (result[shortKey] || []).concat(
+          requiredElement.attribs.href
+        );
+        return result;
+      },
+      {}
+    );
+
+    const table = find(xmlDecision.children, "dmn:decisionTable");
+    console.log("table", log(table));
+
+    const rules = filt(table.children, "dmn:rule").reduce((rules, rule) => {
+      console.log("rule", log(rule));
+      const outputEntry = filt(rule.children, "dmn:outputEntry")[0];
+      console.log("outputEntry", log(outputEntry));
       const description = get(
         outputEntry,
         "dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting"
       );
-      acc.push({
-        inputs: rule["dmn:inputEntry"].reduce((inputEntry, ie) => {
-          inputEntry.push(ie["dmn:text"]);
-          return inputEntry;
-        }, []),
-        output: outputEntry["dmn:text"],
+      const output = find(outputEntry.children, "dmn:text");
+      console.log("output", log(output));
+      rules.push({
+        inputs: filt(rule.children, "dmn:inputEntry").reduce(
+          (inputEntries, inputEntry) => {
+            const text = find(inputEntry.children, "dmn:text").children[0].data;
+            console.log("text", text);
+            inputEntries.push(text);
+            return inputEntries;
+          },
+          []
+        ),
+        output: output.children[0].data,
         description,
       });
-      return acc;
+      return rules;
     }, []);
     res.decisionTable = {
       rules,
     };
     const { "@_id": _, ...copy } = xmlDecisions;
-    copy[getId(xmlDecision)] = res;
+
+    copy[getId(res)] = res;
     return copy;
   }, {});
 }
@@ -145,11 +167,12 @@ function getDecisions(xmlDecisions: XMLDecisionType[]) {
 function getInputData(xmlInputData) {
   return xmlInputData.reduce((acc, { "@_id": _, ...xmlInput }) => {
     console.log("xmlInput", log(xmlInput));
-    const extEl = find(xmlInput, "dmn:extensionElements").children[0];
-    const href = find(extEl, "uitv:uitvoeringsregelRef").children[0].attribs
-      .href;
+    const extEl = find(xmlInput.children, "dmn:extensionElements").children;
+    console.log("extEl", log(extEl));
+    const href = find(extEl, "uitv:uitvoeringsregelRef").attribs.href;
     const id = xmlInput.attribs.id;
-    const variable = find(xmlInput, "dmn:variable").children[0];
+    console.log("variable", log(find(xmlInput.children, "dmn:variable")));
+    const variable = find(xmlInput.children, "dmn:variable");
     const typeRef = variable.attribs.typeRef;
     acc[id] = {
       href,
@@ -171,11 +194,13 @@ function getExtensionElements(xmlExtensionElements) {
 
   return rules.map((rule) => {
     let result;
-    if (rule["uitv:geoVerwijzing"]) {
-      const question = rule["uitv:geoVerwijzing"][0];
+    const geoReference = find(rule.children, "uitv:geoVerwijzing");
+    console.log("geoReference", log(geoReference));
+    if (geoReference) {
       result = {
-        identification: question["uitv:locatie"][0]["@_identificatie"],
-        text: question["uitv:vraagTekst"],
+        identification: find(geoReference.children, "uitv:locatie").attribs
+          .identificatie,
+        text: find(geoReference.children, "uitv:vraagTekst").children[0].data,
         type: "geo",
       };
     } else {
@@ -183,13 +208,14 @@ function getExtensionElements(xmlExtensionElements) {
       console.log("rule", log(rule));
       const question = find(rule.children, "uitv:vraag");
       console.log("question", log(question));
-      const sttrType = find(question.children, "uitv:gegevensType").children[0]
-        .data;
+      const dataType = find(question.children, "uitv:gegevensType");
+      console.log("dataType", dataType);
+      const sttrType = dataType.children[0].data;
 
       const desc = find(rule.children, "content:uitvoeringsregelToelichting");
       console.log("desc", log(desc));
       const explanation = desc
-        ? find(desc.children, "content:toelichting").children[0]
+        ? find(desc.children, "content:toelichting").children[0].data
         : undefined;
       console.log("explanation", log(explanation));
 
@@ -210,9 +236,10 @@ function getExtensionElements(xmlExtensionElements) {
       };
 
       result.autofill = getAutofillResolverKey(result.text);
-
+      console.log("result", result);
       if (sttrType === "list") {
         const options = find(question.children, "uitv:opties");
+        console.log("options", log(options));
         if (find(options.children, "uitv:optieType").data !== "enkelAntwoord") {
           result.collection = true;
         }
@@ -232,7 +259,7 @@ function getExtensionElements(xmlExtensionElements) {
     // console.log(getId(curr));
 
     result.prio = find(rule.children, "inter:prioriteit").children[0].data;
-    result.uuid = find(rule.children, "uitv:herbruikbaarId").children[0].data;
+    result.uuid = find(rule.children, "uitv:herbruikbaarId")?.children[0]?.data;
 
     return result;
   });

@@ -1,23 +1,26 @@
 import { readJson, writeJson } from "https://deno.land/std/fs/mod.ts";
 import { join } from "https://deno.land/std/path/mod.ts";
+import parser from "https://deno.land/x/yargs_parser/deno.ts";
 
-import sttrbuild from "./parser.ts";
+import sttrbuild from "./parser.js";
 import { APIConfig } from "./types.d.ts";
 
-// XXX npm run sttr moet deno aanroepen
-// XXX document...
-if (Deno.args.length < 1) {
-  console.error(`
-Dev usage:
-$ deno run --unstable --allow-net --allow-write --allow-read transform.ts BASE_DIR --config=config.local.ts (default=config.ts)
-`);
+// TODO: Improve 'usage', waiting for yargs to be ported https://github.com/yargs/yargs/issues/1661
+const argv = parser(Deno.args, {
+  string: ["dir", "config"],
+});
+
+if (!argv.dir) {
+  console.error(
+    `Usage:\n$ deno run --unstable --allow-read --allow-write transform.ts --dir=path/to/sttr [--config=config.ts]\n`
+  );
   Deno.exit();
 }
 
-const baseDir = join(Deno.cwd(), Deno.args[0]);
+const baseDir = join(Deno.cwd(), argv.dir);
 const { apis }: { apis: APIConfig[] } = await import(
-  join(Deno.cwd(), "config.local.ts")
-); // XXX convert to cli argument
+  argv.config ? join(Deno.cwd(), argv.config) : "./config.ts"
+);
 
 const permitIds: string[] = apis.flatMap((api: APIConfig) =>
   Object.values(api.topics)
@@ -27,7 +30,9 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
   const { outputDir, version } = api;
   const topics: { [key: string]: string[] } = api.topics;
 
-  const apiPermits: any = await readJson(join(baseDir, outputDir, "list.json"));
+  const apiPermits: any = await readJson(
+    join(baseDir, outputDir, "list.source.json")
+  );
   const apiPermitIds: string[] = apiPermits.map(({ _id }: any) => _id);
 
   apiPermitIds.forEach((permitId) => {
@@ -42,35 +47,40 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
   // Put json-sttr-version from flolegal in our sttr-json
 
   /* Convert multiple permit-xml files per topic to a json string and write to the [topic].json file */
-  Object.entries(topics).forEach(([slug, permits]: [string, string[]]) => {
-    const topicJsonContent = {
-      slug,
-      permits: permits.map(async (permitId) => {
-        const apiPermit = apiPermits.find(
-          (apiPermit: any) => apiPermit._id === permitId
-        );
-        if (!apiPermit) {
-          throw new Error(`apiPermit not found for id ${permitId}`);
-        }
+  Object.entries(topics).forEach(
+    async ([slug, permits]: [string, string[]]) => {
+      const topicJsonContent = {
+        slug,
+        permits: await Promise.all(
+          permits.map(async (permitId) => {
+            const apiPermit = apiPermits.find(
+              (apiPermit: any) => apiPermit._id === permitId
+            );
+            if (!apiPermit) {
+              throw new Error(`apiPermit not found for id ${permitId}`);
+            }
 
-        let xml;
-        if (version === 2) {
-          const perm: any = await readJson(
-            join(baseDir, outputDir, `${permitId}.source.json`)
-          );
-          xml = perm.sttr;
-        } else {
-          xml = await Deno.readTextFile(
-            join(baseDir, outputDir, `${permitId}.xml`)
-          );
-        }
+            let xml;
+            if (version === 2) {
+              const perm: any = await readJson(
+                join(baseDir, outputDir, `${permitId}.source.json`)
+              );
+              xml = perm.sttr;
+            } else {
+              xml = await Deno.readTextFile(
+                join(baseDir, outputDir, `${permitId}.xml`)
+              );
+            }
 
-        // console.log('for', slug, 'parse', permitId)
-        return sttrbuild(xml);
-      }),
-    };
-    writeJson(join(baseDir, outputDir, `${slug}.json`), topicJsonContent);
-  });
+            console.log("for", slug, "parse", permitId);
+            return sttrbuild(xml);
+          })
+        ),
+      };
+      console.log("write json", { ...topicJsonContent.permits });
+      writeJson(join(baseDir, outputDir, `${slug}.json`), topicJsonContent);
+    }
+  );
 
   return topics;
 });
