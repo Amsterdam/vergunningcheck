@@ -158,58 +158,91 @@ const Questions = ({
   }
 
   // Loop through all questions
-  return checker.stack.map((q, i) => {
-    // Define userAnswer
-    const booleanAnswers =
-      !q.options && booleanOptions.find((o) => o.value === q.answer);
-    const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+  return (
+    <>
+      {checker.stack.map((q, i) => {
+        // Define userAnswer
+        const booleanAnswers =
+          !q.options && booleanOptions.find((o) => o.value === q.answer);
+        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
 
-    // Define if question is the current one
-    const isCurrentQuestion =
-      q === checker.stack[questionIndex] && isActive("questions");
+        // Define if question is the current one
+        const isCurrentQuestion =
+          q === checker.stack[questionIndex] && isActive("questions");
 
-    // Hide unanswered questions (eg: on browser refresh)
-    if (!isCurrentQuestion && !userAnswer) return null;
+        // Hide unanswered questions (eg: on browser refresh)
+        if (!isCurrentQuestion && !userAnswer) return null;
 
-    // Check if currect question is causing a permit requirement
-    const questionNeedsPermit = !!permitsPerQuestion[i];
+        // Check if currect question is causing a permit requirement
+        const questionNeedsPermit = !!permitsPerQuestion[i];
 
-    return (
-      <StepByStepItem
-        active={isCurrentQuestion}
-        checked={userAnswer}
-        customSize
-        heading={q.text}
-        highlightActive={isCurrentQuestion}
-        key={`question-${q.id}-${i}`}
-        style={isCurrentQuestion ? activeStyle : {}}
-      >
-        {isCurrentQuestion ? (
-          // Show the current question
-          <Question
-            question={q}
-            onGoToPrev={onQuestionPrev}
-            onGoToNext={onQuestionNext}
-            saveAnswer={saveAnswer}
-            showNext
-            showPrev
-            {...{
-              checker,
-              questionIndex,
-              questionNeedsPermit,
-              userAnswer,
-            }}
-          />
-        ) : (
-          // Show the answer with an edit button
-          <QuestionAnswer
-            onClick={() => onGoToQuestion(i)}
-            {...{ questionNeedsPermit, userAnswer }}
-          />
-        )}
-      </StepByStepItem>
-    );
-  });
+        return (
+          <StepByStepItem
+            active={isCurrentQuestion}
+            checked={userAnswer}
+            customSize
+            heading={q.text}
+            highlightActive={isCurrentQuestion}
+            key={`question-${q.id}-${i}`}
+            style={isCurrentQuestion ? activeStyle : {}}
+          >
+            {isCurrentQuestion ? (
+              // Show the current question
+              <Question
+                question={q}
+                onGoToPrev={onQuestionPrev}
+                onGoToNext={onQuestionNext}
+                saveAnswer={saveAnswer}
+                showNext
+                showPrev
+                {...{
+                  checker,
+                  questionIndex,
+                  questionNeedsPermit,
+                  userAnswer,
+                }}
+              />
+            ) : (
+              // Show the answer with an edit button
+              <QuestionAnswer
+                onClick={() => onGoToQuestion(i)}
+                {...{ questionNeedsPermit, userAnswer }}
+              />
+            )}
+          </StepByStepItem>
+        );
+      })}
+      {checker._getUpcomingQuestions().map((q, i) => {
+        // @TODO: refactor this part
+        // Define userAnswer
+        const booleanAnswers =
+          !q.options && booleanOptions.find((o) => o.value === q.answer);
+        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+
+        // Check if currect question is causing a permit requirement
+        const questionNeedsPermit = !!permitsPerQuestion[i];
+
+        if (!userAnswer) return null;
+
+        return (
+          <StepByStepItem
+            active
+            checked
+            customSize
+            heading={q.text}
+            key={`question-${q.id}-${i}`}
+            // style={isCurrentQuestion ? activeStyle : {}}
+          >
+            <QuestionAnswer
+              hideEditButton
+              onClick={() => onGoToQuestion(i)}
+              {...{ questionNeedsPermit, userAnswer }}
+            />
+          </StepByStepItem>
+        );
+      })}
+    </>
+  );
 };
 
 export default Questions;
