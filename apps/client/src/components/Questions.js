@@ -219,10 +219,14 @@ const Questions = ({
           !q.options && booleanOptions.find((o) => o.value === q.answer);
         const userAnswer = q.options ? q.answer : booleanAnswers?.label;
 
+        // Skip unanswered questions
+        if (!userAnswer) return null;
+
         // Check if currect question is causing a permit requirement
         const questionNeedsPermit = !!permitsPerQuestion[i];
 
-        if (!userAnswer) return null;
+        // Get new index
+        const index = i + checker.stack.length;
 
         return (
           <StepByStepItem
@@ -230,12 +234,11 @@ const Questions = ({
             checked
             customSize
             heading={q.text}
-            key={`question-${q.id}-${i}`}
-            // style={isCurrentQuestion ? activeStyle : {}}
+            key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              hideEditButton
-              onClick={() => onGoToQuestion(i)}
+              hideEditButton={!checker.isConclusive()}
+              onClick={() => onGoToQuestion(index)}
               {...{ questionNeedsPermit, userAnswer }}
             />
           </StepByStepItem>
