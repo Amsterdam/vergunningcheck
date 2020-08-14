@@ -1,0 +1,58 @@
+{
+  "slug": "37mYBbnidDABYfjiM",
+  "permits": [
+    {
+      "name": "Conclusie Test outcomes/conclusions",
+      "questions": [
+        {
+          "text": "Which outcome would you like to test?",
+          "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
+          "collection": true,
+          "options": ["contact", "permit free", "permit required"],
+          "type": "string",
+          "id": "uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__b0e2ed23-4919-4037-ad55-94e518290be5": {
+          "href": "#uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
+          "type": "string"
+        }
+      },
+      "decisions": {
+        "_78f6eb36-eece-4381-8582-71da9d5e5a8d": {
+          "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": ["\"contact\""], "output": "\"NeemContactOpMet\"" },
+              {
+                "inputs": ["\"permit required\""],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"permit free\""], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_78f6eb36-eece-4381-8582-71da9d5e5a8d"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"NeemContactOpMet\""],
+                "output": "\"NeemContactOpMet\"",
+                "description": "Please contact Gemeente."
+              },
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "You need a permit!"
+              },
+              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

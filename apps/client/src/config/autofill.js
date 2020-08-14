@@ -1,6 +1,6 @@
 import { addQuotes, getRestrictionByTypeName } from "../utils";
 
-const getDataNeed = (checker) =>
+export const getDataNeed = (checker) =>
   checker && checker.getAutofillDataNeeds(autofillMap)[0];
 
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>

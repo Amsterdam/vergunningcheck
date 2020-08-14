@@ -3,7 +3,7 @@ import { join } from "https://deno.land/std/path/mod.ts";
 import parser from "https://deno.land/x/yargs_parser/deno.ts";
 
 import sttrbuild from "./parser.js";
-import { APIConfig } from "./types.ts";
+import { APIConfig, TopicInputType, TopicOutputType } from "./types.ts";
 
 // TODO: Improve 'usage', waiting for yargs to be ported https://github.com/yargs/yargs/issues/1661
 const argv = parser(Deno.args, {
@@ -23,51 +23,50 @@ const { apis }: { apis: APIConfig[] } = await import(
   argv.config ? join(Deno.cwd(), argv.config) : "./config.ts"
 );
 
-const permitIds: string[] = apis
-  .flatMap((api) => Object.values(api.topics))
-  .flat();
-
-type TopicOutputType = { permits: string[]; slug: string; path: string };
+// We want to prevent duplicate keys for topics
+{
+  const topicKeys = apis.flatMap((api) => Object.keys(api.topics));
+  if (new Set(topicKeys).size !== topicKeys.length) {
+    throw new Error("duplicate keys found");
+  }
+}
 
 const apisMap: object[] = apis.map(async (api: APIConfig) => {
   const { outputDir, version } = api;
 
-  const topics: TopicOutputType[] = Object.entries(
-    api.topics
-  ).map(([slug, topic]: [string, string[]]) => ({
-    permits: topic,
-    path: `${api.outputDir}/${slug}`,
-    slug,
-  }));
-
-  const apiPermits: any = await readJson(
-    join(baseDir, outputDir, "list.source.json")
+  let topics: TopicOutputType[] = Object.entries(api.topics).map(
+    ([slug, topic]: [string, string[]]) => ({
+      permits: topic,
+      path: `${api.outputDir}/${slug}`,
+      slug,
+    })
   );
-  const apiPermitIds: string[] = apiPermits.map(({ _id }: any) => _id);
+
+  const apiPermits: TopicInputType[] = (await readJson(
+    join(baseDir, outputDir, "list.source.json")
+  )) as TopicInputType[];
+  const apiPermitIds: string[] = apiPermits.map(
+    ({ _id }: TopicInputType) => _id
+  );
 
   apiPermitIds.forEach((permitId) => {
-    if (permitIds.indexOf(permitId) === -1) {
-      topics.push({
-        slug: permitId,
-        permits: [permitId],
-        path: `${api.outputDir}/${permitId}`,
-      });
-    }
+    topics.push({
+      slug: permitId,
+      permits: [permitId],
+      path: `${api.outputDir}/${permitId}`,
+      name: apiPermits.find((permit) => permit._id === permitId)?.name,
+    });
   });
 
-  // XXX duplicate parsing of xml's for topics defined in config
-  // XXX i want them in separate sttr-json's but only parse them once?
-
-  // Put json-sttr-version from flolegal in our sttr-json
-
   /* Convert multiple permit-xml files per topic to a json string and write to the [topic].json file */
-  topics.forEach(async ({ slug, permits }: TopicOutputType) => {
+  topics.forEach(async (topic: TopicOutputType) => {
+    const { slug, permits } = topic;
     const topicJsonContent = {
       slug,
       permits: await Promise.all(
         permits.map(async (permitId) => {
           const apiPermit = apiPermits.find(
-            (apiPermit: any) => apiPermit._id === permitId
+            (apiPermit: TopicInputType) => apiPermit._id === permitId
           );
           if (!apiPermit) {
             throw new Error(`apiPermit not found for id ${permitId}`);
@@ -75,9 +74,9 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
 
           let xml;
           if (version === 2) {
-            const perm: any = await readJson(
+            const perm: any = (await readJson(
               join(baseDir, outputDir, `${permitId}.source.json`)
-            );
+            )) as Object;
             xml = perm.sttr;
           } else {
             xml = await Deno.readTextFile(
@@ -85,20 +84,14 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
             );
           }
 
-          console.log("for", slug, "parse", permitId);
           return sttrbuild(xml);
         })
       ),
     };
-    console.log("write json", { ...topicJsonContent.permits });
     writeJson(join(baseDir, outputDir, `${slug}.json`), topicJsonContent);
   });
-
   return topics;
 });
 
 const permitsJsons = await Promise.all(apisMap);
-
 await writeJson(join(baseDir, "topics.json"), permitsJsons);
-
-// const topic: sttrJson = generate([xml1, xml2])

@@ -1,12 +1,28 @@
-// import { createHash } from "https://deno.land/std/hash/mod.ts";
 import { DomHandler } from "https://deno.land/x/domhandler/mod.ts";
 import { Parser } from "https://rawcdn.githack.com/tbjgolden/deno-htmlparser2/5522f6286a17cc3857c5f1aa30e59e82968de822/htmlparser2/index.ts";
 
+const ENABLE_LOGGING = false;
+
+// TODO: todo implement consistent hashing for id's
+// import { createHash } from "https://deno.land/std/hash/mod.ts";
 // const getId = ({ "@_id": _, ...rest }) => {
 //   const hash = createHash("md5");
 //   hash.update(JSON.stringify(rest));
 //   return hash.toString();
 // };
+
+// TODO: refactor to .ts file
+// type XMLDecisionType = {
+//   "dmn:informationRequirement": XMLInformationRequirement[];
+// };
+// type XMLInformationRequirementAttribute = {
+//   href: string;
+// };
+// type XMLInformationRequirement = {
+//   attributes: XMLInformationRequirementAttribute[];
+// };
+
+const debug = ENABLE_LOGGING ? console.log : () => {};
 
 /**
  * Convert field-types from 'feel'-spec to our representation.
@@ -81,18 +97,6 @@ const log = (obj) => {
   }
 };
 
-// type XMLDecisionType = {
-//   "dmn:informationRequirement": XMLInformationRequirement[];
-// };
-
-// type XMLInformationRequirementAttribute = {
-//   href: string;
-// };
-
-// type XMLInformationRequirement = {
-//   attributes: XMLInformationRequirementAttribute[];
-// };
-
 /**
  * Get decisions configuration
  *
@@ -100,14 +104,14 @@ const log = (obj) => {
  */
 // function getDecisions(xmlDecisions: XMLDecisionType[]) {
 function getDecisions(xmlDecisions) {
-  console.log("xmlDecisions", log(xmlDecisions));
+  debug("xmlDecisions", log(xmlDecisions));
   return xmlDecisions.reduce((xmlDecisions, xmlDecision) => {
-    console.log("xmlDecision", log(xmlDecision));
+    debug("xmlDecision", log(xmlDecision));
 
     // What does this do?
     const res = filt(xmlDecision.children, "dmn:informationRequirement").reduce(
       (acc, informationRequirement) => {
-        console.log("informationRequirement", log(informationRequirement));
+        debug("informationRequirement", log(informationRequirement));
         const requiredElement = informationRequirement.children[0];
         const shortKey = `${requiredElement.name.split(":")[1]}s`;
 
@@ -121,12 +125,12 @@ function getDecisions(xmlDecisions) {
     );
 
     const table = find(xmlDecision.children, "dmn:decisionTable");
-    console.log("table", log(table));
+    debug("table", log(table));
 
     const rules = filt(table.children, "dmn:rule").reduce((rules, rule) => {
-      console.log("rule", log(rule));
+      debug("rule", log(rule));
       const outputEntry = filt(rule.children, "dmn:outputEntry")[0];
-      console.log("outputEntry", log(outputEntry));
+      debug("outputEntry", log(outputEntry));
 
       const extensionElements = find(
         outputEntry.children,
@@ -134,27 +138,27 @@ function getDecisions(xmlDecisions) {
       );
       let descriptionText = undefined;
       if (extensionElements) {
-        console.log("extensionElements", log(extensionElements));
+        debug("extensionElements", log(extensionElements));
         const conclusionDescription = find(
           extensionElements.children,
           "content:conclusieToelichting"
         );
-        console.log("conclusionDescription", log(conclusionDescription));
+        debug("conclusionDescription", log(conclusionDescription));
         const description = find(
           conclusionDescription.children,
           "content:toelichting"
         ).children[0].children;
-        console.log("ruledescription", log(description));
+        debug("ruledescription", log(description));
         descriptionText = description[0].data;
       }
 
       const output = find(outputEntry.children, "dmn:text");
-      console.log("output", log(output));
+      debug("output", log(output));
       rules.push({
         inputs: filt(rule.children, "dmn:inputEntry").reduce(
           (inputEntries, inputEntry) => {
             const text = find(inputEntry.children, "dmn:text").children[0].data;
-            console.log("inputtext", text);
+            debug("inputtext", text);
             const map = {
               true: true,
               false: false,
@@ -187,12 +191,12 @@ function getDecisions(xmlDecisions) {
  */
 function getInputData(xmlInputData) {
   return xmlInputData.reduce((acc, { "@_id": _, ...xmlInput }) => {
-    console.log("xmlInput", log(xmlInput));
+    debug("xmlInput", log(xmlInput));
     const extEl = find(xmlInput.children, "dmn:extensionElements").children;
-    console.log("extEl", log(extEl));
+    debug("extEl", log(extEl));
     const href = find(extEl, "uitv:uitvoeringsregelRef").attribs.href;
     const id = xmlInput.attribs.id;
-    console.log("variable", log(find(xmlInput.children, "dmn:variable")));
+    debug("variable", log(find(xmlInput.children, "dmn:variable")));
     const variable = find(xmlInput.children, "dmn:variable");
     const typeRef = variable.attribs.typeRef;
     acc[id] = {
@@ -209,14 +213,14 @@ function getInputData(xmlInputData) {
  * @returns {any} a configuration object for questions
  */
 function getExtensionElements(xmlExtensionElements) {
-  console.log("xmlExtensionElements", log(xmlExtensionElements));
+  debug("xmlExtensionElements", log(xmlExtensionElements));
   const rules = find(xmlExtensionElements, "uitv:uitvoeringsregels").children;
-  console.log("rules", log(rules));
+  debug("rules", log(rules));
 
   return rules.map((rule) => {
     let result;
     const geoReference = find(rule.children, "uitv:geoVerwijzing");
-    console.log("geoReference", log(geoReference));
+    debug("geoReference", log(geoReference));
     if (geoReference) {
       result = {
         identification: find(geoReference.children, "uitv:locatie").attribs
@@ -226,30 +230,33 @@ function getExtensionElements(xmlExtensionElements) {
       };
     } else {
       // list or boolean
-      console.log("rule", log(rule));
+      debug("rule", log(rule));
       const question = find(rule.children, "uitv:vraag");
-      console.log("question", log(question));
+      debug("question", log(question));
       const dataType = find(question.children, "uitv:gegevensType");
-      console.log("dataType", log(dataType));
+      debug("dataType", log(dataType));
       const sttrType = dataType.children[0].data;
 
       const desc = find(rule.children, "content:uitvoeringsregelToelichting");
-      console.log("desc", log(desc));
+      debug("desc", log(desc));
       let explanation = undefined;
       if (desc) {
         const descrip = find(desc.children, "content:toelichting").children[0];
-        console.log("descrip", log(descrip));
+        debug("descrip", log(descrip));
 
         explanation = descrip ? descrip.children[0].data : undefined;
-        console.log("explanation", explanation);
+        debug("explanation", explanation);
       }
 
+      // TODO: decide if we want to use 'important' (nl: belangrijk) which indicates if a description
+      // is important for the end-user to be able to answer the question
       // if (desc) {
-      //   const important = find(desc.children, "content:belangrijk").children[0]; // XXX no clue what this is
-      //   console.log("important", log(important));
+      //   const important = find(desc.children, "content:belangrijk").children[0];
+      //   debug("important", log(important));
       // }
+
       const text = find(question.children, "uitv:vraagTekst").children[0].data;
-      console.log("questiontext", text);
+      debug("questiontext", text);
 
       result = {
         text,
@@ -261,18 +268,18 @@ function getExtensionElements(xmlExtensionElements) {
       };
 
       result.autofill = getAutofillResolverKey(result.text);
-      console.log("result", result);
+      debug("result", result);
       if (sttrType === "list") {
         const options = find(question.children, "uitv:opties");
-        console.log("options", log(options));
+        debug("options", log(options));
         if (find(options.children, "uitv:optieType").data !== "enkelAntwoord") {
           result.collection = true;
         }
         const optionList = filt(options.children, "uitv:optie");
-        console.log("optionList", log(optionList));
+        debug("optionList", log(optionList));
         result.options = optionList.map((option) => {
           const textNode = find(option.children, "uitv:optieText");
-          console.log(textNode, log(textNode));
+          debug(textNode, log(textNode));
           return textNode.children[0].data;
         });
       }
@@ -281,12 +288,7 @@ function getExtensionElements(xmlExtensionElements) {
       result.type = sttrType === "list" ? "string" : sttrType;
     }
 
-    // result.id = getId(rule.attribs.id); // generate our own hash for id's
-    result.id = rule.attribs.id; // generate our own hash for id's
-    // console.log("==generate hash==");
-    // console.log(curr);
-    // console.log(getId(curr));
-    // console.log(getId(curr));
+    result.id = rule.attribs.id; // TODO: generate our own hash for id's
 
     result.prio = find(rule.children, "inter:prioriteit").children[0].data / 1;
     result.uuid = find(rule.children, "uitv:herbruikbaarId")?.children[0]?.data;
@@ -311,7 +313,7 @@ export default (xml) => {
           return reject(new Error("Parser error, no dmn:definition found."));
         }
 
-        console.log(root);
+        debug(root);
 
         const id = root.attribs.id;
         const name = root.attribs.name;
@@ -331,17 +333,8 @@ export default (xml) => {
           const xmlInputData = filt(definitions, "dmn:inputData");
           const xmlDecisions = filt(definitions, "dmn:decision");
 
-          console.log("xmlExtensionElements", log(xmlExtensionElements));
+          debug("xmlExtensionElements", log(xmlExtensionElements));
 
-          // if (id === "_5c4f8719-9d31-4ca4-953b-89d1103d3f17") {
-          //   console.log({
-          //     id,
-          //     name,
-          //     questions: xmlExtensionElements,
-          //     inputs: xmlInputData,
-          //     decisions: xmlDecisions,
-          //   });
-          // }
           const result = {
             name,
             questions: getExtensionElements(xmlExtensionElements),

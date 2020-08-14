@@ -55,7 +55,6 @@ const LocationInput = ({
         return;
       }
 
-      debugger;
       // Reset all previous finished states
       setFinishedState(["locationResult", "questions", "conclusion"], false);
 

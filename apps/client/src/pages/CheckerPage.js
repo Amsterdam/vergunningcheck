@@ -13,6 +13,7 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import { Flow as flowTypes } from "../config";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import { geturl, routes } from "../routes";
@@ -20,7 +21,7 @@ import { geturl, routes } from "../routes";
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { questionIndex } = sessionContext[topic.slug];
-  const { slug, sttrFile } = topic;
+  const { slug, flow, text } = topic;
 
   //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
   if (!sessionContext[slug]) {
@@ -90,15 +91,17 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       },
     ]);
   };
+  const permitName =
+    checker?.permits.length === 1 ? checker.permits[0].name : null;
 
   return (
-    <Layout>
+    <Layout heading={text?.heading || permitName}>
       <Helmet>
         <title>Wrapper Page</title>
       </Helmet>
       <ComponentWrapper>
         {/* STTR-flow with the StepByStepNavigation */}
-        {sttrFile && (
+        {flow !== flowTypes.olo && (
           <StepByStepNavigation
             customSize
             disabledTextColor="inherit"
@@ -177,7 +180,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         )}
 
         {/* OLO-flow only needs the Location component */}
-        {!sttrFile && (
+        {flow === flowTypes.olo && (
           <>
             {isActive("locationInput") && (
               <LocationInput {...{ topic, setActiveState }} />

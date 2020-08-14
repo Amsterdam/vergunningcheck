@@ -1,0 +1,109 @@
+{
+  "slug": "TRhZrFexMjBW42Ky6",
+  "permits": [
+    {
+      "name": "Conclusie Zonnepaneel en zonneboiler monument",
+      "questions": [
+        {
+          "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
+          "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
+          "collection": true,
+          "options": ["Zonnepanelen", "Zonneboiler"],
+          "type": "string",
+          "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "prio": 10,
+          "uuid": "zonnepaneel-warmtecollector"
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "prio": 20,
+          "uuid": "monument-zonnepaneel"
+        },
+        {
+          "text": "Gaat u de zonneboiler plaatsen op of bij een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "prio": 30,
+          "uuid": "monument-zonneboiler"
+        }
+      ],
+      "inputs": {
+        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
+          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "type": "string"
+        },
+        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
+          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "type": "boolean"
+        },
+        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
+          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_ed801672-1db9-4e91-a86a-0b1393247f6f": {
+          "requiredInputs": [
+            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+            "#input__30a75386-d045-473c-b4b8-3aad506986f2"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonnepanelen\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"Zonneboiler\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "_2b4269fc-5e45-48c5-bc88-c8d122e75537": {
+          "requiredInputs": [
+            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+            "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zonneboiler\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"Zonnepanelen\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_ed801672-1db9-4e91-a86a-0b1393247f6f",
+            "#_2b4269fc-5e45-48c5-bc88-c8d122e75537"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

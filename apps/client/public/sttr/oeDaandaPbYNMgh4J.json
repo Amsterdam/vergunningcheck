@@ -1,0 +1,45 @@
+{
+  "slug": "oeDaandaPbYNMgh4J",
+  "permits": [
+    {
+      "name": "Conclusie aansluit digikoppeling test",
+      "questions": [
+        {
+          "text": "testvraag ivm aansluit digikoppeling",
+          "type": "boolean",
+          "id": "uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__b2344eb2-d67c-498d-b89d-9049affb14a4": {
+          "href": "#uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_eb17ea7e-599f-4f01-a40d-553ccfe7e5c7": {
+          "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_eb17ea7e-599f-4f01-a40d-553ccfe7e5c7"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

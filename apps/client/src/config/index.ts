@@ -6,10 +6,11 @@ export enum Flow {
 
 type Topic = {
   slug: string;
+  name: string;
   flow: Flow;
+  text: Text;
   sttrFile?: string;
   intro?: string;
-  text: Text;
 };
 
 type Text = {
@@ -56,6 +57,7 @@ export const generateOloUrl = ({
 export const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
+    name: "Kappen of snoeien",
     flow: Flow.oloRedirect,
     text: {
       heading: "Vergunningcheck kappen of snoeien",
@@ -63,6 +65,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "dakkapel-plaatsen",
+    name: "Dakkapel plaatsen",
     flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
@@ -75,6 +78,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "dakraam-plaatsen",
+    name: "Dakraam plaatsen",
     flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
@@ -87,6 +91,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "aanbouw-of-uitbouw-maken",
+    name: "Aanbouw of uitbouw maken",
     flow: Flow.olo,
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
@@ -97,6 +102,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
+    name: "Kozijnen plaatsen of vervangen",
     flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck kozijnen plaatsen of vervangen",
@@ -107,6 +113,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
+    name: "Zonnepanelen of zonneboiler plaatsen",
     flow: Flow.sttr,
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
@@ -117,6 +124,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "bouwwerk-slopen",
+    name: "Bouwwerk slopen",
     flow: Flow.olo,
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
@@ -126,6 +134,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "intern-verbouwen",
+    name: "Intern verbouwen",
     flow: Flow.olo,
     text: {
       heading: "Vergunningcheck intern verbouwen",
@@ -135,6 +144,7 @@ export const topics: Topic[] = [
   },
   {
     slug: "zonwering-of-rolluik-plaatsen",
+    name: "Zonwering of rolluik plaatsen",
     flow: Flow.olo,
     // Temporary disabled the STTR Flow:
     // sttrFile: "zonwering.json",

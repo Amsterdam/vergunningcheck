@@ -41,54 +41,53 @@ const apisMap = apis.map(
       await emptyDir(join(baseDir, outputDir));
 
       /* Fetch api list endpoint and write json to file */
-      const request = await fetch(`${host}/activiteiten`, { headers });
-      const json = await request.json();
-      if (json.error) {
-        throw new Error(json.error);
+      const activitiesRequest = await fetch(`${host}/activiteiten`, {
+        headers,
+      });
+      const activities = await activitiesRequest.json();
+      if (activities.error) {
+        throw new Error(activities.error);
       }
 
-      writeJson(join(baseDir, outputDir, "list.source.json"), json);
+      writeJson(join(baseDir, outputDir, "list.source.json"), activities);
 
       // Now fetch the permits using a pool of promises
       const { runWithLimit } = makeRunWithLimit(argv.maxConnections || 6);
-      const limitedPromiseArray: ApiResult[] = json.map(
-        ({ _id: permitId }: any) => {
-          // XXX change any to callback???
-          // console.log("fetch", permitId);
+      const activityRequests: ApiResult[] = activities.map((activity) => {
+        const permitId: string = activity._id;
 
-          const requestPromise = async () => {
-            const result = await fetch(`${host}/conclusie/sttr`, {
-              method: "POST",
-              body: `activiteitId=${permitId}`,
-              headers: {
-                ...headers,
-                "content-type": "application/x-www-form-urlencoded",
-              },
-            });
+        const requestPromise = async () => {
+          const result = await fetch(`${host}/conclusie/sttr`, {
+            method: "POST",
+            body: `activiteitId=${permitId}`,
+            headers: {
+              ...headers,
+              "content-type": "application/x-www-form-urlencoded",
+            },
+          });
 
-            if (!result.ok) {
-              console.error(
-                `request of ${permitId} failed, status: ${result.status} ${result.statusText}`
-              );
-            }
+          if (!result.ok) {
+            console.error(
+              `request of ${permitId} failed, status: ${result.status} ${result.statusText}`
+            );
+          }
 
-            if (version === 1) {
-              Deno.writeTextFile(
-                join(baseDir, outputDir, `${permitId}.xml`),
-                await result.text()
-              );
-            } else {
-              writeJson(
-                join(baseDir, outputDir, `${permitId}.source.json`),
-                await result.json()
-              );
-            }
-          };
-          return runWithLimit(requestPromise);
-        }
-      );
+          if (version === 1) {
+            Deno.writeTextFile(
+              join(baseDir, outputDir, `${permitId}.xml`),
+              await result.text()
+            );
+          } else {
+            writeJson(
+              join(baseDir, outputDir, `${permitId}.source.json`),
+              await result.json()
+            );
+          }
+        };
+        return runWithLimit(requestPromise);
+      });
 
-      await Promise.all(limitedPromiseArray);
+      await Promise.all(activityRequests);
 
       resolve();
     })

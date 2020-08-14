@@ -1,0 +1,76 @@
+{
+  "slug": "yim42gLF6qjRXeD6D",
+  "permits": [
+    {
+      "name": "Conclusie Simpele Demo Checker voor in de Frontend",
+      "questions": [
+        {
+          "text": "Vraag 1",
+          "description": "Antwoord \"JA\" leidt tot vergunningplicht!",
+          "type": "boolean",
+          "id": "uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
+          "prio": 10
+        },
+        {
+          "text": "Vraag 2",
+          "description": "Toelichting 2",
+          "type": "boolean",
+          "id": "uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
+          "prio": 20
+        }
+      ],
+      "inputs": {
+        "input__b0819e66-af22-4e58-ad88-5c36624b995a": {
+          "href": "#uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
+          "type": "boolean"
+        },
+        "input__d977a2fe-c317-42f7-ba5b-272f98f59e1a": {
+          "href": "#uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_7be18e16-a107-4030-8a2a-f5f90f104c8a": {
+          "requiredInputs": ["#input__b0819e66-af22-4e58-ad88-5c36624b995a"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "_6880bdf0-cf04-42c6-bf8d-a9eec6dc15b4": {
+          "requiredInputs": ["#input__d977a2fe-c317-42f7-ba5b-272f98f59e1a"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_7be18e16-a107-4030-8a2a-f5f90f104c8a",
+            "#_6880bdf0-cf04-42c6-bf8d-a9eec6dc15b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
