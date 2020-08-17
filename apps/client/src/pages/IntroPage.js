@@ -1,16 +1,18 @@
 import React, { Suspense } from "react";
-import { routes, geturl } from "../routes";
-import withTopic from "../hoc/withTopic";
-import withOloRedirect from "../hoc/withOloRedirect";
-
-import Loading from "../components/Loading";
-import Form from "../components/Form";
-import Nav from "../components/Nav";
-import Layout from "../components/Layouts/DefaultLayout";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-const IntroPage = ({ topic: { text, slug, intro } }) => {
+import Layout from "../components/Layouts/DefaultLayout";
+import Loading from "../components/Loading";
+import Nav from "../components/Nav";
+import withTopic from "../hoc/withTopic";
+import { geturl, routes } from "../routes";
+
+const IntroPage = ({ topic }) => {
+  const history = useHistory();
+  const { text, intro } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
+
   return (
     <Layout>
       <Helmet>
@@ -19,11 +21,12 @@ const IntroPage = ({ topic: { text, slug, intro } }) => {
       <Suspense fallback={<Loading />}>
         <Intro />
       </Suspense>
-      <Form action={geturl(routes.location, { slug })}>
-        <Nav showNext />
-      </Form>
+      <Nav
+        showNext
+        onGoToNext={() => history.push(geturl(routes.checker, topic))}
+      />
     </Layout>
   );
 };
 
-export default withOloRedirect(withTopic(IntroPage));
+export default withTopic(IntroPage);

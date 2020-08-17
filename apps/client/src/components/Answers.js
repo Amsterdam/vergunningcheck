@@ -1,14 +1,16 @@
-import React from "react";
+import { ErrorMessage, Label, Radio, RadioGroup } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
-import { Label, Radio, RadioGroup, ErrorMessage } from "@datapunt/asc-ui";
-import { QUESTION_ANSWERS } from "../utils/test-ids";
+
 import { ComponentWrapper } from "../atoms";
+import { removeQuotes } from "../utils";
+import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 const Answers = ({
   className,
   answers,
-  currentAnswer,
+  userAnswer,
   errors,
   questionId,
   onChange,
@@ -23,14 +25,14 @@ const Answers = ({
             <Label
               htmlFor={answerId}
               key={answerId}
-              label={label.replace(/['"]+/g, "")}
+              label={removeQuotes(label)}
             >
               <Radio
                 key={answerId}
                 value={formValue}
                 id={answerId}
                 onChange={(e) => onChange(e)}
-                checked={currentAnswer === answer.formValue}
+                checked={userAnswer === answer.label}
                 error={errors[questionId]}
               />
             </Label>
@@ -50,12 +52,12 @@ const StyledAnswers = styled(Answers)`
 `;
 
 Answers.propTypes = {
-  className: PropTypes.string,
-  currentAnswer: PropTypes.string,
-  errors: PropTypes.any,
   answers: PropTypes.array,
+  className: PropTypes.string,
+  errors: PropTypes.any,
   questionId: PropTypes.string,
   onChange: PropTypes.func,
+  userAnswer: PropTypes.string,
 };
 
 export default StyledAnswers;

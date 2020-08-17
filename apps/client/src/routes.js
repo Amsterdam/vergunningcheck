@@ -1,107 +1,64 @@
 import { reverse } from "named-urls";
+import React from "react";
 import slugify from "slugify";
-
-import AddressPage from "./pages/AddressPage";
-import ConclusionPage from "./pages/ConclusionPage";
-import DevHomePage from "./pages/DevHomePage";
-import IntroPage from "./pages/IntroPage";
-import LocationPage from "./pages/LocationPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import QuestionsPage from "./pages/QuestionsPage";
-import ResultsPage from "./pages/ResultsPage";
-import StepperPage from "./pages/StepperPage";
-import WrapperPage from "./pages/WrapperPage";
-
 export const getslug = (text) =>
   slugify(text, {
     strict: true, // remove special chars
     lower: true, // result in lower case
   });
-
 export const geturl = (route, params) => {
   if (!route) {
     throw new Error(`route does not exist (geturl): '${route}'`);
   }
   return reverse(route, params);
 };
-
 export const routeConfig = [
   {
     name: "home",
     exact: true,
     path: "/",
-    component: process.env.NODE_ENV !== "production" && DevHomePage,
+    component:
+      process.env.NODE_ENV !== "production" &&
+      React.lazy(() => import(`./pages/DevHomePage`)),
   },
   {
     exact: true,
     path: "/test",
-    component: DevHomePage,
+    component: React.lazy(() => import(`./pages/DevHomePage`)),
   },
   {
     exact: true,
-    name: "stepper",
-    path: "/stepper",
-    component: StepperPage,
-  },
-  {
-    exact: true,
-    name: "wrapper",
-    path: "/wrapper",
-    component: WrapperPage,
+    name: "checker",
+    path: "/:slug/checker",
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
+    ),
   },
   {
     name: "intro",
     exact: true,
     path: "/:slug",
-    component: IntroPage,
-  },
-  {
-    name: "location",
-    path: "/:slug/locatie",
-    component: LocationPage,
-  },
-  {
-    name: "address",
-    path: "/:slug/adresgegevens",
-    component: AddressPage,
-    matomoPage: "location-results",
-  },
-  {
-    name: "questions",
-    path: "/:slug/vragen/:question?",
-    component: QuestionsPage,
-  },
-  {
-    name: "results",
-    path: "/:slug/uitkomsten",
-    component: ResultsPage,
-  },
-  {
-    name: "conclusion",
-    path: "/:slug/conclusie",
-    component: ConclusionPage,
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
+    ),
   },
   {
     name: "notfound",
     path: "*",
-    component: NotFoundPage,
+    component: React.lazy(() => import("./pages/NotFoundPage")),
   },
 ];
-
 export const redirectConfig = [
   [
     "/zonnepanelen-of-warmtecollectoren-plaatsen",
     "/zonnepanelen-of-zonneboiler-plaatsen",
   ],
 ];
-
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
 export const routes = Object.fromEntries(
   routeConfig.map(({ name, path }) => [name, path])
 );
-
 export const autofillRoutes = {
-  address: routes.location,
-  // map: ...
+  checker: [routes.checker],
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { isProduction, topics } from "../config";
-import { routes, geturl } from "../routes";
 
 import Layout from "../components/Layouts/DefaultLayout";
+import { isProduction, topics } from "../config";
+import { geturl, routes } from "../routes";
 
 const DevHomePage = () => {
   if (isProduction) {
@@ -11,7 +11,7 @@ const DevHomePage = () => {
   }
   return (
     <Layout heading="Hi Dev!">
-      <p>Welcome to CHAPPIE 1.0</p>
+      <p>Welcome to CHAPPIE 2.0</p>
       <table>
         <thead>
           <tr>

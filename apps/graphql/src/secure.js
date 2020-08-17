@@ -1,6 +1,6 @@
-const config = require("config");
 const helmet = require("helmet");
 const featurePolicy = require("feature-policy");
+const config = require("../config");
 
 module.exports = (app) => {
   app.use(
@@ -31,7 +31,7 @@ module.exports = (app) => {
         maxAge: 0, // 604800 is used on parent site
         reportUri: "https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct",
       },
-      permittedCrossDomainPolicies: true,
+      permittedCrossDomainPolicies: "all",
       referrerPolicy: { policy: "no-referrer" },
     })
   );

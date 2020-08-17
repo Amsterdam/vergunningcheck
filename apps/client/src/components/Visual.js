@@ -1,22 +1,29 @@
+import { captureException } from "@sentry/browser";
 import React, { useState } from "react";
-import { Figure, Img, Caption } from "./VisualStyles";
 
-export default ({ title, ...rest }) => {
+import { Caption, Figure, Img } from "./VisualStyles";
+
+export default ({ title, src, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
+
+  const handleError = () => {
+    setLoaded(true);
+    setErrored(true);
+    captureException(`${src} not found`);
+  };
+
   return (
     <Figure loaded={loaded} errored={errored}>
       <Img
         {...rest}
+        src={src}
         loaded={loaded}
         errored={errored}
         onLoad={() => setLoaded(true)}
-        onError={() => {
-          setLoaded(true);
-          setErrored(true);
-        }}
+        onError={handleError}
       />
-      {title && !errored && (
+      {title && (
         <figcaption>
           <Caption>{title}</Caption>
         </figcaption>

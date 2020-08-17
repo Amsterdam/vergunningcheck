@@ -1,4 +1,10 @@
-import { collectionOfType, uniqueFilter, isObject } from "../../utils";
+import { collectionOfType, isObject, uniqueFilter } from "../../utils";
+
+export const sttrOutcomes = {
+  NEED_PERMIT: '"Vergunningplicht"',
+  NEED_CONTACT: '"NeemContactOpMet"',
+  PERMIT_FREE: '"Toestemmingsvrij"',
+};
 
 /**
  * Step checker class for quiz
@@ -26,14 +32,12 @@ class Checker {
         firstEl.questions.length < secondEl.questions.length
     );
 
-    this._questions = this._permits
-      .flatMap((permit) => permit.questions) // getOpenInputs would be faster for the user
-      .filter(uniqueFilter);
-
     /**
      * @type {Question[]}
      */
     this._stack = [];
+
+    this._autofilled = false;
   }
 
   /**
@@ -53,6 +57,7 @@ class Checker {
   /**
    * Returns a list of questionIds with the given answers.
    * Useful to store in React.Context or in sessionStorage
+   *
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
   getQuestionAnswers() {
@@ -105,39 +110,80 @@ class Checker {
     return this.stack[this.stack.length - 1];
   }
 
-  _getUpcomingQuestions() {
-    // todo: filter duplicate questions
-    // todo: optimization would be to return only first value
-    return this.permits
-      .reduce((acc, permit) => {
-        const conclusion = permit.getDecisionById("dummy");
-        const inputReducer = (input) =>
-          this.stack.includes(input) ? input : {};
-        conclusion._inputs
-          .filter((d) => d.getMatchingRules(inputReducer).length === 0)
-          .forEach((decision) => {
-            decision.getQuestions().forEach((input) => {
-              if (this.stack.indexOf(input) === -1) {
-                acc.push(input);
-              }
-            });
-          });
-        return acc;
-      }, [])
-      .filter(uniqueFilter)
-      .sort((a, b) => a.prio - b.prio);
+  /**
+   * Find all permits that have a "contact" conclusion,
+   * for every permit see if the decisive decision's last question
+   * equals the currentQuestion.
+   *
+   * @param {Question} currentQuestion - the question to check for exit
+   *
+   * @returns {boolean} - if checker has a 'contact' outcome
+   * consumer can exit if wanted
+   */
+  needContactExit(currentQuestion) {
+    return !!this.permits.find((permit) => {
+      const conclusion = permit.getDecisionById("dummy");
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      const matchingContactRule = conclusionMatchingRules.find(
+        (rule) => rule.outputValue === sttrOutcomes.NEED_CONTACT
+      );
+      if (matchingContactRule) {
+        const decisiveDecisions = conclusion.getDecisiveInputs();
+
+        // find the contact decision
+        const contactDecision = decisiveDecisions.find((decision) =>
+          decision._rules.find(
+            (rule) => rule._outputValue === sttrOutcomes.NEED_CONTACT
+          )
+        );
+
+        // get inputs from contact decision
+        const lastIndex = contactDecision._inputs.length - 1;
+        // if currentQuestion equals the last input in decision, it's a match
+        return contactDecision._inputs[lastIndex] === currentQuestion;
+      }
+      return false;
+    });
   }
 
   /**
-   * Our current implementation of getNextQuestion basically returns any question that is
-   * not answered no matter if they make any impact on the outcome. So user always has to
-   * answer all the questions.
+   * We consider a checker to be finished or conclusive when either we
+   * have one or more permits with a contact-outcome, or all permits
+   * have a conclusion.
    *
-   * @returns {Question|null} - the next question for this checker
+   * @returns {boolean} - Returns true if "at least one" of the permits inside checker has a final outcome
+   *
    */
-  _getNextQuestion() {
-    return this._getUpcomingQuestions().shift();
-    // return this._questions.find(question => !this.stack.includes(question));
+  isConclusive() {
+    const hasContactPermit = !!this.permits.find(
+      (permit) =>
+        permit.getOutputByDecisionId("dummy") === sttrOutcomes.NEED_CONTACT
+    );
+    const hasUnfinishedPermits = !!this.permits.find(
+      (permit) => !permit.getOutputByDecisionId("dummy")
+    );
+
+    return !hasUnfinishedPermits || hasContactPermit;
+  }
+
+  /**
+   * For every questions see if we have autofillData
+   * and see if the question can be autofilled
+   *
+   * @param {object} resolvers - A map of {[name]: resolver(autofillData)}
+   * @param {object} autofillData - the autofill data that will be send to the resolver
+   **/
+  autofill(resolvers, autofillData) {
+    if (JSON.stringify(autofillData) !== this._autofillData) {
+      this._getAllQuestions().forEach((question) => {
+        const resolver = resolvers[question.autofill];
+        const answer = resolver ? resolver(autofillData) : undefined;
+        if (answer !== undefined) {
+          question.setAnswer(answer);
+        }
+      });
+      this._autofillData = JSON.stringify(autofillData);
+    }
   }
 
   /**
@@ -148,8 +194,13 @@ class Checker {
    */
   rewindTo(index) {
     const lastIndex = this._stack.length - 1;
-    if (index < 0 || index > lastIndex) {
-      throw Error("'rewindTo' index out of bounds of current question stack.");
+    if (index < 0) {
+      throw Error("'rewindTo' index cannot be less then 0");
+    }
+    if (index > lastIndex) {
+      throw Error(
+        `'rewindTo' index (${index}) cannot be bigger then the last index (${lastIndex})`
+      );
     }
     this._stack.splice(index + 1);
     this._done = false;
@@ -167,13 +218,88 @@ class Checker {
   }
 
   /**
+   * Find all data needs
+   *
+   * @param {object} autofillMap - the resolver map to determine if we can autofill
+   * @param {boolean} onlyMissing - return all or only missing dataneeds
+   */
+  getAutofillDataNeeds(autofillMap, onlyMissing = false) {
+    return this._getAllQuestions()
+      .filter(({ autofill }) => !!autofill)
+      .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
+      .map(({ autofill }) => autofillMap[autofill])
+      .filter(uniqueFilter);
+  }
+
+  /**
+   * Util function to deduplicate a question list, sort it by prio
+   *
+   * @param {Question[]} questions - the list of questions
+   */
+  dedupeAndSortQuestions(questions) {
+    return questions.filter(uniqueFilter).sort((a, b) => a.prio - b.prio);
+  }
+
+  /**
+   * Get all decisions for the conclusion of every permit.
+   */
+  _getConclusionDecisions() {
+    return this.permits
+      .map((permit) => permit.getDecisionById("dummy"))
+      .flatMap((conclusion) => conclusion._inputs);
+  }
+
+  /**
+   * Get all questions for the permits in this checker
+   */
+  _getAllQuestions() {
+    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // our accumulator, but only if it's not already on the stack
+    return this.dedupeAndSortQuestions(
+      this._getConclusionDecisions().flatMap((decision) =>
+        decision.getQuestions()
+      )
+    );
+  }
+
+  /**
+   * Get unanswered questions that we need before the checker is final
+   */
+  _getUpcomingQuestions() {
+    // take only questions/inputs into concideration that are autofilled or answered by the user
+    const inputReducer = (input) => {
+      return this.stack.includes(input) || input.autofill ? input : {};
+    };
+
+    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // our accumulator, but only if it's not already on the stack
+    return this.dedupeAndSortQuestions(
+      this._getConclusionDecisions()
+        .filter((d) => d.getMatchingRules(inputReducer).length === 0)
+        .flatMap((decision) => decision.getQuestions())
+        .filter((q) => !this.stack.includes(q) || q.autofill)
+    ).filter((q) => !q.autofill);
+  }
+
+  /**
+   * Our current implementation of getNextQuestion basically returns any question that is
+   * not answered no matter if they make any impact on the outcome. So user always has to
+   * answer all the questions.
+   *
+   * @returns {Question|null} - the next question for this checker
+   */
+  _getNextQuestion() {
+    return this._getUpcomingQuestions().shift();
+  }
+
+  /**
    * Get the next question for this checker
    *
    * @returns {!(Question|null)} The next question or null if done
    */
   next() {
     if (this._last !== undefined && this._last.answer === undefined) {
-      throw Error("Please answer the question first");
+      throw Error(`Please answer the question first ${this._last}`);
     }
     const question = this._getNextQuestion();
     if (question) {

@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { Button } from "@datapunt/asc-ui";
 import { ChevronLeft } from "@datapunt/asc-assets";
+import { Button } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-
-import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
-import { NavStyle, IconContainer, IconLeft } from "./NavStyle";
+import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import { useRouteMatch } from "react-router-dom";
-import { routeConfig, getslug } from "../routes";
+
 import { CheckerContext } from "../context";
+import { getslug, routeConfig } from "../routes";
+import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
+import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
 const Nav = ({
   prevText,
   showPrev,
   onGoToPrev,
+  onGoToNext,
   showNext,
   nextText,
   formEnds,
@@ -26,7 +27,7 @@ const Nav = ({
   const route = routeConfig.find((route) => route.path === path);
   const category = route.matomoPage || route.name;
 
-  const handleNextClick = () => {
+  const handleNextClick = (e) => {
     const action = formEnds
       ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
@@ -35,6 +36,7 @@ const Nav = ({
       action,
       name,
     });
+    if (onGoToNext) onGoToNext(e);
   };
   const handlePrevClick = (e) => {
     trackEvent({
@@ -94,6 +96,7 @@ Nav.propTypes = {
   page: PropTypes.string,
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
+  onGoToNext: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
   prevText: PropTypes.string,

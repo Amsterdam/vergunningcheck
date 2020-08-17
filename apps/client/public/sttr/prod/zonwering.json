@@ -1,0 +1,3390 @@
+{
+  "id": "zonwering",
+  "permits": [
+    {
+      "name": "Conclusie Zonwering, rolhek, luik of rolluik bouwen",
+      "questions": [
+        {
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__d3f42e93-2d61-46a7-b429-a641ace772dc",
+          "prio": 10,
+          "uuid": "zonwering, rolhek, rolluik of luik - monument"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "Voorstel A:\n\nBij onderhoud blijft het uiterlijk van de zonwering, het rolhek, rolluik of luik hetzelfde.\n\nDit is geen onderhoud:\n\n*   De zonwering, het rolhek, rolluik of luik wordt groter of komt op een andere plek.\n*   De vorm van de zonwering, het rolhek, rolluik of luik wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van de zonwering, het rolhek, rolluik of luik wordt anders.\n*   Het materiaal van de zonwering, het rolhek, rolluik of luik verandert.\n*   De kleur wordt anders.\n\n\\---\n\nVoorstel B:\n\nBij onderhoud blijven de plaats, de vorm, de maat en het profiel hetzelfde. Ook de kleur en het materiaal blijven hetzelfde.\n\nVoorbeelden van onderhoud zijn:\n\n*   De nieuwe zonwering, het rolhek, rolluik of luik heeft dezelfde vorm en komt op dezelfde plaats als de oude.\n*   De nieuwe zonwering, het rolhek, rolluik of luik is net zo groot als de oude.\n*   De dikte van de nieuwe zonwering, het rolhek, rolluik of luik is hetzelfde als de oude.\n*   De kleur en het materiaal van de nieuwe zonwering, het rolhek, rolluik of luik is hetzelfde als de oude.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__690a3357-58e6-4c09-879b-1a1ad3f4f67e",
+          "prio": 20,
+          "uuid": "zonwering, rolhek, rolluik of luik - onderhoud"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "Voorstel A:\n\nBij onderhoud blijft het uiterlijk van de zonwering, het rolhek, rolluik of luik hetzelfde. Als alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nDit is geen onderhoud:\n\n*   De zonwering, het rolhek, rolluik of luik wordt groter of komt op een andere plek.\n*   De vorm van de zonwering, het rolhek, rolluik of luik wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van de zonwering, het rolhek, rolluik of luik wordt anders.\n\n\\---\n\nVoorstel B\n\nBij onderhoud blijven de plaats, de vorm, de maat en het profiel hetzelfde.\n\nAls alleen kleur of materiaal veranderen, is het ook onderhoud.\n\nVoorbeelden van onderhoud zijn:\n\n*   De nieuwe zonwering, het rolhek, rolluik of luik heeft dezelfde vorm en komt op dezelfde plaats als de oude.\n*   De nieuwe zonwering, het rolhek, rolluik of luik is net zo groot als de oude.\n*   De dikte van de nieuwe zonwering, het rolhek, rolluik of luik is hetzelfde als de oude.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+          "prio": 30
+        },
+        {
+          "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
+          "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
+          "autofill": "cityScape",
+          "type": "boolean",
+          "id": "uitv__5ce6680b-9b16-4b77-af39-402428bb42c1",
+          "prio": 40
+        },
+        {
+          "text": "Wat wilt u gaan plaatsen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Uitvalrol.png \"Zonwering\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Markies.png \"Zonwering\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Rolluik.png \"Rolluik\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Luik.png \"Luik\")",
+          "options": ["Zonwering", "Rolhek, rolluik of luik"],
+          "type": "string",
+          "id": "uitv__0f50d481-52e0-4f42-8416-f67e97a779fd",
+          "prio": 50
+        },
+        {
+          "text": "Aan welke kant van het gebouw gaat u de zonwering plaatsen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een zonwering plaatsen? Doe voor iedere kant een vergunningcheck.",
+          "options": ["Voorkant", "Zijkant", "Achterkant"],
+          "type": "string",
+          "id": "uitv__89087f8f-c4c5-4c1a-8951-e1386ebee710",
+          "prio": 60
+        },
+        {
+          "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__74c589ae-48f4-46a0-8d67-ff7371d96c7f",
+          "prio": 70
+        },
+        {
+          "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__e36a40c6-bf92-42cd-805e-7e0b432cbcb7",
+          "prio": 80
+        },
+        {
+          "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__5c42ff66-4e28-4373-9223-a216c36c9d5e",
+          "prio": 90
+        },
+        {
+          "text": "Aan wat voor gebouw gaat u het rolhek, rolluik of luik plaatsen?",
+          "options": ["Woning", "Ander gebouw, zoals een winkel of kantoor"],
+          "type": "string",
+          "id": "uitv__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+          "prio": 100
+        },
+        {
+          "text": "Gaat u het rolhek, rolluik of luik plaatsen aan een hoofdgebouw of een bijgebouw?",
+          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein. Een bijgebouw is bijvoorbeeld een schuur of een fietsenberging.",
+          "options": ["Hoofdgebouw", "Bijgebouw"],
+          "type": "string",
+          "id": "uitv__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+          "prio": 110
+        },
+        {
+          "text": "Aan welke kant van het gebouw gaat u het rolhek, rolluik of luik plaatsen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een rolhek, rolluik of luik plaatsen? Doe voor iedere kant een vergunningcheck.",
+          "options": ["Voorkant", "Zijkant", "Achterkant"],
+          "type": "string",
+          "id": "uitv__1643e5e2-b4a7-4237-9603-782f222ca017",
+          "prio": 120
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__a826d467-683e-4c5b-ac64-c553f13110df",
+          "prio": 130
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae",
+          "prio": 140
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__cace8372-68da-466c-b6ec-50c89c38370f",
+          "prio": 150
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__b1ebb559-cb14-40d9-b42e-bb7d762a640c",
+          "prio": 160
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__9b680856-c4df-4892-8a0b-847b37d541d1",
+          "prio": 170
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__ef30e672-d2ab-4503-b333-eeb6636a18f6",
+          "prio": 180
+        },
+        {
+          "text": "Gaat u het rolhek, rolluik of luik plaatsen tegen de gevel of in de gevel?",
+          "options": ["Tegen de gevel", "In de gevel"],
+          "type": "string",
+          "id": "uitv__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
+          "prio": 190
+        },
+        {
+          "text": "Is meer dan 75% van het rolhek, rolluik of luik helemaal doorzichtig of open?",
+          "description": "U moet door 75% van het luik of hek heen kunnen kijken. Dat kan door het luik of hek van doorzichtig materiaal te maken, zoals glas. Delen van het luik of hek mogen ook open zijn.",
+          "type": "boolean",
+          "id": "uitv__33fbd679-7121-44ef-81ed-4d6b9df916bf",
+          "prio": 200
+        }
+      ],
+      "inputs": {
+        "input__d3f42e93-2d61-46a7-b429-a641ace772dc": {
+          "href": "#uitv__d3f42e93-2d61-46a7-b429-a641ace772dc",
+          "type": "string"
+        },
+        "input__690a3357-58e6-4c09-879b-1a1ad3f4f67e": {
+          "href": "#uitv__690a3357-58e6-4c09-879b-1a1ad3f4f67e",
+          "type": "string"
+        },
+        "input__6ec36f51-9b87-4227-8f8a-8a753b6343bc": {
+          "href": "#uitv__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+          "type": "string"
+        },
+        "input__5ce6680b-9b16-4b77-af39-402428bb42c1": {
+          "href": "#uitv__5ce6680b-9b16-4b77-af39-402428bb42c1",
+          "type": "boolean"
+        },
+        "input__0f50d481-52e0-4f42-8416-f67e97a779fd": {
+          "href": "#uitv__0f50d481-52e0-4f42-8416-f67e97a779fd",
+          "type": "string"
+        },
+        "input__89087f8f-c4c5-4c1a-8951-e1386ebee710": {
+          "href": "#uitv__89087f8f-c4c5-4c1a-8951-e1386ebee710",
+          "type": "string"
+        },
+        "input__74c589ae-48f4-46a0-8d67-ff7371d96c7f": {
+          "href": "#uitv__74c589ae-48f4-46a0-8d67-ff7371d96c7f",
+          "type": "boolean"
+        },
+        "input__e36a40c6-bf92-42cd-805e-7e0b432cbcb7": {
+          "href": "#uitv__e36a40c6-bf92-42cd-805e-7e0b432cbcb7",
+          "type": "boolean"
+        },
+        "input__5c42ff66-4e28-4373-9223-a216c36c9d5e": {
+          "href": "#uitv__5c42ff66-4e28-4373-9223-a216c36c9d5e",
+          "type": "boolean"
+        },
+        "input__bdcb18e7-d13a-41dd-af07-da2d12498d37": {
+          "href": "#uitv__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+          "type": "string"
+        },
+        "input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67": {
+          "href": "#uitv__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+          "type": "string"
+        },
+        "input__1643e5e2-b4a7-4237-9603-782f222ca017": {
+          "href": "#uitv__1643e5e2-b4a7-4237-9603-782f222ca017",
+          "type": "string"
+        },
+        "input__a826d467-683e-4c5b-ac64-c553f13110df": {
+          "href": "#uitv__a826d467-683e-4c5b-ac64-c553f13110df",
+          "type": "boolean"
+        },
+        "input__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae": {
+          "href": "#uitv__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae",
+          "type": "boolean"
+        },
+        "input__cace8372-68da-466c-b6ec-50c89c38370f": {
+          "href": "#uitv__cace8372-68da-466c-b6ec-50c89c38370f",
+          "type": "boolean"
+        },
+        "input__b1ebb559-cb14-40d9-b42e-bb7d762a640c": {
+          "href": "#uitv__b1ebb559-cb14-40d9-b42e-bb7d762a640c",
+          "type": "boolean"
+        },
+        "input__9b680856-c4df-4892-8a0b-847b37d541d1": {
+          "href": "#uitv__9b680856-c4df-4892-8a0b-847b37d541d1",
+          "type": "boolean"
+        },
+        "input__ef30e672-d2ab-4503-b333-eeb6636a18f6": {
+          "href": "#uitv__ef30e672-d2ab-4503-b333-eeb6636a18f6",
+          "type": "boolean"
+        },
+        "input__6b3da69a-d90f-4311-ab7b-1ea8ed513357": {
+          "href": "#uitv__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
+          "type": "string"
+        },
+        "input__33fbd679-7121-44ef-81ed-4d6b9df916bf": {
+          "href": "#uitv__33fbd679-7121-44ef-81ed-4d6b9df916bf",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_d4ef7b0f-7d40-420b-ae93-8269698329a3": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__690a3357-58e6-4c09-879b-1a1ad3f4f67e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b3c988fa-731c-41ad-9202-a3d4117ba5d7": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__89087f8f-c4c5-4c1a-8951-e1386ebee710"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Zonwering\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Zonwering\"",
+                  "\"Zijkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Rolhek, rolluik of luik\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_220be5fa-17ff-44f8-9ad6-2f4371f641a0": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__89087f8f-c4c5-4c1a-8951-e1386ebee710",
+            "#input__74c589ae-48f4-46a0-8d67-ff7371d96c7f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Zonwering\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Rolhek, rolluik of luik\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_00f7a6f0-f323-48a5-96eb-f93108ddcc60": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__89087f8f-c4c5-4c1a-8951-e1386ebee710",
+            "#input__e36a40c6-bf92-42cd-805e-7e0b432cbcb7"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Zonwering\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Rolhek, rolluik of luik\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_4716e1f0-563d-4e87-b8e5-64234da0a4ba": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__89087f8f-c4c5-4c1a-8951-e1386ebee710",
+            "#input__5c42ff66-4e28-4373-9223-a216c36c9d5e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Zonwering\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Rolhek, rolluik of luik\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f7bf47a7-6c69-4058-b4f5-d6841a1c4f56": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Woning\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Woning\"",
+                  "\"Zijkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_6c8f3129-fcc8-4d62-b7e7-9ec3751c6d17": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__b1ebb559-cb14-40d9-b42e-bb7d762a640c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Woning\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_daef92c1-dab3-43d4-90e4-e0f34938beb9": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__9b680856-c4df-4892-8a0b-847b37d541d1"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Woning\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_60782916-482f-4dd4-896f-ce36502e317d": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__ef30e672-d2ab-4503-b333-eeb6636a18f6"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Woning\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_3801b65d-e521-4993-b5b4-69e59fa9526d": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Bijgebouw\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Bijgebouw\"",
+                  "\"Zijkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Woning\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c346abee-fbf6-4ec0-bba9-f6ca9c7459c1": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__b1ebb559-cb14-40d9-b42e-bb7d762a640c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Bijgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Woning\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_230eea6d-c1f9-441d-9ff7-82fea89e87ce": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__9b680856-c4df-4892-8a0b-847b37d541d1"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Bijgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Woning\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_94d52d58-f34d-451b-867e-c1e47534dbe8": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__ef30e672-d2ab-4503-b333-eeb6636a18f6"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Bijgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  true,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Woning\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b324ee8a-2b49-41ab-825b-a4a923e65eaa": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Voorkant\"",
+                  "\"Tegen de gevel\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zonwering\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Woning\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Bijgebouw\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Achterkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"In de gevel\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_5fe5b042-fd1f-4994-8a52-325a36d8d207": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
+            "#input__33fbd679-7121-44ef-81ed-4d6b9df916bf"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Voorkant\"",
+                  "\"In de gevel\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zijkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Tegen de gevel\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_0f306a65-dc12-4515-b100-3f52e41a9895": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__a826d467-683e-4c5b-ac64-c553f13110df",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true,
+                  "\"Tegen de gevel\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"In de gevel\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b62ec518-e347-4517-a215-a0d4fcf663aa": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true,
+                  "\"Tegen de gevel\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"In de gevel\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c1e340cd-4377-40a1-97c9-4faacf1a3ce1": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__cace8372-68da-466c-b6ec-50c89c38370f",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true,
+                  "\"Tegen de gevel\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"In de gevel\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_a912b467-4b2c-4995-8526-5d0e6402cfb1": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__a826d467-683e-4c5b-ac64-c553f13110df",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
+            "#input__33fbd679-7121-44ef-81ed-4d6b9df916bf"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true,
+                  "\"In de gevel\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Tegen de gevel\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c6ddbb03-875a-4e29-9ef1-68aaf0dceef3": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
+            "#input__33fbd679-7121-44ef-81ed-4d6b9df916bf"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true,
+                  "\"In de gevel\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Tegen de gevel\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_03f9bef1-c21b-4883-ab94-550316120180": {
+          "requiredInputs": [
+            "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
+            "#input__6ec36f51-9b87-4227-8f8a-8a753b6343bc",
+            "#input__5ce6680b-9b16-4b77-af39-402428bb42c1",
+            "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
+            "#input__bdcb18e7-d13a-41dd-af07-da2d12498d37",
+            "#input__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
+            "#input__1643e5e2-b4a7-4237-9603-782f222ca017",
+            "#input__cace8372-68da-466c-b6ec-50c89c38370f",
+            "#input__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
+            "#input__33fbd679-7121-44ef-81ed-4d6b9df916bf"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Geen monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\"",
+                  false,
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ander gebouw, zoals een winkel of kantoor\"",
+                  "\"Hoofdgebouw\"",
+                  "\"Zijkant\"",
+                  true,
+                  "\"In de gevel\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, ik ga onderhoud doen\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Zonwering\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Woning\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Bijgebouw\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Tegen de gevel\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_d4ef7b0f-7d40-420b-ae93-8269698329a3",
+            "#_b3c988fa-731c-41ad-9202-a3d4117ba5d7",
+            "#_220be5fa-17ff-44f8-9ad6-2f4371f641a0",
+            "#_00f7a6f0-f323-48a5-96eb-f93108ddcc60",
+            "#_4716e1f0-563d-4e87-b8e5-64234da0a4ba",
+            "#_f7bf47a7-6c69-4058-b4f5-d6841a1c4f56",
+            "#_6c8f3129-fcc8-4d62-b7e7-9ec3751c6d17",
+            "#_daef92c1-dab3-43d4-90e4-e0f34938beb9",
+            "#_60782916-482f-4dd4-896f-ce36502e317d",
+            "#_3801b65d-e521-4993-b5b4-69e59fa9526d",
+            "#_c346abee-fbf6-4ec0-bba9-f6ca9c7459c1",
+            "#_230eea6d-c1f9-441d-9ff7-82fea89e87ce",
+            "#_94d52d58-f34d-451b-867e-c1e47534dbe8",
+            "#_b324ee8a-2b49-41ab-825b-a4a923e65eaa",
+            "#_5fe5b042-fd1f-4994-8a52-325a36d8d207",
+            "#_0f306a65-dc12-4515-b100-3f52e41a9895",
+            "#_b62ec518-e347-4517-a215-a0d4fcf663aa",
+            "#_c1e340cd-4377-40a1-97c9-4faacf1a3ce1",
+            "#_a912b467-4b2c-4995-8526-5d0e6402cfb1",
+            "#_c6ddbb03-875a-4e29-9ef1-68aaf0dceef3",
+            "#_03f9bef1-c21b-4883-ab94-550316120180"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hebt geen vergunning nodig voor het plaatsen van een zonwering, rolhek, rolluik of luik. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\nDit is waar u verder op moet letten:\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Conclusie Zonwering, rolhek, luik of rolluik monument",
+      "questions": [
+        {
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+          "prio": 10,
+          "uuid": "zonwering, rolhek, rolluik of luik - monument"
+        },
+        {
+          "text": "Gaat u onderhoud doen?",
+          "description": "Voorstel A:\n\nBij onderhoud blijft het uiterlijk van de zonwering, het rolhek, rolluik of luik hetzelfde.\n\nDit is geen onderhoud:\n\n*   De zonwering, het rolhek, rolluik of luik wordt groter of komt op een andere plek.\n*   De vorm van de zonwering, het rolhek, rolluik of luik wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van de zonwering, het rolhek, rolluik of luik wordt anders.\n*   Het materiaal van de zonwering, het rolhek, rolluik of luik verandert.\n*   De kleur wordt anders.\n\n\\---\n\nVoorstel B:\n\nBij onderhoud blijven de plaats, de vorm, de maat en het profiel hetzelfde. Ook de kleur en het materiaal blijven hetzelfde.\n\nVoorbeelden van onderhoud zijn:\n\n*   De nieuwe zonwering, het rolhek, rolluik of luik heeft dezelfde vorm en komt op dezelfde plaats als de oude.\n*   De nieuwe zonwering, het rolhek, rolluik of luik is net zo groot als de oude.\n*   De dikte van de nieuwe zonwering, het rolhek, rolluik of luik is hetzelfde als de oude.\n*   De kleur en het materiaal van de nieuwe zonwering, het rolhek, rolluik of luik is hetzelfde als de oude.",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__b4cd55f5-f187-43a1-9514-8071f82d645d",
+          "prio": 20,
+          "uuid": "zonwering, rolhek, rolluik of luik - onderhoud"
+        }
+      ],
+      "inputs": {
+        "input__448723b5-4dd9-4ffd-9c34-eef929ab07cc": {
+          "href": "#uitv__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+          "type": "string"
+        },
+        "input__b4cd55f5-f187-43a1-9514-8071f82d645d": {
+          "href": "#uitv__b4cd55f5-f187-43a1-9514-8071f82d645d",
+          "type": "string"
+        }
+      },
+      "decisions": {
+        "_daad8f9c-3f85-4ad4-8038-37c9045a5eea": {
+          "requiredInputs": ["#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Gemeentelijk monument\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Rijksmonument\""],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Geen monument\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_79c39527-9a23-4538-a7ad-ca88accaa767": {
+          "requiredInputs": [
+            "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+            "#input__b4cd55f5-f187-43a1-9514-8071f82d645d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_daad8f9c-3f85-4ad4-8038-37c9045a5eea",
+            "#_79c39527-9a23-4538-a7ad-ca88accaa767"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

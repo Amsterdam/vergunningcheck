@@ -1,4 +1,5 @@
 import isString from "lodash.isstring";
+
 import { collectionOfType, uniqueFilter } from "../../utils";
 
 /**

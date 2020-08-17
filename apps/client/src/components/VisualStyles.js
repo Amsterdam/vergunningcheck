@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
 import {
-  perceivedLoading,
-  themeColor,
   Paragraph,
   breakpoint,
+  perceivedLoading,
+  themeColor,
   themeSpacing,
 } from "@datapunt/asc-ui";
+import styled, { css } from "styled-components";
 
 export const Caption = styled(Paragraph)`
   margin: ${themeSpacing(2)} 0 0 0;

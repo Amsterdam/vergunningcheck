@@ -1,12 +1,13 @@
-import React from "react";
-import dotenv from "dotenv-flow";
-import { render } from "@testing-library/react";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { MockLink } from "@apollo/client/testing";
 import { ThemeProvider } from "@datapunt/asc-ui";
+import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import { render } from "@testing-library/react";
+import dotenv from "dotenv-flow";
+import React from "react";
+
+import { matomo } from "../config/matomo";
 import { SessionProvider } from "../context";
-import { matomo } from "../MatomoConfig";
-import { getTestClient } from "../apolloClient";
 
 dotenv.config();
 
@@ -21,6 +22,12 @@ const AllTheProviders = ({ children, mocks }) => (
     </ApolloProvider>
   </SessionProvider>
 );
+
+export const getTestClient = (mocks) =>
+  new ApolloClient({
+    link: new MockLink(mocks, true),
+    cache: new InMemoryCache(),
+  });
 
 const customRender = (ui, options, mocks) => {
   // Added new Component to be able to pass the `mocks` prop

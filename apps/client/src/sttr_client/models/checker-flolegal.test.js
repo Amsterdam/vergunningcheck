@@ -1,8 +1,8 @@
 import Checker from "./checker";
+import Decision from "./decision";
 import Permit from "./permit";
 import Question from "./question";
 import Rule from "./rule";
-import Decision from "./decision";
 
 describe("STTR specific", () => {
   test('"-" and "no hit" support', () => {

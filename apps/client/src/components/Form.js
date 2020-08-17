@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import { StyledForm } from "./FormStyles";
 
 const Form = ({ children, onSubmit, action, ...rest }) => {
