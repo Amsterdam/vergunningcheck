@@ -16,6 +16,7 @@ const Questions = ({
 }) => {
   const sessionContext = useContext(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
+  const [contactConclusion, setContactConclusion] = useState(false);
   const { questionIndex } = sessionContext[slug];
 
   const goToConclusion = useCallback(() => {
@@ -28,6 +29,7 @@ const Questions = ({
 
     if (checker.needContactExit(question)) {
       // Go directly to "Contact Conclusion" and skip other questions
+      setContactConclusion(true);
       goToConclusion();
     } else {
       // Load the next question or go to the "Conclusion"
@@ -132,6 +134,9 @@ const Questions = ({
       setFinishedState("questions", false);
     }
 
+    // Reset the ContactConclusion
+    setContactConclusion(false);
+
     const question = checker.stack[questionIndex];
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
@@ -219,14 +224,14 @@ const Questions = ({
           !q.options && booleanOptions.find((o) => o.value === q.answer);
         const userAnswer = q.options ? q.answer : booleanAnswers?.label;
 
-        // Skip unanswered questions
-        if (!userAnswer) return null;
-
-        // Check if currect question is causing a permit requirement
-        const questionNeedsPermit = !!permitsPerQuestion[i];
+        // Skip unanswered questions or in case of Contact Conclusion
+        if (!userAnswer || contactConclusion) return null;
 
         // Get new index
         const index = i + checker.stack.length;
+
+        // Check if currect question is causing a permit requirement
+        const questionNeedsPermit = !!permitsPerQuestion[index];
 
         return (
           <StepByStepItem
@@ -237,7 +242,7 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              hideEditButton={!checker.isConclusive()}
+              hideEditButton={checker.isConclusive()}
               onClick={() => onGoToQuestion(index)}
               {...{ questionNeedsPermit, userAnswer }}
             />
