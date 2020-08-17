@@ -19,8 +19,9 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { questionIndex } = sessionContext[topic.slug];
   const { slug, sttrFile } = topic;
+  // OLO Flow does not have questionIndex
+  const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
   //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
   if (!sessionContext[slug]) {
@@ -115,6 +116,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               heading="Adresgegevens"
               largeCircle
             >
+              {/* @TODO: Refactor this, because of duplicate code */}
               {isActive("locationInput") && (
                 <LocationInput
                   {...{
@@ -126,6 +128,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
                   }}
                 />
               )}
+              {/* @TODO: Refactor this, because of duplicate code */}
               {!isActive("locationInput") &&
                 (isActive("locationResult") ||
                   isFinished("locationResult")) && (
@@ -179,8 +182,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         {/* OLO-flow only needs the Location component */}
         {!sttrFile && (
           <>
+            {/* @TODO: Refactor this, because of duplicate code */}
             {isActive("locationInput") && (
-              <LocationInput {...{ topic, setActiveState }} />
+              <LocationInput {...{ topic, setActiveState, setFinishedState }} />
             )}
             {isActive("locationResult") && (
               <LocationResult
