@@ -19,8 +19,9 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { questionIndex } = sessionContext[topic.slug];
   const { slug, hasSTTR, text } = topic;
+  // OLO Flow does not have questionIndex
+  const { questionIndex } = hasSTTR ? sessionContext[topic.slug] : 0;
 
   //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
   if (!sessionContext[slug]) {
@@ -91,6 +92,12 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     ]);
   };
 
+  // Callback to go to the Conclusion section
+  // `false` is to prevent unexpected click, hover and focus states on already active section
+  const handleConclusionClick = !isActive("conclusion")
+    ? () => setActiveState("conclusion")
+    : false;
+
   return (
     <Layout heading={text.heading}>
       <Helmet>
@@ -115,6 +122,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               heading="Adresgegevens"
               largeCircle
             >
+              {/* @TODO: Refactor this, because of duplicate code */}
               {isActive("locationInput") && (
                 <LocationInput
                   {...{
@@ -126,6 +134,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
                   }}
                 />
               )}
+              {/* @TODO: Refactor this, because of duplicate code */}
               {!isActive("locationInput") &&
                 (isActive("locationResult") ||
                   isFinished("locationResult")) && (
@@ -166,6 +175,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               customSize
               heading="Conclusie"
               largeCircle
+              onClick={handleConclusionClick}
               // Overwrite the line between the Items
               style={{ marginTop: -1 }}
             >
@@ -179,8 +189,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         {/* OLO-flow only needs the Location component */}
         {!hasSTTR && (
           <>
+            {/* @TODO: Refactor this, because of duplicate code */}
             {isActive("locationInput") && (
-              <LocationInput {...{ topic, setActiveState }} />
+              <LocationInput {...{ topic, setActiveState, setFinishedState }} />
             )}
             {isActive("locationResult") && (
               <LocationResult
