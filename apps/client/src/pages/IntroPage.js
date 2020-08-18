@@ -13,14 +13,11 @@ import { geturl, routes } from "../routes";
 
 const IntroPage = ({ topic, checker }) => {
   const history = useHistory();
+
   const { text, intro } = topic;
-
-  const permitName =
-    checker?.permits.length === 1 ? checker.permits[0].name : null;
-  const title = `Inleiding${text?.heading && ` - ${text.heading}`}`;
-
   const dataNeed = getDataNeed(checker);
-  debugger;
+  console.log("dataNeed", dataNeed);
+
   const Intro = intro
     ? React.lazy(() => import(`../intros/${intro}`))
     : dataNeed
@@ -28,9 +25,9 @@ const IntroPage = ({ topic, checker }) => {
     : DefaultIntro;
 
   return (
-    <Layout heading={text?.heading || permitName}>
+    <Layout heading={text.heading}>
       <Helmet>
-        <title>{title}</title>
+        <title>Inleiding - {text.heading}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />

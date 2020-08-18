@@ -21,7 +21,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org).
 
 ## Updating permits
 
-If you want to include the latest permit-configuration (sttr-files) follow these steps.
+If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
 
 - Make sure you have the api-key in your environment variables. `export STTR_BUILDER_API_KEY=somesecret`
 - Download the xml files and transform them to our json-format from `./apps/client` run `npm run generate`
@@ -56,8 +56,8 @@ If you want to tweak texts, the name or the intro of a checker, you need to add 
 When we want to test our app with users we most follow this procedure:
 
 - Create new branch from the base branch and name it `ux-test-${topic}` where `${topic}` is the topic name and check this out locally
-- Run `STTR_ENV=production lerna run sttr` to get the latest STTR files
-- Edit the `topic` array in [config/index.ts](apps/client/src/config/index.ts) and make sure you added the correct `sttrFile`
+- In `./apps/client` run `npm run gererate` to get the latest STTR files and transform them to json
+- Edit the `topic` array in [config/index.ts](apps/client/src/config/index.ts) and make sure you added the correct config.
 - Push these changes to GitHub
 - Goto _Domain settings_ on Netlify and add a new SubDomain for your `ux-test-${topic}` branch
 - Verify everything is working correctly and share this link with your colleages

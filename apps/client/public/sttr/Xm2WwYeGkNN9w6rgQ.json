@@ -44,7 +44,7 @@
         }
       },
       "decisions": {
-        "_2afb7ca2-653d-4071-a2d3-6c7a7aae21b8": {
+        "_dc72d9b3-3808-4299-b7e5-a5d440e928ab": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -65,7 +65,10 @@
                 ],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"Geen monument\"", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
                 "output": "\"no hit\""
@@ -74,7 +77,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_2afb7ca2-653d-4071-a2d3-6c7a7aae21b8"],
+          "requiredDecisions": ["#_dc72d9b3-3808-4299-b7e5-a5d440e928ab"],
           "decisionTable": {
             "rules": [
               {

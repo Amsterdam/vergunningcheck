@@ -3,14 +3,7 @@ export type PermitId = string;
 export type PermitName = string;
 export type PermitConfig = Map<PermitId, PermitName>;
 
-// type TopicConfig = {
-//   slug: string,
-//   permits: PermitConfig,
-//   active: boolean
-// };
-
 export type APIConfig = {
-  version: number;
   outputDir: string;
   host: string;
   topics: { [key: string]: string[] };
@@ -21,6 +14,11 @@ export type ApiResult = {
   version: number;
   xml: string;
 };
+
+export type ActivitiesResponse = {
+  error?: string;
+};
+
 export type TopicInputType = {
   _id: string;
   name: string;

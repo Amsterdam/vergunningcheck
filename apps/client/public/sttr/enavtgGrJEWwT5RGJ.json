@@ -169,80 +169,131 @@
         }
       },
       "decisions": {
-        "_574758b3-71cc-43d5-8079-18daf79441ee": {
+        "_922ee27e-96bb-4d38-8ef9-2a442060edd5": {
           "requiredInputs": ["#input__9ad6bc25-a114-40b2-957e-e5ab2933890f"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"NeemContactOpMet\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_d4f03c79-b8bb-4d5b-9694-26fd2cfec2ee": {
+        "_016e9d47-1c37-417b-85f8-7fd763f3feff": {
           "requiredInputs": ["#input__9a7ccd2b-3423-4738-b02e-12e8cb080d42"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_033566a0-5992-42b1-905e-69a6252951a0": {
+        "_291ba291-269a-4d72-8021-0ac8aaad5e19": {
           "requiredInputs": ["#input__ea24fb34-3ad2-4604-9c82-270d571e618f"],
           "decisionTable": {
             "rules": [
-              { "inputs": ["\"voorkant\""], "output": "\"Vergunningplicht\"" },
-              { "inputs": ["\"zijkant\""], "output": "\"Vergunningplicht\"" },
-              { "inputs": ["\"achterkant\""], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"voorkant\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"zijkant\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"achterkant\""],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_888ea06d-28cf-4d76-82a8-b54071f3d29a": {
+        "_52a07570-78ff-45ef-a725-ab723795f17d": {
           "requiredInputs": ["#input__e7514f7c-767a-4ff7-a208-c1229f9d0bd4"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_4721ffdb-7661-451a-a620-4641a1996629": {
+        "_0219f02e-592c-40f0-933d-ad47b6155379": {
           "requiredInputs": ["#input__d7c7cf23-902d-40d8-b5c6-902800aaba7f"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_af00dbc1-4160-4c58-9fc5-e5d51f10727c": {
+        "_d5e67e5d-3a57-4388-8fe7-103c673f841f": {
           "requiredInputs": ["#input__99bb900d-d915-4f95-a6c1-210cf9b0a67f"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_d46415cb-f074-47e9-889d-615e8d4d36d7": {
+        "_4b080e0e-25d6-497d-87d6-15dc820b5a1a": {
           "requiredInputs": ["#input__73a48c6b-8d71-4565-9352-0d07d8fcad0c"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_1a41336e-92a2-41f0-9e33-50c1ed0e1713": {
+        "_dd0354bf-a421-4440-b20b-5b67cd11273c": {
           "requiredInputs": ["#input__abb7b973-febd-4461-9a4c-38e469a60a42"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_1e9a40e5-174f-4148-b963-9cd09d72c224": {
+        "_0d9cffa8-e4f0-441d-93c3-fe7e37806386": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__77151989-f723-495f-9574-5197507f237c"
@@ -253,13 +304,22 @@
                 "inputs": ["\"achterkant\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"voorkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"zijkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_36b797c4-9d4e-4f9c-91dd-8cb5d28f4736": {
+        "_c00d15ea-869d-450c-a42e-476e9051e8ab": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853"
@@ -270,13 +330,22 @@
                 "inputs": ["\"zijkant\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"voorkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"achterkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"achterkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_50f3fd18-d3b0-436a-b902-72bca10c7ec0": {
+        "_1a1c18a2-6a85-4179-8219-32e05eb61bf3": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853",
@@ -288,17 +357,26 @@
                 "inputs": ["\"zijkant\"", false, true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"voorkant\"", "-", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["\"voorkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": ["\"achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_88f81058-10e5-46a7-833d-d050909c4c0b": {
+        "_ed65d120-e5ce-4556-9938-efd2b8f1b180": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__77151989-f723-495f-9574-5197507f237c",
@@ -310,14 +388,26 @@
                 "inputs": ["\"achterkant\"", true, true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"voorkant\"", "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"zijkant\"", "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"voorkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_80b53e6a-4ebf-418c-873f-df2c86fa5953": {
+        "_1af402fe-7b7d-461d-958c-f0122303662b": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__77151989-f723-495f-9574-5197507f237c",
@@ -338,13 +428,22 @@
                 "inputs": ["\"zijkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_706b7f33-f682-4686-928b-b477e10cd4c5": {
+        "_36cb1f82-ec32-4948-8b30-c8f51b01badf": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853",
@@ -365,13 +464,22 @@
                 "inputs": ["\"achterkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", true, "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_112ba460-b5a1-4407-8812-590fe9caa917": {
+        "_41447c98-f61d-45f2-a29f-d2ba826b131a": {
           "requiredInputs": [
             "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
             "#input__77151989-f723-495f-9574-5197507f237c",
@@ -393,30 +501,42 @@
                 "inputs": ["\"zijkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", false, "-", "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", true, "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", "-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_574758b3-71cc-43d5-8079-18daf79441ee",
-            "#_d4f03c79-b8bb-4d5b-9694-26fd2cfec2ee",
-            "#_033566a0-5992-42b1-905e-69a6252951a0",
-            "#_888ea06d-28cf-4d76-82a8-b54071f3d29a",
-            "#_4721ffdb-7661-451a-a620-4641a1996629",
-            "#_af00dbc1-4160-4c58-9fc5-e5d51f10727c",
-            "#_d46415cb-f074-47e9-889d-615e8d4d36d7",
-            "#_1a41336e-92a2-41f0-9e33-50c1ed0e1713",
-            "#_1e9a40e5-174f-4148-b963-9cd09d72c224",
-            "#_36b797c4-9d4e-4f9c-91dd-8cb5d28f4736",
-            "#_50f3fd18-d3b0-436a-b902-72bca10c7ec0",
-            "#_88f81058-10e5-46a7-833d-d050909c4c0b",
-            "#_80b53e6a-4ebf-418c-873f-df2c86fa5953",
-            "#_706b7f33-f682-4686-928b-b477e10cd4c5",
-            "#_112ba460-b5a1-4407-8812-590fe9caa917"
+            "#_922ee27e-96bb-4d38-8ef9-2a442060edd5",
+            "#_016e9d47-1c37-417b-85f8-7fd763f3feff",
+            "#_291ba291-269a-4d72-8021-0ac8aaad5e19",
+            "#_52a07570-78ff-45ef-a725-ab723795f17d",
+            "#_0219f02e-592c-40f0-933d-ad47b6155379",
+            "#_d5e67e5d-3a57-4388-8fe7-103c673f841f",
+            "#_4b080e0e-25d6-497d-87d6-15dc820b5a1a",
+            "#_dd0354bf-a421-4440-b20b-5b67cd11273c",
+            "#_0d9cffa8-e4f0-441d-93c3-fe7e37806386",
+            "#_c00d15ea-869d-450c-a42e-476e9051e8ab",
+            "#_1a1c18a2-6a85-4179-8219-32e05eb61bf3",
+            "#_ed65d120-e5ce-4556-9938-efd2b8f1b180",
+            "#_1af402fe-7b7d-461d-958c-f0122303662b",
+            "#_36cb1f82-ec32-4948-8b30-c8f51b01badf",
+            "#_41447c98-f61d-45f2-a29f-d2ba826b131a"
           ],
           "decisionTable": {
             "rules": [

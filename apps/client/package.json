@@ -39,7 +39,7 @@
     "build": "react-scripts build",
     "build:netlify": "npm i && REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",
     "build:size-report": "npm i && npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
-    "generate": "npm run generate:fetch && npm run generate:transform",
+    "generate": "npm run generate:fetch && npm run generate:transform && lint-staged",
     "generate:fetch": "deno run --unstable --allow-net --allow-read --allow-write sttr_build/fetch.ts --dir=public --key=$STTR_BUILDER_API_KEY",
     "generate:transform": "deno run --unstable --allow-write --allow-read sttr_build/transform.ts --dir=public",
     "test": "react-scripts test",

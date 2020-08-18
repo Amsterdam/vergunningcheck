@@ -23,7 +23,7 @@
         }
       },
       "decisions": {
-        "_29adca87-17f0-4f80-8dc7-af96ab8dad77": {
+        "_3b4baabf-b197-46b9-9a3e-896fc7299599": {
           "requiredInputs": ["#input__0635d451-dff1-4994-aa09-c53876406e78"],
           "decisionTable": {
             "rules": [
@@ -41,7 +41,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_29adca87-17f0-4f80-8dc7-af96ab8dad77"],
+          "requiredDecisions": ["#_3b4baabf-b197-46b9-9a3e-896fc7299599"],
           "decisionTable": {
             "rules": [
               {
@@ -52,7 +52,10 @@
                 "inputs": ["\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
-              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
             ]
           }
         }

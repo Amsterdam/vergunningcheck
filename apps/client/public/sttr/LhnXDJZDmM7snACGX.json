@@ -56,22 +56,34 @@
         }
       },
       "decisions": {
-        "_340ad0f5-9bed-4b43-9bfe-266b591a7979": {
+        "_22f49d96-494d-46c6-a182-4a5b566bacee": {
           "requiredInputs": ["#input__44d29c32-b776-4df5-ac23-62d0be14e733"],
           "decisionTable": {
             "rules": [
-              { "inputs": ["\"kappen\""], "output": "\"Vergunningplicht\"" },
-              { "inputs": ["\"snoeien\""], "output": "\"Vergunningplicht\"" },
+              {
+                "inputs": ["\"kappen\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"snoeien\""],
+                "output": "\"Vergunningplicht\""
+              },
               {
                 "inputs": ["\"verplanten\""],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"rooien\""], "output": "\"no hit\"" },
-              { "inputs": ["\"andere handeling\""], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"rooien\""],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"andere handeling\""],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_7775a77f-2eff-449d-ba88-42b6183a2e30": {
+        "_adda64ff-a953-4b35-af6e-cf3d810d7b46": {
           "requiredInputs": [
             "#input__44d29c32-b776-4df5-ac23-62d0be14e733",
             "#input__2d8f3a75-f672-4843-a280-373bfce6f979"
@@ -102,9 +114,18 @@
                 "inputs": ["\"rooien\"", "\"ander houtachtig gewas\""],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"kappen\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"snoeien\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"verplanten\"", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["\"kappen\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"snoeien\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"verplanten\"", "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": ["\"andere handeling\"", "-"],
                 "output": "\"no hit\""
@@ -112,7 +133,7 @@
             ]
           }
         },
-        "_fa029ca2-5395-4413-b99e-210f56a02623": {
+        "_d2132432-3a30-445f-b8b3-414d839f417a": {
           "requiredInputs": [
             "#input__44d29c32-b776-4df5-ac23-62d0be14e733",
             "#input__a5a27d1c-eefa-46aa-8994-abfce77fd5dd"
@@ -123,19 +144,34 @@
                 "inputs": ["\"andere handeling\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"rooien\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"kappen\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"snoeien\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"verplanten\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"rooien\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"kappen\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"snoeien\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"verplanten\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_340ad0f5-9bed-4b43-9bfe-266b591a7979",
-            "#_7775a77f-2eff-449d-ba88-42b6183a2e30",
-            "#_fa029ca2-5395-4413-b99e-210f56a02623"
+            "#_22f49d96-494d-46c6-a182-4a5b566bacee",
+            "#_adda64ff-a953-4b35-af6e-cf3d810d7b46",
+            "#_d2132432-3a30-445f-b8b3-414d839f417a"
           ],
           "decisionTable": {
             "rules": [

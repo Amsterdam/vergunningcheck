@@ -32,7 +32,7 @@ const { apis }: { apis: APIConfig[] } = await import(
 }
 
 const apisMap: object[] = apis.map(async (api: APIConfig) => {
-  const { outputDir, version } = api;
+  const { outputDir } = api;
 
   let topics: TopicOutputType[] = Object.entries(api.topics).map(
     ([slug, topic]: [string, string[]]) => ({
@@ -73,16 +73,10 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
           }
 
           let xml;
-          if (version === 2) {
-            const perm: any = (await readJson(
-              join(baseDir, outputDir, `${permitId}.source.json`)
-            )) as Object;
-            xml = perm.sttr;
-          } else {
-            xml = await Deno.readTextFile(
-              join(baseDir, outputDir, `${permitId}.xml`)
-            );
-          }
+          const perm: any = (await readJson(
+            join(baseDir, outputDir, `${permitId}.source.json`)
+          )) as Object;
+          xml = perm.sttr;
 
           return sttrbuild(xml);
         })

@@ -1,7 +1,7 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
-import { Flow as flowTypes, generateOloUrl } from "../../config";
+import { generateOloUrl } from "../../config";
 import { SessionContext } from "../../context";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
@@ -16,11 +16,11 @@ const LocationResult = ({
 }) => {
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
-  const isOLO = topic.flow === flowTypes.olo;
+  const { hasSTTR } = topic;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!isOLO) {
+    if (hasSTTR) {
       sessionContext.setSessionData([
         topic.slug,
         {
@@ -36,14 +36,14 @@ const LocationResult = ({
 
   return (
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
-      {isOLO && <Heading forwardedAs="h3">Adresgegevens</Heading>}
+      {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        displayZoningPlans={isOLO}
+        displayZoningPlans={!hasSTTR}
         address={address}
         setActiveState={setActiveState}
         topic={topic}
       />
-      {isOLO && (
+      {!hasSTTR && (
         <Paragraph gutterBottom={0}>
           {/* OLO Flow text */}U hebt deze informatie nodig om de
           vergunningcheck te doen op het Omgevingsloket.
@@ -55,8 +55,8 @@ const LocationResult = ({
           onGoToPrev={() => {
             setActiveState("locationInput");
           }}
-          nextText={isOLO ? "Naar het omgevingsloket" : "Naar de vragen"}
-          formEnds={isOLO}
+          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de vragen"}
+          formEnds={!hasSTTR}
           showPrev
           showNext
         />

@@ -18,24 +18,33 @@
         }
       },
       "decisions": {
-        "_d5989518-7783-4a45-b0ad-7cdf56c7de1e": {
+        "_3eb58268-c17b-4d0e-bb5c-e693b65b14d8": {
           "requiredInputs": ["#input__d178a46c-5401-471e-91c2-7ac4aada0d1c"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_d5989518-7783-4a45-b0ad-7cdf56c7de1e"],
+          "requiredDecisions": ["#_3eb58268-c17b-4d0e-bb5c-e693b65b14d8"],
           "decisionTable": {
             "rules": [
               {
                 "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
             ]
           }
         }

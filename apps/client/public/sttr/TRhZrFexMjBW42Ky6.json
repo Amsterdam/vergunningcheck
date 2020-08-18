@@ -46,7 +46,7 @@
         }
       },
       "decisions": {
-        "_ed801672-1db9-4e91-a86a-0b1393247f6f": {
+        "_f01b02c4-2539-4b8c-9f7b-ce3e1d39f4b6": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2"
@@ -57,12 +57,18 @@
                 "inputs": ["\"Zonnepanelen\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"Zonneboiler\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"Zonneboiler\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_2b4269fc-5e45-48c5-bc88-c8d122e75537": {
+        "_38f731b0-f196-41da-b222-5a76e232bad9": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d"
@@ -73,15 +79,21 @@
                 "inputs": ["\"Zonneboiler\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              { "inputs": ["\"Zonnepanelen\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": ["\"Zonnepanelen\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_ed801672-1db9-4e91-a86a-0b1393247f6f",
-            "#_2b4269fc-5e45-48c5-bc88-c8d122e75537"
+            "#_f01b02c4-2539-4b8c-9f7b-ce3e1d39f4b6",
+            "#_38f731b0-f196-41da-b222-5a76e232bad9"
           ],
           "decisionTable": {
             "rules": [

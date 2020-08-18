@@ -20,17 +20,23 @@
         }
       },
       "decisions": {
-        "_b25eb4ea-319c-4a07-bd3f-15838be0f0a5": {
+        "_e7efb0d1-4a70-4db6-adb7-cadd75be2f17": {
           "requiredInputs": ["#input__797c410f-2502-4626-9b14-7be7c49b0751"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_b25eb4ea-319c-4a07-bd3f-15838be0f0a5"],
+          "requiredDecisions": ["#_e7efb0d1-4a70-4db6-adb7-cadd75be2f17"],
           "decisionTable": {
             "rules": [
               {

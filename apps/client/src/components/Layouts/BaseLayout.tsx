@@ -2,7 +2,7 @@ import { Column, FormTitle, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import { Flow as FlowType } from "../../config";
+import { Topic } from "../../config";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
@@ -11,14 +11,14 @@ import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
   children: React.ReactNode;
-  checker?: object;
   heading: String;
+  checker?: object;
 }
 
 function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
   const checkerContext = useContext(CheckerContext);
-  const { topic } = checkerContext as any;
-  const title = heading || topic?.text?.heading || null;
+  const topic: Topic = checkerContext.topic; // topic can be null here.
+  const title = heading || topic?.text.heading;
 
   return (
     <Container>
@@ -54,11 +54,8 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
         {topic && (
           <HiddenDebugInfo title="Topic">
             <p>slug: {topic.slug}</p>
-            <p>
-              redir to olo:{" "}
-              {JSON.stringify(topic.flow === FlowType.oloRedirect)}
-            </p>
-            <p>sttrFile: {topic.sttrFile}</p>
+            <p>redirectToOlo: {JSON.stringify(topic.redirectToOlo)}</p>
+            <p>hasSTTR: {JSON.stringify(topic.hasSTTR)}</p>
           </HiddenDebugInfo>
         )}
       </ContentContainer>

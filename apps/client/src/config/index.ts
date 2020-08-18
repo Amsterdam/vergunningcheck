@@ -1,22 +1,14 @@
-export enum Flow {
-  olo,
-  oloRedirect,
-  sttr,
-}
-
-type Topic = {
+export type Topic = {
   slug: string;
-  name: string;
-  flow: Flow;
-  text: Text;
-  sttrFile?: string;
+  name: String;
+  hasSTTR: boolean;
+  text: {
+    heading: string;
+    locationIntro?: string;
+    addressPage?: string;
+  };
+  redirectToOlo?: boolean;
   intro?: string;
-};
-
-type Text = {
-  heading: string;
-  locationIntro?: string;
-  addressPage?: string;
 };
 
 type OloProps = {
@@ -54,11 +46,12 @@ export const generateOloUrl = ({
   return `${Olo.location}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
-export const topics: Topic[] = [
+const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
     name: "Kappen of snoeien",
-    flow: Flow.oloRedirect,
+    hasSTTR: false,
+    redirectToOlo: true,
     text: {
       heading: "Vergunningcheck kappen of snoeien",
     },
@@ -66,7 +59,7 @@ export const topics: Topic[] = [
   {
     slug: "dakkapel-plaatsen",
     name: "Dakkapel plaatsen",
-    flow: Flow.sttr,
+    hasSTTR: true,
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
@@ -79,7 +72,7 @@ export const topics: Topic[] = [
   {
     slug: "dakraam-plaatsen",
     name: "Dakraam plaatsen",
-    flow: Flow.sttr,
+    hasSTTR: true,
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
@@ -92,7 +85,7 @@ export const topics: Topic[] = [
   {
     slug: "aanbouw-of-uitbouw-maken",
     name: "Aanbouw of uitbouw maken",
-    flow: Flow.olo,
+    hasSTTR: false,
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
       locationIntro:
@@ -103,7 +96,7 @@ export const topics: Topic[] = [
   {
     slug: "kozijnen-plaatsen-of-vervangen",
     name: "Kozijnen plaatsen of vervangen",
-    flow: Flow.sttr,
+    hasSTTR: true,
     text: {
       heading: "Vergunningcheck kozijnen plaatsen of vervangen",
       locationIntro:
@@ -114,7 +107,7 @@ export const topics: Topic[] = [
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     name: "Zonnepanelen of zonneboiler plaatsen",
-    flow: Flow.sttr,
+    hasSTTR: true,
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
@@ -125,7 +118,7 @@ export const topics: Topic[] = [
   {
     slug: "bouwwerk-slopen",
     name: "Bouwwerk slopen",
-    flow: Flow.olo,
+    hasSTTR: false,
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
@@ -135,7 +128,7 @@ export const topics: Topic[] = [
   {
     slug: "intern-verbouwen",
     name: "Intern verbouwen",
-    flow: Flow.olo,
+    hasSTTR: false,
     text: {
       heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
@@ -145,9 +138,7 @@ export const topics: Topic[] = [
   {
     slug: "zonwering-of-rolluik-plaatsen",
     name: "Zonwering of rolluik plaatsen",
-    flow: Flow.olo,
-    // Temporary disabled the STTR Flow:
-    // sttrFile: "zonwering.json",
+    hasSTTR: false, // Temporary disabled the STTR Flow:
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
@@ -158,6 +149,20 @@ export const topics: Topic[] = [
     // intro: "ZonweringRolluikIntro",
   },
 ];
+
+if (process.env.NODE_ENV !== "production") {
+  topics.push({
+    slug: "sttr-outcomes", // XXX test
+    name: "Testing STTR outcomes",
+    hasSTTR: true,
+    text: {
+      heading: "Testing different outcomes/conclusions",
+    },
+    intro: "shared/DefaultIntro",
+  });
+}
+
+export { topics };
 
 // We need a place for general text as well
 // I know this is not the best place

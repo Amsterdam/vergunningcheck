@@ -2,9 +2,8 @@ import { APIConfig } from "./types.ts";
 
 export const apis: APIConfig[] = [
   {
-    version: 1,
     outputDir: "sttr",
-    host: "https://sttr-builder.eu.meteorapp.com/api",
+    host: "https://sttr-builder.eu.meteorapp.com/api/v2",
     topics: {
       "dakkapel-plaatsen": ["WKPxKx4YBJ5fqYSni", "Aa2EX3YprpZQ65non"],
       "dakraam-plaatsen": ["hMwHKR7Wz4FP8Dm4x", "dRy4PfDs7jQPc9gMG"],

@@ -41,38 +41,56 @@
         }
       },
       "decisions": {
-        "_bea3aec4-60e8-4b0c-84a6-30667f8a8056": {
+        "_7bd23b19-96f7-43c7-88bb-b34441622566": {
           "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Informatieplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_0380bcbe-7f46-4b15-9289-a6c804a54815": {
+        "_3e8bb224-6d05-491a-910c-aad7efe0bf02": {
           "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Informatieplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_5be2bbfd-d87b-4f1c-b86c-88e1f12fffcd": {
+        "_38dc4c31-74be-4917-ba09-ada21d3a3e43": {
           "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Informatieplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_bea3aec4-60e8-4b0c-84a6-30667f8a8056",
-            "#_0380bcbe-7f46-4b15-9289-a6c804a54815",
-            "#_5be2bbfd-d87b-4f1c-b86c-88e1f12fffcd"
+            "#_7bd23b19-96f7-43c7-88bb-b34441622566",
+            "#_3e8bb224-6d05-491a-910c-aad7efe0bf02",
+            "#_38dc4c31-74be-4917-ba09-ada21d3a3e43"
           ],
           "decisionTable": {
             "rules": [

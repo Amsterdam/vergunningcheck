@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { Flow as FlowType } from "../../config";
 import { CheckerContext, SessionContext } from "../../context";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
@@ -25,9 +24,8 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { slug, flow, text = {} } = topic;
+  const { slug, sttr, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
-  const hasSTTR = flow === FlowType.sttr;
 
   const [address, setAddress] = useState(sessionAddress);
   const [errorMessage, setErrorMessage] = useState();
@@ -74,7 +72,7 @@ const LocationInput = ({
 
       checkerContext.autofillData.address = address;
 
-      if (hasSTTR) {
+      if (sttr) {
         resetChecker();
       }
 
@@ -109,7 +107,7 @@ const LocationInput = ({
         </Error>
       )}
 
-      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!sttr && <Heading forwardedAs="h3">Invullen adres</Heading>}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>

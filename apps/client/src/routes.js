@@ -36,7 +36,7 @@ export const routeConfig = [
   },
   {
     name: "intro",
-    // exact: true,
+    exact: true,
     path: "/:slug",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/IntroPage`)

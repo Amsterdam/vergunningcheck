@@ -131,116 +131,182 @@
         }
       },
       "decisions": {
-        "_6c30773b-ea87-4892-a049-2be191eeb333": {
+        "_f3cc3a16-63ea-41fe-9218-eaf428c3949f": {
           "requiredInputs": ["#input__aa4188c6-720c-42b5-9b64-7c02967bb675"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_03400009-4d82-4b70-a8eb-7c1710747d28": {
+        "_bbca442a-69c2-47ec-ba57-4af9e0e4e57d": {
           "requiredInputs": ["#input__6955a83b-e19c-4014-9655-3076879ea74f"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_2f9fd347-3da5-44ae-b68f-137ef03e5976": {
+        "_50018920-8b41-42ed-8641-22e774543bfe": {
           "requiredInputs": ["#input__ce0dffab-5b40-4bc8-a4e6-4f602a8b1513"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_90c2eb73-888c-4abc-b0ab-5a71107bcc13": {
+        "_3a2000eb-210e-4862-848e-3e29e715c150": {
           "requiredInputs": ["#input__97fec18b-c8fd-4286-8aa9-ad14cdee96a9"],
           "decisionTable": {
             "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_037e27ab-ce17-4534-b26e-ceba0d021202": {
+        "_bed0adc0-9ba8-4e0a-8686-804f67d25cae": {
           "requiredInputs": ["#input__e16662c3-d8bf-444d-8340-94998ded1e7e"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_7c7818b7-0418-462e-a28c-e2f9ddeb311f": {
+        "_f1cd752e-ca06-4e4f-8b62-97ca0943e67e": {
           "requiredInputs": ["#input__3105524d-1e1f-4b89-a7e7-26657a69bbe4"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_80bb0e3e-cc4d-4009-82f5-09a11a8b88da": {
+        "_9d3abd02-9e3c-464d-9d15-ff4c22247e8e": {
           "requiredInputs": ["#input__33f06c99-68e1-49ec-8bd1-e9eee4d9f28d"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_31bf213f-0a02-493a-973e-84b3254dd426": {
+        "_b0c53428-1156-4378-9c42-83e060edd807": {
           "requiredInputs": ["#input__138d2889-82a2-4fb0-9522-63a403f55a72"],
           "decisionTable": {
             "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_b15ea5ca-88ca-427d-95e0-44d20c221c9a": {
+        "_6a7a346c-cd4e-4e0a-854c-a42f465ef297": {
           "requiredInputs": [
             "#input__b9ff3816-1b89-4674-9eac-e0732eca75e4",
             "#input__6f7053f4-b6c4-4bcc-a897-b41792f0b2a4"
           ],
           "decisionTable": {
             "rules": [
-              { "inputs": [true, true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": [true, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
-        "_75f549b0-b398-4533-a5cf-7fd75939d66a": {
+        "_5f4f64d2-f40e-4adb-87ce-199fafab8baf": {
           "requiredInputs": [
             "#input__a81bedbb-aa1c-4bb2-bea0-4c39ccad57d4",
             "#input__3c3d7b0f-9141-4a81-8e5e-9850411d849c"
           ],
           "decisionTable": {
             "rules": [
-              { "inputs": [true, true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
+              {
+                "inputs": [true, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6c30773b-ea87-4892-a049-2be191eeb333",
-            "#_03400009-4d82-4b70-a8eb-7c1710747d28",
-            "#_2f9fd347-3da5-44ae-b68f-137ef03e5976",
-            "#_90c2eb73-888c-4abc-b0ab-5a71107bcc13",
-            "#_037e27ab-ce17-4534-b26e-ceba0d021202",
-            "#_7c7818b7-0418-462e-a28c-e2f9ddeb311f",
-            "#_80bb0e3e-cc4d-4009-82f5-09a11a8b88da",
-            "#_31bf213f-0a02-493a-973e-84b3254dd426",
-            "#_b15ea5ca-88ca-427d-95e0-44d20c221c9a",
-            "#_75f549b0-b398-4533-a5cf-7fd75939d66a"
+            "#_f3cc3a16-63ea-41fe-9218-eaf428c3949f",
+            "#_bbca442a-69c2-47ec-ba57-4af9e0e4e57d",
+            "#_50018920-8b41-42ed-8641-22e774543bfe",
+            "#_3a2000eb-210e-4862-848e-3e29e715c150",
+            "#_bed0adc0-9ba8-4e0a-8686-804f67d25cae",
+            "#_f1cd752e-ca06-4e4f-8b62-97ca0943e67e",
+            "#_9d3abd02-9e3c-464d-9d15-ff4c22247e8e",
+            "#_b0c53428-1156-4378-9c42-83e060edd807",
+            "#_6a7a346c-cd4e-4e0a-854c-a42f465ef297",
+            "#_5f4f64d2-f40e-4adb-87ce-199fafab8baf"
           ],
           "decisionTable": {
             "rules": [

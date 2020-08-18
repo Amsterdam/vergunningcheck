@@ -4,7 +4,7 @@ import { assert } from "https://deno.land/std/testing/asserts.ts";
 import parser from "https://deno.land/x/yargs_parser/deno.ts";
 import { makeRunWithLimit } from "https://denopkg.com/alextes/run-with-limit/mod.ts";
 
-import { APIConfig, ApiResult } from "./types.ts";
+import { APIConfig, ActivitiesResponse, TopicInputType } from "./types.ts";
 
 // TODO: Improve 'usage', waiting for yargs to be ported https://github.com/yargs/yargs/issues/1661
 const argv = parser(Deno.args, {
@@ -35,7 +35,7 @@ const { apis }: { apis: APIConfig[] } = await import(
 const apisMap = apis.map(
   async (api: APIConfig) =>
     new Promise(async (resolve, _) => {
-      const { version, outputDir, host } = api;
+      const { outputDir, host } = api;
 
       // Create / empty the api-specific output-directory
       await emptyDir(join(baseDir, outputDir));
@@ -44,16 +44,17 @@ const apisMap = apis.map(
       const activitiesRequest = await fetch(`${host}/activiteiten`, {
         headers,
       });
-      const activities = await activitiesRequest.json();
-      if (activities.error) {
-        throw new Error(activities.error);
+      const response: ActivitiesResponse = await activitiesRequest.json();
+      if (response.error) {
+        throw new Error(response.error);
       }
+      const activities = response as TopicInputType[];
 
       writeJson(join(baseDir, outputDir, "list.source.json"), activities);
 
       // Now fetch the permits using a pool of promises
       const { runWithLimit } = makeRunWithLimit(argv.maxConnections || 6);
-      const activityRequests: ApiResult[] = activities.map((activity) => {
+      const activityRequests = activities.map((activity: TopicInputType) => {
         const permitId: string = activity._id;
 
         const requestPromise = async () => {
@@ -72,16 +73,13 @@ const apisMap = apis.map(
             );
           }
 
-          if (version === 1) {
-            Deno.writeTextFile(
-              join(baseDir, outputDir, `${permitId}.xml`),
-              await result.text()
-            );
-          } else {
+          try {
             writeJson(
               join(baseDir, outputDir, `${permitId}.source.json`),
               await result.json()
             );
+          } catch (e) {
+            console.error(e, result);
           }
         };
         return runWithLimit(requestPromise);

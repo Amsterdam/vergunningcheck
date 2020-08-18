@@ -76,8 +76,9 @@ const getAutofillResolverKey = (questionText) => {
 };
 
 const filt = (arr, tagName) => arr.filter(({ name }) => name === tagName);
+
 const find = (arr, tagName) => arr.find(({ name }) => name === tagName);
-// const getAttr = (xmlNode, attrName) => xmlNode.attribs[attrName].trim();
+
 const log = (obj) => {
   if (obj === undefined) return "undefined";
   if (obj.hasOwnProperty("length") && typeof obj === "object") {
@@ -176,9 +177,11 @@ function getDecisions(xmlDecisions) {
     res.decisionTable = {
       rules,
     };
-    // const { "@_id": id, ...copy } = xmlDecisions;
 
+    // TODO: Use consistent id's
+    // const { "@_id": id, ...copy } = xmlDecisions;
     // copy[getId(res)] = res;
+
     xmlDecisions[xmlDecision.attribs.id] = res;
     return xmlDecisions;
   }, {});

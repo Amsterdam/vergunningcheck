@@ -105,7 +105,7 @@
         }
       },
       "decisions": {
-        "_54eccebd-0d6a-4ff5-ba0c-ed017b6c4652": {
+        "_44d5b35e-e188-4d60-b5d4-a3f84adae46e": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -148,7 +148,7 @@
             ]
           }
         },
-        "_798591a4-4fc1-49b2-8537-b57024b2856e": {
+        "_6e66c1eb-bb13-4099-a002-27c5e27144ed": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -176,7 +176,10 @@
                 "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", "\"Zonwering\"", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["-", "\"Zonwering\"", "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": [
                   "-",
@@ -188,7 +191,7 @@
             ]
           }
         },
-        "_0979c953-1b99-4419-983d-6e40e75e1c58": {
+        "_4a522da7-c5a4-4113-94b2-c5056be55d51": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -244,7 +247,7 @@
             ]
           }
         },
-        "_19e757a8-6dbb-4d31-89f8-8c0fc78a2613": {
+        "_7ba6184d-03fb-4cb2-83cd-77380b2aba8b": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -302,10 +305,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_54eccebd-0d6a-4ff5-ba0c-ed017b6c4652",
-            "#_798591a4-4fc1-49b2-8537-b57024b2856e",
-            "#_0979c953-1b99-4419-983d-6e40e75e1c58",
-            "#_19e757a8-6dbb-4d31-89f8-8c0fc78a2613"
+            "#_44d5b35e-e188-4d60-b5d4-a3f84adae46e",
+            "#_6e66c1eb-bb13-4099-a002-27c5e27144ed",
+            "#_4a522da7-c5a4-4113-94b2-c5056be55d51",
+            "#_7ba6184d-03fb-4cb2-83cd-77380b2aba8b"
           ],
           "decisionTable": {
             "rules": [

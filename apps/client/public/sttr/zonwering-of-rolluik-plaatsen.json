@@ -105,7 +105,7 @@
         }
       },
       "decisions": {
-        "_54eccebd-0d6a-4ff5-ba0c-ed017b6c4652": {
+        "_44d5b35e-e188-4d60-b5d4-a3f84adae46e": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -148,7 +148,7 @@
             ]
           }
         },
-        "_798591a4-4fc1-49b2-8537-b57024b2856e": {
+        "_6e66c1eb-bb13-4099-a002-27c5e27144ed": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -176,7 +176,10 @@
                 "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", "\"Zonwering\"", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["-", "\"Zonwering\"", "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": [
                   "-",
@@ -188,7 +191,7 @@
             ]
           }
         },
-        "_0979c953-1b99-4419-983d-6e40e75e1c58": {
+        "_4a522da7-c5a4-4113-94b2-c5056be55d51": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -244,7 +247,7 @@
             ]
           }
         },
-        "_19e757a8-6dbb-4d31-89f8-8c0fc78a2613": {
+        "_7ba6184d-03fb-4cb2-83cd-77380b2aba8b": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -302,10 +305,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_54eccebd-0d6a-4ff5-ba0c-ed017b6c4652",
-            "#_798591a4-4fc1-49b2-8537-b57024b2856e",
-            "#_0979c953-1b99-4419-983d-6e40e75e1c58",
-            "#_19e757a8-6dbb-4d31-89f8-8c0fc78a2613"
+            "#_44d5b35e-e188-4d60-b5d4-a3f84adae46e",
+            "#_6e66c1eb-bb13-4099-a002-27c5e27144ed",
+            "#_4a522da7-c5a4-4113-94b2-c5056be55d51",
+            "#_7ba6184d-03fb-4cb2-83cd-77380b2aba8b"
           ],
           "decisionTable": {
             "rules": [
@@ -574,12 +577,9 @@
           "prio": 240
         },
         {
-          "text": "Komt het rolhek, rolluik of luik aan de binnenzijde van de muur of het kozijn?",
+          "text": "Komt het rolhek, rolluik of luik aan de binnenkant van de muur of het kozijn?",
           "collection": true,
-          "options": [
-            "Ja, aan de binnenzijde.",
-            "Nee, niet aan de binnenzijde."
-          ],
+          "options": ["Ja, aan de binnenkant.", "Nee, niet aan de binnenkant."],
           "type": "string",
           "id": "uitv__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
           "prio": 250
@@ -698,7 +698,7 @@
         }
       },
       "decisions": {
-        "_59b507fe-85fb-4cb0-826c-29b1b8ab6c40": {
+        "_bfe19da1-d58d-4c57-91ec-1292523d49bf": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -741,7 +741,7 @@
             ]
           }
         },
-        "_f988bfd7-5c41-49dd-9aff-775841720557": {
+        "_2269d252-e7ed-46d9-88c8-f63378acaf1c": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -769,7 +769,10 @@
                 "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", "\"Zonwering\"", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["-", "\"Zonwering\"", "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": [
                   "-",
@@ -781,7 +784,7 @@
             ]
           }
         },
-        "_456999ad-4226-4165-8898-2ef78f44d384": {
+        "_7b013883-d837-4980-8dad-61afa7c12412": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -837,7 +840,7 @@
             ]
           }
         },
-        "_969ab16f-304a-4523-b31c-b29a1f4a5d2e": {
+        "_308b8c2a-5317-4451-873c-5f1a028331c5": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -893,7 +896,7 @@
             ]
           }
         },
-        "_fea8bb2c-da98-4781-9985-5b8d35863259": {
+        "_be831839-2fb8-4a5b-85b2-5cf424c7b372": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -945,7 +948,10 @@
                 ],
                 "output": "\"no hit\""
               },
-              { "inputs": ["-", "-", "-", false, "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
               {
                 "inputs": ["-", "-", "-", "-", "\"Achterkant\""],
                 "output": "\"no hit\""
@@ -953,7 +959,7 @@
             ]
           }
         },
-        "_50256362-c0f4-407c-8460-0d119d028daa": {
+        "_8ecd17d5-5285-48c8-af39-8341e97e880f": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1038,7 +1044,7 @@
             ]
           }
         },
-        "_efc54f33-6c34-4c05-a657-39d36a92611b": {
+        "_aeb0d811-71b4-44b8-b350-3bf5e9bf1a5f": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1116,7 +1122,7 @@
             ]
           }
         },
-        "_89882655-0b5d-4e68-ada8-0538d0aead9c": {
+        "_3aec0f0e-15b5-49e6-a3e9-193e3a26df9c": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1208,7 +1214,7 @@
             ]
           }
         },
-        "_c42c6c26-f787-40ec-ab50-1075e4111faf": {
+        "_81a62038-df81-43c8-9122-9b3f7c7e2f94": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1286,7 +1292,7 @@
             ]
           }
         },
-        "_a20d78ab-7844-413a-8ea3-a299ea258112": {
+        "_2a8d31f9-d1da-4580-a805-72ccf78836c1": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1364,7 +1370,7 @@
             ]
           }
         },
-        "_40b28c80-9592-48fa-a58d-a30108f74387": {
+        "_e1de765f-b8b2-4fd4-b1e2-c82cec9efc99": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1459,7 +1465,7 @@
             ]
           }
         },
-        "_c3494e85-cedf-465c-9b93-ae5ebf38b52e": {
+        "_5b9400ea-5dd0-43aa-9555-d0275fe2fe01": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1554,7 +1560,7 @@
             ]
           }
         },
-        "_db088997-e797-4e25-a4cc-87e74c34b194": {
+        "_14fea421-ee75-4e90-bb10-6cf6429a44c2": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1657,7 +1663,7 @@
             ]
           }
         },
-        "_39cdd720-e255-4051-8d1e-13c63b023d5b": {
+        "_ae0d5918-95e3-49a5-a68d-35bd7a7b3786": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1744,7 +1750,7 @@
             ]
           }
         },
-        "_146c8b38-0615-41d3-bc47-f675f4ae7658": {
+        "_a0f6d3c0-1f47-4670-b874-f4649f0df44d": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1831,7 +1837,7 @@
             ]
           }
         },
-        "_8fcd7249-babd-4cde-ad42-c86336a20aef": {
+        "_e7423f7c-0f80-4535-a9ca-8ea9b8b149f9": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -1918,7 +1924,7 @@
             ]
           }
         },
-        "_252091ba-4e6b-4af3-8f78-5ab61155455c": {
+        "_9179a28c-b317-4ada-af63-ff889435028c": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2033,7 +2039,7 @@
             ]
           }
         },
-        "_8c8909e6-c10d-4c2d-b594-e215ba6d8056": {
+        "_de25fc6f-1c07-4c5b-8c8e-768b3eee92d2": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2128,7 +2134,7 @@
             ]
           }
         },
-        "_75c419c3-3a50-436c-9aeb-a757862e7818": {
+        "_c8196f00-db2b-480f-bb3b-fbb25cabb93b": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2242,7 +2248,7 @@
             ]
           }
         },
-        "_2024bef0-0b68-4bc3-bbf0-77f1d668e419": {
+        "_1c0e757c-136f-4459-9400-b0b2f7a3b9c7": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2356,7 +2362,7 @@
             ]
           }
         },
-        "_e09f9be8-74d4-4a6b-bced-6dbca8f155af": {
+        "_89576a2f-312b-40af-8919-904176aa5a05": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2470,7 +2476,7 @@
             ]
           }
         },
-        "_a5a59790-fcc0-4a96-8ea0-8b91dc75867c": {
+        "_5d313ae2-51ae-447f-af41-3b81c3bbf1c2": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2615,7 +2621,7 @@
             ]
           }
         },
-        "_4c5bd462-d6c3-4305-b70f-e7b814ce5e78": {
+        "_2b1049da-94ba-4096-a03b-6316e1396d8b": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2729,7 +2735,7 @@
             ]
           }
         },
-        "_a8ff13da-e4d2-4486-87a3-2b6a30f4bf92": {
+        "_7765d169-4629-4f89-8727-3b85fd2130ef": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2751,7 +2757,7 @@
                   "\"Ander gebouw, zoals een winkel of kantoor.\"",
                   "\"Hoofdgebouw\"",
                   "\"Voorkant\"",
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -2836,14 +2842,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_7585f248-f0f3-452f-bf16-982564968a78": {
+        "_e1ee4ec4-8e4c-43c9-8667-6310dc5a8633": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -2957,7 +2963,7 @@
             ]
           }
         },
-        "_c09c5edd-e2c1-438c-89a0-45496726410c": {
+        "_81c8fdcf-942f-4dc2-be81-0f84942c7a4b": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -3071,7 +3077,7 @@
             ]
           }
         },
-        "_5669f41b-5bd6-483b-ac78-89262035f39e": {
+        "_038e791b-5b6a-46a9-8703-6e213b97af7a": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -3236,7 +3242,7 @@
             ]
           }
         },
-        "_9e0f9d82-32c9-4fa5-aac4-a324a9ce4cfd": {
+        "_79d9a1f8-eadd-4774-a0e8-7aab72878ac5": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -3260,7 +3266,7 @@
                   "\"Ander gebouw, zoals een winkel of kantoor.\"",
                   "\"Hoofdgebouw\"",
                   "\"Voorkant\"",
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -3404,14 +3410,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_18647b2e-96ec-4ee3-8bba-56e572e251a1": {
+        "_74723861-78c2-43ae-bb06-9c0449edaa89": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -3434,7 +3440,7 @@
                   "\"Ander gebouw, zoals een winkel of kantoor.\"",
                   "\"Hoofdgebouw\"",
                   "\"Voorkant\"",
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -3564,7 +3570,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -3576,7 +3582,7 @@
             ]
           }
         },
-        "_81db2ff8-7582-4fc8-b1ee-0d2fe4b4971a": {
+        "_09e1c7f2-e126-40c5-b3c4-851b44e2df74": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -3600,7 +3606,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -3734,14 +3740,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_e4ea91d1-5e83-47b0-b3e5-5497379b9ce7": {
+        "_b9771282-52bd-4f46-8388-cf2e4417ee14": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -3906,7 +3912,7 @@
             ]
           }
         },
-        "_7b3c55d3-610c-444c-bb69-0399c5e192c8": {
+        "_c3490615-95c2-49af-940e-2ba11fdeb263": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4071,7 +4077,7 @@
             ]
           }
         },
-        "_a9285a72-6c83-4d85-a085-c196a30de57d": {
+        "_0edba78b-897d-42d4-b485-5a0cf47c54fa": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4095,7 +4101,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -4229,14 +4235,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_7589c885-f363-4069-a19b-32d8c7c94f1f": {
+        "_043854d0-9cac-4aef-b2df-75d1aaca1c36": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4260,7 +4266,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -4394,14 +4400,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_daa05a54-ace7-4f25-8611-c6ceb1426632": {
+        "_06795eaf-1eac-4b38-983d-34a35c8c9bc1": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4426,7 +4432,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -4569,7 +4575,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -4581,7 +4587,7 @@
             ]
           }
         },
-        "_620f5bb1-4919-4d9b-8312-508fecc5060e": {
+        "_78dcc262-53f1-44b6-9871-0d47b06ef3c3": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4607,7 +4613,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -4765,14 +4771,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_99cb6928-c33d-4789-9d39-e28bdc5b4abf": {
+        "_aaa9999d-2ee8-4b16-8723-a9ffd748acd4": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4798,7 +4804,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -4956,14 +4962,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_d8c04b39-4c72-4731-a0b3-a71986bb3aed": {
+        "_08474000-50e3-48f4-b8aa-92ddfe2ee74c": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -4988,7 +4994,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -5131,7 +5137,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -5143,7 +5149,7 @@
             ]
           }
         },
-        "_90a33993-1567-410f-b367-3f5228109df5": {
+        "_4ee167ed-348a-4819-b61a-ebf1545e6047": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -5168,7 +5174,7 @@
                   "\"Ander gebouw, zoals een winkel of kantoor.\"",
                   "\"Hoofdgebouw\"",
                   "\"Voorkant\"",
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -5322,7 +5328,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -5334,7 +5340,7 @@
             ]
           }
         },
-        "_9f581f14-487f-4df3-a4e4-e3418563d7f0": {
+        "_53f64b9c-417c-4e6b-88b3-21e9e018e6dc": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -5360,7 +5366,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Nee, niet aan de binnenzijde.\""
+                  "\"Nee, niet aan de binnenkant.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -5518,14 +5524,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Ja, aan de binnenzijde.\""
+                  "\"Ja, aan de binnenkant.\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_fb8a14e6-ddc1-4fa0-90e7-db8cafcb56a9": {
+        "_0f61936a-2004-49ea-8db3-1b1615f59685": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -5550,7 +5556,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -5693,7 +5699,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -5705,7 +5711,7 @@
             ]
           }
         },
-        "_2ac9742a-0af3-4871-8ced-0ae4e951d320": {
+        "_ebac6eb3-417a-4f72-8da3-b9b6a6f5b861": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -5732,7 +5738,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -5924,7 +5930,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -5948,7 +5954,7 @@
             ]
           }
         },
-        "_a2b02314-822c-4ea9-9b49-85f56ba1fda2": {
+        "_6e8a3fed-f346-4a29-ab07-4f135bb8d5ad": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -5975,7 +5981,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -6167,7 +6173,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -6191,7 +6197,7 @@
             ]
           }
         },
-        "_2ab664c7-6cd7-455a-b513-2ebe79fc0f8e": {
+        "_d60972cc-08b8-4266-8140-49ad7feab2e6": {
           "requiredInputs": [
             "#input__d3f42e93-2d61-46a7-b429-a641ace772dc",
             "#input__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -6218,7 +6224,7 @@
                   "\"Hoofdgebouw\"",
                   "\"Zijkant\"",
                   true,
-                  "\"Ja, aan de binnenzijde.\"",
+                  "\"Ja, aan de binnenkant.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -6410,7 +6416,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Nee, niet aan de binnenzijde.\"",
+                  "\"Nee, niet aan de binnenkant.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -6436,50 +6442,50 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_59b507fe-85fb-4cb0-826c-29b1b8ab6c40",
-            "#_f988bfd7-5c41-49dd-9aff-775841720557",
-            "#_456999ad-4226-4165-8898-2ef78f44d384",
-            "#_969ab16f-304a-4523-b31c-b29a1f4a5d2e",
-            "#_fea8bb2c-da98-4781-9985-5b8d35863259",
-            "#_50256362-c0f4-407c-8460-0d119d028daa",
-            "#_efc54f33-6c34-4c05-a657-39d36a92611b",
-            "#_89882655-0b5d-4e68-ada8-0538d0aead9c",
-            "#_c42c6c26-f787-40ec-ab50-1075e4111faf",
-            "#_a20d78ab-7844-413a-8ea3-a299ea258112",
-            "#_40b28c80-9592-48fa-a58d-a30108f74387",
-            "#_c3494e85-cedf-465c-9b93-ae5ebf38b52e",
-            "#_db088997-e797-4e25-a4cc-87e74c34b194",
-            "#_39cdd720-e255-4051-8d1e-13c63b023d5b",
-            "#_146c8b38-0615-41d3-bc47-f675f4ae7658",
-            "#_8fcd7249-babd-4cde-ad42-c86336a20aef",
-            "#_252091ba-4e6b-4af3-8f78-5ab61155455c",
-            "#_8c8909e6-c10d-4c2d-b594-e215ba6d8056",
-            "#_75c419c3-3a50-436c-9aeb-a757862e7818",
-            "#_2024bef0-0b68-4bc3-bbf0-77f1d668e419",
-            "#_e09f9be8-74d4-4a6b-bced-6dbca8f155af",
-            "#_a5a59790-fcc0-4a96-8ea0-8b91dc75867c",
-            "#_4c5bd462-d6c3-4305-b70f-e7b814ce5e78",
-            "#_a8ff13da-e4d2-4486-87a3-2b6a30f4bf92",
-            "#_7585f248-f0f3-452f-bf16-982564968a78",
-            "#_c09c5edd-e2c1-438c-89a0-45496726410c",
-            "#_5669f41b-5bd6-483b-ac78-89262035f39e",
-            "#_9e0f9d82-32c9-4fa5-aac4-a324a9ce4cfd",
-            "#_18647b2e-96ec-4ee3-8bba-56e572e251a1",
-            "#_81db2ff8-7582-4fc8-b1ee-0d2fe4b4971a",
-            "#_e4ea91d1-5e83-47b0-b3e5-5497379b9ce7",
-            "#_7b3c55d3-610c-444c-bb69-0399c5e192c8",
-            "#_a9285a72-6c83-4d85-a085-c196a30de57d",
-            "#_7589c885-f363-4069-a19b-32d8c7c94f1f",
-            "#_daa05a54-ace7-4f25-8611-c6ceb1426632",
-            "#_620f5bb1-4919-4d9b-8312-508fecc5060e",
-            "#_99cb6928-c33d-4789-9d39-e28bdc5b4abf",
-            "#_d8c04b39-4c72-4731-a0b3-a71986bb3aed",
-            "#_90a33993-1567-410f-b367-3f5228109df5",
-            "#_9f581f14-487f-4df3-a4e4-e3418563d7f0",
-            "#_fb8a14e6-ddc1-4fa0-90e7-db8cafcb56a9",
-            "#_2ac9742a-0af3-4871-8ced-0ae4e951d320",
-            "#_a2b02314-822c-4ea9-9b49-85f56ba1fda2",
-            "#_2ab664c7-6cd7-455a-b513-2ebe79fc0f8e"
+            "#_bfe19da1-d58d-4c57-91ec-1292523d49bf",
+            "#_2269d252-e7ed-46d9-88c8-f63378acaf1c",
+            "#_7b013883-d837-4980-8dad-61afa7c12412",
+            "#_308b8c2a-5317-4451-873c-5f1a028331c5",
+            "#_be831839-2fb8-4a5b-85b2-5cf424c7b372",
+            "#_8ecd17d5-5285-48c8-af39-8341e97e880f",
+            "#_aeb0d811-71b4-44b8-b350-3bf5e9bf1a5f",
+            "#_3aec0f0e-15b5-49e6-a3e9-193e3a26df9c",
+            "#_81a62038-df81-43c8-9122-9b3f7c7e2f94",
+            "#_2a8d31f9-d1da-4580-a805-72ccf78836c1",
+            "#_e1de765f-b8b2-4fd4-b1e2-c82cec9efc99",
+            "#_5b9400ea-5dd0-43aa-9555-d0275fe2fe01",
+            "#_14fea421-ee75-4e90-bb10-6cf6429a44c2",
+            "#_ae0d5918-95e3-49a5-a68d-35bd7a7b3786",
+            "#_a0f6d3c0-1f47-4670-b874-f4649f0df44d",
+            "#_e7423f7c-0f80-4535-a9ca-8ea9b8b149f9",
+            "#_9179a28c-b317-4ada-af63-ff889435028c",
+            "#_de25fc6f-1c07-4c5b-8c8e-768b3eee92d2",
+            "#_c8196f00-db2b-480f-bb3b-fbb25cabb93b",
+            "#_1c0e757c-136f-4459-9400-b0b2f7a3b9c7",
+            "#_89576a2f-312b-40af-8919-904176aa5a05",
+            "#_5d313ae2-51ae-447f-af41-3b81c3bbf1c2",
+            "#_2b1049da-94ba-4096-a03b-6316e1396d8b",
+            "#_7765d169-4629-4f89-8727-3b85fd2130ef",
+            "#_e1ee4ec4-8e4c-43c9-8667-6310dc5a8633",
+            "#_81c8fdcf-942f-4dc2-be81-0f84942c7a4b",
+            "#_038e791b-5b6a-46a9-8703-6e213b97af7a",
+            "#_79d9a1f8-eadd-4774-a0e8-7aab72878ac5",
+            "#_74723861-78c2-43ae-bb06-9c0449edaa89",
+            "#_09e1c7f2-e126-40c5-b3c4-851b44e2df74",
+            "#_b9771282-52bd-4f46-8388-cf2e4417ee14",
+            "#_c3490615-95c2-49af-940e-2ba11fdeb263",
+            "#_0edba78b-897d-42d4-b485-5a0cf47c54fa",
+            "#_043854d0-9cac-4aef-b2df-75d1aaca1c36",
+            "#_06795eaf-1eac-4b38-983d-34a35c8c9bc1",
+            "#_78dcc262-53f1-44b6-9871-0d47b06ef3c3",
+            "#_aaa9999d-2ee8-4b16-8723-a9ffd748acd4",
+            "#_08474000-50e3-48f4-b8aa-92ddfe2ee74c",
+            "#_4ee167ed-348a-4819-b61a-ebf1545e6047",
+            "#_53f64b9c-417c-4e6b-88b3-21e9e018e6dc",
+            "#_0f61936a-2004-49ea-8db3-1b1615f59685",
+            "#_ebac6eb3-417a-4f72-8da3-b9b6a6f5b861",
+            "#_6e8a3fed-f346-4a29-ab07-4f135bb8d5ad",
+            "#_d60972cc-08b8-4266-8140-49ad7feab2e6"
           ],
           "decisionTable": {
             "rules": [

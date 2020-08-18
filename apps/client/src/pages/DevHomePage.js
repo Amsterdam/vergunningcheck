@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Alert } from "../atoms";
 import Layout from "../components/Layouts/DefaultLayout";
-import { Flow, isProduction, topics } from "../config";
+import { isProduction, topics } from "../config";
 import { geturl, routes } from "../routes";
 
 const DevHomePage = () => {
@@ -26,6 +26,9 @@ const DevHomePage = () => {
 
   return (
     <Layout heading="Welcome to CHAPPIE 2.0">
+      {/* <code>
+        <pre>{JSON.stringify(config, "", 2)}</pre>
+      </code> */}
       <p>
         <Alert style={{ backgroundColor: "#f6c948" }}>
           Let op; deze pagina bevat links naar vergunningchecks die mogelijk
@@ -53,17 +56,15 @@ const DevHomePage = () => {
         </tr>
         <tbody>
           {topics
-            .filter(({ flow }) => flow !== Flow.sttr)
-            .map(({ slug, flow, name }) => (
+            .filter(({ hasSTTR }) => !hasSTTR) // only show olo / redir-olo topics
+            .map(({ slug, name, redirectToOlo }) => (
               <tr key={slug}>
                 <td>
                   <Link to={geturl(routes.intro, { slug })}>{name}</Link>
                 </td>
-                <td>
-                  {flow === Flow.oloRedirect && "Redirect"}
-                  {flow === Flow.olo && "OLO"}
-                  {flow === Flow.sttr && "Checker"}
-                </td>
+                <td>{redirectToOlo ? "Redirect" : "OLO"}</td>
+                <td>n.a.</td>
+                <td>0</td>
               </tr>
             ))}
           {config.map((apiConfig) => {
@@ -85,7 +86,14 @@ const DevHomePage = () => {
                   </td>
                   <td>{sttrTopic ? "configured" : "unknown"}</td>
                   <td>{apiTopic.path.split("/")[0]}</td>
-                  <td>{apiTopic.permits.length}</td>
+                  <td>
+                    <span
+                      title={apiTopic.permits}
+                      onClick={() => alert(apiTopic.permits)}
+                    >
+                      {apiTopic.permits.length}
+                    </span>
+                  </td>
                 </tr>
               );
             });
