@@ -57,3 +57,6 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 ## Thanks to
 
 [<img src="https://github.com/Amsterdam/atlas/blob/develop/public/images/browserstack-logo@2x.png" height="60" title="BrowserStack Logo" alt="BrowserStack Logo" />](https://www.browserstack.com/)
+
+
+
