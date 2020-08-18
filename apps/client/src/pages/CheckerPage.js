@@ -95,9 +95,10 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
 
   // Callback to go to the Conclusion section
   // `false` is to prevent unexpected click, hover and focus states on already active section
-  const handleConclusionClick = !isActive("conclusion")
-    ? () => setActiveState("conclusion")
-    : false;
+  const handleConclusionClick =
+    !isActive("conclusion") && isFinished("questions")
+      ? () => setActiveState("conclusion")
+      : false;
 
   const checkedStyle = {
     borderColor: "white",
