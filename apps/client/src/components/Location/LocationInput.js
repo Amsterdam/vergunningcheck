@@ -44,7 +44,7 @@ const LocationInput = ({
   const onSubmit = () => {
     if (address.postalCode) {
       // Detect if user is submitting the same address as currenly stored
-      if (sessionAddress.id && sessionAddress.id === address.id) {
+      if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
         if (isFinished("questions")) {
           setActiveState("conclusion");
         } else {
@@ -55,7 +55,9 @@ const LocationInput = ({
       }
 
       // Reset all previous finished states
-      setFinishedState(["locationResult", "questions", "conclusion"], false);
+      if (hasSTTR) {
+        setFinishedState(["locationResult", "questions", "conclusion"], false);
+      }
 
       trackEvent({
         category: "postcode-input",
