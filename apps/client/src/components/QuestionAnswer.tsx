@@ -3,24 +3,33 @@ import React from "react";
 
 import EditButton from "../atoms/EditButton";
 import { removeQuotes } from "../utils";
-import PermitAlert from "./PermitAlert";
+import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {
   hideEditButton?: Boolean;
-  questionNeedsPermit: Boolean;
+  questionNeedsContactExit?: Boolean;
+  showConclusionAlert: Boolean;
   userAnswer: string;
 };
 
 const QuestionAnswer: React.FC<
   QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
-> = ({ hideEditButton, questionNeedsPermit, onClick, userAnswer }) => {
+> = ({
+  hideEditButton,
+  questionNeedsContactExit,
+  showConclusionAlert,
+  onClick,
+  userAnswer,
+}) => {
   return (
     <>
       <Paragraph gutterBottom={0}>
         {removeQuotes(userAnswer)}
         {!hideEditButton && <EditButton {...{ onClick }} />}
       </Paragraph>
-      {questionNeedsPermit && <PermitAlert />}
+      {showConclusionAlert && (
+        <ConclusionAlert {...{ questionNeedsContactExit }} />
+      )}
     </>
   );
 };
