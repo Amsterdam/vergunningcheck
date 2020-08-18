@@ -29,7 +29,6 @@ const Questions = ({
 
     if (checker.needContactExit(question)) {
       // Go directly to "Contact Conclusion" and skip other questions
-      setContactConclusion(true);
       goToConclusion();
     } else {
       // Load the next question or go to the "Conclusion"
@@ -71,6 +70,19 @@ const Questions = ({
     }
   };
 
+  const onGoToQuestion = useCallback(
+    (questionId) => {
+      // Checker rewinding also needs to work when you already have a conlusion
+      // Go to the specific question in the stack
+      setActiveState("questions");
+      setFinishedState(["conclusion", "questions"], false);
+      setFinishedState("locationResult", true);
+
+      goToQuestion(questionId);
+    },
+    [goToQuestion, setActiveState, setFinishedState]
+  );
+
   useEffect(() => {
     if (skipAnsweredQuestions) {
       // Turn skipping answered questions off
@@ -91,20 +103,37 @@ const Questions = ({
         }
       });
     }
-  }, [checker, isActive, questionIndex, onQuestionNext, skipAnsweredQuestions]);
 
-  const onGoToQuestion = useCallback(
-    (questionId) => {
-      // Checker rewinding also needs to work when you already have a conlusion
-      // Go to the specific question in the stack
-      setActiveState("questions");
-      setFinishedState(["conclusion", "questions"], false);
-      setFinishedState("locationResult", true);
+    // @TODO: Refactor this code and move to checker.js
+    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in withChecker)
+    if (!contactConclusion) {
+      checker.stack.forEach((q, i) => {
+        if (checker.needContactExit(q)) {
+          // Set questionIndex to this question index to make sure already answered questions are hidden
+          sessionContext.setSessionData([
+            slug,
+            {
+              questionIndex: i,
+            },
+          ]);
 
-      goToQuestion(questionId);
-    },
-    [goToQuestion, setActiveState, setFinishedState]
-  );
+          // Set Contact Conclusion
+          setContactConclusion(true);
+        }
+      });
+    }
+  }, [
+    checker,
+    contactConclusion,
+    isActive,
+    questionIndex,
+    onGoToQuestion,
+    onQuestionNext,
+    setContactConclusion,
+    skipAnsweredQuestions,
+    sessionContext,
+    slug,
+  ]);
 
   // Check which questions are causing the need for a permit
   // @TODO: We can refactor this and move to checker.js
@@ -134,9 +163,6 @@ const Questions = ({
       setFinishedState("questions", false);
     }
 
-    // Reset the ContactConclusion
-    setContactConclusion(false);
-
     const question = checker.stack[questionIndex];
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
@@ -149,6 +175,10 @@ const Questions = ({
     if (checker.stack.length !== questionIndex + 1) {
       checker.rewindTo(questionIndex);
     }
+
+    // Set Contact Conclusion
+    setContactConclusion(checker.needContactExit(question));
+
     // Store all answers in the session context
     sessionContext.setSessionData([
       slug,
@@ -179,7 +209,18 @@ const Questions = ({
         if (!isCurrentQuestion && !userAnswer) return null;
 
         // Check if currect question is causing a permit requirement
-        const questionNeedsPermit = !!permitsPerQuestion[i];
+        const showConclusionAlert = !!permitsPerQuestion[i];
+
+        // @TODO: Refactor this code and move to checker.js
+        // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
+        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
+        if (
+          contactConclusion &&
+          !checker._getUpcomingQuestions().length &&
+          questionIndex < i
+        ) {
+          return null;
+        }
 
         return (
           <StepByStepItem
@@ -195,6 +236,7 @@ const Questions = ({
               // Show the current question
               <Question
                 question={q}
+                questionNeedsContactExit={checker.needContactExit(q)}
                 onGoToPrev={onQuestionPrev}
                 onGoToNext={onQuestionNext}
                 saveAnswer={saveAnswer}
@@ -203,7 +245,7 @@ const Questions = ({
                 {...{
                   checker,
                   questionIndex,
-                  questionNeedsPermit,
+                  showConclusionAlert,
                   userAnswer,
                 }}
               />
@@ -211,7 +253,8 @@ const Questions = ({
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                {...{ questionNeedsPermit, userAnswer }}
+                questionNeedsContactExit={checker.needContactExit(q)}
+                {...{ showConclusionAlert, userAnswer }}
               />
             )}
           </StepByStepItem>
@@ -230,9 +273,11 @@ const Questions = ({
         // Get new index
         const index = i + checker.stack.length;
 
-        // Check if currect question is causing a permit requirement
-        const questionNeedsPermit = !!permitsPerQuestion[index];
-        const editDisabled = !checker.isConclusive();
+        // Check if the checker is conclusive
+        const editDisabled = !!checker.isConclusive();
+
+        // Check if current question is causing a conclusion
+        const showConclusionAlert = !!permitsPerQuestion[index];
 
         return (
           <StepByStepItem
@@ -243,9 +288,8 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              editDisabled={editDisabled}
               onClick={() => onGoToQuestion(index)}
-              {...{ questionNeedsPermit, userAnswer, editDisabled }}
+              {...{ editDisabled, showConclusionAlert, userAnswer }}
             />
           </StepByStepItem>
         );
