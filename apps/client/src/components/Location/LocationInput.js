@@ -24,7 +24,7 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { slug, sttr, text } = topic;
+  const { slug, hasSTTR, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
@@ -72,7 +72,7 @@ const LocationInput = ({
 
       checkerContext.autofillData.address = address;
 
-      if (sttr) {
+      if (hasSTTR) {
         resetChecker();
       }
 
@@ -107,7 +107,7 @@ const LocationInput = ({
         </Error>
       )}
 
-      {!sttr && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
