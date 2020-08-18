@@ -41,7 +41,6 @@ const LocationResult = ({
         displayZoningPlans={!hasSTTR}
         address={address}
         setActiveState={setActiveState}
-        setFinishedState={setFinishedState}
         topic={topic}
       />
       {!hasSTTR && (
@@ -56,7 +55,7 @@ const LocationResult = ({
           onGoToPrev={() => {
             setActiveState("locationInput");
           }}
-          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de Vragen"}
+          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de vragen"}
           formEnds={!hasSTTR}
           showPrev
           showNext

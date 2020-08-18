@@ -1,7 +1,7 @@
 import { Button, themeSpacing } from "@datapunt/asc-ui";
 import styled from "styled-components";
 
-export const EditQuestionButton = styled(Button)`
+export const EditButtonStyle = styled(Button)`
   margin-left: ${themeSpacing(5)};
 
   @media print {

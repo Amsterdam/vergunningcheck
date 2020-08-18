@@ -31,7 +31,9 @@ export const getRestrictionByTypeName = (restrictions, typeName) =>
   (restrictions || []).find(({ __typename }) => __typename === typeName);
 
 // STTR helper
-export const removeQuotes = (str) => str.replace(/['"]+/g, "");
+export const removeQuotes = (str) =>
+  typeof str === "string" ? str.replace(/['"]+/g, "") : "";
+
 export const addQuotes = (str) => `"${str}"`;
 
 // `uniqBy` removes duplicates from an array (of objects) and is based on lodash.uniqBy

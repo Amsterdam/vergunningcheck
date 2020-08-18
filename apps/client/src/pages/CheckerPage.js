@@ -20,6 +20,8 @@ import { geturl, routes } from "../routes";
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile } = topic;
+  // OLO Flow does not have questionIndex
+  const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
   //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
   if (!sessionContext[slug]) {
@@ -66,6 +68,40 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
 
   const isFinished = (component) => isActive(component, true);
 
+  /**
+   * Set the questionIndex the next questionId, previous questionId, or the given id.
+   *
+   * @param { int | ('next'|'prev') } value - This van be, 'next, prev or a int`
+   */
+  const goToQuestion = (value) => {
+    const newIndex = Number.isInteger(value)
+      ? value // Return the value if value isInteger()
+      : value === "next"
+      ? questionIndex + 1
+      : value === "prev"
+      ? questionIndex - 1
+      : console.error(
+          `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
+        );
+
+    sessionContext.setSessionData([
+      slug,
+      {
+        questionIndex: newIndex,
+      },
+    ]);
+  };
+
+  // Callback to go to the Conclusion section
+  // `false` is to prevent unexpected click, hover and focus states on already active section
+  const handleConclusionClick = !isActive("conclusion")
+    ? () => setActiveState("conclusion")
+    : false;
+
+  const checkedStyle = {
+    borderColor: "white",
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -83,38 +119,53 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           >
             <StepByStepItem
               active={isActive("locationInput") || isActive("locationResult")}
-              checked={isFinished("locationResult")}
+              checked={
+                isActive("locationResult") || isFinished("locationResult")
+              }
+              done={isActive("locationInput") || isActive("locationResult")}
               heading="Adresgegevens"
               largeCircle
+              // Overwrite the line between the Items
+              style={
+                isActive("locationInput") || isActive("locationResult")
+                  ? checkedStyle
+                  : {}
+              }
             >
+              {/* @TODO: Refactor this, because of duplicate code */}
               {isActive("locationInput") && (
                 <LocationInput
                   {...{
-                    topic,
+                    isFinished,
                     resetChecker,
                     setActiveState,
-                  }}
-                />
-              )}
-              {(isActive("locationResult") || isFinished("locationResult")) && (
-                <LocationResult
-                  {...{
-                    topic,
-                    isFinished,
-                    setActiveState,
                     setFinishedState,
+                    topic,
                   }}
                 />
               )}
+              {/* @TODO: Refactor this, because of duplicate code */}
+              {!isActive("locationInput") &&
+                (isActive("locationResult") ||
+                  isFinished("locationResult")) && (
+                  <LocationResult
+                    {...{
+                      topic,
+                      isFinished,
+                      setActiveState,
+                      setFinishedState,
+                    }}
+                  />
+                )}
             </StepByStepItem>
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={checker.stack.length}
+              done={isActive("questions") || checker.stack.length > 1}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
-              style={{ borderColor: "white" }}
+              style={checkedStyle}
             />
             <Questions
               {...{
@@ -123,16 +174,18 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
                 setFinishedState,
                 setActiveState,
                 isActive,
+                goToQuestion,
                 isFinished,
               }}
             />
             <StepByStepItem
               active={isActive("conclusion")}
-              checked={isActive("conclusion")}
+              checked={isFinished("questions")}
               done={isFinished("questions")}
               customSize
               heading="Conclusie"
               largeCircle
+              onClick={handleConclusionClick}
               // Overwrite the line between the Items
               style={{ marginTop: -1 }}
             >
@@ -146,8 +199,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         {/* OLO-flow only needs the Location component */}
         {!sttrFile && (
           <>
+            {/* @TODO: Refactor this, because of duplicate code */}
             {isActive("locationInput") && (
-              <LocationInput {...{ topic, setActiveState }} />
+              <LocationInput {...{ topic, setActiveState, setFinishedState }} />
             )}
             {isActive("locationResult") && (
               <LocationResult
