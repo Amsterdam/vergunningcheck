@@ -39,6 +39,7 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
   // All "inactive" items are `small` by default, except when `customSize` has been set
   const small = (!customSize && !active) || (customSize && !largeCircle);
 
+  // @TODO: also enable the ENTER key to act as onClick
   const handleOnClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     onClick && onClick(event);
   };
