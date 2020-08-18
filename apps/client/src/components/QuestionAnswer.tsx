@@ -16,9 +16,9 @@ const QuestionAnswer: React.FC<
   QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
 > = ({
   editDisabled,
+  onClick,
   questionNeedsContactExit,
   showConclusionAlert,
-  onClick,
   userAnswer,
 }) => {
   return (
