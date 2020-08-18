@@ -7,7 +7,6 @@
         {
           "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
           "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
-          "collection": true,
           "options": ["Zonnepanelen", "Zonneboiler"],
           "type": "string",
           "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
@@ -57,14 +56,8 @@
                 "inputs": ["\"Zonnepanelen\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"Zonneboiler\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"Zonneboiler\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -79,14 +72,8 @@
                 "inputs": ["\"Zonneboiler\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"Zonnepanelen\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"Zonnepanelen\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
             ]
           }
         },

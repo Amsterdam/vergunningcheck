@@ -7,7 +7,6 @@
         {
           "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
           "description": "Het verschil tussen zonnepanelen en een zonneboiler:\n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.\n\nGaat u zowel zonnepanelen als een zonneboiler plaatsen? Doe dan voor zowel zonnepanelen als voor de zonneboiler een vergunningcheck.",
-          "collection": true,
           "options": ["Zonnepanelen", "Zonneboiler"],
           "type": "string",
           "id": "uitv__d09a954d-cb3c-441c-b564-d2c1e6530974",
@@ -119,7 +118,6 @@
         {
           "text": "Komt de omvormer voor het omzetten van elektriciteit binnen of buiten te staan?",
           "description": "Voorbeelden van binnen:\n\n*   op zolder\n*   in de meterkast\n*   in de garage of schuur\n\nVoorbeelden van buiten:\n\n*   onder een afdak\n*   op het dak\n*   in de tuin\n\nWaar komt de omvormer voor het omzetten van elektriciteit te staan?",
-          "collection": true,
           "options": ["Binnen", "Buiten"],
           "type": "string",
           "id": "uitv__68ba9cd2-be70-4595-b29d-2ae9f8f4a371",
@@ -128,7 +126,6 @@
         {
           "text": "Komt het voorraadvat binnen of buiten te staan?",
           "description": "Voorbeelden van binnen:\n\n*   op zolder\n*   in de cv-ruimte\n*   in de garage of schuur\n\nVoorbeelden van buiten:\n\n*   onder een afdak\n*   op het dak\n*   in de tuin\n\nWaar komt het voorraadvat te staan?",
-          "collection": true,
           "options": ["Binnen", "Buiten"],
           "type": "string",
           "id": "uitv__038790bf-63a1-4bf7-9e35-410f47b57e67",
@@ -369,14 +366,8 @@
                 "inputs": ["\"Zonnepanelen\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"Zonneboiler\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"Zonneboiler\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -391,14 +382,8 @@
                 "inputs": ["\"Zonneboiler\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"Zonnepanelen\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"Zonnepanelen\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -418,14 +403,8 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -445,14 +424,8 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -472,14 +445,8 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -499,14 +466,8 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -526,14 +487,8 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -553,14 +508,8 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"Binnen\""],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "\"Binnen\""], "output": "\"no hit\"" }
             ]
           }
         },
@@ -580,14 +529,8 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"Binnen\""],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "\"Binnen\""], "output": "\"no hit\"" }
             ]
           }
         },
@@ -607,14 +550,8 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -635,18 +572,9 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -667,18 +595,9 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", true, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -699,18 +618,9 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", true, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -731,18 +641,9 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -763,18 +664,9 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -795,18 +687,9 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -828,22 +711,10 @@
                 "inputs": ["\"Zonnepanelen\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-", "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -865,22 +736,10 @@
                 "inputs": ["\"Zonneboiler\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", false, "-", "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },

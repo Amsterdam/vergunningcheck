@@ -23,18 +23,9 @@
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": ["\"deels\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"ja\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"nee\""],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"deels\""], "output": "\"Vergunningplicht\"" },
+              { "inputs": ["\"ja\""], "output": "\"Vergunningplicht\"" },
+              { "inputs": ["\"nee\""], "output": "\"no hit\"" }
             ]
           }
         },

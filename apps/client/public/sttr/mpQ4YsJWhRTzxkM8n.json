@@ -6,7 +6,6 @@
       "questions": [
         {
           "text": "Testvraag",
-          "collection": true,
           "options": [
             "dit is een antwoord met een, komma erin, of 2.",
             "dit is zonder komma"
@@ -52,10 +51,7 @@
                 "inputs": ["\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
-              {
-                "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
-              }
+              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
             ]
           }
         }

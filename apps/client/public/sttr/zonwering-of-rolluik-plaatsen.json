@@ -8,7 +8,6 @@
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
           "autofill": "monumentList",
-          "collection": true,
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -22,7 +21,6 @@
         {
           "text": "Wat gaat u plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Uitvalrol.png \"Zonwering\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Markies.png \"Zonwering\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Rolluik.png \"Rolluik\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Luik.png \"Luik\")",
-          "collection": true,
           "options": ["Zonwering", "Rolhek, rolluik of luik"],
           "type": "string",
           "id": "uitv__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -31,7 +29,6 @@
         },
         {
           "text": "Gaat u een zonwering plaatsen of vernieuwen?",
-          "collection": true,
           "options": [
             "Ik ga een nieuwe zonwering plaatsen op een plek waar er eerst geen was.",
             "Ik ga een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was."
@@ -43,7 +40,6 @@
         },
         {
           "text": "U gaat een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "collection": true,
           "options": [
             "Ja, de zonwering verandert.",
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
@@ -55,7 +51,6 @@
         },
         {
           "text": "Gaat u een rolhek, rolluik of luik plaatsen of vernieuwen?",
-          "collection": true,
           "options": [
             "Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.",
             "Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was."
@@ -67,7 +62,6 @@
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "collection": true,
           "options": [
             "Ja, het rolhek, rolluik of luik verandert.",
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
@@ -176,10 +170,7 @@
                 "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", "\"Zonwering\"", "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": ["-", "\"Zonwering\"", "-"], "output": "\"no hit\"" },
               {
                 "inputs": [
                   "-",
@@ -354,7 +345,6 @@
           "text": "Is het gebouw een monument?",
           "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
           "autofill": "monumentList",
-          "collection": true,
           "options": [
             "Rijksmonument",
             "Gemeentelijk monument",
@@ -368,7 +358,6 @@
         {
           "text": "Wat gaat u plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Uitvalrol.png \"Zonwering\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Markies.png \"Zonwering\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Rolluik.png \"Rolluik\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Uitleg_Luik.png \"Luik\")",
-          "collection": true,
           "options": ["Zonwering", "Rolhek, rolluik of luik"],
           "type": "string",
           "id": "uitv__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -377,7 +366,6 @@
         },
         {
           "text": "Gaat u een zonwering plaatsen of vernieuwen?",
-          "collection": true,
           "options": [
             "Ik ga een nieuwe zonwering plaatsen op een plek waar er eerst geen was.",
             "Ik ga een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was."
@@ -389,7 +377,6 @@
         },
         {
           "text": "U gaat een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "collection": true,
           "options": [
             "Ja, de zonwering verandert.",
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
@@ -401,7 +388,6 @@
         },
         {
           "text": "Gaat u een rolhek, rolluik of luik plaatsen of vernieuwen?",
-          "collection": true,
           "options": [
             "Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.",
             "Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was."
@@ -413,7 +399,6 @@
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "collection": true,
           "options": [
             "Ja, het rolhek, rolluik of luik verandert.",
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
@@ -425,7 +410,6 @@
         },
         {
           "text": "Gaat u een zonwering plaatsen of vernieuwen?",
-          "collection": true,
           "options": [
             "Ik ga een nieuwe zonwering plaatsen op een plek waar er eerst geen was.",
             "Ik ga een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was."
@@ -436,7 +420,6 @@
         },
         {
           "text": "U gaat een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
-          "collection": true,
           "options": [
             "Ja, de vorm, de grootte of het profiel verandert.",
             "Nee, de vorm, de grootte en het profiel veranderen niet."
@@ -447,7 +430,6 @@
         },
         {
           "text": "Gaat u een rolhek, rolluik of luik plaatsen of vernieuwen?",
-          "collection": true,
           "options": [
             "Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.",
             "Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was."
@@ -458,7 +440,6 @@
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
-          "collection": true,
           "options": [
             "Ja, de vorm, de grootte of het profiel verandert.",
             "Nee, de vorm, de grootte en het profiel veranderen niet."
@@ -478,7 +459,6 @@
         {
           "text": "Aan welke kant van het gebouw gaat u de zonwering plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een zonwering plaatsen? Doe voor iedere kant een vergunningcheck.",
-          "collection": true,
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__89087f8f-c4c5-4c1a-8951-e1386ebee710",
@@ -507,7 +487,6 @@
         },
         {
           "text": "Aan wat voor gebouw gaat u het rolhek, rolluik of luik plaatsen?",
-          "collection": true,
           "options": [
             "Woning, inclusief bijbehorende garage.",
             "Ander gebouw, zoals een winkel of kantoor."
@@ -519,7 +498,6 @@
         {
           "text": "Gaat u het rolhek, rolluik of luik plaatsen aan een hoofdgebouw of aan een bijgebouw?",
           "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein. Een bijgebouw is bijvoorbeeld een schuur of een fietsenberging.",
-          "collection": true,
           "options": ["Hoofdgebouw", "Bijgebouw"],
           "type": "string",
           "id": "uitv__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
@@ -528,7 +506,6 @@
         {
           "text": "Aan welke kant van het gebouw gaat u het rolhek, rolluik of luik plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een rolhek, rolluik of luik plaatsen? Doe voor iedere kant een vergunningcheck.",
-          "collection": true,
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__1643e5e2-b4a7-4237-9603-782f222ca017",
@@ -578,7 +555,6 @@
         },
         {
           "text": "Komt het rolhek, rolluik of luik aan de binnenkant van de muur of het kozijn?",
-          "collection": true,
           "options": ["Ja, aan de binnenkant.", "Nee, niet aan de binnenkant."],
           "type": "string",
           "id": "uitv__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
@@ -769,10 +745,7 @@
                 "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", "\"Zonwering\"", "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": ["-", "\"Zonwering\"", "-"], "output": "\"no hit\"" },
               {
                 "inputs": [
                   "-",
@@ -948,10 +921,7 @@
                 ],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": ["-", "-", "-", false, "-"], "output": "\"no hit\"" },
               {
                 "inputs": ["-", "-", "-", "-", "\"Achterkant\""],
                 "output": "\"no hit\""

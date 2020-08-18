@@ -22,14 +22,8 @@
           "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [false],
-                "output": "\"no hit\""
-              }
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -41,10 +35,7 @@
                 "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
-              }
+              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
             ]
           }
         }

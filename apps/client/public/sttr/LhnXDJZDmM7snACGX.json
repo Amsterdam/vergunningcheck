@@ -7,7 +7,6 @@
         {
           "text": "Wat wilt u gaan doen?",
           "description": "snoeien is knotten en kandelaberen",
-          "collection": true,
           "options": [
             "rooien",
             "kappen",
@@ -27,7 +26,6 @@
         },
         {
           "text": "Om wat voor boom gaat het?",
-          "collection": true,
           "options": [
             "dode boom",
             "levende boom",
@@ -60,26 +58,14 @@
           "requiredInputs": ["#input__44d29c32-b776-4df5-ac23-62d0be14e733"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": ["\"kappen\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"snoeien\""],
-                "output": "\"Vergunningplicht\""
-              },
+              { "inputs": ["\"kappen\""], "output": "\"Vergunningplicht\"" },
+              { "inputs": ["\"snoeien\""], "output": "\"Vergunningplicht\"" },
               {
                 "inputs": ["\"verplanten\""],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"rooien\""],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"andere handeling\""],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"rooien\""], "output": "\"no hit\"" },
+              { "inputs": ["\"andere handeling\""], "output": "\"no hit\"" }
             ]
           }
         },
@@ -114,18 +100,9 @@
                 "inputs": ["\"rooien\"", "\"ander houtachtig gewas\""],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"kappen\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"snoeien\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"verplanten\"", "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": ["\"kappen\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"snoeien\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"verplanten\"", "-"], "output": "\"no hit\"" },
               {
                 "inputs": ["\"andere handeling\"", "-"],
                 "output": "\"no hit\""
@@ -144,26 +121,11 @@
                 "inputs": ["\"andere handeling\"", true],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": ["\"rooien\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"kappen\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"snoeien\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"verplanten\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["\"rooien\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"kappen\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"snoeien\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"verplanten\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
             ]
           }
         },

@@ -45,14 +45,8 @@
           "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": [true],
-                "output": "\"Informatieplicht\""
-              },
-              {
-                "inputs": [false],
-                "output": "\"no hit\""
-              }
+              { "inputs": [true], "output": "\"Informatieplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -60,14 +54,8 @@
           "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Informatieplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
+              { "inputs": [false], "output": "\"Informatieplicht\"" },
+              { "inputs": [true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -75,14 +63,8 @@
           "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Informatieplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
+              { "inputs": [false], "output": "\"Informatieplicht\"" },
+              { "inputs": [true], "output": "\"no hit\"" }
             ]
           }
         },

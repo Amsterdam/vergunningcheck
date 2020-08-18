@@ -275,7 +275,10 @@ function getExtensionElements(xmlExtensionElements) {
       if (sttrType === "list") {
         const options = find(question.children, "uitv:opties");
         debug("options", log(options));
-        if (find(options.children, "uitv:optieType").data !== "enkelAntwoord") {
+        if (
+          find(options.children, "uitv:optieType").children[0].data !==
+          "enkelAntwoord"
+        ) {
           result.collection = true;
         }
         const optionList = filt(options.children, "uitv:optie");

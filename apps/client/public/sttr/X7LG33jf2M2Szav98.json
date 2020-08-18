@@ -26,7 +26,6 @@
         {
           "text": "Wat voor een voertuig gaat u gebruiken?",
           "description": "Een vrachtauto kan ook een trekker-opleggercombinatie zijn\n\nEen bijzonder voertuig kan een van de volgende typen voertuigen zijn:\n\n*   kraanwagens\n*   bedrijfsauto met een zware laadkraan (minimaal 35 tonmeter)\n*   hoogwerkers\n*   betonmolen\n*   betonmixer\n*   betonpomp\n*   kolkenzuiger\n*   brandweerwagen\n*   straatveger/straatreiniger/rioolzuiger\n*   verhuiswagen\n*   gepantserd voertuig\n*   elektrisch voertuig",
-          "collection": true,
           "options": ["Een vrachtauto", "Een bijzonder voertuig"],
           "type": "string",
           "id": "uitv__dbb6c481-8f97-4394-b849-49fd06630ab5",
@@ -146,12 +145,7 @@
       "decisions": {
         "_34af5c3f-bf86-4a09-9ba9-aa7057645653": {
           "decisionTable": {
-            "rules": [
-              {
-                "inputs": [],
-                "output": "\"Vergunningplicht\""
-              }
-            ]
+            "rules": [{ "inputs": [], "output": "\"Vergunningplicht\"" }]
           }
         },
         "_9bc53467-de52-471f-8910-46e498282ad3": {
@@ -172,10 +166,7 @@
                 ],
                 "output": "\"Verbod\""
               },
-              {
-                "inputs": [false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": [false, "-", "-", "-"], "output": "\"no hit\"" },
               {
                 "inputs": ["-", "\"minder of gelijk aan 7,5 ton\"", "-", "-"],
                 "output": "\"no hit\""
@@ -188,10 +179,7 @@
                 "inputs": ["-", "-", "\"Een bijzonder voertuig\"", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
             ]
           }
         },
@@ -240,18 +228,12 @@
                 ],
                 "output": "\"Vergunningplicht\""
               },
-              {
-                "inputs": [false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": [false, "-", "-", "-"], "output": "\"no hit\"" },
               {
                 "inputs": ["-", "\"minder of gelijk aan 7,5 ton\"", "-", "-"],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", "-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
@@ -305,10 +287,7 @@
                 ],
                 "output": "\"Verbod\""
               },
-              {
-                "inputs": [false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
+              { "inputs": [false, "-", "-", "-", "-"], "output": "\"no hit\"" },
               {
                 "inputs": [
                   "-",
@@ -319,14 +298,8 @@
                 ],
                 "output": "\"no hit\""
               },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
+              { "inputs": ["-", "-", "-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", "-", true], "output": "\"no hit\"" }
             ]
           }
         },
