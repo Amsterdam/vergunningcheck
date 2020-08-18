@@ -170,7 +170,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               style={{ marginTop: -1 }}
             >
               {isFinished("questions") && (
-                <Conclusion {...{ topic, checker }} />
+                <Conclusion {...{ topic, checker, setActiveState }} />
               )}
             </StepByStepItem>
           </StepByStepNavigation>
