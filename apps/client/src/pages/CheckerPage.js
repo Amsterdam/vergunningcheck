@@ -23,11 +23,11 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
+  //@TODO: We shoudn't need this redirect. We need to refactor this
   if (!sessionContext[slug]) {
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
 
-  //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
   const { activeComponents, finishedComponents } = sessionContext[slug];
 
   // Only one component can be active at the same time.
