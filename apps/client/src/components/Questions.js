@@ -232,6 +232,7 @@ const Questions = ({
 
         // Check if currect question is causing a permit requirement
         const questionNeedsPermit = !!permitsPerQuestion[index];
+        const editDisabled = !checker.isConclusive();
 
         return (
           <StepByStepItem
@@ -242,9 +243,9 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              hideEditButton={checker.isConclusive()}
+              editDisabled={editDisabled}
               onClick={() => onGoToQuestion(index)}
-              {...{ questionNeedsPermit, userAnswer }}
+              {...{ questionNeedsPermit, userAnswer, editDisabled }}
             />
           </StepByStepItem>
         );

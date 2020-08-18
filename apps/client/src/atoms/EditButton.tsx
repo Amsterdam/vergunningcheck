@@ -2,10 +2,14 @@ import React from "react";
 
 import { EditButtonStyle } from "./EditButtonStyle";
 
-const EditButton: React.FC<React.HTMLAttributes<HTMLElement>> = ({
-  onClick,
-}) => (
-  <EditButtonStyle {...{ onClick }} variant="textButton">
+const EditButton: React.FC<
+  { editDisabled: boolean } & React.HTMLAttributes<HTMLElement>
+> = ({ editDisabled, onClick }) => (
+  <EditButtonStyle
+    {...{ onClick }}
+    variant="textButton"
+    disabled={editDisabled}
+  >
     Wijzig
   </EditButtonStyle>
 );
