@@ -55,7 +55,7 @@ export const autofillResolvers = {
  * Map from autofill-resolver key to the data-need it has.
  */
 export const autofillMap = {
-  monumentList: "checker",
-  monumentBoolean: "checker",
-  cityScape: "checker",
+  monumentList: "address",
+  monumentBoolean: "address",
+  cityScape: "address",
 };

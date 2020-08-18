@@ -22,6 +22,7 @@ export default (Component: any) => {
     const topic = topics.find((t) => t.slug === slug);
 
     useEffect(() => {
+      // if the topic is not found (dynamic sttr-checker) or the topic is found and has an sttr flow
       if (!topic || topic.hasSTTR) {
         initChecker();
       }
@@ -61,6 +62,7 @@ export default (Component: any) => {
             true
           )[0];
 
+          // TODO: Add comment about the next if
           if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
             newChecker.setQuestionAnswers(sessionContext[slug].answers);
           }
@@ -84,7 +86,7 @@ export default (Component: any) => {
       return <ErrorPage {...{ error }} />;
     }
 
-    // if a configured topic is found...
+    // Setup the olo + redirectToOlo flow
     if (topic) {
       // Redirect to olo if needed
       if (topic.redirectToOlo) {
@@ -97,18 +99,23 @@ export default (Component: any) => {
           <Component {...{ topic, checker: null /* XXX */, resetChecker }} />
         );
       }
+    }
 
+    // if checker is not initialized then we're still waiting for the json
+    if (!checker) {
+      return <LoadingPage />;
+    }
+
+    // We have the configured checker
+    if (topic) {
       // This is a configured topic, the most common type
       checkerContext.topic = topic;
       return <Component {...{ topic, checker, resetChecker }} />;
     }
 
-    // if checker is not available then we are still loading the json
-    if (!checker) {
-      return <LoadingPage />;
-    }
-
-    /** We don't have a configured topic for the current slug.
+    /**
+     * Fallback scenario;
+     * We don't have a configured topic for the current slug.
      * Setup a 'fake' topic configuration and render the page.
      */
     const name =
@@ -122,7 +129,6 @@ export default (Component: any) => {
       text: {
         heading: name,
       },
-      intro: "shared/DefaultIntro",
     };
     checkerContext.topic = dynamicTopic;
     return <Component {...{ topic: dynamicTopic, checker, resetChecker }} />;

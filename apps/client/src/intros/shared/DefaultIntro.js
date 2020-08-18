@@ -7,8 +7,7 @@ export default () => (
   <>
     <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
-      <ListItem>... </ListItem>
-      <ListItem>Wij stellen u een aantal vragen over ....</ListItem>
+      <ListItem>Wij stellen u een aantal vragen.</ListItem>
       <ListItem>
         U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een
         aanvraag doet.

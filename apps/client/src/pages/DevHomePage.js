@@ -26,9 +26,6 @@ const DevHomePage = () => {
 
   return (
     <Layout heading="Welcome to CHAPPIE 2.0">
-      {/* <code>
-        <pre>{JSON.stringify(config, "", 2)}</pre>
-      </code> */}
       <p>
         <Alert style={{ backgroundColor: "#f6c948" }}>
           Let op; deze pagina bevat links naar vergunningchecks die mogelijk

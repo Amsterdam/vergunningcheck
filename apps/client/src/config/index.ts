@@ -46,7 +46,7 @@ export const generateOloUrl = ({
   return `${Olo.location}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
-const topics: Topic[] = [
+export const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
     name: "Kappen of snoeien",
@@ -149,20 +149,6 @@ const topics: Topic[] = [
     // intro: "ZonweringRolluikIntro",
   },
 ];
-
-if (process.env.NODE_ENV !== "production") {
-  topics.push({
-    slug: "sttr-outcomes", // XXX test
-    name: "Testing STTR outcomes",
-    hasSTTR: true,
-    text: {
-      heading: "Testing different outcomes/conclusions",
-    },
-    intro: "shared/DefaultIntro",
-  });
-}
-
-export { topics };
 
 // We need a place for general text as well
 // I know this is not the best place

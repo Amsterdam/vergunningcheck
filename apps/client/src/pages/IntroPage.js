@@ -7,22 +7,25 @@ import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { getDataNeed } from "../config/autofill";
 import withChecker from "../hoc/withChecker";
-import DefaultIntro from "../intros/shared/DefaultIntro";
-import LocationIntro from "../intros/shared/LocationIntro";
 import { geturl, routes } from "../routes";
+
+const dataNeedToIntroMapping = {
+  address: "shared/LocationIntro",
+};
 
 const IntroPage = ({ topic, checker }) => {
   const history = useHistory();
 
   const { text, intro } = topic;
   const dataNeed = getDataNeed(checker);
-  console.log("dataNeed", dataNeed);
 
-  const Intro = intro
-    ? React.lazy(() => import(`../intros/${intro}`))
+  const introComponentPath = intro
+    ? intro
     : dataNeed
-    ? LocationIntro
-    : DefaultIntro;
+    ? dataNeedToIntroMapping[dataNeed]
+    : "shared/DefaultIntro";
+
+  const Intro = React.lazy(() => import(`../intros/${introComponentPath}`));
 
   return (
     <Layout heading={text.heading}>
