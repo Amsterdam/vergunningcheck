@@ -6,26 +6,26 @@ import { removeQuotes } from "../utils";
 import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {
-  hideEditButton?: Boolean;
-  questionNeedsContactExit?: Boolean;
-  showConclusionAlert: Boolean;
+  disabled: boolean;
+  questionNeedsContactExit?: boolean;
+  showConclusionAlert: boolean;
   userAnswer: string;
 };
 
 const QuestionAnswer: React.FC<
   QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
 > = ({
-  hideEditButton,
+  disabled,
+  onClick,
   questionNeedsContactExit,
   showConclusionAlert,
-  onClick,
   userAnswer,
 }) => {
   return (
     <>
       <Paragraph gutterBottom={0}>
         {removeQuotes(userAnswer)}
-        {!hideEditButton && <EditButton {...{ onClick }} />}
+        <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
         <ConclusionAlert {...{ questionNeedsContactExit }} />

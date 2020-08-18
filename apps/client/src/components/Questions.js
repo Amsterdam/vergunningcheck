@@ -273,7 +273,7 @@ const Questions = ({
         // Get new index
         const index = i + checker.stack.length;
 
-        // Check if currect question is causing a permit requirement
+        // Check if current question is causing a conclusion
         const showConclusionAlert = !!permitsPerQuestion[index];
 
         return (
@@ -285,7 +285,7 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              hideEditButton={checker.isConclusive()}
+              disabled={!!checker.isConclusive()}
               onClick={() => onGoToQuestion(index)}
               {...{ showConclusionAlert, userAnswer }}
             />
