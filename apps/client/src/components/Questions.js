@@ -273,9 +273,6 @@ const Questions = ({
         // Get new index
         const index = i + checker.stack.length;
 
-        // Check if the checker is conclusive
-        const editDisabled = !!checker.isConclusive();
-
         // Check if current question is causing a conclusion
         const showConclusionAlert = !!permitsPerQuestion[index];
 
@@ -288,8 +285,9 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
+              disabled={!!checker.isConclusive()}
               onClick={() => onGoToQuestion(index)}
-              {...{ editDisabled, showConclusionAlert, userAnswer }}
+              {...{ showConclusionAlert, userAnswer }}
             />
           </StepByStepItem>
         );
