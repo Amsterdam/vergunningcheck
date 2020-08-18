@@ -2,6 +2,7 @@
   "id": "kozijn",
   "permits": [
     {
+      "version": 1,
       "name": "Conclusie Kozijn plaatsen in een monument",
       "questions": [
         {
@@ -42,7 +43,7 @@
         }
       },
       "decisions": {
-        "_ee839e46-88ca-42cb-a95a-9883557523d3": {
+        "_6cd2e0f6-e14b-4b7a-96f8-59722bc5acdd": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -75,7 +76,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_ee839e46-88ca-42cb-a95a-9883557523d3"],
+          "requiredDecisions": ["#_6cd2e0f6-e14b-4b7a-96f8-59722bc5acdd"],
           "decisionTable": {
             "rules": [
               {
@@ -94,6 +95,7 @@
       }
     },
     {
+      "version": 1,
       "name": "Conclusie Kozijn plaatsen",
       "questions": [
         {
@@ -255,7 +257,7 @@
         }
       },
       "decisions": {
-        "_112fef1f-972c-4c9e-b713-29cd9f2431c0": {
+        "_f58455ba-629a-4963-a34c-98347d06cbce": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -287,7 +289,7 @@
             ]
           }
         },
-        "_8445b8a6-7025-4035-a925-3cce9d5c65a5": {
+        "_5a2ada5e-5538-4f92-92cd-9fc59fa73bd3": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -322,7 +324,7 @@
             ]
           }
         },
-        "_8d2d43d8-e508-41c3-9f37-38ac346ae1e9": {
+        "_879c6603-8f97-42d0-bb4a-fb219d17c5cd": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -391,7 +393,7 @@
             ]
           }
         },
-        "_43be130e-3e11-400d-81d4-5d2c48be7ff1": {
+        "_b4796a93-4114-4528-b907-3dccdd3a2af7": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -469,7 +471,7 @@
             ]
           }
         },
-        "_20addf83-f756-4d04-be3d-48b32bb90eba": {
+        "_bf1fca2c-ee8f-4c9d-a81d-27b2d114ddb7": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -547,7 +549,7 @@
             ]
           }
         },
-        "_40f4f766-90a5-4b59-9ebf-32891a515354": {
+        "_a72243ec-972c-49a9-a8e9-5291d5491a66": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -634,7 +636,7 @@
             ]
           }
         },
-        "_f5f23919-415f-474b-8444-1558adc06bc6": {
+        "_9347db6c-34be-4a54-88b7-ec4667d53d33": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -721,7 +723,7 @@
             ]
           }
         },
-        "_b58e081c-843e-4e95-b6d9-fa04b0cb7772": {
+        "_097d952a-b287-4bf9-afdb-0e5d6abef31f": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -826,7 +828,7 @@
             ]
           }
         },
-        "_bfcac1ea-2e56-431f-8a28-750d46590755": {
+        "_4260d085-4739-4439-9edf-0c6f52473187": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -933,15 +935,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_112fef1f-972c-4c9e-b713-29cd9f2431c0",
-            "#_8445b8a6-7025-4035-a925-3cce9d5c65a5",
-            "#_8d2d43d8-e508-41c3-9f37-38ac346ae1e9",
-            "#_43be130e-3e11-400d-81d4-5d2c48be7ff1",
-            "#_20addf83-f756-4d04-be3d-48b32bb90eba",
-            "#_40f4f766-90a5-4b59-9ebf-32891a515354",
-            "#_f5f23919-415f-474b-8444-1558adc06bc6",
-            "#_b58e081c-843e-4e95-b6d9-fa04b0cb7772",
-            "#_bfcac1ea-2e56-431f-8a28-750d46590755"
+            "#_f58455ba-629a-4963-a34c-98347d06cbce",
+            "#_5a2ada5e-5538-4f92-92cd-9fc59fa73bd3",
+            "#_879c6603-8f97-42d0-bb4a-fb219d17c5cd",
+            "#_b4796a93-4114-4528-b907-3dccdd3a2af7",
+            "#_bf1fca2c-ee8f-4c9d-a81d-27b2d114ddb7",
+            "#_a72243ec-972c-49a9-a8e9-5291d5491a66",
+            "#_9347db6c-34be-4a54-88b7-ec4667d53d33",
+            "#_097d952a-b287-4bf9-afdb-0e5d6abef31f",
+            "#_4260d085-4739-4439-9edf-0c6f52473187"
           ],
           "decisionTable": {
             "rules": [

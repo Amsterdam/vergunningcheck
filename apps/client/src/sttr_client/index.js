@@ -104,7 +104,7 @@ function getChecker(config) {
 
   const allQuestions = getQuestions(x);
   const permits = permitsConfig.map((permit) => {
-    const { questions, decisions, name } = permit;
+    const { name, version, questions, decisions } = permit;
 
     const decisionConfigs = Object.entries(decisions);
     if (decisions.length === 0) {
@@ -128,7 +128,10 @@ function getChecker(config) {
         return getDecision(id, decisionConfig, allQuestions);
       });
 
-    const result = new Permit(name, [...simpleDecisions, ...complexDecisions]);
+    const result = new Permit(name, version / 1, [
+      ...simpleDecisions,
+      ...complexDecisions,
+    ]);
     return result;
   });
 
