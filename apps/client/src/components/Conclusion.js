@@ -7,7 +7,7 @@ import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, setActiveState, topic: { slug } }) => {
+const Conclusion = ({ checker, topic: { slug } }) => {
   const { trackEvent } = useMatomo();
 
   // find conclusions we want to display to the user
@@ -55,12 +55,8 @@ const Conclusion = ({ checker, setActiveState, topic: { slug } }) => {
     window.print();
   };
 
-  const handleSetConclusionActive = () => {
-    setActiveState("conclusion");
-  };
-
   return (
-    <div onClick={handleSetConclusionActive}>
+    <>
       <Paragraph>
         Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
         toepassing is.
@@ -91,7 +87,7 @@ const Conclusion = ({ checker, setActiveState, topic: { slug } }) => {
           content={`De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog geen zekerheid bieden dat de uitkomst correct is. Ook is de informatie nog niet voor iedereen goed te lezen of te beluisteren. Wilt u iets zeker weten of wilt u meer informatie? Bel het telefoonnummer 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.`}
         />
       </PrintOnly>
-    </div>
+    </>
   );
 };
 

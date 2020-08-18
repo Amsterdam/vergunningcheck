@@ -91,6 +91,12 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     ]);
   };
 
+  // Callback to go to the Conclusion section
+  // `false` is to prevent unexpected click, hover and focus states on already active section
+  const handleConclusionClick = !isActive("conclusion")
+    ? () => setActiveState("conclusion")
+    : false;
+
   return (
     <Layout>
       <Helmet>
@@ -166,11 +172,12 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               customSize
               heading="Conclusie"
               largeCircle
+              onClick={handleConclusionClick}
               // Overwrite the line between the Items
               style={{ marginTop: -1 }}
             >
               {isFinished("questions") && (
-                <Conclusion {...{ topic, checker, setActiveState }} />
+                <Conclusion {...{ topic, checker }} />
               )}
             </StepByStepItem>
           </StepByStepNavigation>
