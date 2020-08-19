@@ -17,11 +17,11 @@ const Questions = ({
   const sessionContext = useContext(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactConclusion, setContactConclusion] = useState(false);
-  const { questionIndex } = sessionContext[slug];
+  const { answers, questionIndex } = sessionContext[slug];
 
   const goToConclusion = useCallback(() => {
     setActiveState("conclusion");
-    setFinishedState(["questions", "conslusion"], true);
+    setFinishedState(["questions", "conclusion"], true);
   }, [setActiveState, setFinishedState]);
 
   const onQuestionNext = useCallback(() => {
@@ -55,15 +55,13 @@ const Questions = ({
   }, [checker, questionIndex, goToQuestion, goToConclusion]);
 
   const onQuestionPrev = () => {
-    // Load the previous question or go to "Location"
-    if (checker.stack.length > 1) {
-      // Store the new questionIndex in the session
+    // Load the previous question
+    if (answers && questionIndex > 0) {
       goToQuestion("prev");
-    }
-    if (questionIndex === 0) {
+    } else {
+      // Go to Location Result, because the user was at the first question
       setActiveState("locationResult");
-      // This prevents to uncheck the Item that holds "questions" (when all questions are answered)
-      setFinishedState(["locationResult", "questions"], false);
+      setFinishedState(["locationResult"], false);
     }
   };
 
@@ -208,7 +206,6 @@ const Questions = ({
         // Check if currect question is causing a permit requirement
         const showConclusionAlert = !!permitsPerQuestion[i];
 
-        console.log("questindex", questionIndex);
         // @TODO: Refactor this code and move to checker.js
         // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
@@ -216,7 +213,6 @@ const Questions = ({
           contactConclusion &&
           !checker._getUpcomingQuestions().length &&
           questionIndex < i
-          // questionIndex !== -1
         ) {
           return null;
         }
