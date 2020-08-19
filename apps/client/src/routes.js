@@ -12,6 +12,9 @@ export const geturl = (route, params) => {
   }
   return reverse(route, params);
 };
+
+// comment
+
 export const routeConfig = [
   {
     name: "home",
