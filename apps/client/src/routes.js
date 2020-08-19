@@ -33,6 +33,13 @@ export const routeConfig = [
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
+    redirect: [
+      { from: "/:slug/locatie", to: "/:slug" },
+      { from: "/:slug/adresgegevens", to: "/:slug" },
+      { from: "/:slug/vragen", to: "/:slug" },
+      { from: "/:slug/uitkomsten", to: "/:slug" },
+      { from: "/:slug/conclusie", to: "/:slug" },
+    ],
   },
   {
     name: "intro",

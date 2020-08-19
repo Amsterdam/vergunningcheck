@@ -16,9 +16,20 @@ const Router = (props) => {
           ))}
           {routeConfig
             .filter((route) => route.component)
-            .map((route, i) => (
-              <Route key={i} {...route} />
-            ))}
+            .map((route, i) => {
+              if (!route.redirect) {
+                return <Route key={i} {...route} />;
+              } else {
+                return route.redirect.map((redirect, i) => (
+                  <Redirect
+                    status={301}
+                    exact
+                    from={redirect.from}
+                    to={redirect.to}
+                  />
+                ));
+              }
+            })}
         </Switch>
       </Suspense>{" "}
     </BrowserRouter>
