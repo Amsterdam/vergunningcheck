@@ -62,11 +62,8 @@ const Questions = ({
     }
     if (questionIndex === 0) {
       setActiveState("locationResult");
-      setFinishedState("locationResult", false);
       // This prevents to uncheck the Item that holds "questions" (when all questions are answered)
-      if (!isFinished("questions")) {
-        setFinishedState(["locationResult", "questions"], false);
-      }
+      setFinishedState(["locationResult", "questions"], false);
     }
   };
 
@@ -211,6 +208,7 @@ const Questions = ({
         // Check if currect question is causing a permit requirement
         const showConclusionAlert = !!permitsPerQuestion[i];
 
+        console.log("questindex", questionIndex);
         // @TODO: Refactor this code and move to checker.js
         // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
@@ -218,6 +216,7 @@ const Questions = ({
           contactConclusion &&
           !checker._getUpcomingQuestions().length &&
           questionIndex < i
+          // questionIndex !== -1
         ) {
           return null;
         }

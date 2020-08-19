@@ -48,15 +48,9 @@ const LocationInput = ({
         if (isFinished("questions")) {
           setActiveState("conclusion");
         } else {
-          setFinishedState("locationResult", true);
-          setActiveState("questions");
+          setActiveState("locationResult");
         }
         return;
-      }
-
-      // Reset all previous finished states
-      if (hasSTTR) {
-        setFinishedState(["locationResult", "questions", "conclusion"], false);
       }
 
       trackEvent({
@@ -75,8 +69,10 @@ const LocationInput = ({
 
       checkerContext.autofillData.address = address;
 
+      // Reset all previous finished states
       if (hasSTTR) {
         resetChecker();
+        setFinishedState(["locationResult", "questions", "conclusion"], false);
       }
 
       sessionContext.setSessionData([

@@ -163,7 +163,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             <StepByStepItem
               checked={isFinished("questions")}
               customSize
-              done={isActive("questions") || checker.stack.length > 1}
+              done={isActive("questions") || checker.stack.length > 0}
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
