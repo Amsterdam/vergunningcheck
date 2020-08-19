@@ -61,7 +61,6 @@ export const redirectConfig = [
     "/zonnepanelen-of-zonneboiler-plaatsen",
   ],
 ];
-export const permanentRedirects = [["/:oldRoute?", "/"]];
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
 export const routes = Object.fromEntries(
