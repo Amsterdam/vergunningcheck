@@ -118,7 +118,13 @@ const Question = ({
       />
       {questionNeedsPermit && <PermitAlert />}
       {!hideNavigation && (
-        <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
+        <Nav
+          {...{
+            onGoToPrev,
+            showNext,
+            showPrev,
+          }}
+        />
       )}
     </Form>
   );

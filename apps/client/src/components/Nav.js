@@ -18,6 +18,7 @@ const Nav = ({
   showNext,
   nextText,
   formEnds,
+  ...otherProps
 }) => {
   const {
     topic: { slug: name },
@@ -48,7 +49,7 @@ const Nav = ({
   };
 
   return (
-    <NavStyle>
+    <NavStyle {...otherProps}>
       <div>
         {showNext && (
           <Button

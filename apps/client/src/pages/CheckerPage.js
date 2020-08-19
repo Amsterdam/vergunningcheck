@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 
-import { ComponentWrapper } from "../atoms";
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -97,108 +96,101 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       <Helmet>
         <title>Wrapper Page</title>
       </Helmet>
-      <ComponentWrapper>
-        {/* STTR-flow with the StepByStepNavigation */}
-        {sttrFile && (
-          <StepByStepNavigation
-            customSize
-            disabledTextColor="inherit"
-            doneTextColor="inherit"
-            highlightActive
-            lineBetweenItems
+      {/* STTR-flow with the StepByStepNavigation */}
+      {sttrFile && (
+        <StepByStepNavigation
+          customSize
+          disabledTextColor="inherit"
+          doneTextColor="inherit"
+          highlightActive
+          lineBetweenItems
+        >
+          <StepByStepItem
+            active={isActive("locationInput") || isActive("locationResult")}
+            checked={isActive("locationResult") || isFinished("locationResult")}
+            done={isActive("locationInput") || isActive("locationResult")}
+            heading="Adresgegevens"
+            largeCircle
           >
-            <StepByStepItem
-              active={isActive("locationInput") || isActive("locationResult")}
-              checked={
-                isActive("locationResult") || isFinished("locationResult")
-              }
-              done={isActive("locationInput") || isActive("locationResult")}
-              heading="Adresgegevens"
-              largeCircle
-            >
-              {/* @TODO: Refactor this, because of duplicate code */}
-              {isActive("locationInput") && (
-                <LocationInput
-                  {...{
-                    isFinished,
-                    resetChecker,
-                    setActiveState,
-                    setFinishedState,
-                    topic,
-                  }}
-                />
-              )}
-              {/* @TODO: Refactor this, because of duplicate code */}
-              {!isActive("locationInput") &&
-                (isActive("locationResult") ||
-                  isFinished("locationResult")) && (
-                  <LocationResult
-                    {...{
-                      topic,
-                      isFinished,
-                      setActiveState,
-                      setFinishedState,
-                    }}
-                  />
-                )}
-            </StepByStepItem>
-            <StepByStepItem
-              checked={isFinished("questions")}
-              customSize
-              done={isActive("questions") || checker.stack.length > 1}
-              heading="Vragen"
-              largeCircle
-              // Overwrite the line between the Items
-              style={{ borderColor: "white" }}
-            />
-            <Questions
-              {...{
-                checker,
-                topic,
-                setFinishedState,
-                setActiveState,
-                isActive,
-                goToQuestion,
-                isFinished,
-              }}
-            />
-            <StepByStepItem
-              active={isActive("conclusion")}
-              checked={isFinished("questions")}
-              done={isFinished("questions")}
-              customSize
-              heading="Conclusie"
-              largeCircle
-              // Overwrite the line between the Items
-              style={{ marginTop: -1 }}
-            >
-              {isFinished("questions") && (
-                <Conclusion {...{ topic, checker }} />
-              )}
-            </StepByStepItem>
-          </StepByStepNavigation>
-        )}
-
-        {/* OLO-flow only needs the Location component */}
-        {!sttrFile && (
-          <>
             {/* @TODO: Refactor this, because of duplicate code */}
             {isActive("locationInput") && (
-              <LocationInput {...{ topic, setActiveState, setFinishedState }} />
-            )}
-            {isActive("locationResult") && (
-              <LocationResult
+              <LocationInput
                 {...{
-                  topic,
                   isFinished,
+                  resetChecker,
                   setActiveState,
                   setFinishedState,
+                  topic,
                 }}
               />
             )}
-          </>
-        )}
-      </ComponentWrapper>
+            {/* @TODO: Refactor this, because of duplicate code */}
+            {!isActive("locationInput") &&
+              (isActive("locationResult") || isFinished("locationResult")) && (
+                <LocationResult
+                  {...{
+                    topic,
+                    isFinished,
+                    setActiveState,
+                    setFinishedState,
+                  }}
+                />
+              )}
+          </StepByStepItem>
+          <StepByStepItem
+            checked={isFinished("questions")}
+            customSize
+            done={isActive("questions") || checker.stack.length > 1}
+            heading="Vragen"
+            largeCircle
+            // Overwrite the line between the Items
+            style={{ borderColor: "white" }}
+          />
+          <Questions
+            {...{
+              checker,
+              topic,
+              setFinishedState,
+              setActiveState,
+              isActive,
+              goToQuestion,
+              isFinished,
+            }}
+          />
+          <StepByStepItem
+            active={isActive("conclusion")}
+            checked={isFinished("questions")}
+            done={isFinished("questions")}
+            customSize
+            heading="Conclusie"
+            largeCircle
+            // Overwrite the line between the Items
+            style={{ marginTop: -1 }}
+          >
+            {isFinished("questions") && <Conclusion {...{ topic, checker }} />}
+          </StepByStepItem>
+        </StepByStepNavigation>
+      )}
+
+      {/* OLO-flow only needs the Location component */}
+      {!sttrFile && (
+        <>
+          {/* @TODO: Refactor this, because of duplicate code */}
+          {isActive("locationInput") && (
+            <LocationInput {...{ topic, setActiveState, setFinishedState }} />
+          )}
+          {isActive("locationResult") && (
+            <LocationResult
+              {...{
+                topic,
+                isFinished,
+                setActiveState,
+                setFinishedState,
+              }}
+            />
+          )}
+        </>
+      )}
 
       <DebugDecisionTable {...{ topic, checker }} />
     </Layout>
