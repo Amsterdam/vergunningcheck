@@ -1,26 +1,55 @@
-import { Heading } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { List, ListItem } from "../atoms";
-import LocationIntro from "./shared/LocationIntro";
+import { List, ListItem, OrderedList } from "../atoms";
 
 export default () => (
   <>
-    <LocationIntro />
+    <Paragraph>
+      Met de vergunningcheck kunt u zien of u voor het plaatsen van een dakkapel
+      één of meer omgevingsvergunningen nodig hebt. Er zijn 2 soorten
+      vergunningen:
+    </Paragraph>
+    <OrderedList>
+      <ListItem>
+        Een vergunning voor het wijzigen van een monument: ‘wijzigen monument’.
+      </ListItem>
+      <ListItem>
+        Een vergunning voor het plaatsen van de dakkapel zelf: ‘dakkapel
+        plaatsen’.
+      </ListItem>
+    </OrderedList>
 
-    <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
+    <Paragraph>
+      Het hangt af van uw antwoorden en situatie of u een vergunning nodig hebt.
+      U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien
+      toch geen vergunning nodig hebt.
+    </Paragraph>
+    <Paragraph>
+      U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of
+      als u een bestaande vernieuwt.
+    </Paragraph>
+
+    <Heading forwardedAs="h4">Uitzonderingen:</Heading>
+    <Paragraph>
+      In de volgende situaties is het niet mogelijk de vergunningcheck te
+      gebruiken:
+    </Paragraph>
     <List variant="bullet">
       <ListItem>
-        Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een
-        blokhut of een vakantiehuis? Bel dan de gemeente op{" "}
-        <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
-        tot 18.00 uur
+        U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of
+        een vakantiehuis.
       </ListItem>
+      <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op{" "}
-        <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
-        tot 18.00 uur.
+        Het deel van het gebouw waarin de dakkapel komt, is zonder vergunning
+        gebouwd.
       </ListItem>
     </List>
+    <Paragraph>
+      Bel in een van deze situaties de gemeente op{" "}
+      <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
+      tot 18.00 uur.
+    </Paragraph>
   </>
 );
