@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { ErrorMessage, Paragraph, Select, TextField } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 import React, { useEffect, useState } from "react";
@@ -17,15 +17,20 @@ const LocationFinder = (props) => {
   const [touched, setTouched] = useState({});
   const { setAddress, setErrorMessage } = props;
 
-  // GraphQL query
+  const variables = {
+    postalCode,
+    houseNumberFull,
+    extraHouseNumberFull: houseNumber,
+    queryExtra: houseNumber !== houseNumberFull,
+  };
+
+  /* There is an issue with `skip`, it's not working if variables are given
+     in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
+     Workaround is not giving any variables if the query should be skipped. */
+  const skip = !postalCode || !houseNumberFull || !houseNumber;
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
-    variables: {
-      postalCode,
-      houseNumberFull,
-      extraHouseNumberFull: houseNumber,
-      queryExtra: houseNumber !== houseNumberFull,
-    },
-    skip: !postalCode || !houseNumberFull || !houseNumber,
+    variables: skip ? undefined : variables,
+    skip,
   });
 
   // Prevent setState error
@@ -36,7 +41,15 @@ const LocationFinder = (props) => {
     if (postalCode && houseNumberFull && !loading && (data || graphqlError)) {
       setAddress(data?.findAddress?.exactMatch);
     }
-  });
+  }, [
+    data,
+    graphqlError,
+    houseNumberFull,
+    loading,
+    postalCode,
+    setAddress,
+    setErrorMessage,
+  ]);
 
   const exactMatch = data?.findAddress?.exactMatch;
   const findAddressMatches = data?.findAddress?.matches || [];

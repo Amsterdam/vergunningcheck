@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Redirect, useLocation, useParams } from "react-router-dom";
 
 import { topics } from "../config";
@@ -16,6 +16,16 @@ const withTopic = (Component) => (props) => {
   const topic = topics.find((t) => t.slug === slug);
   const params = new URLSearchParams(search);
 
+  useEffect(() => {
+    // Default settings to be able to open the CheckerPage
+    if (!sessionContext[slug]) {
+      sessionContext.setSessionData([
+        slug,
+        { activeComponents: ["locationInput"], finishedComponents: [] },
+      ]);
+    }
+  });
+
   if (params.get("resetChecker")) {
     checkerContext.checker = null;
 
@@ -28,7 +38,7 @@ const withTopic = (Component) => (props) => {
       },
     ]);
 
-    console.warn("Resseting checker, redirecting to intro page");
+    console.warn("Resetting checker, redirecting to intro page");
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
 

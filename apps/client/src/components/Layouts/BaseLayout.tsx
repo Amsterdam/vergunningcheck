@@ -10,10 +10,11 @@ import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
   children: React.ReactNode;
+  checker?: object;
   heading: String;
 }
 
-function BaseLayout({ children, heading }: BaseLayoutProps) {
+function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
   const checkerContext = useContext(CheckerContext);
   const { topic } = checkerContext as any;
   const title = heading || topic?.text?.heading || null;
@@ -25,15 +26,15 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
       </Helmet>
       <Header />
       <ContentContainer>
-        <Row>
+        <Row hasMargin={false}>
           <Column
             wrap
             span={{
               small: 1,
               medium: 2,
-              big: 5,
-              large: 9,
-              xLarge: 9,
+              big: checker ? 6 : 5,
+              large: checker ? 12 : 9,
+              xLarge: checker ? 12 : 9,
             }}
           >
             <Content>

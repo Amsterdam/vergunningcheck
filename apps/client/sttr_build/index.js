@@ -18,7 +18,7 @@ const outputDir = path.join(
 );
 const sttrApi = `https://sttr-builder${
   env === "PROD" ? "" : "-staging"
-}.eu.meteorapp.com/api`;
+}.eu.meteorapp.com/api/v2`;
 const listUrl = `${sttrApi}/activiteiten`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
@@ -67,7 +67,7 @@ function checkStatus(res) {
       return json.map(({ _id }) => _id);
     });
 
-  const permitsXML = await batchPromises(MAX_PARALLEL, permitIds, (id) =>
+  const permitsConfig = await batchPromises(MAX_PARALLEL, permitIds, (id) =>
     fetch(detailUrl, {
       method: "post",
       body: `activiteitId=${id}`,
@@ -77,31 +77,42 @@ function checkStatus(res) {
       },
     })
       .then(checkStatus)
-      .then((res) => res.text())
-      .then((xml) => ({
-        id,
-        xml,
-      }))
+      .then((res) => res.json())
+      .then((json) => {
+        fs.writeFile(
+          path.join(outputDir, `${id}.source.json`),
+          jsonString(json),
+          (err) => {
+            if (err) throw err;
+            console.log(`${id}.source.json has been saved!`);
+          }
+        );
+        return {
+          id,
+          json,
+        };
+      })
       .catch((e) => {
-        console.error("Failed to get xml for ", id, e);
+        console.error("Failed to get activity information for ", id, e);
       })
   );
 
-  // write activity source xml files
-  permitsXML.forEach(({ id, xml }) => {
-    fs.writeFile(path.join(outputDir, `${id}.xml`), xml, (err) => {
-      if (err) throw err;
-      console.log(`${id}.xml has been saved!`);
-    });
-  });
-
   Object.entries(topics).forEach(([id, permits]) => {
     const file = `${id}.json`;
+
     const data = {
       id,
-      permits: permits.map((permit) =>
-        sttrbuild(permitsXML.find((p) => p.id === permit.id).xml)
-      ),
+      permits: permits.map((permit) => {
+        const res = permitsConfig.find((p) => p.id === permit.id);
+        const version = res.json.version;
+        if (typeof version !== "number") {
+          throw new Error("version should be a number");
+        }
+        return {
+          version,
+          ...sttrbuild(res.json.sttr),
+        };
+      }),
     };
     fs.writeFile(path.join(outputDir, file), jsonString(data), (err) => {
       if (err) throw err;

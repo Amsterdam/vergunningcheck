@@ -41,7 +41,7 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
 - React
 - React Hook Form
-- GraphQL + ApolloClient
+- GraphQL + ApolloClient v3
 - Lerna
 - Sentry
 - [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/)
@@ -57,3 +57,4 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 ## Thanks to
 
 [<img src="https://github.com/Amsterdam/atlas/blob/develop/public/images/browserstack-logo@2x.png" height="60" title="BrowserStack Logo" alt="BrowserStack Logo" />](https://www.browserstack.com/)
+

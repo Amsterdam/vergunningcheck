@@ -1,12 +1,18 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { List, ListItem } from "../atoms";
+import { ComponentWrapper, List, ListItem } from "../atoms";
+import EditButton from "../atoms/EditButton";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
-import { StyledRegisterLookupSummary } from "./RegisterLookupSummaryStyles";
+import AddressLine from "./AddressLine";
 
-const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
+const RegisterLookupSummary = ({
+  address,
+  displayZoningPlans,
+  setActiveState,
+  topic: { sttrFile },
+}) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -15,21 +21,34 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   return (
-    <StyledRegisterLookupSummary>
+    <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
+      <Paragraph gutterBottom={16}>
+        <AddressLine address={address} />
+        <EditButton
+          onClick={() => {
+            setActiveState("locationInput");
+          }}
+        />
+      </Paragraph>
+      <Paragraph gutterBottom={16}>
+        Over dit adres hebben we de volgende gegevens gevonden:
+      </Paragraph>
       <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
-      <Paragraph>
-        {monument ? `Ja. ${monument}.` : "Nee. Geen monument."}
+      <Paragraph gutterBottom={16}>
+        {monument
+          ? `Het gebouw is een ${monument.toLowerCase()}.`
+          : "Het gebouw is geen monument."}
       </Paragraph>
 
       <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
-      <Paragraph gutterBottom={displayZoningPlans ? null : 0}>
+      <Paragraph gutterBottom={displayZoningPlans ? 16 : 0}>
         {cityScape
-          ? `Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
-          : `Nee. Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+          ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
+          : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
       </Paragraph>
 
       {displayZoningPlans && (
@@ -38,7 +57,7 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
             Bestemmingsplannen:
           </Paragraph>
           {zoningPlanNames.length === 0 ? (
-            <Paragraph>Geen bestemmingsplan</Paragraph>
+            <Paragraph>Geen bestemmingsplannen</Paragraph>
           ) : (
             <List
               variant="bullet"
@@ -55,7 +74,7 @@ const RegisterLookupSummary = ({ address, displayZoningPlans }) => {
           )}
         </>
       )}
-    </StyledRegisterLookupSummary>
+    </ComponentWrapper>
   );
 };
 
