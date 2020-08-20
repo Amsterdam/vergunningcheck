@@ -27,7 +27,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
 
-  const { activeComponents, finishedComponents } = sessionContext[slug];
+  const { activeComponents, answers, finishedComponents } = sessionContext[
+    slug
+  ];
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
@@ -147,10 +149,11 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               (isActive("locationResult") || isFinished("locationResult")) && (
                 <LocationResult
                   {...{
-                    topic,
+                    isActive,
                     isFinished,
                     setActiveState,
                     setFinishedState,
+                    topic,
                   }}
                 />
               )}
@@ -158,7 +161,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           <StepByStepItem
             checked={isFinished("questions")}
             customSize
-            done={isActive("questions") || checker.stack.length > 1}
+            done={answers || isActive("questions")}
             heading="Vragen"
             largeCircle
             // Overwrite the line between the Items
@@ -203,6 +206,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           {isActive("locationResult") && (
             <LocationResult
               {...{
+                isActive,
                 isFinished,
                 setActiveState,
                 setFinishedState,

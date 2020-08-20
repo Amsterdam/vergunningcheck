@@ -45,18 +45,10 @@ const LocationInput = ({
     if (address.postalCode) {
       // Detect if user is submitting the same address as currenly stored
       if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
-        if (isFinished("questions")) {
-          setActiveState("conclusion");
-        } else {
-          setFinishedState("locationResult", true);
-          setActiveState("questions");
-        }
+        // The address is the same, so nothing changed, so go directly to the Location Result
+        // We don't go directly to Questions or Conclusion
+        setActiveState("locationResult");
         return;
-      }
-
-      // Reset all previous finished states
-      if (hasSTTR) {
-        setFinishedState(["locationResult", "questions", "conclusion"], false);
       }
 
       trackEvent({
@@ -75,8 +67,10 @@ const LocationInput = ({
 
       checkerContext.autofillData.address = address;
 
+      // Reset all previous finished states
       if (hasSTTR) {
         resetChecker();
+        setFinishedState(["locationResult", "questions", "conclusion"], false);
       }
 
       sessionContext.setSessionData([
