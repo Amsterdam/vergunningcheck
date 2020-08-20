@@ -65,7 +65,7 @@ const Questions = ({
       setFinishedState("locationResult", false);
       // This prevents to uncheck the Item that holds "questions" (when all questions are answered)
       if (!isFinished("questions")) {
-        setFinishedState(["locationResult", "questions"], false);
+        setFinishedState("questions", false);
       }
     }
   };
@@ -191,7 +191,6 @@ const Questions = ({
   if (checker.stack.length === 0) {
     checker.next();
   }
-
   // Loop through all questions
   return (
     <>
