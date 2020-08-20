@@ -127,7 +127,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive("locationInput") || isActive("locationResult")
+              isActive("locationInput") ||
+              isActive("locationResult") ||
+              questionIndex === 0
                 ? checkedStyle
                 : {}
             }
@@ -159,6 +161,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               )}
           </StepByStepItem>
           <StepByStepItem
+            active={isActive("questions") && questionIndex === 0}
             checked={isFinished("questions")}
             customSize
             done={answers || isActive("questions")}

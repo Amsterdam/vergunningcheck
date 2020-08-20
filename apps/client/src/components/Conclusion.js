@@ -1,9 +1,10 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 
 import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import { Olo } from "../config";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import Markdown from "./Markdown";
 
@@ -42,14 +43,29 @@ const Conclusion = ({ checker, topic: { slug } }) => {
     ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
 
+  const needsPermit = !!conclusions.find(
+    ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
+  );
+
   const displayConclusions = contactConclusion
     ? [contactConclusion]
     : conclusions;
 
+  const handlePermitButton = (e) => {
+    e.preventDefault();
+    trackEvent({
+      category: "conclusie",
+      action: "vergunning aanvragen",
+      name: slug,
+    });
+    // Open OLO in new tab/window
+    window.open(Olo.home, "_blank");
+  };
+
   const handlePrintButton = () => {
     trackEvent({
-      category: "conclusion",
-      action: "conclusie-opslaan",
+      category: "conclusie",
+      action: "conclusie opslaan",
       name: slug,
     });
     window.print();
@@ -68,6 +84,14 @@ const Conclusion = ({ checker, topic: { slug } }) => {
           <Markdown source={description} />
         </Fragment>
       ))}
+
+      {needsPermit && (
+        <ComponentWrapper marginBottom={40}>
+          <Button type="button" color="secondary" onClick={handlePermitButton}>
+            Vergunning aanvragen
+          </Button>
+        </ComponentWrapper>
+      )}
 
       {!isMobile && (
         <ComponentWrapper>
