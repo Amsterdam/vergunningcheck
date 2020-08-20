@@ -38,7 +38,7 @@ export default () => (
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
         Het deel van het gebouw waarin het kozijn komt, is zonder vergunning
-        gebouwd
+        gebouwd.
       </ListItem>
     </List>
     <Paragraph>

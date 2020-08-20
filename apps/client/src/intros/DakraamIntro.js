@@ -40,7 +40,7 @@ export default () => (
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
         Het deel van het gebouw waarin het dakraam komt, is zonder vergunning
-        gebouwd
+        gebouwd.
       </ListItem>
     </List>
     <Paragraph>
