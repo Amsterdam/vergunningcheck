@@ -5,11 +5,11 @@ import { useForm } from "react-hook-form";
 import { requiredFieldText } from "../config";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers from "./Answers";
+import ConclusionAlert from "./ConclusionAlert";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
-import PermitAlert from "./PermitAlert";
 
 export const booleanOptions = [
   {
@@ -45,7 +45,8 @@ const Question = ({
   showPrev,
   onGoToPrev,
   questionIndex,
-  questionNeedsPermit,
+  questionNeedsContactExit,
+  showConclusionAlert,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -116,7 +117,9 @@ const Question = ({
         answers={answers}
         userAnswer={userAnswer}
       />
-      {questionNeedsPermit && <PermitAlert />}
+      {showConclusionAlert && (
+        <ConclusionAlert {...{ questionNeedsContactExit }} />
+      )}
       {!hideNavigation && (
         <Nav
           {...{
@@ -152,7 +155,8 @@ Question.propTypes = {
   className: PropTypes.string,
   headingAs: PropTypes.string,
   hideNavigation: PropTypes.bool,
-  questionNeedsPermit: PropTypes.bool,
+  questionNeedsContactExit: PropTypes.bool,
+  showConclusionAlert: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
   required: PropTypes.bool,

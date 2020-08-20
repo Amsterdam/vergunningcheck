@@ -24,12 +24,6 @@ const withChecker = (Component) =>
       if (sttrFile) {
         initChecker();
       }
-      if (!sessionContext[slug]) {
-        sessionContext.setSessionData([
-          slug,
-          { activeComponents: ["locationInput"], finishedComponents: [] },
-        ]);
-      }
     });
 
     const initChecker = () => {

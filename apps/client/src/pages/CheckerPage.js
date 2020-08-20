@@ -22,10 +22,11 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
-  //@TODO Quick fix, we shoudn't need this, refactor this so we always have activeComponents and finishComponents
+  //@TODO: We shoudn't need this redirect. We need to refactor this
   if (!sessionContext[slug]) {
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
+
   const { activeComponents, finishedComponents } = sessionContext[slug];
 
   // Only one component can be active at the same time.
@@ -91,6 +92,17 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     ]);
   };
 
+  // Callback to go to the Conclusion section
+  // `false` is to prevent unexpected click, hover and focus states on already active section
+  const handleConclusionClick =
+    !isActive("conclusion") && isFinished("questions")
+      ? () => setActiveState("conclusion")
+      : false;
+
+  const checkedStyle = {
+    borderColor: "white",
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -111,6 +123,12 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             done={isActive("locationInput") || isActive("locationResult")}
             heading="Adresgegevens"
             largeCircle
+            // Overwrite the line between the Items
+            style={
+              isActive("locationInput") || isActive("locationResult")
+                ? checkedStyle
+                : {}
+            }
           >
             {/* @TODO: Refactor this, because of duplicate code */}
             {isActive("locationInput") && (
@@ -144,7 +162,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             heading="Vragen"
             largeCircle
             // Overwrite the line between the Items
-            style={{ borderColor: "white" }}
+            style={checkedStyle}
           />
           <Questions
             {...{
@@ -164,6 +182,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             customSize
             heading="Conclusie"
             largeCircle
+            onClick={handleConclusionClick}
             // Overwrite the line between the Items
             style={{ marginTop: -1 }}
           >
@@ -177,15 +196,17 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         <>
           {/* @TODO: Refactor this, because of duplicate code */}
           {isActive("locationInput") && (
-            <LocationInput {...{ topic, setActiveState, setFinishedState }} />
+            <LocationInput
+              {...{ isFinished, setActiveState, setFinishedState, topic }}
+            />
           )}
           {isActive("locationResult") && (
             <LocationResult
               {...{
-                topic,
                 isFinished,
                 setActiveState,
                 setFinishedState,
+                topic,
               }}
             />
           )}
