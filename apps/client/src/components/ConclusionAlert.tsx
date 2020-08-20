@@ -10,7 +10,7 @@ const ConclusionAlert: React.FC<
     <Paragraph>
       {questionNeedsContactExit
         ? "Door dit antwoord kan de vergunningcheck niet verder gedaan worden."
-        : "Door dit antwoord hebt u een vergunning nodig. Als u een ander antwoord geeft hebt u misschien geen vergunning nodig."}
+        : "Door dit antwoord hebt u een vergunning nodig. Als u een andere keuze maakt hebt u misschien geen vergunning nodig."}
     </Paragraph>
   </ConclusionAlertStyle>
 );
