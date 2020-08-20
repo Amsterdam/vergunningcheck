@@ -55,7 +55,7 @@ const Conclusion = ({ checker, topic: { slug } }) => {
     e.preventDefault();
     trackEvent({
       category: "conclusie",
-      action: "vergunning aanvragen (OLO)",
+      action: "vergunning aanvragen",
       name: slug,
     });
     // Open OLO in new tab/window
