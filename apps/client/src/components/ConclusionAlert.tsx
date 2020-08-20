@@ -5,8 +5,8 @@ import { ConclusionAlertStyle } from "./ConclusionAlertStyles";
 
 const ConclusionAlert: React.FC<
   { questionNeedsContactExit?: Boolean } & React.HTMLAttributes<HTMLElement>
-> = ({ questionNeedsContactExit }) => (
-  <ConclusionAlertStyle>
+> = ({ questionNeedsContactExit, ...otherProps }) => (
+  <ConclusionAlertStyle {...otherProps}>
     <Paragraph>
       {questionNeedsContactExit
         ? "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt. Klik op Volgende."
