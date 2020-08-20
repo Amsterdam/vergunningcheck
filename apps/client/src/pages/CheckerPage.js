@@ -18,7 +18,7 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug, sttrFile } = topic;
+  const { slug, sttrFile, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
@@ -108,7 +108,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   return (
     <Layout>
       <Helmet>
-        <title>Wrapper Page</title>
+        <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
       {/* STTR-flow with the StepByStepNavigation */}
       {sttrFile && (
