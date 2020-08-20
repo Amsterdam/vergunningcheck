@@ -29,7 +29,7 @@ export const routeConfig = [
   {
     exact: true,
     name: "checker",
-    path: "/:slug/checker",
+    path: "/:slug/vragen-en-conclusie",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
