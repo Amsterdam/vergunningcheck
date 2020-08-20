@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const NavStyle = styled.div`
   display: flex;
   height: 64px;
-  margin: ${themeSpacing(5, 0)};
+  margin: ${themeSpacing(5, 0, 4)};
   background-color: ${themeColor("tint", "level3")};
   justify-content: space-between;
   align-items: center;

@@ -121,7 +121,13 @@ const Question = ({
         <ConclusionAlert {...{ questionNeedsContactExit }} />
       )}
       {!hideNavigation && (
-        <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
+        <Nav
+          {...{
+            onGoToPrev,
+            showNext,
+            showPrev,
+          }}
+        />
       )}
     </Form>
   );
