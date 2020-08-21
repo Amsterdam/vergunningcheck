@@ -1,7 +1,7 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 
-import Anchor from "../../../atoms";
+import { Anchor } from "../../../atoms";
 import { actions, categories, trackingEnabled } from "../../../config/matomo";
 
 type Props = {
@@ -9,21 +9,17 @@ type Props = {
   onClick: React.MouseEventHandler;
 };
 
-/**
- * This component makes sure links always have a _blank target.
- * Because of target="_blank" we also need to set the rel-attribute, see
- * https://mathiasbynens.github.io/rel-noopener/ for more details
- **/
-
 const LinkRenderer: React.FC<Props> = ({ children, onClick, ...rest }) => {
-  // const X: React.FC<Props> = ({ children, onClick, ...rest }) => {
   const { trackEvent } = useMatomo();
 
   const url = new URL(rest.href);
   const isPhoneLink = url.protocol === "tel:";
 
-  // If it's not a phone link make sure we open in new tab and
-  // don't send our information to the new page.
+  /**
+   * If it's not a phone link make sure we open in new tab and
+   * don't send our information to the new page.
+   * https://mathiasbynens.github.io/rel-noopener/ for more details
+   **/
   const props = isPhoneLink
     ? rest
     : Object.assign({}, rest, {
@@ -37,11 +33,13 @@ const LinkRenderer: React.FC<Props> = ({ children, onClick, ...rest }) => {
           url.protocol === "tel:"
             ? actions.clickPhoneLink
             : actions.clickExternalLink;
+
         trackEvent({
           category: categories.navigate,
           action,
           name: `Markdown${isPhoneLink ? " - Telefoonnummer" : ""}`,
         });
+
         onClick && onClick(event);
       }
     : undefined;
