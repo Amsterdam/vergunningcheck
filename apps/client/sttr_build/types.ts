@@ -18,6 +18,10 @@ export type ApiResult = {
 export type ActivitiesResponse = {
   error?: string;
 };
+export type PermitResponse = {
+  version: number;
+  sttr: string;
+};
 
 export type TopicInputType = {
   _id: string;

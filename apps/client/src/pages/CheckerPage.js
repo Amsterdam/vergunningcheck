@@ -98,6 +98,10 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     ? () => setActiveState("conclusion")
     : false;
 
+  const checkedStyle = {
+    borderColor: "white",
+  };
+
   return (
     <Layout heading={text.heading}>
       <Helmet>
@@ -121,6 +125,12 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               done={isActive("locationInput") || isActive("locationResult")}
               heading="Adresgegevens"
               largeCircle
+              // Overwrite the line between the Items
+              style={
+                isActive("locationInput") || isActive("locationResult")
+                  ? checkedStyle
+                  : {}
+              }
             >
               {/* @TODO: Refactor this, because of duplicate code */}
               {isActive("locationInput") && (
@@ -155,7 +165,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               heading="Vragen"
               largeCircle
               // Overwrite the line between the Items
-              style={{ borderColor: "white" }}
+              style={checkedStyle}
             />
             <Questions
               {...{

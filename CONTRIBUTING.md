@@ -14,6 +14,9 @@ _TODO: dmn, sttr, imtr etc. Consider moving this section to README.md instead_
 - sttr-file; sttr is an XML standard for dutch DSO legislation
 - xml to json; we convert sttr-XML to our custom json format for better performance
 - sttr-builder; the tool used to build sttr-files
+- check; the activity of checking whether you need a permit
+- visitor; the person performing a check
+- checker; the tool itself, intro, register lookups, a set of questions and conclusion
 
 ## Commiting
 
@@ -46,8 +49,8 @@ If you want to tweak texts, the name or the intro of a checker, you need to add 
 
 - Open [config/index.ts](apps/client/src/config/index.ts) in your editor of choice
 - Duplicate an existing object under `const topics` and edit these values: `slug`, `text` and `intro`
-  - `slug` = The part of our app URL that identifies which permit-check to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
-  - `text` = This is part that holds specific texts for each permit-check
+  - `slug` = The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
+  - `text` = This is part that holds specific texts for each permit-checker
   - `intro` = The name of the component that has all texts on the Intro page (
 - Duplicate an existing Intro component file in `apps/client/src/intros`, change the content to your wishes and name it **exactly** as you named it in the previous step `intro`
 
@@ -62,24 +65,51 @@ When we want to test our app with users we most follow this procedure:
 - Goto _Domain settings_ on Netlify and add a new SubDomain for your `ux-test-${topic}` branch
 - Verify everything is working correctly and share this link with your colleages
 
-## Prepare a release
+## Release
 
-Basically what we want to do is merge `develop` with `release` including the latest STTR-changes.
-Two commands make this easy for you. Run `npm run prepare-release`, commit changes if needed and `npm run release`.
+### Prepare a release, deploy to acceptance
 
-## Publish a release
+Basically what we want to do is merge `develop` with `release` including the latest STTR-changes. We use lerna-changelog to generate our changes we can use in [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
+Make sure you are logged in by npm command line. If not, log in with `npm adduser`. Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
-We use lerna-changelog to generate our changes we can use in [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
-Make sure you are logged in by npm command line. If not, log in with `npm adduser`.
+- Run `npm run prepare-release` to back-merge and generate new sttr-files
+- Commit changes if needed
+- Run `npm run release` to merge `develop` with `release` and push it.
+- The application will be build by Jenkins and deployed to acceptance
+- Verify the `release` branch is on acceptance and it's the latest build
+- Communicate to stakeholders there is a new release testable on acceptance
 
-Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
+### Create the release PR
 
-- Run `npm run version` and use the generate our changes we can use in [CHANGELOG.md](CHANGELOG.md)
-- Determine the version number.
-- Commit the changelog.
-- Run `npm run publish` and answer `y` to the prompt
-- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
-- After the merge the release will be deployed to acceptance, manually verify the changes
-- Approve the release to production in Jenkins
+- Run `npm run changelog`, a changelog will be generated
+- Paste the changelog to the [CHANGELOG.md](CHANGELOG.md), determine the version number and replace "Unreleased " with the new version.
+- Verify if all changes planned for this release are in the changelog, update plan if something was missing
+- Create [a diff](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
+- Verify if nothing is missing from the changelog, commit the changelog.
+- Run `npm run publish` to add and publish a release tag. It's pushed to the repo.
+- Create [the PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release)
+- Assign the PR to your team members
+
+### Create artifact and deploy to acceptance
+
+- Walk through the PR en verify the changes are on acceptance
+- Merge the pr, don't use Squash and Merge
+- Jenkins will create the artifact (docker images) based on the master branch
+- Check if the build succeeded and verify the version number and branch on acceptance
+
+### Deploy to production
+
+This procedure will be changed to the DRAFT section below.
+
+- Approve the release to production in Jenkins, now we're live
 - Back-merge `master` into `release` into `develop` by running `npm run back-merge`
 - Consider [preparing](#prepare-a-release) the next release in the section above
+
+### (DRAFT) Deploy to production
+
+- Run the deploy job in Jenkins
+- Select the artifact (that was deployed to acceptance) you want to release
+
+### (DRAFT) Rollback
+
+You can use the same procedure as deploying, just select a different artifact.

@@ -49,7 +49,6 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
           <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
           <p>Node environment: {process.env.NODE_ENV}</p>
-          <p>STTR stage: {process.env.REACT_APP_STTR_ENV}</p>
         </HiddenDebugInfo>
         {topic && (
           <HiddenDebugInfo title="Topic">

@@ -3,7 +3,12 @@ import { join } from "https://deno.land/std/path/mod.ts";
 import parser from "https://deno.land/x/yargs_parser/deno.ts";
 
 import sttrbuild from "./parser.js";
-import { APIConfig, TopicInputType, TopicOutputType } from "./types.ts";
+import {
+  APIConfig,
+  PermitResponse,
+  TopicInputType,
+  TopicOutputType,
+} from "./types.ts";
 
 // TODO: Improve 'usage', waiting for yargs to be ported https://github.com/yargs/yargs/issues/1661
 const argv = parser(Deno.args, {
@@ -72,16 +77,23 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
             throw new Error(`apiPermit not found for id ${permitId}`);
           }
 
-          let xml;
-          const perm: any = (await readJson(
+          const { sttr: xml, version } = (await readJson(
             join(baseDir, outputDir, `${permitId}.source.json`)
-          )) as Object;
-          xml = perm.sttr;
+          )) as PermitResponse;
 
-          return sttrbuild(xml);
+          if (typeof version !== "number") {
+            throw new Error("version should be a number");
+          }
+
+          const sttr = await sttrbuild(xml);
+          return {
+            version,
+            ...sttr,
+          };
         })
       ),
     };
+
     writeJson(join(baseDir, outputDir, `${slug}.json`), topicJsonContent);
   });
   return topics;
