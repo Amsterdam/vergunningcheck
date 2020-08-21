@@ -13,11 +13,11 @@ export default () => (
     <List variant="bullet">
       <ListItem>
         Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een
-        blokhut of een vakantiehuis?
+        blokhut of een vakantiehuis?{" "}
         <ContactSentence eventName="Intro - Extraordinary situation" />
       </ListItem>
       <ListItem>
-        Gaat u de woning splitsen in 2 of meer woningen?
+        Gaat u de woning splitsen in 2 of meer woningen?{" "}
         <ContactSentence eventName="Intro - Split house" />
       </ListItem>
     </List>
