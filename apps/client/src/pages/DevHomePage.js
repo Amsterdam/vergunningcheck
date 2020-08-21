@@ -70,16 +70,37 @@ const DevHomePage = () => {
                 (topic) => topic.slug === apiTopic.slug
               );
 
+              const title = sttrTopic
+                ? sttrTopic.name
+                : apiTopic
+                ? apiTopic.name || apiTopic.slug
+                : "[ERROR]";
               return (
                 <tr>
                   <td>
-                    <Link to={geturl(routes.intro, apiTopic)}>
-                      {sttrTopic
-                        ? sttrTopic.name
-                        : apiTopic
-                        ? apiTopic.name || apiTopic.slug
-                        : "[ERROR]"}
-                    </Link>
+                    {sttrTopic && !sttrTopic.hasSTTR ? (
+                      <>
+                        {title}
+                        <br />
+                        <div
+                          style={{
+                            backgroundColor: "rgb(246, 201, 72)",
+                            padding: "1em",
+                          }}
+                        >
+                          STTR file found for <strong>{sttrTopic.name}</strong>,
+                          but we can't load '<strong>{sttrTopic.slug}</strong>'
+                          because it's configured to be{" "}
+                          <strong>
+                            {sttrTopic.redirectToOlo ? "redirectToOlo" : "olo"}
+                            -flow
+                          </strong>
+                          .
+                        </div>
+                      </>
+                    ) : (
+                      <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
+                    )}
                   </td>
                   <td>{sttrTopic ? "configured" : "unknown"}</td>
                   <td>{apiTopic.path.split("/")[0]}</td>
