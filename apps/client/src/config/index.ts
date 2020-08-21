@@ -89,10 +89,10 @@ const topics: Topic[] = [
     intro: "AanbouwIntro",
   },
   {
-    slug: "kozijnen-plaatsen-of-vervangen",
+    slug: "kozijnen-plaatsen",
     sttrFile: "kozijn.json",
     text: {
-      heading: "Vergunningcheck kozijnen plaatsen of vervangen",
+      heading: "Vergunningcheck kozijnen plaatsen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
     },

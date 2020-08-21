@@ -53,6 +53,7 @@ export const redirectConfig = [
     "/zonnepanelen-of-warmtecollectoren-plaatsen",
     "/zonnepanelen-of-zonneboiler-plaatsen",
   ],
+  ["/kozijnen-plaatsen-of-vervangen", "/kozijnen-plaatsen"],
 ];
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
