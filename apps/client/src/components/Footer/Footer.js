@@ -13,8 +13,10 @@ import React, { memo } from "react";
 import { List, ListItem } from "../../atoms";
 import { FOOTER } from "../../utils/test-ids";
 import Link from "../Link";
+import PhoneNumber from "../PhoneNumber";
 import { ContentContainer } from "./FooterStyles";
 
+const eventName = "Footer";
 const eventNameSuffix = "- Footer";
 
 const FirstColumn = () => (
@@ -25,14 +27,7 @@ const FirstColumn = () => (
     </Paragraph>
     <Paragraph gutterBottom={0}>
       <strong>
-        Bel het telefoonnummer{" "}
-        <Link
-          darkBackground
-          href="tel:14020"
-          eventName={`Telefoonnummer ${eventNameSuffix}`}
-        >
-          14 020
-        </Link>
+        Bel het telefoonnummer <PhoneNumber eventName={eventName} />
       </strong>{" "}
     </Paragraph>
     <Paragraph gutterBottom={8}>

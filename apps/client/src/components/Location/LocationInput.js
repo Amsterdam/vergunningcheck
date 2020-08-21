@@ -9,6 +9,7 @@ import { geturl, routes } from "../../routes";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
+import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 const LocationInput = ({
@@ -99,7 +100,7 @@ const LocationInput = ({
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer <a href="tel:14020">14 020</a>.
+            telefoonnummer <PhoneNumber eventName="Address error" />.
           </Paragraph>
         </Error>
       )}

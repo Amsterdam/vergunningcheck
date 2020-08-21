@@ -1,6 +1,7 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext } from "react";
 
+import { trackingEnabled } from "../config/matomo";
 import { CheckerContext } from "../context";
 
 const withTracking = (Component) => ({ ...props }) => {
@@ -8,12 +9,12 @@ const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
-    if (!localStorage.getItem("doNotTrack")) {
+    if (trackingEnabled()) {
       trackPageView({});
     }
   };
   const matomoTrackEvent = ({ category, action, name }) => {
-    if (!localStorage.getItem("doNotTrack")) {
+    if (trackingEnabled()) {
       trackEvent({
         category,
         action: `${action} - ${topic?.slug || "home"}`,

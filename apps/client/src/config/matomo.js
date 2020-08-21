@@ -13,10 +13,13 @@ export const matomo = {
   siteId: getMatomoSiteId(isProduction),
 };
 
+export const trackingEnabled = () => !localStorage.getItem("doNotTrack");
+
 export const categories = {
   navigate: "navigeren",
 };
 
 export const actions = {
   clickExternalLink: "Externe link",
+  clickPhoneLink: "Telefoonnummer",
 };

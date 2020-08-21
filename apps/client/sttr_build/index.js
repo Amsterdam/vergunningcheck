@@ -55,6 +55,15 @@ function checkStatus(res) {
   return res;
 }
 
+/**
+ * Preprocessors are used to change the incoming xml. The xml
+ * is not yet parsed, so they are basic find replace functions.
+ * The output of every preprocessor is passed as input to the next.
+ */
+const preprocessors = [
+  (str) => str.replace(/ 14\s?020/g, " [14 020](tel:14020)"), // Fix phone-number
+];
+
 (async () => {
   fetch(listUrl, { headers })
     .then((res) => res.json())
@@ -108,9 +117,16 @@ function checkStatus(res) {
         if (typeof version !== "number") {
           throw new Error("version should be a number");
         }
+
+        // apply all reducers to sttr
+        const content = preprocessors.reduce(
+          (acc, curr) => curr(acc),
+          res.json.sttr
+        );
+
         return {
           version,
-          ...sttrbuild(res.json.sttr),
+          ...sttrbuild(content),
         };
       }),
     };

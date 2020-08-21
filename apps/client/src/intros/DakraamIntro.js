@@ -2,6 +2,7 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { List, ListItem } from "../atoms";
+import ContactSentence from "../components/ContactSentence";
 import LocationIntro from "./shared/LocationIntro";
 
 export default () => (
@@ -30,9 +31,8 @@ export default () => (
     <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
-        Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op{" "}
-        <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
-        tot 18.00 uur.
+        Gaat u de woning splitsen in 2 of meer woningen?{" "}
+        <ContactSentence eventName="Intro" />
       </ListItem>
     </List>
   </>
