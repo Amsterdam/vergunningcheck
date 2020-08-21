@@ -18,7 +18,7 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug, sttrFile } = topic;
+  const { slug, sttrFile, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
@@ -108,7 +108,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   return (
     <Layout>
       <Helmet>
-        <title>Wrapper Page</title>
+        <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
       {/* STTR-flow with the StepByStepNavigation */}
       {sttrFile && (
@@ -127,7 +127,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive("locationInput") || isActive("locationResult")
+              isActive("locationInput") ||
+              isActive("locationResult") ||
+              questionIndex === 0
                 ? checkedStyle
                 : {}
             }
@@ -159,6 +161,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               )}
           </StepByStepItem>
           <StepByStepItem
+            active={isActive("questions") && questionIndex === 0}
             checked={isFinished("questions")}
             customSize
             done={answers || isActive("questions")}
