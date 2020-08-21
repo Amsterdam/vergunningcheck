@@ -5,8 +5,8 @@ import styled from "styled-components";
  * (with DefaultLinkStyleCSS), or it overrides the color (InlineLinkStyleCSS)
  * or it does not provide text-decoration (BlankLinkStyleCSS).
  *
- * What we want is a link that's underlined, at least when hovered.
- * In addition we need a bold font with the samen color as the parent.
+ * What we want is a link that's underlined, when hovered.
+ * In addition we need a bold font with the same color as the parent.
  */
 export default styled.a`
   color: inherit;
