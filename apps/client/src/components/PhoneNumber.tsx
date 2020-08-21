@@ -2,7 +2,7 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 import styled from "styled-components";
 
-import Anchor from "../atoms/Anchor";
+import { Anchor } from "../atoms";
 import { actions, categories, trackingEnabled } from "../config/matomo";
 
 const Wrapper = styled.span`
