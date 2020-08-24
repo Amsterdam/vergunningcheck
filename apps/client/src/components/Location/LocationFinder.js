@@ -169,8 +169,7 @@ const LocationFinder = (props) => {
           >
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
-              telefoonnummer{" "}
-              <PhoneNumber eventName="Address not found" variant="inline" />.
+              telefoonnummer <PhoneNumber eventName="Address not found" />.
             </Paragraph>
           </Alert>
         </ComponentWrapper>

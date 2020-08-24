@@ -1,9 +1,9 @@
+import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React from "react";
 
 import { actions, categories } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
-import LinkStyle from "./LinkStyle";
 
 const Link = ({
   children,
@@ -28,9 +28,9 @@ const Link = ({
   };
 
   return (
-    <LinkStyle href={href} onClick={href && onClick} {...rest}>
+    <StyledComponentLink href={href} onClick={href && onClick} {...rest}>
       {children}
-    </LinkStyle>
+    </StyledComponentLink>
   );
 };
 

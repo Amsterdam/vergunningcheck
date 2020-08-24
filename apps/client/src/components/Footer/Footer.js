@@ -17,7 +17,7 @@ import PhoneNumber from "../PhoneNumber";
 import { ContentContainer } from "./FooterStyles";
 
 const eventName = "Footer";
-const eventNameSuffix = "- Footer";
+const eventNameSuffix = `- ${eventName}`;
 
 const FirstColumn = () => (
   <>
@@ -28,7 +28,7 @@ const FirstColumn = () => (
     <Paragraph gutterBottom={8}>
       <strong>
         Bel het telefoonnummer{" "}
-        <PhoneNumber darkBackground eventName={eventName} />
+        <PhoneNumber darkBackground variant={null} eventName={eventName} />
       </strong>{" "}
       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
     </Paragraph>

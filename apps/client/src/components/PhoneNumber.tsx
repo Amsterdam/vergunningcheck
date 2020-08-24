@@ -14,7 +14,7 @@ export type Props = {
   href: string;
   link: boolean;
   text: string;
-  variant?: string;
+  variant: string;
 };
 
 export default ({
@@ -22,7 +22,7 @@ export default ({
   href = "tel:14020",
   link = true,
   text = "14 020",
-  variant,
+  variant = "inline",
   ...otherProps
 }: Props) => {
   const { trackEvent } = useMatomo();
