@@ -11,12 +11,13 @@ import {
 import React, { memo } from "react";
 
 import { List, ListItem } from "../../atoms";
+import { eventNames } from "../../config/matomo";
 import { FOOTER } from "../../utils/test-ids";
 import Link from "../Link";
 import PhoneNumber from "../PhoneNumber";
 import { ContentContainer } from "./FooterStyles";
 
-const eventName = "Footer";
+const eventName = eventNames.FOOTER;
 const eventNameSuffix = `- ${eventName}`;
 
 const FirstColumn = () => (

@@ -1,8 +1,7 @@
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 import styled from "styled-components";
 
-import { actions, categories, trackingEnabled } from "../config/matomo";
+import { actions } from "../config/matomo";
 import Link from "./Link";
 
 const Wrapper = styled.span`
@@ -10,39 +9,37 @@ const Wrapper = styled.span`
 `;
 
 export type Props = {
+  darkBackground?: boolean;
   eventName?: string;
-  href: string;
-  link: boolean;
-  text: string;
-  variant: string;
+  href?: string;
+  link?: boolean;
+  text?: string;
+  variant?: string | null;
 };
 
 export default ({
+  darkBackground = false,
   eventName,
   href = "tel:14020",
   link = true,
   text = "14 020",
   variant = "inline",
-  ...otherProps
-}: Props) => {
-  const { trackEvent } = useMatomo();
-  const onClick = trackingEnabled()
-    ? () => {
-        trackEvent({
-          category: categories.navigate,
+}: Props) => (
+  <Wrapper>
+    {link ? (
+      <Link
+        {...{
           action: actions.clickPhoneLink,
-          name: `Telefoonnummer${eventName ? ` - ${eventName}` : ""}`,
-        });
-      }
-    : undefined;
-
-  return (
-    <Wrapper>
-      {link ? (
-        <Link {...{ href, onClick, variant, ...otherProps }}>{text}</Link>
-      ) : (
-        text
-      )}
-    </Wrapper>
-  );
-};
+          darkBackground,
+          eventName: `Telefoonnummer${eventName ? ` - ${eventName}` : ""}`,
+          href,
+          variant,
+        }}
+      >
+        {text}
+      </Link>
+    ) : (
+      text
+    )}
+  </Wrapper>
+);

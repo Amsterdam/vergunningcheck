@@ -3,6 +3,7 @@ import React from "react";
 
 import { List, ListItem } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
+import { eventNames } from "../config/matomo";
 import LocationIntro from "./shared/LocationIntro";
 
 export default () => (
@@ -32,7 +33,7 @@ export default () => (
     <List variant="bullet">
       <ListItem>
         Gaat u de woning splitsen in 2 of meer woningen?{" "}
-        <ContactSentence eventName="Intro" />
+        <ContactSentence eventName={eventNames.INTRO_SPLIT_HOUSE} />
       </ListItem>
     </List>
   </>

@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
+import { eventNames } from "../../config/matomo";
 import { CheckerContext, SessionContext } from "../../context";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
@@ -100,7 +101,7 @@ const LocationInput = ({
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer <PhoneNumber eventName="Address error" />.
+            telefoonnummer <PhoneNumber eventName={eventNames.ADDRESS_ERROR} />.
           </Paragraph>
         </Error>
       )}

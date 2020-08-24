@@ -1,10 +1,14 @@
 import React from "react";
 
-import PhoneNumber, { Props } from "./PhoneNumber";
+import PhoneNumber from "./PhoneNumber";
 
-export default (props: Props) => (
+type Props = {
+  eventName: string;
+};
+
+export default ({ eventName }: Props) => (
   <>
-    Bel dan de gemeente op <PhoneNumber {...props} />, maandag tot en met
-    vrijdag van 08.00 uur tot 18.00 uur.
+    Bel dan de gemeente op <PhoneNumber eventName={eventName} />, maandag tot en
+    met vrijdag van 08.00 uur tot 18.00 uur.
   </>
 );

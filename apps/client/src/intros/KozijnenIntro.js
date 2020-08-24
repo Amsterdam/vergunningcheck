@@ -3,6 +3,7 @@ import React from "react";
 
 import { List, ListItem } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
+import { eventNames } from "../config/matomo";
 import LocationIntro from "./shared/LocationIntro";
 
 export default () => (
@@ -35,7 +36,8 @@ export default () => (
       </ListItem>
     </List>
     <Paragraph gutterBottom={8}>
-      Hebt u een vraag of twijfelt u? <ContactSentence eventName="Intro" />
+      Hebt u een vraag of twijfelt u?{" "}
+      <ContactSentence eventName={eventNames.INTRO} />
     </Paragraph>
   </>
 );

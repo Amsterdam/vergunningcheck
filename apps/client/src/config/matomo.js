@@ -23,3 +23,12 @@ export const actions = {
   clickExternalLink: "Externe link",
   clickPhoneLink: "Telefoonnummer",
 };
+
+export const eventNames = {
+  ADDRESS_ERROR: "Address error",
+  ADDRESS_NOT_FOUND: "Address not found",
+  FOOTER: "Footer",
+  INTRO: "Intro",
+  INTRO_EXTRAORDINARY: "Intro - Extraordinary situation",
+  INTRO_SPLIT_HOUSE: "Intro - Split house",
+};
