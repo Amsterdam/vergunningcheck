@@ -86,7 +86,7 @@ const Conclusion = ({ checker, topic: { slug } }) => {
         </Fragment>
       ))}
 
-      {needsPermit && (
+      {needsPermit && !contactConclusion && (
         <ComponentWrapper marginBottom={40}>
           <Button type="button" color="secondary" onClick={handlePermitButton}>
             Vergunning aanvragen
