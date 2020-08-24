@@ -25,13 +25,11 @@ const FirstColumn = () => (
       Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem
       dan contact met ons op.
     </Paragraph>
-    <Paragraph gutterBottom={0}>
+    <Paragraph gutterBottom={8}>
       <strong>
         Bel het telefoonnummer{" "}
         <PhoneNumber darkBackground eventName={eventName} />
       </strong>{" "}
-    </Paragraph>
-    <Paragraph gutterBottom={8}>
       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
     </Paragraph>
     <List noPadding>
