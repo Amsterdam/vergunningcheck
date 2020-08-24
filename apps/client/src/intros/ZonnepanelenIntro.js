@@ -1,7 +1,7 @@
-import { OrderedList, Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { ListItem } from "../atoms";
+import { ListItem, OrderedList } from "../atoms";
 
 export default () => (
   <>

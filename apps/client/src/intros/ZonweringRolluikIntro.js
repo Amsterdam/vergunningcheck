@@ -1,7 +1,7 @@
-import { Heading, OrderedList, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { List, ListItem } from "../atoms";
+import { List, ListItem, OrderedList } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
 import { eventNames } from "../config/matomo";
 
