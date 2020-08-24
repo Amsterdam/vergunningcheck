@@ -38,7 +38,9 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
             }}
           >
             <Content>
-              {title && <FormTitle>{title}</FormTitle>}
+              {title && (
+                <FormTitle style={{ maxWidth: "inherit" }}>{title}</FormTitle>
+              )}
               {children}
             </Content>
           </Column>
