@@ -30,8 +30,6 @@ const FirstColumn = () => (
         Bel het telefoonnummer{" "}
         <PhoneNumber darkBackground eventName={eventName} />
       </strong>{" "}
-    </Paragraph>
-    <Paragraph gutterBottom={8}>
       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
     </Paragraph>
     <List noPadding>
