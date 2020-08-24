@@ -2,6 +2,8 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { List, ListItem } from "../atoms";
+import ContactSentence from "../components/ContactSentence";
+import { eventNames } from "../config/matomo";
 import LocationIntro from "./shared/LocationIntro";
 
 export default () => (
@@ -34,9 +36,8 @@ export default () => (
       </ListItem>
     </List>
     <Paragraph gutterBottom={8}>
-      Hebt u een vraag of twijfelt u? Bel dan de gemeente op{" "}
-      <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
-      tot 18.00 uur.
+      Hebt u een vraag of twijfelt u?{" "}
+      <ContactSentence eventName={eventNames.INTRO} />
     </Paragraph>
   </>
 );

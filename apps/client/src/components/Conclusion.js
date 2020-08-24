@@ -6,6 +6,7 @@ import { isMobile } from "react-device-detect";
 import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
 import { Olo } from "../config";
 import { sttrOutcomes } from "../sttr_client/models/checker";
+import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
 const Conclusion = ({ checker, topic: { slug } }) => {
@@ -108,7 +109,15 @@ const Conclusion = ({ checker, topic: { slug } }) => {
       <PrintOnly withBorder avoidPageBreak>
         <Alert
           heading="Let op"
-          content={`De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog geen zekerheid bieden dat de uitkomst correct is. Ook is de informatie nog niet voor iedereen goed te lezen of te beluisteren. Wilt u iets zeker weten of wilt u meer informatie? Bel het telefoonnummer 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.`}
+          content={
+            <>
+              De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog
+              geen zekerheid bieden dat de uitkomst correct is. Ook is de
+              informatie nog niet voor iedereen goed te lezen of te beluisteren.
+              Wilt u iets zeker weten of wilt u meer informatie?{" "}
+              <ContactSentence link={false} />
+            </>
+          }
         />
       </PrintOnly>
     </>
