@@ -48,17 +48,16 @@ export const routeConfig = [
     component: React.lazy(() => import("./pages/NotFoundPage")),
   },
 ];
-
 export const redirectConfig = [
-  [
-    "/zonnepanelen-of-warmtecollectoren-plaatsen",
-    "/zonnepanelen-of-zonneboiler-plaatsen",
-  ],
-  ["/:slug/locatie", "/:slug"],
-  ["/:slug/adresgegevens", "/:slug"],
-  ["/:slug/vragen", "/:slug"],
-  ["/:slug/uitkomsten", "/:slug"],
-  ["/:slug/conclusie", "/:slug"],
+  {
+    from: "/zonnepanelen-of-warmtecollectoren-plaatsen",
+    to: "/zonnepanelen-of-zonneboiler-plaatsen",
+  },
+  { from: "/:slug/locatie", to: "/:slug" },
+  { from: "/:slug/adresgegevens", to: "/:slug" },
+  { from: "/:slug/vragen", to: "/:slug" },
+  { from: "/:slug/uitkomsten", to: "/:slug" },
+  { from: "/:slug/conclusie", to: "/:slug" },
 ];
 
 // build map of routes with `name` => `path`
