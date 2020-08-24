@@ -13,8 +13,8 @@ export type Props = {
   eventName?: string;
   href: string;
   link: boolean;
-  variant?: string;
   text: string;
+  variant?: string;
 };
 
 export default ({

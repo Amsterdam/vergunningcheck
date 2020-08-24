@@ -101,7 +101,7 @@ const LocationInput = ({
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
             telefoonnummer{" "}
-            <PhoneNumber variant="inline" eventName="Address error" />.
+            <PhoneNumber eventName="Address error" variant="inline" />.
           </Paragraph>
         </Error>
       )}
