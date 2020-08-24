@@ -130,6 +130,8 @@ const Questions = ({
     slug,
   ]);
 
+  let disableFutureQuestions = false;
+
   // Check which questions are causing the need for a permit
   // @TODO: We can refactor this and move to checker.js
   const permitsPerQuestion = [];
@@ -167,6 +169,9 @@ const Questions = ({
       const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
+
+    // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
+    // By rewinding, we're forcing the stack to update
     if (checker.stack.length !== questionIndex + 1) {
       checker.rewindTo(questionIndex);
     }
@@ -202,6 +207,13 @@ const Questions = ({
 
         // Hide unanswered questions (eg: on browser refresh)
         if (!isCurrentQuestion && !userAnswer) return null;
+
+        // Disable all future question if this question is last of the stack
+        // We need this because it is very hard to detect future open questions and this is causing bugs
+        // @TODO: fix this by stop using the combo of checker.stack and checker._getUpcomingQuestions()
+        if (isCurrentQuestion && checker.stack.length === i + 1) {
+          disableFutureQuestions = true;
+        }
 
         // Check if currect question is causing a permit requirement
         const showConclusionAlert = !!permitsPerQuestion[i];
@@ -266,7 +278,7 @@ const Questions = ({
         if (!userAnswer || contactConclusion) return null;
 
         // Get new index
-        const index = i + checker.stack.length;
+        const index = i + 1 + checker.stack.length;
 
         // Check if current question is causing a conclusion
         const showConclusionAlert = !!permitsPerQuestion[index];
@@ -280,7 +292,10 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              disabled={!!checker.isConclusive()}
+              disabled={
+                !!checker.isConclusive() ||
+                (!checker.isConclusive() && disableFutureQuestions)
+              }
               onClick={() => onGoToQuestion(index)}
               {...{ showConclusionAlert, userAnswer }}
             />
