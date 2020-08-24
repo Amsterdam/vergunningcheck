@@ -31,7 +31,7 @@ export default () => (
       In de volgende situaties is het niet mogelijk de vergunningcheck te
       gebruiken:
     </Paragraph>
-    <List variant="bullet">
+    <List variant="bullet" style={{ marginBottom: 12 }}>
       <ListItem>
         U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of
         een vakantiehuis.
