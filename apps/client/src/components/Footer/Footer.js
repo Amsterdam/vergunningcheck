@@ -28,7 +28,7 @@ const FirstColumn = () => (
     <Paragraph gutterBottom={0}>
       <strong>
         Bel het telefoonnummer{" "}
-        <PhoneNumber eventName={eventName} darkBackground />
+        <PhoneNumber darkBackground eventName={eventName} />
       </strong>{" "}
     </Paragraph>
     <Paragraph gutterBottom={8}>
