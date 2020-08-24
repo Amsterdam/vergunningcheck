@@ -3,13 +3,15 @@ import React from "react";
 import PhoneNumber from "./PhoneNumber";
 
 type Props = {
+  contact?: boolean;
   link?: boolean;
   eventName?: string;
 };
 
-export default ({ link = true, eventName }: Props) => (
+export default ({ contact = false, link = true, eventName }: Props) => (
   <>
-    Bel dan de gemeente op <PhoneNumber {...{ link, eventName }} />, maandag tot
-    en met vrijdag van 08.00 uur tot 18.00 uur.
+    Bel {contact ? "dan" : "in een van deze situaties"} de gemeente op{" "}
+    <PhoneNumber {...{ link, eventName }} />, maandag tot en met vrijdag van
+    08.00 uur tot 18.00 uur.
   </>
 );

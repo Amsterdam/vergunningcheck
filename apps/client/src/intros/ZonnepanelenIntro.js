@@ -1,18 +1,18 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { ListItem, OrderedList } from "../atoms";
+import { List, ListItem } from "../atoms";
 
 export default () => (
   <>
-    <Paragraph gutterBottom={12}>
+    <Paragraph gutterBottom={8}>
       Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning nodig
       hebt. U kunt een vergunning nodig hebben voor:
     </Paragraph>
-    <OrderedList>
+    <List variant="bullet">
       <ListItem>het wijzigen van een monument.</ListItem>
       <ListItem>het plaatsen van de zonnepanelen of zonneboiler zelf.</ListItem>
-    </OrderedList>
+    </List>
 
     <Paragraph>
       Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig
