@@ -1,29 +1,25 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, OrderedList, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { List, ListItem, OrderedList } from "../atoms";
+import { List, ListItem } from "../atoms";
+import ContactSentence from "../components/ContactSentence";
+import { eventNames } from "../config/matomo";
 
 export default () => (
   <>
-    <Paragraph>
-      Met de vergunningcheck kunt u zien of u voor het plaatsen van een dakkapel
-      één of meer omgevingsvergunningen nodig hebt. Er zijn 2 soorten
-      vergunningen:
+    <Paragraph gutterBottom={12}>
+      Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning nodig
+      hebt. U kunt een vergunning nodig hebben voor:
     </Paragraph>
     <OrderedList>
-      <ListItem>
-        Een vergunning voor het wijzigen van een monument: ‘wijzigen monument’.
-      </ListItem>
-      <ListItem>
-        Een vergunning voor het plaatsen van de dakkapel zelf: ‘dakkapel
-        plaatsen’.
-      </ListItem>
+      <ListItem>het wijzigen van een monument.</ListItem>
+      <ListItem>het plaatsen van de dakkapel zelf.</ListItem>
     </OrderedList>
 
     <Paragraph>
-      Het hangt af van uw antwoorden en situatie of u een vergunning nodig hebt.
-      U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien
-      toch geen vergunning nodig hebt.
+      Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig
+      hebt. U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u
+      misschien toch geen vergunning nodig hebt.
     </Paragraph>
     <Paragraph>
       U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of
@@ -31,7 +27,7 @@ export default () => (
     </Paragraph>
 
     <Heading forwardedAs="h4">Uitzonderingen:</Heading>
-    <Paragraph>
+    <Paragraph gutterBottom={12}>
       In de volgende situaties is het niet mogelijk de vergunningcheck te
       gebruiken:
     </Paragraph>
@@ -47,9 +43,7 @@ export default () => (
       </ListItem>
     </List>
     <Paragraph>
-      Bel in een van deze situaties de gemeente op{" "}
-      <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
-      tot 18.00 uur.
+      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
     </Paragraph>
   </>
 );

@@ -40,7 +40,6 @@ const Question = ({
   setEditQuestion,
   onGoToNext,
   saveAnswer,
-  hideNavigation,
   showNext,
   showPrev,
   onGoToPrev,
@@ -120,15 +119,13 @@ const Question = ({
       {showConclusionAlert && (
         <ConclusionAlert {...{ questionNeedsContactExit }} />
       )}
-      {!hideNavigation && (
-        <Nav
-          {...{
-            onGoToPrev,
-            showNext,
-            showPrev,
-          }}
-        />
-      )}
+      <Nav
+        {...{
+          onGoToPrev,
+          showNext,
+          showPrev,
+        }}
+      />
     </Form>
   );
 };
@@ -154,7 +151,6 @@ Question.propTypes = {
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
-  hideNavigation: PropTypes.bool,
   questionNeedsContactExit: PropTypes.bool,
   showConclusionAlert: PropTypes.bool,
   onGoToPrev: PropTypes.func,
