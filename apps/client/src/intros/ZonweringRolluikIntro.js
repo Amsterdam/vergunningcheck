@@ -2,40 +2,11 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { List, ListItem } from "../atoms";
-import Visual from "../components/Visual";
-import Image4 from "../static/media/Uitleg_Luik.png";
-import Image2 from "../static/media/Uitleg_Markies.png";
-import Image3 from "../static/media/Uitleg_Rolluik.png";
-import Image1 from "../static/media/Uitleg_Uitvalrol.png";
 import LocationIntro from "./shared/LocationIntro";
 
 export default () => (
   <>
     <LocationIntro />
-    <Paragraph>
-      U kunt de vergunningcheck gebruiken als u zonwering, rolhekken, rolluiken
-      of luiken gaat plaatsen, vervangen of veranderen.
-    </Paragraph>
-    <Visual
-      src={Image1}
-      alt="Dit zijn voorbeelden van zonweringen"
-      title="Dit zijn voorbeelden van zonweringen"
-    />
-    <Visual
-      src={Image2}
-      alt="Dit zijn voorbeelden van zonweringen"
-      title="Dit zijn voorbeelden van zonweringen"
-    />
-    <Visual
-      src={Image3}
-      alt="Dit zijn voorbeelden van rolluiken"
-      title="Dit zijn voorbeelden van rolluiken"
-    />
-    <Visual
-      src={Image4}
-      alt="Dit zijn voorbeelden van luiken"
-      title="Dit zijn voorbeelden van luiken"
-    />
     <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
     <Paragraph gutterBottom={8}>
       Voor deze situaties kunt u de vergunningcheck niet gebruiken:

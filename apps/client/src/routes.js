@@ -29,7 +29,7 @@ export const routeConfig = [
   {
     exact: true,
     name: "checker",
-    path: "/:slug/checker",
+    path: "/:slug/vragen-en-conclusie",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
@@ -53,6 +53,7 @@ export const redirectConfig = [
     from: "/zonnepanelen-of-warmtecollectoren-plaatsen",
     to: "/zonnepanelen-of-zonneboiler-plaatsen",
   },
+  { from: "/kozijnen-plaatsen-of-vervangen", to: "/kozijnen-plaatsen" },
   { from: "/:slug/locatie", to: "/:slug" },
   { from: "/:slug/adresgegevens", to: "/:slug" },
   { from: "/:slug/vragen", to: "/:slug" },

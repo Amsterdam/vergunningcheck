@@ -9,26 +9,36 @@ import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 
 const LocationResult = ({
-  topic,
+  isActive,
+  isFinished,
   setFinishedState,
   setActiveState,
-  isFinished,
+  topic,
 }) => {
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
+  const { questionIndex } = sessionContext[topic.slug] || {};
   const hasSTTR = !!topic.sttrFile;
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (hasSTTR) {
-      sessionContext.setSessionData([
-        topic.slug,
-        {
-          questionIndex: 0,
-        },
-      ]);
+      if (typeof questionIndex !== "number") {
+        // Init checker by setting question index to 0
+        sessionContext.setSessionData([
+          topic.slug,
+          {
+            questionIndex: 0,
+          },
+        ]);
+      }
+
       setFinishedState("locationResult", true);
-      setActiveState("questions");
+      if (isFinished("questions")) {
+        setActiveState("conclusion");
+      } else {
+        setActiveState("questions");
+      }
     } else {
       window.open(generateOloUrl(address), "_blank");
     }
@@ -50,7 +60,7 @@ const LocationResult = ({
         </Paragraph>
       )}
 
-      {!isFinished("locationResult") && (
+      {isActive("locationResult") && (
         <Nav
           onGoToPrev={() => {
             setActiveState("locationInput");
