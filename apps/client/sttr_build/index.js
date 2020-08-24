@@ -61,7 +61,8 @@ function checkStatus(res) {
  * The output of every preprocessor is passed as input to the next.
  */
 const preprocessors = [
-  (str) => str.replace(/ 14\s?020/g, " [14 020](tel:14020)"), // Fix phone-number
+  // Replace phone number with Link
+  (str) => str.replace(/ 14\s?020/g, " [14 020](tel:14020)"),
 ];
 
 (async () => {
