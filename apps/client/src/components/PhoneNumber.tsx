@@ -2,25 +2,28 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 import styled from "styled-components";
 
-import { Anchor } from "../atoms";
 import { actions, categories, trackingEnabled } from "../config/matomo";
+import Link from "./Link";
 
 const Wrapper = styled.span`
   white-space: nowrap;
 `;
 
 export type Props = {
-  link: boolean;
-  text: string;
-  href: string;
   eventName?: string;
+  href: string;
+  link: boolean;
+  variant?: string;
+  text: string;
 };
 
 export default ({
+  eventName,
+  href = "tel:14020",
   link = true,
   text = "14 020",
-  href = "tel:14020",
-  eventName,
+  variant,
+  ...otherProps
 }: Props) => {
   const { trackEvent } = useMatomo();
   const onClick = trackingEnabled()
@@ -35,7 +38,11 @@ export default ({
 
   return (
     <Wrapper>
-      {link ? <Anchor {...{ href, onClick }}>{text}</Anchor> : text}
+      {link ? (
+        <Link {...{ href, onClick, variant, ...otherProps }}>{text}</Link>
+      ) : (
+        text
+      )}
     </Wrapper>
   );
 };

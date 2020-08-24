@@ -1,8 +1,8 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 
-import { Anchor } from "../../../atoms";
 import { actions, categories, trackingEnabled } from "../../../config/matomo";
+import Link from "../../Link";
 
 type Props = {
   href: string;
@@ -45,7 +45,9 @@ const LinkRenderer: React.FC<Props> = ({ children, onClick, ...rest }) => {
     : undefined;
 
   return (
-    <Anchor {...{ ...props, onClick: onClickWithTracking }}>{children}</Anchor>
+    <Link variant="inline" {...{ ...props, onClick: onClickWithTracking }}>
+      {children}
+    </Link>
   );
 };
 
