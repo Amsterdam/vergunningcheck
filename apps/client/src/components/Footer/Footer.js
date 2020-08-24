@@ -25,7 +25,7 @@ const FirstColumn = () => (
       Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem
       dan contact met ons op.
     </Paragraph>
-    <Paragraph gutterBottom={0}>
+    <Paragraph gutterBottom={8}>
       <strong>
         Bel het telefoonnummer{" "}
         <PhoneNumber darkBackground eventName={eventName} />
