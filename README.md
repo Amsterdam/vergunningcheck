@@ -44,7 +44,7 @@ Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 - GraphQL + ApolloClient v3
 - Lerna
 - Sentry
-- [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components)
+- [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see the [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl)
 - [Matomo Tracker React](https://github.com/Amsterdam/matomo-tracker)
 - Prettier
 - Jest + Testing Library
