@@ -117,7 +117,7 @@ const Conclusion = ({ checker, topic: { slug } }) => {
               Wilt u iets zeker weten of wilt u meer informatie?{" "}
               <ContactSentence
                 contactSentence={"Bel dan"}
-                inline={true}
+                inline
                 link={false}
               />
             </>
