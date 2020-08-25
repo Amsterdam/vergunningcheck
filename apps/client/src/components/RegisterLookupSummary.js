@@ -1,8 +1,7 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { ComponentWrapper, List, ListItem } from "../atoms";
-import EditButton from "../atoms/EditButton";
+import { ComponentWrapper, EditButton, List, ListItem } from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";

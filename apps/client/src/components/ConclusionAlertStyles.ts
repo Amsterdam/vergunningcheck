@@ -1,7 +1,7 @@
 import { themeSpacing } from "@datapunt/asc-ui";
 import styled from "styled-components";
 
-import Alert from "../atoms/Alert";
+import { Alert } from "../atoms";
 
 export const ConclusionAlertStyle = styled(Alert)`
   margin-top: ${themeSpacing(4)};

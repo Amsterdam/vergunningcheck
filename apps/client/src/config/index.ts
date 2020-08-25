@@ -93,8 +93,7 @@ const topics: Topic[] = [
     sttrFile: "kozijn.json",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen",
-      locationIntro:
-        "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
+      locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
     },
     intro: "KozijnenIntro",
   },
