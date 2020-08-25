@@ -158,7 +158,7 @@ const LocationFinder = (props) => {
 
       {loading && (
         <ComponentWrapper>
-          <Alert heading="Laden..." content="De resultaten worden ingeladen." />
+          <Alert heading="Laden..." content="Wij zoeken het adres." />
         </ComponentWrapper>
       )}
 

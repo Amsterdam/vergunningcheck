@@ -3,7 +3,13 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 
-import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import {
+  Alert,
+  ComponentWrapper,
+  HideForPrint,
+  PrintButton,
+  PrintOnly,
+} from "../atoms";
 import { Olo } from "../config";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
@@ -86,25 +92,31 @@ const Conclusion = ({ checker, topic: { slug } }) => {
         </Fragment>
       ))}
 
-      {needsPermit && (
-        <ComponentWrapper marginBottom={40}>
-          <Button type="button" color="secondary" onClick={handlePermitButton}>
-            Vergunning aanvragen
-          </Button>
-        </ComponentWrapper>
-      )}
+      <HideForPrint>
+        {needsPermit && !contactConclusion && (
+          <ComponentWrapper marginBottom={40}>
+            <Button
+              type="button"
+              color="secondary"
+              onClick={handlePermitButton}
+            >
+              Vergunning aanvragen
+            </Button>
+          </ComponentWrapper>
+        )}
 
-      {!isMobile && (
-        <ComponentWrapper>
-          <PrintButton
-            type="button"
-            color="primary"
-            onClick={handlePrintButton}
-          >
-            Conclusie opslaan
-          </PrintButton>
-        </ComponentWrapper>
-      )}
+        {!isMobile && (
+          <ComponentWrapper>
+            <PrintButton
+              type="button"
+              color="primary"
+              onClick={handlePrintButton}
+            >
+              Conclusie opslaan
+            </PrintButton>
+          </ComponentWrapper>
+        )}
+      </HideForPrint>
 
       <PrintOnly withBorder avoidPageBreak>
         <Alert

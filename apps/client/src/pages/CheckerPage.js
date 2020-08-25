@@ -7,6 +7,7 @@ import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
 import LocationInput from "../components/Location/LocationInput";
 import LocationResult from "../components/Location/LocationResult";
+import PrintDetails from "../components/PrintDetails";
 import Questions from "../components/Questions";
 import {
   StepByStepItem,
@@ -110,6 +111,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       <Helmet>
         <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
+
+      <PrintDetails />
+
       {/* STTR-flow with the StepByStepNavigation */}
       {sttrFile && (
         <StepByStepNavigation
