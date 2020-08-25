@@ -11,17 +11,17 @@ type Props = {
 };
 
 type WithParagraphProps = {
-  children: ReactElement<any>;
+  children: ReactElement;
   inline: boolean;
 };
 
-const WithParagraph = ({ inline, children }: WithParagraphProps) =>
+const WithParagraph = ({ children, inline }: WithParagraphProps) =>
   !inline ? <Paragraph>{children}</Paragraph> : children;
 
 export default ({
-  link = true,
   eventName,
   inline = false,
+  link = true,
   openingSentence = "Bel in een van deze situaties",
 }: Props) => (
   <WithParagraph inline={inline}>
