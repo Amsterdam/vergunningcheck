@@ -11,8 +11,8 @@ type Props = {
 };
 
 type WithParagraphProps = {
-  inline: boolean;
   children: ReactElement<any>;
+  inline: boolean;
 };
 
 const WithParagraph = ({ inline, children }: WithParagraphProps) =>
