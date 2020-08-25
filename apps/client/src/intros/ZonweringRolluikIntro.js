@@ -14,7 +14,7 @@ export default () => (
     <List variant="bullet">
       <ListItem>het wijzigen van een monument.</ListItem>
       <ListItem>
-        het plaatsen van de zonwering, rolhek, rolluik of luik zelf.
+        het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.
       </ListItem>
     </List>
 
@@ -36,8 +36,8 @@ export default () => (
     <List variant="bullet" style={{ marginBottom: 12 }}>
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Het deel van het gebouw waarin het kozijn komt, is zonder vergunning
-        gebouwd.
+        Het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik
+        komt, is zonder vergunning gebouwd.
       </ListItem>
     </List>
     <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />

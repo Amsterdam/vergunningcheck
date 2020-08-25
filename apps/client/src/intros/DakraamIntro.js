@@ -13,7 +13,7 @@ export default () => (
     </Paragraph>
     <List variant="bullet">
       <ListItem>het wijzigen van een monument.</ListItem>
-      <ListItem>het plaatsen van de dakraam zelf.</ListItem>
+      <ListItem>het plaatsen van het dakraam zelf.</ListItem>
     </List>
 
     <Paragraph>
@@ -35,7 +35,7 @@ export default () => (
     <List variant="bullet" style={{ marginBottom: 12 }}>
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Het deel van het gebouw waarin de dakraam komt, is zonder vergunning
+        Het deel van het gebouw waarin het dakraam komt, is zonder vergunning
         gebouwd.
       </ListItem>
     </List>
