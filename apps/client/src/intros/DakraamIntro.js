@@ -39,8 +39,6 @@ export default () => (
         gebouwd.
       </ListItem>
     </List>
-    <Paragraph>
-      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
-    </Paragraph>
+    <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
   </>
 );
