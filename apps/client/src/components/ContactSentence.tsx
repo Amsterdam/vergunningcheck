@@ -4,7 +4,6 @@ import React, { ReactElement } from "react";
 import PhoneNumber from "./PhoneNumber";
 
 type Props = {
-  contact?: boolean;
   eventName?: string;
   inline?: boolean;
   link?: boolean;
