@@ -284,9 +284,7 @@ const Questions = ({
         const showConclusionAlert = !!permitsPerQuestion[index];
 
         // Disable the EditButton or not
-        const disabled =
-          checker.isConclusive() ||
-          (!checker.isConclusive() && disableFutureQuestions);
+        const disabled = checker.isConclusive() || disableFutureQuestions;
 
         return (
           <StepByStepItem
