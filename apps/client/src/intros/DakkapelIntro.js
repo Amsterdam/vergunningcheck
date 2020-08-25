@@ -1,14 +1,10 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import {
-  IntroHeading,
-  IntroSituationDescription,
-  List,
-  ListItem,
-} from "../atoms";
+import { List, ListItem } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
 import { eventNames } from "../config/matomo";
+import { IntroHeading, IntroSituationDescription } from "./shared";
 
 export default () => (
   <>
