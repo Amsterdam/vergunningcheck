@@ -283,6 +283,11 @@ const Questions = ({
         // Check if current question is causing a conclusion
         const showConclusionAlert = !!permitsPerQuestion[index];
 
+        // Disable the EditButton or not
+        const disabled =
+          checker.isConclusive() ||
+          (!checker.isConclusive() && disableFutureQuestions);
+
         return (
           <StepByStepItem
             active
@@ -292,12 +297,8 @@ const Questions = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              disabled={
-                !!checker.isConclusive() ||
-                (!checker.isConclusive() && disableFutureQuestions)
-              }
               onClick={() => onGoToQuestion(index)}
-              {...{ showConclusionAlert, userAnswer }}
+              {...{ disabled, showConclusionAlert, userAnswer }}
             />
           </StepByStepItem>
         );
