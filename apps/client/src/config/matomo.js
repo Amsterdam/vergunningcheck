@@ -30,5 +30,4 @@ export const eventNames = {
   FOOTER: "Footer",
   INTRO: "Intro",
   INTRO_EXTRAORDINARY: "Intro - Extraordinary situation",
-  INTRO_SPLIT_HOUSE: "Intro - Split house",
 };

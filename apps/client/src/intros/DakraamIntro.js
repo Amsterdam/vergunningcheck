@@ -4,37 +4,39 @@ import React from "react";
 import { List, ListItem } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
 import { eventNames } from "../config/matomo";
-import LocationIntro from "./shared/LocationIntro";
+import { IntroHeading, IntroSituationDescription } from "./shared";
 
 export default () => (
   <>
-    <Paragraph gutterBottom={20}>
-      U kunt deze vergunningcheck gebruiken voor dakramen, daklichten en
-      lichtstraten.
-    </Paragraph>
+    <IntroHeading />
 
-    <LocationIntro />
-
-    <Heading forwardedAs="h4">Onderhoud:</Heading>
-    <Paragraph gutterBottom={12}>
-      Gaat u een bestaand dakraam, daklicht of lichtstraat vervangen? Onderhoud
-      is vergunningvrij als het nieuwe dakraam gelijk blijft aan het bestaande
-      dakraam. Dit geldt niet voor een illegaal geplaatst dakraam. Voorbeelden
-      van vergunningvrij onderhoud:
-    </Paragraph>
     <List variant="bullet">
-      <ListItem>de positie van het dakraam blijft gelijk</ListItem>
-      <ListItem>de maten van het dakraam blijft gelijk</ListItem>
-      <ListItem>de detaillering van het raamhout blijft gelijk</ListItem>
-      <ListItem>de kleur van het dakraam blijft gelijk</ListItem>
+      <ListItem>het wijzigen van een monument.</ListItem>
+      <ListItem>het plaatsen van het dakraam zelf.</ListItem>
     </List>
 
-    <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
-    <List variant="bullet">
+    <IntroSituationDescription />
+
+    <Paragraph>
+      Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U
+      kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande
+      vernieuwt.
+    </Paragraph>
+
+    <Heading forwardedAs="h4">Uitzonderingen:</Heading>
+    <Paragraph gutterBottom={8}>
+      In de volgende situaties is het niet mogelijk de vergunningcheck te
+      gebruiken:
+    </Paragraph>
+    <List variant="bullet" style={{ marginBottom: 12 }}>
+      <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Gaat u de woning splitsen in 2 of meer woningen?{" "}
-        <ContactSentence eventName={eventNames.INTRO_SPLIT_HOUSE} />
+        Het deel van het gebouw waarin het dakraam komt, is zonder vergunning
+        gebouwd.
       </ListItem>
     </List>
+    <Paragraph>
+      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
+    </Paragraph>
   </>
 );
