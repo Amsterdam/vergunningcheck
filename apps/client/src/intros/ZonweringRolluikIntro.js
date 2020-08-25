@@ -40,6 +40,8 @@ export default () => (
         komt, is zonder vergunning gebouwd.
       </ListItem>
     </List>
-    <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
+    <Paragraph>
+      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
+    </Paragraph>
   </>
 );

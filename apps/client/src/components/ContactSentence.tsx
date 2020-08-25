@@ -1,33 +1,20 @@
-import { Paragraph } from "@datapunt/asc-ui";
-import React, { ReactElement } from "react";
+import React from "react";
 
 import PhoneNumber from "./PhoneNumber";
 
 type Props = {
   eventName?: string;
-  inline?: boolean;
   link?: boolean;
   openingSentence?: string;
 };
 
-type WithParagraphProps = {
-  children: ReactElement;
-  inline: boolean;
-};
-
-const WithParagraph = ({ children, inline }: WithParagraphProps) =>
-  !inline ? <Paragraph>{children}</Paragraph> : children;
-
 export default ({
   eventName,
-  inline = false,
   link = true,
-  openingSentence = "Bel in een van deze situaties",
+  openingSentence = "Bel in een van deze situaties de gemeente op", // This is all the text before the number `14 020`
 }: Props) => (
-  <WithParagraph inline={inline}>
-    <>
-      {openingSentence} de gemeente op <PhoneNumber {...{ link, eventName }} />,
-      maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.
-    </>
-  </WithParagraph>
+  <>
+    {openingSentence} <PhoneNumber {...{ link, eventName }} />, maandag tot en
+    met vrijdag van 08.00 uur tot 18.00 uur.
+  </>
 );

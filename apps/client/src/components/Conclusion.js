@@ -116,8 +116,7 @@ const Conclusion = ({ checker, topic: { slug } }) => {
               informatie nog niet voor iedereen goed te lezen of te beluisteren.
               Wilt u iets zeker weten of wilt u meer informatie?{" "}
               <ContactSentence
-                contactSentence={"Bel dan"}
-                inline
+                openingSentence={"Bel dan de gemeente op"}
                 link={false}
               />
             </>
