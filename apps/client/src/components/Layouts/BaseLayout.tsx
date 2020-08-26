@@ -1,8 +1,8 @@
-import { Column, FormTitle, Row } from "@datapunt/asc-ui";
+import { Column, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import { HideForPrint } from "../../atoms";
+import { FormTitle, HideForPrint } from "../../atoms";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
