@@ -17,15 +17,13 @@ const Link = ({
   // The default category is navigate, it can be overwritten with the prop category.
   // The default action is clickExternalLink, it can be overwritten.
   // There should always be an eventName.
-  const onClick = (event) => {
-    event.preventDefault();
+
+  const onClick = () =>
     matomoTrackEvent({
       category,
       action,
       name: eventName,
     });
-    window.location.href = href;
-  };
 
   return (
     <StyledComponentLink href={href} onClick={href && onClick} {...rest}>

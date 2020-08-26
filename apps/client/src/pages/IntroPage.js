@@ -36,8 +36,9 @@ const IntroPage = ({ topic, checker }) => {
         <Intro />
       </Suspense>
       <Nav
-        showNext
         onGoToNext={() => history.push(geturl(routes.checker, topic))}
+        showNext
+        style={{ marginBottom: 0 }}
       />
     </Layout>
   );

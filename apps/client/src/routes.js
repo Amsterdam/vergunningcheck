@@ -29,7 +29,7 @@ export const routeConfig = [
   {
     exact: true,
     name: "checker",
-    path: "/:slug/checker",
+    path: "/:slug/vragen-en-conclusie",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
@@ -49,11 +49,18 @@ export const routeConfig = [
   },
 ];
 export const redirectConfig = [
-  [
-    "/zonnepanelen-of-warmtecollectoren-plaatsen",
-    "/zonnepanelen-of-zonneboiler-plaatsen",
-  ],
+  {
+    from: "/zonnepanelen-of-warmtecollectoren-plaatsen",
+    to: "/zonnepanelen-of-zonneboiler-plaatsen",
+  },
+  { from: "/kozijnen-plaatsen-of-vervangen", to: "/kozijnen-plaatsen" },
+  { from: "/:slug/locatie", to: "/:slug" },
+  { from: "/:slug/adresgegevens", to: "/:slug" },
+  { from: "/:slug/vragen", to: "/:slug" },
+  { from: "/:slug/uitkomsten", to: "/:slug" },
+  { from: "/:slug/conclusie", to: "/:slug" },
 ];
+
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
 export const routes = Object.fromEntries(

@@ -1,34 +1,37 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import EditButton from "../atoms/EditButton";
+import { EditButton } from "../atoms";
 import { removeQuotes } from "../utils";
 import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {
-  hideEditButton?: Boolean;
-  questionNeedsContactExit?: Boolean;
-  showConclusionAlert: Boolean;
+  disabled: boolean;
+  questionNeedsContactExit?: boolean;
+  showConclusionAlert: boolean;
   userAnswer: string;
 };
 
 const QuestionAnswer: React.FC<
   QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
 > = ({
-  hideEditButton,
+  disabled,
+  onClick,
   questionNeedsContactExit,
   showConclusionAlert,
-  onClick,
   userAnswer,
 }) => {
   return (
     <>
       <Paragraph gutterBottom={0}>
         {removeQuotes(userAnswer)}
-        {!hideEditButton && <EditButton {...{ onClick }} />}
+        <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
-        <ConclusionAlert {...{ questionNeedsContactExit }} />
+        <ConclusionAlert
+          style={{ marginBottom: 8 }}
+          {...{ questionNeedsContactExit }}
+        />
       )}
     </>
   );

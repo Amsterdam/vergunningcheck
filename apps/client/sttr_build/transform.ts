@@ -36,6 +36,16 @@ const { apis }: { apis: APIConfig[] } = await import(
   }
 }
 
+/**
+ * Preprocessors are used to change the incoming xml. The xml
+ * is not yet parsed, so they are basic find replace functions.
+ * The output of every preprocessor is passed as input to the next.
+ */
+const preprocessors = [
+  // Replace phone number with Link
+  (str: string) => str.replace(/ 14\s?020/g, " [14 020](tel:14020)"),
+];
+
 const apisMap: object[] = apis.map(async (api: APIConfig) => {
   const { outputDir } = api;
 
@@ -85,7 +95,10 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
             throw new Error("version should be a number");
           }
 
-          const sttr = await sttrbuild(xml);
+          // apply all reducers to sttr
+          const content = preprocessors.reduce((acc, curr) => curr(acc), xml);
+
+          const sttr = await sttrbuild(content);
           return {
             version,
             ...sttr,

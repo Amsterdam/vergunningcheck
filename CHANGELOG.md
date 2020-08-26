@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.2](2020-08-19)
+
+#### New Features
+
+- [#376](https://github.com/Amsterdam/vergunningcheck/pull/376) NGINX config update: support \* wildcard to allow Sentry and Usabilla ([@robinpiets](https://github.com/robinpiets))
+- [#365](https://github.com/Amsterdam/vergunningcheck/pull/365) Temporary disabled the OLO flow for the Zonwering checker ([@robinpiets](https://github.com/robinpiets))
+- [#367](https://github.com/Amsterdam/vergunningcheck/pull/367) Feature: Updated NGINX config to fix bugs with Sentry and Usabilla ([@robinpiets](https://github.com/robinpiets))
+- [#330](https://github.com/Amsterdam/vergunningcheck/pull/330) Feature: Added zonwering STTR and Intro ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+
+- [#363](https://github.com/Amsterdam/vergunningcheck/pull/363) Bug: Helmet no longer supports `true` as a middleware option. ([@robinpiets](https://github.com/robinpiets))
+- [#323](https://github.com/Amsterdam/vergunningcheck/pull/323) hotfix: Fix cannot replace of undefined ([@afjlambert](https://github.com/afjlambert))
+- [#293](https://github.com/Amsterdam/vergunningcheck/pull/293) Fix: using Memo to stop rerendering Header+Footer ([@robinpiets](https://github.com/robinpiets))
+- [#296](https://github.com/Amsterdam/vergunningcheck/pull/296) Fix: Removed unneccesary chappie2.0 files ([@robinpiets](https://github.com/robinpiets))
+
 ## [1.4.1](2020-07-23)
 
 #### Bug fixes

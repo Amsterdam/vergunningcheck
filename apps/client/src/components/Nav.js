@@ -17,6 +17,7 @@ const Nav = ({
   showNext,
   nextText,
   formEnds,
+  ...otherProps
 }) => {
   const { slug: name } = useParams();
 
@@ -29,24 +30,28 @@ const Nav = ({
     const action = formEnds
       ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
+
     trackEvent({
       category,
       action,
       name,
     });
+
     if (onGoToNext) onGoToNext(e);
   };
+
   const handlePrevClick = (e) => {
     trackEvent({
       category,
       action: "form-vorige-knop",
       name,
     });
+
     if (onGoToPrev) onGoToPrev(e);
   };
 
   return (
-    <NavStyle>
+    <NavStyle {...otherProps}>
       <div>
         {showNext && (
           <Button

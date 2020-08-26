@@ -11,11 +11,14 @@ import {
 import React, { memo } from "react";
 
 import { List, ListItem } from "../../atoms";
+import { eventNames } from "../../config/matomo";
 import { FOOTER } from "../../utils/test-ids";
 import Link from "../Link";
+import PhoneNumber from "../PhoneNumber";
 import { ContentContainer } from "./FooterStyles";
 
-const eventNameSuffix = "- Footer";
+const eventName = eventNames.FOOTER;
+const eventNameSuffix = `- ${eventName}`;
 
 const FirstColumn = () => (
   <>
@@ -23,19 +26,11 @@ const FirstColumn = () => (
       Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem
       dan contact met ons op.
     </Paragraph>
-    <Paragraph gutterBottom={0}>
+    <Paragraph gutterBottom={8}>
       <strong>
         Bel het telefoonnummer{" "}
-        <Link
-          darkBackground
-          href="tel:14020"
-          eventName={`Telefoonnummer ${eventNameSuffix}`}
-        >
-          14 020
-        </Link>
+        <PhoneNumber darkBackground variant={null} eventName={eventName} />
       </strong>{" "}
-    </Paragraph>
-    <Paragraph gutterBottom={8}>
       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
     </Paragraph>
     <List noPadding>
