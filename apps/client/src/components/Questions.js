@@ -62,10 +62,6 @@ const Questions = ({
       // Go to Location Result, because the user was at the first question
       setActiveState("locationResult");
       setFinishedState("locationResult", false);
-      // This prevents to uncheck the Item that holds "questions" (when all questions are answered)
-      if (!isFinished("questions")) {
-        setFinishedState(["locationResult", "questions"], false);
-      }
     }
   };
 
