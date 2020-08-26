@@ -1,22 +1,21 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import React, { useContext } from "react";
+import React from "react";
 
-import { CheckerContext } from "../context";
+import { sections, trackingEnabled } from "../config/matomo";
 
 const withTracking = (Component) => ({ ...props }) => {
-  const { topic } = useContext(CheckerContext);
   const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
-    if (!localStorage.getItem("doNotTrack")) {
+    if (trackingEnabled()) {
       trackPageView({});
     }
   };
-  const matomoTrackEvent = ({ category, action, name }) => {
-    if (!localStorage.getItem("doNotTrack")) {
+  const matomoTrackEvent = ({ category = sections.INTRO, action, name }) => {
+    if (trackingEnabled()) {
       trackEvent({
         category,
-        action: `${action} - ${topic?.slug || "home"}`,
+        action,
         name,
       });
     }

@@ -12,8 +12,4 @@ export const ContentContainer = styled.div`
     padding-left: ${themeSpacing(4)};
     padding-right: ${themeSpacing(4)};
   }
-
-  @media print {
-    display: none;
-  }
 `;

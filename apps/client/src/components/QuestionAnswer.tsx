@@ -1,7 +1,7 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import EditButton from "../atoms/EditButton";
+import { EditButton } from "../atoms";
 import { removeQuotes } from "../utils";
 import ConclusionAlert from "./ConclusionAlert";
 
@@ -28,7 +28,10 @@ const QuestionAnswer: React.FC<
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
-        <ConclusionAlert {...{ questionNeedsContactExit }} />
+        <ConclusionAlert
+          style={{ marginBottom: 8 }}
+          {...{ questionNeedsContactExit }}
+        />
       )}
     </>
   );

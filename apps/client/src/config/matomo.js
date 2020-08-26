@@ -13,10 +13,37 @@ export const matomo = {
   siteId: getMatomoSiteId(isProduction),
 };
 
-export const categories = {
-  navigate: "navigeren",
-};
+export const trackingEnabled = () => !localStorage.getItem("doNotTrack");
 
 export const actions = {
-  clickExternalLink: "Externe link",
+  CLICK_EXTERNAL_NAVIGATION: "externe navigatie",
+  CLICK_INTERNAL_NAVIGATION: "interne navigatie",
+  CLICK_PHONE_LINK: "telefoonnummer",
+  CONCLUSION: "tonen conclusie",
+  DOWNLOAD: "download",
+  EDIT_QUESTION: "wijzig vraag",
+};
+
+export const sections = {
+  CHECKER: "checker",
+  INTRO: "intro",
+  LOCATION_INPUT: "locatie invoer",
+  LOCATION_RESULTAAT: "locatie resultaat",
+  QUESTIONS: "vragen",
+  CONCLUSION: "conclusie",
+};
+
+export const eventNames = {
+  ADDRESS_ERROR: "adres error",
+  ADDRESS_NOT_FOUND: "adres niet gevonden",
+  APPLY_FOR_PERMIT: "vergunning aanvragen",
+  BACK: "terug naar",
+  FOOTER: "footer",
+  FORWARD: "naar de",
+  INTRO: "intro",
+  INTRO_EXTRAORDINARY: "extraordinary situation",
+  NEXT_QUESTION: "volgende vraag",
+  PHONE_NUMBER: "telefoonnummer",
+  PREV_QUESTION: "vorige vraag",
+  SAVE_CONCLUSION: "conclusie opslaan",
 };

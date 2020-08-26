@@ -1,31 +1,28 @@
 import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 
-import { actions, categories } from "../config/matomo";
+import { actions } from "../config/matomo";
+import { CheckerContext } from "../context";
 import withTracking from "../hoc/withTracking";
 
 const Link = ({
+  action = actions.CLICK_EXTERNAL_NAVIGATION,
   children,
-  category = categories.navigate,
-  action = actions.clickExternalLink,
-  eventName,
-  matomoTrackEvent,
   href,
+  matomoTrackEvent,
   ...rest
 }) => {
-  // The default category is navigate, it can be overwritten with the prop category.
-  // The default action is clickExternalLink, it can be overwritten.
-  // There should always be an eventName.
-  const onClick = (event) => {
-    event.preventDefault();
+  const checkerContext = useContext(CheckerContext);
+
+  // The default category is intro, it is not required, it can be overwritten.
+  // The default action is CLICK_EXTERNAL_LINK, it can be overwritten.
+  const onClick = () =>
     matomoTrackEvent({
-      category,
+      category: checkerContext?.topic?.category,
       action,
-      name: eventName,
+      name: children.toLowerCase(),
     });
-    window.location.href = href;
-  };
 
   return (
     <StyledComponentLink href={href} onClick={href && onClick} {...rest}>
@@ -35,7 +32,6 @@ const Link = ({
 };
 
 Link.propTypes = {
-  eventName: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   category: PropTypes.string,
   matomoTrackEvent: PropTypes.func,

@@ -4,11 +4,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
+import { eventNames } from "../../config/matomo";
 import { CheckerContext, SessionContext } from "../../context";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
+import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 const LocationInput = ({
@@ -45,18 +47,10 @@ const LocationInput = ({
     if (address.postalCode) {
       // Detect if user is submitting the same address as currenly stored
       if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
-        if (isFinished("questions")) {
-          setActiveState("conclusion");
-        } else {
-          setFinishedState("locationResult", true);
-          setActiveState("questions");
-        }
+        // The address is the same, so nothing changed, so go directly to the Location Result
+        // We don't go directly to Questions or Conclusion
+        setActiveState("locationResult");
         return;
-      }
-
-      // Reset all previous finished states
-      if (hasSTTR) {
-        setFinishedState(["locationResult", "questions", "conclusion"], false);
       }
 
       trackEvent({
@@ -75,8 +69,10 @@ const LocationInput = ({
 
       checkerContext.autofillData.address = address;
 
+      // Reset all previous finished states
       if (hasSTTR) {
         resetChecker();
+        setFinishedState(["locationResult", "questions", "conclusion"], false);
       }
 
       sessionContext.setSessionData([
@@ -105,7 +101,7 @@ const LocationInput = ({
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer <a href="tel:14020">14 020</a>.
+            telefoonnummer <PhoneNumber eventName={eventNames.ADDRESS_ERROR} />.
           </Paragraph>
         </Error>
       )}

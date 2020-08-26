@@ -1,13 +1,22 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 
-import { Alert, ComponentWrapper, PrintButton, PrintOnly } from "../atoms";
+import {
+  Alert,
+  ComponentWrapper,
+  HideForPrint,
+  PrintButton,
+  PrintOnly,
+} from "../atoms";
+import { Olo } from "../config";
+import { actions, eventNames } from "../config/matomo";
 import { sttrOutcomes } from "../sttr_client/models/checker";
+import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, topic: { slug } }) => {
+const Conclusion = ({ checker, topic: { category } }) => {
   const { trackEvent } = useMatomo();
 
   // find conclusions we want to display to the user
@@ -42,15 +51,30 @@ const Conclusion = ({ checker, topic: { slug } }) => {
     ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
 
+  const needsPermit = !!conclusions.find(
+    ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
+  );
+
   const displayConclusions = contactConclusion
     ? [contactConclusion]
     : conclusions;
 
+  const handlePermitButton = (e) => {
+    e.preventDefault();
+    trackEvent({
+      category,
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: eventNames.APPLY_FOR_PERMIT,
+    });
+    // Open OLO in new tab/window
+    window.open(Olo.home, "_blank");
+  };
+
   const handlePrintButton = () => {
     trackEvent({
-      category: "conclusion",
-      action: "conclusie-opslaan",
-      name: slug,
+      category,
+      action: actions.DOWNLOAD,
+      name: eventNames.SAVE_CONCLUSION,
     });
     window.print();
   };
@@ -69,22 +93,47 @@ const Conclusion = ({ checker, topic: { slug } }) => {
         </Fragment>
       ))}
 
-      {!isMobile && (
-        <ComponentWrapper>
-          <PrintButton
-            type="button"
-            color="primary"
-            onClick={handlePrintButton}
-          >
-            Conclusie opslaan
-          </PrintButton>
-        </ComponentWrapper>
-      )}
+      <HideForPrint>
+        {needsPermit && !contactConclusion && (
+          <ComponentWrapper marginBottom={40}>
+            <Button
+              type="button"
+              color="secondary"
+              onClick={handlePermitButton}
+            >
+              Vergunning aanvragen
+            </Button>
+          </ComponentWrapper>
+        )}
+
+        {!isMobile && (
+          <ComponentWrapper>
+            <PrintButton
+              type="button"
+              color="primary"
+              onClick={handlePrintButton}
+            >
+              Conclusie opslaan
+            </PrintButton>
+          </ComponentWrapper>
+        )}
+      </HideForPrint>
 
       <PrintOnly withBorder avoidPageBreak>
         <Alert
           heading="Let op"
-          content={`De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog geen zekerheid bieden dat de uitkomst correct is. Ook is de informatie nog niet voor iedereen goed te lezen of te beluisteren. Wilt u iets zeker weten of wilt u meer informatie? Bel het telefoonnummer 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.`}
+          content={
+            <>
+              De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog
+              geen zekerheid bieden dat de uitkomst correct is. Ook is de
+              informatie nog niet voor iedereen goed te lezen of te beluisteren.
+              Wilt u iets zeker weten of wilt u meer informatie?{" "}
+              <ContactSentence
+                openingSentence={"Bel dan de gemeente op"}
+                link={false}
+              />
+            </>
+          }
         />
       </PrintOnly>
     </>

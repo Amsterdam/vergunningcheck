@@ -5,12 +5,12 @@ import { ConclusionAlertStyle } from "./ConclusionAlertStyles";
 
 const ConclusionAlert: React.FC<
   { questionNeedsContactExit?: Boolean } & React.HTMLAttributes<HTMLElement>
-> = ({ questionNeedsContactExit }) => (
-  <ConclusionAlertStyle>
+> = ({ questionNeedsContactExit, ...otherProps }) => (
+  <ConclusionAlertStyle {...otherProps}>
     <Paragraph>
       {questionNeedsContactExit
-        ? "Door dit antwoord kan de vergunningcheck niet verder gedaan worden."
-        : "Door dit antwoord hebt u een vergunning nodig. Als u een ander antwoord geeft hebt u misschien geen vergunning nodig."}
+        ? "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt. Klik op Volgende."
+        : "Door dit antwoord hebt u een vergunning nodig. Als u een andere keuze maakt, hebt u misschien geen vergunning nodig."}
     </Paragraph>
   </ConclusionAlertStyle>
 );

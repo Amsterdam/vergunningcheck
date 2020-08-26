@@ -7,6 +7,7 @@ import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
 import LocationInput from "../components/Location/LocationInput";
 import LocationResult from "../components/Location/LocationResult";
+import PrintDetails from "../components/PrintDetails";
 import Questions from "../components/Questions";
 import {
   StepByStepItem,
@@ -18,7 +19,7 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug, sttrFile } = topic;
+  const { slug, sttrFile, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
@@ -27,7 +28,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
 
-  const { activeComponents, finishedComponents } = sessionContext[slug];
+  const { activeComponents, answers, finishedComponents } = sessionContext[
+    slug
+  ];
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
@@ -106,8 +109,11 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   return (
     <Layout>
       <Helmet>
-        <title>Wrapper Page</title>
+        <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
+
+      <PrintDetails />
+
       {/* STTR-flow with the StepByStepNavigation */}
       {sttrFile && (
         <StepByStepNavigation
@@ -125,7 +131,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive("locationInput") || isActive("locationResult")
+              isActive("locationInput") ||
+              isActive("locationResult") ||
+              questionIndex === 0
                 ? checkedStyle
                 : {}
             }
@@ -147,18 +155,20 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               (isActive("locationResult") || isFinished("locationResult")) && (
                 <LocationResult
                   {...{
-                    topic,
+                    isActive,
                     isFinished,
                     setActiveState,
                     setFinishedState,
+                    topic,
                   }}
                 />
               )}
           </StepByStepItem>
           <StepByStepItem
+            active={isActive("questions") && questionIndex === 0}
             checked={isFinished("questions")}
             customSize
-            done={isActive("questions") || checker.stack.length > 1}
+            done={answers || isActive("questions")}
             heading="Vragen"
             largeCircle
             // Overwrite the line between the Items
@@ -203,6 +213,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           {isActive("locationResult") && (
             <LocationResult
               {...{
+                isActive,
                 isFinished,
                 setActiveState,
                 setFinishedState,

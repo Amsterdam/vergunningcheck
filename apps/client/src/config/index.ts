@@ -1,5 +1,6 @@
 type Topic = {
   slug: string;
+  category: string;
   sttrFile?: string;
   redirectToOlo?: boolean;
   intro?: string;
@@ -50,6 +51,7 @@ export const generateOloUrl = ({
 const topics: Topic[] = [
   {
     slug: "kappen-of-snoeien",
+    category: "kappen of snoeien",
     redirectToOlo: true,
     text: {
       heading: "Vergunningcheck kappen of snoeien",
@@ -57,6 +59,7 @@ const topics: Topic[] = [
   },
   {
     slug: "dakkapel-plaatsen",
+    category: "dakkapel plaatsen",
     sttrFile: "dakkapel.json",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
@@ -69,6 +72,7 @@ const topics: Topic[] = [
   },
   {
     slug: "dakraam-plaatsen",
+    category: "dakraam plaatsen",
     sttrFile: "dakraam.json",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
@@ -81,6 +85,7 @@ const topics: Topic[] = [
   },
   {
     slug: "aanbouw-of-uitbouw-maken",
+    category: "aanbouw of uitbouw maken",
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
       locationIntro:
@@ -89,17 +94,18 @@ const topics: Topic[] = [
     intro: "AanbouwIntro",
   },
   {
-    slug: "kozijnen-plaatsen-of-vervangen",
+    slug: "kozijnen-plaatsen",
+    category: "kozijnen plaatsen",
     sttrFile: "kozijn.json",
     text: {
-      heading: "Vergunningcheck kozijnen plaatsen of vervangen",
-      locationIntro:
-        "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen",
+      heading: "Vergunningcheck kozijnen plaatsen",
+      locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
     },
     intro: "KozijnenIntro",
   },
   {
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
+    category: "zonnepanelen of zonneboiler plaatsen",
     sttrFile: "zonnepaneel.json",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
@@ -110,6 +116,7 @@ const topics: Topic[] = [
   },
   {
     slug: "bouwwerk-slopen",
+    category: "bouwwerk slopen",
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
@@ -118,6 +125,7 @@ const topics: Topic[] = [
   },
   {
     slug: "intern-verbouwen",
+    category: "intern verbouwen",
     text: {
       heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
@@ -126,22 +134,21 @@ const topics: Topic[] = [
   },
   {
     slug: "zonwering-of-rolluik-plaatsen",
-    // Temporary disabled the STTR Flow:
-    // sttrFile: "zonwering.json",
+    category: "zonwering of rolluik plaatsen",
+    sttrFile: "zonwering.json",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },
-    // Temporary added an Intro for the Olo flow
-    intro: "ZonweringRolluikIntroOlo",
-    // intro: "ZonweringRolluikIntro",
+    intro: "ZonweringRolluikIntro",
   },
 ];
 
 if (process.env.NODE_ENV !== "production") {
   topics.push({
     slug: "test-outcomes",
+    category: "test outcomes",
     sttrFile: "outcomes.json",
     text: {
       heading: "Testing different outcomes/conclusions",
