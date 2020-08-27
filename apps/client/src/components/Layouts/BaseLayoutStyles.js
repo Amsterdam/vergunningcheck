@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const ContentContainer = styled.div`
   max-width: 960px;
   width: 100%;
-  margin: 0 auto ${themeSpacing(12)};
+  margin: 0 auto ${themeSpacing(18)};
   padding-left: ${themeSpacing(4)};
   padding-right: ${themeSpacing(4)};
   background-color: ${themeColor("tint", "level1")};
