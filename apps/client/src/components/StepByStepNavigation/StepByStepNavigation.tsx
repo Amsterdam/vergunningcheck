@@ -8,21 +8,23 @@ import StepByStepNavigationStyle, { Props } from "./StepByStepNavigationStyle";
 const StepByStepNavigation: React.FC<
   Props & React.HTMLAttributes<HTMLElement>
 > = ({
-  children: childrenProps,
+  children: childrenProp,
   customSize,
   disabledTextColor,
   doneTextColor,
   highlightActive,
   ...otherProps
 }) => {
-  const { children } = usePassPropsToChildren(childrenProps, {
+  // Pass the props defined below to all the children
+  const { children } = usePassPropsToChildren(childrenProp, {
     customSize,
     disabledTextColor,
     doneTextColor,
     highlightActive,
   });
 
-  if (!childrenProps) {
+  // React Hook "usePassPropsToChildren" must be called before this `return` statement
+  if (!childrenProp) {
     return null;
   }
 
