@@ -11,14 +11,14 @@ import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
 const Nav = ({
-  prevText,
-  showPrev,
-  onGoToPrev,
-  onGoToNext,
-  showNext,
-  nextText,
   formEnds,
-  ...otherProps
+  nextText,
+  onGoToNext,
+  onGoToPrev,
+  prevText,
+  showNext,
+  showPrev,
+  style,
 }) => {
   const {
     topic: { slug: name },
@@ -53,7 +53,7 @@ const Nav = ({
   };
 
   return (
-    <NavStyle {...otherProps}>
+    <NavStyle {...{ style }}>
       <div>
         {showNext && (
           <Button
@@ -71,11 +71,11 @@ const Nav = ({
       <div>
         {showPrev && (
           <Button
-            variant="textButton"
-            style={{ marginLeft: 10 }}
-            onClick={handlePrevClick}
-            type="button"
             data-testid={PREV_BUTTON}
+            onClick={handlePrevClick}
+            style={{ marginLeft: 10 }}
+            type="button"
+            variant="textButton"
           >
             <IconContainer>
               <IconLeft size={14}>
@@ -91,21 +91,22 @@ const Nav = ({
 };
 
 Nav.defaultProps = {
-  page: "undefined-page",
-  nextText: "Volgende",
-  prevText: "Vorige",
   formEnds: false,
+  nextText: "Volgende",
+  page: "undefined-page",
+  prevText: "Vorige",
 };
 
 Nav.propTypes = {
-  page: PropTypes.string,
-  showPrev: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
-  onGoToNext: PropTypes.func,
-  showNext: PropTypes.bool,
-  nextText: PropTypes.string,
-  prevText: PropTypes.string,
   formEnds: PropTypes.bool,
+  nextText: PropTypes.string,
+  onGoToNext: PropTypes.func,
+  onGoToPrev: PropTypes.func,
+  page: PropTypes.string,
+  prevText: PropTypes.string,
+  showNext: PropTypes.bool,
+  showPrev: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 export default Nav;
