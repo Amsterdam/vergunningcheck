@@ -21,6 +21,7 @@ export const actions = {
   CLICK_PHONE_LINK: "telefoonnummer",
   CONCLUSION: "tonen conclusie",
   DOWNLOAD: "download",
+  EDIT_ADDRESS: "wijzig adres",
   EDIT_QUESTION: "wijzig vraag",
 };
 

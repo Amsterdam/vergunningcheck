@@ -1,7 +1,9 @@
 import { Paragraph } from "@datapunt/asc-ui";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 
 import { ComponentWrapper, EditButton, List, ListItem } from "../atoms";
+import { actions } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -10,8 +12,9 @@ const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
   setActiveState,
-  topic: { sttrFile },
+  topic: { sttrFile, name },
 }) => {
+  const { trackEvent } = useMatomo();
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -25,6 +28,11 @@ const RegisterLookupSummary = ({
         <AddressLine address={address} />
         <EditButton
           onClick={() => {
+            trackEvent({
+              category: name.toLowerCase(),
+              action: actions.EDIT_ADDRESS,
+              name: address.postalCode.substring(0, 4),
+            });
             setActiveState("locationInput");
           }}
         />
