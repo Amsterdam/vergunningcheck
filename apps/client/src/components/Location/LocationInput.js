@@ -1,30 +1,38 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import Error from "../components/Error";
-import Form from "../components/Form";
-import Layout from "../components/Layouts/DefaultLayout";
-import LocationFinder from "../components/Location/LocationFinder";
-import Nav from "../components/Nav";
-import { CheckerContext, SessionContext } from "../context";
-import withTopic from "../hoc/withTopic";
-import { geturl, routes } from "../routes";
+import { eventNames } from "../../config/matomo";
+import { CheckerContext, SessionContext } from "../../context";
+import { geturl, routes } from "../../routes";
+import Error from "../Error";
+import Form from "../Form";
+import Nav from "../Nav";
+import PhoneNumber from "../PhoneNumber";
+import LocationFinder from "./LocationFinder";
 
-const LocationPage = ({ topic }) => {
+const LocationInput = ({
+  isFinished,
+  resetChecker,
+  setActiveState,
+  setFinishedState,
+  topic,
+}) => {
+  const history = useHistory();
   const { trackEvent } = useMatomo();
+  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
-  const history = useHistory();
-  const [address, setAddress] = useState(null);
-  const [focus, setFocus] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
-  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const { slug, text } = topic;
+
+  const { slug, text, sttrFile } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
+  const hasSTTR = !!sttrFile;
+
+  const [address, setAddress] = useState(sessionAddress);
+  const [errorMessage, setErrorMessage] = useState();
+  const [focus, setFocus] = useState(false);
 
   useEffect(() => {
     if (!address && !errorMessage) {
@@ -36,7 +44,14 @@ const LocationPage = ({ topic }) => {
   }, [address, clearErrors, errorMessage, register, unregister]);
 
   const onSubmit = () => {
-    if (address) {
+    if (address.postalCode) {
+      // Detect if user is submitting the same address as currenly stored
+      if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
+        // The address is the same, so go directly to the Location Result
+        setActiveState("locationResult");
+        return;
+      }
+
       trackEvent({
         category: "postcode-input",
         action: `postcode - ${slug.replace("-", " ")}`,
@@ -48,11 +63,16 @@ const LocationPage = ({ topic }) => {
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        checkerContext.checker = null;
         answers = null;
       }
 
       checkerContext.autofillData.address = address;
+
+      // Reset all previous finished states
+      if (hasSTTR) {
+        resetChecker();
+        setFinishedState(["locationResult", "questions", "conclusion"], false);
+      }
 
       sessionContext.setSessionData([
         slug,
@@ -66,16 +86,13 @@ const LocationPage = ({ topic }) => {
       if (focus) {
         document.activeElement.blur();
       } else {
-        history.push(geturl(routes.address, topic));
+        setActiveState("locationResult");
       }
     }
   };
 
   return (
-    <Layout>
-      <Helmet>
-        <title>Invullen adres - {text.heading}</title>
-      </Helmet>
+    <>
       {errorMessage && (
         <Error
           heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check op dit moment niet kunt doen."
@@ -83,11 +100,11 @@ const LocationPage = ({ topic }) => {
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer <a href="tel:14020">14 020</a>.
+            telefoonnummer <PhoneNumber eventName={eventNames.ADDRESS_ERROR} />.
           </Paragraph>
         </Error>
       )}
-      <Heading forwardedAs="h4">Invullen adres</Heading>
+      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
@@ -100,7 +117,9 @@ const LocationPage = ({ topic }) => {
           errors={errors}
         />
         <Nav
+          noMarginBottom={!hasSTTR}
           onGoToPrev={() => {
+            // @TODO: We need to give a warning or we need to store the checker data as well
             sessionContext.setSessionData([
               slug,
               {
@@ -109,12 +128,12 @@ const LocationPage = ({ topic }) => {
             ]);
             history.push(geturl(routes.intro, topic));
           }}
-          showPrev
           showNext
+          showPrev
         />
       </Form>
-    </Layout>
+    </>
   );
 };
 
-export default withTopic(LocationPage);
+export default LocationInput;

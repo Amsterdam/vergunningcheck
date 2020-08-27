@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 export default styled(Alert)`
   /* IE11 Fix */
+  display: block;
   white-space: pre-line;
-  display: "block";
+
+  @media print {
+    -webkit-print-color-adjust: exact;
+  }
 `;

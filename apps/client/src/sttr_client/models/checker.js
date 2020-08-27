@@ -147,6 +147,26 @@ class Checker {
   }
 
   /**
+   * We consider a checker to be finished or conclusive when either we
+   * have one or more permits with a contact-outcome, or all permits
+   * have a conclusion.
+   *
+   * @returns {boolean} - Returns true if "at least one" of the permits inside checker has a final outcome
+   *
+   */
+  isConclusive() {
+    const hasContactPermit = !!this.permits.find(
+      (permit) =>
+        permit.getOutputByDecisionId("dummy") === sttrOutcomes.NEED_CONTACT
+    );
+    const hasUnfinishedPermits = !!this.permits.find(
+      (permit) => !permit.getOutputByDecisionId("dummy")
+    );
+
+    return !hasUnfinishedPermits || hasContactPermit;
+  }
+
+  /**
    * For every questions see if we have autofillData
    * and see if the question can be autofilled
    *

@@ -27,7 +27,7 @@ const getChecker = (questions) => {
       new Rule(["yes"], "hell yeah"),
     ]
   );
-  return new Checker([new Permit("drivers-licence", [dummy])]);
+  return new Checker([new Permit("drivers-licence", 23, [dummy])]);
 };
 
 describe("Checker recursive", () => {
@@ -52,7 +52,7 @@ describe("Checker recursive", () => {
         new Rule(["fun!", "local"], "Hi André"),
       ]
     );
-    const checker = new Checker([new Permit("some permit", [d1, d2, d3])]);
+    const checker = new Checker([new Permit("some permit", 22, [d1, d2, d3])]);
 
     let question = checker.next();
     expect(question).toBe(questions[0]);
@@ -102,12 +102,12 @@ describe("Checker internals", () => {
   const q1 = new Question(getQuestionConfig({ prio: 20, type: "boolean" }));
   const d1 = new Decision("d1", [qShared, q1], [new Rule([false], "z")]);
   const dummy1 = new Decision("dummy", [d1], [new Rule([true], "y")]);
-  const permit1 = new Permit("x", [dummy1]);
+  const permit1 = new Permit("x", 1, [dummy1]);
 
   const q2 = new Question(getQuestionConfig({ prio: 30, type: "boolean" }));
   const d2 = new Decision("d2", [qShared, q2], [new Rule([false], "z")]);
   const dummy2 = new Decision("dummy", [d2], [new Rule([false], "x")]);
-  const permit2 = new Permit("y", [dummy2]);
+  const permit2 = new Permit("y", 1, [dummy2]);
 
   const checker = new Checker([permit1, permit2]);
 

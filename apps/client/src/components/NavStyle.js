@@ -1,14 +1,20 @@
-import { Icon, themeSpacing } from "@datapunt/asc-ui";
-import styled from "styled-components";
+import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import styled, { css } from "styled-components";
 
 export const NavStyle = styled.div`
   display: flex;
   height: 64px;
-  margin: ${themeSpacing(5, 0, 10)};
-  background-color: rgba(241, 241, 241, 1);
+  margin: ${themeSpacing(5, 0, 4)};
+  background-color: ${themeColor("tint", "level3")};
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
+
+  ${(props) =>
+    props.noMarginBottom &&
+    css`
+      margin-bottom: 0;
+    `}
 
   @media print {
     display: none;

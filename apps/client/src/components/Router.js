@@ -5,14 +5,14 @@ import LoadingPage from "../pages/LoadingPage";
 import { redirectConfig, routeConfig } from "../routes";
 import ScrollToTop from "./ScrollToTop";
 
-const Router = (props) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Suspense fallback={<LoadingPage />}>
         <Switch>
-          {redirectConfig.map(([from, to]) => (
-            <Redirect key={from} {...{ from, to }} />
+          {redirectConfig.map((redirect) => (
+            <Redirect key={redirect.from} {...redirect} />
           ))}
           {routeConfig
             .filter((route) => route.component)

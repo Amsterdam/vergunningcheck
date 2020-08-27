@@ -22,7 +22,9 @@ export default ({ checker, topic }) => {
   const { slug } = topic;
   const decisionId = "dummy";
 
-  if (!checker || !checker.permits) return <></>;
+  if (!checker || !checker.permits) {
+    return <></>;
+  }
   const allQuestions = checker._getAllQuestions();
   const autofilled = allQuestions.filter((q) => q.autofill);
 
@@ -104,7 +106,9 @@ export default ({ checker, topic }) => {
 
         return (
           <div key={`${permit.name} - ${index}`}>
-            <h2>{permit.name}</h2>
+            <h2>
+              {permit.name} (v{permit.version})
+            </h2>
             {permit._decisions
               .sort(
                 // loosely order decisions based on their question prios
