@@ -10,7 +10,6 @@ type Topic = {
 type Text = {
   heading: string;
   locationIntro?: string;
-  addressPage?: string;
 };
 
 type OloProps = {
@@ -64,9 +63,6 @@ const topics: Topic[] = [
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
-      // @TODO: The text `addressPage` is now unused > What to do with this text?
-      addressPage:
-        "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck.",
     },
     intro: "DakkapelIntro",
   },
@@ -77,9 +73,6 @@ const topics: Topic[] = [
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
-      // @TODO: The text `addressPage` is now unused > What to do with this text?
-      addressPage:
-        "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.",
     },
     intro: "DakraamIntro",
   },

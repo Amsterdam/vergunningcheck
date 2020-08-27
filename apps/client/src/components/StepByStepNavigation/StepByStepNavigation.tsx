@@ -1,28 +1,31 @@
 import { themeColor } from "@datapunt/asc-ui";
 import React from "react";
 
+import passPropsToChildren from "../../utils/passPropsToChildren";
 import { STEPBYSTEPNAVIGATION } from "../../utils/test-ids";
-import usePassPropsToChildren from "../../utils/usePassPropsToChildren";
 import StepByStepNavigationStyle, { Props } from "./StepByStepNavigationStyle";
 
 const StepByStepNavigation: React.FC<
   Props & React.HTMLAttributes<HTMLElement>
 > = ({
-  children: childrenProps,
+  children: childrenProp,
   customSize,
   disabledTextColor,
   doneTextColor,
   highlightActive,
   ...otherProps
 }) => {
-  const { children } = usePassPropsToChildren(childrenProps, {
+  if (!childrenProp) {
+    return null;
+  }
+
+  // Pass the props defined below to all the children
+  const { children } = passPropsToChildren(childrenProp, {
     customSize,
     disabledTextColor,
     doneTextColor,
     highlightActive,
   });
-
-  if (!childrenProps) return null;
 
   return (
     <StepByStepNavigationStyle

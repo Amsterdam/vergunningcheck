@@ -69,7 +69,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
 
     // If finished is true we check if it's finished, else check activeComponents.
     const components = finished ? finishedComponents : activeComponents;
-    return components.includes(...allComponents) || false;
+    return components.includes(...allComponents);
   };
 
   const isFinished = (component) => isActive(component, true);

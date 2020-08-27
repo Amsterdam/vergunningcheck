@@ -47,8 +47,7 @@ const LocationInput = ({
     if (address.postalCode) {
       // Detect if user is submitting the same address as currenly stored
       if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
-        // The address is the same, so nothing changed, so go directly to the Location Result
-        // We don't go directly to Questions or Conclusion
+        // The address is the same, so go directly to the Location Result
         setActiveState("locationResult");
         return;
       }
