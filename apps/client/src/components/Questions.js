@@ -37,12 +37,10 @@ const Questions = ({
         const next = checker.next();
 
         if (next) {
-          // Go to next question
           goToQuestion("next");
           // Turn skipping answered questions off
           setSkipAnsweredQuestions(true);
         } else {
-          // Go to the "Conclusion"
           goToConclusion();
         }
       } else {
