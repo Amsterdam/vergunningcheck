@@ -22,7 +22,9 @@ const StepByStepNavigation: React.FC<
     highlightActive,
   });
 
-  if (!childrenProps) return null;
+  if (!childrenProps) {
+    return null;
+  }
 
   return (
     <StepByStepNavigationStyle

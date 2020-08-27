@@ -208,7 +208,9 @@ const Questions = ({
           q === checker.stack[questionIndex] && isActive("questions");
 
         // Hide unanswered questions (eg: on browser refresh)
-        if (!isCurrentQuestion && !userAnswer) return null;
+        if (!isCurrentQuestion && !userAnswer) {
+          return null;
+        }
 
         // Disable all future question if this question is last of the stack
         // We need this because it is very hard to detect future open questions and this is causing bugs
@@ -266,7 +268,9 @@ const Questions = ({
         const userAnswer = q.options ? q.answer : booleanAnswers?.label;
 
         // Skip unanswered questions or in case of Contact Conclusion
-        if (!userAnswer || contactConclusion) return null;
+        if (!userAnswer || contactConclusion) {
+          return null;
+        }
 
         // Get new index
         const index = i + 1 + checker.stack.length;
