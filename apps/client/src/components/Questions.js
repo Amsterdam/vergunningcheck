@@ -187,6 +187,17 @@ const Questions = ({
   return (
     <>
       {checker.stack.map((q, i) => {
+        // @TODO: Refactor this code and move to checker.js
+        // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
+        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
+        if (
+          contactConclusion &&
+          !checker._getUpcomingQuestions().length &&
+          questionIndex < i
+        ) {
+          return null;
+        }
+
         // Define userAnswer
         const booleanAnswers =
           !q.options && booleanOptions.find((o) => o.value === q.answer);
@@ -208,17 +219,6 @@ const Questions = ({
 
         // Check if currect question is causing a permit requirement
         const showConclusionAlert = !!permitsPerQuestion[i];
-
-        // @TODO: Refactor this code and move to checker.js
-        // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
-        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
-        if (
-          contactConclusion &&
-          !checker._getUpcomingQuestions().length &&
-          questionIndex < i
-        ) {
-          return null;
-        }
 
         return (
           <StepByStepItem
