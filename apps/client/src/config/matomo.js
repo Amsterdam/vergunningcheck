@@ -28,9 +28,10 @@ export const sections = {
   CHECKER: "checker",
   INTRO: "intro",
   LOCATION_INPUT: "locatie invoer",
-  LOCATION_RESULTAAT: "locatie resultaat",
+  LOCATION_RESULT: "locatie resultaat",
   QUESTIONS: "vragen",
   CONCLUSION: "conclusie",
+  CONTACT_CONCLUSION: "contact conclusie",
 };
 
 export const eventNames = {
@@ -40,6 +41,7 @@ export const eventNames = {
   BACK: "terug naar",
   FOOTER: "footer",
   FORWARD: "naar de",
+  GO_TO: "ga naar",
   INTRO: "intro",
   INTRO_EXTRAORDINARY: "extraordinary situation",
   NEXT_QUESTION: "volgende vraag",

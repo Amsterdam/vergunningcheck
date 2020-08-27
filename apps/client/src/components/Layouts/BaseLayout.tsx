@@ -25,7 +25,7 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
       <Helmet>
         <title>Amsterdam Vergunningcheck</title>
       </Helmet>
-      <Header category={topic?.category} />
+      <Header category={topic?.name} />
       <ContentContainer>
         <Row hasMargin={false}>
           <Column

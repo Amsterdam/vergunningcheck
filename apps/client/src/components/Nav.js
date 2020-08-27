@@ -1,12 +1,8 @@
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
-import { useRouteMatch } from "react-router-dom";
+import React from "react";
 
-import { CheckerContext } from "../context";
-import { getslug, routeConfig } from "../routes";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
@@ -20,38 +16,6 @@ const Nav = ({
   formEnds,
   ...otherProps
 }) => {
-  const {
-    topic: { slug: name },
-  } = useContext(CheckerContext);
-  const { trackEvent } = useMatomo();
-  const { path } = useRouteMatch();
-  const route = routeConfig.find((route) => route.path === path);
-  const category = route.matomoPage || route.name;
-
-  const handleNextClick = (e) => {
-    const action = formEnds
-      ? getslug(nextText.toLowerCase())
-      : "form-volgende-knop";
-
-    trackEvent({
-      category,
-      action,
-      name,
-    });
-
-    if (onGoToNext) onGoToNext(e);
-  };
-
-  const handlePrevClick = (e) => {
-    trackEvent({
-      category,
-      action: "form-vorige-knop",
-      name,
-    });
-
-    if (onGoToPrev) onGoToPrev(e);
-  };
-
   return (
     <NavStyle {...otherProps}>
       <div>
@@ -59,7 +23,7 @@ const Nav = ({
           <Button
             type="submit"
             variant="secondary"
-            onClick={handleNextClick}
+            onClick={onGoToNext}
             taskflow={!formEnds}
             style={{ marginRight: formEnds ? 10 : 25 }}
             data-testid={NEXT_BUTTON}
@@ -73,7 +37,7 @@ const Nav = ({
           <Button
             variant="textButton"
             style={{ marginLeft: 10 }}
-            onClick={handlePrevClick}
+            onClick={onGoToPrev}
             type="button"
             data-testid={PREV_BUTTON}
           >

@@ -19,7 +19,7 @@ const Link = ({
   // The default action is CLICK_EXTERNAL_LINK, it can be overwritten.
   const onClick = () =>
     matomoTrackEvent({
-      category: checkerContext?.topic?.category,
+      category: checkerContext?.topic?.name,
       action,
       name: children.toLowerCase(),
     });

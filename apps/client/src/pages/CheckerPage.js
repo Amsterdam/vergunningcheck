@@ -1,3 +1,4 @@
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
@@ -13,13 +14,15 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import { actions, eventNames } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug, sttrFile, text } = topic;
+  const { trackEvent } = useMatomo();
+  const { slug, sttrFile, text, name } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
@@ -86,6 +89,24 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       : console.error(
           `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
         );
+    const question = checker.stack[questionIndex];
+
+    if (Number.isInteger(value)) {
+      trackEvent({
+        category: name.toLowerCase(),
+        action: actions.EDIT_QUESTION,
+        name: question.text.toLowerCase(),
+      });
+    } else {
+      trackEvent({
+        category: name.toLowerCase(),
+        action: actions.CLICK_INTERNAL_NAVIGATION,
+        name:
+          value === "prev"
+            ? eventNames.PREV_QUESTION
+            : eventNames.NEXT_QUESTION,
+      });
+    }
 
     sessionContext.setSessionData([
       slug,

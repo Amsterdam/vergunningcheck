@@ -1,5 +1,7 @@
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
+import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
@@ -7,7 +9,7 @@ import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
   checker,
-  topic: { slug },
+  topic: { slug, name },
   setFinishedState,
   setActiveState,
   goToQuestion,
@@ -18,11 +20,17 @@ const Questions = ({
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactConclusion, setContactConclusion] = useState(false);
   const { answers, questionIndex } = sessionContext[slug];
+  const { trackEvent } = useMatomo();
 
   const goToConclusion = useCallback(() => {
     setActiveState("conclusion");
     setFinishedState(["questions", "conclusion"], true);
-  }, [setActiveState, setFinishedState]);
+    trackEvent({
+      category: name.toLowerCase(),
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
+    });
+  }, [name, setActiveState, setFinishedState, trackEvent]);
 
   const onQuestionNext = useCallback(() => {
     const question = checker.stack[questionIndex];
@@ -60,6 +68,11 @@ const Questions = ({
       goToQuestion("prev");
     } else {
       // Go to Location Result, because the user was at the first question
+      trackEvent({
+        category: name.toLowerCase(),
+        action: actions.CLICK_INTERNAL_NAVIGATION,
+        name: `${eventNames.BACK} ${sections.LOCATION_RESULT}`,
+      });
       setActiveState("locationResult");
       setFinishedState("locationResult", false);
     }
@@ -177,6 +190,11 @@ const Questions = ({
     }
 
     // Set Contact Conclusion
+    trackEvent({
+      category: name.toLowerCase(),
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.FORWARD} ${sections.CONTACT_CONCLUSION}`,
+    });
     setContactConclusion(checker.needContactExit(question));
 
     // Store all answers in the session context
