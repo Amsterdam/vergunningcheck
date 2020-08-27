@@ -22,9 +22,9 @@ const IntroPage = ({ topic }) => {
         <Intro />
       </Suspense>
       <Nav
+        noMarginBottom
         onGoToNext={() => history.push(geturl(routes.checker, topic))}
         showNext
-        style={{ marginBottom: 0 }}
       />
     </Layout>
   );
