@@ -98,7 +98,9 @@ const Questions = ({
         }
       });
     }
+  }, [checker, isActive, questionIndex, skipAnsweredQuestions, onQuestionNext]);
 
+  useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
     // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in withChecker)
     if (!contactConclusion) {
@@ -117,18 +119,7 @@ const Questions = ({
         }
       });
     }
-  }, [
-    checker,
-    contactConclusion,
-    isActive,
-    questionIndex,
-    onGoToQuestion,
-    onQuestionNext,
-    setContactConclusion,
-    skipAnsweredQuestions,
-    sessionContext,
-    slug,
-  ]);
+  }, [checker, contactConclusion, sessionContext, setContactConclusion, slug]);
 
   let disableFutureQuestions = false;
 
