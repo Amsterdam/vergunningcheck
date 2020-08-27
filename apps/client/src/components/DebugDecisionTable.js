@@ -22,7 +22,9 @@ export default ({ checker, topic }) => {
   const { slug } = topic;
   const decisionId = "dummy";
 
-  if (!checker || !checker.permits) return <></>;
+  if (!checker || !checker.permits) {
+    return <></>;
+  }
   const allQuestions = checker._getAllQuestions();
   const autofilled = allQuestions.filter((q) => q.autofill);
 

@@ -37,12 +37,10 @@ const Questions = ({
         const next = checker.next();
 
         if (next) {
-          // Go to next question
           goToQuestion("next");
           // Turn skipping answered questions off
           setSkipAnsweredQuestions(true);
         } else {
-          // Go to the "Conclusion"
           goToConclusion();
         }
       } else {
@@ -98,7 +96,9 @@ const Questions = ({
         }
       });
     }
+  }, [checker, isActive, questionIndex, skipAnsweredQuestions, onQuestionNext]);
 
+  useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
     // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in withChecker)
     if (!contactConclusion) {
@@ -117,18 +117,7 @@ const Questions = ({
         }
       });
     }
-  }, [
-    checker,
-    contactConclusion,
-    isActive,
-    questionIndex,
-    onGoToQuestion,
-    onQuestionNext,
-    setContactConclusion,
-    skipAnsweredQuestions,
-    sessionContext,
-    slug,
-  ]);
+  }, [checker, contactConclusion, sessionContext, setContactConclusion, slug]);
 
   let disableFutureQuestions = false;
 
@@ -196,28 +185,6 @@ const Questions = ({
   return (
     <>
       {checker.stack.map((q, i) => {
-        // Define userAnswer
-        const booleanAnswers =
-          !q.options && booleanOptions.find((o) => o.value === q.answer);
-        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
-
-        // Define if question is the current one
-        const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive("questions");
-
-        // Hide unanswered questions (eg: on browser refresh)
-        if (!isCurrentQuestion && !userAnswer) return null;
-
-        // Disable all future question if this question is last of the stack
-        // We need this because it is very hard to detect future open questions and this is causing bugs
-        // @TODO: fix this by stop using the combo of checker.stack and checker._getUpcomingQuestions()
-        if (isCurrentQuestion && checker.stack.length === i + 1) {
-          disableFutureQuestions = true;
-        }
-
-        // Check if currect question is causing a permit requirement
-        const showConclusionAlert = !!permitsPerQuestion[i];
-
         // @TODO: Refactor this code and move to checker.js
         // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
@@ -228,6 +195,30 @@ const Questions = ({
         ) {
           return null;
         }
+
+        // Define userAnswer
+        const booleanAnswers =
+          !q.options && booleanOptions.find((o) => o.value === q.answer);
+        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+
+        // Define if question is the current one
+        const isCurrentQuestion =
+          q === checker.stack[questionIndex] && isActive("questions");
+
+        // Hide unanswered questions (eg: on browser refresh)
+        if (!isCurrentQuestion && !userAnswer) {
+          return null;
+        }
+
+        // Disable all future question if this question is last of the stack
+        // We need this because it is very hard to detect future open questions and this is causing bugs
+        // @TODO: fix this by stop using the combo of checker.stack and checker._getUpcomingQuestions()
+        if (isCurrentQuestion && checker.stack.length === i + 1) {
+          disableFutureQuestions = true;
+        }
+
+        // Check if currect question is causing a permit requirement
+        const showConclusionAlert = !!permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -275,7 +266,9 @@ const Questions = ({
         const userAnswer = q.options ? q.answer : booleanAnswers?.label;
 
         // Skip unanswered questions or in case of Contact Conclusion
-        if (!userAnswer || contactConclusion) return null;
+        if (!userAnswer || contactConclusion) {
+          return null;
+        }
 
         // Get new index
         const index = i + 1 + checker.stack.length;

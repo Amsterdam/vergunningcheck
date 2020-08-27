@@ -14,38 +14,38 @@ export const geturl = (route, params) => {
 };
 export const routeConfig = [
   {
-    name: "home",
-    exact: true,
-    path: "/",
     component:
       process.env.NODE_ENV !== "production" &&
       React.lazy(() => import(`./pages/DevHomePage`)),
+    exact: true,
+    name: "home",
+    path: "/",
   },
   {
+    component: React.lazy(() => import(`./pages/DevHomePage`)),
     exact: true,
     path: "/test",
-    component: React.lazy(() => import(`./pages/DevHomePage`)),
   },
   {
-    exact: true,
-    name: "checker",
-    path: "/:slug/vragen-en-conclusie",
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
-    ),
-  },
-  {
-    name: "intro",
-    exact: true,
-    path: "/:slug",
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/IntroPage`)
     ),
+    name: "intro",
+    exact: true,
+    path: "/:slug",
   },
   {
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
+    ),
+    exact: true,
+    name: "checker",
+    path: "/:slug/vragen-en-conclusie",
+  },
+  {
+    component: React.lazy(() => import("./pages/NotFoundPage")),
     name: "notfound",
     path: "*",
-    component: React.lazy(() => import("./pages/NotFoundPage")),
   },
 ];
 export const redirectConfig = [
