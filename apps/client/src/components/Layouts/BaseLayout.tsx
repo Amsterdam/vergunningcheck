@@ -54,10 +54,15 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
           <p>Node environment: {process.env.NODE_ENV}</p>
         </HiddenDebugInfo>
         {topic && (
-          <HiddenDebugInfo title="Topic">
+          <HiddenDebugInfo title="checkerContext.topic">
             <p>slug: {topic.slug}</p>
             <p>redirectToOlo: {JSON.stringify(topic.redirectToOlo)}</p>
             <p>hasSTTR: {JSON.stringify(topic.hasSTTR)}</p>
+          </HiddenDebugInfo>
+        )}
+        {checkerContext.checker && (
+          <HiddenDebugInfo title="checkerContext.checker">
+            {JSON.stringify(checkerContext.checker)}
           </HiddenDebugInfo>
         )}
 
