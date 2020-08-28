@@ -1,13 +1,13 @@
 export type Topic = {
-  slug: string;
-  name: String;
   hasSTTR: boolean;
+  intro?: string;
+  name: string;
+  redirectToOlo?: boolean;
+  slug: string;
   text: {
     heading: string;
     locationIntro?: string;
   };
-  redirectToOlo?: boolean;
-  intro?: string;
 };
 
 type OloProps = {
@@ -47,96 +47,96 @@ export const generateOloUrl = ({
 
 export const topics: Topic[] = [
   {
-    slug: "kappen-of-snoeien",
-    name: "Kappen of snoeien",
     hasSTTR: false,
+    name: "Kappen of snoeien",
     redirectToOlo: true,
+    slug: "kappen-of-snoeien",
     text: {
       heading: "Vergunningcheck kappen of snoeien",
     },
   },
   {
-    slug: "dakkapel-plaatsen",
-    name: "Dakkapel plaatsen",
     hasSTTR: true,
+    intro: "DakkapelIntro",
+    name: "Dakkapel plaatsen",
+    slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
     },
-    intro: "DakkapelIntro",
   },
   {
-    slug: "dakraam-plaatsen",
-    name: "Dakraam plaatsen",
     hasSTTR: true,
+    intro: "DakraamIntro",
+    name: "Dakraam plaatsen",
+    slug: "dakraam-plaatsen",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
     },
-    intro: "DakraamIntro",
   },
   {
-    slug: "aanbouw-of-uitbouw-maken",
-    name: "Aanbouw of uitbouw maken",
     hasSTTR: false,
+    intro: "AanbouwIntro",
+    name: "Aanbouw of uitbouw maken",
+    slug: "aanbouw-of-uitbouw-maken",
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
       locationIntro:
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
     },
-    intro: "AanbouwIntro",
   },
   {
-    slug: "kozijnen-plaatsen",
-    name: "Kozijnen plaatsen",
     hasSTTR: true,
+    intro: "KozijnenIntro",
+    name: "Kozijnen plaatsen",
+    slug: "kozijnen-plaatsen",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen",
       locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
     },
-    intro: "KozijnenIntro",
   },
   {
-    slug: "zonnepanelen-of-zonneboiler-plaatsen",
-    name: "Zonnepanelen of zonneboiler plaatsen",
     hasSTTR: true,
+    intro: "ZonnepanelenIntro",
+    name: "Zonnepanelen of zonneboiler plaatsen",
+    slug: "zonnepanelen-of-zonneboiler-plaatsen",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
-    intro: "ZonnepanelenIntro",
   },
   {
-    slug: "bouwwerk-slopen",
-    name: "Bouwwerk slopen",
     hasSTTR: false,
+    intro: "BouwwerkSlopenIntro",
+    name: "Bouwwerk slopen",
+    slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
     },
-    intro: "BouwwerkSlopenIntro",
   },
   {
-    slug: "intern-verbouwen",
-    name: "Intern verbouwen",
     hasSTTR: false,
+    intro: "InternVerbouwenIntro",
+    name: "Intern verbouwen",
+    slug: "intern-verbouwen",
     text: {
       heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
     },
-    intro: "InternVerbouwenIntro",
   },
   {
-    slug: "zonwering-of-rolluik-plaatsen",
-    name: "Zonwering of rolluik plaatsen",
     hasSTTR: true,
+    intro: "ZonweringRolluikIntro",
+    name: "Zonwering of rolluik plaatsen",
+    slug: "zonwering-of-rolluik-plaatsen",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },
-    intro: "ZonweringRolluikIntro",
   },
 ];
 

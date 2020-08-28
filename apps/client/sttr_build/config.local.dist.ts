@@ -11,8 +11,8 @@
 import { apis as baseApis } from "./config.ts";
 
 export const apis = baseApis.concat({
-  outputDir: ".staging", // make sure to start with a dot (.) so it's ignored by .gitignore
   host: "the domain of the api",
+  outputDir: ".staging", // make sure to start with a dot (.) so it's ignored by .gitignore
   topics: {
     "staging-dakkapel": ["KtAQGNzyyPjYe5mPc", "BTEm6sJJ6ZQEP9rJx"],
     "staging-dakraam": ["gzMTczepTCdxFnvYe", "rpqSbyPsSK29JcAm9"],
