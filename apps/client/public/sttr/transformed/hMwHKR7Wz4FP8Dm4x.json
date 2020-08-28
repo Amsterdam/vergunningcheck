@@ -1,0 +1,53 @@
+{
+  "slug": "hMwHKR7Wz4FP8Dm4x",
+  "permits": [
+    {
+      "version": 1,
+      "name": "Conclusie Het wijzigen van een monument bij een dakraam",
+      "questions": [
+        {
+          "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "prio": 10,
+          "uuid": "monument-dakraam-bouwen"
+        }
+      ],
+      "inputs": {
+        "input__a165828d-8708-4db6-92c4-9c767ad7cc72": {
+          "href": "#uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_685a10e1-ce08-42ae-b2e0-86874ba42a7b": {
+          "requiredInputs": ["#input__a165828d-8708-4db6-92c4-9c767ad7cc72"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_685a10e1-ce08-42ae-b2e0-86874ba42a7b"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,46 +1,4 @@
 {
-  "slug": "7vjj2nkFqxp8uQnqS",
-  "permits": [
-    {
-      "version": 1,
-      "name": "Conclusie Afmonteren voor DSO V2",
-      "questions": [
-        {
-          "text": "Mag het uitvoeren van een werk in de gemeente Amsterdam?",
-          "type": "boolean",
-          "id": "uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
-          "prio": 10
-        }
-      ],
-      "inputs": {
-        "input__d178a46c-5401-471e-91c2-7ac4aada0d1c": {
-          "href": "#uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
-          "type": "boolean"
-        }
-      },
-      "decisions": {
-        "_794e1fb0-fca3-4d99-b67d-d387a626679a": {
-          "requiredInputs": ["#input__d178a46c-5401-471e-91c2-7ac4aada0d1c"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
-            ]
-          }
-        },
-        "dummy": {
-          "requiredDecisions": ["#_794e1fb0-fca3-4d99-b67d-d387a626679a"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
-            ]
-          }
-        }
-      }
-    }
-  ]
+  "version": 1,
+  "sttr": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><dmn:definitions xmlns:dmn=\"http://www.omg.org/spec/DMN/20151101/dmn.xsd\"\n                 xmlns:feel=\"http://www.omg.org/spec/FEEL/20140401\"\n                 xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                 xmlns:inter=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel\"\n                 xmlns:bedr=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel\"\n                 xmlns:uitv=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel\"\n                 xmlns:content=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content\"\n                 xmlns=\"http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000\"\n                 namespace=\"http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000\"\n                 exporter=\"Geodan FLO Legal STTR Builder\" exporterVersion=\"1.1 (2.2.5)\" id=\"_9ed5533b-94dd-4249-ad95-8e160172b0f3\"\n                 name=\"Conclusie Afmonteren voor DSO V2\"><dmn:extensionElements><inter:regelgroepen><inter:regelgroep id=\"groep1\"><inter:naam>Conclusie Afmonteren voor DSO V2 gemeente Amsterdam</inter:naam><inter:prioriteit>10</inter:prioriteit></inter:regelgroep></inter:regelgroepen><uitv:uitvoeringsregels><uitv:uitvoeringsregel id=\"uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c\"><uitv:regelgroepRef href=\"#groep1\"/><inter:prioriteit>10</inter:prioriteit><uitv:vraag><uitv:gegevensType>boolean</uitv:gegevensType><uitv:vraagTekst>Mag het uitvoeren van een werk in de gemeente Amsterdam?</uitv:vraagTekst></uitv:vraag></uitv:uitvoeringsregel></uitv:uitvoeringsregels></dmn:extensionElements><dmn:inputData id=\"input__d178a46c-5401-471e-91c2-7ac4aada0d1c\" label=\"_d178a46c-5401-471e-91c2-7ac4aada0d1c\" name=\"_d178a46c-5401-471e-91c2-7ac4aada0d1c\"><dmn:extensionElements><uitv:uitvoeringsregelRef href=\"#uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c\"/></dmn:extensionElements><dmn:variable id=\"_36c2f72e-83cf-4a69-902f-bada0a1e5b2f\" name=\"_d178a46c-5401-471e-91c2-7ac4aada0d1c\" typeRef=\"feel:boolean\"/></dmn:inputData><dmn:decision id=\"_304afc38-5b2e-4d47-a0e3-94f4728add45\" name=\"Pad 1\"><dmn:variable id=\"_94aa990d-ac1e-4c4c-8d24-2ff2f09880ce\" name=\"Pad 1\" typeRef=\"feel:string\"/><dmn:informationRequirement><dmn:requiredInput href=\"#input__d178a46c-5401-471e-91c2-7ac4aada0d1c\"/></dmn:informationRequirement><dmn:decisionTable hitPolicy=\"ANY\" id=\"_91973207-5b97-49c9-8797-243219ffa1a9\"\n                        outputLabel=\"Pad 1\"><dmn:input id=\"_e165de3a-58b3-4645-93e5-772b6e91189f\" label=\"_d178a46c-5401-471e-91c2-7ac4aada0d1c\"><dmn:inputExpression typeRef=\"feel:boolean\"><dmn:text>_d178a46c-5401-471e-91c2-7ac4aada0d1c</dmn:text></dmn:inputExpression></dmn:input><dmn:output id=\"_f3b2daa9-8565-424d-828b-9422a8104636\" label=\"Pad 1\"><dmn:outputValues><dmn:text>\"Vergunningplicht\",\"no hit\"\n            </dmn:text></dmn:outputValues></dmn:output><dmn:rule id=\"_4dd9ca50-7168-49e8-93c0-87fb3cd52c3a\"><dmn:inputEntry id=\"_b0695af1-032e-4579-b90e-75b46a7eda66\"><dmn:text>true</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_692da703-2548-493d-95b8-6d70bff7019d\"><dmn:text>\"Vergunningplicht\"</dmn:text></dmn:outputEntry></dmn:rule><dmn:rule id=\"_819721c9-7f1b-46c9-8fc9-aa375ea38790\"><dmn:inputEntry id=\"_2d36b380-58f1-48c0-a995-6ce22cdbd3f9\"><dmn:text>false</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_2cbf9d48-a344-4aa1-990f-a3c5e068993d\"><dmn:text>\"no hit\"</dmn:text></dmn:outputEntry></dmn:rule></dmn:decisionTable></dmn:decision><dmn:decision id=\"dummy\" name=\"_Conclusie_dummy\"><dmn:extensionElements><bedr:functioneleStructuurRef href=\"#http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.OEFAanlegactiviteiten\"/></dmn:extensionElements><dmn:variable id=\"_0870fa22-c447-4200-bcfa-45a671fdde2f\" name=\"_Conclusie_dummy\" typeRef=\"feel:string\"/><dmn:informationRequirement><dmn:requiredDecision href=\"#_304afc38-5b2e-4d47-a0e3-94f4728add45\"/></dmn:informationRequirement><dmn:decisionTable hitPolicy=\"ANY\" id=\"_57b00d6a-1b28-43b4-97c7-6431f0abf6e9\"\n                        outputLabel=\"Conclusie dummy\"><dmn:input id=\"_e33806b0-becc-472f-91e7-2fb1e9b06a84\" label=\"Pad 1\"><dmn:inputExpression typeRef=\"feel:string\"><dmn:text>Pad 1</dmn:text></dmn:inputExpression></dmn:input><dmn:output id=\"_597be8aa-52c1-4901-a08e-2f7194c5fffa\" label=\"Conclusie\"><dmn:outputValues><dmn:text>\"Vergunningplicht\",\"Toestemmingsvrij\"\n            </dmn:text></dmn:outputValues></dmn:output><dmn:rule id=\"_28f6b780-563e-4d79-94bc-57ebcc6cbdcc\"><dmn:inputEntry id=\"_effecca9-7733-4d20-a935-c981ea674a4f\"><dmn:text>\"Vergunningplicht\"</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_cb7165f3-a27b-45f7-b676-c3aa439ff47c\"><dmn:text>\"Vergunningplicht\"</dmn:text></dmn:outputEntry></dmn:rule><dmn:rule id=\"no_hit_rule\"><dmn:inputEntry id=\"_bee6fc17-7b0e-4500-87ee-34c9b745b50d\"><dmn:text>\"no hit\"</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_10c3bb3e-d1f2-45c7-b05d-bff671127317\"><dmn:text>\"Toestemmingsvrij\"</dmn:text></dmn:outputEntry></dmn:rule></dmn:decisionTable></dmn:decision></dmn:definitions>"
 }

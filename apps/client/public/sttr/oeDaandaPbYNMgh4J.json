@@ -1,46 +1,4 @@
 {
-  "slug": "oeDaandaPbYNMgh4J",
-  "permits": [
-    {
-      "version": 1,
-      "name": "Conclusie aansluit digikoppeling test",
-      "questions": [
-        {
-          "text": "testvraag ivm aansluit digikoppeling",
-          "type": "boolean",
-          "id": "uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
-          "prio": 10
-        }
-      ],
-      "inputs": {
-        "input__b2344eb2-d67c-498d-b89d-9049affb14a4": {
-          "href": "#uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
-          "type": "boolean"
-        }
-      },
-      "decisions": {
-        "_60804aca-86f4-4192-b4ee-50c872c44395": {
-          "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
-            ]
-          }
-        },
-        "dummy": {
-          "requiredDecisions": ["#_60804aca-86f4-4192-b4ee-50c872c44395"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
-            ]
-          }
-        }
-      }
-    }
-  ]
+  "version": 1,
+  "sttr": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><dmn:definitions xmlns:dmn=\"http://www.omg.org/spec/DMN/20151101/dmn.xsd\"\n                 xmlns:feel=\"http://www.omg.org/spec/FEEL/20140401\"\n                 xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                 xmlns:inter=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel\"\n                 xmlns:bedr=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel\"\n                 xmlns:uitv=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel\"\n                 xmlns:content=\"http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content\"\n                 xmlns=\"http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000\"\n                 namespace=\"http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000\"\n                 exporter=\"Geodan FLO Legal STTR Builder\" exporterVersion=\"1.1 (2.2.5)\" id=\"_dc36f909-bbf4-4b6d-b104-4fae0cc86e43\"\n                 name=\"Conclusie aansluit digikoppeling test\"><dmn:extensionElements><inter:regelgroepen><inter:regelgroep id=\"groep1\"><inter:naam>Conclusie aansluit digikoppeling test gemeente Amsterdam</inter:naam><inter:prioriteit>10</inter:prioriteit></inter:regelgroep></inter:regelgroepen><uitv:uitvoeringsregels><uitv:uitvoeringsregel id=\"uitv__b2344eb2-d67c-498d-b89d-9049affb14a4\"><uitv:regelgroepRef href=\"#groep1\"/><inter:prioriteit>10</inter:prioriteit><uitv:vraag><uitv:gegevensType>boolean</uitv:gegevensType><uitv:vraagTekst>testvraag ivm aansluit digikoppeling</uitv:vraagTekst></uitv:vraag></uitv:uitvoeringsregel></uitv:uitvoeringsregels></dmn:extensionElements><dmn:inputData id=\"input__b2344eb2-d67c-498d-b89d-9049affb14a4\" label=\"_b2344eb2-d67c-498d-b89d-9049affb14a4\" name=\"_b2344eb2-d67c-498d-b89d-9049affb14a4\"><dmn:extensionElements><uitv:uitvoeringsregelRef href=\"#uitv__b2344eb2-d67c-498d-b89d-9049affb14a4\"/></dmn:extensionElements><dmn:variable id=\"_38e8e3e2-3758-4c2a-911b-14f257e1b934\" name=\"_b2344eb2-d67c-498d-b89d-9049affb14a4\" typeRef=\"feel:boolean\"/></dmn:inputData><dmn:decision id=\"_40a535cd-cc51-4896-9fa4-43328db177e3\" name=\"Pad 1\"><dmn:variable id=\"_9d7a236d-55f0-4d7a-b9db-ff92b68caff8\" name=\"Pad 1\" typeRef=\"feel:string\"/><dmn:informationRequirement><dmn:requiredInput href=\"#input__b2344eb2-d67c-498d-b89d-9049affb14a4\"/></dmn:informationRequirement><dmn:decisionTable hitPolicy=\"ANY\" id=\"_b2905d58-a752-4e34-b0d3-888f0e56968d\"\n                        outputLabel=\"Pad 1\"><dmn:input id=\"_3f313a07-250e-4c6e-aa06-73f92581383e\" label=\"_b2344eb2-d67c-498d-b89d-9049affb14a4\"><dmn:inputExpression typeRef=\"feel:boolean\"><dmn:text>_b2344eb2-d67c-498d-b89d-9049affb14a4</dmn:text></dmn:inputExpression></dmn:input><dmn:output id=\"_30cf39f9-5f78-4e38-aaee-1e5ba48f6f6a\" label=\"Pad 1\"><dmn:outputValues><dmn:text>\"Vergunningplicht\",\"no hit\"\n            </dmn:text></dmn:outputValues></dmn:output><dmn:rule id=\"_583b4728-335a-47f3-98e7-05d5c714c4cf\"><dmn:inputEntry id=\"_254314f6-57ef-40cc-91e2-881913b03922\"><dmn:text>true</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_7367d0c6-1b0b-4964-bad9-abbe01f53512\"><dmn:text>\"Vergunningplicht\"</dmn:text></dmn:outputEntry></dmn:rule><dmn:rule id=\"_e6c1d2d6-3cf8-4eec-8f9d-4146154b2b6b\"><dmn:inputEntry id=\"_6973ed5e-b17b-4adb-a1ac-0ce19dedee84\"><dmn:text>false</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_feba04d1-989d-4399-8392-18a5423605ef\"><dmn:text>\"no hit\"</dmn:text></dmn:outputEntry></dmn:rule></dmn:decisionTable></dmn:decision><dmn:decision id=\"dummy\" name=\"_Conclusie_dummy\"><dmn:extensionElements><bedr:functioneleStructuurRef href=\"#http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.OEFAanlegactiviteiten\"/></dmn:extensionElements><dmn:variable id=\"_ddbaa528-52b8-4f44-8a39-cb2cd76df36b\" name=\"_Conclusie_dummy\" typeRef=\"feel:string\"/><dmn:informationRequirement><dmn:requiredDecision href=\"#_40a535cd-cc51-4896-9fa4-43328db177e3\"/></dmn:informationRequirement><dmn:decisionTable hitPolicy=\"ANY\" id=\"_404695f9-4621-4a4c-a1c1-ca8cb2f15516\"\n                        outputLabel=\"Conclusie dummy\"><dmn:input id=\"_6913c456-0f1f-4e17-811b-e48d28ff625c\" label=\"Pad 1\"><dmn:inputExpression typeRef=\"feel:string\"><dmn:text>Pad 1</dmn:text></dmn:inputExpression></dmn:input><dmn:output id=\"_47f8644d-999f-45eb-9ae5-9909c5b06b83\" label=\"Conclusie\"><dmn:outputValues><dmn:text>\"Vergunningplicht\",\"Toestemmingsvrij\"\n            </dmn:text></dmn:outputValues></dmn:output><dmn:rule id=\"_47205391-637c-424a-b760-241d1f1ad289\"><dmn:inputEntry id=\"_2b6062dd-fb31-4495-a797-e8bdb0e2a010\"><dmn:text>\"Vergunningplicht\"</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_776c061d-6f8d-4006-86fc-a0e5b667c2cc\"><dmn:text>\"Vergunningplicht\"</dmn:text></dmn:outputEntry></dmn:rule><dmn:rule id=\"no_hit_rule\"><dmn:inputEntry id=\"_41392076-5eb8-4a81-8334-ce9c2e1029ab\"><dmn:text>\"no hit\"</dmn:text></dmn:inputEntry><dmn:outputEntry id=\"_102f09fe-0e98-4e20-9912-03bdf5078a74\"><dmn:text>\"Toestemmingsvrij\"</dmn:text></dmn:outputEntry></dmn:rule></dmn:decisionTable></dmn:decision></dmn:definitions>"
 }

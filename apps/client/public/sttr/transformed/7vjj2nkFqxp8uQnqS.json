@@ -1,0 +1,46 @@
+{
+  "slug": "7vjj2nkFqxp8uQnqS",
+  "permits": [
+    {
+      "version": 1,
+      "name": "Conclusie Afmonteren voor DSO V2",
+      "questions": [
+        {
+          "text": "Mag het uitvoeren van een werk in de gemeente Amsterdam?",
+          "type": "boolean",
+          "id": "uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__d178a46c-5401-471e-91c2-7ac4aada0d1c": {
+          "href": "#uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_304afc38-5b2e-4d47-a0e3-94f4728add45": {
+          "requiredInputs": ["#input__d178a46c-5401-471e-91c2-7ac4aada0d1c"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_304afc38-5b2e-4d47-a0e3-94f4728add45"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"no hit\""], "output": "\"Toestemmingsvrij\"" }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

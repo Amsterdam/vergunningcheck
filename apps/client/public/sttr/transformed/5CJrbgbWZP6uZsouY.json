@@ -1,96 +1,6 @@
 {
-  "slug": "kozijnen-plaatsen-of-vervangen",
+  "slug": "5CJrbgbWZP6uZsouY",
   "permits": [
-    {
-      "version": 1,
-      "name": "Conclusie Kozijn plaatsen in een monument",
-      "questions": [
-        {
-          "text": "Is het gebouw een monument?",
-          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
-          "autofill": "monumentList",
-          "options": [
-            "Rijksmonument",
-            "Gemeentelijk monument",
-            "Geen monument"
-          ],
-          "type": "string",
-          "id": "uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
-          "prio": 10,
-          "uuid": "kozijn monument"
-        },
-        {
-          "text": "Gaat u onderhoud doen?",
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
-          "options": [
-            "Ja, ik ga onderhoud doen",
-            "Nee, ik ga geen onderhoud doen"
-          ],
-          "type": "string",
-          "id": "uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
-          "prio": 20,
-          "uuid": "kozijn monument onderhoud"
-        }
-      ],
-      "inputs": {
-        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
-          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
-          "type": "string"
-        },
-        "input__6341d4bf-6629-4305-b077-79dd11cd5b7c": {
-          "href": "#uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
-          "type": "string"
-        }
-      },
-      "decisions": {
-        "_8ff8603e-777c-48d5-86d2-8738c5abe597": {
-          "requiredInputs": [
-            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
-            "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Rijksmonument\"",
-                  "\"Nee, ik ga geen onderhoud doen\""
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Gemeentelijk monument\"",
-                  "\"Nee, ik ga geen onderhoud doen\""
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"Geen monument\"", "-"], "output": "\"no hit\"" },
-              {
-                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "dummy": {
-          "requiredDecisions": ["#_8ff8603e-777c-48d5-86d2-8738c5abe597"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\"",
-                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\"",
-                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
-              }
-            ]
-          }
-        }
-      }
-    },
     {
       "version": 1,
       "name": "Conclusie Kozijn plaatsen",
@@ -254,7 +164,7 @@
         }
       },
       "decisions": {
-        "_0b103ea6-68df-46c3-a813-f1ebd1f4cfbf": {
+        "_b13c63e4-f371-4ec8-b9cb-ddf3fcb645a4": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -283,7 +193,7 @@
             ]
           }
         },
-        "_fb00d1c5-58c3-438b-be19-4e01bed2f739": {
+        "_13055e6d-7c8e-4c4c-b570-241a175665aa": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -318,7 +228,7 @@
             ]
           }
         },
-        "_809f50c6-d162-49d9-9171-e04aaba782d5": {
+        "_7d61765e-3110-4890-af40-fe065d48c766": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -387,7 +297,7 @@
             ]
           }
         },
-        "_a2e9976b-fb52-41f3-a8a8-5374871ab08d": {
+        "_03c5776f-30bc-4978-90cd-0e99eecad6b2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -465,7 +375,7 @@
             ]
           }
         },
-        "_20e8f8b6-e71c-418d-9324-fce57d10f667": {
+        "_1255441f-99c7-4c7e-9ad6-410deea7aad2": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -543,7 +453,7 @@
             ]
           }
         },
-        "_0311fb99-5491-4ad0-87dc-1a29985fbd52": {
+        "_cfe589c0-9dfd-453e-83ad-143223508ef7": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -630,7 +540,7 @@
             ]
           }
         },
-        "_a557730d-dfb0-4590-b9ea-f0c3c784e754": {
+        "_42922c6a-569a-4042-9bf8-e5894d7c5dcb": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -717,7 +627,7 @@
             ]
           }
         },
-        "_dd7b4b64-da92-4516-ab46-866793d61403": {
+        "_91a04a68-21d8-4aea-95f5-7c61d19dc3d9": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -822,7 +732,7 @@
             ]
           }
         },
-        "_0627af23-6f7b-46af-bb28-6b427c4fa626": {
+        "_dae49172-ccaa-4003-b56a-edaebb142e66": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -929,15 +839,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_0b103ea6-68df-46c3-a813-f1ebd1f4cfbf",
-            "#_fb00d1c5-58c3-438b-be19-4e01bed2f739",
-            "#_809f50c6-d162-49d9-9171-e04aaba782d5",
-            "#_a2e9976b-fb52-41f3-a8a8-5374871ab08d",
-            "#_20e8f8b6-e71c-418d-9324-fce57d10f667",
-            "#_0311fb99-5491-4ad0-87dc-1a29985fbd52",
-            "#_a557730d-dfb0-4590-b9ea-f0c3c784e754",
-            "#_dd7b4b64-da92-4516-ab46-866793d61403",
-            "#_0627af23-6f7b-46af-bb28-6b427c4fa626"
+            "#_b13c63e4-f371-4ec8-b9cb-ddf3fcb645a4",
+            "#_13055e6d-7c8e-4c4c-b570-241a175665aa",
+            "#_7d61765e-3110-4890-af40-fe065d48c766",
+            "#_03c5776f-30bc-4978-90cd-0e99eecad6b2",
+            "#_1255441f-99c7-4c7e-9ad6-410deea7aad2",
+            "#_cfe589c0-9dfd-453e-83ad-143223508ef7",
+            "#_42922c6a-569a-4042-9bf8-e5894d7c5dcb",
+            "#_91a04a68-21d8-4aea-95f5-7c61d19dc3d9",
+            "#_dae49172-ccaa-4003-b56a-edaebb142e66"
           ],
           "decisionTable": {
             "rules": [
