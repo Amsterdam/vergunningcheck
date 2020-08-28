@@ -1,8 +1,8 @@
-import { Column, FormTitle, Row } from "@datapunt/asc-ui";
+import { Column, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import { HideForPrint } from "../../atoms";
+import { FormTitle, HideForPrint } from "../../atoms";
 import { Topic } from "../../config";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
@@ -16,7 +16,7 @@ export interface BaseLayoutProps {
   checker?: object;
 }
 
-function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
+function BaseLayout({ children, heading }: BaseLayoutProps) {
   const checkerContext = useContext(CheckerContext);
   const topic: Topic = checkerContext.topic; // topic can be null here.
   const title = heading || topic?.text.heading;
@@ -34,9 +34,9 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
             span={{
               small: 1,
               medium: 2,
-              big: checker ? 6 : 5,
-              large: checker ? 12 : 9,
-              xLarge: checker ? 12 : 9,
+              big: 5,
+              large: 9,
+              xLarge: 9,
             }}
           >
             <Content>
@@ -61,8 +61,10 @@ function BaseLayout({ children, checker, heading }: BaseLayoutProps) {
           </HiddenDebugInfo>
         )}
         {checkerContext.checker && (
-          <HiddenDebugInfo title="checkerContext.checker">
-            {JSON.stringify(checkerContext.checker)}
+          <HiddenDebugInfo title="checkerContext.checker?.permits">
+            {checkerContext.checker?.permits?.map((permit: any) => (
+              <p>{permit.name}</p>
+            ))}
           </HiddenDebugInfo>
         )}
 

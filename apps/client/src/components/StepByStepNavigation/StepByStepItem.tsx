@@ -29,7 +29,9 @@ const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
   onClick,
   ...otherProps
 }) => {
-  if (!heading) return null;
+  if (!heading) {
+    return null;
+  }
 
   const clickable = !!(href || onClick);
 

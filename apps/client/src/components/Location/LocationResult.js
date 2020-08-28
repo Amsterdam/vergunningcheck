@@ -48,8 +48,8 @@ const LocationResult = ({
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
       {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        displayZoningPlans={!hasSTTR}
         address={address}
+        displayZoningPlans={!hasSTTR}
         setActiveState={setActiveState}
         topic={topic}
       />
@@ -62,13 +62,14 @@ const LocationResult = ({
 
       {isActive("locationResult") && (
         <Nav
+          formEnds={!hasSTTR}
+          nextText={hasSTTR ? "Naar de vragen" : "Naar het omgevingsloket"}
+          noMarginBottom={!hasSTTR}
           onGoToPrev={() => {
             setActiveState("locationInput");
           }}
-          nextText={!hasSTTR ? "Naar het omgevingsloket" : "Naar de vragen"}
-          formEnds={!hasSTTR}
-          showPrev
           showNext
+          showPrev
         />
       )}
     </Form>

@@ -44,7 +44,7 @@ export default (Component: any) => () => {
         const topicConfig = topicsJson
           .flat()
           .find((topic: TopicOutputType) => topic.slug === slug);
-
+        console.log({ topicConfig });
         const topicRequest = await fetch(
           `${window.location.origin}/${topicConfig.path}`
         );
@@ -121,10 +121,9 @@ export default (Component: any) => () => {
    * Setup a 'fake' topic configuration and render the page.
    */
   const name =
-    Math.random() +
-    (checker.permits.length === 1
+    checker.permits.length === 1
       ? checker.permits[0].name
-      : "Unconfigured checker with multiple permits");
+      : "Unconfigured checker with multiple permits";
 
   const dynamicTopic: Topic = {
     slug,

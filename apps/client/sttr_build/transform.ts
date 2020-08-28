@@ -71,7 +71,7 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
     topics.push({
       slug: permitId,
       permits: [permitId],
-      path: `${api.outputDir}/${permitId}`,
+      path: `${transformedOutputPath}/${permitId}.json`,
       name: apiPermits.find((permit) => permit._id === permitId)?.name,
     });
   });
