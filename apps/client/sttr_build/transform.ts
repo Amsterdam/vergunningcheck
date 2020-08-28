@@ -1,4 +1,4 @@
-import { readJson, writeJson } from "https://deno.land/std/fs/mod.ts";
+import { emptyDir, readJson, writeJson } from "https://deno.land/std/fs/mod.ts";
 import { join } from "https://deno.land/std/path/mod.ts";
 import parser from "https://deno.land/x/yargs_parser/deno.ts";
 
@@ -48,17 +48,20 @@ const preprocessors = [
 
 const apisMap: object[] = apis.map(async (api: APIConfig) => {
   const { outputDir } = api;
+  const transformedOutputPath = join(outputDir, "transformed");
+  const transformedDir = join(baseDir, transformedOutputPath);
+  await emptyDir(transformedDir);
 
   let topics: TopicOutputType[] = Object.entries(api.topics).map(
     ([slug, topic]: [string, string[]]) => ({
       permits: topic,
-      path: `${api.outputDir}/${slug}`,
+      path: `${transformedOutputPath}/${slug}.json`,
       slug,
     })
   );
 
   const apiPermits: TopicInputType[] = (await readJson(
-    join(baseDir, outputDir, "list.source.json")
+    join(baseDir, outputDir, "list.json")
   )) as TopicInputType[];
   const apiPermitIds: string[] = apiPermits.map(
     ({ _id }: TopicInputType) => _id
@@ -88,7 +91,7 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
           }
 
           const { sttr: xml, version } = (await readJson(
-            join(baseDir, outputDir, `${permitId}.source.json`)
+            join(baseDir, outputDir, `${permitId}.json`)
           )) as PermitResponse;
 
           if (typeof version !== "number") {
@@ -107,7 +110,7 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
       ),
     };
 
-    writeJson(join(baseDir, outputDir, `${slug}.json`), topicJsonContent);
+    writeJson(join(transformedDir, `${slug}.json`), topicJsonContent);
   });
   return topics;
 });

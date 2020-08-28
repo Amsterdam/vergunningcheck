@@ -50,7 +50,7 @@ const apisMap = apis.map(
       }
       const activities = response as TopicInputType[];
 
-      writeJson(join(baseDir, outputDir, "list.source.json"), activities);
+      writeJson(join(baseDir, outputDir, "list.json"), activities);
 
       // Now fetch the permits using a pool of promises
       const { runWithLimit } = makeRunWithLimit(argv.maxConnections || 6);
@@ -75,7 +75,7 @@ const apisMap = apis.map(
 
           try {
             writeJson(
-              join(baseDir, outputDir, `${permitId}.source.json`),
+              join(baseDir, outputDir, `${permitId}.json`),
               await result.json()
             );
           } catch (e) {
