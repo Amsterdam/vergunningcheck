@@ -26,13 +26,10 @@ export const actions = {
 };
 
 export const sections = {
-  CHECKER: "checker",
-  INTRO: "intro",
-  LOCATION_INPUT: "locatie invoer",
-  LOCATION_RESULT: "locatie resultaat",
-  QUESTIONS: "vragen",
   CONCLUSION: "conclusie",
   CONTACT_CONCLUSION: "contact conclusie",
+  INTRO: "intro",
+  LOCATION_RESULT: "locatie resultaat",
 };
 
 export const eventNames = {
@@ -43,7 +40,6 @@ export const eventNames = {
   DESCRIPTION: "toelichting",
   FOOTER: "footer",
   FORWARD: "naar de",
-  GO_TO: "ga naar",
   INTRO: "intro",
   INTRO_EXTRAORDINARY: "extraordinary situation",
   LONG_DESCRIPTION: "lange toelichting",

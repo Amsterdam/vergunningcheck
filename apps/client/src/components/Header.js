@@ -12,9 +12,9 @@ import {
 export const Header = ({ matomoTrackEvent, category = sections.INTRO }) => {
   const handleClick = (href) => {
     matomoTrackEvent({
-      category,
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: "Logo - Header",
+      category,
+      name: "logo - header",
     });
     window.location.href = href;
   };

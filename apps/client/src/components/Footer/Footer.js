@@ -11,6 +11,7 @@ import {
 import React, { memo } from "react";
 
 import { List, ListItem } from "../../atoms";
+import { eventNames } from "../../config/matomo";
 import { FOOTER } from "../../utils/test-ids";
 import Link from "../Link";
 import PhoneNumber from "../PhoneNumber";
@@ -24,7 +25,12 @@ const FirstColumn = () => (
     </Paragraph>
     <Paragraph gutterBottom={8}>
       <strong>
-        Bel het telefoonnummer <PhoneNumber darkBackground variant={null} />
+        Bel het telefoonnummer{" "}
+        <PhoneNumber
+          darkBackground
+          eventLocation={eventNames.FOOTER}
+          variant={null}
+        />
       </strong>{" "}
       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
     </Paragraph>
@@ -32,6 +38,7 @@ const FirstColumn = () => (
       <ListItem>
         <Link
           darkBackground
+          eventName={`contactformulier - ${eventNames.FOOTER}`}
           href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
           variant="with-chevron"
         >
@@ -41,6 +48,7 @@ const FirstColumn = () => (
       <ListItem>
         <Link
           darkBackground
+          eventName={`contactgegevens en openingstijden - ${eventNames.FOOTER}`}
           href="https://www.amsterdam.nl/contact/"
           variant="with-chevron"
         >
@@ -56,6 +64,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
+        eventName={`nieuwsbrief amsterdam.nl - ${eventNames.FOOTER}`}
         href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
         variant="with-chevron"
       >
@@ -65,6 +74,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
+        eventName={`twitter - ${eventNames.FOOTER}`}
         href="https://twitter.com/AmsterdamNL"
         variant="with-chevron"
       >
@@ -74,6 +84,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
+        eventName={`facebook - ${eventNames.FOOTER}`}
         href="https://www.facebook.com/gemeenteamsterdam"
         variant="with-chevron"
       >
@@ -83,6 +94,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
+        eventName={`instagram - ${eventNames.FOOTER}`}
         href="https://www.instagram.com/gemeenteamsterdam/"
         variant="with-chevron"
       >
@@ -92,6 +104,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
+        eventName={`linkedin - ${eventNames.FOOTER}`}
         href="https://www.linkedin.com/company/gemeente-amsterdam"
         variant="with-chevron"
       >
@@ -101,6 +114,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
+        eventName={`werken bij - ${eventNames.FOOTER}`}
         href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
         variant="with-chevron"
       >
@@ -115,7 +129,12 @@ const ThirdColumn = () => (
     <Paragraph>
       Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur,
       uitgaan, evenementen en meer vindt u op{" "}
-      <Link darkBackground href="https://www.iamsterdam.com/" strong>
+      <Link
+        darkBackground
+        eventName={`iamsterdam.com - ${eventNames.FOOTER}`}
+        href="https://www.iamsterdam.com/"
+        strong
+      >
         Iamsterdam.com
       </Link>
     </Paragraph>

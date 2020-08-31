@@ -63,8 +63,8 @@ const Conclusion = ({ checker, topic: { category } }) => {
   const handlePermitButton = (e) => {
     e.preventDefault();
     trackEvent({
-      category,
       action: actions.CLICK_EXTERNAL_NAVIGATION,
+      category,
       name: eventNames.APPLY_FOR_PERMIT,
     });
     // Open OLO in new tab/window
@@ -73,8 +73,8 @@ const Conclusion = ({ checker, topic: { category } }) => {
 
   const handlePrintButton = () => {
     trackEvent({
-      category,
       action: actions.DOWNLOAD,
+      category,
       name: eventNames.SAVE_CONCLUSION,
     });
     window.print();

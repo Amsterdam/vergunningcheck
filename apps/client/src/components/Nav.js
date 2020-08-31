@@ -3,53 +3,44 @@ import { Button } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React from "react";
 
-import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
+import { PrevButton } from "../atoms";
+import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
 const Nav = ({
   formEnds,
   nextText,
+  noMarginBottom,
   onGoToNext,
   onGoToPrev,
   prevText,
   showNext,
   showPrev,
-  style,
 }) => {
   return (
-    <NavStyle {...{ style }}>
-      <div>
-        {showNext && (
-          <Button
-            type="submit"
-            variant="secondary"
-            onClick={onGoToNext}
-            taskflow={!formEnds}
-            style={{ marginRight: formEnds ? 10 : 25 }}
-            data-testid={NEXT_BUTTON}
-          >
-            {nextText}
-          </Button>
-        )}
-      </div>
-      <div>
-        {showPrev && (
-          <Button
-            data-testid={PREV_BUTTON}
-            onClick={onGoToPrev}
-            type="button"
-            style={{ marginLeft: 10 }}
-            variant="textButton"
-          >
-            <IconContainer>
-              <IconLeft size={14}>
-                <ChevronLeft />
-              </IconLeft>{" "}
-              {prevText}
-            </IconContainer>
-          </Button>
-        )}
-      </div>
+    <NavStyle noMarginBottom={noMarginBottom}>
+      {showNext && (
+        <Button
+          data-testid={NEXT_BUTTON}
+          onClick={onGoToNext}
+          style={{ marginRight: formEnds ? 10 : 25 }}
+          taskflow={!formEnds}
+          type="submit"
+          variant="secondary"
+        >
+          {nextText}
+        </Button>
+      )}
+      {showPrev && (
+        <PrevButton onClick={onGoToPrev}>
+          <IconContainer>
+            <IconLeft size={14}>
+              <ChevronLeft />
+            </IconLeft>{" "}
+            {prevText}
+          </IconContainer>
+        </PrevButton>
+      )}
     </NavStyle>
   );
 };
@@ -57,6 +48,7 @@ const Nav = ({
 Nav.defaultProps = {
   formEnds: false,
   nextText: "Volgende",
+  noMarginBottom: false,
   page: "undefined-page",
   prevText: "Vorige",
 };
@@ -64,6 +56,7 @@ Nav.defaultProps = {
 Nav.propTypes = {
   formEnds: PropTypes.bool,
   nextText: PropTypes.string,
+  noMarginBottom: PropTypes.bool,
   onGoToNext: PropTypes.func,
   onGoToPrev: PropTypes.func,
   page: PropTypes.string,

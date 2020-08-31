@@ -117,6 +117,7 @@ const LocationInput = ({
           errors={errors}
         />
         <Nav
+          noMarginBottom={!hasSTTR}
           onGoToPrev={() => {
             // @TODO: We need to give a warning or we need to store the checker data as well
             sessionContext.setSessionData([

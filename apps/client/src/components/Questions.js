@@ -67,8 +67,8 @@ const Questions = ({
     } else {
       // Go to Location Result, because the user was at the first question
       trackEvent({
-        category: name.toLowerCase(),
         action: actions.CLICK_INTERNAL_NAVIGATION,
+        category: name.toLowerCase(),
         name: `${eventNames.BACK} ${sections.LOCATION_RESULT}`,
       });
       setActiveState("locationResult");
@@ -179,11 +179,6 @@ const Questions = ({
     }
 
     // Set Contact Conclusion
-    trackEvent({
-      category: name.toLowerCase(),
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: `${eventNames.FORWARD} ${sections.CONTACT_CONCLUSION}`,
-    });
     setContactConclusion(checker.needContactExit(question));
 
     // Store all answers in the session context
