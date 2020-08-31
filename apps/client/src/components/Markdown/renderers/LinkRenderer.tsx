@@ -1,13 +1,20 @@
 import React from "react";
 
-import { actions } from "../../../config/matomo";
+import { actions, eventNames } from "../../../config/matomo";
 import Link from "../../Link";
 
 type Props = {
+  eventLocation: string;
   href: string;
+  linkText: string;
 };
 
-const LinkRenderer: React.FC<Props> = ({ children, href }) => {
+const LinkRenderer: React.FC<Props> = ({
+  children,
+  eventLocation,
+  href,
+  linkText,
+}) => {
   // Check if the link is using telephone protocol
   const url = new URL(href);
   const isPhoneLink = url.protocol === "tel:";
@@ -21,13 +28,15 @@ const LinkRenderer: React.FC<Props> = ({ children, href }) => {
   const rel = isPhoneLink ? "" : "noopener noreferrer";
 
   // Setup event props
-  const eventName = `Markdown${isPhoneLink ? " - Telefoonnummer" : ""}`;
+  const description = isPhoneLink ? eventNames.PHONE_NUMBER : linkText;
+  const eventName = `${description} - ${eventLocation}`;
+
   const action = isPhoneLink
     ? actions.CLICK_PHONE_LINK
     : actions.CLICK_EXTERNAL_NAVIGATION;
 
   return (
-    <Link variant="inline" {...{ href, target, rel, eventName, action }}>
+    <Link variant="inline" {...{ action, eventName, href, rel, target }}>
       {children}
     </Link>
   );

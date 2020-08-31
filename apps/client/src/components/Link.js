@@ -9,20 +9,23 @@ import withTracking from "../hoc/withTracking";
 const Link = ({
   action = actions.CLICK_EXTERNAL_NAVIGATION,
   children,
+  eventName,
   href,
   matomoTrackEvent,
   ...rest
 }) => {
   const checkerContext = useContext(CheckerContext);
 
-  // The default category is intro, it is not required, it can be overwritten.
   // The default action is CLICK_EXTERNAL_LINK, it can be overwritten.
-  const onClick = () =>
-    matomoTrackEvent({
-      category: checkerContext?.topic?.name,
-      action,
-      name: children.toLowerCase(),
-    });
+  const onClick = () => {
+    if (eventName && checkerContext.topic.name) {
+      matomoTrackEvent({
+        action,
+        category: checkerContext.topic.name,
+        name: eventName,
+      });
+    }
+  };
 
   return (
     <StyledComponentLink href={href} onClick={href && onClick} {...rest}>
@@ -32,12 +35,13 @@ const Link = ({
 };
 
 Link.propTypes = {
+  action: PropTypes.string,
   children: PropTypes.node.isRequired,
   category: PropTypes.string,
-  matomoTrackEvent: PropTypes.func,
-  action: PropTypes.string,
   href: PropTypes.string,
+  eventName: PropTypes.string,
   internal: PropTypes.bool,
+  matomoTrackEvent: PropTypes.func,
 };
 
 export default withTracking(Link);

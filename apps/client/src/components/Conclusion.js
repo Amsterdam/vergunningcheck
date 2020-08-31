@@ -11,6 +11,7 @@ import {
   PrintOnly,
 } from "../atoms";
 import { Olo } from "../config";
+import { sections } from "../config/matomo";
 import { actions, eventNames } from "../config/matomo";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
@@ -89,7 +90,7 @@ const Conclusion = ({ checker, topic: { category } }) => {
       {displayConclusions.map(({ title, description }) => (
         <Fragment key={title}>
           <Heading forwardedAs="h2">{title}</Heading>
-          <Markdown source={description} />
+          <Markdown source={description} eventLocation={sections.CONCLUSION} />
         </Fragment>
       ))}
 
