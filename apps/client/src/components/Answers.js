@@ -10,7 +10,7 @@ import { QUESTION_ANSWERS } from "../utils/test-ids";
 const Answers = ({
   className,
   answers,
-  currentAnswer,
+  userAnswer,
   errors,
   questionId,
   onChange,
@@ -32,7 +32,7 @@ const Answers = ({
                 value={formValue}
                 id={answerId}
                 onChange={(e) => onChange(e)}
-                checked={currentAnswer === answer.formValue}
+                checked={userAnswer === answer.label}
                 error={errors[questionId]}
               />
             </Label>
@@ -52,12 +52,12 @@ const StyledAnswers = styled(Answers)`
 `;
 
 Answers.propTypes = {
-  className: PropTypes.string,
-  currentAnswer: PropTypes.string,
-  errors: PropTypes.any,
   answers: PropTypes.array,
+  className: PropTypes.string,
+  errors: PropTypes.any,
   questionId: PropTypes.string,
   onChange: PropTypes.func,
+  userAnswer: PropTypes.string,
 };
 
 export default StyledAnswers;

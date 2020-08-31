@@ -1,4 +1,3 @@
-import { Heading } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -6,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { requiredFieldText } from "../config";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers from "./Answers";
+import ConclusionAlert from "./ConclusionAlert";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
@@ -24,27 +24,28 @@ export const booleanOptions = [
   },
 ];
 
-const hasKeys = (obj) =>
-  // convert to array, map, and then give the length
-  Object.entries(obj).map(([key, value]) => [key, value]).length;
-
 const Question = ({
   question: {
     id: questionId,
     type: questionType,
-    text: questionTitle,
     options: questionAnswers,
     answer: currentAnswer,
     description,
     longDescription,
   },
+  userAnswer,
   className,
-  headingAs,
-  onSubmit: onSubmitProp,
-  hideNavigation,
+  checker,
+  editQuestion,
+  setEditQuestion,
+  onGoToNext,
+  saveAnswer,
   showNext,
   showPrev,
   onGoToPrev,
+  questionIndex,
+  questionNeedsContactExit,
+  showConclusionAlert,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -53,7 +54,6 @@ const Question = ({
     value: answer,
   }));
   const answers = questionType === "string" ? listAnswers : booleanOptions;
-  let answer;
 
   useEffect(() => {
     if (questionId) {
@@ -84,41 +84,29 @@ const Question = ({
     currentAnswer,
     questionAnswers,
     setValue,
-  ]); // IE11 fix to put all dependencies here
+  ]);
 
   const handleChange = (e) => {
+    // On edit question, keep the current stack until the answer is changed.
+    if (editQuestion) {
+      checker.rewindTo(questionIndex);
+      setEditQuestion(false);
+    }
+
+    // Save the changed answer to the question.
+    saveAnswer(e.target.value);
+
+    // Set the value of the radio group to the selected value with react-hook-form's setValue
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
-
-  const onSubmit = (data) => {
-    // Is only triggered with validated form
-    // Check if data has a key that matches the questionId
-    window.scrollTo(0, 0);
-    if (
-      (onSubmitProp && !hasKeys(data)) ||
-      (hasKeys(data) && data[questionId])
-    ) {
-      onSubmitProp(data[questionId]);
-    }
-  };
-
-  if (questionAnswers) {
-    answer = currentAnswer;
-  } else {
-    const responseObj = booleanOptions.find((o) => o.value === currentAnswer);
-    answer = responseObj?.formValue;
-  }
 
   return (
     <Form
       className={className}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onGoToNext)}
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
-      {questionTitle && (
-        <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
-      )}
       {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
@@ -126,11 +114,18 @@ const Question = ({
         onChange={handleChange}
         errors={errors}
         answers={answers}
-        currentAnswer={answer}
+        userAnswer={userAnswer}
       />
-      {!hideNavigation && (
-        <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
+      {showConclusionAlert && (
+        <ConclusionAlert {...{ questionNeedsContactExit }} />
       )}
+      <Nav
+        {...{
+          onGoToPrev,
+          showNext,
+          showPrev,
+        }}
+      />
     </Form>
   );
 };
@@ -156,12 +151,14 @@ Question.propTypes = {
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
+  questionNeedsContactExit: PropTypes.bool,
+  showConclusionAlert: PropTypes.bool,
+  onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
-  hideNavigation: PropTypes.bool,
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
+  userAnswer: PropTypes.string,
 };
 
 export default Question;

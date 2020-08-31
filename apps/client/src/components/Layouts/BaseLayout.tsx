@@ -1,7 +1,8 @@
-import { Column, FormTitle, Row } from "@datapunt/asc-ui";
+import { Column, Row } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
+import { FormTitle, HideForPrint } from "../../atoms";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
@@ -25,7 +26,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
       </Helmet>
       <Header />
       <ContentContainer>
-        <Row>
+        <Row hasMargin={false}>
           <Column
             wrap
             span={{
@@ -42,7 +43,9 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             </Content>
           </Column>
         </Row>
+      </ContentContainer>
 
+      <HideForPrint>
         <HiddenDebugInfo title="Environment">
           <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
@@ -56,18 +59,19 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             <p>sttrFile: {topic.sttrFile}</p>
           </HiddenDebugInfo>
         )}
-      </ContentContainer>
-      <Footer />
-      <div
-        // comment to see app version and environment
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: `<!--
+
+        <Footer />
+        <div
+          // comment to see app version and environment
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `<!--
             Version: ${process.env.REACT_APP_VERSION}
             Environment: ${process.env.NODE_ENV}
             -->`,
-        }}
-      />
+          }}
+        />
+      </HideForPrint>
     </Container>
   );
 }

@@ -2,41 +2,40 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { List, ListItem } from "../atoms";
-import LocationIntro from "./shared/LocationIntro";
+import ContactSentence from "../components/ContactSentence";
+import { eventNames } from "../config/matomo";
+import { IntroHeading, IntroSituationDescription } from "./shared";
 
 export default () => (
   <>
-    <LocationIntro />
+    <IntroHeading />
 
-    <Paragraph gutterBottom={8}>
-      Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. Voor
-      deze situaties kunt u de vergunningcheck gebruiken:
-    </Paragraph>
     <List variant="bullet">
-      <ListItem>
-        U gaat een nieuw kozijn, deur, raam of paneel plaatsen.
-      </ListItem>
-      <ListItem>
-        U gaat een bestaand kozijn, deur, raam of paneel vervangen of
-        veranderen.
-      </ListItem>
+      <ListItem>het wijzigen van een monument.</ListItem>
+      <ListItem>het plaatsen van de kozijnen zelf.</ListItem>
     </List>
 
-    <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
-    <Paragraph gutterBottom={8}>
-      Voor deze situaties kunt u de vergunningcheck niet gebruiken:
+    <IntroSituationDescription />
+
+    <Paragraph>
+      Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt
+      hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.
     </Paragraph>
-    <List variant="bullet">
+
+    <Heading forwardedAs="h4">Uitzonderingen:</Heading>
+    <Paragraph gutterBottom={8}>
+      In de volgende situaties is het niet mogelijk de vergunningcheck te
+      gebruiken:
+    </Paragraph>
+    <List variant="bullet" style={{ marginBottom: 12 }}>
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
         Het deel van het gebouw waarin het kozijn komt, is zonder vergunning
         gebouwd.
       </ListItem>
     </List>
-    <Paragraph gutterBottom={8}>
-      Hebt u een vraag of twijfelt u? Bel dan de gemeente op{" "}
-      <a href="tel:14020">14 020</a>, maandag tot en met vrijdag van 08.00 uur
-      tot 18.00 uur.
+    <Paragraph>
+      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
     </Paragraph>
   </>
 );

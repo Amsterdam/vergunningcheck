@@ -58,7 +58,9 @@ class Rule {
     }
     const result = this.inputConditions.reduce((acc, curr, index) => {
       let res = acc;
-      if (acc === false) return false;
+      if (acc === false) {
+        return false;
+      }
       if (curr !== "-") {
         if (curr === values[index]) {
           res.push(index);
