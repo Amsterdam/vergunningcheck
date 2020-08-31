@@ -77,6 +77,7 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 - Run `npm run release` to merge `develop` with `release` and push it.
 - The application will be build by Jenkins and deployed to acceptance
 - Verify the `release` branch is on acceptance and it's the latest build
+- Consider running `npm run back-merge` if you made any changes
 - Communicate to stakeholders there is a new release testable on acceptance
 
 ### Create the release PR
