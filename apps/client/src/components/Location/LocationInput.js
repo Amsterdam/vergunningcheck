@@ -44,7 +44,7 @@ const LocationInput = ({
   }, [address, clearErrors, errorMessage, register, unregister]);
 
   const onSubmit = () => {
-    if (address.postalCode) {
+    if (address?.postalCode) {
       // Detect if user is submitting the same address as currenly stored
       if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
         // The address is the same, so go directly to the Location Result
