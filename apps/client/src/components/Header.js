@@ -9,7 +9,7 @@ import {
   StyledLogoWrapper,
 } from "./HeaderStyles";
 
-export const Header = ({ category = sections.INTRO, matomoTrackEvent }) => {
+export const Header = ({ category, matomoTrackEvent }) => {
   const handleClick = (href) => {
     if (category) {
       matomoTrackEvent({

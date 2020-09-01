@@ -17,7 +17,7 @@ const IntroPage = ({ topic, matomoTrackEvent }) => {
 
   const goToNext = () => {
     matomoTrackEvent({
-      category: topic.name,
+      category: topic.name.toLowerCase(),
       action: actions.CLICK_INTERNAL_NAVIGATION,
       name: `${eventNames.NEXT} - ${sections.INTRO}`,
     });

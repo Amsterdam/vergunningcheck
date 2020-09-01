@@ -21,7 +21,7 @@ const Link = ({
     if (eventName && checkerContext.topic.name) {
       matomoTrackEvent({
         action,
-        category: checkerContext.topic.name,
+        category: checkerContext.topic.name.toLowerCase(),
         name: eventName,
       });
     }
