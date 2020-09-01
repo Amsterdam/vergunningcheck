@@ -100,7 +100,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       trackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         category: name.toLowerCase(),
-        name: question.text.toLowerCase() - eventNames.EDIT_QUESTION,
+        name: `${question.text.toLowerCase()} - ${eventNames.EDIT_QUESTION}`,
       });
     } else {
       trackEvent({
