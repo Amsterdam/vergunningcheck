@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
-import { actions, eventNames } from "../config/matomo";
+import { actions, eventNames, sections } from "../config/matomo";
 import withTopic from "../hoc/withTopic";
 import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
@@ -19,7 +19,7 @@ const IntroPage = ({ topic, matomoTrackEvent }) => {
     matomoTrackEvent({
       category: topic.name,
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: `${eventNames.NEXT} - ${eventNames.INTRO}`,
+      name: `${eventNames.NEXT} - ${sections.INTRO}`,
     });
 
     history.push(geturl(routes.checker, topic));

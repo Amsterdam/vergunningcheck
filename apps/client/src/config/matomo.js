@@ -19,14 +19,12 @@ export const actions = {
   CLICK_EXTERNAL_NAVIGATION: "externe navigatie",
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "telefoonnummer",
-  CONCLUSION: "tonen conclusie",
   DOWNLOAD: "download",
   EDIT_QUESTION: "wijzig vraag",
 };
 
 export const sections = {
   CONCLUSION: "conclusie",
-  CONTACT_CONCLUSION: "contact conclusie",
   FOOTER: "footer",
   HEADER: "header",
   INTRO: "intro",
@@ -48,8 +46,6 @@ export const eventNames = {
   FORWARD: "naar de",
   IAMSTERDAM: "iamsterdam.com",
   INSTAGRAM: "instagram",
-  INTRO: "intro",
-  INTRO_EXTRAORDINARY: "extraordinary situation",
   LINKEDIN: "linkedin",
   LONG_DESCRIPTION: "lange toelichting",
   LOGO: "logo",
