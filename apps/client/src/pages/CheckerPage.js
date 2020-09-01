@@ -91,13 +91,13 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         );
     const question = checker.stack[questionIndex];
     // EventName is the question text in lowercase combined with the button that is pressed. (next, prev)
-    const eventName = `${question.text.toLowerCase()} - ${
+    const eventName = `${
       Number.isInteger(value)
         ? eventNames.EDIT_QUESTION
         : value === "prev"
         ? eventNames.PREV_QUESTION
         : eventNames.NEXT_QUESTION
-    }`;
+    } - ${question.text.toLowerCase()}`;
 
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,

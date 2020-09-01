@@ -19,7 +19,7 @@ const IntroPage = ({ matomoTrackEvent, topic }) => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       category: topic.name.toLowerCase(),
-      name: `${eventNames.NEXT} - ${sections.INTRO}`,
+      name: `${eventNames.FORWARD} ${sections.LOCATION_INPUT}`,
     });
 
     history.push(geturl(routes.checker, topic));
