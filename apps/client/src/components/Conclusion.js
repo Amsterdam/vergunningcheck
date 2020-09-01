@@ -1,5 +1,4 @@
 import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 
@@ -17,9 +16,7 @@ import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, topic: { name } }) => {
-  const { trackEvent } = useMatomo();
-
+const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
@@ -62,7 +59,7 @@ const Conclusion = ({ checker, topic: { name } }) => {
 
   const handlePermitButton = (e) => {
     e.preventDefault();
-    trackEvent({
+    matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       category: name.toLowerCase(),
       name: eventNames.APPLY_FOR_PERMIT,
@@ -72,7 +69,7 @@ const Conclusion = ({ checker, topic: { name } }) => {
   };
 
   const handlePrintButton = () => {
-    trackEvent({
+    matomoTrackEvent({
       action: actions.DOWNLOAD,
       category: name.toLowerCase(),
       name: eventNames.SAVE_CONCLUSION,

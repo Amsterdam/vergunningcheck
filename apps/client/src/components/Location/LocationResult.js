@@ -1,5 +1,4 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext } from "react";
 
 import { generateOloUrl } from "../../config";
@@ -13,11 +12,11 @@ import RegisterLookupSummary from "../RegisterLookupSummary";
 const LocationResult = ({
   isActive,
   isFinished,
+  matomoTrackEvent,
   setFinishedState,
   setActiveState,
   topic,
 }) => {
-  const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
   const { questionIndex } = sessionContext[topic.slug] || {};
@@ -38,14 +37,14 @@ const LocationResult = ({
 
       setFinishedState("locationResult", true);
       if (isFinished("questions")) {
-        trackEvent({
+        matomoTrackEvent({
           action: actions.CLICK_INTERNAL_NAVIGATION,
           category: topic.name.toLowerCase(),
           name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
         });
         setActiveState("conclusion");
       } else {
-        trackEvent({
+        matomoTrackEvent({
           action: actions.CLICK_INTERNAL_NAVIGATION,
           category: topic.name.toLowerCase(),
           name: `${eventNames.FORWARD} ${sections.QUESTIONS}`,
@@ -53,7 +52,7 @@ const LocationResult = ({
         setActiveState("questions");
       }
     } else {
-      trackEvent({
+      matomoTrackEvent({
         action: actions.CLICK_EXTERNAL_NAVIGATION,
         category: topic.name.toLowerCase(),
         name: eventNames.TO_OLO,
@@ -63,7 +62,7 @@ const LocationResult = ({
   };
 
   const onGoToPrev = () => {
-    trackEvent({
+    matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       category: topic.name.toLowerCase(),
       name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
@@ -77,6 +76,7 @@ const LocationResult = ({
       <RegisterLookupSummary
         address={address}
         displayZoningPlans={!hasSTTR}
+        matomoTrackEvent={matomoTrackEvent}
         setActiveState={setActiveState}
         topic={topic}
       />

@@ -10,7 +10,7 @@ import withTopic from "../hoc/withTopic";
 import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const IntroPage = ({ topic, matomoTrackEvent }) => {
+const IntroPage = ({ matomoTrackEvent, topic }) => {
   const history = useHistory();
   const { text, intro } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));

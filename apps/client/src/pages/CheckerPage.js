@@ -1,4 +1,3 @@
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
@@ -17,11 +16,11 @@ import {
 import { actions, eventNames } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
+import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const CheckerPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ checker, topic, resetChecker, matomoTrackEvent }) => {
   const sessionContext = useContext(SessionContext);
-  const { trackEvent } = useMatomo();
   const { name, slug, sttrFile, text } = topic;
 
   // OLO Flow does not have questionIndex
@@ -93,22 +92,18 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     const question = checker.stack[questionIndex];
     // EventName is the question text in lowercase combined with the button that is pressed. (next, prev)
     const eventName = `${question.text.toLowerCase()} - ${
-      value === "prev" ? eventNames.PREV_QUESTION : eventNames.NEXT_QUESTION
+      Number.isInteger(value)
+        ? eventNames.EDIT_QUESTION
+        : value === "prev"
+        ? eventNames.PREV_QUESTION
+        : eventNames.NEXT_QUESTION
     }`;
 
-    if (Number.isInteger(value)) {
-      trackEvent({
-        action: actions.CLICK_INTERNAL_NAVIGATION,
-        category: name.toLowerCase(),
-        name: `${question.text.toLowerCase()} - ${eventNames.EDIT_QUESTION}`,
-      });
-    } else {
-      trackEvent({
-        action: actions.CLICK_INTERNAL_NAVIGATION,
-        category: name.toLowerCase(),
-        name: eventName,
-      });
-    }
+    matomoTrackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      category: name.toLowerCase(),
+      name: eventName,
+    });
 
     sessionContext.setSessionData([
       slug,
@@ -166,6 +161,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               <LocationInput
                 {...{
                   isFinished,
+                  matomoTrackEvent,
                   resetChecker,
                   setActiveState,
                   setFinishedState,
@@ -180,6 +176,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
                   {...{
                     isActive,
                     isFinished,
+                    matomoTrackEvent,
                     setActiveState,
                     setFinishedState,
                     topic,
@@ -200,12 +197,13 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           <Questions
             {...{
               checker,
-              topic,
-              setFinishedState,
-              setActiveState,
-              isActive,
               goToQuestion,
+              isActive,
               isFinished,
+              matomoTrackEvent,
+              setActiveState,
+              setFinishedState,
+              topic,
             }}
           />
           <StepByStepItem
@@ -219,7 +217,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             // Overwrite the line between the Items
             style={{ marginTop: -1 }}
           >
-            {isFinished("questions") && <Conclusion {...{ topic, checker }} />}
+            {isFinished("questions") && (
+              <Conclusion {...{ checker, topic, matomoTrackEvent }} />
+            )}
           </StepByStepItem>
         </StepByStepNavigation>
       )}
@@ -230,7 +230,13 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           {/* @TODO: Refactor this, because of duplicate code */}
           {isActive("locationInput") && (
             <LocationInput
-              {...{ isFinished, setActiveState, setFinishedState, topic }}
+              {...{
+                matomoTrackEvent,
+                isFinished,
+                setActiveState,
+                setFinishedState,
+                topic,
+              }}
             />
           )}
           {isActive("locationResult") && (
@@ -238,6 +244,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               {...{
                 isActive,
                 isFinished,
+                matomoTrackEvent,
                 setActiveState,
                 setFinishedState,
                 topic,
@@ -251,4 +258,4 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     </Layout>
   );
 };
-export default withChecker(CheckerPage);
+export default withTracking(withChecker(CheckerPage));

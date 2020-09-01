@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { actions, eventNames, sections } from "../config/matomo";
+import { actions, eventNames } from "../config/matomo";
 import Link from "./Link";
 
 const Wrapper = styled.span`
@@ -19,7 +19,7 @@ export type Props = {
 
 export default ({
   darkBackground = false,
-  eventLocation = sections.FOOTER,
+  eventLocation,
   href = "tel:14020",
   link = true,
   text = "14 020",
@@ -28,8 +28,8 @@ export default ({
   <Wrapper>
     {link ? (
       <Link
-        eventName={`${eventNames.PHONE_NUMBER} - ${eventLocation}`}
         action={actions.CLICK_PHONE_LINK}
+        eventName={`${eventNames.PHONE_NUMBER} - ${eventLocation}`}
         {...{
           darkBackground,
           href,

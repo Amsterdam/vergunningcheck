@@ -1,4 +1,3 @@
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { actions, eventNames, sections } from "../config/matomo";
@@ -13,24 +12,24 @@ const Questions = ({
   topic: { name, slug },
   isActive,
   isFinished,
-  setFinishedState,
+  matomoTrackEvent,
   setActiveState,
+  setFinishedState,
 }) => {
   const sessionContext = useContext(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactConclusion, setContactConclusion] = useState(false);
   const { answers, questionIndex } = sessionContext[slug];
-  const { trackEvent } = useMatomo();
 
   const goToConclusion = useCallback(() => {
     setActiveState("conclusion");
     setFinishedState(["questions", "conclusion"], true);
-    trackEvent({
+    matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       category: name.toLowerCase(),
       name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
     });
-  }, [name, setActiveState, setFinishedState, trackEvent]);
+  }, [matomoTrackEvent, name, setActiveState, setFinishedState]);
 
   const onQuestionNext = useCallback(() => {
     const question = checker.stack[questionIndex];
