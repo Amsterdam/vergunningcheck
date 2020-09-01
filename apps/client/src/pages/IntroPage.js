@@ -13,7 +13,7 @@ const IntroPage = ({ topic, checker }) => {
 
   const { text, intro } = topic;
 
-  const introComponentPath = intro ? intro : "shared/DynamicSTTRIntro";
+  const introComponentPath = intro || "shared/DynamicSTTRIntro";
 
   const Intro = React.lazy(() => import(`../intros/${introComponentPath}`));
 

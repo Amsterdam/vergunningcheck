@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { Alert } from "../atoms";
 import Layout from "../components/Layouts/DefaultLayout";
-import { isProduction, topics } from "../config";
+import { isProduction } from "../config";
 import { geturl, routes } from "../routes";
+import topicsJson from "../topics.json";
 
 const DevHomePage = () => {
-  const [config, setConfig] = useState([]);
-
   if (isProduction) {
     localStorage.setItem("doNotTrack", "true");
   }
-
-  useEffect(() => {
-    async function fetchData() {
-      const topicsRequest = await fetch(
-        `${window.location.origin}/topics.json`
-      );
-      const topics = await topicsRequest.json();
-      setConfig(topics);
-    }
-    fetchData();
-  }, []);
 
   return (
     <Layout heading="Welcome to CHAPPIE 2.0">
@@ -52,7 +40,7 @@ const DevHomePage = () => {
           </td>
         </tr>
         <tbody>
-          {topics
+          {topicsJson
             .filter(({ hasSTTR }) => !hasSTTR) // only show olo / redir-olo topics
             .map(({ slug, name, redirectToOlo }) => (
               <tr key={slug}>
@@ -64,9 +52,9 @@ const DevHomePage = () => {
                 <td>0</td>
               </tr>
             ))}
-          {config.map((apiConfig) => {
+          {topicsJson.map((apiConfig) => {
             return apiConfig.map((apiTopic) => {
-              const sttrTopic = topics.find(
+              const sttrTopic = topicsJson.find(
                 (topic) => topic.slug === apiTopic.slug
               );
 

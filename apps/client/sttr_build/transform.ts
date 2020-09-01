@@ -22,6 +22,9 @@ if (!argv.dir) {
   Deno.exit();
 }
 
+// get __dirname (https://stackoverflow.com/questions/61829367/node-js-dirname-filename-equivalent-in-deno)
+const __dirname = new URL(".", import.meta.url).pathname;
+const topicsJsonPath = join(__dirname, "..", "src", "topics.json");
 const baseDir = join(Deno.cwd(), argv.dir);
 
 const { apis }: { apis: APIConfig[] } = await import(
@@ -116,4 +119,4 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
 });
 
 const permitsJsons = await Promise.all(apisMap);
-await writeJson(join(baseDir, "topics.json"), permitsJsons);
+await writeJson(topicsJsonPath, permitsJsons);
