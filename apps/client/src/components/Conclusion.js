@@ -87,7 +87,7 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
       {displayConclusions.map(({ title, description }) => (
         <Fragment key={title}>
           <Heading forwardedAs="h2">{title}</Heading>
-          <Markdown source={description} eventLocation={sections.CONCLUSION} />
+          <Markdown eventLocation={sections.CONCLUSION} source={description} />
         </Fragment>
       ))}
 
@@ -107,9 +107,9 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
         {!isMobile && (
           <ComponentWrapper>
             <PrintButton
-              type="button"
               color="primary"
               onClick={handlePrintButton}
+              type="button"
             >
               Conclusie opslaan
             </PrintButton>

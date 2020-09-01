@@ -19,7 +19,7 @@ import withChecker from "../hoc/withChecker";
 import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const CheckerPage = ({ checker, topic, resetChecker, matomoTrackEvent }) => {
+const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { name, slug, sttrFile, text } = topic;
 
@@ -254,7 +254,7 @@ const CheckerPage = ({ checker, topic, resetChecker, matomoTrackEvent }) => {
         </>
       )}
 
-      <DebugDecisionTable {...{ topic, checker }} />
+      <DebugDecisionTable {...{ checker, topic }} />
     </Layout>
   );
 };

@@ -45,9 +45,9 @@ const LocationInput = ({
   const onSubmit = () => {
     if (address.postalCode) {
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.CLICK_INTERNAL_NAVIGATION,
         category: name.toLowerCase(),
-        name: address.postalCode.substring(0, 4),
+        name: `${eventNames.FORWARD} ${sections.LOCATION_RESULT}`,
       });
 
       // Detect if user is submitting the same address as currenly stored
@@ -56,6 +56,12 @@ const LocationInput = ({
         setActiveState("locationResult");
         return;
       }
+
+      matomoTrackEvent({
+        action: actions.SUBMIT_LOCATION,
+        category: name.toLowerCase(),
+        name: address.postalCode.substring(0, 4),
+      });
 
       // Load given answers from sessionContext
       let answers = sessionContext[slug]?.answers;

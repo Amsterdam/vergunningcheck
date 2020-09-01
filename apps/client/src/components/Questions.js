@@ -9,12 +9,12 @@ import { StepByStepItem } from "./StepByStepNavigation";
 const Questions = ({
   checker,
   goToQuestion,
-  topic: { name, slug },
   isActive,
   isFinished,
   matomoTrackEvent,
   setActiveState,
   setFinishedState,
+  topic: { name, slug },
 }) => {
   const sessionContext = useContext(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);

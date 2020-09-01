@@ -4,7 +4,7 @@ import React from "react";
 import { trackingEnabled } from "../config/matomo";
 
 const withTracking = (Component) => ({ ...props }) => {
-  const { trackPageView, trackEvent } = useMatomo();
+  const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
     if (trackingEnabled()) {
@@ -12,7 +12,7 @@ const withTracking = (Component) => ({ ...props }) => {
     }
   };
 
-  const matomoTrackEvent = ({ category, action, name }) => {
+  const matomoTrackEvent = ({ action, category, name }) => {
     if (trackingEnabled()) {
       trackEvent({
         action,

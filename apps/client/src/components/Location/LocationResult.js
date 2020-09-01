@@ -36,19 +36,20 @@ const LocationResult = ({
       }
 
       setFinishedState("locationResult", true);
+
+      const eventSection = isFinished("questions")
+        ? sections.CONCLUSION
+        : sections.QUESTIONS;
+
+      matomoTrackEvent({
+        action: actions.CLICK_INTERNAL_NAVIGATION,
+        category: topic.name.toLowerCase(),
+        name: `${eventNames.FORWARD} ${eventSection}`,
+      });
+
       if (isFinished("questions")) {
-        matomoTrackEvent({
-          action: actions.CLICK_INTERNAL_NAVIGATION,
-          category: topic.name.toLowerCase(),
-          name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
-        });
         setActiveState("conclusion");
       } else {
-        matomoTrackEvent({
-          action: actions.CLICK_INTERNAL_NAVIGATION,
-          category: topic.name.toLowerCase(),
-          name: `${eventNames.FORWARD} ${sections.QUESTIONS}`,
-        });
         setActiveState("questions");
       }
     } else {
@@ -74,11 +75,13 @@ const LocationResult = ({
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
       {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        address={address}
         displayZoningPlans={!hasSTTR}
-        matomoTrackEvent={matomoTrackEvent}
-        setActiveState={setActiveState}
-        topic={topic}
+        {...{
+          address,
+          matomoTrackEvent,
+          setActiveState,
+          topic,
+        }}
       />
       {!hasSTTR && (
         <Paragraph gutterBottom={0}>

@@ -28,8 +28,8 @@ export const sections = {
   FOOTER: "footer",
   HEADER: "header",
   INTRO: "intro",
-  LOCATION_RESULT: "locatie resultaat",
   LOCATION_INPUT: "locatie invoer",
+  LOCATION_RESULT: "locatie resultaat",
   QUESTIONS: "vragen",
 };
 

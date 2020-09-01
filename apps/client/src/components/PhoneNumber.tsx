@@ -10,7 +10,7 @@ const Wrapper = styled.span`
 
 export type Props = {
   darkBackground?: boolean;
-  eventLocation?: string;
+  eventLocation: string;
   href?: string;
   link?: boolean;
   text?: string;
