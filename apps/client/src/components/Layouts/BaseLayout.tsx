@@ -16,7 +16,7 @@ export interface BaseLayoutProps {
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const topic: Topic = useTopic();
+  const topic = useTopic() as Topic;
   const title = heading || topic?.text?.heading || null;
 
   return (
