@@ -1,0 +1,1501 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/"
+
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel"
+	xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel"
+	xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" 
+	xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content"
+xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001001104470000" 
+namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001001104470000"
+exporter="DMN Modeler" exporterVersion="6.2.11.1" id="_8f634e90-a421-4a2a-b852-f9c9b11cb584"
+name="Conclusie Bouwen Dakkapel">
+	<dmn:extensionElements>
+		<inter:regelgroepen>
+			<inter:regelgroep id="groep1">
+				<inter:naam>Algemene vragen</inter:naam>
+				<inter:prioriteit>1</inter:prioriteit>
+			</inter:regelgroep>
+			<inter:regelgroep id="groep2">
+				<inter:naam>Afmetingen</inter:naam>
+				<inter:prioriteit>2</inter:prioriteit>
+			</inter:regelgroep>
+			<inter:regelgroep id="groep3">
+				<inter:naam>Extra vragen</inter:naam>
+				<inter:prioriteit>3</inter:prioriteit>
+			</inter:regelgroep>
+		</inter:regelgroepen>
+		<uitv:uitvoeringsregels>
+			<uitv:uitvoeringsregel id="UitvId0001">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>10</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Is er sprake van een monument (gemeentelijk / provinciaal / rijk)?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0002">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>20</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Is hoofdgebouw gelegen in Rijks Beschermd Stadsgezicht?</uitv:vraagTekst>
+				</uitv:vraag>
+				<content:uitvoeringsregelToelichting>
+					<content:toelichting>!video(https://www.youtube.com/watch?v=lKPLvCw2CWc, "Voorbeeld van een Rijks Beschermd Stadsgezicht)</content:toelichting>
+					<content:belangrijk>false</content:belangrijk>
+				</content:uitvoeringsregelToelichting>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0003">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>30</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Betreft het plaatsing op een woonwagen?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0004">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>40</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Betreft het plaatsing op een tijdelijk bouwwerk?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0005">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>50</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Betreft het plaatsing op een recreatief nachtverblijf voor één huishouden?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0006">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>60</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Betreft het plaatsing op een dakvlak gekeerd naar openbaar toegankelijk gebied?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0007">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>70</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Is dakkapel voorzien van een plat dak?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0011">
+				<uitv:regelgroepRef href="#groep2"/>
+				<inter:prioriteit>210</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>number</uitv:gegevensType>
+					<uitv:vraagTekst>Wat is de hoogte gemeten vanaf de voet van de dakkapel (in cm)?</uitv:vraagTekst>
+				</uitv:vraag>
+				<content:uitvoeringsregelToelichting>
+					<content:toelichting>In deze afbeelding kunt u zien wat precies bedoeld wordt met de hoogte ![dakkapel_afmetingen-300x191.jpg](https://www.imgur.com/Dc0RrEj.png "Meetvoorbeeld")</content:toelichting>
+				</content:uitvoeringsregelToelichting>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0012">
+				<uitv:regelgroepRef href="#groep2"/>
+				<inter:prioriteit>220</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>number</uitv:gegevensType>
+					<uitv:vraagTekst>Hoever ligt de onderzijde boven de dakvoet (in cm)?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0013">
+				<uitv:regelgroepRef href="#groep2"/>
+				<inter:prioriteit>230</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>number</uitv:gegevensType>
+					<uitv:vraagTekst>Hoever ligt de bovenzijde onder de daknok (in cm)?</uitv:vraagTekst>
+				</uitv:vraag>
+				<content:uitvoeringsregelToelichting>
+					<content:toelichting>Bepaal de afstand tussen de _bovenzijde_ van de __dakkapel__ en de _nok_ van het dak in *centimeters*</content:toelichting>
+					<content:langeToelichting>De verticaal gemeten afstand tussen de plaats waar de __dakkapel__ in het dakvlak aangrijpt en de bovenzijde (_nok_) van het dakvlak boven de __dakkapel__</content:langeToelichting>
+					<content:belangrijk>false</content:belangrijk>
+				</content:uitvoeringsregelToelichting>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0014">
+				<uitv:regelgroepRef href="#groep2"/>
+				<inter:prioriteit>240</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>number</uitv:gegevensType>
+					<uitv:vraagTekst>Hoever liggen de zijkanten van de dakkapel van de zijkanten van het dakvlak (in cm)?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0015">
+				<uitv:regelgroepRef href="#groep2"/>
+				<inter:prioriteit>250</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>list</uitv:gegevensType>
+					<uitv:vraagTekst>Op welk dakvlak wordt de dakkapel geplaatst?</uitv:vraagTekst>
+					<uitv:opties>
+						<uitv:optieType>enkelAntwoord</uitv:optieType>
+						<uitv:optie>
+							<uitv:sequenceId>1</uitv:sequenceId>
+							<uitv:optieText>Voorkant</uitv:optieText>
+							<content:uitvoeringsregelToelichting>
+								<content:toelichting>Als de dakkapel aan de kant van het dak ligt waar de voordeur van het huis zich bevindt, kies dan voor de optie Voorkant</content:toelichting>
+							</content:uitvoeringsregelToelichting>
+						</uitv:optie>
+						<uitv:optie>
+							<uitv:sequenceId>2</uitv:sequenceId>
+							<uitv:optieText>Zijkant</uitv:optieText>
+						</uitv:optie>
+						<uitv:optie>
+							<uitv:sequenceId>3</uitv:sequenceId>
+							<uitv:optieText>Achterkant</uitv:optieText>
+						</uitv:optie>
+					</uitv:opties>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0021">
+				<uitv:regelgroepRef href="#groep3"/>
+				<inter:prioriteit>310</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Gelden er in uw gemeente welstandsciteria voor dakkapellen?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0031">
+				<uitv:regelgroepRef href="#groep3"/>
+				<inter:prioriteit>340</inter:prioriteit>
+				<uitv:vasteWaardeVoorbehoud>
+					<uitv:vasteWaarde>
+						<uitv:waardeVraag>Nestelt er een beschermde vogel?</uitv:waardeVraag>
+						<uitv:waarde>false</uitv:waarde>
+						<uitv:gegevensType>boolean</uitv:gegevensType>
+					</uitv:vasteWaarde>
+					<uitv:tekstVoorbehoud>Het is toegestaan een dakkapel te plaatsen onder het voorbehoud dat er geen beschermde vogel nestelt. Klik [hier](https://minez.nederlandsesoorten.nl/content/rode-lijsten-soort-van-rode-lijst-vogels) voor een lijst met beschermde vogels.</uitv:tekstVoorbehoud>
+				</uitv:vasteWaardeVoorbehoud>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0032">
+				<uitv:regelgroepRef href="#groep3"/>
+				<inter:prioriteit>350</inter:prioriteit>
+				<uitv:vasteWaarde>
+					<uitv:waardeVraag>Is het gebouw illegaal?</uitv:waardeVraag>
+					<uitv:waarde>false</uitv:waarde>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+				</uitv:vasteWaarde>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0034">
+				<uitv:regelgroepRef href="#groep3"/>
+				<uitv:geoVerwijzing>
+					<uitv:locatie identificatie="nl.imow-gm0345.gebied.gemeentegrens"/>
+					<uitv:vraagTekst>Ligt het pand binnen de gemeentegrens van Veenendaal?</uitv:vraagTekst>
+				</uitv:geoVerwijzing>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0040">
+				<uitv:regelgroepRef href="#groep3"/>
+				<inter:prioriteit>310</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Komt de dakkapel op een nieuw te bouwen pand?</uitv:vraagTekst>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+		</uitv:uitvoeringsregels>
+	</dmn:extensionElements>
+	<dmn:itemDefinition isCollection="false" label="tConversiedakvlak" name="tConversiedakvlak">
+		<dmn:itemComponent id="_92c4980d-94d8-431c-b448-9059e9fd75ab" isCollection="false" name="Voordakvlak">
+			<dmn:typeRef>boolean</dmn:typeRef>
+		</dmn:itemComponent>
+		<dmn:itemComponent id="_56f3a9c3-734c-43ff-880d-d65bcf2073d8" isCollection="false" name="Zijdakvlak">
+			<dmn:typeRef>boolean</dmn:typeRef>
+		</dmn:itemComponent>
+		<dmn:itemComponent id="_da75db9d-24f4-48ca-a1b6-b449cfd6e307" isCollection="false" name="Achterdakvlak">
+			<dmn:typeRef>boolean</dmn:typeRef>
+		</dmn:itemComponent>
+	</dmn:itemDefinition>
+	<dmn:decision id="_c295d3da-d955-4f30-b88f-e66f26e2e5e0" name="Conclusie Dakkapel">
+		<dmn:extensionElements>
+			<bedr:functioneleStructuurRef href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001001104470000/id/concept/ConclusieBouwenDakkapel"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_c7a89191-1453-48f3-8604-d2e03965edb6" name="Conclusie Dakkapel" typeRef="string"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_1824eb38-2a93-46e7-8379-ba675ca6b7b6"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_49d25b76-404a-4805-b7c3-aa2f9f63f328"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_1d1faee8-997e-48dd-8702-de8c24eb8aac"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_b22d3c74-d0f1-4a5e-8021-435a38d96a88"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_bab67fff-e260-45c8-9c98-c179be5c122d"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_878c4c6d-4c14-4d8b-b212-cb622fbd8e94"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_e2f273bf-38cf-4e6c-bdcf-9d95907a2124"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_da0ad2b2-9e69-4989-96c8-6285a83ccbc2"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="COLLECT" id="_4a6c7cb0-312e-4d6b-878c-4fcd800adccf" outputLabel="Conclusie Dakkapel" typeRef="string">
+			<dmn:input id="_d9353f49-28d9-4482-8add-b30504adde74">
+				<dmn:inputExpression typeRef="string">
+					<dmn:text>Locatie binnen gemeentegrens</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_4cf76ce0-9130-473f-a283-0b62504c1126">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Plat dak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_9d665c94-7c1b-4b57-af89-19a885c5892c">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Monument</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_7bc67c90-b9c8-4ff6-b916-81476f0cc584">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Fysieke kenmerken vergunningvrije dakkapel</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_bd704530-16aa-403b-8c50-4712cbe01daf">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Bijzonder gebouw</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_096147fd-9e1e-413f-9969-2c91b6879884">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Vergunningvrij dakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_8f2cad91-6e2f-41f6-ba71-ba8b448e591c">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Nieuwbouw</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_78275230-ce65-446b-8d06-13ccf6642c3e">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Beschermde vogel broedt</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_5207a19f-5ffb-4fc8-9ebf-ac8918581844">
+				<dmn:outputValues>
+					<dmn:text>"Vergunningplicht","Toestemmingsvrij","Verbod","Meldingsplicht","Informatieplicht","NeemContactOpMet","NietVanToepassing"</dmn:text>
+				</dmn:outputValues>
+			</dmn:output>
+			<dmn:rule id="_dcd7559a-b486-4bd9-97a1-005ba2fbdf41">
+				<dmn:inputEntry id="_f11338b0-e155-484b-a8b0-cf4e60857e38">
+					<dmn:text>"nee"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_88efe06f-2e84-47aa-b721-efd696f6641b">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_b890ca3c-61b3-4c62-9d58-f256e6e54e99">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_ef7f5d96-8ecc-47e9-9996-29ffd8be97f2">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c9f45c3d-a1bb-4630-ac5e-8f37de0e3847">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_cfbbd178-12b9-4a5a-9820-85c72f46a03e">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_cc66d82e-4f42-400e-b3ad-60a382bd5db9">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_2f6fb67f-344d-471d-b18a-b7b439680a52">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_78595fe5-991a-44d4-87b5-e34c441cbf9f">
+					<dmn:extensionElements>
+						<content:conclusieToelichting>
+							<content:toelichting>!video(https://www.vimeo.com/326809320, "Voorbeeld veilig paatsen van een dakkapel")</content:toelichting>
+						</content:conclusieToelichting>
+					</dmn:extensionElements>
+					<dmn:text>"Toestemmingsvrij"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text>"/akn/nl/act/gm0503/2019/reg456_gm0503_v1_chp_1_art002"</dmn:text>  
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_c19d3695-8f5b-4a18-9e1c-9f53aa9eea75">
+				<dmn:inputEntry id="_a0912189-ab94-4713-b946-48caaa467aec">
+					<dmn:text>"deels"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_b532acd9-33a0-4efe-bafa-deb934954f63">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_93b0be2b-f8cc-4892-9cf1-ededdf3c4772">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_84a055e7-cfc2-45a9-a8a4-acbd818b77e9">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_846264b2-ebcf-4e8a-8047-bc72869495ed">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_a5fbb4b1-e117-4e87-ab1d-0171d105ff49">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_ae7cb072-da28-4404-84a9-3087d5d3df96">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_46b56037-62b8-4400-bb15-41f478e11bfd">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_64f70240-4f40-4b31-8c5e-aff1977a8893">
+					<dmn:text>"Informatieplicht"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+
+			<dmn:rule id="_1c3db938-f727-4f2c-aa4e-511f49e9f9b5">
+				<dmn:inputEntry id="_15564e2b-68d9-40c5-ae04-3a6c33346723">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c89d9da7-176e-46ad-8aaf-ea02b9d50457">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_abddf8da-1ba0-427d-96c7-aafaa128f685">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0465fbaf-3b12-486a-8168-ff81031d0d2b">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_a46f1884-d2fc-488d-a181-75cb8d90920d">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_4ac95b91-b84e-49a9-9534-880706972bcd">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_14eebe19-37cd-4c6d-a76e-71f700e6e022">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_beb3dc73-f8ce-46b8-92ec-5752f71a231f">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_ade30d33-a04d-48aa-a3b1-79ebc6f2eda1">
+					<dmn:text>"NietVanToepassing"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_49fa4d74-c31b-4175-b705-a54782827ee9">
+				<dmn:inputEntry id="_1aac5808-905b-4bc0-a1bd-1c2e7235ad8d">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_5122dffa-f267-4626-8c78-6dbf71d5c5a7">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_abdd8852-0650-472d-ab71-dd577b41a05b">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_7e138f99-2c67-4623-9a01-9f88958d5aa4">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9ccf4c27-27ba-460a-ab11-4055740fad16">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9653d201-7af9-4428-a819-0ce071e58a44">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_05ba2802-9acb-49ac-b182-c0eb11dcae09">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_d9742928-ef6b-4386-aa59-4c3c5c9ca981">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_517e912b-3b68-4086-853b-25a6b98de5ae">
+					<dmn:extensionElements>
+						<content:conclusieToelichting>
+							<content:toelichting>
+								<![CDATA[Neem contact op met het gemeentelijk informatiepunt via telefoonnummer 038 49 83 138, bereikbaar tussen 08:30 en 17:30. In het keuzemenu, kies voor optie 5: het plaatsen van een dakkapel op een monument.]]>
+							</content:toelichting>
+						</content:conclusieToelichting>
+					</dmn:extensionElements>
+					<dmn:text>"NeemContactOpMet"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_5e11eff9-d18b-46cd-a40d-a2f8b4659c27">
+				<dmn:inputEntry id="_dafda914-4988-407d-ad81-3321db33128c">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_3aef13a4-d943-4a97-ac5d-6e563abc6bec">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_50fb83ba-95e5-49e2-a87f-3a2c1f628a66">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c4132233-2318-4b7d-8025-df2f449cc6e1">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_246b975f-c7fa-4847-9029-ee5bcd983f5a">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_21eea7ec-5136-4337-aca4-147d2e599923">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_b31fcf15-844a-4941-89c5-97e07e4058b1">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_e9814db6-5e9b-435e-95f7-bc8b04f87a0a">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_1b3d3196-8445-482a-9442-d8f750b3acf2">
+					<dmn:text>"Meldingsplicht"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_42ce6009-74ec-49bf-a482-cfa917e4aeff">
+				<dmn:inputEntry id="_7c72add1-5b05-4c2c-be3c-490500a7a932">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_d6461b1c-98c7-463d-a589-65ec2d68a2e0">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_022fa108-db65-48c7-9cd2-06a3e23b99be">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_5a9a0fae-7966-4ab0-b501-c61b1f86901d">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_f4bfcb00-5230-4082-8a0f-7c81df7f9592">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_f0dc577a-728d-4b8b-aa58-14e2a5bdffe3">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_1b3ea5b3-b2c7-40a4-b5aa-2c310dd7be31">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_e8b0b11d-4376-4672-a959-f2745bbac379">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_343ab9aa-028a-43ed-970e-f9426f6f45a4">
+					<dmn:text>"Vergunningplicht"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_6f87b0fd-f381-4378-8f07-98dd2509465e">
+				<dmn:inputEntry id="_30f814ad-6aa2-417e-aa06-aece02d1b7a1">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9779547a-81d9-403b-b26f-db259120229b">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c03d2247-ad99-49cb-ae87-77dab874007c">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_36b592e7-8baf-47d3-9e35-a1860d1b26ad">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_8e006b0c-263e-4423-828d-6da5d1cd8939">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_7ae2f903-ded5-4f73-aaf7-e129c69ffb7c">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_3c53cc53-265d-434b-9fb8-cc8fe58ce5d3">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_f672005d-b428-4c81-b5f3-25f75c40ba01">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_4efd3d6f-5e29-43c2-bbe2-dbdd7b66415b">
+					<dmn:text>"Vergunningplicht"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_28b6a06d-dc89-4da3-99c2-4402b6fa442b">
+				<dmn:inputEntry id="_1bbaf437-c356-46fa-9e86-b98a64a53f99">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_38174b21-e600-4143-8de8-5b606748d5fe">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_18230a38-8c2a-4ddf-aa5a-d18e95a3b701">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0cd04617-ea65-4429-ac7b-3af9606c6661">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_e9a6cbc0-cb8e-494f-bf01-93e1c0c36cc2">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0d6900fb-570c-4fb4-9b2b-4b34278b24a4">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_98ce6289-0b0a-48a5-ba4c-344106bf984c">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9472ecbe-9eec-4501-bffc-7c26783049c0">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_bcc74191-b146-48da-9899-52f9ea49b111">
+					<dmn:text>"Informatieplicht"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_28b6a06d-dc89-4da3-99c2-4402b6fa442c">
+				<dmn:inputEntry id="_1bbaf437-c356-46fa-9e86-b98a64a53f97">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_38174b21-e600-4143-8de8-5b606748d5he">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_18230a38-8c2a-4ddf-aa5a-d18e95a3b801">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0cd04617-ea65-4429-ac7b-3af9606c6761">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_e9a6cbc0-cb8e-494f-bf01-93e1c0c35cc2">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0d6900fb-570c-4fb4-9b2b-4b34278b14a4">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_98ce6289-0b0a-48a5-ba4c-344106bf084c">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9472ecbe-9eec-4501-bffc-7c26783069c0">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_bcc74191-b146-48da-9899-52f9ea49b121">
+					<dmn:text>"Toestemmingsvrij"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_b322aca8-cb63-4663-8fe8-d99e4fcf113d">
+				<dmn:inputEntry id="_e577aaa7-d856-4835-84fc-7096538dc974">
+					<dmn:text>"ja"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_46785248-ff89-4fbb-bc3a-47e71c53c1ea">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_88c08d1e-83fe-4d31-9bf2-6a077634af1b">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_cbe9486a-fd8b-4893-9b37-135ed4d57aa2">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_750f9be4-03fe-4062-bac0-09d5767cf099">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_78fe9dd4-9cd8-414f-9bba-e6ce7c72bff6">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_7acde460-5d35-4a10-9ea0-1a5377d516bf">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_b4ee071e-5cde-4cf5-9ea7-b66c6b15ea2d">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_856e82d1-7d03-4636-b08d-8fd2531dac91">
+					<dmn:text>"Verbod"</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:decision id="_49d25b76-404a-4805-b7c3-aa2f9f63f328" name="Vergunningvrij dakvlak">
+		<dmn:variable id="_1f33bf07-88ef-4181-892c-d6de10beaa2c" name="Vergunningvrij dakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_b5593f56-ecda-4318-a02b-c58f6a121fdc"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_11bd61cb-7df4-4516-b40a-2e86dbccbc15"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_c8b36906-e016-4451-bfb3-d3426f3cb335"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_d7ce0977-284a-4b23-b6f7-ba6f28c9a612" outputLabel="Vergunningvrij dakvlak" typeRef="boolean">
+			<dmn:input id="_9edf9429-f53f-437e-896a-d06acd236972">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Vergunningvrij zijdakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_ad81ce03-5eae-4379-9992-0003854075b9">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Vergunningvrij achterdakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_1aec0eaa-13ae-4b04-ac91-a42762c46f6c">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Vergunningvrij voordakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_f464ce43-0596-4b4c-9876-67f41993ff22"/>
+			<dmn:rule id="_58992547-0eee-40ba-8d79-f5337ac5876f">
+				<dmn:inputEntry id="_0535ccaa-2307-452e-a0a4-4a68d90f3c5b">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_30788cad-6ee9-4845-8c51-bccab393b467">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_75e5a33d-4ee6-46ba-9655-4d08f86af46f">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_906767bf-6708-498e-a394-18d841ae3664">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_d491e746-e37d-4df2-a480-49c757e18b0c">
+				<dmn:inputEntry id="_d40dd4aa-3e94-4428-be96-d40512b6317c">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c974f41d-a2cc-4c03-bb98-5a99da99dd7f">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_f4d50b48-3105-45c6-ab30-d3ed36f265b0">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_bc2785b0-118d-4c8e-ac35-f1174273bca6">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_a8848015-d1e7-48b7-90a9-8224b8521956">
+				<dmn:inputEntry id="_7703466d-86b8-4884-80f1-c56039f27785">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_94007e0b-dc85-41ec-87ed-d4f3cc86aabc">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_935c6aae-8618-42d4-85dd-5d5cf4d945a2">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_ed71f44c-8061-4598-9954-c30e047929eb">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_faa1769f-f461-4bf7-9047-720beee7c217">
+				<dmn:inputEntry id="_2c403e6e-ef9f-481c-9eee-fe45583f531d">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_5391556e-cd75-43c3-acc2-2f1c5471be51">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_12c41fc4-0949-4f4f-a1fa-ff673d0aac26">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_667944f5-83d3-48f2-8860-e1495f94d78a">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:decision id="_1d1faee8-997e-48dd-8702-de8c24eb8aac" name="Fysieke kenmerken vergunningvrije dakkapel">
+		<dmn:variable id="_98dc7a9a-7a24-449c-8652-1653ca7baae8" name="Fysieke kenmerken vergunningvrije dakkapel" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_5320088c-e4ab-48f0-bb0a-eac7ff2e7dda"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_5540a522-31b5-49bd-a4c0-c3dce62504a1"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_a426114e-4b51-4a45-bbdd-ca959c7866ed"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_83b6a193-abf4-44ff-81b5-ce90ed6a834c"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_65829640-9695-421a-ace1-dc566f98ec7f" outputLabel="Fysieke kenmerken vergunningvrije dakkapel" typeRef="boolean">
+			<dmn:input id="_eb8f0530-c7db-4527-a360-e2515acdbc3a">
+				<dmn:inputExpression typeRef="number">
+					<dmn:text>Hoogte dakkapel</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_5e70842e-93b6-44d2-877e-ca720787e0e5">
+				<dmn:inputExpression typeRef="number">
+					<dmn:text>Afstand nok</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_95b53e5c-1d60-46b1-9ef3-9aafccc2a1be">
+				<dmn:inputExpression typeRef="number">
+					<dmn:text>Afstand dakvoet</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_e300a7dd-23ea-48d8-bfc3-f8d6dd9ef97c">
+				<dmn:inputExpression typeRef="number">
+					<dmn:text>Afstand zijkanten</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_85b24176-47a4-46ca-84a2-694e548304c4"/>
+			<dmn:rule id="_e7cf1100-19d8-47ca-b0d1-1216c47108c2">
+				<dmn:inputEntry id="_cd11cf6a-80f9-4e6e-ae32-b52eb4f300c8">
+					<dmn:text>&gt; 175</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9a988098-12b2-434d-92f7-fd4d0b3409e5">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_212fde57-d13a-4e35-bfc6-11f16baed994">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_fb675df6-d7f6-43a1-a3a5-b7cb6e6c05e2">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_10f78788-b085-4758-b512-114736a69f99">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_80f979e1-f896-4170-867a-b333192957f7">
+				<dmn:inputEntry id="_5237b998-bc42-4e35-9656-0392b6fe7835">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_29cbd7a6-0df8-4858-b11d-d5e37b878560">
+					<dmn:text>&lt;= 50</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_776f0140-c050-4370-aa22-0e74e2c5684c">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0bcb2c93-7ba0-44fc-8996-c0470143243a">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_7332689c-28c4-4c2e-97a0-cf799a110e48">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_eba27466-1b3e-4f0a-b0a7-fd23bd1ef234">
+				<dmn:inputEntry id="_438d0784-63c6-4049-b670-64881458e00f">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_be6ea0cc-0360-4cc1-a438-6815646cca5b">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c5e9310b-f732-4389-8e13-a3226a2f53d3">
+					<dmn:text>&lt;= 50</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_de12b4d6-344d-4197-8a16-38cff1db9291">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_6c362762-225b-483a-b89c-61b5638ac719">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_2529c2f0-6735-4e1d-ab71-88278043a04d">
+				<dmn:inputEntry id="_14b39ddf-c4b4-48dd-bcd9-9cf9a2c6a0f7">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_e1bbbb6d-fc23-4340-a3a6-7a70de4c7cd4">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_2a2edf08-8072-43bd-846a-1c6a3e86eefc">
+					<dmn:text>&gt;= 100</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_dd89906a-d470-4d71-9b23-c826972d4094">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_f4e8d8b0-2869-4a62-8c2a-8525c63fd430">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_255e5c2a-d9f8-4b92-824a-cf358221bb95">
+				<dmn:inputEntry id="_23ad1957-c082-4651-9737-3cdbefc12da1">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_1a6d3199-1077-4bdf-b666-8cdb99233ced">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9092ad7e-e2f5-4a7b-80a3-a0b5fb7c5243">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0304df96-d21a-4b7f-8e2f-f56ff0a22347">
+					<dmn:text>&lt;= 50</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_ce1c6e9a-067a-49ee-858c-280aaba60c9d">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_18eeab19-cb57-4967-a68a-38b5146ec1d2">
+				<dmn:inputEntry id="_e1bcfd52-557e-4440-be20-f683378c2be1">
+					<dmn:text>&lt;= 175</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_59143ddb-fa9a-44ab-be80-bfd7f0443edf">
+					<dmn:text>&gt; 50</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c4ae04ef-943a-4f37-94d1-64cec75d9bc3">
+					<dmn:text>(50..100)</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c9bff4e8-938a-48f5-ad11-db893326c0f2">
+					<dmn:text>&gt;50</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_24c3be51-1336-41e0-a55c-246eac9239ed">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:inputData id="_b22d3c74-d0f1-4a5e-8021-435a38d96a88" name="Monument">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0001"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_4bce7c8c-3c8e-4e44-af2f-8798b8638ac5" name="Monument" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_b3c61fdb-3a70-4732-b30b-bd062425961f" name="RBS">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0002"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_676ea567-a36e-4fdf-81d2-fec1c5e9df2f" name="RBS" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_341bbe81-4d31-4feb-978e-c96dc51f9729" name="Woonwagen">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0003"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_b5cf828d-f9f5-4b8a-b5b3-8a243e69148e" name="Woonwagen" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_da0ad2b2-9e69-4989-96c8-6285a83ccbc2" name="Plat dak">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0007"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_5b6075c8-f788-4593-b687-eb98765df97f" name="Plat dak" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_5540a522-31b5-49bd-a4c0-c3dce62504a1" name="Afstand nok">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0013"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_cc9825ad-f525-4c43-9276-3db0b7a97523" name="Afstand nok" typeRef="number"/>
+	</dmn:inputData>
+	<dmn:inputData id="_a426114e-4b51-4a45-bbdd-ca959c7866ed" name="Afstand dakvoet">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0012"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_3aa080e8-4c6a-4fb2-9cfc-0802672064af" name="Afstand dakvoet" typeRef="number"/>
+	</dmn:inputData>
+	<dmn:inputData id="_83b6a193-abf4-44ff-81b5-ce90ed6a834c" name="Afstand zijkanten">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0014"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_2ea6808c-8387-4045-be55-a6b754edc2f8" name="Afstand zijkanten" typeRef="number"/>
+	</dmn:inputData>
+	<dmn:inputData id="_5320088c-e4ab-48f0-bb0a-eac7ff2e7dda" name="Hoogte dakkapel">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0011"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_ad3a3cf7-0afe-4747-8f1b-3da8170013e9" name="Hoogte dakkapel" typeRef="number"/>
+	</dmn:inputData>
+	<dmn:decision id="_11bd61cb-7df4-4516-b40a-2e86dbccbc15" name="Vergunningvrij zijdakvlak">
+		<dmn:variable id="_bc48f815-437c-4309-b608-329e2c77eba2" name="Vergunningvrij zijdakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_9532a23f-a2b6-493d-81bd-1302a01c6c1e"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_763e3f64-c6f3-4ab2-ab6e-7724027ffb6a"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_b3c61fdb-3a70-4732-b30b-bd062425961f"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_1507bf55-4c85-4341-b90f-2478fe92bc9c"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_db32ac7f-68c7-4ab0-8871-cb56148c5ed1" outputLabel="Vergunningvrij zijdakvlak" typeRef="boolean">
+			<dmn:input id="_f16c2e45-9cc0-43ce-8d64-20df01d63090">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Zijdakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_94949e20-f650-4ec9-bd87-cb82a57d45e6">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>RBS</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_27f24ce6-7e9c-413a-976f-f9238af107b1">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Welstandscriteria</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_a8fc3f59-b560-4f36-a28d-9c6c3541d5ee">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Gekeerd naar openbaar gebied</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_d8d12228-d087-40a7-b845-7d292481f492"/>
+			<dmn:rule id="_9576117a-69ba-4002-9077-b549fe1cb54b">
+				<dmn:inputEntry id="_0032bd13-0c61-4cfd-bc0e-38753ac86ccc">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_761e4a0d-8725-48a2-9c57-961bc2eb2953">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_b691e6e7-dffe-4c07-99ee-92e87313b28d">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_150cd240-aba7-4059-a6cb-0f8f96b7a73f">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_723b3257-651b-431c-a843-e8b8814b60b9">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_4a8191a9-25ce-4956-8e29-c1184eb02246">
+				<dmn:inputEntry id="_ce1bb780-2b4e-4602-826c-85e4c04948ec">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_d4ae6e05-5454-4301-a65b-2d4170830c6d">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_2f7d87d6-02cd-4fcd-a9c2-33bf5e7e830c">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c6e6d41f-4ca1-4b94-b146-42f771d7d338">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_f3c323ad-32ef-490a-845a-233177f4dec4">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_3a65feb9-8e55-4d53-a497-7d76c5ada175">
+				<dmn:inputEntry id="_3ede802b-9a02-4799-ae15-b4e69c44f039">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_ce79dcff-ff8b-4bef-80fa-7a2475bc8424">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_a60d4927-fc5f-45df-aa9a-fbbfb452c6bd">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_47199014-33fe-4c92-a345-fb7a091debfa">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_69e14a6d-ae1d-4b7b-aab5-8517591303df">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_67b121f4-13ee-43b2-8b89-5d2ba4949efc">
+				<dmn:inputEntry id="_ef883edc-62ca-41d6-8186-fea6a7ef4f94">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_5cdbc923-c25b-45db-b278-2aa2bdaa18f8">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_bcf3d2ef-a7df-4717-acb7-e75e2e1c9c2f">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_f9e394df-7110-45b5-848a-9adf9205c362">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_260a290a-6872-47f2-9724-40e8765f155b">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_2a08b48d-dcc1-4be6-970b-9b0ed20c0a3a">
+				<dmn:inputEntry id="_d9c62714-d5a7-4bcf-bdc8-3b2d0464382e">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_7d29c977-0131-444c-b07b-8264e43af5e5">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_42407c27-1d45-4165-8926-b1560d47a231">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_2c751bd8-4d1b-473f-92c3-858c20b05885">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_dec33b10-57f8-48b3-9c5d-da10bd9c2af4">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_702b7d17-03be-4113-8308-c17f43ef6765">
+				<dmn:inputEntry id="_c9aa3d82-b300-4048-8e64-dea4efbce971">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_90523022-7fb0-4c95-ba47-1f33bf11fc52">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c4df5f98-6b4f-462f-83e0-aa50e83eeca0">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_1fffdab3-7ea3-4ea7-9eb9-839bbc681166">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_41ed1a44-5c48-4d92-b062-969f7ade054d">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:inputData id="_9532a23f-a2b6-493d-81bd-1302a01c6c1e" name="Gekeerd naar openbaar gebied">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0006"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_9c13f188-1dd9-472a-988e-d4a4531b1c8b" name="Gekeerd naar openbaar gebied" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:decision id="_1ed5c50f-4d68-46a3-a07b-9eb6b4e4a909" name="Achterdakvlak">
+		<dmn:variable id="_8592f835-5bd1-4dfb-9806-e54c3b6399a7" name="Achterdakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_26292737-9da1-41b5-86a4-03f1aa1572fd"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_890641dd-ed78-4e2f-a1f4-790a488f121f" outputLabel="Achterdakvlak" typeRef="boolean">
+			<dmn:input id="_8914c15f-3561-48b6-8fb6-f3ca8d8bab10">
+				<dmn:inputExpression typeRef="string">
+					<dmn:text>Dakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_45c8bc22-e689-44e7-bafe-fe8366997675"/>
+			<dmn:rule id="_45d64fb2-1fc3-47dc-83ac-a2ff05232aab">
+				<dmn:inputEntry id="_11e53fba-4156-4d6e-9461-ad8cae2cc655">
+					<dmn:text>"Voorkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_2e68b44c-f0df-4fd3-8496-9c904ebb7ab7">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_e9d297c0-f637-432f-836b-b2f9a6bea615">
+				<dmn:inputEntry id="_ee6f7e1e-e9bd-4328-919b-a873a4646150">
+					<dmn:text>"Zijkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_225d079a-d31a-4ee1-a806-44a1a2156822">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_27608db0-b01f-489b-b591-d98b70478534">
+				<dmn:inputEntry id="_403700a6-8a3c-4a38-8f80-fe448173b34c">
+					<dmn:text>"Achterkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_4aee00ac-cf93-4a8c-ac7e-21b9a7c1b427">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:decision id="_763e3f64-c6f3-4ab2-ab6e-7724027ffb6a" name="Zijdakvlak">
+		<dmn:variable id="_345354b5-3519-4726-88c9-a72e6063a95e" name="Zijdakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_26292737-9da1-41b5-86a4-03f1aa1572fd"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_7aa33903-ad1b-40a8-b4da-6541a567f424" outputLabel="Zijdakvlak" typeRef="boolean">
+			<dmn:input id="_c60fe2c9-3237-4083-809b-76266caf5096">
+				<dmn:inputExpression typeRef="string">
+					<dmn:text>Dakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_473937b4-1164-4fea-8b8c-645e4eb58cc2"/>
+			<dmn:rule id="_f82c1544-cbaf-499a-add0-5900bf5d2e9b">
+				<dmn:inputEntry id="_5e0dde1c-f176-4fa4-b2eb-dc4f2e11de3d">
+					<dmn:text>"Voorkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_7579bdb7-53ef-44eb-84ad-669657ddf53b">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_b6b2b488-8a0e-47eb-b461-cb1b1ced4a2d">
+				<dmn:inputEntry id="_d25aebd8-fbd9-4314-b7c8-e53ed5a9eedb">
+					<dmn:text>"Zijkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_1d5f053a-1c2d-47f2-888c-21442a096a85">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_9ad5b0d6-09ab-4054-88b6-435592e3d69e">
+				<dmn:inputEntry id="_40eda067-e1fb-4394-81ea-901117f7d2c1">
+					<dmn:text>"Achterkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_f69d8372-350b-4c11-b418-76b0ee2a218a">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:inputData id="_26292737-9da1-41b5-86a4-03f1aa1572fd" name="Dakvlak">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0015"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_c32ad866-578e-4a20-a26e-39b6910dad4a" name="Dakvlak" typeRef="string"/>
+	</dmn:inputData>
+	<dmn:decision id="_bab67fff-e260-45c8-9c98-c179be5c122d" name="Bijzonder gebouw">
+		<dmn:variable id="_f809e310-647b-4e1a-a120-d23a248f7fbd" name="Bijzonder gebouw" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_341bbe81-4d31-4feb-978e-c96dc51f9729"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_94c81f5c-e0be-4f2a-917b-43efcc7430dc"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_dd75aea8-92b9-4a80-9e8e-f7a818b04b91"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_e5706f83-915d-4333-a89b-7a0c89277738"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_8ab38651-89d4-4782-8e51-e73a62245b82" outputLabel="Bijzonder gebouw" typeRef="boolean">
+			<dmn:input id="_2ac0ee0f-f5d5-48d2-b333-707dec90b59e">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Woonwagen</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_42ac63dd-ce5b-472a-b08a-f78ebe9cc961">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Tijdelijk bouwwerk</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_24006edd-1b2b-477b-93fa-1cc114635032">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Recreatief nachtverblijf</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_c7328e0d-519b-4deb-a253-10b401a8954c">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Illegaal gebouw</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_cfb12655-99c7-49b0-878e-f4f0db827cbe"/>
+			<dmn:rule id="_05c0790d-eeac-4b85-b9ec-96faa81e86ce">
+				<dmn:inputEntry id="_5902619b-a29c-449b-afb9-0839335ba50d">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c69378dc-e036-4608-a416-8fe8afb808ea">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_4d82e0c1-2e07-4213-8b4a-3d960803810b">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_092d1b1b-87fe-43dc-a5f0-c11c588caf7c">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_8cb311ad-84bc-4c71-bed5-da2a9a8d39ce">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_5e8737ff-58c3-44d3-b1d0-436700bc6180">
+				<dmn:inputEntry id="_12096de4-5027-4e53-ae31-bfbe3547b8a9">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_7a10a8cb-d471-41b2-8190-c434e9550f95">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_581b6abb-8132-4c3e-96e9-57eab9fc5428">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_6374e0ba-6276-4194-b9b5-0f7023adffc0">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_4b6a4020-0835-4fbf-9224-3c6e4449aee2">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_d1ef8504-b767-49f3-8653-dd7c476172cf">
+				<dmn:inputEntry id="_81f49aef-0c70-4d31-8e7b-19f6da91e8f2">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_de0850fb-9f81-451e-85bb-c1d6ca492fd0">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_3838e615-bea6-4ebb-ae51-16e3f459522f">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_4d5f99e7-8cb5-4a80-8f38-410eb9604cee">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_f838a715-6fe5-42b9-8bda-a8e98f385e63">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_81832b19-188f-42f1-8faf-34dcf9336266">
+				<dmn:inputEntry id="_92a1ea08-2a61-41ab-9289-e263d15974b0">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_c2e3cea7-a25a-46b0-9b10-242758dbe444">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_141754a8-1e01-42ff-aaff-00716b89b9fe">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_f87fef85-cc65-45c8-b160-4aad39ee29c2">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_a122fcad-6167-431a-b163-3fa341ee5ea1">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_a55f6da0-7c98-4a4c-9c84-7b7cb3bdbad2">
+				<dmn:inputEntry id="_4c96e8f8-ccca-471d-805b-881440e114d7">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_5d1ae41a-ed0e-4382-8ba3-e64056be95fb">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_ec8ed1eb-69fe-4aac-8e45-c556bbb3d33a">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_da4e2d9b-93b5-424c-9b84-d2d02c1cb254">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_3cbbae5a-c205-47a5-8861-690320d6666d">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:inputData id="_dd75aea8-92b9-4a80-9e8e-f7a818b04b91" name="Recreatief nachtverblijf">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0005"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_ba0b901f-1f7f-4bc6-8d52-7cbc71446eff" name="Recreatief nachtverblijf" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_94c81f5c-e0be-4f2a-917b-43efcc7430dc" name="Tijdelijk bouwwerk">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0004"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_bdcdefd9-7863-4ec9-a290-5b780fa96005" name="Tijdelijk bouwwerk" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:decision id="_b5593f56-ecda-4318-a02b-c58f6a121fdc" name="Vergunningvrij achterdakvlak">
+		<dmn:variable id="_aef5c55f-2023-42f9-9318-95825be14eee" name="Vergunningvrij achterdakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_1ed5c50f-4d68-46a3-a07b-9eb6b4e4a909"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_b3c61fdb-3a70-4732-b30b-bd062425961f"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_9532a23f-a2b6-493d-81bd-1302a01c6c1e"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_82d0a65b-75c0-4c50-bce5-4e9f34c74be2" outputLabel="Vergunningvrij achterdakvlak" typeRef="boolean">
+			<dmn:input id="_2b1647f3-51cf-4acb-b8b6-9d4bcd2aaabe">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Achterdakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_0beccd97-84fa-470c-9258-92094f3322ae">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>RBS</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_73a138b3-3942-4ce8-aba3-1ec10a8d9159">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Gekeerd naar openbaar gebied</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_9b6534ad-82bb-4568-bf95-c0f8e26a27fa"/>
+			<dmn:rule id="_0af933b9-bf25-4050-9dc1-050957d4be14">
+				<dmn:inputEntry id="_aed42109-b857-43b0-bcb2-dfddfe8bd3de">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_96247f9a-97af-4ab3-a669-290271c78016">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_66a1d2f7-ebdd-4015-970b-d7418c34746e">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_16d65cb8-4069-423a-888d-cb39ef38d052">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_25458672-312c-417f-8e66-eb8f17a282df">
+				<dmn:inputEntry id="_4c6f2aa1-5c42-4879-8c09-9e0bab749028">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_174be5e6-75d5-488e-8575-5a1c91530586">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_db07d6f1-556a-46bf-aa04-a22935ca9cc9">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_352ab1d2-a368-4412-bd93-0363f31537b7">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_4a1f566c-e7dd-4d49-ad2f-3bcbb0653701">
+				<dmn:inputEntry id="_b3b33c36-ad81-4eb9-a46b-0f22228de400">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_bd31bf9e-df52-42d9-bb4b-fdf18c4caef6">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_80282d8e-f2d6-44ac-acec-9136312b2e05">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_f8ce5ca5-4c62-417d-adfc-f9ad4ae40e58">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_2eef8dc8-437c-4c17-9c58-cc6a0a725dab">
+				<dmn:inputEntry id="_cea76bc8-b0a5-4fd0-8ea9-e9c45edd6553">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_cb786c7a-aaa6-405d-be27-5e634dbdbfcb">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_0c536ed4-d14b-4fde-a7ff-ee2e890e9d01">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_d296ef17-bcee-4aed-b466-f507558fde3f">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:decision id="_c8b36906-e016-4451-bfb3-d3426f3cb335" name="Vergunningvrij voordakvlak">
+		<dmn:variable id="_aa18fc48-eda3-479e-a603-7d6ad25c9d3c" name="Vergunningvrij voordakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_1507bf55-4c85-4341-b90f-2478fe92bc9c"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredDecision href="#_0abc0dda-a356-4d98-a801-02d35c62d9ad"/>
+		</dmn:informationRequirement>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_b3c61fdb-3a70-4732-b30b-bd062425961f"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_5920fce0-9e4e-49f1-b668-b26c989060a4" outputLabel="Vergunningvrij voordakvlak" typeRef="boolean">
+			<dmn:input id="_116e8319-9223-4c65-b57c-3a19eda694a3">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Voordakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_6e608b40-1983-44c2-807b-b6ae577a76d8">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>RBS</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:input id="_5591fb59-51f3-4e7b-918f-4c4baae1db7a">
+				<dmn:inputExpression typeRef="boolean">
+					<dmn:text>Welstandscriteria</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_dc2f3ab4-4bab-4ef7-987b-253782c7dc77"/>
+			<dmn:rule id="_75d633e9-b87d-4188-afe4-ec66f5f9a748">
+				<dmn:inputEntry id="_a6a21f4e-b41e-4f4b-8dbc-b6e491ee95c8">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9b279813-747a-400e-a9e0-e2b99010bf58">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_e66f8912-c12a-4413-8a20-d027442c77fa">
+					<dmn:text>-</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_2017a2b3-60ff-4159-be48-551cdebd9638">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_2041e1e0-0260-47f1-8b61-f187fd466eb6">
+				<dmn:inputEntry id="_134df5d0-2f25-4732-971e-50eba1d1e592">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_6f3dcaff-0e0b-4062-9f10-cc333ecd0cf2">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_04e38aa4-fe96-4eb2-b5da-5b26688b6965">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_cdfac3a5-774d-4951-9302-7064c91ddc4a">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_8b252813-1875-40f3-b449-4c7d99559be3">
+				<dmn:inputEntry id="_eb4c734f-3301-40e8-9182-edc5012f2b0c">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_adc797e6-995b-4f82-b1b0-82eb5989d12b">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_3333e7ef-8cba-49a3-839c-fea0800434fd">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_bd72afbd-424f-40a6-ae2d-e7b2b411c3dd">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_85999066-aec5-491d-a076-e52f11881c3c">
+				<dmn:inputEntry id="_80d10b35-dba2-428a-a58a-55c107b4ad09">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_573bdcb9-08e9-4e0e-aa4a-202451c968ca">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_fd2541d7-8942-443c-a9ed-60298601d91a">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_137399a6-2c66-4fbc-833b-188086eee3d7">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_484756da-00c5-4ef4-a277-b851195e91e5">
+				<dmn:inputEntry id="_79844cf2-b64e-4fde-b3ec-b2a24392b909">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_8607cb07-85f3-46df-aba0-95b3c23d6e55">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:inputEntry id="_9750d2c6-1d8b-421d-a157-9e9b10ed7fd5">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_25a582c1-caf4-4696-9022-39bae9db04ce">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:inputData id="_1507bf55-4c85-4341-b90f-2478fe92bc9c" name="Welstandscriteria">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0021"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_e73353b6-1482-423d-823b-4de1adf6956c" name="Welstandscriteria" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:decision id="_0abc0dda-a356-4d98-a801-02d35c62d9ad" name="Voordakvlak">
+		<dmn:variable id="_52b725e3-2d1a-449b-ba9a-b7d8e727bf5c" name="Voordakvlak" typeRef="boolean"/>
+		<dmn:informationRequirement>
+			<dmn:requiredInput href="#_26292737-9da1-41b5-86a4-03f1aa1572fd"/>
+		</dmn:informationRequirement>
+		<dmn:decisionTable hitPolicy="ANY" id="_3efaed24-b564-45ba-b654-35811cd4ca60" outputLabel="Voordakvlak" typeRef="boolean">
+			<dmn:input id="_2364f095-6dad-4620-8910-e0860fb91453">
+				<dmn:inputExpression typeRef="string">
+					<dmn:text>Dakvlak</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_dcef88ea-99bc-49cb-82c7-ca21be375a25"/>
+			<dmn:rule id="_48160e8e-fdd1-4b08-9e4e-3f269e65552a">
+				<dmn:inputEntry id="_b2446591-2df9-4cf5-ba82-df0be62a85a7">
+					<dmn:text>"Voorkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_542a4287-0b42-41a1-ae41-3b05c1a1129c">
+					<dmn:text>true</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_7020d034-278b-4df7-a881-600688f440a5">
+				<dmn:inputEntry id="_b54ba04c-4c89-4381-89f5-926e6ca2a405">
+					<dmn:text>"Achterkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_909ef2c5-3355-4821-8130-c58a03389b4d">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+			<dmn:rule id="_deeb3c5e-8dfb-41f3-bfe7-99febfd659d8">
+				<dmn:inputEntry id="_037f4f30-3999-4c4b-9603-675a3e33cd73">
+					<dmn:text>"zijkant"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry id="_67cc0650-3b13-4b5a-8dc7-d14313e64df5">
+					<dmn:text>false</dmn:text>
+				</dmn:outputEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:inputData id="_878c4c6d-4c14-4d8b-b212-cb622fbd8e94" name="Beschermde vogel broedt">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0031"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_c87d6757-6c71-44b0-ac52-b767f8b79f0b" name="Beschermde vogel broedt" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_e5706f83-915d-4333-a89b-7a0c89277738" name="Illegaal gebouw">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0032"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_a85ad15d-8c59-4695-b2f5-653b7c2c6042" name="Illegaal gebouw" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:inputData id="_1824eb38-2a93-46e7-8379-ba675ca6b7b6" name="Locatie binnen gemeentegrens">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0034"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_e3553418-9a31-42ab-acd9-707dc9bade87" name="Locatie binnen gemeentegrens" typeRef="string"/>
+	</dmn:inputData>
+	<dmn:inputData id="_e2f273bf-38cf-4e6c-bdcf-9d95907a2124" name="Nieuwbouw">
+		<dmn:extensionElements>
+			<uitv:uitvoeringsregelRef href="#UitvId0040"/>
+		</dmn:extensionElements>
+		<dmn:variable id="_9179d329-819d-4315-9c11-e64f0fdd1541" name="Nieuwbouw" typeRef="boolean"/>
+	</dmn:inputData>
+	<dmn:knowledgeSource id="_d64fb99f-d6a7-4339-95a9-8f812dac303b" name="akn/nl/act/gm0503/2019/reg456_gm0503_v1_chp_1_art001">
+		<dmn:authorityRequirement>
+			<dmn:requiredDecision href="#_c295d3da-d955-4f30-b88f-e66f26e2e5e0"/>
+		</dmn:authorityRequirement>
+	</dmn:knowledgeSource>
+	<dmn:knowledgeSource id="_58165f0a-5de6-4fc0-9023-769f5abd17ed" name="akn/nl/act/gm0503/2019/reg456_gm0503_v1_chp_1_art002">
+		<dmn:authorityRequirement>
+			<dmn:requiredDecision href="#_1d1faee8-997e-48dd-8702-de8c24eb8aac"/>
+		</dmn:authorityRequirement>
+	</dmn:knowledgeSource>
+	<dmn:knowledgeSource id="_90a03be0-0575-4700-ac86-1900be7217f0" name="akn/nl/act/gm0503/2019/reg456_gm0503_v1_chp_2_art014">
+		<dmn:authorityRequirement>
+			<dmn:requiredInput href="#_a426114e-4b51-4a45-bbdd-ca959c7866ed"/>
+		</dmn:authorityRequirement>
+	</dmn:knowledgeSource>
+</dmn:definitions>

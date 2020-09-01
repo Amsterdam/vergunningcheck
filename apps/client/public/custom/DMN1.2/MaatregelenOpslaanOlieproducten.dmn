@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel"
+	xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" 
+	xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" 
+	xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content"
+xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001821699180000" 
+namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001821699180000"  
+name="Maatregelen opslaan olieproducten">
+	<dmn:extensionElements>
+		<inter:regelgroepen>
+			<inter:regelgroep id="groep1">
+				<inter:naam>Toepassing</inter:naam>
+				<inter:prioriteit>10</inter:prioriteit>
+			</inter:regelgroep>
+		</inter:regelgroepen>
+		<uitv:uitvoeringsregels>
+			<uitv:uitvoeringsregel id="UitvId0001">
+				<uitv:regelgroepRef href="#groep1"/>
+				<uitv:bereik>werkzaamheid</uitv:bereik>
+				<inter:prioriteit>10</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>boolean</uitv:gegevensType>
+					<uitv:vraagTekst>Worden er in uw bedrijf activiteiten met afvalstoffen uitgevoerd, anders dan alleen het opslaan en afvoeren van afval dat binnen uw bedrijf is ontstaan?</uitv:vraagTekst>	
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>
+			<uitv:uitvoeringsregel id="UitvId0002">
+				<uitv:regelgroepRef href="#groep1"/>
+				<inter:prioriteit>20</inter:prioriteit>
+				<uitv:vraag>
+					<uitv:gegevensType>list</uitv:gegevensType>
+					<uitv:vraagTekst>U heeft aangegeven dat activiteiten worden uitgevoerd met afvalstoffen, anders dan alleen opslaan van eigen bedrijfsafval. Waar zijn deze afvalstoffen ontstaan?</uitv:vraagTekst>
+					<uitv:opties>
+						<uitv:optieType>enkelAntwoord</uitv:optieType>
+						<uitv:optie>
+							<uitv:sequenceId>1</uitv:sequenceId>
+							<uitv:optieText>Binnen bedrijf</uitv:optieText>
+						</uitv:optie>
+						<uitv:optie>
+							<uitv:sequenceId>2</uitv:sequenceId>
+							<uitv:optieText>Andere locatie</uitv:optieText>
+						</uitv:optie>
+						<uitv:optie>
+							<uitv:sequenceId>3</uitv:sequenceId>
+							<uitv:optieText>Derden</uitv:optieText>
+						</uitv:optie>
+					</uitv:opties>
+				</uitv:vraag>
+			</uitv:uitvoeringsregel>			
+		</uitv:uitvoeringsregels>
+		<content:maatregelen>
+			<content:maatregel id="m0112">
+				<content:nummer>m0112</content:nummer>
+				<content:maatregeltekst>Leeg de opslagtank</content:maatregeltekst>
+				<content:toelichting>U moet een opslagtank met afgewerkte olie elk jaar leegmaken.</content:toelichting>
+				<content:frequentie>Een keer per jaar</content:frequentie>
+				<content:volgorde>1</content:volgorde>
+				<content:kenmerk>Afgewerkte olie (BGT)</content:kenmerk>
+				<content:thema>Bodem</content:thema>
+			</content:maatregel>
+			<content:maatregel id="m0106">
+				<content:nummer>m0106</content:nummer>
+				<content:maatregeltekst>Plaats een bovengrondse tank boven een lekbak.</content:maatregeltekst>
+				<content:toelichting>Plaats een bovengrondse tank boven een lekbak.
+# Uitzondering voor dubbelwandige tanks met lekdetectie in de wand
+Een dubbelwandige tank met lekdetectie hoeft niet in een lekbak als:
+- het lekdetectiesysteem voldoet aan BRL K910 (elektronisch lekdetectiesysteem), en
+- u het lekdetectiesysteem jaarlijks laat beoordelen en goedkeuren door een bedrijf dat gecertificeerd isvolgens BRL K903.
+Kijk op de website van BodemPlus voor een [overzicht van bedrijven met certificering](http://www.rwsleefomgeving.nl/onderwerpen/bodem-ondergrond/erkenningen/zoekmenu/). 
+Aan het certificaat van de dubbelwandige tank kunt u zien of het lekdetectiesysteem in de wand voldoet aan [BRLK910](http://diensten.kiwa.nl/library/_all_portals/files/BRL-K910-01_versie_2002-10-01__wijzigingsblad_versie_2015-09-01.pdf).
+Een dubbelwandige tank met lekdetectie hoeft ook niet in een lekbak als:
+- het gaat om een lekdetectie-potsysteem dat voldoet aan BRL K796, en
+- u het lekdetectie-potsysteem maandelijks controleert op de goede werking (=peilen van het vloeistofniveau),
+- u de lekdetectievloeistof conform de instructies van de leverancier onderhoudt en vervangt,
+- van de controle jaarlijks een aantekening in het installatieboek maakt, en
+- u gebreken aan het lekdetectie-potsysteem binnen een maand herstelt.</content:toelichting>
+				<content:frequentie>Eenmalig</content:frequentie>
+				<content:volgorde>2</content:volgorde>
+				<content:kenmerk>Gasolie, smeerolie of afgewerkte olie (BGT)</content:kenmerk>
+				<content:thema>Bodem</content:thema>
+			</content:maatregel>
+			<content:maatregel id="m0108">
+				<content:nummer>m0108</content:nummer>
+				<content:maatregeltekst>Plaats vulpunten en aftappunten boven een lekbak of vloeistofdichte vloer.</content:maatregeltekst>
+				<content:toelichting>U moet ervoor zorgen dat de vulpunten en aftappunten van een bovengrondse opslagtank boven eenvloeistofdichte vloer of verharding of boven een lekbak zijn geplaatst.
+
+                 Dit geldt ook voor dubbelwandige tanks.</content:toelichting>
+				<content:frequentie>Eenmalig</content:frequentie>
+				<content:volgorde>3</content:volgorde>
+				<content:kenmerk>Gasolie, smeerolie of afgewerkte olie (BGT)</content:kenmerk>
+				<content:thema>Bodem</content:thema>
+			</content:maatregel>
+			<content:maatregel id="m0109">
+				<content:nummer>m0109</content:nummer>
+				<content:maatregeltekst>Installeer een overvulbeveiliging.</content:maatregeltekst>
+				<content:toelichting>Een opslagtank moet zijn voorzien van een overvulbeveiliging.
+                 #Uitzondering voor afgewerkte olie
+                 Heeft u een tank met afgewerkte olie die u handmatig of via zwaartekracht vult? Dan is er geen overvulbeveiligingnodig.</content:toelichting>
+				<content:frequentie>Eenmalig</content:frequentie>
+				<content:volgorde>4</content:volgorde>
+				<content:kenmerk>Gasolie, smeerolie of afgewerkte olie (BGT)</content:kenmerk>
+				<content:thema>Bodem</content:thema>
+			</content:maatregel>
+			<content:maatregel id="m0111">
+				<content:nummer>m0111</content:nummer>
+				<content:maatregeltekst>Plaats geen gevaarlijke stoffen boven de lekbak die kunnen reageren met de stoffen in de tank.</content:maatregeltekst>
+				<content:toelichting>Dit is om te voorkomen dat bij lekkage de opgeslagen stoffen met elkaar reageren. En er mogelijk schadelijkestoffen ontstaan.</content:toelichting>
+				<content:frequentie>Voortdurend</content:frequentie>
+				<content:volgorde>5</content:volgorde>
+				<content:kenmerk>Gasolie, smeerolie of afgewerkte olie (BGT)</content:kenmerk>
+				<content:thema>Veiligheid</content:thema>
+			</content:maatregel>
+			<content:maatregel id="m0086">
+				<content:nummer>m0086</content:nummer>
+				<content:maatregeltekst>Zorg dat u voldoet aan een maatwerkvoorschrift als dit is voorgeschreven.</content:maatregeltekst>
+				<content:toelichting>Heeft u een opslagtank die niet op de vloer staat? Dan kan het bevoegd gezag met een maatwerkvoorschrifteisen stellen aan de plaats, constructie en keuring van de opslagtank. Ook kan het bevoegd gezag bodem­ enveiligheidsvoorzieningen voorschrijven. Heeft het bevoegd gezag dit gedaan? Dan moet u zorgen dat u aan hetmaatwerkvoorschrift voldoet.</content:toelichting>
+				<content:frequentie>Eenmalig</content:frequentie>
+				<content:volgorde>6</content:volgorde>
+				<content:kenmerk>Opslagtank niet op de vloer</content:kenmerk>
+				<content:thema>Bodem</content:thema>
+				<content:thema>Veiligheid</content:thema>
+			</content:maatregel>
+		</content:maatregelen>
+	</dmn:extensionElements>
+    <dmn:itemDefinition isCollection="true" name="tMaatregelenOpslaanvangasolie_smeerolieofafgewerkteolieineenbovengrondseopslagtank" label="tMaatregelenOpslaanvangasolie,smeerolieofafgewerkteolieineenbovengrondseopslagtank">
+        <dmn:itemComponent isCollection="false" name="Voorschriften" id="_191d41c9-923f-4792-953d-1ab0d77ca2a0">
+            <dmn:typeRef>string</dmn:typeRef>
+        </dmn:itemComponent>
+        <dmn:itemComponent isCollection="false" name="Maatregelen" id="_17a59755-1d3a-49ac-bf8a-0a6128fcd9f7">
+            <dmn:typeRef>string</dmn:typeRef>
+        </dmn:itemComponent>
+    </dmn:itemDefinition>
+    <dmn:inputData id="_0e106ef8-3cbd-4ae9-a531-6d5372fbd87b" name="Activiteiten anders dan alleen het opslaan en afvoeren van afval dat binnen uw bedrijf is ontstaan?">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#UitvId0001"/>
+        </dmn:extensionElements>
+        <dmn:variable name="Activiteiten anders dan alleen het opslaan en afvoeren van afval dat binnen uw bedrijf is ontstaan?" id="_b09c907e-9cae-4b9a-a2d2-33af99ae02ee" typeRef="boolean"/>
+    </dmn:inputData>
+    <dmn:inputData id="_339f9c86-f320-4bd5-a0fb-5dfd4d41a8c3" name="Waar ontstaan">
+        <dmn:extensionElements>
+            <uitv:uitvoeringsregelRef href="#UitvId0002"/>
+        </dmn:extensionElements>
+        <dmn:variable name="Waar ontstaan" id="_b74ad95b-2f04-4215-aba4-cc3e66c0f5eb" typeRef="string"/>
+    </dmn:inputData>
+    <dmn:decision id="_8a2d2f00-f55d-43e7-b5e6-1a7439fd431b" name="Maatregelen Opslaan van gasolie smeerolie of afgewerkte olie_bovengrondse opslagtank">
+        <dmn:extensionElements>
+            <bedr:functioneleStructuurRef href="http://toepasbare-regels.omgevingswet.overheid.nl/00000001821699180000/id/concept/MaatregelenOpslaanOlieproducten"/>
+        </dmn:extensionElements>
+        <dmn:variable name="Maatregelen Opslaan van gasolie smeerolie of afgewerkte olie_bovengrondse opslagtank" id="_1e319a1f-f0d6-4f08-b528-fa88e2ebd9c7" typeRef="tMaatregelenOpslaanvangasolie_smeerolieofafgewerkteolieineenbovengrondseopslagtank"/>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#_0e106ef8-3cbd-4ae9-a531-6d5372fbd87b"/>
+        </dmn:informationRequirement>
+        <dmn:informationRequirement>
+            <dmn:requiredInput href="#_339f9c86-f320-4bd5-a0fb-5dfd4d41a8c3"/>
+        </dmn:informationRequirement>
+        <dmn:decisionTable id="_0f23ece6-65c8-4569-ab23-e001348fd5c6" hitPolicy="COLLECT" outputLabel="Maatregelen Opslaan van gasolie smeerolie of afgewerkte olie_bovengrondse opslagtank" typeRef="tMaatregelenOpslaanvangasolie_smeerolieofafgewerkteolieineenbovengrondseopslagtank">
+            <dmn:input id="_827b0900-c6a2-4c03-b9a0-0c3ebfd56f81">
+                <dmn:inputExpression typeRef="boolean">
+                    <dmn:text>Activiteiten anders dan alleen het opslaan en afvoeren van afval dat binnen uw bedrijf is ontstaan?</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_a90768c2-8c67-4f3d-a091-48c19c068169">
+                <dmn:inputExpression typeRef="string">
+                    <dmn:text>Waar ontstaan</dmn:text>
+                </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_5ac5d70b-870c-49d5-9c2c-b5027b9d1e13" name="Voorschriften" typeRef="string"/>
+            <dmn:output id="_515cf11e-f062-418e-989b-7215aa66815c" name="Maatregelen" typeRef="string"/>
+             <dmn:rule id="_4c74a429-c98e-4733-bfd9-f2554839d4f4">
+                <dmn:inputEntry id="_4d038eed-7132-4211-ad3f-74494fce2d30">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_8bf7f040-60f0-473e-85ee-b0d4f592a8a3">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_38303f67-ea0d-4d3d-898d-9d453610f7df">
+                    <dmn:text>"jci1.3:c:BWBR0022762&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.54c&amp;lid=1&amp;z=2018-01-01&amp;g=2018-01-01&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_dce97bbc-04cc-4587-b0fe-5deb7e26314b">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_682ae5af-a1b8-48f4-89f6-37e31e3b232a">
+                <dmn:inputEntry id="_b4c05894-1b31-441e-a05a-f4e211d8854b">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_acb0974d-6209-4d0f-94f5-da0f264f3f9b">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_073bd250-78e8-44a2-9b63-4a43c2406530">
+                    <dmn:text>"jci1.3:c:BWBR0022762&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.54c&amp;lid=2&amp;z=2018-01-01&amp;g=2018-01-01&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_ace95646-6d9e-47f8-b0ac-1497d3d9162e">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_2435ede1-ebe8-450f-8925-5b41c0037f55">
+                <dmn:inputEntry id="_28532744-cff6-44c7-881b-d86e5e31b354">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_7c9ee15f-537d-4da7-9536-8f61dd0f053e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_9ee6ae9f-664d-43ca-b3cc-5fd0d6a879c8">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71b&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_792a1779-cbc7-4b75-9388-5c0e96b3f562">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_4d5635c4-dfd0-46b5-818b-91140119925b">
+                <dmn:inputEntry id="_1616fb55-06d8-4db4-8f2c-f90d35c3c656">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_22b986a3-6227-4fab-8c60-26d51761d82d">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_3f244fdf-9076-43f5-838e-4fba564d1a07">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71c&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_8ccf778f-f032-4fbb-a21c-bb04612e4850">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_3810c835-856b-4c79-ad31-3909e4ff4727">
+                <dmn:inputEntry id="_b2c75c3f-5542-496a-9e34-bdc09eec52ba">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_c920356d-0122-4320-ad85-bf32f9643c2d">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_2132c41e-1bfe-4d35-a8dc-b0c57437e38c">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71d&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_7e4458a6-9ff8-4b6e-b8e5-0033f8b21abe">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_cdce25fb-c12c-48be-bc41-650520724ba3">
+                <dmn:inputEntry id="_f5cf6a87-a014-4f09-87d2-c30a35b9f7f2">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_8478a5a6-eb00-411f-a65d-1e272dce82e8">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_20fa78f6-15d2-4333-a8b6-7263e076c95e">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71e&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_327fc5a1-040b-4b4d-8468-05ebf19d4dcb">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_61102cf5-7ea4-4d73-b050-f9cec496314a">
+                <dmn:inputEntry id="_af174dd7-f695-4531-a715-d52855db1e89">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_7317e106-7c0e-4d20-b04e-8e966f1b0a02">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_57addbd4-8d7c-43ef-93a1-f557acc467da">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=1&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_632c8b46-13a6-40a7-800b-8df58659342a">
+                    <dmn:text>"m0106"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_5cd2f233-b8f4-469e-bd4c-a79ded3c05e5">
+                <dmn:inputEntry id="_454660e6-8c4d-4b52-95c4-88e22bdead48">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_fc9d28ec-fcca-4acb-824a-c03daeff836e">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_b715a3be-75e3-4ae5-8010-096f76dfb04b">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=2&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_df685109-4999-46d8-b96c-fb7fa7405acf">
+                    <dmn:text>"m0106"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_318965a3-5cb3-4e2b-b9ea-fd85924c9881">
+                <dmn:inputEntry id="_446ad777-c094-4ca4-ae3b-c63bfbde1e25">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_af467641-4243-4070-a1f7-f2a4d61f5656">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_753358d0-4e2d-4e0b-929d-3eb8ff75a93b">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=3&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_70653f85-b9b4-482b-bab6-16d1284300c1">
+                    <dmn:text>"m0108"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_6ccadf56-9b37-43af-9421-13a811260adf">
+                <dmn:inputEntry id="_486fee9b-a438-467a-a5c4-c1b4a1d47e26">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_1da1ceb7-9c6e-4df1-a28e-1011a2fa8b12">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_afd5ebc9-9874-4367-b99d-21ed47265324">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=4&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_a346edc8-bde7-4589-bcc5-f90dc84daa51">
+                    <dmn:text>"m0109"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_78a3c969-1e92-4020-9d0d-c7ff1915646e">
+                <dmn:inputEntry id="_396a293c-5e9d-4552-9322-693ec3a43485">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_48079dc3-3aea-429b-83c0-0b540e9d787a">
+                    <dmn:text>""</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_6eba3375-4e21-4504-88d3-4ba3186ab9be">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=5&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_2be4964d-e466-4b97-a8e7-aa36f19bac0a">
+                    <dmn:text>"m0109"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_10c41495-d033-45ff-bcbc-a7c02ee128e4">
+                <dmn:inputEntry id="_b06c30d4-34ba-49aa-83aa-8764e9d4464b">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_f9b088dd-6e99-4c93-9a0d-59ec1cd9d43c">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_fd25ede7-aa26-4cba-8ee4-9c004922c43f">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=6&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_bdc81c60-a176-433c-a5b6-e4ab64cbe385">
+                    <dmn:text>"m0111"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_00593001-7390-4a42-ad48-239b1244cd34">
+                <dmn:inputEntry id="_63353c2b-2021-450e-ad22-aca957ccea1a">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_17468cb1-53d8-4ab5-8c78-577da051fab5">
+                    <dmn:text>""</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_3e419a09-f927-4184-a143-ad974aafe7c6">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71f&amp;lid=7&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_329ed567-24b0-4ebc-8532-542db3f081e6">
+                    <dmn:text>"m0112"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_ff7f5b32-284e-414f-b161-57b767503733">
+                <dmn:inputEntry id="_bafd70dc-0873-4d4a-a895-16f9a42ce492">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_acc96b76-a000-4c31-b5a3-effa50ef501d">
+                    <dmn:text>""</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_73f8cf51-6abb-4882-8efe-2dc2d2086bcf">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71g&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_d0f6de0a-2c6a-4b69-9fde-1e2b4e157273">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_a9b9733f-8580-4f57-9bef-81d40d7ba873">
+                <dmn:inputEntry id="_eeb80419-38a6-464e-a85c-6a29edd658d3">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_4717faea-a6c6-4ea5-953e-adf11713e097">
+                    <dmn:text>"Binnen bedrijf"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_908e12d1-9853-45a9-b270-fa1b1e369710">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71g&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_477277a5-5c0c-4cc9-a1cd-3fda96fb03ff">
+                    <dmn:text>""</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_0fd16de5-000e-42e5-b2c3-89693ed6520c">
+                <dmn:inputEntry id="_dad8e4e1-4516-4747-a6e9-15d5f4551637">
+                    <dmn:text>false</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_f9870ec2-9dfa-4f6c-bca2-eea9f7ebee20">
+                    <dmn:text>-</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_0a168040-9c24-4c2d-8f80-9175d00ab8f5">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71h&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"	</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_bbdbee16-ff3f-4560-a4ce-dd73c4a0418e">
+                    <dmn:text>"m0086"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+            <dmn:rule id="_0f331fef-28a0-4b5c-8856-890cf91a6c32">
+                <dmn:inputEntry id="_6e2bfeae-e3c5-47c9-9f76-fa3a59db392f">
+                    <dmn:text>true</dmn:text>
+                </dmn:inputEntry>
+                <dmn:inputEntry id="_c1d53235-6c6a-4e01-a61a-937255caeba7">
+                    <dmn:text>"Binnen bedrijf"</dmn:text>
+                </dmn:inputEntry>
+                <dmn:outputEntry id="_72544e41-af0b-42d6-ac86-a656f8754dac">
+                    <dmn:text>"jci1.3:c:BWBR0022830&amp;hoofdstuk=3&amp;afdeling=3.4&amp;paragraaf=3.4.9&amp;artikel=3.71g&amp;z=2018-04-05&amp;g=2018-04-05&amp;citeertitel=Activiteitenbesluit milieubeheer"</dmn:text>
+                </dmn:outputEntry>
+                <dmn:outputEntry id="_68947f4c-2da4-4f15-b4ae-7cb1872c890f">
+                    <dmn:text>"m0086"</dmn:text>
+                </dmn:outputEntry>
+            </dmn:rule>
+        </dmn:decisionTable>
+    </dmn:decision>
+</dmn:definitions>

@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd" 
+xmlns:feel="http://www.omg.org/spec/FEEL/20140401" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel"
+	xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" 
+	xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" 
+	xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content"
+xmlns="http://toepasbare-regels.omgevingswet.overheid.nl/00000001001900249000" 
+namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001001900249000" 
+name="IndieningsvereistenVergunningEvenementOrganiseren">
+  <dmn:extensionElements>
+    <inter:regelgroepen xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">
+      <inter:regelgroep id="RegelGroep01">
+        <inter:naam>Algemene vragen</inter:naam>
+        <inter:prioriteit>1</inter:prioriteit>
+      </inter:regelgroep>
+      <inter:regelgroep id="RegelGroep02">
+        <inter:naam>Evenement op weg of water</inter:naam>
+        <inter:prioriteit>3</inter:prioriteit>
+      </inter:regelgroep>
+      <inter:regelgroep id="RegelGroep03">
+        <inter:naam>Eventuele extra vragen</inter:naam>
+        <inter:prioriteit>5</inter:prioriteit>
+      </inter:regelgroep>
+    </inter:regelgroepen>
+    <uitv:uitvoeringsregels xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel">
+      <uitv:uitvoeringsregel id="UitvId0001">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">1</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>date</uitv:gegevensType>
+          <uitv:vraagTekst>Wanneer wordt het evenement gehouden?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0002">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">2</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Hoe lang duurt het evenement?</uitv:vraagTekst>
+        </uitv:vraag>
+        <content:uitvoeringsregelToelichting xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content">
+          <content:toelichting>Geef het antwoord in uren, dagdelen of dagen, net wat van toepassing is.</content:toelichting>
+          <content:belangrijk>false</content:belangrijk>
+        </content:uitvoeringsregelToelichting>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0003">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">3</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>list</uitv:gegevensType>
+          <uitv:vraagTekst>Wat voor type evenement is het?</uitv:vraagTekst>
+          <uitv:opties>
+            <uitv:optieType>enkelAntwoord</uitv:optieType>
+            <uitv:optie>
+              <uitv:sequenceId>1</uitv:sequenceId>
+              <uitv:optieText>Eten en drinken</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>2</uitv:sequenceId>
+              <uitv:optieText>Verkoop van goederen</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>3</uitv:sequenceId>
+              <uitv:optieText>Sport</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>4</uitv:sequenceId>
+              <uitv:optieText>Muziek</uitv:optieText>
+            </uitv:optie>
+          </uitv:opties>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0004">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">4</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>number</uitv:gegevensType>
+          <uitv:vraagTekst>Hoeveel bezoekers worden er verwacht?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0005">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">5</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Wie organiseert het evenement?</uitv:vraagTekst>
+        </uitv:vraag>
+        <content:uitvoeringsregelToelichting xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content">
+          <content:toelichting>Geef naam, emailadres en telefoonnummer van de organisatie-contactpersoon. Als het een bedrijf is, neem dan ook de bedrijfsnaam en het KvK nummer op.</content:toelichting>
+          <content:belangrijk>false</content:belangrijk>
+        </content:uitvoeringsregelToelichting>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0006">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">6</inter:prioriteit>
+        <uitv:bijlage>
+          <uitv:bijlageType>Plattegrond evenement</uitv:bijlageType>
+        </uitv:bijlage>
+        <content:uitvoeringsregelToelichting xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content">
+          <content:toelichting>Geef op een PDF een plattegrond van het evenemententerrein. Gebruik detailkaarten om aan te geven:
+aan- en afvoerroutes van mensen en goederen
+sanitaire voorzieningen
+hulpposten
+evenuele locaties voor de bereiding van etenswaren</content:toelichting>
+          <content:belangrijk>false</content:belangrijk>
+        </content:uitvoeringsregelToelichting>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0007">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">7</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Is (een deel van) het evenement in, op of bij openbare wegen?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0008">
+        <uitv:regelgroepRef href="#RegelGroep02"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">1</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Beschrijf kort hoe het weggedeelte van het evenement er uit ziet.</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0009">
+        <uitv:regelgroepRef href="#RegelGroep02"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">2</inter:prioriteit>
+        <uitv:bijlage>
+          <uitv:bijlageType>Routebeschrijving</uitv:bijlageType>
+        </uitv:bijlage>
+        <content:uitvoeringsregelToelichting xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content">
+          <content:toelichting>Neem in een PDF de route op, met daarop aangegeven wat punten zijn waar het normale verkeer moet worden gestopt of omgeleid.</content:toelichting>
+          <content:belangrijk>false</content:belangrijk>
+        </content:uitvoeringsregelToelichting>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0010">
+        <uitv:regelgroepRef href="#RegelGroep01"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">8</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Is (een deel van) het evenement in, op of bij water?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0011">
+        <uitv:regelgroepRef href="#RegelGroep02"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">3</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Beschrijf kort hoe het watergedeelte van het evenement er uit ziet.</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0012">
+        <uitv:regelgroepRef href="#RegelGroep02"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">4</inter:prioriteit>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Is (een deel van) het evenement bij, in of op de Noordzee?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0013">
+        <uitv:regelgroepRef href="#RegelGroep02"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">5</inter:prioriteit>
+        <uitv:bijlage>
+          <uitv:bijlageType>Bewakingsplan kustwacht</uitv:bijlageType>
+        </uitv:bijlage>
+        <content:uitvoeringsregelToelichting xmlns:content="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content">
+          <content:toelichting>Voeg het bewakingsplan van de kustwacht toe.</content:toelichting>
+          <content:belangrijk>false</content:belangrijk>
+        </content:uitvoeringsregelToelichting>
+      </uitv:uitvoeringsregel>
+          <uitv:uitvoeringsregel id="UitvId0015">
+        <uitv:regelgroepRef href="#RegelGroep03"/>
+        <inter:prioriteit xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Interactieregel">1</inter:prioriteit>
+        <uitv:vasteWaarde>
+          <uitv:waardeVraag>Namespace</uitv:waardeVraag>
+          <uitv:waarde>true</uitv:waarde>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+        </uitv:vasteWaarde>
+      </uitv:uitvoeringsregel>
+    </uitv:uitvoeringsregels>
+  </dmn:extensionElements>
+  <dmn:itemDefinition isCollection="false" label="indienbaar" name="indienbaar">
+    <dmn:typeRef>feel:boolean</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:inputData id="InputData0001" name="Start evenement">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0001"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0001.var" name="Start evenement" typeRef="feel:date"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0002" name="Duur evenement">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0002"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0002.var" name="Duur evenement" typeRef="feel:string"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0003" name="Type evenement">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0003"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0003.var" name="Type evenement" typeRef="feel:string"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0004" name="Verwacht aantal bezoekers">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0004"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0004.var" name="Verwacht aantal bezoekers" typeRef="feel:number"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0005" name="Organisatie evenement">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0005"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0005.var" name="Organisatie evenement" typeRef="feel:string"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0006" name="Plattegrond evenement">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0006"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0006.var" name="Plattegrond evenement" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0007" name="Weg">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0007"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0007.var" name="Weg" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0008" name="Beschrijving weggedeelte">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0008"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0008.var" name="Beschrijving weggedeelte" typeRef="feel:string"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0009" name="Routebeschrijving">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0009"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0009.var" name="Routebeschrijving" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0010" name="Water">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0010"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0010.var" name="Water" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0011" name="Beschrijving watergedeelte">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0011"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0011.var" name="Beschrijving watergedeelte" typeRef="feel:string"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0012" name="Noordzee">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0012"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0012.var" name="Noordzee" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0013" name="Bewakingsplan kustwacht">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0013"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0013.var" name="Bewakingsplan kustwacht" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="InputData0015" name="namespace">
+    <dmn:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel" href="#UitvId0015"/>
+    </dmn:extensionElements>
+    <dmn:variable id="InputData0015.var" name="namespace" typeRef="feel:boolean"/>
+  </dmn:inputData>
+  <dmn:decision id="Decision0001" name="IndieningsvereistenEvenementOrganiseren">
+    <dmn:extensionElements>
+      <bedr:functioneleStructuurRef xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel" href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001001900249000/id/concept/IndieningsvereistenVergunningEvenementOrganiseren"/>
+    </dmn:extensionElements>
+    <dmn:variable id="Decision0001.var" name="IndieningsvereistenEvenementOrganiseren" typeRef="feel:boolean"/>
+    <dmn:informationRequirement>
+      <dmn:requiredDecision href="#Decision0002"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0001"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0002"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredDecision href="#Decision0003"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredDecision href="#Decision0004"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredDecision href="#Decision0005"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable hitPolicy="ANY" id="_d3f8aead-cbf5-4026-8234-7c37afead186" outputLabel="IndieningsvereistenEvenementOrganiseren" typeRef="feel:boolean">
+      <dmn:input id="_aa385a00-b299-4436-a2c9-724f8ec77c3b">
+        <dmn:inputExpression typeRef="indienbaar">
+          <dmn:text>Verplichte indieningsvereisten</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_305af00e-f226-486f-99fc-a871d9a08a37">
+        <dmn:inputExpression typeRef="feel:date">
+          <dmn:text>Start evenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_b5546178-93a6-480d-8d78-e6fc86ac2114">
+        <dmn:inputExpression typeRef="feel:string">
+          <dmn:text>Duur evenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_938d2fb8-0d2d-4df1-8082-7182bed97b9f">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Wegevenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_6629c89a-77ba-4ec9-a8ec-cb0e40af5149">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Waterevenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_61942e75-0f2a-4fc2-b6c6-e7522baae0e5">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Aansluitpunt evenement organiseren</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_2f060a1b-6273-45f0-912b-0db8b8d28187"/>
+      <dmn:rule id="_19b08c56-de19-49d2-a8f0-bf71f177419f">
+        <dmn:inputEntry id="_aa385a00-b299-4436-a2c9-724f8ec77c3b-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_305af00e-f226-486f-99fc-a871d9a08a37-0">
+          <dmn:text>not(null)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_b5546178-93a6-480d-8d78-e6fc86ac2114-0">
+          <dmn:text>not(null)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_938d2fb8-0d2d-4df1-8082-7182bed97b9f-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_6629c89a-77ba-4ec9-a8ec-cb0e40af5149-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_61942e75-0f2a-4fc2-b6c6-e7522baae0e5-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_2f060a1b-6273-45f0-912b-0db8b8d28187-0">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="Decision0002" name="Verplichte indieningsvereisten">
+    <dmn:variable id="Decision0002.var" name="Verplichte indieningsvereisten" typeRef="indienbaar"/>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0003"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0004"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0005"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0006"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable hitPolicy="ANY" id="_88103a78-72e9-4983-b9f6-416b93f708e2" outputLabel="Verplichte indieningsvereisten" typeRef="indienbaar">
+      <dmn:input id="_fe7b8188-fd94-4723-9be3-32e73440f724">
+        <dmn:inputExpression typeRef="feel:string">
+          <dmn:text>Type evenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_11220ac5-fa22-485d-ae74-c4667d0da8e3">
+        <dmn:inputExpression typeRef="feel:number">
+          <dmn:text>Verwacht aantal bezoekers</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_a01fa2f2-6aad-4234-bec3-82fa8d118155">
+        <dmn:inputExpression typeRef="feel:string">
+          <dmn:text>Organisatie evenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_aa12f36f-660f-435a-8ebe-ef470b412442">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Plattegrond evenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_46ca5f04-6a15-4cf6-8e20-1400a33d5bb7"/>
+      <dmn:rule id="_5d792483-60fe-4a37-ab25-8af877ded81a">
+        <dmn:inputEntry id="_fe7b8188-fd94-4723-9be3-32e73440f724-0">
+          <dmn:text>"Eten en drinken"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_11220ac5-fa22-485d-ae74-c4667d0da8e3-0">
+          <dmn:text>not(null)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_a01fa2f2-6aad-4234-bec3-82fa8d118155-0">
+          <dmn:text>not(null)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_aa12f36f-660f-435a-8ebe-ef470b412442-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_46ca5f04-6a15-4cf6-8e20-1400a33d5bb7-0">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="Decision0003" name="Wegevenement">
+    <dmn:variable id="Decision0003.var" name="Wegevenement" typeRef="feel:boolean"/>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0007"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0008"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0009"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable hitPolicy="ANY" id="_b02881bf-d938-444f-b303-e88f1384f8ab" outputLabel="Wegevenement" typeRef="feel:boolean">
+      <dmn:input id="_4e6271b9-6805-4182-ae7e-d96ff804dd6e">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Weg</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_85a71165-5d68-4040-8d53-63316d23c13b">
+        <dmn:inputExpression typeRef="feel:string">
+          <dmn:text>Beschrijving weggedeelte</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_7c2c67bb-b4aa-4ee4-9d51-231603758496">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Routebeschrijving</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_4784524f-7cf2-4a27-b621-3f55f4f719d5"/>
+      <dmn:rule id="_247ca7f7-8257-4c59-a1b6-7dd30d504122">
+        <dmn:inputEntry id="_4e6271b9-6805-4182-ae7e-d96ff804dd6e-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_85a71165-5d68-4040-8d53-63316d23c13b-0">
+          <dmn:text>not(null)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_7c2c67bb-b4aa-4ee4-9d51-231603758496-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_4784524f-7cf2-4a27-b621-3f55f4f719d5-0">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_840e642d-6924-447c-b4f8-e9aff35d7dc5">
+        <dmn:inputEntry id="_4e6271b9-6805-4182-ae7e-d96ff804dd6e-1">
+          <dmn:text>false</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_85a71165-5d68-4040-8d53-63316d23c13b-1">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_7c2c67bb-b4aa-4ee4-9d51-231603758496-1">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_4784524f-7cf2-4a27-b621-3f55f4f719d5-1">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="Decision0004" name="Waterevenement">
+    <dmn:variable id="Decision0004.var" name="Waterevenement" typeRef="feel:boolean"/>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0010"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0011"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredDecision href="#_ecea6173-cc87-45f3-9474-66e0fbc6f5b9"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable hitPolicy="UNIQUE" id="_322d228b-4a93-4534-a98a-f435912b5534" outputLabel="Waterevenement" typeRef="feel:boolean">
+      <dmn:input id="_f0d5daf9-62ff-46dc-a540-0747a5526d6b">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Water</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_39c0fed9-bccf-4a33-90a2-e58ef3ce66b4">
+        <dmn:inputExpression typeRef="feel:string">
+          <dmn:text>Beschrijving watergedeelte</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_7985d1db-278b-482f-a6e3-62f031099199">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Noordzee evenement</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_86b0c2ba-8a7f-4d6c-9e6e-77dbebd6a219"/>
+      <dmn:rule id="_da253c8d-44b3-4063-acd0-cb126c92d6fe">
+        <dmn:inputEntry id="_f0d5daf9-62ff-46dc-a540-0747a5526d6b-0">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_39c0fed9-bccf-4a33-90a2-e58ef3ce66b4-0">
+          <dmn:text>not(null)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_27f144a6-c970-4568-9476-201ce94c0a33">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_86b0c2ba-8a7f-4d6c-9e6e-77dbebd6a219-0">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_71865814-cc7a-4482-b926-946fbf41e4c1">
+        <dmn:inputEntry id="_f0d5daf9-62ff-46dc-a540-0747a5526d6b-2">
+          <dmn:text>false</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_39c0fed9-bccf-4a33-90a2-e58ef3ce66b4-2">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5fbab05f-8c82-48eb-af51-8ebd848c133a">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_86b0c2ba-8a7f-4d6c-9e6e-77dbebd6a219-2">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="Decision0005" name="Aansluitpunt evenement organiseren">
+    <dmn:variable id="Decision0005.var" name="Aansluitpunt evenement organiseren" typeRef="feel:boolean"/>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0015"/>
+    </dmn:informationRequirement>
+    <dmn:invocation id="_283b9447-17c4-4d7e-af99-0485131ba7f4" typeRef="feel:boolean">
+      <dmn:literalExpression id="literal__283b9447-17c4-4d7e-af99-0485131ba7f4">
+        <dmn:text>invoke</dmn:text>
+      </dmn:literalExpression>
+      <dmn:binding>
+        <dmn:parameter id="_94f82f97-1462-47fd-aa3c-20044cf29259" name="namespace"/>
+        <dmn:literalExpression id="_48d6d723-6fcf-41ea-a008-1fd1d3489e5d">
+          <dmn:text>namespace</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_5181a58d-9e21-4238-b4f8-5a1eb3021b32" name="model name"/>
+        <dmn:literalExpression id="_2fb2c40e-f7cd-4831-bc51-d6c04a1fc8f0">
+          <dmn:text>"Indieningsvereisten evenement organiseren"</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_46db07b3-8003-4420-85fe-35d94ed07704" name="decision name"/>
+        <dmn:literalExpression id="_82091300-0c33-4e3c-968e-44bdf806e587">
+          <dmn:text>"Aansluiting Indieningsvereisten evenement organiseren"</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_9ee42810-23aa-40dc-9560-841c5d997bc2" name="parameters"/>
+        <dmn:literalExpression id="_4cc56020-26cd-4f3d-9c1b-a34ba1250bfd">
+          <dmn:text>context()</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+    </dmn:invocation>
+  </dmn:decision>
+  <dmn:decision id="_ecea6173-cc87-45f3-9474-66e0fbc6f5b9" name="Noordzee evenement">
+    <dmn:variable id="_b255d00d-17ef-4ae1-8b85-42df759ddc4c" name="Noordzee evenement" typeRef="feel:boolean"/>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0012"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#InputData0013"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable hitPolicy="UNIQUE" id="_a1884a1c-dbd4-4e59-aa89-e1e3652c3d47" outputLabel="Noordzee evenement" typeRef="feel:boolean">
+      <dmn:input id="_909fb018-cbea-4c04-b128-b85428bead72">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Noordzee</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_3fdfdb2c-0159-4270-9cb5-f5c5f268d167">
+        <dmn:inputExpression typeRef="feel:boolean">
+          <dmn:text>Bewakingsplan kustwacht</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_23d38a87-5428-40c2-b830-457bc2c374ac"/>
+      <dmn:rule id="_a9c7abc3-72db-4c24-b815-00178ee79c21">
+        <dmn:inputEntry id="_e1cc147c-b559-4630-9c34-50313db19865">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_95fe2120-dbc5-43c2-bc08-f0dec45d3459">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_5430b7a2-3131-47cb-bd7a-c9f7d5bba818">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_e35040b5-9d19-479b-baa3-907b26a2efef">
+        <dmn:inputEntry id="_f04cdcd0-e7ac-4cb1-8891-1516ab746321">
+          <dmn:text>false</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_680b9c2d-721f-4e90-aac2-060928f1cca0">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_12761f57-9edb-4aef-9769-0b20e1d19a9b">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>
