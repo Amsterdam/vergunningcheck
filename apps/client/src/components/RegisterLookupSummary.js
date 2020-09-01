@@ -3,7 +3,7 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 
 import { ComponentWrapper, EditButton, List, ListItem } from "../atoms";
-import { actions } from "../config/matomo";
+import { actions, eventNames } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -12,7 +12,7 @@ const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
   setActiveState,
-  topic: { sttrFile, name },
+  topic: { name, sttrFile },
 }) => {
   const { trackEvent } = useMatomo();
   const { restrictions, zoningPlans } = address;
@@ -29,9 +29,9 @@ const RegisterLookupSummary = ({
         <EditButton
           onClick={() => {
             trackEvent({
-              category: name.toLowerCase(),
-              action: actions.EDIT_ADDRESS,
-              name: address.postalCode.substring(0, 4),
+              action: actions.CLICK_INTERNAL_NAVIGATION,
+              category: name,
+              name: eventNames.EDIT_ADDRESS,
             });
             setActiveState("locationInput");
           }}

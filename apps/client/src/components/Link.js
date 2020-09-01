@@ -16,7 +16,7 @@ const Link = ({
 }) => {
   const checkerContext = useContext(CheckerContext);
 
-  // The default action is CLICK_EXTERNAL_LINK, it can be overwritten.
+  // The default action is CLICK_EXTERNAL_NAVIGATION, it can be overwritten.
   const onClick = () => {
     if (eventName && checkerContext.topic.name) {
       matomoTrackEvent({

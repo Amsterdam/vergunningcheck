@@ -28,12 +28,9 @@ const LinkRenderer: React.FC<Props> = ({
   const rel = isPhoneLink ? "" : "noopener noreferrer";
 
   // Setup event props
+  const action = actions.CLICK_EXTERNAL_NAVIGATION;
   const description = isPhoneLink ? eventNames.PHONE_NUMBER : linkText;
   const eventName = `${description} - ${eventLocation}`;
-
-  const action = isPhoneLink
-    ? actions.CLICK_PHONE_LINK
-    : actions.CLICK_EXTERNAL_NAVIGATION;
 
   return (
     <Link variant="inline" {...{ action, eventName, href, rel, target }}>

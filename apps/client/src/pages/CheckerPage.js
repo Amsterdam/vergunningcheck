@@ -22,7 +22,8 @@ import { geturl, routes } from "../routes";
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { trackEvent } = useMatomo();
-  const { slug, sttrFile, text, name } = topic;
+  const { name, slug, sttrFile, text } = topic;
+
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
@@ -90,21 +91,21 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
         );
     const question = checker.stack[questionIndex];
+    const eventName = `${question.text.toLowerCase()} - ${
+      value === "prev" ? eventNames.PREV_QUESTION : eventNames.NEXT_QUESTION
+    }`;
 
     if (Number.isInteger(value)) {
       trackEvent({
-        category: name.toLowerCase(),
         action: actions.EDIT_QUESTION,
+        category: name.toLowerCase(),
         name: question.text.toLowerCase(),
       });
     } else {
       trackEvent({
-        category: name.toLowerCase(),
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        name:
-          value === "prev"
-            ? eventNames.PREV_QUESTION
-            : eventNames.NEXT_QUESTION,
+        category: name.toLowerCase(),
+        name: eventName,
       });
     }
 

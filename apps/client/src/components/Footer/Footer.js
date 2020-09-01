@@ -11,7 +11,7 @@ import {
 import React, { memo } from "react";
 
 import { List, ListItem } from "../../atoms";
-import { eventNames } from "../../config/matomo";
+import { eventNames, sections } from "../../config/matomo";
 import { FOOTER } from "../../utils/test-ids";
 import Link from "../Link";
 import PhoneNumber from "../PhoneNumber";
@@ -28,7 +28,7 @@ const FirstColumn = () => (
         Bel het telefoonnummer{" "}
         <PhoneNumber
           darkBackground
-          eventLocation={eventNames.FOOTER}
+          eventLocation={sections.FOOTER}
           variant={null}
         />
       </strong>{" "}
@@ -38,7 +38,7 @@ const FirstColumn = () => (
       <ListItem>
         <Link
           darkBackground
-          eventName={`contactformulier - ${eventNames.FOOTER}`}
+          eventName={`${eventNames.CONTACT_FORM} - ${sections.FOOTER}`}
           href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
           variant="with-chevron"
         >
@@ -48,7 +48,7 @@ const FirstColumn = () => (
       <ListItem>
         <Link
           darkBackground
-          eventName={`contactgegevens en openingstijden - ${eventNames.FOOTER}`}
+          eventName={`${eventNames.CONTACT_OPENING} - ${sections.FOOTER}`}
           href="https://www.amsterdam.nl/contact/"
           variant="with-chevron"
         >
@@ -64,7 +64,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
-        eventName={`nieuwsbrief amsterdam.nl - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.NEWSLETTER} - ${sections.FOOTER}`}
         href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
         variant="with-chevron"
       >
@@ -74,7 +74,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
-        eventName={`twitter - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.TWITTER} - ${sections.FOOTER}`}
         href="https://twitter.com/AmsterdamNL"
         variant="with-chevron"
       >
@@ -84,7 +84,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
-        eventName={`facebook - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.FACEBOOK} - ${sections.FOOTER}`}
         href="https://www.facebook.com/gemeenteamsterdam"
         variant="with-chevron"
       >
@@ -94,7 +94,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
-        eventName={`instagram - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.INSTAGRAM} - ${sections.FOOTER}`}
         href="https://www.instagram.com/gemeenteamsterdam/"
         variant="with-chevron"
       >
@@ -104,7 +104,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
-        eventName={`linkedin - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.LINKEDIN} - ${sections.FOOTER}`}
         href="https://www.linkedin.com/company/gemeente-amsterdam"
         variant="with-chevron"
       >
@@ -114,7 +114,7 @@ const SecondColumn = () => (
     <ListItem>
       <Link
         darkBackground
-        eventName={`werken bij - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.WORK_AT} - ${sections.FOOTER}`}
         href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
         variant="with-chevron"
       >
@@ -131,7 +131,7 @@ const ThirdColumn = () => (
       uitgaan, evenementen en meer vindt u op{" "}
       <Link
         darkBackground
-        eventName={`iamsterdam.com - ${eventNames.FOOTER}`}
+        eventName={`${eventNames.IAMSTERDAM} - ${sections.FOOTER}`}
         href="https://www.iamsterdam.com/"
         strong
       >
@@ -180,21 +180,28 @@ const Footer = () => (
           <Link
             href="https://www.amsterdam.nl/overdezesite/"
             variant="with-chevron"
+            eventName={`${eventNames.ABOUT} - ${sections.FOOTER}`}
           >
             Over deze site
           </Link>
-          <Link href="https://www.amsterdam.nl/privacy/" variant="with-chevron">
+          <Link
+            href="https://www.amsterdam.nl/privacy/"
+            variant="with-chevron"
+            eventName={`${eventNames.PRIVACY} - ${sections.FOOTER}`}
+          >
             Privacy
           </Link>
           <Link
             href="https://www.amsterdam.nl/privacy/cookies-site/"
             variant="with-chevron"
+            eventName={`${eventNames.COOKIES} - ${sections.FOOTER}`}
           >
             Cookies op deze site
           </Link>
           <Link
             href="https://www.amsterdam.nl/nieuwsarchief/"
             variant="with-chevron"
+            eventName={`${eventNames.WEBARCHIEF} - ${sections.FOOTER}`}
           >
             Webarchief
           </Link>

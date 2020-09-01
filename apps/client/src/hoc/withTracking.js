@@ -1,7 +1,7 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 
-import { sections, trackingEnabled } from "../config/matomo";
+import { trackingEnabled } from "../config/matomo";
 
 const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
@@ -11,7 +11,7 @@ const withTracking = (Component) => ({ ...props }) => {
       trackPageView({});
     }
   };
-  const matomoTrackEvent = ({ category = sections.INTRO, action, name }) => {
+  const matomoTrackEvent = ({ category, action, name }) => {
     if (trackingEnabled()) {
       trackEvent({
         category,

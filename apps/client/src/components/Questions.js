@@ -9,12 +9,12 @@ import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
   checker,
-  topic: { slug, name },
-  setFinishedState,
-  setActiveState,
   goToQuestion,
+  topic: { name, slug },
   isActive,
   isFinished,
+  setFinishedState,
+  setActiveState,
 }) => {
   const sessionContext = useContext(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
@@ -26,8 +26,8 @@ const Questions = ({
     setActiveState("conclusion");
     setFinishedState(["questions", "conclusion"], true);
     trackEvent({
-      category: name.toLowerCase(),
       action: actions.CLICK_INTERNAL_NAVIGATION,
+      category: name.toLowerCase(),
       name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
     });
   }, [name, setActiveState, setFinishedState, trackEvent]);

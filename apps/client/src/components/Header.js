@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-import { actions, sections } from "../config/matomo";
+import { actions, eventNames, sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import {
   StyledHeader,
@@ -9,13 +9,15 @@ import {
   StyledLogoWrapper,
 } from "./HeaderStyles";
 
-export const Header = ({ matomoTrackEvent, category = sections.INTRO }) => {
+export const Header = ({ category = sections.INTRO, matomoTrackEvent }) => {
   const handleClick = (href) => {
-    matomoTrackEvent({
-      action: actions.CLICK_EXTERNAL_NAVIGATION,
-      category,
-      name: "logo - header",
-    });
+    if (category) {
+      matomoTrackEvent({
+        action: actions.CLICK_EXTERNAL_NAVIGATION,
+        category,
+        name: `${eventNames.LOGO} - ${sections.HEADER}`,
+      });
+    }
     window.location.href = href;
   };
 
