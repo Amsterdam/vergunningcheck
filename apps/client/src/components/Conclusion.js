@@ -17,7 +17,7 @@ import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, topic: { category } }) => {
+const Conclusion = ({ checker, topic: { name } }) => {
   const { trackEvent } = useMatomo();
 
   // find conclusions we want to display to the user
@@ -64,7 +64,7 @@ const Conclusion = ({ checker, topic: { category } }) => {
     e.preventDefault();
     trackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      category,
+      category: name.toLowerCase(),
       name: eventNames.APPLY_FOR_PERMIT,
     });
     // Open OLO in new tab/window
@@ -74,7 +74,7 @@ const Conclusion = ({ checker, topic: { category } }) => {
   const handlePrintButton = () => {
     trackEvent({
       action: actions.DOWNLOAD,
-      category,
+      category: name.toLowerCase(),
       name: eventNames.SAVE_CONCLUSION,
     });
     window.print();

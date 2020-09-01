@@ -66,11 +66,6 @@ const Questions = ({
       goToQuestion("prev");
     } else {
       // Go to Location Result, because the user was at the first question
-      trackEvent({
-        action: actions.CLICK_INTERNAL_NAVIGATION,
-        category: name.toLowerCase(),
-        name: `${eventNames.BACK} ${sections.LOCATION_RESULT}`,
-      });
       setActiveState("locationResult");
       setFinishedState("locationResult", false);
     }

@@ -1,7 +1,9 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext } from "react";
 
 import { generateOloUrl } from "../../config";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext } from "../../context";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
@@ -15,6 +17,7 @@ const LocationResult = ({
   setActiveState,
   topic,
 }) => {
+  const { trackEvent } = useMatomo();
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
   const { questionIndex } = sessionContext[topic.slug] || {};
@@ -35,13 +38,37 @@ const LocationResult = ({
 
       setFinishedState("locationResult", true);
       if (isFinished("questions")) {
+        trackEvent({
+          action: actions.CLICK_INTERNAL_NAVIGATION,
+          category: topic.name.toLowerCase(),
+          name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
+        });
         setActiveState("conclusion");
       } else {
+        trackEvent({
+          action: actions.CLICK_INTERNAL_NAVIGATION,
+          category: topic.name.toLowerCase(),
+          name: `${eventNames.FORWARD} ${sections.QUESTIONS}`,
+        });
         setActiveState("questions");
       }
     } else {
+      trackEvent({
+        action: actions.CLICK_EXTERNAL_NAVIGATION,
+        category: topic.name.toLowerCase(),
+        name: eventNames.TO_OLO,
+      });
       window.open(generateOloUrl(address), "_blank");
     }
+  };
+
+  const onGoToPrev = () => {
+    trackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      category: topic.name.toLowerCase(),
+      name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
+    });
+    setActiveState("locationInput");
   };
 
   return (
@@ -65,9 +92,7 @@ const LocationResult = ({
           formEnds={!hasSTTR}
           nextText={hasSTTR ? "Naar de vragen" : "Naar het omgevingsloket"}
           noMarginBottom={!hasSTTR}
-          onGoToPrev={() => {
-            setActiveState("locationInput");
-          }}
+          onGoToPrev={onGoToPrev}
           showNext
           showPrev
         />

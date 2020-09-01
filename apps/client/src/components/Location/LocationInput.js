@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { eventNames } from "../../config/matomo";
+import { actions, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext } from "../../context";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
@@ -14,7 +14,6 @@ import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 const LocationInput = ({
-  isFinished,
   resetChecker,
   setActiveState,
   setFinishedState,
@@ -26,7 +25,7 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { slug, text, sttrFile } = topic;
+  const { name, slug, sttrFile, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
   const hasSTTR = !!sttrFile;
 
@@ -53,8 +52,8 @@ const LocationInput = ({
       }
 
       trackEvent({
-        category: "postcode-input",
-        action: `postcode - ${slug.replace("-", " ")}`,
+        action: actions.SUBMIT_LOCATION,
+        category: name.toLowerCase(),
         name: address.postalCode.substring(0, 4),
       });
 
@@ -100,7 +99,8 @@ const LocationInput = ({
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer <PhoneNumber eventName={eventNames.ADDRESS_ERROR} />.
+            telefoonnummer{" "}
+            <PhoneNumber eventLocation={sections.LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}

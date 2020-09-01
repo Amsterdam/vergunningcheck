@@ -14,8 +14,8 @@ const withTracking = (Component) => ({ ...props }) => {
   const matomoTrackEvent = ({ category, action, name }) => {
     if (trackingEnabled()) {
       trackEvent({
-        category,
         action,
+        category,
         name,
       });
     }

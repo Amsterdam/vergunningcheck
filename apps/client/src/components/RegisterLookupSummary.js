@@ -30,7 +30,7 @@ const RegisterLookupSummary = ({
           onClick={() => {
             trackEvent({
               action: actions.CLICK_INTERNAL_NAVIGATION,
-              category: name,
+              category: name.toLowerCase(),
               name: eventNames.EDIT_ADDRESS,
             });
             setActiveState("locationInput");

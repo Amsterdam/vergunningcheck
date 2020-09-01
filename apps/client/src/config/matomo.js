@@ -20,6 +20,7 @@ export const actions = {
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "telefoonnummer",
   DOWNLOAD: "download",
+  SUBMIT_LOCATION: "locatie opslaan",
 };
 
 export const sections = {
@@ -28,6 +29,8 @@ export const sections = {
   HEADER: "header",
   INTRO: "intro",
   LOCATION_RESULT: "locatie resultaat",
+  LOCATION_INPUT: "locatie invoer",
+  QUESTIONS: "vragen",
 };
 
 export const eventNames = {
@@ -57,6 +60,7 @@ export const eventNames = {
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
   TEXT_LINK: "tekst link",
+  TO_OLO: "naar het omgevingsloket",
   TWITTER: "twitter",
   WEBARCHIEF: "webarchief",
   WORK_AT: "werken bij",
