@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import withTracking from "../../hoc/withTracking";
@@ -16,10 +16,14 @@ function DefaultLayout({
   matomoPageView,
 }: DefaultLayoutProps) {
   const { location } = useHistory();
+  const [oldLocation, setLocation] = useState("");
 
   useEffect(() => {
-    matomoPageView();
-  }, [location, matomoPageView]);
+    if (location.pathname !== oldLocation) {
+      matomoPageView();
+      setLocation(location.pathname);
+    }
+  }, [location, matomoPageView, oldLocation]);
 
   return <BaseLayout {...{ heading, children }} />;
 }

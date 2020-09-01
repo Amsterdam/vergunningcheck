@@ -11,6 +11,7 @@ const withTracking = (Component) => ({ ...props }) => {
       trackPageView({});
     }
   };
+
   const matomoTrackEvent = ({ category, action, name }) => {
     if (trackingEnabled()) {
       trackEvent({
