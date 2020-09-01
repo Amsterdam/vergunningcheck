@@ -98,7 +98,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
 
     if (Number.isInteger(value)) {
       trackEvent({
-        action: actions.EDIT_QUESTION,
+        action: actions.CLICK_INTERNAL_NAVIGATION,
         category: name.toLowerCase(),
         name: question.text.toLowerCase() - eventNames.EDIT_QUESTION,
       });
