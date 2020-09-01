@@ -91,6 +91,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
         );
     const question = checker.stack[questionIndex];
+    // EventName is the question text in lowercase combined with the button that is pressed. (next, prev)
     const eventName = `${question.text.toLowerCase()} - ${
       value === "prev" ? eventNames.PREV_QUESTION : eventNames.NEXT_QUESTION
     }`;
@@ -99,7 +100,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       trackEvent({
         action: actions.EDIT_QUESTION,
         category: name.toLowerCase(),
-        name: question.text.toLowerCase(),
+        name: question.text.toLowerCase() - eventNames.EDIT_QUESTION,
       });
     } else {
       trackEvent({

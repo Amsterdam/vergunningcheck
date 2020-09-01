@@ -42,6 +42,7 @@ export const eventNames = {
   COOKIES: "cookies op deze site",
   DESCRIPTION: "toelichting",
   EDIT_ADDRESS: "wijzig adres",
+  EDIT_QUESTION: "wijzig vraag",
   FACEBOOK: "facebook",
   FORWARD: "naar de",
   IAMSTERDAM: "iamsterdam.com",
