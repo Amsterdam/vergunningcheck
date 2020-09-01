@@ -1,9 +1,10 @@
 import { Column, Row } from "@datapunt/asc-ui";
-import React, { useContext } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 
 import { FormTitle, HideForPrint } from "../../atoms";
-import { CheckerContext } from "../../context";
+import { Topic } from "../../config";
+import { useTopic } from "../../hooks";
 import Footer from "../Footer";
 import Header from "../Header";
 import HiddenDebugInfo from "../HiddenDebugInfo";
@@ -15,8 +16,7 @@ export interface BaseLayoutProps {
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const checkerContext = useContext(CheckerContext);
-  const { topic } = checkerContext as any;
+  const topic: Topic = useTopic();
   const title = heading || topic?.text?.heading || null;
 
   return (

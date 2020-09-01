@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
-import withTopic from "../hoc/withTopic";
+import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
 
-const IntroPage = ({ topic }) => {
+const IntroPage = () => {
   const history = useHistory();
+  const topic = useTopic();
   const { text, intro } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
 
@@ -30,4 +31,4 @@ const IntroPage = ({ topic }) => {
   );
 };
 
-export default withTopic(IntroPage);
+export default IntroPage;

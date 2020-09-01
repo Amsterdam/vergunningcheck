@@ -1,4 +1,4 @@
-type Topic = {
+export type Topic = {
   slug: string;
   sttrFile?: string;
   redirectToOlo?: boolean;

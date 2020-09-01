@@ -2,11 +2,11 @@ import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React from "react";
 import { useRouteMatch } from "react-router-dom";
 
 import { PrevButton } from "../atoms";
-import { CheckerContext } from "../context";
+import { useTopic } from "../hooks";
 import { getslug, routeConfig } from "../routes";
 import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
@@ -21,9 +21,7 @@ const Nav = ({
   showNext,
   showPrev,
 }) => {
-  const {
-    topic: { slug: name },
-  } = useContext(CheckerContext);
+  const topic = useTopic();
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
   const route = routeConfig.find((route) => route.path === path);
@@ -37,7 +35,7 @@ const Nav = ({
     trackEvent({
       category,
       action,
-      name,
+      name: topic.slug,
     });
 
     if (onGoToNext) onGoToNext(e);
@@ -47,7 +45,7 @@ const Nav = ({
     trackEvent({
       category,
       action: "form-vorige-knop",
-      name,
+      name: topic.slug,
     });
 
     if (onGoToPrev) onGoToPrev(e);

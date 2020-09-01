@@ -15,10 +15,14 @@ import {
 } from "../components/StepByStepNavigation";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
+import { useChecker, useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
 
-const CheckerPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ resetChecker }) => {
   const sessionContext = useContext(SessionContext);
+  const topic = useTopic();
+  const checker = useChecker();
+
   const { slug, sttrFile, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
