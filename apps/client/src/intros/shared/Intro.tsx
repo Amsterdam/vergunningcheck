@@ -31,10 +31,10 @@ export default ({
   const influence =
     dependantOnSituation && dependantOnQuestions
       ? "Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt."
-      : dependantOnSituation
-      ? "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt."
       : dependantOnQuestions
       ? "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt."
+      : dependantOnSituation
+      ? "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt."
       : null;
 
   return (
@@ -47,7 +47,7 @@ export default ({
       </Paragraph>
 
       {usableForBullets.length > 0 && (
-        <List variant="bullet" data-testid={INTRO_USABLE_FOR_BULLETS}>
+        <List data-testid={INTRO_USABLE_FOR_BULLETS} variant="bullet">
           {usableForBullets.map((bulletText) => (
             <ListItem key={bulletText}>{bulletText}</ListItem>
           ))}
@@ -76,9 +76,9 @@ export default ({
             gebruiken:
           </Paragraph>
           <List
-            variant="bullet"
-            style={{ marginBottom: 12 }}
             data-testid={INTRO_EXCEPTION_BULLETS}
+            style={{ marginBottom: 12 }}
+            variant="bullet"
           >
             {exceptions.map((exception) => (
               <ListItem key={exception}>{exception}</ListItem>
@@ -95,8 +95,8 @@ export default ({
       {exceptions.length === 0 && showContactInformation && (
         <Paragraph>
           <ContactSentence
-            openingSentence="Heeft u vragen? Bel dan"
             eventName={eventNames.INTRO}
+            openingSentence="Heeft u vragen? Bel dan"
           />
         </Paragraph>
       )}

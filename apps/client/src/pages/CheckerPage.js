@@ -19,7 +19,7 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug, hasSTTR, text } = topic;
+  const { hasSTTR, slug, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = hasSTTR ? sessionContext[topic.slug] : 0;
 

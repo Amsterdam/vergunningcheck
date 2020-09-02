@@ -12,9 +12,9 @@ _TODO: dmn, sttr, imtr etc. Consider moving this section to README.md instead_
 - permit, ('vergunning' in dutch). You might need a permit for an activity (activiteit).
 - topic, a type of doing (werkzaamheid in dutch). Could be multiple activities / permits in one topic. It corresponds with a configured checker with one or more permits.
 - sttr-file; sttr is an XML standard for dutch DSO legislation
-- xml to json; we convert sttr-XML to our custom json format for better performance
+- xml to json; we convert sttr-XML to JSON for better performance
 - sttr-builder; the tool used to build sttr-files
-- check; the activity of checking whether you need a permit
+- check; the activity of checking whether you need a permit (dutch: vergunning)
 - visitor; the person performing a check
 - checker; the tool itself, intro, register lookups, a set of questions and conclusion
 
@@ -26,6 +26,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org).
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
 
+- Follow the install steps in [./apps/client/sttr_build/README.md](./apps/client/sttr_build/README.md)
 - Make sure you have the api-key in your environment variables. `export STTR_BUILDER_API_KEY=somesecret`
 - Download the xml files and transform them to our json-format from `./apps/client` run `npm run generate`
 - Thats it. Fire up the app with `npm start` if you hadn't already. You can now test your new or updated permit.
@@ -34,6 +35,7 @@ If you want to use the latest permit-configuration (XML files from the sttr-buil
 
 If you want to combine 2 or more permits in 1 checker, we need to configure a topic in our sttr-build config.
 
+- Follow the install steps in [./apps/client/sttr_build/README.md](./apps/client/sttr_build/README.md)
 - First make sure you update your permits so we have all the files we need. See the section above.
 - List the permit-id's you want to combine in [./apps/client/sttr_build/config.ts](./apps/client/sttr_build/config.ts) under `topics`.
   - To find the permit-ids you can use in the `./apps/client/public/sttr/list.source.json`.

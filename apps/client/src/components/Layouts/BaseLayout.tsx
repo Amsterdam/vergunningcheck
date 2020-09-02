@@ -11,14 +11,14 @@ import HiddenDebugInfo from "../HiddenDebugInfo";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
+  checker?: object;
   children: React.ReactNode;
   heading: String;
-  checker?: object;
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
   const checkerContext = useContext(CheckerContext);
-  const topic: Topic = checkerContext.topic; // topic can be null here.
+  const topic = checkerContext.topic as Topic; // topic can be null here.
   const title = heading || topic?.text.heading;
 
   return (

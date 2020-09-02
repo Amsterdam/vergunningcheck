@@ -44,13 +44,13 @@ function feelTypeMap(feel) {
  * The value is the keyword (lowercased substring) to look for
  **/
 const autoFillMap = {
+  cityScape: "dorpsgezicht",
   /*
    * The word 'monument is used in both the boolean and list version of the
    * monument question
    **/
   monumentBoolean: "gemeentelijk of rijksmonument",
   monumentList: "gebouw een monument",
-  cityScape: "dorpsgezicht",
 };
 
 /**
@@ -85,15 +85,15 @@ const log = (obj) => {
     // assume collection
     return obj.map(log);
   } else {
-    const { type, name, children, attribs, data } = obj;
+    const { attribs, children, data, name, type } = obj;
     return type === "text"
       ? {
           data,
         }
       : {
-          name,
           attribs,
           children: children && children.map(log),
+          name,
         };
   }
 };
@@ -156,13 +156,14 @@ function getDecisions(xmlDecisions) {
       const output = find(outputEntry.children, "dmn:text");
       debug("output", log(output));
       rules.push({
+        description: descriptionText,
         inputs: filt(rule.children, "dmn:inputEntry").reduce(
           (inputEntries, inputEntry) => {
             const text = find(inputEntry.children, "dmn:text").children[0].data;
             debug("inputtext", text);
             const map = {
-              true: true,
               false: false,
+              true: true,
             };
             inputEntries.push(map[text] !== undefined ? map[text] : text);
             return inputEntries;
@@ -170,7 +171,6 @@ function getDecisions(xmlDecisions) {
           []
         ),
         output: output.children[0].data,
-        description: descriptionText,
       });
       return rules;
     }, []);
@@ -262,12 +262,12 @@ function getExtensionElements(xmlExtensionElements) {
       debug("questiontext", text);
 
       result = {
-        text,
         description: explanation,
         longDescription:
           desc && desc.length && desc[0]["content:langeToelichting"]
             ? desc[0]["content:langeToelichting"].trim()
             : undefined,
+        text,
       };
 
       result.autofill = getAutofillResolverKey(result.text);
@@ -342,10 +342,10 @@ export default (xml) => {
           debug("xmlExtensionElements", log(xmlExtensionElements));
 
           const result = {
+            decisions: getDecisions(xmlDecisions),
+            inputs: getInputData(xmlInputData),
             name,
             questions: getExtensionElements(xmlExtensionElements),
-            inputs: getInputData(xmlInputData),
-            decisions: getDecisions(xmlDecisions),
           };
 
           resolve(result);

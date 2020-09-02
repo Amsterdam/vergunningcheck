@@ -8,7 +8,7 @@ import Nav from "../components/Nav";
 import withChecker from "../hoc/withChecker";
 import { geturl, routes } from "../routes";
 
-const IntroPage = ({ topic, checker }) => {
+const IntroPage = ({ checker, topic }) => {
   const history = useHistory();
 
   const { text, intro } = topic;

@@ -9,6 +9,7 @@ type Props = {
 
 export default ({ checker }: Props) => {
   const dependantOnQuestions = checker._getUpcomingQuestions().length > 0;
-  const dependantOnSituation = checker.getAutofillDataNeeds(autofillMap);
+  const dependantOnSituation =
+    checker.getAutofillDataNeeds(autofillMap).length > 0;
   return <Intro {...{ dependantOnQuestions, dependantOnSituation }} />;
 };

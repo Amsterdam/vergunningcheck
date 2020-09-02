@@ -57,8 +57,8 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
 
   let topics: TopicOutputType[] = Object.entries(api.topics).map(
     ([slug, topic]: [string, string[]]) => ({
-      permits: topic,
       path: `${transformedOutputPath}/${slug}.json`,
+      permits: topic,
       slug,
     })
   );
@@ -72,10 +72,10 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
 
   apiPermitIds.forEach((permitId) => {
     topics.push({
-      slug: permitId,
-      permits: [permitId],
-      path: `${transformedOutputPath}/${permitId}.json`,
       name: apiPermits.find((permit) => permit._id === permitId)?.name,
+      path: `${transformedOutputPath}/${permitId}.json`,
+      permits: [permitId],
+      slug: permitId,
     });
   });
 
@@ -83,7 +83,6 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
   topics.forEach(async (topic: TopicOutputType) => {
     const { slug, permits } = topic;
     const topicJsonContent = {
-      slug,
       permits: await Promise.all(
         permits.map(async (permitId) => {
           const apiPermit = apiPermits.find(
@@ -111,6 +110,7 @@ const apisMap: object[] = apis.map(async (api: APIConfig) => {
           };
         })
       ),
+      slug,
     };
 
     writeJson(join(transformedDir, `${slug}.json`), topicJsonContent);

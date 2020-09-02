@@ -8,8 +8,8 @@ import { APIConfig, ActivitiesResponse, TopicInputType } from "./types.ts";
 
 // TODO: Improve 'usage', waiting for yargs to be ported https://github.com/yargs/yargs/issues/1661
 const argv = parser(Deno.args, {
-  string: ["dir", "key", "config"],
   number: ["max-connections"],
+  string: ["dir", "key", "config"],
 });
 
 if (!argv.dir) {
@@ -59,12 +59,12 @@ const apisMap = apis.map(
 
         const requestPromise = async () => {
           const result = await fetch(`${host}/conclusie/sttr`, {
-            method: "POST",
             body: `activiteitId=${permitId}`,
             headers: {
               ...headers,
               "content-type": "application/x-www-form-urlencoded",
             },
+            method: "POST",
           });
 
           if (!result.ok) {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Alert } from "../atoms";
 import Layout from "../components/Layouts/DefaultLayout";
-import { isProduction } from "../config";
+import { isProduction, topics } from "../config";
 import { geturl, routes } from "../routes";
 import topicsJson from "../topics.json";
 
@@ -15,7 +15,7 @@ const DevHomePage = () => {
   return (
     <Layout heading="Welcome to CHAPPIE 2.0">
       <p>
-        <Alert style={{ backgroundColor: "#f6c948" }}>
+        <Alert level="attention">
           Let op; deze pagina bevat links naar vergunningchecks die mogelijk
           (nog) niet correct werken.{" "}
           <strong>
@@ -40,7 +40,7 @@ const DevHomePage = () => {
           </td>
         </tr>
         <tbody>
-          {topicsJson
+          {topics
             .filter(({ hasSTTR }) => !hasSTTR) // only show olo / redir-olo topics
             .map(({ slug, name, redirectToOlo }) => (
               <tr key={slug}>
@@ -54,7 +54,7 @@ const DevHomePage = () => {
             ))}
           {topicsJson.map((apiConfig) => {
             return apiConfig.map((apiTopic) => {
-              const sttrTopic = topicsJson.find(
+              const sttrTopic = topics.find(
                 (topic) => topic.slug === apiTopic.slug
               );
 
@@ -70,12 +70,7 @@ const DevHomePage = () => {
                       <>
                         {title}
                         <br />
-                        <div
-                          style={{
-                            backgroundColor: "rgb(246, 201, 72)",
-                            padding: "1em",
-                          }}
-                        >
+                        <Alert level="attention">
                           STTR file found for <strong>{sttrTopic.name}</strong>,
                           but we can't load '<strong>{sttrTopic.slug}</strong>'
                           because it's configured to be{" "}
@@ -84,13 +79,13 @@ const DevHomePage = () => {
                             -flow
                           </strong>
                           .
-                        </div>
+                        </Alert>
                       </>
                     ) : (
                       <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
                     )}
                   </td>
-                  <td>{sttrTopic ? "configured" : "unknown"}</td>
+                  <td>{sttrTopic ? "configured" : "dynamic"}</td>
                   <td>{apiTopic.path.split("/")[0]}</td>
                   <td>
                     <span

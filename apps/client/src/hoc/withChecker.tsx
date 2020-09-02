@@ -9,6 +9,7 @@ import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import RedirectPage from "../pages/RedirectPage";
 import getChecker from "../sttr_client";
+import topicsJson from "../topics.json";
 
 export default (Component: any) => () => {
   const sessionContext = useContext(SessionContext) as SessionDataType;
@@ -36,14 +37,10 @@ export default (Component: any) => () => {
     // if the topic is not found (dynamic sttr-checker) or the topic is found and has an sttr flow
     if (!checker && !error && (!topic || topic.hasSTTR)) {
       try {
-        const topicsRequest = await fetch(
-          `${window.location.origin}/topics.json`
-        );
-        const topicsJson = await topicsRequest.json();
-
         const topicConfig = topicsJson
           .flat()
-          .find((topic: TopicOutputType) => topic.slug === slug);
+          .find((topic) => topic.slug === slug) as TopicOutputType;
+
         console.log({ topicConfig });
         const topicRequest = await fetch(
           `${window.location.origin}/${topicConfig.path}`
@@ -62,10 +59,11 @@ export default (Component: any) => () => {
           true
         )[0];
 
-        // TODO: Add comment about the next if
+        // Only set the answers again if we have no unfulfilled data-needs.
         if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
           newChecker.setQuestionAnswers(sessionContext[slug].answers);
         }
+
         // Store the entire `sttr-checker` in React Context
         checkerContext.checker = newChecker;
         setChecker(newChecker);

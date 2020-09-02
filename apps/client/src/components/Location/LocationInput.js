@@ -26,7 +26,7 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { slug, hasSTTR, text } = topic;
+  const { hasSTTR, slug, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);

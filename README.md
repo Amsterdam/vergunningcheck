@@ -11,6 +11,8 @@ npm i
 npm start
 ```
 
+If you need to update the checks there are additional install steps in [apps/client/sttr_build/README.md](apps/client/sttr_build/README.md).
+
 ## Contributing
 
 If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)
@@ -19,7 +21,8 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 
 - React
 - React Hook Form
-- GraphQL + ApolloClient v3
+- [Deno](https://deno.land)
+- GraphQL + ApolloClient
 - Lerna
 - Sentry
 - [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl)
