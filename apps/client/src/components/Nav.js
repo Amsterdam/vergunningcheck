@@ -1,11 +1,11 @@
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams, useRouteMatch } from "react-router-dom";
 
 import { PrevButton } from "../atoms";
+import withTracking from "../hoc/withTracking";
 import { getslug, routeConfig } from "../routes";
 import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
@@ -13,6 +13,7 @@ import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 const Nav = ({
   formEnds,
   nextText,
+  matomoTrackEvent,
   noMarginBottom,
   onGoToNext,
   onGoToPrev,
@@ -22,7 +23,6 @@ const Nav = ({
 }) => {
   const { slug: name } = useParams();
 
-  const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
   const route = routeConfig.find((route) => route.path === path);
   const category = route.matomoPage || route.name;
@@ -32,7 +32,7 @@ const Nav = ({
       ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
 
-    trackEvent({
+    matomoTrackEvent({
       category,
       action,
       name,
@@ -42,7 +42,7 @@ const Nav = ({
   };
 
   const handlePrevClick = (e) => {
-    trackEvent({
+    matomoTrackEvent({
       category,
       action: "form-vorige-knop",
       name,
@@ -100,4 +100,4 @@ Nav.propTypes = {
   style: PropTypes.object,
 };
 
-export default Nav;
+export default withTracking(Nav);

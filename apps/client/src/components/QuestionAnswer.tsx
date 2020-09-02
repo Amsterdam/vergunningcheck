@@ -1,7 +1,7 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { EditButton } from "../atoms";
+import { EditButton, TextToEdit } from "../atoms";
 import { removeQuotes } from "../utils";
 import ConclusionAlert from "./ConclusionAlert";
 
@@ -24,7 +24,7 @@ const QuestionAnswer: React.FC<
   return (
     <>
       <Paragraph gutterBottom={0}>
-        {removeQuotes(userAnswer)}
+        <TextToEdit>{removeQuotes(userAnswer)}</TextToEdit>
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
