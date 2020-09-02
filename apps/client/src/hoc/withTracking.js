@@ -9,6 +9,7 @@ const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
+    console.log("matomoPageView");
     if (trackingEnabled()) {
       trackPageView({});
     }
