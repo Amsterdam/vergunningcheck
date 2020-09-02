@@ -1,111 +1,599 @@
 {
-  "slug": "enavtgGrJEWwT5RGJ",
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Dakkapel bouwen OLD",
-      "questions": [
-        {
-          "text": "Ligt het gebouw waarop u de dakkapel gaat plaatsen in een gebied waar geen regels gelden voor het uiterlijk van gebouwen?",
-          "description": "In sommige gebieden gelden geen regels voor het uiterlijk van gebouwen. Ligt het gebouw waar u de dakkapel op gaat plaatsen in zo’n gebied?",
-          "type": "boolean",
-          "id": "uitv__9ad6bc25-a114-40b2-957e-e5ab2933890f",
-          "prio": 10
+      "decisions": {
+        "_83755ec6-2943-4894-967a-f58f0a51c513": {
+          "requiredInputs": ["#input__9ad6bc25-a114-40b2-957e-e5ab2933890f"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"NeemContactOpMet\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk- of rijksmonument?",
-          "type": "boolean",
-          "id": "uitv__abb7b973-febd-4461-9a4c-38e469a60a42",
-          "prio": 20
+        "_71fd80c5-0533-4550-8a2d-638d2cac5be5": {
+          "requiredInputs": ["#input__9a7ccd2b-3423-4738-b02e-12e8cb080d42"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [false], "output": "\"Vergunningplicht\"" },
+              { "inputs": [true], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "Aan welke kant van het gebouw gaat u de dakkapel plaatsen?",
-          "options": ["voorkant", "zijkant", "achterkant"],
-          "type": "string",
-          "id": "uitv__ea24fb34-3ad2-4604-9c82-270d571e618f",
-          "prio": 30
+        "_fbbaf727-55c9-481d-b1d3-4ba04794d6fc": {
+          "requiredInputs": ["#input__ea24fb34-3ad2-4604-9c82-270d571e618f"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": ["\"voorkant\""], "output": "\"Vergunningplicht\"" },
+              { "inputs": ["\"zijkant\""], "output": "\"Vergunningplicht\"" },
+              { "inputs": ["\"achterkant\""], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad?",
-          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
-          "type": "boolean",
-          "id": "uitv__d2802329-3bcc-4335-aa07-30fbfd1a6853",
-          "prio": 40
+        "_51d1803a-38bb-40d4-b6aa-e84403495331": {
+          "requiredInputs": ["#input__e7514f7c-767a-4ff7-a208-c1229f9d0bd4"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [false], "output": "\"Vergunningplicht\"" },
+              { "inputs": [true], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan (vaar)water?",
-          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
-          "type": "boolean",
-          "id": "uitv__ddfd38f6-e5c6-4fba-ab7d-a99145d243f7",
-          "prio": 50
+        "_85f718a0-57b0-4c94-8166-9e59b37667a7": {
+          "requiredInputs": ["#input__d7c7cf23-902d-40d8-b5c6-902800aaba7f"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [false], "output": "\"Vergunningplicht\"" },
+              { "inputs": [true], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plantsoen, park of parkeerplaats?",
-          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
-          "type": "boolean",
-          "id": "uitv__cdc501e7-925d-43be-8575-5c7a37300a6c",
-          "prio": 60
+        "_bc0d79d7-495c-4288-b27a-a010ca622910": {
+          "requiredInputs": ["#input__99bb900d-d915-4f95-a6c1-210cf9b0a67f"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "Ligt het gebouw waarop u de dakkapel gaat plaatsen, in een beschermd stads- of dorpsgezicht?",
-          "autofill": "cityScape",
-          "type": "boolean",
-          "id": "uitv__77151989-f723-495f-9574-5197507f237c",
-          "prio": 70
+        "_9396ea5a-c710-4af7-a44a-884154e6d284": {
+          "requiredInputs": ["#input__73a48c6b-8d71-4565-9352-0d07d8fcad0c"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [false], "output": "\"Vergunningplicht\"" },
+              { "inputs": [true], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad?",
-          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
-          "type": "boolean",
-          "id": "uitv__633bb27e-5302-4e37-a9bd-40ef0597460b",
-          "prio": 80
+        "_1f3472e4-4b00-4931-aad6-9091b3b337ff": {
+          "requiredInputs": ["#input__abb7b973-febd-4461-9a4c-38e469a60a42"],
+          "decisionTable": {
+            "rules": [
+              { "inputs": [true], "output": "\"Vergunningplicht\"" },
+              { "inputs": [false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan (vaar)water?",
-          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
-          "type": "boolean",
-          "id": "uitv__a45e9856-1b94-470c-9c75-4a6398e2bf96",
-          "prio": 90
+        "_e9b06ddc-a437-4dff-8420-024d8336d0c9": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__77151989-f723-495f-9574-5197507f237c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"achterkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"voorkant\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"zijkant\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plantsoen, park of parkeerplaats?",
-          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
-          "type": "boolean",
-          "id": "uitv__f4ba5f31-cb49-4077-85db-79df97be56c5",
-          "prio": 100
+        "_c5ec1fc4-a14f-4e65-97b0-39011804a4e0": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"voorkant\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"achterkant\"", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "Krijgt de dakkapel een plat dak?",
-          "type": "boolean",
-          "id": "uitv__73a48c6b-8d71-4565-9352-0d07d8fcad0c",
-          "prio": 110
+        "_d35175d2-400a-4405-a5a8-25c8548a64c7": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853",
+            "#input__ddfd38f6-e5c6-4fba-ab7d-a99145d243f7"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"zijkant\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"voorkant\"", "-", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["\"achterkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              { "inputs": ["-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "Wordt de dakkapel hoger dan 1,75 meter?",
-          "type": "boolean",
-          "id": "uitv__99bb900d-d915-4f95-a6c1-210cf9b0a67f",
-          "prio": 120
+        "_d4189c73-e830-4331-8186-bd7a7b2e8504": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__77151989-f723-495f-9574-5197507f237c",
+            "#input__633bb27e-5302-4e37-a9bd-40ef0597460b"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"achterkant\"", true, true],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"voorkant\"", "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["\"zijkant\"", "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U meet nu de afstand van het laagste punt van het dak van het gebouw tot de onderkant van de dakkapel. Wordt deze afstand tussen de 50 en 100 centimeter?",
-          "type": "boolean",
-          "id": "uitv__d7c7cf23-902d-40d8-b5c6-902800aaba7f",
-          "prio": 130
+        "_8c929b02-bcee-4e8f-82fc-d90e0e0b7828": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__77151989-f723-495f-9574-5197507f237c",
+            "#input__633bb27e-5302-4e37-a9bd-40ef0597460b",
+            "#input__a45e9856-1b94-470c-9c75-4a6398e2bf96"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"achterkant\"", true, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"zijkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U meet nu de afstand tussen de bovenkant van de dakkapel en de bovenkant van het dak van het gebouw. Wordt deze afstand meer dan 50 centimeter?",
-          "description": "Toelichting 'bovenkant van het gebouw':\n\nHet gaat om het hoogste punt van het dak van het gebouw. U rekent een schoorsteen, schotel of antenne niet mee.",
-          "type": "boolean",
-          "id": "uitv__e7514f7c-767a-4ff7-a208-c1229f9d0bd4",
-          "prio": 140
+        "_75413375-c34c-47db-9585-bbf48698d230": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853",
+            "#input__ddfd38f6-e5c6-4fba-ab7d-a99145d243f7",
+            "#input__cdc501e7-925d-43be-8575-5c7a37300a6c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"zijkant\"", false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"achterkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              { "inputs": ["-", true, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
+            ]
+          }
         },
-        {
-          "text": "U meet nu de afstand tussen de zijkanten van de dakkapel en de zijkanten van het gebouw. Wordt deze afstand aan beide kanten meer dan 50 centimeter?",
-          "type": "boolean",
-          "id": "uitv__9a7ccd2b-3423-4738-b02e-12e8cb080d42",
-          "prio": 150
+        "_fdd89a48-49f6-494d-bc2b-fe9bdef8b008": {
+          "requiredInputs": [
+            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
+            "#input__77151989-f723-495f-9574-5197507f237c",
+            "#input__633bb27e-5302-4e37-a9bd-40ef0597460b",
+            "#input__a45e9856-1b94-470c-9c75-4a6398e2bf96",
+            "#input__f4ba5f31-cb49-4077-85db-79df97be56c5"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"achterkant\"", true, false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"voorkant\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"zijkant\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              { "inputs": ["-", false, "-", "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", true, "-", "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", true, "-"], "output": "\"no hit\"" },
+              { "inputs": ["-", "-", "-", "-", false], "output": "\"no hit\"" }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_83755ec6-2943-4894-967a-f58f0a51c513",
+            "#_71fd80c5-0533-4550-8a2d-638d2cac5be5",
+            "#_fbbaf727-55c9-481d-b1d3-4ba04794d6fc",
+            "#_51d1803a-38bb-40d4-b6aa-e84403495331",
+            "#_85f718a0-57b0-4c94-8166-9e59b37667a7",
+            "#_bc0d79d7-495c-4288-b27a-a010ca622910",
+            "#_9396ea5a-c710-4af7-a44a-884154e6d284",
+            "#_1f3472e4-4b00-4931-aad6-9091b3b337ff",
+            "#_e9b06ddc-a437-4dff-8420-024d8336d0c9",
+            "#_c5ec1fc4-a14f-4e65-97b0-39011804a4e0",
+            "#_d35175d2-400a-4405-a5a8-25c8548a64c7",
+            "#_d4189c73-e830-4331-8186-bd7a7b2e8504",
+            "#_8c929b02-bcee-4e8f-82fc-d90e0e0b7828",
+            "#_75413375-c34c-47db-9585-bbf48698d230",
+            "#_fdd89a48-49f6-494d-bc2b-fe9bdef8b008"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "description": "In sommige gebieden gelden geen of andere regels voor het uiterlijk van gebouwen. Het gebouw waar u de dakkapel op wilt plaatsen ligt in zo’n gebied. Neem contact op met de gemeente op [14 020](tel:14020), maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.",
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl).",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt voor het onderdeel bouwen geen vergunning nodig.\n\n//link naar Waar u verder op moet letten//",
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
         }
-      ],
+      },
       "inputs": {
         "input__9ad6bc25-a114-40b2-957e-e5ab2933890f": {
           "href": "#uitv__9ad6bc25-a114-40b2-957e-e5ab2933890f",
@@ -168,598 +656,110 @@
           "type": "boolean"
         }
       },
-      "decisions": {
-        "_512c1b62-4638-4d45-9d57-3a683230ddf8": {
-          "requiredInputs": ["#input__9ad6bc25-a114-40b2-957e-e5ab2933890f"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [true], "output": "\"NeemContactOpMet\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
-            ]
-          }
+      "name": "Conclusie Dakkapel bouwen OLD",
+      "questions": [
+        {
+          "description": "In sommige gebieden gelden geen regels voor het uiterlijk van gebouwen. Ligt het gebouw waar u de dakkapel op gaat plaatsen in zo’n gebied?",
+          "text": "Ligt het gebouw waarop u de dakkapel gaat plaatsen in een gebied waar geen regels gelden voor het uiterlijk van gebouwen?",
+          "type": "boolean",
+          "id": "uitv__9ad6bc25-a114-40b2-957e-e5ab2933890f",
+          "prio": 10
         },
-        "_9e8ecc7b-ecf9-4823-bfcc-82b94f00ac4b": {
-          "requiredInputs": ["#input__9a7ccd2b-3423-4738-b02e-12e8cb080d42"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk- of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__abb7b973-febd-4461-9a4c-38e469a60a42",
+          "prio": 20
         },
-        "_49796063-a89b-4d5a-98e9-d9fccedd6856": {
-          "requiredInputs": ["#input__ea24fb34-3ad2-4604-9c82-270d571e618f"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": ["\"voorkant\""], "output": "\"Vergunningplicht\"" },
-              { "inputs": ["\"zijkant\""], "output": "\"Vergunningplicht\"" },
-              { "inputs": ["\"achterkant\""], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "text": "Aan welke kant van het gebouw gaat u de dakkapel plaatsen?",
+          "options": ["voorkant", "zijkant", "achterkant"],
+          "type": "string",
+          "id": "uitv__ea24fb34-3ad2-4604-9c82-270d571e618f",
+          "prio": 30
         },
-        "_6085110d-549a-4eee-baf2-8d41f0d5b055": {
-          "requiredInputs": ["#input__e7514f7c-767a-4ff7-a208-c1229f9d0bd4"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
+          "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad?",
+          "type": "boolean",
+          "id": "uitv__d2802329-3bcc-4335-aa07-30fbfd1a6853",
+          "prio": 40
         },
-        "_ded868c4-2556-4f3b-9e54-325d220f8f26": {
-          "requiredInputs": ["#input__d7c7cf23-902d-40d8-b5c6-902800aaba7f"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
+          "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan (vaar)water?",
+          "type": "boolean",
+          "id": "uitv__ddfd38f6-e5c6-4fba-ab7d-a99145d243f7",
+          "prio": 50
         },
-        "_6c8bbe54-5d60-4512-8515-7c08a58645a4": {
-          "requiredInputs": ["#input__99bb900d-d915-4f95-a6c1-210cf9b0a67f"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
+          "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plantsoen, park of parkeerplaats?",
+          "type": "boolean",
+          "id": "uitv__cdc501e7-925d-43be-8575-5c7a37300a6c",
+          "prio": 60
         },
-        "_28549219-9f5e-48f4-b471-baea1ad7f215": {
-          "requiredInputs": ["#input__73a48c6b-8d71-4565-9352-0d07d8fcad0c"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [false], "output": "\"Vergunningplicht\"" },
-              { "inputs": [true], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "text": "Ligt het gebouw waarop u de dakkapel gaat plaatsen, in een beschermd stads- of dorpsgezicht?",
+          "autofill": "cityScape",
+          "type": "boolean",
+          "id": "uitv__77151989-f723-495f-9574-5197507f237c",
+          "prio": 70
         },
-        "_bbe32e61-6793-4173-a6e5-12088ba6aaf6": {
-          "requiredInputs": ["#input__abb7b973-febd-4461-9a4c-38e469a60a42"],
-          "decisionTable": {
-            "rules": [
-              { "inputs": [true], "output": "\"Vergunningplicht\"" },
-              { "inputs": [false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
+          "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad?",
+          "type": "boolean",
+          "id": "uitv__633bb27e-5302-4e37-a9bd-40ef0597460b",
+          "prio": 80
         },
-        "_cb945390-c871-434e-81d3-4e7d4900ff8f": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__77151989-f723-495f-9574-5197507f237c"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"achterkant\"", true],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"voorkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"zijkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
+          "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan (vaar)water?",
+          "type": "boolean",
+          "id": "uitv__a45e9856-1b94-470c-9c75-4a6398e2bf96",
+          "prio": 90
         },
-        "_43cf6c54-fc89-4e96-a9d2-e22cf23f8693": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"zijkant\"", true],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"voorkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"achterkant\"", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Het gaat om een gebied waar iedereen mag lopen, fietsen, rijden of varen. Bijvoorbeeld: een stoep, weg, vaarwater, plantsoen of parkeerplaats.",
+          "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plantsoen, park of parkeerplaats?",
+          "type": "boolean",
+          "id": "uitv__f4ba5f31-cb49-4077-85db-79df97be56c5",
+          "prio": 100
         },
-        "_6fb36b91-528a-4c78-b167-f95b19d5ac3c": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853",
-            "#input__ddfd38f6-e5c6-4fba-ab7d-a99145d243f7"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"zijkant\"", false, true],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"voorkant\"", "-", "-"], "output": "\"no hit\"" },
-              {
-                "inputs": ["\"achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              { "inputs": ["-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "text": "Krijgt de dakkapel een plat dak?",
+          "type": "boolean",
+          "id": "uitv__73a48c6b-8d71-4565-9352-0d07d8fcad0c",
+          "prio": 110
         },
-        "_6915db8d-8305-4ba9-b008-1ff4b8a78569": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__77151989-f723-495f-9574-5197507f237c",
-            "#input__633bb27e-5302-4e37-a9bd-40ef0597460b"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"achterkant\"", true, true],
-                "output": "\"Vergunningplicht\""
-              },
-              { "inputs": ["\"voorkant\"", "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["\"zijkant\"", "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", false, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "text": "Wordt de dakkapel hoger dan 1,75 meter?",
+          "type": "boolean",
+          "id": "uitv__99bb900d-d915-4f95-a6c1-210cf9b0a67f",
+          "prio": 120
         },
-        "_72e7bda0-b5d9-4b8c-95de-1c2de4f14e19": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__77151989-f723-495f-9574-5197507f237c",
-            "#input__633bb27e-5302-4e37-a9bd-40ef0597460b",
-            "#input__a45e9856-1b94-470c-9c75-4a6398e2bf96"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"achterkant\"", true, false, true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"zijkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              { "inputs": ["-", false, "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "text": "U meet nu de afstand van het laagste punt van het dak van het gebouw tot de onderkant van de dakkapel. Wordt deze afstand tussen de 50 en 100 centimeter?",
+          "type": "boolean",
+          "id": "uitv__d7c7cf23-902d-40d8-b5c6-902800aaba7f",
+          "prio": 130
         },
-        "_1ba3aade-eab7-4a5e-b63d-f6bdca38475a": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__d2802329-3bcc-4335-aa07-30fbfd1a6853",
-            "#input__ddfd38f6-e5c6-4fba-ab7d-a99145d243f7",
-            "#input__cdc501e7-925d-43be-8575-5c7a37300a6c"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"zijkant\"", false, false, true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"achterkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              { "inputs": ["-", true, "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", false], "output": "\"no hit\"" }
-            ]
-          }
+        {
+          "description": "Toelichting 'bovenkant van het gebouw':\n\nHet gaat om het hoogste punt van het dak van het gebouw. U rekent een schoorsteen, schotel of antenne niet mee.",
+          "text": "U meet nu de afstand tussen de bovenkant van de dakkapel en de bovenkant van het dak van het gebouw. Wordt deze afstand meer dan 50 centimeter?",
+          "type": "boolean",
+          "id": "uitv__e7514f7c-767a-4ff7-a208-c1229f9d0bd4",
+          "prio": 140
         },
-        "_57284c8c-01e6-4851-aa6a-365da8136e2d": {
-          "requiredInputs": [
-            "#input__ea24fb34-3ad2-4604-9c82-270d571e618f",
-            "#input__77151989-f723-495f-9574-5197507f237c",
-            "#input__633bb27e-5302-4e37-a9bd-40ef0597460b",
-            "#input__a45e9856-1b94-470c-9c75-4a6398e2bf96",
-            "#input__f4ba5f31-cb49-4077-85db-79df97be56c5"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"achterkant\"", true, false, false, true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"voorkant\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"zijkant\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              { "inputs": ["-", false, "-", "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", true, "-", "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", true, "-"], "output": "\"no hit\"" },
-              { "inputs": ["-", "-", "-", "-", false], "output": "\"no hit\"" }
-            ]
-          }
-        },
-        "dummy": {
-          "requiredDecisions": [
-            "#_512c1b62-4638-4d45-9d57-3a683230ddf8",
-            "#_9e8ecc7b-ecf9-4823-bfcc-82b94f00ac4b",
-            "#_49796063-a89b-4d5a-98e9-d9fccedd6856",
-            "#_6085110d-549a-4eee-baf2-8d41f0d5b055",
-            "#_ded868c4-2556-4f3b-9e54-325d220f8f26",
-            "#_6c8bbe54-5d60-4512-8515-7c08a58645a4",
-            "#_28549219-9f5e-48f4-b471-baea1ad7f215",
-            "#_bbe32e61-6793-4173-a6e5-12088ba6aaf6",
-            "#_cb945390-c871-434e-81d3-4e7d4900ff8f",
-            "#_43cf6c54-fc89-4e96-a9d2-e22cf23f8693",
-            "#_6fb36b91-528a-4c78-b167-f95b19d5ac3c",
-            "#_6915db8d-8305-4ba9-b008-1ff4b8a78569",
-            "#_72e7bda0-b5d9-4b8c-95de-1c2de4f14e19",
-            "#_1ba3aade-eab7-4a5e-b63d-f6bdca38475a",
-            "#_57284c8c-01e6-4851-aa6a-365da8136e2d"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"NeemContactOpMet\"",
-                "description": "In sommige gebieden gelden geen of andere regels voor het uiterlijk van gebouwen. Het gebouw waar u de dakkapel op wilt plaatsen ligt in zo’n gebied. Neem contact op met de gemeente op [14 020](tel:14020), maandag tot en met vrijdag van 08.00 uur tot 18.00 uur."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\""
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Ga hiervoor naar [www.omgevingsloket.nl](http://www.omgevingsloket.nl)."
-              },
-              {
-                "inputs": [
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\""
-                ],
-                "output": "\"Toestemmingsvrij\"",
-                "description": "U hebt voor het onderdeel bouwen geen vergunning nodig.\n\n//link naar Waar u verder op moet letten//"
-              }
-            ]
-          }
+        {
+          "text": "U meet nu de afstand tussen de zijkanten van de dakkapel en de zijkanten van het gebouw. Wordt deze afstand aan beide kanten meer dan 50 centimeter?",
+          "type": "boolean",
+          "id": "uitv__9a7ccd2b-3423-4738-b02e-12e8cb080d42",
+          "prio": 150
         }
-      }
+      ]
     }
-  ]
+  ],
+  "slug": "enavtgGrJEWwT5RGJ"
 }

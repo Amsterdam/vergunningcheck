@@ -1,126 +1,9 @@
 {
-  "slug": "bmf5XsTrZpgTkbJoP",
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Eendaags evenement",
-      "questions": [
-        {
-          "text": "Is het een eendaags evenement?",
-          "type": "boolean",
-          "id": "uitv__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
-          "prio": 10
-        },
-        {
-          "text": "Is er een aanwijsbare organisator?",
-          "type": "boolean",
-          "id": "uitv__7e0111f6-47c4-4f96-84b9-99b57741188d",
-          "prio": 20
-        },
-        {
-          "text": "Gaat u het evenement houden tussen 9.00u en 23.00u?",
-          "type": "boolean",
-          "id": "uitv__ae919236-b2a4-48b7-8ce7-95980f06ad01",
-          "prio": 30
-        },
-        {
-          "text": "Verwacht u meer dan 100 personen tegelijkertijd?",
-          "type": "boolean",
-          "id": "uitv__abbd6563-821b-4cdc-a24f-89e8632977ec",
-          "prio": 40
-        },
-        {
-          "text": "Gaat u versterkt geluid maken?",
-          "type": "boolean",
-          "id": "uitv__6956c15b-9967-4391-9ff0-e87cc70549fc",
-          "prio": 50
-        },
-        {
-          "text": "Vindt het evenement plaats op het fietspad, op de autoweg of op een waterweg?",
-          "type": "boolean",
-          "id": "uitv__406c221e-a8de-4473-bc0a-9ed40f76b362",
-          "prio": 60
-        },
-        {
-          "text": "Gaat u meer dan twee objecten plaatsen?",
-          "type": "boolean",
-          "id": "uitv__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
-          "prio": 70
-        },
-        {
-          "text": "Heeft één van deze objecten een oppervlakte van 10m2 of groter?",
-          "type": "boolean",
-          "id": "uitv__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
-          "prio": 80
-        },
-        {
-          "text": "Gaat u goederen (zoals drank en etenswaar) met winstoogmerk verkopen?",
-          "type": "boolean",
-          "id": "uitv__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
-          "prio": 90
-        },
-        {
-          "text": "Heeft het evenement een commercieel karakter?",
-          "description": "commercieel karakter bedoelen we blabla",
-          "type": "boolean",
-          "id": "uitv__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
-          "prio": 100
-        },
-        {
-          "text": "Gaat u dieren inzetten bij het evenement?",
-          "type": "boolean",
-          "id": "uitv__ffd5cd4b-9fe1-4fca-9106-8219d27377d9",
-          "prio": 110
-        }
-      ],
-      "inputs": {
-        "input__c822f8a1-24cc-49b5-8a76-dbaa3be56133": {
-          "href": "#uitv__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
-          "type": "boolean"
-        },
-        "input__7e0111f6-47c4-4f96-84b9-99b57741188d": {
-          "href": "#uitv__7e0111f6-47c4-4f96-84b9-99b57741188d",
-          "type": "boolean"
-        },
-        "input__ae919236-b2a4-48b7-8ce7-95980f06ad01": {
-          "href": "#uitv__ae919236-b2a4-48b7-8ce7-95980f06ad01",
-          "type": "boolean"
-        },
-        "input__abbd6563-821b-4cdc-a24f-89e8632977ec": {
-          "href": "#uitv__abbd6563-821b-4cdc-a24f-89e8632977ec",
-          "type": "boolean"
-        },
-        "input__6956c15b-9967-4391-9ff0-e87cc70549fc": {
-          "href": "#uitv__6956c15b-9967-4391-9ff0-e87cc70549fc",
-          "type": "boolean"
-        },
-        "input__406c221e-a8de-4473-bc0a-9ed40f76b362": {
-          "href": "#uitv__406c221e-a8de-4473-bc0a-9ed40f76b362",
-          "type": "boolean"
-        },
-        "input__e1b9c2b7-59e4-447e-8404-0f702ae266b9": {
-          "href": "#uitv__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
-          "type": "boolean"
-        },
-        "input__cf45259c-ddee-4ac1-94e5-dbe799e63a7b": {
-          "href": "#uitv__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
-          "type": "boolean"
-        },
-        "input__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6": {
-          "href": "#uitv__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
-          "type": "boolean"
-        },
-        "input__023a4702-e82e-4e4f-b2c8-fbd212208dbe": {
-          "href": "#uitv__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
-          "type": "boolean"
-        },
-        "input__ffd5cd4b-9fe1-4fca-9106-8219d27377d9": {
-          "href": "#uitv__ffd5cd4b-9fe1-4fca-9106-8219d27377d9",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_5d416e38-6156-4756-bb00-9338a5505348": {
+        "_62abc8f0-5028-4036-871d-031ba20fab21": {
           "requiredInputs": ["#input__e1b9c2b7-59e4-447e-8404-0f702ae266b9"],
           "decisionTable": {
             "rules": [
@@ -129,7 +12,7 @@
             ]
           }
         },
-        "_05a10eb6-7cce-4888-b98f-3cd1cff93ffe": {
+        "_4e94b7ad-7ac7-4170-89f1-5a9b5cd98844": {
           "requiredInputs": ["#input__c822f8a1-24cc-49b5-8a76-dbaa3be56133"],
           "decisionTable": {
             "rules": [
@@ -138,7 +21,7 @@
             ]
           }
         },
-        "_501df711-16c0-41fb-9f02-90d87bd6542b": {
+        "_709793ec-1cd8-45a1-9dac-a88cd90f137d": {
           "requiredInputs": ["#input__ae919236-b2a4-48b7-8ce7-95980f06ad01"],
           "decisionTable": {
             "rules": [
@@ -147,7 +30,7 @@
             ]
           }
         },
-        "_011d51a8-cad4-4fd6-85d5-f58a7a479222": {
+        "_1b85a114-064d-487b-ba0d-64748143f94e": {
           "requiredInputs": ["#input__abbd6563-821b-4cdc-a24f-89e8632977ec"],
           "decisionTable": {
             "rules": [
@@ -156,7 +39,7 @@
             ]
           }
         },
-        "_817c34bd-23ce-4409-b2c5-b4cbcfe4912a": {
+        "_0bb41e55-2565-4980-a3a2-5e7fdf27125b": {
           "requiredInputs": ["#input__6956c15b-9967-4391-9ff0-e87cc70549fc"],
           "decisionTable": {
             "rules": [
@@ -165,7 +48,7 @@
             ]
           }
         },
-        "_80129bfa-e3f1-4d20-b69f-d2ac6dd8a39b": {
+        "_62b3761a-57d6-4a42-9d2d-5db1d1403b12": {
           "requiredInputs": ["#input__406c221e-a8de-4473-bc0a-9ed40f76b362"],
           "decisionTable": {
             "rules": [
@@ -174,7 +57,7 @@
             ]
           }
         },
-        "_3aec1a45-168d-462b-98b6-5d6b2cceed84": {
+        "_df4ec355-118c-4c93-a222-e2521aa3dbd7": {
           "requiredInputs": ["#input__7e0111f6-47c4-4f96-84b9-99b57741188d"],
           "decisionTable": {
             "rules": [
@@ -183,7 +66,7 @@
             ]
           }
         },
-        "_64a2aa79-3944-4e20-8beb-2825308935dd": {
+        "_41035f17-3ca4-4a37-ac84-55e7af938085": {
           "requiredInputs": ["#input__ffd5cd4b-9fe1-4fca-9106-8219d27377d9"],
           "decisionTable": {
             "rules": [
@@ -192,7 +75,7 @@
             ]
           }
         },
-        "_4832b7be-7d23-4d84-bcf8-1dd9562a0283": {
+        "_967d2126-1a8d-4ab3-97e8-4cbf69c8bbb3": {
           "requiredInputs": ["#input__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6"],
           "decisionTable": {
             "rules": [
@@ -201,7 +84,7 @@
             ]
           }
         },
-        "_e54a6a7f-9d28-41b1-bd36-10c7d2083a26": {
+        "_ea577f22-6cd3-4d54-98df-883d9c137afe": {
           "requiredInputs": ["#input__023a4702-e82e-4e4f-b2c8-fbd212208dbe"],
           "decisionTable": {
             "rules": [
@@ -210,7 +93,7 @@
             ]
           }
         },
-        "_5bd447a3-489e-446e-b67b-c8f9cbd9c1b4": {
+        "_eb2fa080-19fa-4938-b143-3ce1ee375fca": {
           "requiredInputs": [
             "#input__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
             "#input__cf45259c-ddee-4ac1-94e5-dbe799e63a7b"
@@ -223,7 +106,7 @@
             ]
           }
         },
-        "_605d7cb7-b206-46ba-a135-0523074adac1": {
+        "_e33d6528-1bba-493f-a6d8-445b04fcb249": {
           "requiredInputs": [
             "#input__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
             "#input__7e0111f6-47c4-4f96-84b9-99b57741188d",
@@ -436,18 +319,18 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_5d416e38-6156-4756-bb00-9338a5505348",
-            "#_05a10eb6-7cce-4888-b98f-3cd1cff93ffe",
-            "#_501df711-16c0-41fb-9f02-90d87bd6542b",
-            "#_011d51a8-cad4-4fd6-85d5-f58a7a479222",
-            "#_817c34bd-23ce-4409-b2c5-b4cbcfe4912a",
-            "#_80129bfa-e3f1-4d20-b69f-d2ac6dd8a39b",
-            "#_3aec1a45-168d-462b-98b6-5d6b2cceed84",
-            "#_64a2aa79-3944-4e20-8beb-2825308935dd",
-            "#_4832b7be-7d23-4d84-bcf8-1dd9562a0283",
-            "#_e54a6a7f-9d28-41b1-bd36-10c7d2083a26",
-            "#_5bd447a3-489e-446e-b67b-c8f9cbd9c1b4",
-            "#_605d7cb7-b206-46ba-a135-0523074adac1"
+            "#_62abc8f0-5028-4036-871d-031ba20fab21",
+            "#_4e94b7ad-7ac7-4170-89f1-5a9b5cd98844",
+            "#_709793ec-1cd8-45a1-9dac-a88cd90f137d",
+            "#_1b85a114-064d-487b-ba0d-64748143f94e",
+            "#_0bb41e55-2565-4980-a3a2-5e7fdf27125b",
+            "#_62b3761a-57d6-4a42-9d2d-5db1d1403b12",
+            "#_df4ec355-118c-4c93-a222-e2521aa3dbd7",
+            "#_41035f17-3ca4-4a37-ac84-55e7af938085",
+            "#_967d2126-1a8d-4ab3-97e8-4cbf69c8bbb3",
+            "#_ea577f22-6cd3-4d54-98df-883d9c137afe",
+            "#_eb2fa080-19fa-4938-b143-3ce1ee375fca",
+            "#_e33d6528-1bba-493f-a6d8-445b04fcb249"
           ],
           "decisionTable": {
             "rules": [
@@ -675,7 +558,124 @@
             ]
           }
         }
-      }
+      },
+      "inputs": {
+        "input__c822f8a1-24cc-49b5-8a76-dbaa3be56133": {
+          "href": "#uitv__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
+          "type": "boolean"
+        },
+        "input__7e0111f6-47c4-4f96-84b9-99b57741188d": {
+          "href": "#uitv__7e0111f6-47c4-4f96-84b9-99b57741188d",
+          "type": "boolean"
+        },
+        "input__ae919236-b2a4-48b7-8ce7-95980f06ad01": {
+          "href": "#uitv__ae919236-b2a4-48b7-8ce7-95980f06ad01",
+          "type": "boolean"
+        },
+        "input__abbd6563-821b-4cdc-a24f-89e8632977ec": {
+          "href": "#uitv__abbd6563-821b-4cdc-a24f-89e8632977ec",
+          "type": "boolean"
+        },
+        "input__6956c15b-9967-4391-9ff0-e87cc70549fc": {
+          "href": "#uitv__6956c15b-9967-4391-9ff0-e87cc70549fc",
+          "type": "boolean"
+        },
+        "input__406c221e-a8de-4473-bc0a-9ed40f76b362": {
+          "href": "#uitv__406c221e-a8de-4473-bc0a-9ed40f76b362",
+          "type": "boolean"
+        },
+        "input__e1b9c2b7-59e4-447e-8404-0f702ae266b9": {
+          "href": "#uitv__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
+          "type": "boolean"
+        },
+        "input__cf45259c-ddee-4ac1-94e5-dbe799e63a7b": {
+          "href": "#uitv__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
+          "type": "boolean"
+        },
+        "input__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6": {
+          "href": "#uitv__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
+          "type": "boolean"
+        },
+        "input__023a4702-e82e-4e4f-b2c8-fbd212208dbe": {
+          "href": "#uitv__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
+          "type": "boolean"
+        },
+        "input__ffd5cd4b-9fe1-4fca-9106-8219d27377d9": {
+          "href": "#uitv__ffd5cd4b-9fe1-4fca-9106-8219d27377d9",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Eendaags evenement",
+      "questions": [
+        {
+          "text": "Is het een eendaags evenement?",
+          "type": "boolean",
+          "id": "uitv__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
+          "prio": 10
+        },
+        {
+          "text": "Is er een aanwijsbare organisator?",
+          "type": "boolean",
+          "id": "uitv__7e0111f6-47c4-4f96-84b9-99b57741188d",
+          "prio": 20
+        },
+        {
+          "text": "Gaat u het evenement houden tussen 9.00u en 23.00u?",
+          "type": "boolean",
+          "id": "uitv__ae919236-b2a4-48b7-8ce7-95980f06ad01",
+          "prio": 30
+        },
+        {
+          "text": "Verwacht u meer dan 100 personen tegelijkertijd?",
+          "type": "boolean",
+          "id": "uitv__abbd6563-821b-4cdc-a24f-89e8632977ec",
+          "prio": 40
+        },
+        {
+          "text": "Gaat u versterkt geluid maken?",
+          "type": "boolean",
+          "id": "uitv__6956c15b-9967-4391-9ff0-e87cc70549fc",
+          "prio": 50
+        },
+        {
+          "text": "Vindt het evenement plaats op het fietspad, op de autoweg of op een waterweg?",
+          "type": "boolean",
+          "id": "uitv__406c221e-a8de-4473-bc0a-9ed40f76b362",
+          "prio": 60
+        },
+        {
+          "text": "Gaat u meer dan twee objecten plaatsen?",
+          "type": "boolean",
+          "id": "uitv__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
+          "prio": 70
+        },
+        {
+          "text": "Heeft één van deze objecten een oppervlakte van 10m2 of groter?",
+          "type": "boolean",
+          "id": "uitv__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
+          "prio": 80
+        },
+        {
+          "text": "Gaat u goederen (zoals drank en etenswaar) met winstoogmerk verkopen?",
+          "type": "boolean",
+          "id": "uitv__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
+          "prio": 90
+        },
+        {
+          "description": "commercieel karakter bedoelen we blabla",
+          "text": "Heeft het evenement een commercieel karakter?",
+          "type": "boolean",
+          "id": "uitv__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
+          "prio": 100
+        },
+        {
+          "text": "Gaat u dieren inzetten bij het evenement?",
+          "type": "boolean",
+          "id": "uitv__ffd5cd4b-9fe1-4fca-9106-8219d27377d9",
+          "prio": 110
+        }
+      ]
     }
-  ]
+  ],
+  "slug": "bmf5XsTrZpgTkbJoP"
 }

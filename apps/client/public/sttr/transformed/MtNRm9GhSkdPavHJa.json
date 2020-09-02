@@ -1,98 +1,9 @@
 {
-  "slug": "MtNRm9GhSkdPavHJa",
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Aanbouw gebruiken",
-      "questions": [
-        {
-          "text": "Gaat u de aanbouw bouwen achter een tussenpand?",
-          "type": "boolean",
-          "id": "uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
-          "prio": 10
-        },
-        {
-          "text": "Wordt de aanbouw gebruikt voor dezelfde functie als het hoofdgebouw?",
-          "description": "Dus als het hoofdgebouw de functie wonen heeft wordt dat ook de functie van de aanbouw. ",
-          "type": "boolean",
-          "id": "uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
-          "prio": 20
-        },
-        {
-          "text": "Wordt de aanbouw dieper dan 2,5 m uit de achtergevel van het hoofdgebouw?",
-          "description": "![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/aanbouw_recht.png)\n\n![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__depijp___popup_diepte_van_de_aanbouw_--_versprongen.png)\n\n",
-          "type": "boolean",
-          "id": "uitv__895ee2a4-f282-4181-924c-b1880686ba98",
-          "prio": 30
-        },
-        {
-          "text": "Wordt de aanbouw hoger dan 5 m?",
-          "type": "boolean",
-          "id": "uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
-          "prio": 40
-        },
-        {
-          "text": "Wordt de aanbouw hoger dan 0,3m boven de scheidingsconstructie van de 2e bouwlaag?",
-          "description": "![0,3 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__max__0_3_m_hoger_dan_de_vloer_van_de_2e_bouwlaag.png)",
-          "type": "boolean",
-          "id": "uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
-          "prio": 50
-        },
-        {
-          "text": "Wordt de aanbouw hoger dan het hoofdgebouw?",
-          "type": "boolean",
-          "id": "uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
-          "prio": 60
-        },
-        {
-          "text": "Gaat u met de aanbouw meer dan 50% van het perceel bebouwen dat binnen de bestemming &#39;tuin&#39;?",
-          "type": "boolean",
-          "id": "uitv__11eb9026-dee0-412c-96f4-689407b813ce",
-          "prio": 70
-        },
-        {
-          "text": "Krijgt de aanbouw een groen dak met een waterbergend vermogen van ten minste 60 mm?",
-          "type": "boolean",
-          "id": "uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
-          "prio": 80
-        }
-      ],
-      "inputs": {
-        "input__92107c8a-c42a-4991-9b2f-641b1c4b593b": {
-          "href": "#uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
-          "type": "boolean"
-        },
-        "input__71fce1ff-c6bf-4601-aedb-5581f1183cc5": {
-          "href": "#uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
-          "type": "boolean"
-        },
-        "input__895ee2a4-f282-4181-924c-b1880686ba98": {
-          "href": "#uitv__895ee2a4-f282-4181-924c-b1880686ba98",
-          "type": "boolean"
-        },
-        "input__d819946c-59ec-42f5-8f45-fb0bc6b139d0": {
-          "href": "#uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
-          "type": "boolean"
-        },
-        "input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c": {
-          "href": "#uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
-          "type": "boolean"
-        },
-        "input__c084dabb-6af6-4b5b-afde-838582c7a45b": {
-          "href": "#uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
-          "type": "boolean"
-        },
-        "input__11eb9026-dee0-412c-96f4-689407b813ce": {
-          "href": "#uitv__11eb9026-dee0-412c-96f4-689407b813ce",
-          "type": "boolean"
-        },
-        "input__041564fd-7ab5-45b5-b5bb-96d531af5846": {
-          "href": "#uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_e58dca56-e8eb-4c02-a0bf-a579a6f6a5d8": {
+        "_9998cbdc-5310-4990-b747-bc6a9421c644": {
           "requiredInputs": ["#input__92107c8a-c42a-4991-9b2f-641b1c4b593b"],
           "decisionTable": {
             "rules": [
@@ -101,7 +12,7 @@
             ]
           }
         },
-        "_6ff51dd5-57ce-4ff4-acae-83178fb0f7f4": {
+        "_53656f9b-905e-4451-b02f-de7c21782ac1": {
           "requiredInputs": ["#input__71fce1ff-c6bf-4601-aedb-5581f1183cc5"],
           "decisionTable": {
             "rules": [
@@ -110,7 +21,7 @@
             ]
           }
         },
-        "_2e022b00-a48b-4684-b3bc-91450130a967": {
+        "_ddb6b74c-1775-4448-8a1f-0d4038ad7f92": {
           "requiredInputs": ["#input__895ee2a4-f282-4181-924c-b1880686ba98"],
           "decisionTable": {
             "rules": [
@@ -119,7 +30,7 @@
             ]
           }
         },
-        "_1ad93b01-b184-4f6f-b91d-668bcd787a0e": {
+        "_abe2a54f-65fd-4013-b88f-308eac009409": {
           "requiredInputs": ["#input__d819946c-59ec-42f5-8f45-fb0bc6b139d0"],
           "decisionTable": {
             "rules": [
@@ -128,7 +39,7 @@
             ]
           }
         },
-        "_be096331-2925-4d6b-995f-f7a528845a02": {
+        "_bd231be3-d8bc-4a3c-aab3-b4550d8302bb": {
           "requiredInputs": ["#input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c"],
           "decisionTable": {
             "rules": [
@@ -137,7 +48,7 @@
             ]
           }
         },
-        "_752ba9de-2d08-424d-b028-02f2a722fad1": {
+        "_5d451e96-9d48-4e85-b87d-555f789d04e4": {
           "requiredInputs": ["#input__c084dabb-6af6-4b5b-afde-838582c7a45b"],
           "decisionTable": {
             "rules": [
@@ -146,7 +57,7 @@
             ]
           }
         },
-        "_68fc5605-c362-4e3f-b173-a993801619f0": {
+        "_4db2b45b-4f58-408f-a920-9d586bdbfe95": {
           "requiredInputs": ["#input__11eb9026-dee0-412c-96f4-689407b813ce"],
           "decisionTable": {
             "rules": [
@@ -155,7 +66,7 @@
             ]
           }
         },
-        "_cbd3e591-03dd-419b-aace-812d3f0d55ac": {
+        "_6682ab4f-c945-4ed8-b60b-3a86f90a7950": {
           "requiredInputs": ["#input__041564fd-7ab5-45b5-b5bb-96d531af5846"],
           "decisionTable": {
             "rules": [
@@ -166,14 +77,14 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_e58dca56-e8eb-4c02-a0bf-a579a6f6a5d8",
-            "#_6ff51dd5-57ce-4ff4-acae-83178fb0f7f4",
-            "#_2e022b00-a48b-4684-b3bc-91450130a967",
-            "#_1ad93b01-b184-4f6f-b91d-668bcd787a0e",
-            "#_be096331-2925-4d6b-995f-f7a528845a02",
-            "#_752ba9de-2d08-424d-b028-02f2a722fad1",
-            "#_68fc5605-c362-4e3f-b173-a993801619f0",
-            "#_cbd3e591-03dd-419b-aace-812d3f0d55ac"
+            "#_9998cbdc-5310-4990-b747-bc6a9421c644",
+            "#_53656f9b-905e-4451-b02f-de7c21782ac1",
+            "#_ddb6b74c-1775-4448-8a1f-0d4038ad7f92",
+            "#_abe2a54f-65fd-4013-b88f-308eac009409",
+            "#_bd231be3-d8bc-4a3c-aab3-b4550d8302bb",
+            "#_5d451e96-9d48-4e85-b87d-555f789d04e4",
+            "#_4db2b45b-4f58-408f-a920-9d586bdbfe95",
+            "#_6682ab4f-c945-4ed8-b60b-3a86f90a7950"
           ],
           "decisionTable": {
             "rules": [
@@ -282,6 +193,7 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "description": "U hoeft voor de activiteit gebruiken geen toestemming aan te vragen.",
                 "inputs": [
                   "\"no hit\"",
                   "\"no hit\"",
@@ -292,13 +204,101 @@
                   "\"no hit\"",
                   "\"no hit\""
                 ],
-                "output": "\"Toestemmingsvrij\"",
-                "description": "U hoeft voor de activiteit gebruiken geen toestemming aan te vragen."
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
         }
-      }
+      },
+      "inputs": {
+        "input__92107c8a-c42a-4991-9b2f-641b1c4b593b": {
+          "href": "#uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
+          "type": "boolean"
+        },
+        "input__71fce1ff-c6bf-4601-aedb-5581f1183cc5": {
+          "href": "#uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
+          "type": "boolean"
+        },
+        "input__895ee2a4-f282-4181-924c-b1880686ba98": {
+          "href": "#uitv__895ee2a4-f282-4181-924c-b1880686ba98",
+          "type": "boolean"
+        },
+        "input__d819946c-59ec-42f5-8f45-fb0bc6b139d0": {
+          "href": "#uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
+          "type": "boolean"
+        },
+        "input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c": {
+          "href": "#uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
+          "type": "boolean"
+        },
+        "input__c084dabb-6af6-4b5b-afde-838582c7a45b": {
+          "href": "#uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
+          "type": "boolean"
+        },
+        "input__11eb9026-dee0-412c-96f4-689407b813ce": {
+          "href": "#uitv__11eb9026-dee0-412c-96f4-689407b813ce",
+          "type": "boolean"
+        },
+        "input__041564fd-7ab5-45b5-b5bb-96d531af5846": {
+          "href": "#uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Aanbouw gebruiken",
+      "questions": [
+        {
+          "text": "Gaat u de aanbouw bouwen achter een tussenpand?",
+          "type": "boolean",
+          "id": "uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
+          "prio": 10
+        },
+        {
+          "description": "Dus als het hoofdgebouw de functie wonen heeft wordt dat ook de functie van de aanbouw. ",
+          "text": "Wordt de aanbouw gebruikt voor dezelfde functie als het hoofdgebouw?",
+          "type": "boolean",
+          "id": "uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
+          "prio": 20
+        },
+        {
+          "description": "![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/aanbouw_recht.png)\n\n![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__depijp___popup_diepte_van_de_aanbouw_--_versprongen.png)\n\n",
+          "text": "Wordt de aanbouw dieper dan 2,5 m uit de achtergevel van het hoofdgebouw?",
+          "type": "boolean",
+          "id": "uitv__895ee2a4-f282-4181-924c-b1880686ba98",
+          "prio": 30
+        },
+        {
+          "text": "Wordt de aanbouw hoger dan 5 m?",
+          "type": "boolean",
+          "id": "uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
+          "prio": 40
+        },
+        {
+          "description": "![0,3 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__max__0_3_m_hoger_dan_de_vloer_van_de_2e_bouwlaag.png)",
+          "text": "Wordt de aanbouw hoger dan 0,3m boven de scheidingsconstructie van de 2e bouwlaag?",
+          "type": "boolean",
+          "id": "uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
+          "prio": 50
+        },
+        {
+          "text": "Wordt de aanbouw hoger dan het hoofdgebouw?",
+          "type": "boolean",
+          "id": "uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
+          "prio": 60
+        },
+        {
+          "text": "Gaat u met de aanbouw meer dan 50% van het perceel bebouwen dat binnen de bestemming &#39;tuin&#39;?",
+          "type": "boolean",
+          "id": "uitv__11eb9026-dee0-412c-96f4-689407b813ce",
+          "prio": 70
+        },
+        {
+          "text": "Krijgt de aanbouw een groen dak met een waterbergend vermogen van ten minste 60 mm?",
+          "type": "boolean",
+          "id": "uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
+          "prio": 80
+        }
+      ]
     }
-  ]
+  ],
+  "slug": "MtNRm9GhSkdPavHJa"
 }

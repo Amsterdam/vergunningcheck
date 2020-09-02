@@ -1,26 +1,9 @@
 {
-  "slug": "qPcaiw4H5vXkZgfFp",
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Aanbouw monument",
-      "questions": [
-        {
-          "identification": "nl.imow-gm0363.gebied.4",
-          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
-          "type": "geo",
-          "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
-          "prio": 10
-        }
-      ],
-      "inputs": {
-        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
-          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_ba7b59a7-28c1-404f-a9ba-06c90a49678c": {
+        "_374c497d-30ed-4765-bae3-11c7f03b314f": {
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
@@ -31,7 +14,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_ba7b59a7-28c1-404f-a9ba-06c90a49678c"],
+          "requiredDecisions": ["#_374c497d-30ed-4765-bae3-11c7f03b314f"],
           "decisionTable": {
             "rules": [
               {
@@ -39,14 +22,31 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "description": "U hoeft voor de activiteit werken bij een monument geen toestemming aan te vragen.",
                 "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\"",
-                "description": "U hoeft voor de activiteit werken bij een monument geen toestemming aan te vragen."
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
         }
-      }
+      },
+      "inputs": {
+        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
+          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "type": "string"
+        }
+      },
+      "name": "Conclusie Aanbouw monument",
+      "questions": [
+        {
+          "identification": "nl.imow-gm0363.gebied.4",
+          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
+          "type": "geo",
+          "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "prio": 10
+        }
+      ]
     }
-  ]
+  ],
+  "slug": "qPcaiw4H5vXkZgfFp"
 }

@@ -3,6 +3,96 @@
     {
       "version": 1,
       "decisions": {
+        "_c880d47b-26a9-476a-8dbf-c9735d984405": {
+          "requiredInputs": [
+            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
+            "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Nee, ik ga geen onderhoud doen\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              { "inputs": ["\"Geen monument\"", "-"], "output": "\"no hit\"" },
+              {
+                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_c880d47b-26a9-476a-8dbf-c9735d984405"],
+          "decisionTable": {
+            "rules": [
+              {
+                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument.",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
+          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
+          "type": "string"
+        },
+        "input__6341d4bf-6629-4305-b077-79dd11cd5b7c": {
+          "href": "#uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
+          "type": "string"
+        }
+      },
+      "name": "Conclusie Kozijn plaatsen in een monument",
+      "questions": [
+        {
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "text": "Is het gebouw een monument?",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
+          "prio": 10,
+          "uuid": "kozijn monument"
+        },
+        {
+          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
+          "text": "Gaat u onderhoud doen?",
+          "options": [
+            "Ja, ik ga onderhoud doen",
+            "Nee, ik ga geen onderhoud doen"
+          ],
+          "type": "string",
+          "id": "uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
+          "prio": 20,
+          "uuid": "kozijn monument onderhoud"
+        }
+      ]
+    },
+    {
+      "version": 1,
+      "decisions": {
         "_8c231a58-00b8-4c9a-9ab3-6944cfe45102": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
@@ -1006,5 +1096,5 @@
       ]
     }
   ],
-  "slug": "5CJrbgbWZP6uZsouY"
+  "slug": "kozijnen-plaatsen"
 }

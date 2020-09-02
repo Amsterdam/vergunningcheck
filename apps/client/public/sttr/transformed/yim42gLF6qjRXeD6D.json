@@ -1,37 +1,9 @@
 {
-  "slug": "yim42gLF6qjRXeD6D",
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Simpele Demo Checker voor in de Frontend",
-      "questions": [
-        {
-          "text": "Vraag 1",
-          "description": "Antwoord \"JA\" leidt tot vergunningplicht!",
-          "type": "boolean",
-          "id": "uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
-          "prio": 10
-        },
-        {
-          "text": "Vraag 2",
-          "description": "Toelichting 2",
-          "type": "boolean",
-          "id": "uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
-          "prio": 20
-        }
-      ],
-      "inputs": {
-        "input__b0819e66-af22-4e58-ad88-5c36624b995a": {
-          "href": "#uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
-          "type": "boolean"
-        },
-        "input__d977a2fe-c317-42f7-ba5b-272f98f59e1a": {
-          "href": "#uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_183f928a-81c6-42e1-b68c-396e27ca50d3": {
+        "_c4dc6b8e-709d-477b-9ed9-8f5a64c32964": {
           "requiredInputs": ["#input__b0819e66-af22-4e58-ad88-5c36624b995a"],
           "decisionTable": {
             "rules": [
@@ -40,7 +12,7 @@
             ]
           }
         },
-        "_21366642-5ae7-42aa-a774-db964948e355": {
+        "_97f47b58-34e5-4cb0-b525-f6b2394eef5e": {
           "requiredInputs": ["#input__d977a2fe-c317-42f7-ba5b-272f98f59e1a"],
           "decisionTable": {
             "rules": [
@@ -51,8 +23,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_183f928a-81c6-42e1-b68c-396e27ca50d3",
-            "#_21366642-5ae7-42aa-a774-db964948e355"
+            "#_c4dc6b8e-709d-477b-9ed9-8f5a64c32964",
+            "#_97f47b58-34e5-4cb0-b525-f6b2394eef5e"
           ],
           "decisionTable": {
             "rules": [
@@ -71,7 +43,35 @@
             ]
           }
         }
-      }
+      },
+      "inputs": {
+        "input__b0819e66-af22-4e58-ad88-5c36624b995a": {
+          "href": "#uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
+          "type": "boolean"
+        },
+        "input__d977a2fe-c317-42f7-ba5b-272f98f59e1a": {
+          "href": "#uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Simpele Demo Checker voor in de Frontend",
+      "questions": [
+        {
+          "description": "Antwoord \"JA\" leidt tot vergunningplicht!",
+          "text": "Vraag 1",
+          "type": "boolean",
+          "id": "uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
+          "prio": 10
+        },
+        {
+          "description": "Toelichting 2",
+          "text": "Vraag 2",
+          "type": "boolean",
+          "id": "uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
+          "prio": 20
+        }
+      ]
     }
-  ]
+  ],
+  "slug": "yim42gLF6qjRXeD6D"
 }
