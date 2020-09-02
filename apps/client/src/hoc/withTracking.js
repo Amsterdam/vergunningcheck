@@ -1,6 +1,7 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext } from "react";
 
+import { isProduction } from "../config";
 import { trackingEnabled } from "../config/matomo";
 import { CheckerContext } from "../context";
 
@@ -9,14 +10,15 @@ const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
-    console.log("matomoPageView");
     if (trackingEnabled()) {
       trackPageView({});
     }
   };
   const matomoTrackEvent = ({ action, category, name }) => {
-    // Temporary disable Matomo trackevents
-    return;
+    // Temporary disable Matomo trackevents on production
+    if (isProduction) {
+      return;
+    }
 
     // eslint-disable-next-line no-unreachable
     if (trackingEnabled()) {
