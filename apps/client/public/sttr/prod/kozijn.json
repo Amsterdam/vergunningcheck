@@ -2,6 +2,7 @@
   "id": "kozijn",
   "permits": [
     {
+      "version": 1,
       "name": "Conclusie Kozijn plaatsen in een monument",
       "questions": [
         {
@@ -42,7 +43,7 @@
         }
       },
       "decisions": {
-        "_7992b9e0-058e-452d-81e2-df5f6547d8c8": {
+        "_e7a162c8-950d-44fc-b9be-1f2ce0ce0d32": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
@@ -75,7 +76,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_7992b9e0-058e-452d-81e2-df5f6547d8c8"],
+          "requiredDecisions": ["#_e7a162c8-950d-44fc-b9be-1f2ce0ce0d32"],
           "decisionTable": {
             "rules": [
               {
@@ -94,6 +95,7 @@
       }
     },
     {
+      "version": 1,
       "name": "Conclusie Kozijn plaatsen",
       "questions": [
         {
@@ -163,21 +165,21 @@
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls er direct naast uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
           "prio": 70
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct naast uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
           "prio": 80
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls er direct naast uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
           "prio": 90
@@ -255,7 +257,7 @@
         }
       },
       "decisions": {
-        "_8c4f0986-a566-4716-bb58-1b4c20cf243b": {
+        "_c796565e-383e-45e7-9295-cdc9e092d6c3": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__85ce6b97-ff25-455c-b279-b93ebe01e972"
@@ -287,7 +289,7 @@
             ]
           }
         },
-        "_1094f724-7c7a-4769-a4f3-20b694ca551a": {
+        "_879648fc-3b23-4a14-822c-2d4d25da3f95": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -322,7 +324,7 @@
             ]
           }
         },
-        "_010b7ff1-d65f-48de-bfb5-b450c0a8cf86": {
+        "_58451c4b-7ffb-451d-9688-97d743a33901": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -391,7 +393,7 @@
             ]
           }
         },
-        "_7bfc402a-651b-4c23-b9d0-ef984864e1bc": {
+        "_b74bff2b-6ec5-484b-aa37-43bcb45bcf93": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -469,7 +471,7 @@
             ]
           }
         },
-        "_cd879956-6ad5-4238-a7b5-ff5e9cdeae29": {
+        "_eebb8e4b-6beb-4f26-9667-6c05c93cbf9e": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -547,7 +549,7 @@
             ]
           }
         },
-        "_88c4c99f-b80e-41dd-9e4f-e6d3ba3219a2": {
+        "_ad175ee0-946e-4887-8287-28253c69c2c9": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -634,7 +636,7 @@
             ]
           }
         },
-        "_273a00fa-54ee-4fc9-a427-5c919ad79618": {
+        "_b868e694-0259-4ab0-b509-43db90dcac87": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -721,7 +723,7 @@
             ]
           }
         },
-        "_4eb63445-1172-4eaa-80b2-cfbd918d8d2f": {
+        "_e8a3f288-4fbb-4120-8221-05043056f891": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -826,7 +828,7 @@
             ]
           }
         },
-        "_8d4a4e66-a4e1-4d6b-9289-cf3b77723515": {
+        "_a696f9ba-af90-4968-90b1-fe8847991cbe": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input__95fedeed-e4b3-4e63-b52f-8cf1573e167f",
@@ -933,15 +935,15 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_8c4f0986-a566-4716-bb58-1b4c20cf243b",
-            "#_1094f724-7c7a-4769-a4f3-20b694ca551a",
-            "#_010b7ff1-d65f-48de-bfb5-b450c0a8cf86",
-            "#_7bfc402a-651b-4c23-b9d0-ef984864e1bc",
-            "#_cd879956-6ad5-4238-a7b5-ff5e9cdeae29",
-            "#_88c4c99f-b80e-41dd-9e4f-e6d3ba3219a2",
-            "#_273a00fa-54ee-4fc9-a427-5c919ad79618",
-            "#_4eb63445-1172-4eaa-80b2-cfbd918d8d2f",
-            "#_8d4a4e66-a4e1-4d6b-9289-cf3b77723515"
+            "#_c796565e-383e-45e7-9295-cdc9e092d6c3",
+            "#_879648fc-3b23-4a14-822c-2d4d25da3f95",
+            "#_58451c4b-7ffb-451d-9688-97d743a33901",
+            "#_b74bff2b-6ec5-484b-aa37-43bcb45bcf93",
+            "#_eebb8e4b-6beb-4f26-9667-6c05c93cbf9e",
+            "#_ad175ee0-946e-4887-8287-28253c69c2c9",
+            "#_b868e694-0259-4ab0-b509-43db90dcac87",
+            "#_e8a3f288-4fbb-4120-8221-05043056f891",
+            "#_a696f9ba-af90-4968-90b1-fe8847991cbe"
           ],
           "decisionTable": {
             "rules": [
@@ -973,7 +975,7 @@
                   "-"
                 ],
                 "output": "\"NeemContactOpMet\"",
-                "description": "U gaat een kozijn plaatsen in een bijgebouw. De regels die daarvoor gelden zijn erg ingewikkeld en hangen ook af van het bestemmingsplan dat voor uw gebouw geldt. Bel daarom met de gemeente op 14 020, maandag tot en met vrijdag van 08.00 tot 18.00 uur."
+                "description": "U gaat een kozijn plaatsen in een bijgebouw. De regels die daarvoor gelden zijn erg ingewikkeld en hangen ook af van het bestemmingsplan dat voor uw gebouw geldt. Bel daarom met de gemeente op [14 020](tel:14020), maandag tot en met vrijdag van 08.00 tot 18.00 uur."
               },
               {
                 "inputs": [

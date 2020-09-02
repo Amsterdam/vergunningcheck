@@ -2,6 +2,81 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](2020-09-02)
+
+#### New Features
+
+- [#463](https://github.com/Amsterdam/vergunningcheck/pull/463) Feature: disabled Matomo and replaced all event trackers ([@robinpiets](https://github.com/robinpiets))
+- [#414](https://github.com/Amsterdam/vergunningcheck/pull/414) Feature: The Chappie 2.0 redesign ([@robinpiets](https://github.com/robinpiets))
+- [#438](https://github.com/Amsterdam/vergunningcheck/pull/438) Feature: Added temporary FormTitle style fix ([@robinpiets](https://github.com/robinpiets))
+- [#420](https://github.com/Amsterdam/vergunningcheck/pull/420) Feature: Chappie2.0 intros ([@svenjens](https://github.com/svenjens))
+- [#435](https://github.com/Amsterdam/vergunningcheck/pull/435) Feature: Disable all future questions + refactored EditButton.tsx ([@robinpiets](https://github.com/robinpiets))
+- [#434](https://github.com/Amsterdam/vergunningcheck/pull/434) Feedback from team: Textual updates, bug fixes and refactor ([@robinpiets](https://github.com/robinpiets))
+- [#426](https://github.com/Amsterdam/vergunningcheck/pull/426) Phone number refactor ([@afjlambert](https://github.com/afjlambert))
+- [#411](https://github.com/Amsterdam/vergunningcheck/pull/411) Feature: Chappie2.0 route redirects to make old URLs backwards compatible ([@svenjens](https://github.com/svenjens))
+- [#424](https://github.com/Amsterdam/vergunningcheck/pull/424) Feature: Added zonwering checker on chappie2.0 ([@robinpiets](https://github.com/robinpiets))
+- [#422](https://github.com/Amsterdam/vergunningcheck/pull/422) Feature: Updated page title and path ([@robinpiets](https://github.com/robinpiets))
+- [#421](https://github.com/Amsterdam/vergunningcheck/pull/421) Feature: updated Conclusion Alert text ([@robinpiets](https://github.com/robinpiets))
+- [#419](https://github.com/Amsterdam/vergunningcheck/pull/419) Features: Text and Styling updates from acceptance-test ([@robinpiets](https://github.com/robinpiets))
+- [#417](https://github.com/Amsterdam/vergunningcheck/pull/417) Feature: Updated the margin above the Footer ([@robinpiets](https://github.com/robinpiets))
+- [#410](https://github.com/Amsterdam/vergunningcheck/pull/410) Feat: Zonwering updates from UX-test ([@robinpiets](https://github.com/robinpiets))
+- [#405](https://github.com/Amsterdam/vergunningcheck/pull/405) Feat: Added the disabled styling of the edit button ([@svenjens](https://github.com/svenjens))
+- [#294](https://github.com/Amsterdam/vergunningcheck/pull/294) STTR versioning ([@afjlambert](https://github.com/afjlambert))
+- [#402](https://github.com/Amsterdam/vergunningcheck/pull/402) Feature: Added ConclusionAlert for Contact Conclusion ([@robinpiets](https://github.com/robinpiets))
+- [#404](https://github.com/Amsterdam/vergunningcheck/pull/404) Feat: Set Conclusion section to active if it needs to be active ([@robinpiets](https://github.com/robinpiets))
+- [#394](https://github.com/Amsterdam/vergunningcheck/pull/394) Feature: Show and skip already answered questions ([@robinpiets](https://github.com/robinpiets))
+- [#390](https://github.com/Amsterdam/vergunningcheck/pull/390) Feature: Chappie2.0 bug fixes and refactor ([@robinpiets](https://github.com/robinpiets))
+- [#389](https://github.com/Amsterdam/vergunningcheck/pull/389) Feat: Fixed flow when Conclusion is displayed, but it shouldn't ([@robinpiets](https://github.com/robinpiets))
+- [#353](https://github.com/Amsterdam/vergunningcheck/pull/353) Feature: ApolloClient v3 ([@afjlambert](https://github.com/afjlambert))
+- [#386](https://github.com/Amsterdam/vergunningcheck/pull/386) Feat: Refactored PermitAlert and changed color to Yellow ([@robinpiets](https://github.com/robinpiets))
+- [#385](https://github.com/Amsterdam/vergunningcheck/pull/385) Feat: Print styling + Refactored QuestionAnswer ([@robinpiets](https://github.com/robinpiets))
+- [#379](https://github.com/Amsterdam/vergunningcheck/pull/379) Feature: show alert is question needs permit ([@robinpiets](https://github.com/robinpiets))
+- [#383](https://github.com/Amsterdam/vergunningcheck/pull/383) Feat: Re-added the Prev button in Form Navigation ([@robinpiets](https://github.com/robinpiets))
+- [#352](https://github.com/Amsterdam/vergunningcheck/pull/352) Feature: Added titles to Olo Flow and refactored the Olo Url ([@robinpiets](https://github.com/robinpiets))
+- [#333](https://github.com/Amsterdam/vergunningcheck/pull/333) Feat: Refactor for handling the checker states by functions. And Fix for autofill. ([@svenjens](https://github.com/svenjens))
+- [#345](https://github.com/Amsterdam/vergunningcheck/pull/345) Feat: Add lines between StepByStepNavigation Items ([@robinpiets](https://github.com/robinpiets))
+- [#337](https://github.com/Amsterdam/vergunningcheck/pull/337) Feat: chappie2.0 reinit checker after location change, and keep question until answer change ([@svenjens](https://github.com/svenjens))
+- [#335](https://github.com/Amsterdam/vergunningcheck/pull/335) Feature: Updated layout (mobile, Location and OLO) ([@robinpiets](https://github.com/robinpiets))
+- [#332](https://github.com/Amsterdam/vergunningcheck/pull/332) Feature: Added full-width background to Stepper ([@robinpiets](https://github.com/robinpiets))
+- [#329](https://github.com/Amsterdam/vergunningcheck/pull/329) Feat: Chappie2.0 progress ([@svenjens](https://github.com/svenjens))
+- [#302](https://github.com/Amsterdam/vergunningcheck/pull/302) Feat: Basic stepper component with states ([@svenjens](https://github.com/svenjens))
+- [#318](https://github.com/Amsterdam/vergunningcheck/pull/318) Feature: Added step by step navigation WCAG (and refactored) ([@robinpiets](https://github.com/robinpiets))
+- [#224](https://github.com/Amsterdam/vergunningcheck/pull/224) Feature: added step by step navigation ([@robinpiets](https://github.com/robinpiets))
+- [#225](https://github.com/Amsterdam/vergunningcheck/pull/225) Feature: Question wrapper for chappie 2.0 ([@svenjens](https://github.com/svenjens))
+- [#262](https://github.com/Amsterdam/vergunningcheck/pull/262) Remove zoning-plan texts where not applicable ([@afjlambert](https://github.com/afjlambert))
+
+#### Bug fixes
+
+- [#455](https://github.com/Amsterdam/vergunningcheck/pull/455) Bug: Usabilla exit polls ([@robinpiets](https://github.com/robinpiets))
+- [#423](https://github.com/Amsterdam/vergunningcheck/pull/423) Bug: Fixed ConclusionAlert styling and refactored some old code ([@robinpiets](https://github.com/robinpiets))
+- [#416](https://github.com/Amsterdam/vergunningcheck/pull/416) Bug: Fixed and refactored the flow between Location and Questions ([@svenjens](https://github.com/svenjens))
+- [#409](https://github.com/Amsterdam/vergunningcheck/pull/409) Bug: Only be able to go to Conclusion when Questions are finished ([@robinpiets](https://github.com/robinpiets))
+- [#408](https://github.com/Amsterdam/vergunningcheck/pull/408) Bug: OLO Flow had issues with routing to CheckerPage ([@robinpiets](https://github.com/robinpiets))
+- [#406](https://github.com/Amsterdam/vergunningcheck/pull/406) Bug: Fixed unnecessary line between StepItems ([@robinpiets](https://github.com/robinpiets))
+- [#407](https://github.com/Amsterdam/vergunningcheck/pull/407) Bug: Removed whitespace by changing quotes ([@robinpiets](https://github.com/robinpiets))
+- [#395](https://github.com/Amsterdam/vergunningcheck/pull/395) Bug: fixed issue with undefined string ([@robinpiets](https://github.com/robinpiets))
+- [#392](https://github.com/Amsterdam/vergunningcheck/pull/392) Bug: removed duplicate state change ([@svenjens](https://github.com/svenjens))
+- [#388](https://github.com/Amsterdam/vergunningcheck/pull/388) Bug: Show correct conclusion text with Contact conclusion ([@robinpiets](https://github.com/robinpiets))
+- [#387](https://github.com/Amsterdam/vergunningcheck/pull/387) Bug: Sentry warning of `substring` undefined ([@robinpiets](https://github.com/robinpiets))
+- [#344](https://github.com/Amsterdam/vergunningcheck/pull/344) Bug: Hide unanswered questions + browser refresh bugs + refactor ([@robinpiets](https://github.com/robinpiets))
+- [#331](https://github.com/Amsterdam/vergunningcheck/pull/331) Bug fix: IE11 styling issue ([@robinpiets](https://github.com/robinpiets))
+- [#317](https://github.com/Amsterdam/vergunningcheck/pull/317) Bug: show caption even though image loading fails ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+
+- [#462](https://github.com/Amsterdam/vergunningcheck/pull/462) Updated STTR files ([@svenjens](https://github.com/svenjens))
+- [#440](https://github.com/Amsterdam/vergunningcheck/pull/440) Chore: PR feedback on chappie2.0 ([@robinpiets](https://github.com/robinpiets))
+- [#427](https://github.com/Amsterdam/vergunningcheck/pull/427) Change title and slug for Kozijnen, also add redirect ([@afjlambert](https://github.com/afjlambert))
+- [#384](https://github.com/Amsterdam/vergunningcheck/pull/384) chore: Renamed WrapperPage to CheckerPage ([@robinpiets](https://github.com/robinpiets))
+- [#348](https://github.com/Amsterdam/vergunningcheck/pull/348) Chore: Refactor the checker.stack.map() function ([@robinpiets](https://github.com/robinpiets))
+- [#351](https://github.com/Amsterdam/vergunningcheck/pull/351) Chore: Fixed test for Answers.js ([@robinpiets](https://github.com/robinpiets))
+- [#316](https://github.com/Amsterdam/vergunningcheck/pull/316) Chore: Step by step navigation > Fixed tests 100% ([@robinpiets](https://github.com/robinpiets))
+- [#268](https://github.com/Amsterdam/vergunningcheck/pull/268) Chore(deps): Bump graphql-tools from 6.0.13 to 6.0.14 ([@dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
+#### Documentation changes
+
+- [#368](https://github.com/Amsterdam/vergunningcheck/pull/368) Docs: Update CONTRIBUTING.md ([@robinpiets](https://github.com/robinpiets))
+
 ## [1.4.2](2020-08-19)
 
 #### New Features

@@ -35,7 +35,7 @@ describe("STTR specific", () => {
         new Rule(["no-permit-required"], "You don't need a permit."),
       ]
     );
-    const checker = new Checker([new Permit("some permit", [dummy])]);
+    const checker = new Checker([new Permit("some permit", 1, [dummy])]);
     let question = checker.next();
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
