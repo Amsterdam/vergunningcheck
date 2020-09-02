@@ -85,17 +85,17 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 ### Create the release PR
 
 - Run `npm run changelog`, a changelog will be generated
-- Paste the changelog to the [CHANGELOG.md](CHANGELOG.md), determine the version number and replace "Unreleased " with the new version.
+- Paste the changelog to the [CHANGELOG.md](CHANGELOG.md), determine the version number and replace "Unreleased " with the new version, so it looks like this: `[2.0.0](2020-09-02)`
 - Verify if all changes planned for this release are in the changelog, update plan if something was missing
 - Create [a diff](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
-- Verify if nothing is missing from the changelog, commit the changelog.
+- Commit the changelog (after verifying nothing is missing)
 - Run `npm run publish` to add and publish a release tag. It's pushed to the repo.
 - Create [the PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release)
 - Assign the PR to your team members
 
 ### Create artifact and deploy to acceptance
 
-- Walk through the PR en verify the changes are on acceptance
+- Walk through the PR and verify the release branch is on acceptance (by looking at the App Version)
 - Merge the pr, don't use Squash and Merge
 - Jenkins will create the artifact (docker images) based on the master branch
 - Check if the build succeeded and verify the version number and branch on acceptance
