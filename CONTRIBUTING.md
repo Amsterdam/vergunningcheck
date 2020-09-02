@@ -93,7 +93,7 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 
 ### Create artifact and deploy to acceptance
 
-- Walk through the PR en verify the changes are on acceptance
+- Walk through the PR and verify the release branch is on acceptance (by looking at the App Version)
 - Merge the pr, don't use Squash and Merge
 - Jenkins will create the artifact (docker images) based on the master branch
 - Check if the build succeeded and verify the version number and branch on acceptance
