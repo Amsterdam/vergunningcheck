@@ -19,7 +19,9 @@ function DefaultLayout({
 
   useEffect(() => {
     matomoPageView();
-  }, [location, matomoPageView]);
+    // @TODO: We need to fix this!
+    //eslint-disable-next-line
+  }, [location.pathname]);
 
   return <BaseLayout {...{ heading, children }} />;
 }
