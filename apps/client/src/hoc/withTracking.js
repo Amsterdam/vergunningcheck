@@ -13,7 +13,11 @@ const withTracking = (Component) => ({ ...props }) => {
       trackPageView({});
     }
   };
-  const matomoTrackEvent = ({ category, action, name }) => {
+  const matomoTrackEvent = ({ action, category, name }) => {
+    // Temporary disable Matomo trackevents
+    return;
+
+    // eslint-disable-next-line no-unreachable
     if (trackingEnabled()) {
       trackEvent({
         category,

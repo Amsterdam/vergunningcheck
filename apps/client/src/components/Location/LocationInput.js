@@ -1,11 +1,11 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { eventNames } from "../../config/matomo";
 import { CheckerContext, SessionContext } from "../../context";
+import withTracking from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
 import Form from "../Form";
@@ -14,14 +14,13 @@ import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 const LocationInput = ({
-  isFinished,
+  matomoTrackEvent,
   resetChecker,
   setActiveState,
   setFinishedState,
   topic,
 }) => {
   const history = useHistory();
-  const { trackEvent } = useMatomo();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
@@ -52,7 +51,7 @@ const LocationInput = ({
         return;
       }
 
-      trackEvent({
+      matomoTrackEvent({
         category: "postcode-input",
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
@@ -136,4 +135,4 @@ const LocationInput = ({
   );
 };
 
-export default LocationInput;
+export default withTracking(LocationInput);
