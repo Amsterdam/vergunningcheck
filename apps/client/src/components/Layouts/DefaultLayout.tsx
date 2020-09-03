@@ -24,7 +24,6 @@ function DefaultLayout({
       setLocation(location.pathname);
     }
   }, [location, matomoPageView, oldLocation]);
-
   return <BaseLayout {...{ heading, children }} />;
 }
 

@@ -13,7 +13,7 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-import { actions, eventNames } from "../config/matomo";
+import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import withTracking from "../hoc/withTracking";
@@ -37,6 +37,12 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
+    matomoTrackEvent({
+      action: actions.STEP,
+      category: name,
+      name: component,
+    });
+
     sessionContext.setSessionData([slug, { activeComponents: [component] }]);
   };
 
@@ -101,7 +107,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name.toLowerCase(),
+      category: name,
       name: eventName,
     });
 
@@ -116,8 +122,8 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   // Callback to go to the Conclusion section
   // `false` is to prevent unexpected click, hover and focus states on already active section
   const handleConclusionClick =
-    !isActive("conclusion") && isFinished("questions")
-      ? () => setActiveState("conclusion")
+    !isActive(sections.CONCLUSION) && isFinished(sections.QUESTIONS)
+      ? () => setActiveState(sections.CONCLUSION)
       : false;
 
   const checkedStyle = {
@@ -142,22 +148,31 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           lineBetweenItems
         >
           <StepByStepItem
-            active={isActive("locationInput") || isActive("locationResult")}
-            checked={isActive("locationResult") || isFinished("locationResult")}
-            done={isActive("locationInput") || isActive("locationResult")}
+            active={
+              isActive(sections.LOCATION_INPUT) ||
+              isActive(sections.LOCATION_RESULT)
+            }
+            checked={
+              isActive(sections.LOCATION_RESULT) ||
+              isFinished(sections.LOCATION_RESULT)
+            }
+            done={
+              isActive(sections.LOCATION_INPUT) ||
+              isActive(sections.LOCATION_RESULT)
+            }
             heading="Adresgegevens"
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive("locationInput") ||
-              isActive("locationResult") ||
+              isActive(sections.LOCATION_INPUT) ||
+              isActive(sections.LOCATION_RESULT) ||
               questionIndex === 0
                 ? checkedStyle
                 : {}
             }
           >
             {/* @TODO: Refactor this, because of duplicate code */}
-            {isActive("locationInput") && (
+            {isActive(sections.LOCATION_INPUT) && (
               <LocationInput
                 {...{
                   isFinished,
@@ -170,8 +185,9 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
               />
             )}
             {/* @TODO: Refactor this, because of duplicate code */}
-            {!isActive("locationInput") &&
-              (isActive("locationResult") || isFinished("locationResult")) && (
+            {!isActive(sections.LOCATION_INPUT) &&
+              (isActive(sections.LOCATION_RESULT) ||
+                isFinished(sections.LOCATION_RESULT)) && (
                 <LocationResult
                   {...{
                     isActive,
@@ -185,10 +201,10 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
               )}
           </StepByStepItem>
           <StepByStepItem
-            active={isActive("questions") && questionIndex === 0}
-            checked={isFinished("questions")}
+            active={isActive(sections.QUESTIONS) && questionIndex === 0}
+            checked={isFinished(sections.QUESTIONS)}
             customSize
-            done={answers || isActive("questions")}
+            done={answers || isActive(sections.QUESTIONS)}
             heading="Vragen"
             largeCircle
             // Overwrite the line between the Items
@@ -207,9 +223,9 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
             }}
           />
           <StepByStepItem
-            active={isActive("conclusion")}
-            checked={isFinished("questions")}
-            done={isFinished("questions")}
+            active={isActive(sections.CONCLUSION)}
+            checked={isFinished(sections.QUESTIONS)}
+            done={isFinished(sections.QUESTIONS)}
             customSize
             heading="Conclusie"
             largeCircle
@@ -217,7 +233,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
             // Overwrite the line between the Items
             style={{ marginTop: -1 }}
           >
-            {isFinished("questions") && (
+            {isFinished(sections.QUESTIONS) && (
               <Conclusion {...{ checker, topic, matomoTrackEvent }} />
             )}
           </StepByStepItem>
@@ -228,7 +244,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       {!sttrFile && (
         <>
           {/* @TODO: Refactor this, because of duplicate code */}
-          {isActive("locationInput") && (
+          {isActive(sections.LOCATION_INPUT) && (
             <LocationInput
               {...{
                 matomoTrackEvent,
@@ -239,7 +255,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
               }}
             />
           )}
-          {isActive("locationResult") && (
+          {isActive(sections.LOCATION_RESULT) && (
             <LocationResult
               {...{
                 isActive,
