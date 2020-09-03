@@ -107,7 +107,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name,
+      category: name.toLowerCase(),
       name: eventName,
     });
 
