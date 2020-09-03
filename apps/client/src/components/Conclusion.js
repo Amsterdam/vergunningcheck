@@ -10,8 +10,8 @@ import {
   PrintOnly,
 } from "../atoms";
 import { Olo } from "../config";
-import { sections } from "../config/matomo";
-import { actions, eventNames } from "../config/matomo";
+import { actions, eventNames, sections } from "../config/matomo";
+import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
@@ -71,7 +71,6 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
-      category: name,
       name: eventNames.SAVE_CONCLUSION,
     });
     window.print();
@@ -138,4 +137,4 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
   );
 };
 
-export default Conclusion;
+export default withTracking(Conclusion);

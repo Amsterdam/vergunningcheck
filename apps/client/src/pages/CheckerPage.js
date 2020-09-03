@@ -234,6 +234,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           />
           <StepByStepItem
             active={isActive(sections.CONCLUSION)}
+            as="div"
             checked={isFinished(sections.QUESTIONS)}
             done={isFinished(sections.QUESTIONS)}
             customSize

@@ -1,7 +1,13 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { ComponentWrapper, EditButton, List, ListItem } from "../atoms";
+import {
+  ComponentWrapper,
+  EditButton,
+  List,
+  ListItem,
+  TextToEdit,
+} from "../atoms";
 import { actions, eventNames, sections } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
@@ -24,7 +30,9 @@ const RegisterLookupSummary = ({
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
-        <AddressLine address={address} />
+        <TextToEdit>
+          <AddressLine address={address} />
+        </TextToEdit>
         <EditButton
           onClick={() => {
             matomoTrackEvent({

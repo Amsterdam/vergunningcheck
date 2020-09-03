@@ -9,6 +9,7 @@ import OrderedList from "./OrderedList";
 import PrevButton from "./PrevButton";
 import PrintButton from "./PrintButton";
 import PrintOnly from "./PrintOnly";
+import TextToEdit from "./TextToEdit";
 
 export {
   Alert,
@@ -22,4 +23,5 @@ export {
   PrevButton,
   PrintButton,
   PrintOnly,
+  TextToEdit,
 };
