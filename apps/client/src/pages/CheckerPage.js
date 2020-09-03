@@ -38,7 +38,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
     matomoTrackEvent({
-      action: actions.STEP,
+      action: actions.ACTIVE_STEP,
       category: name,
       name: component,
     });
