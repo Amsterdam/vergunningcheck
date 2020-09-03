@@ -12,13 +12,13 @@ import { geturl, routes } from "../routes";
 
 const IntroPage = ({ matomoTrackEvent, topic }) => {
   const history = useHistory();
-  const { text, intro } = topic;
+  const { intro, name, text } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
 
   const goToNext = () => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: topic.name.toLowerCase(),
+      category: name,
       name: `${eventNames.FORWARD} ${sections.LOCATION_INPUT}`,
     });
 

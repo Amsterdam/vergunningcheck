@@ -43,7 +43,7 @@ const LocationResult = ({
 
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        category: topic.name.toLowerCase(),
+        category: topic.name,
         name: `${eventNames.FORWARD} ${eventSection}`,
       });
 
@@ -55,7 +55,7 @@ const LocationResult = ({
     } else {
       matomoTrackEvent({
         action: actions.CLICK_EXTERNAL_NAVIGATION,
-        category: topic.name.toLowerCase(),
+        category: topic.name,
         name: eventNames.TO_OLO,
       });
       window.open(generateOloUrl(address), "_blank");
@@ -65,7 +65,7 @@ const LocationResult = ({
   const onGoToPrev = () => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: topic.name.toLowerCase(),
+      category: topic.name,
       name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
     setActiveState(sections.LOCATION_INPUT);

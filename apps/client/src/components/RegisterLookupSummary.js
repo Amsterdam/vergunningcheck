@@ -29,7 +29,7 @@ const RegisterLookupSummary = ({
           onClick={() => {
             matomoTrackEvent({
               action: actions.CLICK_INTERNAL_NAVIGATION,
-              category: name.toLowerCase(),
+              category: name,
               name: eventNames.EDIT_ADDRESS,
             });
             setActiveState(sections.LOCATION_INPUT);
