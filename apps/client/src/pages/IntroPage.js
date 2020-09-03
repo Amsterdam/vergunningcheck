@@ -5,23 +5,15 @@ import { useHistory } from "react-router-dom";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
-import { actions, eventNames, sections } from "../config/matomo";
 import withTopic from "../hoc/withTopic";
-import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const IntroPage = ({ matomoTrackEvent, topic }) => {
+const IntroPage = ({ topic }) => {
   const history = useHistory();
-  const { intro, name, text } = topic;
+  const { intro, text } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
 
   const goToNext = () => {
-    matomoTrackEvent({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name,
-      name: `${eventNames.FORWARD} ${sections.LOCATION_INPUT}`,
-    });
-
     history.push(geturl(routes.checker, topic));
   };
 
@@ -38,4 +30,4 @@ const IntroPage = ({ matomoTrackEvent, topic }) => {
   );
 };
 
-export default withTracking(withTopic(IntroPage));
+export default withTopic(IntroPage);
