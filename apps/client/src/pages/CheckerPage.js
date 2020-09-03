@@ -86,35 +86,42 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
    * @param { int | ('next'|'prev') } value - This van be, 'next, prev or a int`
    */
   const goToQuestion = (value) => {
-    const newIndex = Number.isInteger(value)
-      ? value // Return the value if value isInteger()
-      : value === "next"
-      ? questionIndex + 1
-      : value === "prev"
-      ? questionIndex - 1
-      : console.error(
-          `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
-        );
-    const question = checker.stack[questionIndex];
-    // EventName is the question text in lowercase combined with the button that is pressed. (next, prev)
-    const eventName = `${
-      Number.isInteger(value)
-        ? eventNames.EDIT_QUESTION
-        : value === "prev"
-        ? eventNames.PREV_QUESTION
-        : eventNames.NEXT_QUESTION
-    } - ${question.text.toLowerCase()}`;
+    let action, eventName, newQuestionIndex;
+
+    if (Number.isInteger(value)) {
+      // Edit specific question index (value), go directly to this new question index
+      newQuestionIndex = value;
+      // Matomo event props
+      action = actions.EDIT_QUESTION;
+      eventName = checker.stack[newQuestionIndex].text;
+    } else if (value === "next" || value === "prev") {
+      // Either go 1 question next or prev
+      newQuestionIndex =
+        value === "next" ? questionIndex + 1 : questionIndex - 1;
+      // Matomo event props
+      action = checker.stack[newQuestionIndex].text;
+      eventName =
+        value === "next"
+          ? eventNames.GOTO_NEXT_QUESTION
+          : eventNames.GOTO_PREV_QUESTION;
+    } else {
+      // @TODO: Fix this by converting this file to typescript
+      console.error(
+        `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
+      );
+      return;
+    }
 
     matomoTrackEvent({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name.toLowerCase(),
+      action,
+      category: name,
       name: eventName,
     });
 
     sessionContext.setSessionData([
       slug,
       {
-        questionIndex: newIndex,
+        questionIndex: newQuestionIndex,
       },
     ]);
   };

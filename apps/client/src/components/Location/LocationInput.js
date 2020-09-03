@@ -46,7 +46,7 @@ const LocationInput = ({
     if (address.postalCode) {
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        category: name.toLowerCase(),
+        category: name,
         name: `${eventNames.FORWARD} ${sections.LOCATION_RESULT}`,
       });
 
@@ -59,7 +59,7 @@ const LocationInput = ({
 
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
-        category: name.toLowerCase(),
+        category: name,
         name: address.postalCode.substring(0, 4),
       });
 
@@ -102,7 +102,7 @@ const LocationInput = ({
   const onGoToPrev = () => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name.toLowerCase(),
+      category: name,
       name: `${eventNames.BACK} ${sections.INTRO}`,
     });
 

@@ -61,7 +61,7 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
     e.preventDefault();
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      category: name.toLowerCase(),
+      category: name,
       name: eventNames.APPLY_FOR_PERMIT,
     });
     // Open OLO in new tab/window
@@ -71,7 +71,7 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
-      category: name.toLowerCase(),
+      category: name,
       name: eventNames.SAVE_CONCLUSION,
     });
     window.print();

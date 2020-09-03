@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
+import { removeQuotes } from "../utils/index";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
@@ -126,6 +127,15 @@ const Questions = ({
     }
   }, [checker, contactConclusion, sessionContext, setContactConclusion, slug]);
 
+  // Track active questions
+  useEffect(() => {
+    matomoTrackEvent({
+      action: checker.stack[questionIndex].text,
+      category: name,
+      name: eventNames.ACTIVE_QUESTION,
+    });
+  }, [checker.stack, matomoTrackEvent, name, questionIndex]);
+
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
@@ -157,13 +167,25 @@ const Questions = ({
     }
 
     const question = checker.stack[questionIndex];
-    // Provide the user answers to the `sttr-checker`
+
+    let givenAnswer;
     if (question.options && value !== undefined) {
-      question.setAnswer(value);
+      givenAnswer = value;
     }
     if (!question.options && value) {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
-      question.setAnswer(responseObj.value);
+      givenAnswer = responseObj.value;
+    }
+
+    // Store the given answer in the `sttr-checker` and in Matomo
+    if (givenAnswer) {
+      question.setAnswer(givenAnswer);
+
+      matomoTrackEvent({
+        action: question.text,
+        category: name,
+        name: `${eventNames.ANSWERED_WITH} - ${removeQuotes(givenAnswer)}`,
+      });
     }
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
