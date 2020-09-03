@@ -50,8 +50,8 @@ const LocationInput = ({
         name: `${eventNames.FORWARD} ${sections.LOCATION_RESULT}`,
       });
 
-      // Detect if user is submitting the same address as currenly stored
-      if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
+      // Detect if user is submitting the same address as currently stored
+      if (sessionAddress.id && sessionAddress.id === address.id) {
         // The address is the same, so go directly to the Location Result
         setActiveState(sections.LOCATION_RESULT);
         return;

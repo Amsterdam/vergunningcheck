@@ -50,6 +50,7 @@ export const eventNames = {
   EDIT_ADDRESS: "wijzig adres",
   FACEBOOK: "facebook",
   FORWARD: "ga naar",
+  GOTO_CONCLUSION: "naar conclusie",
   GOTO_NEXT_QUESTION: "naar volgende vraag",
   GOTO_PREV_QUESTION: "naar vorige vraag",
   IAMSTERDAM: "iamsterdam.com",

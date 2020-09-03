@@ -37,11 +37,14 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
-    matomoTrackEvent({
-      action: actions.ACTIVE_STEP,
-      category: name,
-      name: component,
-    });
+    // Do not track the active step
+    if (!isActive(component)) {
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        category: name,
+        name: component,
+      });
+    }
 
     sessionContext.setSessionData([slug, { activeComponents: [component] }]);
   };
@@ -99,7 +102,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       newQuestionIndex =
         value === "next" ? questionIndex + 1 : questionIndex - 1;
       // Matomo event props
-      action = checker.stack[newQuestionIndex].text;
+      action = checker.stack[questionIndex].text;
       eventName =
         value === "next"
           ? eventNames.GOTO_NEXT_QUESTION

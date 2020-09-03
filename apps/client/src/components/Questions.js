@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
-import { actions, eventNames, sections } from "../config/matomo";
+import { eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import { removeQuotes } from "../utils/index";
 import Question, { booleanOptions } from "./Question";
@@ -26,11 +26,11 @@ const Questions = ({
     setActiveState(sections.CONCLUSION);
     setFinishedState([sections.QUESTIONS, sections.CONCLUSION], true);
     matomoTrackEvent({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
+      action: checker.stack[questionIndex].text,
       category: name,
-      name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
+      name: eventNames.GOTO_CONCLUSION,
     });
-  }, [matomoTrackEvent, name, setActiveState, setFinishedState]);
+  }, [checker.stack, matomoTrackEvent, name, questionIndex, setActiveState, setFinishedState]);
 
   const onQuestionNext = useCallback(() => {
     const question = checker.stack[questionIndex];
@@ -127,14 +127,24 @@ const Questions = ({
     }
   }, [checker, contactConclusion, sessionContext, setContactConclusion, slug]);
 
-  // Track active questions
+  const isQuestionSectionActive = isActive(sections.QUESTIONS);
+
   useEffect(() => {
-    matomoTrackEvent({
-      action: checker.stack[questionIndex].text,
-      category: name,
-      name: eventNames.ACTIVE_QUESTION,
-    });
-  }, [checker.stack, matomoTrackEvent, name, questionIndex]);
+    // Track active questions
+    if (isQuestionSectionActive) {
+      matomoTrackEvent({
+        action: checker.stack[questionIndex].text,
+        category: name,
+        name: eventNames.ACTIVE_QUESTION,
+      });
+    }
+  }, [
+    checker.stack,
+    isQuestionSectionActive,
+    matomoTrackEvent,
+    name,
+    questionIndex,
+  ]);
 
   let disableFutureQuestions = false;
 
@@ -168,25 +178,25 @@ const Questions = ({
 
     const question = checker.stack[questionIndex];
 
-    let givenAnswer;
+    let userAnswer, userAnswerLabel;
+    // List question
     if (question.options && value !== undefined) {
-      givenAnswer = value;
+      userAnswer = value;
     }
+    // Boolean question
     if (!question.options && value) {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
-      givenAnswer = responseObj.value;
+      userAnswer = responseObj.value;
+      userAnswerLabel = responseObj.label;
     }
 
     // Store the given answer in the `sttr-checker` and in Matomo
-    if (givenAnswer) {
-      question.setAnswer(givenAnswer);
-
-      matomoTrackEvent({
-        action: question.text,
-        category: name,
-        name: `${eventNames.ANSWERED_WITH} - ${removeQuotes(givenAnswer)}`,
-      });
-    }
+    question.setAnswer(userAnswer);
+    matomoTrackEvent({
+      action: question.text,
+      category: name,
+      name: `${eventNames.ANSWERED_WITH} - ${removeQuotes(userAnswerLabel)}`,
+    });
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
     // By rewinding, we're forcing the stack to update
