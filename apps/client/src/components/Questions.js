@@ -23,11 +23,11 @@ const Questions = ({
   const { answers, questionIndex } = sessionContext[slug];
 
   const goToConclusion = useCallback(() => {
-    setActiveState("conclusion");
-    setFinishedState(["questions", "conclusion"], true);
+    setActiveState(sections.CONCLUSION);
+    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], true);
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name.toLowerCase(),
+      category: name,
       name: `${eventNames.FORWARD} ${sections.CONCLUSION}`,
     });
   }, [matomoTrackEvent, name, setActiveState, setFinishedState]);
@@ -66,8 +66,8 @@ const Questions = ({
       goToQuestion("prev");
     } else {
       // Go to Location Result, because the user was at the first question
-      setActiveState("locationResult");
-      setFinishedState("locationResult", false);
+      setActiveState(sections.LOCATION_RESULT);
+      setFinishedState(sections.LOCATION_RESULT, false);
     }
   };
 
@@ -75,9 +75,9 @@ const Questions = ({
     (questionId) => {
       // Checker rewinding also needs to work when you already have a conlusion
       // Go to the specific question in the stack
-      setActiveState("questions");
-      setFinishedState(["conclusion", "questions"], false);
-      setFinishedState("locationResult", true);
+      setActiveState(sections.QUESTIONS);
+      setFinishedState([sections.CONCLUSION, sections.QUESTIONS], false);
+      setFinishedState(sections.LOCATION_RESULT, true);
 
       goToQuestion(questionId);
     },
@@ -96,7 +96,7 @@ const Questions = ({
           !q.options && booleanOptions.find((o) => o.value === q.answer);
         const userAnswer = q.options ? q.answer : booleanAnswers?.label;
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive("questions");
+          q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
 
         // Skip question if already answered
         if (isCurrentQuestion && userAnswer) {
@@ -162,8 +162,8 @@ const Questions = ({
 
   const saveAnswer = (value) => {
     // This makes sure when a question is changed that a possible visible Conclusion is removed
-    if (isFinished("questions")) {
-      setFinishedState("questions", false);
+    if (isFinished(sections.QUESTIONS)) {
+      setFinishedState(sections.QUESTIONS, false);
     }
 
     const question = checker.stack[questionIndex];
@@ -232,7 +232,7 @@ const Questions = ({
 
         // Define if question is the current one
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive("questions");
+          q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
 
         // Hide unanswered questions (eg: on browser refresh)
         if (!isCurrentQuestion && !userAnswer) {

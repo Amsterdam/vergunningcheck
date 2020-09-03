@@ -16,6 +16,7 @@ export const matomo = {
 export const trackingEnabled = () => !localStorage.getItem("doNotTrack");
 
 export const actions = {
+  ACTIVE_STEP: "actieve stap",
   CLICK_EXTERNAL_NAVIGATION: "uitgaande links",
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "telefoonnummer",

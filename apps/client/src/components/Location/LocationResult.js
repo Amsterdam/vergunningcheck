@@ -35,9 +35,9 @@ const LocationResult = ({
         ]);
       }
 
-      setFinishedState("locationResult", true);
+      setFinishedState(sections.LOCATION_RESULT, true);
 
-      const eventSection = isFinished("questions")
+      const eventSection = isFinished(sections.QUESTIONS)
         ? sections.CONCLUSION
         : sections.QUESTIONS;
 
@@ -47,10 +47,10 @@ const LocationResult = ({
         name: `${eventNames.FORWARD} ${eventSection}`,
       });
 
-      if (isFinished("questions")) {
-        setActiveState("conclusion");
+      if (isFinished(sections.QUESTIONS)) {
+        setActiveState(sections.CONCLUSION);
       } else {
-        setActiveState("questions");
+        setActiveState(sections.QUESTIONS);
       }
     } else {
       matomoTrackEvent({
@@ -68,7 +68,7 @@ const LocationResult = ({
       category: topic.name.toLowerCase(),
       name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
-    setActiveState("locationInput");
+    setActiveState(sections.LOCATION_INPUT);
   };
 
   return (
@@ -90,7 +90,7 @@ const LocationResult = ({
         </Paragraph>
       )}
 
-      {isActive("locationResult") && (
+      {isActive(sections.LOCATION_RESULT) && (
         <Nav
           formEnds={!hasSTTR}
           nextText={hasSTTR ? "Naar de vragen" : "Naar het omgevingsloket"}
