@@ -20,6 +20,7 @@ export const actions = {
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "telefoonnummer",
   DOWNLOAD: "download",
+  ACTIVE_STEP: "actieve stap",
   SUBMIT_LOCATION: "locatie opslaan",
 };
 

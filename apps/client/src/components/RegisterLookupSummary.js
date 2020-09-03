@@ -2,7 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { ComponentWrapper, EditButton, List, ListItem } from "../atoms";
-import { actions, eventNames } from "../config/matomo";
+import { actions, eventNames, sections } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -32,7 +32,7 @@ const RegisterLookupSummary = ({
               category: name.toLowerCase(),
               name: eventNames.EDIT_ADDRESS,
             });
-            setActiveState("locationInput");
+            setActiveState(sections.LOCATION_INPUT);
           }}
         />
       </Paragraph>
