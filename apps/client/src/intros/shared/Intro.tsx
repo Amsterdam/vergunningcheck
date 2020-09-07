@@ -39,7 +39,7 @@ export default ({
 
   return (
     <>
-      <Paragraph>
+      <Paragraph gutterBottom={usableForBullets.length > 0 ? 8 : undefined}>
         Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning
         nodig hebt.
         {usableForBullets.length > 0 &&
