@@ -1,5 +1,4 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import * as Sentry from "@sentry/browser";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -8,7 +7,6 @@ import { eventNames } from "../../config/matomo";
 import { CheckerContext, SessionContext } from "../../context";
 import withTracking from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
-import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -46,23 +44,11 @@ const LocationInput = ({
 
   const onSubmit = () => {
     if (address?.postalCode) {
-      const { restrictions } = address;
-      const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
-      const cityScape = getRestrictionByTypeName(restrictions, "CityScape")
-        ?.name;
-
       // Detect if user is submitting the same address as currenly stored
       if (hasSTTR && sessionAddress.id && sessionAddress.id === address.id) {
         // The address is the same, so go directly to the Location Result
         setActiveState("locationResult");
         return;
-      }
-
-      if (monument) {
-        Sentry.setTag("monument", monument);
-      }
-      if (cityScape) {
-        Sentry.setTag("cityscape", cityScape);
       }
 
       matomoTrackEvent({

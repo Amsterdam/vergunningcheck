@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/browser";
+import { setTag } from "@sentry/browser";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { SessionContext } from "../context";
@@ -153,12 +153,12 @@ const Questions = ({
     const question = checker.stack[questionIndex];
     // Provide the user answers to the `sttr-checker`
     if (question.options && value !== undefined) {
-      Sentry.setTag(question.text, value);
+      setTag(question.text, value);
       question.setAnswer(value);
     }
     if (!question.options && value) {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
-      Sentry.setTag(question.text, responseObj.label);
+      setTag(question.text, responseObj.label);
       question.setAnswer(responseObj.value);
     }
 
