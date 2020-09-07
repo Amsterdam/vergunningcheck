@@ -117,13 +117,13 @@ const LocationInput = ({
     <>
       {errorMessage && (
         <Error
-          heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check op dit moment niet kunt doen."
+          heading="Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen."
           stack={errorMessage?.stack}
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
             telefoonnummer{" "}
-            <PhoneNumber eventLocation={sections.LOCATION_INPUT} />.
+            <PhoneNumber eventLocation={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}

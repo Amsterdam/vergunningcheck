@@ -26,6 +26,9 @@ export const actions = {
 };
 
 export const sections = {
+  ALERT_ADDRESS_NOT_FOUND:
+    "we kunnen geen adres vinden bij deze combinatie (melding)",
+  ALERT_LOCATION_INPUT: "we kunnen nu geen adresgegevens ophalen (melding)",
   CONCLUSION: "conclusie",
   FOOTER: "footer",
   HEADER: "header",
@@ -40,7 +43,6 @@ export const eventNames = {
   ACTIVE_QUESTION: "vraag is actief",
   ANSWERED_WITH: "beantwoord met",
   ADDRESS_ERROR: "adres error",
-  ADDRESS_NOT_FOUND: "adres niet gevonden",
   APPLY_FOR_PERMIT: "vergunning aanvragen",
   BACK: "terug naar",
   CONTACT_FORM: "contactformulier",
