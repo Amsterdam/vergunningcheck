@@ -1,9 +1,8 @@
-import { Button, themeSpacing } from "@datapunt/asc-ui";
+import { Button } from "@datapunt/asc-ui";
 import React from "react";
 import styled from "styled-components";
 
 const EditButtonStyle = styled(Button)`
-  margin-left: ${themeSpacing(5)};
   text-decoration: underline;
   &:disabled {
     text-decoration: underline;
