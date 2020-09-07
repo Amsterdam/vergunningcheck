@@ -58,7 +58,8 @@ export default ({
         <Paragraph data-testid={INTRO_USER_INFLUENCE}>
           {influence}{" "}
           {dependantOnQuestions &&
-            "U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt."}
+            `U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien
+              toch geen vergunning nodig hebt.`}
         </Paragraph>
       )}
 
