@@ -31,6 +31,7 @@ const reducer = (
   if (topicData === null) {
     throw new Error("Resetting topic data this way is not supported.");
   }
+
   return {
     ...data,
     [slug]: {
