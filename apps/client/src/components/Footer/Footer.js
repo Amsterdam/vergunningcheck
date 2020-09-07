@@ -28,7 +28,7 @@ const FirstColumn = () => (
         Bel het telefoonnummer{" "}
         <PhoneNumber
           darkBackground
-          eventLocation={sections.FOOTER}
+          eventName={sections.FOOTER}
           variant={null}
         />
       </strong>{" "}

@@ -21,7 +21,7 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
-  const { name, slug, sttrFile, text } = topic;
+  const { slug, sttrFile, text } = topic;
 
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
@@ -41,7 +41,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     if (!isActive(component)) {
       matomoTrackEvent({
         action: actions.ACTIVE_STEP,
-        category: name,
         name: component,
       });
     }
@@ -117,7 +116,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
     matomoTrackEvent({
       action,
-      category: name,
       name: eventName,
     });
 
@@ -245,7 +243,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
             style={{ marginTop: -1 }}
           >
             {isFinished(sections.QUESTIONS) && (
-              <Conclusion {...{ checker, topic, matomoTrackEvent }} />
+              <Conclusion {...{ checker, matomoTrackEvent }} />
             )}
           </StepByStepItem>
         </StepByStepNavigation>

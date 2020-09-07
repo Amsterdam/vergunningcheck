@@ -25,7 +25,7 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { name, slug, sttrFile, text } = topic;
+  const { slug, sttrFile, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
   const hasSTTR = !!sttrFile;
 
@@ -46,7 +46,6 @@ const LocationInput = ({
     if (address.postalCode) {
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        category: name,
         name: `${eventNames.FORWARD} ${sections.LOCATION_RESULT}`,
       });
 
@@ -59,7 +58,6 @@ const LocationInput = ({
 
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
-        category: name,
         name: address.postalCode.substring(0, 4),
       });
 
@@ -102,7 +100,6 @@ const LocationInput = ({
   const onGoToPrev = () => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
-      category: name,
       name: `${eventNames.BACK} ${sections.INTRO}`,
     });
 
@@ -120,13 +117,13 @@ const LocationInput = ({
     <>
       {errorMessage && (
         <Error
-          heading="Helaas. Wij kunnen nu geen locatiegegevens opvragen waardoor u deze check op dit moment niet kunt doen."
+          heading="Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen."
           stack={errorMessage?.stack}
         >
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
             telefoonnummer{" "}
-            <PhoneNumber eventLocation={sections.LOCATION_INPUT} />.
+            <PhoneNumber eventName={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}

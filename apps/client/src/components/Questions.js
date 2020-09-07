@@ -27,10 +27,15 @@ const Questions = ({
     setFinishedState([sections.QUESTIONS, sections.CONCLUSION], true);
     matomoTrackEvent({
       action: checker.stack[questionIndex].text,
-      category: name,
       name: eventNames.GOTO_CONCLUSION,
     });
-  }, [checker.stack, matomoTrackEvent, name, questionIndex, setActiveState, setFinishedState]);
+  }, [
+    checker.stack,
+    matomoTrackEvent,
+    questionIndex,
+    setActiveState,
+    setFinishedState,
+  ]);
 
   const onQuestionNext = useCallback(() => {
     const question = checker.stack[questionIndex];
@@ -134,17 +139,10 @@ const Questions = ({
     if (isQuestionSectionActive) {
       matomoTrackEvent({
         action: checker.stack[questionIndex].text,
-        category: name,
         name: eventNames.ACTIVE_QUESTION,
       });
     }
-  }, [
-    checker.stack,
-    isQuestionSectionActive,
-    matomoTrackEvent,
-    name,
-    questionIndex,
-  ]);
+  }, [checker.stack, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
 
   let disableFutureQuestions = false;
 

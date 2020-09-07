@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
-import { eventNames } from "../../config/matomo";
+import { sections } from "../../config/matomo";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
 
@@ -171,7 +171,7 @@ const LocationFinder = (props) => {
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
               telefoonnummer{" "}
-              <PhoneNumber eventName={eventNames.ADDRESS_NOT_FOUND} />.
+              <PhoneNumber eventName={sections.ALERT_ADDRESS_NOT_FOUND} />.
             </Paragraph>
           </Alert>
         </ComponentWrapper>

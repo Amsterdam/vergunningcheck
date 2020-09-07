@@ -36,7 +36,7 @@ export default () => (
       </ListItem>
     </List>
     <Paragraph>
-      <ContactSentence eventLocation={sections.INTRO} />
+      <ContactSentence eventName={sections.INTRO} />
     </Paragraph>
   </>
 );
