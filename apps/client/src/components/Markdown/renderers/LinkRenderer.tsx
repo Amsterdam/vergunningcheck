@@ -1,6 +1,6 @@
 import React from "react";
 
-import { actions, eventNames } from "../../../config/matomo";
+import { actions } from "../../../config/matomo";
 import Link from "../../Link";
 
 type Props = {
@@ -28,9 +28,12 @@ const LinkRenderer: React.FC<Props> = ({
   const rel = isPhoneLink ? "" : "noopener noreferrer";
 
   // Setup event props
-  const action = actions.CLICK_EXTERNAL_NAVIGATION;
-  const description = isPhoneLink ? eventNames.PHONE_NUMBER : linkText;
-  const eventName = `${description} - ${eventLocation}`;
+  const action = isPhoneLink
+    ? actions.CLICK_PHONE_LINK
+    : actions.CLICK_EXTERNAL_NAVIGATION;
+  const eventName = isPhoneLink
+    ? eventLocation
+    : `${linkText} - ${eventLocation}`;
 
   return (
     <Link variant="inline" {...{ action, eventName, href, rel, target }}>

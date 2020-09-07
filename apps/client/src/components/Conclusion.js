@@ -71,6 +71,7 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
+      category: name,
       name: eventNames.SAVE_CONCLUSION,
     });
     window.print();
