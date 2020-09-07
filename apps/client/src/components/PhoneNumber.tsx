@@ -10,7 +10,7 @@ const Wrapper = styled.span`
 
 export type Props = {
   darkBackground?: boolean;
-  eventLocation: string;
+  eventName: string;
   href?: string;
   link?: boolean;
   text?: string;
@@ -19,7 +19,7 @@ export type Props = {
 
 export default ({
   darkBackground = false,
-  eventLocation,
+  eventName,
   href = "tel:14020",
   link = true,
   text = "14 020",
@@ -29,9 +29,9 @@ export default ({
     {link ? (
       <Link
         action={actions.CLICK_PHONE_LINK}
-        eventName={eventLocation}
         {...{
           darkBackground,
+          eventName,
           href,
           variant,
         }}

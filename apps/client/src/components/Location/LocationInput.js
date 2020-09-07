@@ -123,7 +123,7 @@ const LocationInput = ({
           <Paragraph>
             Probeer het later opnieuw. Of neem contact op met de gemeente op
             telefoonnummer{" "}
-            <PhoneNumber eventLocation={sections.ALERT_LOCATION_INPUT} />.
+            <PhoneNumber eventName={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}
