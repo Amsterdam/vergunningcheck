@@ -38,7 +38,6 @@ export default () => {
   const [topic, setTopic] = useState(getTopicFromSlug(slug));
 
   useEffect(() => {
-    console.log("Slug changed to", slug);
     setTopic(getTopicFromSlug(slug));
   }, [setTopic, slug]);
 

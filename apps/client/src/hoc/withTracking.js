@@ -1,12 +1,12 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
-import React, { useContext } from "react";
+import React from "react";
 
 import { isProduction } from "../config";
 import { trackingEnabled } from "../config/matomo";
-import { CheckerContext } from "../context";
+import { useTopic } from "../hooks";
 
 const withTracking = (Component) => ({ ...props }) => {
-  const { topic } = useContext(CheckerContext);
+  const { slug } = useTopic() || {};
   const { trackEvent, trackPageView } = useMatomo();
 
   const matomoPageView = () => {
@@ -24,7 +24,7 @@ const withTracking = (Component) => ({ ...props }) => {
     if (trackingEnabled()) {
       trackEvent({
         category,
-        action: `${action} - ${topic?.slug || "home"}`,
+        action: `${action} - ${slug || "home"}`,
         name,
       });
     }
