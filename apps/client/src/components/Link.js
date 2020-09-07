@@ -1,9 +1,8 @@
 import { Link as StyledComponentLink } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React from "react";
 
 import { actions } from "../config/matomo";
-import { CheckerContext } from "../context";
 import withTracking from "../hoc/withTracking";
 
 const Link = ({
@@ -14,14 +13,11 @@ const Link = ({
   matomoTrackEvent,
   ...rest
 }) => {
-  const checkerContext = useContext(CheckerContext);
-
   // The default action is CLICK_EXTERNAL_NAVIGATION, it can be overwritten.
   const onClick = () => {
-    if (eventName && checkerContext.topic.name) {
+    if (eventName) {
       matomoTrackEvent({
         action,
-        category: checkerContext.topic.name,
         name: eventName,
       });
     }
@@ -37,7 +33,6 @@ const Link = ({
 Link.propTypes = {
   action: PropTypes.string,
   children: PropTypes.node.isRequired,
-  category: PropTypes.string,
   href: PropTypes.string,
   eventName: PropTypes.string,
   internal: PropTypes.bool,

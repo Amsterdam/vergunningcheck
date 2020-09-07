@@ -16,7 +16,7 @@ import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
+const Conclusion = ({ checker, matomoTrackEvent }) => {
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
@@ -61,7 +61,6 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
     e.preventDefault();
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      category: name,
       name: eventNames.APPLY_FOR_PERMIT,
     });
     // Open OLO in new tab/window
@@ -71,7 +70,6 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { name } }) => {
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
-      category: name,
       name: eventNames.SAVE_CONCLUSION,
     });
     window.print();

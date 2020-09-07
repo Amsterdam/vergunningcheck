@@ -18,7 +18,7 @@ const RegisterLookupSummary = ({
   displayZoningPlans,
   matomoTrackEvent,
   setActiveState,
-  topic: { name, sttrFile },
+  topic: { sttrFile },
 }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
@@ -37,7 +37,6 @@ const RegisterLookupSummary = ({
           onClick={() => {
             matomoTrackEvent({
               action: actions.CLICK_INTERNAL_NAVIGATION,
-              category: name,
               name: eventNames.EDIT_ADDRESS,
             });
             setActiveState(sections.LOCATION_INPUT);
