@@ -103,7 +103,7 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
           </ComponentWrapper>
         )}
 
-        {!isMobile && !isIE && (
+        {!isIE && !isMobile && (
           <ComponentWrapper>
             <PrintButton
               type="button"
