@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Layout from "../components/Layouts/DefaultLayout";
+import Layout from "../components/Layouts/BaseLayout";
 import { isProduction, topics } from "../config";
 import { geturl, routes } from "../routes";
 

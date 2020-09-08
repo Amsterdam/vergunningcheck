@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 import Error from "../components/Error";
-import Layout from "../components/Layouts/DefaultLayout";
+import Layout from "../components/Layouts/BaseLayout";
 import withTracking from "../hoc/withTracking";
 
 const ErrorPage = ({ error, matomoPageView }) => {

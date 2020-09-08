@@ -2,7 +2,7 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../components/Layouts/DefaultLayout";
+import Layout from "../components/Layouts/BaseLayout";
 import withTracking from "../hoc/withTracking";
 
 const NotFoundPage = ({ matomoPageView }) => {

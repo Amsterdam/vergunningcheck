@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-import Layout from "../components/Layouts/DefaultLayout";
+import Layout from "../components/Layouts/BaseLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import withTopic from "../hoc/withTopic";

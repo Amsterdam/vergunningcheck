@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
-import Layout from "../components/Layouts/DefaultLayout";
+import Layout from "../components/Layouts/BaseLayout";
 import LocationInput from "../components/Location/LocationInput";
 import LocationResult from "../components/Location/LocationResult";
 import PrintDetails from "../components/PrintDetails";

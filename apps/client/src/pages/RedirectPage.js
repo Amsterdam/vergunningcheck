@@ -2,7 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../components/Layouts/DefaultLayout";
+import Layout from "../components/Layouts/BaseLayout";
 import { Olo } from "../config";
 
 const RedirectPage = ({ matomoPageView, topic }) => {
