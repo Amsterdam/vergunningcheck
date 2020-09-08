@@ -35,6 +35,12 @@ export const routeConfig = [
     path: "/:slug",
   },
   {
+    component: React.lazy(() => import("./components/StepByStep")),
+    name: "stepper",
+    exact: true,
+    path: "/:slug",
+  },
+  {
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),

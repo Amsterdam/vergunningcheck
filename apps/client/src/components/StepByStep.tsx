@@ -1,21 +1,22 @@
 import React from "react";
 
+import ConclusionAlert from "../components/ConclusionAlert";
 import Question from "../sttr_client/models/question";
 
 type State = {
   active: boolean;
-  finished: boolean;
   checked: boolean;
+  finished: boolean;
 };
 
 type StepData = {
   data?: any;
-  state: State;
+  state?: State;
   title?: string;
 };
 
 type Step = {
-  isCompleted(): boolean;
+  isCompleted: Function;
 };
 
 type SectionData = {
@@ -26,7 +27,7 @@ type SectionData = {
 };
 
 type Section = {
-  isCompleted(): boolean;
+  isCompleted: Function;
   renderer: React.FC;
   steps: StepData[];
   title?: string;
@@ -34,8 +35,9 @@ type Section = {
 };
 
 class Stepper {
+  currentStep: number = 0;
   sectionIndex: number = 0;
-  stepIndex: number = 0;
+  sectionStepIndex: number = 0;
   sections: (SectionData | Section)[] = [];
 
   constructor(sections: Section[]) {
@@ -47,11 +49,22 @@ class Stepper {
     });
     this.sections = sections;
   }
-  nextSection() {}
-  nextStep() {}
+  next() {
+    // @TODO: need to fix
+  }
+  getNext() {
+    const allSteps: Array<object> = this.sections.flatMap((steps) => steps);
+    const currentStepIndex = allSteps.indexOf(this.currentStep);
+    return allSteps[currentStepIndex + 1];
+  }
 }
 
 export default () => {
+  const checker: Checker = useChecker();
+  const [relevantQuestions, setRelevantQuestions] = React.useState(
+    checker.relevantQuestions()
+  );
+
   type StepProps = {
     children: React.ReactNode;
     title?: string;
@@ -61,6 +74,10 @@ export default () => {
   const Step: React.FC<StepProps> = ({ children, title, state, step }) => (
     <>
       {state.finished && <i title="chevron" />}
+      <div style={{ color: stepper.getNext()?.finished ? "blue" : "gray" }}>
+        |
+      </div>
+
       <h1>
         {state.finished && !state.active ? (
           <a onClick={step.activateSelf}>{title}</a>
@@ -88,18 +105,50 @@ export default () => {
     next: any;
     question: Question;
     props: StepProps;
-  }) => (
-    <Step {...{ props }}>
-      <button onClick={props.step.data.question.setAnswer("bla")} />
-      {props.state.finished && !props.state.active && (
-        <a onClick={activateSelf}>wijzig</a>
-      )}
+  }) => {
+    const updateChecker = () =>
+      setRelevantQuestions(checker.getRelevantQuestions());
 
-      <a onClick={prev}>Vorige vraag</a>
-      <a onClick={next}>Volgende vraag</a>
-      <a>Naar conclusie</a>
-    </Step>
-  );
+    return (
+      <Step {...{ props }}>
+        {props.state.active && (
+          <button onClick={props.step.data.question.setAnswer("bla")} />
+        )}
+        {props.state.finished && !props.state.active && (
+          <a onClick={activateSelf}>wijzig</a>
+        )}
+
+        {/* We need to think about what happens if this question is causing multiple permits */}
+        {/* Do we show multiple Alerts? */}
+        {checker.isQuestionCausingPermit(question) && (
+          <ConclusionAlert
+            questionNeedsContactExit={checker.hasContactConclusion()}
+          >
+            {checker.isConclusive() && <a>Naar conclusie</a>}
+          </ConclusionAlert>
+        )}
+
+        <a
+          onClick={() => {
+            updateChecker();
+            stepper.prev();
+          }}
+        >
+          {checker.isFirstQuestion(question) ? `Vorige vraag` : `Ga terug`}
+        </a>
+        <a
+          onClick={() => {
+            updateChecker();
+            stepper.next();
+          }}
+        >
+          {checker.isLastQuestion(question)
+            ? `Naar Conclusie`
+            : `Volgende vraag`}
+        </a>
+      </Step>
+    );
+  };
 
   const ConclusionStep = ({ state }: { state: State }) => (
     <Step {...{ state }}>Conclusie....</Step>
@@ -121,15 +170,11 @@ export default () => {
         const next = () => {
           // if current question is not answered ... error ...
           // check outcomes, if contact ... if ...
-          activeIndex++;
+          this.sectionStepIndex++;
         };
         return <QuestionStep question={step.data.question} next={next} />;
       },
-      steps: [
-        { title: "Vraag 1", data: { question: {} } },
-        { title: "Vraag 2" },
-        { title: "Vraag 3" },
-      ],
+      steps: relevantQuestions,
     },
     {
       renderer: ConclusionStep,
@@ -147,13 +192,13 @@ export default () => {
           <NavItem {...section.state}>
             {section.title && <h1>{section.title}</h1>}
 
-            {section.steps.map((step, index) => {
+            {section.steps.map((step) => (
               <section.renderer
                 next={() => {}}
                 prev={() => {}}
                 {...{ finished, active, checked }}
-              />;
-            })}
+              />
+            ))}
           </NavItem>
         );
       })}
