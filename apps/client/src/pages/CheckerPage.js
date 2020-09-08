@@ -15,9 +15,10 @@ import {
 } from "../components/StepByStepNavigation";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
+import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const CheckerPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ checker, matomoPageView, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
   const { slug, sttrFile, text } = topic;
   // OLO Flow does not have questionIndex
@@ -70,7 +71,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   };
 
   const isFinished = (component) => isActive(component, true);
-
+  matomoPageView();
   /**
    * Set the questionIndex the next questionId, previous questionId, or the given id.
    *
@@ -229,4 +230,4 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
     </Layout>
   );
 };
-export default withChecker(CheckerPage);
+export default withTracking(withChecker(CheckerPage));

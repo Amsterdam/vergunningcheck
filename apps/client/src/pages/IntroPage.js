@@ -6,12 +6,15 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import withTopic from "../hoc/withTopic";
+import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const IntroPage = ({ topic }) => {
+const IntroPage = ({ matomoPageView, topic }) => {
   const history = useHistory();
   const { text, intro } = topic;
   const Intro = React.lazy(() => import(`../intros/${intro}`));
+
+  matomoPageView();
 
   return (
     <Layout>
@@ -30,4 +33,4 @@ const IntroPage = ({ topic }) => {
   );
 };
 
-export default withTopic(IntroPage);
+export default withTracking(withTopic(IntroPage));

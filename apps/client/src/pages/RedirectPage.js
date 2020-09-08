@@ -5,7 +5,8 @@ import { Helmet } from "react-helmet";
 import Layout from "../components/Layouts/DefaultLayout";
 import { Olo } from "../config";
 
-const RedirectPage = ({ topic }) => {
+const RedirectPage = ({ matomoPageView, topic }) => {
+  matomoPageView();
   useEffect(() => {
     const redirect = setTimeout(() => {
       window.open(Olo.intro, "_self");
