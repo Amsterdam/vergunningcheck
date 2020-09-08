@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router";
 import { Redirect } from "react-router-dom";
 
 import Conclusion from "../components/Conclusion";
@@ -20,9 +21,14 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, matomoPageView, topic, resetChecker }) => {
   const sessionContext = useContext(SessionContext);
+  const { location } = useHistory();
   const { slug, sttrFile, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
+
+  useEffect(() => {
+    matomoPageView();
+  }, [location.pathname, matomoPageView]);
 
   //@TODO: We shoudn't need this redirect. We need to refactor this
   if (!sessionContext[slug]) {
@@ -71,7 +77,6 @@ const CheckerPage = ({ checker, matomoPageView, topic, resetChecker }) => {
   };
 
   const isFinished = (component) => isActive(component, true);
-  matomoPageView();
   /**
    * Set the questionIndex the next questionId, previous questionId, or the given id.
    *
