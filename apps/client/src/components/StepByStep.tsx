@@ -16,106 +16,133 @@ type StepData = {
 };
 
 type Step = {
-  isCompleted: Function;
-};
-
-type SectionData = {
-  renderer: React.FC;
-  steps: StepData[];
-  title?: string;
-  state: State;
+  isCompleted?: Function;
 };
 
 type Section = {
-  isCompleted: Function;
-  renderer: React.FC;
-  steps: StepData[];
+  isCompleted?: Function;
+  renderer: any;
+  steps?: StepData[];
   title?: string;
-  state: State;
+  state?: State;
 };
 
 class Stepper {
   currentStep: number = 0;
   sectionIndex: number = 0;
   sectionStepIndex: number = 0;
-  sections: (SectionData | Section)[] = [];
+  sections: Section[] = [];
 
   constructor(sections: Section[]) {
     sections.forEach((section) => {
-      section.steps.forEach((step) => {
+      section.steps?.forEach((step) => {
         step.state = { finished: false, active: false, checked: false };
       });
       section.state = { finished: false, active: false, checked: false };
     });
     this.sections = sections;
   }
-  next() {
-    // @TODO: need to fix
+  activateSelf() {
+    // do something to activite
   }
   getNext() {
-    const allSteps: Array<object> = this.sections.flatMap((steps) => steps);
+    const allSteps: any = this.sections.flatMap((steps) => steps);
     const currentStepIndex = allSteps.indexOf(this.currentStep);
     return allSteps[currentStepIndex + 1];
+  }
+  next() {
+    // do something to go to next section / item
+  }
+  prev() {
+    // do something to go to prev section / item
   }
 }
 
 export default () => {
-  const checker: Checker = useChecker();
+  // Temporary checker mock
+  const checker = {
+    getRelevantQuestions: () => [
+      {
+        title: "Vraag 1",
+      },
+      {
+        title: "Vraag 2",
+      },
+    ],
+    hasContactConclusion: () => true,
+    isConclusive: () => true,
+    isFirstQuestion: (question: any) => question,
+    isLastQuestion: (question: any) => question,
+    isQuestionCausingPermit: (question: any) => question,
+    setAnswer: (value: any) => value,
+  };
+
   const [relevantQuestions, setRelevantQuestions] = React.useState(
-    checker.relevantQuestions()
+    checker.getRelevantQuestions()
   );
 
   type StepProps = {
     children: React.ReactNode;
-    title?: string;
     state: State;
-    step: Step;
+    step?: Step;
+    title?: string;
   };
-  const Step: React.FC<StepProps> = ({ children, title, state, step }) => (
-    <>
-      {state.finished && <i title="chevron" />}
-      <div style={{ color: stepper.getNext()?.finished ? "blue" : "gray" }}>
-        |
-      </div>
 
-      <h1>
-        {state.finished && !state.active ? (
-          <a onClick={step.activateSelf}>{title}</a>
-        ) : (
-          { title }
-        )}
-      </h1>
-      {children}
-    </>
-  );
+  const Step: React.FC<StepProps> = ({ children, title, state, ...rest }) => {
+    return (
+      <>
+        {state?.finished && <i title="chevron" />}
+        <div style={{ color: stepper.getNext()?.finished ? "blue" : "gray" }}>
+          |
+        </div>
 
-  const LocationStep: React.FC<StepProps> = (props) => (
-    <Step {...{ props }}>
-      <p>{props.state.finished ? "gekozen adres" : "kies adres"}...</p>
-    </Step>
-  );
+        <h1>
+          {state?.finished && !state?.active ? (
+            <a href="/" onClick={stepper.activateSelf}>
+              {title}
+            </a>
+          ) : (
+            title
+          )}
+        </h1>
+
+        {children}
+      </>
+    );
+  };
+
+  const LocationStep: React.FC<StepProps> = ({ ...stepProps }) => {
+    return (
+      <Step {...{ ...stepProps }}>
+        <p>{stepProps.state?.finished ? "gekozen adres" : "kies adres"}...</p>
+      </Step>
+    );
+  };
 
   const QuestionStep = ({
     prev,
     next,
     question,
-    ...props
+    state,
+    title,
   }: {
-    prev: any;
-    next: any;
-    question: Question;
-    props: StepProps;
+    prev?: any;
+    next?: any;
+    question?: Question;
+    state: State;
+    title: string;
   }) => {
-    const updateChecker = () =>
+    const updateChecker = () => {
       setRelevantQuestions(checker.getRelevantQuestions());
+    };
 
     return (
-      <Step {...{ props }}>
-        {props.state.active && (
-          <button onClick={props.step.data.question.setAnswer("bla")} />
-        )}
-        {props.state.finished && !props.state.active && (
-          <a onClick={activateSelf}>wijzig</a>
+      <Step {...{ state, title }}>
+        {state?.active && <button onClick={checker.setAnswer("bla")} />}
+        {state?.finished && !state?.active && (
+          <a href="/" onClick={stepper.activateSelf}>
+            wijzig
+          </a>
         )}
 
         {/* We need to think about what happens if this question is causing multiple permits */}
@@ -124,11 +151,12 @@ export default () => {
           <ConclusionAlert
             questionNeedsContactExit={checker.hasContactConclusion()}
           >
-            {checker.isConclusive() && <a>Naar conclusie</a>}
+            {checker.isConclusive() && <a href="/">Naar conclusie</a>}
           </ConclusionAlert>
         )}
 
         <a
+          href="/"
           onClick={() => {
             updateChecker();
             stepper.prev();
@@ -137,6 +165,7 @@ export default () => {
           {checker.isFirstQuestion(question) ? `Vorige vraag` : `Ga terug`}
         </a>
         <a
+          href="/"
           onClick={() => {
             updateChecker();
             stepper.next();
@@ -150,14 +179,15 @@ export default () => {
     );
   };
 
-  const ConclusionStep = ({ state }: { state: State }) => (
-    <Step {...{ state }}>Conclusie....</Step>
-  );
+  const ConclusionStep: React.FC<StepProps> = ({ ...stepProps }) => {
+    return <Step {...{ ...stepProps }}>Conclusie....</Step>;
+  };
 
   const sections: Section[] = [
     {
+      title: "Adresgegevens",
       renderer: LocationStep,
-      steps: [{ title: "Address" }],
+      // steps: [{ title: "Adresgegevens" }],
     },
     {
       title: "Vragen",
@@ -166,43 +196,60 @@ export default () => {
         // check outcomes, if contact ... if ...
         return;
       },
-      renderer: ({ step }) => {
-        const next = () => {
-          // if current question is not answered ... error ...
-          // check outcomes, if contact ... if ...
-          this.sectionStepIndex++;
-        };
-        return <QuestionStep question={step.data.question} next={next} />;
-      },
+      // renderer: ({ step }) => {
+      //   const next = () => {
+      //     // if current question is not answered ... error ...
+      //     // check outcomes, if contact ... if ...
+      //     this.sectionStepIndex++;
+      //   };
+      //   return <QuestionStep question={step.data.question} next={next} />;
+      // },
+      renderer: QuestionStep,
       steps: relevantQuestions,
     },
     {
+      title: "Conclusie",
       renderer: ConclusionStep,
-      steps: [{ title: "Conclusie" }],
+      // steps: [{ title: "Conclusie" }],
     },
   ];
 
+  const NavItem = ({
+    children,
+    state,
+  }: {
+    children: React.ReactNode;
+    state?: State;
+  }) => (
+    <div>
+      {state?.active ? "active" : "inactive"}
+      {children}
+    </div>
+  );
+
   const stepper = new Stepper(sections);
 
-  const NavItem = ({ state }: { state: State }) => <div></div>;
   return (
     <nav>
       {stepper.sections.map((section) => {
+        const { renderer: Renderer } = section;
         return (
-          <NavItem {...section.state}>
+          <NavItem {...section.state} key={section.title}>
             {section.title && <h1>{section.title}</h1>}
 
-            {section.steps.map((step) => (
-              <section.renderer
-                next={() => {}}
-                prev={() => {}}
-                {...{ finished, active, checked }}
-              />
-            ))}
+            {section.steps?.map((step) => {
+              return (
+                <Renderer
+                  key={step.title}
+                  // next={() => {}}
+                  // prev={() => {}}
+                  {...{ ...step }}
+                />
+              );
+            })}
           </NavItem>
         );
       })}
-      )
     </nav>
   );
 };

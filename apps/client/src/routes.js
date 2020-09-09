@@ -27,16 +27,16 @@ export const routeConfig = [
     path: "/test",
   },
   {
+    component: React.lazy(() => import("./components/StepByStep")),
+    name: "stepper",
+    exact: true,
+    path: "/stepper",
+  },
+  {
     component: React.lazy(() =>
       import(/* webpackPrefetch: true */ `./pages/IntroPage`)
     ),
     name: "intro",
-    exact: true,
-    path: "/:slug",
-  },
-  {
-    component: React.lazy(() => import("./components/StepByStep")),
-    name: "stepper",
     exact: true,
     path: "/:slug",
   },
