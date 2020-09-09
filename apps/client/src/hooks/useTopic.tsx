@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { topics } from "../config";
 
-const getTopicFromSlug = (slug) => {
+const getTopicFromSlug = (slug: string) => {
   if (!slug) {
     return null;
   }

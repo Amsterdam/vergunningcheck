@@ -2,7 +2,7 @@ import React from "react";
 import ReactRouter from "react-router-dom";
 
 import { render } from "../utils/test-utils";
-import withTopic from "./withTopic";
+import useTopic from "./useTopic";
 
 const { MemoryRouter } = ReactRouter;
 
@@ -20,12 +20,12 @@ xdescribe("TestPage", () => {
   });
 });
 
-xdescribe("withTopic", () => {
+xdescribe("useTopic", () => {
   beforeEach(() => {
     jest.resetModules();
   });
   it("redirects when needed", () => {
-    const WrappedTestPage = withTopic(TestPage);
+    const WrappedTestPage = useTopic(TestPage);
     const { container } = render(
       <MemoryRouter>
         <WrappedTestPage />
@@ -41,7 +41,7 @@ xdescribe("withTopic", () => {
       ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
       useParams: () => ({ slug: "without-redirect" }),
     }));
-    const WrappedTestPage = withTopic(TestPage);
+    const WrappedTestPage = useTopic(TestPage);
     const { container } = render(
       <MemoryRouter>
         <WrappedTestPage />

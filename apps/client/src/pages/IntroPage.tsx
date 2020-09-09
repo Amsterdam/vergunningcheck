@@ -7,11 +7,22 @@ import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
+import NotFoundPage from "./NotFoundPage";
+import RedirectPage from "./RedirectPage";
 
 const IntroPage = () => {
   const history = useHistory();
   const topic = useTopic();
-  const { text, intro } = topic;
+
+  if (!topic) {
+    return <NotFoundPage />;
+  }
+
+  const { text, intro, redirectToOlo } = topic;
+  if (redirectToOlo) {
+    return <RedirectPage topic={topic} />;
+  }
+
   const Intro = React.lazy(() => import(`../intros/${intro}`));
 
   return (

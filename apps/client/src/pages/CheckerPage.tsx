@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { Redirect } from "react-router-dom";
 
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
@@ -13,41 +12,62 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-import { SessionContext } from "../context";
-import withChecker from "../hoc/withChecker";
+import { SessionContext, SessionDataType } from "../context";
 import { useChecker, useTopic } from "../hooks";
-import { geturl, routes } from "../routes";
+import LoadingPage from "./LoadingPage";
+import NotFoundPage from "./NotFoundPage";
 
-const CheckerPage = ({ resetChecker }) => {
-  const sessionContext = useContext(SessionContext);
+type Props = {
+  resetChecker: any;
+};
+
+const CheckerPage = ({ resetChecker }: Props) => {
+  const sessionContext = useContext(SessionContext) as SessionDataType;
   const topic = useTopic();
   const checker = useChecker();
 
-  const { slug, sttrFile, text } = topic;
-  // OLO Flow does not have questionIndex
-  const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
-
-  //@TODO: We shoudn't need this redirect. We need to refactor this
-  if (!sessionContext[slug]) {
-    return <Redirect to={geturl(routes.intro, topic)} />;
+  if (!topic) {
+    return <NotFoundPage />;
+  }
+  if (topic.sttrFile && !checker) {
+    return <LoadingPage />;
   }
 
-  const { activeComponents, answers, finishedComponents } = sessionContext[
-    slug
-  ];
+  const { slug, sttrFile, text } = topic;
+
+  //@TODO: We shoudn't need this redirect. We need to refactor this
+  // if (!sessionContext[slug]) {
+  //   return <Redirect to={geturl(routes.intro, topic)} />;
+  // }
+  if (!sessionContext[slug]) {
+    sessionContext.setSessionData([
+      slug,
+      { activeComponents: ["locationInput"], finishedComponents: [] },
+    ]);
+    return <LoadingPage />;
+  }
+
+  // OLO Flow does not have questionIndex
+  // const questionIndex = sttrFile ? sessionContext[slug].questionIndex : 0;
+  const {
+    activeComponents,
+    answers,
+    finishedComponents,
+    questionIndex = 0,
+  } = sessionContext[slug];
 
   // Only one component can be active at the same time.
-  const setActiveState = (component) => {
+  const setActiveState = (component: string) => {
     sessionContext.setSessionData([slug, { activeComponents: [component] }]);
   };
 
   /**
    * Set given components to the given finished state
    *
-   * @param { Object[] | string } component - name or names of the components
+   * @param { string[] | string } component - name or names of the components
    * @param { boolean } value - Set components to finished state or remove from finished state.
    */
-  const setFinishedState = (component, value) => {
+  const setFinishedState = (component: string[] | string, value: boolean) => {
     // If component is only a string, we make it a array first
     const allComponents = Array.isArray(component) ? component : [component];
 
@@ -64,23 +84,28 @@ const CheckerPage = ({ resetChecker }) => {
     ]);
   };
 
-  const isActive = (component, finished = false) => {
+  const isActive = (component: string[] | string, finished = false) => {
     // If component is only a string, we make it a array first
     const allComponents = Array.isArray(component) ? component : [component];
 
     // If finished is true we check if it's finished, else check activeComponents.
-    const components = finished ? finishedComponents : activeComponents;
-    return components.includes(...allComponents);
+    const components = finished
+      ? finishedComponents
+      : activeComponents
+      ? activeComponents
+      : [];
+    return components.includes(allComponents[0]);
   };
 
-  const isFinished = (component) => isActive(component, true);
+  const isFinished = (component: string[] | string) =>
+    isActive(component, true);
 
   /**
    * Set the questionIndex the next questionId, previous questionId, or the given id.
    *
-   * @param { int | ('next'|'prev') } value - This van be, 'next, prev or a int`
+   * @param { int | ('next'|'prev') } value - This can be, '"next", "prev" or a int`
    */
-  const goToQuestion = (value) => {
+  const goToQuestion = (value: string | number) => {
     const newIndex = Number.isInteger(value)
       ? value // Return the value if value isInteger()
       : value === "next"
@@ -172,7 +197,7 @@ const CheckerPage = ({ resetChecker }) => {
             active={isActive("questions") && questionIndex === 0}
             checked={isFinished("questions")}
             customSize
-            done={answers || isActive("questions")}
+            done={!!answers || isActive("questions")}
             heading="Vragen"
             largeCircle
             // Overwrite the line between the Items
@@ -191,13 +216,12 @@ const CheckerPage = ({ resetChecker }) => {
           />
           <StepByStepItem
             active={isActive("conclusion")}
-            as="div"
             checked={isFinished("questions")}
             done={isFinished("questions")}
             customSize
             heading="Conclusie"
             largeCircle
-            onClick={handleConclusionClick}
+            onClick={() => handleConclusionClick}
             // Overwrite the line between the Items
             style={{ marginTop: -1 }}
           >
@@ -233,4 +257,4 @@ const CheckerPage = ({ resetChecker }) => {
     </Layout>
   );
 };
-export default withChecker(CheckerPage);
+export default CheckerPage;

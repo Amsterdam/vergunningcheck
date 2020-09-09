@@ -1,21 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 
+import { Topic } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
-import { CheckerContext, SessionContext } from "../context";
+import { CheckerContext, SessionContext, SessionDataType } from "../context";
 import getChecker from "../sttr_client";
 import useTopic from "./useTopic";
 
+const dir =
+  process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";
+
 export default () => {
-  const sessionContext = useContext(SessionContext);
+  const sessionContext = useContext(SessionContext) as SessionDataType;
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const topic = useTopic();
-  const { slug } = topic;
 
   useEffect(() => {
     async function fetchData() {
+      const { slug, sttrFile } = topic as Topic;
       const topicRequest = await fetch(
-        `${window.location.origin}/${topic.sttrFile}.json`
+        `${window.location.origin}/sttr/${dir}/${sttrFile}`
       );
 
       const newChecker = getChecker(await topicRequest.json());
@@ -40,7 +44,10 @@ export default () => {
       checkerContext.checker = newChecker;
       setChecker(newChecker);
     }
-    fetchData();
+
+    if (topic?.sttrFile && !checker) {
+      fetchData();
+    }
   });
 
   return checker;
