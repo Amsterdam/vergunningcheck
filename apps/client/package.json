@@ -39,6 +39,7 @@
     "build": "react-scripts build",
     "build:netlify": "npm i && REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",
     "build:size-report": "npm i && npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
+    "build:docs": "typedoc src/",
     "sttr": "node sttr_build && prettier public/sttr --write",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
@@ -91,6 +92,7 @@
     "prop-types": "^15.7.2",
     "react-scripts": "3.4.0",
     "source-map-explorer": "^2.4.2",
+    "typedoc": "^0.19.1",
     "typescript": "^3.9.5"
   },
   "lint-staged": {
