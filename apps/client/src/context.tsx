@@ -16,7 +16,7 @@ type SessionDataType = {
 
 const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
 const SessionContext = createContext({});
-const CheckerContext = createContext({});
+const CheckerContext = createContext<any>({});
 const defaultCheckerValue = {
   checker: null,
   topic: null,

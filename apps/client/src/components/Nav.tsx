@@ -1,6 +1,5 @@
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { useRouteMatch } from "react-router-dom";
 
@@ -11,10 +10,31 @@ import { getslug, routeConfig } from "../routes";
 import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
-const Nav = ({
+type NavProps = {
+  formEnds: boolean;
+  matomoTrackEvent: any;
+  nextText: string;
+  noMarginBottom: boolean;
+  onGoToNext: (event: React.FormEvent) => void;
+  onGoToPrev: (event: React.FormEvent) => void;
+  prevText: string;
+  showNext: boolean;
+  showPrev: boolean;
+};
+
+type TopicProps = { topic: { slug: string } };
+
+type RouteProps = {
+  name: string;
+  component: React.LazyExoticComponent<() => any>;
+  path: string;
+  exact: boolean;
+};
+
+const Nav: React.FC<NavProps> = ({
   formEnds,
-  nextText,
   matomoTrackEvent,
+  nextText,
   noMarginBottom,
   onGoToNext,
   onGoToPrev,
@@ -24,12 +44,14 @@ const Nav = ({
 }) => {
   const {
     topic: { slug: name },
-  } = useContext(CheckerContext);
+  } = useContext<TopicProps>(CheckerContext);
   const { path } = useRouteMatch();
-  const route = routeConfig.find((route) => route.path === path);
-  const category = route.matomoPage || route.name;
+  const route: RouteProps | undefined = routeConfig.find(
+    (route: any): boolean => route.path === path
+  );
+  const category = route.name;
 
-  const handleNextClick = (e) => {
+  const handleNextClick = (e: React.FormEvent) => {
     const action = formEnds
       ? getslug(nextText.toLowerCase())
       : "form-volgende-knop";
@@ -43,7 +65,7 @@ const Nav = ({
     if (onGoToNext) onGoToNext(e);
   };
 
-  const handlePrevClick = (e) => {
+  const handlePrevClick = (e: React.FormEvent) => {
     matomoTrackEvent({
       category,
       action: "form-vorige-knop",
@@ -85,21 +107,7 @@ Nav.defaultProps = {
   formEnds: false,
   nextText: "Volgende",
   noMarginBottom: false,
-  page: "undefined-page",
   prevText: "Vorige",
-};
-
-Nav.propTypes = {
-  formEnds: PropTypes.bool,
-  nextText: PropTypes.string,
-  noMarginBottom: PropTypes.bool,
-  onGoToNext: PropTypes.func,
-  onGoToPrev: PropTypes.func,
-  page: PropTypes.string,
-  prevText: PropTypes.string,
-  showNext: PropTypes.bool,
-  showPrev: PropTypes.bool,
-  style: PropTypes.object,
 };
 
 export default withTracking(Nav);
