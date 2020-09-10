@@ -24,7 +24,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
       <Helmet>
         <title>Amsterdam Vergunningcheck</title>
       </Helmet>
-      <Header category={topic?.name?.toLowerCase()} />
+      <Header />
       <ContentContainer>
         <Row hasMargin={false}>
           <Column

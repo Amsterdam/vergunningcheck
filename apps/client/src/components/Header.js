@@ -9,15 +9,12 @@ import {
   StyledLogoWrapper,
 } from "./HeaderStyles";
 
-export const Header = ({ category, matomoTrackEvent }) => {
+export const Header = ({ matomoTrackEvent }) => {
   const handleClick = (href) => {
-    if (category) {
-      matomoTrackEvent({
-        action: actions.CLICK_EXTERNAL_NAVIGATION,
-        category,
-        name: `${eventNames.LOGO} - ${sections.HEADER}`,
-      });
-    }
+    matomoTrackEvent({
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: `${eventNames.LOGO} - ${sections.HEADER}`,
+    });
     window.location.href = href;
   };
 
