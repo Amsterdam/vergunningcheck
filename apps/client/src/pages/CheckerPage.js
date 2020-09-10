@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 
+import { HideForPrint } from "../atoms";
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -187,6 +188,7 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           />
           <StepByStepItem
             active={isActive("conclusion")}
+            as="div"
             checked={isFinished("questions")}
             done={isFinished("questions")}
             customSize
@@ -224,7 +226,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         </>
       )}
 
-      <DebugDecisionTable {...{ topic, checker }} />
+      <HideForPrint>
+        <DebugDecisionTable {...{ checker, topic }} />
+      </HideForPrint>
     </Layout>
   );
 };

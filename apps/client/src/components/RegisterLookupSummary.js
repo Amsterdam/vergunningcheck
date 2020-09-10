@@ -1,7 +1,14 @@
 import { Paragraph } from "@datapunt/asc-ui";
+import { setTag } from "@sentry/browser";
 import React from "react";
 
-import { ComponentWrapper, EditButton, List, ListItem } from "../atoms";
+import {
+  ComponentWrapper,
+  EditButton,
+  List,
+  ListItem,
+  TextToEdit,
+} from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -19,10 +26,18 @@ const RegisterLookupSummary = ({
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
+  if (monument) {
+    setTag("monument", monument);
+  }
+  if (cityScape) {
+    setTag("cityscape", cityScape);
+  }
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
-        <AddressLine address={address} />
+        <TextToEdit>
+          <AddressLine address={address} />
+        </TextToEdit>
         <EditButton
           onClick={() => {
             setActiveState("locationInput");
