@@ -11,7 +11,7 @@ const DevHomePage = () => {
   }
   return (
     <Layout heading="Hi Dev!">
-      <p>Welcome to CHAPPIE 2.0</p>
+      <p>Welcome to CHAPPIE {process.env.REACT_APP_VERSION}</p>
       <table>
         <thead>
           <tr>
