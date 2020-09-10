@@ -3,7 +3,7 @@ import React from "react";
 
 import { List, ListItem } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
-import { eventNames } from "../config/matomo";
+import { sections } from "../config/matomo";
 import { IntroHeading, IntroSituationDescription } from "./shared";
 
 export default () => (
@@ -37,7 +37,7 @@ export default () => (
       </ListItem>
     </List>
     <Paragraph>
-      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
+      <ContactSentence eventName={sections.INTRO} />
     </Paragraph>
   </>
 );
