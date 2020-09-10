@@ -181,6 +181,7 @@ const Questions = ({
     // List question
     if (question.options && value !== undefined) {
       userAnswer = value;
+      userAnswerLabel = removeQuotes(value);
     }
     // Boolean question
     if (!question.options && value) {
@@ -191,12 +192,14 @@ const Questions = ({
 
     // Handle the given answer
     question.setAnswer(userAnswer);
-    setTag(question.text, userAnswer);
+
+    // Store in Sentry
+    setTag(question.text, userAnswerLabel);
 
     matomoTrackEvent({
       action: question.text,
       category: name,
-      name: `${eventNames.ANSWERED_WITH} - ${removeQuotes(userAnswerLabel)}`,
+      name: `${eventNames.ANSWERED_WITH} - ${userAnswerLabel}`,
     });
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
