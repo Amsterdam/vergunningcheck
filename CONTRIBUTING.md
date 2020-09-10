@@ -105,6 +105,7 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 This procedure will be changed to the DRAFT section below.
 
 - Approve the release to production in Jenkins, now we're live
+- Communicate to stakeholders there is a new release on production
 - Back-merge `master` into `release` into `develop` by running `npm run back-merge`
 - Consider [preparing](#prepare-a-release) the next release in the section above
 
