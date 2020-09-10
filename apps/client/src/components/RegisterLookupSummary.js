@@ -1,4 +1,5 @@
 import { Paragraph } from "@datapunt/asc-ui";
+import { setTag } from "@sentry/browser";
 import React from "react";
 
 import {
@@ -27,6 +28,12 @@ const RegisterLookupSummary = ({
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
+  if (monument) {
+    setTag("monument", monument);
+  }
+  if (cityScape) {
+    setTag("cityscape", cityScape);
+  }
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>

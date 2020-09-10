@@ -1,3 +1,4 @@
+import { setTag } from "@sentry/browser";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { eventNames, sections } from "../config/matomo";
@@ -188,8 +189,10 @@ const Questions = ({
       userAnswerLabel = responseObj.label;
     }
 
-    // Store the given answer in the `sttr-checker` and in Matomo
+    // Handle the given answer
     question.setAnswer(userAnswer);
+    setTag(question.text, userAnswer);
+
     matomoTrackEvent({
       action: question.text,
       category: name,

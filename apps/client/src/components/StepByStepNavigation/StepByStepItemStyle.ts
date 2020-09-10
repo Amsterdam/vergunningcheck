@@ -1,8 +1,6 @@
 import { Icon, breakpoint, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
-import { focusOutlineStyle } from "../../utils/themeUtils";
-
 export type Props = {
   active?: boolean;
   checked?: boolean;
@@ -40,10 +38,17 @@ export default styled.div<Props>`
   text-decoration: none;
   cursor: initial;
 
+  ${({ active, clickable }) =>
+    // Disable native browser focus on non-clickable elements
+    (active || !clickable) &&
+    css`
+      &:focus {
+        outline: none;
+      }
+    `}
   ${({ clickable }) =>
     clickable &&
     css`
-      ${focusOutlineStyle}
       cursor: pointer;
     `}
   ${({ disabled }) =>

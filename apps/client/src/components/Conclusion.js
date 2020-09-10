@@ -1,6 +1,6 @@
 import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { Fragment } from "react";
-import { isMobile } from "react-device-detect";
+import { isIE, isMobile } from "react-device-detect";
 
 import {
   Alert,
@@ -102,7 +102,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
           </ComponentWrapper>
         )}
 
-        {!isMobile && (
+        {!isIE && !isMobile && (
           <ComponentWrapper>
             <PrintButton
               color="primary"
