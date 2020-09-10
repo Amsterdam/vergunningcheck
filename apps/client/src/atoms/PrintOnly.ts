@@ -4,7 +4,12 @@ import styled, { css } from "styled-components";
 import { printOnly } from "../utils/themeUtils";
 import { avoidPageBreak } from "../utils/themeUtils";
 
-export default styled.div`
+type PrintOnlyProps = {
+  withBorder: boolean;
+  avoidPageBreak: boolean;
+};
+
+export default styled.div<PrintOnlyProps>`
   ${printOnly}
 
   ${(props) =>
