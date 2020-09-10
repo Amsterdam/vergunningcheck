@@ -21,7 +21,6 @@ const IntroPage = ({ matomoTrackEvent, topic }) => {
     // @TODO: Change and refactor this because the next step is not always LOCATION_INPUT
     matomoTrackEvent({
       action: actions.ACTIVE_STEP,
-      category: topic.name,
       name: sections.LOCATION_INPUT,
     });
   };
