@@ -32,8 +32,8 @@ export default () => (
     <List variant="bullet" style={{ marginBottom: 12 }}>
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik
-        komt, is zonder vergunning gebouwd.
+        Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek,
+        rolluik of luik komt, is zonder vergunning gebouwd.
       </ListItem>
     </List>
     <Paragraph>
