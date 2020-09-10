@@ -6,18 +6,17 @@ import { actions } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 
 const Link = ({
-  action = actions.CLICK_EXTERNAL_NAVIGATION,
+  action,
   children,
   eventName,
   href,
   matomoTrackEvent,
   ...rest
 }) => {
-  // The default action is CLICK_EXTERNAL_NAVIGATION, it can be overwritten.
   const onClick = () => {
     if (eventName) {
       matomoTrackEvent({
-        action,
+        action: action || actions.CLICK_EXTERNAL_NAVIGATION,
         name: eventName,
       });
     }
