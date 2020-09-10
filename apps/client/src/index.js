@@ -5,7 +5,7 @@ import "@datapunt/asc-assets/static/fonts/fonts.css";
 import { ApolloProvider } from "@apollo/client";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
-import * as Sentry from "@sentry/browser";
+import { init } from "@sentry/browser";
 import dotenv from "dotenv-flow";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -32,7 +32,7 @@ const AppGlobalStyle = createGlobalStyle`
   }
 `;
 
-Sentry.init(sentryConfig);
+init(sentryConfig);
 
 ReactDOM.render(
   <SessionProvider>
