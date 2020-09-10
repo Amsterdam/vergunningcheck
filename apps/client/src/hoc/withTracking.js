@@ -10,7 +10,7 @@ const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
 
   // This is a temporary fix
-  // @TODO: make a withTacking hook instead of this HOC
+  // @TODO: make a withTracking hook instead of this HOC
   const { slug } = useParams();
   const topic = topics.find((t) => t.slug === slug);
 
