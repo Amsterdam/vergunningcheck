@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1](2020-09-10)
+
+#### New Features
+
+- [#480](https://github.com/Amsterdam/vergunningcheck/pull/480) Hide DebugDecisionTable on print ([@robinpiets](https://github.com/robinpiets))
+- [#477](https://github.com/Amsterdam/vergunningcheck/pull/477) Hide the print button on ie11 ([@svenjens](https://github.com/svenjens))
+- [#473](https://github.com/Amsterdam/vergunningcheck/pull/473) Added Sentry tags for extra logging information ([@svenjens](https://github.com/svenjens))
+
+#### Bug fixes
+
+- [#456](https://github.com/Amsterdam/vergunningcheck/pull/456) postalCode undefined ([@robinpiets](https://github.com/robinpiets))
+- [#457](https://github.com/Amsterdam/vergunningcheck/pull/457) `<a>` cannot appear as a descendant of `<a>` ([@robinpiets](https://github.com/robinpiets))
+- [#458](https://github.com/Amsterdam/vergunningcheck/pull/458) EditButton on new line gives wrong style ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.0.0](2020-09-02)
 
 #### New Features
