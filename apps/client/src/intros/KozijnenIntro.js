@@ -12,7 +12,7 @@ export default () => (
       hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.`}
     exceptions={[
       "Het aantal woningen verandert.",
-      "Het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
+      "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
     ]}
   />
 );

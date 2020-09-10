@@ -13,7 +13,7 @@ export default () => (
     exceptions={[
       "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
       "Het aantal woningen verandert.",
-      "Het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd.",
+      "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd.",
     ]}
   />
 );
