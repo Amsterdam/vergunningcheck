@@ -46,7 +46,7 @@ const Nav: React.FC<NavProps> = ({
     topic: { slug: name },
   } = useContext<TopicProps>(CheckerContext);
   const { path } = useRouteMatch();
-  const route: RouteProps | undefined = routeConfig.find(
+  const route: any | undefined = routeConfig.find(
     (route: any): boolean => route.path === path
   );
   const category = route.name;

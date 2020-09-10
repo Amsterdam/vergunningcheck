@@ -13,7 +13,7 @@ const onPrevClickMock = jest.fn();
 
 afterEach(cleanup);
 
-const Wrapper = ({ children }) => {
+const Wrapper = ({ children }: any) => {
   const topicMock = "dakraam-plaatsen";
   const topicUrlMock = `/${topicMock}`;
   const topic = topics.find((t) => t.slug === topicMock);
