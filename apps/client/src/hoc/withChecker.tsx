@@ -60,7 +60,9 @@ export default (Component: any) => () => {
           true
         )[0];
 
-        // Only set the answers again if we have no unfulfilled data-needs.
+        // Restore available answers from previous session. If we have
+        // an unfulfilled dataNeed we don't restore the answers to
+        // prevent issues with older sessions.
         if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
           newChecker.setQuestionAnswers(sessionContext[slug].answers);
         }
