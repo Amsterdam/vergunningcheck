@@ -3,9 +3,7 @@ LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 COPY apps/graphql/package*.json ./
-
-# disabled because of rate limiting on npm/cloudflare
-# RUN npm audit --production
+RUN npm audit --production
 
 FROM base
 COPY --from=base /app/ /app/
