@@ -68,7 +68,7 @@ const apisMap = apis.map(
           });
 
           if (!result.ok) {
-            console.error(
+            throw new Error(
               `request of ${permitId} failed, status: ${result.status} ${result.statusText}`
             );
           }

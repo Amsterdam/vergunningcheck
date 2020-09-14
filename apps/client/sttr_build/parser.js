@@ -161,11 +161,9 @@ function getDecisions(xmlDecisions) {
           (inputEntries, inputEntry) => {
             const text = find(inputEntry.children, "dmn:text").children[0].data;
             debug("inputtext", text);
-            const map = {
-              false: false,
-              true: true,
-            };
-            inputEntries.push(map[text] !== undefined ? map[text] : text);
+            const value =
+              text === "true" ? true : text === "false" ? false : text;
+            inputEntries.push(value);
             return inputEntries;
           },
           []
