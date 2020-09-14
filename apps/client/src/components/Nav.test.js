@@ -7,16 +7,13 @@ import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { cleanup, fireEvent, render } from "../utils/test-utils";
 import Form from "./Form";
 import Nav from "./Nav";
-import { Props } from "./StepByStepNavigation/StepByStepItemStyle";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();
 
 afterEach(cleanup);
 
-const Wrapper = ({
-  children,
-}): React.FC<Props & React.HTMLAttributes<HTMLElement>> => {
+const Wrapper = ({ children }) => {
   const topicMock = "dakraam-plaatsen";
   const topicUrlMock = `/${topicMock}`;
   const topic = topics.find((t) => t.slug === topicMock);

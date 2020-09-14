@@ -6,7 +6,7 @@ import { PrevButton } from "../atoms";
 import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
-type NavProps = {
+export type NavProps = {
   formEnds: boolean;
   nextText: string;
   noMarginBottom: boolean;
