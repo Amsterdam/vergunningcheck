@@ -6,6 +6,12 @@ import DynamicSTTRIntro from "./DynamicSTTRIntro";
 
 const notNull = {};
 
+// @TODO move this to a mocks folder
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: () => ({}),
+}));
+
 describe("<DynamicSTTRIntro />", () => {
   it("can depend on questions but not situation", () => {
     const { getByText } = render(

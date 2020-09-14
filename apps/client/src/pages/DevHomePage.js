@@ -13,7 +13,7 @@ const DevHomePage = () => {
   }
 
   return (
-    <Layout heading="Welcome to CHAPPIE 2.0">
+    <Layout heading={`Welcome to CHAPPIE ${process.env.REACT_APP_VERSION}`}>
       <p>
         <Alert level="attention">
           Let op; deze pagina bevat links naar vergunningchecks die mogelijk

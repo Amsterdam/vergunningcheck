@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { TopicOutputType } from "../../sttr_build/types";
 import { Topic, topics } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
+import { sections } from "../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../context";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
@@ -25,7 +26,7 @@ export default (Component: any) => () => {
     if (!sessionContext[slug]) {
       sessionContext.setSessionData([
         slug,
-        { activeComponents: ["locationInput"], finishedComponents: [] },
+        { activeComponents: [sections.LOCATION_INPUT], finishedComponents: [] },
       ]);
     }
   });

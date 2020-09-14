@@ -1,4 +1,5 @@
 import { Paragraph } from "@datapunt/asc-ui";
+import { setTag } from "@sentry/browser";
 import React from "react";
 
 import {
@@ -8,6 +9,7 @@ import {
   ListItem,
   TextToEdit,
 } from "../atoms";
+import { actions, eventNames, sections } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -15,6 +17,7 @@ import AddressLine from "./AddressLine";
 const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
+  matomoTrackEvent,
   setActiveState,
   topic: { sttrFile },
 }) => {
@@ -25,6 +28,12 @@ const RegisterLookupSummary = ({
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
+  if (monument) {
+    setTag("monument", monument);
+  }
+  if (cityScape) {
+    setTag("cityscape", cityScape);
+  }
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
@@ -33,7 +42,11 @@ const RegisterLookupSummary = ({
         </TextToEdit>
         <EditButton
           onClick={() => {
-            setActiveState("locationInput");
+            matomoTrackEvent({
+              action: actions.CLICK_INTERNAL_NAVIGATION,
+              name: eventNames.EDIT_ADDRESS,
+            });
+            setActiveState(sections.LOCATION_INPUT);
           }}
         />
       </Paragraph>

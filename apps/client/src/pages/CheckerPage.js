@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 
+import { HideForPrint } from "../atoms";
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -13,11 +14,13 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
+import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const CheckerPage = ({ checker, topic, resetChecker }) => {
+const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { hasSTTR, slug, text } = topic;
   // OLO Flow does not have questionIndex
@@ -34,6 +37,14 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
+    // Do not track the active step
+    if (!isActive(component)) {
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: component,
+      });
+    }
+
     sessionContext.setSessionData([slug, { activeComponents: [component] }]);
   };
 
@@ -77,20 +88,41 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
    * @param { int | ('next'|'prev') } value - This van be, 'next, prev or a int`
    */
   const goToQuestion = (value) => {
-    const newIndex = Number.isInteger(value)
-      ? value // Return the value if value isInteger()
-      : value === "next"
-      ? questionIndex + 1
-      : value === "prev"
-      ? questionIndex - 1
-      : console.error(
-          `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
-        );
+    let action, eventName, newQuestionIndex;
+
+    if (Number.isInteger(value)) {
+      // Edit specific question index (value), go directly to this new question index
+      newQuestionIndex = value;
+      // Matomo event props
+      action = actions.EDIT_QUESTION;
+      eventName = checker.stack[newQuestionIndex].text;
+    } else if (value === "next" || value === "prev") {
+      // Either go 1 question next or prev
+      newQuestionIndex =
+        value === "next" ? questionIndex + 1 : questionIndex - 1;
+      // Matomo event props
+      action = checker.stack[questionIndex].text;
+      eventName =
+        value === "next"
+          ? eventNames.GOTO_NEXT_QUESTION
+          : eventNames.GOTO_PREV_QUESTION;
+    } else {
+      // @TODO: Fix this by converting this file to typescript
+      console.error(
+        `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
+      );
+      return;
+    }
+
+    matomoTrackEvent({
+      action,
+      name: eventName,
+    });
 
     sessionContext.setSessionData([
       slug,
       {
-        questionIndex: newIndex,
+        questionIndex: newQuestionIndex,
       },
     ]);
   };
@@ -98,8 +130,8 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
   // Callback to go to the Conclusion section
   // `false` is to prevent unexpected click, hover and focus states on already active section
   const handleConclusionClick =
-    !isActive("conclusion") && isFinished("questions")
-      ? () => setActiveState("conclusion")
+    !isActive(sections.CONCLUSION) && isFinished(sections.QUESTIONS)
+      ? () => setActiveState(sections.CONCLUSION)
       : false;
 
   const checkedStyle = {
@@ -124,25 +156,35 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           lineBetweenItems
         >
           <StepByStepItem
-            active={isActive("locationInput") || isActive("locationResult")}
-            checked={isActive("locationResult") || isFinished("locationResult")}
-            done={isActive("locationInput") || isActive("locationResult")}
+            active={
+              isActive(sections.LOCATION_INPUT) ||
+              isActive(sections.LOCATION_RESULT)
+            }
+            checked={
+              isActive(sections.LOCATION_RESULT) ||
+              isFinished(sections.LOCATION_RESULT)
+            }
+            done={
+              isActive(sections.LOCATION_INPUT) ||
+              isActive(sections.LOCATION_RESULT)
+            }
             heading="Adresgegevens"
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive("locationInput") ||
-              isActive("locationResult") ||
+              isActive(sections.LOCATION_INPUT) ||
+              isActive(sections.LOCATION_RESULT) ||
               questionIndex === 0
                 ? checkedStyle
                 : {}
             }
           >
             {/* @TODO: Refactor this, because of duplicate code */}
-            {isActive("locationInput") && (
+            {isActive(sections.LOCATION_INPUT) && (
               <LocationInput
                 {...{
                   isFinished,
+                  matomoTrackEvent,
                   resetChecker,
                   setActiveState,
                   setFinishedState,
@@ -151,12 +193,14 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               />
             )}
             {/* @TODO: Refactor this, because of duplicate code */}
-            {!isActive("locationInput") &&
-              (isActive("locationResult") || isFinished("locationResult")) && (
+            {!isActive(sections.LOCATION_INPUT) &&
+              (isActive(sections.LOCATION_RESULT) ||
+                isFinished(sections.LOCATION_RESULT)) && (
                 <LocationResult
                   {...{
                     isActive,
                     isFinished,
+                    matomoTrackEvent,
                     setActiveState,
                     setFinishedState,
                     topic,
@@ -165,10 +209,10 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
               )}
           </StepByStepItem>
           <StepByStepItem
-            active={isActive("questions") && questionIndex === 0}
-            checked={isFinished("questions")}
+            active={isActive(sections.QUESTIONS) && questionIndex === 0}
+            checked={isFinished(sections.QUESTIONS)}
             customSize
-            done={answers || isActive("questions")}
+            done={answers || isActive(sections.QUESTIONS)}
             heading="Vragen"
             largeCircle
             // Overwrite the line between the Items
@@ -177,19 +221,20 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
           <Questions
             {...{
               checker,
-              topic,
-              setFinishedState,
-              setActiveState,
-              isActive,
               goToQuestion,
+              isActive,
               isFinished,
+              matomoTrackEvent,
+              setActiveState,
+              setFinishedState,
+              topic,
             }}
           />
           <StepByStepItem
-            active={isActive("conclusion")}
+            active={isActive(sections.CONCLUSION)}
             as="div"
-            checked={isFinished("questions")}
-            done={isFinished("questions")}
+            checked={isFinished(sections.QUESTIONS)}
+            done={isFinished(sections.QUESTIONS)}
             customSize
             heading="Conclusie"
             largeCircle
@@ -197,7 +242,9 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
             // Overwrite the line between the Items
             style={{ marginTop: -1 }}
           >
-            {isFinished("questions") && <Conclusion {...{ topic, checker }} />}
+            {isFinished(sections.QUESTIONS) && (
+              <Conclusion {...{ checker, matomoTrackEvent }} />
+            )}
           </StepByStepItem>
         </StepByStepNavigation>
       )}
@@ -206,16 +253,23 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
       {!hasSTTR && (
         <>
           {/* @TODO: Refactor this, because of duplicate code */}
-          {isActive("locationInput") && (
+          {isActive(sections.LOCATION_INPUT) && (
             <LocationInput
-              {...{ isFinished, setActiveState, setFinishedState, topic }}
+              {...{
+                matomoTrackEvent,
+                isFinished,
+                setActiveState,
+                setFinishedState,
+                topic,
+              }}
             />
           )}
-          {isActive("locationResult") && (
+          {isActive(sections.LOCATION_RESULT) && (
             <LocationResult
               {...{
                 isActive,
                 isFinished,
+                matomoTrackEvent,
                 setActiveState,
                 setFinishedState,
                 topic,
@@ -225,8 +279,10 @@ const CheckerPage = ({ checker, topic, resetChecker }) => {
         </>
       )}
 
-      <DebugDecisionTable {...{ topic, checker }} />
+      <HideForPrint>
+        <DebugDecisionTable {...{ checker, topic }} />
+      </HideForPrint>
     </Layout>
   );
 };
-export default withChecker(CheckerPage);
+export default withChecker(withTracking(CheckerPage));

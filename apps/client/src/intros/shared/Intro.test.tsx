@@ -10,6 +10,11 @@ import {
 import { render } from "../../utils/test-utils";
 import Intro from "./Intro";
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: () => ({}),
+}));
+
 describe("<Intro />", () => {
   it("always renders welcome sentence", () => {
     const { getByText } = render(<Intro />);
