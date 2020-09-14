@@ -10,7 +10,7 @@ const Wrapper = styled.span`
 
 export type Props = {
   darkBackground?: boolean;
-  eventName?: string;
+  eventName: string;
   href?: string;
   link?: boolean;
   text?: string;
@@ -28,10 +28,10 @@ export default ({
   <Wrapper>
     {link ? (
       <Link
+        action={actions.CLICK_PHONE_LINK}
         {...{
-          action: actions.clickPhoneLink,
           darkBackground,
-          eventName: `Telefoonnummer${eventName ? ` - ${eventName}` : ""}`,
+          eventName,
           href,
           variant,
         }}

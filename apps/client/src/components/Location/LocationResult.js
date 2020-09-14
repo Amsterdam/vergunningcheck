@@ -2,6 +2,7 @@ import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { useContext } from "react";
 
 import { generateOloUrl } from "../../config";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext } from "../../context";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
@@ -11,6 +12,7 @@ import RegisterLookupSummary from "../RegisterLookupSummary";
 const LocationResult = ({
   isActive,
   isFinished,
+  matomoTrackEvent,
   setFinishedState,
   setActiveState,
   topic,
@@ -33,25 +35,50 @@ const LocationResult = ({
         ]);
       }
 
-      setFinishedState("locationResult", true);
-      if (isFinished("questions")) {
-        setActiveState("conclusion");
+      setFinishedState(sections.LOCATION_RESULT, true);
+
+      const eventSection = isFinished(sections.QUESTIONS)
+        ? sections.CONCLUSION
+        : sections.QUESTIONS;
+
+      matomoTrackEvent({
+        action: actions.CLICK_INTERNAL_NAVIGATION,
+        name: `${eventNames.FORWARD} ${eventSection}`,
+      });
+
+      if (isFinished(sections.QUESTIONS)) {
+        setActiveState(sections.CONCLUSION);
       } else {
-        setActiveState("questions");
+        setActiveState(sections.QUESTIONS);
       }
     } else {
+      matomoTrackEvent({
+        action: actions.CLICK_EXTERNAL_NAVIGATION,
+        name: eventNames.TO_OLO,
+      });
       window.open(generateOloUrl(address), "_blank");
     }
+  };
+
+  const onGoToPrev = () => {
+    matomoTrackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
+    });
+    setActiveState(sections.LOCATION_INPUT);
   };
 
   return (
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
       {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        address={address}
         displayZoningPlans={!hasSTTR}
-        setActiveState={setActiveState}
-        topic={topic}
+        {...{
+          address,
+          matomoTrackEvent,
+          setActiveState,
+          topic,
+        }}
       />
       {!hasSTTR && (
         <Paragraph gutterBottom={0}>
@@ -60,14 +87,12 @@ const LocationResult = ({
         </Paragraph>
       )}
 
-      {isActive("locationResult") && (
+      {isActive(sections.LOCATION_RESULT) && (
         <Nav
           formEnds={!hasSTTR}
           nextText={hasSTTR ? "Naar de vragen" : "Naar het omgevingsloket"}
           noMarginBottom={!hasSTTR}
-          onGoToPrev={() => {
-            setActiveState("locationInput");
-          }}
+          onGoToPrev={onGoToPrev}
           showNext
           showPrev
         />

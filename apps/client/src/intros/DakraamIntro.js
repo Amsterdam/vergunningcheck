@@ -3,7 +3,7 @@ import React from "react";
 
 import { List, ListItem } from "../atoms";
 import ContactSentence from "../components/ContactSentence";
-import { eventNames } from "../config/matomo";
+import { sections } from "../config/matomo";
 import { IntroHeading, IntroSituationDescription } from "./shared";
 
 export default () => (
@@ -31,12 +31,12 @@ export default () => (
     <List variant="bullet" style={{ marginBottom: 12 }}>
       <ListItem>Het aantal woningen verandert.</ListItem>
       <ListItem>
-        Het deel van het gebouw waarin het dakraam komt, is zonder vergunning
-        gebouwd.
+        Het gebouw, of het deel van het gebouw waarin het dakraam komt, is
+        zonder vergunning gebouwd.
       </ListItem>
     </List>
     <Paragraph>
-      <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
+      <ContactSentence eventName={sections.INTRO} />
     </Paragraph>
   </>
 );

@@ -9,6 +9,7 @@ import {
   ListItem,
   TextToEdit,
 } from "../atoms";
+import { actions, eventNames, sections } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import AddressLine from "./AddressLine";
@@ -16,6 +17,7 @@ import AddressLine from "./AddressLine";
 const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
+  matomoTrackEvent,
   setActiveState,
   topic: { sttrFile },
 }) => {
@@ -40,7 +42,11 @@ const RegisterLookupSummary = ({
         </TextToEdit>
         <EditButton
           onClick={() => {
-            setActiveState("locationInput");
+            matomoTrackEvent({
+              action: actions.CLICK_INTERNAL_NAVIGATION,
+              name: eventNames.EDIT_ADDRESS,
+            });
+            setActiveState(sections.LOCATION_INPUT);
           }}
         />
       </Paragraph>

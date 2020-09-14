@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 
 import LogoDesktop from "../static/media/logo-desktop.svg";
 import LogoMobile from "../static/media/logo-mobile.svg";
-import { focusOutlineStyle } from "../utils/themeUtils";
 
 export const StyledHeader = styled(Header)`
   max-width: 960px;
@@ -58,7 +57,7 @@ export const StyledLogoWrapper = styled.a`
 
   @media ${breakpoint("min-width", "tabletS")} {
     /* Hack to align logo with content */
-    margin-left: calc( -30px + ${themeSpacing(4)} );
+    margin-left: calc(-30px + ${themeSpacing(4)});
   }
 
   @media ${breakpoint("min-width", "laptop")} {
@@ -75,8 +74,6 @@ export const StyledLogoWrapper = styled.a`
       background-image: url("${LogoDesktop}");
     }
   }
-
-  ${focusOutlineStyle}
 
   @media print {
     -webkit-print-color-adjust: exact;

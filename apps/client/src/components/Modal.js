@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import { eventNames } from "../config/matomo";
 import Markdown from "./Markdown";
 
 const ModalBlock = styled.div`
@@ -61,7 +62,10 @@ const Modal = ({ modalText }) => {
           </TopBar>
           <Divider />
           <ModalBlock>
-            <Markdown source={modalText} />
+            <Markdown
+              eventLocation={eventNames.LONG_DESCRIPTION}
+              source={modalText}
+            />
           </ModalBlock>
         </div>
       </BaseModal>
