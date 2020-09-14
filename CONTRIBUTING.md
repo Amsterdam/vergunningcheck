@@ -5,7 +5,7 @@ open up a pull request.
 
 ## Nomenclature
 
-First a brief intro on some of the terminoligy and concepts we use to make sure the steps below make sense.
+First a brief intro on some of the terminology and concepts we use, to make sure the steps below make sense.
 
 _TODO: dmn, sttr, imtr etc. Consider moving this section to README.md instead_
 
@@ -14,9 +14,9 @@ _TODO: dmn, sttr, imtr etc. Consider moving this section to README.md instead_
 - sttr-file; sttr is an XML standard for dutch DSO legislation
 - xml to json; we convert sttr-XML to JSON for better performance
 - sttr-builder; the tool used to build sttr-files
-- check; the activity of checking whether you need a permit (dutch: vergunning)
+- check; the activity of checking whether you need a permit (see permit)
 - visitor; the person performing a check
-- checker; the tool itself, intro, register lookups, a set of questions and conclusion
+- checker; the tool itself (including an intro page, register lookups, a set of questions and a conclusion)
 
 ## Commiting
 

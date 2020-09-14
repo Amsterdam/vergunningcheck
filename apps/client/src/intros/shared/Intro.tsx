@@ -12,9 +12,9 @@ import {
 } from "../../utils/test-ids";
 
 type Props = {
-  exceptions?: string[];
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
+  exceptions?: string[];
   showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
