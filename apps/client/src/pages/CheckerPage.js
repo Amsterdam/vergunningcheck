@@ -31,18 +31,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     slug
   ];
 
-  const isActive = useCallback(
-    (component, finished = false) => {
-      // If component is only a string, we make it a array first
-      const allComponents = Array.isArray(component) ? component : [component];
-
-      // If finished is true we check if it's finished, else check activeComponents.
-      const components = finished ? finishedComponents : activeComponents;
-      return components.includes(...allComponents);
-    },
-    [activeComponents, finishedComponents]
-  );
-
   useEffect(() => {
     //@TODO: We shoudn't need this redirect. We need to refactor this
     if (!sessionContext[slug]) {
@@ -67,6 +55,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           activeComponents: [sections.LOCATION_INPUT],
           answers: null,
           finishedComponents: [],
+          questionIndex: null,
         },
       ]);
 
@@ -111,6 +100,18 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       { finishedComponents: newFinishedComponents },
     ]);
   };
+
+  const isActive = useCallback(
+    (component, finished = false) => {
+      // If component is only a string, we make it a array first
+      const allComponents = Array.isArray(component) ? component : [component];
+
+      // If finished is true we check if it's finished, else check activeComponents.
+      const components = finished ? finishedComponents : activeComponents;
+      return components.includes(...allComponents);
+    },
+    [activeComponents, finishedComponents]
+  );
 
   const isFinished = (component) => isActive(component, true);
 
