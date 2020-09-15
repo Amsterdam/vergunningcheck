@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 
@@ -27,14 +27,54 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   // OLO Flow does not have questionIndex
   const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
 
-  //@TODO: We shoudn't need this redirect. We need to refactor this
-  if (!sessionContext[slug]) {
-    return <Redirect to={geturl(routes.intro, topic)} />;
-  }
-
   const { activeComponents, answers, finishedComponents } = sessionContext[
     slug
   ];
+
+  const isActive = useCallback(
+    (component, finished = false) => {
+      // If component is only a string, we make it a array first
+      const allComponents = Array.isArray(component) ? component : [component];
+
+      // If finished is true we check if it's finished, else check activeComponents.
+      const components = finished ? finishedComponents : activeComponents;
+      return components.includes(...allComponents);
+    },
+    [activeComponents, finishedComponents]
+  );
+
+  useEffect(() => {
+    //@TODO: We shoudn't need this redirect. We need to refactor this
+    if (!sessionContext[slug]) {
+      return <Redirect to={geturl(routes.intro, topic)} />;
+    }
+
+    // In case no active sections are found, reset the checker
+    // This is a fallback to prevent users being stuck without any active component
+    const activeComponent = [
+      sections.CONCLUSION,
+      sections.LOCATION_INPUT,
+      sections.LOCATION_RESULT,
+      sections.QUESTIONS,
+    ].find((section) => isActive(section));
+
+    if (!activeComponent) {
+      console.warn("Resetting checker, because no active section was found");
+
+      sessionContext.setSessionData([
+        slug,
+        {
+          activeComponents: [sections.LOCATION_INPUT],
+          answers: null,
+          finishedComponents: [],
+        },
+      ]);
+
+      resetChecker();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
@@ -70,15 +110,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       slug,
       { finishedComponents: newFinishedComponents },
     ]);
-  };
-
-  const isActive = (component, finished = false) => {
-    // If component is only a string, we make it a array first
-    const allComponents = Array.isArray(component) ? component : [component];
-
-    // If finished is true we check if it's finished, else check activeComponents.
-    const components = finished ? finishedComponents : activeComponents;
-    return components.includes(...allComponents);
   };
 
   const isFinished = (component) => isActive(component, true);
