@@ -1,20 +1,14 @@
 import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { Fragment } from "react";
+import React from "react";
 import { isIE, isMobile } from "react-device-detect";
 
-import {
-  Alert,
-  ComponentWrapper,
-  HideForPrint,
-  PrintButton,
-  PrintOnly,
-} from "../atoms";
+import { Alert, ComponentWrapper, HideForPrint, PrintOnly } from "../atoms";
+import UnderlinedTextButton from "../atoms/UnderlinedTextButton";
 import { Olo } from "../config";
-import { actions, eventNames, sections } from "../config/matomo";
+import { actions, eventNames } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
-import Markdown from "./Markdown";
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
   // find conclusions we want to display to the user
@@ -53,10 +47,6 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
 
-  const displayConclusions = contactConclusion
-    ? [contactConclusion]
-    : conclusions;
-
   const handlePermitButton = (e) => {
     e.preventDefault();
     matomoTrackEvent({
@@ -78,20 +68,30 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
   return (
     <>
       <Paragraph>
-        Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
-        toepassing is.
+        U bent klaar met de vergunningcheck. Dit is de uitkomst:
       </Paragraph>
 
-      {displayConclusions.map(({ title, description }) => (
-        <Fragment key={title}>
-          <Heading forwardedAs="h2">{title}</Heading>
-          <Markdown eventLocation={sections.CONCLUSION} source={description} />
-        </Fragment>
-      ))}
+      {needsPermit && !contactConclusion && (
+        <>
+          <Heading forwardedAs="h2">
+            U hebt een omgevingsvergunning nodig.
+          </Heading>
+          <Paragraph>
+            U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
+          </Paragraph>
+        </>
+      )}
+      {!needsPermit && !contactConclusion && (
+        <>
+          <Heading forwardedAs="h2">
+            U hebt geen omgevingsvergunning nodig.
+          </Heading>
+        </>
+      )}
 
       <HideForPrint>
         {needsPermit && !contactConclusion && (
-          <ComponentWrapper marginBottom={40}>
+          <ComponentWrapper>
             <Button
               type="button"
               color="secondary"
@@ -103,17 +103,37 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         )}
 
         {!isIE && !isMobile && (
-          <ComponentWrapper>
-            <PrintButton
-              color="primary"
+          <ComponentWrapper marginBottom={30} marginTop={30}>
+            <UnderlinedTextButton
+              variant="textButton"
               onClick={handlePrintButton}
-              type="button"
             >
               Conclusie opslaan
-            </PrintButton>
+            </UnderlinedTextButton>
           </ComponentWrapper>
         )}
       </HideForPrint>
+
+      {needsPermit && !contactConclusion && (
+        <>
+          <Heading forwardedAs="h2">Meer weten?</Heading>
+          <Paragraph>
+            Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog
+            meer aan moet denken als u gaat starten? Op onze pagina
+            omgevingsvergunning is alle informatie te vinden.
+          </Paragraph>
+        </>
+      )}
+      {!needsPermit && !contactConclusion && (
+        <>
+          <Heading forwardedAs="h2">Meer weten?</Heading>
+          <Paragraph>
+            Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog
+            meer aan moet denken als u gaat starten? Op onze pagina
+            omgevingsvergunning is alle informatie te vinden.
+          </Paragraph>
+        </>
+      )}
 
       <PrintOnly withBorder avoidPageBreak>
         <Alert
