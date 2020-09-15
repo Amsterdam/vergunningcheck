@@ -62,6 +62,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       resetChecker();
     }
 
+    // Prevent linter to add all dependencies, now the useEffect is only called on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
