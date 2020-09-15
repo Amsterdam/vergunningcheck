@@ -40,7 +40,7 @@ const FirstColumn = () => (
           darkBackground
           eventName={`${eventNames.CONTACT_FORM} - ${sections.FOOTER}`}
           href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
-          variant="with-chevron"
+          inList
         >
           Contactformulier
         </Link>
@@ -50,7 +50,7 @@ const FirstColumn = () => (
           darkBackground
           eventName={`${eventNames.CONTACT_OPENING} - ${sections.FOOTER}`}
           href="https://www.amsterdam.nl/contact/"
-          variant="with-chevron"
+          inList
         >
           Contactgegevens en openingstijden
         </Link>
@@ -66,7 +66,7 @@ const SecondColumn = () => (
         darkBackground
         eventName={`${eventNames.NEWSLETTER} - ${sections.FOOTER}`}
         href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
-        variant="with-chevron"
+        inList
       >
         Nieuwsbrief Amsterdam.nl
       </Link>
@@ -76,7 +76,7 @@ const SecondColumn = () => (
         darkBackground
         eventName={`${eventNames.TWITTER} - ${sections.FOOTER}`}
         href="https://twitter.com/AmsterdamNL"
-        variant="with-chevron"
+        inList
       >
         Twitter
       </Link>
@@ -86,7 +86,7 @@ const SecondColumn = () => (
         darkBackground
         eventName={`${eventNames.FACEBOOK} - ${sections.FOOTER}`}
         href="https://www.facebook.com/gemeenteamsterdam"
-        variant="with-chevron"
+        inList
       >
         Facebook
       </Link>
@@ -96,7 +96,7 @@ const SecondColumn = () => (
         darkBackground
         eventName={`${eventNames.INSTAGRAM} - ${sections.FOOTER}`}
         href="https://www.instagram.com/gemeenteamsterdam/"
-        variant="with-chevron"
+        inList
       >
         Instagram
       </Link>
@@ -106,7 +106,7 @@ const SecondColumn = () => (
         darkBackground
         eventName={`${eventNames.LINKEDIN} - ${sections.FOOTER}`}
         href="https://www.linkedin.com/company/gemeente-amsterdam"
-        variant="with-chevron"
+        inList
       >
         Linkedin
       </Link>
@@ -116,7 +116,7 @@ const SecondColumn = () => (
         darkBackground
         eventName={`${eventNames.WORK_AT} - ${sections.FOOTER}`}
         href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
-        variant="with-chevron"
+        inList
       >
         Werken bij
       </Link>
@@ -178,30 +178,30 @@ const Footer = () => (
       <ContentContainer>
         <FooterBottom>
           <Link
-            href="https://www.amsterdam.nl/overdezesite/"
-            variant="with-chevron"
             eventName={`${eventNames.ABOUT} - ${sections.FOOTER}`}
+            href="https://www.amsterdam.nl/overdezesite/"
+            inList
           >
             Over deze site
           </Link>
           <Link
-            href="https://www.amsterdam.nl/privacy/"
-            variant="with-chevron"
             eventName={`${eventNames.PRIVACY} - ${sections.FOOTER}`}
+            href="https://www.amsterdam.nl/privacy/"
+            inList
           >
             Privacy
           </Link>
           <Link
-            href="https://www.amsterdam.nl/privacy/cookies-site/"
-            variant="with-chevron"
             eventName={`${eventNames.COOKIES} - ${sections.FOOTER}`}
+            href="https://www.amsterdam.nl/privacy/cookies-site/"
+            inList
           >
             Cookies op deze site
           </Link>
           <Link
-            href="https://www.amsterdam.nl/nieuwsarchief/"
-            variant="with-chevron"
             eventName={`${eventNames.WEBARCHIEF} - ${sections.FOOTER}`}
+            href="https://www.amsterdam.nl/nieuwsarchief/"
+            inList
           >
             Webarchief
           </Link>
