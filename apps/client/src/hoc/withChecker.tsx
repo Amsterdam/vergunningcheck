@@ -19,7 +19,12 @@ export type TopicOutputType = {
   name?: string;
 };
 
-export default (Component: any) => () => {
+type Props = {
+  matomoTrackEvent: any;
+  matomoPageView: any;
+};
+
+export default (Component: any) => (props: Props) => {
   const sessionContext = useContext(SessionContext) as SessionDataType;
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
@@ -49,7 +54,6 @@ export default (Component: any) => () => {
           .flat()
           .find((topic) => topic.slug === slug) as TopicOutputType;
 
-        console.log({ topicConfig });
         const topicRequest = await fetch(
           `${window.location.origin}/${topicConfig.path}`
         );
@@ -108,7 +112,7 @@ export default (Component: any) => () => {
 
   // Use olo-flow if it's not an imtr-topic
   if (topic?.hasIMTR === false) {
-    return <Component {...{ topic }} />;
+    return <Component {...{ topic, ...props }} />;
   }
 
   // if checker is not initialized then we're still waiting for the json
@@ -120,7 +124,7 @@ export default (Component: any) => () => {
   if (topic) {
     // This is a configured topic, the most common type
     checkerContext.topic = topic;
-    return <Component {...{ topic, checker, resetChecker }} />;
+    return <Component {...{ topic, checker, resetChecker, ...props }} />;
   }
 
   /**
@@ -143,5 +147,7 @@ export default (Component: any) => () => {
   };
 
   checkerContext.topic = dynamicTopic;
-  return <Component {...{ topic: dynamicTopic, checker, resetChecker }} />;
+  return (
+    <Component {...{ topic: dynamicTopic, checker, resetChecker, ...props }} />
+  );
 };

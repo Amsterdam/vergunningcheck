@@ -14,31 +14,32 @@ const DevHomePage = () => {
 
   return (
     <Layout heading={`Welcome to CHAPPIE ${process.env.REACT_APP_VERSION}`}>
-      <p>
-        <Alert level="attention">
-          Let op; deze pagina bevat links naar vergunningchecks die mogelijk
-          (nog) niet correct werken.{" "}
-          <strong>
-            Als u niet bij de gemeente Amsterdam werkt dient u deze pagina niet
-            te gebruiken.
-          </strong>
-        </Alert>
-      </p>
+      <Alert level="attention">
+        Let op; deze pagina bevat links naar vergunningchecks die mogelijk (nog)
+        niet correct werken.{" "}
+        <strong>
+          Als u niet bij de gemeente Amsterdam werkt dient u deze pagina niet te
+          gebruiken.
+        </strong>
+      </Alert>
+      <br />
       <table>
-        <tr>
-          <td>
-            <strong>Name</strong>
-          </td>
-          <td>
-            <strong>Flow</strong>
-          </td>
-          <td>
-            <strong>Folder</strong>
-          </td>
-          <td>
-            <strong>#&nbsp;permits</strong>
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <td>
+              <strong>Name</strong>
+            </td>
+            <td>
+              <strong>Flow</strong>
+            </td>
+            <td>
+              <strong>Folder</strong>
+            </td>
+            <td>
+              <strong>#&nbsp;permits</strong>
+            </td>
+          </tr>
+        </thead>
         <tbody>
           {topics
             .filter(({ hasIMTR }) => !hasIMTR) // only show olo / redir-olo topics
@@ -64,7 +65,7 @@ const DevHomePage = () => {
                 ? apiTopic.name || apiTopic.slug
                 : "[ERROR]";
               return (
-                <tr>
+                <tr key={title}>
                   <td>
                     {imtrTopic && !imtrTopic.hasIMTR ? (
                       <>

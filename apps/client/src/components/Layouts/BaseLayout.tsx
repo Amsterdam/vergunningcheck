@@ -63,7 +63,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
         {checkerContext.checker && (
           <HiddenDebugInfo title="permits from checkerContext">
             {checkerContext.checker?.permits?.map((permit: any) => (
-              <p>{permit.name}</p>
+              <p key={permit.name}>{permit.name}</p>
             ))}
           </HiddenDebugInfo>
         )}

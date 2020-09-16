@@ -20,7 +20,7 @@ const withTracking = (Component) => ({ ...props }) => {
     }
   };
 
-  const matomoTrackEvent = ({ action, category = topic.name, name }) => {
+  const matomoTrackEvent = ({ action, category, name }) => {
     // Temporary disable Matomo trackevents on production
     if (isProduction) {
       return;
@@ -30,7 +30,7 @@ const withTracking = (Component) => ({ ...props }) => {
     if (trackingEnabled()) {
       trackEvent({
         action: action.toLowerCase(),
-        category: category.toLowerCase(),
+        category: (category || topic?.name || slug).toLowerCase(),
         name: name.toLowerCase(),
       });
     }
