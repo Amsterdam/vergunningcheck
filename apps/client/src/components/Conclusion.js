@@ -1,5 +1,5 @@
-import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { Fragment } from "react";
+import { Button, Heading, Modal, Paragraph } from "@datapunt/asc-ui";
+import React, { Fragment, useState } from "react";
 import { isIE, isMobile } from "react-device-detect";
 
 import {
@@ -16,7 +16,9 @@ import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, matomoTrackEvent }) => {
+const Conclusion = ({ checker, matomoTrackEvent, resetChecker }) => {
+  const [modalShown, toggleModal] = useState(false);
+
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
@@ -57,6 +59,15 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
     ? [contactConclusion]
     : conclusions;
 
+  const handleAnotherCheck = () => {
+    matomoTrackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: eventNames.START_NEW_CHECK,
+    });
+
+    toggleModal(!modalShown);
+  };
+
   const handlePermitButton = (e) => {
     e.preventDefault();
     matomoTrackEvent({
@@ -77,6 +88,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
 
   return (
     <>
+      {modalShown && <Modal></Modal>}
       <Paragraph>
         Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
         toepassing is.
@@ -113,6 +125,10 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
             </PrintButton>
           </ComponentWrapper>
         )}
+
+        <Button type="button" color="primary" onClick={handleAnotherCheck}>
+          Nog een vergunningcheck doen
+        </Button>
       </HideForPrint>
 
       <PrintOnly withBorder avoidPageBreak>

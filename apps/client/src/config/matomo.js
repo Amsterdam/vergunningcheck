@@ -62,6 +62,7 @@ export const eventNames = {
   NEWSLETTER: "nieuwsbrief amsterdam.nl",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
+  START_NEW_CHECK: "Nog een checker doen",
   TEXT_LINK: "tekst link",
   TO_OLO: "naar het omgevingsloket",
   TWITTER: "twitter",
