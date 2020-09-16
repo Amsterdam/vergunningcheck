@@ -1,6 +1,6 @@
 import { makeRunWithLimit, assert, emptyDir, exists, join } from './deps.ts';
 
-// import { writeJson } from "./util.ts";
+import { writeJson } from "./util.ts";
 import { APIConfig, ActivitiesResponse, TopicInputType } from "./types.ts";
 
 type Props = {
@@ -43,7 +43,7 @@ export default async (argv: Props) => {
         const { outputDir, host } = api;
 
         // Create / empty the api-specific output-directory
-        await emptyDir(join(argv.dir, outputDir));
+        await emptyDir(join(publicDir, outputDir));
 
         /* Fetch api list endpoint and write json to file */
         const activitiesRequest = await fetch(`${host}/activiteiten`, {
@@ -55,7 +55,7 @@ export default async (argv: Props) => {
         }
         const activities = response as TopicInputType[];
 
-        // writeJson(join(argv.dir, outputDir, "list.json"), activities)
+        writeJson(join(publicDir, outputDir, "list.json"), activities)
 
         // Now fetch the permits using a pool of promises
         const { runWithLimit } = makeRunWithLimit(argv.maxConnections || 6);
@@ -79,7 +79,7 @@ export default async (argv: Props) => {
             }
 
             try {
-              // writeJson(join(argv.dir, outputDir, `${permitId}.json`), await result.json())
+              writeJson(join(publicDir, outputDir, `${permitId}.json`), await result.json())
             } catch (e) {
               console.error(e, result);
             }

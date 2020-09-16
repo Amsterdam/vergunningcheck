@@ -1,11 +1,6 @@
 import { DomHandler, Parser } from "./deps.ts";
 
-// import parse from "https://denopkg.com/nekobato/deno-xml-parser/index.ts";
-// const parse = require("./lib.ts");
-
-// import parse from "./lib.ts";
-
-const ENABLE_LOGGING = false;
+const ENABLE_LOGGING = true;
 
 // TODO: todo implement consistent hashing for id's
 // import { createHash } from "https://deno.land/std/hash/mod.ts";
@@ -79,7 +74,11 @@ const getAutofillResolverKey = (questionText: string) => {
   }
 };
 
-const filt = (arr: any[], tagName: string) => arr.filter(({ name }) => name === tagName);
+const nodeFilter = (item: any) => !item.data;
+
+const filt = (arr: any[], tagName: string) => {
+  return arr.filter(({ name }) => name === tagName)
+};
 
 const find = (arr: any[], tagName: string) => arr.find(({ name }) => name === tagName);
 
@@ -117,7 +116,9 @@ function getDecisions(xmlDecisions: any) {
     const res = filt(xmlDecision.children, "dmn:informationRequirement").reduce(
       (acc, informationRequirement) => {
         debug("informationRequirement", log(informationRequirement));
-        const requiredElement = informationRequirement.children[0];
+
+        const requiredElement = informationRequirement.children.filter(nodeFilter)[0];
+        debug("requiredDecision", log(requiredElement));
         const shortKey = `${requiredElement.name.split(":")[1]}s`;
 
         const result = acc;
@@ -149,11 +150,12 @@ function getDecisions(xmlDecisions: any) {
           "content:conclusieToelichting"
         );
         debug("conclusionDescription", log(conclusionDescription));
+
         const description = find(
           conclusionDescription.children,
           "content:toelichting"
-        ).children[0].children;
-        debug("ruledescription", log(description));
+        ).children.filter(nodeFilter);
+        debug("description", log(description));
         descriptionText = description[0].data;
       }
 
@@ -220,23 +222,25 @@ function getInputData(xmlInputData: any) {
  */
 function getExtensionElements(xmlExtensionElements: any) {
   debug("xmlExtensionElements", log(xmlExtensionElements));
-  const rules = find(xmlExtensionElements, "uitv:uitvoeringsregels").children;
+  const rules = find(xmlExtensionElements, "uitv:uitvoeringsregels").children.filter((rule: any) => rule.children);
   debug("rules", log(rules));
 
   return rules.map((rule: any) => {
     let result: any;
+    debug("rule", log(rule));
     const geoReference = find(rule.children, "uitv:geoVerwijzing");
     debug("geoReference", log(geoReference));
+
     if (geoReference) {
       result = {
         identification: find(geoReference.children, "uitv:locatie").attribs
           .identificatie,
-        text: find(geoReference.children, "uitv:vraagTekst").children[0].data,
+        text: find(geoReference.children, "uitv:vraagTekst")?.children[0]?.data,
         type: "geo",
       };
     } else {
       // list or boolean
-      debug("rule", log(rule));
+
       const question = find(rule.children, "uitv:vraag");
       debug("question", log(question));
       const dataType = find(question.children, "uitv:gegevensType");
@@ -247,7 +251,7 @@ function getExtensionElements(xmlExtensionElements: any) {
       debug("desc", log(desc));
       let explanation = undefined;
       if (desc) {
-        const descrip = find(desc.children, "content:toelichting").children[0];
+        const descrip = find(desc.children, "content:toelichting").children.filter(nodeFilter)[0];
         debug("descrip", log(descrip));
 
         explanation = descrip ? descrip.children[0].data : undefined;
@@ -299,7 +303,9 @@ function getExtensionElements(xmlExtensionElements: any) {
 
     result.id = rule.attribs.id; // TODO: generate our own hash for id's
 
-    result.prio = find(rule.children, "inter:prioriteit").children[0].data / 1;
+    const prio = find(rule.children, "inter:prioriteit");
+    debug('prio', log(prio));
+    result.prio = prio ? prio.children[0].data / 1 : null;
     result.uuid = find(rule.children, "uitv:herbruikbaarId")?.children[0]?.data;
 
     return result;

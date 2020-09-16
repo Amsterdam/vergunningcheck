@@ -1,53 +1,54 @@
-import { join } from "https://deno.land/std/path/mod.ts";
+import { assert, assertEquals, dirname, fromFileUrl, join } from "./deps.ts";
+import parser from "./parser.ts";
 
-import parser from "./parser.js";
+const dir = dirname(fromFileUrl(import.meta.url));
 
-Deno.test("parser name", () => {
-  const xml = Deno.readFileSync(
-    join(Deno.cwd(), "__mocks__", "demo.dmn")
-  ).toString();
-  const config = parser(xml);
-  expect(config.name).toBe("Conclusie STTR Test");
-});
-
-Deno.test("description", () => {
-  const xml = Deno.readFileSync(
-    join(Deno.cwd(), "__mocks__", "tree-felling.dmn")
-  ).toString();
-  const config = parser(xml);
-  expect(config.questions.UitvId0001.description).toBe(
-    "Met een tuin of een erf wordt bedoeld de grond die bij een woning of bedrijf hoort."
+Deno.test("parser name", async () => {
+  const xml = await Deno.readTextFile(join(dir, "__mocks__", "demo.dmn"));
+  const config = await parser(xml);
+  assert(
+    config.name === "Conclusie STTR Test",
+    `${config.name} !== "Conclusie STTR Test"`
   );
 });
-Deno.test("conclusion description", () => {
-  const xml = Deno.readFileSync(
-    join(Deno.cwd(), "__mocks__", "with-conclusion-description.dmn")
-  ).toString();
-  const config = parser(xml);
+
+Deno.test("description", async () => {
+  const xml = await Deno.readTextFile(
+    join(dir, "__mocks__", "tree-felling.dmn")
+  );
+  const config = await parser(xml);
+  assert(
+    config.questions.UitvId0001.description ===
+      "Met een tuin of een erf wordt bedoeld de grond die bij een woning of bedrijf hoort."
+  );
+});
+Deno.test("conclusion description", async () => {
+  const xml = await Deno.readTextFile(
+    join(dir, "__mocks__", "with-conclusion-description.dmn")
+  );
+  const config = await parser(xml);
   const mapping = {
     '"NeemContactOpMet"': "Uitleg bij Neem Contact Op Met.",
     '"Vergunningplicht"': "Uitleg bij Vergunningplicht.",
   };
-  expect(config.decisions.dummy.decisionTable.rules.length).toBe(3);
+  assert(config.decisions.dummy.decisionTable.rules.length === 3);
   config.decisions.dummy.decisionTable.rules.map((rule) =>
-    expect(rule.description).toBe(mapping[rule.output])
+    assert(rule.description === mapping[rule.output])
   );
 });
 
-Deno.test("structureReference", () => {
-  /**
-   * in ['dmn:extensionElements']['bedr:functioneleStructuurRef'] we
-   * have urls like http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.Dakkapelbouwen
-   * it would be nice if we can expose this as "Dakkapelbouwen" so the
-   * frontend can show an icon for every checker.
-   */
-});
+// Deno.test("structureReference", () => {
+/**
+ * in ['dmn:extensionElements']['bedr:functioneleStructuurRef'] we
+ * have urls like http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000/id/concept/Conclusienl.imow-gm0363.activiteit.Dakkapelbouwen
+ * it would be nice if we can expose this as "Dakkapelbouwen" so the
+ * frontend can show an icon for every checker.
+ */
+// });
 
-Deno.test("questions", () => {
-  const xml = Deno.readFileSync(
-    join(Deno.cwd(), "__mocks__", "demo.dmn")
-  ).toString();
-  const config = parser(xml);
+Deno.test("questions", async () => {
+  const xml = await Deno.readTextFile(join(dir, "__mocks__", "demo.dmn"));
+  const config = await parser(xml);
 
   const inputs = {
     "input-id-wietplantage": { href: "#vraag-wietplantage", type: "boolean" },
@@ -127,17 +128,15 @@ Deno.test("questions", () => {
       },
     },
   };
-  expect(config).toMatchObject({
+  assertEquals(config, {
     questions,
     inputs,
     decisions,
   });
 });
 
-Deno.test("geo", () => {
-  const xml = Deno.readFileSync(
-    join(Deno.cwd(), "__mocks__", "geo.dmn")
-  ).toString();
+Deno.test("geo", async () => {
+  const xml = await Deno.readTextFile(join(dir, "__mocks__", "geo.dmn"));
   const id = "uitv__6955a83b-e19c-4014-9655-3076879ea74f";
   const questions = {
     [id]: {
@@ -145,6 +144,6 @@ Deno.test("geo", () => {
       identification: "nl.imow-gm0363.gebied.4",
     },
   };
-  const config = parser(xml);
-  expect(config.questions[id]).toMatchObject(questions[id]);
+  const config = await parser(xml);
+  assertEquals(config.questions[id], questions[id]);
 });

@@ -9,7 +9,7 @@ We use [Deno](https://deno.land) to download and convert all configuration. Test
 
 - Followed the install steps in our project level [README.md](../../README.md) if you haven't already
 - [Install Deno itself](https://deno.land/#installation)
-- Download the deps by running `deno run src/main.ts --unstable install`
+- Download the deps by running `deno cache --reload --lock=lock.json src/deps.ts`
 - Optional: create a development config file, see [./src/config.local.dist.ts](./src/config.local.dist.ts)
 
 ## Usage
@@ -26,3 +26,16 @@ We need some flags to make main.ts work.
 - `--allow-env` for reading STTR-builder secret key
 - `--allow-read` read xml files
 - `--allow-net` fetch json from rest api
+
+## Testing
+
+```
+deno test --unstable --allow-read
+```
+
+## Reload dependencies
+
+```
+deno cache --reload src/deps.ts
+deno cache --unstable src/deps.ts --lock=lock.json --lock-write
+```

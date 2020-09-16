@@ -69,7 +69,7 @@ export default async (argv: Props) => {
 
     apiPermitIds.forEach((permitId) => {
       topics.push({
-        name: apiPermits.find((permit) => permit._id === permitId)?.name,
+        name: apiPermits.find((permit) => permit._id === permitId)?.name?.trim(),
         path: `${transformedUrlPath}/${permitId}.json`,
         permits: [permitId],
         slug: permitId,
