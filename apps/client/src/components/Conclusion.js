@@ -1,4 +1,12 @@
-import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
+import {
+  Button,
+  Checkbox,
+  Heading,
+  Label,
+  Paragraph,
+  Radio,
+  RadioGroup,
+} from "@datapunt/asc-ui";
 import React, { Fragment } from "react";
 import { isIE, isMobile } from "react-device-detect";
 
@@ -10,6 +18,7 @@ import {
   PrintOnly,
 } from "../atoms";
 import { Olo } from "../config";
+import { topics } from "../config";
 import { actions, eventNames, sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
@@ -131,7 +140,46 @@ const Conclusion = ({
           heading="Kies een vergunningcheck"
           onClick={handleModalButton}
         >
-          Hier komen checkers
+          <ComponentWrapper>
+            <Heading forwardedAs="h2">
+              Wilt u dezelfde adresgegevens gebruiken? [tekst updaten]
+            </Heading>
+            <Label htmlFor="ja" label="ja">
+              <Checkbox
+                value="value"
+                id="ja"
+                // onChange={(e) => onChange(e)}
+              />
+            </Label>
+          </ComponentWrapper>
+
+          <ComponentWrapper>
+            <Heading forwardedAs="h2">
+              Welke check wilt u doen? [tekst updaten]
+            </Heading>
+
+            <ComponentWrapper>
+              <RadioGroup name="checks">
+                {topics
+                  .filter((topic) => topic.sttrFile)
+                  .map((topic) => (
+                    <Label
+                      htmlFor={topic.name}
+                      label={topic.name}
+                      key={topic.name}
+                    >
+                      <Radio
+                        value={topic.slug}
+                        id={topic.name}
+                        // onChange={(e) => onChange(e)}
+                      />
+                    </Label>
+                  ))}
+              </RadioGroup>
+            </ComponentWrapper>
+
+            <Button variant="secondary">Gaaan [tekst updaten]</Button>
+          </ComponentWrapper>
         </Modal>
       </HideForPrint>
 
