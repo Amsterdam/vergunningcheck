@@ -1,19 +1,29 @@
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
 import React from "react";
 
 import { PrevButton } from "../atoms";
 import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
-const Nav = ({
+export type NavProps = {
+  formEnds?: boolean;
+  nextText?: string;
+  noMarginBottom?: boolean;
+  onGoToNext?: (event: React.FormEvent) => void;
+  onGoToPrev?: (event: React.FormEvent) => void;
+  prevText?: string;
+  showNext?: boolean;
+  showPrev?: boolean;
+};
+
+const Nav: React.FC<NavProps> = ({
   formEnds,
-  nextText,
+  nextText = "Volgende",
   noMarginBottom,
   onGoToNext,
   onGoToPrev,
-  prevText,
+  prevText = "Vorige",
   showNext,
   showPrev,
 }) => {
@@ -43,27 +53,6 @@ const Nav = ({
       )}
     </NavStyle>
   );
-};
-
-Nav.defaultProps = {
-  formEnds: false,
-  nextText: "Volgende",
-  noMarginBottom: false,
-  page: "undefined-page",
-  prevText: "Vorige",
-};
-
-Nav.propTypes = {
-  formEnds: PropTypes.bool,
-  nextText: PropTypes.string,
-  noMarginBottom: PropTypes.bool,
-  onGoToNext: PropTypes.func,
-  onGoToPrev: PropTypes.func,
-  page: PropTypes.string,
-  prevText: PropTypes.string,
-  showNext: PropTypes.bool,
-  showPrev: PropTypes.bool,
-  style: PropTypes.object,
 };
 
 export default Nav;

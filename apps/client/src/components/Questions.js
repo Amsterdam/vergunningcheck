@@ -1,9 +1,16 @@
 import { setTag } from "@sentry/browser";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
+import { ScrollAnchor } from "../atoms";
 import { eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
-import { removeQuotes } from "../utils/index";
+import { removeQuotes, scrollToRef } from "../utils/index";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
@@ -22,6 +29,7 @@ const Questions = ({
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactConclusion, setContactConclusion] = useState(false);
   const { answers, questionIndex } = sessionContext[slug];
+  const conclusionRef = useRef(null);
 
   const goToConclusion = useCallback(() => {
     setActiveState(sections.CONCLUSION);
@@ -30,6 +38,10 @@ const Questions = ({
       action: checker.stack[questionIndex].text,
       name: eventNames.GOTO_CONCLUSION,
     });
+    // Wrap in a timeout to prevent a miscalculation the `Question` component collapses
+    setTimeout(() => {
+      scrollToRef(conclusionRef, 20);
+    }, 0);
   }, [
     checker.stack,
     matomoTrackEvent,
@@ -90,6 +102,34 @@ const Questions = ({
     [goToQuestion, setActiveState, setFinishedState]
   );
 
+  // @TODO: Move to checker.js
+  const getUserAnswer = (question) => {
+    const booleanAnswers =
+      !question.options &&
+      booleanOptions.find((o) => o.value === question.answer);
+    return question.options ? question.answer : booleanAnswers?.label;
+  };
+
+  const shouldGoToConlusion = () => {
+    if (!checker.isConclusive()) {
+      return false;
+    } else if (contactConclusion) {
+      return true;
+    }
+
+    let isCompleted = true;
+
+    // Go through all questions and check if they are answered
+    // There is still in bug _getUpcomingQuestions() where some irrelevant questions are unanswered
+    checker.stack.concat(checker._getUpcomingQuestions()).forEach((q) => {
+      if (getUserAnswer(q) === undefined && answers[q.id] === undefined) {
+        isCompleted = false;
+      }
+    });
+
+    return isCompleted;
+  };
+
   useEffect(() => {
     if (skipAnsweredQuestions) {
       // Turn skipping answered questions off
@@ -97,10 +137,8 @@ const Questions = ({
 
       // Loop through questions
       checker.stack.forEach((q) => {
-        // @TODO: refactor this into isQuestionAnswered() because this code is used often
-        const booleanAnswers =
-          !q.options && booleanOptions.find((o) => o.value === q.answer);
-        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+        const userAnswer = getUserAnswer(q);
+
         const isCurrentQuestion =
           q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
 
@@ -240,9 +278,7 @@ const Questions = ({
         }
 
         // Define userAnswer
-        const booleanAnswers =
-          !q.options && booleanOptions.find((o) => o.value === q.answer);
-        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+        const userAnswer = getUserAnswer(q);
 
         // Define if question is the current one
         const isCurrentQuestion =
@@ -286,6 +322,7 @@ const Questions = ({
                 {...{
                   checker,
                   questionIndex,
+                  shouldGoToConlusion,
                   showConclusionAlert,
                   userAnswer,
                 }}
@@ -337,6 +374,8 @@ const Questions = ({
           </StepByStepItem>
         );
       })}
+
+      <ScrollAnchor ref={conclusionRef} />
     </>
   );
 };

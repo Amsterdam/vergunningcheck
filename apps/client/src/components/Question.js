@@ -41,6 +41,7 @@ const Question = ({
   setEditQuestion,
   onGoToNext,
   saveAnswer,
+  shouldGoToConlusion,
   showNext,
   showPrev,
   onGoToPrev,
@@ -123,6 +124,8 @@ const Question = ({
         <ConclusionAlert {...{ questionNeedsContactExit }} />
       )}
       <Nav
+        formEnds={shouldGoToConlusion()}
+        nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
         {...{
           onGoToPrev,
           showNext,
@@ -159,6 +162,7 @@ Question.propTypes = {
   onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
   required: PropTypes.bool,
+  shouldGoToConlusion: PropTypes.func,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
   userAnswer: PropTypes.string,
