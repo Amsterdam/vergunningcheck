@@ -17,7 +17,7 @@ type ButtonVariant =
 
 type ModalProps = {
   buttonText: React.ReactNode;
-  buttonVariant: ButtonVariant;
+  buttonVariant?: ButtonVariant;
   children: React.ReactNode;
   heading: string;
   onClick?: Function;
