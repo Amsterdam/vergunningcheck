@@ -1,6 +1,11 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.0.3](2020-09-16)
+
+#### Bug fixes
+
+* [#506](https://github.com/Amsterdam/vergunningcheck/pull/506) Fixed OLO flow bug with resetChecker ([@robinpiets](https://github.com/robinpiets))
 
 ## [2.0.2](2020-09-16)
 
