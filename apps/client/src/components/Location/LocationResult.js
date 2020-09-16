@@ -20,11 +20,11 @@ const LocationResult = ({
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
   const { questionIndex } = sessionContext[topic.slug] || {};
-  const { hasSTTR } = topic;
+  const { hasIMTR } = topic;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (hasSTTR) {
+    if (hasIMTR) {
       if (typeof questionIndex !== "number") {
         // Init checker by setting question index to 0
         sessionContext.setSessionData([
@@ -70,9 +70,9 @@ const LocationResult = ({
 
   return (
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
-      {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
+      {!hasIMTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        displayZoningPlans={!hasSTTR}
+        displayZoningPlans={!hasIMTR}
         {...{
           address,
           matomoTrackEvent,
@@ -80,7 +80,7 @@ const LocationResult = ({
           topic,
         }}
       />
-      {!hasSTTR && (
+      {!hasIMTR && (
         <Paragraph gutterBottom={0}>
           {/* OLO Flow text */}U hebt deze informatie nodig om de
           vergunningcheck te doen op het Omgevingsloket.
@@ -89,9 +89,9 @@ const LocationResult = ({
 
       {isActive(sections.LOCATION_RESULT) && (
         <Nav
-          formEnds={!hasSTTR}
-          nextText={hasSTTR ? "Naar de vragen" : "Naar het omgevingsloket"}
-          noMarginBottom={!hasSTTR}
+          formEnds={!hasIMTR}
+          nextText={hasIMTR ? "Naar de vragen" : "Naar het omgevingsloket"}
+          noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext
           showPrev

@@ -11,7 +11,7 @@ npm i
 npm start
 ```
 
-If you need to update the checks there are additional install steps in [apps/client/sttr_build/README.md](apps/client/sttr_build/README.md).
+If you need to update the checks there are additional install steps in [scripts/imtr/README.md](scripts/imtr/README.md).
 
 ## Contributing
 
@@ -29,6 +29,20 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 - [Matomo Tracker React](https://github.com/Amsterdam/matomo-tracker)
 - Prettier
 - Jest + Testing Library
+
+## Nomenclature
+
+First a brief intro on some of the terminology and concepts we use, to make sure the steps below make sense.
+
+- permit, ('vergunning' in dutch). You might need a permit for an activity (activiteit).
+- topic, a type of doing (werkzaamheid in dutch). Could be multiple activities / permits in one topic. It corresponds with a configured checker with one or more permits.
+- STTR; STTR is a spec dutch DSO legislation
+- IMTR-file; IMTR is an XML standard for dutch DSO legislation
+- xml to json; we convert IMTR-XML to JSON for better performance
+- STTR-builder; the tool used to build IMTR-files
+- check; the activity of checking whether you need a permit (see permit)
+- visitor; the person performing a check
+- checker; the tool itself (including an intro page, register lookups, a set of questions and a conclusion)
 
 ## Known issues
 

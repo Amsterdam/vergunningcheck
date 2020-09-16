@@ -1,5 +1,5 @@
 export type Topic = {
-  hasSTTR: boolean;
+  hasIMTR: boolean;
   intro?: string;
   name: string;
   redirectToOlo?: boolean;
@@ -47,7 +47,7 @@ export const generateOloUrl = ({
 
 export const topics: Topic[] = [
   {
-    hasSTTR: false,
+    hasIMTR: false,
     name: "Kappen of snoeien",
     redirectToOlo: true,
     slug: "kappen-of-snoeien",
@@ -56,7 +56,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: true,
+    hasIMTR: true,
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
     slug: "dakkapel-plaatsen",
@@ -66,7 +66,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: true,
+    hasIMTR: true,
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
     slug: "dakraam-plaatsen",
@@ -76,7 +76,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: false,
+    hasIMTR: false,
     intro: "AanbouwIntro",
     name: "Aanbouw of uitbouw maken",
     slug: "aanbouw-of-uitbouw-maken",
@@ -87,7 +87,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: true,
+    hasIMTR: true,
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
     slug: "kozijnen-plaatsen",
@@ -97,7 +97,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: true,
+    hasIMTR: true,
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
@@ -108,7 +108,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: false,
+    hasIMTR: false,
     intro: "BouwwerkSlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
@@ -118,7 +118,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: false,
+    hasIMTR: false,
     intro: "InternVerbouwenIntro",
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
@@ -128,7 +128,7 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasSTTR: true,
+    hasIMTR: true,
     intro: "ZonweringRolluikIntro",
     name: "Zonwering of rolluik plaatsen",
     slug: "zonwering-of-rolluik-plaatsen",

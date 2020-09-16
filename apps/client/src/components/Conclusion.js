@@ -12,7 +12,7 @@ import {
 import { Olo } from "../config";
 import { actions, eventNames, sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
-import { sttrOutcomes } from "../sttr_client/models/checker";
+import { imtrOutcomes } from "../imtr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
@@ -24,7 +24,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       const contactOutcome = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === sttrOutcomes.NEED_CONTACT
+        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
       );
       const outcome =
         contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
@@ -32,25 +32,25 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
       return {
         outcome,
         title:
-          outcome === sttrOutcomes.NEED_CONTACT
+          outcome === imtrOutcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
             : `${permit.name.replace("Conclusie", "")}: ${outcome.replace(
                 /['"]+/g,
                 ""
               )}`,
         description:
-          outcome === sttrOutcomes.NEED_CONTACT
+          outcome === imtrOutcomes.NEED_CONTACT
             ? contactOutcome.description
             : conclusionMatchingRules[0].description,
       };
     });
 
   const contactConclusion = conclusions.find(
-    ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
+    ({ outcome }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
   const needsPermit = !!conclusions.find(
-    ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
+    ({ outcome }) => outcome === imtrOutcomes.NEED_PERMIT
   );
 
   const displayConclusions = contactConclusion

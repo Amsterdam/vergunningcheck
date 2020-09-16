@@ -57,7 +57,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           <HiddenDebugInfo title="topic from checkerContext">
             <p>slug: {topic.slug}</p>
             <p>redirectToOlo: {JSON.stringify(topic.redirectToOlo)}</p>
-            <p>hasSTTR: {JSON.stringify(topic.hasSTTR)}</p>
+            <p>hasIMTR: {JSON.stringify(topic.hasIMTR)}</p>
           </HiddenDebugInfo>
         )}
         {checkerContext.checker && (

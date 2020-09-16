@@ -1,16 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { TopicOutputType } from "../../sttr_build/types";
 import { Topic, topics } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
 import { sections } from "../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../context";
+import getChecker from "../imtr_client";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import RedirectPage from "../pages/RedirectPage";
-import getChecker from "../sttr_client";
 import topicsJson from "../topics.json";
+
+// TopicOutputType should come from shared types.ts from imtr-lib in the future
+export type TopicOutputType = {
+  permits: string[];
+  slug: string;
+  path: string;
+  name?: string;
+};
 
 export default (Component: any) => () => {
   const sessionContext = useContext(SessionContext) as SessionDataType;
@@ -35,8 +42,8 @@ export default (Component: any) => () => {
   });
 
   const initChecker = async () => {
-    // if the topic is not found (dynamic sttr-checker) or the topic is found and has an sttr flow
-    if (!checker && !error && (!topic || topic.hasSTTR)) {
+    // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
+    if (!checker && !error && (!topic || topic.hasIMTR)) {
       try {
         const topicConfig = topicsJson
           .flat()
@@ -67,7 +74,7 @@ export default (Component: any) => () => {
           newChecker.setQuestionAnswers(sessionContext[slug].answers);
         }
 
-        // Store the entire `sttr-checker` in React Context
+        // Store the entire `imtr-checker` in React Context
         checkerContext.checker = newChecker;
         setChecker(newChecker);
       } catch (e) {
@@ -99,8 +106,8 @@ export default (Component: any) => () => {
     return <RedirectPage {...{ topic }} />;
   }
 
-  // Use olo-flow if it's not an sttr-topic
-  if (topic?.hasSTTR === false) {
+  // Use olo-flow if it's not an imtr-topic
+  if (topic?.hasIMTR === false) {
     return <Component {...{ topic }} />;
   }
 
@@ -129,7 +136,7 @@ export default (Component: any) => () => {
   const dynamicTopic: Topic = {
     slug,
     name,
-    hasSTTR: true,
+    hasIMTR: true,
     text: {
       heading: name,
     },

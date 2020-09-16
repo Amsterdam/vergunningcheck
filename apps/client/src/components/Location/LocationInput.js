@@ -25,7 +25,7 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { hasSTTR, slug, text } = topic;
+  const { hasIMTR, slug, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
@@ -71,7 +71,7 @@ const LocationInput = ({
       checkerContext.autofillData.address = address;
 
       // Reset all previous finished states
-      if (hasSTTR) {
+      if (hasIMTR) {
         resetChecker();
         setFinishedState(
           [sections.LOCATION_RESULT, sections.QUESTIONS, sections.CONCLUSION],
@@ -127,7 +127,7 @@ const LocationInput = ({
         </Error>
       )}
 
-      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -141,7 +141,7 @@ const LocationInput = ({
           errors={errors}
         />
         <Nav
-          noMarginBottom={!hasSTTR}
+          noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext
           showPrev

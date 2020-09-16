@@ -30,7 +30,7 @@ export const uniqueFilter = (value, index, self) =>
 export const getRestrictionByTypeName = (restrictions, typeName) =>
   (restrictions || []).find(({ __typename }) => __typename === typeName);
 
-// STTR helper
+// IMTR helper
 export const removeQuotes = (str) =>
   typeof str === "string" ? str.replace(/['"]+/g, "") : "";
 

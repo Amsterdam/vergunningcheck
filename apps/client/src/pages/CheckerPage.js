@@ -22,9 +22,9 @@ import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
-  const { hasSTTR, slug, text } = topic;
+  const { hasIMTR, slug, text } = topic;
   // OLO Flow does not have questionIndex
-  const { questionIndex } = hasSTTR ? sessionContext[topic.slug] : 0;
+  const { questionIndex } = hasIMTR ? sessionContext[topic.slug] : 0;
 
   //@TODO: We shoudn't need this redirect. We need to refactor this
   if (!sessionContext[slug]) {
@@ -146,8 +146,8 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
       <PrintDetails />
 
-      {/* STTR-flow with the StepByStepNavigation */}
-      {hasSTTR && (
+      {/* IMTR-flow with the StepByStepNavigation */}
+      {hasIMTR && (
         <StepByStepNavigation
           customSize
           disabledTextColor="inherit"
@@ -250,7 +250,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       )}
 
       {/* OLO-flow only needs the Location component */}
-      {!hasSTTR && (
+      {!hasIMTR && (
         <>
           {/* @TODO: Refactor this, because of duplicate code */}
           {isActive(sections.LOCATION_INPUT) && (

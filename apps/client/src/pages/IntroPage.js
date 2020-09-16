@@ -15,7 +15,7 @@ const IntroPage = ({ checker, matomoTrackEvent, topic }) => {
 
   const { intro, text } = topic;
 
-  const introComponentPath = intro || "shared/DynamicSTTRIntro";
+  const introComponentPath = intro || "shared/DynamicIMTRIntro";
 
   const Intro = React.lazy(() => import(`../intros/${introComponentPath}`));
 

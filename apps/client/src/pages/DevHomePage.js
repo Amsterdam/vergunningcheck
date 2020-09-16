@@ -41,7 +41,7 @@ const DevHomePage = () => {
         </tr>
         <tbody>
           {topics
-            .filter(({ hasSTTR }) => !hasSTTR) // only show olo / redir-olo topics
+            .filter(({ hasIMTR }) => !hasIMTR) // only show olo / redir-olo topics
             .map(({ slug, name, redirectToOlo }) => (
               <tr key={slug}>
                 <td>
@@ -54,28 +54,28 @@ const DevHomePage = () => {
             ))}
           {topicsJson.map((apiConfig) => {
             return apiConfig.map((apiTopic) => {
-              const sttrTopic = topics.find(
+              const imtrTopic = topics.find(
                 (topic) => topic.slug === apiTopic.slug
               );
 
-              const title = sttrTopic
-                ? sttrTopic.name
+              const title = imtrTopic
+                ? imtrTopic.name
                 : apiTopic
                 ? apiTopic.name || apiTopic.slug
                 : "[ERROR]";
               return (
                 <tr>
                   <td>
-                    {sttrTopic && !sttrTopic.hasSTTR ? (
+                    {imtrTopic && !imtrTopic.hasIMTR ? (
                       <>
                         {title}
                         <br />
                         <Alert level="attention">
-                          STTR file found for <strong>{sttrTopic.name}</strong>,
-                          but we can't load '<strong>{sttrTopic.slug}</strong>'
+                          IMTR file found for <strong>{imtrTopic.name}</strong>,
+                          but we can't load '<strong>{imtrTopic.slug}</strong>'
                           because it's configured to be{" "}
                           <strong>
-                            {sttrTopic.redirectToOlo ? "redirectToOlo" : "olo"}
+                            {imtrTopic.redirectToOlo ? "redirectToOlo" : "olo"}
                             -flow
                           </strong>
                           .
@@ -85,7 +85,7 @@ const DevHomePage = () => {
                       <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
                     )}
                   </td>
-                  <td>{sttrTopic ? "configured" : "dynamic"}</td>
+                  <td>{imtrTopic ? "configured" : "dynamic"}</td>
                   <td>{apiTopic.path.split("/")[0]}</td>
                   <td>
                     <span

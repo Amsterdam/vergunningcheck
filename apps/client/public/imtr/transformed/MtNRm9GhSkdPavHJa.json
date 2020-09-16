@@ -1,0 +1,352 @@
+{
+  "permits": [
+    {
+      "version": 1,
+      "decisions": {
+        "_09aa10ba-7815-4e1c-92e6-39a1e202196d": {
+          "requiredInputs": ["#input__92107c8a-c42a-4991-9b2f-641b1c4b593b"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_5d88279e-05b6-4612-aaa8-4da6fbe4f402": {
+          "requiredInputs": ["#input__71fce1ff-c6bf-4601-aedb-5581f1183cc5"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c1dfcf49-c51c-4d1a-a912-8304463bd77f": {
+          "requiredInputs": ["#input__895ee2a4-f282-4181-924c-b1880686ba98"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_9a1adc9f-1f08-43a6-850e-66d765cf5fdd": {
+          "requiredInputs": ["#input__d819946c-59ec-42f5-8f45-fb0bc6b139d0"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_24f8bdac-d098-4b7b-94d3-185a2cd7baea": {
+          "requiredInputs": ["#input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f7a07267-87e2-4493-865c-99d4a5b71098": {
+          "requiredInputs": ["#input__c084dabb-6af6-4b5b-afde-838582c7a45b"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_a5598e85-0294-4ccf-8d59-5ca472124bf0": {
+          "requiredInputs": ["#input__11eb9026-dee0-412c-96f4-689407b813ce"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d356e70e-c3f8-4554-97e1-3064c1f23c73": {
+          "requiredInputs": ["#input__041564fd-7ab5-45b5-b5bb-96d531af5846"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_09aa10ba-7815-4e1c-92e6-39a1e202196d",
+            "#_5d88279e-05b6-4612-aaa8-4da6fbe4f402",
+            "#_c1dfcf49-c51c-4d1a-a912-8304463bd77f",
+            "#_9a1adc9f-1f08-43a6-850e-66d765cf5fdd",
+            "#_24f8bdac-d098-4b7b-94d3-185a2cd7baea",
+            "#_f7a07267-87e2-4493-865c-99d4a5b71098",
+            "#_a5598e85-0294-4ccf-8d59-5ca472124bf0",
+            "#_d356e70e-c3f8-4554-97e1-3064c1f23c73"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U hoeft voor de activiteit gebruiken geen toestemming aan te vragen.",
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__92107c8a-c42a-4991-9b2f-641b1c4b593b": {
+          "href": "#uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
+          "type": "boolean"
+        },
+        "input__71fce1ff-c6bf-4601-aedb-5581f1183cc5": {
+          "href": "#uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
+          "type": "boolean"
+        },
+        "input__895ee2a4-f282-4181-924c-b1880686ba98": {
+          "href": "#uitv__895ee2a4-f282-4181-924c-b1880686ba98",
+          "type": "boolean"
+        },
+        "input__d819946c-59ec-42f5-8f45-fb0bc6b139d0": {
+          "href": "#uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
+          "type": "boolean"
+        },
+        "input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c": {
+          "href": "#uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
+          "type": "boolean"
+        },
+        "input__c084dabb-6af6-4b5b-afde-838582c7a45b": {
+          "href": "#uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
+          "type": "boolean"
+        },
+        "input__11eb9026-dee0-412c-96f4-689407b813ce": {
+          "href": "#uitv__11eb9026-dee0-412c-96f4-689407b813ce",
+          "type": "boolean"
+        },
+        "input__041564fd-7ab5-45b5-b5bb-96d531af5846": {
+          "href": "#uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Aanbouw gebruiken",
+      "questions": [
+        {
+          "text": "Gaat u de aanbouw bouwen achter een tussenpand?",
+          "type": "boolean",
+          "id": "uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
+          "prio": 10
+        },
+        {
+          "description": "Dus als het hoofdgebouw de functie wonen heeft wordt dat ook de functie van de aanbouw. ",
+          "text": "Wordt de aanbouw gebruikt voor dezelfde functie als het hoofdgebouw?",
+          "type": "boolean",
+          "id": "uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
+          "prio": 20
+        },
+        {
+          "description": "![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/aanbouw_recht.png)\n\n![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__depijp___popup_diepte_van_de_aanbouw_--_versprongen.png)\n\n",
+          "text": "Wordt de aanbouw dieper dan 2,5 m uit de achtergevel van het hoofdgebouw?",
+          "type": "boolean",
+          "id": "uitv__895ee2a4-f282-4181-924c-b1880686ba98",
+          "prio": 30
+        },
+        {
+          "text": "Wordt de aanbouw hoger dan 5 m?",
+          "type": "boolean",
+          "id": "uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
+          "prio": 40
+        },
+        {
+          "description": "![0,3 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__max__0_3_m_hoger_dan_de_vloer_van_de_2e_bouwlaag.png)",
+          "text": "Wordt de aanbouw hoger dan 0,3m boven de scheidingsconstructie van de 2e bouwlaag?",
+          "type": "boolean",
+          "id": "uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
+          "prio": 50
+        },
+        {
+          "text": "Wordt de aanbouw hoger dan het hoofdgebouw?",
+          "type": "boolean",
+          "id": "uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
+          "prio": 60
+        },
+        {
+          "text": "Gaat u met de aanbouw meer dan 50% van het perceel bebouwen dat binnen de bestemming &#39;tuin&#39;?",
+          "type": "boolean",
+          "id": "uitv__11eb9026-dee0-412c-96f4-689407b813ce",
+          "prio": 70
+        },
+        {
+          "text": "Krijgt de aanbouw een groen dak met een waterbergend vermogen van ten minste 60 mm?",
+          "type": "boolean",
+          "id": "uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
+          "prio": 80
+        }
+      ]
+    }
+  ],
+  "slug": "MtNRm9GhSkdPavHJa"
+}
