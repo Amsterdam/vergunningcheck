@@ -6,9 +6,9 @@ import { Olo } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
-import ContactConclusion from "./Conclusion/ContactConclusion";
-import NeedPermit from "./Conclusion/NeedPermit";
-import PermitFree from "./Conclusion/PermitFree";
+import { ContactConclusion } from "./Conclusion/ContactConclusion";
+import { NeedPermit } from "./Conclusion/NeedPermit";
+import { PermitFree } from "./Conclusion/PermitFree";
 import ContactSentence from "./ContactSentence";
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
