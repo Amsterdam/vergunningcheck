@@ -1,0 +1,51 @@
+{
+  "permits": [
+    {
+      "version": 2,
+      "decisions": {
+        "_04ce328b-b8ef-450a-838f-70605a77b6f3": {
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [],
+                "output": "\"Vergunningplicht\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_04ce328b-b8ef-450a-838f-70605a77b6f3"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__9dcdd252-fa5f-4374-9589-06bf3c32dc1b": {
+          "href": "#uitv__9dcdd252-fa5f-4374-9589-06bf3c32dc1b",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Ketentest - Boom kappen of snoeien",
+      "questions": [
+        {
+          "description": "Ook voor een dode boom heeft u een kapvergunning nodig",
+          "text": "Is de boom dood of levend?",
+          "type": "boolean",
+          "id": "uitv__9dcdd252-fa5f-4374-9589-06bf3c32dc1b",
+          "prio": 10
+        }
+      ]
+    }
+  ],
+  "slug": "ngXhhpGtPN9LKqbdG"
+}

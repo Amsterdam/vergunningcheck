@@ -1,0 +1,59 @@
+{
+  "permits": [
+    {
+      "version": 1,
+      "decisions": {
+        "_13a33147-a1fe-4f47-a051-a9bb4cbbd4c9": {
+          "requiredInputs": ["#input__797c410f-2502-4626-9b14-7be7c49b0751"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_13a33147-a1fe-4f47-a051-a9bb4cbbd4c9"],
+          "decisionTable": {
+            "rules": [
+              {
+                "description": "U wilt een dakkapel plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument.",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__797c410f-2502-4626-9b14-7be7c49b0751": {
+          "href": "#uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Dakkapel monument",
+      "questions": [
+        {
+          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "prio": 10,
+          "uuid": "monument"
+        }
+      ]
+    }
+  ],
+  "slug": "WKPxKx4YBJ5fqYSni"
+}

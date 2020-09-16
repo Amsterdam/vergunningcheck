@@ -7,15 +7,15 @@ import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
 import ListRenderer from "./renderers/ListRenderer";
 
-export default ({ source }) => (
+export default ({ eventLocation, source }) => (
   <ReactMarkdown
     source={source}
     renderers={{
-      paragraph: BlockRenderer,
+      image: Visual,
+      link: (props) => <LinkRenderer {...{ eventLocation, ...props }} />,
       list: ListRenderer,
       listItem: ListItem,
-      image: Visual,
-      link: LinkRenderer,
+      paragraph: BlockRenderer,
     }}
   />
 );

@@ -54,16 +54,16 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           <p>Node environment: {process.env.NODE_ENV}</p>
         </HiddenDebugInfo>
         {topic && (
-          <HiddenDebugInfo title="checkerContext.topic">
+          <HiddenDebugInfo title="topic from checkerContext">
             <p>slug: {topic.slug}</p>
             <p>redirectToOlo: {JSON.stringify(topic.redirectToOlo)}</p>
-            <p>hasSTTR: {JSON.stringify(topic.hasSTTR)}</p>
+            <p>hasIMTR: {JSON.stringify(topic.hasIMTR)}</p>
           </HiddenDebugInfo>
         )}
         {checkerContext.checker && (
-          <HiddenDebugInfo title="checkerContext.checker?.permits">
+          <HiddenDebugInfo title="permits from checkerContext">
             {checkerContext.checker?.permits?.map((permit: any) => (
-              <p>{permit.name}</p>
+              <p key={permit.name}>{permit.name}</p>
             ))}
           </HiddenDebugInfo>
         )}

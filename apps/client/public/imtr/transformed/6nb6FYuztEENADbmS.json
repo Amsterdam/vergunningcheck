@@ -1,0 +1,120 @@
+{
+  "permits": [
+    {
+      "version": 1,
+      "decisions": {
+        "_b00aaf6a-281b-446d-9708-ad553b0a0b57": {
+          "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_026f8646-b22d-4953-ac17-3412f5d55ca9": {
+          "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7265a954-f8b7-446f-9d8a-d3ca08dce5a7": {
+          "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_b00aaf6a-281b-446d-9708-ad553b0a0b57",
+            "#_026f8646-b22d-4953-ac17-3412f5d55ca9",
+            "#_7265a954-f8b7-446f-9d8a-d3ca08dce5a7"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Informatieplicht\"", "-", "-"],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": ["-", "\"Informatieplicht\"", "-"],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": ["-", "-", "\"Informatieplicht\""],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
+          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
+          "type": "boolean"
+        },
+        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
+          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
+          "type": "boolean"
+        },
+        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
+          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
+          "type": "boolean"
+        }
+      },
+      "name": "Conclusie Kennis Omgevingswet",
+      "questions": [
+        {
+          "description": "De Omgevingswet betreft alleen de fysieke leefomgeving. Bijv. bouwen, planologisch gebruik, milieu, natuur.",
+          "text": "Betreft de Omgevingswet ook persoonsgebonden gedragingen?",
+          "type": "boolean",
+          "id": "uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
+          "prio": 10
+        },
+        {
+          "description": "Op basis van het Besluit bouwwerken leefomgeving geldt alleen een schriftelijke meldingsplicht zoals we die nu ook kennen uit het Bouwbesluit 2012.",
+          "text": "Vervalt de omgevingsvergunning-plicht voor brandveilig gebruik?",
+          "type": "boolean",
+          "id": "uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
+          "prio": 20
+        },
+        {
+          "description": "Onder de Omgevingswet kunnen alle activiteiten los worden aangevraagd. Maar een werkzaamheid mag pas worden uitgevoerd als alle benodigde vergunningen zijn verkregen.",
+          "text": "Vervalt de onlosmakelijkheid voor diverse activiteiten, zoals we die nu kennen?",
+          "type": "boolean",
+          "id": "uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
+          "prio": 30
+        }
+      ]
+    }
+  ],
+  "slug": "6nb6FYuztEENADbmS"
+}

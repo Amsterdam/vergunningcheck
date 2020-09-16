@@ -3,7 +3,7 @@ import React from "react";
 
 import { List, ListItem } from "../../atoms";
 import ContactSentence from "../../components/ContactSentence";
-import { eventNames } from "../../config/matomo";
+import { sections } from "../../config/matomo";
 import {
   INTRO_EXCEPTION_BULLETS,
   INTRO_USABLE_FOR_BULLETS,
@@ -12,9 +12,9 @@ import {
 } from "../../utils/test-ids";
 
 type Props = {
-  exceptions?: string[];
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
+  exceptions?: string[];
   showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
@@ -87,7 +87,7 @@ export default ({
           </List>
           {showContactInformation && (
             <Paragraph>
-              <ContactSentence eventName={eventNames.INTRO_EXTRAORDINARY} />
+              <ContactSentence eventName={sections.INTRO} />
             </Paragraph>
           )}
         </>
@@ -96,7 +96,7 @@ export default ({
       {exceptions.length === 0 && showContactInformation && (
         <Paragraph>
           <ContactSentence
-            eventName={eventNames.INTRO}
+            eventName={sections.INTRO}
             openingSentence="Heeft u vragen? Bel dan"
           />
         </Paragraph>

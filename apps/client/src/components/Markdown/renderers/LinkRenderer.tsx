@@ -1,16 +1,29 @@
 import React from "react";
 
-import { actions } from "../../../config/matomo";
+import { actions, eventNames } from "../../../config/matomo";
 import Link from "../../Link";
 
-type Props = {
+type ChildrenProps = {
+  props?: object;
+};
+
+type LinkRendererProps = {
+  children: Array<ChildrenProps>;
+  eventLocation: string;
   href: string;
 };
 
-const LinkRenderer: React.FC<Props> = ({ children, href }) => {
+const LinkRenderer: React.FC<LinkRendererProps> = ({
+  children,
+  eventLocation,
+  href,
+}) => {
   // Check if the link is using telephone protocol
   const url = new URL(href);
   const isPhoneLink = url.protocol === "tel:";
+
+  // Pass the text in link (eg: <a>text in link</a>) or `TEXT_LINK` as fallback
+  const { value = eventNames.TEXT_LINK } = children[0]?.props;
 
   /**
    * If it's not a phone link make sure we open in new tab and
@@ -21,13 +34,11 @@ const LinkRenderer: React.FC<Props> = ({ children, href }) => {
   const rel = isPhoneLink ? "" : "noopener noreferrer";
 
   // Setup event props
-  const eventName = `Markdown${isPhoneLink ? " - Telefoonnummer" : ""}`;
-  const action = isPhoneLink
-    ? actions.clickPhoneLink
-    : actions.clickExternalLink;
+  const action = isPhoneLink && actions.CLICK_PHONE_LINK;
+  const eventName = isPhoneLink ? eventLocation : `${value} - ${eventLocation}`;
 
   return (
-    <Link variant="inline" {...{ href, target, rel, eventName, action }}>
+    <Link variant="inline" {...{ action, eventName, href, rel, target }}>
       {children}
     </Link>
   );
