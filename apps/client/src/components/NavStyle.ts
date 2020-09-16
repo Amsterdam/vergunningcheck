@@ -1,7 +1,9 @@
 import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
-export const NavStyle = styled.div`
+import { NavProps } from "./Nav";
+
+export const NavStyle = styled.div<NavProps>`
   display: flex;
   height: 64px;
   margin: ${themeSpacing(5, 0, 4)};

@@ -58,7 +58,9 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         },
       ]);
 
-      resetChecker();
+      if (sttrFile) {
+        resetChecker();
+      }
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called on mount
