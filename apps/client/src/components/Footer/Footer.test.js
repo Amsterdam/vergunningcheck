@@ -7,6 +7,11 @@ import Footer from ".";
 
 Object.defineProperty(window, "matchMedia", matchMedia);
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: () => ({}),
+}));
+
 it("renders with text", () => {
   const { getByTestId } = render(<Footer />);
   expect(getByTestId(FOOTER)).toBeTruthy();

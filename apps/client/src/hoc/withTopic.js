@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Redirect, useLocation, useParams } from "react-router-dom";
 
 import { topics } from "../config";
+import { sections } from "../config/matomo";
 import { CheckerContext, SessionContext } from "../context";
 import NotFoundPage from "../pages/NotFoundPage";
 import RedirectPage from "../pages/RedirectPage";
@@ -21,7 +22,7 @@ const withTopic = (Component) => (props) => {
     if (!sessionContext[slug]) {
       sessionContext.setSessionData([
         slug,
-        { activeComponents: ["locationInput"], finishedComponents: [] },
+        { activeComponents: [sections.LOCATION_INPUT], finishedComponents: [] },
       ]);
     }
   });

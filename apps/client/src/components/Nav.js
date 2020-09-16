@@ -1,20 +1,15 @@
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { Button } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
-import { useRouteMatch } from "react-router-dom";
+import React from "react";
 
 import { PrevButton } from "../atoms";
-import { CheckerContext } from "../context";
-import withTracking from "../hoc/withTracking";
-import { getslug, routeConfig } from "../routes";
 import { NEXT_BUTTON } from "../utils/test-ids";
 import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
 
 const Nav = ({
   formEnds,
   nextText,
-  matomoTrackEvent,
   noMarginBottom,
   onGoToNext,
   onGoToPrev,
@@ -22,43 +17,12 @@ const Nav = ({
   showNext,
   showPrev,
 }) => {
-  const {
-    topic: { slug: name },
-  } = useContext(CheckerContext);
-  const { path } = useRouteMatch();
-  const route = routeConfig.find((route) => route.path === path);
-  const category = route.matomoPage || route.name;
-
-  const handleNextClick = (e) => {
-    const action = formEnds
-      ? getslug(nextText.toLowerCase())
-      : "form-volgende-knop";
-
-    matomoTrackEvent({
-      category,
-      action,
-      name,
-    });
-
-    if (onGoToNext) onGoToNext(e);
-  };
-
-  const handlePrevClick = (e) => {
-    matomoTrackEvent({
-      category,
-      action: "form-vorige-knop",
-      name,
-    });
-
-    if (onGoToPrev) onGoToPrev(e);
-  };
-
   return (
     <NavStyle noMarginBottom={noMarginBottom}>
       {showNext && (
         <Button
           data-testid={NEXT_BUTTON}
-          onClick={handleNextClick}
+          onClick={onGoToNext}
           style={{ marginRight: formEnds ? 10 : 25 }}
           taskflow={!formEnds}
           type="submit"
@@ -68,7 +32,7 @@ const Nav = ({
         </Button>
       )}
       {showPrev && (
-        <PrevButton onClick={handlePrevClick}>
+        <PrevButton onClick={onGoToPrev}>
           <IconContainer>
             <IconLeft size={14}>
               <ChevronLeft />
@@ -102,4 +66,4 @@ Nav.propTypes = {
   style: PropTypes.object,
 };
 
-export default withTracking(Nav);
+export default Nav;

@@ -1,19 +1,22 @@
 import { setTag } from "@sentry/browser";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
+import { eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
+import { removeQuotes } from "../utils/index";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 const Questions = ({
   checker,
-  topic: { slug },
-  setFinishedState,
-  setActiveState,
   goToQuestion,
   isActive,
   isFinished,
+  matomoTrackEvent,
+  setActiveState,
+  setFinishedState,
+  topic: { name, slug },
 }) => {
   const sessionContext = useContext(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
@@ -21,9 +24,19 @@ const Questions = ({
   const { answers, questionIndex } = sessionContext[slug];
 
   const goToConclusion = useCallback(() => {
-    setActiveState("conclusion");
-    setFinishedState(["questions", "conclusion"], true);
-  }, [setActiveState, setFinishedState]);
+    setActiveState(sections.CONCLUSION);
+    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], true);
+    matomoTrackEvent({
+      action: checker.stack[questionIndex].text,
+      name: eventNames.GOTO_CONCLUSION,
+    });
+  }, [
+    checker.stack,
+    matomoTrackEvent,
+    questionIndex,
+    setActiveState,
+    setFinishedState,
+  ]);
 
   const onQuestionNext = useCallback(() => {
     const question = checker.stack[questionIndex];
@@ -59,8 +72,8 @@ const Questions = ({
       goToQuestion("prev");
     } else {
       // Go to Location Result, because the user was at the first question
-      setActiveState("locationResult");
-      setFinishedState(["locationResult"], false);
+      setActiveState(sections.LOCATION_RESULT);
+      setFinishedState(sections.LOCATION_RESULT, false);
     }
   };
 
@@ -68,9 +81,9 @@ const Questions = ({
     (questionId) => {
       // Checker rewinding also needs to work when you already have a conlusion
       // Go to the specific question in the stack
-      setActiveState("questions");
-      setFinishedState(["conclusion", "questions"], false);
-      setFinishedState("locationResult", true);
+      setActiveState(sections.QUESTIONS);
+      setFinishedState([sections.CONCLUSION, sections.QUESTIONS], false);
+      setFinishedState(sections.LOCATION_RESULT, true);
 
       goToQuestion(questionId);
     },
@@ -89,7 +102,7 @@ const Questions = ({
           !q.options && booleanOptions.find((o) => o.value === q.answer);
         const userAnswer = q.options ? q.answer : booleanAnswers?.label;
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive("questions");
+          q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
 
         // Skip question if already answered
         if (isCurrentQuestion && userAnswer) {
@@ -120,6 +133,18 @@ const Questions = ({
     }
   }, [checker, contactConclusion, sessionContext, setContactConclusion, slug]);
 
+  const isQuestionSectionActive = isActive(sections.QUESTIONS);
+
+  useEffect(() => {
+    // Track active questions
+    if (isQuestionSectionActive) {
+      matomoTrackEvent({
+        action: checker.stack[questionIndex].text,
+        name: eventNames.ACTIVE_QUESTION,
+      });
+    }
+  }, [checker.stack, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
+
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
@@ -146,21 +171,36 @@ const Questions = ({
 
   const saveAnswer = (value) => {
     // This makes sure when a question is changed that a possible visible Conclusion is removed
-    if (isFinished("questions")) {
-      setFinishedState("questions", false);
+    if (isFinished(sections.QUESTIONS)) {
+      setFinishedState(sections.QUESTIONS, false);
     }
 
     const question = checker.stack[questionIndex];
-    // Provide the user answers to the `sttr-checker`
+
+    let userAnswer, userAnswerLabel;
+    // List question
     if (question.options && value !== undefined) {
-      setTag(question.text, value);
-      question.setAnswer(value);
+      userAnswer = value;
+      userAnswerLabel = removeQuotes(value);
     }
+    // Boolean question
     if (!question.options && value) {
       const responseObj = booleanOptions.find((o) => o.formValue === value);
-      setTag(question.text, responseObj.label);
-      question.setAnswer(responseObj.value);
+      userAnswer = responseObj.value;
+      userAnswerLabel = responseObj.label;
     }
+
+    // Handle the given answer
+    question.setAnswer(userAnswer);
+
+    // Store in Sentry
+    setTag(question.text, userAnswerLabel);
+
+    matomoTrackEvent({
+      action: question.text,
+      category: name,
+      name: `${eventNames.ANSWERED_WITH} - ${userAnswerLabel}`,
+    });
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
     // By rewinding, we're forcing the stack to update
@@ -206,7 +246,7 @@ const Questions = ({
 
         // Define if question is the current one
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive("questions");
+          q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
 
         // Hide unanswered questions (eg: on browser refresh)
         if (!isCurrentQuestion && !userAnswer) {
