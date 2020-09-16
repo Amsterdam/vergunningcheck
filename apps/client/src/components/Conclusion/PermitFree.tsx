@@ -18,9 +18,9 @@ export const PermitFree: React.FC<
     <HideForPrint>
       {!isIE && !isMobile && (
         <PrintButton
-          variant="textButton"
-          onClick={handlePrintButton}
           marginTop={contactConclusion && 5}
+          onClick={handlePrintButton}
+          variant="textButton"
         >
           Conclusie opslaan
         </PrintButton>

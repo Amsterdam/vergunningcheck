@@ -72,20 +72,20 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         U bent klaar met de vergunningcheck. Dit is de uitkomst:
       </Paragraph>
 
-      {needsPermit && !contactConclusion && (
-        <NeedPermit
-          handlePrintButton={handlePrintButton}
-          handlePermitButton={handlePermitButton}
-        />
-      )}
-      {!needsPermit && !contactConclusion && (
-        <PermitFree handlePrintButton={handlePrintButton} />
-      )}
       {contactConclusion && (
         <ContactConclusion
           contactConclusion={contactConclusion}
           handlePrintButton={handlePrintButton}
         />
+      )}
+      {!contactConclusion && needsPermit && (
+        <NeedPermit
+          handlePermitButton={handlePermitButton}
+          handlePrintButton={handlePrintButton}
+        />
+      )}
+      {!contactConclusion && !needsPermit && (
+        <PermitFree handlePrintButton={handlePrintButton} />
       )}
 
       <PrintOnly withBorder avoidPageBreak>
