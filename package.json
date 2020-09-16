@@ -21,7 +21,7 @@
     "imtr": "npm run imtr:fetch && npm run imtr:transform",
     "imtr:fetch": "deno run --unstable --allow-read --allow-write --allow-env --allow-net ./scripts/imtr/src/main.ts fetch --dir=apps/client",
     "imtr:transform": "deno run --unstable --allow-write --allow-read ./scripts/imtr/src/main.ts transform --dir=apps/client",
-    "prepare-release": "npm i && npm run back-merge && git checkout develop && npm run imtr && echo '\n\nPlease commit changes and run \"npm run release\".\n'",
+    "prepare-release": "npm i && npm run back-merge && git checkout develop && npm run imtr && echo '\n\nPlease commit your changes, then push your changed and then run \"npm run release\".\n'",
     "release": "git checkout release && git pull && cli-confirm \"Are you sure you want to merge develop into release? (yN)\" && git merge origin/develop && git push",
     "changelog": "git checkout release && git pull && lerna-changelog",
     "publish": "git checkout release && git pull && lerna publish"
