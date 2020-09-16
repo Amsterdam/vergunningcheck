@@ -1,11 +1,10 @@
-import { makeRunWithLimit, assert, emptyDir, exists, join } from './deps.ts';
-
+import { emptyDir, exists, join, makeRunWithLimit } from './deps.ts';
+import { ActivitiesResponse, APIConfig, TopicInputType } from "./types.ts";
 import { writeJson } from "./util.ts";
-import { APIConfig, ActivitiesResponse, TopicInputType } from "./types.ts";
 
 type Props = {
-  dir: string;
   config: string;
+  dir: string;
   maxConnections: number;
 }
 

@@ -4,8 +4,8 @@ export type PermitName = string;
 export type PermitConfig = Map<PermitId, PermitName>;
 
 export type APIConfig = {
-  outputDir: string;
   host: string;
+  outputDir: string;
   topics: { [key: string]: string[] };
 };
 
@@ -19,8 +19,8 @@ export type ActivitiesResponse = {
   error?: string;
 };
 export type PermitResponse = {
-  version: number;
   sttr: string;
+  version: number;
 };
 
 export type TopicInputType = {
@@ -30,8 +30,8 @@ export type TopicInputType = {
 };
 
 export type TopicOutputType = {
+  name?: string;
+  path: string;
   permits: string[];
   slug: string;
-  path: string;
-  name?: string;
 };

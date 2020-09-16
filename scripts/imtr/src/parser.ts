@@ -1,6 +1,6 @@
 import { DomHandler, Parser } from "./deps.ts";
 
-const ENABLE_LOGGING = true;
+const ENABLE_LOGGING = false;
 
 // TODO: todo implement consistent hashing for id's
 // import { createHash } from "https://deno.land/std/hash/mod.ts";

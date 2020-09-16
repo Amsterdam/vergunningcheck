@@ -1,5 +1,4 @@
 import { join, emptyDir } from "./deps.ts";
-
 import { readJson, writeJson } from "./util.ts";
 import imtrbuild from "./parser.ts";
 
@@ -11,9 +10,8 @@ import {
 } from "./types.ts";
 
 type Props = {
-  dir: string;
   config: string;
-  maxConnections: number;
+  dir: string;
 }
 
 export default async (argv: Props) => {
