@@ -1,23 +1,28 @@
 import { Close } from "@datapunt/asc-assets";
-import {
-  Modal as BaseModal,
-  Button,
-  Divider,
-  Heading,
-  Icon,
-  TopBar,
-} from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
+import { Button, Divider, Icon, TopBar } from "@datapunt/asc-ui";
 import React, { useState } from "react";
-import styled from "styled-components";
 
-const ModalBlock = styled.div`
-  display: block;
-  padding: 0 15px;
-  margin: 15px 0;
-`;
+import { ModalBlock, ModalContent, ModalHeading, ModalUI } from "./ModalStyles";
 
-const Modal = ({
+// Copied from ASC-UI - unfortunately we cannot import these props yet
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "primaryInverted"
+  | "textButton"
+  | "blank"
+  | "application";
+
+type ModalProps = {
+  buttonText: React.ReactNode;
+  buttonVariant: ButtonVariant;
+  children: React.ReactNode;
+  heading: string;
+  onClick?: Function;
+};
+
+const Modal: React.FC<ModalProps> = ({
   buttonText,
   buttonVariant = "primary",
   children,
@@ -39,44 +44,42 @@ const Modal = ({
       <Button onClick={handleClick} type="button" variant={buttonVariant}>
         {buttonText}
       </Button>
-      <BaseModal
-        aria-labelledby={heading}
+
+      <ModalUI
         aria-describedby={heading}
-        open={isOpen}
+        aria-labelledby={heading}
         onClose={() => {
           toggleModal(!isOpen);
         }}
-        style={{ top: "34%" }}
+        open={isOpen}
       >
-        <div style={{ minHeight: "50vh" }}>
+        <ModalContent>
           <TopBar>
-            <Heading forwardedAs="h4" style={{ flexGrow: 1 }}>
+            <ModalHeading forwardedAs="h4">
               {heading}
               <Button
-                type="button"
-                size={30}
-                variant="blank"
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent) => {
                   e.stopPropagation();
                   toggleModal(!isOpen);
                 }}
+                size={30}
+                type="button"
+                variant="blank"
               >
                 <Icon size={20}>
                   <Close />
                 </Icon>
               </Button>
-            </Heading>
+            </ModalHeading>
           </TopBar>
+
           <Divider />
+
           <ModalBlock>{children}</ModalBlock>
-        </div>
-      </BaseModal>
+        </ModalContent>
+      </ModalUI>
     </>
   );
-};
-
-Modal.propTypes = {
-  modalText: PropTypes.string,
 };
 
 export default Modal;
