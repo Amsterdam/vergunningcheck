@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import { ComponentWrapper } from "../atoms";
 import { requiredFieldText } from "../config";
-import { eventNames } from "../config/matomo";
+import { actions, eventNames } from "../config/matomo";
+import withTracking from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers from "./Answers";
 import ConclusionAlert from "./ConclusionAlert";
@@ -27,12 +29,13 @@ export const booleanOptions = [
 
 const Question = ({
   question: {
-    id: questionId,
-    type: questionType,
-    options: questionAnswers,
     answer: currentAnswer,
     description,
+    id: questionId,
     longDescription,
+    options: questionAnswers,
+    text: questionTitle,
+    type: questionType,
   },
   userAnswer,
   className,
@@ -44,10 +47,12 @@ const Question = ({
   shouldGoToConlusion,
   showNext,
   showPrev,
+  matomoTrackEvent,
   onGoToPrev,
   questionIndex,
   questionNeedsContactExit,
   showConclusionAlert,
+  // @TODO: sort this abc when nobody else is editing this file
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -102,6 +107,13 @@ const Question = ({
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
+  const handleModalButton = () => {
+    matomoTrackEvent({
+      action: actions.OPEN_QUESTION_DESCRIPTION_MODAL,
+      name: questionTitle,
+    });
+  };
+
   return (
     <Form
       className={className}
@@ -112,7 +124,20 @@ const Question = ({
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
       )}
-      {longDescription && <Modal modalText={longDescription} />}
+      {longDescription && (
+        <ComponentWrapper>
+          <Modal
+            buttonText="Toelichting"
+            heading="Toelichting"
+            onClick={handleModalButton}
+          >
+            <Markdown
+              eventLocation={eventNames.LONG_DESCRIPTION}
+              source={longDescription}
+            />
+          </Modal>
+        </ComponentWrapper>
+      )}
       <Answers
         questionId={questionId}
         onChange={handleChange}
@@ -168,4 +193,4 @@ Question.propTypes = {
   userAnswer: PropTypes.string,
 };
 
-export default Question;
+export default withTracking(Question);

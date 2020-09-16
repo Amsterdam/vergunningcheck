@@ -22,6 +22,7 @@ export const actions = {
   CLICK_PHONE_LINK: "14 020 bellen",
   DOWNLOAD: "download",
   EDIT_QUESTION: "wijzig vraag",
+  OPEN_QUESTION_DESCRIPTION_MODAL: "open lange toelichting modal",
   SUBMIT_LOCATION: "locatie invoer",
 };
 

@@ -1,5 +1,5 @@
-import { Button, Heading, Modal, Paragraph } from "@datapunt/asc-ui";
-import React, { Fragment, useState } from "react";
+import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
+import React, { Fragment } from "react";
 import { isIE, isMobile } from "react-device-detect";
 
 import {
@@ -15,10 +15,13 @@ import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
+import Modal from "./Modal";
 
-const Conclusion = ({ checker, matomoTrackEvent, resetChecker }) => {
-  const [modalShown, toggleModal] = useState(false);
-
+const Conclusion = ({
+  checker,
+  matomoTrackEvent,
+  // resetChecker
+}) => {
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
@@ -59,13 +62,11 @@ const Conclusion = ({ checker, matomoTrackEvent, resetChecker }) => {
     ? [contactConclusion]
     : conclusions;
 
-  const handleAnotherCheck = () => {
+  const handleModalButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       name: eventNames.START_NEW_CHECK,
     });
-
-    toggleModal(!modalShown);
   };
 
   const handlePermitButton = (e) => {
@@ -88,7 +89,6 @@ const Conclusion = ({ checker, matomoTrackEvent, resetChecker }) => {
 
   return (
     <>
-      {modalShown && <Modal></Modal>}
       <Paragraph>
         Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
         toepassing is.
@@ -126,9 +126,13 @@ const Conclusion = ({ checker, matomoTrackEvent, resetChecker }) => {
           </ComponentWrapper>
         )}
 
-        <Button type="button" color="primary" onClick={handleAnotherCheck}>
-          Nog een vergunningcheck doen
-        </Button>
+        <Modal
+          buttonText="Nog een vergunningcheck doen"
+          heading="Kies een vergunningcheck"
+          onClick={handleModalButton}
+        >
+          Hier komen checkers
+        </Modal>
       </HideForPrint>
 
       <PrintOnly withBorder avoidPageBreak>

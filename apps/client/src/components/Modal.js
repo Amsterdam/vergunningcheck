@@ -11,47 +11,54 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { eventNames } from "../config/matomo";
-import Markdown from "./Markdown";
-
 const ModalBlock = styled.div`
   display: block;
   padding: 0 15px;
   margin: 15px 0;
 `;
 
-const Modal = ({ modalText }) => {
-  const [explanationShown, toggleExplanationShown] = useState(false);
+const Modal = ({
+  buttonText,
+  buttonVariant = "primary",
+  children,
+  heading,
+  onClick,
+}) => {
+  const [isOpen, toggleModal] = useState(false);
+
+  const handleClick = () => {
+    toggleModal(!isOpen);
+
+    if (onClick) {
+      onClick();
+    }
+  };
 
   return (
-    <div style={{ marginBottom: 24 }}>
-      <Button
-        type="button"
-        color="primary"
-        onClick={() => toggleExplanationShown(!explanationShown)}
-      >
-        Toelichting
+    <>
+      <Button onClick={handleClick} type="button" variant={buttonVariant}>
+        {buttonText}
       </Button>
       <BaseModal
-        style={{ top: "34%" }}
-        aria-labelledby="Toelichting"
-        aria-describedby="Toelichting"
-        open={explanationShown}
+        aria-labelledby={heading}
+        aria-describedby={heading}
+        open={isOpen}
         onClose={() => {
-          toggleExplanationShown(!explanationShown);
+          toggleModal(!isOpen);
         }}
+        style={{ top: "34%" }}
       >
         <div style={{ minHeight: "50vh" }}>
           <TopBar>
             <Heading forwardedAs="h4" style={{ flexGrow: 1 }}>
-              Toelichting
+              {heading}
               <Button
                 type="button"
                 size={30}
                 variant="blank"
                 onClick={(e) => {
                   e.stopPropagation();
-                  toggleExplanationShown(!explanationShown);
+                  toggleModal(!isOpen);
                 }}
               >
                 <Icon size={20}>
@@ -61,15 +68,10 @@ const Modal = ({ modalText }) => {
             </Heading>
           </TopBar>
           <Divider />
-          <ModalBlock>
-            <Markdown
-              eventLocation={eventNames.LONG_DESCRIPTION}
-              source={modalText}
-            />
-          </ModalBlock>
+          <ModalBlock>{children}</ModalBlock>
         </div>
       </BaseModal>
-    </div>
+    </>
   );
 };
 
