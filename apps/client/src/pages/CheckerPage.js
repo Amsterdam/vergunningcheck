@@ -58,7 +58,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         },
       ]);
 
-      if (sttrFile) {
+      if (hasIMTR) {
         resetChecker();
       }
     }
