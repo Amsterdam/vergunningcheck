@@ -60,3 +60,18 @@ export const uniqBy = (arr, predicate) => {
 
   return [...pickedObjects];
 };
+
+/**
+ *
+ * Scroll to `ref` in page. This function calculates the distance between
+ * the top of the window and the top of the element and scrolls to it.
+ *
+ * @param {object} ref - reference to an element created by React.useRef()
+ * @param {number} offset - pass an offset to reduce from the total distance
+ */
+export const scrollToRef = (ref, offset = 0) =>
+  ref &&
+  window.scrollTo(
+    0,
+    ref.current.getBoundingClientRect().top + window.scrollY - offset
+  );
