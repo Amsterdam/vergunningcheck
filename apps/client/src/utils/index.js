@@ -71,10 +71,7 @@ export const uniqBy = (arr, predicate) => {
  */
 export const scrollToRef = (ref, offset = 0) =>
   ref &&
-  // Wrap in a timeout to prevent a miscalculation in case of collapsing elements
-  setTimeout(() => {
-    window.scrollTo(
-      0,
-      ref.current.getBoundingClientRect().top + window.scrollY - offset
-    );
-  }, 0);
+  window.scrollTo(
+    0,
+    ref.current.getBoundingClientRect().top + window.scrollY - offset
+  );
