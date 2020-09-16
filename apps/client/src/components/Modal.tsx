@@ -2,6 +2,7 @@ import { Close } from "@datapunt/asc-assets";
 import { Button, Divider, Icon, TopBar } from "@datapunt/asc-ui";
 import React, { useState } from "react";
 
+import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
 import { ModalBlock, ModalContent, ModalHeading, ModalUI } from "./ModalStyles";
 
 // Copied from ASC-UI - unfortunately we cannot import these props yet
@@ -41,13 +42,19 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <Button onClick={handleClick} type="button" variant={buttonVariant}>
+      <Button
+        data-testid={MODAL_BUTTON}
+        onClick={handleClick}
+        type="button"
+        variant={buttonVariant}
+      >
         {buttonText}
       </Button>
 
       <ModalUI
         aria-describedby={heading}
         aria-labelledby={heading}
+        data-testid={MODAL}
         onClose={() => {
           toggleModal(!isOpen);
         }}
@@ -58,6 +65,7 @@ const Modal: React.FC<ModalProps> = ({
             <ModalHeading forwardedAs="h4">
               {heading}
               <Button
+                data-testid={MODAL_CLOSE}
                 onClick={(e: React.MouseEvent) => {
                   e.stopPropagation();
                   toggleModal(!isOpen);

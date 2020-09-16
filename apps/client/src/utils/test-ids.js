@@ -16,3 +16,7 @@ export const INTRO = "intro";
 
 export const STEPBYSTEPNAVIGATION = "step-by-step-navigation";
 export const STEPBYSTEPITEM = "step-by-step-item";
+
+export const MODAL = "modal";
+export const MODAL_BUTTON = "modal-button";
+export const MODAL_CLOSE = "modal-close";
