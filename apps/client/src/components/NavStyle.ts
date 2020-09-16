@@ -1,9 +1,7 @@
 import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
-type NavProps = {
-  noMarginBottom?: boolean;
-};
+import { NavProps } from "./Nav";
 
 export const NavStyle = styled.div<NavProps>`
   display: flex;
