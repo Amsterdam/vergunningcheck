@@ -3,7 +3,7 @@
     {
       "version": 1,
       "decisions": {
-        "_d73cf114-ffe3-4194-82b9-67afeb3b52d0": {
+        "_ec5e6258-5d23-421b-ae07-a001cd9dc8f4": {
           "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
           "decisionTable": {
             "rules": [
@@ -23,16 +23,14 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_d73cf114-ffe3-4194-82b9-67afeb3b52d0"],
+          "requiredDecisions": ["#_ec5e6258-5d23-421b-ae07-a001cd9dc8f4"],
           "decisionTable": {
             "rules": [
               {
-                "description": "Please contact Gemeente.",
                 "inputs": ["\"NeemContactOpMet\""],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "description": "You need a permit!",
                 "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },

@@ -3,7 +3,7 @@
     {
       "version": 7,
       "decisions": {
-        "_14fecdb7-8a98-409a-a7c6-97d4d860abb1": {
+        "_1331137b-c774-4dce-a9d2-165d0728e042": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -46,7 +46,7 @@
             ]
           }
         },
-        "_726c4a04-3912-40b1-be03-1831b90f6946": {
+        "_c0fe3561-5942-4401-b3df-3bac482a3cbb": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -89,7 +89,7 @@
             ]
           }
         },
-        "_a9e60d49-71c8-4d36-b211-506d85a9e4ff": {
+        "_07fe4ccd-2f6a-44c2-8d39-c1dd27731ea2": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -145,7 +145,7 @@
             ]
           }
         },
-        "_f8c7ec28-d99b-4420-b257-3c8cfe0d294a": {
+        "_ad98ab5f-7b06-42e1-bf30-a6381ac33ca4": {
           "requiredInputs": [
             "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
             "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
@@ -203,35 +203,30 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_14fecdb7-8a98-409a-a7c6-97d4d860abb1",
-            "#_726c4a04-3912-40b1-be03-1831b90f6946",
-            "#_a9e60d49-71c8-4d36-b211-506d85a9e4ff",
-            "#_f8c7ec28-d99b-4420-b257-3c8cfe0d294a"
+            "#_1331137b-c774-4dce-a9d2-165d0728e042",
+            "#_c0fe3561-5942-4401-b3df-3bac482a3cbb",
+            "#_07fe4ccd-2f6a-44c2-8d39-c1dd27731ea2",
+            "#_ad98ab5f-7b06-42e1-bf30-a6381ac33ca4"
           ],
           "decisionTable": {
             "rules": [
               {
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["\"Vergunningplicht\"", "-", "-", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U hebt geen vergunning nodig voor het onderdeel monument.",
                 "inputs": [
                   "\"no hit\"",
                   "\"no hit\"",

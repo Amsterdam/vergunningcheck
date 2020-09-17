@@ -1,9 +1,9 @@
 {
   "permits": [
     {
-      "version": 4,
+      "version": 7,
       "decisions": {
-        "_27064f3c-7614-45c4-9e94-75741194cd85": {
+        "_9f3a65cf-e924-46cc-be2f-c0c5c4f85376": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
@@ -31,7 +31,7 @@
             ]
           }
         },
-        "_d973cdb3-c01c-4657-a3eb-6db688677787": {
+        "_b6e1f9f7-ea44-4ede-a510-e1458fca90ad": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
@@ -72,23 +72,20 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_27064f3c-7614-45c4-9e94-75741194cd85",
-            "#_d973cdb3-c01c-4657-a3eb-6db688677787"
+            "#_9f3a65cf-e924-46cc-be2f-c0c5c4f85376",
+            "#_b6e1f9f7-ea44-4ede-a510-e1458fca90ad"
           ],
           "decisionTable": {
             "rules": [
               {
-                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["\"Vergunningplicht\"", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument.",
                 "inputs": ["\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }

@@ -18,7 +18,7 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "back-merge": "git fetch && git checkout master && git merge && git checkout release && git merge && git merge master && git push && git checkout develop && git merge && git merge release && git push",
-    "imtr": "npm run imtr:preflight && npm run imtr:install && npm run imtr:fetch && npm run imtr:transform && imtr:postprocess",
+    "imtr": "npm run imtr:preflight && npm run imtr:install && npm run imtr:fetch && npm run imtr:transform && npm run imtr:postprocess",
     "imtr:preflight": "echo 'Check if deno is installed..\n' && command -v deno",
     "imtr:install": "deno cache --reload --lock=./scripts/imtr/lock.json ./scripts/imtr/src/deps.ts || :",
     "imtr:fetch": "deno run --unstable --allow-read --allow-write --allow-env --allow-net ./scripts/imtr/src/main.ts fetch --dir=apps/client",

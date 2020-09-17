@@ -1,26 +1,26 @@
 {
   "permits": [
     {
-      "version": 1,
+      "version": 3,
       "decisions": {
-        "_84341f8e-57de-42cb-865c-09bf586d68f4": {
+        "_d91ec5af-f144-45dd-941d-a5865f7cdb98": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
-            "#input__6341d4bf-6629-4305-b077-79dd11cd5b7c"
+            "#input_dbf957ae-3d1e-4713-8454-34406ca722c8"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
                   "\"Rijksmonument\"",
-                  "\"Nee, ik ga geen onderhoud doen\""
+                  "\"Ik ga een nieuw kozijn plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
                   "\"Gemeentelijk monument\"",
-                  "\"Nee, ik ga geen onderhoud doen\""
+                  "\"Ik ga een nieuw kozijn plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -29,24 +29,79 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Ja, ik ga onderhoud doen\""],
+                "inputs": [
+                  "-",
+                  "\"Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d122283d-e097-4c68-91d9-d01cf5bad8c9": {
+          "requiredInputs": [
+            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
+            "#input_dbf957ae-3d1e-4713-8454-34406ca722c8",
+            "#input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, het kozijn verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, het kozijn verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw kozijn plaatsen op een plek waar er eerst geen was.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
+                ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_84341f8e-57de-42cb-865c-09bf586d68f4"],
+          "requiredDecisions": [
+            "#_d91ec5af-f144-45dd-941d-a5865f7cdb98",
+            "#_d122283d-e097-4c68-91d9-d01cf5bad8c9"
+          ],
           "decisionTable": {
             "rules": [
               {
-                "description": "U wilt een kozijn plaatsen in een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
-                "inputs": ["\"Vergunningplicht\""],
+                "inputs": ["\"Vergunningplicht\"", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U hebt geen vergunning nodig voor het onderdeel monument.",
-                "inputs": ["\"no hit\""],
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }
             ]
@@ -58,8 +113,12 @@
           "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
           "type": "string"
         },
-        "input__6341d4bf-6629-4305-b077-79dd11cd5b7c": {
-          "href": "#uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
+        "input_dbf957ae-3d1e-4713-8454-34406ca722c8": {
+          "href": "#uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
+          "type": "string"
+        },
+        "input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2": {
+          "href": "#uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
           "type": "string"
         }
       },
@@ -80,16 +139,26 @@
           "uuid": "kozijn monument"
         },
         {
-          "description": "Bij onderhoud blijft het uiterlijk van het kozijn hetzelfde.\n\nDit is geen onderhoud:\n\n*   Het kozijn wordt groter of komt op een andere plek.\n*   De vorm van het kozijn wordt anders, bijvoorbeeld als u het materiaal verandert.\n*   De dikte van het kozijn wordt anders, bijvoorbeeld als u enkel glas door dubbel glas vervangt.\n*   Het materiaal van het kozijn verandert.\n*   De kleur wordt anders.",
-          "text": "Gaat u onderhoud doen?",
+          "text": "Gaat u een kozijn plaatsen of vernieuwen?",
           "options": [
-            "Ja, ik ga onderhoud doen",
-            "Nee, ik ga geen onderhoud doen"
+            "Ik ga een nieuw kozijn plaatsen op een plek waar er eerst geen was.",
+            "Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv__6341d4bf-6629-4305-b077-79dd11cd5b7c",
+          "id": "uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
           "prio": 20,
-          "uuid": "kozijn monument onderhoud"
+          "uuid": "kozijn - onderhoud1"
+        },
+        {
+          "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
+          "options": [
+            "Ja, het kozijn verandert.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
+          ],
+          "type": "string",
+          "id": "uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
+          "prio": 30,
+          "uuid": "kozijn - onderhoud2"
         }
       ]
     }

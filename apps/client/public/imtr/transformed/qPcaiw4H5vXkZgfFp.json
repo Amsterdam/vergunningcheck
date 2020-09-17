@@ -3,7 +3,7 @@
     {
       "version": 1,
       "decisions": {
-        "_5be0d74e-4682-4b44-bbf0-0c042dfcdb24": {
+        "_8b81095f-4b03-41cd-b1a3-5dd801d37658": {
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
@@ -23,7 +23,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_5be0d74e-4682-4b44-bbf0-0c042dfcdb24"],
+          "requiredDecisions": ["#_8b81095f-4b03-41cd-b1a3-5dd801d37658"],
           "decisionTable": {
             "rules": [
               {
@@ -31,7 +31,6 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U hoeft voor de activiteit werken bij een monument geen toestemming aan te vragen.",
                 "inputs": ["\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }
