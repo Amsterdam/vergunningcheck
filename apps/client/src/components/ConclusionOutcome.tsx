@@ -46,10 +46,7 @@ export const ConclusionOutcome: React.FC<Props> = ({
 
   return (
     <>
-      <Heading forwardedAs="h2">
-        {contactConclusion?.title || heading} voor "{topic?.name.toLowerCase()}
-        ".
-      </Heading>
+      <Heading forwardedAs="h2">{contactConclusion?.title || heading}.</Heading>
       {needsPermit && (
         <Paragraph>
           U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
@@ -62,11 +59,17 @@ export const ConclusionOutcome: React.FC<Props> = ({
         />
       )}
       <HideForPrint>
-        <ComponentWrapper marginBottom={10}>
-          <Button type="button" color="secondary" onClick={handlePermitButton}>
-            Vergunning aanvragen
-          </Button>
-        </ComponentWrapper>
+        {needsPermit && (
+          <ComponentWrapper marginBottom={10}>
+            <Button
+              type="button"
+              color="secondary"
+              onClick={handlePermitButton}
+            >
+              Vergunning aanvragen
+            </Button>
+          </ComponentWrapper>
+        )}
         {!isIE && !isMobile && (
           <PrintButton
             marginTop={contactConclusion && 5}
@@ -83,7 +86,15 @@ export const ConclusionOutcome: React.FC<Props> = ({
           <Paragraph>
             Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog
             meer aan moet denken als u gaat starten? Op onze pagina
-            <Link>omgevingsvergunning</Link> is alle informatie te vinden.
+            <Link
+              variant={"inline"}
+              href={
+                "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D#case_%7BC7581CB6-A3F4-4FCA-B631-C93EF03A108D%7D"
+              }
+            >
+              omgevingsvergunning
+            </Link>{" "}
+            is alle informatie te vinden.
           </Paragraph>
         </>
       )}

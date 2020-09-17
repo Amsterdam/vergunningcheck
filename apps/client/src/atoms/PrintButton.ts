@@ -9,6 +9,7 @@ type Props = {
 export default styled(Button)<Props>`
   align-self: flex-start;
   text-decoration: underline;
+  font-weight: 400;
   ${(props) =>
     css`
       margin-top: ${props.marginTop ? props.marginTop + "px" : themeSpacing(5)};
