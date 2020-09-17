@@ -16,7 +16,4 @@ export default styled(Button)<Props>`
         ? props.marginBottom + "px"
         : themeSpacing(5)};
     `}
-  @media print {
-    display: none;
-  }
 `;

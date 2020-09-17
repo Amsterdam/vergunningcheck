@@ -2,13 +2,9 @@ import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 import { Alert, PrintOnly } from "../atoms";
-import { Olo } from "../config";
-import { actions, eventNames } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
-import { ContactConclusion } from "./Conclusion/ContactConclusion";
-import { NeedPermit } from "./Conclusion/NeedPermit";
-import { PermitFree } from "./Conclusion/PermitFree";
+import { ConclusionOutcome } from "./ConclusionOutcome";
 import ContactSentence from "./ContactSentence";
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
@@ -48,45 +44,17 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
 
-  const handlePermitButton = (e) => {
-    e.preventDefault();
-    matomoTrackEvent({
-      action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
-    });
-    // Open OLO in new tab/window
-    window.open(Olo.home, "_blank");
-  };
-
-  const handlePrintButton = () => {
-    matomoTrackEvent({
-      action: actions.DOWNLOAD,
-      name: eventNames.SAVE_CONCLUSION,
-    });
-    window.print();
-  };
-
   return (
     <>
       <Paragraph>
         U bent klaar met de vergunningcheck. Dit is de uitkomst:
       </Paragraph>
 
-      {contactConclusion && (
-        <ContactConclusion
-          contactConclusion={contactConclusion}
-          handlePrintButton={handlePrintButton}
-        />
-      )}
-      {!contactConclusion && needsPermit && (
-        <NeedPermit
-          handlePermitButton={handlePermitButton}
-          handlePrintButton={handlePrintButton}
-        />
-      )}
-      {!contactConclusion && !needsPermit && (
-        <PermitFree handlePrintButton={handlePrintButton} />
-      )}
+      <ConclusionOutcome
+        contactConclusion={contactConclusion}
+        matomoTrackEvent={matomoTrackEvent}
+        needsPermit={!contactConclusion && needsPermit}
+      />
 
       <PrintOnly withBorder avoidPageBreak>
         <Alert
