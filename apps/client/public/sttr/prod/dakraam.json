@@ -2,7 +2,7 @@
   "id": "dakraam",
   "permits": [
     {
-      "version": 4,
+      "version": 7,
       "name": "Conclusie Het wijzigen van een monument bij een dakraam",
       "questions": [
         {
@@ -51,7 +51,7 @@
         }
       },
       "decisions": {
-        "_f6826dc4-8568-4a8b-989a-a2cea923e0fa": {
+        "_c689c8d7-a2bc-46f5-a4f4-e360f79dd447": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
@@ -79,7 +79,7 @@
             ]
           }
         },
-        "_95eb0bf5-7c8a-4b60-8239-c760d5b722c0": {
+        "_f6c79bf5-7e72-492d-b200-73156d0f04a1": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
@@ -120,8 +120,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_f6826dc4-8568-4a8b-989a-a2cea923e0fa",
-            "#_95eb0bf5-7c8a-4b60-8239-c760d5b722c0"
+            "#_c689c8d7-a2bc-46f5-a4f4-e360f79dd447",
+            "#_f6c79bf5-7e72-492d-b200-73156d0f04a1"
           ],
           "decisionTable": {
             "rules": [
@@ -138,7 +138,7 @@
               {
                 "inputs": ["\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }
@@ -146,7 +146,7 @@
       }
     },
     {
-      "version": 29,
+      "version": 37,
       "name": "Conclusie Dakraam bouwen",
       "questions": [
         {
@@ -164,28 +164,8 @@
             "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-          "prio": 20
-        },
-        {
-          "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
-          "options": [
-            "Ja, de vorm, de grootte of het profiel verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet."
-          ],
-          "type": "string",
-          "id": "uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-          "prio": 30
-        },
-        {
-          "text": "Gaat u een dakraam plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
           "id": "uitv_c60af738-8e05-4add-8f4a-9fd68b1f9161",
-          "prio": 40,
+          "prio": 20,
           "uuid": "dakraam - onderhoud1"
         },
         {
@@ -196,8 +176,28 @@
           ],
           "type": "string",
           "id": "uitv_579db16f-0e97-43e5-913c-29a9e8d82691",
-          "prio": 50,
+          "prio": 30,
           "uuid": "dakraam - onderhoud2"
+        },
+        {
+          "text": "Gaat u een dakraam plaatsen of vernieuwen?",
+          "options": [
+            "Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.",
+            "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
+          ],
+          "type": "string",
+          "id": "uitv_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+          "prio": 40
+        },
+        {
+          "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
+          "options": [
+            "Ja, de vorm, de grootte of het profiel verandert.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet."
+          ],
+          "type": "string",
+          "id": "uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+          "prio": 50
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
@@ -321,20 +321,20 @@
           "href": "#uitv__1403b7ef-97be-4d7e-9f41-7838d5833804",
           "type": "boolean"
         },
-        "input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d": {
-          "href": "#uitv_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-          "type": "string"
-        },
-        "input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2": {
-          "href": "#uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-          "type": "string"
-        },
         "input_c60af738-8e05-4add-8f4a-9fd68b1f9161": {
           "href": "#uitv_c60af738-8e05-4add-8f4a-9fd68b1f9161",
           "type": "string"
         },
         "input_579db16f-0e97-43e5-913c-29a9e8d82691": {
           "href": "#uitv_579db16f-0e97-43e5-913c-29a9e8d82691",
+          "type": "string"
+        },
+        "input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d": {
+          "href": "#uitv_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+          "type": "string"
+        },
+        "input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2": {
+          "href": "#uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
           "type": "string"
         },
         "input__db3e3c46-1efc-404a-8520-94974c5a1061": {
@@ -403,7 +403,7 @@
         }
       },
       "decisions": {
-        "_9aa1442f-7e78-426a-ae09-735564d954ab": {
+        "_059e6aee-df5f-4ced-9be8-902f49547403": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_c60af738-8e05-4add-8f4a-9fd68b1f9161"
@@ -431,42 +431,7 @@
             ]
           }
         },
-        "_379bc468-966e-4b75-9d2c-3313df9a9301": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_9c46fedf-2012-4b15-8966-49e606734046": {
+        "_469a9890-9f47-4b17-b336-f6c7b7dd4a32": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_c60af738-8e05-4add-8f4a-9fd68b1f9161",
@@ -505,8 +470,51 @@
             ]
           }
         },
-        "_eeae06d9-5f03-4acc-84ae-15dee35d488c": {
+        "_f13d7500-1ad7-437e-8b4e-eaed53d84ff2": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_469bbee8-61b8-42c9-97b4-6e713fcc9455": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
@@ -516,6 +524,7 @@
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   true,
@@ -524,7 +533,12 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
+                  "-",
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
@@ -534,6 +548,7 @@
               },
               {
                 "inputs": [
+                  "-",
                   "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
                   "-",
@@ -542,188 +557,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_75494d70-7d08-48e2-80fb-74ecdd1f754b": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_2eeb9da2-82b4-4240-b38e-ba1bb8b8f53b": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_a311d86f-3f2c-4d7a-ae67-dd25a116ccb2": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_72298e96-b710-4e7b-b10b-cd40c15cc8ad": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
@@ -733,63 +567,10 @@
             ]
           }
         },
-        "_6fab52ff-cba5-4cfb-82d7-bbce328f1fb7": {
+        "_295797b5-c088-407d-bc8c-69ae94f947e6": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Achterkant\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Voorkant\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Zijkant\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_d37f8ebf-f75f-4a2f-b420-3db9c784df9c": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
@@ -798,8 +579,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   true,
                   true,
                   true
@@ -807,19 +588,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-"
@@ -841,30 +616,34 @@
             ]
           }
         },
-        "_bf8b8929-c83c-40e5-aabc-b57190cbb0b5": {
+        "_c5054a42-d917-48cd-a012-7cc2a5d1251d": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
-            "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
+            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
-                  true,
                   false,
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-"
@@ -872,11 +651,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
+                "inputs": ["-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -890,10 +665,10 @@
             ]
           }
         },
-        "_2356a2d2-2650-45f1-841f-35f5ee220cd6": {
+        "_665748e0-3bdb-4df2-9546-9c3334dc4725": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f"
@@ -902,8 +677,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
                   true,
                   true
@@ -911,19 +686,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-"
@@ -945,29 +714,36 @@
             ]
           }
         },
-        "_03e69a26-5d87-4321-93bd-6d2c9088faec": {
+        "_f4598617-d36f-4000-8579-676fe6b6d382": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
                   false,
-                  true
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -976,130 +752,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_55030750-99d9-49e6-88dd-88fe96c3c14b": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
-            "#input__461052be-8046-4d9e-9c0d-c4989650e765"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_933eb9d9-f20a-4bb1-a03b-d335f205bceb": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
-            "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  true,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1113,130 +777,10 @@
             ]
           }
         },
-        "_5b135de5-768e-484c-8436-5d460e39aaa2": {
+        "_3647eb77-a1e4-44ed-bfcb-daa6af883da1": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_862eb501-c755-4290-a9a8-01ffbf185595": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_1b30d1b3-6df9-4432-9477-5d285b59f825": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
@@ -1246,8 +790,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
                   false,
                   "\"Achterkant\"",
@@ -1256,20 +800,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -1300,32 +837,36 @@
             ]
           }
         },
-        "_408992f8-ca87-4e7c-a52f-f76747583ebe": {
+        "_498b38f5-90e0-48b6-8d99-ccfe4c78aa15": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   true,
                   true,
-                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1336,7 +877,178 @@
               {
                 "inputs": [
                   "-",
+                  "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c8d20d62-ada3-44df-ad12-4d3128287891": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
+            "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_9196e2ec-e4ee-47a3-8d44-6ad201adbb4f": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_5a94315e-ad3e-4a11-ab00-2ddb8e6f90ae": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  true,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -1363,10 +1075,10 @@
             ]
           }
         },
-        "_7ec9a148-70e2-4e79-b53b-7e08be45d2ec": {
+        "_c852f4fd-fb4c-48e9-8db9-6ee69f40a7ae": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
@@ -1377,8 +1089,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   true,
                   true,
                   false,
@@ -1388,21 +1100,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -1434,34 +1138,38 @@
             ]
           }
         },
-        "_d51bc1ae-8088-4969-8bb3-2ae2a9224f14": {
+        "_200922c4-996d-4893-9e3f-f29ac797c4de": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
-            "#input__461052be-8046-4d9e-9c0d-c4989650e765",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
+            "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
                   true,
-                  true,
                   false,
-                  false,
-                  false,
-                  true
+                  false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1471,11 +1179,220 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b7744d62-2e4a-4a08-90ff-82c3af89ba60": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  false,
+                  "\"Voorkant\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_55b76eeb-6e7a-4aa9-bd5c-a3689ee677f4": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  false,
+                  "\"Voorkant\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_91c4e86a-fb8d-4bf2-bfda-04e20c872dcd": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1487,7 +1404,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1497,34 +1418,38 @@
             ]
           }
         },
-        "_362a0ba8-f448-4259-b691-200ad7ddeeaa": {
+        "_4fa19c68-7840-4dfc-b5fb-59997989d44e": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
                   true,
+                  true,
+                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1535,93 +1460,18 @@
               },
               {
                 "inputs": [
+                  "-",
                   "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_91f56c8e-4416-43a6-96a1-c61b58925872": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "inputs": ["-", "-", "-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1639,238 +1489,26 @@
             ]
           }
         },
-        "_d9e1c6a4-d54b-4234-9d84-e672cc00cf2f": {
+        "_e26dd166-7b5c-41b6-a56b-0047c7d7db8e": {
           "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_77c00213-89c8-47c1-8152-432cba0374e5": {
-          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_2dbf69ff-ba27-42a6-b3da-72648594ec59": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
             "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
-            "#input__461052be-8046-4d9e-9c0d-c4989650e765",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4",
-            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
+            "#input__461052be-8046-4d9e-9c0d-c4989650e765"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
                   false,
-                  false,
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_20329844-5e11-40b4-82ae-5002a3f9ac48": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  true,
+                  true,
                   false,
                   false,
                   true
@@ -1878,9 +1516,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1891,23 +1533,24 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1925,10 +1568,10 @@
             ]
           }
         },
-        "_faafa004-b22d-4c74-b44c-dbeacc0c4276": {
+        "_04c93f40-1fea-4a93-81cb-36b392fbbf8b": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
@@ -1940,8 +1583,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   true,
                   true,
                   false,
@@ -1952,22 +1595,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -2004,14 +1638,14 @@
             ]
           }
         },
-        "_eaffb769-b81b-499e-a1d2-08271060ab38": {
+        "_ac326704-56c2-4062-b9c3-16dad3aca7ce": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
           ],
@@ -2019,21 +1653,25 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
+                  "\"Voorkant\"",
                   true,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -2044,19 +1682,20 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2064,7 +1703,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2078,10 +1721,10 @@
             ]
           }
         },
-        "_dcf4c8e3-2d51-4461-ad01-50d1dba61f47": {
+        "_f085286f-0064-4151-a69b-3e16edf43bb2": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
@@ -2093,8 +1736,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
                   false,
                   "\"Zijkant\"",
@@ -2105,22 +1748,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -2161,10 +1795,10 @@
             ]
           }
         },
-        "_9bb33ab7-0075-4066-aa1a-34077858078a": {
+        "_703af9c1-1e2c-4020-b52a-fe57a4558ff8": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
@@ -2176,8 +1810,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
                   false,
                   "\"Zijkant\"",
@@ -2188,22 +1822,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -2244,14 +1869,14 @@
             ]
           }
         },
-        "_31c2a1d8-be76-4b98-a910-a91fe70af709": {
+        "_2f86dc28-a2b1-42cf-97e1-4d6db9217ed9": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
@@ -2259,21 +1884,25 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
+                  "\"Voorkant\"",
                   false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -2284,19 +1913,20 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2304,7 +1934,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2318,10 +1952,10 @@
             ]
           }
         },
-        "_a22309c3-39b5-4871-adf7-59339db41c8c": {
+        "_4af899fe-ee89-4874-b244-de7abd88dc72": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
@@ -2334,8 +1968,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   true,
                   true,
                   false,
@@ -2347,23 +1981,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -2405,8 +2029,9 @@
             ]
           }
         },
-        "_60366dc3-c9c9-4cd9-a178-95ffd1e82459": {
+        "_aec4e557-7b43-4204-a893-8f1e527eb863": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -2414,338 +2039,14 @@
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
             "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_8e841e69-9e94-455a-a718-54ee71bb2d86": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_4ea1710e-e75b-497d-bba9-4a5d0a3b71a5": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_401fe050-7935-4f3e-85b3-4d8dea73ea33": {
-          "requiredInputs": [
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   false,
                   "\"Zijkant\"",
@@ -2757,23 +2058,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -2839,15 +2130,102 @@
             ]
           }
         },
-        "_a030814a-e909-4ae6-84ca-5c50a8c2a089": {
+        "_bff894d1-71d4-40eb-b59b-ddcac2a5f2fa": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
+            "#input__461052be-8046-4d9e-9c0d-c4989650e765",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  true,
+                  true,
+                  false,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_ddfc8940-ca81-493b-834d-911be51d82f4": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
             "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
           ],
@@ -2855,11 +2233,11 @@
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
                   false,
                   "\"Zijkant\"",
-                  false,
                   false,
                   true,
                   true,
@@ -2868,7 +2246,12 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
+                  "-",
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
@@ -2876,13 +2259,8 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2890,7 +2268,12 @@
                 "output": "\"no hit\""
               },
               {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -2898,7 +2281,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -2908,17 +2290,13 @@
                   "-",
                   "-",
                   "-",
-                  "\"Achterkant\"",
                   "-",
+                  "\"Achterkant\"",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2940,16 +2318,15 @@
             ]
           }
         },
-        "_0a4c2f8c-246a-4403-b0fc-4b02ea6b67e4": {
+        "_4ea3644d-95a1-4842-89e0-815d71fcc06d": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
@@ -2957,12 +2334,233 @@
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   false,
                   "\"Zijkant\"",
+                  true,
                   false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_31e28c75-d749-4a7a-bee7-069d19ac9c50": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f857e8ba-efe8-4dc4-80cc-ea7b22255515": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
                   false,
                   true,
                   false,
@@ -2971,9 +2569,116 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_e0984053-9fd3-494f-97d9-b7f89709ef7d": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
+            "#input__461052be-8046-4d9e-9c0d-c4989650e765",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4",
+            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  true,
+                  true,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -2988,7 +2693,87 @@
               {
                 "inputs": [
                   "-",
+                  "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_1ff9c0c4-5164-41d0-a3fc-e1a3494690bd": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -3061,8 +2846,9 @@
             ]
           }
         },
-        "_15303d54-17d5-4da8-81eb-2ab6850072e9": {
+        "_790a63af-86dc-4439-a2dd-7f3bb157d8d2": {
           "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
@@ -3070,31 +2856,34 @@
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
             "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   false,
                   "\"Zijkant\"",
                   false,
+                  true,
                   false,
-                  true,
-                  true,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -3109,7 +2898,355 @@
               {
                 "inputs": [
                   "-",
+                  "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_004416bf-be14-40a7-a7ec-4bff23938dc3": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2c71d952-f8f2-43df-ad27-abc668df30bb": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f93b2413-ce53-451d-8365-76d4332a4f2b": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -3182,48 +3319,502 @@
             ]
           }
         },
+        "_80e9ea86-58ec-422d-b338-1e7173ee4c48": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7f41c6bd-39a0-44dd-9780-f4a4b219b172": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
         "dummy": {
           "requiredDecisions": [
-            "#_9aa1442f-7e78-426a-ae09-735564d954ab",
-            "#_379bc468-966e-4b75-9d2c-3313df9a9301",
-            "#_9c46fedf-2012-4b15-8966-49e606734046",
-            "#_eeae06d9-5f03-4acc-84ae-15dee35d488c",
-            "#_75494d70-7d08-48e2-80fb-74ecdd1f754b",
-            "#_2eeb9da2-82b4-4240-b38e-ba1bb8b8f53b",
-            "#_a311d86f-3f2c-4d7a-ae67-dd25a116ccb2",
-            "#_72298e96-b710-4e7b-b10b-cd40c15cc8ad",
-            "#_6fab52ff-cba5-4cfb-82d7-bbce328f1fb7",
-            "#_d37f8ebf-f75f-4a2f-b420-3db9c784df9c",
-            "#_bf8b8929-c83c-40e5-aabc-b57190cbb0b5",
-            "#_2356a2d2-2650-45f1-841f-35f5ee220cd6",
-            "#_03e69a26-5d87-4321-93bd-6d2c9088faec",
-            "#_55030750-99d9-49e6-88dd-88fe96c3c14b",
-            "#_933eb9d9-f20a-4bb1-a03b-d335f205bceb",
-            "#_5b135de5-768e-484c-8436-5d460e39aaa2",
-            "#_862eb501-c755-4290-a9a8-01ffbf185595",
-            "#_1b30d1b3-6df9-4432-9477-5d285b59f825",
-            "#_408992f8-ca87-4e7c-a52f-f76747583ebe",
-            "#_7ec9a148-70e2-4e79-b53b-7e08be45d2ec",
-            "#_d51bc1ae-8088-4969-8bb3-2ae2a9224f14",
-            "#_362a0ba8-f448-4259-b691-200ad7ddeeaa",
-            "#_91f56c8e-4416-43a6-96a1-c61b58925872",
-            "#_d9e1c6a4-d54b-4234-9d84-e672cc00cf2f",
-            "#_77c00213-89c8-47c1-8152-432cba0374e5",
-            "#_2dbf69ff-ba27-42a6-b3da-72648594ec59",
-            "#_20329844-5e11-40b4-82ae-5002a3f9ac48",
-            "#_faafa004-b22d-4c74-b44c-dbeacc0c4276",
-            "#_eaffb769-b81b-499e-a1d2-08271060ab38",
-            "#_dcf4c8e3-2d51-4461-ad01-50d1dba61f47",
-            "#_9bb33ab7-0075-4066-aa1a-34077858078a",
-            "#_31c2a1d8-be76-4b98-a910-a91fe70af709",
-            "#_a22309c3-39b5-4871-adf7-59339db41c8c",
-            "#_60366dc3-c9c9-4cd9-a178-95ffd1e82459",
-            "#_8e841e69-9e94-455a-a718-54ee71bb2d86",
-            "#_4ea1710e-e75b-497d-bba9-4a5d0a3b71a5",
-            "#_401fe050-7935-4f3e-85b3-4d8dea73ea33",
-            "#_a030814a-e909-4ae6-84ca-5c50a8c2a089",
-            "#_0a4c2f8c-246a-4403-b0fc-4b02ea6b67e4",
-            "#_15303d54-17d5-4da8-81eb-2ab6850072e9"
+            "#_059e6aee-df5f-4ced-9be8-902f49547403",
+            "#_469a9890-9f47-4b17-b336-f6c7b7dd4a32",
+            "#_f13d7500-1ad7-437e-8b4e-eaed53d84ff2",
+            "#_469bbee8-61b8-42c9-97b4-6e713fcc9455",
+            "#_295797b5-c088-407d-bc8c-69ae94f947e6",
+            "#_c5054a42-d917-48cd-a012-7cc2a5d1251d",
+            "#_665748e0-3bdb-4df2-9546-9c3334dc4725",
+            "#_f4598617-d36f-4000-8579-676fe6b6d382",
+            "#_3647eb77-a1e4-44ed-bfcb-daa6af883da1",
+            "#_498b38f5-90e0-48b6-8d99-ccfe4c78aa15",
+            "#_c8d20d62-ada3-44df-ad12-4d3128287891",
+            "#_9196e2ec-e4ee-47a3-8d44-6ad201adbb4f",
+            "#_5a94315e-ad3e-4a11-ab00-2ddb8e6f90ae",
+            "#_c852f4fd-fb4c-48e9-8db9-6ee69f40a7ae",
+            "#_200922c4-996d-4893-9e3f-f29ac797c4de",
+            "#_b7744d62-2e4a-4a08-90ff-82c3af89ba60",
+            "#_55b76eeb-6e7a-4aa9-bd5c-a3689ee677f4",
+            "#_91c4e86a-fb8d-4bf2-bfda-04e20c872dcd",
+            "#_4fa19c68-7840-4dfc-b5fb-59997989d44e",
+            "#_e26dd166-7b5c-41b6-a56b-0047c7d7db8e",
+            "#_04c93f40-1fea-4a93-81cb-36b392fbbf8b",
+            "#_ac326704-56c2-4062-b9c3-16dad3aca7ce",
+            "#_f085286f-0064-4151-a69b-3e16edf43bb2",
+            "#_703af9c1-1e2c-4020-b52a-fe57a4558ff8",
+            "#_2f86dc28-a2b1-42cf-97e1-4d6db9217ed9",
+            "#_4af899fe-ee89-4874-b244-de7abd88dc72",
+            "#_aec4e557-7b43-4204-a893-8f1e527eb863",
+            "#_bff894d1-71d4-40eb-b59b-ddcac2a5f2fa",
+            "#_ddfc8940-ca81-493b-834d-911be51d82f4",
+            "#_4ea3644d-95a1-4842-89e0-815d71fcc06d",
+            "#_31e28c75-d749-4a7a-bee7-069d19ac9c50",
+            "#_f857e8ba-efe8-4dc4-80cc-ea7b22255515",
+            "#_e0984053-9fd3-494f-97d9-b7f89709ef7d",
+            "#_1ff9c0c4-5164-41d0-a3fc-e1a3494690bd",
+            "#_790a63af-86dc-4439-a2dd-7f3bb157d8d2",
+            "#_004416bf-be14-40a7-a7ec-4bff23938dc3",
+            "#_2c71d952-f8f2-43df-ad27-abc668df30bb",
+            "#_f93b2413-ce53-451d-8365-76d4332a4f2b",
+            "#_80e9ea86-58ec-422d-b338-1e7173ee4c48",
+            "#_7f41c6bd-39a0-44dd-9780-f4a4b219b172"
           ],
           "decisionTable": {
             "rules": [

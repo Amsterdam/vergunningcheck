@@ -2,8 +2,7 @@ import { themeSpacing } from "@datapunt/asc-ui";
 import React from "react";
 import styled from "styled-components";
 
-const TextToEditStyle = styled.div`
-  display: inline-block;
+const TextToEditStyle = styled.span`
   margin-right: ${themeSpacing(5)};
 `;
 

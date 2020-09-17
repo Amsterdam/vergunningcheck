@@ -2,7 +2,7 @@
   "id": "dakkapel",
   "permits": [
     {
-      "version": 5,
+      "version": 7,
       "name": "Conclusie Dakkapel monument",
       "questions": [
         {
@@ -51,7 +51,7 @@
         }
       },
       "decisions": {
-        "_19742cda-26c4-4cfe-b827-bb12ce177275": {
+        "_c103ceab-a360-4e7c-9216-c917178ed510": {
           "requiredInputs": [
             "#input__797c410f-2502-4626-9b14-7be7c49b0751",
             "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f"
@@ -79,7 +79,7 @@
             ]
           }
         },
-        "_fd30cd03-70d1-4385-9626-35e7175bede4": {
+        "_aec0fe9d-796e-46cd-9a0d-8d524d890787": {
           "requiredInputs": [
             "#input__797c410f-2502-4626-9b14-7be7c49b0751",
             "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
@@ -120,8 +120,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_19742cda-26c4-4cfe-b827-bb12ce177275",
-            "#_fd30cd03-70d1-4385-9626-35e7175bede4"
+            "#_c103ceab-a360-4e7c-9216-c917178ed510",
+            "#_aec0fe9d-796e-46cd-9a0d-8d524d890787"
           ],
           "decisionTable": {
             "rules": [
@@ -138,7 +138,7 @@
               {
                 "inputs": ["\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }
@@ -146,7 +146,7 @@
       }
     },
     {
-      "version": 15,
+      "version": 18,
       "name": "Conclusie Dakkapel bouwen",
       "questions": [
         {
@@ -379,7 +379,7 @@
         }
       },
       "decisions": {
-        "_a222f919-6fc4-445b-b5ab-1ed671ce8a65": {
+        "_fd7e1aad-7377-4e08-927c-9517b02a8ddf": {
           "requiredInputs": ["#input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"],
           "decisionTable": {
             "rules": [
@@ -394,35 +394,7 @@
             ]
           }
         },
-        "_93c33e4a-a716-4d5c-9289-d4e6ac693227": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_7e748eed-7a53-41ff-9ac1-6598d6172ea2": {
+        "_a881862b-6831-465d-b4f0-9a720f43866a": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_e8111db4-8a83-4d79-9d05-4f6f9905b882"
@@ -450,311 +422,7 @@
             ]
           }
         },
-        "_09192006-468d-44b1-a955-553dbdab4783": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "\"Voorkant\""
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Zijkant\""],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Achterkant\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_d1db50c9-45cd-4b69-9ced-e24de4a7ab35": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_e262aa2b-ed3d-4366-b6c1-9c44dacb0251": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_9b1df5d2-c1e3-4eb4-84db-1127581c82e9": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_4cec3619-60bf-4eb9-a4e1-56b914493f22": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_dd37bb27-ce43-414b-9864-80e974e7b22e": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_885f5253-4af0-4f5b-b9dd-1ff10ee9a381": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_a5e84547-687e-46e9-80e7-c8219ea50bba": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  "\"Voorkant\""
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"Zijkant\""],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"Achterkant\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_590ce6f9-124e-4c4d-9919-843fa61df2a5": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_ae498156-0092-41ea-b534-8bb51abb0e33": {
+        "_27fa96ca-9d13-4c67-9061-042e5be45bf8": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_e8111db4-8a83-4d79-9d05-4f6f9905b882",
@@ -793,34 +461,69 @@
             ]
           }
         },
-        "_a0901f23-caed-443a-a586-cd4c5bd2c03e": {
+        "_7b9ee00e-6ee6-4a14-a5d9-d206d0a0611f": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"Zijkant\""],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_493af506-c13e-451c-860e-9fed0a1dc67e": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
             "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -832,36 +535,102 @@
             ]
           }
         },
-        "_f73ae5b6-47f0-48b4-aea5-299d5f2302c7": {
+        "_1c509aa7-440b-41e6-b1b8-efef67faf21d": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
+            "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "\"Zijkant\"",
-                  true
+                  false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Voorkant\"", "-"],
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_9ed4b282-ffad-4cdf-81a7-9a1e34d9bd32": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Achterkant\"", "-"],
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_18dabd6c-7d4f-43ed-abf0-a8287222fa37": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -871,34 +640,30 @@
             ]
           }
         },
-        "_1581e2c5-3693-42b5-bbb9-1840e3883945": {
+        "_08a0d883-788b-4537-a6e6-a99a5f426a64": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
+            "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -910,28 +675,32 @@
             ]
           }
         },
-        "_dbceb0b6-1ca1-4183-bf5c-162744df0247": {
+        "_496805ed-0139-476e-9e7e-c3795ce0c5e7": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
             "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
+            "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  "\"Zijkant\"",
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-"
                 ],
@@ -940,7 +709,237 @@
               {
                 "inputs": [
                   "-",
+                  "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_8541739d-77f3-40f1-af65-1a767083a739": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_61c65a4b-532b-467b-a070-3fae5bf0d9bc": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_345dd267-147f-42a5-9f0f-ea7360f2d4ae": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zijkant\""],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f8e9d4ce-8080-43fe-bba8-994bd6afeeaa": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_4f1c8e6e-9f77-45bc-a260-a82d872bf121": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
+            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Zijkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-"
                 ],
@@ -961,122 +960,81 @@
             ]
           }
         },
-        "_91fef300-ed50-47c0-9d5e-a8dc30da7d35": {
+        "_3d859c6f-32be-49fc-bd67-6b48ad524907": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60"
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "\"Zijkant\"",
                   false,
-                  true
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Voorkant\"", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
+                "inputs": ["-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_5e5880bd-ebf3-4f58-980d-0f5fc2d5be16": {
+        "_e527dacb-4f06-4f07-b631-3d2db283b849": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7"
+            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "\"Achterkant\"",
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
+                  false,
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Voorkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_9a3f4b45-adc9-49c0-9f15-ceb84e478780": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60",
-            "#input__2cf98565-883d-4eb0-9bb8-175ed6fc2f24"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Zijkant\"",
-                  false,
-                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-"
@@ -1084,19 +1042,21 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Voorkant\"", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Achterkant\"", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", "\"Achterkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1106,10 +1066,10 @@
             ]
           }
         },
-        "_2041a13e-a506-4568-81ac-adf1f022889a": {
+        "_58fa4258-85f6-4890-918a-2be35de7884d": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
             "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60"
@@ -1118,8 +1078,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Zijkant\"",
                   false,
                   true
@@ -1127,19 +1087,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-"
@@ -1165,10 +1119,10 @@
             ]
           }
         },
-        "_2417f8f4-be88-47d8-b271-3c862829ff8f": {
+        "_fb28438c-497d-4054-91df-e73608d0ccf1": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
             "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7"
@@ -1177,8 +1131,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Achterkant\"",
                   true,
                   true
@@ -1186,19 +1140,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-"
@@ -1224,63 +1172,10 @@
             ]
           }
         },
-        "_8b43de2e-22cb-46ff-9f76-a1f1278239c7": {
+        "_2c2e91ff-39d6-42b8-99fe-9563ce0cd1bd": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "\"Achterkant\"",
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Zijkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_759a1219-1287-4068-b25a-a35092ac30f3": {
-          "requiredInputs": [
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
             "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60",
@@ -1290,8 +1185,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Zijkant\"",
                   false,
                   false,
@@ -1300,20 +1195,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -1344,10 +1232,10 @@
             ]
           }
         },
-        "_5b4d6ba4-ece9-4b3b-8cc7-7f4c78bc6e1a": {
+        "_a31ce9db-0eee-4308-a590-eb59705e46d8": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
             "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
@@ -1357,8 +1245,8 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Achterkant\"",
                   true,
                   false,
@@ -1367,20 +1255,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -1411,32 +1292,36 @@
             ]
           }
         },
-        "_e61916b4-2175-4c29-b104-34c2c2dd36fc": {
+        "_7d11dae1-d67a-44ac-a921-b4c8f22e9bd3": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943",
-            "#input__69f71c11-edb3-4949-8951-1861308beb03"
+            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
+            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
-                  "\"Achterkant\"",
-                  true,
                   false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Zijkant\"",
                   false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1445,19 +1330,22 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Voorkant\"", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Zijkant\"", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-"],
+                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1471,24 +1359,91 @@
             ]
           }
         },
-        "_83bf261a-0a4b-4d48-a720-86fa455ecc00": {
+        "_1eaeaa0b-7d93-4b96-bbcc-239184be8e44": {
           "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
             "#input_bb2328ac-a595-4311-9beb-1934469d6245",
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943",
-            "#input__69f71c11-edb3-4949-8951-1861308beb03"
+            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
+                  false,
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Achterkant\"",
                   true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_bc237a56-2b5d-46c9-b1b8-fc604be62dcb": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
+            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
+            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60",
+            "#input__2cf98565-883d-4eb0-9bb8-175ed6fc2f24"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Zijkant\"",
                   false,
                   false,
                   true
@@ -1496,9 +1451,13 @@
                 "output": "\"Vergunningplicht\""
               },
               {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
                 "inputs": [
-                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1510,7 +1469,145 @@
               {
                 "inputs": [
                   "-",
+                  "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_e0420844-4957-4405-97cc-54a43a1fb66b": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
+            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
+            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
+            "#input__1c4854f4-ea25-450b-a7f4-734203024943"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Achterkant\"",
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_897c10a8-df1c-4283-8505-146890a40380": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
+            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
+            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
+            "#input__1c4854f4-ea25-450b-a7f4-734203024943",
+            "#input__69f71c11-edb3-4949-8951-1861308beb03"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Achterkant\"",
+                  true,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -1546,35 +1643,118 @@
             ]
           }
         },
+        "_ad989534-6646-439b-8b0b-ade93c2471ee": {
+          "requiredInputs": [
+            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
+            "#input_fc74c97d-266b-4b96-b618-99910669e546",
+            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
+            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
+            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
+            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
+            "#input__1c4854f4-ea25-450b-a7f4-734203024943",
+            "#input__69f71c11-edb3-4949-8951-1861308beb03"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Achterkant\"",
+                  true,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
         "dummy": {
           "requiredDecisions": [
-            "#_a222f919-6fc4-445b-b5ab-1ed671ce8a65",
-            "#_93c33e4a-a716-4d5c-9289-d4e6ac693227",
-            "#_7e748eed-7a53-41ff-9ac1-6598d6172ea2",
-            "#_09192006-468d-44b1-a955-553dbdab4783",
-            "#_d1db50c9-45cd-4b69-9ced-e24de4a7ab35",
-            "#_e262aa2b-ed3d-4366-b6c1-9c44dacb0251",
-            "#_9b1df5d2-c1e3-4eb4-84db-1127581c82e9",
-            "#_4cec3619-60bf-4eb9-a4e1-56b914493f22",
-            "#_dd37bb27-ce43-414b-9864-80e974e7b22e",
-            "#_885f5253-4af0-4f5b-b9dd-1ff10ee9a381",
-            "#_a5e84547-687e-46e9-80e7-c8219ea50bba",
-            "#_590ce6f9-124e-4c4d-9919-843fa61df2a5",
-            "#_ae498156-0092-41ea-b534-8bb51abb0e33",
-            "#_a0901f23-caed-443a-a586-cd4c5bd2c03e",
-            "#_f73ae5b6-47f0-48b4-aea5-299d5f2302c7",
-            "#_1581e2c5-3693-42b5-bbb9-1840e3883945",
-            "#_dbceb0b6-1ca1-4183-bf5c-162744df0247",
-            "#_91fef300-ed50-47c0-9d5e-a8dc30da7d35",
-            "#_5e5880bd-ebf3-4f58-980d-0f5fc2d5be16",
-            "#_9a3f4b45-adc9-49c0-9f15-ceb84e478780",
-            "#_2041a13e-a506-4568-81ac-adf1f022889a",
-            "#_2417f8f4-be88-47d8-b271-3c862829ff8f",
-            "#_8b43de2e-22cb-46ff-9f76-a1f1278239c7",
-            "#_759a1219-1287-4068-b25a-a35092ac30f3",
-            "#_5b4d6ba4-ece9-4b3b-8cc7-7f4c78bc6e1a",
-            "#_e61916b4-2175-4c29-b104-34c2c2dd36fc",
-            "#_83bf261a-0a4b-4d48-a720-86fa455ecc00"
+            "#_fd7e1aad-7377-4e08-927c-9517b02a8ddf",
+            "#_a881862b-6831-465d-b4f0-9a720f43866a",
+            "#_27fa96ca-9d13-4c67-9061-042e5be45bf8",
+            "#_7b9ee00e-6ee6-4a14-a5d9-d206d0a0611f",
+            "#_493af506-c13e-451c-860e-9fed0a1dc67e",
+            "#_1c509aa7-440b-41e6-b1b8-efef67faf21d",
+            "#_9ed4b282-ffad-4cdf-81a7-9a1e34d9bd32",
+            "#_18dabd6c-7d4f-43ed-abf0-a8287222fa37",
+            "#_08a0d883-788b-4537-a6e6-a99a5f426a64",
+            "#_496805ed-0139-476e-9e7e-c3795ce0c5e7",
+            "#_8541739d-77f3-40f1-af65-1a767083a739",
+            "#_61c65a4b-532b-467b-a070-3fae5bf0d9bc",
+            "#_345dd267-147f-42a5-9f0f-ea7360f2d4ae",
+            "#_f8e9d4ce-8080-43fe-bba8-994bd6afeeaa",
+            "#_4f1c8e6e-9f77-45bc-a260-a82d872bf121",
+            "#_3d859c6f-32be-49fc-bd67-6b48ad524907",
+            "#_e527dacb-4f06-4f07-b631-3d2db283b849",
+            "#_58fa4258-85f6-4890-918a-2be35de7884d",
+            "#_fb28438c-497d-4054-91df-e73608d0ccf1",
+            "#_2c2e91ff-39d6-42b8-99fe-9563ce0cd1bd",
+            "#_a31ce9db-0eee-4308-a590-eb59705e46d8",
+            "#_7d11dae1-d67a-44ac-a921-b4c8f22e9bd3",
+            "#_1eaeaa0b-7d93-4b96-bbcc-239184be8e44",
+            "#_bc237a56-2b5d-46c9-b1b8-fc604be62dcb",
+            "#_e0420844-4957-4405-97cc-54a43a1fb66b",
+            "#_897c10a8-df1c-4283-8505-146890a40380",
+            "#_ad989534-6646-439b-8b0b-ade93c2471ee"
           ],
           "decisionTable": {
             "rules": [
