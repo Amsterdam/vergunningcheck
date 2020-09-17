@@ -1,6 +1,6 @@
 import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { Fragment } from "react";
-import { isMobile } from "react-device-detect";
+import { isIE, isMobile } from "react-device-detect";
 
 import {
   Alert,
@@ -10,12 +10,16 @@ import {
   PrintOnly,
 } from "../atoms";
 import { Olo } from "../config";
-import withTracking from "../hoc/withTracking";
+import { actions, eventNames, sections } from "../config/matomo";
+import useTracking, { useChecker } from "../hooks";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
+const Conclusion = () => {
+  const { matomoTrackEvent } = useTracking();
+  const checker = useChecker();
+
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
@@ -59,9 +63,8 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
   const handlePermitButton = (e) => {
     e.preventDefault();
     matomoTrackEvent({
-      category: "conclusie",
-      action: "vergunning aanvragen",
-      name: slug,
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: eventNames.APPLY_FOR_PERMIT,
     });
     // Open OLO in new tab/window
     window.open(Olo.home, "_blank");
@@ -69,9 +72,8 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
 
   const handlePrintButton = () => {
     matomoTrackEvent({
-      category: "conclusie",
-      action: "conclusie opslaan",
-      name: slug,
+      action: actions.DOWNLOAD,
+      name: eventNames.SAVE_CONCLUSION,
     });
     window.print();
   };
@@ -86,7 +88,7 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
       {displayConclusions.map(({ title, description }) => (
         <Fragment key={title}>
           <Heading forwardedAs="h2">{title}</Heading>
-          <Markdown source={description} />
+          <Markdown eventLocation={sections.CONCLUSION} source={description} />
         </Fragment>
       ))}
 
@@ -103,12 +105,12 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
           </ComponentWrapper>
         )}
 
-        {!isMobile && (
+        {!isIE && !isMobile && (
           <ComponentWrapper>
             <PrintButton
-              type="button"
               color="primary"
               onClick={handlePrintButton}
+              type="button"
             >
               Conclusie opslaan
             </PrintButton>
@@ -137,4 +139,4 @@ const Conclusion = ({ checker, matomoTrackEvent, topic: { slug } }) => {
   );
 };
 
-export default withTracking(Conclusion);
+export default Conclusion;

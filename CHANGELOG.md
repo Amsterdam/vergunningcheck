@@ -1,6 +1,45 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.0.3](2020-09-16)
+
+#### Bug fixes
+
+* [#506](https://github.com/Amsterdam/vergunningcheck/pull/506) Fixed OLO flow bug with resetChecker ([@robinpiets](https://github.com/robinpiets))
+
+## [2.0.2](2020-09-16)
+
+#### New Features 
+
+* [#439](https://github.com/Amsterdam/vergunningcheck/pull/439) Feature: New Matomo event names + refactor ([@svenjens](https://github.com/svenjens))
+* [#482](https://github.com/Amsterdam/vergunningcheck/pull/482) Updated all @datapunt deps and fixed focus styles ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+
+* [#496](https://github.com/Amsterdam/vergunningcheck/pull/496) Fixed broken STTR files ([@robinpiets](https://github.com/robinpiets))
+* [#501](https://github.com/Amsterdam/vergunningcheck/pull/501) In case no active sections are found, reset the checker ([@robinpiets](https://github.com/robinpiets))
+* [#497](https://github.com/Amsterdam/vergunningcheck/pull/497) Bump lint-staged (to prevent `lint-staged: command not found`) ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+
+* [#500](https://github.com/Amsterdam/vergunningcheck/pull/500) Replace old Footer props to remove deprecated logs ([@robinpiets](https://github.com/robinpiets))
+* [#484](https://github.com/Amsterdam/vergunningcheck/pull/484) Make sure netlify does a clean install ([@afjlambert](https://github.com/afjlambert))
+* [#487](https://github.com/Amsterdam/vergunningcheck/pull/487) Chore: show app version on DevHomePage ([@robinpiets](https://github.com/robinpiets))
+* [#488](https://github.com/Amsterdam/vergunningcheck/pull/488) Implement text change in intro ([@afjlambert](https://github.com/afjlambert))
+
+## [2.0.1](2020-09-10)
+
+#### New Features
+
+- [#480](https://github.com/Amsterdam/vergunningcheck/pull/480) Hide DebugDecisionTable on print ([@robinpiets](https://github.com/robinpiets))
+- [#477](https://github.com/Amsterdam/vergunningcheck/pull/477) Hide the print button on ie11 ([@svenjens](https://github.com/svenjens))
+- [#473](https://github.com/Amsterdam/vergunningcheck/pull/473) Added Sentry tags for extra logging information ([@svenjens](https://github.com/svenjens))
+
+#### Bug fixes
+
+- [#456](https://github.com/Amsterdam/vergunningcheck/pull/456) postalCode undefined ([@robinpiets](https://github.com/robinpiets))
+- [#457](https://github.com/Amsterdam/vergunningcheck/pull/457) `<a>` cannot appear as a descendant of `<a>` ([@robinpiets](https://github.com/robinpiets))
+- [#458](https://github.com/Amsterdam/vergunningcheck/pull/458) EditButton on new line gives wrong style ([@robinpiets](https://github.com/robinpiets))
 
 ## [2.0.0](2020-09-02)
 

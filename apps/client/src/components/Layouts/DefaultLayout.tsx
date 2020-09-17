@@ -1,21 +1,17 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import withTracking from "../../hoc/withTracking";
+import { useTracking } from "../../hooks";
 import BaseLayout from "./BaseLayout";
 
 interface DefaultLayoutProps {
-  heading: string;
+  heading?: string;
   children: React.ReactNode;
-  matomoPageView: Function;
 }
 
-function DefaultLayout({
-  heading,
-  children,
-  matomoPageView,
-}: DefaultLayoutProps) {
+function DefaultLayout({ heading, children }: DefaultLayoutProps) {
   const { location } = useHistory();
+  const { matomoPageView } = useTracking();
 
   useEffect(() => {
     matomoPageView();
@@ -26,4 +22,4 @@ function DefaultLayout({
   return <BaseLayout {...{ heading, children }} />;
 }
 
-export default withTracking(DefaultLayout);
+export default DefaultLayout;

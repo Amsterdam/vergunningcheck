@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { topics } from "../config";
+import { ParamTypes } from "../routes";
 
-const getTopicFromSlug = (slug: string) => {
+const getTopicFromSlug = (slug: string | undefined) => {
   if (!slug) {
     return null;
   }
@@ -34,7 +35,7 @@ const getTopicFromSlug = (slug: string) => {
 };
 
 export default () => {
-  const { slug } = useParams();
+  const { slug } = useParams<ParamTypes>();
   const [topic, setTopic] = useState(getTopicFromSlug(slug));
 
   useEffect(() => {

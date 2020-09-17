@@ -12,7 +12,7 @@ import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
   children: React.ReactNode;
-  heading: String;
+  heading?: String;
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {

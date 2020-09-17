@@ -2,6 +2,9 @@ import isBoolean from "lodash.isboolean";
 import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
+// Function that does nothing
+export const noop = () => {};
+
 // Simple checks
 export const isSimpleType = (val) =>
   isBoolean(val) || isString(val) || isNumber(val);
@@ -30,10 +33,9 @@ export const uniqueFilter = (value, index, self) =>
 export const getRestrictionByTypeName = (restrictions, typeName) =>
   (restrictions || []).find(({ __typename }) => __typename === typeName);
 
-// STTR helper
+// STTR helpers
 export const removeQuotes = (str) =>
   typeof str === "string" ? str.replace(/['"]+/g, "") : "";
-
 export const addQuotes = (str) => `"${str}"`;
 
 // `uniqBy` removes duplicates from an array (of objects) and is based on lodash.uniqBy

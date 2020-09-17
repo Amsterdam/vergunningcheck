@@ -1,7 +1,7 @@
 {
   "name": "vergunningcheck-graphql",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.0.3",
   "engines": {
     "node": "14"
   },
@@ -11,7 +11,7 @@
     "prestart": "npm install",
     "start": "NODE_ENV=development nodemon .",
     "start:prod": "NODE_ENV=production node .",
-    "build:netlify": "npm install",
+    "build:netlify": "npm ci",
     "test": "CONFIG_FILE=test jest",
     "test:coverage": "npm test -- --watchAll=false --collect-coverage",
     "precommit": "lint-staged",
@@ -36,7 +36,7 @@
     "lodash": "^4.17.19",
     "lodash.uniqby": "^4.7.0",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "redis": "^3.0.2",
     "serverless-http": "^2.5.0",
     "xml2js": "^0.4.23"

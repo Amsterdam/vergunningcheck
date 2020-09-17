@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { requiredFieldText } from "../config";
+import { eventNames } from "../config/matomo";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers from "./Answers";
 import ConclusionAlert from "./ConclusionAlert";
@@ -107,7 +108,9 @@ const Question = ({
       data-id={questionId}
       data-testid={QUESTION_PAGE}
     >
-      {description && <Markdown source={description} />}
+      {description && (
+        <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
+      )}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
         questionId={questionId}

@@ -1,18 +1,43 @@
 import { reverse } from "named-urls";
 import React from "react";
 import slugify from "slugify";
-export const getslug = (text) =>
+
+type Path = string;
+
+export type ParamTypes = {
+  slug?: string;
+};
+
+type RedirectRule = {
+  from: string;
+  to: string;
+};
+
+type RouteType = {
+  component: any;
+  exact?: boolean;
+  name?: string;
+  path: string;
+};
+
+type AutofillRouteType = {
+  [name: string]: [Path];
+};
+
+export const getslug = (text: string) =>
   slugify(text, {
     strict: true, // remove special chars
     lower: true, // result in lower case
   });
-export const geturl = (route, params) => {
+
+export const geturl = (route: string, params: ParamTypes) => {
   if (!route) {
     throw new Error(`route does not exist (geturl): '${route}'`);
   }
   return reverse(route, params);
 };
-export const routeConfig = [
+
+export const routeConfig: RouteType[] = [
   {
     component:
       process.env.NODE_ENV !== "production" &&
@@ -27,16 +52,16 @@ export const routeConfig = [
     path: "/test",
   },
   {
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/IntroPage`)
     ),
     name: "intro",
     exact: true,
     path: "/:slug",
   },
   {
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
     exact: true,
     name: "checker",
@@ -48,7 +73,8 @@ export const routeConfig = [
     path: "*",
   },
 ];
-export const redirectConfig = [
+
+export const redirectConfig: RedirectRule[] = [
   {
     from: "/zonnepanelen-of-warmtecollectoren-plaatsen",
     to: "/zonnepanelen-of-zonneboiler-plaatsen",
@@ -62,10 +88,11 @@ export const redirectConfig = [
 ];
 
 // build map of routes with `name` => `path`
-// ie. {intro: '/:slug/inleiding'}
-export const routes = Object.fromEntries(
+// ie. {intro: '/:slug/inleiding', checker: ...}
+export const routes: { [key: string]: Path } = Object.fromEntries(
   routeConfig.map(({ name, path }) => [name, path])
 );
-export const autofillRoutes = {
+
+export const autofillRoutes: AutofillRouteType = {
   checker: [routes.checker],
 };
