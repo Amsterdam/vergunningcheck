@@ -1,9 +1,10 @@
 import { Button, Heading, ListItem, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 import { isIE, isMobile } from "react-device-detect";
+import { useParams } from "react-router-dom";
 
 import { ComponentWrapper, HideForPrint, List, PrintButton } from "../atoms";
-import { Olo } from "../config";
+import { Olo, topics } from "../config";
 import { sections } from "../config/matomo";
 import { actions, eventNames } from "../config/matomo";
 import Link from "./Link";
@@ -20,6 +21,8 @@ export const ConclusionOutcome: React.FC<Props> = ({
   needsPermit,
   matomoTrackEvent,
 }) => {
+  const { slug } = useParams();
+  const topic = topics.find((t) => t.slug === slug);
   const heading = needsPermit
     ? "U hebt een omgevingsvergunning nodig"
     : "U hebt geen omgevingsvergunning nodig";
@@ -43,7 +46,10 @@ export const ConclusionOutcome: React.FC<Props> = ({
 
   return (
     <>
-      <Heading forwardedAs="h2">{contactConclusion?.title || heading}</Heading>
+      <Heading forwardedAs="h2">
+        {contactConclusion?.title || heading} voor "{topic?.name.toLowerCase()}
+        ".
+      </Heading>
       {needsPermit && (
         <Paragraph>
           U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
@@ -83,7 +89,14 @@ export const ConclusionOutcome: React.FC<Props> = ({
       )}
       {!needsPermit && !contactConclusion && (
         <>
-          <Heading forwardedAs="h3">Waar u verder op moet letten:</Heading>
+          <Paragraph>
+            U hebt geen vergunning nodig voor {topic?.name.toLowerCase()}. Wél
+            moet u op een aantal dingen letten voordat u gaat beginnen. Uw
+            aannemer kan u daarbij helpen.
+          </Paragraph>
+          <Heading forwardedAs="h3">
+            Dit is waar u verder op moet letten:
+          </Heading>
           <List variant="bullet">
             <ListItem>
               U moet voldoen aan de eisen van het Bouwbesluit. In het
@@ -110,6 +123,7 @@ export const ConclusionOutcome: React.FC<Props> = ({
               De gevolgen van het plaatsen van een kozijn voor de WOZ-waarde van
               uw huis.
             </ListItem>
+            <ListItem>Toestemming van de VvE.</ListItem>
           </List>
         </>
       )}
