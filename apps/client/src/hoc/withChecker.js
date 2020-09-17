@@ -4,6 +4,7 @@ import { autofillMap, autofillResolvers } from "../config/autofill";
 import { CheckerContext, SessionContext } from "../context";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
+import { geturl, routes } from "../routes";
 import getChecker from "../sttr_client";
 import withTopic from "./withTopic";
 
@@ -19,6 +20,12 @@ const withChecker = (Component) =>
     const { topic } = props;
     const { sttrFile, slug } = topic;
     const address = sessionContext[topic.slug]?.address;
+
+    // Redirect to Intro in case no session context has been found
+    if (!sessionContext[slug]) {
+      window.location.href = geturl(routes.intro, topic);
+      return null;
+    }
 
     useEffect(() => {
       if (sttrFile) {
