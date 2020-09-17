@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Redirect } from "react-router-dom";
 
 import { HideForPrint } from "../atoms";
 import Conclusion from "../components/Conclusion";
@@ -18,7 +17,6 @@ import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import withTracking from "../hoc/withTracking";
-import { geturl, routes } from "../routes";
 
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
@@ -32,11 +30,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   ];
 
   useEffect(() => {
-    //@TODO: We shoudn't need this redirect. We need to refactor this
-    if (!sessionContext[slug]) {
-      return <Redirect to={geturl(routes.intro, topic)} />;
-    }
-
     // In case no active sections are found, reset the checker
     // This is a fallback to prevent users being stuck without any active component
     const activeComponent = [
