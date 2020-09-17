@@ -12,7 +12,11 @@ type Props = {
 };
 
 const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
+  const [closeModal, setCloseModal] = React.useState(false);
+
   const handleOpenModal = () => {
+    setCloseModal(false);
+
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       name: eventNames.START_NEW_CHECK,
@@ -24,11 +28,12 @@ const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
     //   action: actions.CLICK_INTERNAL_NAVIGATION,
     //   name: eventNames.START_NEW_CHECK,
     // });
-    alert("bevestig");
+    setCloseModal(true);
   };
 
   return (
     <Modal
+      closeModal={closeModal}
       openButtonText="Nog een vergunningcheck doen"
       heading="U wilt nog een vergunningcheck doen."
       handleConfirmButton={handleConfirmButton}

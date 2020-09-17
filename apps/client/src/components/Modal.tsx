@@ -7,7 +7,7 @@ import {
   TopBar,
   themeSpacing,
 } from "@datapunt/asc-ui";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
@@ -26,6 +26,7 @@ type ButtonVariant =
 type ModalProps = {
   buttonVariant?: ButtonVariant;
   children: React.ReactNode;
+  closeModal?: boolean;
   closeButtonText?: string;
   confirmText?: string;
   handleConfirmButton?: Function;
@@ -46,6 +47,7 @@ const ConfirmButtons = styled.div`
 const Modal: React.FC<ModalProps> = ({
   buttonVariant = "primary",
   children,
+  closeModal,
   closeButtonText = "Sluiten",
   confirmText = "Bevestig",
   handleConfirmButton,
@@ -54,6 +56,13 @@ const Modal: React.FC<ModalProps> = ({
   openButtonText,
 }) => {
   const [isOpen, toggleModal] = useState(false);
+
+  // This is a hook to close the Modal from the parent component
+  useEffect(() => {
+    if (closeModal) {
+      toggleModal(false);
+    }
+  }, [closeModal]);
 
   const openModal = () => {
     toggleModal(true);
@@ -115,11 +124,6 @@ const Modal: React.FC<ModalProps> = ({
                   variant="primary"
                   onClick={() => {
                     handleConfirmButton();
-
-                    // Close the Modal when confirmed
-                    setTimeout(() => {
-                      toggleModal(false);
-                    }, 1000);
                   }}
                 >
                   {confirmText}
