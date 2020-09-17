@@ -72,7 +72,7 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 
 - Run `npm run changelog`, a changelog will be generated
 - Paste the changelog to the [CHANGELOG.md](CHANGELOG.md), determine the version number and replace "Unreleased " with the new version, so it looks like this: `[2.0.0](2020-09-02)`
-- Verify if all changes planned for this release are in the changelog, update plan if something was missing
+- Verify if all changes planned for this release are in the changelog, update Changelog if something was missing
 - Create [a diff](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub and do a quick-scan to see if nothing is missing from the changelog
 - Commit the changelog (after verifying nothing is missing)
 - Run `npm run publish` to add and publish a release tag. It's pushed to the repo.
