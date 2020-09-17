@@ -107,7 +107,7 @@ const Question = ({
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
-  const handleModalButton = () => {
+  const handleOpenModal = () => {
     matomoTrackEvent({
       action: actions.OPEN_QUESTION_DESCRIPTION_MODAL,
       name: questionTitle,
@@ -127,9 +127,9 @@ const Question = ({
       {longDescription && (
         <ComponentWrapper>
           <Modal
-            buttonText="Toelichting"
             heading="Toelichting"
-            onClick={handleModalButton}
+            handleOpenModal={handleOpenModal}
+            openButtonText="Toelichting"
           >
             <Markdown
               eventLocation={eventNames.LONG_DESCRIPTION}

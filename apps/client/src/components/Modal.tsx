@@ -1,6 +1,14 @@
 import { Close } from "@datapunt/asc-assets";
-import { Button, Divider, Icon, TopBar } from "@datapunt/asc-ui";
+import {
+  Button,
+  CompactThemeProvider,
+  Divider,
+  Icon,
+  TopBar,
+  themeSpacing,
+} from "@datapunt/asc-ui";
 import React, { useState } from "react";
+import styled from "styled-components";
 
 import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
 import { ModalBlock, ModalContent, ModalHeading, ModalUI } from "./ModalStyles";
@@ -16,27 +24,42 @@ type ButtonVariant =
   | "application";
 
 type ModalProps = {
-  buttonText: React.ReactNode;
   buttonVariant?: ButtonVariant;
   children: React.ReactNode;
+  closeButtonText?: string;
+  confirmText?: string;
+  handleConfirmButton?: Function;
+  handleOpenModal?: Function;
   heading: string;
   onClick?: Function;
+  openButtonText: React.ReactNode;
 };
 
+const ConfirmButtons = styled.div`
+  padding: ${themeSpacing(2)} 0 ${themeSpacing(1)};
+
+  button {
+    margin-right: ${themeSpacing(3)};
+  }
+`;
+
 const Modal: React.FC<ModalProps> = ({
-  buttonText,
   buttonVariant = "primary",
   children,
+  closeButtonText = "Sluiten",
+  confirmText = "Bevestig",
+  handleConfirmButton,
+  handleOpenModal,
   heading,
-  onClick,
+  openButtonText,
 }) => {
   const [isOpen, toggleModal] = useState(false);
 
-  const handleClick = () => {
-    toggleModal(!isOpen);
+  const openModal = () => {
+    toggleModal(true);
 
-    if (onClick) {
-      onClick();
+    if (handleOpenModal) {
+      handleOpenModal();
     }
   };
 
@@ -44,11 +67,11 @@ const Modal: React.FC<ModalProps> = ({
     <>
       <Button
         data-testid={MODAL_BUTTON}
-        onClick={handleClick}
+        onClick={openModal}
         type="button"
         variant={buttonVariant}
       >
-        {buttonText}
+        {openButtonText}
       </Button>
 
       <ModalUI
@@ -56,7 +79,7 @@ const Modal: React.FC<ModalProps> = ({
         aria-labelledby={heading}
         data-testid={MODAL}
         onClose={() => {
-          toggleModal(!isOpen);
+          toggleModal(false);
         }}
         open={isOpen}
       >
@@ -68,7 +91,7 @@ const Modal: React.FC<ModalProps> = ({
                 data-testid={MODAL_CLOSE}
                 onClick={(e: React.MouseEvent) => {
                   e.stopPropagation();
-                  toggleModal(!isOpen);
+                  toggleModal(false);
                 }}
                 size={30}
                 type="button"
@@ -83,7 +106,33 @@ const Modal: React.FC<ModalProps> = ({
 
           <Divider />
 
-          <ModalBlock>{children}</ModalBlock>
+          <ModalBlock>
+            <CompactThemeProvider>{children}</CompactThemeProvider>
+
+            <ConfirmButtons>
+              {handleConfirmButton && (
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    handleConfirmButton();
+
+                    // Close the Modal when confirmed
+                    setTimeout(() => {
+                      toggleModal(false);
+                    }, 1000);
+                  }}
+                >
+                  {confirmText}
+                </Button>
+              )}
+              <Button
+                onClick={() => toggleModal(false)}
+                variant="primaryInverted"
+              >
+                {closeButtonText}
+              </Button>
+            </ConfirmButtons>
+          </ModalBlock>
         </ModalContent>
       </ModalUI>
     </>

@@ -1,11 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Heading,
-  Label,
-  Radio,
-  RadioGroup,
-} from "@datapunt/asc-ui";
+import { Label, Paragraph, Radio, RadioGroup } from "@datapunt/asc-ui";
 import React from "react";
 
 import { ComponentWrapper } from "../atoms";
@@ -19,36 +12,46 @@ type Props = {
 };
 
 const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
-  const handleModalButton = () => {
+  const handleOpenModal = () => {
     matomoTrackEvent({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       name: eventNames.START_NEW_CHECK,
     });
   };
 
+  const handleConfirmButton = () => {
+    // matomoTrackEvent({
+    //   action: actions.CLICK_INTERNAL_NAVIGATION,
+    //   name: eventNames.START_NEW_CHECK,
+    // });
+    alert("bevestig");
+  };
+
   return (
     <Modal
-      buttonText="Nog een vergunningcheck doen"
-      heading="Kies een vergunningcheck"
-      onClick={handleModalButton}
+      openButtonText="Nog een vergunningcheck doen"
+      heading="U wilt nog een vergunningcheck doen."
+      handleConfirmButton={handleConfirmButton}
+      handleOpenModal={handleOpenModal}
     >
       <ComponentWrapper>
-        <Heading forwardedAs="h2">
-          Wilt u dezelfde adresgegevens gebruiken? [tekst updaten]
-        </Heading>
-        <Label htmlFor="ja" label="ja">
-          <Checkbox
-            // value="value"
-            id="ja"
-            // onChange={(e) => onChange(e)}
-          />
-        </Label>
+        <Paragraph strong gutterBottom={8}>
+          Wilt u nog een vergunningcheck doen voor hetzelfde adres?
+        </Paragraph>
+        <RadioGroup name="adres">
+          <Label htmlFor="adres-ja" label="Ja">
+            <Radio value="ja" id="adres-ja" />
+          </Label>
+          <Label htmlFor="adres-nee" label="Nee">
+            <Radio value="nee" id="adres-nee" />
+          </Label>
+        </RadioGroup>
       </ComponentWrapper>
 
       <ComponentWrapper>
-        <Heading forwardedAs="h2">
-          Welke check wilt u doen? [tekst updaten]
-        </Heading>
+        <Paragraph strong gutterBottom={8}>
+          Welke vergunningcheck wilt u doen?
+        </Paragraph>
 
         <ComponentWrapper>
           <RadioGroup name="checks">
@@ -65,8 +68,6 @@ const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
               ))}
           </RadioGroup>
         </ComponentWrapper>
-
-        <Button variant="secondary">Gaaan [tekst updaten]</Button>
       </ComponentWrapper>
     </Modal>
   );

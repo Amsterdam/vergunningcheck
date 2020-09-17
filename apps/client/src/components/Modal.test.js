@@ -10,7 +10,7 @@ afterEach(cleanup);
 
 it("Modal Button should render, but the Modal itself not", () => {
   const { getByText, queryByTestId } = render(
-    <Modal buttonText="button">text</Modal>
+    <Modal openButtonText="button">text</Modal>
   );
   expect(getByText("button")).toBeInTheDocument();
   expect(queryByTestId(MODAL_BUTTON)).toBeInTheDocument();
@@ -20,7 +20,11 @@ it("Modal Button should render, but the Modal itself not", () => {
 
 it("Modal should open and close", () => {
   const { getByText, queryByTestId } = render(
-    <Modal buttonText="button" heading="heading" onClick={onClickMock}>
+    <Modal
+      openButtonText="button"
+      heading="heading"
+      handleOpenModal={onClickMock}
+    >
       text
     </Modal>
   );
