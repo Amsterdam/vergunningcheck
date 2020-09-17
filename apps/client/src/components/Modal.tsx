@@ -7,7 +7,7 @@ import {
   TopBar,
   themeSpacing,
 } from "@datapunt/asc-ui";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
@@ -26,17 +26,19 @@ type ButtonVariant =
 type ModalProps = {
   buttonVariant?: ButtonVariant;
   children: React.ReactNode;
-  closeModal?: boolean;
   closeButtonText?: string;
+  closeModalAfterConfirm?: boolean;
   confirmText?: string;
   handleConfirmButton?: Function;
   handleOpenModal?: Function;
   heading: string;
   onClick?: Function;
   openButtonText: React.ReactNode;
+  showCloseButton?: boolean;
+  showConfirmButton?: boolean;
 };
 
-const ConfirmButtons = styled.div`
+const ModalFooterButtons = styled.div`
   padding: ${themeSpacing(2)} 0 ${themeSpacing(1)};
 
   button {
@@ -47,22 +49,17 @@ const ConfirmButtons = styled.div`
 const Modal: React.FC<ModalProps> = ({
   buttonVariant = "primary",
   children,
-  closeModal,
   closeButtonText = "Sluiten",
+  closeModalAfterConfirm = true,
   confirmText = "Bevestig",
   handleConfirmButton,
   handleOpenModal,
   heading,
   openButtonText,
+  showCloseButton = true,
+  showConfirmButton,
 }) => {
-  const [isOpen, toggleModal] = useState(false);
-
-  // This is a hook to close the Modal from the parent component
-  useEffect(() => {
-    if (closeModal) {
-      toggleModal(false);
-    }
-  }, [closeModal]);
+  const [open, toggleModal] = useState(false);
 
   const openModal = () => {
     toggleModal(true);
@@ -90,7 +87,7 @@ const Modal: React.FC<ModalProps> = ({
         onClose={() => {
           toggleModal(false);
         }}
-        open={isOpen}
+        open={open}
       >
         <ModalContent>
           <TopBar>
@@ -118,24 +115,27 @@ const Modal: React.FC<ModalProps> = ({
           <ModalBlock>
             <CompactThemeProvider>{children}</CompactThemeProvider>
 
-            <ConfirmButtons>
-              {handleConfirmButton && (
+            <ModalFooterButtons>
+              {showConfirmButton && (
                 <Button
                   variant="primary"
                   onClick={() => {
-                    handleConfirmButton();
+                    handleConfirmButton && handleConfirmButton();
+                    closeModalAfterConfirm && toggleModal(false);
                   }}
                 >
                   {confirmText}
                 </Button>
               )}
-              <Button
-                onClick={() => toggleModal(false)}
-                variant="primaryInverted"
-              >
-                {closeButtonText}
-              </Button>
-            </ConfirmButtons>
+              {showCloseButton && (
+                <Button
+                  onClick={() => toggleModal(false)}
+                  variant="primaryInverted"
+                >
+                  {closeButtonText}
+                </Button>
+              )}
+            </ModalFooterButtons>
           </ModalBlock>
         </ModalContent>
       </ModalUI>

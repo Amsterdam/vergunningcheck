@@ -1,54 +1,96 @@
-import { Label, Paragraph, Radio, RadioGroup } from "@datapunt/asc-ui";
-import React from "react";
+import {
+  ErrorMessage,
+  Label,
+  Paragraph,
+  Radio,
+  RadioGroup,
+} from "@datapunt/asc-ui";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { ComponentWrapper } from "../atoms";
 import { topics } from "../config";
-import { actions, eventNames } from "../config/matomo";
+import { sections } from "../config/matomo";
+import { SessionContext, SessionDataType } from "../context";
 import withTracking from "../hoc/withTracking";
 import Modal from "./Modal";
 
-type Props = {
+const ConclusionModal: React.FC<{
   matomoTrackEvent: Function;
-};
-
-const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
-  const [closeModal, setCloseModal] = React.useState(false);
+}> = ({ matomoTrackEvent }) => {
+  // @TODO: replace with custom topic hooks
+  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
+    SessionContext
+  );
+  const { slug } = useParams<{ slug: string }>();
+  const [checkerSlug, setCheckerSlug] = useState("");
+  const [finished, setFinished] = useState(false);
+  const [hasError, setError] = useState(false);
+  const [saveAddress, setSaveAddress] = useState<null | boolean>(null);
 
   const handleOpenModal = () => {
-    setCloseModal(false);
+    // matomoTrackEvent({
+    //   action: actions.A,
+    //   name: eventNames.B,
+    // });
 
-    matomoTrackEvent({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: eventNames.START_NEW_CHECK,
-    });
+    setError(false);
   };
 
   const handleConfirmButton = () => {
     // matomoTrackEvent({
-    //   action: actions.CLICK_INTERNAL_NAVIGATION,
-    //   name: eventNames.START_NEW_CHECK,
+    //   action: actions.A,
+    //   name: checkerSlug ? eventNames.A : eventnames.B,
     // });
-    setCloseModal(true);
+
+    setError(!checkerSlug);
+    setFinished(!!checkerSlug);
+
+    if (checkerSlug) {
+      const address = saveAddress ? sessionContext[slug].address : null;
+
+      // Clear or set session data for the new checker
+      sessionContext.setSessionData([
+        checkerSlug,
+        {
+          activeComponents: [sections.LOCATION_INPUT],
+          address: address,
+          answers: null,
+          finishedComponents: [],
+        },
+      ]);
+
+      return (window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`);
+    }
   };
 
   return (
     <Modal
-      closeModal={closeModal}
-      openButtonText="Nog een vergunningcheck doen"
-      heading="U wilt nog een vergunningcheck doen."
+      closeModalAfterConfirm={finished}
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}
+      heading="U wilt nog een vergunningcheck doen."
+      openButtonText="Nog een vergunningcheck doen"
+      showConfirmButton
     >
       <ComponentWrapper>
         <Paragraph strong gutterBottom={8}>
           Wilt u nog een vergunningcheck doen voor hetzelfde adres?
         </Paragraph>
-        <RadioGroup name="adres">
-          <Label htmlFor="adres-ja" label="Ja">
-            <Radio value="ja" id="adres-ja" />
+        <RadioGroup name="address">
+          <Label htmlFor="address-input-1" label="Ja">
+            <Radio
+              checked={saveAddress === true}
+              id="address-input-1"
+              onChange={() => setSaveAddress(true)}
+            />
           </Label>
-          <Label htmlFor="adres-nee" label="Nee">
-            <Radio value="nee" id="adres-nee" />
+          <Label htmlFor="address-input-2" label="Nee">
+            <Radio
+              checked={saveAddress === false}
+              id="address-input-2"
+              onChange={() => setSaveAddress(false)}
+            />
           </Label>
         </RadioGroup>
       </ComponentWrapper>
@@ -59,19 +101,25 @@ const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
         </Paragraph>
 
         <ComponentWrapper>
-          <RadioGroup name="checks">
+          <RadioGroup name="checkers">
             {topics
               .filter((topic) => topic.sttrFile)
-              .map((topic) => (
-                <Label htmlFor={topic.name} label={topic.name} key={topic.name}>
+              .map(({ name, slug }) => (
+                <Label htmlFor={slug} key={name} label={name}>
                   <Radio
-                    value={topic.slug}
-                    id={topic.name}
-                    // onChange={(e) => onChange(e)}
+                    checked={checkerSlug === slug}
+                    error={!!hasError}
+                    id={slug}
+                    onChange={() => {
+                      setError(false);
+                      setCheckerSlug(slug);
+                    }}
                   />
                 </Label>
               ))}
           </RadioGroup>
+
+          <ErrorMessage message={hasError ? "Maak een keuze" : ""} />
         </ComponentWrapper>
       </ComponentWrapper>
     </Modal>
@@ -79,3 +127,6 @@ const ConclusionModal: React.FC<Props> = ({ matomoTrackEvent }) => {
 };
 
 export default withTracking(ConclusionModal);
+
+// Lines to fix in test:
+// 11,112,119,120

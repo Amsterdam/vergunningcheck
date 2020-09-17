@@ -4,7 +4,8 @@ import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
 import { act, cleanup, fireEvent, render } from "../utils/test-utils";
 import Modal from "./Modal";
 
-const onClickMock = jest.fn();
+const onOpenMock = jest.fn();
+const onConfirmMock = jest.fn();
 
 afterEach(cleanup);
 
@@ -23,7 +24,7 @@ it("Modal should open and close", () => {
     <Modal
       openButtonText="button"
       heading="heading"
-      handleOpenModal={onClickMock}
+      handleOpenModal={onOpenMock}
     >
       text
     </Modal>
@@ -35,7 +36,7 @@ it("Modal should open and close", () => {
 
   expect(queryByTestId(MODAL)).toBeInTheDocument();
   expect(getByText("heading")).toBeInTheDocument();
-  expect(onClickMock).toHaveBeenCalledTimes(1);
+  expect(onOpenMock).toHaveBeenCalledTimes(1);
 
   act(() => {
     fireEvent.click(queryByTestId(MODAL_CLOSE));
@@ -43,3 +44,33 @@ it("Modal should open and close", () => {
 
   expect(queryByTestId(MODAL)).not.toBeInTheDocument();
 });
+
+// @TODO: finish this test
+xit("Modal should handle the footer buttons", () => {
+  const { getByText, queryByTestId } = render(
+    <Modal
+      openButtonText="button"
+      handleConfirmButton={onConfirmMock}
+      showCloseButton
+    >
+      text
+    </Modal>
+  );
+
+  act(() => {
+    fireEvent.click(getByText("button"));
+  });
+
+  expect(queryByTestId(MODAL)).toBeInTheDocument();
+  expect(getByText("heading")).toBeInTheDocument();
+  expect(onOpenMock).toHaveBeenCalledTimes(1);
+
+  act(() => {
+    fireEvent.click(queryByTestId(MODAL_CLOSE));
+  });
+
+  expect(queryByTestId(MODAL)).not.toBeInTheDocument();
+});
+
+// Lines to check:
+// 88,123,124,132
