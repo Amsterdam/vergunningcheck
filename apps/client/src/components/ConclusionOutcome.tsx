@@ -46,9 +46,13 @@ export const ConclusionOutcome: React.FC<Props> = ({
 
   return (
     <>
-      <Heading forwardedAs="h2">{contactConclusion?.title || heading}.</Heading>
+      <ComponentWrapper marginBottom={16}>
+        <Heading forwardedAs="h2">
+          {contactConclusion?.title || heading}.
+        </Heading>
+      </ComponentWrapper>
       {needsPermit && (
-        <Paragraph>
+        <Paragraph gutterBottom={16}>
           U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
         </Paragraph>
       )}
@@ -60,11 +64,11 @@ export const ConclusionOutcome: React.FC<Props> = ({
       )}
       <HideForPrint>
         {needsPermit && (
-          <ComponentWrapper marginBottom={10}>
+          <ComponentWrapper marginBottom={32}>
             <Button
-              type="button"
               color="secondary"
               onClick={handlePermitButton}
+              type="button"
             >
               Vergunning aanvragen
             </Button>
@@ -72,7 +76,7 @@ export const ConclusionOutcome: React.FC<Props> = ({
         )}
         {!isIE && !isMobile && (
           <PrintButton
-            marginTop={contactConclusion && 5}
+            marginBottom={32}
             onClick={handlePrintButton}
             variant="textButton"
           >

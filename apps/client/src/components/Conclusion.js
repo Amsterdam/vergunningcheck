@@ -1,5 +1,6 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
+import { isMobile } from "react-device-detect";
 
 import { Alert, PrintOnly } from "../atoms";
 import withTracking from "../hoc/withTracking";
@@ -46,7 +47,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
 
   return (
     <>
-      <Paragraph>
+      <Paragraph gutterBottom={isMobile ? 16 : 20}>
         U bent klaar met de vergunningcheck. Dit is de uitkomst:
       </Paragraph>
 

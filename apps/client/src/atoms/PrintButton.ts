@@ -12,7 +12,6 @@ export default styled(Button)<Props>`
   font-weight: 400;
   ${(props) =>
     css`
-      margin-top: ${props.marginTop ? props.marginTop + "px" : themeSpacing(5)};
       margin-bottom: ${props.marginBottom
         ? props.marginBottom + "px"
         : themeSpacing(5)};
