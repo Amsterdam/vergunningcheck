@@ -279,7 +279,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
             style={{ marginTop: -1 }}
           >
             {isFinished(sections.QUESTIONS) && (
-              <Conclusion {...{ checker, matomoTrackEvent, resetChecker }} />
+              <Conclusion {...{ checker, matomoTrackEvent }} />
             )}
           </StepByStepItem>
         </StepByStepNavigation>

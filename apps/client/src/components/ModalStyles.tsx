@@ -1,4 +1,4 @@
-import { Heading, Modal } from "@datapunt/asc-ui";
+import { Heading, Modal, themeSpacing } from "@datapunt/asc-ui";
 import styled from "styled-components";
 
 export const ModalUI = styled(Modal)`
@@ -7,8 +7,8 @@ export const ModalUI = styled(Modal)`
 
 export const ModalBlock = styled.div`
   display: block;
-  padding: 0 15px;
-  margin: 15px 0;
+  padding: 0 ${themeSpacing(4)};
+  margin: ${themeSpacing(4)} 0;
 `;
 
 export const ModalContent = styled.div`
@@ -17,4 +17,12 @@ export const ModalContent = styled.div`
 
 export const ModalHeading = styled(Heading)`
   flex-grow: 1;
+`;
+
+export const ModalFooterButtons = styled.div`
+  padding: ${themeSpacing(2)} 0 ${themeSpacing(1)};
+
+  button {
+    margin-right: ${themeSpacing(3)};
+  }
 `;

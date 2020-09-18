@@ -66,6 +66,7 @@ const ConclusionModal: React.FC<{
 
   return (
     <Modal
+      closeButtonText="Annuleer"
       closeModalAfterConfirm={finished}
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}

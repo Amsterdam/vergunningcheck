@@ -5,26 +5,19 @@ import {
   Divider,
   Icon,
   TopBar,
-  themeSpacing,
 } from "@datapunt/asc-ui";
 import React, { useState } from "react";
-import styled from "styled-components";
 
 import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
-import { ModalBlock, ModalContent, ModalHeading, ModalUI } from "./ModalStyles";
-
-// Copied from ASC-UI - unfortunately we cannot import these props yet
-type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "primaryInverted"
-  | "textButton"
-  | "blank"
-  | "application";
+import {
+  ModalBlock,
+  ModalContent,
+  ModalFooterButtons,
+  ModalHeading,
+  ModalUI,
+} from "./ModalStyles";
 
 type ModalProps = {
-  buttonVariant?: ButtonVariant;
   children: React.ReactNode;
   closeButtonText?: string;
   closeModalAfterConfirm?: boolean;
@@ -38,16 +31,7 @@ type ModalProps = {
   showConfirmButton?: boolean;
 };
 
-const ModalFooterButtons = styled.div`
-  padding: ${themeSpacing(2)} 0 ${themeSpacing(1)};
-
-  button {
-    margin-right: ${themeSpacing(3)};
-  }
-`;
-
 const Modal: React.FC<ModalProps> = ({
-  buttonVariant = "primary",
   children,
   closeButtonText = "Sluiten",
   closeModalAfterConfirm = true,
@@ -75,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({
         data-testid={MODAL_BUTTON}
         onClick={openModal}
         type="button"
-        variant={buttonVariant}
+        variant="primary"
       >
         {openButtonText}
       </Button>
@@ -118,11 +102,11 @@ const Modal: React.FC<ModalProps> = ({
             <ModalFooterButtons>
               {showConfirmButton && (
                 <Button
-                  variant="primary"
                   onClick={() => {
                     handleConfirmButton && handleConfirmButton();
                     closeModalAfterConfirm && toggleModal(false);
                   }}
+                  variant="primary"
                 >
                   {confirmText}
                 </Button>

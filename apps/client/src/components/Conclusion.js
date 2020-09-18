@@ -17,11 +17,7 @@ import ConclusionModal from "./ConclusionModal";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown";
 
-const Conclusion = ({
-  checker,
-  matomoTrackEvent,
-  // resetChecker
-}) => {
+const Conclusion = ({ checker, matomoTrackEvent }) => {
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
     .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
