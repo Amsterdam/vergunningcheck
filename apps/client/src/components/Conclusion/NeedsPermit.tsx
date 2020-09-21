@@ -11,7 +11,7 @@ export const NeedsPermit = () => (
     </Heading>
     <Paragraph>
       Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog meer
-      aan moet denken als u gaat starten? Op onze pagina
+      aan moet denken als u gaat starten? Op onze pagina{" "}
       <Link
         variant={"inline"}
         href={
