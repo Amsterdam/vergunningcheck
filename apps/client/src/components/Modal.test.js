@@ -1,6 +1,10 @@
 import React from "react";
 
-import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
+import {
+  MODAL,
+  MODAL_CLOSE_BUTTON,
+  MODAL_OPEN_BUTTON,
+} from "../utils/test-ids";
 import { act, cleanup, fireEvent, render } from "../utils/test-utils";
 import Modal from "./Modal";
 
@@ -14,7 +18,7 @@ it("Modal Button should render, but the Modal itself not", () => {
     <Modal openButtonText="button">text</Modal>
   );
   expect(getByText("button")).toBeInTheDocument();
-  expect(queryByTestId(MODAL_BUTTON)).toBeInTheDocument();
+  expect(queryByTestId(MODAL_OPEN_BUTTON)).toBeInTheDocument();
 
   expect(queryByTestId(MODAL)).not.toBeInTheDocument();
 });
@@ -39,7 +43,7 @@ it("Modal should open and close", () => {
   expect(onOpenMock).toHaveBeenCalledTimes(1);
 
   act(() => {
-    fireEvent.click(queryByTestId(MODAL_CLOSE));
+    fireEvent.click(queryByTestId(MODAL_CLOSE_BUTTON));
   });
 
   expect(queryByTestId(MODAL)).not.toBeInTheDocument();
@@ -66,7 +70,7 @@ xit("Modal should handle the footer buttons", () => {
   expect(onOpenMock).toHaveBeenCalledTimes(1);
 
   act(() => {
-    fireEvent.click(queryByTestId(MODAL_CLOSE));
+    fireEvent.click(queryByTestId(MODAL_CLOSE_BUTTON));
   });
 
   expect(queryByTestId(MODAL)).not.toBeInTheDocument();

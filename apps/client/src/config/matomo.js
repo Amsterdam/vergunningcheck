@@ -22,7 +22,7 @@ export const actions = {
   CLICK_PHONE_LINK: "14 020 bellen",
   DOWNLOAD: "download",
   EDIT_QUESTION: "wijzig vraag",
-  OPEN_QUESTION_DESCRIPTION_MODAL: "open lange toelichting modal",
+  OPEN_MODAL: "open modal",
   SUBMIT_LOCATION: "locatie invoer",
 };
 
@@ -49,6 +49,7 @@ export const eventNames = {
   CONTACT_OPENING: "contactgegevens en openingstijden",
   COOKIES: "cookies op deze site",
   DESCRIPTION: "toelichting vraag",
+  DO_ANOTHER_CHECK: "nog een vergunningcheck doen",
   EDIT_ADDRESS: "wijzig adres",
   FACEBOOK: "facebook",
   FORWARD: "ga naar",

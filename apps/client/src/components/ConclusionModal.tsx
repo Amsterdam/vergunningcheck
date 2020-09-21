@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 import { ComponentWrapper } from "../atoms";
 import { topics } from "../config";
-import { sections } from "../config/matomo";
+import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext, SessionDataType } from "../context";
 import withTracking from "../hoc/withTracking";
 import Modal from "./Modal";
@@ -29,10 +29,10 @@ const ConclusionModal: React.FC<{
   const [saveAddress, setSaveAddress] = useState<null | boolean>(null);
 
   const handleOpenModal = () => {
-    // matomoTrackEvent({
-    //   action: actions.A,
-    //   name: eventNames.B,
-    // });
+    matomoTrackEvent({
+      action: actions.OPEN_MODAL,
+      name: eventNames.DO_ANOTHER_CHECK,
+    });
 
     setError(false);
   };
@@ -128,6 +128,3 @@ const ConclusionModal: React.FC<{
 };
 
 export default withTracking(ConclusionModal);
-
-// Lines to fix in test:
-// 11,112,119,120

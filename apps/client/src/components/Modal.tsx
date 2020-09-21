@@ -8,7 +8,12 @@ import {
 } from "@datapunt/asc-ui";
 import React, { useState } from "react";
 
-import { MODAL, MODAL_BUTTON, MODAL_CLOSE } from "../utils/test-ids";
+import {
+  MODAL,
+  MODAL_CLOSE_BUTTON,
+  MODAL_CONFIRM_BUTTON,
+  MODAL_OPEN_BUTTON,
+} from "../utils/test-ids";
 import {
   ModalBlock,
   ModalContent,
@@ -56,7 +61,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <Button
-        data-testid={MODAL_BUTTON}
+        data-testid={MODAL_OPEN_BUTTON}
         onClick={openModal}
         type="button"
         variant="primary"
@@ -78,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({
             <ModalHeading forwardedAs="h4">
               {heading}
               <Button
-                data-testid={MODAL_CLOSE}
+                data-testid={MODAL_CLOSE_BUTTON}
                 onClick={(e: React.MouseEvent) => {
                   e.stopPropagation();
                   toggleModal(false);
@@ -102,6 +107,7 @@ const Modal: React.FC<ModalProps> = ({
             <ModalFooterButtons>
               {showConfirmButton && (
                 <Button
+                  data-testid={MODAL_CONFIRM_BUTTON}
                   onClick={() => {
                     handleConfirmButton && handleConfirmButton();
                     closeModalAfterConfirm && toggleModal(false);

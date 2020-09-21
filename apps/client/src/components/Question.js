@@ -109,8 +109,8 @@ const Question = ({
 
   const handleOpenModal = () => {
     matomoTrackEvent({
-      action: actions.OPEN_QUESTION_DESCRIPTION_MODAL,
-      name: questionTitle,
+      action: actions.OPEN_MODAL,
+      name: `${eventNames.DESCRIPTION} - ${questionTitle}`,
     });
   };
 
