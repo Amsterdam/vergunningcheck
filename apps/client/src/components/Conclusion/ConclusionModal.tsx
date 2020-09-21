@@ -8,12 +8,12 @@ import {
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { ComponentWrapper } from "../atoms";
-import { topics } from "../config";
-import { actions, eventNames, sections } from "../config/matomo";
-import { SessionContext, SessionDataType } from "../context";
-import withTracking from "../hoc/withTracking";
-import Modal from "./Modal";
+import { ComponentWrapper } from "../../atoms";
+import { topics } from "../../config";
+import { actions, eventNames, sections } from "../../config/matomo";
+import { SessionContext, SessionDataType } from "../../context";
+import withTracking from "../../hoc/withTracking";
+import Modal from "../Modal";
 
 const ConclusionModal: React.FC<{
   matomoTrackEvent: Function;

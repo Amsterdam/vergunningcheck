@@ -1,11 +1,5 @@
 import { Close } from "@datapunt/asc-assets";
-import {
-  Button,
-  CompactThemeProvider,
-  Divider,
-  Icon,
-  TopBar,
-} from "@datapunt/asc-ui";
+import { CompactThemeProvider, Divider, Icon, TopBar } from "@datapunt/asc-ui";
 import React, { useState } from "react";
 
 import {
@@ -16,6 +10,7 @@ import {
 } from "../utils/test-ids";
 import {
   ModalBlock,
+  ModalButton,
   ModalContent,
   ModalFooterButtons,
   ModalHeading,
@@ -60,14 +55,14 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <Button
+      <ModalButton
         data-testid={MODAL_OPEN_BUTTON}
         onClick={openModal}
         type="button"
         variant="primary"
       >
         {openButtonText}
-      </Button>
+      </ModalButton>
 
       <ModalUI
         aria-describedby={heading}
@@ -82,7 +77,7 @@ const Modal: React.FC<ModalProps> = ({
           <TopBar>
             <ModalHeading forwardedAs="h4">
               {heading}
-              <Button
+              <ModalButton
                 data-testid={MODAL_CLOSE_BUTTON}
                 onClick={(e: React.MouseEvent) => {
                   e.stopPropagation();
@@ -95,7 +90,7 @@ const Modal: React.FC<ModalProps> = ({
                 <Icon size={20}>
                   <Close />
                 </Icon>
-              </Button>
+              </ModalButton>
             </ModalHeading>
           </TopBar>
 
@@ -106,7 +101,7 @@ const Modal: React.FC<ModalProps> = ({
 
             <ModalFooterButtons>
               {showConfirmButton && (
-                <Button
+                <ModalButton
                   data-testid={MODAL_CONFIRM_BUTTON}
                   onClick={() => {
                     handleConfirmButton && handleConfirmButton();
@@ -115,15 +110,15 @@ const Modal: React.FC<ModalProps> = ({
                   variant="primary"
                 >
                   {confirmText}
-                </Button>
+                </ModalButton>
               )}
               {showCloseButton && (
-                <Button
+                <ModalButton
                   onClick={() => toggleModal(false)}
                   variant="primaryInverted"
                 >
                   {closeButtonText}
-                </Button>
+                </ModalButton>
               )}
             </ModalFooterButtons>
           </ModalBlock>

@@ -1,4 +1,4 @@
-import { Heading, Modal, themeSpacing } from "@datapunt/asc-ui";
+import { Button, Heading, Modal, themeSpacing } from "@datapunt/asc-ui";
 import styled from "styled-components";
 
 export const ModalUI = styled(Modal)`
@@ -9,6 +9,11 @@ export const ModalBlock = styled.div`
   display: block;
   padding: 0 ${themeSpacing(4)};
   margin: ${themeSpacing(4)} 0;
+`;
+
+// This is to prevent bugs with flexbox
+export const ModalButton = styled(Button)`
+  align-self: flex-start;
 `;
 
 export const ModalContent = styled.div`

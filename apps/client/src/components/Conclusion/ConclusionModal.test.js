@@ -1,12 +1,12 @@
 import React from "react";
 
-import { topics } from "../config";
+import { topics } from "../../config";
 import {
   MODAL,
   MODAL_CONFIRM_BUTTON,
   MODAL_OPEN_BUTTON,
-} from "../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../utils/test-utils";
+} from "../../utils/test-ids";
+import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
 import ConclusionModal from "./ConclusionModal";
 
 const matomoTrackEvent = jest.fn();

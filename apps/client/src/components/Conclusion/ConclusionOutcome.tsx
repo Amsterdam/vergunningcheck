@@ -8,6 +8,7 @@ import { sections } from "../../config/matomo";
 import { actions, eventNames } from "../../config/matomo";
 import { NEED_CONTACT, NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 import Markdown from "../Markdown/index";
+import ConclusionModal from "./ConclusionModal";
 import { NeedsPermit } from "./NeedsPermit";
 import { NoPermitDescription } from "./NoPermitDescription";
 
@@ -89,8 +90,13 @@ export const ConclusionOutcome: React.FC<Props> = ({
           </PrintButton>
         )}
       </HideForPrint>
+
       {needsPermit && <NeedsPermit />}
+
       {!needsPermit && !contactConclusion && <NoPermitDescription />}
+
+      {/* Do another checker  modal */}
+      <ConclusionModal />
     </>
   );
 };
