@@ -1,7 +1,7 @@
-import { ErrorMessage, Label, Radio, RadioGroup } from "@datapunt/asc-ui";
+import { ErrorMessage, Radio, RadioGroup } from "@datapunt/asc-ui";
 import React from "react";
 
-import { ComponentWrapper } from "../atoms";
+import { ComponentWrapper, Label } from "../atoms";
 import { removeQuotes } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
