@@ -9,6 +9,11 @@ export const FOOTER = "footer";
 export const QUESTION_PAGE = "question-form";
 export const QUESTION_ANSWERS = "question-answers";
 
+export const NEED_CONTACT = "need-contact";
+export const NEED_PERMIT = "need-permit";
+export const NEED_PERMIT_BUTTON = "need-permit-button";
+export const NO_PERMIT_NEEDED = "no-permit-needed";
+
 export const NEXT_BUTTON = "next-button";
 export const PREV_BUTTON = "prev-button";
 

@@ -1,7 +1,11 @@
 import { themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
-export default styled.div`
+type Props = {
+  marginBottom?: number;
+};
+
+export default styled.div<Props>`
   ${(props) =>
     css`
       margin-bottom: ${props.marginBottom
