@@ -71,6 +71,6 @@ export const eventNames = {
   TWITTER: "twitter",
   WEBARCHIEF: "webarchief",
   WITH_THE_SAME_ADDRESS: "op hetzelfde adres",
-  WITHOUT_THE_SAME_ADDRESS: "op een andres adres",
+  WITHOUT_THE_SAME_ADDRESS: "op een ander adres",
   WORK_AT: "werken bij",
 };
