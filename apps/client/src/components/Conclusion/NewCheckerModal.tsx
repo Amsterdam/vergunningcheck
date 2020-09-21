@@ -15,7 +15,7 @@ import { SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
 import Modal from "../Modal";
 
-const ConclusionModal: React.FC<{
+const NewCheckerModal: React.FC<{
   matomoTrackEvent: Function;
 }> = ({ matomoTrackEvent }) => {
   // @TODO: replace with custom topic hooks
@@ -132,4 +132,4 @@ const ConclusionModal: React.FC<{
   );
 };
 
-export default withTracking(ConclusionModal);
+export default withTracking(NewCheckerModal);

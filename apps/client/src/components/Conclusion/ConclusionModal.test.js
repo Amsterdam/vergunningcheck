@@ -7,14 +7,14 @@ import {
   MODAL_OPEN_BUTTON,
 } from "../../utils/test-ids";
 import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
-import ConclusionModal from "./ConclusionModal";
+import NewCheckerModal from "./NewCheckerModal";
 
 const matomoTrackEvent = jest.fn();
 const customTopic = topics[2]; // Dakraam checker
 
 window.scrollTo = jest.fn();
 
-// Mock the location.href link
+// Mock the location.href to see if new checker is opened
 delete window.location;
 window.location = { href: jest.fn() };
 
@@ -25,16 +25,16 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-it("ConclusionModal should render as expected", () => {
-  const { queryByText, queryByTestId } = render(<ConclusionModal />);
+it("NewCheckerModal should render as expected", () => {
+  const { queryByText, queryByTestId } = render(<NewCheckerModal />);
   expect(queryByTestId(MODAL_OPEN_BUTTON)).toBeInTheDocument();
   expect(queryByTestId(MODAL)).not.toBeInTheDocument();
   expect(queryByText(customTopic.name)).toBeNull();
 });
 
-it("ConclusionModal render a topic and link to it", async () => {
+it("NewCheckerModal render a topic and open it", async () => {
   const { queryByText, queryByTestId } = render(
-    <ConclusionModal matomoTrackEvent={matomoTrackEvent} />
+    <NewCheckerModal matomoTrackEvent={matomoTrackEvent} />
   );
 
   act(() => {
