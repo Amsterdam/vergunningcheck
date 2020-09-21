@@ -9,6 +9,7 @@ import { actions, eventNames } from "../../config/matomo";
 import { NEED_CONTACT, NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 import Markdown from "../Markdown/index";
 import { NeedsPermit } from "./NeedsPermit";
+import NewCheckerModal from "./NewCheckerModal";
 import { NoPermitDescription } from "./NoPermitDescription";
 
 type Props = {
@@ -89,8 +90,12 @@ export const ConclusionOutcome: React.FC<Props> = ({
           </PrintButton>
         )}
       </HideForPrint>
+
       {needsPermit && <NeedsPermit />}
+
       {!needsPermit && !contactConclusion && <NoPermitDescription />}
+
+      <NewCheckerModal />
     </>
   );
 };

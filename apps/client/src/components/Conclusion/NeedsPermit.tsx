@@ -9,7 +9,7 @@ export const NeedsPermit = () => (
     <Heading forwardedAs="h2" data-testid={NEED_PERMIT}>
       Meer weten?
     </Heading>
-    <Paragraph>
+    <Paragraph gutterBottom={36}>
       Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog meer
       aan moet denken als u gaat starten? Op onze pagina{" "}
       <Link

@@ -43,6 +43,20 @@ const withTopic = (Component) => (props) => {
     return <Redirect to={geturl(routes.intro, topic)} />;
   }
 
+  // @TODO: we need to replace this `loadChecker` URL with a decent solution
+  if (params.get("loadChecker")) {
+    checkerContext.checker = null;
+
+    // Reset all but address from session
+    sessionContext.setSessionData([
+      slug,
+      {
+        answers: null,
+        questionIndex: 0,
+      },
+    ]);
+  }
+
   if (topic) {
     // redirect to olo if needed
     if (topic.redirectToOlo) {
