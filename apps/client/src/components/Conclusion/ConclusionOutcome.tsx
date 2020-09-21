@@ -80,6 +80,7 @@ export const ConclusionOutcome: React.FC<Props> = ({
             </Button>
           </ComponentWrapper>
         )}
+
         {!isIE && !isMobile && (
           <PrintButton
             marginBottom={32}
