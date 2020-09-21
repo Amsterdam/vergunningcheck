@@ -77,7 +77,13 @@
     "@types/react-helmet": "^6.0.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.1",
+    "@wdio/cli": "^6.5.2",
+    "@wdio/local-runner": "^6.5.2",
+    "@wdio/mocha-framework": "^6.5.0",
+    "@wdio/spec-reporter": "^6.4.7",
+    "@wdio/sync": "^6.5.0",
     "batch-promises": "0.0.3",
+    "chromedriver": "^85.0.1",
     "faker": "^5.1.0",
     "fast-xml-parser": "^3.17.4",
     "import-sort-style-module": "^6.0.0",
@@ -91,7 +97,9 @@
     "prop-types": "^15.7.2",
     "react-scripts": "3.4.0",
     "source-map-explorer": "^2.4.2",
-    "typescript": "^3.9.5"
+    "ts-node": "^9.0.0",
+    "typescript": "^3.9.7",
+    "wdio-chromedriver-service": "^6.0.4"
   },
   "lint-staged": {
     "*.json": [
