@@ -24,6 +24,7 @@ export const actions = {
   EDIT_QUESTION: "wijzig vraag",
   OPEN_MODAL: "open modal",
   SUBMIT_LOCATION: "locatie invoer",
+  START_ANOTHER_CHECK: "start een andere vergunningcheck",
 };
 
 export const sections = {
@@ -62,12 +63,14 @@ export const eventNames = {
   LONG_DESCRIPTION: "lange toelichting vraag",
   LOGO: "logo",
   NEWSLETTER: "nieuwsbrief amsterdam.nl",
+  NO_CHOISE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
-  START_NEW_CHECK: "Nog een checker doen",
   TEXT_LINK: "tekst link",
   TO_OLO: "naar het omgevingsloket",
   TWITTER: "twitter",
   WEBARCHIEF: "webarchief",
+  WITH_THE_SAME_ADDRESS: "op hetzelfde adres",
+  WITHOUT_THE_SAME_ADDRESS: "op een andres adres",
   WORK_AT: "werken bij",
 };

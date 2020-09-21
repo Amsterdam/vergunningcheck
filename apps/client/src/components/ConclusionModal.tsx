@@ -38,10 +38,15 @@ const ConclusionModal: React.FC<{
   };
 
   const handleConfirmButton = () => {
-    // matomoTrackEvent({
-    //   action: actions.A,
-    //   name: checkerSlug ? eventNames.A : eventnames.B,
-    // });
+    const saveAddressText = saveAddress
+      ? eventNames.WITH_THE_SAME_ADDRESS
+      : eventNames.WITHOUT_THE_SAME_ADDRESS;
+    matomoTrackEvent({
+      action: actions.START_ANOTHER_CHECK,
+      name: checkerSlug
+        ? `${checkerSlug.replace("-", " ")} - ${saveAddressText}`
+        : eventNames.NO_CHOISE_HAS_BEEN_MADE,
+    });
 
     setError(!checkerSlug);
     setFinished(!!checkerSlug);
