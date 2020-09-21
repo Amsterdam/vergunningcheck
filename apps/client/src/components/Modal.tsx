@@ -6,6 +6,7 @@ import {
   MODAL,
   MODAL_CLOSE_BUTTON,
   MODAL_CONFIRM_BUTTON,
+  MODAL_DECLINE_BUTTON,
   MODAL_OPEN_BUTTON,
 } from "../utils/test-ids";
 import {
@@ -114,6 +115,7 @@ const Modal: React.FC<ModalProps> = ({
               )}
               {showCloseButton && (
                 <ModalButton
+                  data-testid={MODAL_DECLINE_BUTTON}
                   onClick={() => toggleModal(false)}
                   variant="primaryInverted"
                 >
