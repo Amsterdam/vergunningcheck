@@ -4,13 +4,14 @@ import { useParams } from "react-router-dom";
 
 import { List } from "../../atoms/index";
 import { topics } from "../../config";
+import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
 
 export const NoPermitDescription = () => {
   const { slug } = useParams();
   const topic = topics.find((t) => t.slug === slug);
   return (
     <>
-      <Paragraph>
+      <Paragraph data-testid={NO_PERMIT_NEEDED}>
         U hebt geen vergunning nodig voor {topic?.name.toLowerCase()}. Wél moet
         u op een aantal dingen letten voordat u gaat beginnen. Uw aannemer kan u
         daarbij helpen.

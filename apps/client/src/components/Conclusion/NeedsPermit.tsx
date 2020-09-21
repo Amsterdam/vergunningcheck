@@ -1,11 +1,14 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
+import { NEED_PERMIT } from "../../utils/test-ids";
 import Link from "../Link";
 
 export const NeedsPermit = () => (
   <>
-    <Heading forwardedAs="h2">Meer weten?</Heading>
+    <Heading forwardedAs="h2" data-testid={NEED_PERMIT}>
+      Meer weten?
+    </Heading>
     <Paragraph>
       Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog meer
       aan moet denken als u gaat starten? Op onze pagina

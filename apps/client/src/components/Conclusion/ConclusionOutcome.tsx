@@ -6,6 +6,7 @@ import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { Olo } from "../../config";
 import { sections } from "../../config/matomo";
 import { actions, eventNames } from "../../config/matomo";
+import { NEED_CONTACT, NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 import Markdown from "../Markdown/index";
 import { NeedsPermit } from "./NeedsPermit";
 import { NoPermitDescription } from "./NoPermitDescription";
@@ -58,16 +59,19 @@ export const ConclusionOutcome: React.FC<Props> = ({
         </Paragraph>
       )}
       {contactConclusion?.description && (
-        <Markdown
-          eventLocation={sections.CONCLUSION}
-          source={contactConclusion.description}
-        />
+        <div data-testid={NEED_CONTACT}>
+          <Markdown
+            eventLocation={sections.CONCLUSION}
+            source={contactConclusion.description}
+          />
+        </div>
       )}
       <HideForPrint>
         {needsPermit && (
           <ComponentWrapper marginBottom={32}>
             <Button
               color="secondary"
+              data-testid={NEED_PERMIT_BUTTON}
               onClick={handlePermitButton}
               type="button"
             >
