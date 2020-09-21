@@ -1,11 +1,9 @@
-import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
-import { isMobile } from "react-device-detect";
 
 import { Alert, PrintOnly } from "../atoms";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
-import { ConclusionOutcome } from "./ConclusionOutcome";
+import { ConclusionOutcome } from "./Conclusion/ConclusionOutcome";
 import ContactSentence from "./ContactSentence";
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
@@ -47,10 +45,6 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
 
   return (
     <>
-      <Paragraph gutterBottom={isMobile ? 16 : 20}>
-        U bent klaar met de vergunningcheck. Dit is de uitkomst:
-      </Paragraph>
-
       <ConclusionOutcome
         contactConclusion={contactConclusion}
         matomoTrackEvent={matomoTrackEvent}
