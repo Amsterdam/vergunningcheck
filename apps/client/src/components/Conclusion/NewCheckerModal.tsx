@@ -1,14 +1,8 @@
-import {
-  ErrorMessage,
-  Label,
-  Paragraph,
-  Radio,
-  RadioGroup,
-} from "@datapunt/asc-ui";
+import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@datapunt/asc-ui";
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { ComponentWrapper } from "../../atoms";
+import { ComponentWrapper, Label } from "../../atoms";
 import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
