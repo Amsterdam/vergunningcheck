@@ -1,20 +1,10 @@
-import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { Fragment } from "react";
-import { isIE, isMobile } from "react-device-detect";
+import React from "react";
 
-import {
-  Alert,
-  ComponentWrapper,
-  HideForPrint,
-  PrintButton,
-  PrintOnly,
-} from "../atoms";
-import { Olo } from "../config";
-import { actions, eventNames, sections } from "../config/matomo";
+import { Alert, PrintOnly } from "../atoms";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
+import { ConclusionOutcome } from "./Conclusion/ConclusionOutcome";
 import ContactSentence from "./ContactSentence";
-import Markdown from "./Markdown";
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
   // find conclusions we want to display to the user
@@ -53,67 +43,13 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
 
-  const displayConclusions = contactConclusion
-    ? [contactConclusion]
-    : conclusions;
-
-  const handlePermitButton = (e) => {
-    e.preventDefault();
-    matomoTrackEvent({
-      action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
-    });
-    // Open OLO in new tab/window
-    window.open(Olo.home, "_blank");
-  };
-
-  const handlePrintButton = () => {
-    matomoTrackEvent({
-      action: actions.DOWNLOAD,
-      name: eventNames.SAVE_CONCLUSION,
-    });
-    window.print();
-  };
-
   return (
     <>
-      <Paragraph>
-        Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
-        toepassing is.
-      </Paragraph>
-
-      {displayConclusions.map(({ title, description }) => (
-        <Fragment key={title}>
-          <Heading forwardedAs="h2">{title}</Heading>
-          <Markdown eventLocation={sections.CONCLUSION} source={description} />
-        </Fragment>
-      ))}
-
-      <HideForPrint>
-        {needsPermit && !contactConclusion && (
-          <ComponentWrapper marginBottom={40}>
-            <Button
-              type="button"
-              color="secondary"
-              onClick={handlePermitButton}
-            >
-              Vergunning aanvragen
-            </Button>
-          </ComponentWrapper>
-        )}
-
-        {!isIE && !isMobile && (
-          <ComponentWrapper>
-            <PrintButton
-              color="primary"
-              onClick={handlePrintButton}
-              type="button"
-            >
-              Conclusie opslaan
-            </PrintButton>
-          </ComponentWrapper>
-        )}
-      </HideForPrint>
+      <ConclusionOutcome
+        contactConclusion={contactConclusion}
+        matomoTrackEvent={matomoTrackEvent}
+        needsPermit={!contactConclusion && needsPermit}
+      />
 
       <PrintOnly withBorder avoidPageBreak>
         <Alert
