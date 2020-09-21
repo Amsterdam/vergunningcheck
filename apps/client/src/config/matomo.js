@@ -63,7 +63,7 @@ export const eventNames = {
   LONG_DESCRIPTION: "lange toelichting vraag",
   LOGO: "logo",
   NEWSLETTER: "nieuwsbrief amsterdam.nl",
-  NO_CHOISE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
+  NO_CHOICE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
   TEXT_LINK: "tekst link",

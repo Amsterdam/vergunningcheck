@@ -9,16 +9,14 @@ import {
 } from "../utils";
 import { render } from "./test-utils";
 
+window.scrollTo = jest.fn();
+
 let ref;
 
 const Element = () => {
   ref = useRef(null);
 
-  return (
-    <div data-testid="element" ref={ref}>
-      test
-    </div>
-  );
+  return <div data-testid="element" ref={ref} />;
 };
 
 describe("util", () => {
@@ -63,8 +61,6 @@ describe("util", () => {
     expect(collectionOfType(["false"], "Boolean")).toBe(false);
   });
   test("scrollToRef", () => {
-    window.scrollTo = jest.fn();
-
     const { queryByTestId } = render(<Element />);
     const element = queryByTestId("element");
     element.getBoundingClientRect = jest.fn(() => ({

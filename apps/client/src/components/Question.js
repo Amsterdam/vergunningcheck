@@ -127,8 +127,8 @@ const Question = ({
       {longDescription && (
         <ComponentWrapper>
           <Modal
-            heading="Toelichting"
             handleOpenModal={handleOpenModal}
+            heading="Toelichting"
             openButtonText="Toelichting"
           >
             <Markdown

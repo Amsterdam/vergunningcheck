@@ -39,7 +39,7 @@ const NewCheckerModal: React.FC<{
       action: actions.START_ANOTHER_CHECK,
       name: checkerSlug
         ? `${checkerSlug.replace("-", " ")} - ${saveAddressText}`
-        : eventNames.NO_CHOISE_HAS_BEEN_MADE,
+        : eventNames.NO_CHOICE_HAS_BEEN_MADE,
     });
 
     setError(!checkerSlug);

@@ -38,7 +38,7 @@ const Questions = ({
       action: checker.stack[questionIndex].text,
       name: eventNames.GOTO_CONCLUSION,
     });
-    // Wrap in a timeout to prevent a miscalculation the `Question` component collapses
+    // Wrap in a timeout to prevent a miscalculation when the `Question` component collapses
     setTimeout(() => {
       scrollToRef(conclusionRef, 20);
     }, 0);
