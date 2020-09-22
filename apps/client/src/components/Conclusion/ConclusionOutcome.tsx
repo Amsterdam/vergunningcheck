@@ -49,7 +49,9 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
       </ComponentWrapper>
 
       {mainContent}
+
       <HideForPrint>
+        f6bbad3be24892794e64e6925ef2fdb83625aa
         {!isIE && !isMobile && (
           <PrintButton
             data-testid={PRINT_BUTTON}
