@@ -45,16 +45,18 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
     ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
 
-  const needsPermit = !!conclusions.find(
+  const needPermit = !!conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
 
   return (
     <ConclusionWrapper>
       <ConclusionOutcome
-        contactConclusion={contactConclusion}
-        matomoTrackEvent={matomoTrackEvent}
-        needsPermit={needsPermit}
+        {...{
+          contactConclusion,
+          matomoTrackEvent,
+          needPermit,
+        }}
       />
 
       <PrintOnly withBorder avoidPageBreak>

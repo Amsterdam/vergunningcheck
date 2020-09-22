@@ -47,7 +47,7 @@ const NewCheckerModal: React.FC<{
 
     if (checkerSlug) {
       const address = saveAddress ? sessionContext[slug].address : null;
-      const startComponent = saveAddress
+      const activeComponents = saveAddress
         ? sections.QUESTIONS
         : sections.LOCATION_INPUT;
       const finishedComponents = saveAddress && sections.LOCATION_RESULT;
@@ -55,8 +55,8 @@ const NewCheckerModal: React.FC<{
       sessionContext.setSessionData([
         checkerSlug,
         {
-          activeComponents: [startComponent],
-          address: address,
+          activeComponents: [activeComponents],
+          address,
           questionIndex: 0,
           answers: null,
           finishedComponents: [finishedComponents],

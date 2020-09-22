@@ -1,27 +1,26 @@
-import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React, { ReactNode } from "react";
 import { isIE, isMobile } from "react-device-detect";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
-import { Olo } from "../../config";
 import { sections } from "../../config/matomo";
 import { actions, eventNames } from "../../config/matomo";
-import { NEED_CONTACT, NEED_PERMIT_BUTTON } from "../../utils/test-ids";
+import { NEED_CONTACT } from "../../utils/test-ids";
 import Markdown from "../Markdown/index";
-import { NeedsPermit } from "./NeedsPermit";
+import { NeedPermitContent, NeedPermitFooter } from "./NeedPermit";
 import NewCheckerModal from "./NewCheckerModal";
 import { NoPermitDescription } from "./NoPermitDescription";
 
 type Props = {
   contactConclusion: { description: string; title: string };
   matomoTrackEvent: Function;
-  needsPermit: boolean;
+  needPermit: boolean;
 };
 
 export const ConclusionOutcome: React.FC<Props> = ({
   contactConclusion,
   matomoTrackEvent,
-  needsPermit,
+  needPermit,
 }) => {
   const handlePrintButton = () => {
     matomoTrackEvent({
@@ -31,36 +30,13 @@ export const ConclusionOutcome: React.FC<Props> = ({
     window.print();
   };
 
-  const handlePermitButton = () => {
-    matomoTrackEvent({
-      action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
-    });
-    // Open OLO in new tab/window
-    window.open(Olo.home, "_blank");
-  };
-
   const conclusionText = {
     needPermit: {
       title: "U hebt een omgevingsvergunning nodig.",
       contentParagraph: (
-        <>
-          <Paragraph gutterBottom={16}>
-            U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
-          </Paragraph>
-          <ComponentWrapper marginBottom={32}>
-            <Button
-              color="secondary"
-              data-testid={NEED_PERMIT_BUTTON}
-              onClick={handlePermitButton}
-              type="button"
-            >
-              Vergunning aanvragen
-            </Button>
-          </ComponentWrapper>
-        </>
+        <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />
       ),
-      finalParagraph: <NeedsPermit />,
+      finalParagraph: <NeedPermitFooter />,
     },
     needContact: {
       title: contactConclusion?.title,
@@ -86,13 +62,12 @@ export const ConclusionOutcome: React.FC<Props> = ({
     contentParagraph: ReactNode;
     finalParagraph: ReactNode;
   } = conclusionText.noPermit;
-  if (!contactConclusion && needsPermit) {
+  if (!contactConclusion && needPermit) {
     conclusion = conclusionText.needPermit;
   }
   if (contactConclusion) {
     conclusion = conclusionText.needContact;
   }
-  console.log("need", !contactConclusion && needsPermit);
   return (
     <>
       <Paragraph gutterBottom={isMobile ? 16 : 20}>

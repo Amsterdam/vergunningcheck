@@ -21,7 +21,7 @@ afterEach(cleanup);
 
 it("renders more info for permit description", () => {
   const { getByTestId } = render(
-    <ConclusionOutcome needsPermit={true} matomoTrackEvent={() => {}} />
+    <ConclusionOutcome needPermit={true} matomoTrackEvent={() => {}} />
   );
   expect(getByTestId(NEED_PERMIT)).toBeTruthy();
   expect(getByTestId(NEED_PERMIT_BUTTON)).toBeTruthy();
@@ -30,7 +30,7 @@ it("renders more info for permit description", () => {
 it("Don't need a permit", () => {
   const { getByTestId } = render(
     <ConclusionOutcome
-      needsPermit={false}
+      needPermit={false}
       contactConclusion={false}
       matomoTrackEvent={() => {}}
     />
@@ -41,7 +41,7 @@ it("Don't need a permit", () => {
 it("Contact Amsterdam conclusion", () => {
   const { getByTestId } = render(
     <ConclusionOutcome
-      needsPermit={false}
+      needPermit={false}
       contactConclusion={{
         title: "Test",
         description: "Je moet contact opnemen met amsterdam",
