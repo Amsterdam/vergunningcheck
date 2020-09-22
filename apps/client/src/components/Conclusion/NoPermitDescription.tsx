@@ -39,10 +39,7 @@ export const NoPermitDescription = () => {
           Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein
           van de buren.
         </ListItem>
-        <ListItem>
-          De gevolgen van het plaatsen van een kozijn voor de WOZ-waarde van uw
-          huis.
-        </ListItem>
+        <ListItem>De gevolgen voor de WOZ-waarde van uw huis.</ListItem>
         <ListItem>Toestemming van de VvE.</ListItem>
       </List>
     </>
