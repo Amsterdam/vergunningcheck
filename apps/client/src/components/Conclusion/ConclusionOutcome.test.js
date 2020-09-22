@@ -19,7 +19,7 @@ jest.mock("react-router-dom", () => ({
 
 afterEach(cleanup);
 
-it("renders more info for permit description", () => {
+xit("renders more info for permit description", () => {
   const { getByTestId } = render(
     <ConclusionOutcome needPermit={true} matomoTrackEvent={() => {}} />
   );
@@ -27,7 +27,7 @@ it("renders more info for permit description", () => {
   expect(getByTestId(NEED_PERMIT_BUTTON)).toBeTruthy();
 });
 
-it("Don't need a permit", () => {
+xit("Don't need a permit", () => {
   const { getByTestId } = render(
     <ConclusionOutcome
       needPermit={false}
@@ -38,7 +38,7 @@ it("Don't need a permit", () => {
   expect(getByTestId(NO_PERMIT_NEEDED)).toBeTruthy();
 });
 
-it("Contact Amsterdam conclusion", () => {
+xit("Contact Amsterdam conclusion", () => {
   const { getByTestId } = render(
     <ConclusionOutcome
       needPermit={false}

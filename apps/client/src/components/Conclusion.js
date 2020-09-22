@@ -3,11 +3,16 @@ import React from "react";
 import styled from "styled-components";
 
 import { Alert, PrintOnly } from "../atoms";
+import { sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
-import { removeQuotes } from "../utils/index";
+import { removeQuotes } from "../utils";
+import { NEED_CONTACT } from "../utils/test-ids";
 import { ConclusionOutcome } from "./Conclusion/ConclusionOutcome";
+import { NeedPermitContent, NeedPermitFooter } from "./Conclusion/NeedPermit";
+import { NoPermitDescription } from "./Conclusion/NoPermitDescription";
 import ContactSentence from "./ContactSentence";
+import Markdown from "./Markdown/index";
 
 const ConclusionWrapper = styled.div`
   padding-bottom: ${themeSpacing(14)};
@@ -41,27 +46,57 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
       };
     });
 
+  // Check if the conclusion is 'needContact'
   const contactConclusion = conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
 
+  // Check if the conclusion is 'needPermit'
   const needPermit = !!conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
+
+  const needContactContent = {
+    mainContent: (
+      <div data-testid={NEED_CONTACT}>
+        <Markdown
+          eventLocation={sections.CONCLUSION}
+          source={contactConclusion?.description}
+        />
+      </div>
+    ),
+    title: contactConclusion?.title,
+  };
+
+  const needPermitContent = {
+    footerContent: <NeedPermitFooter />,
+    mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
+    title: "U hebt een omgevingsvergunning nodig.",
+  };
+
+  const permitFreeContent = {
+    footerContent: <NoPermitDescription />,
+    title: "U hebt geen omgevingsvergunning nodig. ",
+  };
+
+  const conclusionContent = contactConclusion
+    ? needContactContent
+    : needPermit
+    ? needPermitContent
+    : permitFreeContent;
 
   return (
     <ConclusionWrapper>
       <ConclusionOutcome
         {...{
-          contactConclusion,
+          conclusionContent,
           matomoTrackEvent,
-          needPermit,
         }}
       />
 
+      {/* Disclaimer */}
       <PrintOnly withBorder avoidPageBreak>
         <Alert
-          heading="Let op"
           content={
             <>
               De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog
@@ -69,11 +104,12 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
               informatie nog niet voor iedereen goed te lezen of te beluisteren.
               Wilt u iets zeker weten of wilt u meer informatie?{" "}
               <ContactSentence
-                openingSentence={"Bel dan de gemeente op"}
                 link={false}
+                openingSentence={"Bel dan de gemeente op"}
               />
             </>
           }
+          heading="Let op"
         />
       </PrintOnly>
     </ConclusionWrapper>
@@ -81,3 +117,5 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
 };
 
 export default withTracking(Conclusion);
+
+// 59,71,77,82,88
