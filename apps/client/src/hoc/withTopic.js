@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { Redirect, useLocation, useParams } from "react-router-dom";
 
-import { topics } from "../config";
 import { sections } from "../config/matomo";
 import { CheckerContext, SessionContext } from "../context";
 import NotFoundPage from "../pages/NotFoundPage";
 import RedirectPage from "../pages/RedirectPage";
 import { geturl, routes } from "../routes";
+import { findTopicBySlug } from "../utils";
 
 const withTopic = (Component) => (props) => {
   const sessionContext = useContext(SessionContext);
@@ -14,7 +14,7 @@ const withTopic = (Component) => (props) => {
   const { slug } = useParams();
   const { search } = useLocation();
 
-  const topic = topics.find((t) => t.slug === slug);
+  const topic = findTopicBySlug(slug);
   const params = new URLSearchParams(search);
 
   useEffect(() => {
