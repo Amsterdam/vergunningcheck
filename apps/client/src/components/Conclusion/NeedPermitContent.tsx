@@ -1,6 +1,7 @@
-import { Button, Paragraph } from "@datapunt/asc-ui";
+import { Button, Link, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
+import { HideForPrint, PrintOnly } from "../../atoms";
 import ComponentWrapper from "../../atoms/ComponentWrapper";
 import { Olo } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
@@ -20,19 +21,27 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
 
   return (
     <>
-      <Paragraph gutterBottom={16}>
-        U kunt deze vergunning aanvragen bij het landelijk omgevingsloket.
-      </Paragraph>
-      <ComponentWrapper marginBottom={32}>
-        <Button
-          color="secondary"
-          data-testid={NEED_PERMIT_BUTTON}
-          onClick={handlePermitButton}
-          type="button"
-        >
-          Vergunning aanvragen
-        </Button>
-      </ComponentWrapper>
+      <HideForPrint>
+        <Paragraph gutterBottom={16}>
+          U kunt deze vergunning aanvragen bij het landelijk omgevingsloket.
+        </Paragraph>
+        <ComponentWrapper marginBottom={32}>
+          <Button
+            color="secondary"
+            data-testid={NEED_PERMIT_BUTTON}
+            onClick={handlePermitButton}
+            type="button"
+          >
+            Vergunning aanvragen
+          </Button>
+        </ComponentWrapper>
+      </HideForPrint>
+      <PrintOnly>
+        <Paragraph gutterBottom={16}>
+          U kunt deze vergunning aanvragen op{" "}
+          <Link variant="inline">https://www.omgevingsloket.nl/</Link>
+        </Paragraph>
+      </PrintOnly>
     </>
   );
 };

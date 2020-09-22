@@ -18,7 +18,9 @@ import {
 import Markdown from "./Markdown/index";
 
 const ConclusionWrapper = styled.div`
-  padding-bottom: ${themeSpacing(5)};
+  @media screen {
+    padding-bottom: ${themeSpacing(5)};
+  }
 `;
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
