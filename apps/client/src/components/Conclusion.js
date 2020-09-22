@@ -1,10 +1,17 @@
+import { themeSpacing } from "@datapunt/asc-ui";
 import React from "react";
+import styled from "styled-components";
 
 import { Alert, PrintOnly } from "../atoms";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
+import { removeQuotes } from "../utils/index";
 import { ConclusionOutcome } from "./Conclusion/ConclusionOutcome";
 import ContactSentence from "./ContactSentence";
+
+const ConclusionWrapper = styled.div`
+  padding-bottom: ${themeSpacing(14)};
+`;
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
   // find conclusions we want to display to the user
@@ -24,9 +31,8 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         title:
           outcome === sttrOutcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
-            : `${permit.name.replace("Conclusie", "")}: ${outcome.replace(
-                /['"]+/g,
-                ""
+            : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
+                outcome
               )}`,
         description:
           outcome === sttrOutcomes.NEED_CONTACT
@@ -44,7 +50,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
   );
 
   return (
-    <>
+    <ConclusionWrapper>
       <ConclusionOutcome
         contactConclusion={contactConclusion}
         matomoTrackEvent={matomoTrackEvent}
@@ -68,7 +74,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
           }
         />
       </PrintOnly>
-    </>
+    </ConclusionWrapper>
   );
 };
 
