@@ -27,3 +27,6 @@ export const MODAL_CLOSE_BUTTON = "modal-close-button";
 export const MODAL_DECLINE_BUTTON = "modal-decline-button";
 export const MODAL_CONFIRM_BUTTON = "modal-confirm-button";
 export const MODAL_OPEN_BUTTON = "modal-open-button";
+
+export const RADIO_ADDRESS_1 = "address-input-1";
+export const RADIO_ADDRESS_2 = "address-input-2";

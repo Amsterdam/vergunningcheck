@@ -2,7 +2,7 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import Context from "../__mocks__/context";
-import { topics } from "../config";
+import { findTopicBySlug } from "../utils";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { cleanup, fireEvent, render } from "../utils/test-utils";
 import Form from "./Form";
@@ -16,7 +16,7 @@ afterEach(cleanup);
 const Wrapper = ({ children }) => {
   const topicMock = "dakraam-plaatsen";
   const topicUrlMock = `/${topicMock}`;
-  const topic = topics.find((t) => t.slug === topicMock);
+  const topic = findTopicBySlug(topicMock);
 
   return (
     <Context topicMock={topic}>

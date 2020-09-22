@@ -3,12 +3,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { List } from "../../atoms/index";
-import { topics } from "../../config";
+import { findTopicBySlug } from "../../utils";
 import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
 
 export const NoPermitDescription = () => {
-  const { slug } = useParams();
-  const topic = topics.find((t) => t.slug === slug);
+  // @TODO: Replace this with custom hooks
+  const { slug } = useParams<{ slug: string }>();
+  const topic = findTopicBySlug(slug);
+
   return (
     <>
       <Paragraph data-testid={NO_PERMIT_NEEDED}>
