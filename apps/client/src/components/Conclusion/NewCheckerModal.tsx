@@ -18,7 +18,7 @@ const NewCheckerModal: React.FC<{
     SessionContext
   );
   const { slug } = useParams<{ slug: string }>();
-  const [checkerSlug, setCheckerSlug] = useState("");
+  const [checkerSlug, setCheckerSlug] = useState(slug);
   const [finished, setFinished] = useState(false);
   const [hasError, setError] = useState(false);
   const [saveAddress, setSaveAddress] = useState<null | boolean>(null);
@@ -43,10 +43,10 @@ const NewCheckerModal: React.FC<{
         : eventNames.NO_CHOICE_HAS_BEEN_MADE,
     });
 
-    setError(!checkerSlug);
+    setError(saveAddress === null);
     setFinished(!!checkerSlug);
 
-    if (checkerSlug) {
+    if (saveAddress !== null) {
       const address = saveAddress ? sessionContext[slug].address : null;
       const activeComponents = saveAddress
         ? sections.QUESTIONS
@@ -87,6 +87,7 @@ const NewCheckerModal: React.FC<{
             <Radio
               checked={saveAddress === true}
               data-testid={RADIO_ADDRESS_1}
+              error={!!hasError}
               id="address-input-1"
               onChange={() => setSaveAddress(true)}
             />
@@ -95,11 +96,13 @@ const NewCheckerModal: React.FC<{
             <Radio
               checked={saveAddress === false}
               data-testid={RADIO_ADDRESS_2}
+              error={!!hasError}
               id="address-input-2"
               onChange={() => setSaveAddress(false)}
             />
           </Label>
         </RadioGroup>
+        <ErrorMessage message={hasError ? "Maak een keuze" : ""} />
       </ComponentWrapper>
 
       <ComponentWrapper>
@@ -111,12 +114,12 @@ const NewCheckerModal: React.FC<{
           <RadioGroup name="checkers">
             {topics
               .filter((topic) => topic.sttrFile)
+              .sort((a, b) => a.name.localeCompare(b.name))
               .map(({ name, slug }) => (
                 <Label htmlFor={slug} key={name} label={name}>
                   <Radio
                     checked={checkerSlug === slug}
                     data-testid={`radio-checker-${slug}`}
-                    error={!!hasError}
                     id={slug}
                     onChange={() => {
                       setError(false);
@@ -126,8 +129,6 @@ const NewCheckerModal: React.FC<{
                 </Label>
               ))}
           </RadioGroup>
-
-          <ErrorMessage message={hasError ? "Maak een keuze" : ""} />
         </ComponentWrapper>
       </ComponentWrapper>
     </Modal>

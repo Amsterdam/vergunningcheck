@@ -1,22 +1,15 @@
 import { Heading, ListItem, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
-import { useParams } from "react-router-dom";
 
 import { List } from "../../atoms/index";
-import { findTopicBySlug } from "../../utils";
 import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
 
 const NoPermitDescription = () => {
-  // @TODO: Replace this with custom hooks
-  const { slug } = useParams<{ slug: string }>();
-  const topic = findTopicBySlug(slug);
-
   return (
     <>
       <Paragraph data-testid={NO_PERMIT_NEEDED}>
-        U hebt geen vergunning nodig voor {topic?.name.toLowerCase()}. Wél moet
-        u op een aantal dingen letten voordat u gaat beginnen. Uw aannemer kan u
-        daarbij helpen.
+        U moet wel op een aantal dingen letten voordat u gaat beginnen. Uw
+        aannemer kan u daarbij helpen.
       </Paragraph>
       <Heading forwardedAs="h3">Dit is waar u verder op moet letten:</Heading>
       <List variant="bullet">
