@@ -117,17 +117,11 @@ const Questions = ({
       return true;
     }
 
-    let isCompleted = true;
-
     // Go through all questions and check if they are answered
     // There is still in bug _getUpcomingQuestions() where some irrelevant questions are unanswered
-    checker.stack.concat(checker._getUpcomingQuestions()).forEach((q) => {
-      if (getUserAnswer(q) === undefined && answers[q.id] === undefined) {
-        isCompleted = false;
-      }
-    });
-
-    return isCompleted;
+    return !checker.stack
+      .concat(checker._getUpcomingQuestions())
+      .find((q) => q.answer === undefined);
   };
 
   useEffect(() => {

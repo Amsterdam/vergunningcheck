@@ -1,17 +1,19 @@
 import React from "react";
 
-import { topics } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
+import { findTopicBySlug } from "../../utils";
 import {
   MODAL,
   MODAL_CONFIRM_BUTTON,
   MODAL_OPEN_BUTTON,
+  RADIO_ADDRESS_1,
+  RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
 import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
 const matomoTrackEvent = jest.fn();
-const customTopic = topics[2]; // Dakraam checker
+const customTopic = findTopicBySlug("dakraam-plaatsen");
 
 window.scrollTo = jest.fn();
 
@@ -66,11 +68,11 @@ it("NewCheckerModal should open a new topic", async () => {
 
   act(() => {
     // Select 'Yes' (only to mock the 'Yes')
-    fireEvent.click(document.getElementById("address-input-1"));
+    fireEvent.click(queryByTestId(RADIO_ADDRESS_1));
     // Select 'No' (because we don't send address data now)
-    fireEvent.click(document.getElementById("address-input-2"));
+    fireEvent.click(queryByTestId(RADIO_ADDRESS_2));
     // Click the new topic to open
-    fireEvent.click(document.getElementById(customTopic.slug));
+    fireEvent.click(queryByTestId(`radio-checker-${customTopic.slug}`));
 
     // Because this event is not async, it should call `NO_CHOICE_HAS_BEEN_MADE`
     fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON));

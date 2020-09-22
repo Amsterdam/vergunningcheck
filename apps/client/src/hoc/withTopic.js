@@ -27,7 +27,9 @@ const withTopic = (Component) => (props) => {
     }
   });
 
-  if (params.get("resetChecker")) {
+  if (params.get("resetChecker") || params.get("loadChecker")) {
+    // @TODO: we need to replace this `loadChecker` URL with a decent solution
+
     checkerContext.checker = null;
 
     // Reset all but address from session
@@ -39,22 +41,10 @@ const withTopic = (Component) => (props) => {
       },
     ]);
 
-    console.warn("Resetting checker, redirecting to intro page");
-    return <Redirect to={geturl(routes.intro, topic)} />;
-  }
-
-  // @TODO: we need to replace this `loadChecker` URL with a decent solution
-  if (params.get("loadChecker")) {
-    checkerContext.checker = null;
-
-    // Reset all but address from session
-    sessionContext.setSessionData([
-      slug,
-      {
-        answers: null,
-        questionIndex: 0,
-      },
-    ]);
+    if (params.get("resetChecker")) {
+      console.warn("Resetting checker, redirecting to intro page");
+      return <Redirect to={geturl(routes.intro, topic)} />;
+    }
   }
 
   if (topic) {

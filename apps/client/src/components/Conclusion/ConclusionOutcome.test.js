@@ -14,40 +14,55 @@ Object.defineProperty(window, "matchMedia", matchMedia);
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useParams: () => ({}),
+  useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
 
 afterEach(cleanup);
 
-it("renders more info for permit description", () => {
-  const { getByTestId } = render(
-    <ConclusionOutcome needsPermit={true} matomoTrackEvent={() => {}} />
-  );
-  expect(getByTestId(NEED_PERMIT)).toBeTruthy();
-  expect(getByTestId(NEED_PERMIT_BUTTON)).toBeTruthy();
-});
+describe("ConclusionOutcome", () => {
+  it("renders the 'needs permit' conclusion correctly", () => {
+    const { queryByTestId } = render(<ConclusionOutcome needsPermit={true} />);
+    // Should be in document
+    expect(queryByTestId(NEED_PERMIT)).toBeInTheDocument();
+    expect(queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
 
-it("Don't need a permit", () => {
-  const { getByTestId } = render(
-    <ConclusionOutcome
-      needsPermit={false}
-      contactConclusion={false}
-      matomoTrackEvent={() => {}}
-    />
-  );
-  expect(getByTestId(NO_PERMIT_NEEDED)).toBeTruthy();
-});
+    // Shouldn't be in document
+    expect(queryByTestId(NO_PERMIT_NEEDED)).not.toBeInTheDocument();
+    expect(queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
+  });
 
-it("Contact Amsterdam conclusion", () => {
-  const { getByTestId } = render(
-    <ConclusionOutcome
-      needsPermit={false}
-      contactConclusion={{
-        title: "Test",
-        description: "Je moet contact opnemen met amsterdam",
-      }}
-      matomoTrackEvent={() => {}}
-    />
-  );
-  expect(getByTestId(NEED_CONTACT)).toBeTruthy();
+  it("renders the 'permit free' conclusion correctly", () => {
+    const { queryByTestId } = render(
+      <ConclusionOutcome
+        needsPermit={false}
+        contactConclusion={false}
+        matomoTrackEvent={() => {}}
+      />
+    );
+    // Should be in document
+    expect(queryByTestId(NO_PERMIT_NEEDED)).toBeInTheDocument();
+
+    // Shouldn't be in document
+    expect(queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
+    expect(queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
+  });
+
+  it("renders the 'needs contact' conclusion correctly", () => {
+    const { queryByTestId, queryByText } = render(
+      <ConclusionOutcome
+        contactConclusion={{
+          title: "title",
+          description: "needs contact",
+        }}
+      />
+    );
+
+    // Should be in document
+    expect(queryByTestId(NEED_CONTACT)).toBeInTheDocument();
+    expect(queryByText("needs contact")).toBeInTheDocument();
+
+    // Shouldn't be in document
+    expect(queryByTestId(NO_PERMIT_NEEDED)).not.toBeInTheDocument();
+    expect(queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
+  });
 });
