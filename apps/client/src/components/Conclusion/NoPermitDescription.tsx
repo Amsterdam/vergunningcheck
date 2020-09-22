@@ -6,7 +6,7 @@ import { List } from "../../atoms/index";
 import { findTopicBySlug } from "../../utils";
 import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
 
-export const NoPermitDescription = () => {
+const NoPermitDescription = () => {
   // @TODO: Replace this with custom hooks
   const { slug } = useParams<{ slug: string }>();
   const topic = findTopicBySlug(slug);
@@ -47,3 +47,5 @@ export const NoPermitDescription = () => {
     </>
   );
 };
+
+export default NoPermitDescription;

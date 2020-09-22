@@ -18,7 +18,7 @@ type ConclusionOutcomeProps = {
   matomoTrackEvent: Function;
 };
 
-export const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
+const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   conclusionContent,
   matomoTrackEvent,
 }) => {
@@ -62,5 +62,7 @@ export const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
     </>
   );
 };
+
+export default ConclusionOutcome;
 
 // 25,26,30,33,35

@@ -8,9 +8,12 @@ import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import { removeQuotes } from "../utils";
 import { NEED_CONTACT } from "../utils/test-ids";
-import { ConclusionOutcome } from "./Conclusion/ConclusionOutcome";
-import { NeedPermitContent, NeedPermitFooter } from "./Conclusion/NeedPermit";
-import { NoPermitDescription } from "./Conclusion/NoPermitDescription";
+import {
+  ConclusionOutcome,
+  NeedPermitContent,
+  NeedPermitFooter,
+  NoPermitDescription,
+} from "./Conclusion/";
 import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown/index";
 
