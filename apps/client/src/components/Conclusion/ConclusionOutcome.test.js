@@ -33,11 +33,7 @@ describe("ConclusionOutcome", () => {
 
   it("renders the 'permit free' conclusion correctly", () => {
     const { queryByTestId } = render(
-      <ConclusionOutcome
-        needsPermit={false}
-        contactConclusion={false}
-        matomoTrackEvent={() => {}}
-      />
+      <ConclusionOutcome needsPermit={false} contactConclusion={false} />
     );
     // Should be in document
     expect(queryByTestId(NO_PERMIT_NEEDED)).toBeInTheDocument();
