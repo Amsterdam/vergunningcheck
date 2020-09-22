@@ -7,6 +7,7 @@ import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
+import { RADIO_ADDRESS_1, RADIO_ADDRESS_2 } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const NewCheckerModal: React.FC<{
@@ -81,6 +82,7 @@ const NewCheckerModal: React.FC<{
           <Label htmlFor="address-input-1" label="Ja">
             <Radio
               checked={saveAddress === true}
+              data-testid={RADIO_ADDRESS_1}
               id="address-input-1"
               onChange={() => setSaveAddress(true)}
             />
@@ -88,6 +90,7 @@ const NewCheckerModal: React.FC<{
           <Label htmlFor="address-input-2" label="Nee">
             <Radio
               checked={saveAddress === false}
+              data-testid={RADIO_ADDRESS_2}
               id="address-input-2"
               onChange={() => setSaveAddress(false)}
             />
@@ -108,6 +111,7 @@ const NewCheckerModal: React.FC<{
                 <Label htmlFor={slug} key={name} label={name}>
                   <Radio
                     checked={checkerSlug === slug}
+                    data-testid={`radio-checker-${slug}`}
                     error={!!hasError}
                     id={slug}
                     onChange={() => {

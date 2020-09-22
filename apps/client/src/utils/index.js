@@ -2,6 +2,11 @@ import isBoolean from "lodash.isboolean";
 import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
+import { topics } from "../config";
+
+// Find a topic by the slug
+export const findTopicBySlug = (slug) => topics.find((t) => t.slug === slug);
+
 // Simple checks
 export const isSimpleType = (val) =>
   isBoolean(val) || isString(val) || isNumber(val);

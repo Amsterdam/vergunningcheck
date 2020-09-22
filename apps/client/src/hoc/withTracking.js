@@ -3,8 +3,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { isProduction } from "../config";
-import { topics } from "../config";
 import { trackingEnabled } from "../config/matomo";
+import { findTopicBySlug } from "../utils";
 
 const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
@@ -12,7 +12,7 @@ const withTracking = (Component) => ({ ...props }) => {
   // This is a temporary fix
   // @TODO: make a withTracking hook instead of this HOC
   const { slug } = useParams();
-  const topic = topics.find((t) => t.slug === slug);
+  const topic = findTopicBySlug(slug);
 
   const matomoPageView = () => {
     if (trackingEnabled()) {
