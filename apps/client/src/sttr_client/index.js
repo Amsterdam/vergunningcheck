@@ -61,7 +61,7 @@ function getDecision(id, decisionConfig, questions) {
     (requiredInputs &&
       requiredInputs.map((href) => {
         const res = questions.find((q) =>
-          q.ids.includes(href.replace("#input__", "uitv__"))
+          q.ids.includes(href.replace("#input_", "uitv_"))
         );
         return res.question;
       })) ||
