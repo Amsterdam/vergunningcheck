@@ -2,7 +2,7 @@ import { themeSpacing } from "@datapunt/asc-ui";
 import React from "react";
 import styled from "styled-components";
 
-import { Alert, PrintOnly } from "../atoms";
+import { PrintOnly } from "../atoms";
 import { sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
@@ -10,15 +10,15 @@ import { removeQuotes } from "../utils";
 import { NEED_CONTACT } from "../utils/test-ids";
 import {
   ConclusionOutcome,
+  Disclaimer,
   NeedPermitContent,
   NeedPermitFooter,
   NoPermitDescription,
 } from "./Conclusion/";
-import ContactSentence from "./ContactSentence";
 import Markdown from "./Markdown/index";
 
 const ConclusionWrapper = styled.div`
-  padding-bottom: ${themeSpacing(14)};
+  padding-bottom: ${themeSpacing(5)};
 `;
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
@@ -97,28 +97,11 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         }}
       />
 
-      {/* Disclaimer */}
       <PrintOnly withBorder avoidPageBreak>
-        <Alert
-          content={
-            <>
-              De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog
-              geen zekerheid bieden dat de uitkomst correct is. Ook is de
-              informatie nog niet voor iedereen goed te lezen of te beluisteren.
-              Wilt u iets zeker weten of wilt u meer informatie?{" "}
-              <ContactSentence
-                link={false}
-                openingSentence={"Bel dan de gemeente op"}
-              />
-            </>
-          }
-          heading="Let op"
-        />
+        <Disclaimer />
       </PrintOnly>
     </ConclusionWrapper>
   );
 };
 
 export default withTracking(Conclusion);
-
-// 59,71,77,82,88
