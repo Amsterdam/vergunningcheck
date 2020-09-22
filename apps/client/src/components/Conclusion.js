@@ -54,7 +54,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
       <ConclusionOutcome
         contactConclusion={contactConclusion}
         matomoTrackEvent={matomoTrackEvent}
-        needsPermit={!contactConclusion && needsPermit}
+        needsPermit={needsPermit}
       />
 
       <PrintOnly withBorder avoidPageBreak>

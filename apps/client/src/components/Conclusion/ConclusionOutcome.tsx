@@ -1,5 +1,5 @@
 import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import React from "react";
+import React, { ReactNode } from "react";
 import { isIE, isMobile } from "react-device-detect";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
@@ -23,10 +23,6 @@ export const ConclusionOutcome: React.FC<Props> = ({
   matomoTrackEvent,
   needsPermit,
 }) => {
-  const heading = needsPermit
-    ? "U hebt een omgevingsvergunning nodig"
-    : "U hebt geen omgevingsvergunning nodig";
-
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
@@ -44,31 +40,14 @@ export const ConclusionOutcome: React.FC<Props> = ({
     window.open(Olo.home, "_blank");
   };
 
-  return (
-    <>
-      <Paragraph gutterBottom={isMobile ? 16 : 20}>
-        U bent klaar met de vergunningcheck. Dit is de uitkomst:
-      </Paragraph>
-      <ComponentWrapper marginBottom={16}>
-        <Heading forwardedAs="h2">
-          {contactConclusion?.title || heading}.
-        </Heading>
-      </ComponentWrapper>
-      {needsPermit && (
-        <Paragraph gutterBottom={16}>
-          U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
-        </Paragraph>
-      )}
-      {contactConclusion?.description && (
-        <div data-testid={NEED_CONTACT}>
-          <Markdown
-            eventLocation={sections.CONCLUSION}
-            source={contactConclusion.description}
-          />
-        </div>
-      )}
-      <HideForPrint>
-        {needsPermit && (
+  const conclusionText = {
+    needPermit: {
+      title: "U hebt een omgevingsvergunning nodig.",
+      contentParagraph: (
+        <>
+          <Paragraph gutterBottom={16}>
+            U kunt deze vergunning aanvragen bij het landelijk omgevingsloket
+          </Paragraph>
           <ComponentWrapper marginBottom={32}>
             <Button
               color="secondary"
@@ -79,7 +58,51 @@ export const ConclusionOutcome: React.FC<Props> = ({
               Vergunning aanvragen
             </Button>
           </ComponentWrapper>
-        )}
+        </>
+      ),
+      finalParagraph: <NeedsPermit />,
+    },
+    needContact: {
+      title: contactConclusion?.title,
+      contentParagraph: (
+        <div data-testid={NEED_CONTACT}>
+          <Markdown
+            eventLocation={sections.CONCLUSION}
+            source={contactConclusion?.description}
+          />
+        </div>
+      ),
+      finalParagraph: false,
+    },
+    noPermit: {
+      title: "U hebt geen omgevingsvergunning nodig. ",
+      contentParagraph: false,
+      finalParagraph: <NoPermitDescription />,
+    },
+  };
+
+  let conclusion: {
+    title: string | undefined;
+    contentParagraph: ReactNode;
+    finalParagraph: ReactNode;
+  } = conclusionText.noPermit;
+  if (!contactConclusion && needsPermit) {
+    conclusion = conclusionText.needPermit;
+  }
+  if (contactConclusion) {
+    conclusion = conclusionText.needContact;
+  }
+  console.log("need", !contactConclusion && needsPermit);
+  return (
+    <>
+      <Paragraph gutterBottom={isMobile ? 16 : 20}>
+        U bent klaar met de vergunningcheck. Dit is de uitkomst:
+      </Paragraph>
+      <ComponentWrapper marginBottom={16}>
+        <Heading forwardedAs="h2">{conclusion.title}</Heading>
+      </ComponentWrapper>
+      <HideForPrint>
+        {conclusion.contentParagraph}
         {!isIE && !isMobile && (
           <PrintButton
             marginBottom={32}
@@ -90,11 +113,7 @@ export const ConclusionOutcome: React.FC<Props> = ({
           </PrintButton>
         )}
       </HideForPrint>
-
-      {needsPermit && <NeedsPermit />}
-
-      {!needsPermit && !contactConclusion && <NoPermitDescription />}
-
+      {conclusion.finalParagraph}
       <NewCheckerModal />
     </>
   );

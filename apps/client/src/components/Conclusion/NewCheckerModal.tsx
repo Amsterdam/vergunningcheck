@@ -52,10 +52,11 @@ const NewCheckerModal: React.FC<{
       sessionContext.setSessionData([
         checkerSlug,
         {
-          activeComponents: [sections.LOCATION_INPUT],
+          activeComponents: [sections.QUESTIONS],
           address: address,
+          questionIndex: 0,
           answers: null,
-          finishedComponents: [],
+          finishedComponents: [sections.LOCATION_RESULT],
         },
       ]);
 
