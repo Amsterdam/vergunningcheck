@@ -1,4 +1,4 @@
-export type Topic = {
+type Topic = {
   intro?: string;
   name: string;
   redirectToOlo?: boolean;
