@@ -4,6 +4,7 @@ import { isIE, isMobile } from "react-device-detect";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
+import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
 type ConclusionContentProps = {
@@ -47,6 +48,7 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
 
         {!isIE && !isMobile && (
           <PrintButton
+            data-testid={PRINT_BUTTON}
             marginBottom={32}
             onClick={handlePrintButton}
             variant="textButton"
@@ -64,5 +66,3 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
 };
 
 export default ConclusionOutcome;
-
-// 25,26,30,33,35

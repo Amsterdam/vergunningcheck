@@ -30,3 +30,5 @@ export const MODAL_OPEN_BUTTON = "modal-open-button";
 
 export const RADIO_ADDRESS_1 = "address-input-1";
 export const RADIO_ADDRESS_2 = "address-input-2";
+
+export const PRINT_BUTTON = "print-button";
