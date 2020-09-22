@@ -41,6 +41,7 @@
     "build:size-report": "npm ci && npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
     "sttr": "node sttr_build && prettier public/sttr --write",
     "test": "react-scripts test",
+    "test:e2e": "kill-port 4444 || : && ls test/*.js && npx nightwatch test/*.js -e chrome && npx nightwatch test/*.js -e firefox",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
     "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",
     "lint": "eslint . --ignore-path .gitignore",

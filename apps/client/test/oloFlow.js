@@ -45,11 +45,7 @@ module.exports = {
 
       .click("[data-testid=next-button]")
 
-      .windowHandles(function (result) {
-        var handle = result.value[1];
-        console.log(result);
-        browser.switchWindow(handle);
-      })
+      .windowHandles((result) => browser.switchWindow(result.value[1]))
       .assert.urlEquals(
         "https://www.omgevingsloket.nl/Particulier/particulier/home/checken/LocatieWerkzaamheden?param=postcodecheck&facet_locatie_postcode=1055XD&facet_locatie_huisnummer=19&facet_locatie_huisnummertoevoeging=C"
       )
