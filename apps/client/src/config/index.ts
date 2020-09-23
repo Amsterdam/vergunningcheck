@@ -153,7 +153,9 @@ if (process.env.NODE_ENV !== "production") {
 
 export { topics };
 
-// We need a place for general text as well
-// I know this is not the best place
-// For now I will place it here
-export const requiredFieldText: string = "Dit veld is verplicht.";
+// @TODO: replace this with i18n
+export const requiredFieldText: string = "Verplicht veld is niet ingevuld";
+
+export const requiredFieldRadio: string = "Maak een keuze";
+
+export const firstSelectOption: string = "Maak een keuze";
