@@ -1,31 +1,54 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [2.0.5] (2020-09-23)
+
+#### New Features
+
+- [#525](https://github.com/Amsterdam/vergunningcheck/pull/525) feat: Enable matamo trackevents ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+
+- [#509](https://github.com/Amsterdam/vergunningcheck/pull/509) Enable npm audit (on graphql) ([@afjlambert](https://github.com/afjlambert))
+
+## [2.0.4] (2020-09-17)
+
+#### Bug fixes
+
+- [#511](https://github.com/Amsterdam/vergunningcheck/pull/511) Redirect to Intro in case no session context has been found ([@robinpiets](https://github.com/robinpiets))
+- [#502](https://github.com/Amsterdam/vergunningcheck/pull/502) Replaced div with span to prevent warning ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+
+- [#485](https://github.com/Amsterdam/vergunningcheck/pull/485) Refactored Nav to TypeScript ([@svenjens](https://github.com/svenjens))
+- [#510](https://github.com/Amsterdam/vergunningcheck/pull/510) Updated ASC-UI to fix bug in radio IE11 ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.0.3](2020-09-16)
 
 #### Bug fixes
 
-* [#506](https://github.com/Amsterdam/vergunningcheck/pull/506) Fixed OLO flow bug with resetChecker ([@robinpiets](https://github.com/robinpiets))
+- [#506](https://github.com/Amsterdam/vergunningcheck/pull/506) Fixed OLO flow bug with resetChecker ([@robinpiets](https://github.com/robinpiets))
 
 ## [2.0.2](2020-09-16)
 
-#### New Features 
+#### New Features
 
-* [#439](https://github.com/Amsterdam/vergunningcheck/pull/439) Feature: New Matomo event names + refactor ([@svenjens](https://github.com/svenjens))
-* [#482](https://github.com/Amsterdam/vergunningcheck/pull/482) Updated all @datapunt deps and fixed focus styles ([@robinpiets](https://github.com/robinpiets))
+- [#439](https://github.com/Amsterdam/vergunningcheck/pull/439) Feature: New Matomo event names + refactor ([@svenjens](https://github.com/svenjens))
+- [#482](https://github.com/Amsterdam/vergunningcheck/pull/482) Updated all @datapunt deps and fixed focus styles ([@robinpiets](https://github.com/robinpiets))
 
 #### Bug fixes
 
-* [#496](https://github.com/Amsterdam/vergunningcheck/pull/496) Fixed broken STTR files ([@robinpiets](https://github.com/robinpiets))
-* [#501](https://github.com/Amsterdam/vergunningcheck/pull/501) In case no active sections are found, reset the checker ([@robinpiets](https://github.com/robinpiets))
-* [#497](https://github.com/Amsterdam/vergunningcheck/pull/497) Bump lint-staged (to prevent `lint-staged: command not found`) ([@robinpiets](https://github.com/robinpiets))
+- [#496](https://github.com/Amsterdam/vergunningcheck/pull/496) Fixed broken STTR files ([@robinpiets](https://github.com/robinpiets))
+- [#501](https://github.com/Amsterdam/vergunningcheck/pull/501) In case no active sections are found, reset the checker ([@robinpiets](https://github.com/robinpiets))
+- [#497](https://github.com/Amsterdam/vergunningcheck/pull/497) Bump lint-staged (to prevent `lint-staged: command not found`) ([@robinpiets](https://github.com/robinpiets))
 
 #### Chores
 
-* [#500](https://github.com/Amsterdam/vergunningcheck/pull/500) Replace old Footer props to remove deprecated logs ([@robinpiets](https://github.com/robinpiets))
-* [#484](https://github.com/Amsterdam/vergunningcheck/pull/484) Make sure netlify does a clean install ([@afjlambert](https://github.com/afjlambert))
-* [#487](https://github.com/Amsterdam/vergunningcheck/pull/487) Chore: show app version on DevHomePage ([@robinpiets](https://github.com/robinpiets))
-* [#488](https://github.com/Amsterdam/vergunningcheck/pull/488) Implement text change in intro ([@afjlambert](https://github.com/afjlambert))
+- [#500](https://github.com/Amsterdam/vergunningcheck/pull/500) Replace old Footer props to remove deprecated logs ([@robinpiets](https://github.com/robinpiets))
+- [#484](https://github.com/Amsterdam/vergunningcheck/pull/484) Make sure netlify does a clean install ([@afjlambert](https://github.com/afjlambert))
+- [#487](https://github.com/Amsterdam/vergunningcheck/pull/487) Chore: show app version on DevHomePage ([@robinpiets](https://github.com/robinpiets))
+- [#488](https://github.com/Amsterdam/vergunningcheck/pull/488) Implement text change in intro ([@afjlambert](https://github.com/afjlambert))
 
 ## [2.0.1](2020-09-10)
 
