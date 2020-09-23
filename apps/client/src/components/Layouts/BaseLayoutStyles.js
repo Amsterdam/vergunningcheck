@@ -34,6 +34,10 @@ export const ContentContainer = styled.div`
     padding-left: ${themeSpacing(8)};
     padding-right: ${themeSpacing(8)};
   }
+
+  @media print {
+    margin-bottom: 0;
+  }
 `;
 
 export const Content = styled.div`

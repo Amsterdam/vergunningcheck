@@ -21,10 +21,17 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
 
   return (
     <>
+      <Paragraph gutterBottom={16}>
+        U kunt deze vergunning aanvragen{" "}
+        <HideForPrint as="span">bij het landelijk Omgevingsloket.</HideForPrint>
+        <PrintOnly as="span">
+          op{" "}
+          <Link variant="inline" href="https://www.omgevingsloket.nl">
+            www.omgevingsloket.nl
+          </Link>
+        </PrintOnly>
+      </Paragraph>
       <HideForPrint>
-        <Paragraph gutterBottom={16}>
-          U kunt deze vergunning aanvragen bij het landelijk Omgevingsloket.
-        </Paragraph>
         <ComponentWrapper marginBottom={32}>
           <Button
             color="secondary"
@@ -36,12 +43,6 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
           </Button>
         </ComponentWrapper>
       </HideForPrint>
-      <PrintOnly>
-        <Paragraph gutterBottom={16}>
-          U kunt deze vergunning aanvragen op{" "}
-          <Link variant="inline">https://www.omgevingsloket.nl/</Link>
-        </Paragraph>
-      </PrintOnly>
     </>
   );
 };
