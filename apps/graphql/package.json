@@ -1,7 +1,7 @@
 {
   "name": "vergunningcheck-graphql",
   "private": true,
-  "version": "2.0.4",
+  "version": "2.0.5",
   "engines": {
     "node": "14"
   },
@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-server": "^2.18.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dataloader": "^2.0.0",
@@ -31,7 +32,6 @@
     "feature-policy": "^0.5.0",
     "graphql": "^15.1.0",
     "graphql-depth-limit": "^1.1.0",
-    "graphql-tools": "^6.0.9",
     "helmet": "^4.0.0",
     "lodash": "^4.17.19",
     "lodash.uniqby": "^4.7.0",
@@ -50,7 +50,7 @@
     "lint-staged": "^10.2.9",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
-    "redis-mock": "^0.51.0",
+    "redis-mock": "^0.52.0",
     "request": "^2.88.2",
     "rewire": "^5.0.0"
   },

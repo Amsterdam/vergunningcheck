@@ -1,6 +1,6 @@
 const { graphqlHTTP } = require("express-graphql");
 const DataLoader = require("dataloader");
-const { makeExecutableSchema } = require("graphql-tools");
+const { makeExecutableSchema } = require("apollo-server");
 const depthLimit = require("graphql-depth-limit");
 const { graphql: config } = require("../../config");
 
