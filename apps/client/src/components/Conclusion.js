@@ -60,6 +60,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
   );
 
   const needContactContent = {
+    eventName: eventNames.CONTACT_CONCLUSION,
     mainContent: (
       <div data-testid={NEED_CONTACT}>
         <Markdown
@@ -69,20 +70,19 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
       </div>
     ),
     title: contactConclusion?.title,
-    eventName: eventNames.CONTACT_CONCLUSION,
   };
 
   const needPermitContent = {
+    eventName: eventNames.NEED_PERMIT,
     footerContent: <NeedPermitFooter />,
     mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
     title: "U hebt een omgevingsvergunning nodig.",
-    eventName: eventNames.NEED_PERMIT,
   };
 
   const permitFreeContent = {
+    eventName: eventNames.PERMIT_FREE,
     footerContent: <NoPermitDescription />,
     title: "U hebt geen omgevingsvergunning nodig. ",
-    eventName: eventNames.PERMIT_FREE,
   };
 
   const conclusionContent = contactConclusion
