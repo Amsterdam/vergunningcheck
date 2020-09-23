@@ -23,7 +23,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
     <>
       <HideForPrint>
         <Paragraph gutterBottom={16}>
-          U kunt deze vergunning aanvragen bij het landelijk omgevingsloket.
+          U kunt deze vergunning aanvragen bij het landelijk Omgevingsloket.
         </Paragraph>
         <ComponentWrapper marginBottom={32}>
           <Button
