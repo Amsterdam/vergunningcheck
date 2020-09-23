@@ -1,5 +1,5 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
@@ -11,6 +11,7 @@ type ConclusionContentProps = {
   description?: string;
   footerContent?: ReactNode;
   mainContent?: ReactNode;
+  eventName: string;
   title: string;
 };
 
@@ -23,6 +24,15 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   conclusionContent,
   matomoTrackEvent,
 }) => {
+  const { footerContent, mainContent, title, eventName } = conclusionContent;
+  useEffect(() => {
+    matomoTrackEvent({
+      action: actions.CONCLUSIE_OUTCOME,
+      name: eventName,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
@@ -30,8 +40,6 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
     });
     window.print();
   };
-
-  const { footerContent, mainContent, title } = conclusionContent;
 
   return (
     <>
