@@ -99,7 +99,6 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         }}
       />
 
-      {/* Disclaimer */}
       <PrintOnly withBorder avoidPageBreak>
         <Disclaimer />
       </PrintOnly>
@@ -108,5 +107,3 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
 };
 
 export default withTracking(Conclusion);
-
-// 59,71,77,82,88
