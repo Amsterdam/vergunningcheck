@@ -9,9 +9,9 @@ import NewCheckerModal from "./NewCheckerModal";
 
 type ConclusionContentProps = {
   description?: string;
+  eventName: string;
   footerContent?: ReactNode;
   mainContent?: ReactNode;
-  eventName: string;
   title: string;
 };
 
