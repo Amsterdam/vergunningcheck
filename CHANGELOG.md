@@ -1,6 +1,17 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [2.0.4] (2020-09-17)
+
+#### Bug fixes
+* [#511](https://github.com/Amsterdam/vergunningcheck/pull/511) Redirect to Intro in case no session context has been found ([@robinpiets](https://github.com/robinpiets))
+* [#502](https://github.com/Amsterdam/vergunningcheck/pull/502) Replaced div with span to prevent warning ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+* [#485](https://github.com/Amsterdam/vergunningcheck/pull/485) Refactored Nav to TypeScript ([@svenjens](https://github.com/svenjens))
+* [#510](https://github.com/Amsterdam/vergunningcheck/pull/510) Updated ASC-UI to fix bug in radio IE11 ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.0.3](2020-09-16)
 
 #### Bug fixes
