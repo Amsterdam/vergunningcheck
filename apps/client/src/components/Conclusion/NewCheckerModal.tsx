@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { ComponentWrapper, Label } from "../../atoms";
-import { topics } from "../../config";
+import { requiredFieldRadio, topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
@@ -102,7 +102,7 @@ const NewCheckerModal: React.FC<{
             />
           </Label>
         </RadioGroup>
-        <ErrorMessage message={hasError ? "Maak een keuze" : ""} />
+        <ErrorMessage message={hasError ? requiredFieldRadio : ""} />
       </ComponentWrapper>
 
       <ComponentWrapper>

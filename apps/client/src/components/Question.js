@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { ComponentWrapper } from "../atoms";
-import { requiredFieldText } from "../config";
+import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
@@ -67,7 +67,7 @@ const Question = ({
       register(
         { name: questionId },
         {
-          required: requiredFieldText,
+          required: requiredFieldRadio,
         }
       );
 

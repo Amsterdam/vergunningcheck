@@ -4,7 +4,7 @@ import { loader } from "graphql.macro";
 import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { requiredFieldText } from "../../config";
+import { firstSelectOption, requiredFieldText } from "../../config";
 import { sections } from "../../config/matomo";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
@@ -145,7 +145,7 @@ const LocationFinder = (props) => {
           }}
         >
           {addressMatches && (
-            <option value={houseNumber}>Maak een keuze</option>
+            <option value={houseNumber}>{firstSelectOption}</option>
           )}
           {addressMatches?.map((match) => (
             <option value={match.houseNumberFull} key={match.houseNumberFull}>
