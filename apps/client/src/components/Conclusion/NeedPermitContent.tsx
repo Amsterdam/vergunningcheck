@@ -3,7 +3,7 @@ import React from "react";
 
 import { HideForPrint, PrintOnly } from "../../atoms";
 import ComponentWrapper from "../../atoms/ComponentWrapper";
-import { Olo, urls } from "../../config";
+import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 
@@ -16,7 +16,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
       name: eventNames.APPLY_FOR_PERMIT,
     });
     // Open OLO in new tab/window
-    window.open(Olo.home, "_blank");
+    window.open(urls.OLO_HOME, "_blank");
   };
 
   return (

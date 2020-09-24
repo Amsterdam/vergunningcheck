@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import Layout from "../components/Layouts/DefaultLayout";
-import { Olo } from "../config";
+import { urls } from "../config";
 
 const RedirectPage = ({ topic }) => {
   useEffect(() => {
     const redirect = setTimeout(() => {
-      window.open(Olo.intro, "_self");
+      window.open(urls.OLO_INTRO, "_self");
     }, 2000);
 
     return () => {
@@ -23,7 +23,7 @@ const RedirectPage = ({ topic }) => {
       </Helmet>
       <Paragraph>
         Wij sturen u automatisch door naar de website van het{" "}
-        <a title="landelijke Omgevingsloket" href={Olo.intro}>
+        <a title="landelijke Omgevingsloket" href={urls.OLO_INTRO}>
           landelijke Omgevingsloket
         </a>
         .
