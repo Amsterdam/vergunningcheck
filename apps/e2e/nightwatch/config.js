@@ -1,6 +1,5 @@
 const config = {
-  domain: "https://vergunningcheck.amsterdam.nl",
-  domain: "http://localhost:3000",
+  domain: "http://localhost:3000", // @TODO read from environment variable
   selectors: {
     locationHouseNumberFull: "input[name=houseNumberFull]",
     locationFound: "[data-testid=location-found]",
