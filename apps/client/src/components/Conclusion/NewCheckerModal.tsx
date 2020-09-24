@@ -58,9 +58,9 @@ const NewCheckerModal: React.FC<{
         {
           activeComponents: [activeComponents],
           address,
-          questionIndex: 0,
           answers: null,
           finishedComponents: [finishedComponents],
+          questionIndex: 0,
         },
       ]);
 
@@ -80,7 +80,7 @@ const NewCheckerModal: React.FC<{
       showConfirmButton
     >
       <ComponentWrapper>
-        <Paragraph strong gutterBottom={8}>
+        <Paragraph gutterBottom={8} strong>
           Wilt u nog een vergunningcheck doen voor hetzelfde adres?
         </Paragraph>
         <RadioGroup name="address">
