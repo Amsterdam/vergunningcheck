@@ -1,11 +1,16 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph, themeSpacing } from "@datapunt/asc-ui";
 import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
+import styled from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
+
+const ConclusionOutcomeWrapper = styled.div`
+  margin-bottom: ${themeSpacing(9)};
+`;
 
 type ConclusionContentProps = {
   description?: string;
@@ -42,7 +47,7 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   };
 
   return (
-    <>
+    <ConclusionOutcomeWrapper>
       <Paragraph gutterBottom={isMobile ? 16 : 20}>
         U bent klaar met de vergunningcheck. Dit is de uitkomst:
       </Paragraph>
@@ -51,9 +56,9 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
         <Heading forwardedAs="h2">{title}</Heading>
       </ComponentWrapper>
 
-      <HideForPrint>
-        {mainContent}
+      {mainContent}
 
+      <HideForPrint>
         {!isIE && !isMobile && (
           <PrintButton
             data-testid={PRINT_BUTTON}
@@ -68,8 +73,10 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
 
       {footerContent}
 
-      <NewCheckerModal />
-    </>
+      <HideForPrint>
+        <NewCheckerModal />
+      </HideForPrint>
+    </ConclusionOutcomeWrapper>
   );
 };
 

@@ -10,8 +10,8 @@ const NeedPermitFooter: React.FC = () => (
       Meer weten?
     </Heading>
     <Paragraph gutterBottom={36}>
-      Wilt u weten hoe de aanvraag werkt, wat de kosten zijn of waar u nog meer
-      aan moet denken als u gaat starten? Op onze pagina{" "}
+      Wilt u weten hoe de aanvraag werkt? Of wat de kosten zijn en waar u nog
+      meer aan moet denken als u gaat starten? Op onze pagina{" "}
       <Link
         eventName="omgevingsvergunning informatie"
         href={
@@ -21,7 +21,7 @@ const NeedPermitFooter: React.FC = () => (
       >
         omgevingsvergunning
       </Link>{" "}
-      is alle informatie te vinden.
+      vindt u alle informatie.
     </Paragraph>
   </>
 );
