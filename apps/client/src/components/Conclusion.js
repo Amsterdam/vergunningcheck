@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Alert, PrintOnly } from "../atoms";
-import { eventNames, sections } from "../config/matomo";
+import { sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
 import { removeQuotes } from "../utils";
@@ -60,7 +60,6 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
   );
 
   const needContactContent = {
-    eventName: eventNames.CONTACT_CONCLUSION,
     mainContent: (
       <div data-testid={NEED_CONTACT}>
         <Markdown
@@ -73,14 +72,12 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
   };
 
   const needPermitContent = {
-    eventName: eventNames.NEED_PERMIT,
     footerContent: <NeedPermitFooter />,
     mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
     title: "U hebt een omgevingsvergunning nodig.",
   };
 
   const permitFreeContent = {
-    eventName: eventNames.PERMIT_FREE,
     footerContent: <NoPermitDescription />,
     title: "U hebt geen omgevingsvergunning nodig. ",
   };

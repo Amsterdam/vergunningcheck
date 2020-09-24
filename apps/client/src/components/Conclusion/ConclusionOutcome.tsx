@@ -24,11 +24,11 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   conclusionContent,
   matomoTrackEvent,
 }) => {
-  const { footerContent, mainContent, title, eventName } = conclusionContent;
+  const { footerContent, mainContent, title } = conclusionContent;
   useEffect(() => {
     matomoTrackEvent({
-      action: actions.CONCLUSIE_OUTCOME,
-      name: eventName,
+      action: actions.CONCLUSION_OUTCOME,
+      name: title,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
