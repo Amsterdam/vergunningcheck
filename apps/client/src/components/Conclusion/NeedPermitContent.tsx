@@ -3,7 +3,7 @@ import React from "react";
 
 import { HideForPrint, PrintOnly } from "../../atoms";
 import ComponentWrapper from "../../atoms/ComponentWrapper";
-import { Olo } from "../../config";
+import { Olo, urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 
@@ -26,7 +26,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
         <HideForPrint as="span">bij het landelijk Omgevingsloket.</HideForPrint>
         <PrintOnly as="span">
           op{" "}
-          <Link variant="inline" href="https://www.omgevingsloket.nl">
+          <Link variant="inline" href={urls.OMGEVINGSLOKET}>
             www.omgevingsloket.nl
           </Link>
         </PrintOnly>

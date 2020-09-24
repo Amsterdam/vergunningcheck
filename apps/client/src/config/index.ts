@@ -159,3 +159,9 @@ export const requiredFieldText: string = "Verplicht veld is niet ingevuld";
 export const requiredFieldRadio: string = "Maak een keuze";
 
 export const firstSelectOption: string = "Maak een keuze";
+
+export const urls: { [key: string]: string } = {
+  OMGEVINGSLOKET: "https://www.omgevingsloket.nl",
+  AMSTERDAM_MORE_INFO:
+    "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
+};
