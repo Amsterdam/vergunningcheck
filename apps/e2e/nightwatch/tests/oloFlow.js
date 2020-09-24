@@ -16,6 +16,9 @@ const {
   locationHouseNumberFull,
   locationFound,
   locationPostalCode,
+  locationRestrictionCityScape,
+  locationRestrictionMonument,
+  locationZoningPlans,
   main,
   navButtonPrev,
   navButtonNext,
@@ -57,12 +60,9 @@ module.exports = {
     b.waitForElementVisible(navButtonNext);
     b.click(navButtonNext);
 
-    assert.containsText(main, "Paraplubestemmingsplan Stadsdeel West");
-    assert.containsText(main, "Het gebouw is een gemeentelijk monument.");
-    assert.containsText(
-      main,
-      "Het gebouw ligt niet in een beschermd stads- of dorpsg"
-    );
+    assert.visible(locationZoningPlans);
+    assert.visible(locationRestrictionMonument);
+    assert.visible(locationRestrictionCityScape);
     b.click(navButtonNext);
 
     const result = await b.windowHandles();
