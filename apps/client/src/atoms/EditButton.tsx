@@ -2,6 +2,8 @@ import { Button } from "@datapunt/asc-ui";
 import React from "react";
 import styled from "styled-components";
 
+import { EDIT_BUTTON } from "../utils/test-ids";
+
 const EditButtonStyle = styled(Button)`
   text-decoration: underline;
   &:disabled {
@@ -15,7 +17,11 @@ const EditButtonStyle = styled(Button)`
 const EditButton: React.FC<
   { disabled: boolean } & React.HTMLAttributes<HTMLElement>
 > = ({ disabled, onClick }) => (
-  <EditButtonStyle variant="textButton" {...{ onClick, disabled }}>
+  <EditButtonStyle
+    data-testid={EDIT_BUTTON}
+    variant="textButton"
+    {...{ onClick, disabled }}
+  >
     Wijzig
   </EditButtonStyle>
 );

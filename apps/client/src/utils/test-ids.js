@@ -34,3 +34,6 @@ export const RADIO_ADDRESS_2 = "address-input-2";
 export const PRINT_BUTTON = "print-button";
 
 export const DISCLAIMER_TEXT = "disclaimer-text";
+
+export const EDIT_BUTTON = "edit-button";
+export const TEXT_TO_EDIT_BUTTON = "text-to-edit-button";
