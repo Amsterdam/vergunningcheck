@@ -4,7 +4,9 @@ LABEL maintainer="datapunt@amsterdam.nl"
 WORKDIR /app/
 COPY apps/client/package*.json ./
 
-# disabled because of rate limiting on npm/cloudflare
+# react-scripts@3.4.2 not working with lerna, 3.4.1 contains security issue with yargs
+# therefore temp. disabled the audit in build phase. This should be fixed with react-
+# scripts@next (4.x alpha) but that one has other issues.
 # RUN npm audit --production
 
 RUN npm ci --no-color -q

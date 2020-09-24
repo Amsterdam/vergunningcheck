@@ -19,3 +19,6 @@ export const INTRO = "intro";
 
 export const STEPBYSTEPNAVIGATION = "step-by-step-navigation";
 export const STEPBYSTEPITEM = "step-by-step-item";
+
+export const EDIT_BUTTON = "edit-button";
+export const TEXT_TO_EDIT_BUTTON = "text-to-edit-button";

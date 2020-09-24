@@ -2,7 +2,6 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { isProduction } from "../config";
 import { topics } from "../config";
 import { trackingEnabled } from "../config/matomo";
 
@@ -21,12 +20,6 @@ const withTracking = (Component) => ({ ...props }) => {
   };
 
   const matomoTrackEvent = ({ action, category = topic.name, name }) => {
-    // Temporary disable Matomo trackevents on production
-    if (isProduction) {
-      return;
-    }
-
-    // eslint-disable-next-line no-unreachable
     if (trackingEnabled()) {
       trackEvent({
         action: action.toLowerCase(),
