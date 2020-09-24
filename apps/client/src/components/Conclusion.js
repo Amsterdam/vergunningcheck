@@ -10,11 +10,11 @@ import { removeQuotes } from "../utils";
 import { NEED_CONTACT } from "../utils/test-ids";
 import {
   ConclusionOutcome,
-  Disclaimer,
   NeedPermitContent,
   NeedPermitFooter,
   NoPermitDescription,
 } from "./Conclusion/";
+import Disclaimer from "./Disclaimer";
 import Markdown from "./Markdown/index";
 
 const ConclusionWrapper = styled.div`

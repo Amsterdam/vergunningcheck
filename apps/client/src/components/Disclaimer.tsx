@@ -1,8 +1,8 @@
 import { Alert, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
-import { DISCLAIMER_TEXT } from "../../utils/test-ids";
-import ContactSentence from "../ContactSentence";
+import { DISCLAIMER_TEXT } from "../utils/test-ids";
+import ContactSentence from "./ContactSentence";
 
 const Disclaimer: React.FC = () => (
   <Alert heading="Let op">
