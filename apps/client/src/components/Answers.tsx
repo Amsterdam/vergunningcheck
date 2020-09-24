@@ -1,13 +1,25 @@
-import { ErrorMessage, Label, Radio, RadioGroup } from "@datapunt/asc-ui";
-import PropTypes from "prop-types";
+import { ErrorMessage, Radio, RadioGroup } from "@datapunt/asc-ui";
 import React from "react";
-import styled from "styled-components";
 
-import { ComponentWrapper } from "../atoms";
+import { ComponentWrapper, Label } from "../atoms";
 import { removeQuotes } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
-const Answers = ({
+type AnswerProps = {
+  formValue: string;
+  label: string;
+};
+
+export type AnswersProps = {
+  answers: AnswerProps[];
+  className: string;
+  errors: any;
+  questionId: string;
+  onChange: Function;
+  userAnswer: string;
+};
+
+const Answers: React.FC<AnswersProps> = ({
   className,
   answers,
   userAnswer,
@@ -32,7 +44,7 @@ const Answers = ({
                 value={formValue}
                 id={answerId}
                 onChange={(e) => onChange(e)}
-                checked={userAnswer === answer.label}
+                checked={userAnswer === label}
                 error={errors[questionId]}
               />
             </Label>
@@ -45,19 +57,4 @@ const Answers = ({
   </ComponentWrapper>
 );
 
-const StyledAnswers = styled(Answers)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-Answers.propTypes = {
-  answers: PropTypes.array,
-  className: PropTypes.string,
-  errors: PropTypes.any,
-  questionId: PropTypes.string,
-  onChange: PropTypes.func,
-  userAnswer: PropTypes.string,
-};
-
-export default StyledAnswers;
+export default Answers;

@@ -20,9 +20,12 @@ export const actions = {
   CLICK_EXTERNAL_NAVIGATION: "uitgaande links",
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "14 020 bellen",
+  CONCLUSION_OUTCOME: "dit is de uitkomst",
   DOWNLOAD: "download",
   EDIT_QUESTION: "wijzig vraag",
+  OPEN_MODAL: "open modal",
   SUBMIT_LOCATION: "locatie invoer",
+  START_ANOTHER_CHECK: "start een andere vergunningcheck",
 };
 
 export const sections = {
@@ -48,6 +51,7 @@ export const eventNames = {
   CONTACT_OPENING: "contactgegevens en openingstijden",
   COOKIES: "cookies op deze site",
   DESCRIPTION: "toelichting vraag",
+  DO_ANOTHER_CHECK: "nog een vergunningcheck doen",
   EDIT_ADDRESS: "wijzig adres",
   FACEBOOK: "facebook",
   FORWARD: "ga naar",
@@ -60,11 +64,14 @@ export const eventNames = {
   LONG_DESCRIPTION: "lange toelichting vraag",
   LOGO: "logo",
   NEWSLETTER: "nieuwsbrief amsterdam.nl",
+  NO_CHOICE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
   TEXT_LINK: "tekst link",
   TO_OLO: "naar het omgevingsloket",
   TWITTER: "twitter",
   WEBARCHIEF: "webarchief",
+  WITH_THE_SAME_ADDRESS: "op hetzelfde adres",
+  WITHOUT_THE_SAME_ADDRESS: "op een ander adres",
   WORK_AT: "werken bij",
 };

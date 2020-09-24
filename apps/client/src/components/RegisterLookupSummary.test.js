@@ -1,6 +1,6 @@
 import React from "react";
 
-import addressMock from "../__mocks__/address";
+import addressMock from "../__mocks__/addressMock";
 import matchMedia from "../__mocks__/matchMedia";
 import { EDIT_BUTTON } from "../utils/test-ids";
 import { act, cleanup, fireEvent, render } from "../utils/test-utils";

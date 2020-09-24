@@ -10,7 +10,7 @@ type TopicSessionData = {
   address: any;
 };
 
-type SessionDataType = {
+export type SessionDataType = {
   [slug: string]: TopicSessionData;
 };
 

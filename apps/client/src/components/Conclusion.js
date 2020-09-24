@@ -1,20 +1,27 @@
-import { Button, Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { Fragment } from "react";
-import { isIE, isMobile } from "react-device-detect";
+import { themeSpacing } from "@datapunt/asc-ui";
+import React from "react";
+import styled from "styled-components";
 
-import {
-  Alert,
-  ComponentWrapper,
-  HideForPrint,
-  PrintButton,
-  PrintOnly,
-} from "../atoms";
-import { Olo } from "../config";
-import { actions, eventNames, sections } from "../config/matomo";
+import { PrintOnly } from "../atoms";
+import { sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { sttrOutcomes } from "../sttr_client/models/checker";
-import ContactSentence from "./ContactSentence";
-import Markdown from "./Markdown";
+import { removeQuotes } from "../utils";
+import { NEED_CONTACT } from "../utils/test-ids";
+import {
+  ConclusionOutcome,
+  NeedPermitContent,
+  NeedPermitFooter,
+  NoPermitDescription,
+} from "./Conclusion/";
+import Disclaimer from "./Disclaimer";
+import Markdown from "./Markdown/index";
+
+const ConclusionWrapper = styled.div`
+  @media screen {
+    padding-bottom: ${themeSpacing(5)};
+  }
+`;
 
 const Conclusion = ({ checker, matomoTrackEvent }) => {
   // find conclusions we want to display to the user
@@ -34,9 +41,8 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         title:
           outcome === sttrOutcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
-            : `${permit.name.replace("Conclusie", "")}: ${outcome.replace(
-                /['"]+/g,
-                ""
+            : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
+                outcome
               )}`,
         description:
           outcome === sttrOutcomes.NEED_CONTACT
@@ -45,94 +51,58 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
       };
     });
 
+  // Check if the conclusion is 'needContact'
   const contactConclusion = conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_CONTACT
   );
 
-  const needsPermit = !!conclusions.find(
+  // Check if the conclusion is 'needPermit'
+  const needPermit = !!conclusions.find(
     ({ outcome }) => outcome === sttrOutcomes.NEED_PERMIT
   );
 
-  const displayConclusions = contactConclusion
-    ? [contactConclusion]
-    : conclusions;
-
-  const handlePermitButton = (e) => {
-    e.preventDefault();
-    matomoTrackEvent({
-      action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
-    });
-    // Open OLO in new tab/window
-    window.open(Olo.home, "_blank");
+  const needContactContent = {
+    mainContent: (
+      <div data-testid={NEED_CONTACT}>
+        <Markdown
+          eventLocation={sections.CONCLUSION}
+          source={contactConclusion?.description}
+        />
+      </div>
+    ),
+    title: contactConclusion?.title,
   };
 
-  const handlePrintButton = () => {
-    matomoTrackEvent({
-      action: actions.DOWNLOAD,
-      name: eventNames.SAVE_CONCLUSION,
-    });
-    window.print();
+  const needPermitContent = {
+    footerContent: <NeedPermitFooter />,
+    mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
+    title: "U hebt een omgevingsvergunning nodig.",
   };
+
+  const permitFreeContent = {
+    footerContent: <NoPermitDescription />,
+    title: "U hebt geen omgevingsvergunning nodig. ",
+  };
+
+  const conclusionContent = contactConclusion
+    ? needContactContent
+    : needPermit
+    ? needPermitContent
+    : permitFreeContent;
 
   return (
-    <>
-      <Paragraph>
-        Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van
-        toepassing is.
-      </Paragraph>
-
-      {displayConclusions.map(({ title, description }) => (
-        <Fragment key={title}>
-          <Heading forwardedAs="h2">{title}</Heading>
-          <Markdown eventLocation={sections.CONCLUSION} source={description} />
-        </Fragment>
-      ))}
-
-      <HideForPrint>
-        {needsPermit && !contactConclusion && (
-          <ComponentWrapper marginBottom={40}>
-            <Button
-              type="button"
-              color="secondary"
-              onClick={handlePermitButton}
-            >
-              Vergunning aanvragen
-            </Button>
-          </ComponentWrapper>
-        )}
-
-        {!isIE && !isMobile && (
-          <ComponentWrapper>
-            <PrintButton
-              color="primary"
-              onClick={handlePrintButton}
-              type="button"
-            >
-              Conclusie opslaan
-            </PrintButton>
-          </ComponentWrapper>
-        )}
-      </HideForPrint>
+    <ConclusionWrapper>
+      <ConclusionOutcome
+        {...{
+          conclusionContent,
+          matomoTrackEvent,
+        }}
+      />
 
       <PrintOnly withBorder avoidPageBreak>
-        <Alert
-          heading="Let op"
-          content={
-            <>
-              De vergunningcheck is nog in ontwikkeling. Hierdoor kunnen wij nog
-              geen zekerheid bieden dat de uitkomst correct is. Ook is de
-              informatie nog niet voor iedereen goed te lezen of te beluisteren.
-              Wilt u iets zeker weten of wilt u meer informatie?{" "}
-              <ContactSentence
-                openingSentence={"Bel dan de gemeente op"}
-                link={false}
-              />
-            </>
-          }
-        />
+        <Disclaimer />
       </PrintOnly>
-    </>
+    </ConclusionWrapper>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import addressMock from "../__mocks__/address";
+import addressMock from "../__mocks__/addressMock";
 import { cleanup, render } from "../utils/test-utils";
 import AddressLine from "./AddressLine";
 
