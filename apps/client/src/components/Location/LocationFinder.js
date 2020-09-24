@@ -144,9 +144,7 @@ const LocationFinder = (props) => {
             e.preventDefault();
           }}
         >
-          {addressMatches && (
-            <option value={houseNumber}>{firstSelectOption}</option>
-          )}
+          {addressMatches && <option>{firstSelectOption}</option>}
           {addressMatches?.map((match) => (
             <option value={match.houseNumberFull} key={match.houseNumberFull}>
               {match.houseNumberFull}
