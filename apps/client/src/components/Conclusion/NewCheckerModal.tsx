@@ -76,7 +76,6 @@ const NewCheckerModal: React.FC<{
       handleOpenModal={handleOpenModal}
       heading="U wilt nog een vergunningcheck doen."
       openButtonText="Nog een vergunningcheck doen"
-      openButtonVariant="primaryInverted"
       showConfirmButton
     >
       <ComponentWrapper>

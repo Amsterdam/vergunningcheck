@@ -34,10 +34,10 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
       <HideForPrint>
         <ComponentWrapper marginBottom={32}>
           <Button
-            color="secondary"
             data-testid={NEED_PERMIT_BUTTON}
             onClick={handlePermitButton}
             type="button"
+            variant="primaryInverted"
           >
             Vergunning aanvragen
           </Button>

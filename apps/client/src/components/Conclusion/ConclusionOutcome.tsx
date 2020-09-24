@@ -71,7 +71,9 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
         )}
       </HideForPrint>
 
-      {footerContent}
+      <ComponentWrapper marginBottom={footerContent ? 52 : 24}>
+        {footerContent}
+      </ComponentWrapper>
 
       <HideForPrint>
         <NewCheckerModal />
