@@ -136,7 +136,10 @@ const LocationFinder = (props) => {
           label="Toevoeging"
           value={exactMatch?.houseNumberFull || houseNumber}
           disabled={
-            notFoundAddress || graphqlError || (exactMatch && !addressMatches)
+            notFoundAddress ||
+            graphqlError ||
+            (exactMatch && !addressMatches) ||
+            !addressMatches
           }
           error={suffixError}
           onChange={(e) => {
@@ -144,7 +147,9 @@ const LocationFinder = (props) => {
             e.preventDefault();
           }}
         >
-          {addressMatches && <option>{firstSelectOption}</option>}
+          <option disabled={exactMatch?.houseNumberFull}>
+            {firstSelectOption}
+          </option>
           {addressMatches?.map((match) => (
             <option value={match.houseNumberFull} key={match.houseNumberFull}>
               {match.houseNumberFull}
