@@ -1,6 +1,7 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
+import { urls } from "../../config";
 import { NEED_PERMIT } from "../../utils/test-ids";
 import Link from "../Link";
 
@@ -14,9 +15,7 @@ const NeedPermitFooter: React.FC = () => (
       meer aan moet denken als u gaat starten? Op onze pagina{" "}
       <Link
         eventName="omgevingsvergunning informatie"
-        href={
-          "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D"
-        }
+        href={urls.AMSTERDAM_MORE_INFO}
         variant="inline"
       >
         omgevingsvergunning

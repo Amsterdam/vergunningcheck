@@ -12,12 +12,6 @@ type Text = {
   locationIntro?: string;
 };
 
-type OloProps = {
-  home: string;
-  intro: string;
-  location: string;
-};
-
 type OloUrlProps = {
   houseNumber: string;
   houseNumberFull: string;
@@ -27,13 +21,14 @@ type OloUrlProps = {
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
-const oloHome: string =
-  process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
+const oloHome: string = "https://www.omgevingsloket.nl/";
 
-export const Olo: OloProps = {
-  home: oloHome,
-  intro: `${oloHome}Particulier/particulier/home?init=true`,
-  location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
+export const urls: { [key: string]: string } = {
+  HOW_TO_GET_A_PERMIT:
+    "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
+  OLO_HOME: oloHome,
+  OLO_INTRO: `${oloHome}Particulier/particulier/home?init=true`,
+  OLO_LOCATION: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
 };
 
 export const generateOloUrl = ({
@@ -44,7 +39,7 @@ export const generateOloUrl = ({
   // Get correct suffix
   const suffix = houseNumberFull.replace(houseNumber, "").trim();
   // Redirect user to OLO with all parameters
-  return `${Olo.location}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
+  return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
 const topics: Topic[] = [
