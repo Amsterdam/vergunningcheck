@@ -1,5 +1,5 @@
 import { Heading, Paragraph, themeSpacing } from "@datapunt/asc-ui";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled from "styled-components";
 
@@ -14,6 +14,7 @@ const ConclusionOutcomeWrapper = styled.div`
 
 type ConclusionContentProps = {
   description?: string;
+  eventName: string;
   footerContent?: ReactNode;
   mainContent?: ReactNode;
   title: string;
@@ -28,6 +29,15 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   conclusionContent,
   matomoTrackEvent,
 }) => {
+  const { footerContent, mainContent, title } = conclusionContent;
+  useEffect(() => {
+    matomoTrackEvent({
+      action: actions.CONCLUSION_OUTCOME,
+      name: title,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
@@ -35,8 +45,6 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
     });
     window.print();
   };
-
-  const { footerContent, mainContent, title } = conclusionContent;
 
   return (
     <ConclusionOutcomeWrapper>

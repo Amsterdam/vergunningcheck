@@ -37,6 +37,7 @@ describe("ConclusionOutcome", () => {
           ),
           title: "title",
         }}
+        matomoTrackEvent={matomoTrackEvent}
       />
     );
     // Should be in document
@@ -55,7 +56,7 @@ describe("ConclusionOutcome", () => {
 
     expect(window.open).toHaveBeenCalledTimes(1);
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
+    expect(matomoTrackEvent).toHaveBeenCalledTimes(2); // For the active section, and the conclusion outcome.
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventNames.APPLY_FOR_PERMIT,
@@ -69,6 +70,7 @@ describe("ConclusionOutcome", () => {
           footerContent: <NoPermitDescription />,
           title: "title",
         }}
+        matomoTrackEvent={matomoTrackEvent}
       />
     );
     // Should be in document

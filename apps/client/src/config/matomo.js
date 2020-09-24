@@ -20,6 +20,7 @@ export const actions = {
   CLICK_EXTERNAL_NAVIGATION: "uitgaande links",
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "14 020 bellen",
+  CONCLUSION_OUTCOME: "dit is de uitkomst",
   DOWNLOAD: "download",
   EDIT_QUESTION: "wijzig vraag",
   OPEN_MODAL: "open modal",
