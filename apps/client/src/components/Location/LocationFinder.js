@@ -39,30 +39,22 @@ const LocationFinder = (props) => {
     skip,
   });
 
+  const allowToSetAddress =
+    houseNumber &&
+    houseNumberFull &&
+    postalCode &&
+    !loading &&
+    (data || graphqlError);
+
   // Prevent setState error
   useEffect(() => {
     // Pass the GraphQL error to the HOC
     setErrorMessage(graphqlError);
 
-    if (
-      houseNumber &&
-      houseNumberFull &&
-      postalCode &&
-      !loading &&
-      (data || graphqlError)
-    ) {
+    if (allowToSetAddress) {
       setAddress(data?.findAddress?.exactMatch);
     }
-  }, [
-    data,
-    graphqlError,
-    houseNumber,
-    houseNumberFull,
-    loading,
-    postalCode,
-    setAddress,
-    setErrorMessage,
-  ]);
+  }, [allowToSetAddress, data, graphqlError, setAddress, setErrorMessage]);
 
   const exactMatch = data?.findAddress?.exactMatch;
 
