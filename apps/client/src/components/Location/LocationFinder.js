@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { ErrorMessage, Paragraph, Select, TextField } from "@datapunt/asc-ui";
+import { ErrorMessage, Paragraph, TextField } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { firstSelectOption, requiredFieldText } from "../../config";
+import { requiredFieldText } from "../../config";
 import { sections } from "../../config/matomo";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
@@ -14,22 +14,26 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const LocationFinder = (props) => {
   const [postalCode, setPostalCode] = useState(props.postalCode);
-  const [houseNumber, setHouseNumber] = useState(props.houseNumber);
+  // Temporary solution until we upgrade GraphQL
+  const [houseNumber, setHouseNumber] = useState(
+    props.houseNumber && parseInt(props.houseNumber)
+  );
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
+  const [suffix, setSuffix] = useState("");
   const [touched, setTouched] = useState({});
   const { setAddress, setErrorMessage } = props;
 
   const variables = {
+    extraHouseNumberFull: "",
+    houseNumberFull: houseNumberFull,
     postalCode,
-    houseNumberFull,
-    extraHouseNumberFull: houseNumber,
-    queryExtra: houseNumber !== houseNumberFull,
+    queryExtra: false,
   };
 
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
      Workaround is not giving any variables if the query should be skipped. */
-  const skip = !postalCode || !houseNumberFull || !houseNumber;
+  const skip = !houseNumberFull && !postalCode;
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
     variables: skip ? undefined : variables,
     skip,
@@ -40,12 +44,19 @@ const LocationFinder = (props) => {
     // Pass the GraphQL error to the HOC
     setErrorMessage(graphqlError);
 
-    if (postalCode && houseNumberFull && !loading && (data || graphqlError)) {
+    if (
+      houseNumber &&
+      houseNumberFull &&
+      postalCode &&
+      !loading &&
+      (data || graphqlError)
+    ) {
       setAddress(data?.findAddress?.exactMatch);
     }
   }, [
     data,
     graphqlError,
+    houseNumber,
     houseNumberFull,
     loading,
     postalCode,
@@ -54,22 +65,10 @@ const LocationFinder = (props) => {
   ]);
 
   const exactMatch = data?.findAddress?.exactMatch;
-  const findAddressMatches = data?.findAddress?.matches || [];
-  const extraAddressMatches = data?.extraAddress?.matches || [];
-  const addressMatches = extraAddressMatches.length
-    ? extraAddressMatches
-    : findAddressMatches.length > 1
-    ? findAddressMatches
-    : null;
 
   // Validate address
   const notFoundAddress =
-    postalCode &&
-    houseNumber &&
-    houseNumberFull &&
-    !loading &&
-    !exactMatch &&
-    !findAddressMatches.length;
+    postalCode && houseNumber && houseNumberFull && !loading && !exactMatch;
 
   // Validate forms
   const validate = (name, value, required) => {
@@ -86,8 +85,7 @@ const LocationFinder = (props) => {
 
   // Error messages
   const postalCodeError = validate("postalCode", postalCode, true);
-  const houseNumberError = validate("houseNumberFull", houseNumberFull, true);
-  const suffixError = !notFoundAddress && props.errors?.suffix?.message;
+  const houseNumberError = validate("houseNumber", houseNumber, true);
 
   const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
@@ -98,78 +96,66 @@ const LocationFinder = (props) => {
     <>
       <ComponentWrapper>
         <TextField
-          name="postalCode"
-          label="Postcode"
+          autoFocus
           defaultValue={postalCode}
           error={postalCodeError}
-          required={true}
+          label="Postcode"
+          name="postalCode"
           onBlur={handleBlur}
-          onFocus={() => props.setFocus(true)}
           onChange={(e) => {
             setPostalCode(e.target.value);
           }}
-          autoFocus
+          onFocus={() => props.setFocus(true)}
+          required
         />
         {postalCodeError && <ErrorMessage message={postalCodeError} />}
       </ComponentWrapper>
 
       <ComponentWrapper>
         <TextField
-          name="houseNumberFull"
-          label="Huisnummer"
-          defaultValue={houseNumberFull}
+          defaultValue={houseNumber}
           error={houseNumberError}
-          required={true}
+          label="Huisnummer"
+          name="houseNumber"
           onBlur={handleBlur}
-          onFocus={() => props.setFocus(true)}
           onChange={(e) => {
-            setHouseNumberFull(e.target.value);
             setHouseNumber(e.target.value);
+            setHouseNumberFull(e.target.value + suffix);
           }}
+          onFocus={() => props.setFocus(true)}
+          required
+          type="number"
         />
         {houseNumberError && <ErrorMessage message={houseNumberError} />}
       </ComponentWrapper>
 
       <ComponentWrapper>
-        <Select
-          name="suffix"
-          label="Toevoeging"
-          value={exactMatch?.houseNumberFull || houseNumber}
-          disabled={
-            notFoundAddress ||
-            graphqlError ||
-            (exactMatch && !addressMatches) ||
-            !addressMatches
+        <TextField
+          // Temporary solution until we upgrade GraphQL
+          defaultValue={
+            houseNumberFull && houseNumberFull.replace(houseNumber, "")
           }
-          error={suffixError}
+          label="Toevoeging"
+          name="suffix"
           onChange={(e) => {
-            e.target.value && setHouseNumberFull(e.target.value);
+            setSuffix(e.target.value);
+            setHouseNumberFull(houseNumber + e.target.value);
             e.preventDefault();
           }}
-        >
-          <option disabled={exactMatch?.houseNumberFull}>
-            {firstSelectOption}
-          </option>
-          {addressMatches?.map((match) => (
-            <option value={match.houseNumberFull} key={match.houseNumberFull}>
-              {match.houseNumberFull}
-            </option>
-          ))}
-        </Select>
-        {suffixError && <ErrorMessage message={suffixError} />}
+        />
       </ComponentWrapper>
 
       {loading && (
         <ComponentWrapper>
-          <Alert heading="Laden..." content="Wij zoeken het adres." />
+          <Alert content="Wij zoeken het adres." heading="Laden..." />
         </ComponentWrapper>
       )}
 
       {notFoundAddress && !graphqlError && (
         <ComponentWrapper>
           <Alert
-            level="warning"
             heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
+            level="warning"
           >
             <Paragraph>
               Probeer het opnieuw. Of neem contact op met de gemeente op
@@ -185,8 +171,8 @@ const LocationFinder = (props) => {
           <ComponentWrapper marginBottom={36}>
             <Alert
               data-testid={LOCATION_FOUND}
-              level="attention"
               heading="Dit is het gekozen adres:"
+              level="attention"
             >
               <Paragraph>
                 {exactMatch.streetName} {exactMatch.houseNumberFull}
