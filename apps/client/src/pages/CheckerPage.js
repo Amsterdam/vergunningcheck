@@ -185,10 +185,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         >
           <StepByStepItem
             active={isActive(sections.LOCATION_INPUT)}
-            checked={
-              isActive(sections.LOCATION_INPUT) ||
-              isFinished(sections.LOCATION_INPUT)
-            }
+            checked={isFinished(sections.LOCATION_INPUT)}
             done={isActive(sections.LOCATION_INPUT)}
             heading="Adresgegevens"
             largeCircle
