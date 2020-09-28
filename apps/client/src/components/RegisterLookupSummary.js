@@ -5,6 +5,7 @@ import React from "react";
 import {
   ComponentWrapper,
   EditButton,
+  HideForPrint,
   List,
   ListItem,
   TextToEdit,
@@ -18,6 +19,7 @@ import {
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
 import AddressLine from "./AddressLine";
+import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
   address,
@@ -55,6 +57,14 @@ const RegisterLookupSummary = ({
           }}
         />
       </Paragraph>
+
+      {/* Remove this statement to see the temporary modal */}
+      {false === true && (
+        <HideForPrint>
+          <ChangeAddressModal />
+        </HideForPrint>
+      )}
+
       <Paragraph gutterBottom={16}>
         Over dit adres hebben we de volgende gegevens gevonden:
       </Paragraph>
