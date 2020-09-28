@@ -1,0 +1,36 @@
+FROM node:14-alpine
+WORKDIR /app/
+
+# Install firefox
+RUN \
+  # Use edge repos
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+RUN apk update && apk upgrade
+
+RUN \
+  # Install Firefox
+  apk add firefox xvfb bash dbus ttf-freefont fontconfig
+
+
+# Install chrome
+RUN apk add chromium
+
+# Cleanup
+RUN rm -rf /var/cache/apk/*
+
+# Setup non-root user
+RUN addgroup -S devs
+RUN adduser -S -G devs dev
+RUN chown -R dev:devs /app/
+RUN chmod +s /app/
+USER dev:devs
+
+# Install
+COPY apps/e2e ./
+
+# Test
+RUN npm i
+RUN npm test
