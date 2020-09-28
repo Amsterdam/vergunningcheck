@@ -37,7 +37,6 @@ export const sections = {
   HEADER: "header",
   INTRO: "intro pagina",
   LOCATION_INPUT: "locatie invoer",
-  LOCATION_RESULT: "locatie resultaat",
   QUESTIONS: "vragen",
 };
 
