@@ -1,7 +1,7 @@
 query findAddress(
-  $postalCode: String!
-  $houseNumberFull: String!
   $extraHouseNumberFull: String!
+  $houseNumberFull: String!
+  $postalCode: String!
   $queryExtra: Boolean!
 ) {
   extraAddress: findAddress(
