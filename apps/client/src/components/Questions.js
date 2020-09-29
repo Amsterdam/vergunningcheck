@@ -84,8 +84,8 @@ const Questions = ({
       goToQuestion("prev");
     } else {
       // Go to Location Result, because the user was at the first question
-      setActiveState(sections.LOCATION_RESULT);
-      setFinishedState(sections.LOCATION_RESULT, false);
+      setActiveState(sections.LOCATION_INPUT);
+      setFinishedState(sections.LOCATION_INPUT, false);
     }
   };
 
@@ -95,7 +95,7 @@ const Questions = ({
       // Go to the specific question in the stack
       setActiveState(sections.QUESTIONS);
       setFinishedState([sections.CONCLUSION, sections.QUESTIONS], false);
-      setFinishedState(sections.LOCATION_RESULT, true);
+      setFinishedState(sections.LOCATION_INPUT, true);
 
       goToQuestion(questionId);
     },

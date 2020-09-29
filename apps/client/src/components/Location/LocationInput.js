@@ -46,13 +46,13 @@ const LocationInput = ({
     if (address.postalCode) {
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        name: `${eventNames.FORWARD} ${sections.LOCATION_RESULT}`,
+        name: `${eventNames.FORWARD} ${sections.QUESTIONS}`,
       });
 
       // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
-        // The address is the same, so go directly to the Location Result
-        setActiveState(sections.LOCATION_RESULT);
+        // The address is the same, so go directly to the Questions section
+        setActiveState(hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
         return;
       }
 
@@ -74,10 +74,7 @@ const LocationInput = ({
       // Reset all previous finished states
       if (hasSTTR) {
         resetChecker();
-        setFinishedState(
-          [sections.LOCATION_RESULT, sections.QUESTIONS, sections.CONCLUSION],
-          false
-        );
+        setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
       }
 
       sessionContext.setSessionData([
@@ -92,7 +89,8 @@ const LocationInput = ({
       if (focus) {
         document.activeElement.blur();
       } else {
-        setActiveState(sections.LOCATION_RESULT);
+        setFinishedState(sections.LOCATION_INPUT);
+        setActiveState(hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
       }
     }
   };
