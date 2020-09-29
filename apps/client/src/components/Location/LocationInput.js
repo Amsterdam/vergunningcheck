@@ -51,8 +51,8 @@ const LocationInput = ({
 
       // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
-        // The address is the same, so go directly to the Location Result
-        setActiveState(sections.QUESTIONS);
+        // The address is the same, so go directly to the Questions section
+        setActiveState(hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
         return;
       }
 
@@ -90,7 +90,7 @@ const LocationInput = ({
         document.activeElement.blur();
       } else {
         setFinishedState(sections.LOCATION_INPUT);
-        setActiveState(sections.QUESTIONS);
+        setActiveState(hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
       }
     }
   };

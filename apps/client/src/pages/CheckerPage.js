@@ -210,8 +210,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
               />
             )}
             {/* @TODO: Refactor this, because of duplicate code */}
-            {(!isActive(sections.LOCATION_INPUT) ||
-              isFinished(sections.LOCATION_RESULT)) && (
+            {!isActive(sections.LOCATION_INPUT) && (
               <LocationResult
                 {...{
                   isActive,
@@ -274,6 +273,18 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
               {...{
                 matomoTrackEvent,
                 isFinished,
+                setActiveState,
+                setFinishedState,
+                topic,
+              }}
+            />
+          )}
+          {isActive(sections.LOCATION_RESULT) && (
+            <LocationResult
+              {...{
+                isActive,
+                isFinished,
+                matomoTrackEvent,
                 setActiveState,
                 setFinishedState,
                 topic,
