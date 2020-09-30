@@ -129,11 +129,12 @@ const LocationFinder = (props) => {
           }
           label="Toevoeging"
           name="suffix"
+          onBlur={handleBlur}
           onChange={(e) => {
             setSuffix(e.target.value);
             setHouseNumberFull(houseNumber + e.target.value);
-            e.preventDefault();
           }}
+          onFocus={() => props.setFocus(true)}
         />
       </ComponentWrapper>
 

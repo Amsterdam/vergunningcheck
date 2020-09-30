@@ -1,14 +1,14 @@
 import { loader } from "graphql.macro";
-const findAddress = loader("../../components/Location/LocationFinder.graphql");
+const findAddress = loader("../components/Location/LocationFinder.graphql");
 
 export default [
   {
     request: {
       query: findAddress,
       variables: {
-        postalCode: "1055xd",
+        extraHouseNumberFull: "",
         houseNumberFull: "19c",
-        extraHouseNumberFull: "19c",
+        postalCode: "1055XD",
         queryExtra: false,
       },
     },
