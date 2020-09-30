@@ -1,0 +1,9 @@
+FROM hayd/alpine-deno
+WORKDIR /app/
+
+# Get code
+COPY scripts/imtr ./
+
+RUN deno cache --reload --lock=lock.json src/deps.ts
+RUN deno run --unstable --allow-read --allow-write --allow-env --allow-net src/main.ts fetch --dir=build
+RUN deno run --unstable --allow-write --allow-read src/main.ts transform --dir=build

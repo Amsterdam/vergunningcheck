@@ -63,7 +63,7 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 - Commit changes if needed
 - Push these changes (to origin/develop)
 - Run `npm run release` to merge `develop` with `release` and push it.
-- The application will be build by Jenkins and deployed to acceptance
+- The application will be build by [Jenkins](https://ci.data.amsterdam.nl/job/OIS/job/vergunningcheck/job/release/) and deployed to acceptance
 - Verify the `release` branch is on acceptance and it's the latest build
 - Consider running `npm run back-merge` if you made any changes
 - Communicate to stakeholders there is a new release testable on acceptance
@@ -83,14 +83,14 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 
 - Walk through the PR and verify the release branch is on acceptance (by looking at the App Version)
 - Merge the pr, don't use Squash and Merge
-- Jenkins will create the artifact (docker images) based on the master branch
+- [Jenkins](https://ci.data.amsterdam.nl/job/OIS/job/vergunningcheck/job/master/) will create the artifact (docker images) based on the master branch
 - Check if the build succeeded and verify the version number and branch on acceptance
 
 ### Deploy to production
 
 This procedure will be changed to the DRAFT section below.
 
-- Approve the release to production in Jenkins, now we're live
+- Approve the release to production in [Jenkins](https://ci.data.amsterdam.nl/job/OIS/job/vergunningcheck/job/master/), now we're live
 - Communicate to stakeholders there is a new release on production
 - Back-merge `master` into `release` into `develop` by running `npm run back-merge`
 - Consider [preparing](#prepare-a-release) the next release in the section above
