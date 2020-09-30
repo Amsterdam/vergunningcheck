@@ -12,6 +12,11 @@ import {
 import { actions, eventNames, sections } from "../config/matomo";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
+import {
+  LOCATION_RESTRICTION_CITYSCAPE,
+  LOCATION_RESTRICTION_MONUMENT,
+  LOCATION_ZONING_PLANS,
+} from "../utils/test-ids";
 import AddressLine from "./AddressLine";
 
 const RegisterLookupSummary = ({
@@ -56,7 +61,7 @@ const RegisterLookupSummary = ({
       <Paragraph strong gutterBottom={0}>
         Monument:
       </Paragraph>
-      <Paragraph gutterBottom={16}>
+      <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={16}>
         {monument
           ? `Het gebouw is een ${monument.toLowerCase()}.`
           : "Het gebouw is geen monument."}
@@ -65,7 +70,10 @@ const RegisterLookupSummary = ({
       <Paragraph strong gutterBottom={0}>
         Beschermd stads- of dorpsgezicht:
       </Paragraph>
-      <Paragraph gutterBottom={displayZoningPlans ? 16 : 0}>
+      <Paragraph
+        data-testid={LOCATION_RESTRICTION_CITYSCAPE}
+        gutterBottom={displayZoningPlans ? 16 : 0}
+      >
         {cityScape
           ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
           : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
@@ -80,12 +88,13 @@ const RegisterLookupSummary = ({
             <Paragraph>Geen bestemmingsplannen</Paragraph>
           ) : (
             <List
-              variant="bullet"
+              data-testid={LOCATION_ZONING_PLANS}
               style={{
                 backgroundColor: "inherit",
                 marginTop: 10,
                 marginBottom: 0,
               }}
+              variant="bullet"
             >
               {zoningPlanNames.map((plan) => (
                 <ListItem key={plan}>{plan}</ListItem>

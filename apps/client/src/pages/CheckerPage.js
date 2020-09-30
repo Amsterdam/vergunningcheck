@@ -17,13 +17,14 @@ import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import withTracking from "../hoc/withTracking";
+import { geturl, routes } from "../routes";
+import LoadingPage from "./LoadingPage";
 
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { hasIMTR, slug, text } = topic;
   // OLO Flow does not have questionIndex
   const { questionIndex } = hasIMTR ? sessionContext[topic.slug] : 0;
-
   const { activeComponents, answers, finishedComponents } = sessionContext[
     slug
   ];
@@ -60,6 +61,24 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isActive = useCallback(
+    (component, finished = false) => {
+      // If component is only a string, we make it a array first
+      const allComponents = Array.isArray(component) ? component : [component];
+
+      // If finished is true we check if it's finished, else check activeComponents.
+      const components = finished ? finishedComponents : activeComponents;
+      return components.includes(...allComponents);
+    },
+    [activeComponents, finishedComponents]
+  );
+
+  // Redirect to Intro in case no session context has been found
+  if (!sessionContext[slug]) {
+    window.location.href = geturl(routes.intro, { slug });
+    return <LoadingPage />;
+  }
+
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
     // Do not track the active step
@@ -95,18 +114,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       { finishedComponents: newFinishedComponents },
     ]);
   };
-
-  const isActive = useCallback(
-    (component, finished = false) => {
-      // If component is only a string, we make it a array first
-      const allComponents = Array.isArray(component) ? component : [component];
-
-      // If finished is true we check if it's finished, else check activeComponents.
-      const components = finished ? finishedComponents : activeComponents;
-      return components.includes(...allComponents);
-    },
-    [activeComponents, finishedComponents]
-  );
 
   const isFinished = (component) => isActive(component, true);
 

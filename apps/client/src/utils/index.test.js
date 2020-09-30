@@ -1,9 +1,23 @@
+import React, { useRef } from "react";
+
 import {
   collectionOfSimpleTypes,
   collectionOfType,
   isSimpleType,
+  scrollToRef,
   uniqueFilter,
 } from "../utils";
+import { render } from "./test-utils";
+
+window.scrollTo = jest.fn();
+
+let ref;
+
+const Element = () => {
+  ref = useRef(null);
+
+  return <div data-testid="element" ref={ref} />;
+};
 
 describe("util", () => {
   test("uniqueFilter", () => {
@@ -45,5 +59,22 @@ describe("util", () => {
     expect(collectionOfType([null], "Number")).toBe(false);
     expect(collectionOfType([3], "String")).toBe(false);
     expect(collectionOfType(["false"], "Boolean")).toBe(false);
+  });
+  test("scrollToRef", () => {
+    const { queryByTestId } = render(<Element />);
+    const element = queryByTestId("element");
+    element.getBoundingClientRect = jest.fn(() => ({
+      top: 100,
+    }));
+
+    expect(element).toBeInTheDocument();
+
+    scrollToRef(ref);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 100);
+
+    scrollToRef(ref, 10);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 90);
+
+    expect(window.scrollTo).toHaveBeenCalledTimes(2);
   });
 });

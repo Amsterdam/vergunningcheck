@@ -2,17 +2,15 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { isProduction } from "../config";
-import { topics } from "../config";
 import { trackingEnabled } from "../config/matomo";
+import { findTopicBySlug } from "../utils";
 
 const withTracking = (Component) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
 
-  // This is a temporary fix
   // @TODO: make a withTracking hook instead of this HOC
   const { slug } = useParams();
-  const topic = topics.find((t) => t.slug === slug);
+  const topic = findTopicBySlug(slug);
 
   const matomoPageView = () => {
     if (trackingEnabled()) {
@@ -20,13 +18,7 @@ const withTracking = (Component) => ({ ...props }) => {
     }
   };
 
-  const matomoTrackEvent = ({ action, category, name }) => {
-    // Temporary disable Matomo trackevents on production
-    if (isProduction) {
-      return;
-    }
-
-    // eslint-disable-next-line no-unreachable
+  const matomoTrackEvent = ({ action, category = topic.name, name }) => {
     if (trackingEnabled()) {
       trackEvent({
         action: action.toLowerCase(),
