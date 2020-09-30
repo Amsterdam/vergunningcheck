@@ -15,7 +15,7 @@ const NeedPermitFooter: React.FC = () => (
       meer aan moet denken als u gaat starten? Op onze pagina{" "}
       <Link
         eventName="omgevingsvergunning informatie"
-        href={urls.AMSTERDAM_MORE_INFO}
+        href={urls.HOW_TO_GET_A_PERMIT}
         variant="inline"
       >
         omgevingsvergunning
