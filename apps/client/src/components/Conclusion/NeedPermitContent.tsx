@@ -26,7 +26,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
         <HideForPrint as="span">bij het landelijk Omgevingsloket.</HideForPrint>
         <PrintOnly as="span">
           op{" "}
-          <Link variant="inline" href={urls.OMGEVINGSLOKET}>
+          <Link variant="inline" href={urls.OLO_HOME}>
             www.omgevingsloket.nl
           </Link>
         </PrintOnly>
