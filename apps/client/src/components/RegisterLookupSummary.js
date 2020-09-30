@@ -60,7 +60,7 @@ const RegisterLookupSummary = ({
       </Paragraph>
       <Paragraph
         data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-        gutterBottom={!hasSTTR ? 16 : 0}
+        gutterBottom={hasSTTR ? 0 : 16}
       >
         {cityScape
           ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
