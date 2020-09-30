@@ -18,17 +18,6 @@ import {
   ModalUI,
 } from "./ModalStyles";
 
-// @TODO: import these props from ASC-UI when they added this feature
-type buttonVariant =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "primaryInverted"
-  | "textButton"
-  | "blank"
-  | "application"
-  | undefined;
-
 type ModalProps = {
   children: React.ReactNode;
   closeButtonText?: string;
@@ -38,8 +27,7 @@ type ModalProps = {
   handleOpenModal?: Function;
   heading: string;
   onClick?: Function;
-  openButton?: any;
-  openButtonVariant?: buttonVariant;
+  openButtonRenderer?: Function;
   openButtonText?: string;
   showCloseButton?: boolean;
   showConfirmButton?: boolean;
@@ -53,9 +41,8 @@ const Modal: React.FC<ModalProps> = ({
   handleConfirmButton,
   handleOpenModal,
   heading,
-  openButton,
+  openButtonRenderer,
   openButtonText,
-  openButtonVariant = "primary",
   showCloseButton = true,
   showConfirmButton,
 }) => {
@@ -69,19 +56,16 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  // How to do this properly? @Sven
-  const OpenButton = openButton;
-
   return (
     <>
-      {openButton ? (
-        <OpenButton onClick={openModal} />
+      {openButtonRenderer ? (
+        openButtonRenderer({ openModal })
       ) : (
         <ModalButton
           data-testid={MODAL_OPEN_BUTTON}
           onClick={openModal}
           type="button"
-          variant={openButtonVariant}
+          variant="primary"
         >
           {openButtonText}
         </ModalButton>

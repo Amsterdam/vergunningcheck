@@ -7,6 +7,7 @@ import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
+import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const ChangeAddressModal: React.FC<{
@@ -15,8 +16,7 @@ const ChangeAddressModal: React.FC<{
   slug: string;
   sttrFile: boolean;
 }> = ({ matomoTrackEvent, setActiveState, slug, sttrFile }) => {
-  // What's taking the React custom hooks so long?
-  // @TODO: replace this
+  // @TODO: replace this with React custom hooks
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
   );
@@ -48,6 +48,12 @@ const ChangeAddressModal: React.FC<{
       },
     ]);
 
+    // @TODO: make this working when the custom Hooks are available
+    // @TODO: move this to checker.js .reset
+    // checker._getAllQuestions().forEach((question: any) => {
+    //   question.setAnswer(undefined);
+    // });
+
     return (window.location.href = `/${slug}/vragen-en-conclusie?loadChecker`);
   };
 
@@ -59,7 +65,20 @@ const ChangeAddressModal: React.FC<{
           handleConfirmButton={handleConfirmButton}
           handleOpenModal={handleOpenModal}
           heading="HEADING" // @TODO: update heading
-          openButton={EditButton}
+          openButtonRenderer={({ openModal }: { openModal: Function }) => (
+            <EditButton
+              data-testid={MODAL_OPEN_BUTTON}
+              onClick={() => {
+                matomoTrackEvent({
+                  action: "OPEN MODAL", // @TODO: replace events
+                  name: "OPEN MODAL",
+                });
+
+                // Open modal function
+                openModal();
+              }}
+            />
+          )}
           showConfirmButton
         >
           <ComponentWrapper>
