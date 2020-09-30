@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const parser = require("fast-xml-parser");
+
+fs.readFile(process.argv[2], (err, data) => {
+  if (err) {
+    throw err;
+  }
+
+  const parsed = parser.parse(data.toString(), {
+    ignoreAttributes: false,
+    arrayMode: true,
+    attrNodeName: "attributes",
+    attributeNamePrefix: "",
+  });
+
+  console.log(JSON.stringify(parsed, null, 4));
+});

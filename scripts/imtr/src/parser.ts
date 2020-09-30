@@ -1,6 +1,4 @@
-import { DomHandler, Parser } from "./deps.ts";
-
-const ENABLE_LOGGING = false;
+const ENABLE_LOGGING = 0;
 
 // TODO: todo implement consistent hashing for id's
 // import { createHash } from "https://deno.land/std/hash/mod.ts";
@@ -22,6 +20,20 @@ const ENABLE_LOGGING = false;
 // };
 
 const debug = ENABLE_LOGGING ? console.log : () => { };
+
+type Node = {
+  attributes: {
+    [key: string]: string;
+  };
+  children: Node[],
+  content: string;
+  name: string;
+}
+
+// type Document = {
+//   declaration: any;
+//   root: Node;
+// }
 
 /**
  * Convert field-types from 'feel'-spec to our representation.
@@ -64,6 +76,7 @@ const autoFillMap = {
  * @returns {undefined|string} - The matching resolver-key
  */
 const getAutofillResolverKey = (questionText: string) => {
+  debug("questionText", questionText);
   const normalizedIdentifier = questionText.toLowerCase();
   const autofillMapEntries = Object.entries(autoFillMap);
   const firstAutofillEntry = autofillMapEntries.find(
@@ -74,27 +87,29 @@ const getAutofillResolverKey = (questionText: string) => {
   }
 };
 
-const nodeFilter = (item: any) => !item.data;
-
-const filt = (arr: any[], tagName: string) => {
-  return arr.filter(({ name }) => name === tagName)
+const filt = (obj: any, tagName: string) => {
+  return obj[tagName];
+  // return arr.filter(({ name }) => name === tagName)
 };
 
-const find = (arr: any[], tagName: string) => arr.find(({ name }) => name === tagName);
+const find = (obj: any, tagName: string) => {
+  return obj[tagName]?.[0];
+};
 
 const log = (obj: any) => {
+  return obj;
   if (obj === undefined) return "undefined";
   if (obj.hasOwnProperty("length") && typeof obj === "object") {
     // assume collection
     return obj.map(log);
   } else {
-    const { attribs, children, data, name, type } = obj;
+    const { attributes, children, content, name, type } = obj;
     return type === "text"
       ? {
-        data,
+        content,
       }
       : {
-        attribs,
+        attributes,
         children: children && children.map(log),
         name,
       };
@@ -113,59 +128,58 @@ function getDecisions(xmlDecisions: any) {
     debug("xmlDecision", log(xmlDecision));
 
     // What does this do?
-    const res = filt(xmlDecision.children, "dmn:informationRequirement").reduce(
-      (acc, informationRequirement) => {
+    const res = filt(xmlDecision, "dmn:informationRequirement").reduce(
+      (acc: any, informationRequirement: any) => {
         debug("informationRequirement", log(informationRequirement));
 
-        const requiredElement = informationRequirement.children.filter(nodeFilter)[0];
-        debug("requiredDecision", log(requiredElement));
-        const shortKey = `${requiredElement.name.split(":")[1]}s`;
+        const key = Object.keys(informationRequirement)[0]; // get the tagName
+        const shortKey = `${key.split(":")[1]}s`;
+        debug("informationRequirement[key]", informationRequirement[key])
+        const href = informationRequirement[key][0].attributes.href;
 
-        const result = acc;
-        result[shortKey] = (result[shortKey] || []).concat(
-          requiredElement.attribs.href
-        );
-        return result;
+        acc[shortKey] = (acc[shortKey] || []).concat(href);
+        return acc;
       },
       {}
     );
 
-    const table = find(xmlDecision.children, "dmn:decisionTable");
+    const table = find(xmlDecision, "dmn:decisionTable");
     debug("table", log(table));
 
-    const rules = filt(table.children, "dmn:rule").reduce((rules, rule) => {
+    const rules = filt(table, "dmn:rule").reduce((rules: any, rule: any) => {
       debug("rule", log(rule));
-      const outputEntry = filt(rule.children, "dmn:outputEntry")[0];
+      const outputEntry = filt(rule, "dmn:outputEntry")[0];
       debug("outputEntry", log(outputEntry));
 
       const extensionElements = find(
-        outputEntry.children,
+        outputEntry,
         "dmn:extensionElements"
       );
       let descriptionText = undefined;
       if (extensionElements) {
         debug("extensionElements", log(extensionElements));
         const conclusionDescription = find(
-          extensionElements.children,
+          extensionElements,
           "content:conclusieToelichting"
         );
         debug("conclusionDescription", log(conclusionDescription));
 
         const description = find(
-          conclusionDescription.children,
+          conclusionDescription,
           "content:toelichting"
-        ).children.filter(nodeFilter);
+        );
         debug("description", log(description));
-        descriptionText = description[0].data;
+        descriptionText = description;
       }
 
-      const output = find(outputEntry.children, "dmn:text");
+      const output = find(outputEntry, "dmn:text");
       debug("output", log(output));
       rules.push({
         description: descriptionText,
-        inputs: filt(rule.children, "dmn:inputEntry").reduce(
-          (inputEntries, inputEntry) => {
-            const text = find(inputEntry.children, "dmn:text").children[0].data;
+        inputs: filt(rule, "dmn:inputEntry").reduce(
+          (inputEntries: any, inputEntry: any) => {
+            debug("inputEntry", inputEntry);
+            const text = find(inputEntry, "dmn:text");
             debug("inputtext", text);
             const value =
               text === "true" ? true : text === "false" ? false : text;
@@ -174,7 +188,7 @@ function getDecisions(xmlDecisions: any) {
           },
           []
         ),
-        output: output.children[0].data,
+        output: output,
       });
       return rules;
     }, []);
@@ -186,7 +200,7 @@ function getDecisions(xmlDecisions: any) {
     // const { "@_id": id, ...copy } = xmlDecisions;
     // copy[getId(res)] = res;
 
-    xmlDecisions[xmlDecision.attribs.id] = res;
+    xmlDecisions[xmlDecision.attributes.id] = res;
     return xmlDecisions;
   }, {});
 }
@@ -200,13 +214,13 @@ function getInputData(xmlInputData: any) {
   return xmlInputData.reduce((acc: any, item: any) => {
     const { "@_id": _, ...xmlInput } = item;
     debug("xmlInput", log(xmlInput));
-    const extEl = find(xmlInput.children, "dmn:extensionElements").children;
+    const extEl = find(xmlInput, "dmn:extensionElements");
     debug("extEl", log(extEl));
-    const href = find(extEl, "uitv:uitvoeringsregelRef").attribs.href;
-    const id = xmlInput.attribs.id;
-    debug("variable", log(find(xmlInput.children, "dmn:variable")));
-    const variable = find(xmlInput.children, "dmn:variable");
-    const typeRef = variable.attribs.typeRef;
+    const href = find(extEl, "uitv:uitvoeringsregelRef").attributes.href;
+    const id = xmlInput.attributes.id;
+    debug("variable", log(find(xmlInput, "dmn:variable")));
+    const variable = find(xmlInput, "dmn:variable");
+    const typeRef = variable.attributes.typeRef;
     acc[id] = {
       href,
       type: feelTypeMap(typeRef),
@@ -222,50 +236,55 @@ function getInputData(xmlInputData: any) {
  */
 function getExtensionElements(xmlExtensionElements: any) {
   debug("xmlExtensionElements", log(xmlExtensionElements));
-  const rules = find(xmlExtensionElements, "uitv:uitvoeringsregels").children.filter((rule: any) => rule.children);
+  const rulesCollection = find(xmlExtensionElements, "uitv:uitvoeringsregels");
+  debug("rulesCollection", log(rulesCollection));
+
+  const rules = filt(rulesCollection, 'uitv:uitvoeringsregel');
+  // .filter((rule: any) => rule);
   debug("rules", log(rules));
 
   return rules.map((rule: any) => {
     let result: any;
     debug("rule", log(rule));
-    const geoReference = find(rule.children, "uitv:geoVerwijzing");
+    const geoReference = find(rule, "uitv:geoVerwijzing");
     debug("geoReference", log(geoReference));
 
     if (geoReference) {
+      const qText = find(geoReference, "uitv:vraagTekst");
       result = {
-        identification: find(geoReference.children, "uitv:locatie").attribs
+        identification: find(geoReference, "uitv:locatie").attributes
           .identificatie,
-        text: find(geoReference.children, "uitv:vraagTekst")?.children[0]?.data,
+        text: qText?.content,
         type: "geo",
       };
     } else {
       // list or boolean
 
-      const question = find(rule.children, "uitv:vraag");
+      const question = find(rule, "uitv:vraag");
       debug("question", log(question));
-      const dataType = find(question.children, "uitv:gegevensType");
+      const dataType = find(question, "uitv:gegevensType");
       debug("dataType", log(dataType));
-      const imtrType = dataType.children[0].data;
+      const imtrType = dataType;
 
-      const desc = find(rule.children, "content:uitvoeringsregelToelichting");
+      const desc = find(rule, "content:uitvoeringsregelToelichting");
       debug("desc", log(desc));
       let explanation = undefined;
       if (desc) {
-        const descrip = find(desc.children, "content:toelichting").children.filter(nodeFilter)[0];
+        const descrip = desc["content:toelichting"];
         debug("descrip", log(descrip));
 
-        explanation = descrip ? descrip.children[0].data : undefined;
+        explanation = descrip || undefined;
         debug("explanation", explanation);
       }
 
       // TODO: decide if we want to use 'important' (nl: belangrijk) which indicates if a description
       // is important for the end-user to be able to answer the question
       // if (desc) {
-      //   const important = find(desc.children, "content:belangrijk").children[0];
+      //   const important = find(desc, "content:belangrijk")[0];
       //   debug("important", log(important));
       // }
 
-      const text = find(question.children, "uitv:vraagTekst").children[0].data;
+      const text = question["uitv:vraagTekst"];
       debug("questiontext", text);
 
       result = {
@@ -280,20 +299,20 @@ function getExtensionElements(xmlExtensionElements: any) {
       result.autofill = getAutofillResolverKey(result.text);
       debug("result", result);
       if (imtrType === "list") {
-        const options = find(question.children, "uitv:opties");
+        const options = find(question, "uitv:opties");
         debug("options", log(options));
         if (
-          find(options.children, "uitv:optieType").children[0].data !==
+          find(options, "uitv:optieType") !==
           "enkelAntwoord"
         ) {
           result.collection = true;
         }
-        const optionList = filt(options.children, "uitv:optie");
+        const optionList = filt(options, "uitv:optie");
         debug("optionList", log(optionList));
-        result.options = optionList.map((option) => {
-          const textNode = find(option.children, "uitv:optieText");
+        result.options = optionList.map((option: any) => {
+          const textNode = find(option, "uitv:optieText");
           debug(textNode, log(textNode));
-          return textNode.children[0].data;
+          return textNode;
         });
       }
 
@@ -301,12 +320,12 @@ function getExtensionElements(xmlExtensionElements: any) {
       result.type = imtrType === "list" ? "string" : imtrType;
     }
 
-    result.id = rule.attribs.id; // TODO: generate our own hash for id's
+    result.id = rule.attributes.id; // TODO: generate our own hash for id's
 
-    const prio = find(rule.children, "inter:prioriteit");
+    const prio = find(rule, "inter:prioriteit");
     debug('prio', log(prio));
-    result.prio = prio ? prio.children[0].data / 1 : null;
-    result.uuid = find(rule.children, "uitv:herbruikbaarId")?.children[0]?.data;
+    result.prio = prio ? prio / 1 : null;
+    result.uuid = find(rule, "uitv:herbruikbaarId");
 
     return result;
   });
@@ -315,57 +334,42 @@ function getExtensionElements(xmlExtensionElements: any) {
 /**
  * @param {string} xml - imtr-XML
  */
-export default (xml: any) => {
-  return new Promise((resolve, reject) => {
-    const handler = new DomHandler(function (error: any, dom: any) {
-      if (error) {
-        console.error(error);
-        return reject(new Error("Parser error."));
-      } else {
-        // Parsing completed, do something
-        const root = filt(dom, "dmn:definitions")[0];
-        if (!root || !root.attribs) {
-          return reject(new Error("Parser error, no dmn:definition found."));
-        }
+export default (json: any) => {
 
-        debug(root);
+  // if (!json.root) {
+  //   throw new Error('root not found');
+  // }
+  // debug(json.root);
+  const definitions = json["dmn:definitions"][0] as any;
 
-        const id = root.attribs.id;
-        const name = root.attribs.name;
-        if (!id || !name) {
-          return reject(
-            new Error('Parser error, no "id" and/or "name" attribute found.')
-          );
-        }
+  // const definitions = find(json, "dmn:definitions") as any;
+  // if (!json.root || !json.root.attributes) {
+  //   throw new Error("Parser error, no dmn:definition found.");
+  // }
 
-        const definitions = root.children; // first and only child in dmn/imtr is dmn:definitions
+  const id = definitions.attributes.id;
+  const name = definitions.attributes.name;
+  if (!id || !name) {
+    throw new Error('Parser error, no "id" and/or "name" attribute found.')
+  }
 
-        try {
-          const xmlExtensionElements = filt(
-            definitions,
-            "dmn:extensionElements"
-          )[0].children; // aka questions
-          const xmlInputData = filt(definitions, "dmn:inputData");
-          const xmlDecisions = filt(definitions, "dmn:decision");
+  // const definitions = filt(root, 'dmn:definitions') //; // first and only child in dmn/imtr is dmn:definitions
 
-          debug("xmlExtensionElements", log(xmlExtensionElements));
 
-          const result = {
-            decisions: getDecisions(xmlDecisions),
-            inputs: getInputData(xmlInputData),
-            name,
-            questions: getExtensionElements(xmlExtensionElements),
-          };
+  const xmlExtensionElements = filt(
+    definitions,
+    "dmn:extensionElements"
+  )[0]; // aka questions
+  const xmlInputData = filt(definitions, "dmn:inputData");
+  const xmlDecisions = filt(definitions, "dmn:decision");
 
-          resolve(result);
-        } catch (e) {
-          console.error(`Error occured destructuring xml for "${id}: ${name}"`);
-          return reject(e);
-        }
-      }
-    });
-    const parser = new Parser(handler, { xmlMode: true });
-    parser.write(xml);
-    parser.end();
-  });
-};
+  debug("xmlExtensionElements", log(xmlExtensionElements));
+
+  const result = {
+    decisions: getDecisions(xmlDecisions),
+    inputs: getInputData(xmlInputData),
+    name,
+    questions: getExtensionElements(xmlExtensionElements),
+  };
+  return result;
+}

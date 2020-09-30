@@ -1,5 +1,5 @@
 import yargs from 'https://deno.land/x/yargs@v16.0.3-deno/deno.ts';
-import { YargsType } from 'https://deno.land/x/yargs@v16.0.3-deno/types.ts';
+import type { YargsType } from 'https://deno.land/x/yargs@v16.0.3-deno/types.ts';
 
 import { default as transform } from './transform.ts';
 import { default as fetch } from './fetch.ts';
@@ -19,7 +19,7 @@ yargs()
       .option('max-connections', {
         description: 'Maximum connections to use',
         type: 'number',
-        default: 6,
+        default: 1,
       })
   }, fetch)
 

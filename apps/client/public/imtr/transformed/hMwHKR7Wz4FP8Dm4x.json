@@ -3,7 +3,7 @@
     {
       "version": 7,
       "decisions": {
-        "_9f3a65cf-e924-46cc-be2f-c0c5c4f85376": {
+        "_9b9f8fdb-55e3-47c6-ab1a-1033f5a8e7a6": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
@@ -11,27 +11,21 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\""],
+                "output": "\""
               },
               {
-                "inputs": [false, "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\""
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\""],
+                "output": "\""
               }
             ]
           }
         },
-        "_b6e1f9f7-ea44-4ede-a510-e1458fca90ad": {
+        "_4eaecf9d-17cd-4bcd-a070-e556a4216375": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
@@ -40,54 +34,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, het dakraam verandert.\""
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\""],
+                "output": "\""
               },
               {
-                "inputs": [false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\""],
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_9f3a65cf-e924-46cc-be2f-c0c5c4f85376",
-            "#_b6e1f9f7-ea44-4ede-a510-e1458fca90ad"
+            "#_9b9f8fdb-55e3-47c6-ab1a-1033f5a8e7a6",
+            "#_4eaecf9d-17cd-4bcd-a070-e556a4216375"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-"],
-                "output": "\"Vergunningplicht\""
+                "description": "U",
+                "inputs": ["\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "description": "U",
+                "inputs": ["-", "\""],
+                "output": "\""
               },
               {
-                "inputs": ["\"no hit\"", "\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "description": "U",
+                "inputs": ["\"", "\""],
+                "output": "\""
               }
             ]
           }
@@ -112,32 +97,24 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "autofill": "monumentBoolean",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
-          "prio": 10,
-          "uuid": "monument-dakraam-bouwen"
+          "prio": null,
+          "uuid": "m"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
-          "prio": 20,
-          "uuid": "dakraam - onderhoud1"
+          "prio": null,
+          "uuid": "d"
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "options": [
-            "Ja, het dakraam verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_c907156c-d205-44f2-ad36-46f37f505763",
-          "prio": 30,
-          "uuid": "dakraam - onderhoud2"
+          "prio": null,
+          "uuid": "d"
         }
       ]
     }

@@ -3,32 +3,32 @@
     {
       "version": 1,
       "decisions": {
-        "_d89a61a1-9cda-482e-9a94-70afafc7b051": {
+        "_fca7eedd-3a1d-4b36-863a-5bfa0be102d7": {
           "requiredInputs": ["#input__d178a46c-5401-471e-91c2-7ac4aada0d1c"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null],
+                "output": "\""
               },
               {
-                "inputs": [false],
-                "output": "\"no hit\""
+                "inputs": [null],
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_d89a61a1-9cda-482e-9a94-70afafc7b051"],
+          "requiredDecisions": ["#_fca7eedd-3a1d-4b36-863a-5bfa0be102d7"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "inputs": ["\""],
+                "output": "\""
               },
               {
-                "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "inputs": ["\""],
+                "output": "\""
               }
             ]
           }
@@ -44,9 +44,9 @@
       "questions": [
         {
           "text": "Mag het uitvoeren van een werk in de gemeente Amsterdam?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
-          "prio": 10
+          "prio": null
         }
       ]
     }

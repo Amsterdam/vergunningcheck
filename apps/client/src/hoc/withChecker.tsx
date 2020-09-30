@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 
 import { Topic, topics } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
-import { sections } from "../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../context";
 import getChecker from "../imtr_client";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import RedirectPage from "../pages/RedirectPage";
+import { geturl, routes } from "../routes";
 import topicsJson from "../topics.json";
 
 // TopicOutputType should come from shared types.ts from imtr-lib in the future
@@ -29,21 +29,15 @@ export default (Component: any) => (props: Props) => {
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
 
   const topic = topics.find((t) => t.slug === slug);
 
   useEffect(() => {
-    // Default settings to be able to open the CheckerPage
-    if (!sessionContext[slug]) {
-      sessionContext.setSessionData([
-        slug,
-        { activeComponents: [sections.LOCATION_INPUT], finishedComponents: [] },
-      ]);
+    // Redirect to Intro in case no session context has been found
+    if (sessionContext[slug]) {
+      initChecker();
     }
-  });
-  useEffect(() => {
-    initChecker();
   });
 
   const initChecker = async () => {
@@ -91,6 +85,11 @@ export default (Component: any) => (props: Props) => {
     setChecker(null);
     initChecker();
   };
+
+  if (!sessionContext[slug]) {
+    window.location.href = geturl(routes.intro, { slug });
+    return null;
+  }
 
   if (checkerContext.topic && checkerContext.topic.slug !== slug) {
     // slug changed reset the topic and checker on sessioncontext

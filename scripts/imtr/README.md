@@ -36,6 +36,6 @@ deno test --unstable --allow-read
 ## Reload dependencies
 
 ```
-deno cache --reload src/deps.ts
+deno cache --reload --unstable src/deps.ts
 deno cache --unstable src/deps.ts --lock=lock.json --lock-write
 ```

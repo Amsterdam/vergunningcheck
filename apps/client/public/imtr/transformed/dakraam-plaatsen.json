@@ -3,7 +3,7 @@
     {
       "version": 7,
       "decisions": {
-        "_9f3a65cf-e924-46cc-be2f-c0c5c4f85376": {
+        "_9b9f8fdb-55e3-47c6-ab1a-1033f5a8e7a6": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
@@ -11,27 +11,21 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\""],
+                "output": "\""
               },
               {
-                "inputs": [false, "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\""
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\""],
+                "output": "\""
               }
             ]
           }
         },
-        "_b6e1f9f7-ea44-4ede-a510-e1458fca90ad": {
+        "_4eaecf9d-17cd-4bcd-a070-e556a4216375": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
@@ -40,54 +34,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, het dakraam verandert.\""
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\""],
+                "output": "\""
               },
               {
-                "inputs": [false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\""],
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_9f3a65cf-e924-46cc-be2f-c0c5c4f85376",
-            "#_b6e1f9f7-ea44-4ede-a510-e1458fca90ad"
+            "#_9b9f8fdb-55e3-47c6-ab1a-1033f5a8e7a6",
+            "#_4eaecf9d-17cd-4bcd-a070-e556a4216375"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-"],
-                "output": "\"Vergunningplicht\""
+                "description": "U",
+                "inputs": ["\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "description": "U",
+                "inputs": ["-", "\""],
+                "output": "\""
               },
               {
-                "inputs": ["\"no hit\"", "\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "description": "U",
+                "inputs": ["\"", "\""],
+                "output": "\""
               }
             ]
           }
@@ -112,39 +97,31 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "autofill": "monumentBoolean",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
-          "prio": 10,
-          "uuid": "monument-dakraam-bouwen"
+          "prio": null,
+          "uuid": "m"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
-          "prio": 20,
-          "uuid": "dakraam - onderhoud1"
+          "prio": null,
+          "uuid": "d"
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "options": [
-            "Ja, het dakraam verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_c907156c-d205-44f2-ad36-46f37f505763",
-          "prio": 30,
-          "uuid": "dakraam - onderhoud2"
+          "prio": null,
+          "uuid": "d"
         }
       ]
     },
     {
       "version": 37,
       "decisions": {
-        "_d6c0bc64-7d30-4126-b822-91e3fe8abcee": {
+        "_467e2142-fd54-4b25-8d32-76143519d554": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_c60af738-8e05-4add-8f4a-9fd68b1f9161"
@@ -152,27 +129,21 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\""],
+                "output": "\""
               },
               {
-                "inputs": [false, "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\""
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\""],
+                "output": "\""
               }
             ]
           }
         },
-        "_66e975e1-6621-4acf-bc0a-58f30e94dfef": {
+        "_5a50714a-b7da-482a-bb2b-2e2d9edb1c43": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_c60af738-8e05-4add-8f4a-9fd68b1f9161",
@@ -181,37 +152,25 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, het dakraam verandert.\""
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\""],
+                "output": "\""
               },
               {
-                "inputs": [false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\""],
+                "output": "\""
               }
             ]
           }
         },
-        "_ec58a719-522f-4152-b0b9-190f0c61f034": {
+        "_b9465260-1af4-4f50-97cc-6d5a61fb6f17": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -221,39 +180,29 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_216d6460-2874-47c0-b5d3-c76e297bd4f4": {
+        "_6fddc7ab-ec95-4755-8769-91bbcf5e94dd": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -264,51 +213,33 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_f3337944-1c3e-44d3-be6c-4c06ef7a55cb": {
+        "_2a1db76a-27b9-44fc-9b2d-7eacaf66bb83": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -319,45 +250,33 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_2fd55566-8e05-4833-b10f-38d72f39fb04": {
+        "_850916fd-6b59-44f5-a0cd-6ee54c006456": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -368,45 +287,33 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_e6ec6cc3-4e20-4533-925d-2a15d4c08127": {
+        "_52a59da7-cd00-4c43-9e31-05acbe9c3d05": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -417,45 +324,33 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_c5ae593d-5106-40ee-835b-1df699191e66": {
+        "_ce05c580-df26-4fe6-ba50-ea2a31d09306": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -467,58 +362,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_84a30583-5dc2-4b5e-b796-e6d4d51b97f7": {
+        "_2df761a7-fad1-43b7-bb67-c373e789fea6": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -530,55 +404,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Achterkant\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, "\"", null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_be20b765-40ca-4c22-b142-bb11f0c3f2c0": {
+        "_c1121eb4-0532-4815-8124-52d97750bf59": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -590,58 +450,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_1bb86d85-068c-4269-8e9f-ad1688195dfe": {
+        "_6751267e-4fbb-407a-bbc2-af84ae0d2fdf": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -653,51 +492,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  true,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_a77953ba-bb48-4c58-8daf-60ecb3dd2c74": {
+        "_6d32bc49-a798-44b5-9d3e-24272e4ceb7b": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -709,58 +534,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_d647ea6f-14eb-467a-b606-605d38a58ef7": {
+        "_e289251f-a505-41de-8258-656cb9e25a06": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -772,51 +576,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_db206235-bbc0-4e34-b210-58e172728817": {
+        "_6cbec663-f51a-4c5b-aa8b-b22aa5c997d5": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -829,57 +619,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_90571740-e939-42eb-a195-42ebca5c4a59": {
+        "_b7f953c6-04d9-4602-b962-2e2f9e8a813b": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -892,65 +666,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  true,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_720006c1-e6a7-412b-867b-799bfed80784": {
+        "_62e85b0e-533f-47dd-b855-1174cf69a7f3": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -963,61 +713,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, "\"", null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_0a666d2b-f112-454e-a097-5bfd5ca89927": {
+        "_06cb3053-9b9e-4d66-a341-dddf21e1a2e5": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1030,61 +764,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, "\"", null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_04398bda-051c-4178-9cc5-91dc89349cb9": {
+        "_eb070e89-39a3-41e0-b1b7-aadc04dd556e": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1097,69 +815,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Achterkant\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, "\"", null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_5bdeb22f-dc25-4153-bdab-9ba50d355672": {
+        "_4d9e2831-b5f8-4dc2-9dfc-f8b1f196ec7a": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1172,65 +866,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_433c9cb2-ce05-4349-9230-ac48d058fd4c": {
+        "_978a8302-78e2-4aa7-8264-a1dfe71089bf": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1244,72 +914,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_8ac3d92e-5a70-493d-afc1-89dd113ba290": {
+        "_560fba23-eedc-4fc8-948d-a3bf140c71f6": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1323,63 +966,45 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, null, null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_0effff3c-146a-4f55-aadf-084dd3027fbf": {
+        "_e2574005-d8f0-4709-b591-472933f78558": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1393,76 +1018,49 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, "\"", null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_0e69c35e-5067-4fda-8048-bf10e203bd70": {
+        "_4259f6f1-532a-4d47-bd14-5159309872b5": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1476,67 +1074,49 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_c619ba1a-82a0-455e-9f98-3443e612d056": {
+        "_958d6e7d-c6ab-4e50-b755-80c0e0520a69": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1550,67 +1130,49 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", null, null, "\"", null, null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_28cdb7e7-f5dd-4af3-b239-c998cafc1ef4": {
+        "_81968892-531c-45de-a8b5-7d730d15d8a9": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1624,76 +1186,49 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null, "\"", "\"", null, null, "\"", null, null],
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_67b2d26f-0691-4430-a25a-63902533734e": {
+        "_522a3e51-5886-471e-8723-9f4e50a2590a": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1709,68 +1244,58 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_36f424e6-9373-4c23-b6d7-eb4973e986ad": {
+        "_3b0cedfb-3981-49b5-acb2-76079eecd33a": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1786,92 +1311,62 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_c0be7e5d-1d53-48f5-b1ce-5a5416a5d0c6": {
+        "_ff8750fd-d633-437a-a3ce-5054af2738b4": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1887,78 +1382,58 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_60176a96-22e2-48cd-afef-13bd8e19ffe4": {
+        "_fa9c5c2a-e705-4982-9ac6-a1f76da3b5b9": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -1974,92 +1449,62 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  true,
-                  true
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_21371200-bc15-4b12-b211-b942eecc7235": {
+        "_0d8ec38d-e212-4990-8e9e-1ecd2fa9e870": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2075,102 +1520,62 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_a21e850f-3dee-4ab8-ba2b-fa2514e4bcf3": {
+        "_3f2f09a0-0ba1-4517-bf95-73fe928d0c07": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2186,102 +1591,62 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  true,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_c34f25bb-a199-4f43-a2b9-f4ebf9581c40": {
+        "_328f86f3-0ec5-4b24-8e56-baa093377dce": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2297,92 +1662,62 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_f38aa7e0-b293-4388-b1fd-732b7fa4d8b4": {
+        "_ff23845b-beb7-4871-a912-91cff7413986": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2399,85 +1734,63 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_7cc3d519-f339-416d-848b-3784a83d115a": {
+        "_c86178f3-1144-4e99-9cca-ce0246ddd2bf": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2494,100 +1807,67 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  true,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_f8512899-77da-4f65-9028-e7f70929cdb7": {
+        "_c6959c81-db95-4412-a80a-f4e43f120dd2": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2604,111 +1884,67 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_76f43099-a127-4a61-8634-2aab64f619e0": {
+        "_51d0f6d4-0e5f-4262-b895-8f3d71e97805": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2725,111 +1961,67 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  true,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_5cdeb717-f75f-43cc-a33c-5ef69a60169e": {
+        "_62441440-e36d-4701-b535-2ffd9fb26fe9": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2846,111 +2038,67 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", null, "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_8ee0c298-2165-4785-8438-f8a498377a8b": {
+        "_4f6b3802-0f43-43ee-a177-3a9caae59244": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -2967,100 +2115,67 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  true,
-                  true,
-                  true
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": [null, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", null, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", null, "-", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "\"", "-", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", null, "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", null, "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", null, "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", null, "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", null],
+                "output": "\""
               }
             ]
           }
         },
-        "_a8fd965f-91da-458a-8706-63beec2bb31f": {
+        "_c386a525-c901-4454-abfd-aafefaac27d6": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -3078,23 +2193,23 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  true,
-                  false,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
                 "inputs": [
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
@@ -3106,12 +2221,12 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3122,13 +2237,13 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
                   "-",
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3138,14 +2253,14 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
@@ -3154,7 +2269,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3162,7 +2277,7 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
@@ -3170,7 +2285,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3179,14 +2294,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Voorkant\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3195,14 +2310,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Achterkant\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3212,13 +2327,13 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3229,12 +2344,12 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3246,11 +2361,11 @@
                   "-",
                   "-",
                   "-",
-                  false,
+                  null,
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3263,10 +2378,10 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3280,14 +2395,14 @@
                   "-",
                   "-",
                   "-",
-                  false
+                  null
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               }
             ]
           }
         },
-        "_ee7c19bf-d02f-42d7-8bff-ba374cf9be22": {
+        "_8dffe1fd-d0d9-401f-bf13-41b0c6898813": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
@@ -3305,23 +2420,23 @@
             "rules": [
               {
                 "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  true,
-                  true,
-                  true
+                  null,
+                  "\"",
+                  "\"",
+                  null,
+                  null,
+                  "\"",
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
                 "inputs": [
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
@@ -3333,12 +2448,12 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3349,13 +2464,13 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
                   "-",
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3365,14 +2480,14 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
@@ -3381,7 +2496,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3389,7 +2504,7 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
@@ -3397,7 +2512,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3406,14 +2521,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Voorkant\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3422,14 +2537,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Achterkant\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3439,13 +2554,13 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3456,12 +2571,12 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  null,
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3473,11 +2588,11 @@
                   "-",
                   "-",
                   "-",
-                  false,
+                  null,
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3490,10 +2605,10 @@
                   "-",
                   "-",
                   "-",
-                  false,
+                  null,
                   "-"
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               },
               {
                 "inputs": [
@@ -3507,61 +2622,62 @@
                   "-",
                   "-",
                   "-",
-                  false
+                  null
                 ],
-                "output": "\"no hit\""
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d6c0bc64-7d30-4126-b822-91e3fe8abcee",
-            "#_66e975e1-6621-4acf-bc0a-58f30e94dfef",
-            "#_ec58a719-522f-4152-b0b9-190f0c61f034",
-            "#_216d6460-2874-47c0-b5d3-c76e297bd4f4",
-            "#_f3337944-1c3e-44d3-be6c-4c06ef7a55cb",
-            "#_2fd55566-8e05-4833-b10f-38d72f39fb04",
-            "#_e6ec6cc3-4e20-4533-925d-2a15d4c08127",
-            "#_c5ae593d-5106-40ee-835b-1df699191e66",
-            "#_84a30583-5dc2-4b5e-b796-e6d4d51b97f7",
-            "#_be20b765-40ca-4c22-b142-bb11f0c3f2c0",
-            "#_1bb86d85-068c-4269-8e9f-ad1688195dfe",
-            "#_a77953ba-bb48-4c58-8daf-60ecb3dd2c74",
-            "#_d647ea6f-14eb-467a-b606-605d38a58ef7",
-            "#_db206235-bbc0-4e34-b210-58e172728817",
-            "#_90571740-e939-42eb-a195-42ebca5c4a59",
-            "#_720006c1-e6a7-412b-867b-799bfed80784",
-            "#_0a666d2b-f112-454e-a097-5bfd5ca89927",
-            "#_04398bda-051c-4178-9cc5-91dc89349cb9",
-            "#_5bdeb22f-dc25-4153-bdab-9ba50d355672",
-            "#_433c9cb2-ce05-4349-9230-ac48d058fd4c",
-            "#_8ac3d92e-5a70-493d-afc1-89dd113ba290",
-            "#_0effff3c-146a-4f55-aadf-084dd3027fbf",
-            "#_0e69c35e-5067-4fda-8048-bf10e203bd70",
-            "#_c619ba1a-82a0-455e-9f98-3443e612d056",
-            "#_28cdb7e7-f5dd-4af3-b239-c998cafc1ef4",
-            "#_67b2d26f-0691-4430-a25a-63902533734e",
-            "#_36f424e6-9373-4c23-b6d7-eb4973e986ad",
-            "#_c0be7e5d-1d53-48f5-b1ce-5a5416a5d0c6",
-            "#_60176a96-22e2-48cd-afef-13bd8e19ffe4",
-            "#_21371200-bc15-4b12-b211-b942eecc7235",
-            "#_a21e850f-3dee-4ab8-ba2b-fa2514e4bcf3",
-            "#_c34f25bb-a199-4f43-a2b9-f4ebf9581c40",
-            "#_f38aa7e0-b293-4388-b1fd-732b7fa4d8b4",
-            "#_7cc3d519-f339-416d-848b-3784a83d115a",
-            "#_f8512899-77da-4f65-9028-e7f70929cdb7",
-            "#_76f43099-a127-4a61-8634-2aab64f619e0",
-            "#_5cdeb717-f75f-43cc-a33c-5ef69a60169e",
-            "#_8ee0c298-2165-4785-8438-f8a498377a8b",
-            "#_a8fd965f-91da-458a-8706-63beec2bb31f",
-            "#_ee7c19bf-d02f-42d7-8bff-ba374cf9be22"
+            "#_467e2142-fd54-4b25-8d32-76143519d554",
+            "#_5a50714a-b7da-482a-bb2b-2e2d9edb1c43",
+            "#_b9465260-1af4-4f50-97cc-6d5a61fb6f17",
+            "#_6fddc7ab-ec95-4755-8769-91bbcf5e94dd",
+            "#_2a1db76a-27b9-44fc-9b2d-7eacaf66bb83",
+            "#_850916fd-6b59-44f5-a0cd-6ee54c006456",
+            "#_52a59da7-cd00-4c43-9e31-05acbe9c3d05",
+            "#_ce05c580-df26-4fe6-ba50-ea2a31d09306",
+            "#_2df761a7-fad1-43b7-bb67-c373e789fea6",
+            "#_c1121eb4-0532-4815-8124-52d97750bf59",
+            "#_6751267e-4fbb-407a-bbc2-af84ae0d2fdf",
+            "#_6d32bc49-a798-44b5-9d3e-24272e4ceb7b",
+            "#_e289251f-a505-41de-8258-656cb9e25a06",
+            "#_6cbec663-f51a-4c5b-aa8b-b22aa5c997d5",
+            "#_b7f953c6-04d9-4602-b962-2e2f9e8a813b",
+            "#_62e85b0e-533f-47dd-b855-1174cf69a7f3",
+            "#_06cb3053-9b9e-4d66-a341-dddf21e1a2e5",
+            "#_eb070e89-39a3-41e0-b1b7-aadc04dd556e",
+            "#_4d9e2831-b5f8-4dc2-9dfc-f8b1f196ec7a",
+            "#_978a8302-78e2-4aa7-8264-a1dfe71089bf",
+            "#_560fba23-eedc-4fc8-948d-a3bf140c71f6",
+            "#_e2574005-d8f0-4709-b591-472933f78558",
+            "#_4259f6f1-532a-4d47-bd14-5159309872b5",
+            "#_958d6e7d-c6ab-4e50-b755-80c0e0520a69",
+            "#_81968892-531c-45de-a8b5-7d730d15d8a9",
+            "#_522a3e51-5886-471e-8723-9f4e50a2590a",
+            "#_3b0cedfb-3981-49b5-acb2-76079eecd33a",
+            "#_ff8750fd-d633-437a-a3ce-5054af2738b4",
+            "#_fa9c5c2a-e705-4982-9ac6-a1f76da3b5b9",
+            "#_0d8ec38d-e212-4990-8e9e-1ecd2fa9e870",
+            "#_3f2f09a0-0ba1-4517-bf95-73fe928d0c07",
+            "#_328f86f3-0ec5-4b24-8e56-baa093377dce",
+            "#_ff23845b-beb7-4871-a912-91cff7413986",
+            "#_c86178f3-1144-4e99-9cca-ce0246ddd2bf",
+            "#_c6959c81-db95-4412-a80a-f4e43f120dd2",
+            "#_51d0f6d4-0e5f-4262-b895-8f3d71e97805",
+            "#_62441440-e36d-4701-b535-2ffd9fb26fe9",
+            "#_4f6b3802-0f43-43ee-a177-3a9caae59244",
+            "#_c386a525-c901-4454-abfd-aafefaac27d6",
+            "#_8dffe1fd-d0d9-401f-bf13-41b0c6898813"
           ],
           "decisionTable": {
             "rules": [
               {
+                "description": "U",
                 "inputs": [
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3602,12 +2718,13 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3647,13 +2764,14 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3692,14 +2810,15 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3737,15 +2856,16 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3782,16 +2902,17 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3827,9 +2948,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -3837,7 +2959,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3872,9 +2994,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -3883,7 +3006,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3917,9 +3040,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -3929,7 +3053,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -3962,9 +3086,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -3975,7 +3100,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4007,9 +3132,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4021,7 +3147,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4052,9 +3178,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4067,7 +3194,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4097,9 +3224,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4113,7 +3241,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4142,9 +3270,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4159,7 +3288,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4187,9 +3316,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4205,7 +3335,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4232,9 +3362,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4251,7 +3382,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4277,9 +3408,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4297,7 +3429,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4322,9 +3454,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4343,7 +3476,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4367,9 +3500,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4389,7 +3523,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4412,9 +3546,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4435,7 +3570,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4457,9 +3592,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4481,7 +3617,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4502,9 +3638,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4527,7 +3664,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4547,9 +3684,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4573,7 +3711,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4592,9 +3730,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4619,7 +3758,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4637,9 +3776,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4665,7 +3805,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4682,9 +3822,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4711,7 +3852,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4727,9 +3868,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4757,7 +3899,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4772,9 +3914,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4803,7 +3946,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4817,9 +3960,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4849,7 +3993,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4862,9 +4006,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4895,7 +4040,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4907,9 +4052,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4941,7 +4087,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4952,9 +4098,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -4987,7 +4134,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -4997,9 +4144,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5033,7 +4181,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -5042,9 +4190,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5079,7 +4228,7 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
@@ -5087,9 +4236,10 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5125,16 +4275,17 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5171,15 +4322,16 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5217,14 +4369,15 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5263,13 +4416,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5309,12 +4463,13 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
+                  "\"",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
                   "-",
                   "-",
@@ -5355,54 +4510,55 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\""
+                  "\""
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\""
               },
               {
+                "description": "U",
                 "inputs": [
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\""
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\"",
+                  "\""
                 ],
-                "output": "\"Toestemmingsvrij\""
+                "output": "\""
               }
             ]
           }
@@ -5499,166 +4655,149 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "autofill": "monumentBoolean",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__1403b7ef-97be-4d7e-9f41-7838d5833804",
-          "prio": 10,
-          "uuid": "monument-dakraam-bouwen"
+          "prio": null,
+          "uuid": "m"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_c60af738-8e05-4add-8f4a-9fd68b1f9161",
-          "prio": 20,
-          "uuid": "dakraam - onderhoud1"
+          "prio": null,
+          "uuid": "d"
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "options": [
-            "Ja, het dakraam verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_579db16f-0e97-43e5-913c-29a9e8d82691",
-          "prio": 30,
-          "uuid": "dakraam - onderhoud2"
+          "prio": null,
+          "uuid": "d"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-          "prio": 40
+          "prio": null
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
-          "options": [
-            "Ja, de vorm, de grootte of het profiel verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet."
-          ],
-          "type": "string",
+          "type": "l",
           "id": "uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-          "prio": 50
+          "prio": null
         },
         {
           "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
           "autofill": "cityScape",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__db3e3c46-1efc-404a-8520-94974c5a1061",
-          "prio": 60
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Achterkant.png)",
           "text": "Gaat u het dakraam plaatsen aan de achterkant van het gebouw?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__ee8c045e-b188-4285-8a60-f6b115f692e1",
-          "prio": 70
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Dakraam-Achterkant-weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__13eea7b4-8965-4a08-9e58-53b7ce506682",
-          "prio": 80
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__e27d16fb-f4dd-496a-9212-8550153875e4",
-          "prio": 90
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__461052be-8046-4d9e-9c0d-c4989650e765",
-          "prio": 100
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Platdak.png)",
           "text": "Gaat u het dakraam plaatsen op een plat dak?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-          "prio": 110
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_plat_dak_3D_v3.png)",
           "text": "Steekt het dakraam meer dan 60 centimeter uit het platte dak?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__66f8c20a-4e2b-4783-ab74-0a48d896064f",
-          "prio": 120
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/12_Dakraam_afstand_tot_randen_plat_dak_v3.png)\n\nU meet deze afstanden tot de randen van uw dak.",
           "text": "Worden de afstanden van het dakraam tot aan alle randen van uw dak meer dan 50 centimeter?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad",
-          "prio": 130
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Achterkant.png \"Achterkant\")",
           "text": "Waar gaat u een dakraam plaatsen?",
-          "options": ["Voorkant", "Zijkant", "Achterkant"],
-          "type": "string",
+          "type": "l",
           "id": "uitv__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-          "prio": 140
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-          "prio": 150
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__a7e982de-940d-4e30-a300-8858c4a7de1a",
-          "prio": 160
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__68f23f69-4ecb-41db-8a79-e32eef011782",
-          "prio": 170
+          "prio": null
         },
         {
           "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, dan beantwoordt u de vraag met ‘ja’.",
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-          "prio": 180
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D_a.png)",
           "text": "Steekt het dakraam uit het dakvlak?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__1f671af8-95bb-493c-b6fc-d886507aeb26",
-          "prio": 190
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
           "text": "Steekt het dakraam meer dan 60 centimeter uit het dak?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__f00d3f88-c82a-4b43-aa54-07f718a397b4",
-          "prio": 200
+          "prio": null
         },
         {
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)\n\nU meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
           "text": "Worden de afstanden van het dakraam tot aan alle randen van het dak meer dan 50 centimeter?",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__3d1da624-b4f0-4207-9244-b1c809258b90",
-          "prio": 210
+          "prio": null
         }
       ]
     }

@@ -2,7 +2,7 @@ import { join, emptyDir } from "./deps.ts";
 import { readJson, writeJson } from "./util.ts";
 import imtrbuild from "./parser.ts";
 
-import {
+import type {
   APIConfig,
   PermitResponse,
   TopicInputType,
@@ -95,14 +95,35 @@ export default async (argv: Props) => {
               throw new Error("version should be a number");
             }
 
-            // apply all reducers to imtr
-            const content = preprocessors.reduce((acc, curr) => curr(acc), xml);
+            // write xml file so we can transform it
+            const xmlPath = join(publicDir, outputDir, `${permitId}.xml`);
+            await Deno.writeTextFile(xmlPath, xml);
 
-            const imtr = await imtrbuild(content) as any;
-            return {
-              version,
-              ...imtr,
-            };
+            // parse xml and save as json
+            const parsedPath = join(publicDir, outputDir, `${permitId}.parsed.json`);
+
+            const p = await Deno.run({
+              cmd: ["scripts/imtr/xml2json", xmlPath],
+              stdout: "piped",
+              stderr: "piped",
+            });
+
+            // await p.status();
+            const jsonText = new TextDecoder().decode(await p.output());
+            await Deno.writeTextFile(parsedPath, jsonText);
+
+            // apply all reducers to imtr
+            const content = preprocessors.reduce((acc, curr) => curr(acc), jsonText);
+
+            try {
+              const imtr = await imtrbuild(JSON.parse(content)) as any;
+              return {
+                version,
+                ...imtr,
+              };
+            } catch (e) {
+              console.error(e)
+            }
           })
         ),
         slug,

@@ -3,32 +3,32 @@
     {
       "version": 1,
       "decisions": {
-        "_5505e933-9839-4726-bfda-e89d4909dc46": {
+        "_990f0064-6231-44e7-b8a5-4e66b30e4798": {
           "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null],
+                "output": "\""
               },
               {
-                "inputs": [false],
-                "output": "\"no hit\""
+                "inputs": [null],
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_5505e933-9839-4726-bfda-e89d4909dc46"],
+          "requiredDecisions": ["#_990f0064-6231-44e7-b8a5-4e66b30e4798"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "inputs": ["\""],
+                "output": "\""
               },
               {
-                "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "inputs": ["\""],
+                "output": "\""
               }
             ]
           }
@@ -44,9 +44,9 @@
       "questions": [
         {
           "text": "testvraag ivm aansluit digikoppeling",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
-          "prio": 10
+          "prio": null
         }
       ]
     }

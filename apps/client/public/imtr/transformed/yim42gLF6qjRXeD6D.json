@@ -3,54 +3,54 @@
     {
       "version": 1,
       "decisions": {
-        "_9f1d56cc-d41c-42fa-b8cf-dfd0d93048d7": {
+        "_ec949871-da36-4f50-bb3d-e25340059a91": {
           "requiredInputs": ["#input__b0819e66-af22-4e58-ad88-5c36624b995a"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null],
+                "output": "\""
               },
               {
-                "inputs": [false],
-                "output": "\"no hit\""
+                "inputs": [null],
+                "output": "\""
               }
             ]
           }
         },
-        "_f7acbd15-7955-461e-b692-4f4775e22125": {
+        "_3d46a043-3e26-47d2-8720-0b861b0867fd": {
           "requiredInputs": ["#input__d977a2fe-c317-42f7-ba5b-272f98f59e1a"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
+                "inputs": [null],
+                "output": "\""
               },
               {
-                "inputs": [false],
-                "output": "\"no hit\""
+                "inputs": [null],
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_9f1d56cc-d41c-42fa-b8cf-dfd0d93048d7",
-            "#_f7acbd15-7955-461e-b692-4f4775e22125"
+            "#_ec949871-da36-4f50-bb3d-e25340059a91",
+            "#_3d46a043-3e26-47d2-8720-0b861b0867fd"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-"],
-                "output": "\"Vergunningplicht\""
+                "inputs": ["\"", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "inputs": ["-", "\""],
+                "output": "\""
               },
               {
-                "inputs": ["\"no hit\"", "\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "inputs": ["\"", "\""],
+                "output": "\""
               }
             ]
           }
@@ -71,16 +71,16 @@
         {
           "description": "Antwoord \"JA\" leidt tot vergunningplicht!",
           "text": "Vraag 1",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
-          "prio": 10
+          "prio": null
         },
         {
           "description": "Toelichting 2",
           "text": "Vraag 2",
-          "type": "boolean",
+          "type": "b",
           "id": "uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
-          "prio": 20
+          "prio": null
         }
       ]
     }

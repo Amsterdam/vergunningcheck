@@ -1,5 +1,5 @@
 import { emptyDir, exists, join, makeRunWithLimit } from './deps.ts';
-import { ActivitiesResponse, APIConfig, TopicInputType } from "./types.ts";
+import type { ActivitiesResponse, APIConfig, TopicInputType } from "./types.ts";
 import { writeJson } from "./util.ts";
 
 type Props = {
@@ -57,7 +57,7 @@ export default async (argv: Props) => {
         writeJson(join(publicDir, outputDir, "list.json"), activities)
 
         // Now fetch the permits using a pool of promises
-        const { runWithLimit } = makeRunWithLimit(argv.maxConnections || 6);
+        const { runWithLimit } = makeRunWithLimit(argv.maxConnections);
         const activityRequests = activities.map((activity: TopicInputType) => {
           const permitId: string = activity._id;
 
@@ -72,8 +72,9 @@ export default async (argv: Props) => {
             });
 
             if (!result.ok) {
+              const text = await result.text();
               throw new Error(
-                `request of ${permitId} failed, status: ${result.status} ${result.statusText}`
+                `request of ${permitId} failed, status: ${result.status} ${result.statusText}. ${text}`
               );
             }
 

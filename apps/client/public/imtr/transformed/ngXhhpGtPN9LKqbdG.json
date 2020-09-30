@@ -1,48 +1,266 @@
 {
   "permits": [
     {
-      "version": 2,
+      "version": 27,
       "decisions": {
-        "_0f3e4cf5-59ec-4213-9c21-42b5d3651a5f": {
+        "_064a0a7b-396a-4e47-8360-f1ee6562e42a": {
+          "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [],
-                "output": "\"Vergunningplicht\""
+                "inputs": ["\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\""],
+                "output": "\""
+              }
+            ]
+          }
+        },
+        "_93dd8915-fd0e-435f-aafb-ef33061117b8": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"", "\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "\""],
+                "output": "\""
+              }
+            ]
+          }
+        },
+        "_6a63f9a0-7930-4dc2-a6f3-905762eaed49": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"", "\"", "\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "\"", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "\""],
+                "output": "\""
+              }
+            ]
+          }
+        },
+        "_a43fd783-3b2e-4565-9949-46f54344fe13": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+            "#input__080bdf26-719c-40ff-b2d6-2c2e562890f4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"", "\"", "\"", null],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "\"", "\"", null],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "\"", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "\"", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "-", null],
+                "output": "\""
+              }
+            ]
+          }
+        },
+        "_13a81b41-590f-4007-98c8-63b7f4084d3d": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+            "#input__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+            "#input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"", "\"", "\"", null, "\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "\"", "\"", null, "\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-", "-", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "-", "-", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "\"", "-", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "\"", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "-", null, "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\""],
+                "output": "\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_0f3e4cf5-59ec-4213-9c21-42b5d3651a5f"],
+          "requiredDecisions": [
+            "#_064a0a7b-396a-4e47-8360-f1ee6562e42a",
+            "#_93dd8915-fd0e-435f-aafb-ef33061117b8",
+            "#_6a63f9a0-7930-4dc2-a6f3-905762eaed49",
+            "#_a43fd783-3b2e-4565-9949-46f54344fe13",
+            "#_13a81b41-590f-4007-98c8-63b7f4084d3d"
+          ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "inputs": ["\"", "-", "-", "-", "-"],
+                "output": "\""
               },
               {
-                "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "inputs": ["-", "\"", "-", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "\"", "-", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"", "-"],
+                "output": "\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\""],
+                "output": "\""
+              },
+              {
+                "inputs": ["\"", "\"", "\"", "\"", "\""],
+                "output": "\""
               }
             ]
           }
         }
       },
       "inputs": {
-        "input__9dcdd252-fa5f-4374-9589-06bf3c32dc1b": {
-          "href": "#uitv__9dcdd252-fa5f-4374-9589-06bf3c32dc1b",
+        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
+          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "type": "string"
+        },
+        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
+          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "type": "string"
+        },
+        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
+          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "type": "string"
+        },
+        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
+          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
           "type": "boolean"
+        },
+        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
+          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "type": "string"
         }
       },
       "name": "Conclusie Ketentest - Boom kappen of snoeien",
       "questions": [
         {
-          "description": "Ook voor een dode boom heeft u een kapvergunning nodig",
-          "text": "Is de boom dood of levend?",
-          "type": "boolean",
-          "id": "uitv__9dcdd252-fa5f-4374-9589-06bf3c32dc1b",
-          "prio": 10
+          "text": "Gaat het om een boom of een struik?",
+          "type": "l",
+          "id": "uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "prio": null
+        },
+        {
+          "description": "Ook voor het kappen van een dode boom kan een vergunning nodig zijn.",
+          "text": "Wat is de conditie van de boom?",
+          "type": "l",
+          "id": "uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "prio": null
+        },
+        {
+          "text": "Wat wilt u gaan doen?",
+          "type": "l",
+          "id": "uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "prio": null
+        },
+        {
+          "description": "Als de boom geplant is ter vervanging van een andere boom die gekapt is, dan is de boom geplant in verband met een herplantplicht.",
+          "text": "Is de boom geplant in verband met een herplantplicht?",
+          "type": "b",
+          "id": "uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "prio": null
+        },
+        {
+          "text": "Wat is de omtrek van de boom, gemeten op 1.30 m hoogte?",
+          "type": "l",
+          "id": "uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "prio": null
         }
       ]
     }
