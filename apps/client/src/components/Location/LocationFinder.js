@@ -8,6 +8,7 @@ import { requiredFieldText } from "../../config";
 import { sections } from "../../config/matomo";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
+import RegisterLookupSummary from "../RegisterLookupSummary";
 
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
@@ -166,11 +167,13 @@ const LocationFinder = (props) => {
               heading="Dit is het gekozen adres:"
               level="attention"
             >
-              <Paragraph>
-                {exactMatch.streetName} {exactMatch.houseNumberFull}
-                <br />
-                {exactMatch.postalCode} {exactMatch.residence}
-              </Paragraph>
+              { props.address.houseNumberFull && <RegisterLookupSummary
+                address={props.address}
+                compact={true}
+                displayZoningPlans={false}
+                matomoTrackEvent={props.matomoTrackEvent}
+                topic={props.topic}
+              /> }
             </Alert>
           </ComponentWrapper>
           <Paragraph>

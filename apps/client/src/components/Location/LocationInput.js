@@ -129,13 +129,18 @@ const LocationInput = ({
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
-          setAddress={setAddress}
-          setFocus={setFocus}
-          setErrorMessage={setErrorMessage}
-          postalCode={sessionAddress.postalCode}
+          {...{
+            errors,
+            matomoTrackEvent,
+            setAddress,
+            setErrorMessage,
+            setFocus,
+            topic
+          }}
           houseNumberFull={sessionAddress.houseNumberFull}
           houseNumber={sessionAddress.houseNumberFull}
-          errors={errors}
+          postalCode={sessionAddress.postalCode}
+          address={sessionAddress}
         />
         <Nav
           noMarginBottom={!hasSTTR}
