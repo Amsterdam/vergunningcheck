@@ -38,8 +38,9 @@ type ModalProps = {
   handleOpenModal?: Function;
   heading: string;
   onClick?: Function;
+  openButton?: any;
   openButtonVariant?: buttonVariant;
-  openButtonText: React.ReactNode;
+  openButtonText?: string;
   showCloseButton?: boolean;
   showConfirmButton?: boolean;
 };
@@ -52,6 +53,7 @@ const Modal: React.FC<ModalProps> = ({
   handleConfirmButton,
   handleOpenModal,
   heading,
+  openButton,
   openButtonText,
   openButtonVariant = "primary",
   showCloseButton = true,
@@ -67,17 +69,23 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
+  // How to do this properly? @Sven
+  const OpenButton = openButton;
+
   return (
     <>
-      <ModalButton
-        data-testid={MODAL_OPEN_BUTTON}
-        onClick={openModal}
-        type="button"
-        variant={openButtonVariant}
-      >
-        {openButtonText}
-      </ModalButton>
-
+      {openButton ? (
+        <OpenButton onClick={openModal} />
+      ) : (
+        <ModalButton
+          data-testid={MODAL_OPEN_BUTTON}
+          onClick={openModal}
+          type="button"
+          variant={openButtonVariant}
+        >
+          {openButtonText}
+        </ModalButton>
+      )}
       <ModalUI
         aria-describedby={heading}
         aria-labelledby={heading}

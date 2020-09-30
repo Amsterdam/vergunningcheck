@@ -2,15 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
 import React from "react";
 
-import {
-  ComponentWrapper,
-  EditButton,
-  HideForPrint,
-  List,
-  ListItem,
-  TextToEdit,
-} from "../atoms";
-import { actions, eventNames, sections } from "../config/matomo";
+import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -24,9 +16,8 @@ import ChangeAddressModal from "./Location/ChangeAddressModal";
 const RegisterLookupSummary = ({
   address,
   displayZoningPlans,
-  matomoTrackEvent,
   setActiveState,
-  topic: { sttrFile },
+  topic: { slug, sttrFile },
 }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
@@ -47,23 +38,11 @@ const RegisterLookupSummary = ({
         <TextToEdit>
           <AddressLine address={address} />
         </TextToEdit>
-        <EditButton
-          onClick={() => {
-            matomoTrackEvent({
-              action: actions.CLICK_INTERNAL_NAVIGATION,
-              name: eventNames.EDIT_ADDRESS,
-            });
-            setActiveState(sections.LOCATION_INPUT);
-          }}
+        <ChangeAddressModal
+          sttrFile={!!sttrFile}
+          {...{ setActiveState, slug }}
         />
       </Paragraph>
-
-      {/* Remove this statement to see the temporary modal */}
-      {false === true && (
-        <HideForPrint>
-          <ChangeAddressModal />
-        </HideForPrint>
-      )}
 
       <Paragraph gutterBottom={16}>
         Over dit adres hebben we de volgende gegevens gevonden:

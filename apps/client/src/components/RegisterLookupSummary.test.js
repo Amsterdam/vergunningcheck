@@ -10,20 +10,18 @@ Object.defineProperty(window, "matchMedia", matchMedia);
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useParams: () => ({}),
+  useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
 
 afterEach(cleanup);
 
 it("RegisterLookupSummary renders correctly", () => {
-  const matomoTrackEvent = jest.fn();
   const setActiveState = jest.fn();
 
   const { queryByTestId, queryByText } = render(
     <RegisterLookupSummary
       address={addressMock}
       displayZoningPlans
-      matomoTrackEvent={matomoTrackEvent}
       setActiveState={setActiveState}
       topic={{}}
     />
@@ -41,8 +39,6 @@ it("RegisterLookupSummary renders correctly", () => {
   act(() => {
     fireEvent.click(queryByTestId(EDIT_BUTTON));
   });
-
-  expect(matomoTrackEvent).toBeCalledTimes(1);
 
   // @TODO: finish this test when we work on the Location Component
   // Lines to test: 39,61,69,70,80
