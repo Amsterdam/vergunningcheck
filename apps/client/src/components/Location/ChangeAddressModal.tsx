@@ -14,8 +14,8 @@ const ChangeAddressModal: React.FC<{
   matomoTrackEvent: Function;
   setActiveState: Function;
   slug: string;
-  sttrFile: boolean;
-}> = ({ matomoTrackEvent, setActiveState, slug, sttrFile }) => {
+  hasSTTR: boolean;
+}> = ({ matomoTrackEvent, setActiveState, slug, hasSTTR }) => {
   // @TODO: replace this with React custom hooks
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
@@ -59,7 +59,7 @@ const ChangeAddressModal: React.FC<{
 
   return (
     <>
-      {sttrFile ? (
+      {hasSTTR ? (
         <Modal
           closeButtonText="Annuleer"
           handleConfirmButton={handleConfirmButton}

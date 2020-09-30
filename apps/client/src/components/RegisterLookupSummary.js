@@ -15,7 +15,6 @@ import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
   address,
-  displayZoningPlans,
   setActiveState,
   topic: { slug, sttrFile },
 }) => {
@@ -25,6 +24,9 @@ const RegisterLookupSummary = ({
   const zoningPlanNames = zoningPlans
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
+
+  // @TODO: replace when IMTR refactor is merged
+  const hasSTTR = !!sttrFile;
 
   if (monument) {
     setTag("monument", monument);
@@ -38,10 +40,7 @@ const RegisterLookupSummary = ({
         <TextToEdit>
           <AddressLine address={address} />
         </TextToEdit>
-        <ChangeAddressModal
-          sttrFile={!!sttrFile}
-          {...{ setActiveState, slug }}
-        />
+        <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
       </Paragraph>
 
       <Paragraph gutterBottom={16}>
@@ -61,14 +60,14 @@ const RegisterLookupSummary = ({
       </Paragraph>
       <Paragraph
         data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-        gutterBottom={displayZoningPlans ? 16 : 0}
+        gutterBottom={!hasSTTR ? 16 : 0}
       >
         {cityScape
           ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
           : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
       </Paragraph>
 
-      {displayZoningPlans && (
+      {!hasSTTR && (
         <>
           <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:

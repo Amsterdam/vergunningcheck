@@ -22,12 +22,10 @@ describe("RegisterLookupSummary", () => {
 
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
-    const hasSTTR = !!topic.sttrFile;
 
     const { queryByText } = render(
       <RegisterLookupSummary
         address={addressMock}
-        displayZoningPlans={!hasSTTR}
         setActiveState={setActiveState}
         topic={topic}
       />
@@ -54,12 +52,10 @@ describe("RegisterLookupSummary", () => {
 
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
-    const hasSTTR = !!topic.sttrFile;
 
     const { queryByText } = render(
       <RegisterLookupSummary
         address={addressMock}
-        displayZoningPlans={!hasSTTR}
         setActiveState={setActiveState}
         topic={topic}
       />

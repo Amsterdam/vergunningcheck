@@ -37,7 +37,6 @@ const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
       {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
       <RegisterLookupSummary
-        displayZoningPlans={!hasSTTR}
         {...{
           address,
           matomoTrackEvent,
