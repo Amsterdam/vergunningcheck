@@ -1,4 +1,3 @@
-// @TODO: convert to TS
 import { Paragraph } from "@datapunt/asc-ui";
 import React, { useEffect, useState } from "react";
 
@@ -6,23 +5,29 @@ import { Alert, ComponentWrapper } from "../../atoms";
 import { sections } from "../../config/matomo";
 import useDebounce from "../../hooks/useDebounce";
 import PhoneNumber from "../PhoneNumber";
-import LocationtLoader from "./LocationLoader";
+import LocationtLoader from "./LocationLoading";
 
-const LocationNotFound = ({ houseNumberFull, notFound }) => {
+type LocationNotFoundProps = {
+  houseNumberInput: string;
+};
+
+const LocationNotFound: React.FC<LocationNotFoundProps> = ({
+  houseNumberInput,
+}) => {
+  const DELAY_TIME = 750;
   const [error, setError] = useState(false);
-
   const showError = () => setError(true);
-
-  const debouncedShowError = useDebounce(showError, 1000);
+  const debouncedShowError = useDebounce(showError, DELAY_TIME);
 
   useEffect(() => {
-    setError(false);
+    error && setError(false);
     debouncedShowError();
-  }, [debouncedShowError, houseNumberFull]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [houseNumberInput]);
 
   return (
     <>
-      {error && notFound ? (
+      {error ? (
         <ComponentWrapper>
           <Alert
             heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."

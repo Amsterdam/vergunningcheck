@@ -3,7 +3,11 @@ import React from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 
-const LocationtLoader = ({ loading }) => {
+type LocationLoadingProps = {
+  loading: boolean;
+};
+
+const LocationLoading: React.FC<LocationLoadingProps> = ({ loading }) => {
   if (!loading) return null;
 
   return (
@@ -13,4 +17,4 @@ const LocationtLoader = ({ loading }) => {
   );
 };
 
-export default LocationtLoader;
+export default LocationLoading;

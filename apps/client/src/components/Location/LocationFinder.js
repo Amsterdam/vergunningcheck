@@ -1,14 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { ErrorMessage, Paragraph, TextField } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import SuggestList from "../AutoSuggestList";
 import RegisterLookupSummary from "../RegisterLookupSummary";
-import LocationtLoader from "./LocationLoader";
+import LocationtLoading from "./LocationLoading";
 import LocationNotFound from "./LocationNotFound";
 
 const findAddress = loader("./LocationFinder.graphql");
@@ -23,7 +23,9 @@ const LocationFinder = (props) => {
   const [houseNumberFull, setHouseNumberFull] = useState(
     props.address.houseNumberFull
   );
+  const [autoSuggestValue, setAutoSuggestValue] = useState("");
   const [touched, setTouched] = useState({});
+  const [houseNumberInput, setHouseNumberInput] = useState("");
   const { setAddress, setErrorMessage } = props;
 
   const variables = {
@@ -63,16 +65,22 @@ const LocationFinder = (props) => {
   const exactMatch = data?.findAddress?.exactMatch;
 
   // Validate address
-  const notFoundAddress =
-    postalCode && houseNumber && houseNumberFull && !loading && !exactMatch;
+  const notFoundAddress = !!(
+    postalCode &&
+    houseNumber &&
+    houseNumberFull &&
+    !loading &&
+    !exactMatch &&
+    !graphqlError
+  );
 
   // Validate forms
   const validate = (name, value, required) => {
     if (touched[name]) {
-      if (required && (!value || value?.trim() === "")) {
+      if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
       }
-      const trimmed = value?.trim();
+      const trimmed = value && value.toString().trim();
       if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
@@ -84,27 +92,21 @@ const LocationFinder = (props) => {
   const houseNumberError = validate("houseNumber", houseNumber, true);
 
   const handleBlur = (e) => {
-    setTouched({ ...touched, [e.target.name]: true });
+    e.target.value && setTouched({ ...touched, [e.target.name]: true });
     props.setFocus(false);
   };
 
   // Auto-suggest
-  const houseNumberRef = useRef(null);
   const AbsoluteList = SuggestList;
 
-  const showList =
+  const showAutoSuggest =
     data?.findAddress.matches.length > 0 &&
     data?.findAddress.matches[0].houseNumberFull !== houseNumberFull;
 
   const onSelectOption = (option) => {
     setHouseNumber(option.value);
     setHouseNumberFull(option.value);
-
-    const input = houseNumberRef.current;
-
-    if (input) {
-      input.value = option.value;
-    }
+    setAutoSuggestValue(option.value);
   };
 
   const options = data?.findAddress.matches.map((address) => ({
@@ -112,8 +114,7 @@ const LocationFinder = (props) => {
     value: address.houseNumberFull,
   }));
 
-  const notFound =
-    !!notFoundAddress && !graphqlError && !data?.findAddress.matches.length > 0;
+  const displayLocationNotFound = !!notFoundAddress && !showAutoSuggest;
 
   const showExactMatch = exactMatch && !loading;
 
@@ -138,22 +139,23 @@ const LocationFinder = (props) => {
 
       <ComponentWrapper>
         <TextField
-          defaultValue={houseNumberFull}
           error={houseNumberError}
           id="houseNumberFull"
           label="Huisnummer"
           name="houseNumber"
           onBlur={handleBlur}
           onChange={(e) => {
-            setHouseNumber(e.target.value);
+            const numeric = parseInt(e.target.value);
+            setHouseNumber(numeric);
             setHouseNumberFull(e.target.value);
           }}
           onFocus={() => props.setFocus(true)}
+          onInput={(e) => setHouseNumberInput(e.target.value)}
           required
-          value={houseNumberFull}
+          value={houseNumberFull || autoSuggestValue}
         />
         {houseNumberError && <ErrorMessage message={houseNumberError} />}
-        {showList && (
+        {showAutoSuggest && (
           <AbsoluteList
             activeIndex={-1}
             id="as-listbox"
@@ -164,13 +166,10 @@ const LocationFinder = (props) => {
         )}
       </ComponentWrapper>
 
-      <LocationtLoader loading={loading} />
+      <LocationtLoading loading={loading} />
 
-      {notFound && (
-        <LocationNotFound
-          houseNumberFull={houseNumberFull}
-          notFound={notFound}
-        />
+      {displayLocationNotFound && (
+        <LocationNotFound {...{ houseNumberInput }} />
       )}
 
       {showExactMatch && (
