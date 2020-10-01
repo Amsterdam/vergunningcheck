@@ -20,7 +20,6 @@ const mockedAddress = {
   houseNumber: "19c",
   houseNumberFull: "19c",
   postalCode: "1055XD",
-  // suffix: "c",
 };
 
 describe("LocationFinder", () => {
@@ -39,29 +38,24 @@ describe("LocationFinder", () => {
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-    // const inputSuffix = screen.getByLabelText(/toevoeging/i);
 
     expect(inputPostalCode).toBeInTheDocument();
     expect(inputPostalCode).not.toHaveValue();
 
     expect(inputHouseNumber).toBeInTheDocument();
     expect(inputHouseNumber).not.toHaveValue();
-
-    // expect(inputSuffix).toBeInTheDocument();
-    // expect(inputSuffix).not.toHaveValue();
   });
 
+  // @TODO: Update this test with autoSuggest
   it("should render correctly with contextual props", async () => {
     render(<WrapperWithContext {...mockedAddress} />, {}, mocks);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     // const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-    // const inputSuffix = screen.getByLabelText(/toevoeging/i);
 
     // Make sure the input fields have the right values
     expect(inputPostalCode).toHaveValue(mockedAddress.postalCode);
     // expect(inputHouseNumber).toHaveValue(parseInt(mockedAddress.houseNumber));
-    // expect(inputSuffix).toHaveValue(mockedAddress.suffix);
 
     // The loading state should be active
     // @TODO: replace this to come directly from i18n
@@ -69,6 +63,7 @@ describe("LocationFinder", () => {
     expect(screen.getByText("Wij zoeken het adres.")).toBeInTheDocument();
   });
 
+  // @TODO: Update this test with autoSuggest
   it("should render correctly when filling the in the form", async () => {
     const {
       houseNumberFull,
@@ -83,7 +78,6 @@ describe("LocationFinder", () => {
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-    // const inputSuffix = screen.getByLabelText(/toevoeging/i);
 
     // Make sure postalcode from userInput is equal to mocks
     expect(userInput.postalCode).toBe(postalCode);
@@ -96,9 +90,6 @@ describe("LocationFinder", () => {
       fireEvent.change(inputHouseNumber, {
         target: { value: userInput.houseNumber },
       });
-      // fireEvent.change(inputSuffix, {
-      //   target: { value: userInput.suffix },
-      // });
     });
 
     // Wait until loading is finished and location has been found

@@ -1,3 +1,10 @@
+/**
+ * THIS FILE IS COPY PASTED FROM:
+ * https://github.com/Amsterdam/signals-frontend/blob/develop/src/components/AutoSuggest/components/SuggestList/index.js
+ *
+ * It has not been edited yet.
+ */
+
 import { ChevronRight } from "@datapunt/asc-assets";
 import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
