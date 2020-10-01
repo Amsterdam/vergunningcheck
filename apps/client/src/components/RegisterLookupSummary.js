@@ -2,15 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
 import React from "react";
 
-import {
-  ComponentWrapper,
-  EditButton,
-  HideForPrint,
-  List,
-  ListItem,
-  TextToEdit,
-} from "../atoms";
-import { actions, eventNames, sections } from "../config/matomo";
+import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -23,10 +15,8 @@ import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
   address,
-  displayZoningPlans,
-  matomoTrackEvent,
   setActiveState,
-  topic: { sttrFile },
+  topic: { slug, sttrFile },
 }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
@@ -34,6 +24,9 @@ const RegisterLookupSummary = ({
   const zoningPlanNames = zoningPlans
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
+
+  // @TODO: replace when IMTR refactor is merged
+  const hasSTTR = !!sttrFile;
 
   if (monument) {
     setTag("monument", monument);
@@ -47,23 +40,8 @@ const RegisterLookupSummary = ({
         <TextToEdit>
           <AddressLine address={address} />
         </TextToEdit>
-        <EditButton
-          onClick={() => {
-            matomoTrackEvent({
-              action: actions.CLICK_INTERNAL_NAVIGATION,
-              name: eventNames.EDIT_ADDRESS,
-            });
-            setActiveState(sections.LOCATION_INPUT);
-          }}
-        />
+        <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
       </Paragraph>
-
-      {/* Remove this statement to see the temporary modal */}
-      {false === true && (
-        <HideForPrint>
-          <ChangeAddressModal />
-        </HideForPrint>
-      )}
 
       <Paragraph gutterBottom={16}>
         Over dit adres hebben we de volgende gegevens gevonden:
@@ -82,14 +60,14 @@ const RegisterLookupSummary = ({
       </Paragraph>
       <Paragraph
         data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-        gutterBottom={displayZoningPlans ? 16 : 0}
+        gutterBottom={hasSTTR ? 0 : 16}
       >
         {cityScape
           ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
           : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
       </Paragraph>
 
-      {displayZoningPlans && (
+      {!hasSTTR && (
         <>
           <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
