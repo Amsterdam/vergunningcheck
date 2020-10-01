@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
-import SuggestList from "../AutoSuggestList";
+import AutoSuggestList from "../AutoSuggestList";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationtLoading from "./LocationLoading";
 import LocationNotFound from "./LocationNotFound";
@@ -92,13 +92,12 @@ const LocationFinder = (props) => {
   const houseNumberError = validate("houseNumber", houseNumber, true);
 
   const handleBlur = (e) => {
+    // This fixes the focus error
     e.target.value && setTouched({ ...touched, [e.target.name]: true });
     props.setFocus(false);
   };
 
-  // Auto-suggest
-  const AbsoluteList = SuggestList;
-
+  // AutoSuggest
   const showAutoSuggest =
     data?.findAddress.matches.length > 0 &&
     data?.findAddress.matches[0].houseNumberFull !== houseNumberFull;
@@ -114,7 +113,7 @@ const LocationFinder = (props) => {
     value: address.houseNumberFull,
   }));
 
-  const displayLocationNotFound = !!notFoundAddress && !showAutoSuggest;
+  const displayLocationNotFound = notFoundAddress && !showAutoSuggest;
 
   const showExactMatch = exactMatch && !loading;
 
@@ -145,8 +144,9 @@ const LocationFinder = (props) => {
           name="houseNumber"
           onBlur={handleBlur}
           onChange={(e) => {
-            const numeric = parseInt(e.target.value);
-            setHouseNumber(numeric);
+            // @TODO: Fix the option to allow a space between the houseNumber and the suffix
+            // EG: houseNumber "762A" should trigger the AutoSuggest and now only "762 A" works (postalCode "1017LD")
+            setHouseNumber(parseInt(e.target.value));
             setHouseNumberFull(e.target.value);
           }}
           onFocus={() => props.setFocus(true)}
@@ -156,7 +156,8 @@ const LocationFinder = (props) => {
         />
         {houseNumberError && <ErrorMessage message={houseNumberError} />}
         {showAutoSuggest && (
-          <AbsoluteList
+          <AutoSuggestList
+            // @TODO: make activeIndex dynamic (WCAG)
             activeIndex={-1}
             id="as-listbox"
             onSelectOption={onSelectOption}
