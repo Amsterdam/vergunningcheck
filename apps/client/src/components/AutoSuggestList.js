@@ -3,6 +3,10 @@
  * https://github.com/Amsterdam/signals-frontend/blob/develop/src/components/AutoSuggest/components/SuggestList/index.js
  *
  * It has not been edited yet.
+ *
+ * Improvements:
+ * - Add test
+ * - Convert to TS
  */
 
 import { ChevronRight } from "@datapunt/asc-assets";
