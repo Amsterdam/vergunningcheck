@@ -7,6 +7,7 @@ import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import SuggestList from "../AutoSuggestList";
+import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationtLoader from "./LocationLoader";
 import LocationNotFound from "./LocationNotFound";
 
@@ -14,12 +15,14 @@ const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const LocationFinder = (props) => {
-  const [postalCode, setPostalCode] = useState(props.postalCode);
+  const [postalCode, setPostalCode] = useState(props.address.postalCode);
   // Temporary solution until we upgrade GraphQL
   const [houseNumber, setHouseNumber] = useState(
-    props.houseNumber && parseInt(props.houseNumber)
+    props.address.houseNumber && parseInt(props.address.houseNumber)
   );
-  const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
+  const [houseNumberFull, setHouseNumberFull] = useState(
+    props.address.houseNumberFull
+  );
   const [touched, setTouched] = useState({});
   const { setAddress, setErrorMessage } = props;
 
@@ -178,11 +181,13 @@ const LocationFinder = (props) => {
               heading="Dit is het gekozen adres:"
               level="attention"
             >
-              <Paragraph>
-                {exactMatch.streetName} {exactMatch.houseNumberFull}
-                <br />
-                {exactMatch.postalCode} {exactMatch.residence}
-              </Paragraph>
+              <RegisterLookupSummary
+                addressFromLocation={exactMatch}
+                compact={true}
+                displayZoningPlans={false}
+                matomoTrackEvent={props.matomoTrackEvent}
+                topic={props.topic}
+              />
             </Alert>
           </ComponentWrapper>
           <Paragraph>

@@ -17,9 +17,11 @@ const mockedFunctions = { ...{ setAddress, setFocus, setErrorMessage } };
 
 // @TODO: Let's fetch this data from a new mocked packages/module
 const mockedAddress = {
-  houseNumber: "19c",
-  houseNumberFull: "19c",
-  postalCode: "1055XD",
+  address: {
+    houseNumber: "19c",
+    houseNumberFull: "19c",
+    postalCode: "1055XD",
+  },
 };
 
 describe("LocationFinder", () => {
@@ -27,14 +29,15 @@ describe("LocationFinder", () => {
 
   const WrapperWithContext = (props) => {
     return (
-      <Context topicMock={topic} addressMock={mockedAddress}>
-        <LocationFinder {...props} {...mockedFunctions} />
+      <Context topicMock={topic} addressMock={mockedAddress.address}>
+        <LocationFinder topic={topic} {...props} {...mockedFunctions} />
       </Context>
     );
   };
 
+  // @TODO enable these test again
   it("should render correctly on first load", () => {
-    render(<WrapperWithContext />);
+    render(<WrapperWithContext address={{}} />);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
@@ -48,7 +51,7 @@ describe("LocationFinder", () => {
 
   // @TODO: Update this test with autoSuggest
   it("should render correctly with contextual props", async () => {
-    render(<WrapperWithContext {...mockedAddress} />, {}, mocks);
+    render(<WrapperWithContext address={mockedAddress.address} />, {}, mocks);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     // const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
@@ -71,10 +74,10 @@ describe("LocationFinder", () => {
       streetName,
     } = mocks[0].result.data.findAddress.exactMatch;
 
-    render(<WrapperWithContext {...mockedAddress} />, {}, mocks);
+    render(<WrapperWithContext address={mockedAddress.address} />, {}, mocks);
 
     // Mock values we're using as user input
-    const userInput = mockedAddress;
+    const userInput = mockedAddress.address;
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);

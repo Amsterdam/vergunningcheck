@@ -1,16 +1,9 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
-import React from "react";
+import React, { useContext } from "react";
 
-import {
-  ComponentWrapper,
-  EditButton,
-  HideForPrint,
-  List,
-  ListItem,
-  TextToEdit,
-} from "../atoms";
-import { actions, eventNames, sections } from "../config/matomo";
+import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
+import { SessionContext } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -22,12 +15,15 @@ import AddressLine from "./AddressLine";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
-  address,
-  displayZoningPlans,
-  matomoTrackEvent,
+  addressFromLocation,
+  compact,
   setActiveState,
-  topic: { sttrFile },
+  topic: { slug, sttrFile },
 }) => {
+  const sessionContext = useContext(SessionContext);
+  const address = addressFromLocation
+    ? addressFromLocation
+    : sessionContext[slug].address;
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
@@ -35,61 +31,45 @@ const RegisterLookupSummary = ({
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
+  // @TODO: replace when IMTR refactor is merged
+  const hasSTTR = !!sttrFile;
+
   if (monument) {
     setTag("monument", monument);
   }
   if (cityScape) {
     setTag("cityscape", cityScape);
   }
+
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
-        <TextToEdit>
-          <AddressLine address={address} />
-        </TextToEdit>
-        <EditButton
-          onClick={() => {
-            matomoTrackEvent({
-              action: actions.CLICK_INTERNAL_NAVIGATION,
-              name: eventNames.EDIT_ADDRESS,
-            });
-            setActiveState(sections.LOCATION_INPUT);
-          }}
-        />
+        {compact ? (
+          <AddressLine {...address} />
+        ) : (
+          <>
+            <TextToEdit>
+              <Paragraph strong gutterBottom={0}>
+                Ingevoerd adres:
+              </Paragraph>
+              <AddressLine {...address} />
+            </TextToEdit>
+            <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
+          </>
+        )}
       </Paragraph>
-
-      {/* Remove this statement to see the temporary modal */}
-      {false === true && (
-        <HideForPrint>
-          <ChangeAddressModal />
-        </HideForPrint>
-      )}
-
-      <Paragraph gutterBottom={16}>
-        Over dit adres hebben we de volgende gegevens gevonden:
-      </Paragraph>
-      <Paragraph strong gutterBottom={0}>
-        Monument:
-      </Paragraph>
-      <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={16}>
-        {monument
-          ? `Het gebouw is een ${monument.toLowerCase()}.`
-          : "Het gebouw is geen monument."}
-      </Paragraph>
-
-      <Paragraph strong gutterBottom={0}>
-        Beschermd stads- of dorpsgezicht:
+      <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
+        {monument && `Het gebouw is een ${monument.toLowerCase()}.`}
       </Paragraph>
       <Paragraph
         data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-        gutterBottom={displayZoningPlans ? 16 : 0}
+        gutterBottom={hasSTTR ? 0 : 16}
       >
-        {cityScape
-          ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
-          : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+        {cityScape &&
+          `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`}
       </Paragraph>
 
-      {displayZoningPlans && (
+      {!hasSTTR && !compact && (
         <>
           <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
