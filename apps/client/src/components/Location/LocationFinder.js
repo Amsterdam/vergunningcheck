@@ -35,10 +35,32 @@ const LocationFinder = (props) => {
     queryExtra: false,
   };
 
+  // Validate forms
+  const validate = (name, value, required) => {
+    if (touched[name]) {
+      if (required && (!value || value?.toString().trim() === "")) {
+        return requiredFieldText;
+      }
+      const trimmed = value && value.toString().trim();
+      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
+        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
+      }
+    }
+  };
+
+  // Error messages
+  const houseNumberError = validate("houseNumber", houseNumber, true);
+  const postalCodeError = validate("postalCode", postalCode, true);
+
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
      Workaround is not giving any variables if the query should be skipped. */
-  const skip = !houseNumberFull || !postalCode;
+  const skip = !!(
+    houseNumberError ||
+    !houseNumberFull ||
+    !postalCode ||
+    postalCodeError
+  );
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
     variables: skip ? undefined : variables,
     skip,
@@ -73,23 +95,6 @@ const LocationFinder = (props) => {
     !exactMatch &&
     !graphqlError
   );
-
-  // Validate forms
-  const validate = (name, value, required) => {
-    if (touched[name]) {
-      if (required && (!value || value?.toString().trim() === "")) {
-        return requiredFieldText;
-      }
-      const trimmed = value && value.toString().trim();
-      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
-        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
-      }
-    }
-  };
-
-  // Error messages
-  const postalCodeError = validate("postalCode", postalCode, true);
-  const houseNumberError = validate("houseNumber", houseNumber, true);
 
   const handleBlur = (e) => {
     // This fixes the focus error
