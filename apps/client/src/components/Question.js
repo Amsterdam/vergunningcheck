@@ -151,10 +151,10 @@ const Question = ({
       <Nav
         formEnds={shouldGoToConlusion()}
         nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
+        showPrev={questionIndex > 0} // Do not show back-button at the first question
         {...{
           onGoToPrev,
           showNext,
-          showPrev,
         }}
       />
     </Form>
