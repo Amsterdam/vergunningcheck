@@ -1,4 +1,3 @@
-// @TODO: convert to TS
 import React from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
