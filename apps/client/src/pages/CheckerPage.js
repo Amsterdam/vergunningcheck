@@ -9,6 +9,7 @@ import LocationInput from "../components/Location/LocationInput";
 import LocationResult from "../components/Location/LocationResult";
 import PrintDetails from "../components/PrintDetails";
 import Questions from "../components/Questions";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import {
   StepByStepItem,
   StepByStepNavigation,
@@ -209,15 +210,11 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
                 }}
               />
             )}
-            {/* @TODO: Refactor this, because of duplicate code */}
             {!isActive(sections.LOCATION_INPUT) && (
-              <LocationResult
+              <RegisterLookupSummary
                 {...{
-                  isActive,
-                  isFinished,
                   matomoTrackEvent,
                   setActiveState,
-                  setFinishedState,
                   topic,
                 }}
               />

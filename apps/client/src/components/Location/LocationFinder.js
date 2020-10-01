@@ -61,7 +61,6 @@ const LocationFinder = (props) => {
 
   const exactMatch = data?.findAddress?.exactMatch;
 
-  console.log(exactMatch);
   // Validate address
   const notFoundAddress =
     postalCode && houseNumber && houseNumberFull && !loading && !exactMatch;
@@ -172,7 +171,7 @@ const LocationFinder = (props) => {
               level="attention"
             >
               <RegisterLookupSummary
-                address={exactMatch}
+                addressFromLocation={exactMatch}
                 compact={true}
                 displayZoningPlans={false}
                 matomoTrackEvent={props.matomoTrackEvent}

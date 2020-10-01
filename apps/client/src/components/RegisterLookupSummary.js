@@ -1,8 +1,9 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
-import React from "react";
+import React, { useContext } from "react";
 
 import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
+import { SessionContext } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -14,11 +15,15 @@ import AddressLine from "./AddressLine";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
-  address,
+  addressFromLocation,
   compact,
   setActiveState,
   topic: { slug, sttrFile },
 }) => {
+  const sessionContext = useContext(SessionContext);
+  const address = addressFromLocation
+    ? addressFromLocation
+    : sessionContext[slug].address;
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
