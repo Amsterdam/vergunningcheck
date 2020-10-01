@@ -44,7 +44,9 @@ const RegisterLookupSummary = ({
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
-        {!compact ? (
+        {compact ? (
+          <AddressLine {...address} />
+        ) : (
           <>
             <TextToEdit>
               <Paragraph strong gutterBottom={0}>
@@ -54,8 +56,6 @@ const RegisterLookupSummary = ({
             </TextToEdit>
             <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
           </>
-        ) : (
-          <AddressLine {...address} />
         )}
       </Paragraph>
       <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
