@@ -1,13 +1,4 @@
-import ConclusionOutcome from "./ConclusionOutcome";
-import NeedPermitContent from "./NeedPermitContent";
-import NeedPermitFooter from "./NeedPermitFooter";
-import NewCheckerModal from "./NewCheckerModal";
-import NoPermitDescription from "./NoPermitDescription";
-
-export {
-  ConclusionOutcome,
-  NeedPermitContent,
-  NeedPermitFooter,
-  NewCheckerModal,
-  NoPermitDescription,
-};
+export { default as ConclusionOutcome } from "./ConclusionOutcome";
+export { default as NeedPermitContent } from "./NeedPermitContent";
+export { default as NeedPermitFooter } from "./NeedPermitFooter";
+export { default as NoPermitDescription } from "./NoPermitDescription";
