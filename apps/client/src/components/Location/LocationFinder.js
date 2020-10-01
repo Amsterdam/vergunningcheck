@@ -14,12 +14,14 @@ const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const LocationFinder = (props) => {
-  const [postalCode, setPostalCode] = useState(props.postalCode);
+  const [postalCode, setPostalCode] = useState(props.address.postalCode);
   // Temporary solution until we upgrade GraphQL
   const [houseNumber, setHouseNumber] = useState(
-    props.houseNumber && parseInt(props.houseNumber)
+    props.address.houseNumber && parseInt(props.address.houseNumber)
   );
-  const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
+  const [houseNumberFull, setHouseNumberFull] = useState(
+    props.address.houseNumberFull
+  );
   const [suffix, setSuffix] = useState("");
   const [touched, setTouched] = useState({});
   const { setAddress, setErrorMessage } = props;
@@ -59,6 +61,7 @@ const LocationFinder = (props) => {
 
   const exactMatch = data?.findAddress?.exactMatch;
 
+  console.log(exactMatch);
   // Validate address
   const notFoundAddress =
     postalCode && houseNumber && houseNumberFull && !loading && !exactMatch;
@@ -130,11 +133,12 @@ const LocationFinder = (props) => {
           }
           label="Toevoeging"
           name="suffix"
+          onBlur={handleBlur}
           onChange={(e) => {
             setSuffix(e.target.value);
             setHouseNumberFull(houseNumber + e.target.value);
-            e.preventDefault();
           }}
+          onFocus={() => props.setFocus(true)}
         />
       </ComponentWrapper>
 
@@ -167,13 +171,13 @@ const LocationFinder = (props) => {
               heading="Dit is het gekozen adres:"
               level="attention"
             >
-              { props.address.houseNumberFull && <RegisterLookupSummary
-                address={props.address}
+              <RegisterLookupSummary
+                address={exactMatch}
                 compact={true}
                 displayZoningPlans={false}
                 matomoTrackEvent={props.matomoTrackEvent}
                 topic={props.topic}
-              /> }
+              />
             </Alert>
           </ComponentWrapper>
           <Paragraph>

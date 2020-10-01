@@ -2,14 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
 import React from "react";
 
-import {
-  ComponentWrapper,
-  EditButton,
-  List,
-  ListItem,
-  TextToEdit,
-} from "../atoms";
-import { actions, eventNames, sections } from "../config/matomo";
+import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -18,14 +11,13 @@ import {
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
 import AddressLine from "./AddressLine";
+import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
   address,
   compact,
-  displayZoningPlans,
-  matomoTrackEvent,
   setActiveState,
-  topic: { sttrFile },
+  topic: { slug, sttrFile },
 }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
@@ -33,6 +25,9 @@ const RegisterLookupSummary = ({
   const zoningPlanNames = zoningPlans
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
+
+  // @TODO: replace when IMTR refactor is merged
+  const hasSTTR = !!sttrFile;
 
   if (monument) {
     setTag("monument", monument);
@@ -44,25 +39,19 @@ const RegisterLookupSummary = ({
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
-        {!compact ?
+        {!compact ? (
           <>
-          <TextToEdit>
-            <Paragraph strong gutterBottom={0}>Ingevoerd adres:</Paragraph>
-            <AddressLine {...address} />
-          </TextToEdit>
-          <EditButton
-            onClick={() => {
-              matomoTrackEvent({
-                action: actions.CLICK_INTERNAL_NAVIGATION,
-                name: eventNames.EDIT_ADDRESS,
-              });
-              setActiveState(sections.LOCATION_INPUT);
-            }}
-          />
+            <TextToEdit>
+              <Paragraph strong gutterBottom={0}>
+                Ingevoerd adres:
+              </Paragraph>
+              <AddressLine {...address} />
+            </TextToEdit>
+            <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
           </>
-          : <AddressLine {...address} />
-        }
-
+        ) : (
+          <AddressLine {...address} />
+        )}
       </Paragraph>
       <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
         {monument
@@ -71,12 +60,12 @@ const RegisterLookupSummary = ({
       </Paragraph>
       <Paragraph
         data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-        gutterBottom={displayZoningPlans ? 16 : 0}
+        gutterBottom={hasSTTR ? 0 : 16}
       >
         {cityScape}
       </Paragraph>
 
-      {displayZoningPlans && (
+      {!hasSTTR && (
         <>
           <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
