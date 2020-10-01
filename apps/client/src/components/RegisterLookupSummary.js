@@ -43,31 +43,36 @@ const RegisterLookupSummary = ({
 
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
-      <Paragraph gutterBottom={16}>
-        {compact ? (
-          <AddressLine {...address} />
-        ) : (
-          <>
-            <TextToEdit>
-              <Paragraph strong gutterBottom={0}>
-                Ingevoerd adres:
-              </Paragraph>
-              <AddressLine {...address} />
-            </TextToEdit>
-            <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
-          </>
-        )}
-      </Paragraph>
-      <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
-        {monument && `Het gebouw is een ${monument.toLowerCase()}.`}
-      </Paragraph>
-      <Paragraph
-        data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-        gutterBottom={hasSTTR ? 0 : 16}
-      >
-        {cityScape &&
-          `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`}
-      </Paragraph>
+      {compact ? (
+        <AddressLine {...address} />
+      ) : (
+        <>
+          <TextToEdit>
+            <Paragraph strong gutterBottom={0}>
+              Ingevoerd adres:
+            </Paragraph>
+            <AddressLine {...address} />
+          </TextToEdit>
+          <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
+        </>
+      )}
+      {(monument || !hasSTTR) && (
+        <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
+          {monument
+            ? `Het gebouw is een ${monument.toLowerCase()}.`
+            : "Het gebouw is geen monument."}
+        </Paragraph>
+      )}
+      {(cityScape || !hasSTTR) && (
+        <Paragraph
+          data-testid={LOCATION_RESTRICTION_CITYSCAPE}
+          gutterBottom={hasSTTR ? 0 : 16}
+        >
+          {cityScape
+            ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
+            : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+        </Paragraph>
+      )}
 
       {!hasSTTR && !compact && (
         <>
