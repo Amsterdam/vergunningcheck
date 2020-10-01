@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] (2020-10-30)
+
+#### New Features
+
+- [#522](https://github.com/Amsterdam/vergunningcheck/pull/522) The Conclusion redesign ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+
+- [#537](https://github.com/Amsterdam/vergunningcheck/pull/537) Added unit tests ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.0.5] (2020-09-23)
 
 #### New Features

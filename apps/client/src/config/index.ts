@@ -23,7 +23,7 @@ export const isProduction: boolean =
 
 const oloHome: string = "https://www.omgevingsloket.nl/";
 
-export const urls: { [key: string]: string } = {
+export const urls = {
   HOW_TO_GET_A_PERMIT:
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
   OLO_HOME: oloHome,
