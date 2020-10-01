@@ -14,7 +14,7 @@ const ConclusionOutcomeWrapper = styled.div`
 
 type ConclusionContentProps = {
   description?: string;
-  eventName: string;
+  eventName?: string;
   footerContent?: ReactNode;
   mainContent?: ReactNode;
   title: string;
