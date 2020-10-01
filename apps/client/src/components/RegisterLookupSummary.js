@@ -59,18 +59,17 @@ const RegisterLookupSummary = ({
         )}
       </Paragraph>
       <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
-        {monument
-          ? `Het gebouw is een ${monument.toLowerCase()}.`
-          : "Het gebouw is geen monument."}
+        {monument && `Het gebouw is een ${monument.toLowerCase()}.`}
       </Paragraph>
       <Paragraph
         data-testid={LOCATION_RESTRICTION_CITYSCAPE}
         gutterBottom={hasSTTR ? 0 : 16}
       >
-        {cityScape}
+        {cityScape &&
+          `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`}
       </Paragraph>
 
-      {!hasSTTR && (
+      {!hasSTTR && !compact && (
         <>
           <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
