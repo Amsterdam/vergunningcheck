@@ -46,7 +46,9 @@ const LocationInput = ({
     if (address.postalCode) {
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        name: `${eventNames.FORWARD} ${sections.QUESTIONS}`,
+        name: `${eventNames.FORWARD} ${
+          hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT
+        }`,
       });
 
       // Detect if user is submitting the same address as currently stored
@@ -129,13 +131,15 @@ const LocationInput = ({
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
-          setAddress={setAddress}
-          setFocus={setFocus}
-          setErrorMessage={setErrorMessage}
-          postalCode={sessionAddress.postalCode}
-          houseNumberFull={sessionAddress.houseNumberFull}
-          houseNumber={sessionAddress.houseNumberFull}
-          errors={errors}
+          {...{
+            errors,
+            matomoTrackEvent,
+            setAddress,
+            setErrorMessage,
+            setFocus,
+            topic,
+          }}
+          address={sessionAddress}
         />
         <Nav
           noMarginBottom={!hasSTTR}

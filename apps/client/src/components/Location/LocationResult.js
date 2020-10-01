@@ -35,32 +35,28 @@ const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
 
   return (
     <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
-      {!hasSTTR && <Heading forwardedAs="h3">Adresgegevens</Heading>}
+      <Heading forwardedAs="h3">Adresgegevens</Heading>
       <RegisterLookupSummary
         {...{
-          address,
           matomoTrackEvent,
           setActiveState,
           topic,
         }}
       />
-      {!hasSTTR && (
-        <>
-          <Paragraph gutterBottom={0}>
-            {/* OLO Flow text */}U hebt deze informatie nodig om de
-            vergunningcheck te doen op het Omgevingsloket.
-          </Paragraph>
-          <Nav
-            formEnds={!hasSTTR}
-            nextText={"Naar het omgevingsloket"}
-            noMarginBottom={!hasSTTR}
-            onGoToPrev={onGoToPrev}
-            showNext
-            showPrev
-          />
-        </>
-      )}
+      <Paragraph gutterBottom={0}>
+        {/* OLO Flow text */}U hebt deze informatie nodig om de vergunningcheck
+        te doen op het Omgevingsloket.
+      </Paragraph>
+      <Nav
+        formEnds={!hasSTTR}
+        nextText={"Naar het omgevingsloket"}
+        noMarginBottom={!hasSTTR}
+        onGoToPrev={onGoToPrev}
+        showNext
+        showPrev
+      />
     </Form>
   );
 };
+
 export default LocationResult;

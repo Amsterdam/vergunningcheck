@@ -51,7 +51,7 @@ const NewCheckerModal: React.FC<{
       const activeComponents = saveAddress
         ? sections.QUESTIONS
         : sections.LOCATION_INPUT;
-      const finishedComponents = saveAddress && sections.QUESTIONS;
+      const finishedComponents = saveAddress && sections.LOCATION_INPUT;
       // Clear or set session data for the new checker
       sessionContext.setSessionData([
         checkerSlug,
