@@ -166,11 +166,10 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
         }
         const optionList = options?.[UITV_OPTION];
         result.options = optionList?.map((option: IMTROption) => option[UITV_OPTION_TEXT]);
-
-
-        // because of current imtr 'list'-implementation we only accept lists of strings
-        result.type = imtrType === "list" ? "string" : imtrType;
       }
+
+      // because of current imtr 'list'-implementation we only accept lists of strings
+      result.type = imtrType === "list" ? "string" : imtrType;
     }
 
     result.id = rule.attributes.id; // TODO: generate our own hash for id's
