@@ -18,7 +18,7 @@ const withTracking = (Component) => ({ ...props }) => {
     }
   };
 
-  const matomoTrackEvent = ({ action, category = topic.name, name }) => {
+  const matomoTrackEvent = ({ action, category, name }) => {
     if (trackingEnabled()) {
       trackEvent({
         action: action.toLowerCase(),
