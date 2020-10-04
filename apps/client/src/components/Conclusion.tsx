@@ -17,21 +17,35 @@ import {
 import Disclaimer from "./Disclaimer";
 import Markdown from "./Markdown";
 
+// @TODO: import from somewehere else...
+type permitProps = {
+  getDecisionById: Function;
+  getOutputByDecisionId: Function;
+  name: string;
+};
+// @TODO: import from somewehere else...
+type ruleProps = {
+  outputValue: string;
+};
+
 const ConclusionWrapper = styled.div`
   @media screen {
     padding-bottom: ${themeSpacing(5)};
   }
 `;
 
-const Conclusion = ({ checker, matomoTrackEvent }) => {
+const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
+  checker,
+  matomoTrackEvent,
+}) => {
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
-    .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
-    .map((permit) => {
+    .filter((permit: permitProps) => !!permit.getOutputByDecisionId("dummy"))
+    .map((permit: permitProps) => {
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       const contactOutcome = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+        (rule: ruleProps) => rule.outputValue === imtrOutcomes.NEED_CONTACT
       );
       const outcome =
         contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
@@ -53,12 +67,12 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
 
   // Check if the conclusion is 'needContact'
   const contactConclusion = conclusions.find(
-    ({ outcome }) => outcome === imtrOutcomes.NEED_CONTACT
+    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
   // Check if the conclusion is 'needPermit'
   const needPermit = !!conclusions.find(
-    ({ outcome }) => outcome === imtrOutcomes.NEED_PERMIT
+    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
   );
 
   const needContactContent = {
@@ -99,7 +113,7 @@ const Conclusion = ({ checker, matomoTrackEvent }) => {
         }}
       />
 
-      <PrintOnly withBorder avoidPageBreak>
+      <PrintOnly avoidPageBreak withBorder>
         <Disclaimer />
       </PrintOnly>
     </ConclusionWrapper>
