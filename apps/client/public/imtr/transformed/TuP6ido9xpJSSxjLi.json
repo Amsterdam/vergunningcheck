@@ -5,8 +5,8 @@
       "name": "Conclusie Zonwering, rolhek, luik of rolluik bouwen",
       "questions": [
         {
-          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
           "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
           "autofill": "monumentList",
           "options": [
             "Rijksmonument",
@@ -19,8 +19,8 @@
           "uuid": "zonwering, rolhek, rolluik of luik - monument"
         },
         {
-          "description": "Zonwering zit aan de buitenkant van het gebouw. Er zijn verschillende soorten: markiezen, screens en uitvalschermen.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Voorbeelden_Zonweringen.png \"Dit zijn voorbeelden van zonweringen.\")\n\nRolhekken, rolluiken en luiken worden geplaatst om bijvoorbeeld inbraak in winkels en woningen te voorkomen.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Voorbeelden_Luiken.png \"Dit zijn voorbeelden van rolhekken, rolluiken en luiken.\")",
           "text": "Wat gaat u plaatsen?",
+          "description": "Zonwering zit aan de buitenkant van het gebouw. Er zijn verschillende soorten: markiezen, screens en uitvalschermen.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Voorbeelden_Zonweringen.png \"Dit zijn voorbeelden van zonweringen.\")\n\nRolhekken, rolluiken en luiken worden geplaatst om bijvoorbeeld inbraak in winkels en woningen te voorkomen.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Voorbeelden_Luiken.png \"Dit zijn voorbeelden van rolhekken, rolluiken en luiken.\")",
           "options": ["Zonwering", "Rolhek, rolluik of luik"],
           "type": "string",
           "id": "uitv__0f50d481-52e0-4f42-8416-f67e97a779fd",
@@ -112,38 +112,38 @@
           "prio": 100
         },
         {
-          "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
           "text": "Staat het gebouw in een beschermd stads- of dorpsgezicht?",
+          "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
           "autofill": "cityScape",
           "type": "boolean",
           "id": "uitv__5ce6680b-9b16-4b77-af39-402428bb42c1",
           "prio": 110
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een zonwering plaatsen? Doe voor iedere kant een vergunningcheck.",
           "text": "Aan welke kant van het gebouw gaat u de zonwering plaatsen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een zonwering plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__89087f8f-c4c5-4c1a-8951-e1386ebee710",
           "prio": 120
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__74c589ae-48f4-46a0-8d67-ff7371d96c7f",
           "prio": 130
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__e36a40c6-bf92-42cd-805e-7e0b432cbcb7",
           "prio": 140
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__5c42ff66-4e28-4373-9223-a216c36c9d5e",
           "prio": 150
@@ -159,66 +159,66 @@
           "prio": 160
         },
         {
-          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein. Een bijgebouw is bijvoorbeeld een schuur of een fietsenberging.",
           "text": "Gaat u het rolhek, rolluik of luik plaatsen aan een hoofdgebouw of aan een bijgebouw?",
+          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein. Een bijgebouw is bijvoorbeeld een schuur of een fietsenberging.",
           "options": ["Hoofdgebouw", "Bijgebouw"],
           "type": "string",
           "id": "uitv__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
           "prio": 170
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een rolhek, rolluik of luik plaatsen? Doe voor iedere kant een vergunningcheck.",
           "text": "Aan welke kant van het gebouw gaat u het rolhek, rolluik of luik plaatsen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een rolhek, rolluik of luik plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__1643e5e2-b4a7-4237-9603-782f222ca017",
           "prio": 180
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__a826d467-683e-4c5b-ac64-c553f13110df",
           "prio": 190
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae",
           "prio": 200
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__cace8372-68da-466c-b6ec-50c89c38370f",
           "prio": 210
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__b1ebb559-cb14-40d9-b42e-bb7d762a640c",
           "prio": 220
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__9b680856-c4df-4892-8a0b-847b37d541d1",
           "prio": 230
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__ef30e672-d2ab-4503-b333-eeb6636a18f6",
           "prio": 240
         },
         {
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_plaatsing_binnen_wit.png \"Rolhek, rolluik of luik aan de binnenkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_plaatsing_buiten_wit.png \"Rolhek, rolluik of luik aan de buitenkant\")",
           "text": "Komt het rolhek, rolluik of luik aan de binnenkant van de muur of het kozijn?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_plaatsing_binnen_wit.png \"Rolhek, rolluik of luik aan de binnenkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_plaatsing_buiten_wit.png \"Rolhek, rolluik of luik aan de buitenkant\")",
           "options": ["Ja, aan de binnenkant.", "Nee, niet aan de binnenkant."],
           "type": "string",
           "id": "uitv__6b3da69a-d90f-4311-ab7b-1ea8ed513357",

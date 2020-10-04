@@ -34,7 +34,7 @@ import { JSONRule, JSONDecisions, JSONInputs, JSONPermit, JSONQuestion, JSONRule
  */
 export default (json: DMNDocument): JSONPermit => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
-  return {
+  return { // @TODO: fix ordering after Code-review
     name: definition.attributes.name,
     questions: getQuestions(definition[DMN_EXTENSION_ELEMENTS]),
     inputs: getInputs(definition[DMN_INPUT_DATA]),
@@ -72,7 +72,7 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
       const description = conclusionDescription?.[0][CONTENT_EXPLANATION];
 
       const output = outputEntry[DMN_TEXT];
-      rules.push({
+      rules.push({  // @TODO: fix ordering after Code-review
         inputs: rule[DMN_INPUT_ENTRY].reduce(
           (inputEntries: JSONRuleInput[], inputEntry: DMNInputEntry) => {
             const text = inputEntry[DMN_TEXT];
@@ -148,10 +148,10 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
       // }
 
       const text = question[UITV_QUESTION_TEXT];
-      result = {
+      result = { // @TODO: fix ordering after Code-review
+        text,
         description: desc?.[CONTENT_EXPLANATION],
         longDescription: desc?.[CONTENT_LONG_EXPLANATION]?.trim(),
-        text,
       };
 
       result.autofill = getAutofillResolverKey(result.text);
