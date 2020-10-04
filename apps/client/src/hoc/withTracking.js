@@ -22,7 +22,7 @@ const withTracking = (Component) => ({ ...props }) => {
     if (trackingEnabled()) {
       trackEvent({
         action: action.toLowerCase(),
-        category: (category || topic?.name || slug).toLowerCase(),
+        category: (category || topic?.name || slug || "unknown").toLowerCase(),
         name: name.toLowerCase(),
       });
     }
