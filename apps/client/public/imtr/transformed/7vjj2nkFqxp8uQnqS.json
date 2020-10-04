@@ -3,32 +3,36 @@
     {
       "version": 1,
       "decisions": {
-        "_fca7eedd-3a1d-4b36-863a-5bfa0be102d7": {
+        "_7cbc3270-cb19-4e64-b6b5-6dbdb5873163": {
           "requiredInputs": ["#input__d178a46c-5401-471e-91c2-7ac4aada0d1c"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [false],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_fca7eedd-3a1d-4b36-863a-5bfa0be102d7"],
+          "requiredDecisions": ["#_7cbc3270-cb19-4e64-b6b5-6dbdb5873163"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -44,9 +48,8 @@
       "questions": [
         {
           "text": "Mag het uitvoeren van een werk in de gemeente Amsterdam?",
-          "type": "b",
           "id": "uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
-          "prio": null
+          "prio": 10
         }
       ]
     }

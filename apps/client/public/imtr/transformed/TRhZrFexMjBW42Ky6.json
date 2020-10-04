@@ -3,7 +3,7 @@
     {
       "version": 7,
       "decisions": {
-        "_2594d24f-2a8e-4298-a377-914bfc992397": {
+        "_d139a289-d422-440a-b849-72d3d437416d": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2",
@@ -12,25 +12,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", null, "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  true,
+                  "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\""
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Zonneboiler\"", "-", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", null, "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", false, "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\""
+                ],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_3318996f-3e30-4280-aed1-8d6c2c565b88": {
+        "_dcb9346d-ec5c-4268-807b-0ca0881ffb1f": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
@@ -39,25 +51,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", null, "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "\"Zonneboiler\"",
+                  true,
+                  "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Zonnepanelen\"", "-", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", null, "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", false, "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\""
+                ],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_18cd0a22-e464-42e8-9b3d-4a13f995a2f4": {
+        "_183a605b-3350-4866-8957-8d6b014e624d": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2",
@@ -67,29 +91,49 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", null, "\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  true,
+                  "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
+                  "\"Ja, de zonnepanelen veranderen.\""
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "-", "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Zonneboiler\"", "-", "-", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", null, "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", false, "-", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
+                ],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_9c515e82-d2fe-4688-bb2f-9b04b7a8dd2f": {
+        "_a2a00401-cd37-4cc7-8d0a-dc9a96b4d180": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
@@ -99,61 +143,86 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", null, "\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "\"Zonneboiler\"",
+                  true,
+                  "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de zonneboiler verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "-", "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Zonnepanelen\"", "-", "-", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", null, "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", false, "-", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
+                ],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_2594d24f-2a8e-4298-a377-914bfc992397",
-            "#_3318996f-3e30-4280-aed1-8d6c2c565b88",
-            "#_18cd0a22-e464-42e8-9b3d-4a13f995a2f4",
-            "#_9c515e82-d2fe-4688-bb2f-9b04b7a8dd2f"
+            "#_d139a289-d422-440a-b849-72d3d437416d",
+            "#_dcb9346d-ec5c-4268-807b-0ca0881ffb1f",
+            "#_183a605b-3350-4866-8957-8d6b014e624d",
+            "#_a2a00401-cd37-4cc7-8d0a-dc9a96b4d180"
           ],
           "decisionTable": {
             "rules": [
               {
-                "description": "U",
-                "inputs": ["\"", "-", "-", "-"],
-                "output": "\""
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
+                "inputs": ["\"Vergunningplicht\"", "-", "-", "-"],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U",
-                "inputs": ["-", "\"", "-", "-"],
-                "output": "\""
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
+                "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U",
-                "inputs": ["-", "-", "\"", "-"],
-                "output": "\""
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
+                "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U",
-                "inputs": ["-", "-", "-", "\""],
-                "output": "\""
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
+                "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U",
-                "inputs": ["\"", "\"", "\"", "\""],
-                "output": "\""
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument.",
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -194,54 +263,69 @@
         {
           "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
           "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
-          "type": "l",
+          "options": ["Zonnepanelen", "Zonneboiler"],
+          "type": "string",
           "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-          "prio": null,
-          "uuid": "z"
+          "prio": 10,
+          "uuid": "zonnepaneel-warmtecollector"
         },
         {
           "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
           "autofill": "monumentBoolean",
-          "type": "b",
           "id": "uitv__30a75386-d045-473c-b4b8-3aad506986f2",
-          "prio": null,
-          "uuid": "m"
+          "prio": 20,
+          "uuid": "monument-zonnepaneel"
         },
         {
           "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
-          "type": "l",
+          "options": [
+            "Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.",
+            "Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren."
+          ],
+          "type": "string",
           "id": "uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
-          "prio": null,
-          "uuid": "z"
+          "prio": 30,
+          "uuid": "zonnepanelen - onderhoud1"
         },
         {
           "text": "U gaat zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "type": "l",
+          "options": [
+            "Ja, de zonnepanelen veranderen.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
+          ],
+          "type": "string",
           "id": "uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
-          "prio": null,
-          "uuid": "z"
+          "prio": 40,
+          "uuid": "zonnepanelen - onderhoud2"
         },
         {
           "text": "Gaat u de zonneboiler plaatsen op of bij een gemeentelijk of rijksmonument?",
           "autofill": "monumentBoolean",
-          "type": "b",
           "id": "uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
-          "prio": null,
-          "uuid": "m"
+          "prio": 50,
+          "uuid": "monument-zonneboiler"
         },
         {
           "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
-          "type": "l",
+          "options": [
+            "Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.",
+            "Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was."
+          ],
+          "type": "string",
           "id": "uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-          "prio": null,
-          "uuid": "z"
+          "prio": 60,
+          "uuid": "zonneboiler - onderhoud1"
         },
         {
           "text": "U gaat een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "type": "l",
+          "options": [
+            "Ja, de zonneboiler verandert.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
+          ],
+          "type": "string",
           "id": "uitv_0954e203-e649-4d46-9732-d5defdfc57be",
-          "prio": null,
-          "uuid": "z"
+          "prio": 70,
+          "uuid": "zonneboiler - onderhoud2"
         }
       ]
     }

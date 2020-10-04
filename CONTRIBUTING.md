@@ -11,7 +11,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org).
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
 
-- Follow the install steps in [./scripts/imtr/README.md](./scripts/imtr/README.md)
+- Follow the install steps in [./apps/imtr/README.md](./apps/imtr/README.md)
 - Make sure you have the api-key in your environment variables. `export STTR_BUILDER_API_KEY=somesecret`
 - Download the xml files and transform them to our json-format from `npm run imtr`
 - Thats it. Fire up the app with `npm start` if you hadn't already. You can now test your new or updated permit.
@@ -20,9 +20,9 @@ If you want to use the latest permit-configuration (XML files from the sttr-buil
 
 If you want to combine 2 or more permits in 1 checker, we need to configure a topic in our imtr-build config.
 
-- Follow the install steps in [./scripts/imtr/README.md](./scripts/sttimtrr_build/README.md)
+- Follow the install steps in [./apps/imtr/README.md](./scripts/sttimtrr_build/README.md)
 - First make sure you update your permits so we have all the files we need. See the section above.
-- List the permit-id's you want to combine in [./scripts/imtr/src/config.ts](./scripts/imtr/src/config.ts) under `topics`.
+- List the permit-id's you want to combine in [./apps/imtr/src/config.ts](./apps/imtr/src/config.ts) under `topics`.
   - To find the permit-ids you can use in the `./apps/client/public/imtr/list.source.json`.
   - You have to give your topic a slug as the key. This slug is used in the url by the client-application.
 - Then run `npm run imtr`.

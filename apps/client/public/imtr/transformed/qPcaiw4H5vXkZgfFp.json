@@ -3,37 +3,41 @@
     {
       "version": 1,
       "decisions": {
-        "_cca1a62b-b513-4d96-8d0a-083c9e2333c0": {
+        "_fd83f599-8bc0-4f9f-83f7-a6ed3e9d23af": {
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"deels\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"ja\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"nee\""],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_cca1a62b-b513-4d96-8d0a-083c9e2333c0"],
+          "requiredDecisions": ["#_fd83f599-8bc0-4f9f-83f7-a6ed3e9d23af"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U",
-                "inputs": ["\""],
-                "output": "\""
+                "description": "U hoeft voor de activiteit werken bij een monument geen toestemming aan te vragen.",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -49,9 +53,10 @@
       "questions": [
         {
           "identification": "nl.imow-gm0363.gebied.4",
+          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
           "type": "geo",
           "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
-          "prio": null
+          "prio": 10
         }
       ]
     }

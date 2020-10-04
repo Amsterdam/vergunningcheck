@@ -3,36 +3,43 @@
     {
       "version": 1,
       "decisions": {
-        "_1cbeaa2c-8eb8-4794-b37d-2250b512de5a": {
+        "_78f77ce3-6a98-421a-9608-145c082d6792": {
           "requiredInputs": ["#input__0635d451-dff1-4994-aa09-c53876406e78"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [
+                  "\"dit is een antwoord met een, komma erin, of 2.\""
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"dit is zonder komma\""],
+                "output": "\"Meldingsplicht\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_1cbeaa2c-8eb8-4794-b37d-2250b512de5a"],
+          "requiredDecisions": ["#_78f77ce3-6a98-421a-9608-145c082d6792"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Meldingsplicht\""],
+                "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -48,9 +55,13 @@
       "questions": [
         {
           "text": "Testvraag",
-          "type": "l",
+          "options": [
+            "dit is een antwoord met een, komma erin, of 2.",
+            "dit is zonder komma"
+          ],
+          "type": "string",
           "id": "uitv__0635d451-dff1-4994-aa09-c53876406e78",
-          "prio": null
+          "prio": 10
         }
       ]
     }

@@ -3,34 +3,39 @@
     {
       "version": 1,
       "decisions": {
-        "_acf9c7a8-c6f0-439d-b331-49d59cbb849b": {
+        "_5db630d3-5b67-430c-82cf-1cda603186df": {
           "requiredInputs": ["#input__44d29c32-b776-4df5-ac23-62d0be14e733"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"kappen\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"snoeien\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"verplanten\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\""],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"andere handeling\""],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_60797b78-70ee-4c73-a166-9809708ffe08": {
+        "_6ba76983-b34f-4ed5-9bef-957c44c44926": {
           "requiredInputs": [
             "#input__44d29c32-b776-4df5-ac23-62d0be14e733",
             "#input__2d8f3a75-f672-4843-a280-373bfce6f979"
@@ -38,49 +43,59 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "\"dode boom\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "\"levende boom\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "\"geplant ivm herplantplicht?\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "\"hakhout\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "\"jonge boom/boomvormer\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "\"ander houtachtig gewas\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"kappen\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"snoeien\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"verplanten\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"andere handeling\"", "-"],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_1ee36aa8-6915-450e-a1b4-633124190b93": {
+        "_86660447-7971-4522-92a5-a22b16df73d4": {
           "requiredInputs": [
             "#input__44d29c32-b776-4df5-ac23-62d0be14e733",
             "#input__a5a27d1c-eefa-46aa-8994-abfce77fd5dd"
@@ -88,55 +103,65 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"andere handeling\"", true],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"rooien\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"kappen\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"snoeien\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"verplanten\"", "-"],
+                "output": "\"no hit\""
               },
               {
-                "inputs": ["-", null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", false],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_acf9c7a8-c6f0-439d-b331-49d59cbb849b",
-            "#_60797b78-70ee-4c73-a166-9809708ffe08",
-            "#_1ee36aa8-6915-450e-a1b4-633124190b93"
+            "#_5db630d3-5b67-430c-82cf-1cda603186df",
+            "#_6ba76983-b34f-4ed5-9bef-957c44c44926",
+            "#_86660447-7971-4522-92a5-a22b16df73d4"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Vergunningplicht\"", "-", "-"],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", "\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", "-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"", "\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -161,21 +186,35 @@
         {
           "description": "snoeien is knotten en kandelaberen",
           "text": "Wat wilt u gaan doen?",
-          "type": "l",
+          "options": [
+            "rooien",
+            "kappen",
+            "snoeien",
+            "verplanten",
+            "andere handeling"
+          ],
+          "type": "string",
           "id": "uitv__44d29c32-b776-4df5-ac23-62d0be14e733",
-          "prio": null
+          "prio": 10
         },
         {
           "text": "Gaat de boom dood?",
-          "type": "b",
           "id": "uitv__a5a27d1c-eefa-46aa-8994-abfce77fd5dd",
-          "prio": null
+          "prio": 20
         },
         {
           "text": "Om wat voor boom gaat het?",
-          "type": "l",
+          "options": [
+            "dode boom",
+            "levende boom",
+            "hakhout",
+            "jonge boom/boomvormer",
+            "ander houtachtig gewas",
+            "geplant ivm herplantplicht?"
+          ],
+          "type": "string",
           "id": "uitv__2d8f3a75-f672-4843-a280-373bfce6f979",
-          "prio": null
+          "prio": 30
         }
       ]
     }

@@ -1,9 +1,19 @@
 FROM hayd/alpine-deno
 WORKDIR /app/
 
-# Get code
-COPY scripts/imtr ./
+# Install node / npm
+RUN apk add --update npm
 
-RUN deno cache --reload --lock=lock.json src/deps.ts
-RUN deno run --unstable --allow-read --allow-write --allow-env --allow-net src/main.ts fetch --dir=build
-RUN deno run --unstable --allow-write --allow-read src/main.ts transform --dir=build
+# Install
+COPY . ./
+
+# Setup non-root user
+RUN addgroup -S devs
+RUN adduser -S -G devs dev
+RUN chown -R dev:devs /app/ /deno-dir/
+RUN chmod +s /app/ /deno-dir/
+USER dev:devs
+
+# Install
+RUN npm i
+RUN npm run imtr

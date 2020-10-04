@@ -3,74 +3,84 @@
     {
       "version": 1,
       "decisions": {
-        "_8d09f981-5aa3-4f1e-b782-d4cbc363019b": {
+        "_c41f8a90-4d8c-40c3-9048-1966c06e4819": {
           "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [true],
+                "output": "\"Informatieplicht\""
               },
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [false],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_6be8ea47-9e5e-46b1-b615-873e103f0b7e": {
+        "_3902c702-3e7c-47ad-957c-b89eb7c7a863": {
           "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
               },
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [true],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_0c14174d-c8bf-47ed-b6cb-de036fcbf62b": {
+        "_f342fda2-ecd4-4759-8813-c8b4faa69ba6": {
           "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
               },
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [true],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
           "requiredDecisions": [
-            "#_8d09f981-5aa3-4f1e-b782-d4cbc363019b",
-            "#_6be8ea47-9e5e-46b1-b615-873e103f0b7e",
-            "#_0c14174d-c8bf-47ed-b6cb-de036fcbf62b"
+            "#_c41f8a90-4d8c-40c3-9048-1966c06e4819",
+            "#_3902c702-3e7c-47ad-957c-b89eb7c7a863",
+            "#_f342fda2-ecd4-4759-8813-c8b4faa69ba6"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"", "-", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Informatieplicht\"", "-", "-"],
+                "output": "\"Informatieplicht\""
               },
               {
-                "inputs": ["-", "\"", "-"],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", "\"Informatieplicht\"", "-"],
+                "output": "\"Informatieplicht\""
               },
               {
-                "inputs": ["-", "-", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["-", "-", "\"Informatieplicht\""],
+                "output": "\"Informatieplicht\""
               },
               {
-                "inputs": ["\"", "\"", "\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -95,23 +105,20 @@
         {
           "description": "De Omgevingswet betreft alleen de fysieke leefomgeving. Bijv. bouwen, planologisch gebruik, milieu, natuur.",
           "text": "Betreft de Omgevingswet ook persoonsgebonden gedragingen?",
-          "type": "b",
           "id": "uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
-          "prio": null
+          "prio": 10
         },
         {
           "description": "Op basis van het Besluit bouwwerken leefomgeving geldt alleen een schriftelijke meldingsplicht zoals we die nu ook kennen uit het Bouwbesluit 2012.",
           "text": "Vervalt de omgevingsvergunning-plicht voor brandveilig gebruik?",
-          "type": "b",
           "id": "uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
-          "prio": null
+          "prio": 20
         },
         {
           "description": "Onder de Omgevingswet kunnen alle activiteiten los worden aangevraagd. Maar een werkzaamheid mag pas worden uitgevoerd als alle benodigde vergunningen zijn verkregen.",
           "text": "Vervalt de onlosmakelijkheid voor diverse activiteiten, zoals we die nu kennen?",
-          "type": "b",
           "id": "uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
-          "prio": null
+          "prio": 30
         }
       ]
     }

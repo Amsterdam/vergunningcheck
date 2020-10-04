@@ -9,12 +9,12 @@ We use [Deno](https://deno.land) to download and convert all configuration. Test
 
 - Followed the install steps in our project level [README.md](../../README.md) if you haven't already
 - [Install Deno itself](https://deno.land/#installation)
-- Download the deps by running `deno cache --reload --lock=lock.json src/deps.ts`
+- Download the deps by running `deno cache --unstable --reload --lock=lock.json src/deps.ts`
 - Optional: create a development config file, see [./src/config.local.dist.ts](./src/config.local.dist.ts)
 
 ## Usage
 
-You can now use this script. See `deno run --unstable src/main.ts --help` for command line usage and
+You can now use this script. See `deno run --unstable -c tsconfig.json src/main.ts --help` for command line usage and
 [CONTRIBUTING.md](../../CONTRIBUTING.md) for examples.
 
 ## Deno flags

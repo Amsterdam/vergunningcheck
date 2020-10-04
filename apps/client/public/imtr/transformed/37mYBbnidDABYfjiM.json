@@ -3,42 +3,46 @@
     {
       "version": 1,
       "decisions": {
-        "_d654e7c7-a575-4f85-8eae-3ca0207010b9": {
+        "_86858a86-0b4f-4150-80ac-cb98dc30657b": {
           "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"contact\""],
+                "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"permit required\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"permit free\""],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_d654e7c7-a575-4f85-8eae-3ca0207010b9"],
+          "requiredDecisions": ["#_86858a86-0b4f-4150-80ac-cb98dc30657b"],
           "decisionTable": {
             "rules": [
               {
-                "description": "P",
-                "inputs": ["\""],
-                "output": "\""
+                "description": "Please contact Gemeente.",
+                "inputs": ["\"NeemContactOpMet\""],
+                "output": "\"NeemContactOpMet\""
               },
               {
-                "description": "Y",
-                "inputs": ["\""],
-                "output": "\""
+                "description": "You need a permit!",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -54,10 +58,12 @@
       "questions": [
         {
           "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
+          "longDescription": "You can only pick [one](https://en.wikipedia.org/wiki/1), sorry!\n\n![this is still the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is still the caption\")\n\nEven more text.",
           "text": "Which outcome would you like to test?",
-          "type": "l",
+          "options": ["contact", "permit free", "permit required"],
+          "type": "string",
           "id": "uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
-          "prio": null
+          "prio": 10
         }
       ]
     }

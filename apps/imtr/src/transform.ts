@@ -103,20 +103,19 @@ export default async (argv: Props) => {
             const parsedPath = join(publicDir, outputDir, `${permitId}.parsed.json`);
 
             const p = await Deno.run({
-              cmd: ["scripts/imtr/xml2json", xmlPath],
+              cmd: ["apps/imtr/xml2json", xmlPath],
               stdout: "piped",
               stderr: "piped",
             });
 
             // await p.status();
             const jsonText = new TextDecoder().decode(await p.output());
-            await Deno.writeTextFile(parsedPath, jsonText);
-
             // apply all reducers to imtr
-            const content = preprocessors.reduce((acc, curr) => curr(acc), jsonText);
+            const json = JSON.parse(preprocessors.reduce((acc, curr) => curr(acc), jsonText));
+            await writeJson(parsedPath, json);
 
             try {
-              const imtr = await imtrbuild(JSON.parse(content)) as any;
+              const imtr = await imtrbuild(json) as any;
               return {
                 version,
                 ...imtr,

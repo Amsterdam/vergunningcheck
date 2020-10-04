@@ -3,32 +3,36 @@
     {
       "version": 1,
       "decisions": {
-        "_990f0064-6231-44e7-b8a5-4e66b30e4798": {
+        "_78663aca-9cdb-48b1-87db-85f46c6988c0": {
           "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [null],
-                "output": "\""
+                "description": "description not found",
+                "inputs": [false],
+                "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_990f0064-6231-44e7-b8a5-4e66b30e4798"],
+          "requiredDecisions": ["#_78663aca-9cdb-48b1-87db-85f46c6988c0"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\""],
-                "output": "\""
+                "description": "description not found",
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
               }
             ]
           }
@@ -44,9 +48,8 @@
       "questions": [
         {
           "text": "testvraag ivm aansluit digikoppeling",
-          "type": "b",
           "id": "uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
-          "prio": null
+          "prio": 10
         }
       ]
     }
