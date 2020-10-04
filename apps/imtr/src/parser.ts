@@ -35,10 +35,10 @@ import { JSONRule, JSONDecisions, JSONInputs, JSONPermit, JSONQuestion, JSONRule
 export default (json: DMNDocument): JSONPermit => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
   return {
-    decisions: getDecisions(definition[DMN_DECISION]) as JSONDecisions,
-    inputs: getInputs(definition[DMN_INPUT_DATA]),
     name: definition.attributes.name,
     questions: getQuestions(definition[DMN_EXTENSION_ELEMENTS]),
+    inputs: getInputs(definition[DMN_INPUT_DATA]),
+    decisions: getDecisions(definition[DMN_DECISION]) as JSONDecisions,
   };
 }
 
@@ -73,7 +73,6 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
 
       const output = outputEntry[DMN_TEXT];
       rules.push({
-        description,
         inputs: rule[DMN_INPUT_ENTRY].reduce(
           (inputEntries: JSONRuleInput[], inputEntry: DMNInputEntry) => {
             const text = inputEntry[DMN_TEXT];
@@ -85,6 +84,7 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
           []
         ),
         output: output,
+        description,
       });
       return rules;
     }, []);

@@ -2,6 +2,108 @@
   "permits": [
     {
       "version": 7,
+      "name": "Conclusie Zonnepaneel en zonneboiler monument",
+      "questions": [
+        {
+          "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
+          "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
+          "options": ["Zonnepanelen", "Zonneboiler"],
+          "type": "string",
+          "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "prio": 10,
+          "uuid": "zonnepaneel-warmtecollector"
+        },
+        {
+          "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "prio": 20,
+          "uuid": "monument-zonnepaneel"
+        },
+        {
+          "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
+          "options": [
+            "Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.",
+            "Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren."
+          ],
+          "type": "string",
+          "id": "uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
+          "prio": 30,
+          "uuid": "zonnepanelen - onderhoud1"
+        },
+        {
+          "text": "U gaat zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
+          "options": [
+            "Ja, de zonnepanelen veranderen.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
+          ],
+          "type": "string",
+          "id": "uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
+          "prio": 40,
+          "uuid": "zonnepanelen - onderhoud2"
+        },
+        {
+          "text": "Gaat u de zonneboiler plaatsen op of bij een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "prio": 50,
+          "uuid": "monument-zonneboiler"
+        },
+        {
+          "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
+          "options": [
+            "Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.",
+            "Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was."
+          ],
+          "type": "string",
+          "id": "uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
+          "prio": 60,
+          "uuid": "zonneboiler - onderhoud1"
+        },
+        {
+          "text": "U gaat een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
+          "options": [
+            "Ja, de zonneboiler verandert.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
+          ],
+          "type": "string",
+          "id": "uitv_0954e203-e649-4d46-9732-d5defdfc57be",
+          "prio": 70,
+          "uuid": "zonneboiler - onderhoud2"
+        }
+      ],
+      "inputs": {
+        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
+          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "type": "string"
+        },
+        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
+          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "type": "boolean"
+        },
+        "input_2bea0591-a028-413a-8bcb-f9f1b01270c2": {
+          "href": "#uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
+          "type": "string"
+        },
+        "input_45c1eabc-bddb-418d-9145-e26d97e914dc": {
+          "href": "#uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
+          "type": "string"
+        },
+        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
+          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "type": "boolean"
+        },
+        "input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2": {
+          "href": "#uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
+          "type": "string"
+        },
+        "input_0954e203-e649-4d46-9732-d5defdfc57be": {
+          "href": "#uitv_0954e203-e649-4d46-9732-d5defdfc57be",
+          "type": "string"
+        }
+      },
       "decisions": {
         "_d139a289-d422-440a-b849-72d3d437416d": {
           "requiredInputs": [
@@ -177,141 +279,39 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["\"Vergunningplicht\"", "-", "-", "-"],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop.",
                 "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "description": "U hebt geen vergunning nodig voor het onderdeel monument.",
                 "inputs": [
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\""
                 ],
-                "output": "\"Toestemmingsvrij\""
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }
         }
-      },
-      "inputs": {
-        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
-          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-          "type": "string"
-        },
-        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
-          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
-          "type": "boolean"
-        },
-        "input_2bea0591-a028-413a-8bcb-f9f1b01270c2": {
-          "href": "#uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
-          "type": "string"
-        },
-        "input_45c1eabc-bddb-418d-9145-e26d97e914dc": {
-          "href": "#uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
-          "type": "string"
-        },
-        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
-          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
-          "type": "boolean"
-        },
-        "input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2": {
-          "href": "#uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-          "type": "string"
-        },
-        "input_0954e203-e649-4d46-9732-d5defdfc57be": {
-          "href": "#uitv_0954e203-e649-4d46-9732-d5defdfc57be",
-          "type": "string"
-        }
-      },
-      "name": "Conclusie Zonnepaneel en zonneboiler monument",
-      "questions": [
-        {
-          "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
-          "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
-          "options": ["Zonnepanelen", "Zonneboiler"],
-          "type": "string",
-          "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-          "prio": 10,
-          "uuid": "zonnepaneel-warmtecollector"
-        },
-        {
-          "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__30a75386-d045-473c-b4b8-3aad506986f2",
-          "prio": 20,
-          "uuid": "monument-zonnepaneel"
-        },
-        {
-          "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.",
-            "Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren."
-          ],
-          "type": "string",
-          "id": "uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
-          "prio": 30,
-          "uuid": "zonnepanelen - onderhoud1"
-        },
-        {
-          "text": "U gaat zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "options": [
-            "Ja, de zonnepanelen veranderen.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
-          "type": "string",
-          "id": "uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
-          "prio": 40,
-          "uuid": "zonnepanelen - onderhoud2"
-        },
-        {
-          "text": "Gaat u de zonneboiler plaatsen op of bij een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
-          "prio": 50,
-          "uuid": "monument-zonneboiler"
-        },
-        {
-          "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
-          "options": [
-            "Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
-          "id": "uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-          "prio": 60,
-          "uuid": "zonneboiler - onderhoud1"
-        },
-        {
-          "text": "U gaat een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
-          "options": [
-            "Ja, de zonneboiler verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
-          "type": "string",
-          "id": "uitv_0954e203-e649-4d46-9732-d5defdfc57be",
-          "prio": 70,
-          "uuid": "zonneboiler - onderhoud2"
-        }
-      ]
+      }
     }
   ],
   "slug": "TRhZrFexMjBW42Ky6"

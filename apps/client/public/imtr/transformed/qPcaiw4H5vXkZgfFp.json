@@ -2,6 +2,22 @@
   "permits": [
     {
       "version": 1,
+      "name": "Conclusie Aanbouw monument",
+      "questions": [
+        {
+          "identification": "nl.imow-gm0363.gebied.4",
+          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
+          "type": "geo",
+          "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
+          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "type": "string"
+        }
+      },
       "decisions": {
         "_fd83f599-8bc0-4f9f-83f7-a6ed3e9d23af": {
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
@@ -31,30 +47,14 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "U hoeft voor de activiteit werken bij een monument geen toestemming aan te vragen.",
                 "inputs": ["\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hoeft voor de activiteit werken bij een monument geen toestemming aan te vragen."
               }
             ]
           }
         }
-      },
-      "inputs": {
-        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
-          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
-          "type": "string"
-        }
-      },
-      "name": "Conclusie Aanbouw monument",
-      "questions": [
-        {
-          "identification": "nl.imow-gm0363.gebied.4",
-          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
-          "type": "geo",
-          "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
-          "prio": 10
-        }
-      ]
+      }
     }
   ],
   "slug": "qPcaiw4H5vXkZgfFp"

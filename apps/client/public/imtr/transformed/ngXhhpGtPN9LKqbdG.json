@@ -2,6 +2,75 @@
   "permits": [
     {
       "version": 27,
+      "name": "Conclusie Ketentest - Boom kappen of snoeien",
+      "questions": [
+        {
+          "text": "Gaat het om een boom of een struik?",
+          "collection": true,
+          "options": ["boom", "struik", "weet niet"],
+          "type": "string",
+          "id": "uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "prio": 10
+        },
+        {
+          "description": "Ook voor het kappen van een dode boom kan een vergunning nodig zijn.",
+          "text": "Wat is de conditie van de boom?",
+          "collection": true,
+          "options": ["ziek", "gezond of dood"],
+          "type": "string",
+          "id": "uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "prio": 20
+        },
+        {
+          "text": "Wat wilt u gaan doen?",
+          "collection": true,
+          "options": [
+            "kappen (de boom wordt verwijderd, de stronk blijft staan)",
+            "rooien (de boom en de stronk worden verwijderd)",
+            "snoeien of iets anders"
+          ],
+          "type": "string",
+          "id": "uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "prio": 30
+        },
+        {
+          "description": "Als de boom geplant is ter vervanging van een andere boom die gekapt is, dan is de boom geplant in verband met een herplantplicht.",
+          "text": "Is de boom geplant in verband met een herplantplicht?",
+          "type": "boolean",
+          "id": "uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "prio": 40
+        },
+        {
+          "text": "Wat is de omtrek van de boom, gemeten op 1.30 m hoogte?",
+          "collection": true,
+          "options": ["31 cm of meer", "minder dan 31 cm"],
+          "type": "string",
+          "id": "uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "prio": 50
+        }
+      ],
+      "inputs": {
+        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
+          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "type": "string"
+        },
+        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
+          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "type": "string"
+        },
+        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
+          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "type": "string"
+        },
+        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
+          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "type": "boolean"
+        },
+        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
+          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "type": "string"
+        }
+      },
       "decisions": {
         "_774584f9-ba90-4428-aacb-7993f10dba3b": {
           "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
@@ -245,76 +314,7 @@
             ]
           }
         }
-      },
-      "inputs": {
-        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
-          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
-          "type": "string"
-        },
-        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
-          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
-          "type": "string"
-        },
-        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
-          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
-          "type": "string"
-        },
-        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
-          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
-          "type": "boolean"
-        },
-        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
-          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
-          "type": "string"
-        }
-      },
-      "name": "Conclusie Ketentest - Boom kappen of snoeien",
-      "questions": [
-        {
-          "text": "Gaat het om een boom of een struik?",
-          "collection": true,
-          "options": ["boom", "struik", "weet niet"],
-          "type": "string",
-          "id": "uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
-          "prio": 10
-        },
-        {
-          "description": "Ook voor het kappen van een dode boom kan een vergunning nodig zijn.",
-          "text": "Wat is de conditie van de boom?",
-          "collection": true,
-          "options": ["ziek", "gezond of dood"],
-          "type": "string",
-          "id": "uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
-          "prio": 20
-        },
-        {
-          "text": "Wat wilt u gaan doen?",
-          "collection": true,
-          "options": [
-            "kappen (de boom wordt verwijderd, de stronk blijft staan)",
-            "rooien (de boom en de stronk worden verwijderd)",
-            "snoeien of iets anders"
-          ],
-          "type": "string",
-          "id": "uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
-          "prio": 30
-        },
-        {
-          "description": "Als de boom geplant is ter vervanging van een andere boom die gekapt is, dan is de boom geplant in verband met een herplantplicht.",
-          "text": "Is de boom geplant in verband met een herplantplicht?",
-          "type": "boolean",
-          "id": "uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
-          "prio": 40
-        },
-        {
-          "text": "Wat is de omtrek van de boom, gemeten op 1.30 m hoogte?",
-          "collection": true,
-          "options": ["31 cm of meer", "minder dan 31 cm"],
-          "type": "string",
-          "id": "uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
-          "prio": 50
-        }
-      ]
+      }
     }
   ],
   "slug": "ngXhhpGtPN9LKqbdG"

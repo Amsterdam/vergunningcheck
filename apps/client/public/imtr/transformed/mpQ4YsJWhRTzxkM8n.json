@@ -2,6 +2,25 @@
   "permits": [
     {
       "version": 1,
+      "name": "Conclusie Bouwen van bijbehorend bouwwerk",
+      "questions": [
+        {
+          "text": "Testvraag",
+          "options": [
+            "dit is een antwoord met een, komma erin, of 2.",
+            "dit is zonder komma"
+          ],
+          "type": "string",
+          "id": "uitv__0635d451-dff1-4994-aa09-c53876406e78",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__0635d451-dff1-4994-aa09-c53876406e78": {
+          "href": "#uitv__0635d451-dff1-4994-aa09-c53876406e78",
+          "type": "string"
+        }
+      },
       "decisions": {
         "_78f77ce3-6a98-421a-9608-145c082d6792": {
           "requiredInputs": ["#input__0635d451-dff1-4994-aa09-c53876406e78"],
@@ -39,26 +58,7 @@
             ]
           }
         }
-      },
-      "inputs": {
-        "input__0635d451-dff1-4994-aa09-c53876406e78": {
-          "href": "#uitv__0635d451-dff1-4994-aa09-c53876406e78",
-          "type": "string"
-        }
-      },
-      "name": "Conclusie Bouwen van bijbehorend bouwwerk",
-      "questions": [
-        {
-          "text": "Testvraag",
-          "options": [
-            "dit is een antwoord met een, komma erin, of 2.",
-            "dit is zonder komma"
-          ],
-          "type": "string",
-          "id": "uitv__0635d451-dff1-4994-aa09-c53876406e78",
-          "prio": 10
-        }
-      ]
+      }
     }
   ],
   "slug": "mpQ4YsJWhRTzxkM8n"

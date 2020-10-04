@@ -2,6 +2,24 @@
   "permits": [
     {
       "version": 1,
+      "name": "Conclusie Test outcomes/conclusions",
+      "questions": [
+        {
+          "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
+          "longDescription": "You can only pick [one](https://en.wikipedia.org/wiki/1), sorry!\n\n![this is still the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is still the caption\")\n\nEven more text.",
+          "text": "Which outcome would you like to test?",
+          "options": ["contact", "permit free", "permit required"],
+          "type": "string",
+          "id": "uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__b0e2ed23-4919-4037-ad55-94e518290be5": {
+          "href": "#uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
+          "type": "string"
+        }
+      },
       "decisions": {
         "_86858a86-0b4f-4150-80ac-cb98dc30657b": {
           "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
@@ -27,14 +45,14 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "Please contact Gemeente.",
                 "inputs": ["\"NeemContactOpMet\""],
-                "output": "\"NeemContactOpMet\""
+                "output": "\"NeemContactOpMet\"",
+                "description": "Please contact Gemeente."
               },
               {
-                "description": "You need a permit!",
                 "inputs": ["\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "You need a permit!"
               },
               {
                 "inputs": ["\"no hit\""],
@@ -43,25 +61,7 @@
             ]
           }
         }
-      },
-      "inputs": {
-        "input__b0e2ed23-4919-4037-ad55-94e518290be5": {
-          "href": "#uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
-          "type": "string"
-        }
-      },
-      "name": "Conclusie Test outcomes/conclusions",
-      "questions": [
-        {
-          "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
-          "longDescription": "You can only pick [one](https://en.wikipedia.org/wiki/1), sorry!\n\n![this is still the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is still the caption\")\n\nEven more text.",
-          "text": "Which outcome would you like to test?",
-          "options": ["contact", "permit free", "permit required"],
-          "type": "string",
-          "id": "uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
-          "prio": 10
-        }
-      ]
+      }
     }
   ],
   "slug": "37mYBbnidDABYfjiM"
