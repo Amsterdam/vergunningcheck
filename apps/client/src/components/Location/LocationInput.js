@@ -103,13 +103,15 @@ const LocationInput = ({
       name: `${eventNames.BACK} ${sections.INTRO}`,
     });
 
-    // @TODO: We need to give a warning or we need to store the checker data as well
-    sessionContext.setSessionData([
-      slug,
-      {
-        address,
-      },
-    ]);
+    // Only store the address if the address has been found, otherwise an empty address may overwrite an existing address
+    if (address) {
+      sessionContext.setSessionData([
+        slug,
+        {
+          address,
+        },
+      ]);
+    }
     history.push(geturl(routes.intro, topic));
   };
 
