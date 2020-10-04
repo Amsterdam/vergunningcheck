@@ -51,7 +51,7 @@ export type JSONDecisionTable = {
 }
 
 export type JSONRule = {
-  description: string;
+  description?: string;
   inputs: JSONRuleInput[]
   output: string;
 }

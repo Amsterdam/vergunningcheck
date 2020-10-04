@@ -73,7 +73,7 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
 
       const output = outputEntry[DMN_TEXT];
       rules.push({
-        description: description || 'description not found',
+        description,
         inputs: rule[DMN_INPUT_ENTRY].reduce(
           (inputEntries: JSONRuleInput[], inputEntry: DMNInputEntry) => {
             const text = inputEntry[DMN_TEXT];

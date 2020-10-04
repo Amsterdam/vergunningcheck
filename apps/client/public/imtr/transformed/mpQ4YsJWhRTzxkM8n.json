@@ -8,14 +8,12 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [
                   "\"dit is een antwoord met een, komma erin, of 2.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"dit is zonder komma\""],
                 "output": "\"Meldingsplicht\""
               }
@@ -27,17 +25,14 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }

@@ -8,12 +8,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"no hit\""
               }
@@ -25,12 +23,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"no hit\""
               }
@@ -42,17 +38,14 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\""],
                 "output": "\"no hit\""
               }
@@ -64,12 +57,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"no hit\""
               }
@@ -81,12 +72,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"no hit\""
               }
@@ -98,12 +87,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"no hit\""
               }
@@ -115,12 +102,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"no hit\""
               }
@@ -132,12 +117,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"no hit\""
               }
@@ -152,22 +135,18 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", false],
                 "output": "\"no hit\""
               }
@@ -182,22 +161,18 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", false],
                 "output": "\"no hit\""
               }
@@ -213,27 +188,22 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", false],
                 "output": "\"no hit\""
               }
@@ -249,27 +219,22 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", true, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", false],
                 "output": "\"no hit\""
               }
@@ -286,32 +251,26 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", "-", false],
                 "output": "\"no hit\""
               }
@@ -328,32 +287,26 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", false, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", "-", false],
                 "output": "\"no hit\""
               }
@@ -371,37 +324,30 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"achterkant\"", true, false, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"voorkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"zijkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }

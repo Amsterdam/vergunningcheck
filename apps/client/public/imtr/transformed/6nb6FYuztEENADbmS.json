@@ -8,12 +8,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"Informatieplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"no hit\""
               }
@@ -25,12 +23,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"Informatieplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"no hit\""
               }
@@ -42,12 +38,10 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": [false],
                 "output": "\"Informatieplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": [true],
                 "output": "\"no hit\""
               }
@@ -63,22 +57,18 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"Informatieplicht\"", "-", "-"],
                 "output": "\"Informatieplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "\"Informatieplicht\"", "-"],
                 "output": "\"Informatieplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", "\"Informatieplicht\""],
                 "output": "\"Informatieplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }

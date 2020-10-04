@@ -8,27 +8,22 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"kappen\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"snoeien\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"verplanten\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\""],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"andere handeling\""],
                 "output": "\"no hit\""
               }
@@ -43,52 +38,42 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "\"dode boom\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "\"levende boom\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "\"geplant ivm herplantplicht?\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "\"hakhout\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "\"jonge boom/boomvormer\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "\"ander houtachtig gewas\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"kappen\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"snoeien\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"verplanten\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"andere handeling\"", "-"],
                 "output": "\"no hit\""
               }
@@ -103,32 +88,26 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"andere handeling\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"rooien\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"kappen\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"snoeien\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"verplanten\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", false],
                 "output": "\"no hit\""
               }
@@ -144,22 +123,18 @@
           "decisionTable": {
             "rules": [
               {
-                "description": "description not found",
                 "inputs": ["\"Vergunningplicht\"", "-", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "\"Vergunningplicht\"", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["-", "-", "\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "description": "description not found",
                 "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }
