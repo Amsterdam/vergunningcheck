@@ -1,6 +1,7 @@
 import React from "react";
 
 import addressMock from "../__mocks__/addressMock";
+import Context from "../__mocks__/context";
 import matchMedia from "../__mocks__/matchMedia";
 import { findTopicBySlug } from "../utils";
 import { EDIT_BUTTON } from "../utils/test-ids";
@@ -17,20 +18,22 @@ jest.mock("react-router-dom", () => ({
 afterEach(cleanup);
 
 describe("RegisterLookupSummary", () => {
-  // @TODO Fix the het gebouw test
-  xit("renders correctly in STTR Flow", () => {
+  const WrapperWithContext = (props) => {
     const setActiveState = jest.fn();
-
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
 
-    const { queryByText } = render(
-      <RegisterLookupSummary
-        address={addressMock}
-        setActiveState={setActiveState}
-        topic={topic}
-      />
+    return (
+      <Context addressMock={addressMock} topicMock={topic}>
+        <RegisterLookupSummary {...props} setActiveState={setActiveState} />
+      </Context>
     );
+  };
+
+  it("renders correctly in STTR Flow", () => {
+    const topicMock = "dakraam-plaatsen";
+    const topic = findTopicBySlug(topicMock);
+    const { queryByText } = render(<WrapperWithContext topic={topic} />);
 
     expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
     expect(
@@ -47,14 +50,35 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  xit("renders correctly in OLO Flow", () => {
-    const setActiveState = jest.fn();
+  it("renders correctly in OLO Flow", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    const { queryByText } = render(
+      <WrapperWithContext addressFromLocation={addressMock} topic={topic} />
+    );
 
+    // Expect to find zoningplan info
+    expect(queryByText("zoningplan")).toBeInTheDocument();
+
+    expect(screen.getByText(/wijzig/i)).toBeInTheDocument();
+    expect(screen.queryByTestId(EDIT_BUTTON)).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.click(screen.getByText(/wijzig/i));
+    });
+  });
+
+  it("renders correctly in address from location object", () => {
+    const setActiveState = jest.fn();
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
 
     const { queryByText } = render(
-      <RegisterLookupSummary setActiveState={setActiveState} topic={topic} />
+      <RegisterLookupSummary
+        addressFromLocation={addressMock}
+        setActiveState={setActiveState}
+        topic={topic}
+      />
     );
 
     // Expect TO DO find zoningplan info

@@ -6,9 +6,16 @@ import AddressLine from "./AddressLine";
 
 afterEach(cleanup);
 
-// @TODO enable this test again.
-xit("AddressLine renders correctly", () => {
-  const { queryByText } = render(<AddressLine address={addressMock} />);
+it("AddressLine renders correctly", () => {
+  const { queryByText } = render(
+    <AddressLine
+      houseNumberFull={addressMock.houseNumberFull}
+      postalCode={addressMock.postalCode}
+      residence={addressMock.residence}
+      streetName={addressMock.streetName}
+    />
+  );
 
   expect(queryByText("streetname 123")).toBeInTheDocument();
+  expect(queryByText("1234 AB Amsterdam")).toBeInTheDocument();
 });
