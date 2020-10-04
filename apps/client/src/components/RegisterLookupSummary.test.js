@@ -1,6 +1,7 @@
 import React from "react";
 
 import addressMock from "../__mocks__/addressMock";
+import addressMockNoMonument from "../__mocks__/addressMockNoMonument";
 import Context from "../__mocks__/context";
 import matchMedia from "../__mocks__/matchMedia";
 import { findTopicBySlug } from "../utils";
@@ -50,12 +51,44 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  it("renders correctly in OLO Flow", () => {
+  it("renders correctly in OLO Flow if monument", () => {
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(
       <WrapperWithContext addressFromLocation={addressMock} topic={topic} />
     );
+
+    expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
+    expect(
+      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
+    ).toBeInTheDocument();
+
+    // Expect to find zoningplan info
+    expect(queryByText("zoningplan")).toBeInTheDocument();
+
+    expect(screen.getByText(/wijzig/i)).toBeInTheDocument();
+    expect(screen.queryByTestId(EDIT_BUTTON)).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.click(screen.getByText(/wijzig/i));
+    });
+  });
+
+  it("renders correctly in OLO Flow if no monument", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    const { queryByText } = render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoMonument}
+        topic={topic}
+      />
+    );
+    expect(queryByText("Het gebouw is geen monument.")).toBeInTheDocument();
+    expect(
+      queryByText(
+        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+      )
+    ).toBeInTheDocument();
 
     // Expect to find zoningplan info
     expect(queryByText("zoningplan")).toBeInTheDocument();
