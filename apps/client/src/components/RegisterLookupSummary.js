@@ -2,7 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 
-import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
+import { ComponentWrapper, List, ListItem } from "../atoms";
 import { SessionContext } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
@@ -44,16 +44,12 @@ const RegisterLookupSummary = ({
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <Paragraph gutterBottom={16}>
-        {compact ? (
+        <>
           <AddressLine {...address} />
-        ) : (
-          <>
-            <TextToEdit>
-              <AddressLine {...address} />
-            </TextToEdit>
+          {!compact && (
             <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
-          </>
-        )}
+          )}
+        </>
       </Paragraph>
       <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
         {monument && `Het gebouw is een ${monument.toLowerCase()}.`}
