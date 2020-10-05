@@ -120,7 +120,7 @@ const LocationFinder = ({
   const exactMatch = data?.findAddress?.exactMatch;
 
   // Validate address
-  const notFoundAddress = !!(
+  const displayLocationNotFound = !!(
     postalCode &&
     houseNumber &&
     houseNumberFull &&
@@ -140,14 +140,12 @@ const LocationFinder = ({
     data?.findAddress.matches.filter(
       (a) => stripString(a.houseNumberFull) !== stripString(houseNumberFull)
     ) || [];
-  const showAutoSuggest = autoSuggestMatches.length > 0 && focus;
+  const showAutoSuggest = !!(autoSuggestMatches.length > 0 && focus);
 
   const options = autoSuggestMatches.map((address) => ({
     id: address.houseNumberFull.replace(" ", "-"),
     value: address.houseNumberFull,
   }));
-
-  const displayLocationNotFound = notFoundAddress && !showAutoSuggest;
 
   const showExactMatch = exactMatch && !loading;
 
@@ -205,7 +203,7 @@ const LocationFinder = ({
       <LocationLoading loading={loading} />
 
       {displayLocationNotFound && (
-        <LocationNotFound {...{ houseNumberInput }} />
+        <LocationNotFound {...{ houseNumberInput, showAutoSuggest }} />
       )}
 
       {showExactMatch && (
