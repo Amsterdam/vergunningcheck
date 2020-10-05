@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
-import { sections } from "../../config/matomo";
 import { LOCATION_FOUND } from "../../utils/test-ids";
-import PhoneNumber from "../PhoneNumber";
+import AutoSuggestList from "../AutoSuggestList";
 import RegisterLookupSummary from "../RegisterLookupSummary";
+import LocationtLoading from "./LocationLoading";
+import LocationNotFound from "./LocationNotFound";
 
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
@@ -22,8 +23,9 @@ const LocationFinder = (props) => {
   const [houseNumberFull, setHouseNumberFull] = useState(
     props.address.houseNumberFull
   );
-  const [suffix, setSuffix] = useState("");
+  const [autoSuggestValue, setAutoSuggestValue] = useState("");
   const [touched, setTouched] = useState({});
+  const [houseNumberInput, setHouseNumberInput] = useState("");
   const { setAddress, setErrorMessage } = props;
 
   const variables = {
@@ -33,21 +35,44 @@ const LocationFinder = (props) => {
     queryExtra: false,
   };
 
+  // Validate forms
+  const validate = (name, value, required) => {
+    if (touched[name]) {
+      if (required && (!value || value?.toString().trim() === "")) {
+        return requiredFieldText;
+      }
+      const trimmed = value && value.toString().trim();
+      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
+        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
+      }
+    }
+  };
+
+  // Error messages
+  const houseNumberError = validate("houseNumber", houseNumber, true);
+  const postalCodeError = validate("postalCode", postalCode, true);
+
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
      Workaround is not giving any variables if the query should be skipped. */
-  const skip = !houseNumberFull && !postalCode;
+  const skip = !!(
+    houseNumberError ||
+    !houseNumberFull ||
+    !postalCode ||
+    postalCodeError
+  );
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
     variables: skip ? undefined : variables,
     skip,
   });
 
-  const allowToSetAddress =
+  const allowToSetAddress = !!(
     houseNumber &&
     houseNumberFull &&
     postalCode &&
     !loading &&
-    (data || graphqlError);
+    (data || graphqlError)
+  );
 
   // Prevent setState error
   useEffect(() => {
@@ -62,30 +87,40 @@ const LocationFinder = (props) => {
   const exactMatch = data?.findAddress?.exactMatch;
 
   // Validate address
-  const notFoundAddress =
-    postalCode && houseNumber && houseNumberFull && !loading && !exactMatch;
-
-  // Validate forms
-  const validate = (name, value, required) => {
-    if (touched[name]) {
-      if (required && (!value || value?.trim() === "")) {
-        return requiredFieldText;
-      }
-      const trimmed = value?.trim();
-      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
-        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
-      }
-    }
-  };
-
-  // Error messages
-  const postalCodeError = validate("postalCode", postalCode, true);
-  const houseNumberError = validate("houseNumber", houseNumber, true);
+  const notFoundAddress = !!(
+    postalCode &&
+    houseNumber &&
+    houseNumberFull &&
+    !loading &&
+    !exactMatch &&
+    !graphqlError
+  );
 
   const handleBlur = (e) => {
-    setTouched({ ...touched, [e.target.name]: true });
+    // This fixes the focus error
+    e.target.value && setTouched({ ...touched, [e.target.name]: true });
     props.setFocus(false);
   };
+
+  // AutoSuggest
+  const showAutoSuggest =
+    data?.findAddress.matches.length > 0 &&
+    data?.findAddress.matches[0].houseNumberFull !== houseNumberFull;
+
+  const onSelectOption = (option) => {
+    setHouseNumber(option.value);
+    setHouseNumberFull(option.value);
+    setAutoSuggestValue(option.value);
+  };
+
+  const options = data?.findAddress.matches.map((address) => ({
+    id: address.houseNumberFull.replace(" ", "-"),
+    value: address.houseNumberFull,
+  }));
+
+  const displayLocationNotFound = notFoundAddress && !showAutoSuggest;
+
+  const showExactMatch = exactMatch && !loading;
 
   return (
     <>
@@ -108,61 +143,42 @@ const LocationFinder = (props) => {
 
       <ComponentWrapper>
         <TextField
-          defaultValue={houseNumber}
           error={houseNumberError}
+          id="houseNumberFull"
           label="Huisnummer"
           name="houseNumber"
           onBlur={handleBlur}
           onChange={(e) => {
-            setHouseNumber(e.target.value);
-            setHouseNumberFull(e.target.value + suffix);
+            // @TODO: Fix the option to allow a space between the houseNumber and the suffix
+            // EG: houseNumber "762A" should trigger the AutoSuggest and now only "762 A" works (postalCode "1017LD")
+            setHouseNumber(parseInt(e.target.value));
+            setHouseNumberFull(e.target.value);
           }}
           onFocus={() => props.setFocus(true)}
+          onInput={(e) => setHouseNumberInput(e.target.value)}
           required
-          type="number"
+          value={houseNumberFull || autoSuggestValue}
         />
         {houseNumberError && <ErrorMessage message={houseNumberError} />}
+        {showAutoSuggest && (
+          <AutoSuggestList
+            // @TODO: make activeIndex dynamic (WCAG)
+            activeIndex={-1}
+            id="as-listbox"
+            onSelectOption={onSelectOption}
+            options={options}
+            role="listbox"
+          />
+        )}
       </ComponentWrapper>
 
-      <ComponentWrapper>
-        <TextField
-          // Temporary solution until we upgrade GraphQL
-          defaultValue={
-            houseNumberFull && houseNumberFull.replace(houseNumber, "")
-          }
-          label="Toevoeging"
-          name="suffix"
-          onBlur={handleBlur}
-          onChange={(e) => {
-            setSuffix(e.target.value);
-            setHouseNumberFull(houseNumber + e.target.value);
-          }}
-          onFocus={() => props.setFocus(true)}
-        />
-      </ComponentWrapper>
+      <LocationtLoading loading={loading} />
 
-      {loading && (
-        <ComponentWrapper>
-          <Alert content="Wij zoeken het adres." heading="Laden..." />
-        </ComponentWrapper>
+      {displayLocationNotFound && (
+        <LocationNotFound {...{ houseNumberInput }} />
       )}
 
-      {notFoundAddress && !graphqlError && (
-        <ComponentWrapper>
-          <Alert
-            heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
-            level="warning"
-          >
-            <Paragraph>
-              Probeer het opnieuw. Of neem contact op met de gemeente op
-              telefoonnummer{" "}
-              <PhoneNumber eventName={sections.ALERT_ADDRESS_NOT_FOUND} />.
-            </Paragraph>
-          </Alert>
-        </ComponentWrapper>
-      )}
-
-      {exactMatch && !loading && (
+      {showExactMatch && (
         <>
           <ComponentWrapper marginBottom={36}>
             <Alert

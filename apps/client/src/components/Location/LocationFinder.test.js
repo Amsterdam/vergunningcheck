@@ -17,10 +17,11 @@ const mockedFunctions = { ...{ setAddress, setFocus, setErrorMessage } };
 
 // @TODO: Let's fetch this data from a new mocked packages/module
 const mockedAddress = {
-  houseNumber: "19",
-  houseNumberFull: "19c",
-  postalCode: "1055XD",
-  suffix: "c",
+  address: {
+    houseNumber: "19c",
+    houseNumberFull: "19c",
+    postalCode: "1055XD",
+  },
 };
 
 describe("LocationFinder", () => {
@@ -28,41 +29,36 @@ describe("LocationFinder", () => {
 
   const WrapperWithContext = (props) => {
     return (
-      <Context topicMock={topic} addressMock={mockedAddress}>
-        <LocationFinder {...props} {...mockedFunctions} />
+      <Context topicMock={topic} addressMock={mockedAddress.address}>
+        <LocationFinder topic={topic} {...props} {...mockedFunctions} />
       </Context>
     );
   };
 
   // @TODO enable these test again
-  xit("should render correctly on first load", () => {
-    render(<WrapperWithContext />);
+  it("should render correctly on first load", () => {
+    render(<WrapperWithContext address={{}} />);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-    const inputSuffix = screen.getByLabelText(/toevoeging/i);
 
     expect(inputPostalCode).toBeInTheDocument();
     expect(inputPostalCode).not.toHaveValue();
 
     expect(inputHouseNumber).toBeInTheDocument();
     expect(inputHouseNumber).not.toHaveValue();
-
-    expect(inputSuffix).toBeInTheDocument();
-    expect(inputSuffix).not.toHaveValue();
   });
 
-  xit("should render correctly with contextual props", async () => {
-    render(<WrapperWithContext {...mockedAddress} />, {}, mocks);
+  // @TODO: Update this test with autoSuggest
+  it("should render correctly with contextual props", async () => {
+    render(<WrapperWithContext address={mockedAddress.address} />, {}, mocks);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-    const inputSuffix = screen.getByLabelText(/toevoeging/i);
+    // const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
 
     // Make sure the input fields have the right values
     expect(inputPostalCode).toHaveValue(mockedAddress.postalCode);
-    expect(inputHouseNumber).toHaveValue(parseInt(mockedAddress.houseNumber));
-    expect(inputSuffix).toHaveValue(mockedAddress.suffix);
+    // expect(inputHouseNumber).toHaveValue(parseInt(mockedAddress.houseNumber));
 
     // The loading state should be active
     // @TODO: replace this to come directly from i18n
@@ -70,21 +66,21 @@ describe("LocationFinder", () => {
     expect(screen.getByText("Wij zoeken het adres.")).toBeInTheDocument();
   });
 
-  xit("should render correctly when filling the in the form", async () => {
+  // @TODO: Update this test with autoSuggest
+  it("should render correctly when filling the in the form", async () => {
     const {
       houseNumberFull,
       postalCode,
       streetName,
     } = mocks[0].result.data.findAddress.exactMatch;
 
-    render(<WrapperWithContext {...mockedAddress} />, {}, mocks);
+    render(<WrapperWithContext address={mockedAddress.address} />, {}, mocks);
 
     // Mock values we're using as user input
-    const userInput = mockedAddress;
+    const userInput = mockedAddress.address;
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-    const inputSuffix = screen.getByLabelText(/toevoeging/i);
 
     // Make sure postalcode from userInput is equal to mocks
     expect(userInput.postalCode).toBe(postalCode);
@@ -96,9 +92,6 @@ describe("LocationFinder", () => {
       });
       fireEvent.change(inputHouseNumber, {
         target: { value: userInput.houseNumber },
-      });
-      fireEvent.change(inputSuffix, {
-        target: { value: userInput.suffix },
       });
     });
 

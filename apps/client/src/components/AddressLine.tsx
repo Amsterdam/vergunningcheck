@@ -8,11 +8,11 @@ type AddressLineProps = {
 };
 
 export default ({
-   houseNumberFull,
-   postalCode,
-   residence,
-   streetName,
- }: AddressLineProps ) => (
+  houseNumberFull,
+  postalCode,
+  residence,
+  streetName,
+}: AddressLineProps) => (
   <>
     {streetName} {houseNumberFull}
     <div>
