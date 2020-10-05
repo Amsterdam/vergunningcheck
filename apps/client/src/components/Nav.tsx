@@ -33,7 +33,7 @@ const Nav: React.FC<NavProps> = ({
         <Button
           data-testid={NEXT_BUTTON}
           onClick={onGoToNext}
-          style={{ marginRight: formEnds ? 10 : 25 }}
+          style={{ marginRight: formEnds ? 10 : 25, textAlign: "center" }}
           taskflow={!formEnds}
           type="submit"
           variant="secondary"

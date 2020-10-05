@@ -84,8 +84,8 @@ const ChangeAddressModal: React.FC<{
         >
           <ComponentWrapper>
             <Paragraph>
-              Alle eerder gegeven antwoorden worden gewist. Weet u zeker dat u
-              wilt doorgaan met een ander adres?
+              Alle gegeven antwoorden en de conclusie worden gewist. Weet u
+              zeker dat u wilt doorgaan met een ander adres?
             </Paragraph>
           </ComponentWrapper>
         </Modal>

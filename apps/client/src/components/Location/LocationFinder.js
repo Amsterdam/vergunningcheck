@@ -188,7 +188,7 @@ const LocationFinder = (props) => {
             >
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
-                compact={true}
+                compact
                 displayZoningPlans={false}
                 matomoTrackEvent={props.matomoTrackEvent}
                 topic={props.topic}
