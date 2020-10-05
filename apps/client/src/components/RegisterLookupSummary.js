@@ -2,7 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 
-import { ComponentWrapper, List, ListItem, TextToEdit } from "../atoms";
+import { ComponentWrapper, List, ListItem } from "../atoms";
 import { SessionContext } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
@@ -47,12 +47,10 @@ const RegisterLookupSummary = ({
         <AddressLine {...address} />
       ) : (
         <>
-          <TextToEdit>
-            <Paragraph strong gutterBottom={0}>
-              Ingevoerd adres:
-            </Paragraph>
-            <AddressLine {...address} />
-          </TextToEdit>
+          <Paragraph strong gutterBottom={0}>
+            Ingevoerd adres:
+          </Paragraph>
+          <AddressLine {...address} />
           <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
         </>
       )}

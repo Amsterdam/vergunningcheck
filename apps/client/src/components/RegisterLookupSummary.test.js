@@ -31,7 +31,7 @@ describe("RegisterLookupSummary", () => {
     );
   };
 
-  it("renders correctly in STTR Flow", () => {
+  it("renders correctly in STTR Flow if monument", () => {
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(<WrapperWithContext topic={topic} />);
@@ -51,7 +51,32 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  it("renders correctly in OLO Flow if monument", () => {
+  it("renders correctly in STTR Flow if NOT a monument", () => {
+    const topicMock = "dakraam-plaatsen";
+    const topic = findTopicBySlug(topicMock);
+    const { queryByText } = render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoMonument}
+        topic={topic}
+      />
+    );
+
+    expect(queryByText("Het gebouw is een monument.")).not.toBeInTheDocument();
+    expect(
+      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
+    ).not.toBeInTheDocument();
+
+    // Expect NOT to find zoningplan info
+    expect(queryByText("zoningplan")).not.toBeInTheDocument();
+
+    expect(screen.getByText(/wijzig/i)).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.click(screen.getByText(/wijzig/i));
+    });
+  });
+
+  it("renders correctly in OLO Flow if building is a monument", () => {
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(
@@ -74,7 +99,7 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  it("renders correctly in OLO Flow if no monument", () => {
+  it("renders correctly in OLO Flow if building is NOT a monument", () => {
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(
