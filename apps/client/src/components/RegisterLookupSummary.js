@@ -24,7 +24,7 @@ const RegisterLookupSummary = ({
   displayZoningPlans,
   matomoTrackEvent,
   setActiveState,
-  topic: { sttrFile },
+  topic: { hasIMTR },
 }) => {
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
@@ -40,7 +40,7 @@ const RegisterLookupSummary = ({
     setTag("cityscape", cityScape);
   }
   return (
-    <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
+    <ComponentWrapper marginBottom={hasIMTR ? "0" : null}>
       <Paragraph gutterBottom={16}>
         <TextToEdit>
           <AddressLine address={address} />

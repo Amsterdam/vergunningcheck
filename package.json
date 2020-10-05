@@ -18,7 +18,13 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "back-merge": "git fetch && git checkout master && git merge && git checkout release && git merge && git merge master && git push && git checkout develop && git merge && git merge release && git push",
-    "prepare-release": "npm i && npm run back-merge && git checkout develop && STTR_ENV=production lerna run sttr && echo '\n\nPlease commit changes and run \"npm run release\".\n'",
+    "imtr": "npm run imtr:preflight && npm run imtr:install && npm run imtr:fetch && npm run imtr:transform",
+    "imtr:preflight": "echo 'Check if deno is installed..\n' && command -v deno",
+    "imtr:install": "deno cache --unstable --reload --lock=./apps/imtr/lock.json ./apps/imtr/src/deps.ts || :",
+    "imtr:fetch": "deno run --unstable --allow-read --allow-write --allow-env --allow-net -c ./apps/imtr/tsconfig.json ./apps/imtr/src/main.ts fetch --dir=apps/client",
+    "imtr:transform": "deno run --unstable --allow-write --allow-read --allow-run -c ./apps/imtr/tsconfig.json ./apps/imtr/src/main.ts transform --dir=apps/client && npm run imtr:postprocess",
+    "imtr:postprocess": "cd apps/client; prettier src/topics.json public/**/transformed/*.json public/**/list.json --write",
+    "prepare-release": "npm i && npm run back-merge && git checkout develop && npm run imtr && echo '\n\nPlease commit your changes, then push your changed and then run \"npm run release\".\n'",
     "release": "git checkout release && git pull && cli-confirm \"Are you sure you want to merge develop into release? (yN)\" && git merge origin/develop && git push",
     "changelog": "git checkout release && git pull && lerna-changelog",
     "publish": "git checkout release && git pull && lerna publish"
@@ -27,7 +33,8 @@
     "cli-confirm": "^1.0.1",
     "husky": "^4.2.5",
     "lerna": "^3.22.0",
-    "lerna-changelog": "^1.0.1"
+    "lerna-changelog": "^1.0.1",
+    "prettier": "^2.1.2"
   },
   "husky": {
     "hooks": {

@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
 import { FormTitle, HideForPrint } from "../../atoms";
+import { Topic } from "../../config";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
@@ -10,14 +11,15 @@ import HiddenDebugInfo from "../HiddenDebugInfo";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
+  checker?: object;
   children: React.ReactNode;
   heading: String;
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
   const checkerContext = useContext(CheckerContext);
-  const { topic } = checkerContext as any;
-  const title = heading || topic?.text?.heading || null;
+  const topic = checkerContext.topic as Topic; // topic can be null here.
+  const title = heading || topic?.text.heading;
 
   return (
     <Container>
@@ -50,13 +52,19 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
           <p>Node environment: {process.env.NODE_ENV}</p>
-          <p>STTR stage: {process.env.REACT_APP_STTR_ENV}</p>
         </HiddenDebugInfo>
         {topic && (
-          <HiddenDebugInfo title="Topic">
+          <HiddenDebugInfo title="topic from checkerContext">
             <p>slug: {topic.slug}</p>
-            <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
-            <p>sttrFile: {topic.sttrFile}</p>
+            <p>redirectToOlo: {JSON.stringify(topic.redirectToOlo)}</p>
+            <p>hasIMTR: {JSON.stringify(topic.hasIMTR)}</p>
+          </HiddenDebugInfo>
+        )}
+        {checkerContext.checker && (
+          <HiddenDebugInfo title="permits from checkerContext">
+            {checkerContext.checker?.permits?.map((permit: any) => (
+              <p key={permit.name}>{permit.name}</p>
+            ))}
           </HiddenDebugInfo>
         )}
 

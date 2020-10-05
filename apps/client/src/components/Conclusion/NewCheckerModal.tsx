@@ -113,7 +113,7 @@ const NewCheckerModal: React.FC<{
         <ComponentWrapper>
           <RadioGroup name="checkers">
             {topics
-              .filter((topic) => topic.sttrFile)
+              .filter((topic) => topic.hasIMTR)
               .sort((a, b) => a.name.localeCompare(b.name))
               .map(({ name, slug }) => (
                 <Label htmlFor={slug} key={name} label={name}>

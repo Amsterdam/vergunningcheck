@@ -1,11 +1,14 @@
 # dotfiles not allowed in 'public' directory
 public/.*
 
-public/sttr/staging
-public/sttr/prod/*.xml
-public/sttr/prod/*.source.json
+# imtr sources
+public/imtr/*.json
+public/imtr/*.xml
 
+# artifacts
 build/
+
+# development
 .env*.local
 config.local.ts
 

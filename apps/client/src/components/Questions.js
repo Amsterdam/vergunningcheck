@@ -171,7 +171,7 @@ const Questions = ({
     // Track active questions
     if (isQuestionSectionActive) {
       matomoTrackEvent({
-        action: checker.stack[questionIndex].text,
+        action: checker.stack[questionIndex]?.text || "unknown question",
         name: eventNames.ACTIVE_QUESTION,
       });
     }
