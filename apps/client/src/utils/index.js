@@ -80,3 +80,13 @@ export const scrollToRef = (ref, offset = 0) =>
     0,
     ref.current.getBoundingClientRect().top + window.scrollY - offset
   );
+
+/**
+ *
+ * This function strips everything from a string that's not a letter or number, including spaces.
+ * Usefull when comparing strings like `19-c` and `19 C `, which will both be `19c`
+ *
+ * @param {string} str
+ */
+export const stripString = (str) =>
+  str && str.toLowerCase().replace(/[^a-z0-9]+/gi, "");

@@ -13,7 +13,7 @@ import { ChevronRight } from "@datapunt/asc-assets";
 import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React, { Fragment, useCallback, useEffect, useRef } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const StyledList = styled.ul`
   max-width: 160px;
@@ -22,12 +22,6 @@ const StyledList = styled.ul`
   border: 1px solid ${themeColor("tint", "level5")};
   border-top: 0;
   background-color: white;
-
-  ${(props) =>
-    props.error &&
-    css`
-      border-color: ${themeColor("secondary", "main")};
-    `}
 `;
 
 const Li = styled.li`
@@ -116,7 +110,7 @@ const SuggestList = ({
           id={option.id}
           data-id={option.id}
           key={option.id}
-          onClick={() => onSelect(option)}
+          onMouseDown={() => onSelect(option)} // Use instead of onClick to prevent a bug with the focus state
           onKeyDown={(event) => handleKeyDown(event, option)}
           role="option"
           tabIndex={-1}

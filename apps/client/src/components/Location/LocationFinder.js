@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { ErrorMessage, Paragraph } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
+import { stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList from "../AutoSuggestList";
 import RegisterLookupSummary from "../RegisterLookupSummary";
@@ -16,8 +17,7 @@ const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const LocationFinder = ({
-  address,
-  errors,
+  focus,
   matomoTrackEvent,
   sessionAddress,
   setAddress,
@@ -57,9 +57,33 @@ const LocationFinder = ({
   };
 
   // Error messages
-  const addressError = errors?.address?.message;
   const houseNumberError = validate("houseNumber", houseNumber, true);
   const postalCodeError = validate("postalCode", postalCode, true);
+
+  // Handle all the keys
+  const handleKeyDown = useCallback(
+    (event) => {
+      switch (event.key) {
+        case "Enter":
+          // Prevent submitting the form when pressing Enter
+          event.preventDefault();
+          // Disable focus on the input so the AutoSugest list disappears
+          document.activeElement.blur();
+          setFocus(false);
+          break;
+
+        default:
+          break;
+      }
+    },
+    [setFocus]
+  );
+
+  const handleAutoSuggestSelect = (option) => {
+    setHouseNumber(option.value);
+    setHouseNumberFull(option.value);
+    setAutoSuggestValue(option.value);
+  };
 
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
@@ -114,15 +138,9 @@ const LocationFinder = ({
   // AutoSuggest
   const autoSuggestMatches =
     data?.findAddress.matches.filter(
-      (a) => a.houseNumberFull !== houseNumberFull
+      (a) => stripString(a.houseNumberFull) !== stripString(houseNumberFull)
     ) || [];
-  const showAutoSuggest = autoSuggestMatches.length > 0;
-
-  const onSelectOption = (option) => {
-    setHouseNumber(option.value);
-    setHouseNumberFull(option.value);
-    setAutoSuggestValue(option.value);
-  };
+  const showAutoSuggest = autoSuggestMatches.length > 0 && focus;
 
   const options = autoSuggestMatches.map((address) => ({
     id: address.houseNumberFull.replace(" ", "-"),
@@ -154,7 +172,7 @@ const LocationFinder = ({
 
       <ComponentWrapper>
         <LocationTextField
-          error={addressError || houseNumberError}
+          error={houseNumberError}
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
           name="houseNumber"
@@ -167,6 +185,7 @@ const LocationFinder = ({
           }}
           onFocus={() => setFocus(true)}
           onInput={(e) => setHouseNumberInput(e.target.value)}
+          onKeyDown={(e) => handleKeyDown(e)}
           required
           value={houseNumberFull || autoSuggestValue}
         />
@@ -175,22 +194,13 @@ const LocationFinder = ({
           <AutoSuggestList
             // @TODO: make activeIndex dynamic (WCAG)
             activeIndex={-1}
-            error={addressError}
             id="as-listbox"
-            onSelectOption={onSelectOption}
+            onSelectOption={handleAutoSuggestSelect}
             options={options}
             role="listbox"
           />
         )}
       </ComponentWrapper>
-
-      <LocationTextField
-        error={addressError}
-        name="address"
-        type="hidden"
-        value={address?.id || sessionAddress?.id || ""}
-      />
-      {addressError && <ErrorMessage message={addressError} />}
 
       <LocationLoading loading={loading} />
 

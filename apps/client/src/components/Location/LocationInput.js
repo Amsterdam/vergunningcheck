@@ -1,5 +1,5 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const LocationInput = ({
   topic,
 }) => {
   const history = useHistory();
-  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
+  const { handleSubmit } = useForm();
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
@@ -32,15 +32,6 @@ const LocationInput = ({
   const [address, setAddress] = useState(sessionAddress);
   const [errorMessage, setErrorMessage] = useState();
   const [focus, setFocus] = useState(false);
-
-  useEffect(() => {
-    if (!address && !errorMessage) {
-      register({ name: "address" }, { required: "Kies een bestaand adres." });
-    } else {
-      clearErrors("address");
-    }
-    return () => unregister("address");
-  }, [address, clearErrors, errorMessage, register, unregister]);
 
   const onSubmit = () => {
     if (address?.postalCode) {
@@ -134,8 +125,7 @@ const LocationInput = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
-            address,
-            errors,
+            focus,
             matomoTrackEvent,
             sessionAddress,
             setAddress,
