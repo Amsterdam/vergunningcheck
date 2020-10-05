@@ -1,3 +1,5 @@
+import "jest-styled-components";
+
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
@@ -38,10 +40,10 @@ it("Nav should render with no props", () => {
   expect(queryByTestId(PREV_BUTTON)).not.toBeInTheDocument();
 });
 
-xit("Nav should render default values", () => {
+it("Nav should render default values", () => {
   const { queryByTestId } = render(
     <Wrapper>
-      <Nav showPrev showNext />
+      <Nav showNext showPrev />
     </Wrapper>
   );
 
@@ -49,19 +51,19 @@ xit("Nav should render default values", () => {
 
   const nextButton = queryByTestId(NEXT_BUTTON);
   expect(nextButton).toBeInTheDocument();
-  expect(nextButton).toHaveStyle("margin-right: 25px");
+  expect(nextButton).toHaveStyleRule("margin-right", "10px");
 });
 
-xit("Nav should render with prop values and should fire events", () => {
+it("Nav should render with prop values and should fire events", () => {
   const { getByText } = render(
     <Wrapper>
       <Nav
-        showPrev
-        prevText="Prev"
-        onGoToPrev={onPrevClickMock}
-        showNext
-        nextText="Next"
         formEnds
+        nextText="Next"
+        onGoToPrev={onPrevClickMock}
+        prevText="Prev"
+        showNext
+        showPrev
       />
     </Wrapper>
   );
