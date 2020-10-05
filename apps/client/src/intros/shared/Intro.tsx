@@ -39,7 +39,7 @@ export default ({
 
   return (
     <>
-      <Paragraph>
+      <Paragraph gutterBottom={usableForBullets.length > 0 ? 8 : undefined}>
         Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning
         nodig hebt.
         {usableForBullets.length > 0 &&
@@ -58,7 +58,8 @@ export default ({
         <Paragraph data-testid={INTRO_USER_INFLUENCE}>
           {influence}{" "}
           {dependantOnQuestions &&
-            "U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt."}
+            `U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien
+              toch geen vergunning nodig hebt.`}
         </Paragraph>
       )}
 
