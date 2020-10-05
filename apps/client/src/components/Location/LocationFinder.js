@@ -15,15 +15,16 @@ import { LocationTextField } from "./LocationStyles";
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
-const LocationFinder = (props) => {
-  const {
-    address,
-    errors,
-    sessionAddress,
-    setAddress,
-    setErrorMessage,
-    setFocus,
-  } = props;
+const LocationFinder = ({
+  address,
+  errors,
+  matomoTrackEvent,
+  sessionAddress,
+  setAddress,
+  setErrorMessage,
+  setFocus,
+  topic,
+}) => {
   const [postalCode, setPostalCode] = useState(sessionAddress?.postalCode);
   const [houseNumber, setHouseNumber] = useState(
     sessionAddress?.houseNumber && parseInt(sessionAddress?.houseNumber)
@@ -209,8 +210,8 @@ const LocationFinder = (props) => {
                 addressFromLocation={exactMatch}
                 compact={true}
                 displayZoningPlans={false}
-                matomoTrackEvent={props.matomoTrackEvent}
-                topic={props.topic}
+                matomoTrackEvent={matomoTrackEvent}
+                topic={topic}
               />
             </Alert>
           </ComponentWrapper>
