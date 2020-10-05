@@ -37,7 +37,7 @@ describe("LocationFinder", () => {
 
   // @TODO enable these test again
   it("should render correctly on first load", () => {
-    render(<WrapperWithContext address={{}} />);
+    render(<WrapperWithContext sessionAddress={{}} />);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
@@ -51,7 +51,11 @@ describe("LocationFinder", () => {
 
   // @TODO: Update this test with autoSuggest
   it("should render correctly with contextual props", async () => {
-    render(<WrapperWithContext address={mockedAddress.address} />, {}, mocks);
+    render(
+      <WrapperWithContext sessionAddress={mockedAddress.address} />,
+      {},
+      mocks
+    );
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     // const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
@@ -74,7 +78,11 @@ describe("LocationFinder", () => {
       streetName,
     } = mocks[0].result.data.findAddress.exactMatch;
 
-    render(<WrapperWithContext address={mockedAddress.address} />, {}, mocks);
+    render(
+      <WrapperWithContext sessionAddress={mockedAddress.address} />,
+      {},
+      mocks
+    );
 
     // Mock values we're using as user input
     const userInput = mockedAddress.address;
