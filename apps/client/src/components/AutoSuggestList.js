@@ -13,19 +13,26 @@ import { ChevronRight } from "@datapunt/asc-assets";
 import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import PropTypes from "prop-types";
 import React, { Fragment, useCallback, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledList = styled.ul`
+  max-width: 160px;
+  margin: 0;
+  padding: 0;
   border: 1px solid ${themeColor("tint", "level5")};
   border-top: 0;
-  padding: 0;
-  margin: 0;
   background-color: white;
+
+  ${(props) =>
+    props.error &&
+    css`
+      border-color: ${themeColor("secondary", "main")};
+    `}
 `;
 
 const Li = styled.li`
   line-height: ${themeSpacing(5)};
-  padding: ${themeSpacing(2, 5)};
+  padding: ${themeSpacing(2)};
   cursor: pointer;
   display: flex;
 
