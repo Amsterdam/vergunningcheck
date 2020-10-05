@@ -49,9 +49,6 @@ const RegisterLookupSummary = ({
         ) : (
           <>
             <TextToEdit>
-              <Paragraph strong gutterBottom={0}>
-                Ingevoerd adres:
-              </Paragraph>
               <AddressLine {...address} />
             </TextToEdit>
             <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
