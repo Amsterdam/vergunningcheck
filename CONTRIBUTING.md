@@ -35,10 +35,7 @@ A short note about combining permits. Often multiple permits in one checker incl
 If you want to tweak texts, the name or the intro of a checker, you need to add some configuration in the client-application.
 
 - Open [config/index.ts](apps/client/src/config/index.ts) in your editor of choice
-- Duplicate an existing object under `const topics` and edit these values: `slug`, `text` and `intro`
-  - `slug` = The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
-  - `text` = This is part that holds specific texts for each permit-checker
-  - `intro` = The name of the component that has all texts on the Intro page (
+- Create a new `Topic` and fill in the attributes accordingly
 - Duplicate an existing Intro component file in `apps/client/src/intros`, change the content to your wishes and name it **exactly** as you named it in the previous step `intro`
 
 ## Preparing a UX test

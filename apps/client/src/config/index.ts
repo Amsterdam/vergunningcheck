@@ -1,3 +1,11 @@
+/**
+ * @param hasIMTR If topic has an imtr-file. If `false` it's olo/olo-redirect flow
+ * @param intro The name of the component that has all texts on the Intro page
+ * @param name The name of the checker/topic
+ * @param redirectToOlo If this flow should redirect the user to OLO
+ * @param slug The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
+ * @param text This is part that holds specific texts for each permit-checker
+ */
 export type Topic = {
   hasIMTR: boolean;
   intro?: string;

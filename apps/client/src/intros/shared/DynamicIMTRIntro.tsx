@@ -4,6 +4,7 @@ import { autofillMap } from "../../config/autofill";
 import { Intro } from ".";
 
 type Props = {
+  // @TODO: replace any with actual CheckerType when available
   checker: any;
 };
 
