@@ -1,11 +1,18 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import { StyledForm } from "./FormStyles";
 
-const Form = ({ children, onSubmit, action, ...rest }) => {
-  const history = useHistory();
+export type FormProps = {
+  className?: string;
+  onSubmit?: Function;
+};
 
+const Form: React.FC<FormProps> = ({
+  children,
+  onSubmit,
+  ...otherProps
+  // otherProps could be: className, data-id or data-testid
+}) => {
   return (
     <StyledForm
       onSubmit={(e) => {
@@ -13,11 +20,8 @@ const Form = ({ children, onSubmit, action, ...rest }) => {
         if (onSubmit) {
           onSubmit(e);
         }
-        if (action) {
-          history.push(action);
-        }
       }}
-      {...rest}
+      {...otherProps}
     >
       {children}
     </StyledForm>
