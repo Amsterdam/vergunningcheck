@@ -43,9 +43,7 @@ const RegisterLookupSummary = ({
 
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
-      <Paragraph gutterBottom={16}>
-        <AddressLine {...address} />
-      </Paragraph>
+      <AddressLine {...address} />
       {compact ? (
         <Paragraph gutterBottom={0} strong>
           Over dit adres hebben we de volgende gegevens gevonden:

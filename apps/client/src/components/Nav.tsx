@@ -1,10 +1,9 @@
 import { ChevronLeft } from "@datapunt/asc-assets";
-import { Button } from "@datapunt/asc-ui";
 import React from "react";
 
 import { PrevButton } from "../atoms";
 import { NEXT_BUTTON } from "../utils/test-ids";
-import { IconContainer, IconLeft, NavStyle } from "./NavStyle";
+import { IconContainer, IconLeft, NavStyle, NextButton } from "./NavStyle";
 
 export type NavProps = {
   formEnds?: boolean;
@@ -30,16 +29,16 @@ const Nav: React.FC<NavProps> = ({
   return (
     <NavStyle noMarginBottom={noMarginBottom}>
       {showNext && (
-        <Button
+        <NextButton
           data-testid={NEXT_BUTTON}
+          formEnds
           onClick={onGoToNext}
-          style={{ marginRight: formEnds ? 10 : 25, textAlign: "center" }}
           taskflow={!formEnds}
           type="submit"
           variant="secondary"
         >
           {nextText}
-        </Button>
+        </NextButton>
       )}
       {showPrev && (
         <PrevButton onClick={onGoToPrev}>
