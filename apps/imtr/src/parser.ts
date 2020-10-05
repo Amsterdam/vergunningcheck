@@ -1,20 +1,63 @@
 import { getAutofillResolverKey } from './autofill.ts';
 
-import { UITV_LOCATION, DMN_REQUIRED_INPUT, DMN_REQUIRED_DECISION, DMNInformationRequirement, RequiredInputOrDecision, DMN_DEFINITIONS, DMNExtensionElement, IMTROption, DMNDecision, DMNDocument, feelTypes, DMNDefinition, DMNInputData, IMTRExecutionRule, DMNInputEntry, DMN_DECISION, DMN_INPUT_DATA, DMN_EXTENSION_ELEMENTS, DMN_INFORMATION_REQUIREMENT, DMN_DECISION_TABLE, DMN_RULE, DMN_OUTPUT_ENTRY, DMN_TEXT, DMN_INPUT_ENTRY, DMN_VARIABLE, UITV_DATA_TYPE, UITV_EXECUTION_RULE, UITV_EXECUTION_RULES, UITV_EXECUTION_RULE_REF, UITV_GEO_REF, UITV_OPTION, UITV_OPTIONS, UITV_OPTION_TEXT, UITV_OPTION_TYPE, UITV_QUESTION, UITV_QUESTION_TEXT, UITV_REUSABLE_ID, CONTENT_CONCLUSION_EXPLANATION, CONTENT_EXECUTION_RULE_EXPLANATION, CONTENT_EXPLANATION, CONTENT_LONG_EXPLANATION, INTER_PRIORITY }
-  from './types/imtr.ts';
+import {
+  CONTENT_CONCLUSION_EXPLANATION,
+  CONTENT_EXECUTION_RULE_EXPLANATION,
+  CONTENT_EXPLANATION,
+  CONTENT_LONG_EXPLANATION,
+  DMN_DECISION_TABLE,
+  DMN_DECISION,
+  DMN_DEFINITIONS,
+  DMN_EXTENSION_ELEMENTS,
+  DMN_INFORMATION_REQUIREMENT,
+  DMN_INPUT_DATA,
+  DMN_INPUT_ENTRY,
+  DMN_OUTPUT_ENTRY,
+  DMN_REQUIRED_DECISION,
+  DMN_REQUIRED_INPUT,
+  DMN_RULE,
+  DMN_TEXT,
+  DMN_VARIABLE,
+  feelTypes,
+  INTER_PRIORITY,
+  UITV_DATA_TYPE,
+  UITV_EXECUTION_RULE_REF,
+  UITV_EXECUTION_RULE,
+  UITV_EXECUTION_RULES,
+  UITV_GEO_REF,
+  UITV_LOCATION,
+  UITV_LOCATION_IDENTIFICATION,
+  UITV_OPTION_TEXT,
+  UITV_OPTION_TYPE,
+  UITV_OPTION,
+  UITV_OPTIONS,
+  UITV_QUESTION_TEXT,
+  UITV_QUESTION,
+  UITV_REUSABLE_ID,
+} from './types/imtr.ts';
 
-import { JSONRule, JSONDecisions, JSONInputs, JSONPermit, JSONQuestion, JSONRuleInput }
-  from './types/json.ts';
+import type {
+  DMNDecision,
+  DMNDefinition,
+  DMNDocument,
+  DMNExtensionElement,
+  DMNInformationRequirement,
+  DMNInputData,
+  DMNInputEntry,
+  IMTROption,
+  RequiredInputOrDecision,
+} from './types/imtr.ts';
 
-/**
- * How this works:
- *
- * imtr xml -> imtr - JSON(transform.ts)
- * imtr - JSON -> dakkapel - plaatsen.json
- * IMTRClient.getChecker(dakkapel - plaatsen.json)
- * IMTRClient(clientConfig) -> js - objecten
- * new Question(dakkapel - plaatsen.question[0])
- */
+import type {
+  JSONDecisions,
+  JSONInputs,
+  JSONPermit,
+  JSONQuestion,
+  JSONRule,
+  JSONRuleInput,
+} from './types/json.ts';
+
+import { format, strFmt } from './util.ts';
 
 /**
 * TODO: todo implement consistent hashing for id's:
@@ -67,12 +110,10 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
     const rules = table[DMN_RULE].reduce((rules: JSONRule[], rule) => {
       const outputEntry = rule[DMN_OUTPUT_ENTRY][0];
       const extensionElements = outputEntry[DMN_EXTENSION_ELEMENTS];
-
       const conclusionDescription = extensionElements?.[0][CONTENT_CONCLUSION_EXPLANATION];
       const description = conclusionDescription?.[0][CONTENT_EXPLANATION];
 
-      const output = outputEntry[DMN_TEXT];
-      rules.push({  // @TODO: fix ordering after Code-review
+      const jsonRule: JSONRule = {  // @TODO: fix ordering after Code-review
         inputs: rule[DMN_INPUT_ENTRY].reduce(
           (inputEntries: JSONRuleInput[], inputEntry: DMNInputEntry) => {
             const text = inputEntry[DMN_TEXT];
@@ -83,9 +124,12 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
           },
           []
         ),
-        output: output,
-        description,
-      });
+        output: typeof outputEntry[DMN_TEXT] === "string" ? strFmt(outputEntry[DMN_TEXT]) : outputEntry[DMN_TEXT],
+      }
+
+      if (description) jsonRule.description = description;
+
+      rules.push(jsonRule);
       return rules;
     }, []);
 
@@ -128,13 +172,14 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
 
     const geoReference = rule[UITV_GEO_REF];
     if (geoReference) {
-      const qText = geoReference[0][UITV_QUESTION_TEXT];
+      const text = geoReference[0][UITV_QUESTION_TEXT];
       result = {
-        identification: geoReference[0][UITV_LOCATION][0].attributes
-          .identificatie,
-        text: qText,
+        identification: geoReference[0][UITV_LOCATION][0].attributes[UITV_LOCATION_IDENTIFICATION],
         type: "geo",
       };
+      if (text) {
+        result.text = text;
+      }
     } else { // list or boolean
       const question = rule[UITV_QUESTION][0];
       const dataType = question[UITV_DATA_TYPE];
@@ -147,14 +192,16 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
       //   const important = find(desc, "content:belangrijk")[0];
       // }
 
-      const text = question[UITV_QUESTION_TEXT];
       result = { // @TODO: fix ordering after Code-review
-        text,
-        description: desc?.[CONTENT_EXPLANATION],
-        longDescription: desc?.[CONTENT_LONG_EXPLANATION]?.trim(),
+        text: strFmt(question[UITV_QUESTION_TEXT]),
       };
 
-      result.autofill = getAutofillResolverKey(result.text);
+      const longDescription = format(desc?.[CONTENT_LONG_EXPLANATION]);
+      if (longDescription) result.longDescription = longDescription;
+      const description = format(desc?.[CONTENT_EXPLANATION]);
+      if (description) result.description = description;
+      const autofill = getAutofillResolverKey(result.text);
+      if (autofill) result.autofill = autofill;
 
       if (imtrType === "list") {
         const options = question[UITV_OPTIONS]?.[0];
@@ -165,7 +212,7 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
           result.collection = true;
         }
         const optionList = options?.[UITV_OPTION];
-        result.options = optionList?.map((option: IMTROption) => option[UITV_OPTION_TEXT]);
+        result.options = optionList?.map((option: IMTROption) => strFmt(option[UITV_OPTION_TEXT]));
       }
 
       // because of current imtr 'list'-implementation we only accept lists of strings
@@ -173,8 +220,9 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
     }
 
     result.id = rule.attributes.id; // TODO: generate our own hash for id's
-    result.prio = rule[INTER_PRIORITY];
-    result.uuid = rule[UITV_REUSABLE_ID];
+    if (rule[INTER_PRIORITY]) result.prio = rule[INTER_PRIORITY];
+    if (rule[UITV_REUSABLE_ID]) result.uuid = rule[UITV_REUSABLE_ID];
+
     const x: JSONQuestion = result;
     return x;
   });

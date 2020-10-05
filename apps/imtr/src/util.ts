@@ -1,3 +1,6 @@
+export const strFmt = (str: string) => str.trim();
+export const format = (el: string | undefined) => typeof el === 'string' ? strFmt(el) : el;
+
 // Copyright 2018-2020 the Deno authors. All rights reserved. MIT license.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Replacer = (key: string, value: any) => any;
@@ -7,12 +10,12 @@ export interface WriteJsonOptions extends Deno.WriteFileOptions {
   spaces?: number | string;
 }
 
-function serialize(
+const serialize = (
   filePath: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   object: any,
   options: WriteJsonOptions,
-): string {
+): string => {
   try {
     const jsonString = JSON.stringify(
       object,

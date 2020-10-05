@@ -3,6 +3,13 @@
 This module builds JSON configuration from json files containing IMTR XML.
 The JSON output can be used to instantiate a checker client.
 
+How it works;
+
+1. From imtr-xml we create imtr-json via transform.ts.
+2. The imtr-json is converted into client-config-json (eg dakkapel-plaatsen.json)
+3. The client-config-json is fed into `IMTRClient.getChecker()`
+4. The IMTRClient contains statefull js-objects you can interact with
+
 We use [Deno](https://deno.land) to download and convert all configuration. Tested with Deno 1.3.3.
 
 ## Install and setup
