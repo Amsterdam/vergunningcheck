@@ -5,6 +5,7 @@ import {
   collectionOfType,
   isSimpleType,
   scrollToRef,
+  stripString,
   uniqueFilter,
 } from "../utils";
 import { render } from "./test-utils";
@@ -76,5 +77,12 @@ describe("util", () => {
     expect(window.scrollTo).toHaveBeenCalledWith(0, 90);
 
     expect(window.scrollTo).toHaveBeenCalledTimes(2);
+  });
+  test("stripString", () => {
+    expect(stripString("19-c")).toBe("19c");
+    expect(stripString("19 C")).toBe("19c");
+    expect(stripString("19-C ")).toBe("19c");
+    expect(stripString("Abc, 123. ")).toBe("abc123");
+    expect(stripString(" A-b,c.d/e{f}[g]+-h& 1 ")).toBe("abcdefgh1");
   });
 });

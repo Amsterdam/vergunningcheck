@@ -1,5 +1,6 @@
 import { Paragraph } from "@datapunt/asc-ui";
 import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { sections } from "../../config/matomo";
@@ -9,10 +10,22 @@ import LocationtLoader from "./LocationLoading";
 
 type LocationNotFoundProps = {
   houseNumberInput: string;
+  showAutoSuggest: boolean;
 };
+
+const StyledContainer = styled.div<LocationNotFoundProps>`
+  /* Hide the entire container if the AutoSuggest is toggled, but do not render it*/
+  ${({ showAutoSuggest }) =>
+    showAutoSuggest &&
+    css`
+      position: absolute;
+      left: -999em;
+    `}
+`;
 
 const LocationNotFound: React.FC<LocationNotFoundProps> = ({
   houseNumberInput,
+  showAutoSuggest,
 }) => {
   const DELAY_TIME = 750;
   const [error, setError] = useState(false);
@@ -26,7 +39,7 @@ const LocationNotFound: React.FC<LocationNotFoundProps> = ({
   }, [houseNumberInput]);
 
   return (
-    <>
+    <StyledContainer {...{ houseNumberInput, showAutoSuggest }}>
       {error ? (
         <ComponentWrapper>
           <Alert
@@ -43,7 +56,7 @@ const LocationNotFound: React.FC<LocationNotFoundProps> = ({
       ) : (
         <LocationtLoader loading />
       )}
-    </>
+    </StyledContainer>
   );
 };
 

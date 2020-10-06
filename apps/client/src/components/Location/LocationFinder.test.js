@@ -35,7 +35,6 @@ describe("LocationFinder", () => {
     );
   };
 
-  // @TODO enable these test again
   it("should render correctly on first load", () => {
     render(<WrapperWithContext sessionAddress={{}} />);
 
