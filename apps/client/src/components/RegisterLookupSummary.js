@@ -11,7 +11,7 @@ import {
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
-import AddressLine from "./AddressLine";
+import AddressLines from "./AddressLines";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
@@ -43,7 +43,7 @@ const RegisterLookupSummary = ({
 
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
-      <AddressLine {...address} />
+      <AddressLines {...address} />
       {compact ? (
         <Paragraph gutterBottom={0} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
