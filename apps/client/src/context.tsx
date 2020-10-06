@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { Context, createContext, useEffect, useReducer } from "react";
 
 type QuestionAnswerType = {
   [key: string]: any;
@@ -12,16 +12,25 @@ type TopicSessionData = {
 
 export type SessionDataType = {
   [slug: string]: TopicSessionData;
+  setSessionData: any;
 };
 
-const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
-const SessionContext = createContext({});
-const CheckerContext = createContext({});
+type CheckerContextType = {
+  checker?: any;
+  topic?: any;
+  autofillData?: any;
+};
 const defaultCheckerValue = {
   checker: null,
   topic: null,
   autofillData: {},
 };
+
+const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
+const SessionContext: any = createContext({});
+const CheckerContext = createContext(defaultCheckerValue) as Context<
+  CheckerContextType
+>;
 const defaultSessionValues = session ? session : {};
 
 const reducer = (

@@ -4,50 +4,45 @@ This application allows residents of Amsterdam to easily see if they need a perm
 
 ## Install / run
 
-This repo contains 2 apps, `client` and `graphql`. We use Lerna under the hood to install deps and run on both apps. But you can also run and configure then individually.
+This repo contains 4 apps, `client`, `graphql`, `imtr` and `e2e`. We use Lerna under the hood to install deps and run on both apps. But you can also run and configure then individually.
 
 ```bash
 npm i
 npm start
 ```
 
+If you need to update the checks there are additional install steps in [apps/imtr/README.md](apps/imtr/README.md).
+
 ## Contributing
 
 If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)
-
-## Prepare a release
-
-Basically what we want to do is merge `develop` with `release` including the latest STTR-changes.
-Two commands make this easy for you. Run `npm run prepare-release`, commit changes if needed and `npm run release`.
-
-## Publish a release
-
-We use lerna-changelog to generate our changes we can use in [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
-Make sure you are logged in by npm command line. If not, log in with `npm adduser`.
-
-Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
-
-- Run `npm run version` and use the generate our changes we can use in [CHANGELOG.md](CHANGELOG.md)
-- Determine the version number.
-- Commit the changelog.
-- Run `npm run publish` and answer `y` to the prompt
-- Create [a new PR](https://github.com/Amsterdam/vergunningcheck/compare/master...release) from release to master on GitHub
-- After the merge the release will be deployed to acceptance, manually verify the changes
-- Approve the release to production in Jenkins
-- Back-merge `master` into `release` into `develop` by running `npm run back-merge`
-- Consider [preparing](#prepare-a-release) the next release in the section above
 
 ## Tech stack
 
 - React
 - React Hook Form
-- GraphQL + ApolloClient v3
+- [Deno](https://deno.land)
+- GraphQL + ApolloClient
 - Lerna
 - Sentry
 - [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl)
 - [Matomo Tracker React](https://github.com/Amsterdam/matomo-tracker)
 - Prettier
 - Jest + Testing Library
+
+## Nomenclature
+
+First a brief intro on some of the terminology and concepts we use, to make sure the steps below make sense.
+
+- permit, ('vergunning' in dutch). You might need a permit for an activity (activiteit).
+- topic, a type of doing (werkzaamheid in dutch). Could be multiple activities / permits in one topic. It corresponds with a configured checker with one or more permits.
+- STTR; STTR is a spec dutch DSO legislation
+- IMTR-file; IMTR is an XML standard for dutch DSO legislation
+- xml to json; we convert IMTR-XML to JSON for better performance
+- STTR-builder; the tool used to build IMTR-files
+- check; the activity of checking whether you need a permit (see permit)
+- visitor; the person performing a check
+- checker; the tool itself (including an intro page, register lookups, a set of questions and a conclusion)
 
 ## Known issues
 

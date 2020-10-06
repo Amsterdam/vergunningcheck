@@ -1,5 +1,4 @@
 import DefaultOloIntro from "./DefaultOloIntro";
-import IntroHeading from "./IntroHeading";
-import IntroSituationDescription from "./IntroSituationDescription";
+import Intro from "./Intro";
 
-export { DefaultOloIntro, IntroHeading, IntroSituationDescription };
+export { DefaultOloIntro, Intro };

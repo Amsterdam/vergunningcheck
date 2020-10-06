@@ -25,9 +25,8 @@ const LocationInput = ({
   const sessionContext = useContext(SessionContext);
   const checkerContext = useContext(CheckerContext);
 
-  const { slug, sttrFile, text } = topic;
+  const { hasIMTR, slug, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
-  const hasSTTR = !!sttrFile;
 
   const [address, setAddress] = useState(sessionAddress);
   const [errorMessage, setErrorMessage] = useState();
@@ -38,14 +37,14 @@ const LocationInput = ({
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
-          hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT
+          hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
 
       // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
         // The address is the same, so go directly to the Questions section
-        setActiveState(hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
+        setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
         return;
       }
 
@@ -65,7 +64,7 @@ const LocationInput = ({
       checkerContext.autofillData.address = address;
 
       // Reset all previous finished states
-      if (hasSTTR) {
+      if (hasIMTR) {
         resetChecker();
         setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
       }
@@ -83,7 +82,7 @@ const LocationInput = ({
         document.activeElement.blur();
       } else {
         setFinishedState(sections.LOCATION_INPUT);
-        setActiveState(hasSTTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
+        setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
       }
     }
   };
@@ -120,8 +119,10 @@ const LocationInput = ({
           </Paragraph>
         </Error>
       )}
-      {!hasSTTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
-      <Paragraph>{text.locationIntro}.</Paragraph>
+
+      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
@@ -135,8 +136,8 @@ const LocationInput = ({
           }}
         />
         <Nav
-          nextText={hasSTTR ? "Naar de vragen" : "Volgende"}
-          noMarginBottom={!hasSTTR}
+          nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
+          noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext
           showPrev

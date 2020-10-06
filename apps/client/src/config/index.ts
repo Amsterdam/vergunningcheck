@@ -1,15 +1,21 @@
-type Topic = {
+/**
+ * @param hasIMTR If topic has an imtr-file. If `false` it's olo/olo-redirect flow
+ * @param intro The name of the component that has all texts on the Intro page
+ * @param name The name of the checker/topic
+ * @param redirectToOlo If this flow should redirect the user to OLO
+ * @param slug The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
+ * @param text This is part that holds specific texts for each permit-checker
+ */
+export type Topic = {
+  hasIMTR: boolean;
   intro?: string;
   name: string;
   redirectToOlo?: boolean;
   slug: string;
-  sttrFile?: string;
-  text: Text;
-};
-
-type Text = {
-  heading: string;
-  locationIntro?: string;
+  text: {
+    heading: string;
+    locationIntro?: string;
+  };
 };
 
 type OloUrlProps = {
@@ -42,8 +48,9 @@ export const generateOloUrl = ({
   return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
 
-const topics: Topic[] = [
+export const topics: Topic[] = [
   {
+    hasIMTR: false,
     name: "Kappen of snoeien",
     redirectToOlo: true,
     slug: "kappen-of-snoeien",
@@ -52,26 +59,27 @@ const topics: Topic[] = [
     },
   },
   {
+    hasIMTR: true,
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
     slug: "dakkapel-plaatsen",
-    sttrFile: "dakkapel.json",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
     },
   },
   {
+    hasIMTR: true,
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
     slug: "dakraam-plaatsen",
-    sttrFile: "dakraam.json",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
     },
   },
   {
+    hasIMTR: false,
     intro: "AanbouwIntro",
     name: "Aanbouw of uitbouw maken",
     slug: "aanbouw-of-uitbouw-maken",
@@ -82,20 +90,20 @@ const topics: Topic[] = [
     },
   },
   {
+    hasIMTR: true,
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
     slug: "kozijnen-plaatsen",
-    sttrFile: "kozijn.json",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen",
       locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
     },
   },
   {
+    hasIMTR: true,
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
-    sttrFile: "zonnepaneel.json",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
       locationIntro:
@@ -103,6 +111,7 @@ const topics: Topic[] = [
     },
   },
   {
+    hasIMTR: false,
     intro: "BouwwerkSlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
@@ -112,6 +121,7 @@ const topics: Topic[] = [
     },
   },
   {
+    hasIMTR: false,
     intro: "InternVerbouwenIntro",
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
@@ -121,10 +131,10 @@ const topics: Topic[] = [
     },
   },
   {
+    hasIMTR: true,
     intro: "ZonweringRolluikIntro",
     name: "Zonwering of rolluik plaatsen",
     slug: "zonwering-of-rolluik-plaatsen",
-    sttrFile: "zonwering.json",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
@@ -132,21 +142,6 @@ const topics: Topic[] = [
     },
   },
 ];
-
-if (process.env.NODE_ENV !== "production") {
-  topics.push({
-    intro: "DebugIntro",
-    name: "Test outcomes",
-    slug: "test-outcomes",
-    sttrFile: "outcomes.json",
-    text: {
-      heading: "Testing different outcomes/conclusions",
-      locationIntro: "Pick a random address...",
-    },
-  });
-}
-
-export { topics };
 
 // @TODO: replace this with i18n
 export const requiredFieldText: string = "Verplicht veld is niet ingevuld";

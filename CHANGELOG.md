@@ -286,7 +286,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
-- Added uuid (herhaalid) to some questions ([94477e9](https://github.com/Amsterdam/Vergunningschecker/commit/94477e92896ae97c3ca3e6e66c1363b73f7e1243))
+- Added uuid (herbruikbaarId) to some questions ([94477e9](https://github.com/Amsterdam/Vergunningschecker/commit/94477e92896ae97c3ca3e6e66c1363b73f7e1243))
 - Dakkapel typos ([eeebfa3](https://github.com/Amsterdam/Vergunningschecker/commit/eeebfa34dcf6072d4b34f3be37063db248d9cd4d))
 - Updated texts ([2097d76](https://github.com/Amsterdam/Vergunningschecker/commit/2097d76e26f321ca1f6bd200486125602e62a946))
 

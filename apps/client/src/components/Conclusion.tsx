@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { PrintOnly } from "../atoms";
 import { sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
-import { sttrOutcomes } from "../sttr_client/models/checker";
+import { imtrOutcomes } from "../imtr_client/models/checker";
 import { removeQuotes } from "../utils";
 import { NEED_CONTACT } from "../utils/test-ids";
 import {
@@ -15,7 +15,7 @@ import {
   NoPermitDescription,
 } from "./Conclusion/";
 import Disclaimer from "./Disclaimer";
-import Markdown from "./Markdown/index";
+import Markdown from "./Markdown";
 
 // @TODO: import from somewehere else...
 type permitProps = {
@@ -45,7 +45,7 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       const contactOutcome = conclusionMatchingRules.find(
-        (rule: ruleProps) => rule.outputValue === sttrOutcomes.NEED_CONTACT
+        (rule: ruleProps) => rule.outputValue === imtrOutcomes.NEED_CONTACT
       );
       const outcome =
         contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
@@ -53,13 +53,13 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
       return {
         outcome,
         title:
-          outcome === sttrOutcomes.NEED_CONTACT
+          outcome === imtrOutcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
             : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
                 outcome
               )}`,
         description:
-          outcome === sttrOutcomes.NEED_CONTACT
+          outcome === imtrOutcomes.NEED_CONTACT
             ? contactOutcome.description
             : conclusionMatchingRules[0].description,
       };
@@ -67,12 +67,12 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
 
   // Check if the conclusion is 'needContact'
   const contactConclusion = conclusions.find(
-    (conclusion: string) => conclusion === sttrOutcomes.NEED_CONTACT
+    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
   // Check if the conclusion is 'needPermit'
   const needPermit = !!conclusions.find(
-    (conclusion: string) => conclusion === sttrOutcomes.NEED_PERMIT
+    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
   );
 
   const needContactContent = {

@@ -11,11 +11,11 @@ import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const ChangeAddressModal: React.FC<{
+  hasIMTR: boolean;
   matomoTrackEvent: Function;
   setActiveState: Function;
   slug: string;
-  hasSTTR: boolean;
-}> = ({ matomoTrackEvent, setActiveState, slug, hasSTTR }) => {
+}> = ({ matomoTrackEvent, setActiveState, slug, hasIMTR }) => {
   // @TODO: replace this with React custom hooks
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
@@ -59,7 +59,7 @@ const ChangeAddressModal: React.FC<{
 
   return (
     <>
-      {hasSTTR ? (
+      {hasIMTR ? (
         <Modal
           closeButtonText="Nee"
           confirmText="Ja"

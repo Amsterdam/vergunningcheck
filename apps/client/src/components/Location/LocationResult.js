@@ -12,11 +12,11 @@ import RegisterLookupSummary from "../RegisterLookupSummary";
 const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
-  const hasSTTR = !!topic.sttrFile;
+  const { hasIMTR } = topic;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!hasSTTR) {
+    if (!hasIMTR) {
       matomoTrackEvent({
         action: actions.CLICK_EXTERNAL_NAVIGATION,
         name: eventNames.TO_OLO,
@@ -48,9 +48,9 @@ const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
         te doen op het Omgevingsloket.
       </Paragraph>
       <Nav
-        formEnds={!hasSTTR}
+        formEnds={!hasIMTR}
         nextText={"Naar het omgevingsloket"}
-        noMarginBottom={!hasSTTR}
+        noMarginBottom={!hasIMTR}
         onGoToPrev={onGoToPrev}
         showNext
         showPrev
