@@ -35,15 +35,15 @@ const LocationInput = ({
 
   useEffect(() => {
     if (!address && !errorMessage) {
-      register({ name: "suffix" }, { required: "Kies een toevoeging." });
+      register({ name: "address" }, { required: "Kies een bestaand adres." });
     } else {
-      clearErrors("suffix");
+      clearErrors("address");
     }
-    return () => unregister("suffix");
+    return () => unregister("address");
   }, [address, clearErrors, errorMessage, register, unregister]);
 
   const onSubmit = () => {
-    if (address.postalCode) {
+    if (address?.postalCode) {
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
@@ -134,14 +134,15 @@ const LocationInput = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
+            address,
             errors,
             matomoTrackEvent,
+            sessionAddress,
             setAddress,
             setErrorMessage,
             setFocus,
             topic,
           }}
-          address={sessionAddress}
         />
         <Nav
           nextText={hasSTTR ? "Naar de vragen" : "Volgende"}

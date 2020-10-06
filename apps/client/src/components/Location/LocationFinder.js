@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { ErrorMessage, Paragraph, TextField } from "@datapunt/asc-ui";
+import { ErrorMessage, Paragraph } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 import React, { useEffect, useState } from "react";
 
@@ -8,25 +8,33 @@ import { requiredFieldText } from "../../config";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList from "../AutoSuggestList";
 import RegisterLookupSummary from "../RegisterLookupSummary";
-import LocationtLoading from "./LocationLoading";
+import LocationLoading from "./LocationLoading";
 import LocationNotFound from "./LocationNotFound";
+import { LocationTextField } from "./LocationStyles";
 
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
-const LocationFinder = (props) => {
-  const [postalCode, setPostalCode] = useState(props.address.postalCode);
-  // Temporary solution until we upgrade GraphQL
+const LocationFinder = ({
+  address,
+  errors,
+  matomoTrackEvent,
+  sessionAddress,
+  setAddress,
+  setErrorMessage,
+  setFocus,
+  topic,
+}) => {
+  const [postalCode, setPostalCode] = useState(sessionAddress?.postalCode);
   const [houseNumber, setHouseNumber] = useState(
-    props.address.houseNumber && parseInt(props.address.houseNumber)
+    sessionAddress?.houseNumber && parseInt(sessionAddress?.houseNumber)
   );
   const [houseNumberFull, setHouseNumberFull] = useState(
-    props.address.houseNumberFull
+    sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState("");
   const [touched, setTouched] = useState({});
   const [houseNumberInput, setHouseNumberInput] = useState("");
-  const { setAddress, setErrorMessage } = props;
 
   const variables = {
     extraHouseNumberFull: "",
@@ -49,6 +57,7 @@ const LocationFinder = (props) => {
   };
 
   // Error messages
+  const addressError = errors?.address?.message;
   const houseNumberError = validate("houseNumber", houseNumber, true);
   const postalCodeError = validate("postalCode", postalCode, true);
 
@@ -99,13 +108,15 @@ const LocationFinder = (props) => {
   const handleBlur = (e) => {
     // This fixes the focus error
     e.target.value && setTouched({ ...touched, [e.target.name]: true });
-    props.setFocus(false);
+    setFocus(false);
   };
 
   // AutoSuggest
-  const showAutoSuggest =
-    data?.findAddress.matches.length > 0 &&
-    data?.findAddress.matches[0].houseNumberFull !== houseNumberFull;
+  const autoSuggestMatches =
+    data?.findAddress.matches.filter(
+      (a) => a.houseNumberFull !== houseNumberFull
+    ) || [];
+  const showAutoSuggest = autoSuggestMatches.length > 0;
 
   const onSelectOption = (option) => {
     setHouseNumber(option.value);
@@ -113,7 +124,7 @@ const LocationFinder = (props) => {
     setAutoSuggestValue(option.value);
   };
 
-  const options = data?.findAddress.matches.map((address) => ({
+  const options = autoSuggestMatches.map((address) => ({
     id: address.houseNumberFull.replace(" ", "-"),
     value: address.houseNumberFull,
   }));
@@ -125,7 +136,7 @@ const LocationFinder = (props) => {
   return (
     <>
       <ComponentWrapper>
-        <TextField
+        <LocationTextField
           autoFocus
           defaultValue={postalCode}
           error={postalCodeError}
@@ -135,17 +146,17 @@ const LocationFinder = (props) => {
           onChange={(e) => {
             setPostalCode(e.target.value);
           }}
-          onFocus={() => props.setFocus(true)}
+          onFocus={() => setFocus(true)}
           required
         />
         {postalCodeError && <ErrorMessage message={postalCodeError} />}
       </ComponentWrapper>
 
       <ComponentWrapper>
-        <TextField
-          error={houseNumberError}
+        <LocationTextField
+          error={addressError || houseNumberError}
           id="houseNumberFull"
-          label="Huisnummer"
+          label="Huisnummer + toevoeging"
           name="houseNumber"
           onBlur={handleBlur}
           onChange={(e) => {
@@ -154,7 +165,7 @@ const LocationFinder = (props) => {
             setHouseNumber(parseInt(e.target.value));
             setHouseNumberFull(e.target.value);
           }}
-          onFocus={() => props.setFocus(true)}
+          onFocus={() => setFocus(true)}
           onInput={(e) => setHouseNumberInput(e.target.value)}
           required
           value={houseNumberFull || autoSuggestValue}
@@ -164,6 +175,7 @@ const LocationFinder = (props) => {
           <AutoSuggestList
             // @TODO: make activeIndex dynamic (WCAG)
             activeIndex={-1}
+            error={addressError}
             id="as-listbox"
             onSelectOption={onSelectOption}
             options={options}
@@ -172,7 +184,15 @@ const LocationFinder = (props) => {
         )}
       </ComponentWrapper>
 
-      <LocationtLoading loading={loading} />
+      <LocationTextField
+        error={addressError}
+        name="address"
+        type="hidden"
+        value={address?.id || sessionAddress?.id || ""}
+      />
+      {addressError && <ErrorMessage message={addressError} />}
+
+      <LocationLoading loading={loading} />
 
       {displayLocationNotFound && (
         <LocationNotFound {...{ houseNumberInput }} />
@@ -180,7 +200,7 @@ const LocationFinder = (props) => {
 
       {showExactMatch && (
         <>
-          <ComponentWrapper marginBottom={36}>
+          <ComponentWrapper marginBottom={16}>
             <Alert
               data-testid={LOCATION_FOUND}
               heading="Dit is het gekozen adres:"
@@ -190,12 +210,12 @@ const LocationFinder = (props) => {
                 addressFromLocation={exactMatch}
                 compact
                 displayZoningPlans={false}
-                matomoTrackEvent={props.matomoTrackEvent}
-                topic={props.topic}
+                matomoTrackEvent={matomoTrackEvent}
+                topic={topic}
               />
             </Alert>
           </ComponentWrapper>
-          <Paragraph>
+          <Paragraph gutterBottom={32}>
             Klopt dit niet? Wijzig dan postcode of huisnummer.
           </Paragraph>
         </>
