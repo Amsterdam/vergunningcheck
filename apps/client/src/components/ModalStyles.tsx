@@ -1,4 +1,4 @@
-import { Button, Heading, Modal, themeSpacing } from "@datapunt/asc-ui";
+import { Button, Heading, Modal, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const ModalUI = styled(Modal)`

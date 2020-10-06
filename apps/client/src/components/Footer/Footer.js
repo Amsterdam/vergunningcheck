@@ -7,7 +7,7 @@ import {
   FooterTop,
   Paragraph,
   Row,
-} from "@datapunt/asc-ui";
+} from "@amsterdam/asc-ui";
 import React, { memo } from "react";
 
 import { List, ListItem } from "../../atoms";

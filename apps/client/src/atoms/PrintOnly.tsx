@@ -1,4 +1,4 @@
-import { themeColor } from "@datapunt/asc-ui";
+import { themeColor } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import { printOnly } from "../utils/themeUtils";

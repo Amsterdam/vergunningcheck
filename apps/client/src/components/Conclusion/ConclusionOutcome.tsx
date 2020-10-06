@@ -1,4 +1,4 @@
-import { Heading, Paragraph, themeSpacing } from "@datapunt/asc-ui";
+import { Heading, Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled from "styled-components";

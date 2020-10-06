@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";

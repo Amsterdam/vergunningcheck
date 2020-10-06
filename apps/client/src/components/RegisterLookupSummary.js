@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React from "react";
 

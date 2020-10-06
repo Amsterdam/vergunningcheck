@@ -1,5 +1,5 @@
-import { ChevronLeft } from "@datapunt/asc-assets";
-import { Button } from "@datapunt/asc-ui";
+import { ChevronLeft } from "@amsterdam/asc-assets";
+import { Button } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { PrevButton } from "../atoms";

@@ -1,4 +1,4 @@
-import { Alert } from "@datapunt/asc-ui";
+import { Alert } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export default styled(Alert)`

@@ -1,4 +1,4 @@
-import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@datapunt/asc-ui";
+import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
