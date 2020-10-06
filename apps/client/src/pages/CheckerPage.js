@@ -26,7 +26,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const { hasIMTR, slug, text } = topic;
 
   // OLO Flow does not have questionIndex
-  const { questionIndex = 0 } = sessionContext[slug] || {};
+  const { questionIndex } = sessionContext[slug] || {};
   const { activeComponents, answers, finishedComponents } =
     sessionContext[slug] || {};
 
