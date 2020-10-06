@@ -2,6 +2,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import React from "react";
 
 type AddressLinesProps = {
+  gutterBottom: number;
   houseNumberFull: string;
   postalCode: string;
   residence: string;
@@ -9,6 +10,7 @@ type AddressLinesProps = {
 };
 
 export default ({
+  gutterBottom,
   houseNumberFull,
   postalCode,
   residence,
@@ -18,7 +20,7 @@ export default ({
     <Paragraph gutterBottom={0}>
       {streetName} {houseNumberFull}
     </Paragraph>
-    <Paragraph gutterBottom={16}>
+    <Paragraph gutterBottom={gutterBottom}>
       {postalCode} {residence}
     </Paragraph>
   </>
