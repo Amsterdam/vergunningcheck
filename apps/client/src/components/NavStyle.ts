@@ -1,4 +1,4 @@
-import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import { NavProps } from "./Nav";

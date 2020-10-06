@@ -1,4 +1,4 @@
-import { FormTitle as FormTitleComp } from "@datapunt/asc-ui";
+import { FormTitle as FormTitleComp } from "@amsterdam/asc-ui";
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 

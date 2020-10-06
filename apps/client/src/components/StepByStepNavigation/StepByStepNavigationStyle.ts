@@ -1,4 +1,4 @@
-import { themeColor } from "@datapunt/asc-ui";
+import { themeColor } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import StepByStepItemStyle, { CircleWrapperStyle } from "./StepByStepItemStyle";
@@ -14,7 +14,6 @@ export type Props = {
 export default styled.div<Props>`
   /* Remove the line (going downwards) only from the last Item */
   ${StepByStepItemStyle} {
-
     ${({ lineBetweenItems }) =>
       lineBetweenItems &&
       css`

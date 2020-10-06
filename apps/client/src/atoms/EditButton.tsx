@@ -1,4 +1,4 @@
-import { Button } from "@datapunt/asc-ui";
+import { Button } from "@amsterdam/asc-ui";
 import React from "react";
 import styled from "styled-components";
 

@@ -1,6 +1,6 @@
 import "jest-styled-components";
 
-import { ascDefaultTheme, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { ascDefaultTheme, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { STEPBYSTEPITEM, STEPBYSTEPNAVIGATION } from "../../utils/test-ids";

@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
 import { generateOloUrl } from "../../config";
