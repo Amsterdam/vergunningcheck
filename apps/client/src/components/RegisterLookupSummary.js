@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 
@@ -42,15 +42,17 @@ const RegisterLookupSummary = ({
     <ComponentWrapper marginBottom={hasIMTR ? "0" : null}>
       <AddressLines
         {...address}
+        editAddressRenderer={() =>
+          !compact && (
+            <ChangeAddressModal {...{ hasIMTR, setActiveState, slug }} />
+          )
+        }
         gutterBottom={monument || cityScape ? 16 : 0}
       />
       {compact && (monument || cityScape) && (
         <Paragraph gutterBottom={0} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
-      )}
-      {!compact && (
-        <ChangeAddressModal {...{ hasIMTR, setActiveState, slug }} />
       )}
       {(monument || !hasIMTR) && (
         <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>

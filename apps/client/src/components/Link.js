@@ -1,4 +1,4 @@
-import { Link as StyledComponentLink } from "@datapunt/asc-ui";
+import { Link as StyledComponentLink } from "@amsterdam/asc-ui";
 import PropTypes from "prop-types";
 import React from "react";
 

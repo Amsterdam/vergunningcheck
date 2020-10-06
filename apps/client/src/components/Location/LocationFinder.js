@@ -1,5 +1,5 @@
+import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { useQuery } from "@apollo/client";
-import { ErrorMessage, Paragraph } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -170,14 +170,13 @@ const LocationFinder = ({
 
       <ComponentWrapper>
         <LocationTextField
+          autoComplete="off" // This disables the native browser auto-suggest
           error={houseNumberError}
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
           name="houseNumber"
           onBlur={handleBlur}
           onChange={(e) => {
-            // @TODO: Fix the option to allow a space between the houseNumber and the suffix
-            // EG: houseNumber "762A" should trigger the AutoSuggest and now only "762 A" works (postalCode "1017LD")
             setHouseNumber(parseInt(e.target.value));
             setHouseNumberFull(e.target.value);
           }}

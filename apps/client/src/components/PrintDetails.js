@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { PrintOnly } from "../atoms";

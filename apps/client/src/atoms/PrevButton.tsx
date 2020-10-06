@@ -1,4 +1,4 @@
-import { Button, themeSpacing } from "@datapunt/asc-ui";
+import { Button, themeSpacing } from "@amsterdam/asc-ui";
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 

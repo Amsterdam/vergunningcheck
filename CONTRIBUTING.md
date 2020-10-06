@@ -7,6 +7,39 @@ open up a pull request. See [README.md](README.md) for nomenclature.
 
 We use [Conventional Commits](https://www.conventionalcommits.org).
 
+## Styled Components
+
+We use [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl).
+
+Example usage of the `Alert` component:
+
+```js
+import { Alert } from "@amsterdam/asc-ui";
+
+...
+
+<Alert content="content" heading="heading">
+```
+
+## Styling usage of margin and padding
+
+Amsterdam uses a 4px grid, so all distances should be divided by 4. You can use the `themeSpacing` function from Amsterdam Styled Components for this.
+
+Example usage:
+
+```scss
+padding-top: ${themeSpacing(1)}; // This will have a padding of 1 * 4 = 4px
+padding-right: ${themeSpacing(2)}; // This will have a padding of 2 * 4 = 8px
+padding-bottom: ${themeSpacing(3)}; // This will have a padding of 3 * 4 = 12px
+padding-left: ${themeSpacing(4)}; // This will have a padding of 4 * 4 = 16px
+```
+
+To simplify things you can also use:
+
+```scss
+margin: ${themeSpacing(5, 0, 4)}; // margin: 20px 0 16px;
+```
+
 ## Updating permits
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.

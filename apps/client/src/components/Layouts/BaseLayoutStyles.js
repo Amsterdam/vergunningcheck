@@ -1,4 +1,4 @@
-import { breakpoint, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { breakpoint, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const Container = styled.div`

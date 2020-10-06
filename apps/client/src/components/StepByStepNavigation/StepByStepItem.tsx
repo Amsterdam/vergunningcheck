@@ -1,4 +1,4 @@
-import { Checkmark } from "@datapunt/asc-assets";
+import { Checkmark } from "@amsterdam/asc-assets";
 import React from "react";
 
 import { STEPBYSTEPITEM } from "../../utils/test-ids";

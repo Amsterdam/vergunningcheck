@@ -1,7 +1,10 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
+import { TextToEdit } from "../atoms";
+
 type AddressLinesProps = {
+  editAddressRenderer?: Function;
   gutterBottom: number;
   houseNumberFull: string;
   postalCode: string;
@@ -10,6 +13,7 @@ type AddressLinesProps = {
 };
 
 export default ({
+  editAddressRenderer,
   gutterBottom,
   houseNumberFull,
   postalCode,
@@ -18,7 +22,10 @@ export default ({
 }: AddressLinesProps) => (
   <>
     <Paragraph gutterBottom={0}>
-      {streetName} {houseNumberFull}
+      <TextToEdit>
+        {streetName} {houseNumberFull}
+      </TextToEdit>
+      {editAddressRenderer && editAddressRenderer()}
     </Paragraph>
     <Paragraph gutterBottom={gutterBottom}>
       {postalCode} {residence}
