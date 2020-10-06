@@ -7,6 +7,20 @@ open up a pull request. See [README.md](README.md) for nomenclature.
 
 We use [Conventional Commits](https://www.conventionalcommits.org).
 
+## Styling
+
+We use [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl).
+
+Example usage of the `Alert` component:
+
+```js
+import { Alert } from "@amsterdam/asc-ui";
+
+...
+
+<Alert content="content" heading="heading">
+```
+
 ## Updating permits
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
