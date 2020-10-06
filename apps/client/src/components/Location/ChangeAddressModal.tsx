@@ -11,50 +11,36 @@ import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const ChangeAddressModal: React.FC<{
+  checker: any;
   hasIMTR: boolean;
   matomoTrackEvent: Function;
+  resetChecker: Function;
   setActiveState: Function;
   slug: string;
-}> = ({ matomoTrackEvent, setActiveState, slug, hasIMTR }) => {
+}> = ({ matomoTrackEvent, setActiveState, resetChecker, slug, hasIMTR }) => {
   // @TODO: replace this with React custom hooks
-  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
-    SessionContext
-  );
+  const sessionContext = useContext<
+    SessionDataType & { setSessionData?: any; resetSessionData?: any }
+  >(SessionContext);
 
   const handleOpenModal = () => {
-    // @TODO: Add event and remove temporary if statement
     matomoTrackEvent({
       action: actions.OPEN_MODAL,
-      name: "EDIT ADDRESS EVENT NAME",
+      name: eventNames.OPEN_CHANGE_ADDRESS_MODAL,
     });
   };
 
   const handleConfirmButton = () => {
-    // @TODO: Update original event
-    // matomoTrackEvent({
-    //   action: actions.CLICK_INTERNAL_NAVIGATION,
-    //   name: eventNames.EDIT_ADDRESS,
-    // });
+    matomoTrackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: eventNames.EDIT_ADDRESS,
+    });
 
     // More or less copy pasted from NewCheckerModal
-    // @TODO: make re-usable
-    sessionContext.setSessionData([
-      slug,
-      {
-        activeComponents: [sections.LOCATION_INPUT],
-        address: null,
-        answers: null,
-        finishedComponents: [],
-      },
-    ]);
+    sessionContext.resetSessionData(slug);
+    resetChecker();
 
-    // @TODO: make this working when the custom Hooks are available
-    // @TODO: move this to checker.js .reset
-    // checker._getAllQuestions().forEach((question: any) => {
-    //   question.setAnswer(undefined);
-    // });
-
-    return (window.location.href = `/${slug}/vragen-en-conclusie?loadChecker`);
+    return (window.location.href = `/${slug}/vragen-en-conclusie`);
   };
 
   return (
@@ -70,11 +56,6 @@ const ChangeAddressModal: React.FC<{
             <EditButton
               data-testid={MODAL_OPEN_BUTTON}
               onClick={() => {
-                matomoTrackEvent({
-                  action: "OPEN MODAL", // @TODO: replace events
-                  name: "OPEN MODAL",
-                });
-
                 // Open modal function
                 openModal();
               }}

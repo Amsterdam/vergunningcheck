@@ -220,6 +220,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
               <RegisterLookupSummary
                 {...{
                   matomoTrackEvent,
+                  resetChecker,
                   setActiveState,
                   topic,
                 }}

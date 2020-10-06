@@ -128,6 +128,7 @@ const LocationInput = ({
           {...{
             focus,
             matomoTrackEvent,
+            resetChecker,
             sessionAddress,
             setAddress,
             setErrorMessage,
