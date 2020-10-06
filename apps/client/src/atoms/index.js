@@ -1,7 +1,6 @@
 export { default as Alert } from "./Alert";
 export { default as ComponentWrapper } from "./ComponentWrapper";
 export { default as EditButton } from "./EditButton";
-export { default as FormTitle } from "./FormTitle";
 export { default as HideForPrint } from "./HideForPrint";
 export { default as Label } from "./Label";
 export { default as List } from "./List";
