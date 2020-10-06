@@ -11,7 +11,6 @@ import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const ChangeAddressModal: React.FC<{
-  checker: any;
   hasIMTR: boolean;
   matomoTrackEvent: Function;
   resetChecker: Function;
@@ -39,8 +38,6 @@ const ChangeAddressModal: React.FC<{
     // More or less copy pasted from NewCheckerModal
     sessionContext.resetSessionData(slug);
     resetChecker();
-
-    return (window.location.href = `/${slug}/vragen-en-conclusie`);
   };
 
   return (

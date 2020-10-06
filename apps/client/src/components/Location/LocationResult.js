@@ -9,12 +9,7 @@ import Form from "../Form";
 import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 
-const LocationResult = ({
-  matomoTrackEvent,
-  resetChecker,
-  setActiveState,
-  topic,
-}) => {
+const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
   const sessionContext = useContext(SessionContext);
   const address = sessionContext[topic.slug].address || {};
   const { hasIMTR } = topic;
@@ -44,7 +39,6 @@ const LocationResult = ({
       <RegisterLookupSummary
         {...{
           matomoTrackEvent,
-          resetChecker,
           setActiveState,
           topic,
         }}
