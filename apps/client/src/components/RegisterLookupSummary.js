@@ -14,6 +14,8 @@ import {
 import AddressLines from "./AddressLines";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
+// @TODO: Convert this file to TS
+// @TODO replace unused props from RegisterLookupSummary in LocationResult
 const RegisterLookupSummary = ({
   addressFromLocation,
   compact,
