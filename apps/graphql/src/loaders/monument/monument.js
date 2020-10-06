@@ -16,6 +16,7 @@ let loader = {
     return {
       _type: "Monument",
       name: monumentstatus,
+      scope: monumentstatus === "Rijksmonument" ? "NATIONAL" : "MUNICIPAL",
       type:
         monumentstatus === "Rijksmonument"
           ? "NATIONAL_MONUMENT"

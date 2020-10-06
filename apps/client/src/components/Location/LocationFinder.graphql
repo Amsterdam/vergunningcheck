@@ -27,12 +27,11 @@ fragment exactMatchFragment on Address {
     __typename
     ... on CityScape {
       __typename
-      name
+      scope
     }
     ... on Monument {
       __typename
       name
-      # type
     }
   }
   zoningPlans {

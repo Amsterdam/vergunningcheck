@@ -10,6 +10,7 @@ export default {
     {
       __typename: "CityScape",
       name: "cityscape",
+      scope: "NATIONAL",
     },
   ],
   streetName: "streetname",
