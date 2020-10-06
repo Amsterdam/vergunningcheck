@@ -3,6 +3,7 @@ import React from "react";
 
 type AddressLinesProps = {
   houseNumberFull: string;
+  marginBottom: number;
   postalCode: string;
   residence: string;
   streetName: string;
@@ -10,6 +11,7 @@ type AddressLinesProps = {
 
 export default ({
   houseNumberFull,
+  marginBottom,
   postalCode,
   residence,
   streetName,
@@ -18,7 +20,7 @@ export default ({
     <Paragraph gutterBottom={0}>
       {streetName} {houseNumberFull}
     </Paragraph>
-    <Paragraph gutterBottom={16}>
+    <Paragraph gutterBottom={marginBottom}>
       {postalCode} {residence}
     </Paragraph>
   </>

@@ -43,12 +43,16 @@ const RegisterLookupSummary = ({
 
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
-      <AddressLines {...address} />
-      {compact && (monument || cityScape) ? (
+      <AddressLines
+        {...address}
+        marginBottom={monument || cityScape ? 16 : 0}
+      />
+      {compact && (monument || cityScape) && (
         <Paragraph gutterBottom={0} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
-      ) : (
+      )}
+      {!compact && (
         <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
       )}
       {(monument || !hasSTTR) && (
