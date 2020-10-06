@@ -43,7 +43,7 @@ const RegisterLookupSummary = ({
       <AddressLines
         {...address}
         editAddressRenderer={() =>
-          compact ? null : (
+          !compact && (
             <ChangeAddressModal {...{ hasIMTR, setActiveState, slug }} />
           )
         }
