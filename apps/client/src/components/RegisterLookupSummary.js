@@ -42,7 +42,7 @@ const RegisterLookupSummary = ({
     <ComponentWrapper marginBottom={hasIMTR ? "0" : null}>
       <AddressLines
         {...address}
-        marginBottom={monument || cityScape ? 16 : 0}
+        gutterBottom={monument || cityScape ? 16 : 0}
       />
       {compact && (monument || cityScape) && (
         <Paragraph gutterBottom={0} strong>
