@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 

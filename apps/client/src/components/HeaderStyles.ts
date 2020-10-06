@@ -1,4 +1,4 @@
-import { Header, breakpoint, themeSpacing } from "@datapunt/asc-ui";
+import { Header, breakpoint, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import LogoDesktop from "../static/media/logo-desktop.svg";

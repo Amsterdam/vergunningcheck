@@ -14,7 +14,6 @@ Object.defineProperty(window, "matchMedia", matchMedia);
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
-  useLocation: () => "?loadChecker",
 }));
 
 afterEach(cleanup);

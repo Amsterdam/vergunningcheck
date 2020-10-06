@@ -1,4 +1,4 @@
-import { Label, themeSpacing } from "@datapunt/asc-ui";
+import { Label, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export default styled(Label)`

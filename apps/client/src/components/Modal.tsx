@@ -1,5 +1,5 @@
-import { Close } from "@datapunt/asc-assets";
-import { CompactThemeProvider, Divider, Icon, TopBar } from "@datapunt/asc-ui";
+import { Close } from "@amsterdam/asc-assets";
+import { CompactThemeProvider, Divider, Icon, TopBar } from "@amsterdam/asc-ui";
 import React, { useState } from "react";
 
 import {

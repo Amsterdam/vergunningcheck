@@ -1,4 +1,4 @@
-import { TextField } from "@datapunt/asc-ui";
+import { TextField } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const LocationTextField = styled(TextField)`

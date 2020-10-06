@@ -1,6 +1,6 @@
+import { ThemeProvider } from "@amsterdam/asc-ui";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { MockLink } from "@apollo/client/testing";
-import { ThemeProvider } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { render } from "@testing-library/react";
 import dotenv from "dotenv-flow";

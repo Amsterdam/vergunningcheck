@@ -1,4 +1,4 @@
-import { Heading, ListItem, Paragraph } from "@datapunt/asc-ui";
+import { Heading, ListItem, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { List } from "../../atoms/index";
