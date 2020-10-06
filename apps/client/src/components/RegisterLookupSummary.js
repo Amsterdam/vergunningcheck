@@ -44,7 +44,7 @@ const RegisterLookupSummary = ({
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
       <AddressLines {...address} />
-      {compact ? (
+      {compact && (monument || cityScape) ? (
         <Paragraph gutterBottom={0} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
