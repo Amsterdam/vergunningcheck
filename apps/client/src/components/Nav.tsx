@@ -1,4 +1,4 @@
-import { ChevronLeft } from "@datapunt/asc-assets";
+import { ChevronLeft } from "@amsterdam/asc-assets";
 import React from "react";
 
 import { PrevButton } from "../atoms";

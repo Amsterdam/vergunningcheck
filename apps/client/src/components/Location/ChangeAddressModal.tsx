@@ -1,6 +1,6 @@
 // @TODO: Rename this file to EditLocation
 // @TODO: Write test for this file
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
 import { ComponentWrapper, EditButton } from "../../atoms";

@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 

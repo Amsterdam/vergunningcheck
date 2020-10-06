@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { TextToEdit } from "../atoms";

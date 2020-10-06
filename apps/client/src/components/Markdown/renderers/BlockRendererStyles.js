@@ -1,4 +1,4 @@
-import { Paragraph, themeSpacing } from "@datapunt/asc-ui";
+import { Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const StyledParagraph = styled(Paragraph)`

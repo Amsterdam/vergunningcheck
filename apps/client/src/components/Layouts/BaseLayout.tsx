@@ -1,4 +1,4 @@
-import { Column, FormTitle, Row } from "@datapunt/asc-ui";
+import { Column, FormTitle, Row } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 

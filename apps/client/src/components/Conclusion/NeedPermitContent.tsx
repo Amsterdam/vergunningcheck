@@ -1,4 +1,4 @@
-import { Button, Link, Paragraph } from "@datapunt/asc-ui";
+import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { HideForPrint, PrintOnly } from "../../atoms";

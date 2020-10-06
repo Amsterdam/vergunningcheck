@@ -1,4 +1,4 @@
-import { Icon, breakpoint, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { Icon, breakpoint, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 export type Props = {

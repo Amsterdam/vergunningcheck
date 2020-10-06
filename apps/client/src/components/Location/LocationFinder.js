@@ -1,5 +1,5 @@
+import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { useQuery } from "@apollo/client";
-import { ErrorMessage, Paragraph } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
 

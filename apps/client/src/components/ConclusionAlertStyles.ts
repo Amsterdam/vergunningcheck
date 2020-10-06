@@ -1,4 +1,4 @@
-import { themeSpacing } from "@datapunt/asc-ui";
+import { themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 import { Alert } from "../atoms";

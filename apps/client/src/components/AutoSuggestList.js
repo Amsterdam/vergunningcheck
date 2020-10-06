@@ -9,8 +9,8 @@
  * - Convert to TS
  */
 
-import { ChevronRight } from "@datapunt/asc-assets";
-import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { ChevronRight } from "@amsterdam/asc-assets";
+import { Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import PropTypes from "prop-types";
 import React, { Fragment, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
