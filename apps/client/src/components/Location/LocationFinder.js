@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
+import useDebounce from "../../hooks/useDebounce";
 import { stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList from "../AutoSuggestList";
@@ -16,6 +17,8 @@ import { LocationTextField } from "./LocationStyles";
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
+const RESULT_DELAY = 750;
+
 const LocationFinder = ({
   focus,
   matomoTrackEvent,
@@ -25,6 +28,7 @@ const LocationFinder = ({
   setFocus,
   topic,
 }) => {
+  const [showResult, setShowResult] = useState(true);
   const [postalCode, setPostalCode] = useState(sessionAddress?.postalCode);
   const [houseNumber, setHouseNumber] = useState(
     sessionAddress?.houseNumber && parseInt(sessionAddress?.houseNumber)
@@ -34,7 +38,6 @@ const LocationFinder = ({
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState("");
   const [touched, setTouched] = useState({});
-  const [houseNumberInput, setHouseNumberInput] = useState("");
 
   const variables = {
     extraHouseNumberFull: "",
@@ -79,12 +82,6 @@ const LocationFinder = ({
     [setFocus]
   );
 
-  const handleAutoSuggestSelect = (option) => {
-    setHouseNumber(option.value);
-    setHouseNumberFull(option.value);
-    setAutoSuggestValue(option.value);
-  };
-
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
      Workaround is not giving any variables if the query should be skipped. */
@@ -107,27 +104,22 @@ const LocationFinder = ({
     (data || graphqlError)
   );
 
+  const exactMatch = data?.findAddress?.exactMatch;
+
   // Prevent setState error
   useEffect(() => {
-    // Pass the GraphQL error to the HOC
     setErrorMessage(graphqlError);
 
     if (allowToSetAddress) {
-      setAddress(data?.findAddress?.exactMatch);
+      setAddress(exactMatch);
     }
-  }, [allowToSetAddress, data, graphqlError, setAddress, setErrorMessage]);
-
-  const exactMatch = data?.findAddress?.exactMatch;
-
-  // Validate address
-  const displayLocationNotFound = !!(
-    postalCode &&
-    houseNumber &&
-    houseNumberFull &&
-    !loading &&
-    !exactMatch &&
-    !graphqlError
-  );
+  }, [
+    allowToSetAddress,
+    exactMatch,
+    graphqlError,
+    setAddress,
+    setErrorMessage,
+  ]);
 
   const handleBlur = (e) => {
     // This fixes the focus error
@@ -136,6 +128,15 @@ const LocationFinder = ({
   };
 
   // AutoSuggest
+  const handleAutoSuggestSelect = (option) => {
+    setShowResult(false);
+    debouncedUpdateResult();
+
+    setHouseNumber(option.value);
+    setHouseNumberFull(option.value);
+    setAutoSuggestValue(option.value);
+  };
+
   const autoSuggestMatches =
     data?.findAddress.matches.filter(
       (a) => stripString(a.houseNumberFull) !== stripString(houseNumberFull)
@@ -147,7 +148,51 @@ const LocationFinder = ({
     value: address.houseNumberFull,
   }));
 
+  // Determine when to show components
   const showExactMatch = exactMatch && !loading;
+
+  const showLocationNotFound = !!(
+    houseNumberFull &&
+    postalCode &&
+    showResult &&
+    !exactMatch &&
+    !loading &&
+    !graphqlError &&
+    !showAutoSuggest
+  );
+
+  const showLoading = !!(
+    houseNumberFull &&
+    postalCode &&
+    !showAutoSuggest &&
+    !showExactMatch &&
+    !showLocationNotFound &&
+    !showResult
+  );
+
+  // Debounce showing the LocationNotFound component
+  const updateResult = useCallback(() => {
+    setShowResult(true);
+  }, []);
+
+  const debouncedUpdateResult = useDebounce(updateResult, RESULT_DELAY);
+
+  const handleChange = useCallback(
+    (event) => {
+      setHouseNumber(parseInt(event.target.value));
+      setHouseNumberFull(event.target.value);
+
+      if (event.target.value) {
+        // Allow references to the event to be retained
+        event.persist();
+        setShowResult(false);
+        debouncedUpdateResult();
+      }
+    },
+    [debouncedUpdateResult]
+  );
+
+  // @TODO: we can refactor this component by separating all inputs and input handles
 
   return (
     <>
@@ -176,17 +221,15 @@ const LocationFinder = ({
           label="Huisnummer + toevoeging"
           name="houseNumber"
           onBlur={handleBlur}
-          onChange={(e) => {
-            setHouseNumber(parseInt(e.target.value));
-            setHouseNumberFull(e.target.value);
-          }}
+          onChange={handleChange}
           onFocus={() => setFocus(true)}
-          onInput={(e) => setHouseNumberInput(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e)}
           required
           value={houseNumberFull || autoSuggestValue}
         />
+
         {houseNumberError && <ErrorMessage message={houseNumberError} />}
+
         {showAutoSuggest && (
           <AutoSuggestList
             // @TODO: make activeIndex dynamic (WCAG)
@@ -199,11 +242,9 @@ const LocationFinder = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={loading} />
+      <LocationLoading loading={showLoading} />
 
-      {displayLocationNotFound && (
-        <LocationNotFound {...{ houseNumberInput, showAutoSuggest }} />
-      )}
+      {showLocationNotFound && <LocationNotFound />}
 
       {showExactMatch && (
         <>
