@@ -18,7 +18,7 @@ const RegisterLookupSummary = ({
   addressFromLocation,
   compact,
   setActiveState,
-  topic: { slug, sttrFile },
+  topic: { slug, hasIMTR },
 }) => {
   const sessionContext = useContext(SessionContext);
   const address = addressFromLocation
@@ -31,9 +31,6 @@ const RegisterLookupSummary = ({
     .map((plan) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
-  // @TODO: replace when IMTR refactor is merged
-  const hasSTTR = !!sttrFile;
-
   if (monument) {
     setTag("monument", monument);
   }
@@ -42,7 +39,7 @@ const RegisterLookupSummary = ({
   }
 
   return (
-    <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
+    <ComponentWrapper marginBottom={hasIMTR ? "0" : null}>
       <AddressLines
         {...address}
         marginBottom={monument || cityScape ? 16 : 0}
@@ -53,26 +50,26 @@ const RegisterLookupSummary = ({
         </Paragraph>
       )}
       {!compact && (
-        <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
+        <ChangeAddressModal {...{ hasIMTR, setActiveState, slug }} />
       )}
-      {(monument || !hasSTTR) && (
+      {(monument || !hasIMTR) && (
         <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
           {monument
             ? `Het gebouw is een ${monument.toLowerCase()}.`
             : "Het gebouw is geen monument."}
         </Paragraph>
       )}
-      {(cityScape || !hasSTTR) && (
+      {(cityScape || !hasIMTR) && (
         <Paragraph
           data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-          gutterBottom={hasSTTR ? 0 : 16}
+          gutterBottom={hasIMTR ? 0 : 16}
         >
           {cityScape
             ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
             : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
         </Paragraph>
       )}
-      {!hasSTTR && !compact && (
+      {!hasIMTR && !compact && (
         <>
           <Paragraph strong gutterBottom={0}>
             Bestemmingsplannen:
