@@ -135,6 +135,7 @@ const LocationInput = ({
           }}
         />
         <Nav
+          nextText={hasSTTR ? "Naar de vragen" : "Volgende"}
           noMarginBottom={!hasSTTR}
           onGoToPrev={onGoToPrev}
           showNext

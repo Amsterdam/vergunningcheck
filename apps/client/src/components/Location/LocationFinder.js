@@ -216,7 +216,7 @@ const LocationFinder = ({
             >
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
-                compact={true}
+                compact
                 displayZoningPlans={false}
                 matomoTrackEvent={matomoTrackEvent}
                 topic={topic}

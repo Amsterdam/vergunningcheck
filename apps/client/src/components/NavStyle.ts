@@ -1,4 +1,4 @@
-import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { Button, Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
 import styled, { css } from "styled-components";
 
 import { NavProps } from "./Nav";
@@ -21,6 +21,10 @@ export const NavStyle = styled.div<NavProps>`
   @media print {
     display: none;
   }
+`;
+
+export const NextButton = styled(Button)<{ formEnds: boolean }>`
+  margin-right: ${(props) => (props.formEnds ? 10 : 25)}px;
 `;
 
 /*

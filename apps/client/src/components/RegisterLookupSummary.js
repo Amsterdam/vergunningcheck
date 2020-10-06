@@ -11,7 +11,7 @@ import {
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
-import AddressLine from "./AddressLine";
+import AddressLines from "./AddressLines";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
 const RegisterLookupSummary = ({
@@ -43,16 +43,13 @@ const RegisterLookupSummary = ({
 
   return (
     <ComponentWrapper marginBottom={sttrFile ? "0" : null}>
-      {compact ? (
-        <AddressLine {...address} />
+      <AddressLines {...address} />
+      {compact && (monument || cityScape) ? (
+        <Paragraph gutterBottom={0} strong>
+          Over dit adres hebben we de volgende gegevens gevonden:
+        </Paragraph>
       ) : (
-        <>
-          <Paragraph strong gutterBottom={0}>
-            Ingevoerd adres:
-          </Paragraph>
-          <AddressLine {...address} />
-          <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
-        </>
+        <ChangeAddressModal {...{ hasSTTR, setActiveState, slug }} />
       )}
       {(monument || !hasSTTR) && (
         <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
@@ -71,7 +68,6 @@ const RegisterLookupSummary = ({
             : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
         </Paragraph>
       )}
-
       {!hasSTTR && !compact && (
         <>
           <Paragraph strong gutterBottom={0}>

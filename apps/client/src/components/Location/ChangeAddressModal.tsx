@@ -61,10 +61,11 @@ const ChangeAddressModal: React.FC<{
     <>
       {hasSTTR ? (
         <Modal
-          closeButtonText="Annuleer"
+          closeButtonText="Nee"
+          confirmText="Ja"
           handleConfirmButton={handleConfirmButton}
           handleOpenModal={handleOpenModal}
-          heading="HEADING" // @TODO: update heading
+          heading="Weet u zeker dat u het adres wilt wijzigen?"
           openButtonRenderer={({ openModal }: { openModal: Function }) => (
             <EditButton
               data-testid={MODAL_OPEN_BUTTON}
@@ -82,7 +83,10 @@ const ChangeAddressModal: React.FC<{
           showConfirmButton
         >
           <ComponentWrapper>
-            <Paragraph>Lorem ipsum</Paragraph>
+            <Paragraph>
+              Alle gegeven antwoorden en de conclusie worden gewist. Weet u
+              zeker dat u wilt doorgaan met een ander adres?
+            </Paragraph>
           </ComponentWrapper>
         </Modal>
       ) : (
