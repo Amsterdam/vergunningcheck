@@ -9,7 +9,7 @@ import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const EditLocation: React.FC<{
-  hasIMTR: boolean;
+  hasIMTR?: boolean;
   matomoTrackEvent: Function;
   resetChecker: Function;
   setActiveState: Function;
