@@ -5,7 +5,7 @@ import React from "react";
 import { actions, eventNames } from "../../config/matomo";
 import { MODAL } from "../../utils/test-ids";
 import { act, fireEvent, render } from "../../utils/test-utils";
-import ChangeAddressModal from "./ChangeAddressModal";
+import EditLocation from "./EditLocation";
 
 const matomoTrackEvent = jest.fn();
 const setActiveState = jest.fn();
@@ -16,17 +16,17 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-describe("ChangeAddressModal", () => {
+describe("EditLocation", () => {
   it("Modal should render as expected", async () => {
     const { getByText, queryByTestId } = render(
-      <ChangeAddressModal
+      <EditLocation
         hasIMTR
         matomoTrackEvent={matomoTrackEvent}
         resetChecker={resetChecker}
         setActiveState={setActiveState}
       >
         text
-      </ChangeAddressModal>
+      </EditLocation>
     );
 
     expect(queryByTestId(MODAL)).not.toBeInTheDocument();

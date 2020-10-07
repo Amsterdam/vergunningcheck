@@ -12,7 +12,7 @@ import {
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
 import AddressLines from "./AddressLines";
-import ChangeAddressModal from "./Location/ChangeAddressModal";
+import EditLocation from "./Location/EditLocation";
 
 type zoningPlanProps = {
   name: string;
@@ -58,7 +58,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
         {...address}
         editAddressRenderer={() =>
           !compact && (
-            <ChangeAddressModal
+            <EditLocation
               {...{ hasIMTR, resetChecker, setActiveState, slug }}
             />
           )

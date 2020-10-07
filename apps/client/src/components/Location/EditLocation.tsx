@@ -1,5 +1,3 @@
-// @TODO: Rename this file to EditLocation
-// @TODO: Write test for this file
 import { Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
@@ -10,7 +8,7 @@ import withTracking from "../../hoc/withTracking";
 import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const ChangeAddressModal: React.FC<{
+const EditLocation: React.FC<{
   hasIMTR: boolean;
   matomoTrackEvent: Function;
   resetChecker: Function;
@@ -82,4 +80,4 @@ const ChangeAddressModal: React.FC<{
   );
 };
 
-export default withTracking(ChangeAddressModal);
+export default withTracking(EditLocation);
