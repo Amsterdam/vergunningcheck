@@ -18,7 +18,7 @@ const LocationInput: React.FC<{
   resetChecker: Function;
   setActiveState: Function;
   setFinishedState: Function;
-  topic: any; // @TODO: replace with custom hooks
+  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
 }> = ({
   matomoTrackEvent,
   resetChecker,
@@ -88,8 +88,8 @@ const LocationInput: React.FC<{
       ]);
 
       if (focus) {
-        const e = document.activeElement as HTMLInputElement;
-        e.blur();
+        const event = document.activeElement as HTMLInputElement;
+        event.blur();
       } else {
         setFinishedState(sections.LOCATION_INPUT);
         setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
