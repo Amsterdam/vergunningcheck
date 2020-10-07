@@ -16,7 +16,7 @@ const ChangeAddressModal: React.FC<{
   resetChecker: Function;
   setActiveState: Function;
   slug: string;
-}> = ({ matomoTrackEvent, setActiveState, resetChecker, slug, hasIMTR }) => {
+}> = ({ matomoTrackEvent, resetChecker, setActiveState, slug, hasIMTR }) => {
   // @TODO: replace this with React custom hooks
   const sessionContext = useContext<
     SessionDataType & { setSessionData?: any; resetSessionData?: any }
@@ -25,14 +25,14 @@ const ChangeAddressModal: React.FC<{
   const handleOpenModal = () => {
     matomoTrackEvent({
       action: actions.OPEN_MODAL,
-      name: eventNames.OPEN_CHANGE_ADDRESS_MODAL,
+      name: eventNames.OPEN_MODAL_EDIT_ADDRESS,
     });
   };
 
   const handleConfirmButton = () => {
     matomoTrackEvent({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: eventNames.EDIT_ADDRESS,
+      action: actions.EDIT_ADDRESS,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
     });
 
     // More or less copy pasted from NewCheckerModal
