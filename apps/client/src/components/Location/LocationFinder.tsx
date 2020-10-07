@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
+import { SessionDataType } from "../../context";
 import useDebounce from "../../hooks/useDebounce";
 import { stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
@@ -19,7 +20,15 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const RESULT_DELAY = 750;
 
-const LocationFinder = ({
+const LocationFinder: React.FC<{
+  focus: boolean;
+  matomoTrackEvent: Function;
+  sessionAddress: SessionDataType;
+  setAddress: Function
+  setErrorMessage: Function;
+  setFocus: Function;
+  topic: any, //@TODO: Replace it with IMTR-Client's TopicType
+}> =  ({
   focus,
   matomoTrackEvent,
   sessionAddress,
@@ -29,7 +38,8 @@ const LocationFinder = ({
   topic,
 }) => {
   const [showResult, setShowResult] = useState(true);
-  const [postalCode, setPostalCode] = useState(sessionAddress?.postalCode);
+  const [postalCode, setPostalCode] = useState(useState<any>(sessionAddress?.postalCode)
+  );
   const [houseNumber, setHouseNumber] = useState(
     sessionAddress?.houseNumber && parseInt(sessionAddress?.houseNumber)
   );
@@ -47,7 +57,7 @@ const LocationFinder = ({
   };
 
   // Validate forms
-  const validate = (name, value, required) => {
+  const validate: {name: string; value: string | number; required: boolean} = (name, value, required) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
@@ -258,7 +268,6 @@ const LocationFinder = ({
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
                 compact
-                displayZoningPlans={false}
                 matomoTrackEvent={matomoTrackEvent}
                 topic={topic}
               />
