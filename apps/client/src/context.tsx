@@ -8,7 +8,7 @@ type QuestionAnswerType = {
 
 type TopicSessionData = {
   activeComponents: [string];
-  answers: QuestionAnswerType[];
+  answers?: QuestionAnswerType[];
   address: any;
   finishedComponents: [];
   questionIndex: Number;
@@ -67,7 +67,7 @@ function SessionProvider(props: { children: React.ReactNode }) {
       {
         activeComponents: [sections.LOCATION_INPUT],
         address: address,
-        answers: [],
+        answers: undefined,
         finishedComponents: [],
         questionIndex: 0,
       },
