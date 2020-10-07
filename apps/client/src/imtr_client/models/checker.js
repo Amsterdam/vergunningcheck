@@ -208,13 +208,6 @@ class Checker {
   }
 
   /**
-   * Loops through all questions and clear all given answers`
-   */
-  reset() {
-    this.rewindTo(0);
-  }
-
-  /**
    * Rewind to the previous question. If the checker is done/finished
    * we rewind to the latest in the stack.
    *
