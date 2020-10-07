@@ -65,6 +65,7 @@ export const eventNames = {
   LOGO: "logo",
   NEWSLETTER: "nieuwsbrief amsterdam.nl",
   NO_CHOICE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
+  OPEN_CHANGE_ADDRESS_MODAL: "open wijzig adres modal",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
   TEXT_LINK: "tekst link",

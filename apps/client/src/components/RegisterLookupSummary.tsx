@@ -22,6 +22,7 @@ type zoningPlanProps = {
 type RegisterLookupSummaryProps = {
   addressFromLocation: any;
   compact: boolean;
+  resetChecker?: Function;
   setActiveState: Function;
   topic: any; // @TODO: replace with custom hooks
 };
@@ -29,6 +30,7 @@ type RegisterLookupSummaryProps = {
 const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   addressFromLocation,
   compact,
+  resetChecker,
   setActiveState,
   topic: { slug, hasIMTR },
 }) => {
@@ -57,7 +59,9 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
         {...address}
         editAddressRenderer={() =>
           !compact && (
-            <ChangeAddressModal {...{ hasIMTR, setActiveState, slug }} />
+            <ChangeAddressModal
+              {...{ hasIMTR, resetChecker, setActiveState, slug }}
+            />
           )
         }
         gutterBottom={monument || cityScape ? 16 : 0}
