@@ -24,11 +24,11 @@ import LoadingPage from "./LoadingPage";
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { hasIMTR, slug, text } = topic;
-  // OLO Flow does not have questionIndex
-  const { questionIndex } = hasIMTR ? sessionContext[topic.slug] : 0;
-  const { activeComponents, answers, finishedComponents } = sessionContext[
-    slug
-  ];
+
+  // @TODO: replace with custom hooks
+  const { questionIndex } = sessionContext[slug] || {};
+  const { activeComponents, answers, finishedComponents } =
+    sessionContext[slug] || {};
 
   useEffect(() => {
     // In case no active sections are found, reset the checker
@@ -36,6 +36,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     const activeComponent = [
       sections.CONCLUSION,
       sections.LOCATION_INPUT,
+      sections.LOCATION_RESULT,
       sections.QUESTIONS,
     ].find((section) => isActive(section));
 
@@ -55,6 +56,29 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       if (hasIMTR) {
         resetChecker();
       }
+    }
+
+    // Make the app backwards compatible:
+
+    // This section does not exist anymore in the IMTR flow
+    const isOldSectionActive = hasIMTR && isActive(sections.LOCATION_RESULT);
+    const newFinishedComponents = finishedComponents.filter(
+      (section) => section !== sections.LOCATION_INPUT
+    );
+
+    if (isOldSectionActive) {
+      console.warn(
+        "Resetting components, because an old section was found active"
+      );
+
+      // Remove old sections from existing local storage data and set active component to Location Input
+      sessionContext.setSessionData([
+        slug,
+        {
+          activeComponents: [sections.LOCATION_INPUT],
+          finishedComponents: newFinishedComponents,
+        },
+      ]);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called on mount
