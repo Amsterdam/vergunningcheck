@@ -24,18 +24,16 @@ const LocationResult: React.FC<LocationResultProps> = ({
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
   );
-  const address = sessionContext[topic.slug].address || {};
+  const address = sessionContext[topic.slug].address;
   const { hasIMTR } = topic;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!hasIMTR) {
-      matomoTrackEvent({
-        action: actions.CLICK_EXTERNAL_NAVIGATION,
-        name: eventNames.TO_OLO,
-      });
-      window.open(generateOloUrl(address), "_blank");
-    }
+    matomoTrackEvent({
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: eventNames.TO_OLO,
+    });
+    window.open(generateOloUrl(address), "_blank");
   };
 
   const onGoToPrev = () => {
