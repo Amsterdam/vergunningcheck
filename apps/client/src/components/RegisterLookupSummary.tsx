@@ -14,7 +14,6 @@ import {
 import AddressLines from "./AddressLines";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
-// @TODO: can you make a props file for these kinds of props, @andre?
 type zoningPlanProps = {
   name: string;
 };
@@ -24,7 +23,7 @@ type RegisterLookupSummaryProps = {
   compact: boolean;
   resetChecker?: Function;
   setActiveState: Function;
-  topic: any; // @TODO: replace with custom hooks
+  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
 };
 
 const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
@@ -38,7 +37,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation
-    : sessionContext[slug].address; // @TODO: replace with custom hooks
+    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address and remove types of zoningPlan below
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;

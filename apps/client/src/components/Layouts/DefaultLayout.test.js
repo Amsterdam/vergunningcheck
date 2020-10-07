@@ -14,24 +14,33 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-const Wrapper = ({ children }) => {
-  const topicMock = "dakraam-plaatsen";
-  const topicUrlMock = `/${topicMock}`;
-  const topic = findTopicBySlug(topicMock);
+const topicMock = "dakraam-plaatsen";
+const topicUrlMock = `/${topicMock}`;
+const topic = findTopicBySlug(topicMock);
 
+const Wrapper = ({ children, ...otherProps }) => {
   return (
     <Context topicMock={topic}>
       <MemoryRouter initialEntries={[topicUrlMock]}>
-        <DefaultLayout heading="title">{children}</DefaultLayout>
+        <DefaultLayout {...otherProps}>{children}</DefaultLayout>
       </MemoryRouter>
     </Context>
   );
 };
 
 describe("DefaultLayout", () => {
-  it("renders with text", () => {
-    const { queryByText } = render(<Wrapper>DefaultLayout</Wrapper>);
+  it("renders with custom heading", () => {
+    const { queryByText } = render(
+      <Wrapper heading="title">DefaultLayout</Wrapper>
+    );
     expect(queryByText("DefaultLayout")).toBeInTheDocument();
     expect(queryByText("title")).toBeInTheDocument();
+  });
+  it("renders with topic heading", () => {
+    const { queryByText } = render(
+      <Wrapper topic={topic}>DefaultLayout</Wrapper>
+    );
+    expect(queryByText("DefaultLayout")).toBeInTheDocument();
+    expect(queryByText(topic.text.heading)).toBeInTheDocument();
   });
 });

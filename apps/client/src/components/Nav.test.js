@@ -43,7 +43,7 @@ it("Nav should render with no props", () => {
 it("Nav should render default values", () => {
   const { queryByTestId } = render(
     <Wrapper>
-      <Nav showNext showPrev />
+      <Nav noMarginBottom showNext showPrev />
     </Wrapper>
   );
 

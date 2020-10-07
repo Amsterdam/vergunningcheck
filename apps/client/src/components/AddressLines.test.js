@@ -24,7 +24,7 @@ describe("AddressLine", () => {
   it("renders correctly with editAddressRenderer", () => {
     const { queryByText } = render(
       <AddressLines
-        editAddressRenderer={() => <div>rendered</div>}
+        editAddressRenderer={() => <span>rendered</span>}
         houseNumberFull={addressMock.houseNumberFull}
         postalCode={addressMock.postalCode}
         residence={addressMock.residence}

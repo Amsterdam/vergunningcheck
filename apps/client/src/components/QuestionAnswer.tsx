@@ -28,10 +28,7 @@ const QuestionAnswer: React.FC<
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
-        <ConclusionAlert
-          style={{ marginBottom: 8 }}
-          {...{ questionNeedsContactExit }}
-        />
+        <ConclusionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
       )}
     </>
   );
