@@ -38,7 +38,7 @@ const LocationInput: React.FC<{
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState<any>([]); // @TODO what is the type of a errorMessage Stack
+  const [errorMessage, setErrorMessage] = useState<{ stack: object }>();
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
