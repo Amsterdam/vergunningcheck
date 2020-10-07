@@ -129,14 +129,14 @@ const LocationFinder = ({
 
   // AutoSuggest
   const handleAutoSuggestSelect = (option) => {
+    const { value } = option;
     setShowResult(false);
     debouncedUpdateResult();
 
-    setHouseNumber(option.value);
-    setHouseNumberFull(option.value);
-    setAutoSuggestValue(option.value);
+    setHouseNumber(value);
+    setHouseNumberFull(value);
+    setAutoSuggestValue(value);
   };
-
   const autoSuggestMatches =
     data?.findAddress.matches.filter(
       (a) => stripString(a.houseNumberFull) !== stripString(houseNumberFull)
@@ -179,10 +179,11 @@ const LocationFinder = ({
 
   const handleChange = useCallback(
     (event) => {
-      setHouseNumber(parseInt(event.target.value));
-      setHouseNumberFull(event.target.value);
+      const { value } = event.target;
+      setHouseNumber(parseInt(value));
+      setHouseNumberFull(value);
 
-      if (event.target.value) {
+      if (value) {
         // Allow references to the event to be retained
         event.persist();
         setShowResult(false);
