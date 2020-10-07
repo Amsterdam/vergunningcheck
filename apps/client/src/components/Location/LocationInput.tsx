@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { actions, eventNames, sections } from "../../config/matomo";
-import { CheckerContext, SessionContext } from "../../context";
+import { CheckerContext, SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
@@ -13,7 +13,13 @@ import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
-const LocationInput = ({
+const LocationInput: React.FC<{
+  matomoTrackEvent: Function;
+  resetChecker: Function;
+  setActiveState: Function;
+  setFinishedState: Function;
+  topic: any; // @TODO: replace with custom hooks
+}> = ({
   matomoTrackEvent,
   resetChecker,
   setActiveState,
@@ -22,14 +28,18 @@ const LocationInput = ({
 }) => {
   const history = useHistory();
   const { handleSubmit } = useForm();
-  const sessionContext = useContext(SessionContext);
+  // @TODO: replace with custom topic hooks
+  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
+    SessionContext
+  );
   const checkerContext = useContext(CheckerContext);
 
   const { hasIMTR, slug, text } = topic;
+
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState<any>([]); // @TODO what is the type of a errorMessage Stack
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
@@ -58,7 +68,7 @@ const LocationInput = ({
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        answers = null;
+        answers = [];
       }
 
       checkerContext.autofillData.address = address;
@@ -79,7 +89,8 @@ const LocationInput = ({
       ]);
 
       if (focus) {
-        document.activeElement.blur();
+        const e = document.activeElement as HTMLInputElement;
+        e.blur();
       } else {
         setFinishedState(sections.LOCATION_INPUT);
         setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
@@ -105,6 +116,7 @@ const LocationInput = ({
     history.push(geturl(routes.intro, topic));
   };
 
+  console.log(errorMessage);
   return (
     <>
       {errorMessage && (
