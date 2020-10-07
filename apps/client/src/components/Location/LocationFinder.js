@@ -46,14 +46,16 @@ const LocationFinder = ({
     queryExtra: false,
   };
 
+  const isValidPostalcode = (value) =>
+    value && !!value.toString().trim().match(postalCodeRegex);
+
   // Validate forms
   const validate = (name, value, required) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
       }
-      const trimmed = value && value.toString().trim();
-      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
+      if (name === "postalCode" && !isValidPostalcode(value)) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
@@ -89,6 +91,7 @@ const LocationFinder = ({
     houseNumberError ||
     !houseNumberFull ||
     !postalCode ||
+    !isValidPostalcode(postalCode) ||
     postalCodeError
   );
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
@@ -99,7 +102,7 @@ const LocationFinder = ({
   const allowToSetAddress = !!(
     houseNumber &&
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     !loading &&
     (data || graphqlError)
   );
@@ -153,7 +156,7 @@ const LocationFinder = ({
 
   const showLocationNotFound = !!(
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     showResult &&
     !exactMatch &&
     !loading &&
@@ -163,7 +166,7 @@ const LocationFinder = ({
 
   const showLoading = !!(
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     !showAutoSuggest &&
     !showExactMatch &&
     !showLocationNotFound &&
