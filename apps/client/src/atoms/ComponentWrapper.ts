@@ -2,7 +2,7 @@ import { themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 type Props = {
-  marginBottom?: number | undefined;
+  marginBottom?: number;
 };
 
 export default styled.div<Props>`

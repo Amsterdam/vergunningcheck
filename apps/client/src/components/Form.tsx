@@ -3,25 +3,29 @@ import React from "react";
 import { StyledForm } from "./FormStyles";
 
 export type FormProps = {
-  className?: string;
+  dataId?: string;
+  dataTestId?: string;
   onSubmit?: Function;
 };
 
-const Form: React.FC<FormProps> = ({
+const Form: React.FC<FormProps & React.HTMLAttributes<HTMLElement>> = ({
   children,
+  className,
+  dataId,
+  dataTestId,
   onSubmit,
-  ...otherProps
-  // otherProps could be: className, data-id or data-testid
 }) => {
   return (
     <StyledForm
+      className={className}
+      data-id={dataId}
+      data-testid={dataTestId}
       onSubmit={(e) => {
         e.preventDefault();
         if (onSubmit) {
           onSubmit(e);
         }
       }}
-      {...otherProps}
     >
       {children}
     </StyledForm>

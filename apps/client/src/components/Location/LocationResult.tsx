@@ -47,7 +47,7 @@ const LocationResult: React.FC<LocationResultProps> = ({
   };
 
   return (
-    <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
+    <Form data-testid={LOCATION_RESULT} onSubmit={onSubmit}>
       <Heading forwardedAs="h3">Adresgegevens</Heading>
       <RegisterLookupSummary
         addressFromLocation={null} // @TODO: remove this prop when RegisterLookupSummary = TS
