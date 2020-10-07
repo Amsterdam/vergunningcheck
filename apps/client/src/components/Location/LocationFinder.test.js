@@ -57,16 +57,11 @@ describe("LocationFinder", () => {
     );
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
-    // const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
 
     // Make sure the input fields have the right values
     expect(inputPostalCode).toHaveValue(mockedAddress.postalCode);
-    // expect(inputHouseNumber).toHaveValue(parseInt(mockedAddress.houseNumber));
-
-    // The loading state should be active
-    // @TODO: replace this to come directly from i18n
-    expect(screen.getByText("Laden...")).toBeInTheDocument();
-    expect(screen.getByText("Wij zoeken het adres.")).toBeInTheDocument();
+    expect(inputHouseNumber).toHaveValue(mockedAddress.houseNumber);
   });
 
   // @TODO: Update this test with autoSuggest
