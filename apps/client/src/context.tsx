@@ -82,7 +82,7 @@ function SessionProvider(props: { children: React.ReactNode }) {
   // We can use the setSessionData function to add new data to the sessionStorage.
   return (
     <SessionContext.Provider
-      value={{ ...data, setSessionData, resetSessionData }}
+      value={{ ...data, resetSessionData, setSessionData }}
     >
       <CheckerContext.Provider value={defaultCheckerValue}>
         {props.children}
