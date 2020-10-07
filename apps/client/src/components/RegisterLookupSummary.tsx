@@ -3,7 +3,7 @@ import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
-import { SessionContext } from "../context";
+import { SessionContext, SessionDataType } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -14,23 +14,34 @@ import {
 import AddressLines from "./AddressLines";
 import ChangeAddressModal from "./Location/ChangeAddressModal";
 
-// @TODO: Convert this file to TS
-// @TODO replace unused props from RegisterLookupSummary in LocationResult
-const RegisterLookupSummary = ({
+// @TODO: can you make a props file for these kinds of props, @andre?
+type zoningPlanProps = {
+  name: string;
+};
+
+type RegisterLookupSummaryProps = {
+  addressFromLocation: any;
+  compact: boolean;
+  setActiveState: Function;
+  topic: any; // @TODO: replace with custom hooks
+};
+
+const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   addressFromLocation,
   compact,
   setActiveState,
   topic: { slug, hasIMTR },
 }) => {
-  const sessionContext = useContext(SessionContext);
+  // @TODO: replace with custom topic hooks
+  const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation
-    : sessionContext[slug].address;
+    : sessionContext[slug].address; // @TODO: replace with custom hooks
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
   const zoningPlanNames = zoningPlans
-    .map((plan) => plan.name)
+    .map((plan: zoningPlanProps) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   if (monument) {
@@ -41,7 +52,7 @@ const RegisterLookupSummary = ({
   }
 
   return (
-    <ComponentWrapper marginBottom={hasIMTR ? "0" : null}>
+    <ComponentWrapper marginBottom={hasIMTR && 0}>
       <AddressLines
         {...address}
         editAddressRenderer={() =>
@@ -90,8 +101,8 @@ const RegisterLookupSummary = ({
               }}
               variant="bullet"
             >
-              {zoningPlanNames.map((plan) => (
-                <ListItem key={plan}>{plan}</ListItem>
+              {zoningPlanNames.map((planName: string) => (
+                <ListItem key={planName}>{planName}</ListItem>
               ))}
             </List>
           )}
