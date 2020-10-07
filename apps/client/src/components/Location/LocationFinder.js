@@ -243,7 +243,7 @@ const LocationFinder = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={showLoading} />
+      <LocationLoading loading={showLoading || loading} />
 
       {showLocationNotFound && <LocationNotFound />}
 
