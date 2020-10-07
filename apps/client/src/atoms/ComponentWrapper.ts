@@ -8,7 +8,7 @@ type Props = {
 export default styled.div<Props>`
   ${(props) =>
     css`
-      margin-bottom: ${props.marginBottom
+      margin-bottom: ${props.marginBottom !== undefined
         ? props.marginBottom + "px"
         : themeSpacing(6)};
     `}

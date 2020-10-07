@@ -250,11 +250,10 @@ const LocationFinder = ({
       {showExactMatch && (
         <>
           <ComponentWrapper marginBottom={16}>
-            <Alert
-              data-testid={LOCATION_FOUND}
-              heading="Dit is het gekozen adres:"
-              level="attention"
-            >
+            <Alert data-testid={LOCATION_FOUND} level="attention">
+              <Paragraph gutterBottom={8} strong>
+                Dit is het gekozen adres:
+              </Paragraph>
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
                 compact
