@@ -52,7 +52,7 @@ it("NewCheckerModal should render as expected", () => {
   expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
   expect(matomoTrackEvent).toBeCalledWith({
     action: actions.OPEN_MODAL,
-    name: eventNames.DO_ANOTHER_CHECK,
+    name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
   });
 });
 
@@ -79,7 +79,7 @@ it("NewCheckerModal should open a new topic", async () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(3);
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.START_ANOTHER_CHECK,
-      name: eventNames.NO_CHOICE_HAS_BEEN_MADE,
+      name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
     });
   });
 
@@ -90,7 +90,7 @@ it("NewCheckerModal should open a new topic", async () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(4);
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.OPEN_MODAL,
-      name: eventNames.DO_ANOTHER_CHECK,
+      name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
     });
 
     expect(window.location.href).toContain(customTopic.slug);

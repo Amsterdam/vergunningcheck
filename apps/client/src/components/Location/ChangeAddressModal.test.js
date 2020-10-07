@@ -40,7 +40,7 @@ describe("ChangeAddressModal", () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.OPEN_MODAL,
-      name: eventNames.OPEN_CHANGE_ADDRESS_MODAL,
+      name: eventNames.OPEN_MODAL_EDIT_ADDRESS,
     });
 
     act(() => {
@@ -50,8 +50,8 @@ describe("ChangeAddressModal", () => {
 
     expect(matomoTrackEvent).toHaveBeenCalledTimes(2);
     expect(matomoTrackEvent).toBeCalledWith({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: eventNames.EDIT_ADDRESS,
+      action: actions.EDIT_ADDRESS,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
     });
   });
 });
