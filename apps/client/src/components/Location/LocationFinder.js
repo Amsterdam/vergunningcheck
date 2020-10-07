@@ -46,8 +46,9 @@ const LocationFinder = ({
     queryExtra: false,
   };
 
+  // @TODO: we can move this to utils together with postalCodeRegex
   const isValidPostalcode = (value) =>
-    value && !!value.toString().trim().match(postalCodeRegex);
+    !!(value && value.toString().trim().match(postalCodeRegex));
 
   // Validate forms
   const validate = (name, value, required) => {
