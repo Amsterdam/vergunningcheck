@@ -1,6 +1,7 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
+import styled from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
 import { SessionContext, SessionDataType } from "../context";
@@ -25,6 +26,12 @@ type RegisterLookupSummaryProps = {
   setActiveState: Function;
   topic: any; // @TODO: Replace it with IMTR-Client's TopicType
 };
+
+const StyledList = styled(List)`
+  margin-top: 12px;
+  margin-bottom: 16px;
+  background-color: inherit;
+`;
 
 const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   addressFromLocation,
@@ -53,7 +60,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   }
 
   return (
-    <ComponentWrapper marginBottom={hasIMTR && 0}>
+    <ComponentWrapper marginBottom={hasIMTR && 4}>
       <AddressLines
         {...address}
         editAddressRenderer={() =>
@@ -66,7 +73,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
         gutterBottom={monument || cityScape ? 16 : 0}
       />
       {compact && (monument || cityScape) && (
-        <Paragraph gutterBottom={0} strong>
+        <Paragraph gutterBottom={8} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
       )}
@@ -80,7 +87,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
       {(cityScape || !hasIMTR) && (
         <Paragraph
           data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-          gutterBottom={hasIMTR ? 0 : 16}
+          gutterBottom={hasIMTR || compact ? 0 : 16}
         >
           {cityScape
             ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
@@ -95,19 +102,11 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
           {zoningPlanNames.length === 0 ? (
             <Paragraph>Geen bestemmingsplannen</Paragraph>
           ) : (
-            <List
-              data-testid={LOCATION_ZONING_PLANS}
-              style={{
-                backgroundColor: "inherit",
-                marginTop: 10,
-                marginBottom: 0,
-              }}
-              variant="bullet"
-            >
+            <StyledList data-testid={LOCATION_ZONING_PLANS} variant="bullet">
               {zoningPlanNames.map((planName: string) => (
                 <ListItem key={planName}>{planName}</ListItem>
               ))}
-            </List>
+            </StyledList>
           )}
         </>
       )}

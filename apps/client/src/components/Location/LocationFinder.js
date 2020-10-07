@@ -46,14 +46,17 @@ const LocationFinder = ({
     queryExtra: false,
   };
 
+  // @TODO: we can move this to utils together with postalCodeRegex
+  const isValidPostalcode = (value) =>
+    !!(value && value.toString().trim().match(postalCodeRegex));
+
   // Validate forms
   const validate = (name, value, required) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
       }
-      const trimmed = value && value.toString().trim();
-      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
+      if (name === "postalCode" && !isValidPostalcode(value)) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
@@ -89,6 +92,7 @@ const LocationFinder = ({
     houseNumberError ||
     !houseNumberFull ||
     !postalCode ||
+    !isValidPostalcode(postalCode) ||
     postalCodeError
   );
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
@@ -99,7 +103,7 @@ const LocationFinder = ({
   const allowToSetAddress = !!(
     houseNumber &&
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     !loading &&
     (data || graphqlError)
   );
@@ -153,7 +157,7 @@ const LocationFinder = ({
 
   const showLocationNotFound = !!(
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     showResult &&
     !exactMatch &&
     !loading &&
@@ -163,7 +167,7 @@ const LocationFinder = ({
 
   const showLoading = !!(
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     !showAutoSuggest &&
     !showExactMatch &&
     !showLocationNotFound &&
@@ -201,7 +205,10 @@ const LocationFinder = ({
         <LocationTextField
           autoFocus
           defaultValue={postalCode}
-          error={postalCodeError}
+          error={
+            postalCodeError ||
+            (showLocationNotFound && isValidPostalcode(postalCode))
+          }
           label="Postcode"
           name="postalCode"
           onBlur={handleBlur}
@@ -217,7 +224,10 @@ const LocationFinder = ({
       <ComponentWrapper>
         <LocationTextField
           autoComplete="off" // This disables the native browser auto-suggest
-          error={houseNumberError}
+          error={
+            houseNumberError ||
+            (showLocationNotFound && isValidPostalcode(postalCode))
+          }
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
           name="houseNumber"
@@ -243,18 +253,17 @@ const LocationFinder = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={showLoading} />
+      <LocationLoading loading={showLoading || loading} />
 
       {showLocationNotFound && <LocationNotFound />}
 
       {showExactMatch && (
         <>
           <ComponentWrapper marginBottom={16}>
-            <Alert
-              data-testid={LOCATION_FOUND}
-              heading="Dit is het gekozen adres:"
-              level="attention"
-            >
+            <Alert data-testid={LOCATION_FOUND} level="attention">
+              <Paragraph gutterBottom={8} strong>
+                Dit is het gekozen adres:
+              </Paragraph>
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
                 compact
