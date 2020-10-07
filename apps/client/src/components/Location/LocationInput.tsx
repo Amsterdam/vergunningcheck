@@ -35,7 +35,6 @@ const LocationInput: React.FC<{
   const checkerContext = useContext(CheckerContext);
 
   const { hasIMTR, slug, text } = topic;
-
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
@@ -116,7 +115,6 @@ const LocationInput: React.FC<{
     history.push(geturl(routes.intro, topic));
   };
 
-  console.log(errorMessage);
   return (
     <>
       {errorMessage && (
