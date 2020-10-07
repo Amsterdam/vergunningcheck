@@ -204,7 +204,10 @@ const LocationFinder = ({
         <LocationTextField
           autoFocus
           defaultValue={postalCode}
-          error={postalCodeError}
+          error={
+            postalCodeError ||
+            (showLocationNotFound && isValidPostalcode(postalCode))
+          }
           label="Postcode"
           name="postalCode"
           onBlur={handleBlur}
@@ -220,7 +223,10 @@ const LocationFinder = ({
       <ComponentWrapper>
         <LocationTextField
           autoComplete="off" // This disables the native browser auto-suggest
-          error={houseNumberError}
+          error={
+            houseNumberError ||
+            (showLocationNotFound && isValidPostalcode(postalCode))
+          }
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
           name="houseNumber"
