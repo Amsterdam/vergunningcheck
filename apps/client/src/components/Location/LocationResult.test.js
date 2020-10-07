@@ -23,17 +23,18 @@ jest.mock("react-router-dom", () => ({
 afterEach(cleanup);
 
 describe("LocationResult", () => {
-  const WrapperWithContext = (props) => {
+  const topic = findTopicBySlug("aanbouw-of-uitbouw-maken");
+
+  const Wrapper = () => {
     return (
-      <Context topicMock={props.topic} addressMock={addressMock}>
-        <LocationResult topic={props.topic} {...props} {...mockedFunctions} />
+      <Context topicMock={topic} addressMock={addressMock}>
+        <LocationResult topic={topic} {...mockedFunctions} />
       </Context>
     );
   };
 
-  it("should render correctly on first load without IMTR", () => {
-    const topic = findTopicBySlug("aanbouw-of-uitbouw-maken");
-    const { queryByText } = render(<WrapperWithContext topic={topic} />);
+  it("should render correctly on first load", () => {
+    const { queryByText } = render(<Wrapper />);
 
     expect(queryByText("streetname 123")).toBeInTheDocument();
     expect(queryByText("1234 AB Amsterdam")).toBeInTheDocument();
@@ -45,23 +46,8 @@ describe("LocationResult", () => {
     expect(queryByText("zoningplan")).toBeInTheDocument();
   });
 
-  it("should render correctly on first load with IMTR", () => {
-    const topic = findTopicBySlug("dakraam-plaatsen");
-    const { queryByText } = render(<WrapperWithContext topic={topic} />);
-
-    expect(queryByText("streetname 123")).toBeInTheDocument();
-    expect(queryByText("1234 AB Amsterdam")).toBeInTheDocument();
-    expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
-    expect(
-      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
-    ).toBeInTheDocument();
-    // Expect to find zoningplan info
-    expect(queryByText("zoningplan")).not.toBeInTheDocument();
-  });
-
   it("should handle prev button", () => {
-    const topic = findTopicBySlug("aanbouw-of-uitbouw-maken");
-    const { getByText } = render(<WrapperWithContext topic={topic} />);
+    const { getByText } = render(<Wrapper />);
 
     const prevButton = getByText("Vorige");
     expect(prevButton).toBeInTheDocument();
@@ -75,8 +61,7 @@ describe("LocationResult", () => {
   });
 
   it("should handle next button", () => {
-    const topic = findTopicBySlug("aanbouw-of-uitbouw-maken");
-    const { getByText } = render(<WrapperWithContext topic={topic} />);
+    const { getByText } = render(<Wrapper />);
 
     const nextButton = getByText("Naar het omgevingsloket");
     expect(nextButton).toBeInTheDocument();
