@@ -60,6 +60,7 @@ function SessionProvider(props: { children: React.ReactNode }) {
   const [data, setSessionData] = useReducer(reducer, defaultSessionValues);
 
   //@TODO replace slug with the get slug hook.
+  //@TODO replace address with address type.
   function resetSessionData(slug: string, address?: any) {
     setSessionData([
       slug,

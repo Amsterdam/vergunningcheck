@@ -22,6 +22,7 @@ type zoningPlanProps = {
 type RegisterLookupSummaryProps = {
   addressFromLocation: any;
   compact: boolean;
+  resetChecker?: Function;
   setActiveState: Function;
   topic: any; // @TODO: replace with custom hooks
 };
@@ -56,17 +57,19 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
     <ComponentWrapper marginBottom={hasIMTR && 0}>
       <AddressLines
         {...address}
+        editAddressRenderer={() =>
+          !compact && (
+            <ChangeAddressModal
+              {...{ hasIMTR, resetChecker, setActiveState, slug }}
+            />
+          )
+        }
         gutterBottom={monument || cityScape ? 16 : 0}
       />
       {compact && (monument || cityScape) && (
         <Paragraph gutterBottom={0} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
-      )}
-      {!compact && (
-        <ChangeAddressModal
-          {...{ hasIMTR, resetChecker, setActiveState, slug }}
-        />
       )}
       {(monument || !hasIMTR) && (
         <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
