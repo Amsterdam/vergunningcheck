@@ -8,6 +8,11 @@ import { isProduction, topics } from "../config";
 import { geturl, routes } from "../routes";
 import topicsJson from "../topics.json";
 
+const hasIMTR = (apiTopic) => {
+  const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
+  return imtrTopic && imtrTopic.hasIMTR;
+};
+
 const returnedData = (apiTopic) => {
   const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
 
@@ -100,24 +105,14 @@ const DevHomePage = () => {
           <h2>STTR/IMTR Flow</h2>
           {topicsJson.map((apiConfig) => {
             return apiConfig
-              .filter((apiTopic) => {
-                const imtrTopic = topics.find(
-                  (topic) => topic.slug === apiTopic.slug
-                );
-                return imtrTopic && imtrTopic.hasIMTR;
-              })
+              .filter((apiTopic) => hasIMTR(apiTopic))
               .map((apiConfig) => returnedData(apiConfig));
           })}
 
           <h2>Overige checks</h2>
           {topicsJson.map((apiConfig) => {
             return apiConfig
-              .filter((apiTopic) => {
-                const imtrTopic = topics.find(
-                  (topic) => topic.slug === apiTopic.slug
-                );
-                return !imtrTopic;
-              })
+              .filter((apiTopic) => !hasIMTR(apiTopic))
               .map((apiConfig) => returnedData(apiConfig));
           })}
         </tbody>
