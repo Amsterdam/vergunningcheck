@@ -67,7 +67,7 @@ const LocationInput: React.FC<{
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        answers = [];
+        answers = undefined;
       }
 
       checkerContext.autofillData.address = address;
@@ -88,8 +88,7 @@ const LocationInput: React.FC<{
       ]);
 
       if (focus) {
-        const event = document.activeElement as HTMLInputElement;
-        event.blur();
+        (document.activeElement as HTMLElement).blur();
       } else {
         setFinishedState(sections.LOCATION_INPUT);
         setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
