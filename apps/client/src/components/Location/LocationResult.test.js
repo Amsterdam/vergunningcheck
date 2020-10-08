@@ -40,7 +40,9 @@ describe("LocationResult", () => {
     expect(queryByText("1234 AB Amsterdam")).toBeInTheDocument();
     expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
     expect(
-      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
+      queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
+      )
     ).toBeInTheDocument();
     // Expect to find zoningplan info
     expect(queryByText("zoningplan")).toBeInTheDocument();
