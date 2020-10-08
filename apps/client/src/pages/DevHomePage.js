@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,52 @@ import Layout from "../components/Layouts/DefaultLayout";
 import { isProduction, topics } from "../config";
 import { geturl, routes } from "../routes";
 import topicsJson from "../topics.json";
+
+const hasIMTR = (apiTopic) => {
+  const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
+  return imtrTopic && imtrTopic.hasIMTR;
+};
+
+const returnedData = (apiTopic) => {
+  const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
+
+  const title = imtrTopic
+    ? imtrTopic.name
+    : apiTopic
+    ? apiTopic.name || apiTopic.slug
+    : "[ERROR]";
+  return (
+    <tr key={title}>
+      <td>
+        {imtrTopic && !imtrTopic.hasIMTR ? (
+          <>
+            {title}
+            <br />
+            <Alert level="attention">
+              IMTR file found for <strong>{imtrTopic.name}</strong>, but we
+              can't load '<strong>{imtrTopic.slug}</strong>' because it's
+              configured to be{" "}
+              <strong>
+                {imtrTopic.redirectToOlo ? "redirectToOlo" : "olo"}
+                -flow
+              </strong>
+              .
+            </Alert>
+          </>
+        ) : (
+          <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
+        )}
+      </td>
+      <td>{imtrTopic ? "configured" : "dynamic"}</td>
+      <td>{apiTopic?.path?.split("/")[0]}</td>
+      <td>
+        <span title={apiTopic.permits} onClick={() => alert(apiTopic.permits)}>
+          {apiTopic.permits?.length}
+        </span>
+      </td>
+    </tr>
+  );
+};
 
 const DevHomePage = () => {
   if (isProduction) {
@@ -41,6 +88,7 @@ const DevHomePage = () => {
           </tr>
         </thead>
         <tbody>
+          <h2>OLO Flow</h2>
           {topics
             .filter(({ hasIMTR }) => !hasIMTR) // only show olo / redir-olo topics
             .map(({ slug, name, redirectToOlo }) => (
@@ -53,52 +101,19 @@ const DevHomePage = () => {
                 <td>0</td>
               </tr>
             ))}
-          {topicsJson.map((apiConfig) => {
-            return apiConfig.map((apiTopic) => {
-              const imtrTopic = topics.find(
-                (topic) => topic.slug === apiTopic.slug
-              );
 
-              const title = imtrTopic
-                ? imtrTopic.name
-                : apiTopic
-                ? apiTopic.name || apiTopic.slug
-                : "[ERROR]";
-              return (
-                <tr key={title}>
-                  <td>
-                    {imtrTopic && !imtrTopic.hasIMTR ? (
-                      <>
-                        {title}
-                        <br />
-                        <Alert level="attention">
-                          IMTR file found for <strong>{imtrTopic.name}</strong>,
-                          but we can't load '<strong>{imtrTopic.slug}</strong>'
-                          because it's configured to be{" "}
-                          <strong>
-                            {imtrTopic.redirectToOlo ? "redirectToOlo" : "olo"}
-                            -flow
-                          </strong>
-                          .
-                        </Alert>
-                      </>
-                    ) : (
-                      <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
-                    )}
-                  </td>
-                  <td>{imtrTopic ? "configured" : "dynamic"}</td>
-                  <td>{apiTopic.path.split("/")[0]}</td>
-                  <td>
-                    <span
-                      title={apiTopic.permits}
-                      onClick={() => alert(apiTopic.permits)}
-                    >
-                      {apiTopic.permits.length}
-                    </span>
-                  </td>
-                </tr>
-              );
-            });
+          <h2>STTR/IMTR Flow</h2>
+          {topicsJson.map((apiConfig) => {
+            return apiConfig
+              .filter((apiTopic) => hasIMTR(apiTopic))
+              .map((apiConfig) => returnedData(apiConfig));
+          })}
+
+          <h2>Overige checks</h2>
+          {topicsJson.map((apiConfig) => {
+            return apiConfig
+              .filter((apiTopic) => !hasIMTR(apiTopic))
+              .map((apiConfig) => returnedData(apiConfig));
           })}
         </tbody>
       </table>
