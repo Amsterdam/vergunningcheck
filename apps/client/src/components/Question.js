@@ -115,9 +115,9 @@ const Question = ({
   return (
     <Form
       className={className}
+      dataId={questionId}
+      dataTestId={QUESTION_PAGE}
       onSubmit={handleSubmit(onGoToNext)}
-      data-id={questionId}
-      data-testid={QUESTION_PAGE}
     >
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />

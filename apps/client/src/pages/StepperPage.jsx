@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 // THIS PAGE IS FOR DEMO PURPOSES ONLY
 // DONT REVIEW THIS PAGE EXTENSIVELY
 

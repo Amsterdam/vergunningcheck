@@ -1,5 +1,3 @@
-// @TODO: Rename this file to EditLocation
-// @TODO: Write test for this file
 import { Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
@@ -10,51 +8,34 @@ import withTracking from "../../hoc/withTracking";
 import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const ChangeAddressModal: React.FC<{
-  hasIMTR: boolean;
+const EditLocation: React.FC<{
+  hasIMTR?: boolean;
   matomoTrackEvent: Function;
+  resetChecker: Function;
   setActiveState: Function;
   slug: string;
-}> = ({ matomoTrackEvent, setActiveState, slug, hasIMTR }) => {
+}> = ({ matomoTrackEvent, resetChecker, setActiveState, slug, hasIMTR }) => {
   // @TODO: replace this with React custom hooks
-  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
-    SessionContext
-  );
+  const sessionContext = useContext<
+    SessionDataType & { setSessionData?: any; resetSessionData?: any }
+  >(SessionContext);
 
   const handleOpenModal = () => {
-    // @TODO: Add event and remove temporary if statement
     matomoTrackEvent({
       action: actions.OPEN_MODAL,
-      name: "EDIT ADDRESS EVENT NAME",
+      name: eventNames.OPEN_MODAL_EDIT_ADDRESS,
     });
   };
 
   const handleConfirmButton = () => {
-    // @TODO: Update original event
-    // matomoTrackEvent({
-    //   action: actions.CLICK_INTERNAL_NAVIGATION,
-    //   name: eventNames.EDIT_ADDRESS,
-    // });
+    matomoTrackEvent({
+      action: actions.EDIT_ADDRESS,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+    });
 
     // More or less copy pasted from NewCheckerModal
-    // @TODO: make re-usable
-    sessionContext.setSessionData([
-      slug,
-      {
-        activeComponents: [sections.LOCATION_INPUT],
-        address: null,
-        answers: null,
-        finishedComponents: [],
-      },
-    ]);
-
-    // @TODO: make this working when the custom Hooks are available
-    // @TODO: move this to checker.js .reset
-    // checker._getAllQuestions().forEach((question: any) => {
-    //   question.setAnswer(undefined);
-    // });
-
-    return (window.location.href = `/${slug}/vragen-en-conclusie?loadChecker`);
+    sessionContext.resetSessionData(slug);
+    resetChecker();
   };
 
   return (
@@ -70,11 +51,6 @@ const ChangeAddressModal: React.FC<{
             <EditButton
               data-testid={MODAL_OPEN_BUTTON}
               onClick={() => {
-                matomoTrackEvent({
-                  action: "OPEN MODAL", // @TODO: replace events
-                  name: "OPEN MODAL",
-                });
-
                 // Open modal function
                 openModal();
               }}
@@ -104,4 +80,4 @@ const ChangeAddressModal: React.FC<{
   );
 };
 
-export default withTracking(ChangeAddressModal);
+export default withTracking(EditLocation);

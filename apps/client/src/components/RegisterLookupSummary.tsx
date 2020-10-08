@@ -1,9 +1,10 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
+import styled from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
-import { SessionContext } from "../context";
+import { SessionContext, SessionDataType } from "../context";
 import { getRestrictionByTypeName } from "../utils";
 import { uniqueFilter } from "../utils";
 import {
@@ -12,23 +13,43 @@ import {
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
 import AddressLines from "./AddressLines";
-import ChangeAddressModal from "./Location/ChangeAddressModal";
+import EditLocation from "./Location/EditLocation";
 
-const RegisterLookupSummary = ({
+type zoningPlanProps = {
+  name: string;
+};
+
+type RegisterLookupSummaryProps = {
+  addressFromLocation: any;
+  compact: boolean;
+  resetChecker?: Function;
+  setActiveState: Function;
+  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
+};
+
+const StyledList = styled(List)`
+  margin-top: 12px;
+  margin-bottom: 16px;
+  background-color: inherit;
+`;
+
+const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   addressFromLocation,
   compact,
+  resetChecker,
   setActiveState,
   topic: { slug, hasIMTR },
 }) => {
-  const sessionContext = useContext(SessionContext);
+  // @TODO: replace with custom topic hooks
+  const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation
-    : sessionContext[slug].address;
+    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address and remove types of zoningPlan below
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
   const zoningPlanNames = zoningPlans
-    .map((plan) => plan.name)
+    .map((plan: zoningPlanProps) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   if (monument) {
@@ -39,18 +60,20 @@ const RegisterLookupSummary = ({
   }
 
   return (
-    <ComponentWrapper marginBottom={hasIMTR ? "0" : null}>
+    <ComponentWrapper marginBottom={hasIMTR && 4}>
       <AddressLines
         {...address}
         editAddressRenderer={() =>
           !compact && (
-            <ChangeAddressModal {...{ hasIMTR, setActiveState, slug }} />
+            <EditLocation
+              {...{ hasIMTR, resetChecker, setActiveState, slug }}
+            />
           )
         }
         gutterBottom={monument || cityScape ? 16 : 0}
       />
       {compact && (monument || cityScape) && (
-        <Paragraph gutterBottom={0} strong>
+        <Paragraph gutterBottom={8} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
       )}
@@ -64,7 +87,7 @@ const RegisterLookupSummary = ({
       {(cityScape || !hasIMTR) && (
         <Paragraph
           data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-          gutterBottom={hasIMTR ? 0 : 16}
+          gutterBottom={hasIMTR || compact ? 0 : 16}
         >
           {cityScape
             ? `Het gebouw ligt in een ${
@@ -83,19 +106,11 @@ const RegisterLookupSummary = ({
           {zoningPlanNames.length === 0 ? (
             <Paragraph>Geen bestemmingsplannen</Paragraph>
           ) : (
-            <List
-              data-testid={LOCATION_ZONING_PLANS}
-              style={{
-                backgroundColor: "inherit",
-                marginTop: 10,
-                marginBottom: 0,
-              }}
-              variant="bullet"
-            >
-              {zoningPlanNames.map((plan) => (
-                <ListItem key={plan}>{plan}</ListItem>
+            <StyledList data-testid={LOCATION_ZONING_PLANS} variant="bullet">
+              {zoningPlanNames.map((planName: string) => (
+                <ListItem key={planName}>{planName}</ListItem>
               ))}
-            </List>
+            </StyledList>
           )}
         </>
       )}

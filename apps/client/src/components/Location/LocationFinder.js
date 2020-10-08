@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
+import useDebounce from "../../hooks/useDebounce";
 import { stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList from "../AutoSuggestList";
@@ -16,6 +17,8 @@ import { LocationTextField } from "./LocationStyles";
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
+const RESULT_DELAY = 750;
+
 const LocationFinder = ({
   focus,
   matomoTrackEvent,
@@ -25,6 +28,7 @@ const LocationFinder = ({
   setFocus,
   topic,
 }) => {
+  const [showResult, setShowResult] = useState(true);
   const [postalCode, setPostalCode] = useState(sessionAddress?.postalCode);
   const [houseNumber, setHouseNumber] = useState(
     sessionAddress?.houseNumber && parseInt(sessionAddress?.houseNumber)
@@ -34,7 +38,6 @@ const LocationFinder = ({
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState("");
   const [touched, setTouched] = useState({});
-  const [houseNumberInput, setHouseNumberInput] = useState("");
 
   const variables = {
     extraHouseNumberFull: "",
@@ -43,14 +46,17 @@ const LocationFinder = ({
     queryExtra: false,
   };
 
+  // @TODO: we can move this to utils together with postalCodeRegex
+  const isValidPostalcode = (value) =>
+    !!(value && value.toString().trim().match(postalCodeRegex));
+
   // Validate forms
   const validate = (name, value, required) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
       }
-      const trimmed = value && value.toString().trim();
-      if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
+      if (name === "postalCode" && !isValidPostalcode(value)) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
@@ -79,12 +85,6 @@ const LocationFinder = ({
     [setFocus]
   );
 
-  const handleAutoSuggestSelect = (option) => {
-    setHouseNumber(option.value);
-    setHouseNumberFull(option.value);
-    setAutoSuggestValue(option.value);
-  };
-
   /* There is an issue with `skip`, it's not working if variables are given
      in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
      Workaround is not giving any variables if the query should be skipped. */
@@ -92,6 +92,7 @@ const LocationFinder = ({
     houseNumberError ||
     !houseNumberFull ||
     !postalCode ||
+    !isValidPostalcode(postalCode) ||
     postalCodeError
   );
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
@@ -102,32 +103,27 @@ const LocationFinder = ({
   const allowToSetAddress = !!(
     houseNumber &&
     houseNumberFull &&
-    postalCode &&
+    isValidPostalcode(postalCode) &&
     !loading &&
     (data || graphqlError)
   );
 
+  const exactMatch = data?.findAddress?.exactMatch;
+
   // Prevent setState error
   useEffect(() => {
-    // Pass the GraphQL error to the HOC
     setErrorMessage(graphqlError);
 
     if (allowToSetAddress) {
-      setAddress(data?.findAddress?.exactMatch);
+      setAddress(exactMatch);
     }
-  }, [allowToSetAddress, data, graphqlError, setAddress, setErrorMessage]);
-
-  const exactMatch = data?.findAddress?.exactMatch;
-
-  // Validate address
-  const displayLocationNotFound = !!(
-    postalCode &&
-    houseNumber &&
-    houseNumberFull &&
-    !loading &&
-    !exactMatch &&
-    !graphqlError
-  );
+  }, [
+    allowToSetAddress,
+    exactMatch,
+    graphqlError,
+    setAddress,
+    setErrorMessage,
+  ]);
 
   const handleBlur = (e) => {
     // This fixes the focus error
@@ -136,6 +132,15 @@ const LocationFinder = ({
   };
 
   // AutoSuggest
+  const handleAutoSuggestSelect = (option) => {
+    const { value } = option;
+    setShowResult(false);
+    debouncedUpdateResult();
+
+    setHouseNumber(value);
+    setHouseNumberFull(value);
+    setAutoSuggestValue(value);
+  };
   const autoSuggestMatches =
     data?.findAddress.matches.filter(
       (a) => stripString(a.houseNumberFull) !== stripString(houseNumberFull)
@@ -147,7 +152,52 @@ const LocationFinder = ({
     value: address.houseNumberFull,
   }));
 
+  // Determine when to show components
   const showExactMatch = exactMatch && !loading;
+
+  const showLocationNotFound = !!(
+    houseNumberFull &&
+    isValidPostalcode(postalCode) &&
+    showResult &&
+    !exactMatch &&
+    !loading &&
+    !graphqlError &&
+    !showAutoSuggest
+  );
+
+  const showLoading = !!(
+    houseNumberFull &&
+    isValidPostalcode(postalCode) &&
+    !showAutoSuggest &&
+    !showExactMatch &&
+    !showLocationNotFound &&
+    !showResult
+  );
+
+  // Debounce showing the LocationNotFound component
+  const updateResult = useCallback(() => {
+    setShowResult(true);
+  }, []);
+
+  const debouncedUpdateResult = useDebounce(updateResult, RESULT_DELAY);
+
+  const handleChange = useCallback(
+    (event) => {
+      const { value } = event.target;
+      setHouseNumber(parseInt(value));
+      setHouseNumberFull(value);
+
+      if (value) {
+        // Allow references to the event to be retained
+        event.persist();
+        setShowResult(false);
+        debouncedUpdateResult();
+      }
+    },
+    [debouncedUpdateResult]
+  );
+
+  // @TODO: we can refactor this component by separating all inputs and input handles
 
   return (
     <>
@@ -155,7 +205,10 @@ const LocationFinder = ({
         <LocationTextField
           autoFocus
           defaultValue={postalCode}
-          error={postalCodeError}
+          error={
+            postalCodeError ||
+            (showLocationNotFound && isValidPostalcode(postalCode))
+          }
           label="Postcode"
           name="postalCode"
           onBlur={handleBlur}
@@ -171,22 +224,23 @@ const LocationFinder = ({
       <ComponentWrapper>
         <LocationTextField
           autoComplete="off" // This disables the native browser auto-suggest
-          error={houseNumberError}
+          error={
+            houseNumberError ||
+            (showLocationNotFound && isValidPostalcode(postalCode))
+          }
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
           name="houseNumber"
           onBlur={handleBlur}
-          onChange={(e) => {
-            setHouseNumber(parseInt(e.target.value));
-            setHouseNumberFull(e.target.value);
-          }}
+          onChange={handleChange}
           onFocus={() => setFocus(true)}
-          onInput={(e) => setHouseNumberInput(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e)}
           required
           value={houseNumberFull || autoSuggestValue}
         />
+
         {houseNumberError && <ErrorMessage message={houseNumberError} />}
+
         {showAutoSuggest && (
           <AutoSuggestList
             // @TODO: make activeIndex dynamic (WCAG)
@@ -199,20 +253,17 @@ const LocationFinder = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={loading} />
+      <LocationLoading loading={showLoading || loading} />
 
-      {displayLocationNotFound && (
-        <LocationNotFound {...{ houseNumberInput, showAutoSuggest }} />
-      )}
+      {showLocationNotFound && <LocationNotFound />}
 
       {showExactMatch && (
         <>
           <ComponentWrapper marginBottom={16}>
-            <Alert
-              data-testid={LOCATION_FOUND}
-              heading="Dit is het gekozen adres:"
-              level="attention"
-            >
+            <Alert data-testid={LOCATION_FOUND} level="attention">
+              <Paragraph gutterBottom={8} strong>
+                Dit is het gekozen adres:
+              </Paragraph>
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
                 compact

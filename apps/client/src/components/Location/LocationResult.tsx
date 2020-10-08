@@ -3,26 +3,37 @@ import React, { useContext } from "react";
 
 import { generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { SessionContext } from "../../context";
+import { SessionContext, SessionDataType } from "../../context";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
 import Nav from "../Nav";
 import RegisterLookupSummary from "../RegisterLookupSummary";
 
-const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
-  const sessionContext = useContext(SessionContext);
-  const address = sessionContext[topic.slug].address || {};
+type LocationResultProps = {
+  matomoTrackEvent: Function;
+  setActiveState: Function;
+  topic: any; // @TODO: replace with custom hooks
+};
+
+const LocationResult: React.FC<LocationResultProps> = ({
+  matomoTrackEvent,
+  setActiveState,
+  topic,
+}) => {
+  // @TODO: replace with custom topic hooks
+  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
+    SessionContext
+  );
+  const address = sessionContext[topic.slug].address;
   const { hasIMTR } = topic;
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!hasIMTR) {
-      matomoTrackEvent({
-        action: actions.CLICK_EXTERNAL_NAVIGATION,
-        name: eventNames.TO_OLO,
-      });
-      window.open(generateOloUrl(address), "_blank");
-    }
+    matomoTrackEvent({
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: eventNames.TO_OLO,
+    });
+    window.open(generateOloUrl(address), "_blank");
   };
 
   const onGoToPrev = () => {
@@ -34,11 +45,12 @@ const LocationResult = ({ matomoTrackEvent, setActiveState, topic }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} data-testid={LOCATION_RESULT}>
+    <Form data-testid={LOCATION_RESULT} onSubmit={onSubmit}>
       <Heading forwardedAs="h3">Adresgegevens</Heading>
       <RegisterLookupSummary
+        addressFromLocation={null} // @TODO: remove this prop when RegisterLookupSummary = TS
+        compact={false} // @TODO: remove this prop when RegisterLookupSummary = TS
         {...{
-          matomoTrackEvent,
           setActiveState,
           topic,
         }}
