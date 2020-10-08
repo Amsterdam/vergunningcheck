@@ -230,7 +230,7 @@ const LocationFinder = ({
           }
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
-          name="houseNumber"
+          name="houseNumberFull"
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={() => setFocus(true)}
