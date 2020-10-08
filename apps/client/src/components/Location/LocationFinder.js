@@ -79,6 +79,8 @@ const LocationFinder = ({
           break;
 
         default:
+          // Reset the autoSuggestValue on each key press to prevent bugs
+          setAutoSuggestValue("");
           break;
       }
     },
