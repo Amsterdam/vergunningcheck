@@ -4,9 +4,9 @@
   "description": "",
   "main": "puppeteer/basic.ts",
   "scripts": {
-    "localhost:test": "run-p test:puppeteer test:nightwatch:*",
+    "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
     "localhost:test:puppeteer": "ts-node puppeteer/tests/*.ts",
-    "localhost:test:nightwatch": "run-p test:nightwatch:*",
+    "localhost:test:nightwatch": "run-p localhost:test:nightwatch:*",
     "localhost:test:nightwatch:firefox": "kill-port 4444 || : && npx nightwatch nightwatch/tests/*.js -e firefox",
     "localhost:test:nightwatch:chrome": "npx nightwatch nightwatch/tests/*.js -e chrome"
   },
