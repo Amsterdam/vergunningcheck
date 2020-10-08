@@ -6,8 +6,8 @@
       "questions": [
         {
           "identification": "nl.imow-gm0363.gebied.4",
-          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
           "type": "geo",
+          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
           "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
           "prio": 10
         }
@@ -19,7 +19,7 @@
         }
       },
       "decisions": {
-        "_fd83f599-8bc0-4f9f-83f7-a6ed3e9d23af": {
+        "_d4c632d1-a066-4104-aad9-ec32e79233bc": {
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
@@ -39,7 +39,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_fd83f599-8bc0-4f9f-83f7-a6ed3e9d23af"],
+          "requiredDecisions": ["#_d4c632d1-a066-4104-aad9-ec32e79233bc"],
           "decisionTable": {
             "rules": [
               {
