@@ -47,7 +47,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
     : sessionContext[slug].address; // @TODO: replace with type Session and/or Address and remove types of zoningPlan below
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
-  const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.name;
+  const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
   const zoningPlanNames = zoningPlans
     .map((plan: zoningPlanProps) => plan.name)
     .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
@@ -90,7 +90,11 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
           gutterBottom={hasIMTR || compact ? 0 : 16}
         >
           {cityScape
-            ? `Het gebouw ligt in een beschermd stads- of dorpsgezicht.`
+            ? `Het gebouw ligt in een ${
+                cityScape === "NATIONAL"
+                  ? "rijksbeschermd"
+                  : "gemeentelijk beschermd"
+              } stads- of dorpsgezicht.`
             : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
         </Paragraph>
       )}

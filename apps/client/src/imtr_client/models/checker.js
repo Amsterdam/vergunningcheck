@@ -177,7 +177,7 @@ class Checker {
     if (JSON.stringify(autofillData) !== this._autofillData) {
       this._getAllQuestions().forEach((question) => {
         const resolver = resolvers[question.autofill];
-        const answer = resolver ? resolver(autofillData) : undefined;
+        const answer = resolver ? resolver(autofillData, question) : undefined;
         if (answer !== undefined) {
           question.setAnswer(answer);
         }

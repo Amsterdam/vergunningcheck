@@ -110,18 +110,19 @@ export default async (argv: Props) => {
 
             // await p.status();
             const jsonText = new TextDecoder().decode(await p.output());
-            // apply all reducers to imtr
-            const json = JSON.parse(preprocessors.reduce((acc, curr) => curr(acc), jsonText));
-            await writeJson(parsedPath, json);
 
+            // apply all reducers to imtr
             try {
+              const json = JSON.parse(preprocessors.reduce((acc, curr) => curr(acc), jsonText));
+              await writeJson(parsedPath, json);
               const imtr = await imtrbuild(json) as any;
               return {
                 version,
                 ...imtr,
               };
             } catch (e) {
-              console.error(e)
+              console.error(`failed to convert json for ${permitId}`)
+              throw (e);
             }
           })
         ),

@@ -1,6 +1,7 @@
 import React from "react";
 
 import addressMock from "../__mocks__/addressMock";
+import addressMockNoCityScape from "../__mocks__/addressMockNoCityScape";
 import addressMockNoMonument from "../__mocks__/addressMockNoMonument";
 import Context from "../__mocks__/context";
 import matchMedia from "../__mocks__/matchMedia";
@@ -31,14 +32,16 @@ describe("RegisterLookupSummary", () => {
     );
   };
 
-  it("renders correctly in STTR Flow if monument", () => {
+  it("renders correctly in STTR Flow if monument and national cityScape", () => {
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(<WrapperWithContext topic={topic} />);
 
     expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
     expect(
-      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
+      queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
+      )
     ).toBeInTheDocument();
 
     // Expect NOT to find zoningplan info
@@ -51,7 +54,22 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  it("renders correctly in STTR Flow if NOT a monument", () => {
+  it("renders correctly in STTR Flow if no cityScape", () => {
+    const topicMock = "dakraam-plaatsen";
+    const topic = findTopicBySlug(topicMock);
+    const { queryByText } = render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoCityScape}
+        topic={topic}
+      />
+    );
+
+    expect(
+      queryByText("beschermd stads- of dorpsgezicht.")
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders correctly in STTR Flow if NOT a monument and municipal cityScape", () => {
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(
@@ -63,8 +81,10 @@ describe("RegisterLookupSummary", () => {
 
     expect(queryByText("Het gebouw is een monument.")).not.toBeInTheDocument();
     expect(
-      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
-    ).not.toBeInTheDocument();
+      queryByText(
+        "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht."
+      )
+    ).toBeInTheDocument();
 
     // Expect NOT to find zoningplan info
     expect(queryByText("zoningplan")).not.toBeInTheDocument();
@@ -76,7 +96,24 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  it("renders correctly in OLO Flow if building is a monument", () => {
+  it("renders correctly in OLO Flow if no cityScape", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    const { queryByText } = render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoCityScape}
+        topic={topic}
+      />
+    );
+
+    expect(
+      queryByText(
+        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+      )
+    ).toBeInTheDocument();
+  });
+
+  it("renders correctly in OLO Flow if building is a monument and national cityScape", () => {
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(
@@ -85,7 +122,9 @@ describe("RegisterLookupSummary", () => {
 
     expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
     expect(
-      queryByText("Het gebouw ligt in een beschermd stads- of dorpsgezicht.")
+      queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
+      )
     ).toBeInTheDocument();
 
     // Expect to find zoningplan info
@@ -99,7 +138,7 @@ describe("RegisterLookupSummary", () => {
     });
   });
 
-  it("renders correctly in OLO Flow if building is NOT a monument", () => {
+  it("renders correctly in OLO Flow if building is NOT a monument and a MUNICIPAL cityScape", () => {
     const topicMock = "aanbouw-of-uitbouw-maken";
     const topic = findTopicBySlug(topicMock);
     const { queryByText } = render(
@@ -111,7 +150,7 @@ describe("RegisterLookupSummary", () => {
     expect(queryByText("Het gebouw is geen monument.")).toBeInTheDocument();
     expect(
       queryByText(
-        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+        "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht."
       )
     ).toBeInTheDocument();
 
