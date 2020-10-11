@@ -43,10 +43,10 @@ const LocationFinder: React.FC<{
   const [houseNumber, setHouseNumber] = useState<number>(
     sessionAddress?.houseNumber && parseInt(sessionAddress.houseNumber)
   );
-  const [houseNumberFull, setHouseNumberFull] = useState(
+  const [houseNumberFull, setHouseNumberFull] = useState<string>(
     sessionAddress?.houseNumberFull
   );
-  const [autoSuggestValue, setAutoSuggestValue] = useState("");
+  const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
   const [touched, setTouched] = useState<any>({});
 
   const variables = {
@@ -141,19 +141,19 @@ const LocationFinder: React.FC<{
     setErrorMessage,
   ]);
 
-  const handleBlur = (e: { target: { value: any; name: any } }) => {
+  const handleBlur = (e: { target: { value: string; name: string } }) => {
     // This fixes the focus error
     e.target.value && setTouched({ ...touched, [e.target.name]: true });
     setFocus(false);
   };
 
   // AutoSuggest
-  const handleAutoSuggestSelect = (option: { value: any }) => {
+  const handleAutoSuggestSelect = (option: { value: string }) => {
     const { value } = option;
     setShowResult(false);
     debouncedUpdateResult();
 
-    setHouseNumber(value);
+    setHouseNumber(parseInt(value));
     setHouseNumberFull(value);
     setAutoSuggestValue(value);
   };
@@ -174,22 +174,24 @@ const LocationFinder: React.FC<{
   // Determine when to show components
   const showExactMatch = exactMatch && !loading;
 
-  const showLocationNotFound =
+  const showLocationNotFound = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
     showResult &&
     !exactMatch &&
     !loading &&
     !graphqlError &&
-    !showAutoSuggest;
+    !showAutoSuggest
+  );
 
-  const showLoading =
+  const showLoading = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
     !showAutoSuggest &&
     !showExactMatch &&
     !showLocationNotFound &&
-    !showResult;
+    !showResult
+  );
 
   // Debounce showing the LocationNotFound component
   const updateResult = useCallback(() => {
