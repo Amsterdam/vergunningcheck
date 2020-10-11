@@ -30,6 +30,9 @@ module.exports = {
       monument: {
         url: "/monumenten/",
       },
+      cityScape: {
+        url: "/v1/beschermdestadsdorpsgezichten/beschermdestadsdorpsgezichten/",
+      },
     },
     zoningPlan: {
       url:

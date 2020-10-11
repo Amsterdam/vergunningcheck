@@ -6,8 +6,8 @@
       "questions": [
         {
           "text": "Which outcome would you like to test?",
-          "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
           "longDescription": "You can only pick [one](https://en.wikipedia.org/wiki/1), sorry!\n\n![this is still the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is still the caption\")\n\nEven more text.",
+          "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
           "options": ["contact", "permit free", "permit required"],
           "type": "string",
           "id": "uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
@@ -21,7 +21,7 @@
         }
       },
       "decisions": {
-        "_86858a86-0b4f-4150-80ac-cb98dc30657b": {
+        "_ead2345f-dc33-4c1b-aa50-1146956804c9": {
           "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
           "decisionTable": {
             "rules": [
@@ -41,7 +41,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_86858a86-0b4f-4150-80ac-cb98dc30657b"],
+          "requiredDecisions": ["#_ead2345f-dc33-4c1b-aa50-1146956804c9"],
           "decisionTable": {
             "rules": [
               {

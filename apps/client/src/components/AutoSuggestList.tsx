@@ -11,7 +11,6 @@
 
 import { ChevronRight } from "@amsterdam/asc-assets";
 import { Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
-import PropTypes from "prop-types";
 import React, { Fragment, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 
@@ -45,21 +44,20 @@ const StyledIcon = styled(Icon)`
   display: inline-block;
 `;
 
-const SuggestList = ({
-  activeIndex,
-  className,
-  role,
-  options,
-  onSelectOption,
-  ...rest
-}) => {
-  const listRef = useRef(null);
+const SuggestList: React.FC<{
+  activeIndex: number;
+  className?: string;
+  role: string;
+  options: [{ id: number; value: string }];
+  onSelectOption: Function;
+}> = ({ activeIndex, className, role, options, onSelectOption }) => {
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const list = listRef.current;
 
-    if (activeIndex >= 0 && activeIndex < options.length) {
-      list.children[activeIndex].focus();
+    if (activeIndex >= 0 && activeIndex < options.length && list !== null) {
+      (list.children[activeIndex] as HTMLElement).focus();
     }
   }, [activeIndex, options.length]);
 
@@ -103,11 +101,9 @@ const SuggestList = ({
       data-testid="suggestList"
       role={role}
       ref={listRef}
-      {...rest}
     >
       {options.map((option) => (
         <Li
-          id={option.id}
           data-id={option.id}
           key={option.id}
           onMouseDown={() => onSelect(option)} // Use instead of onClick to prevent a bug with the focus state
@@ -131,23 +127,6 @@ SuggestList.defaultProps = {
   activeIndex: 0,
   className: "",
   role: "listbox",
-};
-
-SuggestList.propTypes = {
-  /** Index (zero-based) of the list item that should get focus */
-  activeIndex: PropTypes.number,
-  /** @ignore */
-  className: PropTypes.string,
-  /** Callback function that gets called whenever a list item is clicked or when return is pressed */
-  onSelectOption: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-      value: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  /** aria-role for the listbox element */
-  role: PropTypes.string,
 };
 
 export default SuggestList;

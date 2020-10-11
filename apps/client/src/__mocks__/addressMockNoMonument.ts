@@ -4,12 +4,9 @@ export default {
   residence: "Amsterdam",
   restrictions: [
     {
-      __typename: "Monument",
-      name: "monument",
-    },
-    {
       __typename: "CityScape",
       name: "cityscape",
+      scope: "MUNICIPAL",
     },
   ],
   streetName: "streetname",

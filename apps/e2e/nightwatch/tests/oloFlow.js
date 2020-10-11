@@ -37,7 +37,6 @@ module.exports = {
     b.click(navButtonNext);
     b.waitForElementVisible(navButtonPrev);
     b.click(navButtonPrev);
-    b.click(navButtonPrev); // BUG: click 2 times; issue in ui bothering user the zip-code field is invalid
     assert.containsText(
       main,
       "U gebruikt deze informatie om de vergunningcheck te doen op het Omgevingsloket."

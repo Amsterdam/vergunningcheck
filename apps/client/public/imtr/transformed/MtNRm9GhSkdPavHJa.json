@@ -12,14 +12,14 @@
         },
         {
           "text": "Wordt de aanbouw gebruikt voor dezelfde functie als het hoofdgebouw?",
-          "description": "Dus als het hoofdgebouw de functie wonen heeft wordt dat ook de functie van de aanbouw. ",
+          "description": "Dus als het hoofdgebouw de functie wonen heeft wordt dat ook de functie van de aanbouw.",
           "type": "boolean",
           "id": "uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
           "prio": 20
         },
         {
           "text": "Wordt de aanbouw dieper dan 2,5 m uit de achtergevel van het hoofdgebouw?",
-          "description": "![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/aanbouw_recht.png)\n\n![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__depijp___popup_diepte_van_de_aanbouw_--_versprongen.png)\n\n",
+          "description": "![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/aanbouw_recht.png)\n\n![2.5 meter](https://s3.eu-central-1.amazonaws.com/assets.vergunningen.info/images/infogrph_-__depijp___popup_diepte_van_de_aanbouw_--_versprongen.png)",
           "type": "boolean",
           "id": "uitv__895ee2a4-f282-4181-924c-b1880686ba98",
           "prio": 30
@@ -91,7 +91,7 @@
         }
       },
       "decisions": {
-        "_897cbccb-bb47-412e-a0a8-5ac0e1a11cda": {
+        "_f2e4a3a5-69b7-4f1f-aecd-b7ab2d30cb13": {
           "requiredInputs": ["#input__92107c8a-c42a-4991-9b2f-641b1c4b593b"],
           "decisionTable": {
             "rules": [
@@ -106,7 +106,7 @@
             ]
           }
         },
-        "_75477729-5d34-4fe8-bb7d-2dc6d4d473ac": {
+        "_505b1461-7e25-466d-93cf-aa3ae5a9bc50": {
           "requiredInputs": ["#input__71fce1ff-c6bf-4601-aedb-5581f1183cc5"],
           "decisionTable": {
             "rules": [
@@ -121,7 +121,7 @@
             ]
           }
         },
-        "_e4677226-a090-4fb9-995b-ca3daf448f69": {
+        "_b92f7dfe-ddb5-4ce9-9d9b-1033dd723a0e": {
           "requiredInputs": ["#input__895ee2a4-f282-4181-924c-b1880686ba98"],
           "decisionTable": {
             "rules": [
@@ -136,7 +136,7 @@
             ]
           }
         },
-        "_cddce0ea-0a85-4550-9140-412c3eb42136": {
+        "_b1be6ed6-c893-4e63-9d5b-5ad5b7f11896": {
           "requiredInputs": ["#input__d819946c-59ec-42f5-8f45-fb0bc6b139d0"],
           "decisionTable": {
             "rules": [
@@ -151,7 +151,7 @@
             ]
           }
         },
-        "_8e761968-838e-497d-bad3-668e83f3169e": {
+        "_1d0e7923-6833-4446-aeab-5b339df30445": {
           "requiredInputs": ["#input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c"],
           "decisionTable": {
             "rules": [
@@ -166,7 +166,7 @@
             ]
           }
         },
-        "_8d55eebf-fa6d-4340-987f-e471e5f56abe": {
+        "_e4ba44d6-c0ae-4923-8b8a-f52ef4a0f08a": {
           "requiredInputs": ["#input__c084dabb-6af6-4b5b-afde-838582c7a45b"],
           "decisionTable": {
             "rules": [
@@ -181,7 +181,7 @@
             ]
           }
         },
-        "_9fa3f3e4-f229-4344-af6a-d5fa6f135df4": {
+        "_b17e8da1-5d2e-4f21-b10d-b868492dc277": {
           "requiredInputs": ["#input__11eb9026-dee0-412c-96f4-689407b813ce"],
           "decisionTable": {
             "rules": [
@@ -196,7 +196,7 @@
             ]
           }
         },
-        "_f2468f54-564e-47bd-9c22-b6c7158db6a1": {
+        "_7efe55dc-770e-4dc7-8fd8-453248eb2361": {
           "requiredInputs": ["#input__041564fd-7ab5-45b5-b5bb-96d531af5846"],
           "decisionTable": {
             "rules": [
@@ -213,14 +213,14 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_897cbccb-bb47-412e-a0a8-5ac0e1a11cda",
-            "#_75477729-5d34-4fe8-bb7d-2dc6d4d473ac",
-            "#_e4677226-a090-4fb9-995b-ca3daf448f69",
-            "#_cddce0ea-0a85-4550-9140-412c3eb42136",
-            "#_8e761968-838e-497d-bad3-668e83f3169e",
-            "#_8d55eebf-fa6d-4340-987f-e471e5f56abe",
-            "#_9fa3f3e4-f229-4344-af6a-d5fa6f135df4",
-            "#_f2468f54-564e-47bd-9c22-b6c7158db6a1"
+            "#_f2e4a3a5-69b7-4f1f-aecd-b7ab2d30cb13",
+            "#_505b1461-7e25-466d-93cf-aa3ae5a9bc50",
+            "#_b92f7dfe-ddb5-4ce9-9d9b-1033dd723a0e",
+            "#_b1be6ed6-c893-4e63-9d5b-5ad5b7f11896",
+            "#_1d0e7923-6833-4446-aeab-5b339df30445",
+            "#_e4ba44d6-c0ae-4923-8b8a-f52ef4a0f08a",
+            "#_b17e8da1-5d2e-4f21-b10d-b868492dc277",
+            "#_7efe55dc-770e-4dc7-8fd8-453248eb2361"
           ],
           "decisionTable": {
             "rules": [

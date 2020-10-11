@@ -1,8 +1,14 @@
 const debug = require("debug")("graphql:restrictions");
+const cityScape = require("../loaders/cityScape");
 const { gql } = require("../util");
 
 const typeDefs = gql`
   union Restriction = Monument | CityScape
+
+  enum Scope {
+    NATIONAL
+    MUNICIPAL
+  }
 
   extend type Address {
     restrictions: [Restriction!]!
@@ -48,6 +54,16 @@ const resolvers = {
               `got lat/lon ${lat}/${lon} from bag.accomodation. Query geo-search`
             );
             return geoSearch.load(`${lat} ${lon}`);
+          })
+          .then((matches) => {
+            return matches.map(async (match) => {
+              const { id, ...data } = match;
+              const cityScapeDetails = await (await cityScape.load([id]))[0];
+              return {
+                ...data,
+                ...cityScapeDetails,
+              };
+            });
           })
           .then((data) => data || []),
       ]).then((results) => results.flat());
