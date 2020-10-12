@@ -94,9 +94,6 @@ describe("util", () => {
       " A-b,c.d/e{f}[g]+-h& 1 "
     );
     expect(removeQuotes("text")).toBe("text");
-    expect(removeQuotes('"text')).toBe("text");
-    expect(removeQuotes(99)).toBe(99);
-    expect(removeQuotes(true)).toBe(true);
   });
   test("isValidPostalcode", () => {
     // Should be false
@@ -107,6 +104,7 @@ describe("util", () => {
     expect(isValidPostalcode("1055X")).toBe(false);
     expect(isValidPostalcode("1055XDD")).toBe(false);
     expect(isValidPostalcode("1055XD,")).toBe(false);
+    expect(isValidPostalcode("0155XD,")).toBe(false);
     // Should be true
     expect(isValidPostalcode("1055xd")).toBe(true);
     expect(isValidPostalcode("1055XD")).toBe(true);
