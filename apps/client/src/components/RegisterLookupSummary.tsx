@@ -22,8 +22,9 @@ type zoningPlanProps = {
 type RegisterLookupSummaryProps = {
   addressFromLocation: any;
   compact: boolean;
+  matomoTrackEvent?: Function;
   resetChecker?: Function;
-  setActiveState: Function;
+  setActiveState?: Function;
   topic: any; // @TODO: Replace it with IMTR-Client's TopicType
 };
 

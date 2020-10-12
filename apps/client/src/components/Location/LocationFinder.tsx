@@ -19,11 +19,15 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const RESULT_DELAY = 750;
 
-const isTrueExactMatch = (match, houseNumberFull) =>
-  houseNumberFull &&
-  stripString(match?.houseNumberFull) === stripString(houseNumberFull);
-
-const LocationFinder = ({
+const LocationFinder: React.FC<{
+  focus: boolean;
+  matomoTrackEvent: Function;
+  sessionAddress: any; // @TODO replace any with address type.
+  setAddress: Function;
+  setErrorMessage: Function;
+  setFocus: Function;
+  topic: any; //@TODO: Replace it with IMTR-Client's TopicType
+}> = ({
   focus,
   matomoTrackEvent,
   sessionAddress,
@@ -32,16 +36,18 @@ const LocationFinder = ({
   setFocus,
   topic,
 }) => {
-  const [showResult, setShowResult] = useState(true);
-  const [postalCode, setPostalCode] = useState(sessionAddress?.postalCode);
-  const [houseNumber, setHouseNumber] = useState(
-    sessionAddress?.houseNumber && parseInt(sessionAddress?.houseNumber)
+  const [showResult, setShowResult] = useState<boolean>(true);
+  const [postalCode, setPostalCode] = useState<string>(
+    sessionAddress.postalCode
   );
-  const [houseNumberFull, setHouseNumberFull] = useState(
+  const [houseNumber, setHouseNumber] = useState<number>(
+    sessionAddress?.houseNumber && parseInt(sessionAddress.houseNumber)
+  );
+  const [houseNumberFull, setHouseNumberFull] = useState<string>(
     sessionAddress?.houseNumberFull
   );
-  const [autoSuggestValue, setAutoSuggestValue] = useState("");
-  const [touched, setTouched] = useState({});
+  const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
+  const [touched, setTouched] = useState<any>({});
 
   const variables = {
     extraHouseNumberFull: "",
@@ -51,11 +57,15 @@ const LocationFinder = ({
   };
 
   // @TODO: we can move this to utils together with postalCodeRegex
-  const isValidPostalcode = (value) =>
+  const isValidPostalcode = (value: string | number) =>
     !!(value && value.toString().trim().match(postalCodeRegex));
 
   // Validate forms
-  const validate = (name, value, required) => {
+  const validate = (
+    name: string,
+    value: string | number,
+    required: boolean
+  ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
@@ -78,7 +88,7 @@ const LocationFinder = ({
           // Prevent submitting the form when pressing Enter
           event.preventDefault();
           // Disable focus on the input so the AutoSugest list disappears
-          document.activeElement.blur();
+          (document.activeElement as HTMLElement).blur();
           setFocus(false);
           break;
 
@@ -116,9 +126,6 @@ const LocationFinder = ({
 
   const exactMatch = data?.findAddress?.exactMatch;
 
-  // This make sures the exactMatch is equal to the user input
-  const isExactMatch = isTrueExactMatch(exactMatch, houseNumberFull);
-
   // Prevent setState error
   useEffect(() => {
     setErrorMessage(graphqlError);
@@ -134,41 +141,44 @@ const LocationFinder = ({
     setErrorMessage,
   ]);
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
     e.target.value && setTouched({ ...touched, [e.target.name]: true });
     setFocus(false);
   };
 
   // AutoSuggest
-  const handleAutoSuggestSelect = (option) => {
+  const handleAutoSuggestSelect = (option: { value: string }) => {
     const { value } = option;
     setShowResult(false);
     debouncedUpdateResult();
 
-    setHouseNumber(value);
+    setHouseNumber(parseInt(value));
     setHouseNumberFull(value);
     setAutoSuggestValue(value);
   };
   const autoSuggestMatches =
     data?.findAddress.matches.filter(
-      (a) => stripString(a.houseNumberFull) !== stripString(houseNumberFull)
+      (a: { houseNumberFull: string }) =>
+        stripString(a.houseNumberFull) !== stripString(houseNumberFull)
     ) || [];
-  const showAutoSuggest = !!(autoSuggestMatches.length > 0 && focus);
+  const showAutoSuggest = autoSuggestMatches.length > 0 && focus;
 
-  const options = autoSuggestMatches.map((address) => ({
-    id: address.houseNumberFull.replace(" ", "-"),
-    value: address.houseNumberFull,
-  }));
+  const options = autoSuggestMatches.map(
+    (address: { houseNumberFull: string }) => ({
+      id: address.houseNumberFull.replace(" ", "-"),
+      value: address.houseNumberFull,
+    })
+  );
 
   // Determine when to show components
-  const showExactMatch = isExactMatch && !loading;
+  const showExactMatch = exactMatch && !loading;
 
   const showLocationNotFound = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
     showResult &&
-    !isExactMatch &&
+    !exactMatch &&
     !loading &&
     !graphqlError &&
     !showAutoSuggest
@@ -215,7 +225,7 @@ const LocationFinder = ({
           autoFocus
           defaultValue={postalCode}
           error={
-            postalCodeError ||
+            !!postalCodeError ||
             (showLocationNotFound && isValidPostalcode(postalCode))
           }
           label="Postcode"
@@ -234,12 +244,12 @@ const LocationFinder = ({
         <LocationTextField
           autoComplete="off" // This disables the native browser auto-suggest
           error={
-            houseNumberError ||
+            !!houseNumberError ||
             (showLocationNotFound && isValidPostalcode(postalCode))
           }
           id="houseNumberFull"
           label="Huisnummer + toevoeging"
-          name="houseNumber"
+          name="houseNumberFull"
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={() => setFocus(true)}
@@ -254,7 +264,6 @@ const LocationFinder = ({
           <AutoSuggestList
             // @TODO: make activeIndex dynamic (WCAG)
             activeIndex={-1}
-            id="as-listbox"
             onSelectOption={handleAutoSuggestSelect}
             options={options}
             role="listbox"
@@ -276,7 +285,6 @@ const LocationFinder = ({
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
                 compact
-                displayZoningPlans={false}
                 matomoTrackEvent={matomoTrackEvent}
                 topic={topic}
               />
