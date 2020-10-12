@@ -8,6 +8,7 @@ import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
 import HiddenDebugInfo from "../HiddenDebugInfo";
+import Link from "../Link";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
@@ -51,9 +52,17 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
         <HiddenDebugInfo title="Environment">
           <p>Node environment: {process.env.NODE_ENV}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
+          {process.env.REACT_APP_GIT_BRANCH && (
+            <p>Branch: {process.env.REACT_APP_GIT_BRANCH}</p>
+          )}
           <p>
-            Git:{" "}
-            {process.env.REACT_APP_BRANCH_NAME || process.env.REACT_APP_GIT_SHA}
+            Commit:{" "}
+            <Link
+              href={`https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}`}
+              target="_blank"
+            >
+              {process.env.REACT_APP_GIT_SHA}
+            </Link>
           </p>
           <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
         </HiddenDebugInfo>
@@ -80,9 +89,8 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             __html: `<!--
             Node environment: ${process.env.NODE_ENV}
             App Version: ${process.env.REACT_APP_VERSION}
-            Branch: ${
-              process.env.REACT_APP_BRANCH_NAME || process.env.REACT_APP_GIT_SHA
-            }
+            Branch: ${process.env.REACT_APP_GIT_BRANCH}
+            Commit: https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}
             GraphQL: ${process.env.REACT_APP_GRAPHQL_API_URL}
             -->`,
           }}
