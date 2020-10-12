@@ -141,7 +141,7 @@ const LocationFinder: React.FC<{
     setErrorMessage,
   ]);
 
-  const handleBlur = (e: { target: { value: string; name: string } }) => {
+  const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
     e.target.value && setTouched({ ...touched, [e.target.name]: true });
     setFocus(false);

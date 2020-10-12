@@ -1,14 +1,3 @@
-/**
- * THIS FILE IS COPY PASTED FROM:
- * https://github.com/Amsterdam/signals-frontend/blob/develop/src/components/AutoSuggest/components/SuggestList/index.js
- *
- * It has not been edited yet.
- *
- * Improvements:
- * - Add test
- * - Convert to TS
- */
-
 import { ChevronRight } from "@amsterdam/asc-assets";
 import { Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import React, { Fragment, useCallback, useEffect, useRef } from "react";
@@ -47,16 +36,16 @@ const StyledIcon = styled(Icon)`
 const SuggestList: React.FC<{
   activeIndex: number;
   className?: string;
-  role: string;
-  options: [{ id: number; value: string }];
   onSelectOption: Function;
-}> = ({ activeIndex, className, role, options, onSelectOption }) => {
+  options: [{ id: number; value: string }];
+  role: string;
+}> = ({ activeIndex, className, onSelectOption, options, role }) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const list = listRef.current;
 
-    if (activeIndex >= 0 && activeIndex < options.length && list !== null) {
+    if (activeIndex >= 0 && activeIndex < options.length && list) {
       (list.children[activeIndex] as HTMLElement).focus();
     }
   }, [activeIndex, options.length]);
@@ -121,12 +110,6 @@ const SuggestList: React.FC<{
       ))}
     </StyledList>
   );
-};
-
-SuggestList.defaultProps = {
-  activeIndex: 0,
-  className: "",
-  role: "listbox",
 };
 
 export default SuggestList;
