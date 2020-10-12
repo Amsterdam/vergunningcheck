@@ -37,7 +37,7 @@
     "start": "REACT_APP_GIT_SHA=`git rev-parse HEAD` REACT_APP_GIT_BRANCH=`git rev-parse --short HEAD` react-scripts start",
     "start:prod": "REACT_APP_GRAPHQL_API_URL=http://localhost:4000/graphql npm run build; serve -s build",
     "build": "react-scripts build",
-    "build:netlify": "npm ci && BRANCH_NAME=$BRANCH && GIT_COMMIT=$COMMIT REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",
+    "build:netlify": "npm ci && BRANCH_NAME=$BRANCH && GIT_COMMIT=$COMMIT_REF REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",
     "build:size-report": "npm ci && npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
