@@ -25,7 +25,6 @@ const LocationResult: React.FC<LocationResultProps> = ({
     SessionContext
   );
   const address = sessionContext[topic.slug].address;
-  const { hasIMTR } = topic;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,21 +47,19 @@ const LocationResult: React.FC<LocationResultProps> = ({
     <Form data-testid={LOCATION_RESULT} onSubmit={onSubmit}>
       <Heading forwardedAs="h3">Adresgegevens</Heading>
       <RegisterLookupSummary
-        addressFromLocation={null} // @TODO: remove this prop when RegisterLookupSummary = TS
-        compact={false} // @TODO: remove this prop when RegisterLookupSummary = TS
         {...{
           setActiveState,
           topic,
         }}
       />
       <Paragraph gutterBottom={0}>
-        {/* OLO Flow text */}U hebt deze informatie nodig om de vergunningcheck
-        te doen op het Omgevingsloket.
+        U hebt deze informatie nodig om de vergunningcheck te doen op het
+        Omgevingsloket.
       </Paragraph>
       <Nav
-        formEnds={!hasIMTR}
+        formEnds
         nextText={"Naar het omgevingsloket"}
-        noMarginBottom={!hasIMTR}
+        noMarginBottom
         onGoToPrev={onGoToPrev}
         showNext
         showPrev

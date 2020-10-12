@@ -20,8 +20,8 @@ type zoningPlanProps = {
 };
 
 type RegisterLookupSummaryProps = {
-  addressFromLocation: any;
-  compact: boolean;
+  addressFromLocation?: any;
+  compact?: boolean;
   matomoTrackEvent?: Function;
   resetChecker?: Function;
   setActiveState?: Function;
