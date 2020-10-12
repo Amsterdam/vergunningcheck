@@ -11,7 +11,7 @@ const LocationLoading: React.FC<LocationLoadingProps> = ({ loading }) => {
 
   return (
     <ComponentWrapper>
-      <Alert content="Wij zoeken het adres." heading="Laden..." />
+      <Alert heading="Wij zoeken het adres." />
     </ComponentWrapper>
   );
 };
