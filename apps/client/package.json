@@ -34,7 +34,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "react-scripts start",
+    "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
     "start:prod": "REACT_APP_GRAPHQL_API_URL=http://localhost:4000/graphql npm run build; serve -s build",
     "build": "react-scripts build",
     "build:netlify": "npm ci && REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",

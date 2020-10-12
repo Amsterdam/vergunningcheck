@@ -49,9 +49,13 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
 
       <HideForPrint>
         <HiddenDebugInfo title="Environment">
-          <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
-          <p>App Version: {process.env.REACT_APP_VERSION}</p>
           <p>Node environment: {process.env.NODE_ENV}</p>
+          <p>App Version: {process.env.REACT_APP_VERSION}</p>
+          <p>
+            Git:{" "}
+            {process.env.REACT_APP_BRANCH_NAME || process.env.REACT_APP_GIT_SHA}
+          </p>
+          <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
         </HiddenDebugInfo>
         {topic && (
           <HiddenDebugInfo title="topic from checkerContext">
@@ -74,8 +78,12 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `<!--
-            Version: ${process.env.REACT_APP_VERSION}
-            Environment: ${process.env.NODE_ENV}
+            Node environment: ${process.env.NODE_ENV}
+            App Version: ${process.env.REACT_APP_VERSION}
+            Branch: ${
+              process.env.REACT_APP_BRANCH_NAME || process.env.REACT_APP_GIT_SHA
+            }
+            GraphQL: ${process.env.REACT_APP_GRAPHQL_API_URL}
             -->`,
           }}
         />
