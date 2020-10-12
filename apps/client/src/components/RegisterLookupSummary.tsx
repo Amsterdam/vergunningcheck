@@ -1,4 +1,4 @@
-import { Paragraph } from "@amsterdam/asc-ui";
+import { Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 import styled from "styled-components";
@@ -29,8 +29,8 @@ type RegisterLookupSummaryProps = {
 };
 
 const StyledList = styled(List)`
-  margin-top: 12px;
-  margin-bottom: 16px;
+  margin-top: ${themeSpacing(3)};
+  margin-bottom: ${themeSpacing(4)};
   background-color: inherit;
 `;
 
