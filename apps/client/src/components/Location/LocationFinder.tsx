@@ -19,6 +19,13 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const RESULT_DELAY = 750;
 
+const isTrueExactMatch = (
+  match?: { houseNumberFull?: string },
+  houseNumberFull?: string
+) =>
+  houseNumberFull &&
+  stripString(match?.houseNumberFull) === stripString(houseNumberFull);
+
 const LocationFinder: React.FC<{
   focus: boolean;
   matomoTrackEvent: Function;
@@ -126,6 +133,9 @@ const LocationFinder: React.FC<{
 
   const exactMatch = data?.findAddress?.exactMatch;
 
+  // This make sures the exactMatch is equal to the user input
+  const isExactMatch = isTrueExactMatch(exactMatch, houseNumberFull);
+
   // Prevent setState error
   useEffect(() => {
     setErrorMessage(graphqlError);
@@ -172,13 +182,13 @@ const LocationFinder: React.FC<{
   );
 
   // Determine when to show components
-  const showExactMatch = exactMatch && !loading;
+  const showExactMatch = isExactMatch && !loading;
 
   const showLocationNotFound = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
     showResult &&
-    !exactMatch &&
+    !isExactMatch &&
     !loading &&
     !graphqlError &&
     !showAutoSuggest
