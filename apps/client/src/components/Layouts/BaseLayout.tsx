@@ -53,7 +53,15 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           <p>Node environment: {process.env.NODE_ENV}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
           {process.env.REACT_APP_GIT_BRANCH && (
-            <p>Branch: {process.env.REACT_APP_GIT_BRANCH}</p>
+            <p>
+              Branch:{" "}
+              <Link
+                href={`https://github.com/Amsterdam/vergunningcheck/tree/${process.env.REACT_APP_GIT_BRANCH}`}
+                target="_blank"
+              >
+                {process.env.REACT_APP_GIT_BRANCH}
+              </Link>
+            </p>
           )}
           <p>
             Commit:{" "}
