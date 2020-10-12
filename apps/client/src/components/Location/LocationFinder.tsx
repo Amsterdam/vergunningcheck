@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
 import useDebounce from "../../hooks/useDebounce";
-import { stripString } from "../../utils";
+import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList from "../AutoSuggestList";
 import RegisterLookupSummary from "../RegisterLookupSummary";
@@ -15,10 +15,10 @@ import LocationNotFound from "./LocationNotFound";
 import { LocationTextField } from "./LocationStyles";
 
 const findAddress = loader("./LocationFinder.graphql");
-const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const RESULT_DELAY = 750;
 
+// This makes sure the exactMatch is equal to the user input
 const isTrueExactMatch = (
   match?: { houseNumberFull?: string },
   houseNumberFull?: string
@@ -63,21 +63,17 @@ const LocationFinder: React.FC<{
     queryExtra: false,
   };
 
-  // @TODO: we can move this to utils together with postalCodeRegex
-  const isValidPostalcode = (value: string | number) =>
-    !!(value && value.toString().trim().match(postalCodeRegex));
-
   // Validate forms
   const validate = (
     name: string,
-    value: string | number,
+    value: number | string,
     required: boolean
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return requiredFieldText;
       }
-      if (name === "postalCode" && !isValidPostalcode(value)) {
+      if (name === "postalCode" && !isValidPostalcode(value.toString())) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
@@ -133,7 +129,7 @@ const LocationFinder: React.FC<{
 
   const exactMatch = data?.findAddress?.exactMatch;
 
-  // This make sures the exactMatch is equal to the user input
+  // This makes sure the exactMatch is equal to the user input
   const isExactMatch = isTrueExactMatch(exactMatch, houseNumberFull);
 
   // Prevent setState error

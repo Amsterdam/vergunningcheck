@@ -37,34 +37,9 @@ export const getRestrictionByTypeName = (restrictions, typeName) =>
 
 // IMTR helper
 export const removeQuotes = (str) =>
-  typeof str === "string" ? str.replace(/['"]+/g, "") : "";
+  typeof str === "string" ? str.replace(/['"]+/g, "") : str;
 
 export const addQuotes = (str) => `"${str}"`;
-
-// `uniqBy` removes duplicates from an array (of objects) and is based on lodash.uniqBy
-// see: https://stackoverflow.com/a/40808569
-export const uniqBy = (arr, predicate) => {
-  if (!Array.isArray(arr)) {
-    return [];
-  }
-
-  const cb = typeof predicate === "function" ? predicate : (o) => o[predicate];
-
-  const pickedObjects = arr
-    .filter((item) => item)
-    .reduce((map, item) => {
-      const key = cb(item);
-
-      if (!key) {
-        return map;
-      }
-
-      return map.has(key) ? map : map.set(key, item);
-    }, new Map())
-    .values();
-
-  return [...pickedObjects];
-};
 
 /**
  *
@@ -90,3 +65,16 @@ export const scrollToRef = (ref, offset = 0) =>
  */
 export const stripString = (str) =>
   str && str.toLowerCase().replace(/[^a-z0-9]+/gi, "");
+
+/**
+ *
+ * This function return `true` or `false` wheter or not a value is a equal to a Dutch postalcode (eg: 1055XD)
+ *
+ * @param {string} value
+ */
+export const isValidPostalcode = (value) => {
+  const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
+  return !!(value && value.toString().trim().match(postalCodeRegex));
+};
+
+//  36,40

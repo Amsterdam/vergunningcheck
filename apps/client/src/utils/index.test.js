@@ -4,6 +4,8 @@ import {
   collectionOfSimpleTypes,
   collectionOfType,
   isSimpleType,
+  isValidPostalcode,
+  removeQuotes,
   scrollToRef,
   stripString,
   uniqueFilter,
@@ -84,5 +86,32 @@ describe("util", () => {
     expect(stripString("19-C ")).toBe("19c");
     expect(stripString("Abc, 123. ")).toBe("abc123");
     expect(stripString(" A-b,c.d/e{f}[g]+-h& 1 ")).toBe("abcdefgh1");
+  });
+  test("removeQuotes", () => {
+    expect(removeQuotes('"19-c"')).toBe("19-c");
+    expect(removeQuotes('"Abc, 123. "')).toBe("Abc, 123. ");
+    expect(removeQuotes('" A-b,c.d/e{f}[g]+-h& 1 "')).toBe(
+      " A-b,c.d/e{f}[g]+-h& 1 "
+    );
+    expect(removeQuotes("text")).toBe("text");
+    expect(removeQuotes('"text')).toBe("text");
+    expect(removeQuotes(99)).toBe(99);
+    expect(removeQuotes(true)).toBe(true);
+  });
+  test("isValidPostalcode", () => {
+    // Should be false
+    expect(isValidPostalcode()).toBe(false);
+    expect(isValidPostalcode("")).toBe(false);
+    expect(isValidPostalcode(1055)).toBe(false);
+    expect(isValidPostalcode("19-c")).toBe(false);
+    expect(isValidPostalcode("1055X")).toBe(false);
+    expect(isValidPostalcode("1055XDD")).toBe(false);
+    expect(isValidPostalcode("1055XD,")).toBe(false);
+    // Should be true
+    expect(isValidPostalcode("1055xd")).toBe(true);
+    expect(isValidPostalcode("1055XD")).toBe(true);
+    expect(isValidPostalcode("1055 Xd")).toBe(true);
+    expect(isValidPostalcode(" 1055XD ")).toBe(true);
+    expect(isValidPostalcode(" 1055 XD ")).toBe(true);
   });
 });
