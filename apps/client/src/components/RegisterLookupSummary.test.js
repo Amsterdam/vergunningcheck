@@ -7,7 +7,7 @@ import Context from "../__mocks__/context";
 import matchMedia from "../__mocks__/matchMedia";
 import { findTopicBySlug } from "../utils";
 import { EDIT_BUTTON } from "../utils/test-ids";
-import { act, cleanup, fireEvent, render, screen } from "../utils/test-utils";
+import { act, fireEvent, render, screen } from "../utils/test-utils";
 import RegisterLookupSummary from "./RegisterLookupSummary";
 
 Object.defineProperty(window, "matchMedia", matchMedia);
@@ -16,8 +16,6 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
-
-afterEach(cleanup);
 
 describe("RegisterLookupSummary", () => {
   const WrapperWithContext = (props) => {

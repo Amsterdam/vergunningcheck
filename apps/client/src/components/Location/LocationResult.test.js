@@ -6,7 +6,7 @@ import addressMock from "../../__mocks__/addressMock";
 import Context from "../../__mocks__/context";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { findTopicBySlug } from "../../utils";
-import { cleanup, fireEvent, render } from "../../utils/test-utils";
+import { fireEvent, render } from "../../utils/test-utils";
 import LocationResult from "./LocationResult";
 
 const matomoTrackEvent = jest.fn();
@@ -19,8 +19,6 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
 }));
-
-afterEach(cleanup);
 
 describe("LocationResult", () => {
   const topic = findTopicBySlug("aanbouw-of-uitbouw-maken");

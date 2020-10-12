@@ -1,7 +1,7 @@
 import React from "react";
 
 import { QUESTION_ANSWERS } from "../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../utils/test-utils";
+import { act, fireEvent, render } from "../utils/test-utils";
 import Answers from "./Answers";
 import { booleanOptions } from "./Question";
 
@@ -18,8 +18,6 @@ const mockProps = {
   onChange: onChangeMock,
   userAnswer: "",
 };
-
-afterEach(cleanup);
 
 it("Answers should render", () => {
   const { getByTestId } = render(<Answers {...mockProps} />);
