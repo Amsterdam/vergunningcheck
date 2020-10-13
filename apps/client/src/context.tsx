@@ -11,7 +11,7 @@ type TopicSessionData = {
   answers?: QuestionAnswerType[];
   address: any;
   finishedComponents: [];
-  questionIndex: Number;
+  questionIndex: number;
 };
 
 export type SessionDataType = {
