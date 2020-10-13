@@ -7,7 +7,7 @@ Maybe you also need to run `safaridriver --enable`. I'm not sure.
 
 ## Run the test-suite
 
-`npm test` does the basic test.
+`npm run localhost:test` does the basic test.
 
 Doesn't work yet:
 

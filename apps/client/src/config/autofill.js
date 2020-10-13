@@ -31,9 +31,24 @@ export const getDataNeedResultPageOrPrevious = (
  * Monument can either be a bool or list question, that why we need 2.
  */
 export const autofillResolvers = {
-  cityScape: ({ address }) =>
-    address?.restrictions &&
-    !!getRestrictionByTypeName(address.restrictions, "CityScape"),
+  cityScape: ({ address }, question) => {
+    const cityScape =
+      address?.restrictions &&
+      getRestrictionByTypeName(address.restrictions, "CityScape");
+
+    if (question.options) {
+      const answers = {
+        NATIONAL:
+          "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+        MUNICIPAL:
+          "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
+        undefined:
+          "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
+      };
+      return addQuotes(answers[cityScape?.scope]);
+    }
+    return !!cityScape;
+  },
   monumentBoolean: ({ address }) =>
     address?.restrictions &&
     !!getRestrictionByTypeName(address.restrictions, "Monument"),

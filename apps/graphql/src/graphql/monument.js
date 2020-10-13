@@ -22,7 +22,8 @@ const typeDefs = gql`
   }
 
   type Monument {
-    type: MonumentType!
+    type: MonumentType! @deprecated(reason: "Use \`scope\` instead.")
+    scope: Scope!
     name: String!
   }
 `;

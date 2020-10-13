@@ -147,5 +147,3 @@ export const topics: Topic[] = [
 export const requiredFieldText: string = "Verplicht veld is niet ingevuld";
 
 export const requiredFieldRadio: string = "Maak een keuze";
-
-export const firstSelectOption: string = "Maak een keuze";

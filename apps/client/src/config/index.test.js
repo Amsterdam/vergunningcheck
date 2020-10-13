@@ -2,11 +2,9 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
-import { cleanup, render } from "../utils/test-utils";
+import { render } from "../utils/test-utils";
 import { getMatomoSiteId } from "./matomo";
 import { topics } from ".";
-
-afterEach(cleanup);
 
 const tryIntroFile = (intro) => {
   try {
@@ -23,8 +21,6 @@ const AllIntroPages = () =>
   );
 
 describe("Config", () => {
-  afterEach(cleanup);
-
   test("should load correct environment matomo siteId", () => {
     expect(getMatomoSiteId(true)).toBe(29);
     expect(getMatomoSiteId(false)).toBe(37);

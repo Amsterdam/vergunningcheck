@@ -1,23 +1,30 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import { StyledForm } from "./FormStyles";
 
-const Form = ({ children, onSubmit, action, ...rest }) => {
-  const history = useHistory();
+type FormProps = {
+  dataId?: string;
+  dataTestId?: string;
+};
 
+const Form: React.FC<FormProps & React.HTMLAttributes<HTMLElement>> = ({
+  children,
+  className,
+  dataId,
+  dataTestId,
+  onSubmit,
+}) => {
   return (
     <StyledForm
+      className={className}
+      data-id={dataId}
+      data-testid={dataTestId}
       onSubmit={(e) => {
         e.preventDefault();
         if (onSubmit) {
           onSubmit(e);
         }
-        if (action) {
-          history.push(action);
-        }
       }}
-      {...rest}
     >
       {children}
     </StyledForm>

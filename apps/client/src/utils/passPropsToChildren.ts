@@ -14,6 +14,7 @@ const passPropsToChildren = (
   const children = Children.map(childrenProp, (child, index) =>
     React.cloneElement(
       child as React.ReactElement<any>,
+      /* istanbul ignore next */
       typeof propsOrCallback === "function"
         ? propsOrCallback(index)
         : propsOrCallback

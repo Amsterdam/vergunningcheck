@@ -4,19 +4,23 @@
   "description": "",
   "main": "puppeteer/basic.ts",
   "scripts": {
-    "test": "run-p test:puppeteer test:nightwatch:*",
-    "test:puppeteer": "ts-node puppeteer/tests/*.ts",
-    "test:nightwatch": "run-p test:nightwatch:*",
-    "test:nightwatch:firefox": "kill-port 4444 || : && npx nightwatch nightwatch/tests/*.js -e firefox",
-    "test:nightwatch:chrome": "npx nightwatch nightwatch/tests/*.js -e chrome"
+    "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
+    "localhost:test:puppeteer": "ts-node puppeteer/tests/*.ts",
+    "localhost:test:nightwatch": "run-p localhost:test:nightwatch:*",
+    "localhost:test:nightwatch:firefox": "kill-port 4444 || : && npx nightwatch nightwatch/tests/*.js -e firefox",
+    "localhost:test:nightwatch:chrome": "npx nightwatch nightwatch/tests/*.js -e chrome"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.2.13",
+    "@types/mkdirp": "^1.0.1",
     "@types/puppeteer": "^3.0.2",
+    "chai": "^4.2.0",
     "chromedriver": "^85.0.1",
     "geckodriver": "^1.20.0",
+    "mkdirp": "^1.0.4",
     "nightwatch": "^1.4.3",
     "npm-run-all": "^4.1.5",
     "puppeteer": "^5.3.1",

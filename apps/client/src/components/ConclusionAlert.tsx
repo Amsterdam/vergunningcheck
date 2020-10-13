@@ -4,10 +4,16 @@ import React from "react";
 import { HideForPrint } from "../atoms";
 import { ConclusionAlertStyle } from "./ConclusionAlertStyles";
 
-const ConclusionAlert: React.FC<
-  { questionNeedsContactExit?: Boolean } & React.HTMLAttributes<HTMLElement>
-> = ({ questionNeedsContactExit, ...otherProps }) => (
-  <ConclusionAlertStyle {...otherProps}>
+export type ConclusionAlertProps = {
+  marginBottom?: number;
+  questionNeedsContactExit?: Boolean;
+};
+
+const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
+  marginBottom,
+  questionNeedsContactExit,
+}) => (
+  <ConclusionAlertStyle marginBottom={marginBottom}>
     <Paragraph>
       {questionNeedsContactExit ? (
         "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."

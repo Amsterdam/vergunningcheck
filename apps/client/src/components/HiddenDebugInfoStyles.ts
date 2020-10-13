@@ -1,5 +1,5 @@
-import { themeSpacing } from "@amsterdam/asc-ui";
 /* istanbul ignore file */
+import { themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const HiddenDiv = styled.div`

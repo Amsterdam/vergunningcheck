@@ -26,32 +26,40 @@ const NewCheckerModal: React.FC<{
   const handleOpenModal = () => {
     matomoTrackEvent({
       action: actions.OPEN_MODAL,
-      name: eventNames.DO_ANOTHER_CHECK,
+      name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
     });
 
     setError(false);
   };
 
   const handleConfirmButton = () => {
-    const saveAddressText = saveAddress
-      ? eventNames.WITH_THE_SAME_ADDRESS
-      : eventNames.WITHOUT_THE_SAME_ADDRESS;
-    matomoTrackEvent({
-      action: actions.START_ANOTHER_CHECK,
-      name: checkerSlug
-        ? `${checkerSlug.replace("-", " ")} - ${saveAddressText}`
-        : eventNames.NO_CHOICE_HAS_BEEN_MADE,
-    });
+    const hasError = saveAddress === null;
 
-    setError(saveAddress === null);
+    setError(hasError);
     setFinished(!!checkerSlug);
 
-    if (saveAddress !== null) {
+    if (hasError) {
+      matomoTrackEvent({
+        action: actions.START_ANOTHER_CHECK,
+        name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
+      });
+    } else {
+      const doSaveAddress = saveAddress === true;
+
+      const saveAddressEvent = doSaveAddress
+        ? eventNames.WITH_THE_SAME_ADDRESS
+        : eventNames.WITHOUT_THE_SAME_ADDRESS;
+
+      matomoTrackEvent({
+        action: actions.START_ANOTHER_CHECK,
+        name: `${eventNames.DO_ANOTHER_CHECK} - ${saveAddressEvent}`,
+      });
+
       const address = saveAddress ? sessionContext[slug].address : null;
       const activeComponents = saveAddress
         ? sections.QUESTIONS
         : sections.LOCATION_INPUT;
-      const finishedComponents = saveAddress && sections.LOCATION_RESULT;
+      const finishedComponents = saveAddress && sections.LOCATION_INPUT;
       // Clear or set session data for the new checker
       sessionContext.setSessionData([
         checkerSlug,
@@ -64,6 +72,7 @@ const NewCheckerModal: React.FC<{
         },
       ]);
 
+      // @TODO: We need to find a better solution for restarting the same checker.
       return (window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`);
     }
   };

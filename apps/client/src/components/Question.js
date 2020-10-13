@@ -37,22 +37,20 @@ const Question = ({
     text: questionTitle,
     type: questionType,
   },
-  userAnswer,
-  className,
   checker,
+  className,
   editQuestion,
-  setEditQuestion,
-  onGoToNext,
-  saveAnswer,
-  shouldGoToConlusion,
-  showNext,
-  showPrev,
   matomoTrackEvent,
+  onGoToNext,
   onGoToPrev,
   questionIndex,
   questionNeedsContactExit,
+  saveAnswer,
+  setEditQuestion,
+  shouldGoToConlusion,
   showConclusionAlert,
-  // @TODO: sort this abc when nobody else is editing this file
+  showNext,
+  userAnswer,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
@@ -117,9 +115,9 @@ const Question = ({
   return (
     <Form
       className={className}
+      dataId={questionId}
+      dataTestId={QUESTION_PAGE}
       onSubmit={handleSubmit(onGoToNext)}
-      data-id={questionId}
-      data-testid={QUESTION_PAGE}
     >
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
@@ -151,10 +149,10 @@ const Question = ({
       <Nav
         formEnds={shouldGoToConlusion()}
         nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
+        showPrev={questionIndex > 0} // Do not show back-button at the first question
         {...{
           onGoToPrev,
           showNext,
-          showPrev,
         }}
       />
     </Form>
@@ -189,7 +187,6 @@ Question.propTypes = {
   required: PropTypes.bool,
   shouldGoToConlusion: PropTypes.func,
   showNext: PropTypes.bool,
-  showPrev: PropTypes.bool,
   userAnswer: PropTypes.string,
 };
 

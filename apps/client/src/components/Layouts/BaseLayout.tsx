@@ -1,8 +1,8 @@
-import { Column, Row } from "@amsterdam/asc-ui";
+import { Column, FormTitle, Row } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import { FormTitle, HideForPrint } from "../../atoms";
+import { HideForPrint } from "../../atoms";
 import { Topic } from "../../config";
 import { CheckerContext } from "../../context";
 import Footer from "../Footer";
@@ -82,10 +82,12 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           </HiddenDebugInfo>
         )}
         {checkerContext.checker && (
+          // istanbul ignore next
           <HiddenDebugInfo title="permits from checkerContext">
-            {checkerContext.checker?.permits?.map((permit: any) => (
-              <p key={permit.name}>{permit.name}</p>
-            ))}
+            {checkerContext.checker?.permits?.map((permit: any) => {
+              /* istanbul ignore next */
+              return <p key={permit.name}>{permit.name}</p>;
+            })}
           </HiddenDebugInfo>
         )}
 

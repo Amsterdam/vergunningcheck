@@ -1,10 +1,10 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { actions, eventNames, sections } from "../../config/matomo";
-import { CheckerContext, SessionContext } from "../../context";
+import { CheckerContext, SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
@@ -13,7 +13,13 @@ import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
-const LocationInput = ({
+const LocationInput: React.FC<{
+  matomoTrackEvent: Function;
+  resetChecker: Function;
+  setActiveState: Function;
+  setFinishedState: Function;
+  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
+}> = ({
   matomoTrackEvent,
   resetChecker,
   setActiveState,
@@ -21,37 +27,34 @@ const LocationInput = ({
   topic,
 }) => {
   const history = useHistory();
-  const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const sessionContext = useContext(SessionContext);
+  const { handleSubmit } = useForm();
+  // @TODO: replace with custom topic hooks
+  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
+    SessionContext
+  );
   const checkerContext = useContext(CheckerContext);
 
   const { hasIMTR, slug, text } = topic;
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState<{ stack: object }>();
   const [focus, setFocus] = useState(false);
 
-  useEffect(() => {
-    if (!address && !errorMessage) {
-      register({ name: "suffix" }, { required: "Kies een toevoeging." });
-    } else {
-      clearErrors("suffix");
-    }
-    return () => unregister("suffix");
-  }, [address, clearErrors, errorMessage, register, unregister]);
-
   const onSubmit = () => {
-    if (address.postalCode) {
+    if (address?.postalCode) {
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
-        name: `${eventNames.FORWARD} ${sections.LOCATION_RESULT}`,
+        name: `${eventNames.FORWARD} ${
+          hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
+        }`,
       });
 
       // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
-        // The address is the same, so go directly to the Location Result
-        setActiveState(sections.LOCATION_RESULT);
+        // The address is the same, so go directly to the Questions section
+        setFinishedState(sections.LOCATION_INPUT);
+        setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
         return;
       }
 
@@ -65,7 +68,7 @@ const LocationInput = ({
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
-        answers = null;
+        answers = undefined;
       }
 
       checkerContext.autofillData.address = address;
@@ -73,10 +76,7 @@ const LocationInput = ({
       // Reset all previous finished states
       if (hasIMTR) {
         resetChecker();
-        setFinishedState(
-          [sections.LOCATION_RESULT, sections.QUESTIONS, sections.CONCLUSION],
-          false
-        );
+        setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
       }
 
       sessionContext.setSessionData([
@@ -89,9 +89,11 @@ const LocationInput = ({
       ]);
 
       if (focus) {
-        document.activeElement.blur();
+        (document.activeElement as HTMLElement).blur();
       } else {
-        setActiveState(sections.LOCATION_RESULT);
+        // @TODO These lines are duplicate from 56 57 if this doens't change in OLO flow refactor to own function
+        setFinishedState(sections.LOCATION_INPUT);
+        setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
       }
     }
   };
@@ -102,13 +104,15 @@ const LocationInput = ({
       name: `${eventNames.BACK} ${sections.INTRO}`,
     });
 
-    // @TODO: We need to give a warning or we need to store the checker data as well
-    sessionContext.setSessionData([
-      slug,
-      {
-        address,
-      },
-    ]);
+    // Only store the address if the address has been found, otherwise an empty address may overwrite an existing address
+    if (address) {
+      sessionContext.setSessionData([
+        slug,
+        {
+          address,
+        },
+      ]);
+    }
     history.push(geturl(routes.intro, topic));
   };
 
@@ -132,15 +136,18 @@ const LocationInput = ({
 
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
-          setAddress={setAddress}
-          setFocus={setFocus}
-          setErrorMessage={setErrorMessage}
-          postalCode={sessionAddress.postalCode}
-          houseNumberFull={sessionAddress.houseNumberFull}
-          houseNumber={sessionAddress.houseNumberFull}
-          errors={errors}
+          {...{
+            focus,
+            matomoTrackEvent,
+            sessionAddress,
+            setAddress,
+            setErrorMessage,
+            setFocus,
+            topic,
+          }}
         />
         <Nav
+          nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
           noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext

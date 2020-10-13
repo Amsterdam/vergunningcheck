@@ -9,6 +9,7 @@ import LocationInput from "../components/Location/LocationInput";
 import LocationResult from "../components/Location/LocationResult";
 import PrintDetails from "../components/PrintDetails";
 import Questions from "../components/Questions";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import {
   StepByStepItem,
   StepByStepNavigation,
@@ -23,11 +24,11 @@ import LoadingPage from "./LoadingPage";
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { hasIMTR, slug, text } = topic;
-  // OLO Flow does not have questionIndex
-  const { questionIndex } = hasIMTR ? sessionContext[topic.slug] : 0;
-  const { activeComponents, answers, finishedComponents } = sessionContext[
-    slug
-  ];
+
+  // @TODO: replace with custom hooks
+  const { questionIndex } = sessionContext[slug] || {};
+  const { activeComponents, answers, finishedComponents } =
+    sessionContext[slug] || {};
 
   useEffect(() => {
     // In case no active sections are found, reset the checker
@@ -55,6 +56,29 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       if (hasIMTR) {
         resetChecker();
       }
+    }
+
+    // Make the app backwards compatible:
+
+    // This section does not exist anymore in the IMTR flow
+    const isOldSectionActive = hasIMTR && isActive(sections.LOCATION_RESULT);
+    const newFinishedComponents = finishedComponents.filter(
+      (section) => section !== sections.LOCATION_INPUT
+    );
+
+    if (isOldSectionActive) {
+      console.warn(
+        "Resetting components, because an old section was found active"
+      );
+
+      // Remove old sections from existing local storage data and set active component to Location Input
+      sessionContext.setSessionData([
+        slug,
+        {
+          activeComponents: [sections.LOCATION_INPUT],
+          finishedComponents: newFinishedComponents,
+        },
+      ]);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called on mount
@@ -191,25 +215,14 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           lineBetweenItems
         >
           <StepByStepItem
-            active={
-              isActive(sections.LOCATION_INPUT) ||
-              isActive(sections.LOCATION_RESULT)
-            }
-            checked={
-              isActive(sections.LOCATION_RESULT) ||
-              isFinished(sections.LOCATION_RESULT)
-            }
-            done={
-              isActive(sections.LOCATION_INPUT) ||
-              isActive(sections.LOCATION_RESULT)
-            }
+            active={isActive(sections.LOCATION_INPUT)}
+            checked={isFinished(sections.LOCATION_INPUT)}
+            done={isActive(sections.LOCATION_INPUT)}
             heading="Adresgegevens"
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive(sections.LOCATION_INPUT) ||
-              isActive(sections.LOCATION_RESULT) ||
-              questionIndex === 0
+              isActive(sections.LOCATION_INPUT) || questionIndex === 0
                 ? checkedStyle
                 : {}
             }
@@ -227,21 +240,17 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
                 }}
               />
             )}
-            {/* @TODO: Refactor this, because of duplicate code */}
-            {!isActive(sections.LOCATION_INPUT) &&
-              (isActive(sections.LOCATION_RESULT) ||
-                isFinished(sections.LOCATION_RESULT)) && (
-                <LocationResult
-                  {...{
-                    isActive,
-                    isFinished,
-                    matomoTrackEvent,
-                    setActiveState,
-                    setFinishedState,
-                    topic,
-                  }}
-                />
-              )}
+            {!isActive(sections.LOCATION_INPUT) && (
+              <RegisterLookupSummary
+                showEditLocationModal
+                {...{
+                  matomoTrackEvent,
+                  resetChecker,
+                  setActiveState,
+                  topic,
+                }}
+              />
+            )}
           </StepByStepItem>
           <StepByStepItem
             active={isActive(sections.QUESTIONS) && questionIndex === 0}

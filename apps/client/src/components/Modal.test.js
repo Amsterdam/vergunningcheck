@@ -6,14 +6,12 @@ import {
   MODAL_DECLINE_BUTTON,
   MODAL_OPEN_BUTTON,
 } from "../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../utils/test-utils";
+import { act, fireEvent, render } from "../utils/test-utils";
 import Modal from "./Modal";
 
 window.scrollTo = jest.fn();
 
 const onOpenMock = jest.fn();
-
-afterEach(cleanup);
 
 it("Modal Button should render, but the Modal itself not", () => {
   const { getByText, queryByTestId } = render(
