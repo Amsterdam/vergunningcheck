@@ -5,17 +5,18 @@ import isString from "lodash.isstring";
 import { topics } from "../config";
 
 // Find a topic by the slug
-export const findTopicBySlug = (slug) => topics.find((t) => t.slug === slug);
+export const findTopicBySlug = (slug: string) =>
+  topics.find((t) => t.slug === slug);
 
 // Simple checks
-export const isSimpleType = (val) =>
+export const isSimpleType = (val: any) =>
   isBoolean(val) || isString(val) || isNumber(val);
 
 // Array checks
-export const collectionOfSimpleTypes = (col) =>
+export const collectionOfSimpleTypes = (col: any) =>
   Array.isArray(col) && !col.find((val) => !isSimpleType(val));
 
-export const collectionOfType = (col, type) => {
+export const collectionOfType = (col: any, type: string) => {
   if (!Array.isArray(col) || col.includes(undefined) || col.includes(null)) {
     return false;
   }
@@ -25,21 +26,31 @@ export const collectionOfType = (col, type) => {
   return itemOfInvaldType === undefined;
 };
 
-export const isObject = (val) => typeof val === "object" && val !== null;
+// Make sure the value is of type object
+export const isObject = (val?: string) =>
+  typeof val === "object" && val !== null;
 
 // Filters
-export const uniqueFilter = (value, index, self) =>
+export const uniqueFilter = (value: any, index: number, self: Array<any>) =>
   self.indexOf(value) === index;
 
 // Data utils
-export const getRestrictionByTypeName = (restrictions, typeName) =>
-  (restrictions || []).find(({ __typename }) => __typename === typeName);
+export const getRestrictionByTypeName = (
+  restrictions?: [
+    {
+      __typename: string;
+      name: string;
+      scope: string;
+    }
+  ],
+  typeName?: string
+) => (restrictions || []).find(({ __typename }) => __typename === typeName);
 
 // IMTR helper
-export const removeQuotes = (str) =>
-  typeof str === "string" ? str.replace(/['"]+/g, "") : str;
+export const removeQuotes = (str?: string) =>
+  str ? str.replace(/['"]+/g, "") : str;
 
-export const addQuotes = (str) => `"${str}"`;
+export const addQuotes = (str: string) => `"${str}"`;
 
 /**
  *
@@ -49,7 +60,10 @@ export const addQuotes = (str) => `"${str}"`;
  * @param {object} ref - reference to an element created by React.useRef()
  * @param {number} offset - pass an offset to reduce from the total distance
  */
-export const scrollToRef = (ref, offset = 0) =>
+export const scrollToRef = (
+  ref: { current: { getBoundingClientRect: Function } },
+  offset: number = 0
+) =>
   ref &&
   window.scrollTo(
     0,
@@ -63,8 +77,8 @@ export const scrollToRef = (ref, offset = 0) =>
  *
  * @param {string | undefined} str
  */
-export const stripString = (str) =>
-  str && str.toLowerCase().replace(/[^a-z0-9]+/gi, "");
+export const stripString = (str?: string) =>
+  str && str.toLowerCase().replace(/[^a-z0-9]+/g, "");
 
 /**
  *
@@ -72,9 +86,7 @@ export const stripString = (str) =>
  *
  * @param {string} value
  */
-export const isValidPostalcode = (value) => {
-  const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
+export const isValidPostalcode = (value?: string) => {
+  const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[a-z]{2}$/i;
   return !!(value && value.toString().trim().match(postalCodeRegex));
 };
-
-//  36,40
