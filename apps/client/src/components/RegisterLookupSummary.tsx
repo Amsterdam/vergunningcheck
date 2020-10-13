@@ -129,8 +129,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
                 ? `Het gebouw ligt in een ${
                     cityScape === "NATIONAL"
                       ? "rijksbeschermd"
-                      : // istanbul ignore next
-                        "gemeentelijk beschermd"
+                      : "gemeentelijk beschermd"
                   } stads- of dorpsgezicht.`
                 : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
             </StyledListItem>
@@ -143,22 +142,19 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
           <Paragraph gutterBottom={8} strong>
             Bestemmingsplannen:
           </Paragraph>
-          {
-            //istanbul ignore next
-            zoningPlanNames.length === 0 ? (
-              <Paragraph>Geen bestemmingsplannen</Paragraph>
-            ) : (
-              <StyledList
-                data-testid={LOCATION_ZONING_PLANS}
-                noPadding
-                variant="bullet"
-              >
-                {zoningPlanNames.map((planName: string) => (
-                  <StyledListItem key={planName}>{planName}</StyledListItem>
-                ))}
-              </StyledList>
-            )
-          }
+          {zoningPlanNames.length === 0 ? (
+            <Paragraph>Geen bestemmingsplannen</Paragraph>
+          ) : (
+            <StyledList
+              data-testid={LOCATION_ZONING_PLANS}
+              noPadding
+              variant="bullet"
+            >
+              {zoningPlanNames.map((planName: string) => (
+                <StyledListItem key={planName}>{planName}</StyledListItem>
+              ))}
+            </StyledList>
+          )}
         </>
       )}
     </ComponentWrapper>
