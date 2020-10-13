@@ -5,10 +5,9 @@ import React from "react";
 import { actions, eventNames } from "../../config/matomo";
 import { MODAL } from "../../utils/test-ids";
 import { act, fireEvent, render } from "../../utils/test-utils";
-import EditLocation from "./EditLocation";
+import EditLocationModal from "./EditLocationModal";
 
 const matomoTrackEvent = jest.fn();
-const setActiveState = jest.fn();
 const resetChecker = jest.fn();
 
 beforeEach(() => {
@@ -16,18 +15,15 @@ beforeEach(() => {
 });
 
 jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
   useParams: () => ({}),
 }));
 
-describe("EditLocation", () => {
+describe("EditLocationModal", () => {
   it("Modal should render as expected", async () => {
     const { getByText, queryByTestId } = render(
-      <EditLocation
-        hasIMTR
+      <EditLocationModal
         matomoTrackEvent={matomoTrackEvent}
         resetChecker={resetChecker}
-        setActiveState={setActiveState}
       />
     );
 
@@ -57,28 +53,5 @@ describe("EditLocation", () => {
       name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
     });
     expect(resetChecker).toHaveBeenCalledTimes(1);
-  });
-
-  it("EditButton should render in OLO Flow", async () => {
-    const { getByText } = render(
-      <EditLocation
-        matomoTrackEvent={matomoTrackEvent}
-        setActiveState={setActiveState}
-      />
-    );
-
-    expect(getByText("Wijzig")).toBeInTheDocument();
-
-    // Click EditButton
-    act(() => {
-      fireEvent.click(getByText("Wijzig"));
-    });
-
-    expect(setActiveState).toHaveBeenCalledTimes(1);
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
-    expect(matomoTrackEvent).toBeCalledWith({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: eventNames.EDIT_ADDRESS,
-    });
   });
 });

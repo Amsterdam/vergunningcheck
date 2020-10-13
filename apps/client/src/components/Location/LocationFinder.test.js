@@ -15,6 +15,10 @@ const setErrorMessage = jest.fn();
 
 const mockedFunctions = { ...{ setAddress, setFocus, setErrorMessage } };
 
+jest.mock("react-router-dom", () => ({
+  useParams: () => ({}),
+}));
+
 // @TODO: Let's fetch this data from a new mocked packages/module
 const mockedAddress = {
   address: {
