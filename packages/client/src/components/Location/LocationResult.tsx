@@ -47,6 +47,7 @@ const LocationResult: React.FC<LocationResultProps> = ({
     <Form data-testid={LOCATION_RESULT} onSubmit={onSubmit}>
       <Heading forwardedAs="h3">Adresgegevens</Heading>
       <RegisterLookupSummary
+        showTitle
         {...{
           setActiveState,
           topic,

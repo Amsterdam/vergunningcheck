@@ -1,15 +1,11 @@
 import React from "react";
 
 import addressMock from "../__mocks__/addressMock";
-import addressMockNoCityScape from "../__mocks__/addressMockNoCityScape";
-import addressMockNoMonument from "../__mocks__/addressMockNoMonument";
+import addressMockNoRestrictions from "../__mocks__/addressMockNoRestrictions";
 import Context from "../__mocks__/context";
-import matchMedia from "../__mocks__/matchMedia";
 import { findTopicBySlug } from "../utils";
-import { act, fireEvent, render, screen } from "../utils/test-utils";
+import { render, screen } from "../utils/test-utils";
 import RegisterLookupSummary from "./RegisterLookupSummary";
-
-Object.defineProperty(window, "matchMedia", matchMedia);
 
 jest.mock("react-router-dom", () => ({
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
@@ -28,146 +24,237 @@ describe("RegisterLookupSummary", () => {
     );
   };
 
-  it("renders correctly in STTR Flow if monument and national cityScape", () => {
+  it("renders in STTR Flow on LocationFinder (with all restrictions)", () => {
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
-    const { queryByText } = render(<WrapperWithContext topic={topic} />);
+    render(<WrapperWithContext isBelowInputFields showTitle topic={topic} />);
 
-    expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
+    // Expext to find:
     expect(
-      queryByText(
-        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
-      )
+      screen.queryByText("Het gebouw is een monument.")
     ).toBeInTheDocument();
 
-    // Expect NOT to find zoningplan info
-    expect(queryByText("zoningplan")).not.toBeInTheDocument();
-    expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+        { exact: false }
+      )
+    ).toBeInTheDocument(); // Beware: it should find the result: "has national cityscape"
 
-    act(() => {
-      fireEvent.click(screen.queryByText(/wijzig/i));
-    });
+    // Expect NOT to find:
+    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
+
+    expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
   });
 
-  it("renders correctly in STTR Flow if no cityScape", () => {
+  it("renders in STTR Flow on LocationFinder (without any restrictions)", () => {
     const topicMock = "dakraam-plaatsen";
     const topic = findTopicBySlug(topicMock);
-    const { queryByText } = render(
+    render(
       <WrapperWithContext
-        addressFromLocation={addressMockNoCityScape}
+        addressFromLocation={addressMockNoRestrictions}
+        isBelowInputFields
+        showTitle
         topic={topic}
       />
     );
 
+    // Expect NOT to find:
     expect(
-      queryByText("beschermd stads- of dorpsgezicht.")
+      screen.queryByText("Het gebouw is een monument.")
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByText("Het gebouw is geen monument.")
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByText("stads- of dorpsgezicht.", { exact: false })
+    ).not.toBeInTheDocument();
+
+    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
+
+    expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
+  });
+
+  it("renders in STTR Flow above the questionnaire (with all restrictions)", () => {
+    const topicMock = "dakraam-plaatsen";
+    const topic = findTopicBySlug(topicMock);
+    render(<WrapperWithContext showEditLocationModal topic={topic} />);
+
+    // Expext to find:
+    expect(
+      screen.queryByText("Het gebouw is een monument.")
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+        { exact: false }
+      )
+    ).toBeInTheDocument(); // Beware: it should find the result: "has national cityscape"
+
+    expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
+
+    // Expect NOT to find:
+    expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
+  });
+
+  it("renders in STTR Flow above the questionnaire (without any restrictions)", () => {
+    const topicMock = "dakraam-plaatsen";
+    const topic = findTopicBySlug(topicMock);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoRestrictions}
+        showEditLocationModal
+        topic={topic}
+      />
+    );
+
+    // Expext to find:
+    expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
+
+    // Expect NOT to find:
+    expect(
+      screen.queryByText("Het gebouw is een monument.")
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByText("Het gebouw is geen monument.")
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByText("stads- of dorpsgezicht.", { exact: false })
+    ).not.toBeInTheDocument();
+
+    expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
+  });
+
+  /**
+   *
+   * OLO FLOW START HERE:
+   *
+   */
+
+  it("renders in OLO Flow on LocationFinder (with all restrictions)", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMock}
+        isBelowInputFields
+        showTitle
+        topic={topic}
+      />
+    );
+
+    // Expext to find:
+    expect(
+      screen.queryByText("Het gebouw is een monument.")
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+        { exact: false }
+      )
+    ).toBeInTheDocument(); // Beware: it should find the result: "has national cityscape"
+
+    // Expect NOT to find:
+    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
+
+    expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
+  });
+
+  it("renders in OLO Flow on LocationFinder (without any restrictions)", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoRestrictions}
+        isBelowInputFields
+        showTitle
+        topic={topic}
+      />
+    );
+
+    // Expect to find:
+    expect(
+      screen.queryByText("Het gebouw is geen monument.")
+    ).toBeInTheDocument(); // Beware: it should find the result: "no monument"
+
+    expect(
+      screen.queryByText(
+        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
+        { exact: false }
+      )
+    ).toBeInTheDocument(); // Beware: it should find the result: "no cityscape"
+
+    // Expect NOT to find:
+    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
+
+    expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
+  });
+
+  it("renders in OLO Flow on the Results Page (with all restrictions)", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMock}
+        showTitle
+        topic={topic}
+      />
+    );
+
+    // Expext to find:
+    expect(
+      screen.queryByText("Het gebouw is een monument.")
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByText(
+        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+        { exact: false }
+      )
+    ).toBeInTheDocument(); // Beware: it should find the result: "has national cityscape"
+
+    expect(screen.queryByText("zoningplan")).toBeInTheDocument();
+
+    // Expect NOT to find:
+    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
+  });
+
+  it("renders in OLO Flow on the Results Page (without any restrictions)", () => {
+    const topicMock = "aanbouw-of-uitbouw-maken";
+    const topic = findTopicBySlug(topicMock);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMockNoRestrictions}
+        showTitle
+        topic={topic}
+      />
+    );
+
+    // Expext to find:
+    expect(screen.queryByText("zoningplan")).toBeInTheDocument();
+
+    expect(
+      screen.queryByText("Het gebouw is geen monument.")
+    ).toBeInTheDocument(); // Beware: it should find the result: "no monument"
+
+    expect(
+      screen.queryByText(
+        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
+        { exact: false }
+      )
+    ).toBeInTheDocument(); // Beware: it should find the result: "no cityscape"
+
+    // Expect NOT to find:
+    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByText("Het gebouw is een monument.")
     ).not.toBeInTheDocument();
   });
-
-  it("renders correctly in STTR Flow if NOT a monument and municipal cityScape", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
-    const { queryByText } = render(
-      <WrapperWithContext
-        addressFromLocation={addressMockNoMonument}
-        topic={topic}
-      />
-    );
-
-    expect(queryByText("Het gebouw is een monument.")).not.toBeInTheDocument();
-    expect(
-      queryByText(
-        "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht."
-      )
-    ).toBeInTheDocument();
-
-    // Expect NOT to find zoningplan info
-    expect(queryByText("zoningplan")).not.toBeInTheDocument();
-
-    expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
-
-    act(() => {
-      fireEvent.click(screen.queryByText(/wijzig/i));
-    });
-  });
-
-  it("renders correctly in OLO Flow if no cityScape", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
-    const { queryByText } = render(
-      <WrapperWithContext
-        addressFromLocation={addressMockNoCityScape}
-        topic={topic}
-      />
-    );
-
-    expect(
-      queryByText(
-        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
-      )
-    ).toBeInTheDocument();
-  });
-
-  it("renders correctly in OLO Flow if building is a monument and national cityScape", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
-    const { queryByText } = render(
-      <WrapperWithContext addressFromLocation={addressMock} topic={topic} />
-    );
-
-    expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
-    expect(
-      queryByText(
-        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
-      )
-    ).toBeInTheDocument();
-
-    // Expect to find zoningplan info
-    expect(queryByText("zoningplan")).toBeInTheDocument();
-
-    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-  });
-
-  it("renders correctly in OLO Flow if building is NOT a monument and a MUNICIPAL cityScape", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
-    const { queryByText } = render(
-      <WrapperWithContext
-        addressFromLocation={addressMockNoMonument}
-        topic={topic}
-      />
-    );
-    expect(queryByText("Het gebouw is geen monument.")).toBeInTheDocument();
-    expect(
-      queryByText(
-        "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht."
-      )
-    ).toBeInTheDocument();
-
-    // Expect to find zoningplan info
-    expect(queryByText("zoningplan")).toBeInTheDocument();
-
-    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-  });
-
-  it("renders correctly in address from location object", () => {
-    const setActiveState = jest.fn();
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
-
-    const { queryByText } = render(
-      <RegisterLookupSummary
-        addressFromLocation={addressMock}
-        setActiveState={setActiveState}
-        topic={topic}
-      />
-    );
-
-    // Expect TO DO find zoningplan info
-    expect(queryByText("zoningplan")).toBeInTheDocument();
-
-    expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-  });
-
-  // @TODO: finish this test when we work on the Location Component
 });

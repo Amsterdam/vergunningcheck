@@ -242,6 +242,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
             )}
             {!isActive(sections.LOCATION_INPUT) && (
               <RegisterLookupSummary
+                showEditLocationModal
                 {...{
                   matomoTrackEvent,
                   resetChecker,
