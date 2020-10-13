@@ -53,6 +53,7 @@ const LocationInput: React.FC<{
       // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
         // The address is the same, so go directly to the Questions section
+        setFinishedState(sections.LOCATION_INPUT);
         setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
         return;
       }
@@ -90,6 +91,7 @@ const LocationInput: React.FC<{
       if (focus) {
         (document.activeElement as HTMLElement).blur();
       } else {
+        // @TODO These lines are duplicate from 56 57 if this doens't change in OLO flow refactor to own function
         setFinishedState(sections.LOCATION_INPUT);
         setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
       }
