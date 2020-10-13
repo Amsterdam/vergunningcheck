@@ -2,10 +2,9 @@ import React from "react";
 
 import { StyledForm } from "./FormStyles";
 
-export type FormProps = {
+type FormProps = {
   dataId?: string;
   dataTestId?: string;
-  onSubmit?: Function;
 };
 
 const Form: React.FC<FormProps & React.HTMLAttributes<HTMLElement>> = ({

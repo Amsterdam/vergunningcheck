@@ -54,7 +54,7 @@ const LocationFinder: React.FC<{
     sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
-  const [touched, setTouched] = useState<any>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   const variables = {
     extraHouseNumberFull: "",

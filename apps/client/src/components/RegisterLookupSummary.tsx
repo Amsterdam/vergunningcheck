@@ -13,7 +13,7 @@ import {
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
 import AddressLines from "./AddressLines";
-import EditLocation from "./Location/EditLocation";
+import EditLocationModal from "./Location/EditLocationModal";
 
 type zoningPlanProps = {
   name: string;
@@ -38,7 +38,6 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   addressFromLocation,
   compact,
   resetChecker,
-  setActiveState,
   topic: { slug, hasIMTR },
 }) => {
   // @TODO: replace with custom topic hooks
@@ -65,11 +64,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
       <AddressLines
         {...address}
         editAddressRenderer={() =>
-          !compact && (
-            <EditLocation
-              {...{ hasIMTR, resetChecker, setActiveState, slug }}
-            />
-          )
+          hasIMTR && <EditLocationModal {...{ resetChecker, slug }} />
         }
         gutterBottom={monument || cityScape ? 16 : 0}
       />
