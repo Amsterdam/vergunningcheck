@@ -34,8 +34,6 @@ const Nav: React.FC<NavProps> = ({
           formEnds
           onClick={onGoToNext}
           taskflow={!formEnds}
-          type="submit"
-          variant="secondary"
         >
           {nextText}
         </NextButton>

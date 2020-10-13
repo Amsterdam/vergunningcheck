@@ -31,7 +31,6 @@ const EditLocationModal: React.FC<{
       name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
     });
 
-    // More or less copy pasted from NewCheckerModal
     sessionContext.resetSessionData(slug);
     resetChecker();
   };

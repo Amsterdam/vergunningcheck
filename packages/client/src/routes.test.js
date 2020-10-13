@@ -1,9 +1,6 @@
 import slugify from "slugify";
 
 import { getslug, geturl } from "./routes";
-import { cleanup } from "./utils/test-utils";
-
-afterEach(cleanup);
 
 const text =
   "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?";

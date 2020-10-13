@@ -9,7 +9,7 @@ import {
   RADIO_ADDRESS_1,
   RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
+import { act, fireEvent, render } from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
 const matomoTrackEvent = jest.fn();
@@ -21,8 +21,6 @@ afterEach(() => {
   // Mock the location.href to see if new checker is opened
   delete window.location;
   window.location = { href: jest.fn() };
-
-  cleanup();
 });
 
 jest.mock("react-router-dom", () => ({
