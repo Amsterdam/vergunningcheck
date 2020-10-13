@@ -72,7 +72,7 @@ const NewCheckerModal: React.FC<{
         },
       ]);
 
-      // @TODO: In case doing to same checker we need to replace this with a better solution
+      // @TODO: We need to find a better solution for restarting the same checker.
       return (window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`);
     }
   };

@@ -3,7 +3,7 @@ import "jest-styled-components";
 import React from "react";
 
 import matchMedia from "../__mocks__/matchMedia";
-import { cleanup, render } from "../utils/test-utils";
+import { render } from "../utils/test-utils";
 import ContactSentence from "./ContactSentence";
 
 Object.defineProperty(window, "matchMedia", matchMedia);
@@ -12,8 +12,6 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({}),
 }));
-
-afterEach(cleanup);
 
 it("ContactSentence renders correctly without the `link` prop", () => {
   const { container, queryByText } = render(<ContactSentence link={false} />);

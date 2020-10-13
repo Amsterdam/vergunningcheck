@@ -259,7 +259,7 @@ const LocationFinder: React.FC<{
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={() => setFocus(true)}
-          onKeyDown={(e) => handleKeyDown(e)}
+          onKeyDown={handleKeyDown}
           required
           value={houseNumberFull || autoSuggestValue}
         />

@@ -1,9 +1,7 @@
 import React from "react";
 
-import { cleanup, render } from "../utils/test-utils";
+import { render } from "../utils/test-utils";
 import { Alert } from ".";
-
-afterEach(cleanup);
 
 it("Alert renders correctly", () => {
   const { queryByTestId, queryByText } = render(

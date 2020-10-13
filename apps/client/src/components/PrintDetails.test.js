@@ -1,9 +1,7 @@
 import React from "react";
 
-import { cleanup, render } from "../utils/test-utils";
+import { render } from "../utils/test-utils";
 import PrintDetails from "./PrintDetails";
-
-afterEach(cleanup);
 
 it("PrintDetails renders correctly", () => {
   const { queryByText } = render(<PrintDetails />);

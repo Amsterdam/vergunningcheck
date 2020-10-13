@@ -6,14 +6,12 @@ import { MemoryRouter } from "react-router-dom";
 import Context from "../__mocks__/context";
 import { findTopicBySlug } from "../utils";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
-import { cleanup, fireEvent, render } from "../utils/test-utils";
+import { fireEvent, render } from "../utils/test-utils";
 import Form from "./Form";
 import Nav from "./Nav";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();
-
-afterEach(cleanup);
 
 const Wrapper = ({ children }) => {
   const topicMock = "dakraam-plaatsen";
