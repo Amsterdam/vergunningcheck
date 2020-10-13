@@ -242,6 +242,7 @@ const LocationFinder: React.FC<{
           }}
           onFocus={() => setFocus(true)}
           required
+          spellCheck={false}
         />
         {postalCodeError && <ErrorMessage message={postalCodeError} />}
       </ComponentWrapper>
@@ -261,6 +262,7 @@ const LocationFinder: React.FC<{
           onFocus={() => setFocus(true)}
           onKeyDown={handleKeyDown}
           required
+          spellCheck={false}
           value={houseNumberFull || autoSuggestValue}
         />
 
