@@ -53,6 +53,7 @@ const LocationInput: React.FC<{
       // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
         // The address is the same, so go directly to the Questions section
+        setFinishedState(sections.LOCATION_INPUT);
         setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
         return;
       }
