@@ -5,7 +5,7 @@ type QuestionAnswerType = {
 };
 
 type TopicSessionData = {
-  questionIndex: Number;
+  questionIndex: number;
   answers: QuestionAnswerType[];
   address: any;
 };
