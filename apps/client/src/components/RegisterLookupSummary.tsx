@@ -1,7 +1,7 @@
-import { Paragraph, themeSpacing } from "@amsterdam/asc-ui";
+import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
 import { SessionContext, SessionDataType } from "../context";
@@ -10,6 +10,7 @@ import { uniqueFilter } from "../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
   LOCATION_RESTRICTION_MONUMENT,
+  LOCATION_SUMMARY,
   LOCATION_ZONING_PLANS,
 } from "../utils/test-ids";
 import AddressLines from "./AddressLines";
@@ -21,23 +22,50 @@ type zoningPlanProps = {
 
 type RegisterLookupSummaryProps = {
   addressFromLocation?: any;
-  compact?: boolean;
+  isBelowInputFields?: boolean;
   matomoTrackEvent?: Function;
   resetChecker?: Function;
   setActiveState?: Function;
+  showEditLocationModal?: boolean;
+  showTitle?: boolean;
   topic: any; // @TODO: Replace it with IMTR-Client's TopicType
 };
 
-const StyledList = styled(List)`
-  margin-top: ${themeSpacing(3)};
-  margin-bottom: ${themeSpacing(4)};
-  background-color: inherit;
+const StyledList = styled(List)<{
+  isBelowInputFields?: boolean;
+  noMarginBottom?: boolean;
+}>`
+  /* Disable the margin-bottom to make the list appear nice */
+  ${({ noMarginBottom }) =>
+    noMarginBottom &&
+    css`
+      margin-bottom: ${themeSpacing(0)};
+    `}
+
+  /* In case List isBelowInputFields make it appear white, instead of black */
+  ${({ isBelowInputFields }) =>
+    isBelowInputFields &&
+    css`
+      li {
+        color: ${themeColor()};
+        &:before {
+          background-color: ${themeColor()};
+        }
+      }
+    `}
+`;
+
+const StyledListItem = styled(ListItem)`
+  margin-bottom: ${themeSpacing(0)};
+  left: ${themeSpacing(1)};
 `;
 
 const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   addressFromLocation,
-  compact,
+  isBelowInputFields,
   resetChecker,
+  showEditLocationModal,
+  showTitle,
   topic: { slug, hasIMTR },
 }) => {
   // @TODO: replace with custom topic hooks
@@ -59,55 +87,78 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
     setTag("cityscape", cityScape);
   }
 
+  const showSummary = monument || cityScape || !hasIMTR;
+
   return (
     <ComponentWrapper marginBottom={hasIMTR && 4}>
       <AddressLines
         {...address}
         editAddressRenderer={() =>
-          hasIMTR && <EditLocationModal {...{ resetChecker, slug }} />
+          showEditLocationModal && (
+            <EditLocationModal {...{ resetChecker, slug }} />
+          )
         }
-        gutterBottom={monument || cityScape ? 16 : 0}
+        gutterBottom={showSummary ? 16 : 0}
       />
-      {compact && (monument || cityScape) && (
+
+      {showTitle && showSummary && (
         <Paragraph gutterBottom={8} strong>
           Over dit adres hebben we de volgende gegevens gevonden:
         </Paragraph>
       )}
-      {(monument || !hasIMTR) && (
-        <Paragraph data-testid={LOCATION_RESTRICTION_MONUMENT} gutterBottom={0}>
-          {monument
-            ? `Het gebouw is een ${monument.toLowerCase()}.`
-            : "Het gebouw is geen monument."}
-        </Paragraph>
-      )}
-      {(cityScape || !hasIMTR) && (
-        <Paragraph
-          data-testid={LOCATION_RESTRICTION_CITYSCAPE}
-          gutterBottom={hasIMTR || compact ? 0 : 16}
+
+      {showSummary && (
+        <StyledList
+          compactThemeSpacing={isBelowInputFields}
+          data-testid={LOCATION_SUMMARY}
+          isBelowInputFields={isBelowInputFields}
+          noMarginBottom={isBelowInputFields || hasIMTR}
+          noPadding
+          variant="bullet"
         >
-          {cityScape
-            ? `Het gebouw ligt in een ${
-                cityScape === "NATIONAL"
-                  ? "rijksbeschermd"
-                  : "gemeentelijk beschermd"
-              } stads- of dorpsgezicht.`
-            : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
-        </Paragraph>
+          {(monument || showSummary) && (
+            <StyledListItem data-testid={LOCATION_RESTRICTION_MONUMENT}>
+              {monument
+                ? `Het gebouw is een ${monument.toLowerCase()}.`
+                : "Het gebouw is geen monument."}
+            </StyledListItem>
+          )}
+          {(cityScape || showSummary) && (
+            <StyledListItem data-testid={LOCATION_RESTRICTION_CITYSCAPE}>
+              {cityScape
+                ? `Het gebouw ligt in een ${
+                    cityScape === "NATIONAL"
+                      ? "rijksbeschermd"
+                      : // istanbul ignore next
+                        "gemeentelijk beschermd"
+                  } stads- of dorpsgezicht.`
+                : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+            </StyledListItem>
+          )}
+        </StyledList>
       )}
-      {!hasIMTR && !compact && (
+
+      {!hasIMTR && !isBelowInputFields && (
         <>
-          <Paragraph strong gutterBottom={0}>
+          <Paragraph gutterBottom={8} strong>
             Bestemmingsplannen:
           </Paragraph>
-          {zoningPlanNames.length === 0 ? (
-            <Paragraph>Geen bestemmingsplannen</Paragraph>
-          ) : (
-            <StyledList data-testid={LOCATION_ZONING_PLANS} variant="bullet">
-              {zoningPlanNames.map((planName: string) => (
-                <ListItem key={planName}>{planName}</ListItem>
-              ))}
-            </StyledList>
-          )}
+          {
+            //istanbul ignore next
+            zoningPlanNames.length === 0 ? (
+              <Paragraph>Geen bestemmingsplannen</Paragraph>
+            ) : (
+              <StyledList
+                data-testid={LOCATION_ZONING_PLANS}
+                noPadding
+                variant="bullet"
+              >
+                {zoningPlanNames.map((planName: string) => (
+                  <StyledListItem key={planName}>{planName}</StyledListItem>
+                ))}
+              </StyledList>
+            )
+          }
         </>
       )}
     </ComponentWrapper>

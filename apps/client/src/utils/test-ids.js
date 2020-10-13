@@ -22,6 +22,7 @@ export const INTRO_EXCEPTION_BULLETS = "intro-exception-bullets";
 export const LOCATION_FOUND = "location-found";
 export const LOCATION_RESTRICTION_CITYSCAPE = "restriction-cityscape";
 export const LOCATION_RESTRICTION_MONUMENT = "restriction-monument";
+export const LOCATION_SUMMARY = "location-summary";
 export const LOCATION_RESULT = "address-form";
 export const LOCATION_ZONING_PLANS = "zoning-plans";
 export const RADIO_ADDRESS_1 = "address-input-1";

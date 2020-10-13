@@ -292,8 +292,9 @@ const LocationFinder: React.FC<{
               </Paragraph>
               <RegisterLookupSummary
                 addressFromLocation={exactMatch}
-                compact
+                isBelowInputFields
                 matomoTrackEvent={matomoTrackEvent}
+                showTitle
                 topic={topic}
               />
             </Alert>
