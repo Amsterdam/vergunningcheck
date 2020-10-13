@@ -60,13 +60,23 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
     // Make the app backwards compatible:
 
-    // This section does not exist anymore in the IMTR flow
+    // LOCATION_RESULT does not exist anymore in the IMTR flow
     const isOldSectionActive = hasIMTR && isActive(sections.LOCATION_RESULT);
-    const newFinishedComponents = finishedComponents.filter(
-      (section) => section !== sections.LOCATION_INPUT
-    );
+    const isOldSectionFinished =
+      hasIMTR && isFinished(sections.LOCATION_RESULT);
 
-    if (isOldSectionActive) {
+    if (isOldSectionActive || isOldSectionFinished) {
+      // Reset LOCATION_INPUT to active component in case LOCATION_RESULT is active
+      const newActiveComponents = isOldSectionActive
+        ? [sections.LOCATION_INPUT]
+        : activeComponents;
+
+      // Remove LOCATION_RESULT from the finished components and replace with LOCATION_INPUT
+      const newFinishedComponents = finishedComponents.filter(
+        (section) => section !== sections.LOCATION_RESULT
+      );
+      newFinishedComponents.push(sections.LOCATION_INPUT);
+
       console.warn(
         "Resetting components, because an old section was found active"
       );
@@ -75,7 +85,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       sessionContext.setSessionData([
         slug,
         {
-          activeComponents: [sections.LOCATION_INPUT],
+          activeComponents: newActiveComponents,
           finishedComponents: newFinishedComponents,
         },
       ]);
