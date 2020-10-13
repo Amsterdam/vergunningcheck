@@ -1,7 +1,11 @@
 {
-  "name": "e2e",
-  "version": "1.0.0",
-  "description": "",
+  "name": "vergunningcheck-e2e",
+  "private": true,
+  "version": "2.1.0",
+  "description": "Module for e2e and cross-browser testing of the Vergunningcheck application.",
+  "keywords": [],
+  "author": "Gemeente Amsterdam",
+  "license": "ISC",
   "main": "puppeteer/basic.ts",
   "scripts": {
     "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
@@ -10,9 +14,6 @@
     "localhost:test:nightwatch:firefox": "kill-port 4444 || : && npx nightwatch nightwatch/tests/*.js -e firefox",
     "localhost:test:nightwatch:chrome": "npx nightwatch nightwatch/tests/*.js -e chrome"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.2.13",
     "@types/mkdirp": "^1.0.1",
@@ -26,6 +27,7 @@
     "puppeteer": "^5.3.1",
     "selenium-server": "^3.141.59",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "vergunningcheck-mocking": "^2.1.0"
   }
 }

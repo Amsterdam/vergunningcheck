@@ -21,10 +21,10 @@
 */.yarn/
 
 # Skip our build directory
-apps/client/build
-apps/client/.env.local
-apps/graphql/config/local.js
-apps/graphql/config/development.js
+packages/client/build
+packages/client/.env.local
+packages/graphql/config/local.js
+packages/graphql/config/development.js
 
 # Skip unwanted files
 *.md

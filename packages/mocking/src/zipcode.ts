@@ -1,15 +1,39 @@
-const NO_ADDITIONS = "NO_ADDITIONS"; // address without additions, exact match
-const VALID_WITH_ADDITION = "VALID_WITH_ADDITION"; // number is valid in combination with addition
-const VALID_WITHOUT_ADDITION = "VALID_WITHOUT_ADDITION"; // number is valid without an addition
-const MANY_ADDITIONS = "MANY_ADDITIONS"; // many additions available
-const EXACT_MATCH = "EXACT_MATCH"; // Only one address for given housenumber + zipcode, ie 26 b and no 26
+import type { HouseNumberFull, ZipCode } from "./generic";
 
-const HAS_NOUN_ADDITION = "HAS_NOUN_ADDITION"; // One or more a, b, etc. (a char)
-const HAS_NUM_ADDITION = "HAS_NUM_ADDITION"; // One or more 1 1, 1 2, etc. (an int)
-const HAS_ALPHANUM_ADDITION = "HAS_ALPHANUM_ADDITION"; // One or more a 1, b 2, rood etc. (a string)
-const HAS_PLURAL_NOUN_ADDITION = "HAS_PLURAL_NOUN_ADDITION"; // One or more 20 H L, 20 H R
+export const NO_ADDITIONS = "NO_ADDITIONS"; // address without additions, exact match
+export const VALID_WITH_ADDITION = "VALID_WITH_ADDITION"; // number is valid in combination with addition
+export const VALID_WITHOUT_ADDITION = "VALID_WITHOUT_ADDITION"; // number is valid without an addition
+export const MANY_ADDITIONS = "MANY_ADDITIONS"; // many additions available
+export const EXACT_MATCH = "EXACT_MATCH"; // Only one address for given housenumber + zipcode, ie 26 b and no 26
 
-const fixtures = [
+export const HAS_NOUN_ADDITION = "HAS_NOUN_ADDITION"; // One or more a, b, etc. (a char)
+export const HAS_NUM_ADDITION = "HAS_NUM_ADDITION"; // One or more 1 1, 1 2, etc. (an int)
+export const HAS_ALPHANUM_ADDITION = "HAS_ALPHANUM_ADDITION"; // One or more a 1, b 2, rood etc. (a string)
+export const HAS_PLURAL_NOUN_ADDITION = "HAS_PLURAL_NOUN_ADDITION"; // One or more 20 H L, 20 H R
+
+export type ZipCodeProperty =
+  | "NO_ADDITIONS"
+  | "VALID_WITH_ADDITION"
+  | "VALID_WITHOUT_ADDITION"
+  | "MANY_ADDITIONS"
+  | "EXACT_MATCH"
+  | "HAS_NOUN_ADDITION"
+  | "HAS_NUM_ADDITION"
+  | "HAS_ALPHANUM_ADDITION"
+  | "HAS_PLURAL_NOUN_ADDITION";
+
+export type ZipCodeFixture = [ZipCode, HouseNumberFull, ZipCodeProperty[]];
+
+export const getFixturesByProperties = (
+  properties: ZipCodeProperty[] | null
+): ZipCodeFixture[] | undefined =>
+  properties === null
+    ? fixtures.filter((fixture) => fixture[2].length === 0)
+    : fixtures.filter((fixture) =>
+        properties.every((property) => fixture[2].includes(property))
+      );
+
+export const fixtures = [
   // Addresses without additions
   ["1031VA", 2, [NO_ADDITIONS, EXACT_MATCH, VALID_WITHOUT_ADDITION]],
   ["1031VX", 14, [NO_ADDITIONS, EXACT_MATCH, VALID_WITHOUT_ADDITION]],
@@ -77,6 +101,4 @@ const fixtures = [
   // Address with one exact match with noun addition
   ["1077JH", 26, [VALID_WITH_ADDITION, HAS_NOUN_ADDITION, EXACT_MATCH]],
   ["1073ER", 151, [VALID_WITH_ADDITION, HAS_NOUN_ADDITION, EXACT_MATCH]],
-];
-
-module.exports = fixtures;
+] as ZipCodeFixture[];
