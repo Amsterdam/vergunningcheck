@@ -8,6 +8,7 @@ import { CheckerContext } from "../../context";
 import Footer from "../Footer";
 import Header from "../Header";
 import HiddenDebugInfo from "../HiddenDebugInfo";
+import Link from "../Link";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
@@ -49,9 +50,29 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
 
       <HideForPrint>
         <HiddenDebugInfo title="Environment">
-          <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
-          <p>App Version: {process.env.REACT_APP_VERSION}</p>
           <p>Node environment: {process.env.NODE_ENV}</p>
+          <p>App Version: {process.env.REACT_APP_VERSION}</p>
+          {process.env.REACT_APP_GIT_BRANCH && (
+            <p>
+              Branch:{" "}
+              <Link
+                href={`https://github.com/Amsterdam/vergunningcheck/tree/${process.env.REACT_APP_GIT_BRANCH}`}
+                target="_blank"
+              >
+                {process.env.REACT_APP_GIT_BRANCH}
+              </Link>
+            </p>
+          )}
+          <p>
+            Commit:{" "}
+            <Link
+              href={`https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}`}
+              target="_blank"
+            >
+              {process.env.REACT_APP_GIT_SHA}
+            </Link>
+          </p>
+          <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
         </HiddenDebugInfo>
         {topic && (
           <HiddenDebugInfo title="topic from checkerContext">
@@ -76,8 +97,11 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `<!--
-            Version: ${process.env.REACT_APP_VERSION}
-            Environment: ${process.env.NODE_ENV}
+            Node environment: ${process.env.NODE_ENV}
+            App Version: ${process.env.REACT_APP_VERSION}
+            Branch: ${process.env.REACT_APP_GIT_BRANCH}
+            Commit: https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}
+            GraphQL: ${process.env.REACT_APP_GRAPHQL_API_URL}
             -->`,
           }}
         />
