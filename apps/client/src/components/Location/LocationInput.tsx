@@ -79,7 +79,6 @@ const LocationInput: React.FC<{
         action: actions.SUBMIT_LOCATION,
         name: cityScape ? cityScape : eventNames.NO_CITYSCAPE,
       });
-      console.log(address);
 
       // Load given answers from sessionContext
       let answers = sessionContext[slug]?.answers;
