@@ -9,7 +9,7 @@ import Loading from "../../components/Loading";
 import { LocationSummary } from "../../components/Location/";
 import Nav from "../../components/Nav";
 import { Topic, generateOloUrl } from "../../config";
-import { actions, eventNames } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withChecker from "../../hoc/withChecker";
 import withTracking from "../../hoc/withTracking";
@@ -43,13 +43,17 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   };
 
   const goToPrev = () => {
+    matomoTrackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
+    });
     history.push(geturl(routes.oloLocationInput, topic));
   };
 
   return (
     <Layout heading={text.heading}>
       <Helmet>
-        <title>Inleiding - {text.heading}</title>
+        <title>Adresgegevens - {text.heading}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Form data-testid={LOCATION_RESULT} onSubmit={onSubmit}>

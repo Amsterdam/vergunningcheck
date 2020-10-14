@@ -4,19 +4,28 @@ import React from "react";
 
 import addressMock from "../../__mocks__/addressMock";
 import Context from "../../__mocks__/context";
+import matchMedia from "../../__mocks__/matchMedia";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { findTopicBySlug } from "../../utils";
-import { fireEvent, render } from "../../utils/test-utils";
+import { fireEvent, render, screen } from "../../utils/test-utils";
 import OloLocationResult from "./OloLocationResult";
 
-const matomoTrackEvent = jest.fn();
-const setActiveState = jest.fn();
-window.open = jest.fn();
+Object.defineProperty(window, "matchMedia", matchMedia);
 
-const mockedFunctions = { ...{ matomoTrackEvent, setActiveState } };
+window.open = jest.fn();
+window.scrollTo = jest.fn();
+
+const matomoTrackEvent = jest.fn();
+const mockedFunctions = { ...{ matomoTrackEvent } };
 
 jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
+  useHistory: () => ({
+    location: {
+      pathname: "/aanbouw-of-uitbouw-maken/adresgegevens",
+    },
+    push: jest.fn(),
+  }),
+  useLocation: () => jest.fn(),
   useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
 }));
 
@@ -31,49 +40,56 @@ describe("OloLocationResult", () => {
     );
   };
 
-  // @TODO: I'm working on the test as you are reading this....
+  it("should render correctly", () => {
+    render(<Wrapper />);
 
-  xit("should render correctly on first load", () => {
-    const { queryByText } = render(<Wrapper />);
-
-    expect(queryByText("streetname 123")).toBeInTheDocument();
-    expect(queryByText("1234 AB Amsterdam")).toBeInTheDocument();
-    expect(queryByText("Het gebouw is een monument.")).toBeInTheDocument();
+    expect(screen.queryByText("Adresgegevens")).toBeInTheDocument();
+    expect(screen.queryByText("streetname 123")).toBeInTheDocument();
+    expect(screen.queryByText("1234 AB Amsterdam")).toBeInTheDocument();
     expect(
-      queryByText(
+      screen.queryByText("Het gebouw is een monument.")
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(
         "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
       )
     ).toBeInTheDocument();
     // Expect to find zoningplan info
-    expect(queryByText("zoningplan")).toBeInTheDocument();
+    expect(screen.queryByText("zoningplan")).toBeInTheDocument();
+
+    expect(screen.getByText("Vorige")).toBeInTheDocument();
   });
 
-  xit("should handle prev button", () => {
-    const { getByText } = render(<Wrapper />);
+  it("should handle next button", () => {
+    render(<Wrapper />);
 
-    const prevButton = getByText("Vorige");
-    expect(prevButton).toBeInTheDocument();
-
-    fireEvent.click(prevButton);
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
-    expect(matomoTrackEvent).toBeCalledWith({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
-    });
-  });
-
-  xit("should handle next button", () => {
-    const { getByText } = render(<Wrapper />);
-
-    const nextButton = getByText("Naar het omgevingsloket");
+    const nextButton = screen.getByText("Naar het omgevingsloket");
     expect(nextButton).toBeInTheDocument();
 
     fireEvent.click(nextButton);
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(2);
+
+    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventNames.TO_OLO,
     });
     expect(window.open).toHaveBeenCalledTimes(1);
+  });
+
+  it("should handle prev button", () => {
+    matomoTrackEvent.mockReset();
+
+    render(<Wrapper />);
+
+    const prevButton = screen.getByText("Vorige");
+    expect(prevButton).toBeInTheDocument();
+
+    fireEvent.click(prevButton);
+
+    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
+    expect(matomoTrackEvent).toBeCalledWith({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
+    });
   });
 });
