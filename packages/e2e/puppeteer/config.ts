@@ -10,11 +10,6 @@ export const puppeteerOptions = DEBUG ? {
   headless: false, slowMo: 150
 } : {};
 
-export const address = {
-  zipCode: '1043ap',
-  houseNumberFull: '30',
-}
-
 export const flows: Flow[] = [
   {
     type: 'olo',

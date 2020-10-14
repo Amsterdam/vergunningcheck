@@ -2,6 +2,10 @@
   "name": "vergunningcheck-client",
   "private": true,
   "version": "2.1.0",
+  "description": "Client facing application/frontend for the Vergunningcheck application.",
+  "keywords": [],
+  "author": "Gemeente Amsterdam",
+  "license": "ISC",
   "engines": {
     "node": "14"
   },
@@ -105,9 +109,5 @@
       "eslint --fix --max-warnings=0",
       "react-scripts test --bail --findRelatedTests --watchAll=false"
     ]
-  },
-  "description": "",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

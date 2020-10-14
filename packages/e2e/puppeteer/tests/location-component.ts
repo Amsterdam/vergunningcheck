@@ -1,10 +1,18 @@
 import { expect } from 'chai';
 import puppeteer from "puppeteer";
-import { flows, host, puppeteerOptions, address } from "../config";
+import { flows, host, puppeteerOptions } from "../config";
 import { FlowOptions } from "../types";
+import { random } from 'vergunningcheck-mocking/src/util';
+import { getFixturesByProperties, NO_MONUMENT, NO_CITY_SCAPE } from 'vergunningcheck-mocking/src/restriction';
+
+const addresses = getFixturesByProperties([NO_MONUMENT, NO_CITY_SCAPE]);
+export const address = random(addresses);
+if (!address) {
+  throw new Error('address not found');
+}
 
 // @TODO actually click in dropdown
-// await page.type('[name="houseNumber"]', '19');
+// await page.type('[name="houseNumberFull"]', '19');
 // await page.click('[data-testid="suggestList"] a');
 
 const testFlow = async (page: puppeteer.Page, options: FlowOptions) => {
@@ -13,8 +21,8 @@ const testFlow = async (page: puppeteer.Page, options: FlowOptions) => {
   await page.click('[data-testid="next-button"]');
 
   await page.waitForSelector('[name="postalCode"]');
-  await page.type('[name="postalCode"]', address.zipCode);
-  await page.type('[name="houseNumber"]', address.houseNumberFull);
+  await page.type('[name="postalCode"]', address[0]);
+  await page.type('[name="houseNumberFull"]', address[1].toString());
 
   await page.waitForSelector('[data-testid="location-found"]', { visible: true });
 

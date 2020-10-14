@@ -2,10 +2,13 @@
   "name": "vergunningcheck-graphql",
   "private": true,
   "version": "2.1.0",
+  "keywords": [],
+  "author": "Gemeente Amsterdam",
+  "license": "ISC",
   "engines": {
     "node": "14"
   },
-  "description": "",
+  "description": "Backend/graphql-server for the Vergunningcheck application.",
   "main": "server.js",
   "scripts": {
     "prestart": "npm install",
@@ -17,9 +20,6 @@
     "precommit": "lint-staged",
     "lint": "eslint ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.18.0",
     "body-parser": "^1.19.0",

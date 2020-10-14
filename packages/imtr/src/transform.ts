@@ -103,7 +103,7 @@ export default async (argv: Props) => {
             const parsedPath = join(publicDir, outputDir, `${permitId}.parsed.json`);
 
             const p = await Deno.run({
-              cmd: ["apps/imtr/xml2json", xmlPath],
+              cmd: ["packages/imtr/xml2json", xmlPath],
               stdout: "piped",
               stderr: "piped",
             });
