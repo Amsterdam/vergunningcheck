@@ -10,10 +10,10 @@ import useDebounce from "../../hooks/useDebounce";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList from "../AutoSuggestList";
-import RegisterLookupSummary from "../RegisterLookupSummary";
 import LocationLoading from "./LocationLoading";
 import LocationNotFound from "./LocationNotFound";
 import { LocationTextField } from "./LocationStyles";
+import LocationSummary from "./LocationSummary";
 
 const findAddress = loader("./LocationFinder.graphql");
 
@@ -294,7 +294,7 @@ const LocationFinder: React.FC<{
               <Paragraph gutterBottom={8} strong>
                 Dit is het gekozen adres:
               </Paragraph>
-              <RegisterLookupSummary
+              <LocationSummary
                 addressFromLocation={exactMatch}
                 isBelowInputFields
                 matomoTrackEvent={matomoTrackEvent}

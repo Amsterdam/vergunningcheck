@@ -5,28 +5,45 @@ import { useHistory } from "react-router-dom";
 import Layout from "../components/Layouts/DefaultLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
+import { Topic } from "../config";
 import { actions, sections } from "../config/matomo";
 import withChecker from "../hoc/withChecker";
 import withTracking from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
-const IntroPage = ({ checker, matomoTrackEvent, topic }) => {
+export type IntroPageProps = {
+  checker?: any;
+  matomoTrackEvent: Function;
+  topic: Topic;
+};
+
+const IntroPage: React.FC<IntroPageProps> = ({
+  checker,
+  matomoTrackEvent,
+  topic,
+}) => {
   const history = useHistory();
 
-  const { intro, text } = topic;
+  const { hasIMTR, intro, text } = topic;
 
   const introComponentPath = intro || "shared/DynamicIMTRIntro";
 
   const Intro = React.lazy(() => import(`../intros/${introComponentPath}`));
 
   const goToNext = () => {
-    // @TODO: Change and refactor this because the next step is not always LOCATION_INPUT
-    matomoTrackEvent({
-      action: actions.ACTIVE_STEP,
-      name: sections.LOCATION_INPUT,
-    });
+    // Here starts the separation of the IMTR flow and the non-IMTR flow (which we call OLO flow):
+    if (hasIMTR) {
+      // @TODO: Change and refactor this because the next step is not always LOCATION_INPUT
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: sections.LOCATION_INPUT,
+      });
 
-    history.push(geturl(routes.checker, topic));
+      history.push(geturl(routes.checker, topic));
+    } else {
+      // non-IMTR flow (OLO flow)
+      history.push(geturl(routes.oloLocationInput, topic));
+    }
   };
 
   return (
