@@ -116,14 +116,14 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
           noPadding
           variant="bullet"
         >
-          {(monument || showSummary) && (
+          {(monument || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_MONUMENT}>
               {monument
                 ? `Het gebouw is een ${monument.toLowerCase()}.`
                 : "Het gebouw is geen monument."}
             </StyledListItem>
           )}
-          {(cityScape || showSummary) && (
+          {(cityScape || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_CITYSCAPE}>
               {cityScape
                 ? `Het gebouw ligt in een ${
