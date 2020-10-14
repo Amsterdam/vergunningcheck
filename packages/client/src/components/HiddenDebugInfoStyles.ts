@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const HiddenDiv = styled.div`
   display: none;
   background: #eee;
-  padding: ${themeSpacing(4)};
 `;
 
 export const Title = styled.p`

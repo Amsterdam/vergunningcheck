@@ -5,10 +5,9 @@ import { Helmet } from "react-helmet";
 import { HideForPrint } from "../../atoms";
 import { Topic } from "../../config";
 import { CheckerContext } from "../../context";
+import DebugVariables from "../DebugVariables";
 import Footer from "../Footer";
 import Header from "../Header";
-import HiddenDebugInfo from "../HiddenDebugInfo";
-import Link from "../Link";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 export interface BaseLayoutProps {
@@ -43,54 +42,16 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             <Content>
               {title && <FormTitle>{title}</FormTitle>}
               {children}
+
+              <HideForPrint>
+                <DebugVariables />
+              </HideForPrint>
             </Content>
           </Column>
         </Row>
       </ContentContainer>
 
       <HideForPrint>
-        <HiddenDebugInfo title="Environment">
-          <p>Node environment: {process.env.NODE_ENV}</p>
-          <p>App Version: {process.env.REACT_APP_VERSION}</p>
-          {process.env.REACT_APP_GIT_BRANCH && (
-            <p>
-              Branch:{" "}
-              <Link
-                href={`https://github.com/Amsterdam/vergunningcheck/tree/${process.env.REACT_APP_GIT_BRANCH}`}
-                target="_blank"
-              >
-                {process.env.REACT_APP_GIT_BRANCH}
-              </Link>
-            </p>
-          )}
-          <p>
-            Commit:{" "}
-            <Link
-              href={`https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}`}
-              target="_blank"
-            >
-              {process.env.REACT_APP_GIT_SHA}
-            </Link>
-          </p>
-          <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
-        </HiddenDebugInfo>
-        {topic && (
-          <HiddenDebugInfo title="topic from checkerContext">
-            <p>slug: {topic.slug}</p>
-            <p>redirectToOlo: {JSON.stringify(topic.redirectToOlo)}</p>
-            <p>hasIMTR: {JSON.stringify(topic.hasIMTR)}</p>
-          </HiddenDebugInfo>
-        )}
-        {checkerContext.checker && (
-          // istanbul ignore next
-          <HiddenDebugInfo title="permits from checkerContext">
-            {checkerContext.checker?.permits?.map((permit: any) => {
-              /* istanbul ignore next */
-              return <p key={permit.name}>{permit.name}</p>;
-            })}
-          </HiddenDebugInfo>
-        )}
-
         <Footer />
         <div
           // comment to see app version and environment
