@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
+import { actions, eventNames } from "../../config/matomo";
 import useDebounce from "../../hooks/useDebounce";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
@@ -134,18 +135,21 @@ const LocationFinder: React.FC<{
 
   // Prevent setState error
   useEffect(() => {
-    setErrorMessage(graphqlError);
-
     if (allowToSetAddress) {
       setAddress(exactMatch);
     }
-  }, [
-    allowToSetAddress,
-    exactMatch,
-    graphqlError,
-    setAddress,
-    setErrorMessage,
-  ]);
+  }, [allowToSetAddress, exactMatch, setAddress]);
+
+  // GraphQL error
+  useEffect(() => {
+    if (graphqlError) {
+      setErrorMessage(graphqlError);
+      matomoTrackEvent({
+        action: actions.ERROR,
+        name: eventNames.ADDRESS_API_DOWN,
+      });
+    }
+  }, [graphqlError, matomoTrackEvent, setErrorMessage]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error

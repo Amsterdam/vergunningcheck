@@ -7,6 +7,7 @@ import { actions, eventNames, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
+import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -43,6 +44,15 @@ const LocationInput: React.FC<{
 
   const onSubmit = () => {
     if (address?.postalCode) {
+      const monument = getRestrictionByTypeName(
+        address.restrictions,
+        "Monument"
+      )?.name;
+      const cityScape = getRestrictionByTypeName(
+        address.restrictions,
+        "CityScape"
+      )?.scope;
+
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
@@ -61,6 +71,14 @@ const LocationInput: React.FC<{
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
         name: address.postalCode.substring(0, 4),
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_LOCATION,
+        name: monument || eventNames.NO_MONUMENT,
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_LOCATION,
+        name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
       // Load given answers from sessionContext
