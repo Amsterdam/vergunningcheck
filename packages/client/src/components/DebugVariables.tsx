@@ -87,12 +87,10 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
         )}
 
         {checkerContext.checker && (
-          // istanbul ignore next
           <Card backgroundColor="level2" shadow>
             <CardContent>
               <Heading forwardedAs="h2">permits from checkerContext</Heading>
               {checkerContext.checker?.permits?.map((permit: any) => {
-                /* istanbul ignore next */
                 return <Paragraph key={permit.name}>{permit.name}</Paragraph>;
               })}
             </CardContent>
