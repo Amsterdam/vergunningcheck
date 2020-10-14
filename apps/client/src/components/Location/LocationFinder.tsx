@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { requiredFieldText } from "../../config";
+import { actions, eventNames } from "../../config/matomo";
 import useDebounce from "../../hooks/useDebounce";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
@@ -134,7 +135,13 @@ const LocationFinder: React.FC<{
 
   // Prevent setState error
   useEffect(() => {
-    setErrorMessage(graphqlError);
+    if (graphqlError) {
+      setErrorMessage(graphqlError);
+      matomoTrackEvent({
+        action: actions.ERROR,
+        name: eventNames.API_DOWN,
+      });
+    }
 
     if (allowToSetAddress) {
       setAddress(exactMatch);
@@ -143,6 +150,7 @@ const LocationFinder: React.FC<{
     allowToSetAddress,
     exactMatch,
     graphqlError,
+    matomoTrackEvent,
     setAddress,
     setErrorMessage,
   ]);
