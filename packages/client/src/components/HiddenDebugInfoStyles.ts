@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 export const HiddenDiv = styled.div`
   display: none;
+  margin-top: ${themeSpacing(18)};
   background: #eee;
 `;
 

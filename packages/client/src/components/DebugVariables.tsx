@@ -20,7 +20,7 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
   const checkerContext = useContext(CheckerContext);
   const topic = checkerContext.topic as Topic; // topic can be null here.
   return (
-    <HiddenDebugInfo style={{ marginTop: 72 }}>
+    <HiddenDebugInfo>
       <Accordion title="Debug Variables:">
         <Card backgroundColor="level2" shadow>
           <CardContent>
