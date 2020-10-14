@@ -300,7 +300,7 @@ const LocationFinder: React.FC<{
             </Alert>
           </ComponentWrapper>
           <Paragraph gutterBottom={32}>
-            Klopt dit niet? Wijzig dan postcode of huisnummer.
+            Klopt het adres niet? Wijzig dan postcode of huisnummer.
           </Paragraph>
         </>
       )}
