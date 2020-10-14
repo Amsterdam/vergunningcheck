@@ -73,11 +73,11 @@ const LocationInput: React.FC<{
       });
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
-        name: monument ? monument : eventNames.NO_MONUMENT,
+        name: monument || eventNames.NO_MONUMENT,
       });
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
-        name: cityScape ? cityScape : eventNames.NO_CITYSCAPE,
+        name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
       // Load given answers from sessionContext
