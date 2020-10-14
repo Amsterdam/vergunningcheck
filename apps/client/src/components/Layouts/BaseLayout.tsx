@@ -52,6 +52,18 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
         <HiddenDebugInfo title="Environment">
           <p>Node environment: {process.env.NODE_ENV}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
+          {process.env.REACT_APP_JOB_NAME && (
+            <p>Job name: {process.env.REACT_APP_JOB_NAME}</p>
+          )}
+          {process.env.REACT_APP_JENKINS_URL && (
+            <p>Jenkins url: {process.env.REACT_APP_JENKINS_URL}</p>
+          )}
+          {process.env.REACT_APP_BUILD_URL && (
+            <p>Build url: {process.env.REACT_APP_BUILD_URL}</p>
+          )}
+          {process.env.REACT_APP_BUILD_NUMBER && (
+            <p>Build number: {process.env.REACT_APP_BUILD_NUMBER}</p>
+          )}
           {process.env.REACT_APP_GIT_BRANCH && (
             <p>
               Branch:{" "}
@@ -63,15 +75,17 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
               </Link>
             </p>
           )}
-          <p>
-            Commit:{" "}
-            <Link
-              href={`https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}`}
-              target="_blank"
-            >
-              {process.env.REACT_APP_GIT_SHA}
-            </Link>
-          </p>
+          {process.env.REACT_APP_GIT_SHA && (
+            <p>
+              Commit:{" "}
+              <Link
+                href={`https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}`}
+                target="_blank"
+              >
+                {process.env.REACT_APP_GIT_SHA}
+              </Link>
+            </p>
+          )}
           <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
         </HiddenDebugInfo>
         {topic && (
