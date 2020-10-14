@@ -47,7 +47,8 @@ export const eventNames = {
   ABOUT: "over deze site",
   ACTIVE_QUESTION: "vraag is actief",
   ANSWERED_WITH: "beantwoord met",
-  API_DOWN: "api down",
+  ADDRESS_API_DOWN:
+    "de verbinding met de api om adresgegevens op te halen is mislukt",
   APPLY_FOR_PERMIT: "vergunning aanvragen",
   BACK: "terug naar",
   CONTACT_FORM: "contactformulier",

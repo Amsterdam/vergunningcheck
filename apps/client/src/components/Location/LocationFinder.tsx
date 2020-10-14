@@ -135,25 +135,21 @@ const LocationFinder: React.FC<{
 
   // Prevent setState error
   useEffect(() => {
+    if (allowToSetAddress) {
+      setAddress(exactMatch);
+    }
+  }, [allowToSetAddress, exactMatch, setAddress]);
+
+  // GraphQL error
+  useEffect(() => {
     if (graphqlError) {
       setErrorMessage(graphqlError);
       matomoTrackEvent({
         action: actions.ERROR,
-        name: eventNames.API_DOWN,
+        name: eventNames.ADDRESS_API_DOWN,
       });
     }
-
-    if (allowToSetAddress) {
-      setAddress(exactMatch);
-    }
-  }, [
-    allowToSetAddress,
-    exactMatch,
-    graphqlError,
-    matomoTrackEvent,
-    setAddress,
-    setErrorMessage,
-  ]);
+  }, [graphqlError, matomoTrackEvent, setErrorMessage]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
