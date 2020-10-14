@@ -2,7 +2,7 @@ FROM node:buster AS builder
 LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
-COPY apps/client/package*.json ./
+COPY packages/client/package*.json ./
 
 # react-scripts@3.4.2 not working with lerna, 3.4.1 contains security issue with yargs
 # therefore temp. disabled the audit in build phase. This should be fixed with react-
@@ -10,7 +10,7 @@ COPY apps/client/package*.json ./
 # RUN npm audit --production
 
 RUN npm ci --no-color -q
-COPY apps/client/ ./
+COPY packages/client/ ./
 RUN CI=true npm test
 
 ARG JOB_NAME

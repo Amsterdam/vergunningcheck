@@ -29,7 +29,7 @@ RUN chmod +s /app/
 USER dev:devs
 
 # Install
-COPY apps/e2e ./
+COPY packages/e2e ./
 
 # Test
 RUN npm i

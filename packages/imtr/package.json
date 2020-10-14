@@ -1,0 +1,15 @@
+{
+  "name": "vergunningcheck-imtr",
+  "version": "2.1.0",
+  "author": "Gemeente Amsterdam",
+  "license": "ISC",
+  "description": "This module builds JSON configuration from json files containing IMTR XML. The JSON output can be used to instantiate a checker client.",
+  "main": "index.js",
+  "scripts": {
+    "test": "deno test --unstable --allow-read"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "fast-xml-parser": "^3.17.4"
+  }
+}
