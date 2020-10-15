@@ -52,19 +52,13 @@ const LocationInput: React.FC<{
         "CityScape"
       )?.scope;
 
-      /**
-       * Save events to Matomo
-       */
+      // Save events to Matomo
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
-
-      /**
-       * Detect if user is submitting the same address as currently stored
-       */
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
         name: address.postalCode.substring(0, 4),
@@ -78,21 +72,19 @@ const LocationInput: React.FC<{
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      /**
-       * Store the data in the session
-       */
+      // Detect if user is submitting the same address as currently stored
       if (sessionAddress.id && sessionAddress.id === address.id) {
         handleDuplicateAddressSubmit();
         return;
       }
 
+      // Store the data
       sessionContext.setSessionData([
         slug,
         {
           address,
         },
       ]);
-
       checkerContext.autofillData.address = address;
 
       if (focus) {

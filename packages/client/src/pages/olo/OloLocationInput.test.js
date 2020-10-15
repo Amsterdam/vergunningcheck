@@ -36,8 +36,6 @@ jest.mock("react-hook-form", () => ({
 
 window.history.pushState({}, "Locatie pagina", "/dakkapel-plaatsen/locatie");
 
-const mockedFunctions = { ...{ matomoTrackEvent } };
-
 const mockedAddress = {
   address: {
     houseNumber: "19c",
@@ -51,8 +49,8 @@ describe("OloLocationInput", () => {
 
   const Wrapper = () => {
     return (
-      <Context topicMock={topic} addressMock={mockedAddress}>
-        <OloLocationInput topic={topic} {...mockedFunctions} />
+      <Context addressMock={mockedAddress} topicMock={topic}>
+        <OloLocationInput matomoTrackEvent={matomoTrackEvent} topic={topic} />
       </Context>
     );
   };

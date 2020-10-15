@@ -16,7 +16,6 @@ window.open = jest.fn();
 window.scrollTo = jest.fn();
 
 const matomoTrackEvent = jest.fn();
-const mockedFunctions = { ...{ matomoTrackEvent } };
 
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
@@ -34,8 +33,8 @@ describe("OloLocationResult", () => {
 
   const Wrapper = () => {
     return (
-      <Context topicMock={topic} addressMock={addressMock}>
-        <OloLocationResult topic={topic} {...mockedFunctions} />
+      <Context addressMock={addressMock} topicMock={topic}>
+        <OloLocationResult matomoTrackEvent={matomoTrackEvent} topic={topic} />
       </Context>
     );
   };
