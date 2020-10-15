@@ -69,6 +69,13 @@ describe("OloLocationInput", () => {
       postalCode,
     } = addressGraphQLMock[0].request.variables;
 
+    const {
+      streetName: resultStreetName,
+      houseNumberFull: resultHouseNumberFull,
+      postalCode: resultPostalCode,
+      residence: resultResidence,
+    } = addressGraphQLMock[0].result.data.findAddress.exactMatch;
+
     render(<Wrapper />, {}, addressGraphQLMock);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
@@ -76,6 +83,13 @@ describe("OloLocationInput", () => {
 
     expect(inputPostalCode).not.toHaveValue();
     expect(inputHouseNumber).not.toHaveValue();
+
+    expect(
+      screen.queryByText(resultHouseNumberFull, { exact: false })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(resultPostalCode, { exact: false })
+    ).not.toBeInTheDocument();
 
     await act(async () => {
       fireEvent.change(inputPostalCode, {
@@ -94,10 +108,16 @@ describe("OloLocationInput", () => {
      */
 
     expect(
-      screen.queryByText("Louise de Colignystraat 19 C")
+      screen.queryByText(`${resultStreetName} ${resultHouseNumberFull}`, {
+        exact: false,
+      })
     ).toBeInTheDocument();
 
-    expect(screen.queryByText("1055XD Amsterdam")).toBeInTheDocument();
+    expect(
+      screen.queryByText(`${resultPostalCode} ${resultResidence}`, {
+        exact: false,
+      })
+    ).toBeInTheDocument();
 
     expect(
       screen.queryByText(
