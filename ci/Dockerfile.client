@@ -12,9 +12,13 @@ COPY packages/client/package*.json ./
 RUN npm ci --no-color -q
 COPY packages/client/ ./
 RUN CI=true npm test
-ARG GIT_COMMIT
-ARG BRANCH_NAME
+
+ARG JOB_NAME
+ARG JENKINS_URL
+ARG BUILD_URL
+ARG BUILD_NUMBER
 ARG REACT_APP_GRAPHQL_API_URL
+
 RUN npm run build --no-color
 
 # Release
