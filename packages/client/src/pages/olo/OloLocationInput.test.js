@@ -2,8 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
-import mocks from "../../__mocks__/address";
-import addressMock from "../../__mocks__/addressMock";
+import addressGraphQLMock from "../../__mocks__/address";
 import Context from "../../__mocks__/context";
 import matchMedia from "../../__mocks__/matchMedia";
 import { findTopicBySlug } from "../../utils";
@@ -36,20 +35,12 @@ jest.mock("react-hook-form", () => ({
 
 window.history.pushState({}, "Locatie pagina", "/dakkapel-plaatsen/locatie");
 
-const mockedAddress = {
-  address: {
-    houseNumber: "19c",
-    houseNumberFull: "19c",
-    postalCode: "1055XD",
-  },
-};
-
 describe("OloLocationInput", () => {
   const topic = findTopicBySlug("aanbouw-of-uitbouw-maken");
 
-  const Wrapper = () => {
+  const Wrapper = ({ addressMock }) => {
     return (
-      <Context addressMock={mockedAddress} topicMock={topic}>
+      <Context addressMock={addressMock} topicMock={topic}>
         <OloLocationInput matomoTrackEvent={matomoTrackEvent} topic={topic} />
       </Context>
     );
@@ -73,7 +64,12 @@ describe("OloLocationInput", () => {
   });
 
   it("should handle next button", async () => {
-    render(<Wrapper mock={addressMock} />, {}, mocks);
+    const {
+      houseNumberFull,
+      postalCode,
+    } = addressGraphQLMock[0].request.variables;
+
+    render(<Wrapper />, {}, addressGraphQLMock);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
@@ -83,10 +79,10 @@ describe("OloLocationInput", () => {
 
     await act(async () => {
       fireEvent.change(inputPostalCode, {
-        target: { value: mockedAddress.address.postalCode },
+        target: { value: postalCode },
       });
       fireEvent.change(inputHouseNumber, {
-        target: { value: mockedAddress.address.houseNumberFull },
+        target: { value: houseNumberFull },
       });
       fireEvent.blur(inputHouseNumber);
     });
@@ -132,5 +128,24 @@ describe("OloLocationInput", () => {
     });
 
     expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+  });
+
+  it("should render correctly with preset context", () => {
+    const addressMock = {
+      ...addressGraphQLMock[0].request.variables,
+    };
+
+    const {
+      houseNumberFull,
+      postalCode,
+    } = addressGraphQLMock[0].request.variables;
+
+    render(<Wrapper addressMock={addressMock} />, {}, addressGraphQLMock);
+
+    const inputPostalCode = screen.getByLabelText(/postcode/i);
+    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+
+    expect(inputPostalCode).toHaveValue(postalCode);
+    expect(inputHouseNumber).toHaveValue(houseNumberFull);
   });
 });
