@@ -1,19 +1,19 @@
 import React from "react";
 
-import addressMock from "../__mocks__/addressMock";
-import addressMockNoMonument from "../__mocks__/addressMockNoMonument";
-import addressMockNoRestrictions from "../__mocks__/addressMockNoRestrictions";
-import addressMockNoZoningplans from "../__mocks__/addressMockNoZoningplans";
-import Context from "../__mocks__/context";
-import { findTopicBySlug } from "../utils";
-import { render, screen } from "../utils/test-utils";
-import RegisterLookupSummary from "./RegisterLookupSummary";
+import addressMock from "../../__mocks__/addressMock";
+import addressMockNoMonument from "../../__mocks__/addressMockNoMonument";
+import addressMockNoRestrictions from "../../__mocks__/addressMockNoRestrictions";
+import addressMockNoZoningplans from "../../__mocks__/addressMockNoZoningplans";
+import Context from "../../__mocks__/context";
+import { findTopicBySlug } from "../../utils";
+import { render, screen } from "../../utils/test-utils";
+import LocationSummary from "./LocationSummary";
 
 jest.mock("react-router-dom", () => ({
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
 
-describe("RegisterLookupSummary", () => {
+describe("LocationSummary", () => {
   const WrapperWithContext = (props) => {
     const setActiveState = jest.fn();
     const topicMock = "dakraam-plaatsen";
@@ -21,7 +21,7 @@ describe("RegisterLookupSummary", () => {
 
     return (
       <Context addressMock={addressMock} topicMock={topic}>
-        <RegisterLookupSummary {...props} setActiveState={setActiveState} />
+        <LocationSummary {...props} setActiveState={setActiveState} />
       </Context>
     );
   };

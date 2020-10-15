@@ -3,24 +3,25 @@ import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, List, ListItem } from "../atoms";
-import { SessionContext, SessionDataType } from "../context";
-import { getRestrictionByTypeName } from "../utils";
-import { uniqueFilter } from "../utils";
+import { ComponentWrapper, List, ListItem } from "../../atoms";
+import { Topic } from "../../config";
+import { SessionContext, SessionDataType } from "../../context";
+import { getRestrictionByTypeName } from "../../utils";
+import { uniqueFilter } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_SUMMARY,
   LOCATION_ZONING_PLANS,
-} from "../utils/test-ids";
-import AddressLines from "./AddressLines";
-import EditLocationModal from "./Location/EditLocationModal";
+} from "../../utils/test-ids";
+import AddressLines from "../AddressLines";
+import EditLocationModal from "./EditLocationModal";
 
 type zoningPlanProps = {
   name: string;
 };
 
-type RegisterLookupSummaryProps = {
+type LocationSummaryProps = {
   addressFromLocation?: any;
   isBelowInputFields?: boolean;
   matomoTrackEvent?: Function;
@@ -28,7 +29,7 @@ type RegisterLookupSummaryProps = {
   setActiveState?: Function;
   showEditLocationModal?: boolean;
   showTitle?: boolean;
-  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
+  topic: Topic;
 };
 
 const StyledList = styled(List)<{
@@ -60,14 +61,15 @@ const StyledListItem = styled(ListItem)`
   left: ${themeSpacing(1)};
 `;
 
-const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
+const LocationSummary: React.FC<LocationSummaryProps> = ({
   addressFromLocation,
   isBelowInputFields,
   resetChecker,
   showEditLocationModal,
   showTitle,
-  topic: { slug, hasIMTR },
+  topic,
 }) => {
+  const { hasIMTR, slug } = topic;
   // @TODO: replace with custom topic hooks
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
@@ -90,7 +92,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   const showSummary = monument || cityScape || !hasIMTR;
 
   return (
-    <ComponentWrapper marginBottom={hasIMTR && 4}>
+    <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>
       <AddressLines
         {...address}
         editAddressRenderer={() =>
@@ -161,4 +163,4 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   );
 };
 
-export default RegisterLookupSummary;
+export default LocationSummary;

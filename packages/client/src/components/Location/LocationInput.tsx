@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
+import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
@@ -15,16 +16,14 @@ import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 const LocationInput: React.FC<{
+  handleDuplicateAddressSubmit: Function;
+  handleNewAddressSubmit: Function;
   matomoTrackEvent: Function;
-  resetChecker: Function;
-  setActiveState: Function;
-  setFinishedState: Function;
-  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
+  topic: Topic;
 }> = ({
+  handleDuplicateAddressSubmit,
+  handleNewAddressSubmit,
   matomoTrackEvent,
-  resetChecker,
-  setActiveState,
-  setFinishedState,
   topic,
 }) => {
   const history = useHistory();
@@ -45,29 +44,21 @@ const LocationInput: React.FC<{
   const onSubmit = () => {
     if (address?.postalCode) {
       const monument = getRestrictionByTypeName(
-        address.restrictions,
+        address?.restrictions,
         "Monument"
       )?.name;
       const cityScape = getRestrictionByTypeName(
-        address.restrictions,
+        address?.restrictions,
         "CityScape"
       )?.scope;
 
+      // Save events to Matomo
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
-
-      // Detect if user is submitting the same address as currently stored
-      if (sessionAddress.id && sessionAddress.id === address.id) {
-        // The address is the same, so go directly to the Questions section
-        setFinishedState(sections.LOCATION_INPUT);
-        setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
-        return;
-      }
-
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
         name: address.postalCode.substring(0, 4),
@@ -81,37 +72,25 @@ const LocationInput: React.FC<{
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      // Load given answers from sessionContext
-      let answers = sessionContext[slug]?.answers;
-
-      // Reset the checker and answers when the address is changed
-      if (answers && sessionAddress.id !== address.id) {
-        answers = undefined;
+      // Detect if user is submitting the same address as currently stored
+      if (sessionAddress.id && sessionAddress.id === address.id) {
+        handleDuplicateAddressSubmit();
+        return;
       }
 
-      checkerContext.autofillData.address = address;
-
-      // Reset all previous finished states
-      if (hasIMTR) {
-        resetChecker();
-        setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
-      }
-
+      // Store the data
       sessionContext.setSessionData([
         slug,
         {
           address,
-          answers, // Either null or filled with given answers
-          questionIndex: 0, // Reset to 0 to start with the first question
         },
       ]);
+      checkerContext.autofillData.address = address;
 
       if (focus) {
         (document.activeElement as HTMLElement).blur();
       } else {
-        // @TODO These lines are duplicate from 56 57 if this doens't change in OLO flow refactor to own function
-        setFinishedState(sections.LOCATION_INPUT);
-        setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
+        handleNewAddressSubmit();
       }
     }
   };

@@ -6,10 +6,8 @@ type Props = {
 };
 
 export default styled.div<Props>`
-  ${(props) =>
+  ${({ marginBottom }) =>
     css`
-      margin-bottom: ${props.marginBottom !== undefined
-        ? props.marginBottom + "px"
-        : themeSpacing(6)};
+      margin-bottom: ${marginBottom ? marginBottom + "px" : themeSpacing(6)};
     `}
 `;
