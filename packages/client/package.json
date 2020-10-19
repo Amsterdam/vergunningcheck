@@ -107,7 +107,7 @@
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix --max-warnings=0",
-      "react-scripts test --bail --findRelatedTests --watchAll=false"
+      "react-scripts test --bail --findRelatedTests --watchAll=false --env=jest-environment-jsdom-sixteen"
     ]
   }
 }

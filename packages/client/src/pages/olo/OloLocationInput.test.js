@@ -7,7 +7,13 @@ import Context from "../../__mocks__/context";
 import matchMedia from "../../__mocks__/matchMedia";
 import { findTopicBySlug } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
-import { act, fireEvent, render, screen } from "../../utils/test-utils";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "../../utils/test-utils";
 import OloLocationInput from "./OloLocationInput";
 
 Object.defineProperty(window, "matchMedia", matchMedia);
@@ -101,7 +107,8 @@ describe("OloLocationInput", () => {
       fireEvent.blur(inputHouseNumber);
     });
 
-    await screen.getByTestId(LOCATION_FOUND);
+    // Wait for Location to be found
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
 
     /**
      * The correct address is displayed on the screen
