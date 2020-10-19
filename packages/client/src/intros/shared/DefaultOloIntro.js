@@ -1,21 +1,10 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
-import { List, ListItem } from "../../atoms";
-
 export default ({ children }) => (
   <>
     <Heading forwardedAs="h3">Hoe werkt het?</Heading>
     <Paragraph gutterBottom={8}>{children}</Paragraph>
-    <List variant="bullet">
-      <ListItem>U voert eerst het adres van het gebouw in.</ListItem>
-      <ListItem>
-        Vervolgens krijgt u informatie over het gebouw te zien.
-      </ListItem>
-      <ListItem>
-        U gebruikt deze informatie om de vergunningcheck te doen op het
-        Omgevingsloket.
-      </ListItem>
-    </List>
+    <Paragraph>U voert eerst het adres van het gebouw in</Paragraph>
   </>
 );
