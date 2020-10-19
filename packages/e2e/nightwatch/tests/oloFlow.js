@@ -30,18 +30,8 @@ module.exports = {
 
     b.url(`${domain}/aanbouw-of-uitbouw-maken`);
     assert.titleContains(
-      "Inleiding - Vergunningcheck aanbouw of uitbouw maken"
+      "Invullen adres - Vergunningcheck aanbouw of uitbouw maken"
     );
-
-    // forward, back, (back because of bug), forward
-    b.click(navButtonNext);
-    b.waitForElementVisible(navButtonPrev);
-    b.click(navButtonPrev);
-    assert.containsText(
-      main,
-      "U gebruikt deze informatie om de vergunningcheck te doen op het Omgevingsloket."
-    );
-    b.click(navButtonNext);
 
     assert.containsText(main, "Invullen adres");
     // TODO: test invalid fields feedback
