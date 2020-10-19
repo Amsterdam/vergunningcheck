@@ -30,6 +30,10 @@ jobs:
       - run: npm run test:coverage
       - name: Running code coverage
         uses: codecov/codecov-action@v1.0.14
+
+      # @TODO: enable e2e tests here
+      # run: CI=true npm run test (e2e test)
+
       # @TODO: Build custom size diff calculator because this gives us too many unclear comments
       # Start running the calculation of the bundle size action
       # - name: Calculating size

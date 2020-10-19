@@ -64,3 +64,19 @@ export const fixtures = [
   ["1017GW", "279 H", [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
   ["1073JP", 1, [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
 ] as RestrictionFixture[];
+
+// Get unique array from fixtures based on restrictions
+export const uniqueFixtures = fixtures.reduce(
+  (acc: RestrictionFixture[], curr: RestrictionFixture) => {
+    if (
+      !acc.filter(
+        // Compare restrictions array
+        (item) => JSON.stringify(item[2]) === JSON.stringify(curr[2])
+      ).length
+    ) {
+      acc.push(curr);
+    }
+    return acc;
+  },
+  []
+);
