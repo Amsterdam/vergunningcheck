@@ -73,7 +73,7 @@ export const eventNames = {
   NO_CHOICE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
   NO_MONUMENT: "geen momument",
   NO_CITYSCAPE: "geen beschermd stads- of dorpsgezicht",
-  PERMIT_INFORMATION: "meer informatie over vergunning aanvragen",
+  PERMIT_INFORMATION: "zo werkt aanvragen",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
   TEXT_LINK: "tekst link",

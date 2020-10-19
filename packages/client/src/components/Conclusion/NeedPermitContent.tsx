@@ -31,6 +31,11 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
           </Link>
         </PrintOnly>
       </Paragraph>
+      <Paragraph>
+        U leest meer over hoe u een vergunning aanvraagt, wat de kosten zijn en
+        hoe lang het duurt op onze pagina over het aanvragen van een
+        omgevingsvergunning.
+      </Paragraph>
       <HideForPrint>
         <ComponentWrapper marginBottom={32}>
           <Button
@@ -39,7 +44,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
             type="button"
             variant="primaryInverted"
           >
-            Meer over vergunning aanvragen
+            Zo werkt aanvragen
           </Button>
         </ComponentWrapper>
       </HideForPrint>
