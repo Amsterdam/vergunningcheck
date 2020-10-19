@@ -3,8 +3,10 @@ import React from "react";
 
 export default ({ children }) => (
   <>
-    <Heading forwardedAs="h3">Hoe werkt het?</Heading>
+    <Heading forwardedAs="h3">Vergunningcheck</Heading>
     <Paragraph gutterBottom={8}>{children}</Paragraph>
-    <Paragraph>U voert eerst het adres van het gebouw in</Paragraph>
+    <Paragraph>
+      Als eerste stap krijgt u informatie over het gebouw waar u dit wilt doen.
+    </Paragraph>
   </>
 );
