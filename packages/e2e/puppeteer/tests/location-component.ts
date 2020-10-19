@@ -73,8 +73,7 @@ const testRestrictions = async (
     visible: true,
   });
 
-  const momumentType = address[2][0];
-  const cityScapeType = address[2][1];
+  const properties = address[2];
 
   // OLO FLOW:
   if (options.shouldAlwaysDisplayRestrictions) {
@@ -82,9 +81,9 @@ const testRestrictions = async (
       '[data-testid="restriction-monument"]',
       (el) => el.textContent
     );
-    if (momumentType === NATIONAL_MONUMENT) {
+    if (properties.includes(NATIONAL_MONUMENT)) {
       expect(monument).to.include("Het gebouw is een rijksmonument.");
-    } else if (momumentType === MUNICIPAL_MONUMENT) {
+    } else if (properties.includes(MUNICIPAL_MONUMENT)) {
       expect(monument).to.include("Het gebouw is een gemeentelijk monument.");
     } else {
       expect(monument).to.include("Het gebouw is geen monument.");
@@ -94,11 +93,11 @@ const testRestrictions = async (
       '[data-testid="restriction-cityscape"]',
       (el) => el.textContent
     );
-    if (cityScapeType === NATIONAL_CITY_SCAPE) {
+    if (properties.includes(NATIONAL_CITY_SCAPE)) {
       expect(cityscape).to.include(
         "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
       );
-    } else if (cityScapeType === MUNICIPAL_CITY_SCAPE) {
+    } else if (properties.includes(MUNICIPAL_CITY_SCAPE)) {
       expect(cityscape).to.include(
         "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht."
       );
@@ -110,8 +109,8 @@ const testRestrictions = async (
   } else {
     // IMTR FLOW:
     if (
-      momumentType === NATIONAL_MONUMENT ||
-      momumentType === MUNICIPAL_MONUMENT
+      properties.includes(NATIONAL_MONUMENT) ||
+      properties.includes(MUNICIPAL_MONUMENT)
     ) {
       expect(
         (await page.$$('[data-testid="restriction-monument"]')).length
@@ -123,8 +122,8 @@ const testRestrictions = async (
     }
 
     if (
-      cityScapeType === NATIONAL_CITY_SCAPE ||
-      cityScapeType === MUNICIPAL_CITY_SCAPE
+      properties.includes(NATIONAL_CITY_SCAPE) ||
+      properties.includes(MUNICIPAL_CITY_SCAPE)
     ) {
       expect(
         (await page.$$('[data-testid="restriction-cityscape"]')).length
