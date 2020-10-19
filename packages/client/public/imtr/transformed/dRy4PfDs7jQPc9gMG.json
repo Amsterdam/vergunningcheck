@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 37,
+      "version": 45,
       "name": "Conclusie Dakraam bouwen",
       "questions": [
         {
@@ -55,11 +55,16 @@
           "prio": 50
         },
         {
-          "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
-          "description": "Aan het begin van deze vergunningcheck hebt u het antwoord op deze vraag gekregen. Wij kunnen dit antwoord op dit moment nog niet automatisch hier invullen. Vul alstublieft zelf het antwoord hieronder in.",
+          "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
+          "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
           "autofill": "cityScape",
-          "type": "boolean",
-          "id": "uitv__db3e3c46-1efc-404a-8520-94974c5a1061",
+          "options": [
+            "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+            "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
+            "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+          ],
+          "type": "string",
+          "id": "uitv_e3585fd7-6eb0-45d4-9431-50af59dcec93",
           "prio": 60
         },
         {
@@ -192,9 +197,9 @@
           "href": "#uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
           "type": "string"
         },
-        "input__db3e3c46-1efc-404a-8520-94974c5a1061": {
-          "href": "#uitv__db3e3c46-1efc-404a-8520-94974c5a1061",
-          "type": "boolean"
+        "input_e3585fd7-6eb0-45d4-9431-50af59dcec93": {
+          "href": "#uitv_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+          "type": "string"
         },
         "input__ee8c045e-b188-4285-8a60-f6b115f692e1": {
           "href": "#uitv__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -258,7 +263,7 @@
         }
       },
       "decisions": {
-        "_cf95f8ed-1f19-4bf4-a8cd-727ae73e9b26": {
+        "_d479e33b-c636-4760-865d-c28f18b832a1": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_c60af738-8e05-4add-8f4a-9fd68b1f9161"
@@ -286,7 +291,7 @@
             ]
           }
         },
-        "_a0e3c32b-6b0f-4611-ae90-7f62011f3dca": {
+        "_3f8d0e7f-adf9-4fd6-abdb-06e7d5ea32bc": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_c60af738-8e05-4add-8f4a-9fd68b1f9161",
@@ -325,11 +330,11 @@
             ]
           }
         },
-        "_3d483335-0e20-457b-8f55-f140e2e60981": {
+        "_16313af8-4a36-4aa7-8a5a-e249194ce5a2": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
           ],
           "decisionTable": {
@@ -338,7 +343,7 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -357,7 +362,21 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -367,13 +386,120 @@
             ]
           }
         },
-        "_24122c78-26e2-443a-a875-16826787da3f": {
+        "_848d46c4-e9ea-4658-9820-70bebc860e68": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_21b9fd74-bc09-4742-9379-400167b6af01": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2036982e-acaa-48f8-a52e-bef3952e2bb4": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
           ],
           "decisionTable": {
             "rules": [
@@ -382,7 +508,7 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
+                  false,
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -409,104 +535,6 @@
                   "-",
                   "-"
                 ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_e3b605f8-3c45-4bb1-89d6-d3449f6fc097": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_7748c2c4-fb04-4b49-81bc-03f2ded6d565": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -520,13 +548,13 @@
             ]
           }
         },
-        "_52aebdde-2754-4a94-a112-6aade6bcbb16": {
+        "_0247c76d-58d5-474d-8bc3-1256fdd57dcb": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f"
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
             "rules": [
@@ -535,7 +563,7 @@
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
-                  true,
+                  "\"Achterkant\"",
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -559,7 +587,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-"],
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zijkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -569,14 +601,13 @@
             ]
           }
         },
-        "_416291c5-5a9a-49b1-a218-fbc55cb5565a": {
+        "_2841204b-1dce-433d-b3c2-63d991821ba7": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__3d1da624-b4f0-4207-9244-b1c809258b90"
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
           ],
           "decisionTable": {
             "rules": [
@@ -585,21 +616,19 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
                   "-",
                   "-",
                   "-"
@@ -612,13 +641,163 @@
                   "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
                   "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_93600c0a-1629-4a0e-8bdf-25241a2944eb": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
                   "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_61d37067-e2e8-4e1d-b578-cbe18e1dd82b": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
+            "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -632,14 +811,14 @@
             ]
           }
         },
-        "_d1c89b1a-b253-4a08-bc05-dfa33766e7ec": {
+        "_8be0aa85-91be-4d1f-9521-126594560725": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
           ],
           "decisionTable": {
             "rules": [
@@ -648,8 +827,8 @@
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
-                  false,
-                  "\"Achterkant\"",
+                  "\"Voorkant\"",
+                  true,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -671,6 +850,73 @@
               },
               {
                 "inputs": ["-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f2170118-e477-4a0a-9763-199039c706c1": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -692,24 +938,24 @@
             ]
           }
         },
-        "_cd48ea63-b180-4f56-9bdf-38326d17ec0b": {
+        "_a2aa67a2-9e81-432a-8ed8-6ee11f44e84d": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
                   false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
-                  true,
+                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -721,7 +967,7 @@
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "-",
                   "-",
                   "-",
@@ -733,7 +979,18 @@
                 "inputs": [
                   "-",
                   "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-",
                   "-"
@@ -745,7 +1002,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-"],
+                "inputs": ["-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
@@ -755,14 +1012,14 @@
             ]
           }
         },
-        "_694cd80b-b819-4a98-965e-062ec977e7bf": {
+        "_486b70b6-3b03-4051-a2a5-df6eda060189": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
-            "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
             "rules": [
@@ -771,9 +1028,9 @@
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
-                  true,
+                  "\"Voorkant\"",
                   false,
-                  false
+                  true
                 ],
                 "output": "\"Vergunningplicht\""
               },
@@ -797,7 +1054,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -805,18 +1066,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_c3902bea-8c61-4483-8763-7b5c2d53eb62": {
+        "_2009deed-2871-4b4a-9be2-cef37b1b2c42": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f"
           ],
@@ -827,7 +1088,18 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
                   false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   true,
                   true
                 ],
@@ -860,7 +1132,14 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -874,24 +1153,24 @@
             ]
           }
         },
-        "_e8c636af-4f86-4e3f-95b4-bc260664de78": {
+        "_828afbad-e5ad-4cd8-be5d-9027bbc37b4f": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
                   false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
-                  true,
-                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -903,7 +1182,7 @@
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -912,15 +1191,40 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
@@ -930,75 +1234,12 @@
             ]
           }
         },
-        "_a50369b7-a557-4a01-beb6-da249116d663": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
-            "#input__461052be-8046-4d9e-9c0d-c4989650e765"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_13f3df7b-6860-484b-a7ad-56e34de9e368": {
+        "_c1415525-0377-4658-8c6c-0a343ef29586": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__66f8c20a-4e2b-4783-ab74-0a48d896064f",
             "#input__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
@@ -1010,7 +1251,19 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  true,
                   false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   true,
                   false,
                   false
@@ -1046,7 +1299,15 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1064,11 +1325,11 @@
             ]
           }
         },
-        "_90526c25-cbbb-4d48-8eaf-7b27c4116508": {
+        "_45e67e85-560e-4c0e-b3e0-e1f88cb78224": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
@@ -1079,8 +1340,8 @@
               {
                 "inputs": [
                   false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   "\"Voorkant\"",
                   false,
@@ -1095,7 +1356,7 @@
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1105,7 +1366,15 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1131,15 +1400,106 @@
             ]
           }
         },
-        "_4f0860e4-def8-4cf4-a259-dddae9af96c8": {
+        "_0ee6c2b8-8be5-44a1-a5a7-bc8144e8b596": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_6a8cb404-7b65-45bc-91df-15afc3d5814c": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
+            "#input__461052be-8046-4d9e-9c0d-c4989650e765"
           ],
           "decisionTable": {
             "rules": [
@@ -1147,10 +1507,10 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
+                  false,
+                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -1172,7 +1532,98 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c5c57d32-9156-4f3a-be63-7029b077fd18": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  false,
+                  "\"Voorkant\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1198,158 +1649,12 @@
             ]
           }
         },
-        "_b0f3f3bd-3a91-4bf2-aa09-d699bd3a62ea": {
+        "_2c785bb5-4cb3-4b2f-adba-dfed723294ec": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Achterkant\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "\"Voorkant\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_71498dae-ce91-4f8a-b1e7-ad34bc16c6c3": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_c4410075-08a4-49fb-a5b6-650cbc3a30a5": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
             "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
@@ -1362,7 +1667,7 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
                   false,
                   false,
@@ -1401,7 +1706,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1423,11 +1750,203 @@
             ]
           }
         },
-        "_df8bf97f-1f97-4ecc-8365-91770534d54d": {
+        "_c1ec57c4-1f05-4918-984b-2ab858c1b553": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2da8ceda-ba0a-4c3c-aee4-f29acf9549b0": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_64d64895-ce3e-4915-b873-e341a21cce10": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
             "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
@@ -1440,7 +1959,7 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
                   false,
                   false,
@@ -1467,7 +1986,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1493,98 +2034,15 @@
             ]
           }
         },
-        "_908bb620-b2d5-4cf5-993a-43ee437883a2": {
+        "_3f2ca267-bfea-4886-8efc-16bb16e28f86": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_d28db59a-8d37-4f7a-9a1a-6410f39125db": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
             "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
@@ -1594,9 +2052,9 @@
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   false,
-                  false,
                   "\"Zijkant\"",
-                  true,
+                  false,
+                  false,
                   false,
                   true
                 ],
@@ -1624,19 +2082,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1650,14 +2108,15 @@
             ]
           }
         },
-        "_ff8a4f28-e505-4b67-ba9a-15c552d91518": {
+        "_5a32e645-1ba3-4d45-a421-032201984466": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
           ],
@@ -1667,9 +2126,10 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
+                  false,
                   true,
                   true,
                   true
@@ -1677,13 +2137,28 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1694,45 +2169,205 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Voorkant\"", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Achterkant\"", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_93211e75-c152-4a32-a150-3d2186965b05": {
+        "_f60ba283-0f51-49b0-ad05-f0a2034bcdcd": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_dbd76e37-355d-4769-991c-f9208b79299c": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
+            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
+            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
+            "#input__461052be-8046-4d9e-9c0d-c4989650e765",
             "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
@@ -1742,22 +2377,24 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  true,
                   false,
                   false,
-                  "\"Voorkant\"",
                   false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1776,42 +2413,67 @@
                   "-",
                   "-",
                   "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Zijkant\"", "-", "-"],
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "\"Achterkant\"", "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_1b1ff695-2ee9-462b-9f09-29e0b01d07a8": {
+        "_2872ce28-a052-497f-baa7-4fed5cf45df1": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
             "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
@@ -1825,7 +2487,7 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
                   false,
                   false,
@@ -1854,7 +2516,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1884,11 +2570,146 @@
             ]
           }
         },
-        "_938fb17f-eb12-4518-b87a-122e0cedff9e": {
+        "_455625dc-3132-4027-b06c-219720203c27": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_4539050f-9566-497f-97c6-b55ae343097c": {
+          "requiredInputs": [
+            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
+            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
@@ -1901,8 +2722,8 @@
               {
                 "inputs": [
                   false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false,
                   "\"Zijkant\"",
                   false,
@@ -1919,7 +2740,7 @@
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
                   "-",
                   "-",
                   "-",
@@ -1931,7 +2752,17 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1985,16 +2816,16 @@
             ]
           }
         },
-        "_d48ae750-4a2e-41d3-8cb9-59f58382a478": {
+        "_716c3b1a-234e-4712-9222-5ffd2f9f6d60": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
-            "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
-            "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
-            "#input__461052be-8046-4d9e-9c0d-c4989650e765",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
+            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
+            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
+            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
@@ -2004,195 +2835,21 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_408a0426-0206-4d7d-acf1-e833d545266c": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
+                  true,
                   false,
-                  true,
-                  true,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_37bb7e71-4488-472a-a442-725dc65bb992": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
                 "inputs": [
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
                   true,
@@ -2234,7 +2891,17 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2284,15 +2951,16 @@
             ]
           }
         },
-        "_492fab71-9c92-4f91-98f9-9d42031f0138": {
+        "_41647e2d-20eb-4e38-81df-624650756a08": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
+            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
             "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
           ],
@@ -2303,9 +2971,10 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
+                  false,
                   true,
                   true,
                   true
@@ -2313,13 +2982,29 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -2340,16 +3025,28 @@
                   "-",
                   "-",
                   "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2360,6 +3057,7 @@
                   "-",
                   "-",
                   "\"Voorkant\"",
+                  "-",
                   "-",
                   "-",
                   "-"
@@ -2376,30 +3074,36 @@
                   "\"Achterkant\"",
                   "-",
                   "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_2271f26e-8fe0-48b3-a20e-0b0516bf8b6b": {
+        "_327cb7d0-135a-4205-9cf5-cd9d423219e2": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
@@ -2412,8 +3116,9 @@
               {
                 "inputs": [
                   false,
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
                   false,
@@ -2424,13 +3129,29 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
                   "-",
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -2442,15 +3163,42 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -2469,6 +3217,7 @@
                   "-",
                   "-",
                   "-",
+                  "-",
                   "\"Achterkant\"",
                   "-",
                   "-",
@@ -2478,30 +3227,30 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_9cac91d2-8845-40f9-a10d-842c54b9b016": {
+        "_52db6c25-e868-4da6-9ff1-f43ee563053f": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
             "#input__13eea7b4-8965-4a08-9e58-53b7ce506682",
             "#input__e27d16fb-f4dd-496a-9212-8550153875e4",
@@ -2516,7 +3265,7 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
                   false,
                   false,
@@ -2561,7 +3310,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2591,11 +3366,11 @@
             ]
           }
         },
-        "_50ace371-2b9e-4351-894f-2e827046ffae": {
+        "_fa6b3a10-0ede-484e-863d-30b65a8f987a": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
@@ -2610,7 +3385,22 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
                   false,
@@ -2641,7 +3431,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2701,374 +3502,11 @@
             ]
           }
         },
-        "_773b2c4f-307d-4519-82c0-b50b1d729ab1": {
+        "_738dee8a-6284-4027-9f05-30dd3085ecb9": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_a8460bd2-4414-403b-8cfd-5c3a2f8dcfe9": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_bd292ff5-eb80-4c66-9778-3aa29c0f03b9": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
-            "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-            "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-            "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-            "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
-            "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
-                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  false,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Nee, de vorm, de grootte en het profiel veranderen niet.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_b3052548-fc8b-4192-8b7e-4cfdedf9d59d": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
-            "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
@@ -3083,7 +3521,22 @@
                 "inputs": [
                   false,
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
                   false,
@@ -3114,7 +3567,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3174,19 +3638,19 @@
             ]
           }
         },
-        "_804cc70d-051d-4087-95d0-bc70400afe67": {
+        "_0dc41706-c8d0-4ac7-8eaa-57ab11d7dbb8": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
             "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
+            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
           ],
           "decisionTable": {
             "rules": [
@@ -3195,13 +3659,29 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
                   false,
                   false,
                   true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
                   false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
+                  true,
+                  true,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -3259,7 +3739,7 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-",
                   "-",
@@ -3377,7 +3857,7 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  false,
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -3401,19 +3881,19 @@
             ]
           }
         },
-        "_ec1f3246-8d50-41e4-907f-41ce8aafb035": {
+        "_e3962d23-8d3c-48a8-8691-ee6c04403880": {
           "requiredInputs": [
             "#input__1403b7ef-97be-4d7e-9f41-7838d5833804",
             "#input_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
             "#input_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-            "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
+            "#input_e3585fd7-6eb0-45d4-9431-50af59dcec93",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
             "#input__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
             "#input__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
             "#input__a7e982de-940d-4e30-a300-8858c4a7de1a",
             "#input__68f23f69-4ecb-41db-8a79-e32eef011782",
             "#input__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-            "#input__1f671af8-95bb-493c-b6fc-d886507aeb26"
+            "#input__f00d3f88-c82a-4b43-aa54-07f718a397b4"
           ],
           "decisionTable": {
             "rules": [
@@ -3422,13 +3902,29 @@
                   false,
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
-                  false,
+                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   "\"Zijkant\"",
                   false,
                   false,
                   true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de vorm, de grootte of het profiel verandert.\"",
+                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  "\"Zijkant\"",
+                  false,
+                  false,
                   true,
+                  false,
                   true
                 ],
                 "output": "\"Vergunningplicht\""
@@ -3486,7 +3982,7 @@
                   "-",
                   "-",
                   "-",
-                  true,
+                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-",
                   "-",
@@ -3604,7 +4100,7 @@
                   "-",
                   "-",
                   "-",
-                  false,
+                  true,
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -3630,46 +4126,46 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_cf95f8ed-1f19-4bf4-a8cd-727ae73e9b26",
-            "#_a0e3c32b-6b0f-4611-ae90-7f62011f3dca",
-            "#_3d483335-0e20-457b-8f55-f140e2e60981",
-            "#_24122c78-26e2-443a-a875-16826787da3f",
-            "#_e3b605f8-3c45-4bb1-89d6-d3449f6fc097",
-            "#_7748c2c4-fb04-4b49-81bc-03f2ded6d565",
-            "#_52aebdde-2754-4a94-a112-6aade6bcbb16",
-            "#_416291c5-5a9a-49b1-a218-fbc55cb5565a",
-            "#_d1c89b1a-b253-4a08-bc05-dfa33766e7ec",
-            "#_cd48ea63-b180-4f56-9bdf-38326d17ec0b",
-            "#_694cd80b-b819-4a98-965e-062ec977e7bf",
-            "#_c3902bea-8c61-4483-8763-7b5c2d53eb62",
-            "#_e8c636af-4f86-4e3f-95b4-bc260664de78",
-            "#_a50369b7-a557-4a01-beb6-da249116d663",
-            "#_13f3df7b-6860-484b-a7ad-56e34de9e368",
-            "#_90526c25-cbbb-4d48-8eaf-7b27c4116508",
-            "#_4f0860e4-def8-4cf4-a259-dddae9af96c8",
-            "#_b0f3f3bd-3a91-4bf2-aa09-d699bd3a62ea",
-            "#_71498dae-ce91-4f8a-b1e7-ad34bc16c6c3",
-            "#_c4410075-08a4-49fb-a5b6-650cbc3a30a5",
-            "#_df8bf97f-1f97-4ecc-8365-91770534d54d",
-            "#_908bb620-b2d5-4cf5-993a-43ee437883a2",
-            "#_d28db59a-8d37-4f7a-9a1a-6410f39125db",
-            "#_ff8a4f28-e505-4b67-ba9a-15c552d91518",
-            "#_93211e75-c152-4a32-a150-3d2186965b05",
-            "#_1b1ff695-2ee9-462b-9f09-29e0b01d07a8",
-            "#_938fb17f-eb12-4518-b87a-122e0cedff9e",
-            "#_d48ae750-4a2e-41d3-8cb9-59f58382a478",
-            "#_408a0426-0206-4d7d-acf1-e833d545266c",
-            "#_37bb7e71-4488-472a-a442-725dc65bb992",
-            "#_492fab71-9c92-4f91-98f9-9d42031f0138",
-            "#_2271f26e-8fe0-48b3-a20e-0b0516bf8b6b",
-            "#_9cac91d2-8845-40f9-a10d-842c54b9b016",
-            "#_50ace371-2b9e-4351-894f-2e827046ffae",
-            "#_773b2c4f-307d-4519-82c0-b50b1d729ab1",
-            "#_a8460bd2-4414-403b-8cfd-5c3a2f8dcfe9",
-            "#_bd292ff5-eb80-4c66-9778-3aa29c0f03b9",
-            "#_b3052548-fc8b-4192-8b7e-4cfdedf9d59d",
-            "#_804cc70d-051d-4087-95d0-bc70400afe67",
-            "#_ec1f3246-8d50-41e4-907f-41ce8aafb035"
+            "#_d479e33b-c636-4760-865d-c28f18b832a1",
+            "#_3f8d0e7f-adf9-4fd6-abdb-06e7d5ea32bc",
+            "#_16313af8-4a36-4aa7-8a5a-e249194ce5a2",
+            "#_848d46c4-e9ea-4658-9820-70bebc860e68",
+            "#_21b9fd74-bc09-4742-9379-400167b6af01",
+            "#_2036982e-acaa-48f8-a52e-bef3952e2bb4",
+            "#_0247c76d-58d5-474d-8bc3-1256fdd57dcb",
+            "#_2841204b-1dce-433d-b3c2-63d991821ba7",
+            "#_93600c0a-1629-4a0e-8bdf-25241a2944eb",
+            "#_61d37067-e2e8-4e1d-b578-cbe18e1dd82b",
+            "#_8be0aa85-91be-4d1f-9521-126594560725",
+            "#_f2170118-e477-4a0a-9763-199039c706c1",
+            "#_a2aa67a2-9e81-432a-8ed8-6ee11f44e84d",
+            "#_486b70b6-3b03-4051-a2a5-df6eda060189",
+            "#_2009deed-2871-4b4a-9be2-cef37b1b2c42",
+            "#_828afbad-e5ad-4cd8-be5d-9027bbc37b4f",
+            "#_c1415525-0377-4658-8c6c-0a343ef29586",
+            "#_45e67e85-560e-4c0e-b3e0-e1f88cb78224",
+            "#_0ee6c2b8-8be5-44a1-a5a7-bc8144e8b596",
+            "#_6a8cb404-7b65-45bc-91df-15afc3d5814c",
+            "#_c5c57d32-9156-4f3a-be63-7029b077fd18",
+            "#_2c785bb5-4cb3-4b2f-adba-dfed723294ec",
+            "#_c1ec57c4-1f05-4918-984b-2ab858c1b553",
+            "#_2da8ceda-ba0a-4c3c-aee4-f29acf9549b0",
+            "#_64d64895-ce3e-4915-b873-e341a21cce10",
+            "#_3f2ca267-bfea-4886-8efc-16bb16e28f86",
+            "#_5a32e645-1ba3-4d45-a421-032201984466",
+            "#_f60ba283-0f51-49b0-ad05-f0a2034bcdcd",
+            "#_dbd76e37-355d-4769-991c-f9208b79299c",
+            "#_2872ce28-a052-497f-baa7-4fed5cf45df1",
+            "#_455625dc-3132-4027-b06c-219720203c27",
+            "#_4539050f-9566-497f-97c6-b55ae343097c",
+            "#_716c3b1a-234e-4712-9222-5ffd2f9f6d60",
+            "#_41647e2d-20eb-4e38-81df-624650756a08",
+            "#_327cb7d0-135a-4205-9cf5-cd9d423219e2",
+            "#_52db6c25-e868-4da6-9ff1-f43ee563053f",
+            "#_fa6b3a10-0ede-484e-863d-30b65a8f987a",
+            "#_738dee8a-6284-4027-9f05-30dd3085ecb9",
+            "#_0dc41706-c8d0-4ac7-8eaa-57ab11d7dbb8",
+            "#_e3962d23-8d3c-48a8-8691-ee6c04403880"
           ],
           "decisionTable": {
             "rules": [
