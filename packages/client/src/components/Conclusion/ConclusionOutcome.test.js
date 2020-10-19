@@ -57,7 +57,7 @@ describe("ConclusionOutcome", () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(2); // For the active section, and the conclusion outcome.
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.PERMIT_INFORMATION,
+      name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
   });
 

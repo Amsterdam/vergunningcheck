@@ -13,16 +13,15 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
   const handlePermitInfoButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.PERMIT_INFORMATION,
+      name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
     // Open OLO in new tab/window
-    window.open(urls.HOW_TO_GET_A_PERMIT_OPEN, "_blank");
+    window.open(urls.HOW_TO_GET_A_PERMIT, "_blank");
   };
 
   return (
     <>
       <Paragraph gutterBottom={16}>
-        U kunt deze vergunning aanvragen{" "}
         <HideForPrint as="span">bij het landelijk Omgevingsloket.</HideForPrint>
         <PrintOnly as="span">
           op{" "}
