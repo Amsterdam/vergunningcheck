@@ -49,7 +49,6 @@ export const eventNames = {
   ANSWERED_WITH: "beantwoord met",
   ADDRESS_API_DOWN:
     "de verbinding met de api om adresgegevens op te halen is mislukt",
-  APPLY_FOR_PERMIT: "vergunning aanvragen",
   BACK: "terug naar",
   CONTACT_FORM: "contactformulier",
   CONTACT_OPENING: "contactgegevens en openingstijden",
@@ -74,6 +73,7 @@ export const eventNames = {
   NO_CHOICE_HAS_BEEN_MADE: "er is geen keuze gemaakt",
   NO_MONUMENT: "geen momument",
   NO_CITYSCAPE: "geen beschermd stads- of dorpsgezicht",
+  PERMIT_INFORMATION: "meer informatie over vergunning aanvragen",
   PRIVACY: "privacy",
   SAVE_CONCLUSION: "conclusie opslaan",
   TEXT_LINK: "tekst link",

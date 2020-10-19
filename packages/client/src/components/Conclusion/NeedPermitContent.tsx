@@ -10,13 +10,13 @@ import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
   matomoTrackEvent,
 }) => {
-  const handlePermitButton = () => {
+  const handlePermitInfoButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
+      name: eventNames.PERMIT_INFORMATION,
     });
     // Open OLO in new tab/window
-    window.open(urls.OLO_HOME, "_blank");
+    window.open(urls.HOW_TO_GET_A_PERMIT_OPEN, "_blank");
   };
 
   return (
@@ -35,11 +35,11 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
         <ComponentWrapper marginBottom={32}>
           <Button
             data-testid={NEED_PERMIT_BUTTON}
-            onClick={handlePermitButton}
+            onClick={handlePermitInfoButton}
             type="button"
             variant="primaryInverted"
           >
-            Vergunning aanvragen
+            Meer over vergunning aanvragen
           </Button>
         </ComponentWrapper>
       </HideForPrint>
