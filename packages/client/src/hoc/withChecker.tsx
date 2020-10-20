@@ -8,6 +8,7 @@ import { CheckerContext, SessionContext, SessionDataType } from "../context";
 import getChecker from "../imtr_client";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
+import NotFoundPage from "../pages/NotFoundPage";
 import RedirectPage from "../pages/RedirectPage";
 import topicsJson from "../topics.json";
 import { findTopicBySlug } from "../utils";
@@ -44,7 +45,7 @@ export default (Component: any) => (props: Props) => {
 
   const initChecker = async () => {
     // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    if (!checker && !error && (!topic || topic.hasIMTR)) {
+    if (!checker && !error && topic && topic.hasIMTR) {
       try {
         const topicConfig = topicsJson
           .flat()
@@ -117,6 +118,9 @@ export default (Component: any) => (props: Props) => {
     return resetChecker();
   }
 
+  if (!topic) {
+    return <NotFoundPage />;
+  }
   // In case of error return the ErrorPage, eg. json not found
   if (error) {
     console.error(error);
