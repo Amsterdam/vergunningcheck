@@ -148,7 +148,7 @@ const LocationInput: React.FC<{
           noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext
-          showPrev
+          showPrev={hasIMTR}
         />
       </Form>
     </>

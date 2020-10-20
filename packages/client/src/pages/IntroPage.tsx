@@ -26,24 +26,25 @@ const IntroPage: React.FC<IntroPageProps> = ({
 
   const { hasIMTR, intro, text } = topic;
 
+  // Here starts the separation of the IMTR flow and the non-IMTR flow (which we call OLO flow):
+  if (!hasIMTR) {
+    // OLO flow now skips the intro page and goes directly to location page
+    history.replace(geturl(routes.oloLocationInput, topic));
+    return null;
+  }
+
   const introComponentPath = intro || "shared/DynamicIMTRIntro";
 
   const Intro = React.lazy(() => import(`../intros/${introComponentPath}`));
 
   const goToNext = () => {
-    // Here starts the separation of the IMTR flow and the non-IMTR flow (which we call OLO flow):
-    if (hasIMTR) {
-      // @TODO: Change and refactor this because the next step is not always LOCATION_INPUT
-      matomoTrackEvent({
-        action: actions.ACTIVE_STEP,
-        name: sections.LOCATION_INPUT,
-      });
+    // @TODO: Change and refactor this because the next step is not always LOCATION_INPUT
+    matomoTrackEvent({
+      action: actions.ACTIVE_STEP,
+      name: sections.LOCATION_INPUT,
+    });
 
-      history.push(geturl(routes.checker, topic));
-    } else {
-      // non-IMTR flow (OLO flow)
-      history.push(geturl(routes.oloLocationInput, topic));
-    }
+    history.push(geturl(routes.checker, topic));
   };
 
   return (
