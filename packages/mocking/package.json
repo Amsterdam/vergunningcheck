@@ -6,6 +6,7 @@
   "author": "Gemeente Amsterdam",
   "license": "ISC",
   "main": "src/",
+  "private": true,
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "precommit": "lint-staged",
