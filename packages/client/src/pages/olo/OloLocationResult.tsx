@@ -32,6 +32,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
 
   const { text } = topic;
 
+  // if you enter the location result route without entering a address it breaks. Redirect to oloLocationInput
   if (!sessionContext[topic.slug].address) {
     history.replace(geturl(routes.oloLocationInput));
     return <></>;
