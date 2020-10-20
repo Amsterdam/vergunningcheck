@@ -15,7 +15,6 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
-    // Open OLO in new tab/window
     window.open(urls.HOW_TO_APPLY_FOR_A_PERMIT, "_blank");
   };
 
