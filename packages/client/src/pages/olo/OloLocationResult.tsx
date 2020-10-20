@@ -69,16 +69,16 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
           </Paragraph>
           <Paragraph>
             De informatie over het gebouw die hier boven staat hebt u nodig voor
-            het doen van de Vergunningcheck. Weet u al precies wat u gaat
+            het doen van de vergunningcheck. Weet u al precies wat u gaat
             bouwen? Houd dan uw bouwplannen ook bij de hand. Ook als uw plannen
-            nog niet klaar zijn kunt u alvast de Vergunningcheck doen. U kunt
+            nog niet klaar zijn, kunt u alvast de vergunningcheck doen. U kunt
             dan zien waar u op moet letten.
           </Paragraph>
           <Paragraph gutterBottom={8} strong>
             Naar het Omgevingsloket
           </Paragraph>
           <Paragraph>
-            U doet de Vergunningcheck niet op de website van de gemeente, maar
+            U doet deze vergunningcheck niet op de website van de gemeente, maar
             op een andere site: die van het landelijk Omgevingsloket. Via
             onderstaande knop gaat u daarheen.
           </Paragraph>
