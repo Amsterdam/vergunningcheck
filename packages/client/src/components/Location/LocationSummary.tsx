@@ -7,19 +7,13 @@ import { ComponentWrapper, List, ListItem } from "../../atoms";
 import { Topic } from "../../config";
 import { SessionContext, SessionDataType } from "../../context";
 import { getRestrictionByTypeName } from "../../utils";
-import { uniqueFilter } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_SUMMARY,
-  LOCATION_ZONING_PLANS,
 } from "../../utils/test-ids";
 import AddressLines from "../AddressLines";
 import EditLocationModal from "./EditLocationModal";
-
-type zoningPlanProps = {
-  name: string;
-};
 
 type LocationSummaryProps = {
   addressFromLocation?: any;
@@ -74,13 +68,10 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation
-    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address and remove types of zoningPlan below
-  const { restrictions, zoningPlans } = address;
+    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address
+  const { restrictions } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
-  const zoningPlanNames = zoningPlans
-    .map((plan: zoningPlanProps) => plan.name)
-    .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
 
   if (monument) {
     setTag("monument", monument);
@@ -137,27 +128,6 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
             </StyledListItem>
           )}
         </StyledList>
-      )}
-
-      {!hasIMTR && !isBelowInputFields && (
-        <>
-          <Paragraph gutterBottom={8} strong>
-            Bestemmingsplannen:
-          </Paragraph>
-          {zoningPlanNames.length === 0 ? (
-            <Paragraph>Geen bestemmingsplannen</Paragraph>
-          ) : (
-            <StyledList
-              data-testid={LOCATION_ZONING_PLANS}
-              noPadding
-              variant="bullet"
-            >
-              {zoningPlanNames.map((planName: string) => (
-                <StyledListItem key={planName}>{planName}</StyledListItem>
-              ))}
-            </StyledList>
-          )}
-        </>
       )}
     </ComponentWrapper>
   );

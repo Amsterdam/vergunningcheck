@@ -6,7 +6,7 @@ import addressGraphQLMock from "../../__mocks__/address";
 import Context from "../../__mocks__/context";
 import { findTopicBySlug } from "../../utils/index";
 import { LOCATION_FOUND } from "../../utils/test-ids";
-import { act, render, screen } from "../../utils/test-utils";
+import { render, screen, waitFor } from "../../utils/test-utils";
 import LocationFinder from "./LocationFinder";
 
 const setAddress = jest.fn();
@@ -81,12 +81,8 @@ describe("LocationFinder", () => {
       screen.queryByText(postalCode, { exact: false })
     ).not.toBeInTheDocument();
 
-    // Wait for the input to stop loading
-    await act(async () => {});
-
-    // Location has been found
-    const locationMessage = await screen.getByTestId(LOCATION_FOUND);
-    expect(locationMessage).toBeInTheDocument();
+    // Wait for Location to be found
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
 
     // Find the full address on the page
     expect(

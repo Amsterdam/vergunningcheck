@@ -53,8 +53,6 @@ describe("OloLocationResult", () => {
         "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
       )
     ).toBeInTheDocument();
-    // Expect to find zoningplan info
-    expect(screen.queryByText("zoningplan")).toBeInTheDocument();
 
     expect(screen.getByText("Vorige")).toBeInTheDocument();
   });
