@@ -29,6 +29,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
     SessionContext
   );
   const history = useHistory();
+
   const { text } = topic;
 
   if (!sessionContext[topic.slug].address) {
