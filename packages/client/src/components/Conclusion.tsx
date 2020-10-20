@@ -11,7 +11,6 @@ import { NEED_CONTACT } from "../utils/test-ids";
 import {
   ConclusionOutcome,
   NeedPermitContent,
-  NeedPermitFooter,
   NoPermitDescription,
 } from "./Conclusion/";
 import Disclaimer from "./Disclaimer";
@@ -88,7 +87,6 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
   };
 
   const needPermitContent = {
-    footerContent: <NeedPermitFooter />,
     mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
     title: "U hebt een omgevingsvergunning nodig.",
   };
