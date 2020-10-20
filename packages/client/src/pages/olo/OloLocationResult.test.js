@@ -61,8 +61,8 @@ describe("OloLocationResult", () => {
   it("should handle next button", () => {
     render(<Wrapper />);
 
-    const nextButton = screen.getByTestId(NEXT_BUTTON);
-    expect(nextButton).toBeInTheDocument();
+    const nextButton = screen.queryByTestId(NEXT_BUTTON);
+    expect(nextButton).toHaveTextContent(/naar het omgevingsloket/i);
 
     fireEvent.click(nextButton);
 
