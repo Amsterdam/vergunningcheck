@@ -11,7 +11,6 @@ import {
 import { act, fireEvent, render } from "../../utils/test-utils";
 import ConclusionOutcome from "./ConclusionOutcome";
 import NeedPermitContent from "./NeedPermitContent";
-import NeedPermitFooter from "./NeedPermitFooter";
 import NoPermitDescription from "./NoPermitDescription";
 
 const matomoTrackEvent = jest.fn();
@@ -29,7 +28,6 @@ describe("ConclusionOutcome", () => {
     const { getByText, queryByTestId } = render(
       <ConclusionOutcome
         conclusionContent={{
-          footerContent: <NeedPermitFooter />,
           mainContent: (
             <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />
           ),
@@ -39,7 +37,6 @@ describe("ConclusionOutcome", () => {
       />
     );
     // Should be in document
-    expect(queryByTestId(NEED_PERMIT)).toBeInTheDocument();
     expect(queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
     expect(getByText("title")).toBeInTheDocument();
 
@@ -57,7 +54,7 @@ describe("ConclusionOutcome", () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(2); // For the active section, and the conclusion outcome.
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
+      name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
   });
 

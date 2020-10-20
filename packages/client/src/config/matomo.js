@@ -49,7 +49,6 @@ export const eventNames = {
   ANSWERED_WITH: "beantwoord met",
   ADDRESS_API_DOWN:
     "de verbinding met de api om adresgegevens op te halen is mislukt",
-  APPLY_FOR_PERMIT: "vergunning aanvragen",
   BACK: "terug naar",
   CONTACT_FORM: "contactformulier",
   CONTACT_OPENING: "contactgegevens en openingstijden",
@@ -63,6 +62,7 @@ export const eventNames = {
   GOTO_LOCATION: "naar locatie",
   GOTO_NEXT_QUESTION: "naar volgende vraag",
   GOTO_PREV_QUESTION: "naar vorige vraag",
+  HOW_TO_APPLY_FOR_A_PERMIT: "zo werkt aanvragen",
   IAMSTERDAM: "iamsterdam.com",
   INSTAGRAM: "instagram",
   LINKEDIN: "linkedin",

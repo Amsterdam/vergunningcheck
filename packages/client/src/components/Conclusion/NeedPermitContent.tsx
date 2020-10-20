@@ -10,36 +10,36 @@ import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
   matomoTrackEvent,
 }) => {
-  const handlePermitButton = () => {
+  const handlePermitInfoButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.APPLY_FOR_PERMIT,
+      name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
-    // Open OLO in new tab/window
-    window.open(urls.OLO_HOME, "_blank");
+    window.open(urls.HOW_TO_APPLY_FOR_A_PERMIT, "_blank");
   };
 
   return (
     <>
-      <Paragraph gutterBottom={16}>
-        U kunt deze vergunning aanvragen{" "}
-        <HideForPrint as="span">bij het landelijk Omgevingsloket.</HideForPrint>
-        <PrintOnly as="span">
-          op{" "}
-          <Link variant="inline" href={urls.OLO_HOME}>
-            www.omgevingsloket.nl
-          </Link>
-        </PrintOnly>
+      <Paragraph>
+        U leest meer over hoe u een vergunning aanvraagt, wat de kosten zijn en
+        hoe lang het duurt op onze pagina over het aanvragen van een
+        omgevingsvergunning.
       </Paragraph>
+      <PrintOnly as="span">
+        Zo werkt aanvragen:{" "}
+        <Link variant="inline" href={urls.HOW_TO_APPLY_FOR_A_PERMIT}>
+          {urls.HOW_TO_APPLY_FOR_A_PERMIT}
+        </Link>
+      </PrintOnly>
       <HideForPrint>
         <ComponentWrapper marginBottom={32}>
           <Button
             data-testid={NEED_PERMIT_BUTTON}
-            onClick={handlePermitButton}
+            onClick={handlePermitInfoButton}
             type="button"
             variant="primaryInverted"
           >
-            Vergunning aanvragen
+            Zo werkt aanvragen
           </Button>
         </ComponentWrapper>
       </HideForPrint>
