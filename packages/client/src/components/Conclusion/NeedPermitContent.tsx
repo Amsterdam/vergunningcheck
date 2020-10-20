@@ -1,4 +1,4 @@
-import { Button, Paragraph } from "@amsterdam/asc-ui";
+import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { HideForPrint, PrintOnly } from "../../atoms";
@@ -6,7 +6,6 @@ import ComponentWrapper from "../../atoms/ComponentWrapper";
 import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
-import Link from "../Link";
 
 const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
   matomoTrackEvent,
