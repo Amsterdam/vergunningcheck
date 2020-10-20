@@ -18,7 +18,6 @@ const {
   locationPostalCode,
   locationRestrictionCityScape,
   locationRestrictionMonument,
-  locationZoningPlans,
   main,
   navButtonPrev,
   navButtonNext,
@@ -49,7 +48,6 @@ module.exports = {
     b.waitForElementVisible(navButtonNext);
     b.click(navButtonNext);
 
-    assert.visible(locationZoningPlans);
     assert.visible(locationRestrictionMonument);
     assert.visible(locationRestrictionCityScape);
     b.click(navButtonNext);

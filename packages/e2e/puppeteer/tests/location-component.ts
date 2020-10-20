@@ -24,9 +24,12 @@ export const randomAddress = random(addresses);
 if (!randomAddress) {
   throw new Error("address not found");
 }
-const testFlow = async (page: puppeteer.Page) => {
-  await page.waitForSelector('[data-testid="next-button"]');
-  await page.click('[data-testid="next-button"]');
+const testFlow = async (page: puppeteer.Page, options: FlowOptions) => {
+  // IMTR Flow has an Intro page
+  if (!options.shouldAlwaysDisplayRestrictions) {
+    await page.waitForSelector('[data-testid="next-button"]');
+    await page.click('[data-testid="next-button"]');
+  }
 
   await page.waitForSelector('[name="postalCode"]');
   await page.type('[name="postalCode"]', randomAddress[0]);
@@ -43,7 +46,7 @@ flows.forEach(async (flow) => {
     try {
       const page = await browser.newPage();
       await page.goto(`${host}/${url}`);
-      await testFlow(page);
+      await testFlow(page, flow.options);
     } catch (e) {
       console.error(e);
     } finally {
