@@ -29,8 +29,13 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
     SessionContext
   );
   const history = useHistory();
-
   const { text } = topic;
+
+  if (!sessionContext[topic.slug].address) {
+    history.replace(geturl(routes.oloLocationInput));
+    return <></>;
+  }
+
   const address = sessionContext[topic.slug].address;
 
   const onSubmit = (e: React.FormEvent) => {
@@ -84,7 +89,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
           </Paragraph>
           <Nav
             formEnds
-            nextText={"Naar het omgevingsloket"}
+            nextText={"Naar het Omgevingsloket"}
             noMarginBottom
             onGoToPrev={goToPrev}
             showNext
