@@ -232,7 +232,7 @@ const LocationFinder: React.FC<{
     <>
       <ComponentWrapper>
         <LocationTextField
-          autoFocus
+          autoFocus={!postalCode}
           defaultValue={postalCode}
           error={
             !!postalCodeError ||
