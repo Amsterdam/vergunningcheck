@@ -118,6 +118,7 @@ export default (Component: any) => (props: Props) => {
     return resetChecker();
   }
 
+  // @TODO We should handle this in routes.
   if (!topic) {
     return <NotFoundPage />;
   }
