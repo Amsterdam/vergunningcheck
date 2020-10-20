@@ -1,4 +1,4 @@
-import { Icon, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { Button, Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import { NavProps } from "./Nav";
@@ -21,6 +21,13 @@ export const NavStyle = styled.div<NavProps>`
   @media print {
     display: none;
   }
+`;
+
+export const NextButton = styled(Button).attrs({
+  variant: "secondary",
+  type: "submit",
+})<{ formEnds: boolean }>`
+  margin-right: ${({ formEnds }) => (formEnds ? 10 : 25)}px;
 `;
 
 /*

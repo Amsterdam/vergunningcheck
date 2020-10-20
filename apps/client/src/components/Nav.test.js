@@ -1,17 +1,17 @@
+import "jest-styled-components";
+
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import Context from "../__mocks__/context";
 import { findTopicBySlug } from "../utils";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
-import { cleanup, fireEvent, render } from "../utils/test-utils";
+import { fireEvent, render } from "../utils/test-utils";
 import Form from "./Form";
 import Nav from "./Nav";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();
-
-afterEach(cleanup);
 
 const Wrapper = ({ children }) => {
   const topicMock = "dakraam-plaatsen";
@@ -41,7 +41,7 @@ it("Nav should render with no props", () => {
 it("Nav should render default values", () => {
   const { queryByTestId } = render(
     <Wrapper>
-      <Nav showPrev showNext />
+      <Nav noMarginBottom showNext showPrev />
     </Wrapper>
   );
 
@@ -49,19 +49,19 @@ it("Nav should render default values", () => {
 
   const nextButton = queryByTestId(NEXT_BUTTON);
   expect(nextButton).toBeInTheDocument();
-  expect(nextButton).toHaveStyle("margin-right: 25px");
+  expect(nextButton).toHaveStyleRule("margin-right", "10px");
 });
 
 it("Nav should render with prop values and should fire events", () => {
   const { getByText } = render(
     <Wrapper>
       <Nav
-        showPrev
-        prevText="Prev"
-        onGoToPrev={onPrevClickMock}
-        showNext
-        nextText="Next"
         formEnds
+        nextText="Next"
+        onGoToPrev={onPrevClickMock}
+        prevText="Prev"
+        showNext
+        showPrev
       />
     </Wrapper>
   );
@@ -71,7 +71,7 @@ it("Nav should render with prop values and should fire events", () => {
 
   expect(prevButton).toBeInTheDocument();
   expect(nextButton).toBeInTheDocument();
-  expect(nextButton).toHaveStyle("margin-right: 10px");
+  expect(nextButton).toHaveStyleRule("margin-right", "10px");
 
   fireEvent.click(prevButton);
   expect(onPrevClickMock).toHaveBeenCalledTimes(1);

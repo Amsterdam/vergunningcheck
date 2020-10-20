@@ -8,7 +8,7 @@ import {
   NEED_PERMIT_BUTTON,
   NO_PERMIT_NEEDED,
 } from "../../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
+import { act, fireEvent, render } from "../../utils/test-utils";
 import ConclusionOutcome from "./ConclusionOutcome";
 import NeedPermitContent from "./NeedPermitContent";
 import NeedPermitFooter from "./NeedPermitFooter";
@@ -23,8 +23,6 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
-
-afterEach(cleanup);
 
 describe("ConclusionOutcome", () => {
   it("renders the 'needs permit' conclusion correctly", () => {

@@ -1,4 +1,4 @@
-import { Button, themeSpacing } from "@datapunt/asc-ui";
+import { Button, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 type Props = {

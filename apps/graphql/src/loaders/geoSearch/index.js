@@ -4,6 +4,7 @@ const {
   CACHE_TIMEOUT,
   HOST,
 } = require("../../../config").loaders.datapunt;
+
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
@@ -11,6 +12,7 @@ const loader = {
   reducer: (o) => ({
     _type: "CityScape",
     name: o.properties.display,
+    id: o.properties.id,
   }),
   load: (key) => {
     const [x, y] = key.split(" ");

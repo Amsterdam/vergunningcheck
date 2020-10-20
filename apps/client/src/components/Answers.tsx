@@ -1,4 +1,4 @@
-import { ErrorMessage, Radio, RadioGroup } from "@datapunt/asc-ui";
+import { ErrorMessage, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { ComponentWrapper, Label } from "../atoms";

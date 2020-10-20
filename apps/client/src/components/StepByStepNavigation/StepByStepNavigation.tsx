@@ -1,4 +1,4 @@
-import { themeColor } from "@datapunt/asc-ui";
+import { themeColor } from "@amsterdam/asc-ui";
 import React from "react";
 
 import passPropsToChildren from "../../utils/passPropsToChildren";

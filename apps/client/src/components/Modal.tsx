@@ -1,5 +1,5 @@
-import { Close } from "@datapunt/asc-assets";
-import { CompactThemeProvider, Divider, Icon, TopBar } from "@datapunt/asc-ui";
+import { Close } from "@amsterdam/asc-assets";
+import { CompactThemeProvider, Divider, Icon, TopBar } from "@amsterdam/asc-ui";
 import React, { useState } from "react";
 
 import {
@@ -18,17 +18,6 @@ import {
   ModalUI,
 } from "./ModalStyles";
 
-// @TODO: import these props from ASC-UI when they added this feature
-type buttonVariant =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "primaryInverted"
-  | "textButton"
-  | "blank"
-  | "application"
-  | undefined;
-
 type ModalProps = {
   children: React.ReactNode;
   closeButtonText?: string;
@@ -38,8 +27,8 @@ type ModalProps = {
   handleOpenModal?: Function;
   heading: string;
   onClick?: Function;
-  openButtonVariant?: buttonVariant;
-  openButtonText: React.ReactNode;
+  openButtonRenderer?: Function;
+  openButtonText?: string;
   showCloseButton?: boolean;
   showConfirmButton?: boolean;
 };
@@ -52,8 +41,8 @@ const Modal: React.FC<ModalProps> = ({
   handleConfirmButton,
   handleOpenModal,
   heading,
+  openButtonRenderer,
   openButtonText,
-  openButtonVariant = "primary",
   showCloseButton = true,
   showConfirmButton,
 }) => {
@@ -69,15 +58,18 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <ModalButton
-        data-testid={MODAL_OPEN_BUTTON}
-        onClick={openModal}
-        type="button"
-        variant={openButtonVariant}
-      >
-        {openButtonText}
-      </ModalButton>
-
+      {openButtonRenderer ? (
+        openButtonRenderer({ openModal })
+      ) : (
+        <ModalButton
+          data-testid={MODAL_OPEN_BUTTON}
+          onClick={openModal}
+          type="button"
+          variant="primary"
+        >
+          {openButtonText}
+        </ModalButton>
+      )}
       <ModalUI
         aria-describedby={heading}
         aria-labelledby={heading}

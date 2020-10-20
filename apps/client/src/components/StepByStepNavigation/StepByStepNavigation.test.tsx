@@ -1,10 +1,10 @@
 import "jest-styled-components";
 
-import { ascDefaultTheme, themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { ascDefaultTheme, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { STEPBYSTEPITEM, STEPBYSTEPNAVIGATION } from "../../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
+import { act, fireEvent, render } from "../../utils/test-utils";
 import { StepByStepItem, StepByStepNavigation } from ".";
 
 const onClickMock = jest.fn();
@@ -15,8 +15,6 @@ const styles = {
   large: "24px",
   small: "18px",
 };
-
-afterEach(cleanup);
 
 describe("StepByStepNavigation", () => {
   it("should not render without children", () => {

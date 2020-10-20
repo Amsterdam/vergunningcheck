@@ -2,12 +2,10 @@ import "jest-styled-components";
 
 import React from "react";
 
-import { act, cleanup, fireEvent, render } from "../utils/test-utils";
+import { act, fireEvent, render } from "../utils/test-utils";
 import { PrintOnly } from ".";
 
 const onClickMock = jest.fn();
-
-afterEach(cleanup);
 
 it("PrintOnly renders correctly", () => {
   const { queryByTestId, queryByText } = render(

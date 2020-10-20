@@ -1,4 +1,4 @@
-import { Button } from "@datapunt/asc-ui";
+import { Button } from "@amsterdam/asc-ui";
 import React from "react";
 import styled from "styled-components";
 
@@ -15,12 +15,12 @@ const EditButtonStyle = styled(Button)`
 `;
 
 const EditButton: React.FC<
-  { disabled: boolean } & React.HTMLAttributes<HTMLElement>
-> = ({ disabled, onClick }) => (
+  { disabled?: boolean } & React.HTMLAttributes<HTMLElement>
+> = ({ disabled = false, onClick }) => (
   <EditButtonStyle
     data-testid={EDIT_BUTTON}
     variant="textButton"
-    {...{ onClick, disabled }}
+    {...{ disabled, onClick }}
   >
     Wijzig
   </EditButtonStyle>

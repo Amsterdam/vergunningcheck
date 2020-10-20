@@ -1,4 +1,4 @@
-import { themeSpacing } from "@datapunt/asc-ui";
+import { themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 export default styled.div<Props>`
   ${(props) =>
     css`
-      margin-bottom: ${props.marginBottom
+      margin-bottom: ${props.marginBottom !== undefined
         ? props.marginBottom + "px"
         : themeSpacing(6)};
     `}

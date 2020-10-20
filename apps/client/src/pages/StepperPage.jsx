@@ -1,7 +1,8 @@
+/* istanbul ignore file */
 // THIS PAGE IS FOR DEMO PURPOSES ONLY
 // DONT REVIEW THIS PAGE EXTENSIVELY
 
-import { Heading, Paragraph, themeColor } from "@datapunt/asc-ui";
+import { Heading, Paragraph, themeColor } from "@amsterdam/asc-ui";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 

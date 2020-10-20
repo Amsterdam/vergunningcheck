@@ -1,4 +1,4 @@
-import { OrderedList, themeSpacing } from "@datapunt/asc-ui";
+import { OrderedList, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export default styled(OrderedList)`

@@ -1,27 +1,40 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { Context, createContext, useEffect, useReducer } from "react";
+
+import { sections } from "./config/matomo";
 
 type QuestionAnswerType = {
   [key: string]: any;
 };
 
 type TopicSessionData = {
-  questionIndex: Number;
-  answers: QuestionAnswerType[];
+  activeComponents: [string];
+  answers?: QuestionAnswerType[];
   address: any;
+  finishedComponents: [];
+  questionIndex: number;
 };
 
 export type SessionDataType = {
   [slug: string]: TopicSessionData;
+  setSessionData: any;
 };
 
-const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
-const SessionContext = createContext({});
-const CheckerContext = createContext({});
+type CheckerContextType = {
+  checker?: any;
+  topic?: any;
+  autofillData?: any;
+};
 const defaultCheckerValue = {
   checker: null,
   topic: null,
   autofillData: {},
 };
+
+const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
+const SessionContext: any = createContext({});
+const CheckerContext = createContext(defaultCheckerValue) as Context<
+  CheckerContextType
+>;
 const defaultSessionValues = session ? session : {};
 
 const reducer = (
@@ -46,6 +59,21 @@ function SessionProvider(props: { children: React.ReactNode }) {
   // Because we sometimes need to clear the sessionStorage.
   const [data, setSessionData] = useReducer(reducer, defaultSessionValues);
 
+  //@TODO replace slug with the get slug hook.
+  //@TODO replace address with address type.
+  function resetSessionData(slug: string, address?: any) {
+    setSessionData([
+      slug,
+      {
+        activeComponents: [sections.LOCATION_INPUT],
+        address: address,
+        answers: undefined,
+        finishedComponents: [],
+        questionIndex: 0,
+      },
+    ]);
+  }
+
   useEffect(() => {
     sessionStorage.setItem("sessionData", JSON.stringify(data));
   }, [data]);
@@ -53,7 +81,9 @@ function SessionProvider(props: { children: React.ReactNode }) {
   // The session provider makes the data from the context available on all pages.
   // We can use the setSessionData function to add new data to the sessionStorage.
   return (
-    <SessionContext.Provider value={{ ...data, setSessionData }}>
+    <SessionContext.Provider
+      value={{ ...data, resetSessionData, setSessionData }}
+    >
       <CheckerContext.Provider value={defaultCheckerValue}>
         {props.children}
       </CheckerContext.Provider>

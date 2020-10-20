@@ -1,0 +1,18 @@
+FROM node:14-alpine
+WORKDIR /app/
+
+# Setup non-root user
+RUN addgroup -S devs
+RUN adduser -S -G devs dev
+RUN chown -R dev:devs /app/
+RUN chmod +s /app/
+USER dev:devs
+
+# Install
+COPY apps/client ./
+
+# Test
+RUN npm i
+RUN npm test
+RUN npm start
+# @TODO check intro on localhost:3000/some-checker

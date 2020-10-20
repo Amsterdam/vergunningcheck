@@ -1,11 +1,9 @@
 import React from "react";
 
-import { act, cleanup, fireEvent, render } from "../utils/test-utils";
+import { act, fireEvent, render } from "../utils/test-utils";
 import { List } from ".";
 
 const onClickMock = jest.fn();
-
-afterEach(cleanup);
 
 it("List renders correctly", () => {
   const { queryByTestId, queryByText } = render(

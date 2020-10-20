@@ -1,10 +1,8 @@
 import React from "react";
 
 import { DISCLAIMER_TEXT } from "../utils/test-ids";
-import { cleanup, render } from "../utils/test-utils";
+import { render } from "../utils/test-utils";
 import Disclaimer from "./Disclaimer";
-
-afterEach(cleanup);
 
 describe("Disclaimer", () => {
   it("renders correctly", () => {

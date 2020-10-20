@@ -9,6 +9,7 @@ import LocationInput from "../components/Location/LocationInput";
 import LocationResult from "../components/Location/LocationResult";
 import PrintDetails from "../components/PrintDetails";
 import Questions from "../components/Questions";
+import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import {
   StepByStepItem,
   StepByStepNavigation,
@@ -17,17 +18,17 @@ import { actions, eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
 import withChecker from "../hoc/withChecker";
 import withTracking from "../hoc/withTracking";
+import { geturl, routes } from "../routes";
+import LoadingPage from "./LoadingPage";
 
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
-  const { slug, sttrFile, text } = topic;
+  const { hasIMTR, slug, text } = topic;
 
-  // OLO Flow does not have questionIndex
-  const { questionIndex } = sttrFile ? sessionContext[topic.slug] : 0;
-
-  const { activeComponents, answers, finishedComponents } = sessionContext[
-    slug
-  ];
+  // @TODO: replace with custom hooks
+  const { questionIndex } = sessionContext[slug] || {};
+  const { activeComponents, answers, finishedComponents } =
+    sessionContext[slug] || {};
 
   useEffect(() => {
     // In case no active sections are found, reset the checker
@@ -52,14 +53,65 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         },
       ]);
 
-      if (sttrFile) {
+      if (hasIMTR) {
         resetChecker();
       }
+    }
+
+    // Make the app backwards compatible:
+
+    // LOCATION_RESULT does not exist anymore in the IMTR flow
+    const isOldSectionActive = hasIMTR && isActive(sections.LOCATION_RESULT);
+    const isOldSectionFinished =
+      hasIMTR && isFinished(sections.LOCATION_RESULT);
+
+    if (isOldSectionActive || isOldSectionFinished) {
+      // Reset LOCATION_INPUT to active component in case LOCATION_RESULT is active
+      const newActiveComponents = isOldSectionActive
+        ? [sections.LOCATION_INPUT]
+        : activeComponents;
+
+      // Remove LOCATION_RESULT from the finished components and replace with LOCATION_INPUT
+      const newFinishedComponents = finishedComponents.filter(
+        (section) => section !== sections.LOCATION_RESULT
+      );
+      newFinishedComponents.push(sections.LOCATION_INPUT);
+
+      console.warn(
+        "Resetting components, because an old section was found active"
+      );
+
+      // Remove old sections from existing local storage data and set active component to Location Input
+      sessionContext.setSessionData([
+        slug,
+        {
+          activeComponents: newActiveComponents,
+          finishedComponents: newFinishedComponents,
+        },
+      ]);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const isActive = useCallback(
+    (component, finished = false) => {
+      // If component is only a string, we make it a array first
+      const allComponents = Array.isArray(component) ? component : [component];
+
+      // If finished is true we check if it's finished, else check activeComponents.
+      const components = finished ? finishedComponents : activeComponents;
+      return components.includes(...allComponents);
+    },
+    [activeComponents, finishedComponents]
+  );
+
+  // Redirect to Intro in case no session context has been found
+  if (!sessionContext[slug]) {
+    window.location.href = geturl(routes.intro, { slug });
+    return <LoadingPage />;
+  }
 
   // Only one component can be active at the same time.
   const setActiveState = (component) => {
@@ -96,18 +148,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       { finishedComponents: newFinishedComponents },
     ]);
   };
-
-  const isActive = useCallback(
-    (component, finished = false) => {
-      // If component is only a string, we make it a array first
-      const allComponents = Array.isArray(component) ? component : [component];
-
-      // If finished is true we check if it's finished, else check activeComponents.
-      const components = finished ? finishedComponents : activeComponents;
-      return components.includes(...allComponents);
-    },
-    [activeComponents, finishedComponents]
-  );
 
   const isFinished = (component) => isActive(component, true);
 
@@ -168,15 +208,15 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   };
 
   return (
-    <Layout>
+    <Layout heading={text.heading}>
       <Helmet>
         <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
 
       <PrintDetails />
 
-      {/* STTR-flow with the StepByStepNavigation */}
-      {sttrFile && (
+      {/* IMTR-flow with the StepByStepNavigation */}
+      {hasIMTR && (
         <StepByStepNavigation
           customSize
           disabledTextColor="inherit"
@@ -185,25 +225,14 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           lineBetweenItems
         >
           <StepByStepItem
-            active={
-              isActive(sections.LOCATION_INPUT) ||
-              isActive(sections.LOCATION_RESULT)
-            }
-            checked={
-              isActive(sections.LOCATION_RESULT) ||
-              isFinished(sections.LOCATION_RESULT)
-            }
-            done={
-              isActive(sections.LOCATION_INPUT) ||
-              isActive(sections.LOCATION_RESULT)
-            }
+            active={isActive(sections.LOCATION_INPUT)}
+            checked={isFinished(sections.LOCATION_INPUT)}
+            done={isActive(sections.LOCATION_INPUT)}
             heading="Adresgegevens"
             largeCircle
             // Overwrite the line between the Items
             style={
-              isActive(sections.LOCATION_INPUT) ||
-              isActive(sections.LOCATION_RESULT) ||
-              questionIndex === 0
+              isActive(sections.LOCATION_INPUT) || questionIndex === 0
                 ? checkedStyle
                 : {}
             }
@@ -221,21 +250,17 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
                 }}
               />
             )}
-            {/* @TODO: Refactor this, because of duplicate code */}
-            {!isActive(sections.LOCATION_INPUT) &&
-              (isActive(sections.LOCATION_RESULT) ||
-                isFinished(sections.LOCATION_RESULT)) && (
-                <LocationResult
-                  {...{
-                    isActive,
-                    isFinished,
-                    matomoTrackEvent,
-                    setActiveState,
-                    setFinishedState,
-                    topic,
-                  }}
-                />
-              )}
+            {!isActive(sections.LOCATION_INPUT) && (
+              <RegisterLookupSummary
+                showEditLocationModal
+                {...{
+                  matomoTrackEvent,
+                  resetChecker,
+                  setActiveState,
+                  topic,
+                }}
+              />
+            )}
           </StepByStepItem>
           <StepByStepItem
             active={isActive(sections.QUESTIONS) && questionIndex === 0}
@@ -279,7 +304,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       )}
 
       {/* OLO-flow only needs the Location component */}
-      {!sttrFile && (
+      {!hasIMTR && (
         <>
           {/* @TODO: Refactor this, because of duplicate code */}
           {isActive(sections.LOCATION_INPUT) && (
@@ -314,4 +339,4 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     </Layout>
   );
 };
-export default withTracking(withChecker(CheckerPage));
+export default withChecker(withTracking(CheckerPage));

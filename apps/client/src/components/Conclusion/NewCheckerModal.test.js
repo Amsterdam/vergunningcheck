@@ -9,7 +9,7 @@ import {
   RADIO_ADDRESS_1,
   RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
-import { act, cleanup, fireEvent, render } from "../../utils/test-utils";
+import { act, fireEvent, render } from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
 const matomoTrackEvent = jest.fn();
@@ -21,8 +21,6 @@ afterEach(() => {
   // Mock the location.href to see if new checker is opened
   delete window.location;
   window.location = { href: jest.fn() };
-
-  cleanup();
 });
 
 jest.mock("react-router-dom", () => ({
@@ -52,7 +50,7 @@ it("NewCheckerModal should render as expected", () => {
   expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
   expect(matomoTrackEvent).toBeCalledWith({
     action: actions.OPEN_MODAL,
-    name: eventNames.DO_ANOTHER_CHECK,
+    name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
   });
 });
 
@@ -79,7 +77,7 @@ it("NewCheckerModal should open a new topic", async () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(3);
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.START_ANOTHER_CHECK,
-      name: eventNames.NO_CHOICE_HAS_BEEN_MADE,
+      name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
     });
   });
 
@@ -90,7 +88,7 @@ it("NewCheckerModal should open a new topic", async () => {
     expect(matomoTrackEvent).toHaveBeenCalledTimes(4);
     expect(matomoTrackEvent).toBeCalledWith({
       action: actions.OPEN_MODAL,
-      name: eventNames.DO_ANOTHER_CHECK,
+      name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
     });
 
     expect(window.location.href).toContain(customTopic.slug);

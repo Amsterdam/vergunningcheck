@@ -1,6 +1,6 @@
 import { addQuotes, getRestrictionByTypeName } from "../utils";
 
-const getDataNeed = (checker) =>
+export const getDataNeed = (checker) =>
   checker && checker.getAutofillDataNeeds(autofillMap)[0];
 
 export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
@@ -31,9 +31,24 @@ export const getDataNeedResultPageOrPrevious = (
  * Monument can either be a bool or list question, that why we need 2.
  */
 export const autofillResolvers = {
-  cityScape: ({ address }) =>
-    address?.restrictions &&
-    !!getRestrictionByTypeName(address.restrictions, "CityScape"),
+  cityScape: ({ address }, question) => {
+    const cityScape =
+      address?.restrictions &&
+      getRestrictionByTypeName(address.restrictions, "CityScape");
+
+    if (question.options) {
+      const answers = {
+        NATIONAL:
+          "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+        MUNICIPAL:
+          "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
+        undefined:
+          "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
+      };
+      return addQuotes(answers[cityScape?.scope]);
+    }
+    return !!cityScape;
+  },
   monumentBoolean: ({ address }) =>
     address?.restrictions &&
     !!getRestrictionByTypeName(address.restrictions, "Monument"),
@@ -55,7 +70,7 @@ export const autofillResolvers = {
  * Map from autofill-resolver key to the data-need it has.
  */
 export const autofillMap = {
-  monumentList: "checker",
-  monumentBoolean: "checker",
-  cityScape: "checker",
+  monumentList: "address",
+  monumentBoolean: "address",
+  cityScape: "address",
 };

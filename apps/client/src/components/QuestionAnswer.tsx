@@ -1,4 +1,4 @@
-import { Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
@@ -28,10 +28,7 @@ const QuestionAnswer: React.FC<
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
-        <ConclusionAlert
-          style={{ marginBottom: 8 }}
-          {...{ questionNeedsContactExit }}
-        />
+        <ConclusionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
       )}
     </>
   );

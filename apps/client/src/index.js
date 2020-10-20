@@ -1,9 +1,9 @@
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
-import "@datapunt/asc-assets/static/fonts/fonts.css";
+import "@amsterdam/asc-assets/static/fonts/fonts.css";
 
+import { GlobalStyle, ThemeProvider, themeColor } from "@amsterdam/asc-ui";
 import { ApolloProvider } from "@apollo/client";
-import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { init } from "@sentry/browser";
 import dotenv from "dotenv-flow";

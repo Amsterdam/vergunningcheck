@@ -1,0 +1,15 @@
+{
+  "name": "imtr",
+  "version": "1.0.0",
+  "description": "This module builds JSON configuration from json files containing IMTR XML. The JSON output can be used to instantiate a checker client.",
+  "main": "index.js",
+  "scripts": {
+    "test": "deno test --unstable --allow-read"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "fast-xml-parser": "^3.17.4"
+  }
+}

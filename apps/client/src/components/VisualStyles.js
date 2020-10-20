@@ -4,7 +4,7 @@ import {
   perceivedLoading,
   themeColor,
   themeSpacing,
-} from "@datapunt/asc-ui";
+} from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 export const Caption = styled(Paragraph)`
