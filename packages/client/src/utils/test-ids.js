@@ -46,5 +46,10 @@ export const MODAL_DECLINE_BUTTON = "modal-decline-button";
 export const MODAL_CONFIRM_BUTTON = "modal-confirm-button";
 export const MODAL_OPEN_BUTTON = "modal-open-button";
 
+// Image tags
+export const IMG = "img";
+export const FIGURE = "figure";
+export const FIGCAPTION = "figcaption";
+
 // Miscellaneous
 export const PHONE_NUMBER = "phone-number";
