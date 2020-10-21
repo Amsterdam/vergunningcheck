@@ -15,7 +15,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
-    window.open(urls.HOW_TO_APPLY_FOR_A_PERMIT, "_blank");
+    window.open(urls.GENERAL_PERMIT_PAGE, "_blank");
   };
 
   return (
@@ -27,7 +27,6 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
       <PrintOnly>
         <Link
           data-testid={NEED_PERMIT_BUTTON}
-          // The href is not the HOW_TO_APPLY_FOR_A_PERMIT link, because that fails to load from a PDF
           href={urls.GENERAL_PERMIT_PAGE}
           onClick={handlePermitInfoButton}
           variant="inline"
