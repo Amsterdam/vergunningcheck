@@ -19,22 +19,25 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
   };
 
   return (
-    <>
+    <ComponentWrapper marginBottom={40}>
       <Paragraph>
-        U leest meer over hoe u een vergunning aanvraagt, wat de kosten zijn en
-        hoe lang het duurt op onze pagina over het aanvragen van een
-        omgevingsvergunning.
+        Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe
+        lang het duurt en wat het kost'
       </Paragraph>
-      <PrintOnly as="span">
-        Zo werkt aanvragen:{" "}
-        <Link variant="inline" href={urls.HOW_TO_APPLY_FOR_A_PERMIT}>
-          {urls.HOW_TO_APPLY_FOR_A_PERMIT}
+      <PrintOnly>
+        <Link
+          data-testid={NEED_PERMIT_BUTTON}
+          // The href is not the HOW_TO_APPLY_FOR_A_PERMIT link, because that fails to load from a PDF
+          href={urls.GENERAL_PERMIT_PAGE}
+          onClick={handlePermitInfoButton}
+          variant="inline"
+        >
+          Zo werkt aanvragen
         </Link>
       </PrintOnly>
       <HideForPrint>
         <ComponentWrapper marginBottom={32}>
           <Button
-            data-testid={NEED_PERMIT_BUTTON}
             onClick={handlePermitInfoButton}
             type="button"
             variant="primaryInverted"
@@ -43,7 +46,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
           </Button>
         </ComponentWrapper>
       </HideForPrint>
-    </>
+    </ComponentWrapper>
   );
 };
 
