@@ -82,7 +82,6 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: false,
-    intro: "AanbouwIntro",
     name: "Aanbouw of uitbouw maken",
     slug: "aanbouw-of-uitbouw-maken",
     text: {
@@ -114,7 +113,6 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: false,
-    intro: "BouwwerkSlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
     text: {
@@ -124,7 +122,6 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: false,
-    intro: "InternVerbouwenIntro",
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
     text: {
