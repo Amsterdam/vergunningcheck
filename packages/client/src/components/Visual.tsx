@@ -6,7 +6,7 @@ import { Caption, Figure, Img } from "./VisualStyles";
 
 type VisualProps = {
   alt?: string;
-  src?: string;
+  src: string;
   title?: string;
 };
 
