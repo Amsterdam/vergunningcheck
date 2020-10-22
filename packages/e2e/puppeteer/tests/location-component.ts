@@ -14,6 +14,17 @@ import {
   uniqueFixtures,
 } from "vergunningcheck-mocking/src/restriction";
 
+const selectors = require("../../selectors");
+
+const {
+  locationHouseNumberFull,
+  locationFound,
+  locationPostalCode,
+  locationRestrictionCityScape,
+  locationRestrictionMonument,
+  navButtonNext,
+} = selectors;
+
 // Disable the warning "MaxListenersExceededWarning: Possible EventEmitter memory leak detected"
 // See: https://github.com/puppeteer/puppeteer/issues/594
 process.setMaxListeners(Infinity);
@@ -27,15 +38,15 @@ if (!randomAddress) {
 const testFlow = async (page: puppeteer.Page, options: FlowOptions) => {
   // IMTR Flow has an Intro page
   if (!options.shouldAlwaysDisplayRestrictions) {
-    await page.waitForSelector('[data-testid="next-button"]');
-    await page.click('[data-testid="next-button"]');
+    await page.waitForSelector(navButtonNext);
+    await page.click(navButtonNext);
   }
 
-  await page.waitForSelector('[name="postalCode"]');
-  await page.type('[name="postalCode"]', randomAddress[0]);
-  await page.type('[name="houseNumberFull"]', randomAddress[1].toString());
+  await page.waitForSelector(locationPostalCode);
+  await page.type(locationPostalCode, randomAddress[0]);
+  await page.type(locationHouseNumberFull, randomAddress[1].toString());
 
-  await page.waitForSelector('[data-testid="location-found"]', {
+  await page.waitForSelector(locationFound, {
     visible: true,
   });
 };
@@ -56,7 +67,7 @@ flows.forEach(async (flow) => {
 });
 
 // @TODO actually click in dropdown
-// await page.type('[name="houseNumberFull"]', '19');
+// await page.type(locationHouseNumberFull, '19');
 // await page.click('[data-testid="suggestList"] a');
 
 // Test with multipe addresses the visiblity of the restrictions on the page
@@ -65,14 +76,14 @@ const testRestrictions = async (
   options: FlowOptions,
   address: any
 ) => {
-  await page.waitForSelector('[data-testid="next-button"]');
-  await page.click('[data-testid="next-button"]');
+  await page.waitForSelector(navButtonNext);
+  await page.click(navButtonNext);
 
-  await page.waitForSelector('[name="postalCode"]');
-  await page.type('[name="postalCode"]', address[0]);
-  await page.type('[name="houseNumberFull"]', address[1].toString());
+  await page.waitForSelector(locationPostalCode);
+  await page.type(locationPostalCode, address[0]);
+  await page.type(locationHouseNumberFull, address[1].toString());
 
-  await page.waitForSelector('[data-testid="location-found"]', {
+  await page.waitForSelector(locationFound, {
     visible: true,
   });
 
@@ -81,7 +92,7 @@ const testRestrictions = async (
   // OLO FLOW:
   if (options.shouldAlwaysDisplayRestrictions) {
     const monument = await page.$eval(
-      '[data-testid="restriction-monument"]',
+      locationRestrictionMonument,
       (el) => el.textContent
     );
     if (properties.includes(NATIONAL_MONUMENT)) {
@@ -93,7 +104,7 @@ const testRestrictions = async (
     }
 
     const cityscape = await page.$eval(
-      '[data-testid="restriction-cityscape"]',
+      locationRestrictionCityScape,
       (el) => el.textContent
     );
     if (properties.includes(NATIONAL_CITY_SCAPE)) {
@@ -115,26 +126,18 @@ const testRestrictions = async (
       properties.includes(NATIONAL_MONUMENT) ||
       properties.includes(MUNICIPAL_MONUMENT)
     ) {
-      expect(
-        (await page.$$('[data-testid="restriction-monument"]')).length
-      ).to.equal(1);
+      expect((await page.$$(locationRestrictionMonument)).length).to.equal(1);
     } else {
-      expect(
-        (await page.$$('[data-testid="restriction-monument"]')).length
-      ).to.equal(0);
+      expect((await page.$$(locationRestrictionMonument)).length).to.equal(0);
     }
 
     if (
       properties.includes(NATIONAL_CITY_SCAPE) ||
       properties.includes(MUNICIPAL_CITY_SCAPE)
     ) {
-      expect(
-        (await page.$$('[data-testid="restriction-cityscape"]')).length
-      ).to.equal(1);
+      expect((await page.$$(locationRestrictionCityScape)).length).to.equal(1);
     } else {
-      expect(
-        (await page.$$('[data-testid="restriction-cityscape"]')).length
-      ).to.equal(0);
+      expect((await page.$$(locationRestrictionCityScape)).length).to.equal(0);
     }
   }
 };
