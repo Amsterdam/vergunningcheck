@@ -1,6 +1,5 @@
 import puppeteer from "puppeteer";
-
-const host = require("../../host");
+import { host } from "../config";
 
 const path = "build/example.png";
 

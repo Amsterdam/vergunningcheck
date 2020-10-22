@@ -1,5 +1,8 @@
 import { Flow } from "./types";
 
+export const selectors = require("../selectors");
+export const host = require("../host");
+
 // @TODO: fix based on `CI`
 export const DEBUG = false;
 

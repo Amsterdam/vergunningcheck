@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import puppeteer from "puppeteer";
-import { flows, puppeteerOptions } from "../config";
+import { flows, host, puppeteerOptions, selectors } from "../config";
 import { FlowOptions } from "../types";
 import { random } from "vergunningcheck-mocking/src/util";
 import {
@@ -14,8 +14,9 @@ import {
   uniqueFixtures,
 } from "vergunningcheck-mocking/src/restriction";
 
-const selectors = require("../../selectors");
-const host = require("../../host");
+// Disable the warning "MaxListenersExceededWarning: Possible EventEmitter memory leak detected"
+// See: https://github.com/puppeteer/puppeteer/issues/594
+process.setMaxListeners(Infinity);
 
 const {
   locationFound,
@@ -25,10 +26,6 @@ const {
   locationRestrictionMonument,
   navButtonNext,
 } = selectors;
-
-// Disable the warning "MaxListenersExceededWarning: Possible EventEmitter memory leak detected"
-// See: https://github.com/puppeteer/puppeteer/issues/594
-process.setMaxListeners(Infinity);
 
 // Test the flow with a random address to see if all checkers are working
 const addresses = getFixturesByProperties([NO_MONUMENT, NO_CITY_SCAPE]);
