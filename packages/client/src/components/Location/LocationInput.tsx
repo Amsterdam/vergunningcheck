@@ -1,11 +1,13 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
+import { geturl, routes } from "../../routes";
 import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
 import Form from "../Form";
@@ -24,6 +26,7 @@ const LocationInput: React.FC<{
   matomoTrackEvent,
   topic,
 }) => {
+  const history = useHistory();
   const { handleSubmit } = useForm();
   // @TODO: replace with custom topic hooks
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
@@ -69,6 +72,12 @@ const LocationInput: React.FC<{
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
+      // Detect if user is submitting the same address as currently stored
+      if (sessionAddress.id && sessionAddress.id === address.id) {
+        handleDuplicateAddressSubmit();
+        return;
+      }
+
       // Store the data
       sessionContext.setSessionData([
         slug,
@@ -84,6 +93,24 @@ const LocationInput: React.FC<{
         handleNewAddressSubmit();
       }
     }
+  };
+
+  const onGoToPrev = () => {
+    matomoTrackEvent({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.BACK} ${sections.INTRO}`,
+    });
+
+    // Only store the address if the address has been found, otherwise an empty address may overwrite an existing address
+    if (address) {
+      sessionContext.setSessionData([
+        slug,
+        {
+          address,
+        },
+      ]);
+    }
+    history.push(geturl(routes.intro, topic));
   };
 
   return (
@@ -119,7 +146,9 @@ const LocationInput: React.FC<{
         <Nav
           nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
           noMarginBottom={!hasIMTR}
+          onGoToPrev={onGoToPrev}
           showNext
+          showPrev={hasIMTR}
         />
       </Form>
     </>
