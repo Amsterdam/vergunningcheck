@@ -1,7 +1,8 @@
 const selectors = require("../selectors");
+const host = require("../host");
 
 const config = {
-  domain: "http://localhost:3000", // @TODO read from environment variable
+  domain: host,
   selectors,
 };
 

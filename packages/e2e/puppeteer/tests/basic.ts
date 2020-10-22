@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
-import { host } from "../config";
+
+const host = require("../../host");
 
 const path = "build/example.png";
 
@@ -7,9 +8,9 @@ const path = "build/example.png";
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(host);
-  console.log('done rendering chappie')
+  console.log("done rendering chappie");
   await page.screenshot({ path });
-  console.log('saved screenshot in ', path)
+  console.log("saved screenshot in ", path);
 
   await browser.close();
 })();

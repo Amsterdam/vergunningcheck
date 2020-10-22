@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import puppeteer from "puppeteer";
-import { flows, host, puppeteerOptions } from "../config";
+import { flows, puppeteerOptions } from "../config";
 import { FlowOptions } from "../types";
 import { random } from "vergunningcheck-mocking/src/util";
 import {
@@ -15,10 +15,11 @@ import {
 } from "vergunningcheck-mocking/src/restriction";
 
 const selectors = require("../../selectors");
+const host = require("../../host");
 
 const {
-  locationHouseNumberFull,
   locationFound,
+  locationHouseNumberFull,
   locationPostalCode,
   locationRestrictionCityScape,
   locationRestrictionMonument,
