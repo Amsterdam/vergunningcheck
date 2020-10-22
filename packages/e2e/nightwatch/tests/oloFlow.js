@@ -1,8 +1,4 @@
-const {
-  domain,
-  selectors,
-  olo: { selectors: oloSelectors },
-} = require("../config");
+const { domain, selectors } = require("../config");
 
 const address = {
   zipCode: "1055XD",
@@ -15,6 +11,7 @@ const address = {
 const {
   locationHouseNumberFull,
   locationFound,
+  locationForm,
   locationPostalCode,
   locationRestrictionCityScape,
   locationRestrictionMonument,
@@ -58,9 +55,9 @@ module.exports = {
       `https://www.omgevingsloket.nl/Particulier/particulier/home/checken/LocatieWerkzaamheden?param=postcodecheck&facet_locatie_postcode=${address.zipCode}&facet_locatie_huisnummer=${address.houseNumber}&facet_locatie_huisnummertoevoeging=${address.houseNumberAddition}`
     );
 
-    b.waitForElementPresent(oloSelectors.locationForm);
+    b.waitForElementPresent(locationForm);
     assert.containsText(
-      oloSelectors.locationForm,
+      locationForm,
       `${address.streetName} ${address.houseNumber}-${address.houseNumberAddition}`
     );
   },

@@ -2,6 +2,7 @@ const selectors = {
   conclusionContact: "[data-testid=need-contact]",
   conclusionNeedPermitButton: "[data-testid=need-permit-button]",
   introBullets: "[data-testid=intro-usable-for-bullets]",
+  locationForm: "#locatieWerkzaamhedenForm",
   locationHouseNumberFull: "input[name=houseNumberFull]",
   locationFound: "[data-testid=location-found]",
   locationPostalCode: "input[name=postalCode]",
