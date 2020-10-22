@@ -37,7 +37,7 @@ if (!randomAddress) {
   throw new Error("address not found");
 }
 const testFlow = async (page: puppeteer.Page, options: FlowOptions) => {
-  // IMTR Flow has an Intro page
+  // Because the IMTR Flow has an Intro page, we need click on the nextButton twice
   if (!options.shouldAlwaysDisplayRestrictions) {
     await page.waitForSelector(navButtonNext);
     await page.click(navButtonNext);
