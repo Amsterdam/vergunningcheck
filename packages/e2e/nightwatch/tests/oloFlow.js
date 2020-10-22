@@ -1,12 +1,4 @@
-const { domain, selectors } = require("../config");
-
-const address = {
-  zipCode: "1055XD",
-  streetName: "Louise de Colignystraat",
-  houseNumber: 19,
-  houseNumberAddition: "C",
-  houseNumberFull: "19c",
-};
+const { address, domain, selectors } = require("../config");
 
 const {
   locationHouseNumberFull,
@@ -25,9 +17,7 @@ module.exports = {
     const { assert } = b;
 
     b.url(`${domain}/aanbouw-of-uitbouw-maken`);
-    assert.titleContains(
-      "Invullen adres - Vergunningcheck aanbouw of uitbouw maken"
-    );
+    b.waitForElementVisible(locationPostalCode);
 
     assert.containsText(main, "Invullen adres");
     // TODO: test invalid fields feedback

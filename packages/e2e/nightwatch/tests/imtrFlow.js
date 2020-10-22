@@ -1,12 +1,4 @@
-const { domain, selectors } = require("../config");
-
-const address = {
-  zipCode: "1055XD",
-  streetName: "Louise de Colignystraat",
-  houseNumber: 19,
-  houseNumberAddition: "C",
-  houseNumberFull: "19c",
-};
+const { address, domain, selectors } = require("../config");
 
 const {
   conclusionContact,
