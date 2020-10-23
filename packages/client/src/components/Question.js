@@ -137,10 +137,11 @@ const Question = ({
         </ComponentWrapper>
       )}
       <Answers
-        questionId={questionId}
-        onChange={handleChange}
-        errors={errors}
         answers={answers}
+        errors={errors}
+        onChange={handleChange}
+        questionId={questionId}
+        questionIndex={questionIndex}
         userAnswer={userAnswer}
       />
       {showConclusionAlert && (
