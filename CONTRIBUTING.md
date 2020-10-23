@@ -40,6 +40,23 @@ To simplify things you can also use:
 margin: ${themeSpacing(5, 0, 4)}; // margin: 20px 0 16px;
 ```
 
+## Link lerna packages
+
+If you want to install one package from `./packages/` into another, you can use lerna to link them.
+Ie. if you want to install `mocking` into `graphql`, run:
+
+```
+lerna add mocking --scope=graphql
+```
+
+TODO find alternative to:
+
+```
+rm `find . -name package-lock.json | grep -v node_m`
+rm -rf node_modules packages/*/node_modules
+npm i
+```
+
 ## Updating permits
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
