@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    // XXX "isolatedModules": false,
-    // XXX "importsNotUsedAsValues": "remove",
-
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Basic Options */
@@ -11,6 +8,7 @@
     "lib": [                                  /* Specify library files to be included in the compilation. */
       "es2019"
     ],
+    "downlevelIteration": true,               /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
 
     /* Strict Type-Checking Options */
     "strict": true,                           /* Enable all strict type-checking options. */
