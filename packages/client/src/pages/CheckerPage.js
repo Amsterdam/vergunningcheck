@@ -329,4 +329,4 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     </Layout>
   );
 };
-export default withChecker(withTracking(CheckerPage));
+export default withTracking(withChecker(CheckerPage));

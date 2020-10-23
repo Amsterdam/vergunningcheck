@@ -1,22 +1,15 @@
 /* eslint-disable */
 /* istanbul ignore file */
 import { Accordion } from "@amsterdam/asc-ui";
+import { Checker } from "imtr_client";
+import Question from "imtr_client/src/models/question";
 import React, { useContext } from "react";
 
+import { Topic } from "../config";
 import { SessionContext, SessionDataType } from "../context";
 import HiddenDebugInfo from "./HiddenDebugInfo";
 
-type QuestionProps = {
-  answer?: boolean | string;
-  autofill?: string;
-  getQuestions?: Function;
-  id?: string;
-  prio?: number;
-  text?: string;
-  title?: string;
-};
-
-const QuestionSummary: React.FC<{ question: QuestionProps }> = ({
+const QuestionSummary: React.FC<{ question: Question }> = ({
   question: { prio, autofill, text },
 }) => (
   <>
@@ -24,9 +17,7 @@ const QuestionSummary: React.FC<{ question: QuestionProps }> = ({
   </>
 );
 
-const Answer: React.FC<{ question: QuestionProps }> = ({
-  question: { answer },
-}) => (
+const Answer: React.FC<{ question: Question }> = ({ question: { answer } }) => (
   <>
     {answer === null ? (
       "NULL"
@@ -37,11 +28,10 @@ const Answer: React.FC<{ question: QuestionProps }> = ({
 );
 
 type DebugDecisionTableProps = {
-  checker: any;
-  topic: any;
+  checker: Checker;
+  topic: Topic;
 };
 
-// @TODO: replace with proper props (IMTR) :D
 const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
   checker,
   topic,
@@ -55,16 +45,16 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
     return <></>;
   }
   const allQuestions = checker._getAllQuestions();
-  const autofilled = allQuestions.filter((q: QuestionProps) => q.autofill);
+  const autofilled = allQuestions.filter((q: Question) => q.autofill);
 
   return (
     <HiddenDebugInfo style={{ padding: 0, marginTop: 72 }} title="">
       <Accordion title="Debug Decision Table:">
         <div style={{ display: "block" }}>
-          {autofilled.filter((q: QuestionProps) => q.autofill).length > 0 && (
+          {autofilled.filter((q: Question) => q.autofill).length > 0 && (
             <>
               <h1>Autofill</h1>
-              {autofilled.map((q: QuestionProps) => (
+              {autofilled.map((q: Question) => (
                 <p key={q.id}>
                   <QuestionSummary question={q} />: <Answer question={q} />
                 </p>
@@ -81,7 +71,7 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
               </tr>
             </thead>
             <tbody>
-              {checker.stack.map((q: QuestionProps, i: number) => (
+              {checker.stack.map((q: Question, i: number) => (
                 <tr
                   key={`question-${q.id}-${i}`}
                   style={{
@@ -110,20 +100,18 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
             </tr>
           </thead>
           <tbody>
-            {checker
-              ._getUpcomingQuestions()
-              .map((q: QuestionProps, i: number) => (
-                <tr key={`open-${q.id}-${i}`}>
-                  <td>
-                    <QuestionSummary question={q} />
-                  </td>
-                  <td>
-                    <em>
-                      <Answer question={q} />
-                    </em>
-                  </td>
-                </tr>
-              ))}
+            {checker._getUpcomingQuestions().map((q: Question, i: number) => (
+              <tr key={`open-${q.id}-${i}`}>
+                <td>
+                  <QuestionSummary question={q} />
+                </td>
+                <td>
+                  <em>
+                    <Answer question={q} />
+                  </em>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
 
@@ -138,7 +126,7 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
               <h2>
                 {permit.name} (v{permit.version})
               </h2>
-              {permit._decisions
+              {permit.decisions
                 .sort(
                   // loosely order decisions based on their question prios
                   // doesn't matter if it's 100% correct
@@ -147,8 +135,8 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
                 )
                 .map((decision: any, i: number) => {
                   const matchingRules = decision.getMatchingRules();
-                  const rules = decision._rules;
-                  const questions = decision._inputs;
+                  const rules = decision.rules;
+                  const questions = decision.inputs;
                   const decisiveInputs = decision.getDecisiveInputs();
                   return (
                     <div key={`descicion - ${decision.id} ${i}`}>
@@ -160,7 +148,7 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
                         <div>
                           <strong>Vragen</strong>
                           <ol>
-                            {questions.map((q: QuestionProps) => (
+                            {questions.map((q: Question) => (
                               <li
                                 key={q.id}
                                 style={{

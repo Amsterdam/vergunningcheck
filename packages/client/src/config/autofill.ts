@@ -1,28 +1,20 @@
-import { addQuotes, getRestrictionByTypeName } from "../utils";
+import {
+  AutofillData,
+  AutofillResolverMap,
+  Checker,
+  Question,
+  addQuotes,
+} from "imtr_client";
 
-export const getDataNeed = (checker) =>
-  checker && checker.getAutofillDataNeeds(autofillMap)[0];
+import { getRestrictionByTypeName } from "../utils";
 
-export const getDataNeedPageOrNext = (checker, autofillRoutes, routes) =>
-  getDataNeed(checker)
-    ? autofillRoutes[getDataNeed(checker)][0]
-    : routes.checker;
+type AutofillResolverNameMap = { [name: string]: string };
+
+export const getDataNeed = (checker?: Checker) =>
+  checker && checker.getAutofillDataNeeds(autofillResolvers)[0];
 
 const strings = {
   NO_MONUMENT: "Geen monument",
-};
-
-export const getDataNeedResultPageOrPrevious = (
-  checker,
-  autofillRoutes,
-  routes
-) => {
-  const dataNeed = getDataNeed(checker);
-  if (dataNeed) {
-    const routesForDataNeed = autofillRoutes[dataNeed];
-    return routesForDataNeed[routesForDataNeed.length - 1];
-  }
-  return routes.intro;
 };
 
 /**
@@ -30,14 +22,14 @@ export const getDataNeedResultPageOrPrevious = (
  * resolves. The function accepts autofill data to do it's thing.
  * Monument can either be a bool or list question, that why we need 2.
  */
-export const autofillResolvers = {
-  cityScape: ({ address }, question) => {
+export const autofillResolvers: AutofillResolverMap = {
+  cityScape: ({ address }: AutofillData, question: Question) => {
     const cityScape =
       address?.restrictions &&
       getRestrictionByTypeName(address.restrictions, "CityScape");
 
     if (question.options) {
-      const answers = {
+      const answers: { [id: string]: string } = {
         NATIONAL:
           "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
         MUNICIPAL:
@@ -45,7 +37,7 @@ export const autofillResolvers = {
         undefined:
           "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
       };
-      return addQuotes(answers[cityScape?.scope]);
+      return addQuotes(answers[cityScape?.scope as string]);
     }
     return !!cityScape;
   },
@@ -69,7 +61,7 @@ export const autofillResolvers = {
 /**
  * Map from autofill-resolver key to the data-need it has.
  */
-export const autofillMap = {
+export const autofillResolverNameMap: AutofillResolverNameMap = {
   monumentList: "address",
   monumentBoolean: "address",
   cityScape: "address",

@@ -1,12 +1,12 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
+import { Decision, Rule, imtrOutcomes, removeQuotes } from "imtr_client";
+import Permit from "imtr_client/src/models/permit";
 import React from "react";
 import styled from "styled-components";
 
 import { PrintOnly } from "../atoms";
 import { sections } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
-import { imtrOutcomes } from "../imtr_client/models/checker";
-import { removeQuotes } from "../utils";
 import { NEED_CONTACT } from "../utils/test-ids";
 import {
   ConclusionOutcome,
@@ -16,17 +16,6 @@ import {
 } from "./Conclusion/";
 import Disclaimer from "./Disclaimer";
 import Markdown from "./Markdown";
-
-// @TODO: import from somewehere else...
-type permitProps = {
-  getDecisionById: Function;
-  getOutputByDecisionId: Function;
-  name: string;
-};
-// @TODO: import from somewehere else...
-type ruleProps = {
-  outputValue: string;
-};
 
 const ConclusionWrapper = styled.div`
   @media screen {
@@ -40,15 +29,15 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
 }) => {
   // find conclusions we want to display to the user
   const conclusions = checker?.permits
-    .filter((permit: permitProps) => !!permit.getOutputByDecisionId("dummy"))
-    .map((permit: permitProps) => {
-      const conclusion = permit.getDecisionById("dummy");
-      const conclusionMatchingRules = conclusion.getMatchingRules();
+    .filter((permit: Permit) => !!permit.getOutputByDecisionId("dummy"))
+    .map((permit: Permit) => {
+      const conclusion = permit.getDecisionById("dummy") as Decision;
+      const conclusionMatchingRules = conclusion.getMatchingRules() as Rule[];
       const contactOutcome = conclusionMatchingRules.find(
-        (rule: ruleProps) => rule.outputValue === imtrOutcomes.NEED_CONTACT
-      );
-      const outcome =
-        contactOutcome?.outputValue || conclusionMatchingRules[0].outputValue;
+        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+      ) as Rule;
+      const outcome = (contactOutcome?.outputValue ||
+        conclusionMatchingRules[0].outputValue) as string;
 
       return {
         outcome,

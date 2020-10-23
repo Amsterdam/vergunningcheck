@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
+import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
@@ -18,7 +19,7 @@ const LocationInput: React.FC<{
   resetChecker: Function;
   setActiveState: Function;
   setFinishedState: Function;
-  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
+  topic: Topic; // @TODO: Replace it with react hook
 }> = ({
   matomoTrackEvent,
   resetChecker,

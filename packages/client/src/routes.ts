@@ -1,22 +1,34 @@
 import { reverse } from "named-urls";
 import React from "react";
+import { RouteProps } from "react-router-dom";
 import slugify from "slugify";
-export const getslug = (text) =>
+
+type RedirectRule = {
+  from: string;
+  to: string;
+};
+
+export const getslug = (text: string) =>
   slugify(text, {
     strict: true, // remove special chars
     lower: true, // result in lower case
   });
-export const geturl = (route, params) => {
+
+export const geturl = (route: string, params: { slug: string }) => {
   if (!route) {
     throw new Error(`route does not exist (geturl): '${route}'`);
   }
   return reverse(route, params);
 };
-export const routeConfig = [
+
+type RoutePropExtended = RouteProps & { name: string };
+
+const baseRouteConfig: RoutePropExtended[] = [
   {
     component:
-      process.env.NODE_ENV !== "production" &&
-      React.lazy(() => import(`./pages/DevHomePage`)),
+      process.env.NODE_ENV !== "production"
+        ? React.lazy(() => import(`./pages/DevHomePage`))
+        : undefined,
     exact: true,
     name: "home",
     path: "/",
@@ -25,18 +37,19 @@ export const routeConfig = [
     component: React.lazy(() => import(`./pages/DevHomePage`)),
     exact: true,
     path: "/test",
+    name: "test",
   },
   {
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/IntroPage`)
     ),
     name: "intro",
     exact: true,
     path: "/:slug",
   },
   {
-    component: React.lazy(() =>
-      import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
     exact: true,
     name: "checker",
@@ -48,7 +61,13 @@ export const routeConfig = [
     path: "*",
   },
 ];
-export const redirectConfig = [
+
+export const routeConfig: RouteProps[] = baseRouteConfig.map((baseRoute) => {
+  const { name, ...rest } = baseRoute;
+  return rest;
+});
+
+export const redirectConfig: RedirectRule[] = [
   {
     from: "/zonnepanelen-of-warmtecollectoren-plaatsen",
     to: "/zonnepanelen-of-zonneboiler-plaatsen",
@@ -64,8 +83,9 @@ export const redirectConfig = [
 // build map of routes with `name` => `path`
 // ie. {intro: '/:slug/inleiding'}
 export const routes = Object.fromEntries(
-  routeConfig.map(({ name, path }) => [name, path])
+  baseRouteConfig.map(({ name, path }) => [name, path as string])
 );
-export const autofillRoutes = {
+
+export const autofillRoutes: { checker: [string] } = {
   checker: [routes.checker],
 };

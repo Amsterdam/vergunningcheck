@@ -1,8 +1,8 @@
 import { Paragraph } from "@amsterdam/asc-ui";
+import { removeQuotes } from "imtr_client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
-import { removeQuotes } from "../utils";
 import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {

@@ -1,7 +1,7 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
-import { generateOloUrl } from "../../config";
+import { Topic, generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import { LOCATION_RESULT } from "../../utils/test-ids";
@@ -12,7 +12,7 @@ import RegisterLookupSummary from "../RegisterLookupSummary";
 type LocationResultProps = {
   matomoTrackEvent: Function;
   setActiveState: Function;
-  topic: any; // @TODO: replace with custom hooks
+  topic: Topic; // @TODO: replace with custom hooks
 };
 
 const LocationResult: React.FC<LocationResultProps> = ({

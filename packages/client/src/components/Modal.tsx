@@ -23,7 +23,7 @@ type ModalProps = {
   closeButtonText?: string;
   closeModalAfterConfirm?: boolean;
   confirmText?: string;
-  handleConfirmButton?: Function;
+  handleConfirmButton?: () => void;
   handleOpenModal?: Function;
   heading: string;
   onClick?: Function;

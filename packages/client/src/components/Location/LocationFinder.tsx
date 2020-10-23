@@ -4,7 +4,7 @@ import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { requiredFieldText } from "../../config";
+import { Topic, requiredFieldText } from "../../config";
 import useDebounce from "../../hooks/useDebounce";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
@@ -33,7 +33,7 @@ const LocationFinder: React.FC<{
   setAddress: Function;
   setErrorMessage: Function;
   setFocus: Function;
-  topic: any; //@TODO: Replace it with IMTR-Client's TopicType
+  topic: Topic; // TODO: Remove topic from this component.
 }> = ({
   focus,
   matomoTrackEvent,
@@ -77,6 +77,7 @@ const LocationFinder: React.FC<{
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
+    return undefined;
   };
 
   // Error messages

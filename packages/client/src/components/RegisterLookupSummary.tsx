@@ -4,9 +4,9 @@ import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../atoms";
+import { Topic } from "../config";
 import { SessionContext, SessionDataType } from "../context";
 import { getRestrictionByTypeName } from "../utils";
-import { uniqueFilter } from "../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
   LOCATION_RESTRICTION_MONUMENT,
@@ -28,7 +28,7 @@ type RegisterLookupSummaryProps = {
   setActiveState?: Function;
   showEditLocationModal?: boolean;
   showTitle?: boolean;
-  topic: any; // @TODO: Replace it with IMTR-Client's TopicType
+  topic: Topic; // TODO: Replace with react-hook
 };
 
 const StyledList = styled(List)<{
@@ -68,7 +68,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   showTitle,
   topic: { slug, hasIMTR },
 }) => {
-  // @TODO: replace with custom topic hooks
+  // TODO: replace with custom react hook
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation
@@ -76,9 +76,12 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   const { restrictions, zoningPlans } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
-  const zoningPlanNames = zoningPlans
-    .map((plan: zoningPlanProps) => plan.name)
-    .filter(uniqueFilter); // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
+  const zoningPlanNames = [
+    // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
+    ...new Set(
+      zoningPlans.map((plan: zoningPlanProps) => plan.name) as string[]
+    ),
+  ];
 
   if (monument) {
     setTag("monument", monument);
@@ -90,7 +93,7 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
   const showSummary = monument || cityScape || !hasIMTR;
 
   return (
-    <ComponentWrapper marginBottom={hasIMTR && 4}>
+    <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>
       <AddressLines
         {...address}
         editAddressRenderer={() =>
