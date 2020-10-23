@@ -5,11 +5,9 @@ import { HideForPrint } from "../atoms";
 import Conclusion from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
-import LocationInput from "../components/Location/LocationInput";
-import LocationResult from "../components/Location/LocationResult";
+import { LocationInput, LocationSummary } from "../components/Location";
 import PrintDetails from "../components/PrintDetails";
 import Questions from "../components/Questions";
-import RegisterLookupSummary from "../components/RegisterLookupSummary";
 import {
   StepByStepItem,
   StepByStepNavigation,
@@ -60,13 +58,23 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
     // Make the app backwards compatible:
 
-    // This section does not exist anymore in the IMTR flow
+    // LOCATION_RESULT does not exist anymore in the IMTR flow
     const isOldSectionActive = hasIMTR && isActive(sections.LOCATION_RESULT);
-    const newFinishedComponents = finishedComponents.filter(
-      (section) => section !== sections.LOCATION_INPUT
-    );
+    const isOldSectionFinished =
+      hasIMTR && isFinished(sections.LOCATION_RESULT);
 
-    if (isOldSectionActive) {
+    if (isOldSectionActive || isOldSectionFinished) {
+      // Reset LOCATION_INPUT to active component in case LOCATION_RESULT is active
+      const newActiveComponents = isOldSectionActive
+        ? [sections.LOCATION_INPUT]
+        : activeComponents;
+
+      // Remove LOCATION_RESULT from the finished components and replace with LOCATION_INPUT
+      const newFinishedComponents = finishedComponents.filter(
+        (section) => section !== sections.LOCATION_RESULT
+      );
+      newFinishedComponents.push(sections.LOCATION_INPUT);
+
       console.warn(
         "Resetting components, because an old section was found active"
       );
@@ -75,7 +83,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       sessionContext.setSessionData([
         slug,
         {
-          activeComponents: [sections.LOCATION_INPUT],
+          activeComponents: newActiveComponents,
           finishedComponents: newFinishedComponents,
         },
       ]);
@@ -197,6 +205,33 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     borderColor: "white",
   };
 
+  // On LocationSubmit
+
+  const goToQuestionsSection = () => {
+    // Reset the answers and questionIndex to start clean
+    sessionContext.setSessionData([
+      slug,
+      {
+        answers: undefined,
+        questionIndex: 0, // Reset to 0 to start with the first question
+      },
+    ]);
+
+    setFinishedState(sections.LOCATION_INPUT);
+    setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
+  };
+
+  const handleNewAddressSubmit = () => {
+    // Reset old values
+    resetChecker();
+    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
+
+    goToQuestionsSection();
+  };
+  const handleDuplicateAddressSubmit = () => {
+    goToQuestionsSection();
+  };
+
   return (
     <Layout heading={text.heading}>
       <Helmet>
@@ -204,124 +239,87 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       </Helmet>
 
       <PrintDetails />
-
-      {/* IMTR-flow with the StepByStepNavigation */}
-      {hasIMTR && (
-        <StepByStepNavigation
-          customSize
-          disabledTextColor="inherit"
-          doneTextColor="inherit"
-          highlightActive
-          lineBetweenItems
+      <StepByStepNavigation
+        customSize
+        disabledTextColor="inherit"
+        doneTextColor="inherit"
+        highlightActive
+        lineBetweenItems
+      >
+        <StepByStepItem
+          active={isActive(sections.LOCATION_INPUT)}
+          checked={isFinished(sections.LOCATION_INPUT)}
+          done={isActive(sections.LOCATION_INPUT)}
+          heading="Adresgegevens"
+          largeCircle
+          // Overwrite the line between the Items
+          style={
+            isActive(sections.LOCATION_INPUT) || questionIndex === 0
+              ? checkedStyle
+              : {}
+          }
         >
-          <StepByStepItem
-            active={isActive(sections.LOCATION_INPUT)}
-            checked={isFinished(sections.LOCATION_INPUT)}
-            done={isActive(sections.LOCATION_INPUT)}
-            heading="Adresgegevens"
-            largeCircle
-            // Overwrite the line between the Items
-            style={
-              isActive(sections.LOCATION_INPUT) || questionIndex === 0
-                ? checkedStyle
-                : {}
-            }
-          >
-            {/* @TODO: Refactor this, because of duplicate code */}
-            {isActive(sections.LOCATION_INPUT) && (
-              <LocationInput
-                {...{
-                  isFinished,
-                  matomoTrackEvent,
-                  resetChecker,
-                  setActiveState,
-                  setFinishedState,
-                  topic,
-                }}
-              />
-            )}
-            {!isActive(sections.LOCATION_INPUT) && (
-              <RegisterLookupSummary
-                showEditLocationModal
-                {...{
-                  matomoTrackEvent,
-                  resetChecker,
-                  setActiveState,
-                  topic,
-                }}
-              />
-            )}
-          </StepByStepItem>
-          <StepByStepItem
-            active={isActive(sections.QUESTIONS) && questionIndex === 0}
-            checked={isFinished(sections.QUESTIONS)}
-            customSize
-            done={answers || isActive(sections.QUESTIONS)}
-            heading="Vragen"
-            largeCircle
-            // Overwrite the line between the Items
-            style={checkedStyle}
-          />
-          <Questions
-            {...{
-              checker,
-              goToQuestion,
-              isActive,
-              isFinished,
-              matomoTrackEvent,
-              setActiveState,
-              setFinishedState,
-              topic,
-            }}
-          />
-          <StepByStepItem
-            active={isActive(sections.CONCLUSION)}
-            as="div"
-            checked={isFinished(sections.QUESTIONS)}
-            done={isFinished(sections.QUESTIONS)}
-            customSize
-            heading="Conclusie"
-            largeCircle
-            onClick={handleConclusionClick}
-            // Overwrite the line between the Items
-            style={{ marginTop: -1 }}
-          >
-            {isFinished(sections.QUESTIONS) && (
-              <Conclusion {...{ checker, matomoTrackEvent }} />
-            )}
-          </StepByStepItem>
-        </StepByStepNavigation>
-      )}
-
-      {/* OLO-flow only needs the Location component */}
-      {!hasIMTR && (
-        <>
-          {/* @TODO: Refactor this, because of duplicate code */}
           {isActive(sections.LOCATION_INPUT) && (
             <LocationInput
               {...{
+                handleDuplicateAddressSubmit,
+                handleNewAddressSubmit,
                 matomoTrackEvent,
-                isFinished,
-                setActiveState,
-                setFinishedState,
                 topic,
               }}
             />
           )}
-          {isActive(sections.LOCATION_RESULT) && (
-            <LocationResult
+          {!isActive(sections.LOCATION_INPUT) && (
+            <LocationSummary
+              showEditLocationModal
               {...{
-                isActive,
-                isFinished,
                 matomoTrackEvent,
+                resetChecker,
                 setActiveState,
-                setFinishedState,
                 topic,
               }}
             />
           )}
-        </>
-      )}
+        </StepByStepItem>
+        <StepByStepItem
+          active={isActive(sections.QUESTIONS) && questionIndex === 0}
+          checked={isFinished(sections.QUESTIONS)}
+          customSize
+          done={answers || isActive(sections.QUESTIONS)}
+          heading="Vragen"
+          largeCircle
+          // Overwrite the line between the Items
+          style={checkedStyle}
+        />
+        <Questions
+          {...{
+            checker,
+            goToQuestion,
+            isActive,
+            isFinished,
+            matomoTrackEvent,
+            setActiveState,
+            setFinishedState,
+            topic,
+          }}
+        />
+        <StepByStepItem
+          active={isActive(sections.CONCLUSION)}
+          as="div"
+          checked={isFinished(sections.QUESTIONS)}
+          done={isFinished(sections.QUESTIONS)}
+          customSize
+          heading="Conclusie"
+          largeCircle
+          onClick={handleConclusionClick}
+          // Overwrite the line between the Items
+          style={{ marginTop: -1 }}
+        >
+          {isFinished(sections.QUESTIONS) && (
+            <Conclusion {...{ checker, matomoTrackEvent }} />
+          )}
+        </StepByStepItem>
+      </StepByStepNavigation>
 
       <HideForPrint>
         <DebugDecisionTable {...{ checker, topic }} />

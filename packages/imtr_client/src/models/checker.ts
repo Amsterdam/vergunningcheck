@@ -26,7 +26,7 @@ export type AutofillResolverMap = { [name: string]: Resolver };
 export default class Checker {
   readonly permits: Permit[];
   private _stack: Question[] = [];
-  private autofillData: AutofillData = {};
+  private autofillData = "";
   private done = false;
 
   /**

@@ -48,7 +48,7 @@ const DebugDecisionTable: React.FC<DebugDecisionTableProps> = ({
   const autofilled = allQuestions.filter((q: Question) => q.autofill);
 
   return (
-    <HiddenDebugInfo style={{ padding: 0, marginTop: 72 }} title="">
+    <HiddenDebugInfo>
       <Accordion title="Debug Decision Table:">
         <div style={{ display: "block" }}>
           {autofilled.filter((q: Question) => q.autofill).length > 0 && (

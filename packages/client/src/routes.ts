@@ -56,6 +56,22 @@ const baseRouteConfig: RoutePropExtended[] = [
     path: "/:slug/vragen-en-conclusie",
   },
   {
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationInput`)
+    ),
+    exact: true,
+    name: "oloLocationInput",
+    path: "/:slug/locatie",
+  },
+  {
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationResult`)
+    ),
+    exact: true,
+    name: "oloLocationResult",
+    path: "/:slug/adresgegevens",
+  },
+  {
     component: React.lazy(() => import("./pages/NotFoundPage")),
     name: "notfound",
     path: "*",
@@ -73,8 +89,6 @@ export const redirectConfig: RedirectRule[] = [
     to: "/zonnepanelen-of-zonneboiler-plaatsen",
   },
   { from: "/kozijnen-plaatsen-of-vervangen", to: "/kozijnen-plaatsen" },
-  { from: "/:slug/locatie", to: "/:slug" },
-  { from: "/:slug/adresgegevens", to: "/:slug" },
   { from: "/:slug/vragen", to: "/:slug" },
   { from: "/:slug/uitkomsten", to: "/:slug" },
   { from: "/:slug/conclusie", to: "/:slug" },

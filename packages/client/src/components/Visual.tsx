@@ -1,9 +1,16 @@
 import { captureException } from "@sentry/browser";
 import React, { useState } from "react";
 
+import { FIGCAPTION, FIGURE, IMG } from "../utils/test-ids";
 import { Caption, Figure, Img } from "./VisualStyles";
 
-export default ({ title, src, ...rest }) => {
+type VisualProps = {
+  alt?: string;
+  src: string;
+  title?: string;
+};
+
+const Visual: React.FC<VisualProps> = ({ alt, src, title }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
 
@@ -14,20 +21,23 @@ export default ({ title, src, ...rest }) => {
   };
 
   return (
-    <Figure loaded={loaded} errored={errored}>
+    <Figure data-testid={FIGURE} errored={errored} loaded={loaded}>
       <Img
-        {...rest}
-        src={src}
-        loaded={loaded}
+        alt={alt || title || ""}
+        data-testid={IMG}
         errored={errored}
-        onLoad={() => setLoaded(true)}
+        loaded={loaded}
         onError={handleError}
+        onLoad={() => setLoaded(true)}
+        src={src}
       />
       {title && (
-        <figcaption>
+        <figcaption data-testid={FIGCAPTION}>
           <Caption>{title}</Caption>
         </figcaption>
       )}
     </Figure>
   );
 };
+
+export default Visual;

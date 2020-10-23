@@ -3,24 +3,19 @@ import { setTag } from "@sentry/browser";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, List, ListItem } from "../atoms";
-import { Topic } from "../config";
-import { SessionContext, SessionDataType } from "../context";
-import { getRestrictionByTypeName } from "../utils";
+import { ComponentWrapper, List, ListItem } from "../../atoms";
+import { Topic } from "../../config";
+import { SessionContext, SessionDataType } from "../../context";
+import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_SUMMARY,
-  LOCATION_ZONING_PLANS,
-} from "../utils/test-ids";
-import AddressLines from "./AddressLines";
-import EditLocationModal from "./Location/EditLocationModal";
+} from "../../utils/test-ids";
+import AddressLines from "../AddressLines";
+import EditLocationModal from "./EditLocationModal";
 
-type zoningPlanProps = {
-  name: string;
-};
-
-type RegisterLookupSummaryProps = {
+type LocationSummaryProps = {
   addressFromLocation?: any;
   isBelowInputFields?: boolean;
   matomoTrackEvent?: Function;
@@ -60,28 +55,23 @@ const StyledListItem = styled(ListItem)`
   left: ${themeSpacing(1)};
 `;
 
-const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
+const LocationSummary: React.FC<LocationSummaryProps> = ({
   addressFromLocation,
   isBelowInputFields,
   resetChecker,
   showEditLocationModal,
   showTitle,
-  topic: { slug, hasIMTR },
+  topic,
 }) => {
-  // TODO: replace with custom react hook
+  // TODO: replace with react hooks
+  const { hasIMTR, slug } = topic;
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation
-    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address and remove types of zoningPlan below
-  const { restrictions, zoningPlans } = address;
+    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address
+  const { restrictions } = address;
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
-  const zoningPlanNames = [
-    // filter out duplicates (ie "Winkeldiversiteit Centrum" for 1012TK 1a)
-    ...new Set(
-      zoningPlans.map((plan: zoningPlanProps) => plan.name) as string[]
-    ),
-  ];
 
   if (monument) {
     setTag("monument", monument);
@@ -119,14 +109,14 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
           noPadding
           variant="bullet"
         >
-          {(monument || showSummary) && (
+          {(monument || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_MONUMENT}>
               {monument
                 ? `Het gebouw is een ${monument.toLowerCase()}.`
                 : "Het gebouw is geen monument."}
             </StyledListItem>
           )}
-          {(cityScape || showSummary) && (
+          {(cityScape || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_CITYSCAPE}>
               {cityScape
                 ? `Het gebouw ligt in een ${
@@ -139,29 +129,8 @@ const RegisterLookupSummary: React.FC<RegisterLookupSummaryProps> = ({
           )}
         </StyledList>
       )}
-
-      {!hasIMTR && !isBelowInputFields && (
-        <>
-          <Paragraph gutterBottom={8} strong>
-            Bestemmingsplannen:
-          </Paragraph>
-          {zoningPlanNames.length === 0 ? (
-            <Paragraph>Geen bestemmingsplannen</Paragraph>
-          ) : (
-            <StyledList
-              data-testid={LOCATION_ZONING_PLANS}
-              noPadding
-              variant="bullet"
-            >
-              {zoningPlanNames.map((planName: string) => (
-                <StyledListItem key={planName}>{planName}</StyledListItem>
-              ))}
-            </StyledList>
-          )}
-        </>
-      )}
     </ComponentWrapper>
   );
 };
 
-export default RegisterLookupSummary;
+export default LocationSummary;
