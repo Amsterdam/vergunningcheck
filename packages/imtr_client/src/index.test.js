@@ -1,7 +1,7 @@
 // import fs from "fs";
 // import path from "path";
 // import { promisify } from "util";
-import getChecker from ".";
+import getChecker from "./index";
 
 // const readdir = promisify(fs.readdir);
 

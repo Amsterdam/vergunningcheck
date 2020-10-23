@@ -2,9 +2,7 @@ import Decision from "./decision";
 import Question from "./question";
 import Rule from "./rule";
 
-let mock;
-
-beforeEach(() => {
+const getMock = () => {
   const yes = new Rule([true], "Something big");
   const no = new Rule([false], "Something small");
 
@@ -27,7 +25,7 @@ beforeEach(() => {
     [decision],
     [conclusionYes, conclusionNo]
   );
-  mock = {
+  return {
     rules: { yes, no },
     question,
     decision,
@@ -36,14 +34,16 @@ beforeEach(() => {
       rules: { yes: conclusionYes, no: conclusionNo },
     },
   };
-});
+};
 
 describe("Decision", () => {
   test("id", () => {
+    const mock = getMock();
     expect(mock.decision.id).toBe("fake-id");
-    expect(() => new Decision(3, [mock.question], [mock.yes, mock.no])).toThrow(
-      "'id' must be a String"
-    );
+    expect(
+      () =>
+        new Decision(3 as any, [mock.question], [mock.rules.yes, mock.rules.no])
+    ).toThrow("'id' must be a String");
   });
 
   describe("for Questions", () => {
@@ -90,6 +90,7 @@ describe("Decision", () => {
     });
 
     test("getMatchingRules", () => {
+      const mock = getMock();
       expect(mock.decision.getMatchingRules()[0]).toBe(undefined);
       mock.question.setAnswer(true);
       expect(mock.decision.getMatchingRules()[0]).toBe(mock.rules.yes);
@@ -97,13 +98,8 @@ describe("Decision", () => {
       expect(mock.decision.getMatchingRules()[0]).toBe(mock.rules.no);
     });
 
-    xtest("getOpenInputs", () => {
-      expect(mock.decision.getOpenInputs()).toStrictEqual([mock.question]);
-      mock.question.setAnswer(true);
-      expect(mock.decision.getOpenInputs()).toStrictEqual([]);
-    });
-
     test("getQuestions", () => {
+      const mock = getMock();
       expect(mock.decision.getQuestions()).toStrictEqual([mock.question]);
       mock.question.setAnswer(true);
       expect(mock.decision.getQuestions()).toStrictEqual([mock.question]);
@@ -112,6 +108,7 @@ describe("Decision", () => {
 
   describe("for recursive-decision", () => {
     test("getMatchingRules", () => {
+      const mock = getMock();
       const concl = mock.conclusion;
       expect(concl.decision.getMatchingRules()[0]).toBe(undefined);
       mock.question.setAnswer(true);
@@ -122,18 +119,9 @@ describe("Decision", () => {
       expect(concl.decision.getMatchingRules()[0]).toBe(concl.rules.no);
     });
 
-    xtest("getOpenInputs", () => {
-      const concl = mock.conclusion;
-      expect(concl.decision.getOpenInputs()).toStrictEqual([mock.question]);
-      mock.question.setAnswer(true);
-      expect(concl.decision.getOpenInputs()).toStrictEqual([]);
-    });
-
-    xtest("getQuestions", () => {
-      const concl = mock.conclusion;
-      expect(concl.decision.getQuestions()).toStrictEqual([mock.question]);
-      mock.question.setAnswer(true);
-      expect(concl.decision.getQuestions()).toStrictEqual([mock.question]);
+    test("getQuestions on conclusion doesn't give questions", () => {
+      const mock = getMock();
+      expect(mock.conclusion.decision.getQuestions()).toStrictEqual([]);
     });
   });
 });

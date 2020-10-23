@@ -4,7 +4,7 @@ import Permit from "./permit";
 import Question from "./question";
 import Rule from "./rule";
 
-const getChecker = (questions) => {
+const getChecker = (questions: Question[]) => {
   const d1 = new Decision("dummy", questions, [
     new Rule([false], "no"),
     new Rule([true, false], "not sure"),
@@ -47,7 +47,7 @@ describe("Permit", () => {
   test("simple imtr checker", () => {
     const questions = getQuestions();
     const checker = getChecker(questions);
-    let question = checker.next();
+    let question = checker.next() as Question;
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
 
     // Change the values a bit on the first question
@@ -57,14 +57,14 @@ describe("Permit", () => {
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
 
     // Answer and move to next question
-    question = checker.next();
+    question = checker.next() as Question;
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
     question.setAnswer(false);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe("what?");
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe("hell yeah");
 
-    question = checker.next();
+    question = checker.next() as any;
     expect(question).toBe(null);
   });
 });

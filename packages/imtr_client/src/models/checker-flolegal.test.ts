@@ -35,15 +35,16 @@ describe("IMTR specific", () => {
         new Rule(["no-permit-required"], "You don't need a permit."),
       ]
     );
+
     const checker = new Checker([new Permit("some permit", 1, [dummy])]);
-    let question = checker.next();
+    let question = checker.next() as Question;
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
       "You need a permit."
     );
     question.setAnswer(false);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
-    question = checker.next();
+    question = checker.next() as Question;
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
       "You don't need a permit."

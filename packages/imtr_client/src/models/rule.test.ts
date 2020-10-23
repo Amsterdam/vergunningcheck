@@ -2,13 +2,13 @@ import Rule from "./rule";
 
 describe("Rule", () => {
   test("constructor", () => {
-    expect(() => new Rule(undefined, "yes")).toThrow(
+    expect(() => new Rule(undefined as any, "yes")).toThrow(
       "'inputConditions' on Rule should be an array with at least one real value."
     );
     expect(() => new Rule([], "yes")).toThrow(
       "'inputConditions' on Rule should be an array with at least one real value."
     );
-    expect(() => new Rule([true], undefined)).toThrow(
+    expect(() => new Rule([true], undefined as any)).toThrow(
       "'outputValue' should be a number, boolean or string"
     );
   });
@@ -76,21 +76,19 @@ describe("Rule", () => {
     expect(new Rule([true], "yes").evaluateNew(["true"])).toStrictEqual([]);
 
     // error cases
-    expect(() => new Rule([true], "yes").evaluateNew(undefined)).toThrow(
+    expect(() => new Rule([true], "yes").evaluateNew(undefined as any)).toThrow(
       "'values' should be an array"
     );
-    expect(() => new Rule([true], "yes").evaluateNew({})).toThrow(
+    expect(() => new Rule([true], "yes").evaluateNew({} as any)).toThrow(
       "'values' should be an array"
     );
-    expect(() => new Rule([true], "yes").evaluateNew(null)).toThrow(
+    expect(() => new Rule([true], "yes").evaluateNew(null as any)).toThrow(
       "'values' should be an array"
     );
-    expect(() => new Rule([true], "yes").evaluateNew(false)).toThrow(
+    expect(() => new Rule([true], "yes").evaluateNew(false as any)).toThrow(
       "'values' should be an array"
     );
   });
-
-  xtest("'-' support", () => {});
 
   test("description", () => {
     expect(

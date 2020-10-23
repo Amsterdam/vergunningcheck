@@ -77,13 +77,28 @@ function getDecision(id, decisionConfig, questions) {
   );
 }
 
+// export type ???Props = {
+//   decisions: {
+//     [id: string]: Decision;
+//   };
+//   inputs: {
+//     [id: string]: Input;
+//   };
+//   name: string;
+//   questions: Question[];
+// }
+
+export type Props = {
+  permits: {},
+};
+
 /**
  * Create a Checker object
  *
  * @param {any} config - the config coming from json
  * @returns {Checker} the new Checker object
  */
-function getChecker(config) {
+export default (config: TopicOutputType): Checker => {
   const { permits: permitsConfig } = config;
   if (!permitsConfig || permitsConfig.length === 0) {
     throw new Error("Permits cannot be empty.");
@@ -138,6 +153,4 @@ function getChecker(config) {
   const checker = new Checker(permits);
 
   return checker;
-}
-
-export default getChecker;
+};
