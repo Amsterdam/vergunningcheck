@@ -19,9 +19,6 @@ const LocationInput: React.FC<{
   handleDuplicateAddressSubmit: Function;
   handleNewAddressSubmit: Function;
   matomoTrackEvent: Function;
-  resetChecker: Function;
-  setActiveState: Function;
-  setFinishedState: Function;
   topic: Topic; // @TODO: Replace it with react hook
 }> = ({
   handleDuplicateAddressSubmit,
