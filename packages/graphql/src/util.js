@@ -1,41 +1,25 @@
+// const https = require("https");
 const debug = require("debug")("graphql:util");
 const xml2js = require("xml2js");
 const fetch = require("node-fetch");
-
 const { stringify } = require("querystring");
-const { promisify } = require("util");
-let redis = require("redis");
-
-const config = require("../config");
-
-if (process.env.NODE_ENV === "test") {
-  redis = require("redis-mock");
-}
+const { enabled, getAsync, setSync, cachePrefix } = require("./cache");
 
 const parser = new xml2js.Parser();
-const { redis: redisConfig } = config.cache;
-const cachePrefix = "4_";
 
-const qs = (obj) => (obj ? "?" + stringify(obj) : "");
-const noop = async (_, fn) => await fn();
+const qs = (obj) => (obj ? `?${stringify(obj)}` : "");
+const noop = async (_, fn) => fn();
 const getUrl = (path, params) => path + qs(params);
 const withLog = (msg, res) => {
   debug(msg);
   return res;
 };
+
 const fetchJson = (url) => {
   debug(`fetching '${url}'`);
   return fetch(url).then((res) => res.json());
 };
 const gql = (input) => input.toString();
-
-// Setup cache
-const cache = redisConfig && redis.createClient(redisConfig);
-
-let getAsync;
-if (cache) {
-  getAsync = promisify(cache.get).bind(cache);
-}
 
 const withCache = async (key, fn, ttlInSeconds) => {
   const cacheKey = `${cachePrefix}${key}`;
@@ -47,7 +31,7 @@ const withCache = async (key, fn, ttlInSeconds) => {
   }
   const result = await fn();
   debug("cache MISS", cacheKey, result);
-  cache.set(cacheKey, JSON.stringify(result), "EX", ttlInSeconds);
+  setSync(cacheKey, JSON.stringify(result), "EX", ttlInSeconds);
   return result;
 };
 
@@ -67,5 +51,5 @@ module.exports = {
   getUrl,
   postXml,
   withLog,
-  withCache: redisConfig ? withCache : noop,
+  withCache: enabled ? withCache : noop,
 };

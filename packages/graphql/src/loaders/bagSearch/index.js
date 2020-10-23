@@ -4,6 +4,7 @@ const {
   CACHE_TIMEOUT,
   HOST,
 } = require("../../../config").loaders.datapunt;
+
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
@@ -31,7 +32,7 @@ const loader = {
     residence: o.woonplaats,
     type: o.subtype === "ligplaats" ? "BERTH" : "BUILDING",
   }),
-  load: (q) =>
+  fetch: (q) =>
     fetchJson(getUrl(`${URL}search/adres/`, { q })).then((data) => {
       return (
         data.results
@@ -42,9 +43,8 @@ const loader = {
           .filter((address) => !!address.postalCode)
       );
     }),
-  cached: (key) => withCache(`atlas:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+  cached: (key) => withCache(`atlas:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

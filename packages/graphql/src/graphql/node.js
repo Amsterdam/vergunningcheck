@@ -1,5 +1,4 @@
 const { gql } = require("../util");
-var { GraphQLError } = require("graphql");
 
 const typeDefs = gql`
   interface Node {
