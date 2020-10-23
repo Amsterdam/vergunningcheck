@@ -4,10 +4,15 @@ import {
   MUNICIPAL_MONUMENT,
   NATIONAL_CITY_SCAPE,
   MUNICIPAL_CITY_SCAPE,
+  RestrictionProperty,
 } from "./restriction";
 import { random } from "./util";
 
-const byProps = (props) => random(getFixturesByProperties(props))[2];
+const byProps = (props: RestrictionProperty[] | null) => {
+  const res = getFixturesByProperties(props);
+  const x = random(res);
+  return x ? x[2] : [];
+};
 
 describe("restrictions", () => {
   test("non restricted", () => {
