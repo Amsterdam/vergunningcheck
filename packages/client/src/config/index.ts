@@ -32,8 +32,6 @@ const oloHome: string = "https://www.omgevingsloket.nl/";
 export const urls = {
   GENERAL_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
-  HOW_TO_APPLY_FOR_A_PERMIT:
-    "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D#case_%7BBB9A7369-D795-42F8-8505-DC83EE4CC0C0%7D",
   OLO_HOME: oloHome,
   OLO_INTRO: `${oloHome}Particulier/particulier/home?init=true`,
   OLO_LOCATION: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
@@ -82,7 +80,6 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: false,
-    intro: "AanbouwIntro",
     name: "Aanbouw of uitbouw maken",
     slug: "aanbouw-of-uitbouw-maken",
     text: {
@@ -114,7 +111,6 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: false,
-    intro: "BouwwerkSlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
     text: {
@@ -124,7 +120,6 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: false,
-    intro: "InternVerbouwenIntro",
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
     text: {

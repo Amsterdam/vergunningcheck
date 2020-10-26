@@ -1,8 +1,7 @@
 import { Flow } from "./types";
 
-// export const host = "https://vergunningcheck.amsterdam.nl/test";
-// export const host = "https://ux.chappie2.com";
-export const host = "http://localhost:3000";
+export const selectors = require("../selectors");
+export const host = require("../host");
 
 // @TODO: fix based on `CI`
 export const DEBUG = false;
