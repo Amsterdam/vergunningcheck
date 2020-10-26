@@ -7,6 +7,7 @@ import Context from "../../__mocks__/context";
 import matchMedia from "../../__mocks__/matchMedia";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { findTopicBySlug } from "../../utils";
+import { NEXT_BUTTON } from "../../utils/test-ids";
 import { fireEvent, render, screen } from "../../utils/test-utils";
 import OloLocationResult from "./OloLocationResult";
 
@@ -60,8 +61,8 @@ describe("OloLocationResult", () => {
   it("should handle next button", () => {
     render(<Wrapper />);
 
-    const nextButton = screen.getByText("Naar het omgevingsloket");
-    expect(nextButton).toBeInTheDocument();
+    const nextButton = screen.queryByTestId(NEXT_BUTTON);
+    expect(nextButton).toHaveTextContent(/naar het omgevingsloket/i);
 
     fireEvent.click(nextButton);
 

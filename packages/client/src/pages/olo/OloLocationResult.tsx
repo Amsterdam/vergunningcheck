@@ -90,7 +90,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
           </Paragraph>
           <Nav
             formEnds
-            nextText={"Naar het omgevingsloket"}
+            nextText={"Naar het Omgevingsloket"}
             noMarginBottom
             onGoToPrev={goToPrev}
             showNext

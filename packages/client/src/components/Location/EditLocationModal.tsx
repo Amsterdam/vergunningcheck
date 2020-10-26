@@ -5,7 +5,7 @@ import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withTracking from "../../hoc/withTracking";
-import { MODAL_OPEN_BUTTON } from "../../utils/test-ids";
+import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const EditLocationModal: React.FC<{
@@ -44,7 +44,7 @@ const EditLocationModal: React.FC<{
       heading="Weet u zeker dat u het adres wilt wijzigen?"
       openButtonRenderer={({ openModal }: { openModal: Function }) => (
         <EditButton
-          data-testid={MODAL_OPEN_BUTTON}
+          dataTestid={LOCATION_MODAL_OPEN_BUTTON}
           onClick={() => {
             // Open modal function
             openModal();
