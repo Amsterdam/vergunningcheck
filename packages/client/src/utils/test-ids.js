@@ -30,7 +30,6 @@ export const RADIO_ADDRESS_1 = "address-input-1";
 export const RADIO_ADDRESS_2 = "address-input-2";
 
 // AutoSuggest
-
 export const AUTOSUGGEST_LIST = "autosuggest-list";
 export const AUTOSUGGEST_ITEM = "autosuggest-item";
 

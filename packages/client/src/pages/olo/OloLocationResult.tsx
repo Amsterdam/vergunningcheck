@@ -33,6 +33,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   const { text } = topic;
   const { address } = sessionContext[topic.slug] || {};
 
+  // This is to prevent a bug when the Session Storage data is manually cleared
   if (!address) {
     history.replace(geturl(routes.oloLocationInput, topic));
     return null;
