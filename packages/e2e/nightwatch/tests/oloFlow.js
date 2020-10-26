@@ -1,24 +1,12 @@
-const {
-  domain,
-  selectors,
-  olo: { selectors: oloSelectors },
-} = require("../config");
-
-const address = {
-  zipCode: "1055XD",
-  streetName: "Louise de Colignystraat",
-  houseNumber: 19,
-  houseNumberAddition: "C",
-  houseNumberFull: "19c",
-};
+const { address, domain, selectors } = require("../config");
 
 const {
   locationHouseNumberFull,
   locationFound,
+  locationForm,
   locationPostalCode,
   locationRestrictionCityScape,
   locationRestrictionMonument,
-  locationZoningPlans,
   main,
   navButtonPrev,
   navButtonNext,
@@ -29,9 +17,7 @@ module.exports = {
     const { assert } = b;
 
     b.url(`${domain}/aanbouw-of-uitbouw-maken`);
-    assert.titleContains(
-      "Invullen adres - Vergunningcheck aanbouw of uitbouw maken"
-    );
+    b.waitForElementVisible(locationPostalCode);
 
     assert.containsText(main, "Invullen adres");
     // TODO: test invalid fields feedback
@@ -49,7 +35,6 @@ module.exports = {
     b.waitForElementVisible(navButtonNext);
     b.click(navButtonNext);
 
-    assert.visible(locationZoningPlans);
     assert.visible(locationRestrictionMonument);
     assert.visible(locationRestrictionCityScape);
     b.click(navButtonNext);
@@ -60,9 +45,9 @@ module.exports = {
       `https://www.omgevingsloket.nl/Particulier/particulier/home/checken/LocatieWerkzaamheden?param=postcodecheck&facet_locatie_postcode=${address.zipCode}&facet_locatie_huisnummer=${address.houseNumber}&facet_locatie_huisnummertoevoeging=${address.houseNumberAddition}`
     );
 
-    b.waitForElementPresent(oloSelectors.locationForm);
+    b.waitForElementPresent(locationForm);
     assert.containsText(
-      oloSelectors.locationForm,
+      locationForm,
       `${address.streetName} ${address.houseNumber}-${address.houseNumberAddition}`
     );
   },

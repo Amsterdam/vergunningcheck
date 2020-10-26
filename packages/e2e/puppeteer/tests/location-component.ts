@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import puppeteer from "puppeteer";
-import { flows, host, puppeteerOptions } from "../config";
+import { flows, host, puppeteerOptions, selectors } from "../config";
 import { FlowOptions } from "../types";
 import { random } from "vergunningcheck-mocking/src/util";
 import {
@@ -18,21 +18,33 @@ import {
 // See: https://github.com/puppeteer/puppeteer/issues/594
 process.setMaxListeners(Infinity);
 
+const {
+  locationFound,
+  locationHouseNumberFull,
+  locationPostalCode,
+  locationRestrictionCityScape,
+  locationRestrictionMonument,
+  navButtonNext,
+} = selectors;
+
 // Test the flow with a random address to see if all checkers are working
 const addresses = getFixturesByProperties([NO_MONUMENT, NO_CITY_SCAPE]);
 export const randomAddress = random(addresses);
 if (!randomAddress) {
   throw new Error("address not found");
 }
-const testFlow = async (page: puppeteer.Page) => {
-  await page.waitForSelector('[data-testid="next-button"]');
-  await page.click('[data-testid="next-button"]');
+const testFlow = async (page: puppeteer.Page, options: FlowOptions) => {
+  // Because the IMTR Flow has an Intro page, we need click on the nextButton twice
+  if (!options.shouldAlwaysDisplayRestrictions) {
+    await page.waitForSelector(navButtonNext);
+    await page.click(navButtonNext);
+  }
 
-  await page.waitForSelector('[name="postalCode"]');
-  await page.type('[name="postalCode"]', randomAddress[0]);
-  await page.type('[name="houseNumberFull"]', randomAddress[1].toString());
+  await page.waitForSelector(locationPostalCode);
+  await page.type(locationPostalCode, randomAddress[0]);
+  await page.type(locationHouseNumberFull, randomAddress[1].toString());
 
-  await page.waitForSelector('[data-testid="location-found"]', {
+  await page.waitForSelector(locationFound, {
     visible: true,
   });
 };
@@ -43,7 +55,7 @@ flows.forEach(async (flow) => {
     try {
       const page = await browser.newPage();
       await page.goto(`${host}/${url}`);
-      await testFlow(page);
+      await testFlow(page, flow.options);
     } catch (e) {
       console.error(e);
     } finally {
@@ -53,7 +65,7 @@ flows.forEach(async (flow) => {
 });
 
 // @TODO actually click in dropdown
-// await page.type('[name="houseNumberFull"]', '19');
+// await page.type(locationHouseNumberFull, '19');
 // await page.click('[data-testid="suggestList"] a');
 
 // Test with multipe addresses the visiblity of the restrictions on the page
@@ -62,14 +74,14 @@ const testRestrictions = async (
   options: FlowOptions,
   address: any
 ) => {
-  await page.waitForSelector('[data-testid="next-button"]');
-  await page.click('[data-testid="next-button"]');
+  await page.waitForSelector(navButtonNext);
+  await page.click(navButtonNext);
 
-  await page.waitForSelector('[name="postalCode"]');
-  await page.type('[name="postalCode"]', address[0]);
-  await page.type('[name="houseNumberFull"]', address[1].toString());
+  await page.waitForSelector(locationPostalCode);
+  await page.type(locationPostalCode, address[0]);
+  await page.type(locationHouseNumberFull, address[1].toString());
 
-  await page.waitForSelector('[data-testid="location-found"]', {
+  await page.waitForSelector(locationFound, {
     visible: true,
   });
 
@@ -78,7 +90,7 @@ const testRestrictions = async (
   // OLO FLOW:
   if (options.shouldAlwaysDisplayRestrictions) {
     const monument = await page.$eval(
-      '[data-testid="restriction-monument"]',
+      locationRestrictionMonument,
       (el) => el.textContent
     );
     if (properties.includes(NATIONAL_MONUMENT)) {
@@ -90,7 +102,7 @@ const testRestrictions = async (
     }
 
     const cityscape = await page.$eval(
-      '[data-testid="restriction-cityscape"]',
+      locationRestrictionCityScape,
       (el) => el.textContent
     );
     if (properties.includes(NATIONAL_CITY_SCAPE)) {
@@ -112,26 +124,18 @@ const testRestrictions = async (
       properties.includes(NATIONAL_MONUMENT) ||
       properties.includes(MUNICIPAL_MONUMENT)
     ) {
-      expect(
-        (await page.$$('[data-testid="restriction-monument"]')).length
-      ).to.equal(1);
+      expect((await page.$$(locationRestrictionMonument)).length).to.equal(1);
     } else {
-      expect(
-        (await page.$$('[data-testid="restriction-monument"]')).length
-      ).to.equal(0);
+      expect((await page.$$(locationRestrictionMonument)).length).to.equal(0);
     }
 
     if (
       properties.includes(NATIONAL_CITY_SCAPE) ||
       properties.includes(MUNICIPAL_CITY_SCAPE)
     ) {
-      expect(
-        (await page.$$('[data-testid="restriction-cityscape"]')).length
-      ).to.equal(1);
+      expect((await page.$$(locationRestrictionCityScape)).length).to.equal(1);
     } else {
-      expect(
-        (await page.$$('[data-testid="restriction-cityscape"]')).length
-      ).to.equal(0);
+      expect((await page.$$(locationRestrictionCityScape)).length).to.equal(0);
     }
   }
 };

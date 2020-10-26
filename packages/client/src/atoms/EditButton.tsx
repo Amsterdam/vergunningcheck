@@ -15,10 +15,12 @@ const EditButtonStyle = styled(Button)`
 `;
 
 const EditButton: React.FC<
-  { disabled?: boolean } & React.HTMLAttributes<HTMLElement>
-> = ({ disabled = false, onClick }) => (
+  { dataTestid?: string; disabled?: boolean } & React.HTMLAttributes<
+    HTMLElement
+  >
+> = ({ dataTestid = EDIT_BUTTON, disabled = false, onClick }) => (
   <EditButtonStyle
-    data-testid={EDIT_BUTTON}
+    data-testid={dataTestid}
     variant="textButton"
     {...{ disabled, onClick }}
   >

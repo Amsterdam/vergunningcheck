@@ -7,12 +7,17 @@ import {
 } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
+type DefaultProps = {
+  errored?: boolean;
+  loaded?: boolean;
+};
+
 export const Caption = styled(Paragraph)`
   margin: ${themeSpacing(2)} 0 0 0;
   font-style: italic;
 `;
 
-export const Figure = styled.figure`
+export const Figure = styled.figure<DefaultProps>`
   display: inline-block;
   width: 100%;
   margin: 0 ${themeSpacing(6)} ${themeSpacing(6)} 0;
@@ -48,7 +53,7 @@ export const Figure = styled.figure`
     `}
 `;
 
-export const Img = styled.img`
+export const Img = styled.img<DefaultProps>`
   width: 100%;
   height: auto;
   margin: 0;
