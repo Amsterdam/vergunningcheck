@@ -31,7 +31,12 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   const history = useHistory();
 
   const { text } = topic;
-  const address = sessionContext[topic.slug].address;
+  const { address } = sessionContext[topic.slug] || {};
+
+  if (!address) {
+    history.replace(geturl(routes.oloLocationInput, topic));
+    return null;
+  }
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
