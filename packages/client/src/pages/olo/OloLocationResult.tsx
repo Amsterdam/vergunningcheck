@@ -31,14 +31,13 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   const history = useHistory();
 
   const { text } = topic;
+  const { address } = sessionContext[topic.slug] || {};
 
-  // if you enter the location result route without entering a address it breaks. Redirect to oloLocationInput
-  if (!sessionContext[topic.slug]?.address) {
+  // This is to prevent a bug when the Session Storage data is manually cleared
+  if (!address) {
     history.replace(geturl(routes.oloLocationInput, topic));
     return null;
   }
-
-  const address = sessionContext[topic.slug].address;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();

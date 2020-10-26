@@ -11,7 +11,7 @@ const Form: React.FC<FormProps & React.HTMLAttributes<HTMLElement>> = ({
   children,
   className,
   dataId,
-  dataTestId,
+  dataTestId = "form",
   onSubmit,
 }) => {
   return (

@@ -15,17 +15,15 @@ import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
+type ErrorMessage = {
+  stack?: object;
+};
 const LocationInput: React.FC<{
-  handleDuplicateAddressSubmit: Function;
+  error?: ErrorMessage;
   handleNewAddressSubmit: Function;
   matomoTrackEvent: Function;
   topic: Topic;
-}> = ({
-  handleDuplicateAddressSubmit,
-  handleNewAddressSubmit,
-  matomoTrackEvent,
-  topic,
-}) => {
+}> = ({ error, handleNewAddressSubmit, matomoTrackEvent, topic }) => {
   const history = useHistory();
   const { handleSubmit } = useForm();
   // @TODO: replace with custom topic hooks
@@ -38,7 +36,9 @@ const LocationInput: React.FC<{
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState<{ stack: object }>();
+  const [errorMessage, setErrorMessage] = useState<ErrorMessage | undefined>(
+    error
+  );
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
@@ -72,12 +72,6 @@ const LocationInput: React.FC<{
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      // Detect if user is submitting the same address as currently stored
-      if (sessionAddress.id && sessionAddress.id === address.id) {
-        handleDuplicateAddressSubmit();
-        return;
-      }
-
       // Store the data
       sessionContext.setSessionData([
         slug,
@@ -87,11 +81,7 @@ const LocationInput: React.FC<{
       ]);
       checkerContext.autofillData.address = address;
 
-      if (focus) {
-        (document.activeElement as HTMLElement).blur();
-      } else {
-        handleNewAddressSubmit();
-      }
+      handleNewAddressSubmit();
     }
   };
 
