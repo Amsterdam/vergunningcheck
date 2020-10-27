@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.1] (2020-10-27)
+
+#### New Features
+* `client`
+  * [#649](https://github.com/Amsterdam/vergunningcheck/pull/649) Refactored Location components and fixed the tests ([@robinpiets](https://github.com/robinpiets))
+  * [#641](https://github.com/Amsterdam/vergunningcheck/pull/641) Upgraded components and added tests ([@robinpiets](https://github.com/robinpiets))
+  * [#640](https://github.com/Amsterdam/vergunningcheck/pull/640) Adjusted the link in the Conclusion component ([@svenjens](https://github.com/svenjens))
+  * [#639](https://github.com/Amsterdam/vergunningcheck/pull/639) Removed old OLO Intro files and added tests ([@robinpiets](https://github.com/robinpiets))
+  * [#635](https://github.com/Amsterdam/vergunningcheck/pull/635) Textual and styling changes after the test ([@robinpiets](https://github.com/robinpiets))
+  * [#632](https://github.com/Amsterdam/vergunningcheck/pull/632) OLO flow textual changes ([@svenjens](https://github.com/svenjens))
+  * [#627](https://github.com/Amsterdam/vergunningcheck/pull/627) Added extra conclusion information for `need permit` ([@svenjens](https://github.com/svenjens))
+  * [#626](https://github.com/Amsterdam/vergunningcheck/pull/626) Textual changes to the OLO Flow ([@svenjens](https://github.com/svenjens))
+  * [#617](https://github.com/Amsterdam/vergunningcheck/pull/617) Separated the OLO flow and refactored components ([@robinpiets](https://github.com/robinpiets))
+  * [#616](https://github.com/Amsterdam/vergunningcheck/pull/616) Wrapped (new) Debug Variables in Accordion ([@robinpiets](https://github.com/robinpiets))
+* `client`, `e2e`, `mocking`
+  * [#638](https://github.com/Amsterdam/vergunningcheck/pull/638) Added e2e tests and refactored the e2e config ([@robinpiets](https://github.com/robinpiets))
+* `client`, `e2e`
+  * [#630](https://github.com/Amsterdam/vergunningcheck/pull/630) Skip the intro page on the OLO flow ([@robinpiets](https://github.com/robinpiets))
+* `client`, `e2e`, `graphql`, `imtr`, `mocking`
+  * [#610](https://github.com/Amsterdam/vergunningcheck/pull/610) Implement shared mocking package and renamed apps-folder ([@afjlambert](https://github.com/afjlambert))
+* Other
+  * [#614](https://github.com/Amsterdam/vergunningcheck/pull/614) Added matomo events for GraphQL errors and Restrictions ([@svenjens](https://github.com/svenjens))
+
+#### Bug fixes
+* `client`
+  * [#637](https://github.com/Amsterdam/vergunningcheck/pull/637) OLO flow bug when going directly to Location Results component ([@svenjens](https://github.com/svenjens))
+  * [#634](https://github.com/Amsterdam/vergunningcheck/pull/634) Disable autoFocus when `postalCode` has been found ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+* `client`
+  * [#625](https://github.com/Amsterdam/vergunningcheck/pull/625) Upgrade react to v16.14 ([@afjlambert](https://github.com/afjlambert))
+* `e2e`, `mocking`
+  * [#618](https://github.com/Amsterdam/vergunningcheck/pull/618) Fixed e2e for multiple addresses on multiple flows ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.2.0] (2020-10-19)
 
 #### New Features
