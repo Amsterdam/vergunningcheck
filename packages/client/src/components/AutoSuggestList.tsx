@@ -3,6 +3,8 @@ import { Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import React, { Fragment, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 
+import { AUTOSUGGEST_ITEM, AUTOSUGGEST_LIST } from "../utils/test-ids";
+
 const StyledList = styled.ul`
   max-width: 160px;
   margin: 0;
@@ -87,13 +89,14 @@ const SuggestList: React.FC<{
   return (
     <StyledList
       className={className}
-      data-testid="suggestList"
+      data-testid={AUTOSUGGEST_LIST}
       role={role}
       ref={listRef}
     >
       {options.map((option) => (
         <Li
           data-id={option.id}
+          data-testid={AUTOSUGGEST_ITEM}
           key={option.id}
           onMouseDown={() => onSelect(option)} // Use instead of onClick to prevent a bug with the focus state
           onKeyDown={(event) => handleKeyDown(event, option)}

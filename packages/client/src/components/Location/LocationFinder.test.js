@@ -2,91 +2,142 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
-import addressGraphQLMock from "../../__mocks__/address";
-import Context from "../../__mocks__/context";
+import locationFinderGraphQLMocks from "../../__mocks__/locationFinderGraphQLMocks";
 import { findTopicBySlug } from "../../utils/index";
-import { LOCATION_FOUND } from "../../utils/test-ids";
-import { render, screen, waitFor } from "../../utils/test-utils";
+import {
+  AUTOSUGGEST_ITEM,
+  AUTOSUGGEST_LIST,
+  LOCATION_FOUND,
+  LOCATION_NOT_FOUND,
+} from "../../utils/test-ids";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "../../utils/test-utils";
 import LocationFinder from "./LocationFinder";
 
 const setAddress = jest.fn();
-const setFocus = jest.fn();
 const setErrorMessage = jest.fn();
+const matomoTrackEvent = jest.fn();
 
-const mockedFunctions = { ...{ setAddress, setFocus, setErrorMessage } };
+const mockedFunctions = {
+  ...{ matomoTrackEvent, setAddress, setErrorMessage },
+};
 
 jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-const addressMock = {
-  ...addressGraphQLMock[0].request.variables,
-};
-
 describe("LocationFinder", () => {
+  const loadingText = "Wij zoeken het adres.";
   const topic = findTopicBySlug("dakkapel-plaatsen");
 
-  const WrapperWithContext = (props) => {
-    const addressMock = {
-      ...addressGraphQLMock[0].request.variables,
-    };
+  const Wrapper = () => {
+    const [focus, setFocus] = React.useState(false);
+
     return (
-      <Context topicMock={topic} addressMock={addressMock}>
-        <LocationFinder topic={topic} {...props} {...mockedFunctions} />
-      </Context>
+      <LocationFinder
+        topic={topic}
+        sessionAddress={{}}
+        {...mockedFunctions}
+        {...{ focus, setFocus, setErrorMessage }}
+      />
     );
   };
 
-  it("should render correctly on first load", () => {
-    render(<WrapperWithContext sessionAddress={{}} />);
+  it("should render correctly (including autosuggest)", async () => {
+    render(<Wrapper />, {}, locationFinderGraphQLMocks);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
 
-    expect(inputPostalCode).toBeInTheDocument();
-    expect(inputPostalCode).not.toHaveValue();
+    expect(inputPostalCode).toHaveValue("");
+    expect(inputHouseNumber).toHaveValue("");
 
-    expect(inputHouseNumber).toBeInTheDocument();
-    expect(inputHouseNumber).not.toHaveValue();
+    // Change the input values to make sure the location is "not found"
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1055XD" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "1" },
+      });
+    });
+
+    await waitFor(() => screen.queryByText(loadingText));
+    await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
+
+    // Change the input values to display the autosuggest
+    await act(async () => {
+      fireEvent.focus(inputHouseNumber);
+
+      fireEvent.keyDown(inputHouseNumber, {
+        target: { value: "19" },
+      });
+
+      fireEvent.change(inputHouseNumber);
+    });
+
+    await waitFor(() => screen.getByTestId(AUTOSUGGEST_LIST));
+    expect(screen.queryAllByTestId(AUTOSUGGEST_ITEM).length).toBe(6);
+    expect(screen.queryByText("19 C")).toBeInTheDocument();
+
+    // Press Enter to make sure the location is "not found" (again)
+    await act(async () => {
+      fireEvent.keyDown(inputHouseNumber, {
+        key: "Enter",
+      });
+    });
+
+    await waitFor(() => screen.queryByText(loadingText));
+    await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
+
+    // Enable the autosuggest (again)
+    await act(async () => {
+      fireEvent.focus(inputHouseNumber);
+    });
+
+    // Select an option from the autosuggest and make sure the location is found
+    await act(async () => {
+      fireEvent.mouseDown(screen.queryByText("19 C"));
+    });
+
+    await waitFor(() => screen.queryByText(loadingText));
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
   });
 
-  // @TODO: Update this test with autoSuggest
-  it("should render correctly with contextual props", async () => {
-    const {
-      houseNumberFull,
-      postalCode,
-      streetName,
-    } = addressGraphQLMock[0].result.data.findAddress.exactMatch;
-
-    render(
-      <WrapperWithContext sessionAddress={addressMock} />,
-      {},
-      addressGraphQLMock
-    );
+  it("should handle errors", async () => {
+    render(<Wrapper />, {}, locationFinderGraphQLMocks);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
 
-    // Make sure the input fields have the right values
-    expect(inputPostalCode).toHaveValue(addressMock.postalCode);
-    expect(inputHouseNumber).toHaveValue(addressMock.houseNumber);
+    // This detects an invalid postalCode
+    await act(async () => {
+      fireEvent.focus(inputPostalCode);
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1055" },
+      });
+      fireEvent.blur(inputPostalCode);
+    });
 
-    // Make sure postalcode from userInput is equal to mocks
-    expect(addressMock.postalCode).toBe(postalCode);
+    await waitFor(() =>
+      screen.queryByText(`Dit is geen geldige postcode.`, { exact: false })
+    );
 
-    expect(
-      screen.queryByText(houseNumberFull, { exact: false })
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText(postalCode, { exact: false })
-    ).not.toBeInTheDocument();
+    // This handles the graphql errors
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "6666AB" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "666" },
+      });
+    });
 
-    // Wait for Location to be found
-    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
-
-    // Find the full address on the page
-    expect(
-      screen.getByText(`${streetName} ${houseNumberFull}`, { exact: false })
-    ).toBeInTheDocument();
+    expect(setErrorMessage).toBeCalled();
   });
 });

@@ -20,6 +20,7 @@ export const INTRO_EXCEPTION_BULLETS = "intro-exception-bullets";
 
 // Location
 export const LOCATION_FOUND = "location-found";
+export const LOCATION_NOT_FOUND = "location-not-found";
 export const LOCATION_RESTRICTION_CITYSCAPE = "restriction-cityscape";
 export const LOCATION_RESTRICTION_MONUMENT = "restriction-monument";
 export const LOCATION_SUMMARY = "location-summary";
@@ -27,6 +28,10 @@ export const LOCATION_RESULT = "address-form";
 export const LOCATION_ZONING_PLANS = "zoning-plans";
 export const RADIO_ADDRESS_1 = "address-input-1";
 export const RADIO_ADDRESS_2 = "address-input-2";
+
+// AutoSuggest
+export const AUTOSUGGEST_LIST = "autosuggest-list";
+export const AUTOSUGGEST_ITEM = "autosuggest-item";
 
 // Questions
 export const QUESTION_PAGE = "question-form";
@@ -45,6 +50,7 @@ export const MODAL_CLOSE_BUTTON = "modal-close-button";
 export const MODAL_DECLINE_BUTTON = "modal-decline-button";
 export const MODAL_CONFIRM_BUTTON = "modal-confirm-button";
 export const MODAL_OPEN_BUTTON = "modal-open-button";
+export const LOCATION_MODAL_OPEN_BUTTON = "location-modal-open-button";
 
 // Image tags
 export const IMG = "img";

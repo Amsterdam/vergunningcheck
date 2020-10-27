@@ -22,7 +22,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
     <ComponentWrapper marginBottom={40}>
       <Paragraph>
         Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe
-        lang het duurt en wat het kost
+        lang het duurt en wat het kost.
       </Paragraph>
       <PrintOnly>
         <Link

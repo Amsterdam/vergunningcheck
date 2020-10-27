@@ -34,7 +34,6 @@ const OloLocationInput: React.FC<OloLocationInputProps> = ({
       </Helmet>
       <Suspense fallback={<Loading />}>
         <LocationInput
-          handleDuplicateAddressSubmit={handleNewAddressSubmit}
           {...{
             handleNewAddressSubmit,
             matomoTrackEvent,

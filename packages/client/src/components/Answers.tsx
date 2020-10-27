@@ -14,38 +14,41 @@ export type AnswersProps = {
   answers: AnswerProps[];
   className: string;
   errors: any;
-  questionId: string;
   onChange: Function;
+  questionId: string;
+  questionIndex: number;
   userAnswer: string;
 };
 
 const Answers: React.FC<AnswersProps> = ({
-  className,
   answers,
-  userAnswer,
+  className,
   errors,
-  questionId,
   onChange,
+  questionId,
+  questionIndex,
+  userAnswer,
 }) => (
   <ComponentWrapper data-testid={QUESTION_ANSWERS}>
     <RadioGroup className={className} name={questionId}>
       {answers &&
-        answers.map((answer) => {
+        answers.map((answer, index) => {
           const { label, formValue } = answer;
           const answerId = `${questionId}-${formValue}`;
           return (
             <Label
+              data-testid={`q${questionIndex + 1}-a${index + 1}`}
               htmlFor={answerId}
               key={answerId}
               label={removeQuotes(label)}
             >
               <Radio
-                key={answerId}
-                value={formValue}
-                id={answerId}
-                onChange={(e) => onChange(e)}
                 checked={userAnswer === label}
                 error={errors[questionId]}
+                key={answerId}
+                id={answerId}
+                onChange={(e) => onChange(e)}
+                value={formValue}
               />
             </Label>
           );

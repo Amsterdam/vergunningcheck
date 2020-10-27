@@ -206,8 +206,11 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   };
 
   // On LocationSubmit
+  const handleNewAddressSubmit = () => {
+    // Reset old values
+    resetChecker();
+    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
 
-  const goToQuestionsSection = () => {
     // Reset the answers and questionIndex to start clean
     sessionContext.setSessionData([
       slug,
@@ -219,17 +222,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
 
     setFinishedState(sections.LOCATION_INPUT);
     setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
-  };
-
-  const handleNewAddressSubmit = () => {
-    // Reset old values
-    resetChecker();
-    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
-
-    goToQuestionsSection();
-  };
-  const handleDuplicateAddressSubmit = () => {
-    goToQuestionsSection();
   };
 
   return (
@@ -262,7 +254,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           {isActive(sections.LOCATION_INPUT) && (
             <LocationInput
               {...{
-                handleDuplicateAddressSubmit,
                 handleNewAddressSubmit,
                 matomoTrackEvent,
                 topic,

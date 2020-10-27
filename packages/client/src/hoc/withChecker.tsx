@@ -117,7 +117,6 @@ export default (Component: any) => (props: Props) => {
     checkerContext.checker = null;
     return resetChecker();
   }
-
   // In case of error return the ErrorPage, eg. json not found
   if (error) {
     console.error(error);

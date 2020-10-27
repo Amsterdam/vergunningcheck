@@ -36,7 +36,6 @@ const NewCheckerModal: React.FC<{
     const hasError = saveAddress === null;
 
     setError(hasError);
-    setFinished(!!checkerSlug);
 
     if (hasError) {
       matomoTrackEvent({
@@ -44,8 +43,8 @@ const NewCheckerModal: React.FC<{
         name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
       });
     } else {
+      setFinished(!!checkerSlug);
       const doSaveAddress = saveAddress === true;
-
       const saveAddressEvent = doSaveAddress
         ? eventNames.WITH_THE_SAME_ADDRESS
         : eventNames.WITHOUT_THE_SAME_ADDRESS;
