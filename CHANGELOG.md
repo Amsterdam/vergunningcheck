@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.2.1] (2020-10-27)
+## [2.3.0] (2020-10-27)
 
 #### New Features
 * `client`
