@@ -28,7 +28,7 @@ const OloLocationInput: React.FC<OloLocationInputProps> = ({
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Invullen adres - {text.heading}</title>
       </Helmet>
