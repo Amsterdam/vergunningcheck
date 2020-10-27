@@ -74,7 +74,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
             Dit hebt u nodig
           </Paragraph>
           <Paragraph>
-            De informatie over het gebouw die hier boven staat hebt u nodig voor
+            De informatie over het gebouw die hierboven staat hebt u nodig voor
             het doen van de vergunningcheck. Weet u al precies wat u gaat
             bouwen? Houd dan uw bouwplannen ook bij de hand. Ook als uw plannen
             nog niet klaar zijn, kunt u alvast de vergunningcheck doen. U kunt
