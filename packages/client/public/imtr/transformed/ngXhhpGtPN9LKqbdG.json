@@ -1,0 +1,321 @@
+{
+  "permits": [
+    {
+      "version": 27,
+      "name": "Conclusie Ketentest - Boom kappen of snoeien",
+      "questions": [
+        {
+          "text": "Gaat het om een boom of een struik?",
+          "collection": true,
+          "options": ["boom", "struik", "weet niet"],
+          "type": "string",
+          "id": "uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "prio": 10
+        },
+        {
+          "text": "Wat is de conditie van de boom?",
+          "description": "Ook voor het kappen van een dode boom kan een vergunning nodig zijn.",
+          "collection": true,
+          "options": ["ziek", "gezond of dood"],
+          "type": "string",
+          "id": "uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "prio": 20
+        },
+        {
+          "text": "Wat wilt u gaan doen?",
+          "collection": true,
+          "options": [
+            "kappen (de boom wordt verwijderd, de stronk blijft staan)",
+            "rooien (de boom en de stronk worden verwijderd)",
+            "snoeien of iets anders"
+          ],
+          "type": "string",
+          "id": "uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "prio": 30
+        },
+        {
+          "text": "Is de boom geplant in verband met een herplantplicht?",
+          "description": "Als de boom geplant is ter vervanging van een andere boom die gekapt is, dan is de boom geplant in verband met een herplantplicht.",
+          "type": "boolean",
+          "id": "uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "prio": 40
+        },
+        {
+          "text": "Wat is de omtrek van de boom, gemeten op 1.30 m hoogte?",
+          "collection": true,
+          "options": ["31 cm of meer", "minder dan 31 cm"],
+          "type": "string",
+          "id": "uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "prio": 50
+        }
+      ],
+      "inputs": {
+        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
+          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "type": "string"
+        },
+        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
+          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "type": "string"
+        },
+        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
+          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "type": "string"
+        },
+        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
+          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "type": "boolean"
+        },
+        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
+          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "type": "string"
+        }
+      },
+      "decisions": {
+        "_d2b1781a-c211-43cf-bbc7-5a7b6a771c61": {
+          "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"struik\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"weet niet\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"boom\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_e1bb3a62-3ed7-4b03-be11-a75aaa823241": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"boom\"", "\"ziek\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"struik\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"weet niet\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"gezond of dood\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_163e2fc4-4577-4767-a39d-26720c274a5d": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"boom\"",
+                  "\"gezond of dood\"",
+                  "\"snoeien of iets anders\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"struik\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"weet niet\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"ziek\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"kappen (de boom wordt verwijderd, de stronk blijft staan)\""
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"rooien (de boom en de stronk worden verwijderd)\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_49af1a92-db77-462e-b1d2-388786947630": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+            "#input__080bdf26-719c-40ff-b2d6-2c2e562890f4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"boom\"",
+                  "\"gezond of dood\"",
+                  "\"kappen (de boom wordt verwijderd, de stronk blijft staan)\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"boom\"",
+                  "\"gezond of dood\"",
+                  "\"rooien (de boom en de stronk worden verwijderd)\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"struik\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"weet niet\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"ziek\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"snoeien of iets anders\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b78de9c9-e445-45f2-8a7b-09f1d8e3b945": {
+          "requiredInputs": [
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+            "#input__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+            "#input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"boom\"",
+                  "\"gezond of dood\"",
+                  "\"kappen (de boom wordt verwijderd, de stronk blijft staan)\"",
+                  false,
+                  "\"31 cm of meer\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"boom\"",
+                  "\"gezond of dood\"",
+                  "\"rooien (de boom en de stronk worden verwijderd)\"",
+                  false,
+                  "\"31 cm of meer\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"struik\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"weet niet\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"ziek\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"snoeien of iets anders\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"minder dan 31 cm\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_d2b1781a-c211-43cf-bbc7-5a7b6a771c61",
+            "#_e1bb3a62-3ed7-4b03-be11-a75aaa823241",
+            "#_163e2fc4-4577-4767-a39d-26720c274a5d",
+            "#_49af1a92-db77-462e-b1d2-388786947630",
+            "#_b78de9c9-e445-45f2-8a7b-09f1d8e3b945"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"NeemContactOpMet\"", "-", "-", "-", "-"],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", "\"NeemContactOpMet\"", "-", "-", "-"],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", "-", "\"NeemContactOpMet\"", "-", "-"],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "ngXhhpGtPN9LKqbdG"
+}

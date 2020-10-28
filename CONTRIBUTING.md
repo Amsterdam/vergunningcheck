@@ -44,7 +44,7 @@ margin: ${themeSpacing(5, 0, 4)}; // margin: 20px 0 16px;
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
 
-- Follow the install steps in [./apps/imtr/README.md](./apps/imtr/README.md)
+- Follow the install steps in [./packages/imtr/README.md](./packages/imtr/README.md)
 - Make sure you have the api-key in your environment variables. `export STTR_BUILDER_API_KEY=somesecret`
 - Download the xml files and transform them to our json-format from `npm run imtr`
 - Thats it. Fire up the app with `npm start` if you hadn't already. You can now test your new or updated permit.
@@ -53,10 +53,10 @@ If you want to use the latest permit-configuration (XML files from the sttr-buil
 
 If you want to combine 2 or more permits in 1 checker, we need to configure a topic in our imtr-build config.
 
-- Follow the install steps in [./apps/imtr/README.md](./scripts/sttimtrr_build/README.md)
+- Follow the install steps in [./packages/imtr/README.md](./scripts/sttimtrr_build/README.md)
 - First make sure you update your permits so we have all the files we need. See the section above.
-- List the permit-id's you want to combine in [./apps/imtr/src/config.ts](./apps/imtr/src/config.ts) under `topics`.
-  - To find the permit-ids you can use in the `./apps/client/public/imtr/list.source.json`.
+- List the permit-id's you want to combine in [./packages/imtr/src/config.ts](./packages/imtr/src/config.ts) under `topics`.
+  - To find the permit-ids you can use in the `./packages/client/public/imtr/list.source.json`.
   - You have to give your topic a slug as the key. This slug is used in the url by the client-application.
 - Then run `npm run imtr`.
 - Open the app, your checker should be visible in the list.
@@ -67,17 +67,17 @@ A short note about combining permits. Often multiple permits in one checker incl
 
 If you want to tweak texts, the name or the intro of a checker, you need to add some configuration in the client-application.
 
-- Open [config/index.ts](apps/client/src/config/index.ts) in your editor of choice
+- Open [config/index.ts](packages/client/src/config/index.ts) in your editor of choice
 - Create a new `Topic` and fill in the attributes accordingly
-- Duplicate an existing Intro component file in `apps/client/src/intros`, change the content to your wishes and name it **exactly** as you named it in the previous step `intro`
+- Duplicate an existing Intro component file in `packages/client/src/intros`, change the content to your wishes and name it **exactly** as you named it in the previous step `intro`
 
 ## Preparing a UX test
 
 When we want to test our app with users we most follow this procedure:
 
 - Create new branch from the base branch and name it `ux-test-${topic}` where `${topic}` is the topic name and check this out locally
-- In `./apps/client` run `npm run gererate` to get the latest IMTR files and transform them to json
-- Edit the `topic` array in [config/index.ts](apps/client/src/config/index.ts) and make sure you added the correct config.
+- In `./packages/client` run `npm run gererate` to get the latest IMTR files and transform them to json
+- Edit the `topic` array in [config/index.ts](packages/client/src/config/index.ts) and make sure you added the correct config.
 - Push these changes to GitHub
 - Goto _Domain settings_ on Netlify and add a new SubDomain for your `ux-test-${topic}` branch
 - Verify everything is working correctly and share this link with your colleages

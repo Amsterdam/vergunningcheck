@@ -1,8 +1,8 @@
 [build]
   command = "npm run build:netlify"
-  functions = "apps"
+  functions = "packages"
   framework = "#static"
-  publish = "apps/client/build"
+  publish = "packages/client/build"
 
 [[redirects]]
   from = "/*"
