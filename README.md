@@ -52,3 +52,5 @@ First a brief intro on some of the terminology and concepts we use, to make sure
 ## Thanks to
 
 [<img src="https://github.com/Amsterdam/atlas/blob/develop/public/images/browserstack-logo@2x.png" height="60" title="BrowserStack Logo" alt="BrowserStack Logo" />](https://www.browserstack.com/)
+
+...
