@@ -61,7 +61,7 @@ export const addQuotes = (str: string) => `"${str}"`;
  * @param {number} offset - pass an offset to reduce from the total distance
  */
 export const scrollToRef = (
-  ref: { current: { getBoundingClientRect: Function } },
+  ref: { current: { getBoundingClientRect: () => { top: number } } },
   offset: number = 0
 ) =>
   ref &&

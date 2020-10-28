@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { PrintOnly } from "../atoms";
 import { sections } from "../config/matomo";
-import withTracking from "../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 import { imtrOutcomes } from "../imtr_client/models/checker";
 import { removeQuotes } from "../utils";
 import { NEED_CONTACT } from "../utils/test-ids";
@@ -33,7 +33,7 @@ const ConclusionWrapper = styled.div`
   }
 `;
 
-const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
+const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
   checker,
   matomoTrackEvent,
 }) => {

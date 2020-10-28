@@ -5,11 +5,21 @@ import { useParams } from "react-router-dom";
 import { trackingEnabled } from "../config/matomo";
 import { findTopicBySlug } from "../utils";
 
-const withTracking = (Component) => ({ ...props }) => {
+type MatomoEventProps = {
+  action: string;
+  category?: string;
+  name: string;
+};
+
+export type MatomoTrackEventProps = {
+  matomoTrackEvent: (arg0: MatomoEventProps) => void;
+};
+
+const withTracking = (Component: any) => ({ ...props }) => {
   const { trackEvent, trackPageView } = useMatomo();
 
   // @TODO: make a withTracking hook instead of this HOC
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   const topic = findTopicBySlug(slug);
 
   const matomoPageView = () => {
@@ -18,7 +28,7 @@ const withTracking = (Component) => ({ ...props }) => {
     }
   };
 
-  const matomoTrackEvent = ({ action, category, name }) => {
+  const matomoTrackEvent = ({ action, category, name }: MatomoEventProps) => {
     if (trackingEnabled()) {
       trackEvent({
         action: action.toLowerCase(),

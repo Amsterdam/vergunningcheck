@@ -14,7 +14,7 @@ export type AnswersProps = {
   answers: AnswerProps[];
   className: string;
   errors: any;
-  onChange: Function;
+  onChange: () => void;
   questionId: string;
   questionIndex: number;
   userAnswer: string;
@@ -47,7 +47,7 @@ const Answers: React.FC<AnswersProps> = ({
                 error={errors[questionId]}
                 key={answerId}
                 id={answerId}
-                onChange={(e) => onChange(e)}
+                onChange={onChange}
                 value={formValue}
               />
             </Label>

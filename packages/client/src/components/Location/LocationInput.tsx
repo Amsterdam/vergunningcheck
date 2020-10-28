@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../../context";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
@@ -18,12 +18,17 @@ import LocationFinder from "./LocationFinder";
 type ErrorMessage = {
   stack?: object;
 };
-const LocationInput: React.FC<{
+type LocationInputProps = {
   error?: ErrorMessage;
-  handleNewAddressSubmit: Function;
-  matomoTrackEvent: Function;
+  handleNewAddressSubmit: () => void;
   topic: Topic;
-}> = ({ error, handleNewAddressSubmit, matomoTrackEvent, topic }) => {
+};
+const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
+  error,
+  handleNewAddressSubmit,
+  matomoTrackEvent,
+  topic,
+}) => {
   const history = useHistory();
   const { handleSubmit } = useForm();
   // @TODO: replace with custom topic hooks
