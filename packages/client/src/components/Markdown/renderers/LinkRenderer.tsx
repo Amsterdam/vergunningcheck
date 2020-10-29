@@ -1,6 +1,6 @@
 import React from "react";
 
-import { actions, eventNames } from "../../../config/matomo";
+import { actions } from "../../../config/matomo";
 import Link from "../../Link";
 
 type ChildrenProps = {
@@ -23,7 +23,12 @@ const LinkRenderer: React.FC<LinkRendererProps> = ({
   const isPhoneLink = url.protocol === "tel:";
 
   // Pass the text in link (eg: <a>text in link</a>) or `TEXT_LINK` as fallback
-  const { value = eventNames.TEXT_LINK } = children[0]?.props;
+  const { value } = children[0]?.props || "";
+
+  // Don't return empty link
+  if (!value) {
+    return null;
+  }
 
   /**
    * If it's not a phone link make sure we open in new tab and
