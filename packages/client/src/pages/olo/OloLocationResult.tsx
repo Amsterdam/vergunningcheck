@@ -57,7 +57,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Adresgegevens - {text.heading}</title>
       </Helmet>

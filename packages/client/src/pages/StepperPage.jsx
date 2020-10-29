@@ -57,7 +57,7 @@ const StepperPage = ({ checker, topic }) => {
   };
 
   return (
-    <Layout checker={checker}>
+    <Layout>
       <Helmet>
         <title>Stepper Page</title>
       </Helmet>

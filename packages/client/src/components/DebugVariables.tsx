@@ -17,6 +17,11 @@ import HiddenDebugInfo from "./HiddenDebugInfo";
 type DebugVariablesProps = {};
 
 const DebugVariables: React.FC<DebugVariablesProps> = () => {
+  // Do not render when testing with Jest
+  if (process.env.JEST_WORKER_ID) {
+    return null;
+  }
+
   const checkerContext = useContext(CheckerContext);
   const topic = checkerContext.topic as Topic; // topic can be null here.
   return (
