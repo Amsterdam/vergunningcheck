@@ -2,37 +2,46 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import matchMedia from "../../__mocks__/matchMedia";
+import { Topic } from "../../config";
 import { findTopicBySlug } from "../../utils";
 import { render, screen } from "../../utils/test-utils";
 import DefaultLayout from "./DefaultLayout";
 
 Object.defineProperty(window, "matchMedia", matchMedia);
 
+const topicMock = "dakraam-plaatsen";
+const topicUrlMock = `/${topicMock}`;
+const topic = findTopicBySlug(topicMock) as Topic;
+
 jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
+  ...(jest.requireActual("react-router-dom") as any),
   useParams: () => ({ slug: "dakraam-plaatsen" }),
 }));
 
-const topicMock = "dakraam-plaatsen";
-const topicUrlMock = `/${topicMock}`;
-const topic = findTopicBySlug(topicMock);
-
-const Wrapper = ({ children, ...otherProps }) => {
+const Wrapper = ({
+  children,
+  formTitle,
+  heading,
+}: {
+  children: React.ReactNode;
+  formTitle: string;
+  heading: string;
+}) => {
   return (
     <MemoryRouter initialEntries={[topicUrlMock]}>
-      <DefaultLayout {...otherProps}>{children}</DefaultLayout>
+      <DefaultLayout
+        {...{
+          formTitle,
+          heading,
+        }}
+      >
+        {children}
+      </DefaultLayout>
     </MemoryRouter>
   );
 };
 
 describe("DefaultLayout in STTR flow", () => {
-  beforeEach(() => {
-    jest.mock("react-router-dom", () => ({
-      ...jest.requireActual("react-router-dom"),
-      useParams: () => ({ slug: "dakraam-plaatsen" }),
-    }));
-  });
-
   it("renders with topic titles", () => {
     render(
       <Wrapper heading="heading" formTitle="formTitle">
