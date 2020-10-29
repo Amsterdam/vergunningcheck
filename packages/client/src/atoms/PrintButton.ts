@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 
 type Props = {
   marginBottom?: number;
-  marginTop?: number;
 };
 
 export default styled(Button)<Props>`
