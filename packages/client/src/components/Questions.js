@@ -38,10 +38,10 @@ const Questions = ({
       action: checker.stack[questionIndex].text,
       name: eventNames.GOTO_CONCLUSION,
     });
-    // Wrap in a timeout to prevent a miscalculation when the `Question` component collapses
-    setTimeout(() => {
+    // Wrap the function to prevent a miscalculation when the `Question` component collapses
+    setImmediate(() => {
       scrollToRef(conclusionRef, 20);
-    }, 0);
+    });
   }, [
     checker.stack,
     matomoTrackEvent,
