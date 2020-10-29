@@ -1,16 +1,12 @@
-import { Heading, Paragraph, themeSpacing } from "@amsterdam/asc-ui";
+import { Heading, themeSpacing } from "@amsterdam/asc-ui";
 import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
-
-const ConclusionOutcomeWrapper = styled.div`
-  margin-bottom: ${themeSpacing(9)};
-`;
 
 type ConclusionContentProps = {
   description?: string;
@@ -23,13 +19,26 @@ type ConclusionContentProps = {
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
   matomoTrackEvent: Function;
+  showDiscaimer?: boolean;
 };
+
+const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
+  margin-bottom: ${themeSpacing(9)};
+
+  ${({ showDiscaimer }) =>
+    showDiscaimer &&
+    css`
+      margin-bottom: ${themeSpacing(15)};
+    `};
+`;
 
 const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   conclusionContent,
   matomoTrackEvent,
+  showDiscaimer,
 }) => {
   const { footerContent, mainContent, title } = conclusionContent;
+
   useEffect(() => {
     matomoTrackEvent({
       action: actions.CONCLUSION_OUTCOME,
@@ -47,13 +56,12 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   };
 
   return (
-    <ConclusionOutcomeWrapper>
-      <Paragraph gutterBottom={isMobile ? 16 : 20}>
-        U bent klaar met de vergunningcheck. Dit is de uitkomst:
-      </Paragraph>
-
+    <ConclusionOutcomeWrapper {...{ showDiscaimer }}>
+      <ComponentWrapper marginBottom={16} />
       <ComponentWrapper marginBottom={24}>
-        <Heading forwardedAs="h2">{title}</Heading>
+        <Heading forwardedAs="h2" styleAs="h1">
+          {title}
+        </Heading>
       </ComponentWrapper>
 
       {mainContent}
@@ -66,7 +74,7 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
             onClick={handlePrintButton}
             variant="textButton"
           >
-            Conclusie opslaan
+            Uitkomst opslaan
           </PrintButton>
         )}
       </HideForPrint>

@@ -2,19 +2,14 @@ import { themeSpacing } from "@amsterdam/asc-ui";
 import React from "react";
 import styled from "styled-components";
 
-import { PrintOnly } from "../atoms";
-import { sections } from "../config/matomo";
-import withTracking from "../hoc/withTracking";
-import { imtrOutcomes } from "../imtr_client/models/checker";
-import { removeQuotes } from "../utils";
-import { NEED_CONTACT } from "../utils/test-ids";
-import {
-  ConclusionOutcome,
-  NeedPermitContent,
-  NoPermitDescription,
-} from "./Conclusion/";
-import Disclaimer from "./Disclaimer";
-import Markdown from "./Markdown";
+import { sections } from "../../config/matomo";
+import withTracking from "../../hoc/withTracking";
+import { imtrOutcomes } from "../../imtr_client/models/checker";
+import { removeQuotes } from "../../utils";
+import { NEED_CONTACT } from "../../utils/test-ids";
+import Disclaimer from "../Disclaimer";
+import Markdown from "../Markdown";
+import { ConclusionOutcome, NeedPermitContent, NoPermitDescription } from ".";
 
 // @TODO: import from somewehere else...
 type permitProps = {
@@ -87,7 +82,7 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
   };
 
   const needPermitContent = {
-    mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
+    mainContent: <NeedPermitContent />,
     title: "U hebt een omgevingsvergunning nodig.",
   };
 
@@ -102,18 +97,19 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
     ? needPermitContent
     : permitFreeContent;
 
+  const showDiscaimer = !contactConclusion;
+
   return (
     <ConclusionWrapper>
       <ConclusionOutcome
         {...{
           conclusionContent,
           matomoTrackEvent,
+          showDiscaimer,
         }}
       />
 
-      <PrintOnly avoidPageBreak withBorder>
-        <Disclaimer />
-      </PrintOnly>
+      {showDiscaimer && <Disclaimer />}
     </ConclusionWrapper>
   );
 };

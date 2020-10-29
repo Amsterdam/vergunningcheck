@@ -43,7 +43,7 @@ export const routeConfig = [
     ),
     exact: true,
     name: "checker",
-    path: "/:slug/vragen-en-conclusie",
+    path: "/:slug/vragen-en-uitkomst",
   },
   {
     component: React.lazy(() =>

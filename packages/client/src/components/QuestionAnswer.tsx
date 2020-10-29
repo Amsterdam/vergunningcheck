@@ -2,13 +2,13 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
+import QuestionAlert from "../atoms/QuestionAlert";
 import { removeQuotes } from "../utils";
-import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {
   disabled: boolean;
   questionNeedsContactExit?: boolean;
-  showConclusionAlert: boolean;
+  showQuestionAlert: boolean;
   userAnswer: string;
 };
 
@@ -18,7 +18,7 @@ const QuestionAnswer: React.FC<
   disabled,
   onClick,
   questionNeedsContactExit,
-  showConclusionAlert,
+  showQuestionAlert,
   userAnswer,
 }) => {
   return (
@@ -27,8 +27,8 @@ const QuestionAnswer: React.FC<
         <TextToEdit>{removeQuotes(userAnswer)}</TextToEdit>
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
-      {showConclusionAlert && (
-        <ConclusionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
+      {showQuestionAlert && (
+        <QuestionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
       )}
     </>
   );

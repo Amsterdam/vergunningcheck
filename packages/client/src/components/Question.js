@@ -2,13 +2,12 @@ import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { ComponentWrapper } from "../atoms";
+import { ComponentWrapper, QuestionAlert } from "../atoms";
 import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers from "./Answers";
-import ConclusionAlert from "./ConclusionAlert";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
@@ -48,7 +47,7 @@ const Question = ({
   saveAnswer,
   setEditQuestion,
   shouldGoToConlusion,
-  showConclusionAlert,
+  showQuestionAlert,
   showNext,
   userAnswer,
 }) => {
@@ -144,12 +143,10 @@ const Question = ({
         questionIndex={questionIndex}
         userAnswer={userAnswer}
       />
-      {showConclusionAlert && (
-        <ConclusionAlert {...{ questionNeedsContactExit }} />
-      )}
+      {showQuestionAlert && <QuestionAlert {...{ questionNeedsContactExit }} />}
       <Nav
         formEnds={shouldGoToConlusion()}
-        nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
+        nextText={shouldGoToConlusion() ? "Naar de uitkomst" : "Volgende vraag"}
         showPrev={questionIndex > 0} // Do not show back-button at the first question
         {...{
           onGoToPrev,
@@ -182,7 +179,7 @@ Question.propTypes = {
   className: PropTypes.string,
   headingAs: PropTypes.string,
   questionNeedsContactExit: PropTypes.bool,
-  showConclusionAlert: PropTypes.bool,
+  showQuestionAlert: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
   required: PropTypes.bool,

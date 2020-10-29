@@ -291,7 +291,7 @@ const Questions = ({
         }
 
         // Check if currect question is causing a permit requirement
-        const showConclusionAlert = !!permitsPerQuestion[i];
+        const showQuestionAlert = !!permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -317,7 +317,7 @@ const Questions = ({
                   checker,
                   questionIndex,
                   shouldGoToConlusion,
-                  showConclusionAlert,
+                  showQuestionAlert,
                   userAnswer,
                 }}
               />
@@ -326,7 +326,7 @@ const Questions = ({
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
                 questionNeedsContactExit={checker.needContactExit(q)}
-                {...{ showConclusionAlert, userAnswer }}
+                {...{ showQuestionAlert: showQuestionAlert, userAnswer }}
               />
             )}
           </StepByStepItem>
@@ -348,7 +348,7 @@ const Questions = ({
         const index = i + 1 + checker.stack.length;
 
         // Check if current question is causing a conclusion
-        const showConclusionAlert = !!permitsPerQuestion[index];
+        const showQuestionAlert = !!permitsPerQuestion[index];
 
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
@@ -363,7 +363,11 @@ const Questions = ({
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              {...{ disabled, showConclusionAlert, userAnswer }}
+              {...{
+                disabled,
+                showQuestionAlert: showQuestionAlert,
+                userAnswer,
+              }}
             />
           </StepByStepItem>
         );
