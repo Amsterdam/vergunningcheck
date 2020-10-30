@@ -50,15 +50,6 @@ export const generateOloUrl = ({
 
 export const topics: Topic[] = [
   {
-    hasIMTR: false,
-    name: "Kappen of snoeien",
-    redirectToOlo: true,
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "Vergunningcheck kappen of snoeien",
-    },
-  },
-  {
     hasIMTR: true,
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
@@ -136,6 +127,15 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
+    },
+  },
+  {
+    hasIMTR: false,
+    name: "Kappen of snoeien",
+    redirectToOlo: true,
+    slug: "kappen-of-snoeien",
+    text: {
+      heading: "Vergunningcheck kappen of snoeien",
     },
   },
 ];

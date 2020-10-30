@@ -48,7 +48,7 @@ const IntroPage: React.FC<IntroPageProps> = ({
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Inleiding - {text.heading}</title>
       </Helmet>

@@ -1,17 +1,16 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
-import Context from "../../__mocks__/context";
 import matchMedia from "../../__mocks__/matchMedia";
 import { findTopicBySlug } from "../../utils";
-import { render } from "../../utils/test-utils";
+import { render, screen } from "../../utils/test-utils";
 import DefaultLayout from "./DefaultLayout";
 
 Object.defineProperty(window, "matchMedia", matchMedia);
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useParams: () => ({}),
+  useParams: () => ({ slug: "dakraam-plaatsen" }),
 }));
 
 const topicMock = "dakraam-plaatsen";
@@ -20,27 +19,31 @@ const topic = findTopicBySlug(topicMock);
 
 const Wrapper = ({ children, ...otherProps }) => {
   return (
-    <Context topicMock={topic}>
-      <MemoryRouter initialEntries={[topicUrlMock]}>
-        <DefaultLayout {...otherProps}>{children}</DefaultLayout>
-      </MemoryRouter>
-    </Context>
+    <MemoryRouter initialEntries={[topicUrlMock]}>
+      <DefaultLayout {...otherProps}>{children}</DefaultLayout>
+    </MemoryRouter>
   );
 };
 
-describe("DefaultLayout", () => {
-  it("renders with custom heading", () => {
-    const { queryByText } = render(
-      <Wrapper heading="title">DefaultLayout</Wrapper>
-    );
-    expect(queryByText("DefaultLayout")).toBeInTheDocument();
-    expect(queryByText("title")).toBeInTheDocument();
+describe("DefaultLayout in STTR flow", () => {
+  beforeEach(() => {
+    jest.mock("react-router-dom", () => ({
+      ...jest.requireActual("react-router-dom"),
+      useParams: () => ({ slug: "dakraam-plaatsen" }),
+    }));
   });
-  it("renders with topic heading", () => {
-    const { queryByText } = render(
-      <Wrapper topic={topic}>DefaultLayout</Wrapper>
+
+  it("renders with topic titles", () => {
+    render(
+      <Wrapper heading="heading" formTitle="formTitle">
+        DefaultLayout
+      </Wrapper>
     );
-    expect(queryByText("DefaultLayout")).toBeInTheDocument();
-    expect(queryByText(topic.text.heading)).toBeInTheDocument();
+    expect(screen.queryByText("DefaultLayout")).toBeInTheDocument();
+    expect(screen.queryByText("formTitle")).toBeInTheDocument();
+    expect(screen.queryByText(topic.name)).toBeInTheDocument();
+
+    // For now the heading should NOT render, because the "slug" is "dakraam-plaatsen"
+    expect(screen.queryByText("heading")).not.toBeInTheDocument();
   });
 });

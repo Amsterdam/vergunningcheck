@@ -225,7 +225,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
