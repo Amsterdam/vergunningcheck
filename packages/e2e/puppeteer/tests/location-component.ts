@@ -2,7 +2,7 @@ import { expect } from "chai";
 import puppeteer from "puppeteer";
 import { flows, host, puppeteerOptions, selectors } from "../config";
 import { FlowOptions } from "../types";
-import { random } from "mocking/src/util";
+import { random } from "@vergunningcheck/mocking/src/util";
 import {
   getFixturesByProperties,
   NO_MONUMENT,
@@ -12,7 +12,7 @@ import {
   MUNICIPAL_CITY_SCAPE,
   NATIONAL_CITY_SCAPE,
   uniqueFixtures,
-} from "mocking/src/restriction";
+} from "@vergunningcheck/mocking/src/restriction";
 
 // Disable the warning "MaxListenersExceededWarning: Possible EventEmitter memory leak detected"
 // See: https://github.com/puppeteer/puppeteer/issues/594

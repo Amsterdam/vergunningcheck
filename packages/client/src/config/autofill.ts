@@ -4,7 +4,7 @@ import {
   Checker,
   Question,
   addQuotes,
-} from "imtr_client";
+} from "@vergunningcheck/imtr_client";
 
 import { getRestrictionByTypeName } from "../utils";
 

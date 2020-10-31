@@ -10,7 +10,6 @@
     "node": "14"
   },
   "scripts": {
-    "_prestart": "npm install",
     "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` REACT_APP_GIT_BRANCH=`git rev-parse --abbrev-ref HEAD` react-app-rewired start",
     "start:prod": "REACT_APP_GRAPHQL_API_URL=http://localhost:4000/graphql npm run build; serve -s build",
     "build": "react-app-rewired build",
@@ -53,7 +52,7 @@
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix --max-warnings=0",
-      "react-scripts test --bail --findRelatedTests --watchAll=false --env=jest-environment-jsdom-sixteen"
+      "react-app-rewired test --bail --findRelatedTests --watchAll=false --env=jest-environment-jsdom-sixteen"
     ]
   },
   "dependencies": {

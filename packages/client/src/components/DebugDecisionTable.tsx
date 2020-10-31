@@ -1,8 +1,7 @@
 /* eslint-disable */
 /* istanbul ignore file */
 import { Accordion } from "@amsterdam/asc-ui";
-import { Checker } from "imtr_client";
-import Question from "imtr_client/src/models/question";
+import { Checker, Question } from "@vergunningcheck/imtr_client";
 import React, { useContext } from "react";
 
 import { Topic } from "../config";
