@@ -20,7 +20,7 @@ ARG BUILD_URL
 ARG BUILD_NUMBER
 ARG REACT_APP_GRAPHQL_API_URL
 
-RUN ./node_modules/.bin/lerna run build --no-color
+RUN ./node_modules/.bin/lerna run build
 
 # Release
 FROM nginx:stable-alpine
