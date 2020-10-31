@@ -4,7 +4,7 @@ WORKDIR /app/
 COPY . ./
 
 # Use regular (dev) install here, no `ci`
-RUN npm install --unsafe-perm
+RUN npm ci --unsafe-perm
 
 # Build
 RUN ./node_modules/.bin/lerna run build

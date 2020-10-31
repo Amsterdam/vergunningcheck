@@ -40,13 +40,31 @@ To simplify things you can also use:
 margin: ${themeSpacing(5, 0, 4)}; // margin: 20px 0 16px;
 ```
 
+## (un-)install npm package
+
+Because we use Lerna, unfortunately we can't safely use `npm` in one of the lerna-managed
+packages. This is not a bug. Therefore we need to do a little additional work.
+
+To add an npm-package to one of our managed lerna-packages, run:
+
+```
+lerna add cowsay --scope=@vergunningcheck/client
+```
+
+To remove a package, remove the dependency from the package.json manually, then:
+
+```
+lerna clean -y
+lerna bootstrap
+```
+
 ## Link lerna packages
 
 If you want to install one package from `./packages/` into another, you can use lerna to link them.
 Ie. if you want to install `mocking` into `graphql`, run:
 
 ```
-lerna add mocking --scope=graphql
+lerna add @vergunningcheck/mocking --scope=graphql
 ```
 
 TODO find alternative to:
