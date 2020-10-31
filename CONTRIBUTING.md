@@ -51,7 +51,7 @@ To add an npm-package to one of our managed lerna-packages, run:
 lerna add cowsay --scope=@vergunningcheck/client
 ```
 
-To remove a package, remove the dependency from the package.json manually, then:
+To remove a package, remove the dependency from the package.json manually, then;
 
 ```
 lerna clean -y
