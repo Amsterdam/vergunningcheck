@@ -1,21 +1,10 @@
 FROM node:buster
 
 WORKDIR /app/
+COPY . ./
 
-# Global / system requirements
-RUN apt-get install git
-
-# Fetch the code
-COPY --chown=node:node . ./
-# RUN git clone https://github.com/Amsterdam/vergunningcheck.git .
-# RUN git checkout feature/imtr-client-typescript
-
-# USER node
-
-# Use regular (dev) install here, no ci
+# Use regular (dev) install here, no `ci`
 RUN npm install --unsafe-perm
 
-# Install
-# RUN npm run build:netlify
-# RUN ./node_modules/.bin/lerna bootstrap
+# Build
 RUN ./node_modules/.bin/lerna run build
