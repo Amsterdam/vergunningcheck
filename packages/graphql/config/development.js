@@ -4,7 +4,7 @@
  * If you want to make changes for your env only create a `local.js`
  * file in this directory.
  */
-const merge = require("lodash.merge");
+const merge = require("lodash/merge");
 const base = require("./default");
 
 const config = {

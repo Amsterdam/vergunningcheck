@@ -1,4 +1,4 @@
-const uniqBy = require("lodash.uniqby");
+const uniqBy = require("lodash/uniqBy");
 const debug = require("debug")("graphql:address");
 const { GraphQLError } = require("graphql");
 const { gql } = require("../util");

@@ -1,4 +1,4 @@
-const get = require("lodash.get");
+const get = require("lodash/get");
 const { withCache, postXml } = require("../../util");
 const config = require("../../../config").loaders.zoningPlan;
 
