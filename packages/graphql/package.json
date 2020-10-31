@@ -14,7 +14,6 @@
     "prestart": "npm install",
     "start": "NODE_ENV=development nodemon .",
     "start:prod": "NODE_ENV=production node .",
-    "build:netlify": "npm ci",
     "test": "CONFIG_FILE=test jest",
     "test:record": "POLLY_MODE=record npm test",
     "test:coverage": "npm test -- --watchAll=false --collect-coverage",
