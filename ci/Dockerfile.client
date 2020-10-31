@@ -10,7 +10,8 @@ COPY . ./
 # RUN npm audit --production
 
 RUN npm ci --no-color -q
-RUN CI=true npm test
+
+RUN cd packages/client/ && CI=true npm test
 
 ARG JOB_NAME
 ARG JENKINS_URL
