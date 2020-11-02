@@ -77,17 +77,6 @@ function getDecision(id, decisionConfig, questions) {
   );
 }
 
-// export type ???Props = {
-//   decisions: {
-//     [id: string]: Decision;
-//   };
-//   inputs: {
-//     [id: string]: Input;
-//   };
-//   name: string;
-//   questions: Question[];
-// }
-
 export type Props = {
   permits: {},
 };
