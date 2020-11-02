@@ -4,15 +4,16 @@ import React, { useContext } from "react";
 import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const EditLocationModal: React.FC<{
-  matomoTrackEvent: Function;
-  resetChecker: Function;
-  slug: string;
-}> = ({ matomoTrackEvent, resetChecker, slug }) => {
+const EditLocationModal: React.FC<
+  {
+    resetChecker: () => void;
+    slug: string;
+  } & MatomoTrackEventProps
+> = ({ matomoTrackEvent, resetChecker, slug }) => {
   // @TODO: replace this with React custom hooks
   const sessionContext = useContext<
     SessionDataType & { setSessionData?: any; resetSessionData?: any }
@@ -42,7 +43,7 @@ const EditLocationModal: React.FC<{
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}
       heading="Weet u zeker dat u het adres wilt wijzigen?"
-      openButtonRenderer={({ openModal }: { openModal: Function }) => (
+      openButtonRenderer={({ openModal }: { openModal: () => void }) => (
         <EditButton
           dataTestid={LOCATION_MODAL_OPEN_BUTTON}
           onClick={() => {

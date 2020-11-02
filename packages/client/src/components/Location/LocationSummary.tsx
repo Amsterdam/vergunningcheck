@@ -18,9 +18,8 @@ import EditLocationModal from "./EditLocationModal";
 type LocationSummaryProps = {
   addressFromLocation?: any;
   isBelowInputFields?: boolean;
-  matomoTrackEvent?: Function;
-  resetChecker?: Function;
-  setActiveState?: Function;
+  resetChecker?: () => void;
+  setActiveState?: () => void;
   showEditLocationModal?: boolean;
   showTitle?: boolean;
   topic: Topic; // TODO: Replace with react-hook

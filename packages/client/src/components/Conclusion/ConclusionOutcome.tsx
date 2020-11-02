@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
+import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
@@ -32,11 +33,9 @@ const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
     `};
 `;
 
-const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
-  conclusionContent,
-  matomoTrackEvent,
-  showDiscaimer,
-}) => {
+const ConclusionOutcome: React.FC<
+  ConclusionOutcomeProps & MatomoTrackEventProps
+> = ({ conclusionContent, matomoTrackEvent, showDiscaimer }) => {
   const { footerContent, mainContent, title } = conclusionContent;
 
   useEffect(() => {

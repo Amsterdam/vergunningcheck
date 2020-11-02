@@ -8,16 +8,15 @@ import Nav from "../components/Nav";
 import { Topic } from "../config";
 import { actions, sections } from "../config/matomo";
 import withChecker from "../hoc/withChecker";
-import withTracking from "../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 import { geturl, routes } from "../routes";
 
 export type IntroPageProps = {
   checker?: any;
-  matomoTrackEvent: Function;
   topic: Topic;
 };
 
-const IntroPage: React.FC<IntroPageProps> = ({
+const IntroPage: React.FC<IntroPageProps & MatomoTrackEventProps> = ({
   checker,
   matomoTrackEvent,
   topic,
