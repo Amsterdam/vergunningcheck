@@ -1,4 +1,3 @@
-// const https = require("https");
 const debug = require("debug")("graphql:util");
 const xml2js = require("xml2js");
 const fetch = require("node-fetch");

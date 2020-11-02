@@ -7,17 +7,6 @@ import { collectionOfType } from "../utils";
 const DESC_MAX_LENGTH = 2048;
 export const questionTypes = ["boolean", "string", "number", "geo"];
 
-// interface QuestionProps {
-//   id: string;
-//   type: string;
-//   text: string;
-//   description: string;
-//   answer: string | boolean | number | string[];
-//   options: string[];
-//   uuid: string;
-//   multipleAnswers: boolean;
-// }
-
 /**
  * @param answer the values inputs should have
  * @param autofill - name of autofill requirement
