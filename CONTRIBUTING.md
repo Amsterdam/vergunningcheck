@@ -67,14 +67,6 @@ Ie. if you want to install `mocking` into `graphql`, run:
 lerna add @vergunningcheck/mocking --scope=graphql
 ```
 
-TODO find alternative to:
-
-```
-rm `find . -name package-lock.json | grep -v node_m`
-rm -rf node_modules packages/*/node_modules
-npm i
-```
-
 ## Updating permits
 
 If you want to use the latest permit-configuration (XML files from the sttr-builder) follow these steps.
