@@ -1,17 +1,17 @@
 {
-  "name": "vergunningcheck-mocking",
+  "name": "@vergunningcheck/mocking",
+  "private": true,
   "version": "2.3.0",
   "description": "A collection of mock data/utils that are meant be used by the Vergunningcheck application.",
   "keywords": [],
   "author": "Gemeente Amsterdam",
   "license": "ISC",
   "main": "src/",
-  "private": true,
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "precommit": "lint-staged",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "test:coverage": "jest --coverage"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -30,5 +30,9 @@
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@types/lodash.uniqby": "^4.7.6",
+    "lodash.uniqby": "^4.7.0"
   }
 }

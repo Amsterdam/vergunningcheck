@@ -1,5 +1,5 @@
 {
-  "name": "vergunningcheck-graphql",
+  "name": "@vergunningcheck/graphql",
   "private": true,
   "version": "2.3.0",
   "keywords": [],
@@ -16,6 +16,7 @@
     "start:prod": "NODE_ENV=production node .",
     "build:netlify": "npm ci",
     "test": "CONFIG_FILE=test jest",
+    "test:record": "POLLY_MODE=record npm test",
     "test:coverage": "npm test -- --watchAll=false --collect-coverage",
     "precommit": "lint-staged",
     "lint": "eslint ."
@@ -33,15 +34,20 @@
     "graphql": "^15.1.0",
     "graphql-depth-limit": "^1.1.0",
     "helmet": "^4.0.0",
-    "lodash": "^4.17.19",
-    "lodash.uniqby": "^4.7.0",
+    "lodash": "^4.17.20",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "redis": "^3.0.2",
     "serverless-http": "^2.5.0",
+    "uuid": "^8.3.1",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
+    "@pollyjs/adapter-fetch": "^5.0.0",
+    "@pollyjs/adapter-node-http": "^5.0.0",
+    "@pollyjs/core": "^5.0.0",
+    "@pollyjs/persister-fs": "^5.0.0",
+    "@spotify/polly-jest-presets": "^3.1.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -52,7 +58,7 @@
     "prettier": "^2.0.5",
     "redis-mock": "^0.53.0",
     "request": "^2.88.2",
-    "rewire": "^5.0.0"
+    "setup-polly-jest": "^0.9.1"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -60,7 +66,15 @@
     ],
     "testPathIgnorePatterns": [
       "config/test"
-    ]
+    ],
+    "setupFilesAfterEnv": [
+      "@spotify/polly-jest-presets"
+    ],
+    "globals": {
+      "pollyConfig": {
+        "expiresIn": "2 months"
+      }
+    }
   },
   "lint-staged": {
     "*.{js}": [

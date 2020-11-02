@@ -1,9 +1,16 @@
-const cityScape = require("rewire")(".");
-const { reducer } = cityScape.__get__("loader");
+require("@spotify/polly-jest-presets");
+const { loaderFunctionsTest } = require("../../testUtils");
+const cityScape = require(".");
+const mock = require("./__mocks__/1477.json");
 
-describe("cityScape", () => {
+const key1 = "f0ec3ea9-2ce4-4022-aba2-ab63ec448db9";
+const key2 = "1477";
+
+describe("CityScape loader", () => {
+  describe("Basic functions", loaderFunctionsTest(cityScape, key1, key2));
+
   test("reducer", async () => {
-    expect(reducer(require("./__mocks__/1477.json"))).toMatchSnapshot();
+    expect(cityScape.reducer(mock)).toMatchSnapshot();
   });
 
   test("findAddress", async () => {
