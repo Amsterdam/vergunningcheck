@@ -78,7 +78,7 @@ import { format, strFmt } from "./util.ts";
 export default (json: DMNDocument): JSONPermit => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
   return {
-    // @TODO: fix ordering after Code-review
+    // TODO: fix ordering after Code-review
     name: definition.attributes.name,
     questions: getQuestions(definition[DMN_EXTENSION_ELEMENTS]),
     inputs: getInputs(definition[DMN_INPUT_DATA]),
@@ -201,12 +201,6 @@ const getQuestions = (
       const dataType = question[UITV_DATA_TYPE];
       const imtrType = dataType;
       const desc = rule[CONTENT_EXECUTION_RULE_EXPLANATION]?.[0];
-
-      // TODO: decide if we want to use 'important' (nl: belangrijk) which indicates if a description
-      // is important for the end-user to be able to answer the question
-      // if (desc) {
-      //   const important = find(desc, "content:belangrijk")[0];
-      // }
 
       result = {
         text: strFmt(question[UITV_QUESTION_TEXT]),
