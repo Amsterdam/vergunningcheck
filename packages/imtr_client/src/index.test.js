@@ -1,33 +1,4 @@
-// import fs from "fs";
-// import path from "path";
-// import { promisify } from "util";
 import getChecker from "./index";
-
-// const readdir = promisify(fs.readdir);
-
-// const buildDir = path.join(__dirname, "../../.build");
-
-// const randbool = () => Math.random() >= 0.5;
-// const getConfigFromFile = (filename) => {
-//   const filepath = path.join(buildDir, filename);
-//   const buffer = fs.readFileSync(filepath);
-//   return JSON.parse(buffer.toString());
-// };
-
-// const getCheckerFromFile = (filename) =>
-//   getChecker(getConfigFromFile(filename));
-
-// const play = (checker) => {
-//   let question = checker.next();
-//   while (question) {
-//     if (question.type === "boolean") {
-//       question.setAnswer(randbool());
-//     } else {
-//       question.setAnswer("sure! why not.");
-//     }
-//     question = checker.next();
-//   }
-// };
 
 describe("imtr client", () => {
   test("getChecker", () => {

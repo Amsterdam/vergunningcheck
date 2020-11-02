@@ -4,7 +4,6 @@ const config = require("../config");
 
 // Setup cache
 const redisConfig = config.cache.redis;
-// console.log("redis module", redisConfig, redis);
 const client = redisConfig && redis.createClient(redisConfig);
 
 const cachePrefix = "4_";
