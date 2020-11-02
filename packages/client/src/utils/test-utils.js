@@ -13,19 +13,17 @@ import { SessionProvider } from "../context";
 
 dotenv.config();
 
-const AllTheProviders = ({ children, mocks }) => {
-  return (
-    <SessionProvider>
-      <ApolloProvider client={getTestClient(mocks ? mocks : [])}>
-        <ThemeProvider>
-          <MatomoProvider value={createInstance(matomo)}>
-            {children}
-          </MatomoProvider>
-        </ThemeProvider>
-      </ApolloProvider>
-    </SessionProvider>
-  );
-};
+const AllTheProviders = ({ children, mocks }) => (
+  <SessionProvider>
+    <ApolloProvider client={getTestClient(mocks ? mocks : [])}>
+      <ThemeProvider>
+        <MatomoProvider value={createInstance(matomo)}>
+          {children}
+        </MatomoProvider>
+      </ThemeProvider>
+    </ApolloProvider>
+  </SessionProvider>
+);
 
 export const getTestClient = (mocks) =>
   new ApolloClient({
