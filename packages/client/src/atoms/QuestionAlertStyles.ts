@@ -9,10 +9,8 @@ export const QuestionAlertStyle = styled(Alert)<QuestionAlertProps>`
   /* @TODO: add yellow color to ASC-UI and replace it here */
   background-color: #f6c948;
 
-  ${(props) =>
+  ${({ marginBottom }) =>
     css`
-      margin-bottom: ${props.marginBottom
-        ? props.marginBottom + "px"
-        : themeSpacing(6)};
+      margin-bottom: ${marginBottom ? marginBottom + "px" : themeSpacing(6)};
     `}
 `;
