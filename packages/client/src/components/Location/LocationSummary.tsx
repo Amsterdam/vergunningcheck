@@ -18,12 +18,11 @@ import EditLocationModal from "./EditLocationModal";
 type LocationSummaryProps = {
   addressFromLocation?: any;
   isBelowInputFields?: boolean;
-  matomoTrackEvent?: Function;
-  resetChecker?: Function;
-  setActiveState?: Function;
+  resetChecker?: () => void;
+  setActiveState?: () => void;
   showEditLocationModal?: boolean;
   showTitle?: boolean;
-  topic: Topic;
+  topic: Topic; // TODO: Replace with react-hook
 };
 
 const StyledList = styled(List)<{
@@ -63,8 +62,8 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
   showTitle,
   topic,
 }) => {
+  // TODO: replace with react hooks
   const { hasIMTR, slug } = topic;
-  // @TODO: replace with custom topic hooks
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation

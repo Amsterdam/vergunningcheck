@@ -10,7 +10,7 @@
   "scripts": {
     "start": "lerna run --parallel --no-bail start",
     "start:prod": "lerna run --parallel start:prod",
-    "build:netlify": "lerna run build:netlify",
+    "build:netlify": "lerna bootstrap && lerna run build:netlify",
     "start:netlify": "netlify dev",
     "build:size-report": "lerna run build:size-report",
     "test": "CI=true lerna run test",

@@ -1,6 +1,7 @@
+const get = require("lodash/get");
 const { withCache, postXml } = require("../../util");
 const config = require("../../../config").loaders.zoningPlan;
-const _ = require("lodash");
+
 const TTL = config.cacheTimeout;
 
 const getPostBody = (lat, lon) => `
@@ -67,13 +68,12 @@ const loader = {
     o["wfs:FeatureCollection"]["wfs:member"]
       // .filter(item => !!item["app:Bestemmingsplangebied"])
       .map((plans) => ({
-        name: _.get(Object.values(plans).pop(), "0.app:naam.0"),
+        name: get(Object.values(plans).pop(), "0.app:naam.0"),
       })),
-  load: (key) =>
+  fetch: (key) =>
     postXml(config.url, getPostBody(...key.split(" "))).then(loader.reducer),
-  cached: (key) => withCache(`zoningPlan:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+  cached: (key) => withCache(`zoningPlan:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

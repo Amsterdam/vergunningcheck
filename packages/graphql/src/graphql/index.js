@@ -4,20 +4,20 @@ const { makeExecutableSchema } = require("apollo-server");
 const depthLimit = require("graphql-depth-limit");
 const { graphql: config } = require("../../config");
 
-const bagSearch = require("../loaders/bagSearch");
-const bag = require("../loaders/bag");
-const monument = require("../loaders/monument");
-const geoSearch = require("../loaders/geoSearch");
-const zoningPlan = require("../loaders/zoningPlan");
+const bagSearchLoader = require("../loaders/bagSearch");
+const bagLoader = require("../loaders/bag");
+const monumentLoader = require("../loaders/monument");
+const geoSearchLoader = require("../loaders/geoSearch");
+const zoningPlanLoader = require("../loaders/zoningPlan");
 
-const modules = [
-  require("./node"),
-  require("./address"),
-  require("./monument"),
-  require("./cityScape"),
-  require("./restriction"),
-  require("./zoningPlan"),
-];
+const node = require("./node");
+const address = require("./address");
+const monument = require("./monument");
+const cityScape = require("./cityScape");
+const restriction = require("./restriction");
+const zoningPlan = require("./zoningPlan");
+
+const modules = [node, address, monument, cityScape, restriction, zoningPlan];
 
 const schema = makeExecutableSchema({
   typeDefs: modules.map((m) => m.typeDefs),
@@ -32,17 +32,15 @@ const server = graphqlHTTP({
   context: {
     // request,
     loaders: {
-      bagSearch: new DataLoader(bagSearch.load),
+      bagSearch: new DataLoader(bagSearchLoader.load),
       bag: {
-        building: new DataLoader(bag.building.load),
-        accommodation: new DataLoader(bag.accommodation.load),
-        berth: new DataLoader(bag.berth.load),
+        accommodation: new DataLoader(bagLoader.accommodation.load),
       },
-      zoningPlan: new DataLoader(zoningPlan.load),
-      geoSearch: new DataLoader(geoSearch.load),
+      zoningPlan: new DataLoader(zoningPlanLoader.load),
+      geoSearch: new DataLoader(geoSearchLoader.load),
       monument: {
-        situation: new DataLoader(monument.situation.load),
-        monument: new DataLoader(monument.monument.load),
+        situation: new DataLoader(monumentLoader.situation.load),
+        monument: new DataLoader(monumentLoader.monument.load),
       },
     },
   },

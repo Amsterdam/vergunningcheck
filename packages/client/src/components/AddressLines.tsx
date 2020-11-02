@@ -4,7 +4,7 @@ import React from "react";
 import { TextToEdit } from "../atoms";
 
 type AddressLinesProps = {
-  editAddressRenderer?: Function;
+  editAddressRenderer?: () => void;
   gutterBottom: number;
   houseNumberFull: string;
   postalCode: string;

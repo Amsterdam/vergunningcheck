@@ -1,9 +1,10 @@
-const { withCache, fetchJson, getUrl } = require("../../util");
+const { withCache, fetchJson } = require("../../util");
 const {
   bag: config,
   CACHE_TIMEOUT,
   HOST,
 } = require("../../../config").loaders.datapunt;
+
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 
 const loader = {
@@ -12,7 +13,7 @@ const loader = {
     lon: o.geometrie.coordinates[1],
     mainAddressNationalId: o.hoofdadres.landelijk_id,
   }),
-  load: (id) =>
+  fetch: (id) =>
     fetchJson(`${HOST}${config.url}verblijfsobject/${id}/`).then(
       loader.reducer
       // .then(a =>
@@ -20,9 +21,8 @@ const loader = {
       // )
     ),
   cached: (key) =>
-    withCache(`bag:accommodation:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+    withCache(`bag:accommodation:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

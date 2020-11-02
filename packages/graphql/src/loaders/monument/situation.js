@@ -4,27 +4,27 @@ const {
   CACHE_TIMEOUT,
   HOST,
 } = require("../../../config").loaders.datapunt;
+
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 
-let loader = {
-  reducer: ({ hoort_bij_monument }) => {
-    if (!hoort_bij_monument) {
+const loader = {
+  reducer: (obj) => {
+    if (!obj.hoort_bij_monument) {
       throw new Error("hoort_bij_monument not found!");
     }
     return {
-      monumentId: hoort_bij_monument.identificerende_sleutel_monument,
+      monumentId: obj.hoort_bij_monument.identificerende_sleutel_monument,
     };
   },
-  load: (id) =>
+  fetch: (id) =>
     fetchJson(
       getUrl(`${HOST}${config.url}situeringen/`, {
         betreft_nummeraanduiding: id,
       })
     ).then((data) => data.results.map(loader.reducer)),
   cached: (key) =>
-    withCache(`momument:situation:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+    withCache(`momument:situation:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

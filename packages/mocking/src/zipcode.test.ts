@@ -10,11 +10,13 @@ import {
   NO_ADDITIONS,
   VALID_WITHOUT_ADDITION,
   VALID_WITH_ADDITION,
+  ZipCodeProperty,
 } from "./zipcode";
 
-const byProps = (props) => random(getFixturesByProperties(props))?.[2];
+const byProps = (props: ZipCodeProperty[]) =>
+  random(getFixturesByProperties(props))?.[2];
 
-const testProps = (props) =>
+const testProps = (props: ZipCodeProperty[]) =>
   test(props.toString(), () =>
     expect(byProps(props)).toEqual(expect.arrayContaining(props))
   );

@@ -5,6 +5,11 @@ import styled from "styled-components";
 
 import { AUTOSUGGEST_ITEM, AUTOSUGGEST_LIST } from "../utils/test-ids";
 
+export type Option = {
+  id: number;
+  value: string;
+};
+
 const StyledList = styled.ul`
   max-width: 160px;
   margin: 0;
@@ -38,8 +43,8 @@ const StyledIcon = styled(Icon)`
 const SuggestList: React.FC<{
   activeIndex: number;
   className?: string;
-  onSelectOption: Function;
-  options: [{ id: number; value: string }];
+  onSelectOption: (option: Option) => void;
+  options: Option[];
   role: string;
 }> = ({ activeIndex, className, onSelectOption, options, role }) => {
   const listRef = useRef<HTMLUListElement>(null);
