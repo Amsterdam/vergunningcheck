@@ -1,5 +1,6 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { List, ListItem } from "../../atoms";
 import ContactSentence from "../../components/ContactSentence";
@@ -28,22 +29,21 @@ export default ({
   usableForBullets = [],
   usableForText,
 }: Props) => {
+  const { t } = useTranslation();
   const influence =
     dependantOnSituation && dependantOnQuestions
-      ? "Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt."
+      ? t("introPage.common.first situation")
       : dependantOnQuestions
-      ? "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt."
+      ? t("introPage.common.second situation")
       : dependantOnSituation
-      ? "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt."
+      ? t("introPage.common.third situation")
       : null;
 
   return (
     <>
       <Paragraph gutterBottom={usableForBullets.length > 0 ? 8 : undefined}>
-        Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning
-        nodig hebt.
-        {usableForBullets.length > 0 &&
-          " U kunt een vergunning nodig hebben voor:"}
+        {t("introPage.common.check for permit intro")}{" "}
+        {usableForBullets.length > 0 && t("introPage.common.permit for")}
       </Paragraph>
 
       {usableForBullets.length > 0 && (
@@ -57,9 +57,7 @@ export default ({
       {influence && (
         <Paragraph data-testid={INTRO_USER_INFLUENCE}>
           {influence}{" "}
-          {dependantOnQuestions &&
-            `U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien
-              toch geen vergunning nodig hebt.`}
+          {dependantOnQuestions && t("introPage.common.change answer")}
         </Paragraph>
       )}
 
@@ -71,10 +69,11 @@ export default ({
 
       {exceptions.length > 0 && (
         <>
-          <Heading forwardedAs="h4">Uitzonderingen:</Heading>
+          <Heading forwardedAs="h4">
+            {t("introPage.common.exceptions title")}
+          </Heading>
           <Paragraph gutterBottom={8}>
-            In de volgende situaties is het niet mogelijk de vergunningcheck te
-            gebruiken:
+            {t("introPage.common.exceptions description")}
           </Paragraph>
           <List
             data-testid={INTRO_EXCEPTION_BULLETS}
@@ -97,7 +96,7 @@ export default ({
         <Paragraph>
           <ContactSentence
             eventName={sections.INTRO}
-            openingSentence="Heeft u vragen? Bel dan"
+            openingSentence={t("introPage.common.call with questions")}
           />
         </Paragraph>
       )}

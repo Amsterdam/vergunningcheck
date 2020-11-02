@@ -65,7 +65,7 @@ describe("<Intro />", () => {
       });
 
       it("renders extra sentence with colon (:)", () => {
-        const { queryByText } = render(<Intro usableForBullets={["x"]} />);
+        const { queryByText } = render(<Intro usableForBullets={["x", "y"]} />);
         expect(
           queryByText(/ U kunt een vergunning nodig hebben voor:/)
         ).toBeInTheDocument();
