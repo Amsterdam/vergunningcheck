@@ -7,7 +7,7 @@ import BaseLayout from "./BaseLayout";
 interface DefaultLayoutProps {
   heading?: string;
   children: React.ReactNode;
-  matomoPageView: Function;
+  matomoPageView: () => void;
   formTitle?: string;
 }
 

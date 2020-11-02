@@ -6,7 +6,7 @@ const Error: React.FC<{
   children: ReactNode;
   content?: string;
   heading: string;
-  stack?: object;
+  stack?: string;
 }> = ({ children, content, heading, stack }) => (
   <ComponentWrapper>
     <Alert
