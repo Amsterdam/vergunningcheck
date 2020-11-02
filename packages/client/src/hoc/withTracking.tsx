@@ -12,7 +12,7 @@ type MatomoEventProps = {
 };
 
 export type MatomoTrackEventProps = {
-  matomoTrackEvent: (arg0: MatomoEventProps) => void;
+  matomoTrackEvent: (event: MatomoEventProps) => void;
 };
 
 const withTracking = (Component: any) => ({ ...props }) => {
