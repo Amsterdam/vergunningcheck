@@ -77,17 +77,13 @@ function getDecision(id, decisionConfig, questions) {
   );
 }
 
-export type Props = {
-  permits: {},
-};
-
 /**
  * Create a Checker object
  *
  * @param {any} config - the config coming from json
  * @returns {Checker} the new Checker object
  */
-export default (config: TopicOutputType): Checker => {
+export default (config) => {
   const { permits: permitsConfig } = config;
   if (!permitsConfig || permitsConfig.length === 0) {
     throw new Error("Permits cannot be empty.");
