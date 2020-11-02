@@ -1,0 +1,78 @@
+{
+  "permits": [
+    {
+      "version": 27,
+      "name": "Conclusie Sloopvergunning + - melding",
+      "questions": [
+        {
+          "text": "Gaat het goed?",
+          "longDescription": "Dacht van niet",
+          "description": "Jazeker",
+          "type": "boolean",
+          "id": "uitv__94678b8c-f957-4232-9bf0-6591c5fa0d8f",
+          "prio": 10
+        },
+        {
+          "text": "En ho gaat t vandaag?",
+          "type": "boolean",
+          "id": "uitv__c65ee8d3-249e-4144-8597-bc64a99caf42",
+          "prio": 20
+        }
+      ],
+      "inputs": {
+        "input__94678b8c-f957-4232-9bf0-6591c5fa0d8f": {
+          "href": "#uitv__94678b8c-f957-4232-9bf0-6591c5fa0d8f",
+          "type": "boolean"
+        },
+        "input__c65ee8d3-249e-4144-8597-bc64a99caf42": {
+          "href": "#uitv__c65ee8d3-249e-4144-8597-bc64a99caf42",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_4a5e723a-f76f-4408-819f-64e3a7c1aad5": {
+          "requiredInputs": [
+            "#input__94678b8c-f957-4232-9bf0-6591c5fa0d8f",
+            "#input__c65ee8d3-249e-4144-8597-bc64a99caf42"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true, false],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [false, "-"],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_4a5e723a-f76f-4408-819f-64e3a7c1aad5"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Meldingsplicht\""],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["\"NeemContactOpMet\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "BefWb33vB4BYGhN6R"
+}

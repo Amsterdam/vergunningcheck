@@ -8,6 +8,7 @@ export const apis: APIConfig[] = [
       "dakkapel-plaatsen": ["WKPxKx4YBJ5fqYSni", "Aa2EX3YprpZQ65non"],
       "dakraam-plaatsen": ["hMwHKR7Wz4FP8Dm4x", "dRy4PfDs7jQPc9gMG"],
       "kozijnen-plaatsen": ["Xm2WwYeGkNN9w6rgQ", "5CJrbgbWZP6uZsouY"],
+      "bouwwerk-slopen": ["BefWb33vB4BYGhN6R"],
       "zonnepanelen-of-zonneboiler-plaatsen": [
         "TRhZrFexMjBW42Ky6",
         "skPG9qqTqWyX9tSY7",

@@ -8,6 +8,7 @@ export const imtrOutcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
   NEED_CONTACT: '"NeemContactOpMet"',
   PERMIT_FREE: '"Toestemmingsvrij"',
+  NEED_REPORT: '"Meldingsplicht"',
 };
 
 export type AutofillData = {

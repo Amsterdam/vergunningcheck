@@ -11,6 +11,7 @@ import { NEED_CONTACT } from "../utils/test-ids";
 import {
   ConclusionOutcome,
   NeedPermitContent,
+  NeedReportContent,
   NoPermitDescription,
 } from "./Conclusion/";
 import Disclaimer from "./Disclaimer";
@@ -58,6 +59,11 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
+  // Check if the conclusion is 'report'
+  const needReport = !!conclusions.find(
+    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_REPORT
+  );
+
   // Check if the conclusion is 'needPermit'
   const needPermit = !!conclusions.find(
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
@@ -75,6 +81,11 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
     title: contactConclusion?.title,
   };
 
+  const needReportContent = {
+    mainContent: <NeedReportContent />,
+    title: "U hebt een meldingsplicht.",
+  };
+
   const needPermitContent = {
     mainContent: <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />,
     title: "U hebt een omgevingsvergunning nodig.",
@@ -87,6 +98,8 @@ const Conclusion: React.FC<{ checker: any; matomoTrackEvent: Function }> = ({
 
   const conclusionContent = contactConclusion
     ? needContactContent
+    : needReport
+    ? needReportContent
     : needPermit
     ? needPermitContent
     : permitFreeContent;
