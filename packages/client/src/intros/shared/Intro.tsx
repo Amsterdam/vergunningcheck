@@ -32,11 +32,13 @@ export default ({
   const { t } = useTranslation();
   const influence =
     dependantOnSituation && dependantOnQuestions
-      ? t("introPage.common.first situation")
+      ? t(
+          "introPage.common.situation dependent on both situation and questions"
+        )
       : dependantOnQuestions
-      ? t("introPage.common.second situation")
+      ? t("introPage.common.situation dependent on questions only")
       : dependantOnSituation
-      ? t("introPage.common.third situation")
+      ? t("introPage.common.situation dependent on situation only")
       : null;
 
   return (
