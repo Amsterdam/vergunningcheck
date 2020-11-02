@@ -18,7 +18,7 @@ const typeDefs = gql`
 const resolvers = {
   Address: {
     restrictions: (
-      { _adressableObjectId, "@href": href, type },
+      { _adressableObjectId },
       _,
       { loaders: { bag, monument, geoSearch } }
     ) => {
@@ -29,9 +29,9 @@ const resolvers = {
       //   );
       //   debug(`fetch json`, href);
       //   debug(`from result get 'hoofdadres.landelijk_id'`);
-      //api.data.amsterdam.nl/monumenten/situeringen/?betreft_nummeraanduiding=0363200012062152
+      // api.data.amsterdam.nl/monumenten/situeringen/?betreft_nummeraanduiding=0363200012062152
       //   https: hoort_bij_monument._links.self.href;
-      //api.data.amsterdam.nl/monumenten/monumenten/aef46aca-843e-44a5-b772-6a6d6490bb21/
+      // api.data.amsterdam.nl/monumenten/monumenten/aef46aca-843e-44a5-b772-6a6d6490bb21/
 
       return Promise.all([
         bag.accommodation
@@ -70,7 +70,7 @@ const resolvers = {
     },
   },
   Restriction: {
-    __resolveType: (parent) => parent._type,
+    __resolveType: ({ _type }) => _type,
   },
 };
 

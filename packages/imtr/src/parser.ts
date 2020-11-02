@@ -1,4 +1,4 @@
-import { getAutofillResolverKey } from './autofill.ts';
+import { getAutofillResolverKey } from "./autofill.ts";
 
 import {
   CONTENT_CONCLUSION_EXPLANATION,
@@ -34,7 +34,7 @@ import {
   UITV_QUESTION_TEXT,
   UITV_QUESTION,
   UITV_REUSABLE_ID,
-} from './types/imtr.ts';
+} from "./types/imtr.ts";
 
 import type {
   DMNDecision,
@@ -46,7 +46,7 @@ import type {
   DMNInputEntry,
   IMTROption,
   RequiredInputOrDecision,
-} from './types/imtr.ts';
+} from "./types/imtr.ts";
 
 import type {
   JSONDecisions,
@@ -55,21 +55,21 @@ import type {
   JSONQuestion,
   JSONRule,
   JSONRuleInput,
-} from './types/json.ts';
+} from "./types/json.ts";
 
-import { format, strFmt } from './util.ts';
+import { format, strFmt } from "./util.ts";
 
 /**
-* TODO: todo implement consistent hashing for id's:
-* ```
-* import { createHash } from "https://deno.land/std/hash/mod.ts";
-* const getId = ({ "@_id": _, ...rest }) => {
-*   const hash = createHash("md5");
-*   hash.update(JSON.stringify(rest));
-*   return hash.toString();
-* };
-* ```
-*/
+ * TODO: todo implement consistent hashing for id's:
+ * ```
+ * import { createHash } from "https://deno.land/std/hash/mod.ts";
+ * const getId = ({ "@_id": _, ...rest }) => {
+ *   const hash = createHash("md5");
+ *   hash.update(JSON.stringify(rest));
+ *   return hash.toString();
+ * };
+ * ```
+ */
 
 /**
  * Main function to get configuration for imtr-client.
@@ -77,26 +77,30 @@ import { format, strFmt } from './util.ts';
  */
 export default (json: DMNDocument): JSONPermit => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
-  return { // @TODO: fix ordering after Code-review
+  return {
+    // TODO: fix ordering after Code-review
     name: definition.attributes.name,
     questions: getQuestions(definition[DMN_EXTENSION_ELEMENTS]),
     inputs: getInputs(definition[DMN_INPUT_DATA]),
     decisions: getDecisions(definition[DMN_DECISION]) as JSONDecisions,
   };
-}
+};
 
 /**
  * Get decisions configuration
  */
 const getDecisions = (dmnDecisions: DMNDecision[]) => {
   return dmnDecisions.reduce((jsonDecisions: JSONDecisions, decision) => {
-
     // Get the information-requirement (input or decision) href-reference
     // requiredInput or requiredDecision
     const baseDecision = decision[DMN_INFORMATION_REQUIREMENT].reduce(
       (acc: any, informationRequirement: DMNInformationRequirement) => {
         const key = Object.keys(informationRequirement)[0]; // get the tagName
-        const ir = informationRequirement[key === DMN_REQUIRED_INPUT ? DMN_REQUIRED_INPUT : DMN_REQUIRED_DECISION] as RequiredInputOrDecision[];
+        const ir = informationRequirement[
+          key === DMN_REQUIRED_INPUT
+            ? DMN_REQUIRED_INPUT
+            : DMN_REQUIRED_DECISION
+        ] as RequiredInputOrDecision[];
         const href = ir[0].attributes.href;
 
         const shortKey = `${key.split(":")[1]}s`;
@@ -110,10 +114,11 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
     const rules = table[DMN_RULE].reduce((rules: JSONRule[], rule) => {
       const outputEntry = rule[DMN_OUTPUT_ENTRY][0];
       const extensionElements = outputEntry[DMN_EXTENSION_ELEMENTS];
-      const conclusionDescription = extensionElements?.[0][CONTENT_CONCLUSION_EXPLANATION];
+      const conclusionDescription =
+        extensionElements?.[0][CONTENT_CONCLUSION_EXPLANATION];
       const description = conclusionDescription?.[0][CONTENT_EXPLANATION];
 
-      const jsonRule: JSONRule = {  // @TODO: fix ordering after Code-review
+      const jsonRule: JSONRule = {
         inputs: rule[DMN_INPUT_ENTRY].reduce(
           (inputEntries: JSONRuleInput[], inputEntry: DMNInputEntry) => {
             const text = inputEntry[DMN_TEXT];
@@ -124,8 +129,11 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
           },
           []
         ),
-        output: typeof outputEntry[DMN_TEXT] === "string" ? strFmt(outputEntry[DMN_TEXT]) : outputEntry[DMN_TEXT],
-      }
+        output:
+          typeof outputEntry[DMN_TEXT] === "string"
+            ? strFmt(outputEntry[DMN_TEXT])
+            : outputEntry[DMN_TEXT],
+      };
 
       if (description) jsonRule.description = description;
 
@@ -133,15 +141,15 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
       return rules;
     }, []);
 
-
     jsonDecisions[decision.attributes.id] = {
-      ...baseDecision, decisionTable: {
+      ...baseDecision,
+      decisionTable: {
         rules,
-      }
+      },
     };
     return jsonDecisions;
   }, {});
-}
+};
 
 /**
  * Get input configuration
@@ -149,7 +157,9 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
 const getInputs = (dmnInputDataCollection: DMNInputData[]) => {
   return dmnInputDataCollection.reduce((acc: JSONInputs, dmnInputData) => {
     const { id } = dmnInputData.attributes;
-    const { href } = dmnInputData[DMN_EXTENSION_ELEMENTS][0][UITV_EXECUTION_RULE_REF][0].attributes;
+    const { href } = dmnInputData[DMN_EXTENSION_ELEMENTS][0][
+      UITV_EXECUTION_RULE_REF
+    ][0].attributes;
     const { typeRef } = dmnInputData[DMN_VARIABLE][0].attributes;
     acc[id] = {
       href,
@@ -157,12 +167,14 @@ const getInputs = (dmnInputDataCollection: DMNInputData[]) => {
     };
     return acc;
   }, {});
-}
+};
 
 /**
  * Get questions configuration
  */
-const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion[] => {
+const getQuestions = (
+  xmlExtensionElements: DMNExtensionElement[]
+): JSONQuestion[] => {
   const extElement = xmlExtensionElements[0] as DMNExtensionElement;
   const rulesCollection = extElement[UITV_EXECUTION_RULES];
   const rules = rulesCollection[0][UITV_EXECUTION_RULE];
@@ -174,25 +186,23 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
     if (geoReference) {
       const text = geoReference[0][UITV_QUESTION_TEXT];
       result = {
-        identification: geoReference[0][UITV_LOCATION][0].attributes[UITV_LOCATION_IDENTIFICATION],
+        identification:
+          geoReference[0][UITV_LOCATION][0].attributes[
+            UITV_LOCATION_IDENTIFICATION
+          ],
         type: "geo",
       };
       if (text) {
         result.text = text;
       }
-    } else { // list or boolean
+    } else {
+      // list or boolean
       const question = rule[UITV_QUESTION][0];
       const dataType = question[UITV_DATA_TYPE];
       const imtrType = dataType;
       const desc = rule[CONTENT_EXECUTION_RULE_EXPLANATION]?.[0];
 
-      // TODO: decide if we want to use 'important' (nl: belangrijk) which indicates if a description
-      // is important for the end-user to be able to answer the question
-      // if (desc) {
-      //   const important = find(desc, "content:belangrijk")[0];
-      // }
-
-      result = { // @TODO: fix ordering after Code-review
+      result = {
         text: strFmt(question[UITV_QUESTION_TEXT]),
       };
 
@@ -205,14 +215,13 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
 
       if (imtrType === "list") {
         const options = question[UITV_OPTIONS]?.[0];
-        if (
-          options?.[UITV_OPTION_TYPE] !==
-          "enkelAntwoord"
-        ) {
+        if (options?.[UITV_OPTION_TYPE] !== "enkelAntwoord") {
           result.collection = true;
         }
         const optionList = options?.[UITV_OPTION];
-        result.options = optionList?.map((option: IMTROption) => strFmt(option[UITV_OPTION_TEXT]));
+        result.options = optionList?.map((option: IMTROption) =>
+          strFmt(option[UITV_OPTION_TEXT])
+        );
       }
 
       // because of current imtr 'list'-implementation we only accept lists of strings
@@ -226,5 +235,4 @@ const getQuestions = (xmlExtensionElements: DMNExtensionElement[]): JSONQuestion
     const x: JSONQuestion = result;
     return x;
   });
-}
-
+};

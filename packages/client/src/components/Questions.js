@@ -1,4 +1,5 @@
 import { setTag } from "@sentry/browser";
+import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
 import React, {
   useCallback,
   useContext,
@@ -10,7 +11,7 @@ import React, {
 import { ScrollAnchor } from "../atoms";
 import { eventNames, sections } from "../config/matomo";
 import { SessionContext } from "../context";
-import { removeQuotes, scrollToRef } from "../utils/index";
+import { scrollToRef } from "../utils/index";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
@@ -186,8 +187,8 @@ const Questions = ({
     checker.permits.forEach((permit) => {
       const conclusionDecision = permit.getDecisionById("dummy");
       if (
-        conclusionDecision.getOutput() === '"Vergunningplicht"' ||
-        conclusionDecision.getOutput() === '"NeemContactOpMet"'
+        conclusionDecision.getOutput() === imtrOutcomes.NEED_PERMIT ||
+        conclusionDecision.getOutput() === imtrOutcomes.NEED_CONTACT
       ) {
         const decisiveDecisions = conclusionDecision.getDecisiveInputs();
         decisiveDecisions.forEach((decision) => {

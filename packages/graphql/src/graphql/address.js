@@ -1,7 +1,7 @@
-const uniqBy = require("lodash.uniqby");
+const uniqBy = require("lodash/uniqBy");
 const debug = require("debug")("graphql:address");
+const { GraphQLError } = require("graphql");
 const { gql } = require("../util");
-var { GraphQLError } = require("graphql");
 
 let typeDefs = gql`
   type Address implements Node {
@@ -39,6 +39,32 @@ if (process.env.NODE_ENV !== "production") {
     }
   `;
 }
+
+function getHouseNumberFromHouseNumberFull(queryHouseNumberFull) {
+  return Number(queryHouseNumberFull.replace("-", " ").trim().split(" ")[0]);
+}
+
+function getSameHouseNumbers(queryHouseNumberFull, addressList) {
+  const dataWithoutDuplicates = uniqBy(addressList, "houseNumberFull");
+  const queryHouseNumber = getHouseNumberFromHouseNumberFull(
+    queryHouseNumberFull
+  );
+
+  const res = dataWithoutDuplicates.filter(
+    (a) => a.houseNumber === queryHouseNumber
+  );
+  // debug(`getSameHouseNumbers`, res);
+  return res;
+  // if (dataWithoutDuplicates[0].huisnummer && !dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter) {
+  //   return dataWithoutDuplicates.filter(address => address.huisnummer === Number(cleanNumber));
+  // }
+
+  // const suffix = `${cleanNumber.replace(/\D/g, '')} ${cleanNumber.replace(/[0-9]/g, '').trim()}`;
+  // return dataWithoutDuplicates.filter(
+  //   address => address.huisnummer === Number(cleanNumber.replace(/\D/g, '')) || address.toevoeging === `${suffix}`,
+  // );
+}
+
 /**
  * Not exactly clear what business requirements are
  * and if this is the best way to implement it.
@@ -84,58 +110,33 @@ function getExactMatch(queryHouseNumberFull, addressList) {
       address.houseNumberFull === queryHouseNumberFull
   );
 }
-
-function getHouseNumberFromHouseNumberFull(queryHouseNumberFull) {
-  return Number(queryHouseNumberFull.replace("-", " ").trim().split(" ")[0]);
-}
-
-function getSameHouseNumbers(queryHouseNumberFull, addressList) {
-  const dataWithoutDuplicates = uniqBy(addressList, "houseNumberFull");
-  const queryHouseNumber = getHouseNumberFromHouseNumberFull(
-    queryHouseNumberFull
-  );
-
-  const res = dataWithoutDuplicates.filter(
-    (a) => a.houseNumber === queryHouseNumber
-  );
-  // debug(`getSameHouseNumbers`, res);
-  return res;
-  // if (dataWithoutDuplicates[0].huisnummer && !dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter) {
-  //   return dataWithoutDuplicates.filter(address => address.huisnummer === Number(cleanNumber));
-  // }
-
-  // const suffix = `${cleanNumber.replace(/\D/g, '')} ${cleanNumber.replace(/[0-9]/g, '').trim()}`;
-  // return dataWithoutDuplicates.filter(
-  //   address => address.huisnummer === Number(cleanNumber.replace(/\D/g, '')) || address.toevoeging === `${suffix}`,
-  // );
-}
-
 const resolve = (args, bagSearch, one) => {
   debug(`find ${one ? "one" : "any"} address`, args);
   const { streetName, postalCode } = args;
   const houseNumberFull = args.houseNumberFull.trim().replace("-", " ");
 
-  if (!streetName && !postalCode) {
-    return new GraphQLError("Please provide 'streetName' or 'postalCode'.");
-  } else if (streetName && postalCode) {
-    return new GraphQLError(
-      "Please provide either 'streetName' òr 'postalCode'."
-    );
-  }
-  const key = (postalCode || "") + (streetName || "") + " " + houseNumberFull;
+  const key = `${postalCode || ""}${streetName || ""} ${houseNumberFull || ""}`;
+  let error;
 
-  return bagSearch.load(key).then((addressList) => {
-    if (one) {
-      const res = getExactMatch(houseNumberFull, addressList);
-      // debug(`getExactMatch`, res);
-      return res.length === 1
-        ? res[0]
-        : addressList.length === 1
-        ? addressList[0]
-        : null;
-    }
-    return getSameHouseNumbers(houseNumberFull, addressList);
-  });
+  if (!streetName && !postalCode) {
+    error = "Please provide 'streetName' or 'postalCode'.";
+  } else if (streetName && postalCode) {
+    error = "Please provide either 'streetName' òr 'postalCode'.";
+  }
+
+  return error
+    ? new GraphQLError(error)
+    : bagSearch.load(key).then((addressList) => {
+        if (one) {
+          const res = getExactMatch(houseNumberFull, addressList);
+          // debug(`getExactMatch`, res);
+          if (res.length === 1) {
+            return res[0];
+          }
+          return addressList.length === 1 ? addressList[0] : null;
+        }
+        return getSameHouseNumbers(houseNumberFull, addressList);
+      });
 };
 
 const resolvers = {

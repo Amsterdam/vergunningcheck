@@ -22,7 +22,7 @@ const LocationInput: React.FC<{
   error?: ErrorMessage;
   handleNewAddressSubmit: Function;
   matomoTrackEvent: Function;
-  topic: Topic;
+  topic: Topic; // @TODO: Replace it with react hook
 }> = ({ error, handleNewAddressSubmit, matomoTrackEvent, topic }) => {
   const history = useHistory();
   const { handleSubmit } = useForm();

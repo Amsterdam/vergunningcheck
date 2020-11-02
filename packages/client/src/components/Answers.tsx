@@ -1,8 +1,8 @@
 import { ErrorMessage, Radio, RadioGroup } from "@amsterdam/asc-ui";
+import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { ComponentWrapper, Label } from "../atoms";
-import { removeQuotes } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswerProps = {

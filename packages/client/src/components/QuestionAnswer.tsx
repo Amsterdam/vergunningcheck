@@ -1,9 +1,9 @@
 import { Paragraph } from "@amsterdam/asc-ui";
+import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
 import QuestionAlert from "../atoms/QuestionAlert";
-import { removeQuotes } from "../utils";
 
 type QuestionAnswerProps = {
   disabled: boolean;
