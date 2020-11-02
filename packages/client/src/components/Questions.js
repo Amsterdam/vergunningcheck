@@ -1,5 +1,5 @@
 import { setTag } from "@sentry/browser";
-import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr_client";
+import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
 import React, {
   useCallback,
   useContext,

@@ -1,5 +1,5 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import { removeQuotes } from "@vergunningcheck/imtr_client";
+import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";

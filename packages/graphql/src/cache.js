@@ -15,8 +15,8 @@ if (client) {
 
 module.exports = {
   cachePrefix,
+  client,
+  enabled: !!client,
   getAsync,
   setSync: client.set,
-  enabled: !!client,
-  client,
 };

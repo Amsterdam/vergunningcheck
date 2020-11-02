@@ -1,4 +1,4 @@
-import getChecker from "@vergunningcheck/imtr_client";
+import { getChecker } from "@vergunningcheck/imtr-client";
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 

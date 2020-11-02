@@ -1,6 +1,6 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import type { Decision, Permit, Rule } from "@vergunningcheck/imtr_client";
-import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr_client";
+import type { Decision, Permit, Rule } from "@vergunningcheck/imtr-client";
+import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 import styled from "styled-components";
 

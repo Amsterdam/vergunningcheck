@@ -1,5 +1,5 @@
 import { ErrorMessage, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import { removeQuotes } from "@vergunningcheck/imtr_client";
+import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { ComponentWrapper, Label } from "../atoms";

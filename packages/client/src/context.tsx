@@ -1,4 +1,4 @@
-import { AnswerDict } from "@vergunningcheck/imtr_client";
+import { AnswerDict } from "@vergunningcheck/imtr-client";
 import React, { Context, createContext, useEffect, useReducer } from "react";
 
 import { sections } from "./config/matomo";

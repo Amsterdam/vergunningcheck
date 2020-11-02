@@ -1,4 +1,4 @@
-import { Checker } from "@vergunningcheck/imtr_client";
+import { Checker } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { autofillResolvers } from "../../config/autofill";
