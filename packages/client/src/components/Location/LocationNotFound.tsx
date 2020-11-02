@@ -1,5 +1,6 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { sections } from "../../config/matomo";
@@ -7,6 +8,7 @@ import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
 
 const LocationNotFound: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <ComponentWrapper>
       <Alert
@@ -15,8 +17,7 @@ const LocationNotFound: React.FC = () => {
         level="warning"
       >
         <Paragraph>
-          Probeer het opnieuw. Of neem contact op met de gemeente op
-          telefoonnummer{" "}
+          {t("common.try again or contact city of amsterdam")}{" "}
           <PhoneNumber eventName={sections.ALERT_ADDRESS_NOT_FOUND} />.
         </Paragraph>
       </Alert>

@@ -2,9 +2,9 @@ import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { requiredFieldText } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import useDebounce from "../../hooks/useDebounce";
 import { isValidPostalcode, stripString } from "../../utils";
@@ -44,6 +44,7 @@ const LocationFinder: React.FC<{
   setFocus,
   topic,
 }) => {
+  const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
   const [postalCode, setPostalCode] = useState<string>(
     sessionAddress.postalCode
@@ -72,7 +73,7 @@ const LocationFinder: React.FC<{
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
-        return requiredFieldText;
+        return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";

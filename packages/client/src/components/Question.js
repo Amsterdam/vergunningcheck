@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../atoms";
-import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
@@ -53,6 +53,7 @@ const Question = ({
   userAnswer,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
+  const { t } = useTranslation();
   const listAnswers = questionAnswers?.map((answer) => ({
     label: answer,
     formValue: answer,
@@ -65,7 +66,7 @@ const Question = ({
       register(
         { name: questionId },
         {
-          required: requiredFieldRadio,
+          required: t("common.required field radio"),
         }
       );
 
@@ -89,6 +90,7 @@ const Question = ({
     currentAnswer,
     questionAnswers,
     setValue,
+    t,
   ]);
 
   const handleChange = (e) => {
