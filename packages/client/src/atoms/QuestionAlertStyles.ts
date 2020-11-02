@@ -1,7 +1,6 @@
-import { themeSpacing } from "@amsterdam/asc-ui";
+import { Alert, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
-import { Alert } from "../atoms";
 import { QuestionAlertProps } from "./QuestionAlert";
 
 export const QuestionAlertStyle = styled(Alert)<QuestionAlertProps>`
