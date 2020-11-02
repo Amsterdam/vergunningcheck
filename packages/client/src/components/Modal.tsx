@@ -27,7 +27,7 @@ type ModalProps = {
   handleOpenModal?: () => void;
   heading: string;
   onClick?: () => void;
-  openButtonRenderer?: (arg0: any) => void;
+  openButtonRenderer?: (props: { openModal: () => void }) => void;
   openButtonText?: string;
   showCloseButton?: boolean;
   showConfirmButton?: boolean;
