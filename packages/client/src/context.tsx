@@ -1,11 +1,11 @@
-import { AnswerDict } from "@vergunningcheck/imtr-client";
+import type { Answers } from "@vergunningcheck/imtr-client";
 import React, { Context, createContext, useEffect, useReducer } from "react";
 
 import { sections } from "./config/matomo";
 
 type TopicSessionData = {
   activeComponents: [string];
-  answers?: AnswerDict;
+  answers?: Answers;
   address: any;
   finishedComponents: [];
   questionIndex: number;

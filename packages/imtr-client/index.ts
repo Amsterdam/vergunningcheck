@@ -3,7 +3,7 @@ export { getChecker } from "./src";
 export type { Input, Answer } from "./src/types";
 export type {
   Resolver,
-  AnswerDict,
+  Answers,
   AutofillResolverMap,
   AutofillData,
 } from "./src/models/checker";

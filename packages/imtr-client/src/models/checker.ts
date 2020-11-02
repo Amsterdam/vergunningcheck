@@ -17,7 +17,7 @@ export type Resolver = (
   autofillData: AutofillData,
   question: Question
 ) => Answer;
-export type AnswerDict = { [id: string]: Answer };
+export type Answers = { [id: string]: Answer };
 export type AutofillResolverMap = { [name: string]: Resolver };
 
 /**
@@ -57,10 +57,10 @@ export default class Checker {
    *
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
-  getQuestionAnswers(): AnswerDict {
+  getQuestionAnswers(): Answers {
     return this.stack
       .concat(this._getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
-      .reduce((acc: AnswerDict, question: Question) => {
+      .reduce((acc: Answers, question: Question) => {
         acc[question.id] = question.answer;
         return acc;
       }, {});
@@ -70,7 +70,7 @@ export default class Checker {
    * Loops through all questions and answers these questions based on provided `answers`
    * Useful when you have stored the user answers and want to continue a particular session
    */
-  setQuestionAnswers(answers: AnswerDict): void {
+  setQuestionAnswers(answers: Answers): void {
     if (!isObject(answers)) {
       throw Error("Answers must be of type object");
     }
