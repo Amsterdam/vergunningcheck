@@ -1,38 +1,8 @@
-import isBoolean from "lodash.isboolean";
-import isNumber from "lodash.isnumber";
-import isString from "lodash.isstring";
-
 import { topics } from "../config";
 
 // Find a topic by the slug
 export const findTopicBySlug = (slug: string) =>
   topics.find((t) => t.slug === slug);
-
-// Simple checks
-export const isSimpleType = (val: any) =>
-  isBoolean(val) || isString(val) || isNumber(val);
-
-// Array checks
-export const collectionOfSimpleTypes = (col: any) =>
-  Array.isArray(col) && !col.find((val) => !isSimpleType(val));
-
-export const collectionOfType = (col: any, type: string) => {
-  if (!Array.isArray(col) || col.includes(undefined) || col.includes(null)) {
-    return false;
-  }
-  const itemOfInvaldType = col.find(
-    (val) => val.constructor.name !== type && val.__type !== type
-  );
-  return itemOfInvaldType === undefined;
-};
-
-// Make sure the value is of type object
-export const isObject = (val?: string) =>
-  typeof val === "object" && val !== null;
-
-// Filters
-export const uniqueFilter = (value: any, index: number, self: Array<any>) =>
-  self.indexOf(value) === index;
 
 // Data utils
 export const getRestrictionByTypeName = (
@@ -45,12 +15,6 @@ export const getRestrictionByTypeName = (
   ],
   typeName?: string
 ) => (restrictions || []).find(({ __typename }) => __typename === typeName);
-
-// IMTR helper
-export const removeQuotes = (str?: string) =>
-  str ? str.replace(/['"]+/g, "") : str;
-
-export const addQuotes = (str: string) => `"${str}"`;
 
 /**
  *

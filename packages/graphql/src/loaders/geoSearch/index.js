@@ -14,15 +14,14 @@ const loader = {
     name: o.properties.display,
     id: o.properties.id,
   }),
-  load: (key) => {
+  fetch: (key) => {
     const [x, y] = key.split(" ");
     return fetchJson(
       getUrl(URL, { datasets: "beschermdestadsdorpsgezichten", x, y })
     ).then(({ features }) => features.map(loader.reducer));
   },
-  cached: (key) => withCache(`geoSearch:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+  cached: (key) => withCache(`geoSearch:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

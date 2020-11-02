@@ -4,7 +4,7 @@ import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { requiredFieldText } from "../../config";
+import { Topic, requiredFieldText } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import useDebounce from "../../hooks/useDebounce";
@@ -35,7 +35,7 @@ const LocationFinder: React.FC<
     setAddress: (address: boolean) => void;
     setErrorMessage: (error: ApolloError | undefined) => void;
     setFocus: (focus: boolean) => void;
-    topic: any; //@TODO: Replace it with IMTR-Client's TopicType
+    topic: Topic; // TODO: Remove topic from this component.
   } & MatomoTrackEventProps
 > = ({
   focus,
@@ -80,6 +80,7 @@ const LocationFinder: React.FC<
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
+    return undefined;
   };
 
   // Error messages
