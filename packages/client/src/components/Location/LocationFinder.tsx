@@ -1,5 +1,5 @@
 import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
-import { useQuery } from "@apollo/client";
+import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -32,9 +32,9 @@ const LocationFinder: React.FC<
   {
     focus: boolean;
     sessionAddress: any; // @TODO replace any with address type.
-    setAddress: (arg0: boolean) => void;
-    setErrorMessage: (arg0: any) => void;
-    setFocus: (arg0: boolean) => void;
+    setAddress: (address: boolean) => void;
+    setErrorMessage: (error: ApolloError | undefined) => void;
+    setFocus: (focus: boolean) => void;
     topic: any; //@TODO: Replace it with IMTR-Client's TopicType
   } & MatomoTrackEventProps
 > = ({

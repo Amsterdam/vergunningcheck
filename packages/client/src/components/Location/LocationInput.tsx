@@ -1,4 +1,5 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
+import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -15,11 +16,8 @@ import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
-type ErrorMessage = {
-  stack?: object;
-};
 type LocationInputProps = {
-  error?: ErrorMessage;
+  error?: ApolloError | undefined;
   handleNewAddressSubmit: () => void;
   topic: Topic;
 };
@@ -41,7 +39,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState<ErrorMessage | undefined>(
+  const [errorMessage, setErrorMessage] = useState<ApolloError | undefined>(
     error
   );
   const [focus, setFocus] = useState(false);

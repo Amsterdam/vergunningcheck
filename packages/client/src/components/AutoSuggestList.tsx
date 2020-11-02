@@ -43,8 +43,8 @@ const StyledIcon = styled(Icon)`
 const SuggestList: React.FC<{
   activeIndex: number;
   className?: string;
-  onSelectOption: (arg0: Option) => void;
-  options: [Option];
+  onSelectOption: (option: Option) => void;
+  options: Option[];
   role: string;
 }> = ({ activeIndex, className, onSelectOption, options, role }) => {
   const listRef = useRef<HTMLUListElement>(null);
