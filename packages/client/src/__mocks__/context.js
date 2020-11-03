@@ -3,11 +3,12 @@ import { useContext } from "react";
 import { CheckerContext, SessionContext } from "../context";
 
 export default ({
-  children,
-  topicMock,
   addressMock,
+  answers: answersMock,
   checker,
-  questionIndex,
+  children,
+  questionIndex: questionIndexMock,
+  topicMock,
 }) => {
   const checkerContext = useContext(CheckerContext);
   const sessionContext = useContext(SessionContext);
@@ -23,12 +24,14 @@ export default ({
     checkerContext.topic = topicMock;
   }
 
-  if (slug && addressMock) {
-    Object.assign(sessionContext, { [slug]: { address: addressMock } });
-  }
-
-  if (slug && questionIndex) {
-    Object.assign(sessionContext, { [slug]: { questionIndex } });
+  if (slug) {
+    const address = addressMock ? addressMock : null;
+    const answers = answersMock ? answersMock : null;
+    const questionIndex =
+      typeof questionIndexMock === "number" ? questionIndexMock : null;
+    Object.assign(sessionContext, {
+      [slug]: { address, answers, questionIndex },
+    });
   }
 
   sessionContext.setSessionData = setSessionData;
