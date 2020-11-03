@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 30,
+      "version": 27,
       "name": "Conclusie Ketentest - Boom kappen of snoeien",
       "questions": [
         {
@@ -72,10 +72,14 @@
         }
       },
       "decisions": {
-        "_0bdc6a0b-b563-412d-b4a3-0b2f80c371ce": {
+        "_d2b1781a-c211-43cf-bbc7-5a7b6a771c61": {
           "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
           "decisionTable": {
             "rules": [
+              {
+                "inputs": ["\"struik\""],
+                "output": "\"NeemContactOpMet\""
+              },
               {
                 "inputs": ["\"weet niet\""],
                 "output": "\"NeemContactOpMet\""
@@ -83,15 +87,11 @@
               {
                 "inputs": ["\"boom\""],
                 "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"struik\""],
-                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_f48310f5-0aa0-4b43-862c-e780425336c6": {
+        "_e1bb3a62-3ed7-4b03-be11-a75aaa823241": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955"
@@ -117,7 +117,7 @@
             ]
           }
         },
-        "_9366dc83-819d-4f7b-83d9-4343a2e00040": {
+        "_163e2fc4-4577-4767-a39d-26720c274a5d": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -164,7 +164,7 @@
             ]
           }
         },
-        "_4c42346e-0309-487a-a5b3-9f943c0103fb": {
+        "_49af1a92-db77-462e-b1d2-388786947630": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -214,7 +214,7 @@
             ]
           }
         },
-        "_5623c3dd-badb-4c26-90e6-d4dcb0a7f4dc": {
+        "_b78de9c9-e445-45f2-8a7b-09f1d8e3b945": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -273,11 +273,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_0bdc6a0b-b563-412d-b4a3-0b2f80c371ce",
-            "#_f48310f5-0aa0-4b43-862c-e780425336c6",
-            "#_9366dc83-819d-4f7b-83d9-4343a2e00040",
-            "#_4c42346e-0309-487a-a5b3-9f943c0103fb",
-            "#_5623c3dd-badb-4c26-90e6-d4dcb0a7f4dc"
+            "#_d2b1781a-c211-43cf-bbc7-5a7b6a771c61",
+            "#_e1bb3a62-3ed7-4b03-be11-a75aaa823241",
+            "#_163e2fc4-4577-4767-a39d-26720c274a5d",
+            "#_49af1a92-db77-462e-b1d2-388786947630",
+            "#_b78de9c9-e445-45f2-8a7b-09f1d8e3b945"
           ],
           "decisionTable": {
             "rules": [
