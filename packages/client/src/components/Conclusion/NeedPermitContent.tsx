@@ -5,9 +5,10 @@ import { HideForPrint, PrintOnly } from "../../atoms";
 import ComponentWrapper from "../../atoms/ComponentWrapper";
 import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
+import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 
-const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
+const NeedPermitContent: React.FC<MatomoTrackEventProps> = ({
   matomoTrackEvent,
 }) => {
   const handlePermitInfoButton = () => {
@@ -22,7 +23,7 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
     <ComponentWrapper marginBottom={40}>
       <Paragraph>
         Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe
-        lang het duurt en wat het kost
+        lang het duurt en wat het kost.
       </Paragraph>
       <PrintOnly>
         <Link

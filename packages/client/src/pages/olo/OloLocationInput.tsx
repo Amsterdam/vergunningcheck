@@ -7,18 +7,16 @@ import Loading from "../../components/Loading";
 import { LocationInput } from "../../components/Location/";
 import { Topic } from "../../config";
 import withChecker from "../../hoc/withChecker";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 
 export type OloLocationInputProps = {
-  matomoTrackEvent: Function;
   topic: Topic;
 };
 
-const OloLocationInput: React.FC<OloLocationInputProps> = ({
-  matomoTrackEvent,
-  topic,
-}) => {
+const OloLocationInput: React.FC<
+  OloLocationInputProps & MatomoTrackEventProps
+> = ({ matomoTrackEvent, topic }) => {
   const history = useHistory();
 
   const { text } = topic;
@@ -28,13 +26,12 @@ const OloLocationInput: React.FC<OloLocationInputProps> = ({
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Invullen adres - {text.heading}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <LocationInput
-          handleDuplicateAddressSubmit={handleNewAddressSubmit}
           {...{
             handleNewAddressSubmit,
             matomoTrackEvent,

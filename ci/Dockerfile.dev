@@ -1,16 +1,10 @@
-FROM alpine
+FROM node:buster
 
 WORKDIR /app/
+COPY . ./
 
-# Global / system requirements
-RUN apk add git openrc docker
-RUN addgroup dev docker
-# RUN rc-update add docker boot
-# RUN service docker start
+# Use regular (dev) install here, no `ci`
+RUN npm ci --unsafe-perm
 
-# Install
-RUN git clone https://github.com/Amsterdam/vergunningcheck.git . --depth=1
-
-RUN docker build -t vergunningcheck-e2e-dev -f ci/Dockerfile.e2e.dev .
-# RUN docker build -t vergunningcheck-graphql-dev -f ci/Dockerfile.graphql.dev .
-# RUN docker build -t vergunningcheck-client-dev -f ci/Dockerfile.client.dev .
+# Build
+RUN ./node_modules/.bin/lerna run build

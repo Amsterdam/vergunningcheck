@@ -12,33 +12,30 @@ import { Topic, generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withChecker from "../../hoc/withChecker";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 
 export type OloLocationResultProps = {
-  matomoTrackEvent: Function;
   topic: Topic;
 };
 
-const OloLocationResult: React.FC<OloLocationResultProps> = ({
-  matomoTrackEvent,
-  topic,
-}) => {
+const OloLocationResult: React.FC<
+  OloLocationResultProps & MatomoTrackEventProps
+> = ({ matomoTrackEvent, topic }) => {
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
   );
   const history = useHistory();
 
   const { text } = topic;
+  const { address } = sessionContext[topic.slug] || {};
 
-  // if you enter the location result route without entering a address it breaks. Redirect to oloLocationInput
-  if (!sessionContext[topic.slug]?.address) {
+  // This is to prevent a bug when the Session Storage data is manually cleared
+  if (!address) {
     history.replace(geturl(routes.oloLocationInput, topic));
     return null;
   }
-
-  const address = sessionContext[topic.slug].address;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,7 +55,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Adresgegevens - {text.heading}</title>
       </Helmet>
@@ -75,7 +72,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
             Dit hebt u nodig
           </Paragraph>
           <Paragraph>
-            De informatie over het gebouw die hier boven staat hebt u nodig voor
+            De informatie over het gebouw die hierboven staat hebt u nodig voor
             het doen van de vergunningcheck. Weet u al precies wat u gaat
             bouwen? Houd dan uw bouwplannen ook bij de hand. Ook als uw plannen
             nog niet klaar zijn, kunt u alvast de vergunningcheck doen. U kunt

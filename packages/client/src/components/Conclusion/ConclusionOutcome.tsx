@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
+import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
@@ -22,13 +23,11 @@ type ConclusionContentProps = {
 
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
-  matomoTrackEvent: Function;
 };
 
-const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
-  conclusionContent,
-  matomoTrackEvent,
-}) => {
+const ConclusionOutcome: React.FC<
+  ConclusionOutcomeProps & MatomoTrackEventProps
+> = ({ conclusionContent, matomoTrackEvent }) => {
   const { footerContent, mainContent, title } = conclusionContent;
   useEffect(() => {
     matomoTrackEvent({

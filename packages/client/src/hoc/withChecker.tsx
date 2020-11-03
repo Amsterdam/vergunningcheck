@@ -1,11 +1,11 @@
+import getChecker from "@vergunningcheck/imtr-client";
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import { Topic } from "../config";
-import { autofillMap, autofillResolvers } from "../config/autofill";
+import { autofillResolvers } from "../config/autofill";
 import { sections } from "../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../context";
-import getChecker from "../imtr_client";
 import ErrorPage from "../pages/ErrorPage";
 import LoadingPage from "../pages/LoadingPage";
 import RedirectPage from "../pages/RedirectPage";
@@ -63,15 +63,16 @@ export default (Component: any) => (props: Props) => {
         }
 
         const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
-          autofillMap,
+          autofillResolvers,
           true
         )[0];
 
         // Restore available answers from previous session. If we have
         // an unfulfilled dataNeed we don't restore the answers to
         // prevent issues with older sessions.
-        if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
-          newChecker.setQuestionAnswers(sessionContext[slug].answers);
+        const answers = sessionContext[slug]?.answers;
+        if (answers && !unfulfilledDataNeed) {
+          newChecker.setQuestionAnswers(answers);
         }
 
         // Store the entire `imtr-checker` in React Context
@@ -116,7 +117,6 @@ export default (Component: any) => (props: Props) => {
     checkerContext.checker = null;
     return resetChecker();
   }
-
   // In case of error return the ErrorPage, eg. json not found
   if (error) {
     console.error(error);

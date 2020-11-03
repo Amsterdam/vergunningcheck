@@ -5,15 +5,17 @@ import withTracking from "../../hoc/withTracking";
 import BaseLayout from "./BaseLayout";
 
 interface DefaultLayoutProps {
-  heading: string;
+  heading?: string;
   children: React.ReactNode;
-  matomoPageView: Function;
+  matomoPageView: () => void;
+  formTitle?: string;
 }
 
 function DefaultLayout({
   heading,
   children,
   matomoPageView,
+  formTitle,
 }: DefaultLayoutProps) {
   const { location } = useHistory();
 
@@ -23,7 +25,7 @@ function DefaultLayout({
     //eslint-disable-next-line
   }, [location.pathname]);
 
-  return <BaseLayout {...{ heading, children }} />;
+  return <BaseLayout {...{ children, heading, formTitle }} />;
 }
 
 export default withTracking(DefaultLayout);

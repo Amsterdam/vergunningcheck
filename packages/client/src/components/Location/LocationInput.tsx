@@ -1,4 +1,5 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
+import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -6,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { CheckerContext, SessionContext, SessionDataType } from "../../context";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
@@ -15,13 +16,13 @@ import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
-const LocationInput: React.FC<{
-  handleDuplicateAddressSubmit: Function;
-  handleNewAddressSubmit: Function;
-  matomoTrackEvent: Function;
+type LocationInputProps = {
+  error?: ApolloError | undefined;
+  handleNewAddressSubmit: () => void;
   topic: Topic;
-}> = ({
-  handleDuplicateAddressSubmit,
+};
+const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
+  error,
   handleNewAddressSubmit,
   matomoTrackEvent,
   topic,
@@ -38,7 +39,9 @@ const LocationInput: React.FC<{
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState<{ stack: object }>();
+  const [errorMessage, setErrorMessage] = useState<ApolloError | undefined>(
+    error
+  );
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
@@ -72,12 +75,6 @@ const LocationInput: React.FC<{
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      // Detect if user is submitting the same address as currently stored
-      if (sessionAddress.id && sessionAddress.id === address.id) {
-        handleDuplicateAddressSubmit();
-        return;
-      }
-
       // Store the data
       sessionContext.setSessionData([
         slug,
@@ -87,11 +84,7 @@ const LocationInput: React.FC<{
       ]);
       checkerContext.autofillData.address = address;
 
-      if (focus) {
-        (document.activeElement as HTMLElement).blur();
-      } else {
-        handleNewAddressSubmit();
-      }
+      handleNewAddressSubmit();
     }
   };
 

@@ -6,13 +6,13 @@ import { ComponentWrapper, Label } from "../../atoms";
 import { requiredFieldRadio, topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { RADIO_ADDRESS_1, RADIO_ADDRESS_2 } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const NewCheckerModal: React.FC<{
-  matomoTrackEvent: Function;
-}> = ({ matomoTrackEvent }) => {
+const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
+  matomoTrackEvent,
+}) => {
   // @TODO: replace with custom topic hooks
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
@@ -36,7 +36,6 @@ const NewCheckerModal: React.FC<{
     const hasError = saveAddress === null;
 
     setError(hasError);
-    setFinished(!!checkerSlug);
 
     if (hasError) {
       matomoTrackEvent({
@@ -44,8 +43,8 @@ const NewCheckerModal: React.FC<{
         name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
       });
     } else {
+      setFinished(!!checkerSlug);
       const doSaveAddress = saveAddress === true;
-
       const saveAddressEvent = doSaveAddress
         ? eventNames.WITH_THE_SAME_ADDRESS
         : eventNames.WITHOUT_THE_SAME_ADDRESS;
@@ -73,7 +72,7 @@ const NewCheckerModal: React.FC<{
       ]);
 
       // @TODO: We need to find a better solution for restarting the same checker.
-      return (window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`);
+      window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`;
     }
   };
 

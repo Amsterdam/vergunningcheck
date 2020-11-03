@@ -15,7 +15,7 @@ const loader = {
     neighborhoodName: o.buurt.naam,
     districtName: o._buurtcombinatie.naam,
   }),
-  load: (id) =>
+  fetch: (id) =>
     fetchJson(`${HOST}${config.url}verblijfsobject/${id}/`).then(
       loader.reducer
       // .then(a =>
@@ -23,9 +23,8 @@ const loader = {
       // )
     ),
   cached: (key) =>
-    withCache(`bag:accommodation:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+    withCache(`bag:accommodation:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

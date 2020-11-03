@@ -206,8 +206,11 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   };
 
   // On LocationSubmit
+  const handleNewAddressSubmit = () => {
+    // Reset old values
+    resetChecker();
+    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
 
-  const goToQuestionsSection = () => {
     // Reset the answers and questionIndex to start clean
     sessionContext.setSessionData([
       slug,
@@ -221,19 +224,8 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
   };
 
-  const handleNewAddressSubmit = () => {
-    // Reset old values
-    resetChecker();
-    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
-
-    goToQuestionsSection();
-  };
-  const handleDuplicateAddressSubmit = () => {
-    goToQuestionsSection();
-  };
-
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Vragen en conclusie - {text.heading}</title>
       </Helmet>
@@ -262,7 +254,6 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           {isActive(sections.LOCATION_INPUT) && (
             <LocationInput
               {...{
-                handleDuplicateAddressSubmit,
                 handleNewAddressSubmit,
                 matomoTrackEvent,
                 topic,
@@ -327,4 +318,4 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     </Layout>
   );
 };
-export default withChecker(withTracking(CheckerPage));
+export default withTracking(withChecker(CheckerPage));
