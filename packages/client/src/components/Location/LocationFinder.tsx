@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { Topic, requiredFieldText } from "../../config";
+import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import useDebounce from "../../hooks/useDebounce";
