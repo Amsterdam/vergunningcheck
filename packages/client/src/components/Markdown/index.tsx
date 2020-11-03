@@ -8,7 +8,7 @@ import LinkRenderer from "./renderers/LinkRenderer";
 import ListRenderer from "./renderers/ListRenderer";
 
 type MarkDownProps = {
-  eventLocation: any;
+  eventLocation: string;
 };
 
 export default ({

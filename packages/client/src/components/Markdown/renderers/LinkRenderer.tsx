@@ -3,32 +3,23 @@ import React from "react";
 import { actions } from "../../../config/matomo";
 import Link from "../../Link";
 
-type ChildrenProps = {
-  props?: object;
-};
-
 type LinkRendererProps = {
-  children: Array<ChildrenProps>;
+  children: React.ReactChildren;
   eventLocation: string;
   href: string;
 };
 
-const LinkRenderer: React.FC<LinkRendererProps> = ({
-  children,
-  eventLocation,
-  href,
-}) => {
-  // Check if the link is using telephone protocol
-  const url = new URL(href);
-  const isPhoneLink = url.protocol === "tel:";
-
-  // Pass the text in link (eg: <a>text in link</a>) or `TEXT_LINK` as fallback
-  const { value } = children[0]?.props || "";
+export default ({ children, eventLocation, href }: LinkRendererProps) => {
+  const value = Array.isArray(children) && children[0]?.props?.value;
 
   // Don't return empty link
   if (!value) {
     return null;
   }
+
+  // Check if the link is using telephone protocol
+  const url = new URL(href);
+  const isPhoneLink = url.protocol === "tel:";
 
   /**
    * If it's not a phone link make sure we open in new tab and
@@ -48,5 +39,3 @@ const LinkRenderer: React.FC<LinkRendererProps> = ({
     </Link>
   );
 };
-
-export default LinkRenderer;

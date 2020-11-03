@@ -1,26 +1,8 @@
-import { Link as UILink } from "@amsterdam/asc-ui";
+import { Typography, Link as UILink } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { actions } from "../config/matomo";
 import withTracking from "../hoc/withTracking";
-
-// Copy-pasted from ASC-UI
-type TypographyProps = {
-  gutterBottom?: number;
-  element?: any;
-  fontSize?: number;
-  as?: any;
-  forwardedAs?: any;
-  strong?: boolean;
-};
-
-// Copy-pasted from ASC-UI
-type UILinkProps = {
-  darkBackground?: boolean;
-  icon?: "external" | "download";
-  inList?: boolean;
-  variant?: any;
-};
 
 type LinkProps = {
   action: string;
@@ -37,8 +19,8 @@ const Link = ({
   matomoTrackEvent,
   ...otherLinkProps
 }: LinkProps &
-  UILinkProps &
-  TypographyProps &
+  typeof UILink &
+  typeof Typography &
   React.HTMLAttributes<HTMLElement>) => {
   const onClick = () => {
     if (eventName) {
