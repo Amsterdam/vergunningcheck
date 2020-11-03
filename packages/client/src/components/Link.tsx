@@ -2,13 +2,12 @@ import { Typography, Link as UILink } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { actions } from "../config/matomo";
-import withTracking from "../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 
 type LinkProps = {
   action: string;
   eventName: string;
   href: string;
-  matomoTrackEvent: any; // @TODO: replace with Matomo props
 };
 
 const Link = ({
@@ -21,6 +20,7 @@ const Link = ({
 }: LinkProps &
   typeof UILink &
   typeof Typography &
+  MatomoTrackEventProps &
   React.HTMLAttributes<HTMLElement>) => {
   const onClick = () => {
     if (eventName) {
