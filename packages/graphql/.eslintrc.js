@@ -3,6 +3,7 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
+    jest: true,
   },
   extends: ["airbnb-base", "prettier"],
   globals: {
@@ -12,5 +13,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
   },
-  rules: {},
+  rules: {
+    "no-console": "off",
+  },
 };

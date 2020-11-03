@@ -7,13 +7,13 @@ import { ComponentWrapper, Label } from "../../atoms";
 import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { RADIO_ADDRESS_1, RADIO_ADDRESS_2 } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const NewCheckerModal: React.FC<{
-  matomoTrackEvent: Function;
-}> = ({ matomoTrackEvent }) => {
+const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
+  matomoTrackEvent,
+}) => {
   // @TODO: replace with custom topic hooks
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
@@ -74,7 +74,7 @@ const NewCheckerModal: React.FC<{
       ]);
 
       // @TODO: We need to find a better solution for restarting the same checker.
-      return (window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`);
+      window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`;
     }
   };
 
