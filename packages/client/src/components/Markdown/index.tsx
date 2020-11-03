@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown, { ReactMarkdownProps } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 
 import { ListItem } from "../../atoms";
 import Visual from "../Visual";
@@ -9,12 +9,10 @@ import ListRenderer from "./renderers/ListRenderer";
 
 type MarkDownProps = {
   eventLocation: string;
+  source: string;
 };
 
-export default ({
-  eventLocation,
-  source,
-}: MarkDownProps & ReactMarkdownProps) => (
+const Markdown = ({ eventLocation, source }: MarkDownProps) => (
   <ReactMarkdown
     source={source}
     renderers={{
@@ -26,3 +24,5 @@ export default ({
     }}
   />
 );
+
+export default Markdown;
