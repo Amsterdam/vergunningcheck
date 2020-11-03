@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { requiredFieldText } from "../config";
-import { eventNames } from "../config/matomo";
+import { ComponentWrapper } from "../atoms";
+import { requiredFieldRadio } from "../config";
+import { actions, eventNames } from "../config/matomo";
+import { useTracking } from "../hooks";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers from "./Answers";
 import ConclusionAlert from "./ConclusionAlert";
@@ -27,12 +29,13 @@ export const booleanOptions = [
 
 const Question = ({
   question: {
-    id: questionId,
-    type: questionType,
-    options: questionAnswers,
     answer: currentAnswer,
     description,
+    id: questionId,
     longDescription,
+    options: questionAnswers,
+    text: questionTitle,
+    type: questionType,
   },
   userAnswer,
   className,
@@ -41,13 +44,16 @@ const Question = ({
   setEditQuestion,
   onGoToNext,
   saveAnswer,
+  shouldGoToConlusion,
   showNext,
   showPrev,
   onGoToPrev,
   questionIndex,
   questionNeedsContactExit,
   showConclusionAlert,
+  // @TODO: sort this abc when nobody else is editing this file
 }) => {
+  const { matomoTrackEvent } = useTracking();
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map((answer) => ({
     label: answer,
@@ -61,7 +67,7 @@ const Question = ({
       register(
         { name: questionId },
         {
-          required: requiredFieldText,
+          required: requiredFieldRadio,
         }
       );
 
@@ -101,6 +107,13 @@ const Question = ({
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
+  const handleOpenModal = () => {
+    matomoTrackEvent({
+      action: actions.OPEN_MODAL,
+      name: `${eventNames.DESCRIPTION} - ${questionTitle}`,
+    });
+  };
+
   return (
     <Form
       className={className}
@@ -111,7 +124,20 @@ const Question = ({
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
       )}
-      {longDescription && <Modal modalText={longDescription} />}
+      {longDescription && (
+        <ComponentWrapper>
+          <Modal
+            handleOpenModal={handleOpenModal}
+            heading="Toelichting"
+            openButtonText="Toelichting"
+          >
+            <Markdown
+              eventLocation={eventNames.LONG_DESCRIPTION}
+              source={longDescription}
+            />
+          </Modal>
+        </ComponentWrapper>
+      )}
       <Answers
         questionId={questionId}
         onChange={handleChange}
@@ -123,6 +149,8 @@ const Question = ({
         <ConclusionAlert {...{ questionNeedsContactExit }} />
       )}
       <Nav
+        formEnds={shouldGoToConlusion()}
+        nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
         {...{
           onGoToPrev,
           showNext,
@@ -159,6 +187,7 @@ Question.propTypes = {
   onGoToPrev: PropTypes.func,
   onSubmit: PropTypes.func,
   required: PropTypes.bool,
+  shouldGoToConlusion: PropTypes.func,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
   userAnswer: PropTypes.string,

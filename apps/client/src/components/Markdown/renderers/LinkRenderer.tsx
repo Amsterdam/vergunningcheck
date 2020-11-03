@@ -34,7 +34,7 @@ const LinkRenderer: React.FC<LinkRendererProps> = ({
   const rel = isPhoneLink ? "" : "noopener noreferrer";
 
   // Setup event props
-  const action = isPhoneLink && actions.CLICK_PHONE_LINK;
+  const action = isPhoneLink ? actions.CLICK_PHONE_LINK : undefined;
   const eventName = isPhoneLink ? eventLocation : `${value} - ${eventLocation}`;
 
   return (

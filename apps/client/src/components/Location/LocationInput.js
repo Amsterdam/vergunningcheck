@@ -1,11 +1,10 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { actions, eventNames, sections } from "../../config/matomo";
-import { CheckerContext, SessionContext } from "../../context";
-import { useTracking } from "../../hooks";
+import { useAutofillData, useSession, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import Error from "../Error";
 import Form from "../Form";
@@ -21,12 +20,12 @@ const LocationInput = ({
 }) => {
   const history = useHistory();
   const { clearErrors, errors, register, unregister, handleSubmit } = useForm();
-  const sessionContext = useContext(SessionContext);
-  const checkerContext = useContext(CheckerContext);
+  const [topicData, setTopicData] = useSession();
+  const autofillData = useAutofillData();
   const { matomoTrackEvent } = useTracking();
 
-  const { slug, sttrFile, text } = topic;
-  const sessionAddress = sessionContext[slug]?.address || {};
+  const { sttrFile, text } = topic;
+  const sessionAddress = topicData.address || {};
   const hasSTTR = !!sttrFile;
 
   const [address, setAddress] = useState(sessionAddress);
@@ -62,14 +61,14 @@ const LocationInput = ({
       });
 
       // Load given answers from sessionContext
-      let answers = sessionContext[slug]?.answers;
+      let answers = topicData.answers;
 
       // Reset the checker and answers when the address is changed
       if (answers && sessionAddress.id !== address.id) {
         answers = null;
       }
 
-      checkerContext.autofillData.address = address;
+      autofillData.address = address;
 
       // Reset all previous finished states
       if (hasSTTR) {
@@ -80,14 +79,19 @@ const LocationInput = ({
         );
       }
 
-      sessionContext.setSessionData([
-        slug,
-        {
-          address,
-          answers, // Either null or filled with given answers
-          questionIndex: 0, // Reset to 0 to start with the first question
-        },
-      ]);
+      setTopicData({
+        address,
+        answers, // Either null or filled with given answers
+        questionIndex: 0, // Reset to 0 to start with the first question
+      });
+      // sessionContext.setSessionData([
+      //   slug,
+      //   {
+      //     address,
+      //     answers, // Either null or filled with given answers
+      //     questionIndex: 0, // Reset to 0 to start with the first question
+      //   },
+      // ]);
 
       if (focus) {
         document.activeElement.blur();
@@ -104,12 +108,13 @@ const LocationInput = ({
     });
 
     // @TODO: We need to give a warning or we need to store the checker data as well
-    sessionContext.setSessionData([
-      slug,
-      {
-        address,
-      },
-    ]);
+    setTopicData({ address });
+    // sessionContext.setSessionData([
+    //   slug,
+    //   {
+    //     address,
+    //   },
+    // ]);
     history.push(geturl(routes.intro, topic));
   };
 

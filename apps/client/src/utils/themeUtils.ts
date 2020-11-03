@@ -1,10 +1,11 @@
 import { css } from "styled-components";
 
 export const printOnly = css`
-  display: none;
+  @media screen {
+    display: none;
+  }
 
   @media print {
-    display: block;
     -webkit-print-color-adjust: exact;
   }
 `;

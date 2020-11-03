@@ -12,11 +12,12 @@ import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";
+import { CheckerProvider } from "./CheckerContext";
 import Router from "./components/Router";
 import { matomo } from "./config/matomo";
 import { sentryConfig } from "./config/sentry";
-import { SessionProvider } from "./context";
 import * as serviceWorker from "./serviceWorker";
+import { SessionProvider } from "./SessionContext";
 
 dotenv.config();
 
@@ -36,15 +37,17 @@ init(sentryConfig);
 
 ReactDOM.render(
   <SessionProvider>
-    <ApolloProvider client={apolloClient}>
-      <ThemeProvider>
-        <GlobalStyle />
-        <AppGlobalStyle />
-        <MatomoProvider value={createInstance(matomo)}>
-          <Router />
-        </MatomoProvider>
-      </ThemeProvider>
-    </ApolloProvider>
+    <CheckerProvider>
+      <ApolloProvider client={apolloClient}>
+        <ThemeProvider>
+          <GlobalStyle />
+          <AppGlobalStyle />
+          <MatomoProvider value={createInstance(matomo)}>
+            <Router />
+          </MatomoProvider>
+        </ThemeProvider>
+      </ApolloProvider>
+    </CheckerProvider>
   </SessionProvider>,
 
   document.getElementById("root")

@@ -2,8 +2,13 @@ import isBoolean from "lodash.isboolean";
 import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
+import { topics } from "../config";
+
 // Function that does nothing
 export const noop = () => {};
+
+// Find a topic by the slug
+export const findTopicBySlug = (slug) => topics.find((t) => t.slug === slug);
 
 // Simple checks
 export const isSimpleType = (val) =>
@@ -62,3 +67,18 @@ export const uniqBy = (arr, predicate) => {
 
   return [...pickedObjects];
 };
+
+/**
+ *
+ * Scroll to `ref` in page. This function calculates the distance between
+ * the top of the window and the top of the element and scrolls to it.
+ *
+ * @param {object} ref - reference to an element created by React.useRef()
+ * @param {number} offset - pass an offset to reduce from the total distance
+ */
+export const scrollToRef = (ref, offset = 0) =>
+  ref &&
+  window.scrollTo(
+    0,
+    ref.current.getBoundingClientRect().top + window.scrollY - offset
+  );

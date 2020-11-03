@@ -1,49 +1,19 @@
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
 
-import Context from "../__mocks__/context";
-import { topics } from "../config";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
-import { cleanup, fireEvent, render } from "../utils/test-utils";
+import { fireEvent, render } from "../utils/test-utils";
 import Form from "./Form";
 import Nav from "./Nav";
 
-const onSubmitMock = jest.fn();
-const onPrevClickMock = jest.fn();
-
-afterEach(cleanup);
-
-const Wrapper = ({ children }) => {
-  const topicMock = "dakraam-plaatsen";
-  const topicUrlMock = `/${topicMock}`;
-  const topic = topics.find((t) => t.slug === topicMock);
-
-  return (
-    <Context topicMock={topic}>
-      <MemoryRouter initialEntries={[topicUrlMock]}>
-        <Form onSubmit={onSubmitMock}>{children}</Form>
-      </MemoryRouter>
-    </Context>
-  );
-};
-
 it("Nav should render with no props", () => {
-  const { queryByTestId } = render(
-    <Wrapper>
-      <Nav />
-    </Wrapper>
-  );
+  const { queryByTestId } = render(<Nav />);
 
   expect(queryByTestId(NEXT_BUTTON)).not.toBeInTheDocument();
   expect(queryByTestId(PREV_BUTTON)).not.toBeInTheDocument();
 });
 
 it("Nav should render default values", () => {
-  const { queryByTestId } = render(
-    <Wrapper>
-      <Nav showPrev showNext />
-    </Wrapper>
-  );
+  const { queryByTestId } = render(<Nav showPrev showNext />);
 
   expect(queryByTestId(PREV_BUTTON)).toBeInTheDocument();
 
@@ -53,8 +23,11 @@ it("Nav should render default values", () => {
 });
 
 it("Nav should render with prop values and should fire events", () => {
+  const onSubmitMock = jest.fn();
+  const onPrevClickMock = jest.fn();
+
   const { getByText } = render(
-    <Wrapper>
+    <Form onSubmit={onSubmitMock}>
       <Nav
         showPrev
         prevText="Prev"
@@ -63,7 +36,7 @@ it("Nav should render with prop values and should fire events", () => {
         nextText="Next"
         formEnds
       />
-    </Wrapper>
+    </Form>
   );
 
   const prevButton = getByText("Prev");

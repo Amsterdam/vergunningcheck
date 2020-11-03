@@ -6,6 +6,8 @@ type Props = {
 };
 
 export default styled(List)<Props>`
+  -webkit-print-color-adjust: exact;
+
   ${({ noPadding }) =>
     // By default we add a padding to make it look better,
     // but in same rare cases we don't need a padding, eg: Footer

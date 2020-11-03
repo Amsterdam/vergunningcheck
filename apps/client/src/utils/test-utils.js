@@ -6,20 +6,38 @@ import { render } from "@testing-library/react";
 import dotenv from "dotenv-flow";
 import React from "react";
 
+import matchMedia from "../__mocks__/matchMedia";
+import { CheckerProvider } from "../CheckerContext";
 import { matomo } from "../config/matomo";
-import { SessionProvider } from "../context";
+import { SessionProvider } from "../SessionContext";
 
 dotenv.config();
 
+Object.defineProperty(window, "matchMedia", matchMedia);
+
+window.open = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useLocation: () => ({ pathname: "/dakkapel-plaatsen" }),
+  useHistory: () => ({
+    location: {
+      pathname: "/dakkapel-plaatsen",
+    },
+  }),
+}));
+
 const AllTheProviders = ({ children, mocks }) => (
   <SessionProvider>
-    <ApolloProvider client={getTestClient(mocks ? mocks : [])}>
-      <ThemeProvider>
-        <MatomoProvider value={createInstance(matomo)}>
-          {children}
-        </MatomoProvider>
-      </ThemeProvider>
-    </ApolloProvider>
+    <CheckerProvider>
+      <ApolloProvider client={getTestClient(mocks ? mocks : [])}>
+        <ThemeProvider>
+          <MatomoProvider value={createInstance(matomo)}>
+            {children}
+          </MatomoProvider>
+        </ThemeProvider>
+      </ApolloProvider>
+    </CheckerProvider>
   </SessionProvider>
 );
 

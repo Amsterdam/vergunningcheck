@@ -14,7 +14,7 @@ export type Props = {
   href?: string;
   link?: boolean;
   text?: string;
-  variant?: string | null;
+  variant?: string;
 };
 
 export default ({

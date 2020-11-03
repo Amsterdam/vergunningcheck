@@ -1,29 +1,34 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
+import { CheckerContext, setCheckerFn } from "../CheckerContext";
 import { Topic } from "../config";
 import { autofillMap, autofillResolvers } from "../config/autofill";
-import { CheckerContext, SessionContext, SessionDataType } from "../context";
 import getChecker from "../sttr_client";
+import Checker from "../sttr_client/models/checker";
 import useTopic from "./useTopic";
+import useTopicSession from "./useTopicSession";
 
 const dir =
   process.env.REACT_APP_STTR_ENV === "production" ? "prod" : "staging";
 
 export default () => {
-  const sessionContext = useContext(SessionContext) as SessionDataType;
-  const checkerContext = useContext(CheckerContext);
-  const [checker, setChecker] = useState(checkerContext.checker);
   const topic = useTopic();
+  const { topicData } = useTopicSession();
+  const { checker, setChecker } = useContext(CheckerContext);
+
+  if (topic === undefined) {
+    throw new Error("Topic not found");
+  }
 
   useEffect(() => {
     async function fetchData() {
-      const { slug, sttrFile } = topic as Topic;
+      const { sttrFile } = topic as Topic;
       const topicRequest = await fetch(
         `${window.location.origin}/sttr/${dir}/${sttrFile}`
       );
 
       const newChecker = getChecker(await topicRequest.json());
-      const address = sessionContext[slug]?.address;
+      const { address } = topicData;
 
       // Find if we have missing data needs
       if (address) {
@@ -36,12 +41,11 @@ export default () => {
       )[0];
 
       // TODO: Add comment about the next if
-      if (sessionContext[slug]?.answers && !unfulfilledDataNeed) {
-        newChecker.setQuestionAnswers(sessionContext[slug].answers);
+      if (topicData.answers && !unfulfilledDataNeed) {
+        newChecker.setQuestionAnswers(topicData.answers);
       }
 
-      // Store the entire `sttr-checker` in React Context
-      checkerContext.checker = newChecker;
+      // Store the Checker in React Context
       setChecker(newChecker);
     }
 
@@ -50,5 +54,5 @@ export default () => {
     }
   });
 
-  return checker;
+  return [checker, setChecker] as [Checker, setCheckerFn];
 };

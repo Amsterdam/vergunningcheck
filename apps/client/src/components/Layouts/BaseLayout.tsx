@@ -1,10 +1,12 @@
 import { Column, Row } from "@datapunt/asc-ui";
-import React from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 
-import { FormTitle, HideForPrint } from "../../atoms";
-import { Topic } from "../../config";
-import { useTopic } from "../../hooks";
+import { Debug, FormTitle, HideForPrint } from "../../atoms";
+import { CheckerContext } from "../../CheckerContext";
+import { useSession, useTopic } from "../../hooks";
+import useTopicSession from "../../hooks/useTopicSession";
+import { defaultTopicSession } from "../../SessionContext";
 import Footer from "../Footer";
 import Header from "../Header";
 import HiddenDebugInfo from "../HiddenDebugInfo";
@@ -16,7 +18,10 @@ export interface BaseLayoutProps {
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const topic = useTopic() as Topic;
+  const checkerContext = useContext(CheckerContext);
+  const [session, setSessionData] = useSession();
+  const { topicData, setTopicData } = useTopicSession();
+  const topic = useTopic();
   const title = heading || topic?.text?.heading || null;
 
   return (
@@ -46,19 +51,33 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
       </ContentContainer>
 
       <HideForPrint>
-        <HiddenDebugInfo title="Environment">
-          <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
-          <p>App Version: {process.env.REACT_APP_VERSION}</p>
-          <p>Node environment: {process.env.NODE_ENV}</p>
-          <p>STTR stage: {process.env.REACT_APP_STTR_ENV}</p>
+        <HiddenDebugInfo title="Checker context">
+          <Debug json={checkerContext} condensed />
         </HiddenDebugInfo>
+
+        <HiddenDebugInfo title="Topic Data">
+          <Debug json={topicData} />
+          <button onClick={() => setTopicData({ activeComponents: ["blaat"] })}>
+            update topic
+          </button>
+        </HiddenDebugInfo>
+
+        <HiddenDebugInfo title="Session">
+          <Debug json={session} />
+          <button onClick={() => setSessionData({ slug: defaultTopicSession })}>
+            reset session
+          </button>
+        </HiddenDebugInfo>
+
         {topic && (
           <HiddenDebugInfo title="Topic">
-            <p>slug: {topic.slug}</p>
-            <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
-            <p>sttrFile: {topic.sttrFile}</p>
+            <Debug json={topic} />
           </HiddenDebugInfo>
         )}
+
+        <HiddenDebugInfo title="Environment">
+          <Debug json={process.env} />
+        </HiddenDebugInfo>
 
         <Footer />
         <div

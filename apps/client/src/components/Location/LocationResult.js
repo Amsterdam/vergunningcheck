@@ -1,9 +1,9 @@
 import { Heading, Paragraph } from "@datapunt/asc-ui";
-import React, { useContext } from "react";
+import React from "react";
 
 import { generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { SessionContext } from "../../context";
+import { useTopicSession } from "../../hooks";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -17,9 +17,9 @@ const LocationResult = ({
   setActiveState,
   topic,
 }) => {
-  const sessionContext = useContext(SessionContext);
-  const address = sessionContext[topic.slug].address || {};
-  const { questionIndex } = sessionContext[topic.slug] || {};
+  const { topicData, setTopicData } = useTopicSession();
+  const address = topicData.address || {};
+  const { questionIndex } = topicData || {};
   const hasSTTR = !!topic.sttrFile;
 
   const onSubmit = (e) => {
@@ -27,12 +27,9 @@ const LocationResult = ({
     if (hasSTTR) {
       if (typeof questionIndex !== "number") {
         // Init checker by setting question index to 0
-        sessionContext.setSessionData([
-          topic.slug,
-          {
-            questionIndex: 0,
-          },
-        ]);
+        setTopicData({
+          questionIndex: 0,
+        });
       }
 
       setFinishedState(sections.LOCATION_RESULT, true);

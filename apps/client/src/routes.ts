@@ -5,7 +5,7 @@ import slugify from "slugify";
 type Path = string;
 
 export type ParamTypes = {
-  slug?: string;
+  slug: string;
 };
 
 type RedirectRule = {

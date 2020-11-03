@@ -1,7 +1,7 @@
 /* eslint-disable */
-import React, { useContext } from "react";
+import React from "react";
 
-import { SessionContext } from "../context";
+import { useTopicSession } from "../hooks";
 import HiddenDebugInfo from "./HiddenDebugInfo";
 
 const QuestionSummary = ({ question: { prio, text, autofill } }) =>
@@ -17,9 +17,8 @@ const Answer = ({ question: { answer } }) => (
   </>
 );
 
-export default ({ checker, topic }) => {
-  const sessionContext = useContext(SessionContext);
-  const { slug } = topic;
+export default ({ checker }) => {
+  const { topicData } = useTopicSession();
   const decisionId = "dummy";
 
   if (!checker || !checker.permits) {
@@ -56,7 +55,7 @@ export default ({ checker, topic }) => {
                 key={`question-${q.id}-${i}`}
                 style={{
                   fontWeight:
-                    checker.stack[sessionContext[slug]?.questionIndex] === q
+                    checker.stack[topicData.questionIndex] === q
                       ? "bold"
                       : "normal",
                 }}

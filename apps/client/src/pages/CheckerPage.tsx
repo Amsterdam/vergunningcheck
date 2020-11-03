@@ -1,6 +1,6 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { HideForPrint } from "../atoms";
 import Conclusion from "../components/Conclusion";
@@ -15,23 +15,23 @@ import {
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
 import { actions, eventNames, sections } from "../config/matomo";
-import { SessionContext, SessionDataType } from "../context";
 import { useChecker, useTopic, useTracking } from "../hooks";
-import { ParamTypes, geturl, routes } from "../routes";
+import useTopicSession from "../hooks/useTopicSession";
+import { geturl, routes } from "../routes";
 import LoadingPage from "./LoadingPage";
 import NotFoundPage from "./NotFoundPage";
 
-type Props = {
-  resetChecker: any;
-};
-
-const CheckerPage = ({ resetChecker }: Props) => {
-  const sessionContext = useContext(SessionContext) as SessionDataType;
-  const params = useParams<ParamTypes>();
+const CheckerPage = () => {
+  const { topicData, setTopicData } = useTopicSession();
+  const [checker, setChecker] = useChecker();
   const topic = useTopic();
-  const checker = useChecker();
+
+  console.log("CheckerPage:checker", checker);
   const { matomoTrackEvent } = useTracking();
-  const slug = params.slug as string;
+
+  const resetChecker = () => {
+    setChecker(null);
+  };
 
   useEffect(() => {
     // In case no active sections are found, reset the checker
@@ -46,15 +46,12 @@ const CheckerPage = ({ resetChecker }: Props) => {
     if (!activeComponent) {
       console.warn("Resetting checker, because no active section was found");
 
-      sessionContext.setSessionData([
-        slug,
-        {
-          activeComponents: [sections.LOCATION_INPUT],
-          answers: null,
-          finishedComponents: [],
-          questionIndex: null,
-        },
-      ]);
+      setTopicData({
+        activeComponents: [sections.LOCATION_INPUT],
+        answers: {},
+        finishedComponents: [],
+        questionIndex: 0,
+      });
 
       if (sttrFile) {
         resetChecker();
@@ -70,7 +67,7 @@ const CheckerPage = ({ resetChecker }: Props) => {
     answers,
     questionIndex = 0,
     finishedComponents = [],
-  } = sessionContext[slug];
+  } = topicData;
 
   const isActive = useCallback(
     (component: string[] | string, finished: boolean = false) => {
@@ -94,7 +91,8 @@ const CheckerPage = ({ resetChecker }: Props) => {
   const { sttrFile, text } = topic;
 
   //@TODO: We shoudn't need this redirect. We need to refactor this
-  if (!sessionContext[slug]) {
+  // Redirect to Intro in case no session context has been found
+  if (!topicData) {
     return <Redirect to={geturl(routes.intro, { slug: topic.slug })} />;
   }
 
@@ -112,7 +110,8 @@ const CheckerPage = ({ resetChecker }: Props) => {
       });
     }
 
-    sessionContext.setSessionData([slug, { activeComponents: [component] }]);
+    // sessionContext[slug].activeComponents = [component];
+    setTopicData({ activeComponents: [component] });
   };
 
   /**
@@ -126,16 +125,16 @@ const CheckerPage = ({ resetChecker }: Props) => {
     const allComponents = Array.isArray(component) ? component : [component];
 
     // If value is false, remove the components from the fishedComponents array
-    const newFinishedComponents =
+    const newFinishedComponents: string[] =
       typeof value === "boolean" && value === false
-        ? finishedComponents?.filter((c) => !allComponents.includes(c)) || []
+        ? finishedComponents?.filter(
+            (c: string) => !allComponents.includes(c)
+          ) || []
         : [...finishedComponents, ...allComponents];
 
     // Save the new array to the context
-    sessionContext.setSessionData([
-      slug,
-      { finishedComponents: newFinishedComponents },
-    ]);
+    // sessionContext[slug].finishedComponents = newFinishedComponents;
+    setTopicData({ finishedComponents: newFinishedComponents });
   };
 
   const isFinished = (component: string[] | string) =>
@@ -143,34 +142,27 @@ const CheckerPage = ({ resetChecker }: Props) => {
 
   /**
    * Set the questionIndex the next questionId, previous questionId, or the given id.
-   *
-   * @param { int | ('next'|'prev') } value - This can be, '"next", "prev" or a int`
    */
-  const goToQuestion = (value: string | number) => {
-    let action, eventName, newQuestionIndex;
+  const goToQuestion = (value: "next" | "prev" | number) => {
+    let action, eventName;
+    let newQuestionIndex: number;
 
-    if (Number.isInteger(value)) {
-      // Edit specific question index (value), go directly to this new question index
-      newQuestionIndex = value;
-      // Matomo event props
-      action = actions.EDIT_QUESTION;
-      eventName = checker.stack[newQuestionIndex].text;
-    } else if (value === "next" || value === "prev") {
+    if (value === "next" || value === "prev") {
       // Either go 1 question next or prev
       newQuestionIndex =
         value === "next" ? questionIndex + 1 : questionIndex - 1;
       // Matomo event props
-      action = checker.stack[questionIndex].text;
+      action = (checker.stack[questionIndex] as any).text;
       eventName =
         value === "next"
           ? eventNames.GOTO_NEXT_QUESTION
           : eventNames.GOTO_PREV_QUESTION;
     } else {
-      // @TODO: Fix this by converting all files that use this function to typescript
-      console.error(
-        `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
-      );
-      return;
+      // Edit specific question index (value), go directly to this new question index
+      newQuestionIndex = value;
+      // Matomo event props
+      action = actions.EDIT_QUESTION;
+      eventName = (checker.stack[newQuestionIndex] as any).text;
     }
 
     matomoTrackEvent({
@@ -178,12 +170,9 @@ const CheckerPage = ({ resetChecker }: Props) => {
       name: eventName,
     });
 
-    sessionContext.setSessionData([
-      slug,
-      {
-        questionIndex: newQuestionIndex,
-      },
-    ]);
+    setTopicData({
+      questionIndex: newQuestionIndex,
+    });
   };
 
   // Callback to go to the Conclusion section
@@ -312,8 +301,9 @@ const CheckerPage = ({ resetChecker }: Props) => {
           {isActive(sections.LOCATION_INPUT) && (
             <LocationInput
               {...{
-                matomoTrackEvent,
                 isFinished,
+                matomoTrackEvent,
+                resetChecker,
                 setActiveState,
                 setFinishedState,
                 topic,

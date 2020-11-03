@@ -1,27 +1,15 @@
-import Alert from "./Alert";
-import ComponentWrapper from "./ComponentWrapper";
-import EditButton from "./EditButton";
-import FormTitle from "./FormTitle";
-import HideForPrint from "./HideForPrint";
-import List from "./List";
-import ListItem from "./ListItem";
-import OrderedList from "./OrderedList";
-import PrevButton from "./PrevButton";
-import PrintButton from "./PrintButton";
-import PrintOnly from "./PrintOnly";
-import TextToEdit from "./TextToEdit";
-
-export {
-  Alert,
-  ComponentWrapper,
-  EditButton,
-  FormTitle,
-  HideForPrint,
-  List,
-  ListItem,
-  OrderedList,
-  PrevButton,
-  PrintButton,
-  PrintOnly,
-  TextToEdit,
-};
+export { default as Alert } from "./Alert";
+export { default as ComponentWrapper } from "./ComponentWrapper";
+export { default as Debug } from "./Debug";
+export { default as EditButton } from "./EditButton";
+export { default as FormTitle } from "./FormTitle";
+export { default as HideForPrint } from "./HideForPrint";
+export { default as Label } from "./Label";
+export { default as List } from "./List";
+export { default as ListItem } from "./ListItem";
+export { default as OrderedList } from "./OrderedList";
+export { default as PrevButton } from "./PrevButton";
+export { default as PrintButton } from "./PrintButton";
+export { default as PrintOnly } from "./PrintOnly";
+export { default as ScrollAnchor } from "./ScrollAnchor";
+export { default as TextToEdit } from "./TextToEdit";

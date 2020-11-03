@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import { topics } from "../config";
-import { ParamTypes } from "../routes";
+import { findTopicBySlug } from "../utils";
+import useSlug from "./useSlug";
 
 const getTopicFromSlug = (slug: string | undefined) => {
   if (!slug) {
-    return null;
+    return;
   }
 
-  const topic = topics.find((topic) => topic.slug === slug);
-
+  const topic = findTopicBySlug(slug);
   if (topic) {
     return topic;
   }
@@ -31,16 +27,20 @@ const getTopicFromSlug = (slug: string | undefined) => {
   //       heading: name,
   //     },
   //   };
-  return null;
 };
 
+// export default () => {
+//   const context = useContext(SessionContext);
+//   const slug = useSlug();
+
+//   if (!context.topic || slug !== context.topic?.slug) {
+//     context.topic = getTopicFromSlug(slug);
+//   }
+
+//   return context.topic;
+// };
+
 export default () => {
-  const { slug } = useParams<ParamTypes>();
-  const [topic, setTopic] = useState(getTopicFromSlug(slug));
-
-  useEffect(() => {
-    setTopic(getTopicFromSlug(slug));
-  }, [setTopic, slug]);
-
-  return topic;
+  const slug = useSlug();
+  return getTopicFromSlug(slug);
 };
