@@ -48,7 +48,7 @@ packages. This is not a bug. Therefore we need to do a little additional work.
 To add an npm-package to one of our managed lerna-packages, run:
 
 ```
-lerna add cowsay --scope=@vergunningcheck/client
+lerna add cowsay --scope=@vergunningcheck/client [--dev]
 ```
 
 To remove a package, remove the dependency from the package.json manually, then;
