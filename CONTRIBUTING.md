@@ -54,8 +54,7 @@ lerna add cowsay --scope=@vergunningcheck/client [--dev]
 To remove a package, remove the dependency from the package.json manually, then;
 
 ```
-lerna clean -y
-lerna bootstrap
+npm run cleaninstall
 ```
 
 ## Link lerna packages
