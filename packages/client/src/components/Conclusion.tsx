@@ -14,6 +14,7 @@ import {
   NeedReportContent,
   NoPermitDescription,
 } from "./Conclusion/";
+import NeedReportAndPermitContent from "./Conclusion/NeedReportAndPermitContent";
 import Disclaimer from "./Disclaimer";
 import Markdown from "./Markdown";
 
@@ -81,6 +82,11 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
     title: contactConclusion?.title,
   };
 
+  const needReportAndPermitContent = {
+    mainContent: <NeedReportAndPermitContent />,
+    title: "U hebt zowel een meldingsplicht als meldingsplicht.",
+  };
+
   const needReportContent = {
     mainContent: <NeedReportContent />,
     title: "U hebt een meldingsplicht.",
@@ -96,8 +102,12 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
     title: "U hebt geen omgevingsvergunning nodig. ",
   };
 
+  const needReportAndPermit = needReport && needPermit;
+
   const conclusionContent = contactConclusion
     ? needContactContent
+    : needReportAndPermit
+    ? needReportAndPermitContent
     : needReport
     ? needReportContent
     : needPermit
