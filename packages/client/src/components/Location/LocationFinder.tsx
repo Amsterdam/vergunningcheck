@@ -28,16 +28,16 @@ const isTrueExactMatch = (
   houseNumberFull &&
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
-const LocationFinder: React.FC<
-  {
-    focus: boolean;
-    sessionAddress: any; // @TODO replace any with address type.
-    setAddress: (address: boolean) => void;
-    setErrorMessage: (error: ApolloError | undefined) => void;
-    setFocus: (focus: boolean) => void;
-    topic: Topic; // TODO: Remove topic from this component.
-  } & MatomoTrackEventProps
-> = ({
+type LocationFinderProps = {
+  focus: boolean;
+  sessionAddress: any; // @TODO replace any with address type.
+  setAddress: (address: object) => void;
+  setErrorMessage: (error: ApolloError | undefined) => void;
+  setFocus: (focus: boolean) => void;
+  topic: Topic; // TODO: Remove topic from this component.
+};
+
+const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   focus,
   matomoTrackEvent,
   sessionAddress,
