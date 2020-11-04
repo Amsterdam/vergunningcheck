@@ -1,8 +1,8 @@
+import { Paragraph } from "@amsterdam/asc-ui";
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 
 import Error from "../components/Error";
-import Layout from "../components/Layouts/DefaultLayout";
 
 interface ITestProps {
   error: { stack: any; message: any } | any;
@@ -12,12 +12,15 @@ interface ITestState {
   error: any;
   errorInfo: any;
 }
+interface TestVectorLayer {
+  // members of your "class" go here
+}
 
 export default class ErrorPage extends Component<ITestProps, ITestState> {
   constructor(props: Readonly<ITestProps>) {
     super(props);
 
-    this.state = { error: { ...props.error } };
+    this.state = { error: { ...props.error }, errorInfo: "" };
   }
 
   componentDidCatch(error: any, errorInfo: any) {
@@ -31,16 +34,23 @@ export default class ErrorPage extends Component<ITestProps, ITestState> {
     const { error } = this.state;
     const { children } = this.props;
     return (
-      <Layout>
+      <>
         <Helmet>
           <title>Er is een fout opgetreden - Amsterdam Vergunningcheck</title>
         </Helmet>
-        <Error
-          {...error}
-          children={children}
-          heading={"Er is een fout opgetreden"}
-        />
-      </Layout>
+        {error.length > 0 && (
+          <Error {...error} heading={"Er is een fout opgetreden"} />
+        )}
+        {/* eslint-disable-next-line no-throw-literal */}
+        <Paragraph
+          onClick={() => {
+            throw String("error");
+          }}
+        >
+          asdadssda
+        </Paragraph>
+        {children}
+      </>
     );
   }
 }

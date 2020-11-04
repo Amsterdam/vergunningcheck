@@ -16,7 +16,6 @@ import Router from "./components/Router";
 import { matomo } from "./config/matomo";
 import { sentryConfig } from "./config/sentry";
 import { SessionProvider } from "./context";
-import ErrorPage from "./pages/ErrorPage";
 import * as serviceWorker from "./serviceWorker";
 
 dotenv.config();
@@ -42,9 +41,7 @@ ReactDOM.render(
         <GlobalStyle />
         <AppGlobalStyle />
         <MatomoProvider value={createInstance(matomo)}>
-          <ErrorPage>
-            <Router />
-          </ErrorPage>
+          <Router />
         </MatomoProvider>
       </ThemeProvider>
     </ApolloProvider>
