@@ -9,6 +9,16 @@ import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
+const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
+  margin-bottom: ${themeSpacing(9)};
+
+  ${({ showDiscaimer }) =>
+    showDiscaimer &&
+    css`
+      margin-bottom: ${themeSpacing(15)};
+    `};
+`;
+
 type ConclusionContentProps = {
   description?: string;
   eventName?: string;
@@ -22,16 +32,6 @@ type ConclusionOutcomeProps = {
   matomoTrackEvent: Function;
   showDiscaimer?: boolean;
 };
-
-const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
-  margin-bottom: ${themeSpacing(9)};
-
-  ${({ showDiscaimer }) =>
-    showDiscaimer &&
-    css`
-      margin-bottom: ${themeSpacing(15)};
-    `};
-`;
 
 const ConclusionOutcome: React.FC<
   ConclusionOutcomeProps & MatomoTrackEventProps
