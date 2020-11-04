@@ -365,7 +365,7 @@ const Questions: React.FC<
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
                 questionNeedsContactExit={checker.needContactExit(q)}
-                userAnswer={userAnswer?.toString()}
+                userAnswer={userAnswer ? userAnswer.toString() : ""}
                 {...{ showQuestionAlert }}
               />
             )}
@@ -400,7 +400,7 @@ const Questions: React.FC<
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              userAnswer={userAnswer.toString()}
+              userAnswer={userAnswer ? userAnswer.toString() : ""}
               {...{ disabled, showQuestionAlert }}
             />
           </StepByStepItem>
