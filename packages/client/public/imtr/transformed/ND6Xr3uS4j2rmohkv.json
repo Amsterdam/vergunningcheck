@@ -1,53 +1,94 @@
 {
   "permits": [
     {
-      "version": 2,
+      "version": 15,
       "name": "Conclusie Test robin plichten",
       "questions": [
         {
-          "text": "vraag 1",
-          "type": "boolean",
-          "id": "uitv__a242411c-d5e0-4571-a66d-7aaaf62e4731",
+          "text": "kies een conclusie",
+          "options": [
+            "meldplicht",
+            "vergunningplicht",
+            "neem contact op met",
+            "vergunningvrij",
+            "meldplicht EN vergunningplicht",
+            "neem contact op met EN meldplicht",
+            "neem contact op met EN vergunningplicht"
+          ],
+          "type": "string",
+          "id": "uitv__12d17eb4-a6e8-4225-aecc-215a1190455c",
           "prio": 10
         }
       ],
       "inputs": {
-        "input__a242411c-d5e0-4571-a66d-7aaaf62e4731": {
-          "href": "#uitv__a242411c-d5e0-4571-a66d-7aaaf62e4731",
-          "type": "boolean"
+        "input__12d17eb4-a6e8-4225-aecc-215a1190455c": {
+          "href": "#uitv__12d17eb4-a6e8-4225-aecc-215a1190455c",
+          "type": "string"
         }
       },
       "decisions": {
-        "_25567851-7723-4ac8-aa16-47d8d0ab4ea1": {
-          "requiredInputs": ["#input__a242411c-d5e0-4571-a66d-7aaaf62e4731"],
+        "_6a66c2c6-ee1d-4ab1-8b0a-2a45d9e9b885": {
+          "requiredInputs": ["#input__12d17eb4-a6e8-4225-aecc-215a1190455c"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true],
+                "inputs": ["\"meldplicht\""],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": [false],
+                "inputs": ["\"meldplicht EN vergunningplicht\""],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["\"neem contact op met EN meldplicht\""],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["\"vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"meldplicht EN vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"neem contact op met EN vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"neem contact op met\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"neem contact op met EN meldplicht\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"neem contact op met EN vergunningplicht\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"vergunningvrij\""],
                 "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_25567851-7723-4ac8-aa16-47d8d0ab4ea1"],
+          "requiredDecisions": ["#_6a66c2c6-ee1d-4ab1-8b0a-2a45d9e9b885"],
           "decisionTable": {
             "rules": [
+              {
+                "inputs": ["\"Meldingsplicht\""],
+                "output": "\"Meldingsplicht\""
+              },
               {
                 "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"Meldingsplicht\""],
-                "output": "\"Meldingsplicht\""
+                "inputs": ["\"NeemContactOpMet\""],
+                "output": "\"NeemContactOpMet\""
               },
               {
                 "inputs": ["\"no hit\""],
