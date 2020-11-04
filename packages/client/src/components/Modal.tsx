@@ -24,10 +24,10 @@ type ModalProps = {
   closeModalAfterConfirm?: boolean;
   confirmText?: string;
   handleConfirmButton?: () => void;
-  handleOpenModal?: Function;
+  handleOpenModal?: () => void;
   heading: string;
-  onClick?: Function;
-  openButtonRenderer?: Function;
+  onClick?: () => void;
+  openButtonRenderer?: (props: { openModal: () => void }) => void;
   openButtonText?: string;
   showCloseButton?: boolean;
   showConfirmButton?: boolean;

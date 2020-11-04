@@ -6,10 +6,10 @@ import { EditButton, TextToEdit } from "../atoms";
 import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {
-  disabled: boolean;
+  disabled?: boolean;
   questionNeedsContactExit?: boolean;
   showConclusionAlert: boolean;
-  userAnswer: string;
+  userAnswer?: string;
 };
 
 const QuestionAnswer: React.FC<
@@ -21,10 +21,11 @@ const QuestionAnswer: React.FC<
   showConclusionAlert,
   userAnswer,
 }) => {
+  if (!userAnswer) return null;
   return (
     <>
       <Paragraph gutterBottom={0}>
-        <TextToEdit>{removeQuotes(userAnswer)}</TextToEdit>
+        <TextToEdit>{removeQuotes(userAnswer.toString())}</TextToEdit>
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
