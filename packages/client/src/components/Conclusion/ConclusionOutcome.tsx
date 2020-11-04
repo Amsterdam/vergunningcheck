@@ -15,7 +15,7 @@ const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
   ${({ showDiscaimer }) =>
     showDiscaimer &&
     css`
-      margin-bottom: ${themeSpacing(15)};
+      margin-bottom: ${themeSpacing(9)};
     `};
 `;
 
@@ -84,6 +84,7 @@ const ConclusionOutcome: React.FC<
 
       <HideForPrint>
         <NewCheckerModal />
+        <ComponentWrapper>&nbsp;</ComponentWrapper>
       </HideForPrint>
     </ConclusionOutcomeWrapper>
   );
