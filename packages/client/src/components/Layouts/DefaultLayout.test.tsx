@@ -23,7 +23,7 @@ const Wrapper = ({
   formTitle,
   heading,
 }: {
-  children: React.ReactNode;
+  children: React.ReactChildren;
   formTitle: string;
   heading: string;
 }) => {
