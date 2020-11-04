@@ -1,0 +1,645 @@
+{
+  "permits": [
+    {
+      "version": 63,
+      "name": "Conclusie Ketentest - Boom kappen",
+      "questions": [
+        {
+          "text": "Wat wilt u gaan doen?",
+          "longDescription": "Als u gaat rooien, wordt ook het gedeelte in de grond verwijderd.",
+          "description": "Als u gaat kappen, wordt alleen het gedeelte boven de grond verwijderd.",
+          "collection": true,
+          "options": ["kappen", "iets anders"],
+          "type": "string",
+          "id": "uitv__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+          "prio": 10
+        },
+        {
+          "text": "Wat gaat u kappen?",
+          "collection": true,
+          "options": ["een boom", "iets anders"],
+          "type": "string",
+          "id": "uitv__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+          "prio": 20
+        },
+        {
+          "text": "Staat de boom binnen de bebouwde kom?",
+          "description": "vrije vertaling van artikel 4.6 Wnb",
+          "type": "boolean",
+          "id": "uitv__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+          "prio": 30
+        },
+        {
+          "text": "Wat is de conditie van de boom?",
+          "longDescription": "Deze vraag is opgenomen om de gebruiker te informeren dat de regels ook gelden voor dode bomen.",
+          "collection": true,
+          "options": ["ziek", "gezond of dood"],
+          "type": "string",
+          "id": "uitv__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+          "prio": 40
+        },
+        {
+          "text": "Wat is de omtrek van de boom gemeten op 1m30 boven de grond?",
+          "collection": true,
+          "options": ["31 cm of meer", "minder dan 31 cm"],
+          "type": "string",
+          "id": "uitv__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+          "prio": 50
+        },
+        {
+          "text": "Is de boom geplant ivm een herplantplicht?",
+          "longDescription": "Deze vraag is pas relevant als de omtrek minder dan 31 cm is.",
+          "type": "boolean",
+          "id": "uitv__a695d1b2-ba1e-48f6-b6b3-071788a67396",
+          "prio": 60
+        },
+        {
+          "text": "Gaat u kappen vanwege de iepziekte of ogv de Plantenziektewet?",
+          "type": "boolean",
+          "id": "uitv__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+          "prio": 70
+        },
+        {
+          "text": "Gaat u kappen omdat er spoed is of gevaar?",
+          "type": "boolean",
+          "id": "uitv__db462e43-84a7-418f-a666-bf03cb57e874",
+          "prio": 80
+        },
+        {
+          "text": "Gaat u kappen om andere bomen meer ruimte te geven om te groeien? (dunnen)",
+          "type": "boolean",
+          "id": "uitv__f732a809-520d-41aa-89e4-4eed3229984e",
+          "prio": 90
+        }
+      ],
+      "inputs": {
+        "input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84": {
+          "href": "#uitv__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+          "type": "string"
+        },
+        "input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700": {
+          "href": "#uitv__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+          "type": "string"
+        },
+        "input__379da7eb-464e-4dab-bba6-3fd091b1db0a": {
+          "href": "#uitv__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+          "type": "boolean"
+        },
+        "input__489d4615-5c8b-4c44-8cc7-c4241b0594f4": {
+          "href": "#uitv__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+          "type": "string"
+        },
+        "input__1ec8c552-b535-4bd2-ba32-336d1e054c74": {
+          "href": "#uitv__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+          "type": "string"
+        },
+        "input__a695d1b2-ba1e-48f6-b6b3-071788a67396": {
+          "href": "#uitv__a695d1b2-ba1e-48f6-b6b3-071788a67396",
+          "type": "boolean"
+        },
+        "input__304d2c85-2b07-4fd4-9717-c598e2d997ec": {
+          "href": "#uitv__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+          "type": "boolean"
+        },
+        "input__db462e43-84a7-418f-a666-bf03cb57e874": {
+          "href": "#uitv__db462e43-84a7-418f-a666-bf03cb57e874",
+          "type": "boolean"
+        },
+        "input__f732a809-520d-41aa-89e4-4eed3229984e": {
+          "href": "#uitv__f732a809-520d-41aa-89e4-4eed3229984e",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_252db2b4-9294-4615-94d9-9eaae37ef384": {
+          "requiredInputs": [
+            "#input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+            "#input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+            "#input__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"gezond of dood\"",
+                  "\"31 cm of meer\"",
+                  true
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"iets anders\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"iets anders\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"ziek\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"minder dan 31 cm\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b2b9ea09-93fc-4029-a443-ff3fd2eab29f": {
+          "requiredInputs": [
+            "#input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+            "#input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+            "#input__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
+            "#input__f732a809-520d-41aa-89e4-4eed3229984e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"gezond of dood\"",
+                  "\"31 cm of meer\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"gezond of dood\"",
+                  "\"31 cm of meer\"",
+                  false,
+                  true
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"iets anders\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"iets anders\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"ziek\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"minder dan 31 cm\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d145632a-8e86-4783-a831-471447624876": {
+          "requiredInputs": [
+            "#input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+            "#input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+            "#input__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"ziek\"",
+                  "\"31 cm of meer\"",
+                  false,
+                  true
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"iets anders\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"iets anders\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"gezond of dood\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"minder dan 31 cm\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_a42a03cc-b4df-4bf3-af27-d74129c1fe31": {
+          "requiredInputs": [
+            "#input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+            "#input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+            "#input__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+            "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
+            "#input__f732a809-520d-41aa-89e4-4eed3229984e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"gezond of dood\"",
+                  "\"minder dan 31 cm\"",
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"iets anders\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"iets anders\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"ziek\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"31 cm of meer\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b9d8aa78-2b11-495b-822b-eec33bd312d6": {
+          "requiredInputs": [
+            "#input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+            "#input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+            "#input__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+            "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396",
+            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"ziek\"",
+                  "\"minder dan 31 cm\"",
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"ziek\"",
+                  "\"minder dan 31 cm\"",
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"iets anders\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"iets anders\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"gezond of dood\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"31 cm of meer\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_ce6c5845-7450-4422-bb84-4edf91aff699": {
+          "requiredInputs": [
+            "#input__8d9f3eed-69b1-4f83-b45a-bf412f18ff84",
+            "#input__9c12ea7a-c3f8-4d6e-a9a4-d0a3fd9df700",
+            "#input__379da7eb-464e-4dab-bba6-3fd091b1db0a",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__1ec8c552-b535-4bd2-ba32-336d1e054c74",
+            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
+            "#input__f732a809-520d-41aa-89e4-4eed3229984e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  "\"een boom\"",
+                  true,
+                  "\"ziek\"",
+                  "\"31 cm of meer\"",
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"iets anders\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"iets anders\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"gezond of dood\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"minder dan 31 cm\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_252db2b4-9294-4615-94d9-9eaae37ef384",
+            "#_b2b9ea09-93fc-4029-a443-ff3fd2eab29f",
+            "#_d145632a-8e86-4783-a831-471447624876",
+            "#_a42a03cc-b4df-4bf3-af27-d74129c1fe31",
+            "#_b9d8aa78-2b11-495b-822b-eec33bd312d6",
+            "#_ce6c5845-7450-4422-bb84-4edf91aff699"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"NeemContactOpMet\"", "-", "-", "-", "-", "-"],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\"", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "\"NeemContactOpMet\"", "-", "-", "-", "-"],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", "-", "\"NeemContactOpMet\"", "-", "-", "-"],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "TpPQq9NhKuTv4K6BQ"
+}
