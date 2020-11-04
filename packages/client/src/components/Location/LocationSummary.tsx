@@ -15,16 +15,6 @@ import {
 import AddressLines from "../AddressLines";
 import EditLocationModal from "./EditLocationModal";
 
-type LocationSummaryProps = {
-  addressFromLocation?: any;
-  isBelowInputFields?: boolean;
-  resetChecker?: () => void;
-  setActiveState?: () => void;
-  showEditLocationModal?: boolean;
-  showTitle?: boolean;
-  topic: Topic; // TODO: Replace with react-hook
-};
-
 const StyledList = styled(List)<{
   isBelowInputFields?: boolean;
   noMarginBottom?: boolean;
@@ -53,6 +43,15 @@ const StyledListItem = styled(ListItem)`
   margin-bottom: ${themeSpacing(0)};
   left: ${themeSpacing(1)};
 `;
+
+type LocationSummaryProps = {
+  addressFromLocation?: any;
+  isBelowInputFields?: boolean;
+  resetChecker?: () => void;
+  showEditLocationModal?: boolean;
+  showTitle?: boolean;
+  topic: Topic; // TODO: Replace with react-hook
+};
 
 const LocationSummary: React.FC<LocationSummaryProps> = ({
   addressFromLocation,
