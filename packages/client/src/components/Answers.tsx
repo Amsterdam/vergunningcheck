@@ -5,16 +5,16 @@ import React from "react";
 import { ComponentWrapper, Label } from "../atoms";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
-type AnswerProps = {
+export type AnswerProps = {
   formValue: string;
   label: string;
+  value: boolean | string;
 };
 
-export type AnswersProps = {
-  answers: AnswerProps[];
-  className: string;
+type AnswersProps = {
+  answers?: AnswerProps[];
   errors: any;
-  onChange: () => void;
+  onChange: (e: React.MouseEvent<HTMLInputElement>) => void;
   questionId: string;
   questionIndex: number;
   userAnswer: string;
@@ -22,7 +22,6 @@ export type AnswersProps = {
 
 const Answers: React.FC<AnswersProps> = ({
   answers,
-  className,
   errors,
   onChange,
   questionId,
@@ -30,7 +29,7 @@ const Answers: React.FC<AnswersProps> = ({
   userAnswer,
 }) => (
   <ComponentWrapper data-testid={QUESTION_ANSWERS}>
-    <RadioGroup className={className} name={questionId}>
+    <RadioGroup name={questionId}>
       {answers &&
         answers.map((answer, index) => {
           const { label, formValue } = answer;

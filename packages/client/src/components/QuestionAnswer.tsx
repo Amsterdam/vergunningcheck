@@ -6,7 +6,7 @@ import { EditButton, TextToEdit } from "../atoms";
 import QuestionAlert from "../atoms/QuestionAlert";
 
 type QuestionAnswerProps = {
-  disabled: boolean;
+  disabled?: boolean;
   questionNeedsContactExit?: boolean;
   showQuestionAlert: boolean;
   userAnswer: string;
@@ -21,10 +21,11 @@ const QuestionAnswer: React.FC<
   showQuestionAlert,
   userAnswer,
 }) => {
+  if (!userAnswer) return null;
   return (
     <>
       <Paragraph gutterBottom={0}>
-        <TextToEdit>{removeQuotes(userAnswer)}</TextToEdit>
+        <TextToEdit>{removeQuotes(userAnswer.toString())}</TextToEdit>
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showQuestionAlert && (

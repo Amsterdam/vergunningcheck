@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
+import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { ComponentWrapper, QuestionAlert } from "../atoms";
 import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
-import withTracking from "../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
-import Answers from "./Answers";
+import Answers, { AnswerProps } from "./Answers";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
@@ -26,8 +26,34 @@ export const booleanOptions = [
   },
 ];
 
-const Question = ({
-  question: {
+type QuestionProps = {
+  matomoTrackEvent: any;
+  question: ImtrQuestion;
+  onGoToNext: () => void;
+  onGoToPrev: () => void;
+  questionIndex: number;
+  questionNeedsContactExit: boolean;
+  saveAnswer: (value: string) => void;
+  shouldGoToConlusion: () => boolean;
+  showQuestionAlert: boolean;
+  showNext: boolean;
+  userAnswer: string;
+};
+
+const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
+  matomoTrackEvent,
+  question,
+  questionIndex,
+  questionNeedsContactExit,
+  onGoToNext,
+  onGoToPrev,
+  saveAnswer,
+  shouldGoToConlusion,
+  showQuestionAlert,
+  showNext,
+  userAnswer,
+}) => {
+  const {
     answer: currentAnswer,
     description,
     id: questionId,
@@ -35,28 +61,16 @@ const Question = ({
     options: questionAnswers,
     text: questionTitle,
     type: questionType,
-  },
-  checker,
-  className,
-  editQuestion,
-  matomoTrackEvent,
-  onGoToNext,
-  onGoToPrev,
-  questionIndex,
-  questionNeedsContactExit,
-  saveAnswer,
-  setEditQuestion,
-  shouldGoToConlusion,
-  showQuestionAlert,
-  showNext,
-  userAnswer,
-}) => {
+  } = question;
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
-  const listAnswers = questionAnswers?.map((answer) => ({
-    label: answer,
-    formValue: answer,
-    value: answer,
-  }));
+  const listAnswers = questionAnswers?.map(
+    (answer) =>
+      ({
+        formValue: answer,
+        label: answer,
+        value: answer,
+      } as AnswerProps)
+  );
   const answers = questionType === "string" ? listAnswers : booleanOptions;
 
   useEffect(() => {
@@ -68,16 +82,8 @@ const Question = ({
         }
       );
 
-      // Set value if question has already been answered to prevent 'fake' requirement
-      if (currentAnswer !== undefined) {
-        if (questionAnswers) {
-          setValue(questionId, currentAnswer);
-        } else {
-          const responseObj = booleanOptions.find(
-            (o) => o.value === currentAnswer
-          );
-          setValue(questionId, responseObj.formValue);
-        }
+      if (userAnswer) {
+        setValue(questionId, userAnswer);
       }
     }
     return () => unregister(questionId);
@@ -88,20 +94,17 @@ const Question = ({
     currentAnswer,
     questionAnswers,
     setValue,
+    userAnswer,
   ]);
 
-  const handleChange = (e) => {
-    // On edit question, keep the current stack until the answer is changed.
-    if (editQuestion) {
-      checker.rewindTo(questionIndex);
-      setEditQuestion(false);
-    }
+  const handleChange = (e: React.MouseEvent) => {
+    const { name, type, value } = e.target as HTMLInputElement;
 
     // Save the changed answer to the question.
-    saveAnswer(e.target.value);
+    saveAnswer(value);
 
     // Set the value of the radio group to the selected value with react-hook-form's setValue
-    if (e.target.type === "radio") setValue(e.target.name, e.target.value);
+    if (type === "radio") setValue(name, value);
   };
 
   const handleOpenModal = () => {
@@ -113,7 +116,6 @@ const Question = ({
 
   return (
     <Form
-      className={className}
       dataId={questionId}
       dataTestId={QUESTION_PAGE}
       onSubmit={handleSubmit(onGoToNext)}
@@ -155,37 +157,6 @@ const Question = ({
       />
     </Form>
   );
-};
-
-Question.defaultProps = {
-  question: {
-    answer: "",
-    description: "",
-    longDescription: "",
-  },
-  headingAs: "h3",
-};
-
-Question.propTypes = {
-  question: PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string,
-    type: PropTypes.string,
-    options: PropTypes.array,
-    description: PropTypes.string,
-    longDescription: PropTypes.string,
-    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  }),
-  className: PropTypes.string,
-  headingAs: PropTypes.string,
-  questionNeedsContactExit: PropTypes.bool,
-  showQuestionAlert: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
-  onSubmit: PropTypes.func,
-  required: PropTypes.bool,
-  shouldGoToConlusion: PropTypes.func,
-  showNext: PropTypes.bool,
-  userAnswer: PropTypes.string,
 };
 
 export default withTracking(Question);

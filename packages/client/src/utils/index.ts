@@ -25,13 +25,13 @@ export const getRestrictionByTypeName = (
  * @param {number} offset - pass an offset to reduce from the total distance
  */
 export const scrollToRef = (
-  ref: { current: { getBoundingClientRect: () => { top: number } } },
+  ref: React.MutableRefObject<HTMLAnchorElement>,
   offset: number = 0
 ) =>
   ref &&
   window.scrollTo(
     0,
-    ref.current.getBoundingClientRect().top + window.scrollY - offset
+    ref?.current?.getBoundingClientRect().top + window.scrollY - offset
   );
 
 /**

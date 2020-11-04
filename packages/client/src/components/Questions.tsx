@@ -1,5 +1,12 @@
 import { setTag } from "@sentry/browser";
-import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
+import {
+  Checker,
+  Decision,
+  Question as ImtrQuestion,
+  Permit,
+  imtrOutcomes,
+  removeQuotes,
+} from "@vergunningcheck/imtr-client";
 import React, {
   useCallback,
   useContext,
@@ -9,14 +16,45 @@ import React, {
 } from "react";
 
 import { ScrollAnchor } from "../atoms";
+import { Topic } from "../config";
 import { eventNames, sections } from "../config/matomo";
-import { SessionContext } from "../context";
+import { SessionContext, SessionDataType } from "../context";
+import { MatomoTrackEventProps } from "../hoc/withTracking";
 import { scrollToRef } from "../utils/index";
+import { AnswerProps } from "./Answers";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-const Questions = ({
+// @TODO: import these props from CheckerPage when TS-ed
+type ComponentType = string | string[];
+type VoidFunctionProp = (component: ComponentType, value?: boolean) => void;
+type BoolFunctionProp = (component: ComponentType, value?: boolean) => boolean;
+export type CheckerPageProps = {
+  goToQuestion: VoidFunctionProp;
+  isActive: BoolFunctionProp;
+  isFinished: BoolFunctionProp;
+  setActiveState: VoidFunctionProp;
+  setFinishedState: VoidFunctionProp;
+};
+
+type QuestionsProps = {
+  checker: Checker;
+  topic: Topic;
+};
+
+// @TODO: Move to checker.js
+export const getUserAnswer = (question: ImtrQuestion) => {
+  if (typeof question.answer === "boolean") {
+    const answers = booleanOptions.find((o) => o.value === question.answer);
+    return answers?.label;
+  }
+  return question.answer;
+};
+
+const Questions: React.FC<
+  QuestionsProps & CheckerPageProps & MatomoTrackEventProps
+> = ({
   checker,
   goToQuestion,
   isActive,
@@ -24,13 +62,14 @@ const Questions = ({
   matomoTrackEvent,
   setActiveState,
   setFinishedState,
-  topic: { name, slug },
+  topic,
 }) => {
-  const sessionContext = useContext(SessionContext);
+  const sessionContext = useContext<SessionDataType>(SessionContext);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactConclusion, setContactConclusion] = useState(false);
+  const { name, slug } = topic;
   const { answers, questionIndex } = sessionContext[slug];
-  const conclusionRef = useRef(null);
+  const conclusionRef = useRef<any>(null);
 
   const goToConclusion = useCallback(() => {
     setActiveState(sections.CONCLUSION);
@@ -39,10 +78,10 @@ const Questions = ({
       action: checker.stack[questionIndex].text,
       name: eventNames.GOTO_CONCLUSION,
     });
-    // Wrap in a timeout to prevent a miscalculation when the `Question` component collapses
-    setTimeout(() => {
+    // Wrap the function to prevent a miscalculation when the `Question` component collapses
+    setImmediate(() => {
       scrollToRef(conclusionRef, 20);
-    }, 0);
+    });
   }, [
     checker.stack,
     matomoTrackEvent,
@@ -102,14 +141,6 @@ const Questions = ({
     },
     [goToQuestion, setActiveState, setFinishedState]
   );
-
-  // @TODO: Move to checker.js
-  const getUserAnswer = (question) => {
-    const booleanAnswers =
-      !question.options &&
-      booleanOptions.find((o) => o.value === question.answer);
-    return question.options ? question.answer : booleanAnswers?.label;
-  };
 
   const shouldGoToConlusion = () => {
     if (!checker.isConclusive()) {
@@ -182,17 +213,19 @@ const Questions = ({
 
   // Check which questions are causing the need for a permit
   // @TODO: We can refactor this and move to checker.js
-  const permitsPerQuestion = [];
+  const permitsPerQuestion = [] as boolean[];
   checker.isConclusive() &&
-    checker.permits.forEach((permit) => {
+    checker.permits.forEach((permit: Permit) => {
       const conclusionDecision = permit.getDecisionById("dummy");
       if (
-        conclusionDecision.getOutput() === imtrOutcomes.NEED_PERMIT ||
-        conclusionDecision.getOutput() === imtrOutcomes.NEED_CONTACT
+        conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
+        conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT
       ) {
-        const decisiveDecisions = conclusionDecision.getDecisiveInputs();
+        const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
         decisiveDecisions.forEach((decision) => {
-          const decisiveQuestion = decision.getDecisiveInputs().pop();
+          const decisiveQuestion = decision
+            .getDecisiveInputs()
+            .pop() as ImtrQuestion;
           const index = checker.stack.indexOf(decisiveQuestion);
           permitsPerQuestion[index] = true;
         });
@@ -202,7 +235,7 @@ const Questions = ({
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
-  const saveAnswer = (value) => {
+  const saveAnswer = (value: string) => {
     // This makes sure when a question is changed that a possible visible Conclusion is removed
     if (isFinished(sections.QUESTIONS)) {
       setFinishedState(sections.QUESTIONS, false);
@@ -211,16 +244,21 @@ const Questions = ({
     const question = checker.stack[questionIndex];
 
     let userAnswer, userAnswerLabel;
-    // List question
     if (question.options && value !== undefined) {
+      // List question
       userAnswer = value;
       userAnswerLabel = removeQuotes(value);
-    }
-    // Boolean question
-    if (!question.options && value) {
-      const responseObj = booleanOptions.find((o) => o.formValue === value);
+    } else if (!question.options && value) {
+      // Boolean question
+      const responseObj = booleanOptions.find(
+        (o) => o.formValue === value
+      ) as AnswerProps;
       userAnswer = responseObj.value;
       userAnswerLabel = responseObj.label;
+    } else {
+      // Undefined answer
+      console.error("Undefined answer");
+      return;
     }
 
     // Handle the given answer
@@ -297,7 +335,7 @@ const Questions = ({
         return (
           <StepByStepItem
             active={isCurrentQuestion}
-            checked={userAnswer}
+            checked={!!userAnswer}
             customSize
             heading={q.text}
             highlightActive={isCurrentQuestion}
@@ -327,18 +365,16 @@ const Questions = ({
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
                 questionNeedsContactExit={checker.needContactExit(q)}
-                {...{ showQuestionAlert: showQuestionAlert, userAnswer }}
+                userAnswer={userAnswer?.toString()}
+                {...{ showQuestionAlert }}
               />
             )}
           </StepByStepItem>
         );
       })}
       {checker._getUpcomingQuestions().map((q, i) => {
-        // @TODO: refactor this part
         // Define userAnswer
-        const booleanAnswers =
-          !q.options && booleanOptions.find((o) => o.value === q.answer);
-        const userAnswer = q.options ? q.answer : booleanAnswers?.label;
+        const userAnswer = getUserAnswer(q);
 
         // Skip unanswered questions or in case of Contact Conclusion
         if (!userAnswer || contactConclusion) {
@@ -364,11 +400,8 @@ const Questions = ({
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              {...{
-                disabled,
-                showQuestionAlert: showQuestionAlert,
-                userAnswer,
-              }}
+              userAnswer={userAnswer.toString()}
+              {...{ disabled, showQuestionAlert }}
             />
           </StepByStepItem>
         );
