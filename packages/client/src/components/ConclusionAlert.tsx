@@ -1,23 +1,22 @@
 import { Paragraph } from "@amsterdam/asc-ui";
+import { imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { HideForPrint } from "../atoms";
 import { ConclusionAlertStyle } from "./ConclusionAlertStyles";
 
-export type ConclusionAlertProps = {
+type ConclusionAlertProps = {
   marginBottom?: number;
-  questionNeedsContactExit?: Boolean;
+  outcomeType: string;
 };
 
 const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
   marginBottom,
-  questionNeedsContactExit,
+  outcomeType,
 }) => (
   <ConclusionAlertStyle marginBottom={marginBottom}>
     <Paragraph>
-      {questionNeedsContactExit ? (
-        "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."
-      ) : (
+      {outcomeType === imtrOutcomes.NEED_PERMIT && (
         <>
           Door dit antwoord hebt u een vergunning nodig.{" "}
           <HideForPrint as="span">
@@ -26,6 +25,10 @@ const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
           </HideForPrint>
         </>
       )}
+      {outcomeType === imtrOutcomes.NEED_CONTACT &&
+        "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."}
+      {outcomeType === imtrOutcomes.NEED_REPORT &&
+        "Door dit antwoord heb je een meldingplicht (TEXT NOG UPDATEN!)."}
     </Paragraph>
   </ConclusionAlertStyle>
 );

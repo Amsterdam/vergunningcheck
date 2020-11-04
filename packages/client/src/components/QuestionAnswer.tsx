@@ -7,20 +7,14 @@ import ConclusionAlert from "./ConclusionAlert";
 
 type QuestionAnswerProps = {
   disabled?: boolean;
-  questionNeedsContactExit?: boolean;
+  outcomeType: string;
   showConclusionAlert: boolean;
   userAnswer?: string;
 };
 
 const QuestionAnswer: React.FC<
   QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
-> = ({
-  disabled,
-  onClick,
-  questionNeedsContactExit,
-  showConclusionAlert,
-  userAnswer,
-}) => {
+> = ({ disabled, onClick, outcomeType, showConclusionAlert, userAnswer }) => {
   if (!userAnswer) return null;
   return (
     <>
@@ -29,7 +23,7 @@ const QuestionAnswer: React.FC<
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showConclusionAlert && (
-        <ConclusionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
+        <ConclusionAlert marginBottom={8} {...{ outcomeType }} />
       )}
     </>
   );

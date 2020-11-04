@@ -33,7 +33,7 @@ type QuestionProps = {
   onGoToNext: () => void;
   onGoToPrev: () => void;
   questionIndex: number;
-  questionNeedsContactExit: boolean;
+  outcomeType: string;
   saveAnswer: (value: string) => void;
   shouldGoToConlusion: () => boolean;
   showConclusionAlert: boolean;
@@ -45,7 +45,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
   matomoTrackEvent,
   question,
   questionIndex,
-  questionNeedsContactExit,
+  outcomeType,
   onGoToNext,
   onGoToPrev,
   saveAnswer,
@@ -146,9 +146,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
         questionIndex={questionIndex}
         userAnswer={userAnswer}
       />
-      {showConclusionAlert && (
-        <ConclusionAlert {...{ questionNeedsContactExit }} />
-      )}
+      {showConclusionAlert && <ConclusionAlert {...{ outcomeType }} />}
       <Nav
         formEnds={shouldGoToConlusion()}
         nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}

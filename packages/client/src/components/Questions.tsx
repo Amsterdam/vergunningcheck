@@ -219,7 +219,8 @@ const Questions: React.FC<
       const conclusionDecision = permit.getDecisionById("dummy");
       if (
         conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT
+        conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT ||
+        conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT
       ) {
         const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
         decisiveDecisions.forEach((decision) => {
@@ -332,6 +333,13 @@ const Questions: React.FC<
         // Check if currect question is causing a permit requirement
         const showConclusionAlert = !!permitsPerQuestion[i];
 
+        // Define the outcome type
+        const outcomeType = checker.needContactExit(q)
+          ? imtrOutcomes.NEED_CONTACT
+          : checker.needReportOutcome(q)
+          ? imtrOutcomes.NEED_REPORT
+          : imtrOutcomes.NEED_PERMIT;
+
         return (
           <StepByStepItem
             active={isCurrentQuestion}
@@ -346,7 +354,6 @@ const Questions: React.FC<
               // Show the current question
               <Question
                 question={q}
-                questionNeedsContactExit={checker.needContactExit(q)}
                 onGoToPrev={onQuestionPrev}
                 onGoToNext={onQuestionNext}
                 saveAnswer={saveAnswer}
@@ -354,6 +361,7 @@ const Questions: React.FC<
                 showPrev
                 {...{
                   checker,
+                  outcomeType,
                   questionIndex,
                   shouldGoToConlusion,
                   showConclusionAlert,
@@ -364,9 +372,8 @@ const Questions: React.FC<
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                questionNeedsContactExit={!!checker.needContactExit(q)}
                 userAnswer={userAnswer?.toString()}
-                {...{ showConclusionAlert }}
+                {...{ outcomeType, showConclusionAlert }}
               />
             )}
           </StepByStepItem>
@@ -390,6 +397,13 @@ const Questions: React.FC<
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
+        // Define the outcome type
+        const outcomeType = checker.needContactExit(q)
+          ? imtrOutcomes.NEED_CONTACT
+          : checker.needReportOutcome(q)
+          ? imtrOutcomes.NEED_REPORT
+          : imtrOutcomes.NEED_PERMIT;
+
         return (
           <StepByStepItem
             active
@@ -401,7 +415,7 @@ const Questions: React.FC<
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
               userAnswer={userAnswer.toString()}
-              {...{ disabled, showConclusionAlert }}
+              {...{ disabled, outcomeType, showConclusionAlert }}
             />
           </StepByStepItem>
         );
