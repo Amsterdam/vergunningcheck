@@ -6,7 +6,7 @@
       "questions": [
         {
           "text": "Staat het gebouw waarop u de dakkapel gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
-          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, dan beantwoordt u de vraag met ‘ja’.",
+          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__51fe2afb-ebfa-48e0-b81d-822c38eaf87a",
           "prio": 10
@@ -78,7 +78,7 @@
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_c_OTG_Zijkant-water_v2.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_c_OTG_Zijkant-water_v2.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__76fea73f-9000-4c9a-92e3-fc1003f6de60",
           "prio": 90
@@ -92,7 +92,7 @@
         },
         {
           "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
-          "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
+          "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
           "autofill": "cityScape",
           "options": [
             "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
@@ -239,7 +239,7 @@
         }
       },
       "decisions": {
-        "_827de5c4-aa48-498b-9735-6bcd960ec89d": {
+        "_db7535db-41e1-4361-9519-51aee3238f89": {
           "requiredInputs": ["#input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"],
           "decisionTable": {
             "rules": [
@@ -254,7 +254,7 @@
             ]
           }
         },
-        "_dfc79b6c-53a3-414a-8e6f-f7706193af0c": {
+        "_426a635f-2980-4b05-b894-c699422ec739": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_e8111db4-8a83-4d79-9d05-4f6f9905b882"
@@ -282,7 +282,7 @@
             ]
           }
         },
-        "_6c69ad9a-481c-4829-a841-a3eba917cf0a": {
+        "_3b989a50-f638-4f16-b2b3-134e4ae0b179": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_e8111db4-8a83-4d79-9d05-4f6f9905b882",
@@ -321,7 +321,7 @@
             ]
           }
         },
-        "_097d8292-2825-4e3b-a8d2-249f829570e5": {
+        "_54ba3744-9fbe-4649-b39c-d2947cdadfb3": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -360,7 +360,7 @@
             ]
           }
         },
-        "_1a47ef7f-6fee-422f-bc89-e13cea891478": {
+        "_00f2891b-3898-409b-b04b-75809e5d23ab": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -395,7 +395,7 @@
             ]
           }
         },
-        "_865aa844-bb45-4da2-8a42-8215620af56c": {
+        "_7ff47e67-2d83-404a-8fb1-fb047a68fd70": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -430,7 +430,7 @@
             ]
           }
         },
-        "_ba6b3746-710c-4268-86b2-1f9b1759859c": {
+        "_82c7487d-cab5-499b-977c-0f3defb8cd7a": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -465,7 +465,7 @@
             ]
           }
         },
-        "_83901345-9a32-4ee3-9ff6-bd43acf59fe4": {
+        "_34acde01-bb12-486d-b92e-020103ed1755": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -500,7 +500,7 @@
             ]
           }
         },
-        "_88809e79-5678-4aa1-bae1-940aeeb0df08": {
+        "_bd08f936-3255-415a-8a45-b02c0b527741": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -535,7 +535,7 @@
             ]
           }
         },
-        "_0c102403-f4d1-412c-a4c1-1b1ab2504a19": {
+        "_62f7d818-a962-41a0-ac92-6dd2010ecbdc": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -582,7 +582,7 @@
             ]
           }
         },
-        "_f69a3399-debe-4443-a634-82f470b24469": {
+        "_5a668680-658f-4474-8e19-178656a4a924": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -629,7 +629,7 @@
             ]
           }
         },
-        "_67a1c71e-d03a-41c1-9834-7f33c215cb88": {
+        "_4d7e7afd-f27e-4602-a72f-407c547d169c": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -676,7 +676,7 @@
             ]
           }
         },
-        "_cc798e76-a4d5-40b9-8e21-7ad35dc9114a": {
+        "_8daa14ed-b0e5-424d-8a1d-dd4cd2d1e78a": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -727,7 +727,7 @@
             ]
           }
         },
-        "_7ea67990-b50f-4611-8806-1d21a3889cfa": {
+        "_72df3cbb-e021-4383-85f5-da9d2481690b": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -774,7 +774,7 @@
             ]
           }
         },
-        "_784dea69-7f03-4b98-8e47-bd5bde2e563d": {
+        "_8b516cfb-80fa-4c1b-8498-7025180bad9e": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -820,7 +820,7 @@
             ]
           }
         },
-        "_9539b83c-938e-4a9f-9c7e-6af61b26406d": {
+        "_c9e5e79b-30a1-42d1-887a-6e723417cdb2": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -867,7 +867,7 @@
             ]
           }
         },
-        "_5128816d-75cd-430d-9225-4f745ba035d2": {
+        "_67977c52-be34-475b-925e-a4ce717c5b74": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -926,7 +926,7 @@
             ]
           }
         },
-        "_f26fbc98-c4ba-4464-acd4-6f252248073e": {
+        "_1cf20c6f-d884-4979-9a8a-973cd57dca44": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -979,7 +979,7 @@
             ]
           }
         },
-        "_2bd0177d-581d-435e-81cc-71ba0168a13f": {
+        "_c972ddc1-abbb-4c2d-8345-5b65011145a5": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1048,7 +1048,7 @@
             ]
           }
         },
-        "_7029e4d2-be62-4108-a662-a7effca79a92": {
+        "_11d8ff3e-13a3-4c0a-b632-1b1ee9c213f6": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1108,7 +1108,7 @@
             ]
           }
         },
-        "_46e57bbd-379c-4771-9d99-ebf61a58ebee": {
+        "_20efe930-631b-4802-b027-3c01524adb74": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1186,7 +1186,7 @@
             ]
           }
         },
-        "_43d47a84-ef55-41eb-bb8c-342e18a87a02": {
+        "_a782fc72-6524-45a6-bfd3-112edeb994ce": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1253,7 +1253,7 @@
             ]
           }
         },
-        "_a6bb8d44-9038-47ae-bfe3-d50318fe4caf": {
+        "_86c32f22-e75e-4545-99d8-165b6967b5ff": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1338,7 +1338,7 @@
             ]
           }
         },
-        "_ccfdc88a-2dc3-457e-b2c3-44c5ba7d29f4": {
+        "_85af5a7c-ed6a-44c7-a74b-3df49ee1ceec": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1413,7 +1413,7 @@
             ]
           }
         },
-        "_6b3f84f8-e84c-49d1-b3eb-98001814b250": {
+        "_80cf14d9-20c3-4967-8020-a89d8883f0f9": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1508,7 +1508,7 @@
             ]
           }
         },
-        "_3633c272-e204-46e8-9734-86320df1329b": {
+        "_b266aecf-99f0-465d-9356-c12dd0c6aa0d": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1595,7 +1595,7 @@
             ]
           }
         },
-        "_2de679c4-de42-4e68-8b95-6c559938c6c4": {
+        "_cc145f00-0e48-4d7f-a8f6-f3188a881a1c": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
             "#input_fc74c97d-266b-4b96-b618-99910669e546",
@@ -1702,33 +1702,33 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_827de5c4-aa48-498b-9735-6bcd960ec89d",
-            "#_dfc79b6c-53a3-414a-8e6f-f7706193af0c",
-            "#_6c69ad9a-481c-4829-a841-a3eba917cf0a",
-            "#_097d8292-2825-4e3b-a8d2-249f829570e5",
-            "#_1a47ef7f-6fee-422f-bc89-e13cea891478",
-            "#_865aa844-bb45-4da2-8a42-8215620af56c",
-            "#_ba6b3746-710c-4268-86b2-1f9b1759859c",
-            "#_83901345-9a32-4ee3-9ff6-bd43acf59fe4",
-            "#_88809e79-5678-4aa1-bae1-940aeeb0df08",
-            "#_0c102403-f4d1-412c-a4c1-1b1ab2504a19",
-            "#_f69a3399-debe-4443-a634-82f470b24469",
-            "#_67a1c71e-d03a-41c1-9834-7f33c215cb88",
-            "#_cc798e76-a4d5-40b9-8e21-7ad35dc9114a",
-            "#_7ea67990-b50f-4611-8806-1d21a3889cfa",
-            "#_784dea69-7f03-4b98-8e47-bd5bde2e563d",
-            "#_9539b83c-938e-4a9f-9c7e-6af61b26406d",
-            "#_5128816d-75cd-430d-9225-4f745ba035d2",
-            "#_f26fbc98-c4ba-4464-acd4-6f252248073e",
-            "#_2bd0177d-581d-435e-81cc-71ba0168a13f",
-            "#_7029e4d2-be62-4108-a662-a7effca79a92",
-            "#_46e57bbd-379c-4771-9d99-ebf61a58ebee",
-            "#_43d47a84-ef55-41eb-bb8c-342e18a87a02",
-            "#_a6bb8d44-9038-47ae-bfe3-d50318fe4caf",
-            "#_ccfdc88a-2dc3-457e-b2c3-44c5ba7d29f4",
-            "#_6b3f84f8-e84c-49d1-b3eb-98001814b250",
-            "#_3633c272-e204-46e8-9734-86320df1329b",
-            "#_2de679c4-de42-4e68-8b95-6c559938c6c4"
+            "#_db7535db-41e1-4361-9519-51aee3238f89",
+            "#_426a635f-2980-4b05-b894-c699422ec739",
+            "#_3b989a50-f638-4f16-b2b3-134e4ae0b179",
+            "#_54ba3744-9fbe-4649-b39c-d2947cdadfb3",
+            "#_00f2891b-3898-409b-b04b-75809e5d23ab",
+            "#_7ff47e67-2d83-404a-8fb1-fb047a68fd70",
+            "#_82c7487d-cab5-499b-977c-0f3defb8cd7a",
+            "#_34acde01-bb12-486d-b92e-020103ed1755",
+            "#_bd08f936-3255-415a-8a45-b02c0b527741",
+            "#_62f7d818-a962-41a0-ac92-6dd2010ecbdc",
+            "#_5a668680-658f-4474-8e19-178656a4a924",
+            "#_4d7e7afd-f27e-4602-a72f-407c547d169c",
+            "#_8daa14ed-b0e5-424d-8a1d-dd4cd2d1e78a",
+            "#_72df3cbb-e021-4383-85f5-da9d2481690b",
+            "#_8b516cfb-80fa-4c1b-8498-7025180bad9e",
+            "#_c9e5e79b-30a1-42d1-887a-6e723417cdb2",
+            "#_67977c52-be34-475b-925e-a4ce717c5b74",
+            "#_1cf20c6f-d884-4979-9a8a-973cd57dca44",
+            "#_c972ddc1-abbb-4c2d-8345-5b65011145a5",
+            "#_11d8ff3e-13a3-4c0a-b632-1b1ee9c213f6",
+            "#_20efe930-631b-4802-b027-3c01524adb74",
+            "#_a782fc72-6524-45a6-bfd3-112edeb994ce",
+            "#_86c32f22-e75e-4545-99d8-165b6967b5ff",
+            "#_85af5a7c-ed6a-44c7-a74b-3df49ee1ceec",
+            "#_80cf14d9-20c3-4967-8020-a89d8883f0f9",
+            "#_b266aecf-99f0-465d-9356-c12dd0c6aa0d",
+            "#_cc145f00-0e48-4d7f-a8f6-f3188a881a1c"
           ],
           "decisionTable": {
             "rules": [
@@ -2654,7 +2654,7 @@
                   "\"no hit\""
                 ],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U hebt geen vergunning nodig voor het plaatsen van de dakkapel. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\n**Waar u verder op moet letten:**\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een dakkapel voor de WOZ-waarde van uw huis."
+                "description": "U hebt geen vergunning nodig voor het plaatsen van de dakkapel. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\n**Waar u verder op moet letten:**\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een dakkapel voor de WOZ-waarde van uw huis."
               }
             ]
           }
