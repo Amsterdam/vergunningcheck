@@ -1,0 +1,406 @@
+{
+  "permits": [
+    {
+      "version": 23,
+      "name": "Conclusie Zijkant voorkant check",
+      "questions": [
+        {
+          "text": "Aan welke kant van het gebouw gaat u het rolhek, rolluik of luik plaatsen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een rolhek, rolluik of luik plaatsen? Doe voor iedere kant een vergunningcheck.",
+          "options": ["Voorkant", "Zijkant", "Achterkant"],
+          "type": "string",
+          "id": "uitv__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+          "prio": 10
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__b14b35d8-2b69-4fa0-9415-da722db190ca",
+          "prio": 20
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667",
+          "prio": 30
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__e881ef9d-5de4-4617-b1c3-1a8b325eefc0",
+          "prio": 40
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__170dd9cf-83f5-4c39-abd2-765a532009fc",
+          "prio": 50
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__61326502-a8a7-4ad1-b7da-653cee3ceb84",
+          "prio": 60
+        },
+        {
+          "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "id": "uitv__a2b77822-2cb9-4c66-a55a-4755a2a513fb",
+          "prio": 70
+        }
+      ],
+      "inputs": {
+        "input__9aed1ad7-4af0-4878-8260-b65fc0d125e3": {
+          "href": "#uitv__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+          "type": "string"
+        },
+        "input__b14b35d8-2b69-4fa0-9415-da722db190ca": {
+          "href": "#uitv__b14b35d8-2b69-4fa0-9415-da722db190ca",
+          "type": "boolean"
+        },
+        "input__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667": {
+          "href": "#uitv__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667",
+          "type": "boolean"
+        },
+        "input__e881ef9d-5de4-4617-b1c3-1a8b325eefc0": {
+          "href": "#uitv__e881ef9d-5de4-4617-b1c3-1a8b325eefc0",
+          "type": "boolean"
+        },
+        "input__170dd9cf-83f5-4c39-abd2-765a532009fc": {
+          "href": "#uitv__170dd9cf-83f5-4c39-abd2-765a532009fc",
+          "type": "boolean"
+        },
+        "input__61326502-a8a7-4ad1-b7da-653cee3ceb84": {
+          "href": "#uitv__61326502-a8a7-4ad1-b7da-653cee3ceb84",
+          "type": "boolean"
+        },
+        "input__a2b77822-2cb9-4c66-a55a-4755a2a513fb": {
+          "href": "#uitv__a2b77822-2cb9-4c66-a55a-4755a2a513fb",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_20db16f8-9c49-4387-8fc5-495905546e72": {
+          "requiredInputs": ["#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zijkant\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Achterkant\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c0fe1396-ae4a-4955-904b-aee68bf14f2d": {
+          "requiredInputs": [
+            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+            "#input__b14b35d8-2b69-4fa0-9415-da722db190ca"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Achterkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c9c98969-8dfa-42ec-a285-0337aece06e4": {
+          "requiredInputs": [
+            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+            "#input__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Achterkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_0b5a3c7d-fea0-4434-a655-25e69319f158": {
+          "requiredInputs": [
+            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+            "#input__e881ef9d-5de4-4617-b1c3-1a8b325eefc0"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Zijkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Achterkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_1c1e5b29-7a6e-4667-bd0d-0effb9ab22d5": {
+          "requiredInputs": [
+            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+            "#input__170dd9cf-83f5-4c39-abd2-765a532009fc"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Achterkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_089fbea8-8baa-4ebb-bbba-11defaf8e041": {
+          "requiredInputs": [
+            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+            "#input__61326502-a8a7-4ad1-b7da-653cee3ceb84"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Achterkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c92b921b-b8b4-4160-9b4f-9b0a015b0f5a": {
+          "requiredInputs": [
+            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
+            "#input__a2b77822-2cb9-4c66-a55a-4755a2a513fb"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Achterkant\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Voorkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Zijkant\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_20db16f8-9c49-4387-8fc5-495905546e72",
+            "#_c0fe1396-ae4a-4955-904b-aee68bf14f2d",
+            "#_c9c98969-8dfa-42ec-a285-0337aece06e4",
+            "#_0b5a3c7d-fea0-4434-a655-25e69319f158",
+            "#_1c1e5b29-7a6e-4667-bd0d-0effb9ab22d5",
+            "#_089fbea8-8baa-4ebb-bbba-11defaf8e041",
+            "#_c92b921b-b8b4-4160-9b4f-9b0a015b0f5a"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "BNH6kk2ePCLuqDLxi"
+}
