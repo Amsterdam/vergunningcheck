@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-const nl = require("./nl");
+
+import nl from "./nl";
 
 export default i18n
   // pass the i18n instance to react-i18next.
@@ -8,7 +9,7 @@ export default i18n
   // init i18next
   .init({
     resources: { nl },
-    lng: "en",
+    lng: "nl",
     fallbackLng: "nl",
     debug: false,
 

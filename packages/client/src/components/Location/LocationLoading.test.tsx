@@ -1,6 +1,6 @@
 import React from "react";
 
-import text from "../../i18n/nl.json";
+import text from "../../i18n/nl";
 import { render, screen } from "../../utils/test-utils";
 import LocationLoading from "./LocationLoading";
 
