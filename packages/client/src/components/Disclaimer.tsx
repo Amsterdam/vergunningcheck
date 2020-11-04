@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { DISCLAIMER_TEXT } from "../utils/test-ids";
 
 const Disclaimer: React.FC = () => {
-  const [change, setChange] = useState(true);
+  const [change, setChange] = useState(false);
 
   return (
     <CompactThemeProvider>
