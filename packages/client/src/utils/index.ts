@@ -54,3 +54,13 @@ export const isValidPostalcode = (value?: string) => {
   const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[a-z]{2}$/i;
   return !!(value && value.toString().trim().match(postalCodeRegex));
 };
+
+/**
+ *
+ * This function removes all query strings from an URL
+ *
+ * @param {string} value
+ */
+export const removeQueryStrings = (value: string) => {
+  return value.split("?")[0];
+};

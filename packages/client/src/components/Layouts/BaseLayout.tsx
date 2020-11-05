@@ -11,18 +11,16 @@ import Footer from "../Footer";
 import Header from "../Header";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
-export interface BaseLayoutProps {
-  checker?: object;
-  children: React.ReactNode;
+export type BaseLayoutProps = {
   heading?: String;
   formTitle?: String;
-}
+};
 
-function BaseLayout({
+const BaseLayout: React.FC<BaseLayoutProps> = ({
   children,
   heading: headingProp,
   formTitle: formTitleProp,
-}: BaseLayoutProps) {
+}) => {
   const { slug } = useParams<{ slug: string }>();
   const topic = findTopicBySlug(slug) as Topic;
   const { hasIMTR, name, text } = topic || {};
@@ -83,6 +81,6 @@ function BaseLayout({
       </HideForPrint>
     </Container>
   );
-}
+};
 
 export default BaseLayout;

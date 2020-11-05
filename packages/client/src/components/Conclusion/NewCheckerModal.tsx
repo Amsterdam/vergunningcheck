@@ -1,9 +1,10 @@
 import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import React, { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { ComponentWrapper, Label } from "../../atoms";
-import { requiredFieldRadio, topics } from "../../config";
+import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
@@ -17,6 +18,7 @@ const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
   );
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const [checkerSlug, setCheckerSlug] = useState(slug);
   const [finished, setFinished] = useState(false);
@@ -110,7 +112,9 @@ const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
             />
           </Label>
         </RadioGroup>
-        <ErrorMessage message={hasError ? requiredFieldRadio : ""} />
+        <ErrorMessage
+          message={hasError ? t("common.required field radio") : ""}
+        />
       </ComponentWrapper>
 
       <ComponentWrapper>

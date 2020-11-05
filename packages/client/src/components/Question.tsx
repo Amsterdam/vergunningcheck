@@ -1,9 +1,9 @@
 import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper, QuestionAlert } from "../atoms";
-import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
@@ -63,6 +63,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     type: questionType,
   } = question;
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
+  const { t } = useTranslation();
   const listAnswers = questionAnswers?.map(
     (answer) =>
       ({
@@ -72,6 +73,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
       } as AnswerProps)
   );
   const answers = questionType === "string" ? listAnswers : booleanOptions;
+  const requiredFieldRadio = t("common.required field radio");
 
   useEffect(() => {
     if (questionId) {
@@ -95,6 +97,8 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     questionAnswers,
     setValue,
     userAnswer,
+    t,
+    requiredFieldRadio,
   ]);
 
   const handleChange = (e: React.MouseEvent) => {
