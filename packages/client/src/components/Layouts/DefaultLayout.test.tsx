@@ -18,28 +18,23 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({ slug: "dakraam-plaatsen" }),
 }));
 
-const Wrapper = ({
-  children,
-  formTitle,
-  heading,
-}: {
-  children: React.ReactNode;
+type Props = {
   formTitle: string;
   heading: string;
-}) => {
-  return (
-    <MemoryRouter initialEntries={[topicUrlMock]}>
-      <DefaultLayout
-        {...{
-          formTitle,
-          heading,
-        }}
-      >
-        {children}
-      </DefaultLayout>
-    </MemoryRouter>
-  );
 };
+
+const Wrapper: React.FC<Props> = ({ children, formTitle, heading }) => (
+  <MemoryRouter initialEntries={[topicUrlMock]}>
+    <DefaultLayout
+      {...{
+        formTitle,
+        heading,
+      }}
+    >
+      {children}
+    </DefaultLayout>
+  </MemoryRouter>
+);
 
 describe("DefaultLayout in STTR flow", () => {
   it("renders with topic titles", () => {

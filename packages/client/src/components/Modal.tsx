@@ -19,7 +19,6 @@ import {
 } from "./ModalStyles";
 
 type ModalProps = {
-  children: React.ReactNode;
   closeButtonText?: string;
   closeModalAfterConfirm?: boolean;
   confirmText?: string;
