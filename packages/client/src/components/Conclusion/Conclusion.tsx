@@ -1,6 +1,5 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
 import { Checker, imtrOutcomes } from "@vergunningcheck/imtr-client";
-import { Outcome } from "@vergunningcheck/imtr-client/src/types";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -32,15 +31,17 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
   const getNeedContactContent = outcomes.find(
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
-  const { description = "", title = "" } = getNeedContactContent as Outcome;
 
   // Define the content for the Conclusion components
   const contents = {
     [NEED_CONTACT]: {
       mainContent: (
-        <Markdown eventLocation={sections.CONCLUSION} source={description} />
+        <Markdown
+          eventLocation={sections.CONCLUSION}
+          source={getNeedContactContent?.description || ""}
+        />
       ),
-      title,
+      title: getNeedContactContent?.title || "",
     },
     [NEED_PERMIT]: {
       mainContent: <NeedPermitContent />,
@@ -48,7 +49,7 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
     },
     [PERMIT_FREE]: {
       footerContent: <NoPermitDescription />,
-      title: t("outcome.needPermit.you dont need a permit"),
+      title: t("outcome.permitFree.you dont need a permit"),
     },
     // @TODO: extend with NEED_REPORT
     // See: https://github.com/Amsterdam/vergunningcheck/pull/668
