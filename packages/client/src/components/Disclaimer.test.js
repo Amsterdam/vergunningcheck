@@ -6,7 +6,7 @@ import Disclaimer from "./Disclaimer";
 
 // @TODO: import this text from i18n
 const text =
-  "Deze uitkomst is niet definitief. Uit deze vergunningcheck kunt u geen rechten halen.";
+  "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.";
 
 describe("Disclaimer", () => {
   it("renders correctly", () => {
