@@ -1,38 +1,8 @@
-import isBoolean from "lodash.isboolean";
-import isNumber from "lodash.isnumber";
-import isString from "lodash.isstring";
-
 import { topics } from "../config";
 
 // Find a topic by the slug
 export const findTopicBySlug = (slug: string) =>
   topics.find((t) => t.slug === slug);
-
-// Simple checks
-export const isSimpleType = (val: any) =>
-  isBoolean(val) || isString(val) || isNumber(val);
-
-// Array checks
-export const collectionOfSimpleTypes = (col: any) =>
-  Array.isArray(col) && !col.find((val) => !isSimpleType(val));
-
-export const collectionOfType = (col: any, type: string) => {
-  if (!Array.isArray(col) || col.includes(undefined) || col.includes(null)) {
-    return false;
-  }
-  const itemOfInvaldType = col.find(
-    (val) => val.constructor.name !== type && val.__type !== type
-  );
-  return itemOfInvaldType === undefined;
-};
-
-// Make sure the value is of type object
-export const isObject = (val?: string) =>
-  typeof val === "object" && val !== null;
-
-// Filters
-export const uniqueFilter = (value: any, index: number, self: Array<any>) =>
-  self.indexOf(value) === index;
 
 // Data utils
 export const getRestrictionByTypeName = (
@@ -46,12 +16,6 @@ export const getRestrictionByTypeName = (
   typeName?: string
 ) => (restrictions || []).find(({ __typename }) => __typename === typeName);
 
-// IMTR helper
-export const removeQuotes = (str?: string) =>
-  str ? str.replace(/['"]+/g, "") : str;
-
-export const addQuotes = (str: string) => `"${str}"`;
-
 /**
  *
  * Scroll to `ref` in page. This function calculates the distance between
@@ -61,13 +25,13 @@ export const addQuotes = (str: string) => `"${str}"`;
  * @param {number} offset - pass an offset to reduce from the total distance
  */
 export const scrollToRef = (
-  ref: { current: { getBoundingClientRect: Function } },
+  ref: React.MutableRefObject<HTMLAnchorElement>,
   offset: number = 0
 ) =>
   ref &&
   window.scrollTo(
     0,
-    ref.current.getBoundingClientRect().top + window.scrollY - offset
+    ref?.current?.getBoundingClientRect().top + window.scrollY - offset
   );
 
 /**
@@ -89,4 +53,14 @@ export const stripString = (str?: string) =>
 export const isValidPostalcode = (value?: string) => {
   const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[a-z]{2}$/i;
   return !!(value && value.toString().trim().match(postalCodeRegex));
+};
+
+/**
+ *
+ * This function removes all query strings from an URL
+ *
+ * @param {string} value
+ */
+export const removeQueryStrings = (value: string) => {
+  return value.split("?")[0];
 };

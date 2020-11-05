@@ -1,13 +1,14 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import { Alert, ComponentWrapper } from "../atoms";
 
-const Error: React.FC<{
-  children: ReactNode;
+type ErrorProps = {
   content?: string;
   heading: string;
-  stack?: object;
-}> = ({ children, content, heading, stack }) => (
+  stack?: string;
+};
+
+const Error: React.FC<ErrorProps> = ({ children, content, heading, stack }) => (
   <ComponentWrapper>
     <Alert
       level="error"

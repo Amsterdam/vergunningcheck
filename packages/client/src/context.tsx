@@ -1,14 +1,11 @@
+import type { Answers } from "@vergunningcheck/imtr-client";
 import React, { Context, createContext, useEffect, useReducer } from "react";
 
 import { sections } from "./config/matomo";
 
-type QuestionAnswerType = {
-  [key: string]: any;
-};
-
 type TopicSessionData = {
   activeComponents: [string];
-  answers?: QuestionAnswerType[];
+  answers?: Answers;
   address: any;
   finishedComponents: [];
   questionIndex: number;
@@ -54,7 +51,7 @@ const reducer = (
   };
 };
 
-function SessionProvider(props: { children: React.ReactNode }) {
+function SessionProvider(props: { children: React.ReactChildren }) {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
   const [data, setSessionData] = useReducer(reducer, defaultSessionValues);

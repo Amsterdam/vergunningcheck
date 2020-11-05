@@ -1,6 +1,6 @@
-export type Permit = any;
 export type PermitId = string;
 export type PermitName = string;
+
 export type PermitConfig = Map<PermitId, PermitName>;
 
 export type APIConfig = {
