@@ -58,6 +58,7 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
   );
 
+  // Define the content
   const needContactContent = {
     mainContent: (
       <div data-testid={NEED_CONTACT}>
@@ -69,24 +70,34 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
     ),
     title: contactConclusion?.title,
   };
-
   const needPermitContent = {
     mainContent: <NeedPermitContent />,
     title: "U hebt een omgevingsvergunning nodig.",
   };
-
   const permitFreeContent = {
     footerContent: <NoPermitDescription />,
     title: "U hebt geen omgevingsvergunning nodig. ",
   };
 
-  const conclusionContent = contactConclusion
-    ? needContactContent
-    : needPermit
-    ? needPermitContent
-    : permitFreeContent;
-
-  const showDiscaimer = !contactConclusion;
+  // Define permit outcome variables
+  let conclusionContent,
+    outcomeType,
+    showDiscaimer = false;
+  if (contactConclusion) {
+    conclusionContent = needContactContent;
+    outcomeType = imtrOutcomes.NEED_CONTACT;
+  } else if (needPermit) {
+    conclusionContent = needPermitContent;
+    outcomeType = imtrOutcomes.NEED_PERMIT;
+    showDiscaimer = true;
+  } else {
+    // By default the outcome is permit-free, this is inherited from Flo Legal and IMTR
+    conclusionContent = permitFreeContent;
+    outcomeType = imtrOutcomes.PERMIT_FREE;
+    showDiscaimer = true;
+  }
+  // @TODO: extend with needReport and needReportAndPermit
+  // See: https://github.com/Amsterdam/vergunningcheck/pull/668
 
   return (
     <ConclusionWrapper>
@@ -94,6 +105,7 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
         {...{
           conclusionContent,
           matomoTrackEvent,
+          outcomeType,
           showDiscaimer,
         }}
       />
