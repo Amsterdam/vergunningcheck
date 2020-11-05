@@ -2,9 +2,10 @@ import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { Topic, requiredFieldText } from "../../config";
+import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import useDebounce from "../../hooks/useDebounce";
@@ -46,6 +47,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   setFocus,
   topic,
 }) => {
+  const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
   const [postalCode, setPostalCode] = useState<string>(
     sessionAddress.postalCode
@@ -74,7 +76,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
-        return requiredFieldText;
+        return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";

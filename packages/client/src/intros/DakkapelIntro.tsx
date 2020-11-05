@@ -1,19 +1,22 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { Intro } from "./shared";
 
-export default () => (
-  <Intro
-    usableForBullets={[
-      "het wijzigen van een monument.",
-      "het plaatsen van de dakkapel zelf.",
-    ]}
-    usableForText={`U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of
-        als u een bestaande vernieuwt.`}
-    exceptions={[
-      "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
-      "Het aantal woningen verandert.",
-      "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd.",
-    ]}
-  />
-);
+export default () => {
+  const { t } = useTranslation();
+  return (
+    <Intro
+      usableForBullets={[
+        t("introPage.common.monument bullet"),
+        t("introPage.dakkapel.placing bullet"),
+      ]}
+      usableForText={t("introPage.dakkapel.intro description")}
+      exceptions={[
+        t("introPage.dakkapel.exception"),
+        t("introPage.common.amount of houses exception"),
+        t("introPage.dakkapel.build without permit exception"),
+      ]}
+    />
+  );
+};
