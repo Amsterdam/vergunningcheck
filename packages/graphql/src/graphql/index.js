@@ -18,7 +18,7 @@ const cityScape = require("./cityScape");
 const restriction = require("./restriction");
 const zoningPlan = require("./zoningPlan");
 
-const modules = [node, address, monument, cityScape, restriction, zoningPlan];
+const modules = [node, address, area, monument, cityScape, restriction, zoningPlan];
 
 const schema = makeExecutableSchema({
   typeDefs: modules.map((m) => m.typeDefs),
