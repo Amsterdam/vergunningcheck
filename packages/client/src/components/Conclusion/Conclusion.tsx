@@ -1,6 +1,5 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import type { Decision, Permit, Rule } from "@vergunningcheck/imtr-client";
-import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
+import { imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 import styled from "styled-components";
 
@@ -21,55 +20,11 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
   checker,
   matomoTrackEvent,
 }) => {
-  // find conclusions we want to display to the user
-  const conclusions = checker?.permits
-    .filter((permit: Permit) => !!permit.getOutputByDecisionId("dummy"))
-    .map((permit: Permit) => {
-      const conclusion = permit.getDecisionById("dummy") as Decision;
-      const conclusionMatchingRules = conclusion.getMatchingRules() as Rule[];
-      const contactOutcome = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
-      ) as Rule;
-      const outcome = (contactOutcome?.outputValue ||
-        conclusionMatchingRules[0].outputValue) as string;
+  // Get all the outcomes to display
+  const outcomes = checker.getOutcomesToDisplay();
+  const outcomeType = checker.outcomeType();
 
-      return {
-        outcome,
-        title:
-          outcome === imtrOutcomes.NEED_CONTACT
-            ? "Neem contact op met de gemeente"
-            : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
-                outcome
-              )}`,
-        description:
-          outcome === imtrOutcomes.NEED_CONTACT
-            ? contactOutcome.description
-            : conclusionMatchingRules[0].description,
-      };
-    });
-
-  // Check if the conclusion is 'needContact'
-  const contactConclusion = conclusions.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
-  );
-
-  // Check if the conclusion is 'needPermit'
-  const needPermit = !!conclusions.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
-  );
-
-  // Define the content
-  const needContactContent = {
-    mainContent: (
-      <div data-testid={NEED_CONTACT}>
-        <Markdown
-          eventLocation={sections.CONCLUSION}
-          source={contactConclusion?.description}
-        />
-      </div>
-    ),
-    title: contactConclusion?.title,
-  };
+  // Define the hard-coded content
   const needPermitContent = {
     mainContent: <NeedPermitContent />,
     title: "U hebt een omgevingsvergunning nodig.",
@@ -81,20 +36,36 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
 
   // Define permit outcome variables
   let conclusionContent,
-    outcomeType,
     showDiscaimer = false;
-  if (contactConclusion) {
-    conclusionContent = needContactContent;
-    outcomeType = imtrOutcomes.NEED_CONTACT;
-  } else if (needPermit) {
+  if (outcomeType === imtrOutcomes.NEED_CONTACT) {
+    // Need contact
+    const getNeedContactContent = outcomes.find(
+      ({ outcome }: { outcome: string }) =>
+        outcome === imtrOutcomes.NEED_CONTACT
+    );
+    // This content is coming from the JSON file
+    conclusionContent = {
+      mainContent: (
+        <div data-testid={NEED_CONTACT}>
+          <Markdown
+            eventLocation={sections.CONCLUSION}
+            source={getNeedContactContent.description}
+          />
+        </div>
+      ),
+      title: getNeedContactContent.title,
+    };
+  } else if (outcomeType === imtrOutcomes.NEED_PERMIT) {
+    // Need permit
     conclusionContent = needPermitContent;
-    outcomeType = imtrOutcomes.NEED_PERMIT;
+    showDiscaimer = true;
+  } else if (outcomeType === imtrOutcomes.PERMIT_FREE) {
+    // Permit free
+    conclusionContent = permitFreeContent;
     showDiscaimer = true;
   } else {
-    // By default the outcome is permit-free, this is inherited from Flo Legal and IMTR
-    conclusionContent = permitFreeContent;
-    outcomeType = imtrOutcomes.PERMIT_FREE;
-    showDiscaimer = true;
+    // None of the above outcomes
+    return null;
   }
   // @TODO: extend with needReport and needReportAndPermit
   // See: https://github.com/Amsterdam/vergunningcheck/pull/668
