@@ -1,21 +1,22 @@
 const { gql } = require("../util");
 
-let typeDefs = gql`
+const typeDefs = gql`
   extend type Address {
     districtName: String!
     neighborhoodName: String!
   }
 `;
 
-const resolve = (args, bagSearch, one) => {};
+const resolve = (args, area, one) => {
+  console.log(area);
+};
 
 const resolvers = {
   Address: {
-    neighborhoodName: ({ parent }, args, { loaders }) => {
-      // loaders.bag.accomodation....
-    },
-    // districtName: (parent, args, context, info) => {
+    neighborhoodName: (args, _, { loaders }) => resolve(args, loaders),
 
+    // districtName: (parent, args, context, info) => {
+    //
     // },
   },
 };

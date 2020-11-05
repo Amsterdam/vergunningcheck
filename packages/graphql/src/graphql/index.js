@@ -12,6 +12,7 @@ const zoningPlanLoader = require("../loaders/zoningPlan");
 
 const node = require("./node");
 const address = require("./address");
+const area = require("./area");
 const monument = require("./monument");
 const cityScape = require("./cityScape");
 const restriction = require("./restriction");
@@ -38,6 +39,7 @@ const server = graphqlHTTP({
       },
       zoningPlan: new DataLoader(zoningPlanLoader.load),
       geoSearch: new DataLoader(geoSearchLoader.load),
+      area: new DataLoader(area.load),
       monument: {
         situation: new DataLoader(monumentLoader.situation.load),
         monument: new DataLoader(monumentLoader.monument.load),
