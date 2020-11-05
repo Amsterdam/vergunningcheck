@@ -22,7 +22,7 @@ export const isSimpleType = (val: unknown): boolean =>
 
 // IMTR helpers
 export const addQuotes = (str: string): string => `"${str}"`;
-export const removeQuotes = (obj: string): string => obj.replace(/['"]+/g, "");
+export const removeQuotes = (str: string): string => str.replace(/['"]+/g, "");
 
 // Make sure the value is of type object
 export const isObject = (val: unknown): boolean =>

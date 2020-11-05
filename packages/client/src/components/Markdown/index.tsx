@@ -7,7 +7,12 @@ import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
 import ListRenderer from "./renderers/ListRenderer";
 
-export default ({ eventLocation, source }) => (
+type MarkDownProps = {
+  eventLocation: string;
+  source: string;
+};
+
+const Markdown = ({ eventLocation, source }: MarkDownProps) => (
   <ReactMarkdown
     source={source}
     renderers={{
@@ -19,3 +24,5 @@ export default ({ eventLocation, source }) => (
     }}
   />
 );
+
+export default Markdown;
