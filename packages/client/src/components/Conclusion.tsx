@@ -84,7 +84,7 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
 
   const needReportAndPermitContent = {
     mainContent: <NeedReportAndPermitContent />,
-    title: "U hebt zowel een meldingsplicht als meldingsplicht.",
+    title: "U hebt zowel een meldingsplicht als vergunnngsplicht.",
   };
 
   const needReportContent = {

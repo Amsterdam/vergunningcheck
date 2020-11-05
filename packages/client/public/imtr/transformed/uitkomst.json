@@ -175,14 +175,11 @@
             "meldplicht",
             "vergunningplicht",
             "neem contact op met",
-            "vergunningvrij",
-            "meldplicht EN vergunningplicht",
-            "neem contact op met EN meldplicht",
-            "neem contact op met EN vergunningplicht"
+            "vergunningvrij"
           ],
           "type": "string",
           "id": "uitv__12d17eb4-a6e8-4225-aecc-215a1190455c",
-          "prio": 10
+          "prio": 100
         }
       ],
       "inputs": {
@@ -201,35 +198,11 @@
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["\"meldplicht EN vergunningplicht\""],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": ["\"neem contact op met EN meldplicht\""],
-                "output": "\"Meldingsplicht\""
-              },
-              {
                 "inputs": ["\"vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"meldplicht EN vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"neem contact op met EN vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
                 "inputs": ["\"neem contact op met\""],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": ["\"neem contact op met EN meldplicht\""],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": ["\"neem contact op met EN vergunningplicht\""],
                 "output": "\"NeemContactOpMet\""
               },
               {
