@@ -65,5 +65,13 @@ export default {
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
     },
+    outcome: {
+      needPermit: {
+        "you need a permit": "U hebt een omgevingsvergunning nodig.",
+      },
+      permitFree: {
+        "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+      },
+    },
   },
 };

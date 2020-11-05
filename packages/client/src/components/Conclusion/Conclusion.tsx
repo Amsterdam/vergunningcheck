@@ -2,6 +2,7 @@ import { themeSpacing } from "@amsterdam/asc-ui";
 import { Checker, imtrOutcomes } from "@vergunningcheck/imtr-client";
 import { Outcome } from "@vergunningcheck/imtr-client/src/types";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { sections } from "../../config/matomo";
@@ -21,6 +22,8 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
   checker,
   matomoTrackEvent,
 }) => {
+  const { t } = useTranslation();
+
   // Get all the outcomes to display
   const outcomes = checker.getOutcomesToDisplay();
   const outcomeType = checker.outcomeType();
@@ -41,11 +44,11 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
     },
     [NEED_PERMIT]: {
       mainContent: <NeedPermitContent />,
-      title: "U hebt een omgevingsvergunning nodig.",
+      title: t("outcome.needPermit.you need a permit"),
     },
     [PERMIT_FREE]: {
       footerContent: <NoPermitDescription />,
-      title: "U hebt geen omgevingsvergunning nodig.",
+      title: t("outcome.needPermit.you dont need a permit"),
     },
     // @TODO: extend with NEED_REPORT
     // See: https://github.com/Amsterdam/vergunningcheck/pull/668
