@@ -84,7 +84,7 @@ const ConclusionOutcome: React.FC<
 
       <HideForPrint>
         <NewCheckerModal />
-        <ComponentWrapper>&nbsp;</ComponentWrapper>
+        {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
       </HideForPrint>
     </ConclusionOutcomeWrapper>
   );
