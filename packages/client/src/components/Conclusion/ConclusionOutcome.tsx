@@ -15,7 +15,7 @@ const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
   ${({ showDiscaimer }) =>
     showDiscaimer &&
     css`
-      margin-bottom: ${themeSpacing(9)};
+      margin-bottom: ${themeSpacing(10)};
     `};
 `;
 
