@@ -1,11 +1,11 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import { imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { Checker, imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { Outcome } from "@vergunningcheck/imtr-client/src/types";
 import React from "react";
 import styled from "styled-components";
 
 import { sections } from "../../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
-import { NEED_CONTACT } from "../../utils/test-ids";
 import Disclaimer from "../Disclaimer";
 import Markdown from "../Markdown";
 import { ConclusionOutcome, NeedPermitContent, NoPermitDescription } from ".";
@@ -15,8 +15,9 @@ const ConclusionWrapper = styled.div`
     padding-bottom: ${themeSpacing(5)};
   }
 `;
+const { NEED_CONTACT, NEED_PERMIT, PERMIT_FREE } = imtrOutcomes;
 
-const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
+const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
   checker,
   matomoTrackEvent,
 }) => {
@@ -24,51 +25,38 @@ const Conclusion: React.FC<{ checker: any } & MatomoTrackEventProps> = ({
   const outcomes = checker.getOutcomesToDisplay();
   const outcomeType = checker.outcomeType();
 
-  // Define the hard-coded content
-  const needPermitContent = {
-    mainContent: <NeedPermitContent />,
-    title: "U hebt een omgevingsvergunning nodig.",
-  };
-  const permitFreeContent = {
-    footerContent: <NoPermitDescription />,
-    title: "U hebt geen omgevingsvergunning nodig. ",
+  // The "need contact" content comes from the IMTR file itself
+  const getNeedContactContent = outcomes.find(
+    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
+  );
+  const { description = "", title = "" } = getNeedContactContent as Outcome;
+
+  // Define the content for the Conclusion components
+  const contents = {
+    [NEED_CONTACT]: {
+      mainContent: (
+        <Markdown eventLocation={sections.CONCLUSION} source={description} />
+      ),
+      title,
+    },
+    [NEED_PERMIT]: {
+      mainContent: <NeedPermitContent />,
+      title: "U hebt een omgevingsvergunning nodig.",
+    },
+    [PERMIT_FREE]: {
+      footerContent: <NoPermitDescription />,
+      title: "U hebt geen omgevingsvergunning nodig.",
+    },
+    // @TODO: extend with NEED_REPORT
+    // See: https://github.com/Amsterdam/vergunningcheck/pull/668
   };
 
-  // Define permit outcome variables
-  let conclusionContent,
-    showDiscaimer = false;
-  if (outcomeType === imtrOutcomes.NEED_CONTACT) {
-    // Need contact
-    const getNeedContactContent = outcomes.find(
-      ({ outcome }: { outcome: string }) =>
-        outcome === imtrOutcomes.NEED_CONTACT
-    );
-    // This content is coming from the JSON file
-    conclusionContent = {
-      mainContent: (
-        <div data-testid={NEED_CONTACT}>
-          <Markdown
-            eventLocation={sections.CONCLUSION}
-            source={getNeedContactContent.description}
-          />
-        </div>
-      ),
-      title: getNeedContactContent.title,
-    };
-  } else if (outcomeType === imtrOutcomes.NEED_PERMIT) {
-    // Need permit
-    conclusionContent = needPermitContent;
-    showDiscaimer = true;
-  } else if (outcomeType === imtrOutcomes.PERMIT_FREE) {
-    // Permit free
-    conclusionContent = permitFreeContent;
-    showDiscaimer = true;
-  } else {
-    // None of the above outcomes
+  const conclusionContent = contents[outcomeType];
+  const showDiscaimer = outcomeType !== NEED_CONTACT;
+
+  if (!conclusionContent) {
     return null;
   }
-  // @TODO: extend with needReport and needReportAndPermit
-  // See: https://github.com/Amsterdam/vergunningcheck/pull/668
 
   return (
     <ConclusionWrapper>

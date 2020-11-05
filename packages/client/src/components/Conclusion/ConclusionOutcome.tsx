@@ -31,7 +31,7 @@ type ConclusionContentProps = {
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
   matomoTrackEvent: Function;
-  outcomeType?: string; // @TODO: maybe define imtrOutcomes types and import from imtr-client?
+  outcomeType: string; // @TODO: maybe define imtrOutcomes types and import from imtr-client?
   showDiscaimer?: boolean;
 };
 
