@@ -15,22 +15,22 @@ import {
 } from "../../utils/test-utils";
 import OloLocationInput from "./OloLocationInput";
 
-Object.defineProperty(window, "matchMedia", matchMedia);
+// Object.defineProperty(window, "matchMedia", matchMedia);
 
-const matomoTrackEvent = jest.fn();
-window.open = jest.fn();
-window.scrollTo = jest.fn();
+// const matomoTrackEvent = jest.fn();
+// window.open = jest.fn();
+// window.scrollTo = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-  useHistory: () => ({
-    location: {
-      pathname: "/aanbouw-of-uitbouw-maken/adresgegevens",
-    },
-    push: jest.fn(),
-  }),
-  useLocation: () => jest.fn(),
-  useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
-}));
+// jest.mock("react-router-dom", () => ({
+//   useHistory: () => ({
+//     location: {
+//       pathname: "/aanbouw-of-uitbouw-maken/adresgegevens",
+//     },
+//     push: jest.fn(),
+//   }),
+//   useLocation: () => jest.fn(),
+//   useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
+// }));
 
 jest.mock("react-hook-form", () => ({
   useForm: () => ({
@@ -63,7 +63,7 @@ describe("OloLocationInput", () => {
     expect(inputHouseNumber).toBeInTheDocument();
     expect(inputHouseNumber).not.toHaveValue();
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    // expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
   });
 
   it("should handle next button", async () => {
@@ -145,13 +145,13 @@ describe("OloLocationInput", () => {
      * Continue with the next button
      */
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    // expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
       fireEvent.click(screen.getByText("Volgende"));
     });
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    // expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
   });
 
   it("should render correctly with preset context", () => {

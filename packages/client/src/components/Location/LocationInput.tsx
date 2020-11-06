@@ -33,8 +33,6 @@ const LocationInput = ({
 
   const { hasIMTR, slug, text } = topic;
   const address = topicData.address || {};
-  // const sessionAddress = topicData.address || {};
-  // const [address, setAddress] = useState(sessionAddress);
   const [errorMessage, setErrorMessage] = useState<ApolloError | undefined>(
     error
   );

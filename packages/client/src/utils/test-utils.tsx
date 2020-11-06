@@ -18,6 +18,7 @@ dotenv.config();
 Object.defineProperty(window, "matchMedia", matchMedia);
 
 window.open = jest.fn();
+window.scrollTo = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),

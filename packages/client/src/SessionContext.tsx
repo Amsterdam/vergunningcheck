@@ -54,10 +54,7 @@ export const SessionProvider: React.FC = ({ children }) => {
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, defaultSession);
 
-  console.log("session provider", session);
-
   useEffect(() => {
-    console.log("session provider useEffect", session);
     sessionStorage.setItem("sessionData", JSON.stringify(session));
   }, [session]);
 
