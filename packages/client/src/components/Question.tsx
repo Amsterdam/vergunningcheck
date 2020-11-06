@@ -1,20 +1,26 @@
-import PropTypes from "prop-types";
+import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../atoms";
-import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import { useTracking } from "../hooks";
 import { QUESTION_PAGE } from "../utils/test-ids";
-import Answers from "./Answers";
+import Answers, { AnswerProps } from "./Answers";
 import ConclusionAlert from "./ConclusionAlert";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
 
-export const booleanOptions = [
+export type BooleanOption = {
+  label: string;
+  formValue: string;
+  value: boolean;
+};
+
+export const booleanOptions: BooleanOption[] = [
   {
     label: "Ja",
     formValue: "yes",
@@ -27,8 +33,32 @@ export const booleanOptions = [
   },
 ];
 
-const Question = ({
-  question: {
+type QuestionProps = {
+  question: ImtrQuestion;
+  onGoToNext: () => void;
+  onGoToPrev: () => void;
+  questionIndex: number;
+  questionNeedsContactExit: boolean;
+  saveAnswer: (value: string) => void;
+  shouldGoToConlusion: () => boolean;
+  showConclusionAlert: boolean;
+  showNext: boolean;
+  userAnswer?: string;
+};
+
+const Question: React.FC<QuestionProps> = ({
+  question,
+  questionIndex,
+  questionNeedsContactExit,
+  onGoToNext,
+  onGoToPrev,
+  saveAnswer,
+  shouldGoToConlusion,
+  showConclusionAlert,
+  showNext,
+  userAnswer,
+}) => {
+  const {
     answer: currentAnswer,
     description,
     id: questionId,
@@ -36,29 +66,21 @@ const Question = ({
     options: questionAnswers,
     text: questionTitle,
     type: questionType,
-  },
-  checker,
-  className,
-  editQuestion,
-  onGoToNext,
-  onGoToPrev,
-  questionIndex,
-  questionNeedsContactExit,
-  saveAnswer,
-  setEditQuestion,
-  shouldGoToConlusion,
-  showConclusionAlert,
-  showNext,
-  userAnswer,
-}) => {
+  } = question;
   const { matomoTrackEvent } = useTracking();
+
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
-  const listAnswers = questionAnswers?.map((answer) => ({
-    label: answer,
-    formValue: answer,
-    value: answer,
-  }));
+  const { t } = useTranslation();
+  const listAnswers = questionAnswers?.map(
+    (answer) =>
+      ({
+        formValue: answer,
+        label: answer,
+        value: answer,
+      } as AnswerProps)
+  );
   const answers = questionType === "string" ? listAnswers : booleanOptions;
+  const requiredFieldRadio = t("common.required field radio");
 
   useEffect(() => {
     if (questionId) {
@@ -69,16 +91,8 @@ const Question = ({
         }
       );
 
-      // Set value if question has already been answered to prevent 'fake' requirement
-      if (currentAnswer !== undefined) {
-        if (questionAnswers) {
-          setValue(questionId, currentAnswer);
-        } else {
-          const responseObj = booleanOptions.find(
-            (o) => o.value === currentAnswer
-          );
-          setValue(questionId, responseObj.formValue);
-        }
+      if (userAnswer) {
+        setValue(questionId, userAnswer);
       }
     }
     return () => unregister(questionId);
@@ -89,20 +103,19 @@ const Question = ({
     currentAnswer,
     questionAnswers,
     setValue,
+    userAnswer,
+    t,
+    requiredFieldRadio,
   ]);
 
-  const handleChange = (e) => {
-    // On edit question, keep the current stack until the answer is changed.
-    if (editQuestion) {
-      checker.rewindTo(questionIndex);
-      setEditQuestion(false);
-    }
+  const handleChange = (e: React.MouseEvent) => {
+    const { name, type, value } = e.target as HTMLInputElement;
 
     // Save the changed answer to the question.
-    saveAnswer(e.target.value);
+    saveAnswer(value);
 
     // Set the value of the radio group to the selected value with react-hook-form's setValue
-    if (e.target.type === "radio") setValue(e.target.name, e.target.value);
+    if (type === "radio") setValue(name, value);
   };
 
   const handleOpenModal = () => {
@@ -114,7 +127,6 @@ const Question = ({
 
   return (
     <Form
-      className={className}
       dataId={questionId}
       dataTestId={QUESTION_PAGE}
       onSubmit={handleSubmit(onGoToNext)}
@@ -158,37 +170,6 @@ const Question = ({
       />
     </Form>
   );
-};
-
-Question.defaultProps = {
-  question: {
-    answer: "",
-    description: "",
-    longDescription: "",
-  },
-  headingAs: "h3",
-};
-
-Question.propTypes = {
-  question: PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string,
-    type: PropTypes.string,
-    options: PropTypes.array,
-    description: PropTypes.string,
-    longDescription: PropTypes.string,
-    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  }),
-  className: PropTypes.string,
-  headingAs: PropTypes.string,
-  questionNeedsContactExit: PropTypes.bool,
-  showConclusionAlert: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
-  onSubmit: PropTypes.func,
-  required: PropTypes.bool,
-  shouldGoToConlusion: PropTypes.func,
-  showNext: PropTypes.bool,
-  userAnswer: PropTypes.string,
 };
 
 export default Question;

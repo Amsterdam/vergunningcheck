@@ -6,7 +6,7 @@ import Conclusion from "../components/Conclusion";
 import Layout from "../components/Layouts/TopicLayout";
 import { LocationInput, LocationSummary } from "../components/Location";
 import PrintDetails from "../components/PrintDetails";
-import Questions from "../components/Questions";
+import Questions, { GoToQuestionProp } from "../components/Questions";
 import {
   StepByStepItem,
   StepByStepNavigation,
@@ -167,7 +167,7 @@ const CheckerPage = () => {
   /**
    * Set the questionIndex the next questionId, previous questionId, or the given id.
    */
-  const goToQuestion = (value: "next" | "prev" | number) => {
+  const goToQuestion = (value: GoToQuestionProp) => {
     let action, eventName;
     let newQuestionIndex: number;
 

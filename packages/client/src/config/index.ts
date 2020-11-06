@@ -139,8 +139,3 @@ export const topics: Topic[] = [
     },
   },
 ];
-
-// @TODO: replace this with i18n
-export const requiredFieldText: string = "Verplicht veld is niet ingevuld";
-
-export const requiredFieldRadio: string = "Maak een keuze";

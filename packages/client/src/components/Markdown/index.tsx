@@ -7,12 +7,12 @@ import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
 import ListRenderer from "./renderers/ListRenderer";
 
-type Props = {
+type MarkDownProps = {
   source?: string;
   eventLocation: string;
 };
 
-const Markdown: React.FC<Props> = ({ eventLocation, source }) => (
+const Markdown: React.FC<MarkDownProps> = ({ eventLocation, source }) => (
   <ReactMarkdown
     source={source}
     renderers={{

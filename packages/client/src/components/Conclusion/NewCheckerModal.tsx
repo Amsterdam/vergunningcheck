@@ -1,8 +1,9 @@
 import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper, Label } from "../../atoms";
-import { requiredFieldRadio, topics } from "../../config";
+import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { RADIO_ADDRESS_1, RADIO_ADDRESS_2 } from "../../utils/test-ids";
@@ -11,8 +12,8 @@ import Modal from "../Modal";
 const NewCheckerModal: React.FC = () => {
   const { matomoTrackEvent } = useTracking();
   const { topicData, setTopicData } = useTopicData();
-
   const slug = useSlug();
+  const { t } = useTranslation();
   const [checkerSlug, setCheckerSlug] = useState(slug);
 
   const [finished, setFinished] = useState(false);
@@ -106,7 +107,9 @@ const NewCheckerModal: React.FC = () => {
             />
           </Label>
         </RadioGroup>
-        <ErrorMessage message={hasError ? requiredFieldRadio : ""} />
+        <ErrorMessage
+          message={hasError ? t("common.required field radio") : ""}
+        />
       </ComponentWrapper>
 
       <ComponentWrapper>

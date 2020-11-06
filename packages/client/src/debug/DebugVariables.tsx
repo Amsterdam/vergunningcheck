@@ -7,7 +7,7 @@ import {
   Link,
   Paragraph,
 } from "@amsterdam/asc-ui";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import HiddenDebugInfo from "../components/HiddenDebugInfo";
@@ -25,9 +25,6 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
   const { topicData, setTopicData } = useTopicData();
   const checkerContext = useContext(CheckerContext);
 
-  useEffect(() => {
-    console.log("session now", session);
-  });
   // Do not render when testing with Jest
   if (process.env.JEST_WORKER_ID) {
     return null;
@@ -35,22 +32,6 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
 
   // Array.from(process.env)
   const ENV = process.env as { [key: string]: string | undefined };
-  // ENV.REACT_APP_GIT_BRANCH = REACT_APP_GIT_BRANCH && (
-  //   <Link
-  //     href={`https://github.com/Amsterdam/vergunningcheck/tree/${REACT_APP_GIT_BRANCH}`}
-  //     target="_blank"
-  //   >
-  //     {REACT_APP_GIT_BRANCH}
-  //   </Link>
-  // );
-  // ENV.REACT_APP_GIT_SHA = REACT_APP_GIT_SHA && (
-  //   <Link
-  //     href={`https://github.com/Amsterdam/vergunningcheck/commit/${REACT_APP_GIT_SHA}`}
-  //     target="_blank"
-  //   >
-  //     {REACT_APP_GIT_SHA}
-  //   </Link>
-  // );
 
   return (
     <HiddenDebugInfo>

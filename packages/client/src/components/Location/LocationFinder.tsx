@@ -2,9 +2,9 @@ import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { requiredFieldText } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopicData, useTracking } from "../../hooks";
 import useDebounce from "../../hooks/useDebounce";
@@ -28,14 +28,14 @@ const isTrueExactMatch = (
   houseNumberFull &&
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
-type Props = {
+type LocationFinderProps = {
   focus: boolean;
   sessionAddress: any; // @TODO replace any with address type.
   setErrorMessage: (error: ApolloError | undefined) => void;
   setFocus: (focus: boolean) => void;
 };
 
-const LocationFinder: React.FC<Props> = ({
+const LocationFinder: React.FC<LocationFinderProps> = ({
   focus,
   sessionAddress,
   setErrorMessage,
@@ -43,7 +43,7 @@ const LocationFinder: React.FC<Props> = ({
 }) => {
   const { matomoTrackEvent } = useTracking();
   const { setTopicData } = useTopicData();
-
+  const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
   const [postalCode, setPostalCode] = useState<string>(
     sessionAddress.postalCode
@@ -72,7 +72,7 @@ const LocationFinder: React.FC<Props> = ({
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
-        return requiredFieldText;
+        return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
