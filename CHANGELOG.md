@@ -2,7 +2,104 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.1.0] (2020-10-30)
+## [2.3.0] (2020-10-27)
+
+#### New Features
+* `client`
+  * [#649](https://github.com/Amsterdam/vergunningcheck/pull/649) Refactored Location components and fixed the tests ([@robinpiets](https://github.com/robinpiets))
+  * [#641](https://github.com/Amsterdam/vergunningcheck/pull/641) Upgraded components and added tests ([@robinpiets](https://github.com/robinpiets))
+  * [#640](https://github.com/Amsterdam/vergunningcheck/pull/640) Adjusted the link in the Conclusion component ([@svenjens](https://github.com/svenjens))
+  * [#639](https://github.com/Amsterdam/vergunningcheck/pull/639) Removed old OLO Intro files and added tests ([@robinpiets](https://github.com/robinpiets))
+  * [#635](https://github.com/Amsterdam/vergunningcheck/pull/635) Textual and styling changes after the test ([@robinpiets](https://github.com/robinpiets))
+  * [#632](https://github.com/Amsterdam/vergunningcheck/pull/632) OLO flow textual changes ([@svenjens](https://github.com/svenjens))
+  * [#627](https://github.com/Amsterdam/vergunningcheck/pull/627) Added extra conclusion information for `need permit` ([@svenjens](https://github.com/svenjens))
+  * [#626](https://github.com/Amsterdam/vergunningcheck/pull/626) Textual changes to the OLO Flow ([@svenjens](https://github.com/svenjens))
+  * [#617](https://github.com/Amsterdam/vergunningcheck/pull/617) Separated the OLO flow and refactored components ([@robinpiets](https://github.com/robinpiets))
+  * [#616](https://github.com/Amsterdam/vergunningcheck/pull/616) Wrapped (new) Debug Variables in Accordion ([@robinpiets](https://github.com/robinpiets))
+* `client`, `e2e`, `mocking`
+  * [#638](https://github.com/Amsterdam/vergunningcheck/pull/638) Added e2e tests and refactored the e2e config ([@robinpiets](https://github.com/robinpiets))
+* `client`, `e2e`
+  * [#630](https://github.com/Amsterdam/vergunningcheck/pull/630) Skip the intro page on the OLO flow ([@robinpiets](https://github.com/robinpiets))
+* `client`, `e2e`, `graphql`, `imtr`, `mocking`
+  * [#610](https://github.com/Amsterdam/vergunningcheck/pull/610) Implement shared mocking package and renamed apps-folder ([@afjlambert](https://github.com/afjlambert))
+* Other
+  * [#614](https://github.com/Amsterdam/vergunningcheck/pull/614) Added matomo events for GraphQL errors and Restrictions ([@svenjens](https://github.com/svenjens))
+
+#### Bug fixes
+* `client`
+  * [#637](https://github.com/Amsterdam/vergunningcheck/pull/637) OLO flow bug when going directly to Location Results component ([@svenjens](https://github.com/svenjens))
+  * [#634](https://github.com/Amsterdam/vergunningcheck/pull/634) Disable autoFocus when `postalCode` has been found ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+* `client`
+  * [#625](https://github.com/Amsterdam/vergunningcheck/pull/625) Upgrade react to v16.14 ([@afjlambert](https://github.com/afjlambert))
+* `e2e`, `mocking`
+  * [#618](https://github.com/Amsterdam/vergunningcheck/pull/618) Fixed e2e for multiple addresses on multiple flows ([@robinpiets](https://github.com/robinpiets))
+
+## [2.2.0] (2020-10-19)
+
+#### New Features
+
+- [#552](https://github.com/Amsterdam/vergunningcheck/pull/552) The new Location redesign ([@robinpiets](https://github.com/robinpiets))
+- [#611](https://github.com/Amsterdam/vergunningcheck/pull/611) Fixed titles, styling and tests for RegistryLookupSummary ([@robinpiets](https://github.com/robinpiets))
+- [#608](https://github.com/Amsterdam/vergunningcheck/pull/608) Debug Table are TS-ed and in Accordion ([@robinpiets](https://github.com/robinpiets))
+- [#603](https://github.com/Amsterdam/vergunningcheck/pull/603) Converted utils to TypeScript and refactored ([@robinpiets](https://github.com/robinpiets))
+- [#604](https://github.com/Amsterdam/vergunningcheck/pull/604) General location component refactors ([@robinpiets](https://github.com/robinpiets))
+- [#606](https://github.com/Amsterdam/vergunningcheck/pull/606) Removed EditButton from OLO and renamed EditLocationModal ([@robinpiets](https://github.com/robinpiets))
+- [#605](https://github.com/Amsterdam/vergunningcheck/pull/605) Debug table git info ([@afjlambert](https://github.com/afjlambert))
+- [#602](https://github.com/Amsterdam/vergunningcheck/pull/602) Refactored some utils (added `isValidPostalcode` and tests) ([@robinpiets](https://github.com/robinpiets))
+- [#594](https://github.com/Amsterdam/vergunningcheck/pull/594) Updated loading text by replacing the title ([@robinpiets](https://github.com/robinpiets))
+- [#592](https://github.com/Amsterdam/vergunningcheck/pull/592) Location e2e test ([@afjlambert](https://github.com/afjlambert))
+- [#576](https://github.com/Amsterdam/vergunningcheck/pull/576) Implement cityScape scopes ([@afjlambert](https://github.com/afjlambert))
+- [#585](https://github.com/Amsterdam/vergunningcheck/pull/585) Renamed ChangeAddressModal to EditLocation ([@robinpiets](https://github.com/robinpiets))
+- [#584](https://github.com/Amsterdam/vergunningcheck/pull/584) Updated Matomo events for the Modals ([@robinpiets](https://github.com/robinpiets))
+- [#579](https://github.com/Amsterdam/vergunningcheck/pull/579) Added Matomo events and resetChecker functionality to the Change Address Modal ([@svenjens](https://github.com/svenjens))
+- [#581](https://github.com/Amsterdam/vergunningcheck/pull/581) RegisterLookupSummary now is TypeScript ([@robinpiets](https://github.com/robinpiets))
+- [#580](https://github.com/Amsterdam/vergunningcheck/pull/580) Fixed bug in debouncing LocationNotFound by moving it to LocationFinder ([@robinpiets](https://github.com/robinpiets))
+- [#577](https://github.com/Amsterdam/vergunningcheck/pull/577) Converted LocationInput to TypeScript ([@robinpiets](https://github.com/robinpiets))
+- [#575](https://github.com/Amsterdam/vergunningcheck/pull/575) Updated @amsterdam ASC dependencies ([@robinpiets](https://github.com/robinpiets))
+- [#574](https://github.com/Amsterdam/vergunningcheck/pull/574) Fixed the edit address button and refactored lots of code ([@robinpiets](https://github.com/robinpiets))
+- [#573](https://github.com/Amsterdam/vergunningcheck/pull/573) Disables the native browser auto-suggest ([@robinpiets](https://github.com/robinpiets))
+- [#569](https://github.com/Amsterdam/vergunningcheck/pull/569) feat: changed multiple sentences ([@svenjens](https://github.com/svenjens))
+- [#571](https://github.com/Amsterdam/vergunningcheck/pull/571) AutoSuggest improvements on focusing, fetching and displaying errors ([@robinpiets](https://github.com/robinpiets))
+- [#338](https://github.com/Amsterdam/vergunningcheck/pull/338) IMTR processing refactor ([@afjlambert](https://github.com/afjlambert))
+- [#557](https://github.com/Amsterdam/vergunningcheck/pull/557) Added AutoSuggest and Debounce to LocationFinder ([@robinpiets](https://github.com/robinpiets))
+- [#558](https://github.com/Amsterdam/vergunningcheck/pull/558) Enabled the disabled test ([@svenjens](https://github.com/svenjens))
+- [#556](https://github.com/Amsterdam/vergunningcheck/pull/556) Updated RegisterLookupSummary by new design and improved Location flow ([@svenjens](https://github.com/svenjens))
+- [#551](https://github.com/Amsterdam/vergunningcheck/pull/551) Updated the edit button for location and fixed the modal functionality ([@robinpiets](https://github.com/robinpiets))
+- [#549](https://github.com/Amsterdam/vergunningcheck/pull/549) Feat: remove location result step ([@svenjens](https://github.com/svenjens))
+- [#548](https://github.com/Amsterdam/vergunningcheck/pull/548) Added files for a modal to change address ([@robinpiets](https://github.com/robinpiets))
+- [#547](https://github.com/Amsterdam/vergunningcheck/pull/547) Replaced input fields ([@robinpiets](https://github.com/robinpiets))
+- [#524](https://github.com/Amsterdam/vergunningcheck/pull/524) Basic setup of e2e-testing with nightwatch and puppeteer ([@afjlambert](https://github.com/afjlambert))
+
+#### Bug fixes
+
+- [#613](https://github.com/Amsterdam/vergunningcheck/pull/613) Fixed bug displaying the Location Summary ([@robinpiets](https://github.com/robinpiets))
+- [#612](https://github.com/Amsterdam/vergunningcheck/pull/612) Fixed bug in resetting state ([@robinpiets](https://github.com/robinpiets))
+- [#609](https://github.com/Amsterdam/vergunningcheck/pull/609) Gray bullet bug on CheckerPage ([@svenjens](https://github.com/svenjens))
+- [#595](https://github.com/Amsterdam/vergunningcheck/pull/595) Fixed bug when showing result that wasn't a true exactMatch ([@robinpiets](https://github.com/robinpiets))
+- [#593](https://github.com/Amsterdam/vergunningcheck/pull/593) Fix broken e2e tests ([@robinpiets](https://github.com/robinpiets))
+- [#591](https://github.com/Amsterdam/vergunningcheck/pull/591) Reset the autoSuggestValue on each key press to prevent bugs ([@robinpiets](https://github.com/robinpiets))
+- [#587](https://github.com/Amsterdam/vergunningcheck/pull/587) Updated location styling and fixed several location bugs ([@robinpiets](https://github.com/robinpiets))
+- [#578](https://github.com/Amsterdam/vergunningcheck/pull/578) Fixed bugs by making app backwards compatible ([@robinpiets](https://github.com/robinpiets))
+- [#572](https://github.com/Amsterdam/vergunningcheck/pull/572) Fixed a bug incorrect showing the change address modal ([@svenjens](https://github.com/svenjens))
+- [#560](https://github.com/Amsterdam/vergunningcheck/pull/560) Fix console warnings and leave the OLO flow the same ([@svenjens](https://github.com/svenjens))
+- [#561](https://github.com/Amsterdam/vergunningcheck/pull/561) Do not show back-button at the first question + Only store the address if the address has been found ([@robinpiets](https://github.com/robinpiets))
+- [#555](https://github.com/Amsterdam/vergunningcheck/pull/555) Fixed another broken link ([@robinpiets](https://github.com/robinpiets))
+- [#554](https://github.com/Amsterdam/vergunningcheck/pull/554) Fixed Link with broken URL in Conclusion and fixed props ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+
+- [#596](https://github.com/Amsterdam/vergunningcheck/pull/596) LocationFinder to typescript ([@svenjens](https://github.com/svenjens))
+- [#590](https://github.com/Amsterdam/vergunningcheck/pull/590) Small design implementation for the DevHomePage ([@robinpiets](https://github.com/robinpiets))
+- [#586](https://github.com/Amsterdam/vergunningcheck/pull/586) LocationInput converted to typescript ([@svenjens](https://github.com/svenjens))
+- [#583](https://github.com/Amsterdam/vergunningcheck/pull/583) fixed location results test ([@svenjens](https://github.com/svenjens))
+- [#582](https://github.com/Amsterdam/vergunningcheck/pull/582) Typescript and tests improvements ([@robinpiets](https://github.com/robinpiets))
+- [#562](https://github.com/Amsterdam/vergunningcheck/pull/562) Converted Form to TypeScript and added Test ([@robinpiets](https://github.com/robinpiets))
+- [#559](https://github.com/Amsterdam/vergunningcheck/pull/559) Improvements: Conclusion, TypeScript and exports ([@robinpiets](https://github.com/robinpiets))
+- [#550](https://github.com/Amsterdam/vergunningcheck/pull/550) Added basic test to Location ([@robinpiets](https://github.com/robinpiets))
+
+## [2.1.0] (2020-09-30)
 
 #### New Features
 
@@ -286,7 +383,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
-- Added uuid (herhaalid) to some questions ([94477e9](https://github.com/Amsterdam/Vergunningschecker/commit/94477e92896ae97c3ca3e6e66c1363b73f7e1243))
+- Added uuid (herbruikbaarId) to some questions ([94477e9](https://github.com/Amsterdam/Vergunningschecker/commit/94477e92896ae97c3ca3e6e66c1363b73f7e1243))
 - Dakkapel typos ([eeebfa3](https://github.com/Amsterdam/Vergunningschecker/commit/eeebfa34dcf6072d4b34f3be37063db248d9cd4d))
 - Updated texts ([2097d76](https://github.com/Amsterdam/Vergunningschecker/commit/2097d76e26f321ca1f6bd200486125602e62a946))
 

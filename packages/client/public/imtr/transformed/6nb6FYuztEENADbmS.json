@@ -1,0 +1,120 @@
+{
+  "permits": [
+    {
+      "version": 1,
+      "name": "Conclusie Kennis Omgevingswet",
+      "questions": [
+        {
+          "text": "Betreft de Omgevingswet ook persoonsgebonden gedragingen?",
+          "description": "De Omgevingswet betreft alleen de fysieke leefomgeving. Bijv. bouwen, planologisch gebruik, milieu, natuur.",
+          "type": "boolean",
+          "id": "uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
+          "prio": 10
+        },
+        {
+          "text": "Vervalt de omgevingsvergunning-plicht voor brandveilig gebruik?",
+          "description": "Op basis van het Besluit bouwwerken leefomgeving geldt alleen een schriftelijke meldingsplicht zoals we die nu ook kennen uit het Bouwbesluit 2012.",
+          "type": "boolean",
+          "id": "uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
+          "prio": 20
+        },
+        {
+          "text": "Vervalt de onlosmakelijkheid voor diverse activiteiten, zoals we die nu kennen?",
+          "description": "Onder de Omgevingswet kunnen alle activiteiten los worden aangevraagd. Maar een werkzaamheid mag pas worden uitgevoerd als alle benodigde vergunningen zijn verkregen.",
+          "type": "boolean",
+          "id": "uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
+          "prio": 30
+        }
+      ],
+      "inputs": {
+        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
+          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
+          "type": "boolean"
+        },
+        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
+          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
+          "type": "boolean"
+        },
+        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
+          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_b2be2be0-82d3-4d68-8649-bdd59bc39649": {
+          "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c6b632ec-2ec4-4195-b2c5-56d6c8c216b2": {
+          "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2ec7c356-ef2a-4115-bec5-bf42456587da": {
+          "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_b2be2be0-82d3-4d68-8649-bdd59bc39649",
+            "#_c6b632ec-2ec4-4195-b2c5-56d6c8c216b2",
+            "#_2ec7c356-ef2a-4115-bec5-bf42456587da"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Informatieplicht\"", "-", "-"],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": ["-", "\"Informatieplicht\"", "-"],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": ["-", "-", "\"Informatieplicht\""],
+                "output": "\"Informatieplicht\""
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "6nb6FYuztEENADbmS"
+}

@@ -9,7 +9,7 @@ RUN chmod +s /app/
 USER dev:devs
 
 # Install
-COPY apps/client ./
+COPY packages/client ./
 
 # Test
 RUN npm i

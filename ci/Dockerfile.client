@@ -2,7 +2,7 @@ FROM node:buster AS builder
 LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
-COPY apps/client/package*.json ./
+COPY . ./
 
 # react-scripts@3.4.2 not working with lerna, 3.4.1 contains security issue with yargs
 # therefore temp. disabled the audit in build phase. This should be fixed with react-
@@ -10,14 +10,21 @@ COPY apps/client/package*.json ./
 # RUN npm audit --production
 
 RUN npm ci --no-color -q
-COPY apps/client/ ./
-RUN CI=true npm test
+RUN ./node_modules/.bin/lerna bootstrap
+
+RUN cd packages/client/ && CI=true npm test
+
+ARG JOB_NAME
+ARG JENKINS_URL
+ARG BUILD_URL
+ARG BUILD_NUMBER
 ARG REACT_APP_GRAPHQL_API_URL
-RUN npm run build --no-color
+
+RUN ./node_modules/.bin/lerna run build
 
 # Release
 FROM nginx:stable-alpine
 COPY ci/nginx-deployed.conf /etc/nginx/conf.d/vergunningcheck.template
-COPY --from=builder /app/build /usr/share/nginx/html/
+COPY --from=builder /app/packages/client/build /usr/share/nginx/html/
 
 CMD envsubst '$NAMESERVER' </etc/nginx/conf.d/vergunningcheck.template | envsubst '$BACKEND_URI' >/etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'

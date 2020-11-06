@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CityScape loader Basic functions module result 1`] = `
+Array [
+  Object {
+    "scope": "MUNICIPAL",
+  },
+]
+`;
+
+exports[`CityScape loader Basic functions module result 2`] = `
+Array [
+  Object {
+    "scope": "NATIONAL",
+  },
+]
+`;
+
+exports[`CityScape loader findAddress 1`] = `
+Object {
+  "scope": "NATIONAL",
+}
+`;
+
+exports[`CityScape loader findAddress 2`] = `
+Object {
+  "scope": "MUNICIPAL",
+}
+`;
+
+exports[`CityScape loader findAddress 3`] = `
+Object {
+  "scope": undefined,
+}
+`;
+
+exports[`CityScape loader reducer 1`] = `
+Object {
+  "scope": "NATIONAL",
+}
+`;

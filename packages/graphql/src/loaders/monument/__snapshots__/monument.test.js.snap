@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Monument loader Basic functions module result 1`] = `
+Array [
+  Object {
+    "_type": "Monument",
+    "name": "Rijksmonument",
+    "scope": "NATIONAL",
+    "type": "NATIONAL_MONUMENT",
+  },
+]
+`;
+
+exports[`Monument loader Basic functions module result 2`] = `
+Array [
+  Object {
+    "_type": "Monument",
+    "name": "Gemeentelijk monument",
+    "scope": "MUNICIPAL",
+    "type": "MUNICIPAL_MONUMENT",
+  },
+]
+`;

@@ -1,0 +1,115 @@
+{
+  "name": "@vergunningcheck/client",
+  "private": true,
+  "version": "2.3.0",
+  "description": "Client facing application/frontend for the Vergunningcheck application.",
+  "keywords": [],
+  "author": "Gemeente Amsterdam",
+  "license": "ISC",
+  "engines": {
+    "node": "14"
+  },
+  "scripts": {
+    "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` REACT_APP_GIT_BRANCH=`git rev-parse --abbrev-ref HEAD` react-app-rewired start",
+    "start:prod": "REACT_APP_GRAPHQL_API_URL=http://localhost:4000/graphql npm run build; serve -s build",
+    "build": "react-app-rewired build",
+    "build:netlify": "REACT_APP_GIT_BRANCH=$BRANCH REACT_APP_GIT_SHA=$COMMIT_REF REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",
+    "build:size-report": "npm ci && npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
+    "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
+    "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
+    "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",
+    "lint": "eslint . --ignore-path .gitignore --max-warnings=0",
+    "precommit": "lint-staged",
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "ie 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "ie 11"
+    ]
+  },
+  "lint-staged": {
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --max-warnings=0",
+      "react-app-rewired test --bail --findRelatedTests --watchAll=false --env=jest-environment-jsdom-sixteen"
+    ]
+  },
+  "dependencies": {
+    "@amsterdam/asc-assets": "^0.25.1",
+    "@amsterdam/asc-ui": "^0.25.1",
+    "@apollo/client": "^3.2.5",
+    "@datapunt/matomo-tracker-react": "^0.3.1",
+    "@sentry/browser": "^5.27.2",
+    "@testing-library/react-hooks": "^3.4.2",
+    "@types/dotenv-flow": "^3.1.0",
+    "@types/lodash.isboolean": "^3.0.6",
+    "@types/lodash.isnumber": "^3.0.6",
+    "@types/lodash.isstring": "^4.0.6",
+    "@types/react-dom": "^16.9.9",
+    "@types/webpack-env": "^1.15.3",
+    "@vergunningcheck/imtr-client": "2.1.0",
+    "dotenv-flow": "^3.1.0",
+    "eslint-plugin-flowtype": "^5.1.3",
+    "feature-policy": "^0.5.0",
+    "graphql": "^15.4.0",
+    "graphql.macro": "^1.4.2",
+    "history": "^5.0.0",
+    "lodash.isboolean": "^3.0.3",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.isstring": "^4.0.1",
+    "named-urls": "^2.0.0",
+    "react": "^16.14.0",
+    "react-app-polyfill": "^2.0.0",
+    "react-device-detect": "^1.12.1",
+    "react-dom": "^16.14.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^6.9.6",
+    "react-markdown": "^4.3.1",
+    "react-router-dom": "^5.2.0",
+    "slugify": "^1.4.0",
+    "stringifier": "^2.1.0",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@types/node": "^14.14.6",
+    "@types/react-helmet": "^6.0.0",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.1",
+    "customize-cra": "^1.0.0",
+    "import-sort-style-module": "^6.0.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-styled-components": "^7.0.2",
+    "lint-staged": "^10.5.0",
+    "prettier": "^2.0.5",
+    "prettier-plugin-import-sort": "0.0.6",
+    "prop-types": "^15.7.2",
+    "react-app-rewired": "^2.1.6",
+    "react-scripts": "3.4.0",
+    "react-test-renderer": "^16.14.0",
+    "source-map-explorer": "^2.4.2",
+    "typescript": "^3.9.5"
+  }
+}

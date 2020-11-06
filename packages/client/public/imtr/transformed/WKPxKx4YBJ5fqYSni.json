@@ -1,0 +1,149 @@
+{
+  "permits": [
+    {
+      "version": 7,
+      "name": "Conclusie Dakkapel monument",
+      "questions": [
+        {
+          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "autofill": "monumentBoolean",
+          "type": "boolean",
+          "id": "uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "prio": 10,
+          "uuid": "monument"
+        },
+        {
+          "text": "Gaat u een dakkapel plaatsen of vernieuwen?",
+          "options": [
+            "Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.",
+            "Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was."
+          ],
+          "type": "string",
+          "id": "uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
+          "prio": 20,
+          "uuid": "dakkapel - onderhoud1"
+        },
+        {
+          "text": "U gaat een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
+          "options": [
+            "Ja, de dakkapel verandert.",
+            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
+          ],
+          "type": "string",
+          "id": "uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
+          "prio": 30,
+          "uuid": "dakkapel - onderhoud2"
+        }
+      ],
+      "inputs": {
+        "input__797c410f-2502-4626-9b14-7be7c49b0751": {
+          "href": "#uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "type": "boolean"
+        },
+        "input_5cd6194f-5607-444e-8ed1-d44c6aabde7f": {
+          "href": "#uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
+          "type": "string"
+        },
+        "input_369fe23a-09dd-4f86-819a-58c2acb4d8ac": {
+          "href": "#uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
+          "type": "string"
+        }
+      },
+      "decisions": {
+        "_887014ab-3cf2-4dc1-8b05-976449301184": {
+          "requiredInputs": [
+            "#input__797c410f-2502-4626-9b14-7be7c49b0751",
+            "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b1e19ccd-13b7-4931-9902-ecfef4c6f521": {
+          "requiredInputs": [
+            "#input__797c410f-2502-4626-9b14-7be7c49b0751",
+            "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
+            "#input_369fe23a-09dd-4f86-819a-58c2acb4d8ac"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de dakkapel verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_887014ab-3cf2-4dc1-8b05-976449301184",
+            "#_b1e19ccd-13b7-4931-9902-ecfef4c6f521"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakkapel plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakkapel plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "WKPxKx4YBJ5fqYSni"
+}
