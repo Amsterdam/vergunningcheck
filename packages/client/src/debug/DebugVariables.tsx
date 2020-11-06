@@ -49,9 +49,6 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
             <Debug json={topicData} />
             <button
               onClick={() => {
-                // setTopicData({
-                //   finishedComponents: ["bloep blaat"],
-                // });
                 setTopicData({
                   finishedComponents: ["locatie invoer"],
                   activeComponents: ["vragen"],
@@ -86,9 +83,6 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
                     residence: "Amsterdam",
                   },
                 });
-                // setTopicData({
-                //   finishedComponents: ["bloep blaat 2"],
-                // });
               }}
             >
               update topic
