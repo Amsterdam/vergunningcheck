@@ -13,6 +13,13 @@ module.exports = {
     },
   },
   loaders: {
+    ois: {
+      HOST: "https://vergunningcheck.amsterdam.nl",
+      manager: {
+        url: "/api/",
+        cacheTimeout: 600,
+      },
+    },
     datapunt: {
       HOST: "https://api.data.amsterdam.nl",
       CACHE_TIMEOUT: 600,
