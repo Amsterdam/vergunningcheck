@@ -330,7 +330,7 @@ const Questions: React.FC<
         }
 
         // Check if currect question is causing a permit requirement
-        const showConclusionAlert = !!permitsPerQuestion[i];
+        const showQuestionAlert = !!permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -356,7 +356,7 @@ const Questions: React.FC<
                   checker,
                   questionIndex,
                   shouldGoToConlusion,
-                  showConclusionAlert,
+                  showQuestionAlert,
                   userAnswer,
                 }}
               />
@@ -364,9 +364,9 @@ const Questions: React.FC<
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                questionNeedsContactExit={!!checker.needContactExit(q)}
-                userAnswer={userAnswer?.toString()}
-                {...{ showConclusionAlert }}
+                questionNeedsContactExit={checker.needContactExit(q)}
+                userAnswer={userAnswer ? userAnswer.toString() : ""}
+                {...{ showQuestionAlert }}
               />
             )}
           </StepByStepItem>
@@ -385,7 +385,7 @@ const Questions: React.FC<
         const index = i + 1 + checker.stack.length;
 
         // Check if current question is causing a conclusion
-        const showConclusionAlert = !!permitsPerQuestion[index];
+        const showQuestionAlert = !!permitsPerQuestion[index];
 
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
@@ -400,8 +400,8 @@ const Questions: React.FC<
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              userAnswer={userAnswer.toString()}
-              {...{ disabled, showConclusionAlert }}
+              userAnswer={userAnswer ? userAnswer.toString() : ""}
+              {...{ disabled, showQuestionAlert }}
             />
           </StepByStepItem>
         );

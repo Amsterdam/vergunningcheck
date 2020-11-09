@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from "@amsterdam/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ import Form from "../Form";
 import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
+import {useTranslation} from "react-i18next";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
@@ -27,6 +28,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   matomoTrackEvent,
   topic,
 }) => {
+  const { t } = useTranslation();
   const history = useHistory();
   const { handleSubmit } = useForm();
   // @TODO: replace with custom topic hooks
@@ -45,7 +47,6 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
-    console.log(address);
     if (address?.postalCode) {
       const monument = getRestrictionByTypeName(
         address?.restrictions,
@@ -77,11 +78,11 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
       });
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
-        name: address.neighborhoodName || "onbekend",
+        name: address.neighborhoodName || t("common.unknown"),
       });
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
-        name: address.neighborhoodName || "onbekend",
+        name: address.neighborhoodName || t("common.unknown"),
       });
 
       // Store the data
@@ -119,18 +120,16 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
     <>
       {errorMessage && (
         <Error
-          heading="Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen."
+          heading={t("common.no address found api down")}
           stack={errorMessage?.stack}
         >
           <Paragraph>
-            Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer{" "}
+            {t("common.try again or contact city of amsterdam")}{" "}
             <PhoneNumber eventName={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}
 
-      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -147,7 +146,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
           }}
         />
         <Nav
-          nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
+          nextText={hasIMTR ? t("common.to the questions") : ("common.next")}
           noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext

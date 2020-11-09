@@ -49,6 +49,8 @@ export const eventNames = {
   ANSWERED_WITH: "beantwoord met",
   ADDRESS_API_DOWN:
     "de verbinding met de api om adresgegevens op te halen is mislukt",
+  ADDRESS_NOT_FOUND:
+    "geen adresgegevens gevonden met deze postcodehuisnummer combinatie",
   BACK: "terug naar",
   CONTACT_FORM: "contactformulier",
   CONTACT_OPENING: "contactgegevens en openingstijden",
@@ -58,6 +60,7 @@ export const eventNames = {
   EDIT_ADDRESS: "wijzig adres", // Only used in OLO flow
   FACEBOOK: "facebook",
   FORWARD: "ga naar",
+  FROM: "vanaf",
   GOTO_CONCLUSION: "naar conclusie",
   GOTO_LOCATION: "naar locatie",
   GOTO_NEXT_QUESTION: "naar volgende vraag",

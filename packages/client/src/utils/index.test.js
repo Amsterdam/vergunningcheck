@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
 
-import { isValidPostalcode, scrollToRef, stripString } from "../utils";
+import {
+  isValidPostalcode,
+  removeQueryStrings,
+  scrollToRef,
+  stripString,
+} from "../utils";
 import { render } from "./test-utils";
 
 window.scrollTo = jest.fn();
@@ -54,5 +59,26 @@ describe("util", () => {
     expect(isValidPostalcode("1055 Xd")).toBe(true);
     expect(isValidPostalcode(" 1055XD ")).toBe(true);
     expect(isValidPostalcode(" 1055 XD ")).toBe(true);
+  });
+  test("removeQueryStrings", () => {
+    expect(removeQueryStrings("")).toBe("");
+    expect(removeQueryStrings("https://amsterdam.nl")).toBe(
+      "https://amsterdam.nl"
+    );
+    expect(removeQueryStrings("https://amsterdam.nl/path")).toBe(
+      "https://amsterdam.nl/path"
+    );
+    expect(removeQueryStrings("https://amsterdam.nl/path?hslfhjksf")).toBe(
+      "https://amsterdam.nl/path"
+    );
+    expect(removeQueryStrings("https://amsterdam.nl/path?q=1&q=2")).toBe(
+      "https://amsterdam.nl/path"
+    );
+    expect(removeQueryStrings("https://amsterdam.nl/path?q=1&q=2#target")).toBe(
+      "https://amsterdam.nl/path"
+    );
+    expect(removeQueryStrings("https://amsterdam.nl/path#target")).toBe(
+      "https://amsterdam.nl/path#target"
+    );
   });
 });

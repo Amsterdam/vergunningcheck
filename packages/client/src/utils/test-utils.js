@@ -1,3 +1,5 @@
+import "../i18n";
+
 import { ThemeProvider } from "@amsterdam/asc-ui";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { MockLink } from "@apollo/client/testing";

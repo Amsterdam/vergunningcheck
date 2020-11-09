@@ -36,6 +36,7 @@ export const AUTOSUGGEST_ITEM = "autosuggest-item";
 // Questions
 export const QUESTION_PAGE = "question-form";
 export const QUESTION_ANSWERS = "question-answers";
+export const QUESTION_ALERT = "question-alert";
 
 // Conclusion
 export const NEED_CONTACT = "need-contact";

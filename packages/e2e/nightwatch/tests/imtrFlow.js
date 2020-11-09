@@ -64,7 +64,7 @@ module.exports = {
       main,
       "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."
     );
-    assert.containsText(main, "Naar conclusie");
+    assert.containsText(main, "Naar de uitkomst");
     b.click(navButtonNext);
 
     // Contact conclusion has loaded
@@ -75,7 +75,7 @@ module.exports = {
 
     // Question q1 has loaded (again)
     b.waitForElementVisible(questionForm);
-    assert.containsText(main, "Naar conclusie");
+    assert.containsText(main, "Naar de uitkomst");
     b.click(q1a1);
     assert.containsText(main, "Volgende vraag");
     b.click(navButtonNext);
@@ -87,14 +87,14 @@ module.exports = {
     b.click(q2a1);
     b.waitForElementVisible(questionAlert);
     assert.containsText(main, "Door dit antwoord hebt u een vergunning nodig.");
-    assert.containsText(main, "Naar conclusie");
+    assert.containsText(main, "Naar de uitkomst");
     b.click(navButtonNext);
 
     // Permit conclusion has loaded
     b.waitForElementVisible(conclusionNeedPermitButton);
     assert.containsText(main, "U hebt een omgevingsvergunning nodig.");
     assert.containsText(main, "Zo werkt aanvragen");
-    assert.containsText(main, "Conclusie opslaan");
+    assert.containsText(main, "Uitkomst opslaan");
     assert.containsText(main, "Nog een vergunningcheck doen");
     b.click(conclusionNeedPermitButton);
 

@@ -29,7 +29,7 @@ const EditLocationModal: React.FC<
   const handleConfirmButton = () => {
     matomoTrackEvent({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION} ${eventNames.FROM} ${sessionContext[slug].activeComponents[0]}`,
     });
 
     sessionContext.resetSessionData(slug);
@@ -56,8 +56,8 @@ const EditLocationModal: React.FC<
     >
       <ComponentWrapper>
         <Paragraph>
-          Alle gegeven antwoorden en de conclusie worden gewist. Weet u zeker
-          dat u wilt doorgaan met een ander adres?
+          Alle gegeven antwoorden en de uitkomst worden gewist. Weet u zeker dat
+          u wilt doorgaan met een ander adres?
         </Paragraph>
       </ComponentWrapper>
     </Modal>

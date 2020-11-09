@@ -2,9 +2,10 @@ import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { Topic, requiredFieldText } from "../../config";
+import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import useDebounce from "../../hooks/useDebounce";
@@ -28,17 +29,17 @@ const isTrueExactMatch = (
   houseNumberFull &&
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
-const LocationFinder: React.FC<
-  {
-    errorMessage: ApolloError | undefined;
-    focus: boolean;
-    sessionAddress: any; // @TODO replace any with address type.
-    setAddress: (address: boolean) => void;
-    setErrorMessage: (error: ApolloError | undefined) => void;
-    setFocus: (focus: boolean) => void;
-    topic: Topic; // TODO: Remove topic from this component.
-  } & MatomoTrackEventProps
-> = ({
+type LocationFinderProps = {
+  errorMessage: ApolloError | undefined;
+  focus: boolean;
+  sessionAddress: any; // @TODO replace any with address type.
+  setAddress: (address: object) => void;
+  setErrorMessage: (error: ApolloError | undefined) => void;
+  setFocus: (focus: boolean) => void;
+  topic: Topic; // TODO: Remove topic from this component.
+};
+
+const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   errorMessage,
   focus,
   matomoTrackEvent,
@@ -48,6 +49,7 @@ const LocationFinder: React.FC<
   setFocus,
   topic,
 }) => {
+  const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
   const [postalCode, setPostalCode] = useState<string>(
     sessionAddress.postalCode
@@ -76,7 +78,7 @@ const LocationFinder: React.FC<
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
-        return requiredFieldText;
+        return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
@@ -290,7 +292,7 @@ const LocationFinder: React.FC<
 
       <LocationLoading loading={showLoading || loading} />
 
-      {showLocationNotFound && <LocationNotFound />}
+      {showLocationNotFound && <LocationNotFound matomoTrackEvent={matomoTrackEvent} />}
 
       {showExactMatch && (
         <>
