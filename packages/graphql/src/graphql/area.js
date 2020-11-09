@@ -7,17 +7,17 @@ const typeDefs = gql`
   }
 `;
 
-const resolve = (args, area, one) => {
-  console.log(area);
-};
+// Get a resolver for a specific field of accomodation
+const getResolver = (field) => async (
+  { _adressableObjectId },
+  _,
+  { loaders }
+) => (await loaders.bag.accommodation.load(_adressableObjectId))[field];
 
 const resolvers = {
   Address: {
-    neighborhoodName: (args, _, { loaders }) => resolve(args, loaders),
-
-    // districtName: (parent, args, context, info) => {
-    //
-    // },
+    neighborhoodName: getResolver("neighborhoodName"),
+    districtName: getResolver("districtName"),
   },
 };
 

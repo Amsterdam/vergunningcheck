@@ -5,12 +5,10 @@ const { gql } = require("../util");
 
 let typeDefs = gql`
   type Address implements Node {
-    districtName: String!
     houseNumber: Int!
     houseNumberFull: String!
     houseNumberSuffix: String
     id: ID!
-    neighborhoodName: String!
     postalCode: String!
     residence: String!
     streetName: String!

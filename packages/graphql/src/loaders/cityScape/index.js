@@ -15,12 +15,9 @@ const scopeMap = {
 };
 
 const loader = {
-  reducer: (o) => {
-    console.log(o);
-    return ({
-      scope: scopeMap[o.status],
-    })
-  },
+  reducer: (o) => ({
+    scope: scopeMap[o.status],
+  }),
   fetch: (id) => {
     return fetchJson(getUrl(`${URL}${id}/`, { fields })).then(loader.reducer);
   },

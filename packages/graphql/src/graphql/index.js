@@ -18,7 +18,15 @@ const cityScape = require("./cityScape");
 const restriction = require("./restriction");
 const zoningPlan = require("./zoningPlan");
 
-const modules = [node, address, area, monument, cityScape, restriction, zoningPlan];
+const modules = [
+  node,
+  address,
+  area,
+  monument,
+  cityScape,
+  restriction,
+  zoningPlan,
+];
 
 const schema = makeExecutableSchema({
   typeDefs: modules.map((m) => m.typeDefs),
@@ -39,7 +47,6 @@ const server = graphqlHTTP({
       },
       zoningPlan: new DataLoader(zoningPlanLoader.load),
       geoSearch: new DataLoader(geoSearchLoader.load),
-      area: new DataLoader(area.load),
       monument: {
         situation: new DataLoader(monumentLoader.situation.load),
         monument: new DataLoader(monumentLoader.monument.load),
