@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { ComponentWrapper, QuestionAlert } from "../atoms";
+import { ComponentWrapper } from "../atoms";
 import { actions, eventNames } from "../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
@@ -12,6 +12,7 @@ import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
+import QuestionAlert from "./QuestionAlert";
 
 export const booleanOptions = [
   {

@@ -5,7 +5,7 @@ import React from "react";
 
 import { QUESTION_ALERT } from "../utils/test-ids";
 import { render, screen } from "../utils/test-utils";
-import { QuestionAlert } from ".";
+import QuestionAlert from "./QuestionAlert";
 
 const textVariant1 = "Door dit antwoord hebt u een vergunning nodig";
 const textVariant2 =

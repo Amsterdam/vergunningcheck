@@ -1,9 +1,9 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
+import { HideForPrint } from "../atoms";
 import { QUESTION_ALERT } from "../utils/test-ids";
 import { QuestionAlertStyle } from "./QuestionAlertStyles";
-import { HideForPrint } from ".";
 
 export type QuestionAlertProps = {
   marginBottom?: number;

@@ -3,7 +3,7 @@ import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
-import QuestionAlert from "../atoms/QuestionAlert";
+import QuestionAlert from "./QuestionAlert";
 
 type QuestionAnswerProps = {
   disabled?: boolean;

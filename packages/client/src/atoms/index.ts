@@ -9,6 +9,5 @@ export { default as OrderedList } from "./OrderedList";
 export { default as PrevButton } from "./PrevButton";
 export { default as PrintButton } from "./PrintButton";
 export { default as PrintOnly } from "./PrintOnly";
-export { default as QuestionAlert } from "./QuestionAlert";
 export { default as ScrollAnchor } from "./ScrollAnchor";
 export { default as TextToEdit } from "./TextToEdit";
