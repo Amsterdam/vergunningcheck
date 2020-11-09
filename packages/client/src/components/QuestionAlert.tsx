@@ -2,18 +2,19 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { HideForPrint } from "../atoms";
-import { ConclusionAlertStyle } from "./ConclusionAlertStyles";
+import { QUESTION_ALERT } from "../utils/test-ids";
+import { QuestionAlertStyle } from "./QuestionAlertStyles";
 
-export type ConclusionAlertProps = {
+export type QuestionAlertProps = {
   marginBottom?: number;
   questionNeedsContactExit?: Boolean;
 };
 
-const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
+const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,
   questionNeedsContactExit,
 }) => (
-  <ConclusionAlertStyle marginBottom={marginBottom}>
+  <QuestionAlertStyle data-testid={QUESTION_ALERT} marginBottom={marginBottom}>
     <Paragraph>
       {questionNeedsContactExit ? (
         "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."
@@ -27,7 +28,7 @@ const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
         </>
       )}
     </Paragraph>
-  </ConclusionAlertStyle>
+  </QuestionAlertStyle>
 );
 
-export default ConclusionAlert;
+export default QuestionAlert;

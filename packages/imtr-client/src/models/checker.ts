@@ -1,5 +1,6 @@
-import { Answer, Input } from "../types";
-import { collectionOfType, isObject } from "../utils";
+import { Rule } from "../..";
+import { Answer, Input, Outcome } from "../types";
+import { collectionOfType, isObject, removeQuotes } from "../utils";
 import Decision, { InputReducer } from "./decision";
 import Permit from "./permit";
 import Question from "./question";
@@ -311,5 +312,69 @@ export default class Checker {
       this.done = true;
     }
     return question || null;
+  }
+
+  /**
+   *
+   * Returns an Array of possible Outcome objects
+   *
+   */
+  getOutcomesToDisplay(): Outcome[] {
+    return this.permits
+      .filter((permit: Permit) => !!permit.getOutputByDecisionId("dummy"))
+      .map((permit: Permit) => {
+        const conclusion = permit.getDecisionById("dummy") as Decision;
+        const conclusionMatchingRules = conclusion.getMatchingRules() as Rule[];
+        const contactOutcome = conclusionMatchingRules.find(
+          (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+        ) as Rule;
+        const outcome = (contactOutcome?.outputValue ||
+          conclusionMatchingRules[0].outputValue) as string;
+
+        return {
+          outcome,
+          title:
+            outcome === imtrOutcomes.NEED_CONTACT
+              ? "Neem contact op met de gemeente"
+              : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
+                  outcome
+                )}`,
+          description:
+            outcome === imtrOutcomes.NEED_CONTACT
+              ? contactOutcome.description
+              : conclusionMatchingRules[0].description,
+        };
+      });
+  }
+
+  /**
+   *
+   * Returns the type of the outcome as defined in `imtrOutcomes`
+   *
+   */
+  outcomeType(): string {
+    const outcomes = this.getOutcomesToDisplay();
+
+    // Check if one of the outcomes has 'need contact'
+    const needContactOutcome = outcomes.find(
+      ({ outcome }: { outcome: string }) =>
+        outcome === imtrOutcomes.NEED_CONTACT
+    );
+
+    // Check if one of the outcomes has 'need permit'
+    const needPermitOutcome = outcomes.find(
+      ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
+    );
+
+    if (needContactOutcome) {
+      // The contact outcome has most priority to display
+      return imtrOutcomes.NEED_CONTACT;
+    } else if (needPermitOutcome) {
+      // @TODO: extend this with 'need report' and 'need report AND need permit'
+      return imtrOutcomes.NEED_PERMIT;
+    } else {
+      // The fallback outcome is permit-free, this is inherited from Flo Legal and IMTR
+      return imtrOutcomes.PERMIT_FREE;
+    }
   }
 }

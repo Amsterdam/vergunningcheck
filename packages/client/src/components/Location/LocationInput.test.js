@@ -22,7 +22,7 @@ const matomoTrackEvent = jest.fn();
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
     location: {
-      pathname: "/dakkapel-plaatsen/vragen-en-conclusie",
+      pathname: "/dakkapel-plaatsen/vragen-en-uitkomst",
     },
     push: jest.fn(),
   }),

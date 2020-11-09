@@ -5,7 +5,7 @@ import QuestionAnswer from "./QuestionAnswer";
 
 it("QuestionAnswer renders correctly", () => {
   const { queryByText } = render(
-    <QuestionAnswer showConclusionAlert userAnswer="yes sir" />
+    <QuestionAnswer showQuestionAlert userAnswer="yes sir" />
   );
 
   expect(queryByText("yes sir")).toBeInTheDocument();
