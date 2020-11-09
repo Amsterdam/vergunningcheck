@@ -331,7 +331,7 @@ const Questions: React.FC<
         }
 
         // Check if currect question is causing a permit requirement
-        const showConclusionAlert = !!permitsPerQuestion[i];
+        const showQuestionAlert = !!permitsPerQuestion[i];
 
         // Define the outcome type
         const outcomeType = checker.needContactExit(q)
@@ -364,7 +364,7 @@ const Questions: React.FC<
                   outcomeType,
                   questionIndex,
                   shouldGoToConlusion,
-                  showConclusionAlert,
+                  showQuestionAlert,
                   userAnswer,
                 }}
               />
@@ -373,7 +373,7 @@ const Questions: React.FC<
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
                 userAnswer={userAnswer?.toString()}
-                {...{ outcomeType, showConclusionAlert }}
+                {...{ outcomeType, showQuestionAlert }}
               />
             )}
           </StepByStepItem>
@@ -392,7 +392,7 @@ const Questions: React.FC<
         const index = i + 1 + checker.stack.length;
 
         // Check if current question is causing a conclusion
-        const showConclusionAlert = !!permitsPerQuestion[index];
+        const showQuestionAlert = !!permitsPerQuestion[index];
 
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
@@ -415,7 +415,7 @@ const Questions: React.FC<
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
               userAnswer={userAnswer.toString()}
-              {...{ disabled, outcomeType, showConclusionAlert }}
+              {...{ disabled, outcomeType, showQuestionAlert }}
             />
           </StepByStepItem>
         );

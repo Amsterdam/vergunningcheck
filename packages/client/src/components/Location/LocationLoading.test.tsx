@@ -1,19 +1,24 @@
 import React from "react";
 
+import text from "../../i18n/nl";
 import { render, screen } from "../../utils/test-utils";
 import LocationLoading from "./LocationLoading";
 
-const text = "Wij zoeken het adres."; // @TODO: Load from language package
+const testSentence = text.translation.common["address loading"];
 
 describe("LocationLoading", () => {
   it("renders correctly without props", () => {
     render(<LocationLoading loading={false} />);
     // Should not be in document
-    expect(screen.queryByText(text, { exact: false })).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(testSentence, { exact: false })
+    ).not.toBeInTheDocument();
   });
   it("renders correctly with props", () => {
     render(<LocationLoading loading />);
     // Should be in document
-    expect(screen.queryByText(text, { exact: false })).toBeInTheDocument();
+    expect(
+      screen.queryByText(testSentence, { exact: false })
+    ).toBeInTheDocument();
   });
 });

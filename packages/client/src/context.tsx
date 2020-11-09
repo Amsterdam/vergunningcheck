@@ -51,7 +51,7 @@ const reducer = (
   };
 };
 
-function SessionProvider(props: { children: React.ReactNode }) {
+function SessionProvider(props: { children: React.ReactChildren }) {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
   const [data, setSessionData] = useReducer(reducer, defaultSessionValues);

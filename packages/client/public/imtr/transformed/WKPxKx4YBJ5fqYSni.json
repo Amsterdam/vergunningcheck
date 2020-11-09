@@ -35,22 +35,8 @@
           "uuid": "dakkapel - onderhoud2"
         }
       ],
-      "inputs": {
-        "input__797c410f-2502-4626-9b14-7be7c49b0751": {
-          "href": "#uitv__797c410f-2502-4626-9b14-7be7c49b0751",
-          "type": "boolean"
-        },
-        "input_5cd6194f-5607-444e-8ed1-d44c6aabde7f": {
-          "href": "#uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
-          "type": "string"
-        },
-        "input_369fe23a-09dd-4f86-819a-58c2acb4d8ac": {
-          "href": "#uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_483cad0a-f2d8-495e-80bf-a0b9db776355": {
+        "_0debeb56-9abb-4f6f-a41c-b9267edd15e6": {
           "requiredInputs": [
             "#input__797c410f-2502-4626-9b14-7be7c49b0751",
             "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f"
@@ -78,7 +64,7 @@
             ]
           }
         },
-        "_62d3885c-9fac-40e6-9a38-804f698548f4": {
+        "_fe2943f5-3a8c-4231-8da9-77ea5c691e41": {
           "requiredInputs": [
             "#input__797c410f-2502-4626-9b14-7be7c49b0751",
             "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
@@ -119,8 +105,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_483cad0a-f2d8-495e-80bf-a0b9db776355",
-            "#_62d3885c-9fac-40e6-9a38-804f698548f4"
+            "#_0debeb56-9abb-4f6f-a41c-b9267edd15e6",
+            "#_fe2943f5-3a8c-4231-8da9-77ea5c691e41"
           ],
           "decisionTable": {
             "rules": [
@@ -141,6 +127,20 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__797c410f-2502-4626-9b14-7be7c49b0751": {
+          "href": "#uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "type": "boolean"
+        },
+        "input_5cd6194f-5607-444e-8ed1-d44c6aabde7f": {
+          "href": "#uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
+          "type": "string"
+        },
+        "input_369fe23a-09dd-4f86-819a-58c2acb4d8ac": {
+          "href": "#uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
+          "type": "string"
         }
       }
     }

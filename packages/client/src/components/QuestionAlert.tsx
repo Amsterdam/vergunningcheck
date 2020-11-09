@@ -3,18 +3,19 @@ import { imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { HideForPrint } from "../atoms";
-import { ConclusionAlertStyle } from "./ConclusionAlertStyles";
+import { QUESTION_ALERT } from "../utils/test-ids";
+import { QuestionAlertStyle } from "./QuestionAlertStyles";
 
-type ConclusionAlertProps = {
+export type QuestionAlertProps = {
   marginBottom?: number;
   outcomeType: string;
 };
 
-const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
+const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,
   outcomeType,
 }) => (
-  <ConclusionAlertStyle marginBottom={marginBottom}>
+  <QuestionAlertStyle data-testid={QUESTION_ALERT} marginBottom={marginBottom}>
     <Paragraph>
       {outcomeType === imtrOutcomes.NEED_PERMIT && (
         <>
@@ -30,7 +31,7 @@ const ConclusionAlert: React.FC<ConclusionAlertProps> = ({
       {outcomeType === imtrOutcomes.NEED_REPORT &&
         "Door dit antwoord heb je een meldingplicht (TEXT NOG UPDATEN!)."}
     </Paragraph>
-  </ConclusionAlertStyle>
+  </QuestionAlertStyle>
 );
 
-export default ConclusionAlert;
+export default QuestionAlert;

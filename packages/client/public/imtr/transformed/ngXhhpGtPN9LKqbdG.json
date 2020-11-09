@@ -49,30 +49,8 @@
           "prio": 50
         }
       ],
-      "inputs": {
-        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
-          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
-          "type": "string"
-        },
-        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
-          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
-          "type": "string"
-        },
-        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
-          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
-          "type": "string"
-        },
-        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
-          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
-          "type": "boolean"
-        },
-        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
-          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_6abbde4b-8201-42e2-993b-27317ab3be54": {
+        "_1a82d24d-a2e3-4767-8a8c-5adbe41c7da3": {
           "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
           "decisionTable": {
             "rules": [
@@ -91,7 +69,7 @@
             ]
           }
         },
-        "_d61d7137-da70-4213-9845-34bb64ed6f53": {
+        "_3fcb06fe-db16-44c4-a1d9-b236c57588e7": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955"
@@ -117,7 +95,7 @@
             ]
           }
         },
-        "_18745dfe-b8e0-4533-aba9-c59c7580d37f": {
+        "_c17b32ab-1117-4a30-ac94-06eccdee152d": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -164,7 +142,7 @@
             ]
           }
         },
-        "_18e1e1aa-3f6c-44f9-8829-43c5fcd51683": {
+        "_ce87a864-45c2-4188-9097-019482dca4ea": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -214,7 +192,7 @@
             ]
           }
         },
-        "_8b6eb551-f181-4426-aa57-aaf83d4af17e": {
+        "_2592d8f6-d4a1-4579-ba71-6f563508d859": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -273,11 +251,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6abbde4b-8201-42e2-993b-27317ab3be54",
-            "#_d61d7137-da70-4213-9845-34bb64ed6f53",
-            "#_18745dfe-b8e0-4533-aba9-c59c7580d37f",
-            "#_18e1e1aa-3f6c-44f9-8829-43c5fcd51683",
-            "#_8b6eb551-f181-4426-aa57-aaf83d4af17e"
+            "#_1a82d24d-a2e3-4767-8a8c-5adbe41c7da3",
+            "#_3fcb06fe-db16-44c4-a1d9-b236c57588e7",
+            "#_c17b32ab-1117-4a30-ac94-06eccdee152d",
+            "#_ce87a864-45c2-4188-9097-019482dca4ea",
+            "#_2592d8f6-d4a1-4579-ba71-6f563508d859"
           ],
           "decisionTable": {
             "rules": [
@@ -313,6 +291,28 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
+          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "type": "string"
+        },
+        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
+          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "type": "string"
+        },
+        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
+          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "type": "string"
+        },
+        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
+          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "type": "boolean"
+        },
+        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
+          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "type": "string"
         }
       }
     }

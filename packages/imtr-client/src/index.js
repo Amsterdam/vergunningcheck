@@ -83,7 +83,7 @@ function getDecision(id, decisionConfig, questions) {
  * @param {any} config - the config coming from json
  * @returns {Checker} the new Checker object
  */
-export default (config) => {
+export const getChecker = (config) => {
   const { permits: permitsConfig } = config;
   if (!permitsConfig || permitsConfig.length === 0) {
     throw new Error("Permits cannot be empty.");

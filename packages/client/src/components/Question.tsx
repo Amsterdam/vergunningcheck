@@ -1,18 +1,18 @@
 import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../atoms";
-import { requiredFieldRadio } from "../config";
 import { actions, eventNames } from "../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers, { AnswerProps } from "./Answers";
-import ConclusionAlert from "./ConclusionAlert";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
+import QuestionAlert from "./QuestionAlert";
 
 export const booleanOptions = [
   {
@@ -36,7 +36,7 @@ type QuestionProps = {
   outcomeType: string;
   saveAnswer: (value: string) => void;
   shouldGoToConlusion: () => boolean;
-  showConclusionAlert: boolean;
+  showQuestionAlert: boolean;
   showNext: boolean;
   userAnswer: string;
 };
@@ -50,7 +50,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
   onGoToPrev,
   saveAnswer,
   shouldGoToConlusion,
-  showConclusionAlert,
+  showQuestionAlert,
   showNext,
   userAnswer,
 }) => {
@@ -64,6 +64,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     type: questionType,
   } = question;
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
+  const { t } = useTranslation();
   const listAnswers = questionAnswers?.map(
     (answer) =>
       ({
@@ -73,6 +74,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
       } as AnswerProps)
   );
   const answers = questionType === "string" ? listAnswers : booleanOptions;
+  const requiredFieldRadio = t("common.required field radio");
 
   useEffect(() => {
     if (questionId) {
@@ -96,6 +98,8 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     questionAnswers,
     setValue,
     userAnswer,
+    t,
+    requiredFieldRadio,
   ]);
 
   const handleChange = (e: React.MouseEvent) => {
@@ -146,10 +150,10 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
         questionIndex={questionIndex}
         userAnswer={userAnswer}
       />
-      {showConclusionAlert && <ConclusionAlert {...{ outcomeType }} />}
+      {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
       <Nav
         formEnds={shouldGoToConlusion()}
-        nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
+        nextText={shouldGoToConlusion() ? "Naar de uitkomst" : "Volgende vraag"}
         showPrev={questionIndex > 0} // Do not show back-button at the first question
         {...{
           onGoToPrev,

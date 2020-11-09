@@ -35,22 +35,8 @@
           "uuid": "dakraam - onderhoud2"
         }
       ],
-      "inputs": {
-        "input__a165828d-8708-4db6-92c4-9c767ad7cc72": {
-          "href": "#uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
-          "type": "boolean"
-        },
-        "input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67": {
-          "href": "#uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
-          "type": "string"
-        },
-        "input_c907156c-d205-44f2-ad36-46f37f505763": {
-          "href": "#uitv_c907156c-d205-44f2-ad36-46f37f505763",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_d2472c31-c1b0-48f9-8ae4-b7efbc9832da": {
+        "_8f8a09b8-b2c2-48e0-afaa-91fa8620ac1d": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
@@ -78,7 +64,7 @@
             ]
           }
         },
-        "_cb760094-7868-4348-b146-5078e33929b2": {
+        "_7c3f34d2-1c66-404a-9032-93a68c9b729f": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
@@ -119,8 +105,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d2472c31-c1b0-48f9-8ae4-b7efbc9832da",
-            "#_cb760094-7868-4348-b146-5078e33929b2"
+            "#_8f8a09b8-b2c2-48e0-afaa-91fa8620ac1d",
+            "#_7c3f34d2-1c66-404a-9032-93a68c9b729f"
           ],
           "decisionTable": {
             "rules": [
@@ -141,6 +127,20 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__a165828d-8708-4db6-92c4-9c767ad7cc72": {
+          "href": "#uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "type": "boolean"
+        },
+        "input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67": {
+          "href": "#uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
+          "type": "string"
+        },
+        "input_c907156c-d205-44f2-ad36-46f37f505763": {
+          "href": "#uitv_c907156c-d205-44f2-ad36-46f37f505763",
+          "type": "string"
         }
       }
     }

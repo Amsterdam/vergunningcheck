@@ -37,10 +37,10 @@ node {
     stage("Build develop image") {
         tryStep "build", {
             docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
-                nginx_image = docker.build("${NGINX_CONTAINERNAME}","--pull -f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
+                nginx_image = docker.build("${NGINX_CONTAINERNAME}","--pull --build-arg=JENKINS_URL=${env.JENKINS_URL} --build-arg=JOB_NAME=${env.JOB_NAME} --build-arg=BUILD_URL=${env.BUILD_URL} --build-arg=BUILD_NUMBER=${env.BUILD_NUMBER} -f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
                 nginx_image.push()
 
-                backend_image = docker.build("${BACKEND_CONTAINERNAME}","--pull -f ${BACKEND_DOCKERFILE} ${CONTAINERDIR}")
+                backend_image = docker.build("${BACKEND_CONTAINERNAME}","--pull --build-arg=JENKINS_URL=${env.JENKINS_URL} --build-arg=JOB_NAME=${env.JOB_NAME} --build-arg=BUILD_URL=${env.BUILD_URL} --build-arg=BUILD_NUMBER=${env.BUILD_NUMBER} -f ${BACKEND_DOCKERFILE} ${CONTAINERDIR}")
                 backend_image.push()
             }
         }

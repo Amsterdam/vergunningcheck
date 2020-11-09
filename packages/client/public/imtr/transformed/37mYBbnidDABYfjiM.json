@@ -14,14 +14,8 @@
           "prio": 10
         }
       ],
-      "inputs": {
-        "input__b0e2ed23-4919-4037-ad55-94e518290be5": {
-          "href": "#uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_87f8dcdf-3419-4d3c-bff4-3ee1b04a363d": {
+        "_72e3dc1f-bd96-4eea-8873-41303cacf274": {
           "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
           "decisionTable": {
             "rules": [
@@ -41,7 +35,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_87f8dcdf-3419-4d3c-bff4-3ee1b04a363d"],
+          "requiredDecisions": ["#_72e3dc1f-bd96-4eea-8873-41303cacf274"],
           "decisionTable": {
             "rules": [
               {
@@ -60,6 +54,12 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__b0e2ed23-4919-4037-ad55-94e518290be5": {
+          "href": "#uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
+          "type": "string"
         }
       }
     }

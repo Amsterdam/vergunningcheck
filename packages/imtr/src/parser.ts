@@ -78,11 +78,13 @@ import { format, strFmt } from "./util.ts";
 export default (json: DMNDocument): JSONPermit => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
   return {
-    // TODO: fix ordering after Code-review
+    /** Please don't sort these keys, it determines the json output. Most informative fields
+     * are shown first.
+     */
     name: definition.attributes.name,
     questions: getQuestions(definition[DMN_EXTENSION_ELEMENTS]),
-    inputs: getInputs(definition[DMN_INPUT_DATA]),
     decisions: getDecisions(definition[DMN_DECISION]) as JSONDecisions,
+    inputs: getInputs(definition[DMN_INPUT_DATA]),
   };
 };
 

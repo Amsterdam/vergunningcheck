@@ -7,8 +7,8 @@ import QuestionAnswer from "./QuestionAnswer";
 it("QuestionAnswer renders correctly", () => {
   const { queryByText } = render(
     <QuestionAnswer
-      showConclusionAlert
       outcomeType={imtrOutcomes.NEED_PERMIT}
+      showQuestionAlert
       userAnswer="yes sir"
     />
   );

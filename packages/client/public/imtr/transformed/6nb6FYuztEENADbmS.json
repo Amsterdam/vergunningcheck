@@ -26,22 +26,8 @@
           "prio": 30
         }
       ],
-      "inputs": {
-        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
-          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
-          "type": "boolean"
-        },
-        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
-          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
-          "type": "boolean"
-        },
-        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
-          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_8a450f5b-d978-412a-9d93-68202dc54721": {
+        "_6c067ad0-a0e6-4c3d-a6b6-33ce8de101d0": {
           "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
           "decisionTable": {
             "rules": [
@@ -56,7 +42,7 @@
             ]
           }
         },
-        "_647f4c35-e59b-452f-895f-a77a8f91165d": {
+        "_3f535ca3-f85e-4c63-a8b1-b6f0280b005b": {
           "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
           "decisionTable": {
             "rules": [
@@ -71,7 +57,7 @@
             ]
           }
         },
-        "_61d021e1-b76c-4dc0-9613-b5048b684638": {
+        "_4a5a9533-4ff1-417c-ad16-19d77e6d46d6": {
           "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
           "decisionTable": {
             "rules": [
@@ -88,9 +74,9 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_8a450f5b-d978-412a-9d93-68202dc54721",
-            "#_647f4c35-e59b-452f-895f-a77a8f91165d",
-            "#_61d021e1-b76c-4dc0-9613-b5048b684638"
+            "#_6c067ad0-a0e6-4c3d-a6b6-33ce8de101d0",
+            "#_3f535ca3-f85e-4c63-a8b1-b6f0280b005b",
+            "#_4a5a9533-4ff1-417c-ad16-19d77e6d46d6"
           ],
           "decisionTable": {
             "rules": [
@@ -112,6 +98,20 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
+          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
+          "type": "boolean"
+        },
+        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
+          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
+          "type": "boolean"
+        },
+        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
+          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
+          "type": "boolean"
         }
       }
     }
