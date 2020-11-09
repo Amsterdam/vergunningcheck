@@ -19,18 +19,8 @@
           "prio": 20
         }
       ],
-      "inputs": {
-        "input__b0819e66-af22-4e58-ad88-5c36624b995a": {
-          "href": "#uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
-          "type": "boolean"
-        },
-        "input__d977a2fe-c317-42f7-ba5b-272f98f59e1a": {
-          "href": "#uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_9be95269-a11d-4562-afb8-bbebf530236d": {
+        "_af273b5c-62bb-408a-81a3-3b80c5ede6eb": {
           "requiredInputs": ["#input__b0819e66-af22-4e58-ad88-5c36624b995a"],
           "decisionTable": {
             "rules": [
@@ -45,7 +35,7 @@
             ]
           }
         },
-        "_195f1fcf-15c2-4107-ad93-8579ad73e296": {
+        "_cb5769cb-8ef4-4a29-aaea-8f1c775fb7ed": {
           "requiredInputs": ["#input__d977a2fe-c317-42f7-ba5b-272f98f59e1a"],
           "decisionTable": {
             "rules": [
@@ -62,8 +52,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_9be95269-a11d-4562-afb8-bbebf530236d",
-            "#_195f1fcf-15c2-4107-ad93-8579ad73e296"
+            "#_af273b5c-62bb-408a-81a3-3b80c5ede6eb",
+            "#_cb5769cb-8ef4-4a29-aaea-8f1c775fb7ed"
           ],
           "decisionTable": {
             "rules": [
@@ -81,6 +71,16 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__b0819e66-af22-4e58-ad88-5c36624b995a": {
+          "href": "#uitv__b0819e66-af22-4e58-ad88-5c36624b995a",
+          "type": "boolean"
+        },
+        "input__d977a2fe-c317-42f7-ba5b-272f98f59e1a": {
+          "href": "#uitv__d977a2fe-c317-42f7-ba5b-272f98f59e1a",
+          "type": "boolean"
         }
       }
     }
