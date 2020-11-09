@@ -30,6 +30,7 @@ const isTrueExactMatch = (
 
 const LocationFinder: React.FC<
   {
+    errorMessage: ApolloError | undefined;
     focus: boolean;
     sessionAddress: any; // @TODO replace any with address type.
     setAddress: (address: boolean) => void;
@@ -38,6 +39,7 @@ const LocationFinder: React.FC<
     topic: Topic; // TODO: Remove topic from this component.
   } & MatomoTrackEventProps
 > = ({
+  errorMessage,
   focus,
   matomoTrackEvent,
   sessionAddress,
@@ -145,14 +147,14 @@ const LocationFinder: React.FC<
 
   // GraphQL error
   useEffect(() => {
-    if (graphqlError) {
+    if (errorMessage !== graphqlError) {
       setErrorMessage(graphqlError);
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
     }
-  }, [graphqlError, matomoTrackEvent, setErrorMessage]);
+  }, [errorMessage, graphqlError, matomoTrackEvent, setErrorMessage]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error

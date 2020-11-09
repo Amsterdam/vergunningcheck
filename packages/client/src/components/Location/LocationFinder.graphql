@@ -41,9 +41,11 @@ fragment exactMatchFragment on Address {
 fragment basicAddress on Address {
   __typename
   id
-  streetName
-  postalCode
+  districtName
   houseNumber
   houseNumberFull
+  neighborhoodName
+  postalCode
   residence
+  streetName
 }

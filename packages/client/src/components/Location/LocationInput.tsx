@@ -45,6 +45,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
+    console.log(address);
     if (address?.postalCode) {
       const monument = getRestrictionByTypeName(
         address?.restrictions,
@@ -73,6 +74,14 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
       matomoTrackEvent({
         action: actions.SUBMIT_LOCATION,
         name: cityScape || eventNames.NO_CITYSCAPE,
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_LOCATION,
+        name: address.neighborhoodName || "onbekend",
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_LOCATION,
+        name: address.neighborhoodName || "onbekend",
       });
 
       // Store the data
@@ -127,6 +136,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
+            errorMessage,
             focus,
             matomoTrackEvent,
             sessionAddress,
