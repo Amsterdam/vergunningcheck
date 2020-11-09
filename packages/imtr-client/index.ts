@@ -1,4 +1,4 @@
-export { default } from "./src";
+export { getChecker } from "./src";
 
 export type { Input, Answer } from "./src/types";
 export type {
