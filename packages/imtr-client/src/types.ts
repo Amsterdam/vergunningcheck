@@ -7,5 +7,5 @@ export type Answer = ClientSimpleType | undefined;
 export type Outcome = {
   outcome: string;
   title: string;
-  description: string | undefined;
+  description?: string;
 };

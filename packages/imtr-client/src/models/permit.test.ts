@@ -1,4 +1,4 @@
-import Checker from "./checker";
+import Checker, { imtrOutcomes } from "./checker";
 import Decision from "./decision";
 import Permit from "./permit";
 import Question from "./question";
@@ -14,9 +14,9 @@ const getChecker = (questions: Question[]) => {
     "dummy",
     [d1],
     [
-      new Rule(["no"], "nope"),
-      new Rule(["not sure"], "what?"),
-      new Rule(["yes"], "hell yeah"),
+      new Rule(["no"], imtrOutcomes.PERMIT_FREE),
+      new Rule(["not sure"], imtrOutcomes.NEED_CONTACT),
+      new Rule(["yes"], imtrOutcomes.NEED_PERMIT),
     ]
   );
   return new Checker([new Permit("drivers-licence", 1, [dummy])]);
@@ -49,22 +49,42 @@ describe("Permit", () => {
     const checker = getChecker(questions);
     let question = checker.next() as Question;
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
+    expect(checker.isConclusive()).toBe(false);
 
     // Change the values a bit on the first question
     question.setAnswer(false);
-    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe("nope");
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      imtrOutcomes.PERMIT_FREE
+    );
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
 
     // Answer and move to next question
     question = checker.next() as Question;
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
-    question.setAnswer(false);
-    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe("what?");
     question.setAnswer(true);
-    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe("hell yeah");
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      imtrOutcomes.NEED_PERMIT
+    );
+    expect(checker.getOutcomesToDisplay()[0].outcome).toBe(
+      imtrOutcomes.NEED_PERMIT
+    );
+    expect(checker.outcomeType()).toBe(imtrOutcomes.NEED_PERMIT);
+
+    question.setAnswer(false);
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      imtrOutcomes.NEED_CONTACT
+    );
 
     question = checker.next() as any;
     expect(question).toBe(null);
+
+    // Should have correct outcome
+    expect(checker.isConclusive()).toBe(true);
+    expect(checker.getOutcomesToDisplay().length).toBe(1);
+    expect(checker.getOutcomesToDisplay()[0].outcome).toBe(
+      imtrOutcomes.NEED_CONTACT
+    );
+    expect(checker.outcomeType()).toBe(imtrOutcomes.NEED_CONTACT);
   });
 });

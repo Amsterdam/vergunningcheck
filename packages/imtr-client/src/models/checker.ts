@@ -315,9 +315,8 @@ export default class Checker {
   }
 
   /**
-   * Return the outcomes
    *
-   * @return {Outcome[]} An Array of Outcome objects
+   * Returns an Array of possible Outcome objects
    *
    */
   getOutcomesToDisplay(): Outcome[] {
@@ -349,9 +348,9 @@ export default class Checker {
   }
 
   /**
-   * Return the outcome type
    *
-   * @returns {string} The type of the outcome as defined in `imtrOutcomes`
+   * Returns the type of the outcome as defined in `imtrOutcomes`
+   *
    */
   outcomeType(): string {
     const outcomes = this.getOutcomesToDisplay();
