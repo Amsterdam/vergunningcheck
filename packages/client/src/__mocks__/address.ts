@@ -24,6 +24,8 @@ export default [
             houseNumber: 19,
             houseNumberFull: "19 C",
             residence: "Amsterdam",
+            districtName: "Landlust",
+            neigborhoodName: "Landlust Noord",
             restrictions: [
               {
                 __typename: "Monument",

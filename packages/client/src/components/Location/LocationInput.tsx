@@ -1,8 +1,9 @@
-import { Paragraph } from "@amsterdam/asc-ui";
+import {Heading, Paragraph} from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
@@ -15,7 +16,6 @@ import Form from "../Form";
 import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
-import {useTranslation} from "react-i18next";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
@@ -130,6 +130,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
         </Error>
       )}
 
+      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -146,7 +147,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
           }}
         />
         <Nav
-          nextText={hasIMTR ? t("common.to the questions") : ("common.next")}
+          nextText={hasIMTR ? t("common.to the questions") : t("common.next")}
           noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext

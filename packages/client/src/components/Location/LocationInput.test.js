@@ -126,7 +126,6 @@ describe("LocationInput", () => {
     /**
      * The correct address is displayed on the screen
      */
-
     expect(
       screen.queryByText(`${resultStreetName} ${resultHouseNumberFull}`, {
         exact: false,
@@ -151,7 +150,7 @@ describe("LocationInput", () => {
       name: resultMonument,
     });
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(4);
+    expect(matomoTrackEvent).toHaveBeenCalledTimes(7);
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(1);
   });
 
