@@ -121,7 +121,7 @@ export const topics: Topic[] = [
   },
   {
     hasIMTR: true,
-    // intro: "SlopenIntro",
+    intro: "SlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
     text: {

@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 18,
+      "version": 28,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
@@ -55,132 +55,34 @@
         }
       ],
       "decisions": {
-        "_081b225b-4b9e-4863-b73b-1dcdf9fb0e3e": {
+        "_faa739be-8449-45ab-ab1b-faba66bcc855": {
           "requiredInputs": [
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
             "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
-            "#input__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab"
+            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, true, false],
+                "inputs": [false, false, true],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-"],
+                "inputs": ["-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
+                "inputs": ["-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_30913714-eec9-4bb8-959e-ed67ddba9220": {
-          "requiredInputs": [
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
-            "#input__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab",
-            "#input__ae70ceb8-0565-47e7-b926-8bcbec394f6d"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, false, true, true, "\"In iets anders.\""],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In geklemde vloerplaten onder verwarmingstoestellen.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In beglazingskit dat is verwerkt in de constructie van kassen.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In rem- en frictiematerialen.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In pakkingen uit verbrandingsmotoren.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In pakkingen uit procesinstallaties  met een nominaal vermogen tot en met 2.250 kW.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In pakkingen uit verwarmingstoestellen met een nominaal vermogen tot en met 2.250 kW\""
-                ],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_ef390ed6-20ab-491f-b990-2b6679b1e1e7": {
+        "_0cbbb1aa-fbe5-4db6-bc4d-fc0898730351": {
           "requiredInputs": [
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
             "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
@@ -217,7 +119,7 @@
             ]
           }
         },
-        "_532ca57e-b0f7-4a3e-aa44-689ceb1c7efd": {
+        "_83365dfa-d2b5-42df-b4b6-dcaace294f57": {
           "requiredInputs": [
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
             "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
@@ -330,36 +232,26 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_081b225b-4b9e-4863-b73b-1dcdf9fb0e3e",
-            "#_30913714-eec9-4bb8-959e-ed67ddba9220",
-            "#_ef390ed6-20ab-491f-b990-2b6679b1e1e7",
-            "#_532ca57e-b0f7-4a3e-aa44-689ceb1c7efd"
+            "#_faa739be-8449-45ab-ab1b-faba66bcc855",
+            "#_0cbbb1aa-fbe5-4db6-bc4d-fc0898730351",
+            "#_83365dfa-d2b5-42df-b4b6-dcaace294f57"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Meldingsplicht\"", "-", "-", "-"],
+                "inputs": ["\"Meldingsplicht\"", "-", "-"],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["-", "\"Meldingsplicht\"", "-", "-"],
+                "inputs": ["-", "\"Meldingsplicht\"", "-"],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["-", "-", "\"Meldingsplicht\"", "-"],
+                "inputs": ["-", "-", "\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["-", "-", "-", "\"Meldingsplicht\""],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\"",
-                  "\"no hit\""
-                ],
+                "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }
             ]
