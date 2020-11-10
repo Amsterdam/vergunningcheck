@@ -3,7 +3,6 @@ import "@testing-library/jest-dom/extend-expect";
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-import matchMedia from "../../__mocks__/matchMedia";
 import { CheckerProvider } from "../../CheckerContext";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import {
@@ -15,28 +14,18 @@ import {
 } from "../../utils/test-utils";
 import OloLocationInput from "./OloLocationInput";
 
-// Object.defineProperty(window, "matchMedia", matchMedia);
-
-// const matomoTrackEvent = jest.fn();
-// window.open = jest.fn();
-// window.scrollTo = jest.fn();
-
-// jest.mock("react-router-dom", () => ({
-//   useHistory: () => ({
-//     location: {
-//       pathname: "/aanbouw-of-uitbouw-maken/adresgegevens",
-//     },
-//     push: jest.fn(),
-//   }),
-//   useLocation: () => jest.fn(),
-//   useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
-// }));
-
 jest.mock("react-hook-form", () => ({
   useForm: () => ({
     handleSubmit: jest.fn(),
   }),
 }));
+
+const mockMatomoTrackEvent = jest.fn();
+jest.mock("../hooks/useTracking", () => {
+  return jest.fn(() => ({
+    matomoTrackEvent: mockMatomoTrackEvent,
+  }));
+});
 
 window.history.pushState({}, "Locatie pagina", "/dakkapel-plaatsen/locatie");
 
@@ -63,7 +52,7 @@ describe("OloLocationInput", () => {
     expect(inputHouseNumber).toBeInTheDocument();
     expect(inputHouseNumber).not.toHaveValue();
 
-    // expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
   });
 
   it("should handle next button", async () => {
@@ -145,13 +134,13 @@ describe("OloLocationInput", () => {
      * Continue with the next button
      */
 
-    // expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
       fireEvent.click(screen.getByText("Volgende"));
     });
 
-    // expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
   });
 
   it("should render correctly with preset context", () => {

@@ -2,10 +2,13 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../components/Layouts/TopicLayout";
-import { Topic, urls } from "../config";
+import Layout from "../../components/Layouts/TopicLayout";
+import { urls } from "../../config";
+import { useTopic } from "../../hooks";
 
-const RedirectPage: React.FC<{ topic: Topic }> = ({ topic }) => {
+const OloRedirectPage: React.FC = () => {
+  const topic = useTopic();
+
   useEffect(() => {
     const redirect = setTimeout(() => {
       window.open(urls.OLO_INTRO, "_self");
@@ -33,4 +36,4 @@ const RedirectPage: React.FC<{ topic: Topic }> = ({ topic }) => {
   );
 };
 
-export default RedirectPage;
+export default OloRedirectPage;

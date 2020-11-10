@@ -6,12 +6,12 @@ import { DebugVariables } from "../../debug";
 import { useTopic } from "../../hooks";
 import BaseLayout from "./BaseLayout";
 
-interface DefaultLayoutProps {
+interface TopicLayoutProps {
   heading?: string;
   formTitle?: string;
 }
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({
+const TopicLayout: React.FC<TopicLayoutProps> = ({
   children,
   heading: headingProp,
   formTitle: formTitleProp,
@@ -39,4 +39,4 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   );
 };
 
-export default DefaultLayout;
+export default TopicLayout;

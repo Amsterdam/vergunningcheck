@@ -1,6 +1,10 @@
 export default {
   translation: {
+    matomo: {
+      "category not found": "category niet gevonden",
+    },
     common: {
+      "error occured": "Er is een fout opgetreden.",
       "address loading": "Wij zoeken het adres.",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Topic } from "../../config";
+import { actions, eventNames } from "../../config/matomo";
 import { findTopicBySlug } from "../../utils";
 import {
   MODAL,
@@ -14,18 +15,12 @@ import NewCheckerModal from "./NewCheckerModal";
 
 const customTopic = findTopicBySlug("dakraam-plaatsen") as Topic;
 
-// window.scrollTo = jest.fn();
-
-// afterEach(() => {
-//   // Mock the location.href to see if new checker is opened
-//   delete window.location;
-//   window.location = { href: jest.fn() };
-// });
-
-// jest.mock("react-router-dom", () => ({
-//   ...jest.requireActual("react-router-dom"),
-//   useParams: () => ({}),
-// }));
+const mockMatomoTrackEvent = jest.fn();
+jest.mock("../../hooks/useTracking", () => {
+  return jest.fn(() => ({
+    matomoTrackEvent: mockMatomoTrackEvent,
+  }));
+});
 
 it("NewCheckerModal should render as expected", () => {
   const { queryByText, queryByTestId } = render(<NewCheckerModal />);
@@ -45,11 +40,11 @@ it("NewCheckerModal should render as expected", () => {
 
   // Make sure Matomo Analytics work
   // TODO: temp disabled this matamo tracking test
-  // expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
-  // expect(matomoTrackEvent).toBeCalledWith({
-  //   action: actions.OPEN_MODAL,
-  //   name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
-  // });
+  expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
+  expect(mockMatomoTrackEvent).toBeCalledWith({
+    action: actions.OPEN_MODAL,
+    name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
+  });
 });
 
 it("NewCheckerModal should open a new topic", async () => {
@@ -73,22 +68,22 @@ it("NewCheckerModal should open a new topic", async () => {
     // Because this event is not async, it should call `NO_CHOICE_HAS_BEEN_MADE`
     fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON) as HTMLElement);
 
-    // expect(matomoTrackEvent).toHaveBeenCalledTimes(3);
-    // expect(matomoTrackEvent).toBeCalledWith({
-    //   action: actions.START_ANOTHER_CHECK,
-    //   name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
-    // });
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(3);
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.START_ANOTHER_CHECK,
+      name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
+    });
   });
 
   // Go to new topic
   await act(async () => {
     fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON) as HTMLElement);
 
-    // expect(matomoTrackEvent).toHaveBeenCalledTimes(4);
-    // expect(matomoTrackEvent).toBeCalledWith({
-    //   action: actions.OPEN_MODAL,
-    //   name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
-    // });
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(4);
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.OPEN_MODAL,
+      name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
+    });
 
     // expect(window.location.href).toContain(customTopic.slug);
   });

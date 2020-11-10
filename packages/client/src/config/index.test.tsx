@@ -15,15 +15,13 @@ const tryIntroFile = (intro: string) => {
   }
 };
 
-const AllIntroPages: React.FC = () => {
-  return (
-    <>
-      {topics.map((t) =>
-        t.intro ? <p key={t.intro}>{tryIntroFile(t.intro)}</p> : null
-      )}
-    </>
-  );
-};
+const AllIntroPages: React.FC = () => (
+  <>
+    {topics.map((t) =>
+      t.intro ? <p key={t.intro}>{tryIntroFile(t.intro)}</p> : null
+    )}
+  </>
+);
 
 describe("Config", () => {
   test("should load correct environment matomo siteId", () => {

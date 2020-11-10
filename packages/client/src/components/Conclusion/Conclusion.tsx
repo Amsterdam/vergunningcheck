@@ -7,19 +7,16 @@ import type {
 } from "@vergunningcheck/imtr-client";
 import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { PrintOnly } from "../atoms";
-import { sections } from "../config/matomo";
-import { useChecker } from "../hooks";
-import { NEED_CONTACT } from "../utils/test-ids";
-import {
-  ConclusionOutcome,
-  NeedPermitContent,
-  NoPermitDescription,
-} from "./Conclusion/";
-import Disclaimer from "./Disclaimer";
-import Markdown from "./Markdown";
+import { PrintOnly } from "../../atoms";
+import { sections } from "../../config/matomo";
+import { useChecker } from "../../hooks";
+import { NEED_CONTACT } from "../../utils/test-ids";
+import Disclaimer from "../Disclaimer";
+import Markdown from "../Markdown";
+import { ConclusionOutcome, NeedPermitContent, NoPermitDescription } from ".";
 
 const ConclusionWrapper = styled.div`
   @media screen {
@@ -29,6 +26,7 @@ const ConclusionWrapper = styled.div`
 
 const Conclusion: React.FC = () => {
   const { checker } = useChecker() as { checker: Checker };
+  const { t } = useTranslation();
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
@@ -76,7 +74,7 @@ const Conclusion: React.FC = () => {
         />
       </div>
     ),
-    title: contactConclusion?.title || "An error occured",
+    title: contactConclusion?.title || (t("common.error occured") as string),
   };
 
   const needPermitContent = {

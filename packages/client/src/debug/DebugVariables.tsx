@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import {
   Accordion,
   Card,
@@ -13,7 +12,6 @@ import { CheckerContext } from "../CheckerContext";
 import HiddenDebugInfo from "../components/HiddenDebugInfo";
 import { useSession, useSlug, useTopic, useTopicData } from "../hooks";
 import { defaultTopicSession } from "../SessionContext";
-// import { defaultTopicSession } from "../SessionContext";
 import { Debug } from ".";
 
 type DebugVariablesProps = {};

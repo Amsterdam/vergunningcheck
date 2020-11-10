@@ -36,9 +36,6 @@ const LocationInput = ({
   const [errorMessage, setErrorMessage] = useState<ApolloError | undefined>(
     error
   );
-  // const setAddress = (address: any) => {
-  //   setTopicData({ address });
-  // };
 
   const [focus, setFocus] = useState(false);
 
@@ -73,14 +70,6 @@ const LocationInput = ({
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      // Store the data
-      // console.log(setTopicData, {
-      //   address,
-      // });
-      // debugger;
-      // setTopicData({
-      //   address,
-      // });
       checkerContext.autofillData.address = address;
 
       handleNewAddressSubmit(address);

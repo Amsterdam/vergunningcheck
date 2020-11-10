@@ -1,12 +1,13 @@
 import { matchPath } from "react-router";
 
 import { topics } from "../config";
+import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
 
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
   const match = matchPath(pathname, {
-    path: "/:slug",
+    path: `/:slug(${imtrSlugs}|${oloSlugs}|${oloRedirectSlugs})`,
   }) as any;
 
   return match?.params?.slug;
@@ -25,9 +26,9 @@ export const findTopicBySlug = (slug: string) => {
   const name = topicConfig.name || topicConfig.slug;
 
   return {
-    slug,
-    name,
     hasIMTR: true,
+    name,
+    slug,
     text: {
       heading: name,
     },
@@ -53,8 +54,11 @@ export const getRestrictionByTypeName = (
  *
  * Because `Object.keys(new Date()).length === 0` we have to do an additional check.
  */
-export const isEmtpyObject = (obj: object) =>
-  Object.keys(obj).length === 0 && obj.constructor === Object;
+export const isEmptyObject = (obj: object) =>
+  obj !== undefined &&
+  obj !== null &&
+  Object.keys(obj).length === 0 &&
+  obj.constructor === Object;
 
 /**
  *
@@ -90,7 +94,7 @@ export const stripString = (str?: string) =>
  *
  * @param {string} value
  */
-export const isValidPostalcode = (value?: number | string) => {
+export const isValidPostalcode = (value?: string) => {
   const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[a-z]{2}$/i;
   return !!(value && value.toString().trim().match(postalCodeRegex));
 };

@@ -7,6 +7,13 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
 
+const mockMatomoTrackEvent = jest.fn();
+jest.mock("../hooks/useTracking", () => {
+  return jest.fn(() => ({
+    matomoTrackEvent: mockMatomoTrackEvent,
+  }));
+});
+
 describe("Link", () => {
   it("renders correctly", () => {
     render(
@@ -22,7 +29,10 @@ describe("Link", () => {
       fireEvent.click(anchor);
     });
 
-    // expect(matomoTrackEvent).not.toBeCalled();
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: "uitgaande links",
+      name: "test",
+    });
   });
   it("tracks the event correctly", () => {
     render(
@@ -37,6 +47,9 @@ describe("Link", () => {
       fireEvent.click(anchor);
     });
 
-    // expect(matomoTrackEvent).toBeCalled();
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: "uitgaande links",
+      name: "test",
+    });
   });
 });

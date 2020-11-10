@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { Accordion } from "@amsterdam/asc-ui";
 import { Decision, Permit, Question } from "@vergunningcheck/imtr-client";
 import React from "react";

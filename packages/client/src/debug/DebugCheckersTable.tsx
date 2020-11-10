@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { Heading, Link, Paragraph } from "@amsterdam/asc-ui";
 import { themeSpacing } from "@amsterdam/asc-ui";
 import { Button } from "@amsterdam/asc-ui";
@@ -124,7 +123,13 @@ const DebugCheckersTable: React.FC = () => {
             .map(({ slug, name, redirectToOlo }) => (
               <tr key={slug}>
                 <td>
-                  <Link href={geturl(routes.intro, { slug })} variant="inline">
+                  <Link
+                    href={geturl(
+                      redirectToOlo ? routes.oloRedirect : routes.intro,
+                      { slug }
+                    )}
+                    variant="inline"
+                  >
                     {name}
                   </Link>
                 </td>

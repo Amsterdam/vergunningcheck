@@ -3,6 +3,9 @@ import React from "react";
 import { RouteProps } from "react-router-dom";
 import slugify from "slugify";
 
+import { topics } from "./config";
+import topicsJson from "./topics.json";
+
 type RedirectRule = {
   from: string;
   to: string;
@@ -23,9 +26,19 @@ export const geturl = (route: string, params?: { slug: string }) => {
 
 type RoutePropExtended = RouteProps & { name: string };
 
-// XXX this should come from config
-// const slugString = ":slug(dakkapel-plaatsen|asdf)";
-const slugString = ":slug(dakkapel-plaatsen|asdf)";
+export const imtrSlugs = topicsJson
+  .flatMap((api) => api.map((t) => t.slug))
+  .join("|");
+
+export const oloSlugs = topics
+  .filter(({ redirectToOlo, hasIMTR }) => !redirectToOlo && !hasIMTR)
+  .map((t) => t.slug)
+  .join("|");
+
+export const oloRedirectSlugs = topics
+  .filter(({ redirectToOlo }) => redirectToOlo)
+  .map((t) => t.slug)
+  .join("|");
 
 const baseRouteConfig: RoutePropExtended[] = [
   {
@@ -49,7 +62,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     name: "intro",
     exact: true,
-    path: `/${slugString}`,
+    path: `/:slug(${imtrSlugs}|${oloSlugs})`,
   },
   {
     component: React.lazy(
@@ -57,7 +70,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "checker",
-    path: `/${slugString}/vragen-en-conclusie`,
+    path: `/:slug(${imtrSlugs})/vragen-en-conclusie`,
   },
   {
     component: React.lazy(
@@ -65,7 +78,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "oloLocationInput",
-    path: `/${slugString}/locatie`,
+    path: `/:slug(${oloSlugs})/locatie`,
   },
   {
     component: React.lazy(
@@ -73,7 +86,15 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "oloLocationResult",
-    path: `/${slugString}/adresgegevens`,
+    path: `/:slug(${oloSlugs})/adresgegevens`,
+  },
+  {
+    component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/olo/OloRedirectPage`)
+    ),
+    exact: true,
+    name: "oloRedirect",
+    path: `/:slug(${oloRedirectSlugs})`,
   },
   {
     component: React.lazy(() => import("./pages/NotFoundPage")),

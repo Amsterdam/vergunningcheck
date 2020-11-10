@@ -8,8 +8,8 @@ import LinkRenderer from "./renderers/LinkRenderer";
 import ListRenderer from "./renderers/ListRenderer";
 
 type MarkDownProps = {
-  source?: string;
   eventLocation: string;
+  source?: string;
 };
 
 const Markdown: React.FC<MarkDownProps> = ({ eventLocation, source }) => (

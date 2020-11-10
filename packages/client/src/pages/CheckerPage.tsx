@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { HideForPrint } from "../atoms";
-import Conclusion from "../components/Conclusion";
+import { Conclusion } from "../components/Conclusion";
 import Layout from "../components/Layouts/TopicLayout";
 import { LocationInput, LocationSummary } from "../components/Location";
 import PrintDetails from "../components/PrintDetails";
@@ -15,7 +15,7 @@ import { actions, eventNames, sections } from "../config/matomo";
 import DebugDecisionTable from "../debug/DebugDecisionTable";
 import { useChecker, useTopic, useTracking } from "../hooks";
 import { useTopicData } from "../hooks";
-import { isEmtpyObject } from "../utils";
+import { isEmptyObject } from "../utils";
 import LoadingPage from "./LoadingPage";
 
 const CheckerPage = () => {
@@ -26,35 +26,7 @@ const CheckerPage = () => {
 
   const { hasIMTR, text } = topic;
 
-  // const resetChecker = () => {
-  //   setChecker(undefined);
-  // };
-
   useEffect(() => {
-    // In case no active sections are found, reset the checker
-    // This is a fallback to prevent users being stuck without any active component
-    // const activeComponent = [
-    //   sections.CONCLUSION,
-    //   sections.LOCATION_INPUT,
-    //   sections.LOCATION_RESULT,
-    //   sections.QUESTIONS,
-    // ].find((section) => isActive(section));
-
-    // if (!activeComponent) {
-    //   console.warn("Resetting checker, because no active section was found");
-
-    //   setTopicData({
-    //     activeComponents: [sections.LOCATION_INPUT],
-    //     answers: {},
-    //     finishedComponents: [],
-    //     questionIndex: 0,
-    //   });
-
-    //   if (hasIMTR) {
-    //     resetChecker();
-    //   }
-    // }
-
     // Make the app backwards compatible:
 
     // LOCATION_RESULT does not exist anymore in the IMTR flow
@@ -112,11 +84,6 @@ const CheckerPage = () => {
     [activeComponents, finishedComponents]
   );
 
-  // if (!topicData) {
-  //   setTopicData(defaultTopicSession);
-  //   return null;
-  // }
-
   // Only one component can be active at the same time.
   const setActiveState = (component: string) => {
     // Do not track the active step
@@ -138,7 +105,6 @@ const CheckerPage = () => {
    * @param value - Set components to finished state or remove from finished state.
    */
   const setFinishedState = (component: string[] | string, value: boolean) => {
-    console.log("setFinished", component, value);
     // If component is only a string, we make it a array first
     const allComponents = Array.isArray(component) ? component : [component];
 
@@ -150,10 +116,6 @@ const CheckerPage = () => {
           ) || []
         : [...finishedComponents, ...allComponents];
 
-    // Save the new array to the context
-    // sessionContext[slug].finishedComponents = newFinishedComponents;
-
-    console.log("setFinished", newFinishedComponents);
     setTopicData({ finishedComponents: newFinishedComponents });
   };
 
@@ -219,18 +181,6 @@ const CheckerPage = () => {
       finishedComponents: [sections.LOCATION_INPUT],
       address,
     });
-    // Reset old values
-    // resetChecker();
-    // setFinishedState([sections.QUESTIONS, sections.CONCLUSION], false);
-
-    // // Reset the answers and questionIndex to start clean
-    // // setTopicData({
-    // //   answers: {},
-    // //   questionIndex: 0, // Reset to 0 to start with the first question
-    // // });
-
-    // setFinishedState(sections.LOCATION_INPUT, true);
-    // setActiveState(hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT);
   };
 
   return (
@@ -275,7 +225,7 @@ const CheckerPage = () => {
           active={isActive(sections.QUESTIONS) && questionIndex === 0}
           checked={isFinished(sections.QUESTIONS)}
           customSize
-          done={!isEmtpyObject(answers) || isActive(sections.QUESTIONS)}
+          done={!isEmptyObject(answers) || isActive(sections.QUESTIONS)}
           heading="Vragen"
           largeCircle
           // Overwrite the line between the Items
@@ -313,28 +263,3 @@ const CheckerPage = () => {
   );
 };
 export default CheckerPage;
-
-// import React from "react";
-
-// import BaseLayout from "../components/Layouts/BaseLayout";
-// import { useTopicData } from "../hooks";
-
-// const CheckerPage2 = () => {
-//   const { topicData, setTopicData } = useTopicData();
-//   return (
-//     <BaseLayout>
-//       <code>
-//         topicData:
-//         <pre>{JSON.stringify(topicData)}</pre>
-//       </code>
-//       <button
-//         onClick={() => {
-//           setTopicData({ address: "blaat" });
-//         }}
-//       >
-//         bla
-//       </button>
-//     </BaseLayout>
-//   );
-// };
-// export default CheckerPage2;

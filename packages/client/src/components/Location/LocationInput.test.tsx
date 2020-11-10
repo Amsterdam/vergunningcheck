@@ -16,21 +16,11 @@ import {
 import LocationInput from "./LocationInput";
 
 const handleNewAddressSubmit = jest.fn();
-
-const matomoTrackEvent = jest.fn();
-// jest.mock("react-router-dom", () => ({
-//   useHistory: () => ({
-//     location: {
-//       pathname: "/dakkapel-plaatsen/vragen-en-conclusie",
-//     },
-//     push: jest.fn(),
-//   }),
-//   useLocation: () => jest.fn(),
-//   useParams: () => ({ slug: "dakkapel-plaatsen" }),
-// }));
-
-beforeEach(() => {
-  jest.clearAllMocks();
+const mockMatomoTrackEvent = jest.fn();
+jest.mock("../../hooks/useTracking", () => {
+  return jest.fn(() => ({
+    matomoTrackEvent: mockMatomoTrackEvent,
+  }));
 });
 
 describe("LocationInput", () => {
@@ -71,7 +61,6 @@ describe("LocationInput", () => {
 
   it("should render correctly on OLO flow", () => {
     render(<Wrapper mockSlug="intern-verbouwen" />);
-    console.log(screen.debug());
     expect(screen.queryByText("Invullen adres")).toBeInTheDocument();
   });
 
@@ -93,7 +82,7 @@ describe("LocationInput", () => {
     expect(inputHouseNumber).toBeInTheDocument();
     expect(inputHouseNumber).not.toHaveValue();
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(0);
   });
 
@@ -159,19 +148,19 @@ describe("LocationInput", () => {
       })
     ).toBeInTheDocument();
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
       // fireEvent.click(screen.getByText("Naar de vragen"));
       fireEvent.submit(screen.queryByTestId("form") as HTMLElement);
     });
 
-    expect(matomoTrackEvent).toBeCalledWith({
+    expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.SUBMIT_LOCATION,
       name: resultMonument,
     });
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(4);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(4);
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(1);
   });
 
@@ -199,7 +188,7 @@ describe("LocationInput", () => {
       fireEvent.click(prevButton);
     });
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
   });
 
   it("should handle the prev button", async () => {
@@ -212,12 +201,12 @@ describe("LocationInput", () => {
       fireEvent.click(prevButton);
     });
 
-    expect(matomoTrackEvent).toBeCalledWith({
+    expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_INTERNAL_NAVIGATION,
       name: `${eventNames.BACK} ${sections.INTRO}`,
     });
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
   });
 
   it("should handle the error state", () => {

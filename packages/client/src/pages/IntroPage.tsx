@@ -6,21 +6,16 @@ import Layout from "../components/Layouts/TopicLayout";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { actions, sections } from "../config/matomo";
-import { useChecker, useTopic, useTracking } from "../hooks";
+import { useTopic, useTracking } from "../hooks";
+import { IntroProps } from "../intros";
 import { geturl, routes } from "../routes";
-import RedirectPage from "./RedirectPage";
 
 const IntroPage: React.FC = () => {
   const history = useHistory();
   const { matomoTrackEvent } = useTracking();
-  const checker = useChecker();
+
   const topic = useTopic();
-
-  const { hasIMTR, text, intro, redirectToOlo } = topic;
-
-  if (redirectToOlo) {
-    return <RedirectPage topic={topic} />;
-  }
+  const { hasIMTR, text, intro } = topic;
 
   // Here starts the separation of the IMTR flow and the non-IMTR flow (which we call OLO flow):
   if (!hasIMTR) {
@@ -30,7 +25,9 @@ const IntroPage: React.FC = () => {
   }
 
   const introComponentPath = intro || "shared/DynamicIMTRIntro";
-  const Intro = React.lazy(() => import(`../intros/${introComponentPath}`));
+  const Intro = React.lazy(
+    () => import(`../intros/${introComponentPath}`)
+  ) as IntroProps;
 
   const goToNext = () => {
     // @TODO: Change and refactor this because the next step is not always LOCATION_INPUT
@@ -48,7 +45,7 @@ const IntroPage: React.FC = () => {
         <title>Inleiding - {text.heading}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
-        <Intro checker={checker} />
+        <Intro />
       </Suspense>
       <Nav noMarginBottom onGoToNext={goToNext} showNext />
     </Layout>

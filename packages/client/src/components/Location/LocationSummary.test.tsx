@@ -5,7 +5,6 @@ import addressMockNoMonument from "../../__mocks__/addressMockNoMonument";
 import addressMockNoRestrictions from "../../__mocks__/addressMockNoRestrictions";
 import addressMockNoZoningplans from "../../__mocks__/addressMockNoZoningplans";
 import { CheckerProvider } from "../../CheckerContext";
-import { findTopicBySlug } from "../../utils";
 import { render, screen } from "../../utils/test-utils";
 import LocationSummary from "./LocationSummary";
 
@@ -14,20 +13,18 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("LocationSummary", () => {
-  const WrapperWithContext = (props: any) => {
-    const setActiveState = jest.fn();
-
+  const WrapperWithContext = (
+    props: React.ComponentProps<typeof LocationSummary>
+  ) => {
     return (
       <CheckerProvider defaultAutofillData={{ address: addressMock }}>
-        <LocationSummary {...props} setActiveState={setActiveState} />
+        <LocationSummary {...props} />
       </CheckerProvider>
     );
   };
 
   it("renders in STTR Flow on LocationFinder (with all restrictions)", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
-    render(<WrapperWithContext isBelowInputFields showTitle topic={topic} />);
+    render(<WrapperWithContext isBelowInputFields showTitle />);
 
     // Expext to find:
     expect(
@@ -48,14 +45,11 @@ describe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow on LocationFinder (with selected restrictions)", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoMonument}
         isBelowInputFields
         showTitle
-        topic={topic}
       />
     );
 
@@ -82,14 +76,11 @@ describe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow on LocationFinder (without any restrictions)", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoRestrictions}
         isBelowInputFields
         showTitle
-        topic={topic}
       />
     );
 
@@ -110,9 +101,7 @@ describe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow above the questionnaire (with all restrictions)", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
-    render(<WrapperWithContext showEditLocationModal topic={topic} />);
+    render(<WrapperWithContext showEditLocationModal />);
 
     // Expext to find:
     expect(
@@ -130,13 +119,10 @@ describe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow above the questionnaire (with selected restrictions)", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoMonument}
         showEditLocationModal
-        topic={topic}
       />
     );
 
@@ -165,13 +151,10 @@ describe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow above the questionnaire (without any restrictions)", () => {
-    const topicMock = "dakraam-plaatsen";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoRestrictions}
         showEditLocationModal
-        topic={topic}
       />
     );
 
@@ -199,14 +182,11 @@ describe("LocationSummary", () => {
    */
 
   it("renders in OLO Flow on LocationFinder (with all restrictions)", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMock}
         isBelowInputFields
         showTitle
-        topic={topic}
       />
     );
 
@@ -227,14 +207,11 @@ describe("LocationSummary", () => {
   });
 
   it("renders in OLO Flow on LocationFinder (without any restrictions)", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoRestrictions}
         isBelowInputFields
         showTitle
-        topic={topic}
       />
     );
 
@@ -255,15 +232,7 @@ describe("LocationSummary", () => {
   });
 
   it("renders in OLO Flow on the Results Page (with all restrictions)", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
-    render(
-      <WrapperWithContext
-        addressFromLocation={addressMock}
-        showTitle
-        topic={topic}
-      />
-    );
+    render(<WrapperWithContext addressFromLocation={addressMock} showTitle />);
 
     // Expext to find:
     expect(
@@ -282,13 +251,10 @@ describe("LocationSummary", () => {
   });
 
   it("renders in OLO Flow on the Results Page (without any restrictions)", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoRestrictions}
         showTitle
-        topic={topic}
       />
     );
 
@@ -312,13 +278,10 @@ describe("LocationSummary", () => {
   });
 
   it("renders in OLO Flow on the Results Page (without any zoningplans)", () => {
-    const topicMock = "aanbouw-of-uitbouw-maken";
-    const topic = findTopicBySlug(topicMock);
     render(
       <WrapperWithContext
         addressFromLocation={addressMockNoZoningplans}
         showTitle
-        topic={topic}
       />
     );
   });

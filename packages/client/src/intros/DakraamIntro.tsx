@@ -2,8 +2,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Intro } from "./shared";
+import { IntroProps } from ".";
 
-export default () => {
+const DakraamIntro: React.FC<IntroProps> = () => {
   const { t } = useTranslation();
   return (
     <Intro
@@ -19,3 +20,5 @@ export default () => {
     />
   );
 };
+
+export default DakraamIntro;

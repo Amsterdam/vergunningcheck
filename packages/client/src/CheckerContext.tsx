@@ -7,21 +7,15 @@ export type setAutofillDataFn = (autofillData: any) => void;
 
 type CheckerContextType = {
   checker?: Checker;
-  // topic?: any;
   autofillData: any;
 
   setChecker: setCheckerFn;
-  // setChecker: Dispatch<SetStateAction<Checker | undefined>>;
-  // setTopicData: () => void;
   setAutofillData: setAutofillDataFn;
 };
 
 const defaultCheckerContext: CheckerContextType = {
-  // checker: null,
-  // topic: null,
   autofillData: {},
   setChecker: () => {},
-  // setTopicData: () => {},
   setAutofillData: () => {},
 };
 
@@ -39,20 +33,14 @@ export const CheckerProvider: React.FC<CheckerProviderProps> = ({
   defaultChecker = undefined,
   defaultAutofillData = {},
 }) => {
-  const [checker, setCheckerBase] = useState(defaultChecker);
-  // const [topic, setTopicData] = useState({});
+  const [checker, setChecker] = useState(defaultChecker);
   const [autofillData, setAutofillData] = useState(defaultAutofillData);
 
   return (
     <CheckerContext.Provider
       value={{
         checker,
-        setChecker: (checker) => {
-          console.log("set checker to", checker);
-          setCheckerBase(checker);
-        },
-        // topic,
-        // setTopicData,
+        setChecker,
         autofillData,
         setAutofillData,
       }}

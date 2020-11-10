@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
 import {
+  isEmptyObject,
   isValidPostalcode,
   removeQueryStrings,
   scrollToRef,
@@ -10,7 +11,7 @@ import { render } from "./test-utils";
 
 window.scrollTo = jest.fn();
 
-let ref;
+let ref: any;
 
 const Element = () => {
   ref = useRef(null);
@@ -21,7 +22,7 @@ const Element = () => {
 describe("util", () => {
   test("scrollToRef", () => {
     const { queryByTestId } = render(<Element />);
-    const element = queryByTestId("element");
+    const element = queryByTestId("element") as any;
     element.getBoundingClientRect = jest.fn(() => ({
       top: 100,
     }));
@@ -47,7 +48,7 @@ describe("util", () => {
     // Should be false
     expect(isValidPostalcode()).toBe(false);
     expect(isValidPostalcode("")).toBe(false);
-    expect(isValidPostalcode(1055)).toBe(false);
+    expect(isValidPostalcode(1055 as any)).toBe(false);
     expect(isValidPostalcode("19-c")).toBe(false);
     expect(isValidPostalcode("1055X")).toBe(false);
     expect(isValidPostalcode("1055XDD")).toBe(false);
@@ -80,5 +81,24 @@ describe("util", () => {
     expect(removeQueryStrings("https://amsterdam.nl/path#target")).toBe(
       "https://amsterdam.nl/path#target"
     );
+  });
+
+  test("isEmptyObject", () => {
+    expect(isEmptyObject({} as any)).toBe(true);
+    expect(isEmptyObject(true as any)).toBe(false);
+    expect(isEmptyObject(-1 as any)).toBe(false);
+    expect(isEmptyObject(1 as any)).toBe(false);
+    expect(isEmptyObject(NaN as any)).toBe(false);
+    expect(isEmptyObject(/x/ as any)).toBe(false);
+    expect(isEmptyObject(Symbol as any)).toBe(false);
+    expect(isEmptyObject(null as any)).toBe(false);
+    expect(isEmptyObject(undefined as any)).toBe(false);
+    expect(isEmptyObject([0])).toBe(false);
+    expect(isEmptyObject({ a: 0 })).toBe(false);
+    expect(isEmptyObject("a" as any)).toBe(false);
+    expect(isEmptyObject({ length: 0 })).toBe(false);
+    expect(isEmptyObject(new Set() as any)).toBe(false);
+    expect(isEmptyObject(new Date() as any)).toBe(false);
+    expect(isEmptyObject((<></>) as any)).toBe(false);
   });
 });

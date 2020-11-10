@@ -15,8 +15,8 @@ import Modal from "./Modal";
 import Nav from "./Nav";
 
 export type BooleanOption = {
-  label: string;
   formValue: string;
+  label: string;
   value: boolean;
 };
 

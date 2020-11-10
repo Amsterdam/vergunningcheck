@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 
-// - Context nodig om ALLES tegelijk te updaten
-// - Reducer nodig om de hook meerdere keren aan te kunnen roepen
-// - Reducer dus IN context provider
+// - Context is needed to update everything at once
+// - Reducer is needed so we can call hooks multiple times in 1 render pass
+// - So reducer IN context should meet our needs
 
 type SessionData = {
   [slug: string]: TopicData;
@@ -13,7 +13,6 @@ type TopicData = {
   address2: any;
 };
 
-// type setTopicDataFn = (topicData: Partial<TopicData>) => void;
 type setSessionDataFn = (sessionData: SessionData) => void;
 
 type AppSessionContext = {
@@ -58,6 +57,7 @@ export const SessionButton = () => {
       >
         update session
       </button>
+
       <em>{JSON.stringify(session)}</em>
     </p>
   );

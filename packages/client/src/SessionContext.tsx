@@ -1,10 +1,11 @@
+import { Answer } from "@vergunningcheck/imtr-client";
 import React, { useEffect, useReducer } from "react";
 import { createContext } from "react";
 
 export type TopicData = {
   activeComponents?: string[];
   answers: {
-    [id: string]: boolean | string | number | undefined;
+    [id: string]: Answer;
   };
   address: null | any;
   finishedComponents: string[];
