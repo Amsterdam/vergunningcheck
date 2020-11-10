@@ -1,9 +1,9 @@
 export default {
+  districtName: "Landlust",
   houseNumberFull: "123",
   postalCode: "1234 AB",
   residence: "Amsterdam",
-  districtName: "Landlust",
-  neigborhoodName: "Landlust Noord",
+  neighborhoodName: "Landlust Noord",
   restrictions: [
     {
       __typename: "Monument",

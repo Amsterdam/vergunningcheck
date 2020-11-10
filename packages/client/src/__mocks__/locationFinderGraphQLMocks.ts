@@ -44,6 +44,8 @@ export default [
               houseNumber: 19,
               houseNumberFull: "19 A",
               residence: "Amsterdam",
+              districtName: "Landlust",
+              neighborhoodName: "Landlust Noord",
             },
             {
               __typename: "Address",
@@ -53,6 +55,8 @@ export default [
               houseNumber: 19,
               houseNumberFull: "19 B",
               residence: "Amsterdam",
+              districtName: "Landlust",
+              neighborhoodName: "Landlust Noord",
             },
             {
               __typename: "Address",
@@ -62,6 +66,8 @@ export default [
               houseNumber: 19,
               houseNumberFull: "19 C",
               residence: "Amsterdam",
+              districtName: "Landlust",
+              neighborhoodName: "Landlust Noord",
             },
             {
               __typename: "Address",
@@ -71,6 +77,8 @@ export default [
               houseNumber: 19,
               houseNumberFull: "19 D",
               residence: "Amsterdam",
+              districtName: "Landlust",
+              neighborhoodName: "Landlust Noord",
             },
             {
               __typename: "Address",
@@ -80,6 +88,8 @@ export default [
               houseNumber: 19,
               houseNumberFull: "19 E",
               residence: "Amsterdam",
+              districtName: "Landlust",
+              neighborhoodName: "Landlust Noord",
             },
             {
               __typename: "Address",
@@ -89,6 +99,8 @@ export default [
               houseNumber: 19,
               houseNumberFull: "19 F",
               residence: "Amsterdam",
+              districtName: "Landlust",
+              neighborhoodName: "Landlust Noord",
             },
           ],
         },
@@ -117,6 +129,8 @@ export default [
             houseNumber: 19,
             houseNumberFull: "19 C",
             residence: "Amsterdam",
+            districtName: "Landlust",
+            neighborhoodName: "Landlust Noord",
             restrictions: [
               {
                 __typename: "Monument",
