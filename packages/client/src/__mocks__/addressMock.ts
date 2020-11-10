@@ -1,8 +1,8 @@
 export default {
-  districtName: "Landlust",
   houseNumberFull: "123",
   postalCode: "1234 AB",
   residence: "Amsterdam",
+  districtName: "Landlust",
   neighborhoodName: "Landlust Noord",
   restrictions: [
     {
