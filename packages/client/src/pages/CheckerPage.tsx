@@ -242,7 +242,7 @@ const CheckerPage = () => {
         <StepByStepItem
           active={isActive(sections.CONCLUSION)}
           checked={isFinished(sections.QUESTIONS)}
-          // as="div" // XXX
+          as="div"
           done={isFinished(sections.QUESTIONS)}
           customSize
           heading="Uitkomst"
