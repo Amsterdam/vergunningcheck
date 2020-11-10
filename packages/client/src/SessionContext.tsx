@@ -34,7 +34,9 @@ type AppSessionContext = {
   setSession: setSessionFn;
 };
 
-const defaultSession = {};
+const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
+
+const defaultSession = session ? session : {};
 
 const defaultContext: AppSessionContext = {
   session: defaultSession,
