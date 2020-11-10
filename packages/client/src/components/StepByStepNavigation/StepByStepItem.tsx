@@ -1,5 +1,6 @@
 import { Checkmark } from "@amsterdam/asc-assets";
 import React from "react";
+import { StyledProps } from "styled-components";
 
 import { STEPBYSTEPITEM } from "../../utils/test-ids";
 import StepByStepItemStyle, {
@@ -11,7 +12,9 @@ import StepByStepItemStyle, {
 } from "./StepByStepItemStyle";
 import StepByStepTitle from "./StepByStepTitle";
 
-const StepByStepItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
+const StepByStepItem: React.FC<
+  Props & React.HTMLAttributes<HTMLElement> & StyledProps<any>
+> = ({
   active,
   checked,
   children,

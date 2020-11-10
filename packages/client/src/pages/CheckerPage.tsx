@@ -242,12 +242,12 @@ const CheckerPage = () => {
         <StepByStepItem
           active={isActive(sections.CONCLUSION)}
           checked={isFinished(sections.QUESTIONS)}
-          // as="div" // XXX
+          as="div"
           done={isFinished(sections.QUESTIONS)}
           customSize
           heading="Uitkomst"
           largeCircle
-          onClick={() => handleConclusionClick && handleConclusionClick()}
+          onClick={handleConclusionClick}
           // Overwrite the line between the Items
           style={{ marginTop: -1 }}
         >
