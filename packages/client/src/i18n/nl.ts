@@ -69,5 +69,15 @@ export default {
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
     },
+    outcome: {
+      disclaimer:
+        "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
+      needPermit: {
+        "you need a permit": "U hebt een omgevingsvergunning nodig.",
+      },
+      permitFree: {
+        "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+      },
+    },
   },
 };

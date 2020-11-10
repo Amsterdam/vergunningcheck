@@ -6,10 +6,8 @@ module.exports = (app) => {
   app.use(
     featurePolicy({
       features: {
-        documentWrite: ["'none'"],
         geolocation: ["'none'"],
         camera: ["'none'"],
-        speaker: ["'none'"],
       },
     })
   );

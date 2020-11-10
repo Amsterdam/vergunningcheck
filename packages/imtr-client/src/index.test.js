@@ -1,4 +1,4 @@
-import getChecker from "./index";
+import { getChecker } from "./index";
 
 describe("imtr client", () => {
   test("getChecker", () => {

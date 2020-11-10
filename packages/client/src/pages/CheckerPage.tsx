@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 import { HideForPrint } from "../atoms";
 import { Conclusion } from "../components/Conclusion";
-import Layout from "../components/Layouts/TopicLayout";
+import { TopicLayout } from "../components/Layouts";
 import { LocationInput, LocationSummary } from "../components/Location";
 import PrintDetails from "../components/PrintDetails";
 import Questions, { GoToQuestionProp } from "../components/Questions";
@@ -12,9 +12,8 @@ import {
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
 import { actions, eventNames, sections } from "../config/matomo";
-import DebugDecisionTable from "../debug/DebugDecisionTable";
-import { useChecker, useTopic, useTracking } from "../hooks";
-import { useTopicData } from "../hooks";
+import { DebugDecisionTable } from "../debug";
+import { useChecker, useTopic, useTopicData, useTracking } from "../hooks";
 import { isEmptyObject } from "../utils";
 import LoadingPage from "./LoadingPage";
 
@@ -184,9 +183,9 @@ const CheckerPage = () => {
   };
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
-        <title>Vragen en conclusie - {text.heading}</title>
+        <title>Vragen en uitkomst - {text.heading}</title>
       </Helmet>
 
       <PrintDetails />
@@ -246,7 +245,7 @@ const CheckerPage = () => {
           // as="div" // XXX
           done={isFinished(sections.QUESTIONS)}
           customSize
-          heading="Conclusie"
+          heading="Uitkomst"
           largeCircle
           onClick={() => handleConclusionClick && handleConclusionClick()}
           // Overwrite the line between the Items
@@ -259,7 +258,7 @@ const CheckerPage = () => {
       <HideForPrint>
         <DebugDecisionTable />
       </HideForPrint>
-    </Layout>
+    </TopicLayout>
   );
 };
 export default CheckerPage;

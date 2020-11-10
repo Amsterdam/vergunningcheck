@@ -3,13 +3,13 @@ import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
-import ConclusionAlert from "./ConclusionAlert";
+import QuestionAlert from "./QuestionAlert";
 
 type QuestionAnswerProps = {
   disabled?: boolean;
   questionNeedsContactExit?: boolean;
-  showConclusionAlert: boolean;
-  userAnswer?: string;
+  showQuestionAlert: boolean;
+  userAnswer: string;
 };
 
 const QuestionAnswer: React.FC<
@@ -18,7 +18,7 @@ const QuestionAnswer: React.FC<
   disabled,
   onClick,
   questionNeedsContactExit,
-  showConclusionAlert,
+  showQuestionAlert,
   userAnswer,
 }) => {
   if (!userAnswer) return null;
@@ -28,8 +28,8 @@ const QuestionAnswer: React.FC<
         <TextToEdit>{removeQuotes(userAnswer.toString())}</TextToEdit>
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
-      {showConclusionAlert && (
-        <ConclusionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
+      {showQuestionAlert && (
+        <QuestionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
       )}
     </>
   );

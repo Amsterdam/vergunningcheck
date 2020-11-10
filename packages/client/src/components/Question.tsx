@@ -8,11 +8,11 @@ import { actions, eventNames } from "../config/matomo";
 import { useTracking } from "../hooks";
 import { QUESTION_PAGE } from "../utils/test-ids";
 import Answers, { AnswerProps } from "./Answers";
-import ConclusionAlert from "./ConclusionAlert";
 import Form from "./Form";
 import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
+import QuestionAlert from "./QuestionAlert";
 
 export type BooleanOption = {
   formValue: string;
@@ -41,7 +41,7 @@ type QuestionProps = {
   questionNeedsContactExit: boolean;
   saveAnswer: (value: string) => void;
   shouldGoToConlusion: () => boolean;
-  showConclusionAlert: boolean;
+  showQuestionAlert: boolean;
   showNext: boolean;
   userAnswer?: string;
 };
@@ -54,7 +54,7 @@ const Question: React.FC<QuestionProps> = ({
   onGoToPrev,
   saveAnswer,
   shouldGoToConlusion,
-  showConclusionAlert,
+  showQuestionAlert,
   showNext,
   userAnswer,
 }) => {
@@ -156,12 +156,10 @@ const Question: React.FC<QuestionProps> = ({
         questionIndex={questionIndex}
         userAnswer={userAnswer}
       />
-      {showConclusionAlert && (
-        <ConclusionAlert {...{ questionNeedsContactExit }} />
-      )}
+      {showQuestionAlert && <QuestionAlert {...{ questionNeedsContactExit }} />}
       <Nav
         formEnds={shouldGoToConlusion()}
-        nextText={shouldGoToConlusion() ? "Naar conclusie" : "Volgende vraag"}
+        nextText={shouldGoToConlusion() ? "Naar de uitkomst" : "Volgende vraag"}
         showPrev={questionIndex > 0} // Do not show back-button at the first question
         {...{
           onGoToPrev,

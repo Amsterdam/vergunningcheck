@@ -2,7 +2,7 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../../components/Layouts/TopicLayout";
+import { TopicLayout } from "../../components/Layouts";
 import { urls } from "../../config";
 import { useTopic } from "../../hooks";
 
@@ -20,7 +20,7 @@ const OloRedirectPage: React.FC = () => {
   });
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Redirect naar OLO - {topic.text.heading}</title>
       </Helmet>
@@ -32,7 +32,7 @@ const OloRedirectPage: React.FC = () => {
         </a>
         .
       </Paragraph>
-    </Layout>
+    </TopicLayout>
   );
 };
 

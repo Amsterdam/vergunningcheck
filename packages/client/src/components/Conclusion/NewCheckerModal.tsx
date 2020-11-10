@@ -69,7 +69,7 @@ const NewCheckerModal: React.FC = () => {
       });
 
       // @TODO: We need to find a better solution for restarting the same checker.
-      window.location.href = `/${checkerSlug}/vragen-en-conclusie?loadChecker`;
+      window.location.href = `/${checkerSlug}/vragen-en-uitkomst?loadChecker`;
     }
   };
 

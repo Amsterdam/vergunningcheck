@@ -70,7 +70,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "checker",
-    path: `/:slug(${imtrSlugs})/vragen-en-conclusie`,
+    path: `/:slug(${imtrSlugs})/vragen-en-uitkomst`,
   },
   {
     component: React.lazy(

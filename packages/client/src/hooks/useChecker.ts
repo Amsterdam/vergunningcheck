@@ -1,4 +1,4 @@
-import getChecker from "@vergunningcheck/imtr-client";
+import { getChecker } from "@vergunningcheck/imtr-client";
 import { useContext, useEffect, useState } from "react";
 
 import { CheckerContext } from "../CheckerContext";

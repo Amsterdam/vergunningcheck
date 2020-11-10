@@ -2,16 +2,16 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../components/Layouts/BaseLayout";
+import { BaseLayout } from "../components/Layouts";
 
 const NotFoundPage: React.FC = () => (
-  <Layout>
+  <BaseLayout>
     <Helmet>
       <title>Pagina niet gevonden - Amsterdam Vergunningcheck</title>
     </Helmet>
     <Heading forwardedAs="h2">Deze pagina is niet gevonden.</Heading>
     <Paragraph>Helaas</Paragraph>
-  </Layout>
+  </BaseLayout>
 );
 
 export default NotFoundPage;

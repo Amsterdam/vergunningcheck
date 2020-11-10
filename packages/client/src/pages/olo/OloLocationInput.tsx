@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-import Layout from "../../components/Layouts/TopicLayout";
+import { TopicLayout } from "../../components/Layouts";
 import Loading from "../../components/Loading";
 import { LocationInput } from "../../components/Location/";
 import { useTopic } from "../../hooks";
@@ -13,7 +13,7 @@ const OloLocationInput: React.FC = () => {
   const history = useHistory();
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Invullen adres - {topic.text.heading}</title>
       </Helmet>
@@ -24,7 +24,7 @@ const OloLocationInput: React.FC = () => {
           }}
         />
       </Suspense>
-    </Layout>
+    </TopicLayout>
   );
 };
 

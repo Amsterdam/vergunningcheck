@@ -2,19 +2,19 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 import Error from "../components/Error";
-import Layout from "../components/Layouts/TopicLayout";
+import { BaseLayout } from "../components/Layouts";
 
 type Props = {
   error: Error;
 };
 
 const ErrorPage: React.FC<Props> = ({ error }) => (
-  <Layout>
+  <BaseLayout>
     <Helmet>
       <title>Er is een fout opgetreden - Amsterdam Vergunningcheck</title>
     </Helmet>
     <Error stack={error.stack} content={error.message} />
-  </Layout>
+  </BaseLayout>
 );
 
 export default ErrorPage;

@@ -74,38 +74,8 @@
           "uuid": "zonneboiler - onderhoud2"
         }
       ],
-      "inputs": {
-        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
-          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-          "type": "string"
-        },
-        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
-          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
-          "type": "boolean"
-        },
-        "input_2bea0591-a028-413a-8bcb-f9f1b01270c2": {
-          "href": "#uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
-          "type": "string"
-        },
-        "input_45c1eabc-bddb-418d-9145-e26d97e914dc": {
-          "href": "#uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
-          "type": "string"
-        },
-        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
-          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
-          "type": "boolean"
-        },
-        "input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2": {
-          "href": "#uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-          "type": "string"
-        },
-        "input_0954e203-e649-4d46-9732-d5defdfc57be": {
-          "href": "#uitv_0954e203-e649-4d46-9732-d5defdfc57be",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_3b1acc68-5088-4058-b18a-b54f25cc2d1c": {
+        "_ad48cbcf-0c0f-4171-ac6a-920206440c2b": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2",
@@ -140,7 +110,7 @@
             ]
           }
         },
-        "_a1ce6ee3-7834-4c30-bfc0-be8c06c32334": {
+        "_b3d54f24-285d-41b2-826e-05aef16da72e": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
@@ -175,7 +145,7 @@
             ]
           }
         },
-        "_d2622cb8-4a76-41d4-8a1d-cd1437bdee39": {
+        "_93e53343-0d17-4c41-8815-7178708e63f4": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2",
@@ -222,7 +192,7 @@
             ]
           }
         },
-        "_9b2cd4a4-fd6c-490b-af9b-c763b935f6e3": {
+        "_c6305534-b375-4970-b5f4-9bbca4ece003": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
@@ -271,10 +241,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_3b1acc68-5088-4058-b18a-b54f25cc2d1c",
-            "#_a1ce6ee3-7834-4c30-bfc0-be8c06c32334",
-            "#_d2622cb8-4a76-41d4-8a1d-cd1437bdee39",
-            "#_9b2cd4a4-fd6c-490b-af9b-c763b935f6e3"
+            "#_ad48cbcf-0c0f-4171-ac6a-920206440c2b",
+            "#_b3d54f24-285d-41b2-826e-05aef16da72e",
+            "#_93e53343-0d17-4c41-8815-7178708e63f4",
+            "#_c6305534-b375-4970-b5f4-9bbca4ece003"
           ],
           "decisionTable": {
             "rules": [
@@ -310,6 +280,36 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
+          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
+          "type": "string"
+        },
+        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
+          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "type": "boolean"
+        },
+        "input_2bea0591-a028-413a-8bcb-f9f1b01270c2": {
+          "href": "#uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
+          "type": "string"
+        },
+        "input_45c1eabc-bddb-418d-9145-e26d97e914dc": {
+          "href": "#uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
+          "type": "string"
+        },
+        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
+          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+          "type": "boolean"
+        },
+        "input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2": {
+          "href": "#uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
+          "type": "string"
+        },
+        "input_0954e203-e649-4d46-9732-d5defdfc57be": {
+          "href": "#uitv_0954e203-e649-4d46-9732-d5defdfc57be",
+          "type": "string"
         }
       }
     }

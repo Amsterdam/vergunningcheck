@@ -162,7 +162,7 @@ const Questions: React.FC<CheckerPageProps> = ({
 
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
-    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in withChecker)
+    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in useChecker)
     if (!contactConclusion) {
       checker.stack.forEach((q, i) => {
         if (checker.needContactExit(q)) {
@@ -285,7 +285,7 @@ const Questions: React.FC<CheckerPageProps> = ({
       {checker.stack.map((q, i) => {
         // @TODO: Refactor this code and move to checker.js
         // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
-        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
+        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in useChecker)
         if (
           contactConclusion &&
           !checker._getUpcomingQuestions().length &&
@@ -314,7 +314,7 @@ const Questions: React.FC<CheckerPageProps> = ({
         }
 
         // Check if currect question is causing a permit requirement
-        const showConclusionAlert = !!permitsPerQuestion[i];
+        const showQuestionAlert = !!permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -342,16 +342,16 @@ const Questions: React.FC<CheckerPageProps> = ({
                   checker,
                   questionIndex,
                   shouldGoToConlusion,
-                  showConclusionAlert,
+                  showQuestionAlert,
                 }}
               />
             ) : (
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                questionNeedsContactExit={!!checker.needContactExit(q)}
-                userAnswer={userAnswer?.toString()}
-                {...{ showConclusionAlert }}
+                questionNeedsContactExit={checker.needContactExit(q)}
+                userAnswer={userAnswer ? userAnswer.toString() : ""}
+                {...{ showQuestionAlert }}
               />
             )}
           </StepByStepItem>
@@ -370,7 +370,7 @@ const Questions: React.FC<CheckerPageProps> = ({
         const index = i + 1 + checker.stack.length;
 
         // Check if current question is causing a conclusion
-        const showConclusionAlert = !!permitsPerQuestion[index];
+        const showQuestionAlert = !!permitsPerQuestion[index];
 
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
@@ -385,8 +385,8 @@ const Questions: React.FC<CheckerPageProps> = ({
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              userAnswer={userAnswer.toString()}
-              {...{ disabled, showConclusionAlert }}
+              userAnswer={userAnswer ? userAnswer.toString() : ""}
+              {...{ disabled, showQuestionAlert }}
             />
           </StepByStepItem>
         );

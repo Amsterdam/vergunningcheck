@@ -1,6 +1,6 @@
 import { matchPath } from "react-router";
 
-import { topics } from "../config";
+import { Topic, topics } from "../config";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
 
@@ -32,7 +32,7 @@ export const findTopicBySlug = (slug: string) => {
     text: {
       heading: name,
     },
-  };
+  } as Topic;
 };
 
 // Data utils

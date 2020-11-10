@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import React from "react";
 
-import Layout from "../components/Layouts/BaseLayout";
+import { BaseLayout } from "../components/Layouts";
 import { isProduction } from "../config";
 import { DebugCheckersTable } from "../debug";
 
@@ -11,9 +11,9 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <Layout>
+    <BaseLayout>
       <DebugCheckersTable />
-    </Layout>
+    </BaseLayout>
   );
 };
 

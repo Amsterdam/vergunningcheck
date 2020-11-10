@@ -23,6 +23,10 @@ jest.mock("../../hooks/useTracking", () => {
   }));
 });
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("LocationInput", () => {
   type WrapperProps = {
     mockSlug?: string;

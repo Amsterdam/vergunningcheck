@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import Form from "../../components/Form";
-import Layout from "../../components/Layouts/TopicLayout";
+import { TopicLayout } from "../../components/Layouts";
 import Loading from "../../components/Loading";
 import { LocationSummary } from "../../components/Location/";
 import Nav from "../../components/Nav";
@@ -47,7 +47,7 @@ const OloLocationResult: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Adresgegevens - {text.heading}</title>
       </Helmet>
@@ -88,7 +88,7 @@ const OloLocationResult: React.FC = () => {
           />
         </Form>
       </Suspense>
-    </Layout>
+    </TopicLayout>
   );
 };
 

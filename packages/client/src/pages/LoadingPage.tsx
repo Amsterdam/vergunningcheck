@@ -1,16 +1,16 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import Layout from "../components/Layouts/BaseLayout";
+import { BaseLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 
 const LoadingPage: React.FC = () => (
-  <Layout>
+  <BaseLayout>
     <Helmet>
       <title>Laden... - Amsterdam Vergunningcheck</title>
     </Helmet>
     <Loading />
-  </Layout>
+  </BaseLayout>
 );
 
 export default LoadingPage;

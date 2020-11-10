@@ -4,7 +4,7 @@ import React from "react";
 import { HideForPrint } from "../../atoms";
 import { DebugVariables } from "../../debug";
 import { useTopic } from "../../hooks";
-import BaseLayout from "./BaseLayout";
+import { BaseLayout } from ".";
 
 interface TopicLayoutProps {
   heading?: string;

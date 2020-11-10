@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-import Layout from "../components/Layouts/TopicLayout";
+import { TopicLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { actions, sections } from "../config/matomo";
@@ -40,7 +40,7 @@ const IntroPage: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Inleiding - {text.heading}</title>
       </Helmet>
@@ -48,7 +48,7 @@ const IntroPage: React.FC = () => {
         <Intro />
       </Suspense>
       <Nav noMarginBottom onGoToNext={goToNext} showNext />
-    </Layout>
+    </TopicLayout>
   );
 };
 

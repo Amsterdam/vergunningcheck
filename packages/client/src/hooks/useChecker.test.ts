@@ -7,7 +7,7 @@ jest.mock("react-router-dom", () => ({
   useLocation: () => ({ pathname: "/dakkapel-plaatsen" }),
 }));
 
-describe("withChecker", () => {
+describe("useChecker", () => {
   it("Can be reset with setChecker", () => {
     const { result } = renderHook(() => useChecker());
     const { checker, setChecker } = result.current;

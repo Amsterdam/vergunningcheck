@@ -1,20 +1,13 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import type {
-  Checker,
-  Decision,
-  Permit,
-  Rule,
-} from "@vergunningcheck/imtr-client";
-import { imtrOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
+import { imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { PrintOnly } from "../../atoms";
 import { sections } from "../../config/matomo";
 import { useChecker } from "../../hooks";
-import { NEED_CONTACT } from "../../utils/test-ids";
 import Disclaimer from "../Disclaimer";
+import Loading from "../Loading";
 import Markdown from "../Markdown";
 import { ConclusionOutcome, NeedPermitContent, NoPermitDescription } from ".";
 
@@ -23,83 +16,65 @@ const ConclusionWrapper = styled.div`
     padding-bottom: ${themeSpacing(5)};
   }
 `;
+const { NEED_CONTACT, NEED_PERMIT, PERMIT_FREE } = imtrOutcomes;
 
 const Conclusion: React.FC = () => {
-  const { checker } = useChecker() as { checker: Checker };
+  const { checker } = useChecker();
   const { t } = useTranslation();
 
-  // find conclusions we want to display to the user
-  const conclusions = checker.permits
-    .filter((permit: Permit) => !!permit.getOutputByDecisionId("dummy"))
-    .map((permit: Permit) => {
-      const conclusion = permit.getDecisionById("dummy") as Decision;
-      const conclusionMatchingRules = conclusion.getMatchingRules() as Rule[];
-      const contactOutcome = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
-      ) as Rule;
-      const outcome = (contactOutcome?.outputValue ||
-        conclusionMatchingRules[0].outputValue) as string;
+  if (checker === undefined) {
+    return <Loading />;
+  }
+  // Get all the outcomes to display
+  const outcomes = checker.getOutcomesToDisplay();
+  const outcomeType = checker.outcomeType();
 
-      return {
-        outcome,
-        title:
-          outcome === imtrOutcomes.NEED_CONTACT
-            ? "Neem contact op met de gemeente"
-            : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
-                outcome
-              )}`,
-        description:
-          outcome === imtrOutcomes.NEED_CONTACT
-            ? contactOutcome.description
-            : conclusionMatchingRules[0].description,
-      };
-    });
-
-  // Check if the conclusion is 'needContact'
-  const contactConclusion = conclusions.find(
+  // The "need contact" content comes from the IMTR file itself
+  const getNeedContactContent = outcomes.find(
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
-  // Check if the conclusion is 'needPermit'
-  const needPermit = !!conclusions.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
-  );
-
-  const needContactContent = {
-    mainContent: (
-      <div data-testid={NEED_CONTACT}>
+  // Define the content for the Conclusion components
+  const contents = {
+    [NEED_CONTACT]: {
+      mainContent: (
         <Markdown
           eventLocation={sections.CONCLUSION}
-          source={contactConclusion?.description}
+          source={getNeedContactContent?.description || ""}
         />
-      </div>
-    ),
-    title: contactConclusion?.title || (t("common.error occured") as string),
+      ),
+      title: getNeedContactContent?.title || "",
+    },
+    [NEED_PERMIT]: {
+      mainContent: <NeedPermitContent />,
+      title: t("outcome.needPermit.you need a permit"),
+    },
+    [PERMIT_FREE]: {
+      footerContent: <NoPermitDescription />,
+      title: t("outcome.permitFree.you dont need a permit"),
+    },
+    // @TODO: extend with NEED_REPORT
+    // See: https://github.com/Amsterdam/vergunningcheck/pull/668
   };
 
-  const needPermitContent = {
-    mainContent: <NeedPermitContent />,
-    title: "U hebt een omgevingsvergunning nodig.",
-  };
+  const conclusionContent = contents[outcomeType];
+  const showDiscaimer = outcomeType !== NEED_CONTACT;
 
-  const permitFreeContent = {
-    footerContent: <NoPermitDescription />,
-    title: "U hebt geen omgevingsvergunning nodig. ",
-  };
-
-  const conclusionContent = contactConclusion
-    ? needContactContent
-    : needPermit
-    ? needPermitContent
-    : permitFreeContent;
+  if (!conclusionContent) {
+    return null;
+  }
 
   return (
     <ConclusionWrapper>
-      <ConclusionOutcome conclusionContent={conclusionContent} />
+      <ConclusionOutcome
+        {...{
+          conclusionContent,
+          outcomeType,
+          showDiscaimer,
+        }}
+      />
 
-      <PrintOnly avoidPageBreak withBorder>
-        <Disclaimer />
-      </PrintOnly>
+      {showDiscaimer && <Disclaimer />}
     </ConclusionWrapper>
   );
 };

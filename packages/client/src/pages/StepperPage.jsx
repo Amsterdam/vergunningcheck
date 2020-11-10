@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
 import DebugDecisionTable from "../dev/DebugDecisionTable";
-import Layout from "../components/Layouts/TopicLayout";
+import {TopicLayout} from "../components/Layouts";
 import Nav from "../components/Nav";
 import {
   StepByStepItem,
@@ -57,7 +57,7 @@ const StepperPage = ({ checker, topic }) => {
   };
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Stepper Page</title>
       </Helmet>
@@ -239,7 +239,7 @@ const StepperPage = ({ checker, topic }) => {
       </StepByStepNavigation>
 
       <DebugDecisionTable checker={checker} topic={topic} />
-    </Layout>
+    </TopicLayout>
   );
 };
 
