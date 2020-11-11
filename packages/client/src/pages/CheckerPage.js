@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { HideForPrint } from "../atoms";
-import Conclusion from "../components/Conclusion";
+import { Conclusion } from "../components/Conclusion";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Layout from "../components/Layouts/DefaultLayout";
 import { LocationInput, LocationSummary } from "../components/Location";
@@ -225,9 +225,9 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
-        <title>Vragen en conclusie - {text.heading}</title>
+        <title>Vragen en uitkomst - {text.heading}</title>
       </Helmet>
 
       <PrintDetails />
@@ -300,7 +300,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
           checked={isFinished(sections.QUESTIONS)}
           done={isFinished(sections.QUESTIONS)}
           customSize
-          heading="Conclusie"
+          heading="Uitkomst"
           largeCircle
           onClick={handleConclusionClick}
           // Overwrite the line between the Items
@@ -318,4 +318,4 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     </Layout>
   );
 };
-export default withChecker(withTracking(CheckerPage));
+export default withTracking(withChecker(CheckerPage));

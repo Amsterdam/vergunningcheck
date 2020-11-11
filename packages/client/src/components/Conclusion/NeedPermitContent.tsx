@@ -5,9 +5,10 @@ import { HideForPrint, PrintOnly } from "../../atoms";
 import ComponentWrapper from "../../atoms/ComponentWrapper";
 import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 
-const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
+const NeedPermitContent: React.FC<MatomoTrackEventProps> = ({
   matomoTrackEvent,
 }) => {
   const handlePermitInfoButton = () => {
@@ -49,4 +50,4 @@ const NeedPermitContent: React.FC<{ matomoTrackEvent: Function }> = ({
   );
 };
 
-export default NeedPermitContent;
+export default withTracking(NeedPermitContent);

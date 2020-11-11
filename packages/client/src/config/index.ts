@@ -1,22 +1,41 @@
-/**
- * @param hasIMTR If topic has an imtr-file. If `false` it's olo/olo-redirect flow
- * @param intro The name of the component that has all texts on the Intro page
- * @param name The name of the checker/topic
- * @param redirectToOlo If this flow should redirect the user to OLO
- * @param slug The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
- * @param text This is part that holds specific texts for each permit-checker
- */
-export type Topic = {
-  hasIMTR: boolean;
-  intro?: string;
+type BaseTopic = {
   name: string;
-  redirectToOlo?: boolean;
   slug: string;
   text: {
     heading: string;
     locationIntro?: string;
   };
 };
+
+type IMTRTopic = {
+  hasIMTR: true;
+  intro?: string;
+  redirectToOlo?: false;
+} & BaseTopic;
+
+type OloTopic = {
+  hasIMTR: false;
+  intro?: string;
+  redirectToOlo?: false;
+} & BaseTopic;
+
+type RedirectToOloTopic = {
+  hasIMTR: false;
+  redirectToOlo: true;
+  intro?: undefined;
+} & BaseTopic;
+
+/**
+ * Merge the different topic types
+ *
+ * hasIMTR: If topic has an imtr-file. If `false` it's olo/olo-redirect flow
+ * intro: The name of the component that has all texts on the Intro page
+ * name: The name of the checker/topic
+ * redirectToOlo: If this flow should redirect the user to OLO
+ * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
+ * text: This is part that holds specific texts for each permit-checker
+ */
+export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 
 type OloUrlProps = {
   houseNumber: string;
@@ -49,15 +68,6 @@ export const generateOloUrl = ({
 };
 
 export const topics: Topic[] = [
-  {
-    hasIMTR: false,
-    name: "Kappen of snoeien",
-    redirectToOlo: true,
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "Vergunningcheck kappen of snoeien",
-    },
-  },
   {
     hasIMTR: true,
     intro: "DakkapelIntro",
@@ -138,9 +148,13 @@ export const topics: Topic[] = [
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },
   },
+  {
+    hasIMTR: false,
+    name: "Kappen of snoeien",
+    redirectToOlo: true,
+    slug: "kappen-of-snoeien",
+    text: {
+      heading: "Vergunningcheck kappen of snoeien",
+    },
+  },
 ];
-
-// @TODO: replace this with i18n
-export const requiredFieldText: string = "Verplicht veld is niet ingevuld";
-
-export const requiredFieldRadio: string = "Maak een keuze";

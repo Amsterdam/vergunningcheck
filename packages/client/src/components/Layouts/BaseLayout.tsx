@@ -1,25 +1,32 @@
-import { Column, FormTitle, Row } from "@amsterdam/asc-ui";
-import React, { useContext } from "react";
+import { Column, FormTitle, Heading, Row } from "@amsterdam/asc-ui";
+import React from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 import { HideForPrint } from "../../atoms";
 import { Topic } from "../../config";
-import { CheckerContext } from "../../context";
+import { findTopicBySlug } from "../../utils";
 import DebugVariables from "../DebugVariables";
 import Footer from "../Footer";
 import Header from "../Header";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
-export interface BaseLayoutProps {
-  checker?: object;
-  children: React.ReactNode;
-  heading: String;
-}
+export type BaseLayoutProps = {
+  heading?: String;
+  formTitle?: String;
+};
 
-function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const checkerContext = useContext(CheckerContext);
-  const topic = checkerContext.topic as Topic; // topic can be null here.
-  const title = heading || topic?.text.heading;
+const BaseLayout: React.FC<BaseLayoutProps> = ({
+  children,
+  heading: headingProp,
+  formTitle: formTitleProp,
+}) => {
+  const { slug } = useParams<{ slug: string }>();
+  const topic = findTopicBySlug(slug) as Topic;
+  const { hasIMTR, name, text } = topic || {};
+  const formTitle = formTitleProp || text?.heading;
+
+  const heading = hasIMTR && name ? name : headingProp;
 
   return (
     <Container>
@@ -40,7 +47,12 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             }}
           >
             <Content>
-              {title && <FormTitle>{title}</FormTitle>}
+              {formTitle && <FormTitle>{formTitle}</FormTitle>}
+              {heading && (
+                <Heading forwardedAs="h2" gutterBottom={16} styleAs="h1">
+                  {heading}
+                </Heading>
+              )}
               {children}
 
               <HideForPrint>
@@ -69,6 +81,6 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
       </HideForPrint>
     </Container>
   );
-}
+};
 
 export default BaseLayout;

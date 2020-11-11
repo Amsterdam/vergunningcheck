@@ -1,14 +1,14 @@
 import { Paragraph } from "@amsterdam/asc-ui";
+import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
-import { removeQuotes } from "../utils";
-import ConclusionAlert from "./ConclusionAlert";
+import QuestionAlert from "./QuestionAlert";
 
 type QuestionAnswerProps = {
-  disabled: boolean;
+  disabled?: boolean;
   questionNeedsContactExit?: boolean;
-  showConclusionAlert: boolean;
+  showQuestionAlert: boolean;
   userAnswer: string;
 };
 
@@ -18,17 +18,18 @@ const QuestionAnswer: React.FC<
   disabled,
   onClick,
   questionNeedsContactExit,
-  showConclusionAlert,
+  showQuestionAlert,
   userAnswer,
 }) => {
+  if (!userAnswer) return null;
   return (
     <>
       <Paragraph gutterBottom={0}>
-        <TextToEdit>{removeQuotes(userAnswer)}</TextToEdit>
+        <TextToEdit>{removeQuotes(userAnswer.toString())}</TextToEdit>
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
-      {showConclusionAlert && (
-        <ConclusionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
+      {showQuestionAlert && (
+        <QuestionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
       )}
     </>
   );

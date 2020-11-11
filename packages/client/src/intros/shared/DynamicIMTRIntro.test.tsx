@@ -16,10 +16,12 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on questions but not situation", () => {
     const { getByText } = render(
       <DynamicIMTRIntro
-        checker={{
-          _getUpcomingQuestions: () => [notNull],
-          getAutofillDataNeeds: () => [],
-        }}
+        checker={
+          {
+            _getUpcomingQuestions: () => [notNull],
+            getAutofillDataNeeds: () => [],
+          } as any
+        }
       />
     );
     getByText(/Uw antwoorden bepalen/);
@@ -27,10 +29,12 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on question and situation", () => {
     const { getByText } = render(
       <DynamicIMTRIntro
-        checker={{
-          _getUpcomingQuestions: () => [notNull],
-          getAutofillDataNeeds: () => [notNull],
-        }}
+        checker={
+          {
+            _getUpcomingQuestions: () => [notNull],
+            getAutofillDataNeeds: () => [notNull],
+          } as any
+        }
       />
     );
     getByText(/Uw situatie en uw antwoorden bepalen/);
@@ -38,10 +42,12 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on situation and no questions", () => {
     const { getByText } = render(
       <DynamicIMTRIntro
-        checker={{
-          _getUpcomingQuestions: () => [],
-          getAutofillDataNeeds: () => [notNull],
-        }}
+        checker={
+          {
+            _getUpcomingQuestions: () => [],
+            getAutofillDataNeeds: () => [notNull],
+          } as any
+        }
       />
     );
     getByText(/Uw situatie bepaalt/);
@@ -49,10 +55,12 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on neither situation or questions", () => {
     const { queryByTestId } = render(
       <DynamicIMTRIntro
-        checker={{
-          _getUpcomingQuestions: () => [],
-          getAutofillDataNeeds: () => [],
-        }}
+        checker={
+          {
+            _getUpcomingQuestions: () => [],
+            getAutofillDataNeeds: () => [],
+          } as any
+        }
       />
     );
     expect(queryByTestId(INTRO_USER_INFLUENCE)).not.toBeInTheDocument();

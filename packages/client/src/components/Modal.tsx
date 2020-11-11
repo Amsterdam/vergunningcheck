@@ -19,15 +19,14 @@ import {
 } from "./ModalStyles";
 
 type ModalProps = {
-  children: React.ReactNode;
   closeButtonText?: string;
   closeModalAfterConfirm?: boolean;
   confirmText?: string;
-  handleConfirmButton?: Function;
-  handleOpenModal?: Function;
+  handleConfirmButton?: () => void;
+  handleOpenModal?: () => void;
   heading: string;
-  onClick?: Function;
-  openButtonRenderer?: Function;
+  onClick?: () => void;
+  openButtonRenderer?: (props: { openModal: () => void }) => void;
   openButtonText?: string;
   showCloseButton?: boolean;
   showConfirmButton?: boolean;

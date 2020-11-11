@@ -12,19 +12,17 @@ import { Topic, generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { SessionContext, SessionDataType } from "../../context";
 import withChecker from "../../hoc/withChecker";
-import withTracking from "../../hoc/withTracking";
+import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { geturl, routes } from "../../routes";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 
 export type OloLocationResultProps = {
-  matomoTrackEvent: Function;
   topic: Topic;
 };
 
-const OloLocationResult: React.FC<OloLocationResultProps> = ({
-  matomoTrackEvent,
-  topic,
-}) => {
+const OloLocationResult: React.FC<
+  OloLocationResultProps & MatomoTrackEventProps
+> = ({ matomoTrackEvent, topic }) => {
   const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
     SessionContext
   );
@@ -57,7 +55,7 @@ const OloLocationResult: React.FC<OloLocationResultProps> = ({
   };
 
   return (
-    <Layout heading={text.heading}>
+    <Layout>
       <Helmet>
         <title>Adresgegevens - {text.heading}</title>
       </Helmet>

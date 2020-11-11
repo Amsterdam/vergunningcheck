@@ -4,18 +4,19 @@ import {
   MUNICIPAL_MONUMENT,
   NATIONAL_CITY_SCAPE,
   MUNICIPAL_CITY_SCAPE,
-  RestrictionFixture,
+  RestrictionProperty,
 } from "./restriction";
 import { random } from "./util";
 
-const byProps = (props) => {
-  const fixture = random(getFixturesByProperties(props)) as RestrictionFixture;
-  return fixture && fixture[2];
+const byProps = (props: RestrictionProperty[] | null) => {
+  const res = getFixturesByProperties(props);
+  const x = random(res);
+  return x ? x[2] : [];
 };
 
 describe("restrictions", () => {
   test("non restricted", () => {
-    expect(byProps(null)).toEqual(undefined);
+    expect(byProps(null)).toEqual([]);
   });
 
   describe("monuments", () => {

@@ -1,14 +1,14 @@
-const debug = require("debug")("graphql:loaders:monument");
 const { withCache, fetchJson, getUrl } = require("../../util");
 const {
   monument: config,
   CACHE_TIMEOUT,
   HOST,
 } = require("../../../config").loaders.datapunt;
+
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
-let loader = {
+const loader = {
   reducer: ({ monumentstatus }) => {
     if (!monumentstatus) {
       throw new Error("Monument status not found!");
@@ -23,13 +23,11 @@ let loader = {
           : "MUNICIPAL_MONUMENT",
     };
   },
-  load: (id) => {
-    return fetchJson(getUrl(`${URL}monumenten/${id}`)).then(loader.reducer);
-  },
+  fetch: (key) =>
+    fetchJson(getUrl(`${URL}monumenten/${key}/`)).then(loader.reducer),
   cached: (key) =>
-    withCache(`momument:monument:${key}`, () => loader.load(key), TTL),
-};
-
-module.exports = {
+    withCache(`momument:monument:${key}`, () => loader.fetch(key), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
+
+module.exports = loader;

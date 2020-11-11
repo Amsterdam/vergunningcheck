@@ -4,17 +4,18 @@ import { useHistory } from "react-router-dom";
 import withTracking from "../../hoc/withTracking";
 import BaseLayout from "./BaseLayout";
 
-interface DefaultLayoutProps {
-  heading: string;
-  children: React.ReactNode;
-  matomoPageView: Function;
-}
+type DefaultLayoutProps = {
+  heading?: string;
+  matomoPageView: () => void;
+  formTitle?: string;
+};
 
-function DefaultLayout({
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   heading,
   children,
   matomoPageView,
-}: DefaultLayoutProps) {
+  formTitle,
+}) => {
   const { location } = useHistory();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function DefaultLayout({
     //eslint-disable-next-line
   }, [location.pathname]);
 
-  return <BaseLayout {...{ heading, children }} />;
-}
+  return <BaseLayout {...{ children, heading, formTitle }} />;
+};
 
 export default withTracking(DefaultLayout);

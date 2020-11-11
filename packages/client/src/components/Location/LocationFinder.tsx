@@ -1,15 +1,17 @@
 import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
-import { useQuery } from "@apollo/client";
+import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { requiredFieldText } from "../../config";
+import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
+import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import useDebounce from "../../hooks/useDebounce";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
-import AutoSuggestList from "../AutoSuggestList";
+import AutoSuggestList, { Option } from "../AutoSuggestList";
 import LocationLoading from "./LocationLoading";
 import LocationNotFound from "./LocationNotFound";
 import { LocationTextField } from "./LocationStyles";
@@ -27,15 +29,16 @@ const isTrueExactMatch = (
   houseNumberFull &&
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
-const LocationFinder: React.FC<{
+type LocationFinderProps = {
   focus: boolean;
-  matomoTrackEvent: Function;
   sessionAddress: any; // @TODO replace any with address type.
-  setAddress: Function;
-  setErrorMessage: Function;
-  setFocus: Function;
-  topic: any; //@TODO: Replace it with IMTR-Client's TopicType
-}> = ({
+  setAddress: (address: object) => void;
+  setErrorMessage: (error: ApolloError | undefined) => void;
+  setFocus: (focus: boolean) => void;
+  topic: Topic; // TODO: Remove topic from this component.
+};
+
+const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   focus,
   matomoTrackEvent,
   sessionAddress,
@@ -44,6 +47,7 @@ const LocationFinder: React.FC<{
   setFocus,
   topic,
 }) => {
+  const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
   const [postalCode, setPostalCode] = useState<string>(
     sessionAddress.postalCode
@@ -72,12 +76,13 @@ const LocationFinder: React.FC<{
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
-        return requiredFieldText;
+        return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
         return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
     }
+    return undefined;
   };
 
   // Error messages
@@ -158,7 +163,7 @@ const LocationFinder: React.FC<{
   };
 
   // AutoSuggest
-  const handleAutoSuggestSelect = (option: { value: string }) => {
+  const handleAutoSuggestSelect = (option: Option) => {
     const { value } = option;
     setShowResult(false);
     debouncedUpdateResult();
@@ -297,7 +302,6 @@ const LocationFinder: React.FC<{
               <LocationSummary
                 addressFromLocation={exactMatch}
                 isBelowInputFields
-                matomoTrackEvent={matomoTrackEvent}
                 showTitle
                 topic={topic}
               />

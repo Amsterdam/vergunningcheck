@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 27,
+      "version": 30,
       "name": "Conclusie Ketentest - Boom kappen of snoeien",
       "questions": [
         {
@@ -49,37 +49,11 @@
           "prio": 50
         }
       ],
-      "inputs": {
-        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
-          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
-          "type": "string"
-        },
-        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
-          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
-          "type": "string"
-        },
-        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
-          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
-          "type": "string"
-        },
-        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
-          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
-          "type": "boolean"
-        },
-        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
-          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_d2b1781a-c211-43cf-bbc7-5a7b6a771c61": {
+        "_1a82d24d-a2e3-4767-8a8c-5adbe41c7da3": {
           "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
           "decisionTable": {
             "rules": [
-              {
-                "inputs": ["\"struik\""],
-                "output": "\"NeemContactOpMet\""
-              },
               {
                 "inputs": ["\"weet niet\""],
                 "output": "\"NeemContactOpMet\""
@@ -87,11 +61,15 @@
               {
                 "inputs": ["\"boom\""],
                 "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"struik\""],
+                "output": "\"no hit\""
               }
             ]
           }
         },
-        "_e1bb3a62-3ed7-4b03-be11-a75aaa823241": {
+        "_3fcb06fe-db16-44c4-a1d9-b236c57588e7": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955"
@@ -117,7 +95,7 @@
             ]
           }
         },
-        "_163e2fc4-4577-4767-a39d-26720c274a5d": {
+        "_c17b32ab-1117-4a30-ac94-06eccdee152d": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -164,7 +142,7 @@
             ]
           }
         },
-        "_49af1a92-db77-462e-b1d2-388786947630": {
+        "_ce87a864-45c2-4188-9097-019482dca4ea": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -214,7 +192,7 @@
             ]
           }
         },
-        "_b78de9c9-e445-45f2-8a7b-09f1d8e3b945": {
+        "_2592d8f6-d4a1-4579-ba71-6f563508d859": {
           "requiredInputs": [
             "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
             "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
@@ -273,11 +251,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d2b1781a-c211-43cf-bbc7-5a7b6a771c61",
-            "#_e1bb3a62-3ed7-4b03-be11-a75aaa823241",
-            "#_163e2fc4-4577-4767-a39d-26720c274a5d",
-            "#_49af1a92-db77-462e-b1d2-388786947630",
-            "#_b78de9c9-e445-45f2-8a7b-09f1d8e3b945"
+            "#_1a82d24d-a2e3-4767-8a8c-5adbe41c7da3",
+            "#_3fcb06fe-db16-44c4-a1d9-b236c57588e7",
+            "#_c17b32ab-1117-4a30-ac94-06eccdee152d",
+            "#_ce87a864-45c2-4188-9097-019482dca4ea",
+            "#_2592d8f6-d4a1-4579-ba71-6f563508d859"
           ],
           "decisionTable": {
             "rules": [
@@ -313,6 +291,28 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
+          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "type": "string"
+        },
+        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
+          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "type": "string"
+        },
+        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
+          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "type": "string"
+        },
+        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
+          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "type": "boolean"
+        },
+        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
+          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "type": "string"
         }
       }
     }

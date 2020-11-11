@@ -15,17 +15,6 @@ import {
 import AddressLines from "../AddressLines";
 import EditLocationModal from "./EditLocationModal";
 
-type LocationSummaryProps = {
-  addressFromLocation?: any;
-  isBelowInputFields?: boolean;
-  matomoTrackEvent?: Function;
-  resetChecker?: Function;
-  setActiveState?: Function;
-  showEditLocationModal?: boolean;
-  showTitle?: boolean;
-  topic: Topic;
-};
-
 const StyledList = styled(List)<{
   isBelowInputFields?: boolean;
   noMarginBottom?: boolean;
@@ -55,6 +44,15 @@ const StyledListItem = styled(ListItem)`
   left: ${themeSpacing(1)};
 `;
 
+type LocationSummaryProps = {
+  addressFromLocation?: any;
+  isBelowInputFields?: boolean;
+  resetChecker?: () => void;
+  showEditLocationModal?: boolean;
+  showTitle?: boolean;
+  topic: Topic; // TODO: Replace with react-hook
+};
+
 const LocationSummary: React.FC<LocationSummaryProps> = ({
   addressFromLocation,
   isBelowInputFields,
@@ -63,8 +61,8 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
   showTitle,
   topic,
 }) => {
+  // TODO: replace with react hooks
   const { hasIMTR, slug } = topic;
-  // @TODO: replace with custom topic hooks
   const sessionContext = useContext<SessionDataType>(SessionContext);
   const address = addressFromLocation
     ? addressFromLocation

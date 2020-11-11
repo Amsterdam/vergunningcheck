@@ -41,22 +41,8 @@
           "uuid": "kozijn - onderhoud2"
         }
       ],
-      "inputs": {
-        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
-          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
-          "type": "string"
-        },
-        "input_dbf957ae-3d1e-4713-8454-34406ca722c8": {
-          "href": "#uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
-          "type": "string"
-        },
-        "input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2": {
-          "href": "#uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_b41e0a5a-06ad-4c18-9485-1744ba3c09ca": {
+        "_31ea7e34-4d8f-4c8c-a1ba-d285e1b2d8a1": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input_dbf957ae-3d1e-4713-8454-34406ca722c8"
@@ -91,7 +77,7 @@
             ]
           }
         },
-        "_c077b897-cf16-44c8-9994-df1d8b83c697": {
+        "_ee1bea83-f414-4a65-8c78-7332c893e8b2": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input_dbf957ae-3d1e-4713-8454-34406ca722c8",
@@ -140,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_b41e0a5a-06ad-4c18-9485-1744ba3c09ca",
-            "#_c077b897-cf16-44c8-9994-df1d8b83c697"
+            "#_31ea7e34-4d8f-4c8c-a1ba-d285e1b2d8a1",
+            "#_ee1bea83-f414-4a65-8c78-7332c893e8b2"
           ],
           "decisionTable": {
             "rules": [
@@ -162,6 +148,20 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
+          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
+          "type": "string"
+        },
+        "input_dbf957ae-3d1e-4713-8454-34406ca722c8": {
+          "href": "#uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
+          "type": "string"
+        },
+        "input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2": {
+          "href": "#uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
+          "type": "string"
         }
       }
     }

@@ -1,15 +1,23 @@
-import { Heading, Paragraph, themeSpacing } from "@amsterdam/asc-ui";
+import { Heading, themeSpacing } from "@amsterdam/asc-ui";
+import { imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
+import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
-const ConclusionOutcomeWrapper = styled.div`
+const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
   margin-bottom: ${themeSpacing(9)};
+
+  ${({ showDiscaimer }) =>
+    showDiscaimer &&
+    css`
+      margin-bottom: ${themeSpacing(10)};
+    `};
 `;
 
 type ConclusionContentProps = {
@@ -23,13 +31,15 @@ type ConclusionContentProps = {
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
   matomoTrackEvent: Function;
+  outcomeType: string; // @TODO: maybe define imtrOutcomes types and import from imtr-client?
+  showDiscaimer?: boolean;
 };
 
-const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
-  conclusionContent,
-  matomoTrackEvent,
-}) => {
+const ConclusionOutcome: React.FC<
+  ConclusionOutcomeProps & MatomoTrackEventProps
+> = ({ conclusionContent, matomoTrackEvent, outcomeType, showDiscaimer }) => {
   const { footerContent, mainContent, title } = conclusionContent;
+
   useEffect(() => {
     matomoTrackEvent({
       action: actions.CONCLUSION_OUTCOME,
@@ -47,11 +57,8 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
   };
 
   return (
-    <ConclusionOutcomeWrapper>
-      <Paragraph gutterBottom={isMobile ? 16 : 20}>
-        U bent klaar met de vergunningcheck. Dit is de uitkomst:
-      </Paragraph>
-
+    <ConclusionOutcomeWrapper {...{ showDiscaimer }}>
+      <ComponentWrapper marginBottom={16} />
       <ComponentWrapper marginBottom={24}>
         <Heading forwardedAs="h2">{title}</Heading>
       </ComponentWrapper>
@@ -62,11 +69,11 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
         {!isIE && !isMobile && (
           <PrintButton
             data-testid={PRINT_BUTTON}
-            marginBottom={32}
+            marginBottom={outcomeType === imtrOutcomes.PERMIT_FREE ? 32 : 40}
             onClick={handlePrintButton}
             variant="textButton"
           >
-            Conclusie opslaan
+            Uitkomst opslaan
           </PrintButton>
         )}
       </HideForPrint>
@@ -77,6 +84,7 @@ const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
 
       <HideForPrint>
         <NewCheckerModal />
+        {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
       </HideForPrint>
     </ConclusionOutcomeWrapper>
   );
