@@ -29,7 +29,7 @@ const EditLocationModal: React.FC<
   const handleConfirmButton = () => {
     matomoTrackEvent({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION} ${eventNames.FROM} ${sessionContext[slug].activeComponents[0]}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION} ${eventNames.FROM} ${sessionContext[slug]?.activeComponents[0]}`,
     });
 
     sessionContext.resetSessionData(slug);
