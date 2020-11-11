@@ -18,5 +18,5 @@ module.exports = {
   client,
   enabled: !!client,
   getAsync,
-  setSync: client.set,
+  setSync: client && client.set.bind(client),
 };
