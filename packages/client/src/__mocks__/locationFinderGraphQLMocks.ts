@@ -2,25 +2,25 @@ import { loader } from "graphql.macro";
 const findAddress = loader("../components/Location/LocationFinder.graphql");
 
 export default [
-  {
-    request: {
-      query: findAddress,
-      variables: {
-        extraHouseNumberFull: "",
-        houseNumberFull: "1",
-        postalCode: "1055XD",
-        queryExtra: false,
-      },
-    },
-    result: {
-      data: {
-        findAddress: {
-          exactMatch: null,
-          matches: [],
-        },
-      },
-    },
-  },
+  // {
+  //   request: {
+  //     query: findAddress,
+  //     variables: {
+  //       extraHouseNumberFull: "",
+  //       houseNumberFull: "1",
+  //       postalCode: "1055XD",
+  //       queryExtra: false,
+  //     },
+  //   },
+  //   result: {
+  //     data: {
+  //       "findAddress": {
+  //         "exactMatch": null,
+  //         "matches": []
+  //       }
+  //     },
+  //   },
+  // },
   {
     request: {
       query: findAddress,
@@ -35,73 +35,61 @@ export default [
       data: {
         findAddress: {
           exactMatch: null,
-          matches: [
+          "matches": [
             {
-              __typename: "Address",
-              id: "MDM2MzAxMDAxMjA2MjEzNA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
-              houseNumber: 19,
-              houseNumberFull: "19 A",
-              residence: "Amsterdam",
-              districtName: "Landlust",
-              neighborhoodName: "Landlust Noord",
+              "__typename": "Address",
+              "id": "MDM2MzAxMDAxMjA2MjEzNA==",
+              "houseNumber": 19,
+              "houseNumberFull": "19 A",
+              "postalCode": "1055XD",
+              "residence": "Amsterdam",
+              "streetName": "Louise de Colignystraat"
             },
             {
-              __typename: "Address",
-              id: "MDM2MzAxMDAxMjA2MjA0Mw==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
-              houseNumber: 19,
-              houseNumberFull: "19 B",
-              residence: "Amsterdam",
-              districtName: "Landlust",
-              neighborhoodName: "Landlust Noord",
+              "__typename": "Address",
+              "id": "MDM2MzAxMDAxMjA2MjA0Mw==",
+              "houseNumber": 19,
+              "houseNumberFull": "19 B",
+              "postalCode": "1055XD",
+              "residence": "Amsterdam",
+              "streetName": "Louise de Colignystraat"
             },
             {
-              __typename: "Address",
-              id: "MDM2MzAxMDAxMjA2MjA2NA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
-              houseNumber: 19,
-              houseNumberFull: "19 C",
-              residence: "Amsterdam",
-              districtName: "Landlust",
-              neighborhoodName: "Landlust Noord",
+              "__typename": "Address",
+              "id": "MDM2MzAxMDAxMjA2MjA2NA==",
+              "houseNumber": 19,
+              "houseNumberFull": "19 C",
+              "postalCode": "1055XD",
+              "residence": "Amsterdam",
+              "streetName": "Louise de Colignystraat"
             },
             {
-              __typename: "Address",
-              id: "MDM2MzAxMDAxMjA2MjA2Mg==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
-              houseNumber: 19,
-              houseNumberFull: "19 D",
-              residence: "Amsterdam",
-              districtName: "Landlust",
-              neighborhoodName: "Landlust Noord",
+              "__typename": "Address",
+              "id": "MDM2MzAxMDAxMjA2MjA2Mg==",
+              "houseNumber": 19,
+              "houseNumberFull": "19 D",
+              "postalCode": "1055XD",
+              "residence": "Amsterdam",
+              "streetName": "Louise de Colignystraat"
             },
             {
-              __typename: "Address",
-              id: "MDM2MzAxMDAxMjA2MjA4Ng==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
-              houseNumber: 19,
-              houseNumberFull: "19 E",
-              residence: "Amsterdam",
-              districtName: "Landlust",
-              neighborhoodName: "Landlust Noord",
+              "__typename": "Address",
+              "id": "MDM2MzAxMDAxMjA2MjA4Ng==",
+              "houseNumber": 19,
+              "houseNumberFull": "19 E",
+              "postalCode": "1055XD",
+              "residence": "Amsterdam",
+              "streetName": "Louise de Colignystraat"
             },
             {
-              __typename: "Address",
-              id: "MDM2MzAxMDAxMjA2MjA4NA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
-              houseNumber: 19,
-              houseNumberFull: "19 F",
-              residence: "Amsterdam",
-              districtName: "Landlust",
-              neighborhoodName: "Landlust Noord",
-            },
+              "__typename": "Address",
+              "id": "MDM2MzAxMDAxMjA2MjA4NA==",
+              "houseNumber": 19,
+              "houseNumberFull": "19 F",
+              "postalCode": "1055XD",
+              "residence": "Amsterdam",
+              "streetName": "Louise de Colignystraat"
+            }
           ],
         },
       },
@@ -122,39 +110,35 @@ export default [
         findAddress: {
           __typename: "",
           exactMatch: {
-            __typename: "Address",
-            id: "MDM2MzAxMDAxMjA2MjA2NA==",
-            streetName: "Louise de Colignystraat",
-            postalCode: "1055XD",
-            houseNumber: 19,
-            houseNumberFull: "19 C",
-            residence: "Amsterdam",
-            districtName: "Landlust",
-            neighborhoodName: "Landlust Noord",
-            restrictions: [
+            "__typename": "Address",
+            "id": "MDM2MzAxMDAxMjA2MjA2NA==",
+            "houseNumber": 19,
+            "houseNumberFull": "19 C",
+            "postalCode": "1055XD",
+            "residence": "Amsterdam",
+            "streetName": "Louise de Colignystraat",
+            "restrictions": [
               {
-                __typename: "Monument",
-                name: "Gemeentelijk monument",
-              },
+                "__typename": "Monument",
+                "name": "Gemeentelijk monument"
+              }
             ],
-            zoningPlans: [
+            "districtName": "Landlust",
+            "neighborhoodName": "Landlust Noord",
+            "zoningPlans": [
               {
-                __typename: "",
-                name: "Paraplubestemmingsplan Stadsdeel West",
+                "name": "Paraplubestemmingsplan Stadsdeel West"
               },
               {
-                __typename: "",
-                name: "Landlust en Gibraltarbuurt",
+                "name": "Aanpassen geluidzone Westpoort en Hoogtij"
               },
               {
-                __typename: "",
-                name: "Aanpassen geluidzone Westpoort en Hoogtij",
+                "name": "Landlust en Gibraltarbuurt"
               },
               {
-                __typename: "",
-                name: "Drijvende bouwwerken",
-              },
-            ],
+                "name": "Drijvende bouwwerken"
+              }
+            ]
           },
           matches: [],
         },
@@ -172,13 +156,12 @@ export default [
       },
     },
     result: {
-      data: null,
-      errors: [
-        {
-          stack: ["GraphQLError: ..."],
-          message: "...",
-        },
-      ],
-    },
+      "data": {
+        "findAddress": {
+          "exactMatch": null,
+          "matches": []
+        }
+      }
+    }
   },
 ];
