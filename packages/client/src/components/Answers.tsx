@@ -14,7 +14,7 @@ export type AnswerProps = {
 export type AnswersProps = {
   answers?: AnswerProps[];
   errors: any;
-  onChange: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   questionId: string;
   questionIndex: number;
   userAnswer?: string;

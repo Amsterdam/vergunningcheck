@@ -46,14 +46,19 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
             <Heading forwardedAs="h2">Topic Data</Heading>
             <Debug json={topicData} />
             <button
-              onClick={() => {
+              onClick={() =>
                 setTopicData({
                   finishedComponents: ["locatie invoer"],
                   activeComponents: ["vragen"],
+                  questionIndex: 0,
+                  answers: {},
                   address: {
                     __typename: "Address",
                     restrictions: [
-                      { __typename: "Monument", name: "Gemeentelijk monument" },
+                      {
+                        __typename: "Monument",
+                        name: "Gemeentelijk monument",
+                      },
                     ],
                     zoningPlans: [
                       {
@@ -80,8 +85,8 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
                     houseNumberFull: "19 C",
                     residence: "Amsterdam",
                   },
-                });
-              }}
+                })
+              }
             >
               update topic
             </button>

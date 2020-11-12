@@ -108,7 +108,7 @@ const Question: React.FC<QuestionProps> = ({
     requiredFieldRadio,
   ]);
 
-  const handleChange = (e: React.MouseEvent) => {
+  const handleChange = (e: React.FormEvent) => {
     const { name, type, value } = e.target as HTMLInputElement;
 
     // Save the changed answer to the question.
