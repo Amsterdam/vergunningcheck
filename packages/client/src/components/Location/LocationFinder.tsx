@@ -31,19 +31,21 @@ const isTrueExactMatch = (
 
 type LocationFinderProps = {
   focus: boolean;
+  hasError?: ApolloError;
   sessionAddress: any; // @TODO replace any with address type.
   setAddress: (address: object) => void;
-  setErrorMessage: (error: ApolloError | undefined) => void;
+  setError: (error: ApolloError | undefined) => void;
   setFocus: (focus: boolean) => void;
   topic: Topic; // TODO: Remove topic from this component.
 };
 
 const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   focus,
+  hasError,
   matomoTrackEvent,
   sessionAddress,
   setAddress,
-  setErrorMessage,
+  setError,
   setFocus,
   topic,
 }) => {
@@ -59,7 +61,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
     sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
-  const [currentError, setCurrentError] = useState<string | undefined>("");
+  // const [currentError, setCurrentError] = useState<string | undefined>("");
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   const variables = {
@@ -80,7 +82,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
         return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
-        return t("common.no valid postal code");
+        return t("common.no valid postalcode");
       }
     }
     return undefined;
@@ -148,15 +150,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   // GraphQL error
   useEffect(() => {
-    if (graphqlError && currentError !== graphqlError?.message) {
-      setErrorMessage(graphqlError);
-      setCurrentError(graphqlError?.message);
+    if (graphqlError && hasError?.message !== graphqlError?.message) {
+      setError(graphqlError);
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
     }
-  }, [currentError, graphqlError, matomoTrackEvent, setErrorMessage]);
+  }, [hasError, graphqlError, matomoTrackEvent, setError]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
@@ -204,6 +205,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const showLoading = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
+    !hasError &&
     !showAutoSuggest &&
     !showExactMatch &&
     !showLocationNotFound &&
@@ -223,14 +225,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
       setHouseNumber(parseInt(value));
       setHouseNumberFull(value);
 
-      if (value) {
+      if (value && !hasError) {
         // Allow references to the event to be retained
         event.persist();
         setShowResult(false);
         debouncedUpdateResult();
       }
     },
-    [debouncedUpdateResult]
+    [debouncedUpdateResult, hasError]
   );
 
   // @TODO: we can refactor this component by separating all inputs and input handles
@@ -290,7 +292,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={showLoading || loading} />
+      <LocationLoading loading={showLoading} />
 
       {showLocationNotFound && (
         <LocationNotFound matomoTrackEvent={matomoTrackEvent} />
