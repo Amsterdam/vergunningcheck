@@ -11,8 +11,6 @@ import QuestionAlert from "./QuestionAlert";
 const needPermitText = "Door dit antwoord hebt u een vergunning nodig.";
 const needContactText =
   "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.";
-const needReportText =
-  "Door dit antwoord heb je een meldingplicht (TEXT NOG UPDATEN!).";
 
 // @TODO: get this text from i18n
 
@@ -48,17 +46,5 @@ describe("QuestionAlert", () => {
 
     const component = screen.queryByTestId(QUESTION_ALERT);
     expect(component).toHaveStyleRule("margin-bottom", "1px");
-  });
-  it("renders NEED_REPORT variant correctly", () => {
-    render(<QuestionAlert outcomeType={clientOutcomes.NEED_REPORT} />);
-
-    const variant1 = screen.queryByText(needPermitText, { exact: false });
-    expect(variant1).not.toBeInTheDocument();
-
-    const variant2 = screen.queryByText(needContactText, { exact: false });
-    expect(variant2).not.toBeInTheDocument();
-
-    const variant3 = screen.queryByText(needReportText, { exact: false });
-    expect(variant3).toBeInTheDocument();
   });
 });

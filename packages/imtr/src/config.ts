@@ -1,4 +1,4 @@
-import { APIConfig } from "./types.ts";
+import { APIConfig } from "./types";
 
 export const apis: APIConfig[] = [
   {
