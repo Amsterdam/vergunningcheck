@@ -3,13 +3,15 @@
  * The value is the keyword (lowercased substring) to look for
  **/
 const autoFillMap = {
-  cityScape: "dorpsgezicht",
+  cityScape: "ligt het gebouw in een beschermd stads-",
+  cityScapeSlopen: "ligt het adres waar u wilt slopen in een beschermd stads-",
   /*
    * The word 'monument' is used in both the boolean and list version of the
    * monument question
    **/
   monumentBoolean: "gemeentelijk of rijksmonument",
   monumentList: "gebouw een monument",
+  monumentOnAddress: "staat er een monument op het adres",
 };
 
 /**
@@ -19,7 +21,9 @@ const autoFillMap = {
  * Example:
  *  getAutofill("MONUMENT-dakkapel") returns "monument"
  */
-export const getAutofillResolverKey = (questionText: string): string | undefined => {
+export const getAutofillResolverKey = (
+  questionText: string
+): string | undefined => {
   const normalizedIdentifier = questionText.toLowerCase();
   const autofillMapEntries = Object.entries(autoFillMap);
   const firstAutofillEntry = autofillMapEntries.find(
