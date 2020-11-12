@@ -130,15 +130,6 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasIMTR: true,
-    name: "meerdere uitkomsten",
-    slug: "uitkomst",
-    text: {
-      heading: "Vergunningcheck meerdere uitkomsten",
-      locationIntro: "",
-    },
-  },
-  {
     hasIMTR: false,
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
