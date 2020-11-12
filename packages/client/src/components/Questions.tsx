@@ -215,37 +215,32 @@ const Questions: React.FC<
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
   const permitsPerQuestion = [] as string[];
-  checker.isConclusive() &&
-    checker.permits.forEach((permit: Permit) => {
-      const conclusionDecision = permit.getDecisionById("dummy");
+  checker.permits.forEach((permit: Permit) => {
+    const conclusionDecision = permit.getDecisionById("dummy");
 
-      if (conclusionDecision) {
-        let outcomeType = "";
-        if (conclusionDecision.getOutput() === imtrOutcomes.NEED_CONTACT) {
-          outcomeType = clientOutcomes.NEED_CONTACT;
-        } else if (
-          conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT
-        ) {
-          outcomeType = clientOutcomes.NEED_PERMIT;
-        } else if (
-          conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT
-        ) {
-          outcomeType = clientOutcomes.NEED_REPORT;
-        }
-
-        if (outcomeType) {
-          const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
-
-          decisiveDecisions.forEach((decision) => {
-            const decisiveQuestion = decision
-              .getDecisiveInputs()
-              .pop() as ImtrQuestion;
-            const index = checker.stack.indexOf(decisiveQuestion);
-            permitsPerQuestion[index] = outcomeType;
-          });
-        }
+    if (conclusionDecision) {
+      let outcomeType = "";
+      if (conclusionDecision.getOutput() === imtrOutcomes.NEED_CONTACT) {
+        outcomeType = clientOutcomes.NEED_CONTACT;
+      } else if (conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT) {
+        outcomeType = clientOutcomes.NEED_PERMIT;
+      } else if (conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT) {
+        outcomeType = clientOutcomes.NEED_REPORT;
       }
-    });
+
+      if (outcomeType) {
+        const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
+
+        decisiveDecisions.forEach((decision) => {
+          const decisiveQuestion = decision
+            .getDecisiveInputs()
+            .pop() as ImtrQuestion;
+          const index = checker.stack.indexOf(decisiveQuestion);
+          permitsPerQuestion[index] = outcomeType;
+        });
+      }
+    }
+  });
 
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
