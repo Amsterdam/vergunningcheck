@@ -1,4 +1,4 @@
-import { Heading, ListItem, Paragraph } from "@amsterdam/asc-ui";
+import { Heading, ListItem } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { List } from "../../atoms/index";
@@ -6,11 +6,9 @@ import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
 
 const NoPermitDescription: React.FC = () => (
   <>
-    <Paragraph data-testid={NO_PERMIT_NEEDED}>
-      U moet wel op een aantal dingen letten voordat u gaat beginnen. Uw
-      aannemer kan u daarbij helpen.
-    </Paragraph>
-    <Heading forwardedAs="h3">Dit is waar u verder op moet letten:</Heading>
+    <Heading forwardedAs="h3" data-testid={NO_PERMIT_NEEDED}>
+      Dit is waar u verder op moet letten:
+    </Heading>
     <List variant="bullet">
       <ListItem>
         U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit
