@@ -13,7 +13,6 @@ export const apis: APIConfig[] = [
         "bxBCdnrFZSbwxgmxC",
         "2eYY7McaiRgfnERo9",
       ],
-      uitkomst: ["Xm2WwYeGkNN9w6rgQ", "ND6Xr3uS4j2rmohkv"],
       "zonnepanelen-of-zonneboiler-plaatsen": [
         "TRhZrFexMjBW42Ky6",
         "skPG9qqTqWyX9tSY7",
