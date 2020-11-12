@@ -57,10 +57,9 @@ export const eventNames = {
   COOKIES: "cookies op deze site",
   DESCRIPTION: "toelichting vraag",
   DO_ANOTHER_CHECK: "nog een vergunningcheck doen",
-  EDIT_ADDRESS: "wijzig adres", // Only used in OLO flow
+  EDIT_ADDRESS: "wijzig adres",
   FACEBOOK: "facebook",
   FORWARD: "ga naar",
-  FROM: "vanaf",
   GOTO_CONCLUSION: "naar conclusie",
   GOTO_LOCATION: "naar locatie",
   GOTO_NEXT_QUESTION: "naar volgende vraag",

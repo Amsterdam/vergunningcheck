@@ -59,6 +59,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
     sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
+  const [currentError, setCurrentError] = useState<string | undefined>("");
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   const variables = {
@@ -147,14 +148,15 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   // GraphQL error
   useEffect(() => {
-    if (graphqlError) {
+    if (graphqlError && currentError !== graphqlError?.message) {
       setErrorMessage(graphqlError);
+      setCurrentError(graphqlError?.message);
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
     }
-  }, [graphqlError, matomoTrackEvent, setErrorMessage]);
+  }, [currentError, graphqlError, matomoTrackEvent, setErrorMessage]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error

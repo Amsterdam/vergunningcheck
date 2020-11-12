@@ -138,7 +138,6 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
-            errorMessage,
             focus,
             matomoTrackEvent,
             sessionAddress,
