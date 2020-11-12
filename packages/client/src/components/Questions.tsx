@@ -218,8 +218,8 @@ const Questions: React.FC<
     checker.permits.forEach((permit: Permit) => {
       const conclusionDecision = permit.getDecisionById("dummy");
       if (
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
         conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT ||
+        conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
         conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT
       ) {
         const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
@@ -334,11 +334,7 @@ const Questions: React.FC<
         const showQuestionAlert = !!permitsPerQuestion[i];
 
         // Define the outcome type
-        const outcomeType = checker.needContactExit(q)
-          ? imtrOutcomes.NEED_CONTACT
-          : checker.needReportOutcome(q)
-          ? imtrOutcomes.NEED_REPORT
-          : imtrOutcomes.NEED_PERMIT;
+        const outcomeType = checker.getClientOutcomeType();
 
         return (
           <StepByStepItem
@@ -398,11 +394,7 @@ const Questions: React.FC<
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
         // Define the outcome type
-        const outcomeType = checker.needContactExit(q)
-          ? imtrOutcomes.NEED_CONTACT
-          : checker.needReportOutcome(q)
-          ? imtrOutcomes.NEED_REPORT
-          : imtrOutcomes.NEED_PERMIT;
+        const outcomeType = checker.getClientOutcomeType();
 
         return (
           <StepByStepItem

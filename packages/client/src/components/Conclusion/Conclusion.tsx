@@ -1,5 +1,9 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import { Checker, imtrOutcomes } from "@vergunningcheck/imtr-client";
+import {
+  Checker,
+  clientOutcomes,
+  imtrOutcomes,
+} from "@vergunningcheck/imtr-client";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -21,7 +25,14 @@ const ConclusionWrapper = styled.div`
     padding-bottom: ${themeSpacing(5)};
   }
 `;
-const { NEED_CONTACT, NEED_PERMIT, NEED_REPORT, PERMIT_FREE } = imtrOutcomes;
+
+const {
+  NEED_BOTH_PERMIT_AND_REPORT,
+  NEED_CONTACT,
+  NEED_PERMIT,
+  NEED_REPORT,
+  PERMIT_FREE,
+} = clientOutcomes;
 
 const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
   checker,
@@ -31,29 +42,20 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
 
   // Get all the outcomes to display
   const outcomes = checker.getOutcomesToDisplay();
-  const outcomeType = checker.outcomeType();
 
   // The "need contact" content comes from the IMTR file itself
+  const outcomeType = checker.getClientOutcomeType();
+  // This function can be moved to `imtr-client`
   const getNeedContactContent = outcomes.find(
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
-  // Check if the outcome has 'report'
-  const needReport = !!outcomes.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_REPORT
-  );
-  // Check if the outcome has 'needPermit'
-  const needPermit = !!outcomes.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
-  );
-
-  // @TODO: refactor this to outcomeType (outcomeTypes)
-  const needReportAndPermit = needReport && needPermit;
-
-  const NEED_PERMIT_AND_REPORT = `${NEED_PERMIT} ${NEED_REPORT}`;
-
   // Define the content for the Conclusion components
   const contents = {
+    [NEED_BOTH_PERMIT_AND_REPORT]: {
+      mainContent: <NeedReportAndPermitContent />,
+      title: "U hebt zowel een meldingsplicht als vergunnngsplicht.",
+    },
     [NEED_CONTACT]: {
       mainContent: (
         <Markdown
@@ -67,26 +69,22 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
       mainContent: <NeedPermitContent />,
       title: t("outcome.needPermit.you need a permit"),
     },
-    [PERMIT_FREE]: {
-      footerContent: <NoPermitDescription />,
-      title: t("outcome.permitFree.you dont need a permit"),
-    },
     [NEED_REPORT]: {
       mainContent: <NeedReportContent />,
       title: "U hebt een meldingsplicht.",
     },
-    [NEED_PERMIT_AND_REPORT]: {
-      mainContent: <NeedReportAndPermitContent />,
-      title: "U hebt zowel een meldingsplicht als vergunnngsplicht.",
+    [PERMIT_FREE]: {
+      footerContent: <NoPermitDescription />,
+      title: t("outcome.permitFree.you dont need a permit"),
     },
   };
 
-  const conclusionContent =
-    contents[needReportAndPermit ? NEED_PERMIT_AND_REPORT : outcomeType];
+  const conclusionContent = contents[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;
 
   if (!conclusionContent) {
-    return null;
+    // Convert this to a unit test
+    throw new Error("The contents have not been configured properly.");
   }
 
   return (

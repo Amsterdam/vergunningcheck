@@ -1,4 +1,4 @@
-import { imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { clientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { render } from "../utils/test-utils";
@@ -7,7 +7,7 @@ import QuestionAnswer from "./QuestionAnswer";
 it("QuestionAnswer renders correctly", () => {
   const { queryByText } = render(
     <QuestionAnswer
-      outcomeType={imtrOutcomes.NEED_PERMIT}
+      outcomeType={clientOutcomes.NEED_PERMIT}
       showQuestionAlert
       userAnswer="yes sir"
     />

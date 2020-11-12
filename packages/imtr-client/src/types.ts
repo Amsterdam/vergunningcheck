@@ -9,3 +9,10 @@ export type Outcome = {
   title: string;
   description?: string;
 };
+// @TODO: make the client work with this predefined type
+export type ClientOutcome =
+  | "NEED_BOTH_PERMIT_AND_REPORT"
+  | "NEED_CONTACT"
+  | "NEED_PERMIT"
+  | "NEED_REPORT"
+  | "PERMIT_FREE";

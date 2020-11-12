@@ -1,24 +1,29 @@
 import "jest-styled-components";
 
 import { ascDefaultTheme, themeSpacing } from "@amsterdam/asc-ui";
+import { clientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { QUESTION_ALERT } from "../utils/test-ids";
 import { render, screen } from "../utils/test-utils";
 import QuestionAlert from "./QuestionAlert";
 
-const textVariant1 = "Door dit antwoord hebt u een vergunning nodig";
-const textVariant2 =
+const needPermitText = "Door dit antwoord hebt u een vergunning nodig.";
+const needContactText =
   "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.";
+const needReportText =
+  "Door dit antwoord heb je een meldingplicht (TEXT NOG UPDATEN!).";
+
+// @TODO: get this text from i18n
 
 describe("QuestionAlert", () => {
-  xit("renders variant 1 correctly", () => {
-    render(<QuestionAlert outcomeType="need to update" />);
+  it("renders NEED_PERMIT variant correctly", () => {
+    render(<QuestionAlert outcomeType={clientOutcomes.NEED_PERMIT} />);
 
-    const variant1 = screen.queryByText(textVariant1, { exact: false });
+    const variant1 = screen.queryByText(needPermitText, { exact: false });
     expect(variant1).toBeInTheDocument();
 
-    const variant2 = screen.queryByText(textVariant2, { exact: false });
+    const variant2 = screen.queryByText(needContactText, { exact: false });
     expect(variant2).not.toBeInTheDocument();
 
     const component = screen.queryByTestId(QUESTION_ALERT);
@@ -27,16 +32,33 @@ describe("QuestionAlert", () => {
       themeSpacing(6)({ theme: ascDefaultTheme })
     );
   });
-  xit("renders variant 2 correctly", () => {
-    render(<QuestionAlert marginBottom={1} outcomeType="need to update" />);
+  it("renders NEED_CONTACT variant correctly", () => {
+    render(
+      <QuestionAlert
+        marginBottom={1}
+        outcomeType={clientOutcomes.NEED_CONTACT}
+      />
+    );
 
-    const variant1 = screen.queryByText(textVariant1, { exact: false });
+    const variant1 = screen.queryByText(needPermitText, { exact: false });
     expect(variant1).not.toBeInTheDocument();
 
-    const variant2 = screen.queryByText(textVariant2, { exact: false });
+    const variant2 = screen.queryByText(needContactText, { exact: false });
     expect(variant2).toBeInTheDocument();
 
     const component = screen.queryByTestId(QUESTION_ALERT);
     expect(component).toHaveStyleRule("margin-bottom", "1px");
+  });
+  it("renders NEED_REPORT variant correctly", () => {
+    render(<QuestionAlert outcomeType={clientOutcomes.NEED_REPORT} />);
+
+    const variant1 = screen.queryByText(needPermitText, { exact: false });
+    expect(variant1).not.toBeInTheDocument();
+
+    const variant2 = screen.queryByText(needContactText, { exact: false });
+    expect(variant2).not.toBeInTheDocument();
+
+    const variant3 = screen.queryByText(needReportText, { exact: false });
+    expect(variant3).toBeInTheDocument();
   });
 });

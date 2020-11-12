@@ -1,5 +1,5 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import { imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { clientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { HideForPrint } from "../atoms";
@@ -11,13 +11,17 @@ export type QuestionAlertProps = {
   outcomeType: string;
 };
 
+const { NEED_CONTACT, NEED_PERMIT, NEED_REPORT } = clientOutcomes;
+
+// @TODO: get this text from i18n
+
 const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,
   outcomeType,
 }) => (
   <QuestionAlertStyle data-testid={QUESTION_ALERT} marginBottom={marginBottom}>
     <Paragraph>
-      {outcomeType === imtrOutcomes.NEED_PERMIT && (
+      {outcomeType === NEED_PERMIT && (
         <>
           Door dit antwoord hebt u een vergunning nodig.{" "}
           <HideForPrint as="span">
@@ -26,9 +30,9 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
           </HideForPrint>
         </>
       )}
-      {outcomeType === imtrOutcomes.NEED_CONTACT &&
+      {outcomeType === NEED_CONTACT &&
         "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."}
-      {outcomeType === imtrOutcomes.NEED_REPORT &&
+      {outcomeType === NEED_REPORT &&
         "Door dit antwoord heb je een meldingplicht (TEXT NOG UPDATEN!)."}
     </Paragraph>
   </QuestionAlertStyle>
