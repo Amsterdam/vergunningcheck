@@ -9,9 +9,9 @@ export const apis: APIConfig[] = [
       "dakraam-plaatsen": ["hMwHKR7Wz4FP8Dm4x", "dRy4PfDs7jQPc9gMG"],
       "kozijnen-plaatsen": ["Xm2WwYeGkNN9w6rgQ", "5CJrbgbWZP6uZsouY"],
       "bouwwerk-slopen": [
-        "D4mccynMtNdzYGhXF",
         "bxBCdnrFZSbwxgmxC",
         "2eYY7McaiRgfnERo9",
+        "D4mccynMtNdzYGhXF",
       ],
       "zonnepanelen-of-zonneboiler-plaatsen": [
         "TRhZrFexMjBW42Ky6",
