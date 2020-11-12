@@ -398,35 +398,4 @@ export default class Checker {
       return clientOutcomes.PERMIT_FREE;
     }
   }
-
-  /**
-   * needReportOutcome (copy-paste from needContactExit)
-   * TODO: Refactor into one function? only `imtrOutcomes` is used
-   */
-  needReportOutcome(currentQuestion: Question): boolean {
-    return !!this.permits.find((permit) => {
-      const conclusion = permit.getDecisionById("dummy") as Decision;
-      const conclusionMatchingRules = conclusion.getMatchingRules();
-      const matchingRule = conclusionMatchingRules.find(
-        (rule) => rule.outputValue === imtrOutcomes.NEED_REPORT
-      );
-      if (matchingRule) {
-        // return true;
-        const decisiveDecisions = conclusion.getDecisiveInputs() as Decision[];
-
-        // find the needed decision
-        const neededDecision = decisiveDecisions.find((decision) =>
-          decision.rules.find(
-            (rule) => rule.outputValue === imtrOutcomes.NEED_REPORT
-          )
-        ) as Decision;
-
-        // get inputs from needed decision
-        const lastIndex = neededDecision.inputs.length - 1;
-        // if currentQuestion equals the last input in decision, it's a match
-        return neededDecision.inputs[lastIndex] === currentQuestion;
-      }
-      return false;
-    });
-  }
 }
