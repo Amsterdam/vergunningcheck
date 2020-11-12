@@ -11,31 +11,42 @@ export type QuestionAlertProps = {
   outcomeType: string;
 };
 
-const { NEED_CONTACT, NEED_PERMIT, NEED_REPORT } = clientOutcomes;
+const { NEED_CONTACT, NEED_PERMIT } = clientOutcomes;
 
-// @TODO: get this text from i18n
+// @TODO: get the texts from i18n
 
 const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,
   outcomeType,
-}) => (
-  <QuestionAlertStyle data-testid={QUESTION_ALERT} marginBottom={marginBottom}>
-    <Paragraph>
-      {outcomeType === NEED_PERMIT && (
-        <>
-          Door dit antwoord hebt u een vergunning nodig.{" "}
-          <HideForPrint as="span">
-            Als u een andere keuze maakt, hebt u misschien geen vergunning
-            nodig.
-          </HideForPrint>
-        </>
-      )}
-      {outcomeType === NEED_CONTACT &&
-        "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."}
-      {outcomeType === NEED_REPORT &&
-        "Door dit antwoord heb je een meldingplicht (TEXT NOG UPDATEN!)."}
-    </Paragraph>
-  </QuestionAlertStyle>
-);
+}) => {
+  // Only show this Alert for select outcomes (or on development to debug)
+  if (
+    outcomeType === NEED_PERMIT ||
+    outcomeType === NEED_CONTACT ||
+    process.env.NODE_ENV === "development"
+  ) {
+    return (
+      <QuestionAlertStyle
+        data-testid={QUESTION_ALERT}
+        marginBottom={marginBottom}
+      >
+        <Paragraph>
+          {outcomeType === NEED_PERMIT && (
+            <>
+              Door dit antwoord hebt u een vergunning nodig.{" "}
+              <HideForPrint as="span">
+                Als u een andere keuze maakt, hebt u misschien geen vergunning
+                nodig.
+              </HideForPrint>
+            </>
+          )}
+          {outcomeType === NEED_CONTACT &&
+            "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."}
+        </Paragraph>
+      </QuestionAlertStyle>
+    );
+  }
+  return null;
+};
 
 export default QuestionAlert;
