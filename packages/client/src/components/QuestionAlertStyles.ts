@@ -1,5 +1,7 @@
-import { Alert, themeSpacing } from "@amsterdam/asc-ui";
+import { themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
+
+import { Alert } from "../atoms";
 
 type QuestionAlertProps = {
   marginBottom?: number;
