@@ -30,7 +30,6 @@ const isTrueExactMatch = (
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
 type LocationFinderProps = {
-  errorMessage: ApolloError | undefined;
   focus: boolean;
   sessionAddress: any; // @TODO replace any with address type.
   setAddress: (address: object) => void;
@@ -40,7 +39,6 @@ type LocationFinderProps = {
 };
 
 const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
-  errorMessage,
   focus,
   matomoTrackEvent,
   sessionAddress,
@@ -81,7 +79,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
         return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
-        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
+        return t("common.no valid postal code");
       }
     }
     return undefined;
@@ -149,14 +147,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   // GraphQL error
   useEffect(() => {
-    if (errorMessage !== graphqlError) {
+    if (graphqlError) {
       setErrorMessage(graphqlError);
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
     }
-  }, [errorMessage, graphqlError, matomoTrackEvent, setErrorMessage]);
+  }, [graphqlError, matomoTrackEvent, setErrorMessage]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
@@ -245,7 +243,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
             !!postalCodeError ||
             (showLocationNotFound && isValidPostalcode(postalCode))
           }
-          label="Postcode"
+          label={t("common.postalcode label")}
           name="postalCode"
           onBlur={handleBlur}
           onChange={(e) => {
@@ -266,7 +264,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
             (showLocationNotFound && isValidPostalcode(postalCode))
           }
           id="houseNumberFull"
-          label="Huisnummer + toevoeging"
+          label={t("common.housenumber label")}
           name="houseNumberFull"
           onBlur={handleBlur}
           onChange={handleChange}
@@ -292,7 +290,9 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
       <LocationLoading loading={showLoading || loading} />
 
-      {showLocationNotFound && <LocationNotFound matomoTrackEvent={matomoTrackEvent} />}
+      {showLocationNotFound && (
+        <LocationNotFound matomoTrackEvent={matomoTrackEvent} />
+      )}
 
       {showExactMatch && (
         <>

@@ -1,9 +1,9 @@
-import {Heading, Paragraph} from "@amsterdam/asc-ui";
+import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import {useTranslation} from "react-i18next";
 
 import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
@@ -130,7 +130,9 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
         </Error>
       )}
 
-      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!hasIMTR && (
+        <Heading forwardedAs="h3">{t("common.fill in address")}</Heading>
+      )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>

@@ -3,6 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import React from "react";
 
 import locationFinderGraphQLMocks from "../../__mocks__/locationFinderGraphQLMocks";
+import text from "../../i18n/nl";
 import { findTopicBySlug } from "../../utils/index";
 import {
   AUTOSUGGEST_ITEM,
@@ -32,7 +33,6 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("LocationFinder", () => {
-  const loadingText = "Wij zoeken het adres.";
   const topic = findTopicBySlug("dakkapel-plaatsen");
 
   const Wrapper = () => {
@@ -51,8 +51,12 @@ describe("LocationFinder", () => {
   it("should render correctly (including autosuggest)", async () => {
     render(<Wrapper />, {}, locationFinderGraphQLMocks);
 
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputPostalCode = screen.getByLabelText(
+      text.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      text.translation.common["housenumber label"]
+    );
 
     expect(inputPostalCode).toHaveValue("");
     expect(inputHouseNumber).toHaveValue("");
@@ -67,7 +71,9 @@ describe("LocationFinder", () => {
       });
     });
 
-    await waitFor(() => screen.queryByText(loadingText));
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
     await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
 
     // Change the input values to display the autosuggest
@@ -92,7 +98,9 @@ describe("LocationFinder", () => {
       });
     });
 
-    await waitFor(() => screen.queryByText(loadingText));
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
     await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
 
     // Enable the autosuggest (again)
@@ -105,15 +113,21 @@ describe("LocationFinder", () => {
       fireEvent.mouseDown(screen.queryByText("19 C"));
     });
 
-    await waitFor(() => screen.queryByText(loadingText));
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
     await waitFor(() => screen.getByTestId(LOCATION_FOUND));
   });
 
   it("should handle errors", async () => {
     render(<Wrapper />, {}, locationFinderGraphQLMocks);
 
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputPostalCode = screen.getByLabelText(
+      text.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      text.translation.common["housenumber label"]
+    );
 
     // This detects an invalid postalCode
     await act(async () => {
@@ -125,7 +139,9 @@ describe("LocationFinder", () => {
     });
 
     await waitFor(() =>
-      screen.queryByText(`Dit is geen geldige postcode.`, { exact: false })
+      screen.queryByText(text.translation.common["address loading"], {
+        exact: false,
+      })
     );
 
     // This handles the graphql errors
@@ -137,7 +153,7 @@ describe("LocationFinder", () => {
         target: { value: "666" },
       });
     });
-
-    // expect(setErrorMessage).toBeCalled();
+    await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
+    expect(matomoTrackEvent).toHaveBeenCalledTimes(3);
   });
 });

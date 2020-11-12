@@ -2,15 +2,22 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      "fill in address": "Invullen adres",
+      "housenumber label": "Huisnummer + toevoeging",
+      "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
       "to the questions": "Naar de vragen",
       "try again or contact city of amsterdam":
         "Probeer het opnieuw. Of neem contact op met de gemeente op telefoonnummer",
-      "next": "Volgende",
-      "no address found api down": "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
-      "no address found postalcode houseNumber combination": "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer",
-      "unknown": "Onbekend"
+      next: "Volgende",
+      "no address found api down":
+        "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
+      "no address found postalcode houseNumber combination":
+        "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer",
+      "no valid postalcode":
+        "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
+      unknown: "Onbekend",
     },
     introPage: {
       common: {
@@ -30,7 +37,7 @@ export default {
         "situation dependent on questions only":
           "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
         "situation dependent on situation only":
-          "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt."
+          "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
       },
       dakkapel: {
         "build without permit exception":
@@ -69,6 +76,10 @@ export default {
         "placing bullet":
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
+    },
+    locationInputTest: {
+      "address input":
+        "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
     },
     outcome: {
       disclaimer:
