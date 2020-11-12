@@ -4,6 +4,7 @@ import {
   Decision,
   Question as ImtrQuestion,
   Permit,
+  clientOutcomes,
   imtrOutcomes,
   removeQuotes,
 } from "@vergunningcheck/imtr-client";
@@ -212,24 +213,37 @@ const Questions: React.FC<
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
-  // @TODO: We can refactor this and move to checker.js
-  const permitsPerQuestion = [] as boolean[];
+  // @TODO: Move this to `imtr-client`
+  const permitsPerQuestion = [] as string[];
   checker.isConclusive() &&
     checker.permits.forEach((permit: Permit) => {
       const conclusionDecision = permit.getDecisionById("dummy");
-      if (
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT ||
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT
-      ) {
-        const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
-        decisiveDecisions.forEach((decision) => {
-          const decisiveQuestion = decision
-            .getDecisiveInputs()
-            .pop() as ImtrQuestion;
-          const index = checker.stack.indexOf(decisiveQuestion);
-          permitsPerQuestion[index] = true;
-        });
+
+      if (conclusionDecision) {
+        let outcomeType = "";
+        if (conclusionDecision.getOutput() === imtrOutcomes.NEED_CONTACT) {
+          outcomeType = clientOutcomes.NEED_CONTACT;
+        } else if (
+          conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT
+        ) {
+          outcomeType = clientOutcomes.NEED_PERMIT;
+        } else if (
+          conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT
+        ) {
+          outcomeType = clientOutcomes.NEED_REPORT;
+        }
+
+        if (outcomeType) {
+          const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
+
+          decisiveDecisions.forEach((decision) => {
+            const decisiveQuestion = decision
+              .getDecisiveInputs()
+              .pop() as ImtrQuestion;
+            const index = checker.stack.indexOf(decisiveQuestion);
+            permitsPerQuestion[index] = outcomeType;
+          });
+        }
       }
     });
 
@@ -334,7 +348,7 @@ const Questions: React.FC<
         const showQuestionAlert = !!permitsPerQuestion[i];
 
         // Define the outcome type
-        const outcomeType = checker.getClientOutcomeType();
+        const outcomeType = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -394,7 +408,7 @@ const Questions: React.FC<
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
         // Define the outcome type
-        const outcomeType = checker.getClientOutcomeType();
+        const outcomeType = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
