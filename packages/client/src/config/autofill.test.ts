@@ -4,11 +4,11 @@ import path from "path";
 import util from "util";
 
 const readFile = util.promisify(fs.readFile);
-const hashFromFile = async (filename: string) => {
-  const contents = await readFile(filename);
-  console.log(contents.toString());
-  return crypto.createHash("md5").update(contents).digest("hex");
-};
+const hashFromFile = async (filename: string) =>
+  crypto
+    .createHash("md5")
+    .update(await readFile(filename))
+    .digest("hex");
 
 describe("Autofill", () => {
   test("autofillResolvers", () => {
