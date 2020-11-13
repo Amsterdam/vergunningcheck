@@ -25,8 +25,10 @@ window.scrollTo = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
   useLocation: () => ({ pathname: "/dakkapel-plaatsen" }),
+  useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
   useHistory: () => ({
     push: jest.fn(),
+    replace: jest.fn(),
     location: {
       pathname: "/dakkapel-plaatsen",
     },
