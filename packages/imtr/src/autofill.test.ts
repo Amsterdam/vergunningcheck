@@ -4,11 +4,6 @@ import { assert } from "./deps.ts";
 Deno.test("autofill.getAutofillResolverKey", async () => {
   assert(
     getAutofillResolverKey(
-      "Ligt het adres waar u wilt slopen in een beschermd stads- of dorpsgezicht"
-    ) === "cityScapeForBuilding"
-  );
-  assert(
-    getAutofillResolverKey(
       "ligt het gebouw waarop u de zonnepanelen gaat plaatsen in een beschermd stads- of dorpsgezicht"
     ) === "cityScapeForBuilding"
   );
