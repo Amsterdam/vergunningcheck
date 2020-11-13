@@ -26,7 +26,7 @@ const LocationInput = ({
 }: LocationInputProps) => {
   const topic = useTopic();
   const history = useHistory();
-  const checkerContext = useContext(CheckerContext);
+  const { setAutofillData } = useContext(CheckerContext);
   const { matomoTrackEvent } = useTracking();
   const { handleSubmit } = useForm();
   const { topicData, setTopicData } = useTopicData();
@@ -70,8 +70,7 @@ const LocationInput = ({
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      checkerContext.autofillData.address = address;
-
+      setAutofillData({ address });
       handleNewAddressSubmit(address);
     }
   };

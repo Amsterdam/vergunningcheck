@@ -1,11 +1,14 @@
 import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
 import { ComponentWrapper, Label } from "../../atoms";
+import { CheckerContext } from "../../CheckerContext";
 import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
+import { geturl, routes } from "../../routes";
 import { RADIO_ADDRESS_1, RADIO_ADDRESS_2 } from "../../utils/test-ids";
 import Modal from "../Modal";
 
@@ -13,9 +16,10 @@ const NewCheckerModal: React.FC = () => {
   const { matomoTrackEvent } = useTracking();
   const { topicData, setTopicData } = useTopicData();
   const slug = useSlug();
+  const checkerContext = useContext(CheckerContext);
   const { t } = useTranslation();
   const [checkerSlug, setCheckerSlug] = useState(slug);
-
+  const history = useHistory();
   const [finished, setFinished] = useState(false);
   const [hasError, setError] = useState(false);
   const [saveAddress, setSaveAddress] = useState<null | boolean>(null);

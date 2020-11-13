@@ -1,4 +1,4 @@
-import { getChecker } from "@vergunningcheck/imtr-client";
+import { Checker, getChecker } from "@vergunningcheck/imtr-client";
 import { useContext, useEffect, useState } from "react";
 
 import { CheckerContext } from "../CheckerContext";
@@ -16,7 +16,7 @@ export default () => {
 
   useEffect(() => {
     initChecker();
-  });
+  }, []);
 
   const initChecker = async () => {
     // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
@@ -35,6 +35,7 @@ export default () => {
         const newChecker = getChecker(await topicRequest.json());
         const address = topicData.address;
 
+        debugger;
         // Find if we have missing data needs
         if (address) {
           newChecker.autofill(autofillResolvers, { address });
@@ -54,7 +55,8 @@ export default () => {
         }
 
         // Store the entire `imtr-checker` in React Context
-        checkerContext.checker = newChecker;
+        checkerContext.setAutofillData({ address });
+        checkerContext.setChecker(newChecker);
         setChecker(newChecker);
       } catch (e) {
         setError(e);
@@ -62,5 +64,12 @@ export default () => {
     }
   };
 
-  return { checker, setChecker };
+  return {
+    checker,
+    setChecker: (checker: Checker | undefined) => {
+      checkerContext.setChecker(checker);
+      checkerContext.setAutofillData({});
+      setChecker(checker);
+    },
+  };
 };
