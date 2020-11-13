@@ -89,11 +89,7 @@ export const SessionProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     setSession({ [slug]: topicData });
-  }, [topicData]);
-
-  if (!slug) {
-    throw new Error("failed to load topicData as slug is not found.");
-  }
+  }, [slug, topicData]);
 
   // The session provider makes the data from the context available on all pages.
   // We can use the setSessionData function to add new data to the sessionStorage.
