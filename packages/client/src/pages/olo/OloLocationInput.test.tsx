@@ -3,43 +3,22 @@ import "@testing-library/jest-dom/extend-expect";
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-import { CheckerProvider } from "../../CheckerContext";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import {
   act,
   fireEvent,
+  mockMatomoTrackEvent,
   render,
   screen,
   waitFor,
 } from "../../utils/test-utils";
 import OloLocationInput from "./OloLocationInput";
 
-jest.mock("react-hook-form", () => ({
-  useForm: () => ({
-    handleSubmit: jest.fn(),
-  }),
-}));
-
-const mockMatomoTrackEvent = jest.fn();
-jest.mock("../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-  }));
-});
-
 window.history.pushState({}, "Locatie pagina", "/dakkapel-plaatsen/locatie");
 
 describe("OloLocationInput", () => {
-  const Wrapper = ({ addressMock }: any) => {
-    return (
-      <CheckerProvider defaultAutofillData={{ address: addressMock }}>
-        <OloLocationInput />
-      </CheckerProvider>
-    );
-  };
-
   it("should render correctly", () => {
-    render(<Wrapper />);
+    render(<OloLocationInput />);
 
     expect(screen.queryByText("Invullen adres")).toBeInTheDocument();
 
@@ -68,7 +47,7 @@ describe("OloLocationInput", () => {
       residence: resultResidence,
     } = addressGraphQLMock[0].result.data.findAddress.exactMatch;
 
-    render(<Wrapper />, {}, addressGraphQLMock);
+    render(<OloLocationInput />, {}, addressGraphQLMock);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
@@ -144,16 +123,19 @@ describe("OloLocationInput", () => {
   });
 
   it("should render correctly with preset context", () => {
-    const addressMock = {
+    const mockAddress = {
       ...addressGraphQLMock[0].request.variables,
     };
+    jest.mock("../../hooks/useTopicData", () => () => ({
+      topicData: { address: mockAddress },
+    }));
 
     const {
       houseNumberFull,
       postalCode,
     } = addressGraphQLMock[0].request.variables;
 
-    render(<Wrapper addressMock={addressMock} />, {}, addressGraphQLMock);
+    render(<OloLocationInput />, {}, addressGraphQLMock);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);

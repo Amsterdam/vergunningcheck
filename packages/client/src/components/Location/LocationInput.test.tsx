@@ -1,14 +1,18 @@
 import "@testing-library/jest-dom/extend-expect";
 
+import { ApolloError } from "@apollo/client";
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-import { CheckerProvider } from "../../CheckerContext";
+import Context from "../../__mocks__/context";
+import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
+import { findTopicBySlug } from "../../utils";
 import { LOCATION_FOUND, PREV_BUTTON } from "../../utils/test-ids";
 import {
   act,
   fireEvent,
+  mockMatomoTrackEvent,
   render,
   screen,
   waitFor,
@@ -16,55 +20,48 @@ import {
 import LocationInput from "./LocationInput";
 
 const handleNewAddressSubmit = jest.fn();
-const mockMatomoTrackEvent = jest.fn();
-jest.mock("../../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-  }));
-});
+
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    location: {
+      pathname: "/dakkapel-plaatsen/vragen-en-uitkomst",
+    },
+    push: jest.fn(),
+  }),
+  useLocation: () => jest.fn(),
+  useParams: () => ({ slug: "dakkapel-plaatsen" }),
+}));
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
 describe("LocationInput", () => {
-  type WrapperProps = {
-    mockSlug?: string;
-    addressMock?: any;
-    error?: any;
-  };
   const Wrapper = ({
-    mockSlug = "dakkapel-plaatsen",
     addressMock,
     error,
-  }: WrapperProps) => {
-    jest.mock("../../hooks/useSlug", () => {
-      return jest.fn(() => mockSlug);
-    });
-
-    jest.mock("react-router-dom", () => ({
-      useHistory: () => ({
-        location: {
-          pathname: `/${mockSlug}/vragen-en-conclusie`,
-        },
-        push: jest.fn(),
-      }),
-      useLocation: () => jest.fn(),
-      useParams: () => ({ slug: mockSlug }),
-    }));
-
+    topicMock,
+  }: {
+    addressMock?: any;
+    error?: ApolloError | undefined;
+    topicMock?: Topic | null;
+  }) => {
     return (
-      <CheckerProvider defaultAutofillData={{ address: addressMock }}>
+      <Context
+        topicMock={topicMock || (findTopicBySlug("intern-verbouwen") as Topic)}
+        addressMock={addressMock || addressGraphQLMock}
+      >
         <LocationInput
           error={error}
           handleNewAddressSubmit={handleNewAddressSubmit}
         />
-      </CheckerProvider>
+      </Context>
     );
   };
 
   it("should render correctly on OLO flow", () => {
-    render(<Wrapper mockSlug="intern-verbouwen" />);
+    render(<Wrapper topicMock={findTopicBySlug("intern-verbouwen")} />);
+
     expect(screen.queryByText("Invullen adres")).toBeInTheDocument();
   });
 
@@ -214,7 +211,7 @@ describe("LocationInput", () => {
   });
 
   it("should handle the error state", () => {
-    render(<Wrapper error={{ stack: "error message" }} />);
+    render(<Wrapper error={new ApolloError({})} />);
 
     expect(
       screen.queryByText(

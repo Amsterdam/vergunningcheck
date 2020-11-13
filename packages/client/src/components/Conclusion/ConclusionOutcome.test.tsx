@@ -13,7 +13,7 @@ import NeedPermitContent from "./NeedPermitContent";
 import NoPermitDescription from "./NoPermitDescription";
 
 const mockMatomoTrackEvent = jest.fn();
-jest.mock("../hooks/useTracking", () => {
+jest.mock("../../hooks/useTracking", () => {
   return jest.fn(() => ({
     matomoTrackEvent: mockMatomoTrackEvent,
   }));

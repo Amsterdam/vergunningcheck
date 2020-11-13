@@ -22,6 +22,21 @@ Object.defineProperty(window, "matchMedia", matchMedia);
 window.open = jest.fn();
 window.scrollTo = jest.fn();
 
+jest.mock("react-hook-form", () => ({
+  useForm: () => ({
+    handleSubmit: jest.fn(),
+  }),
+}));
+
+export const mockMatomoTrackEvent = jest.fn();
+export const mockMatomoPageView = jest.fn();
+jest.mock("../hooks/useTracking", () => {
+  return jest.fn(() => ({
+    matomoTrackEvent: mockMatomoTrackEvent,
+    matomoPageView: mockMatomoPageView,
+  }));
+});
+
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
   useLocation: () => ({ pathname: "/dakkapel-plaatsen" }),
