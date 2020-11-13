@@ -15,14 +15,7 @@ const IntroPage: React.FC = () => {
   const { matomoTrackEvent } = useTracking();
 
   const topic = useTopic();
-  const { hasIMTR, text, intro } = topic;
-
-  // Here starts the separation of the IMTR flow and the non-IMTR flow (which we call OLO flow):
-  if (!hasIMTR) {
-    // OLO flow now skips the intro page and goes directly to location page
-    history.replace(geturl(routes.oloLocationInput, topic));
-    return null;
-  }
+  const { text, intro } = topic;
 
   const introComponentPath = intro || "shared/DynamicIMTRIntro";
   const Intro = React.lazy(
