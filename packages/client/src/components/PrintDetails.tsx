@@ -2,7 +2,6 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { PrintOnly } from "../atoms";
-import { removeQueryStrings } from "../utils";
 
 // Format the date to show in Print
 const date = new Date();

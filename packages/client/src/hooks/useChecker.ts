@@ -16,6 +16,7 @@ export default () => {
 
   useEffect(() => {
     initChecker();
+    //eslint-disable-next-line
   }, []);
 
   const initChecker = async () => {
