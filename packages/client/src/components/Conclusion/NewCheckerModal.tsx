@@ -68,8 +68,11 @@ const NewCheckerModal: React.FC = () => {
         questionIndex: 0,
       });
 
-      // @TODO: We need to find a better solution for restarting the same checker.
-      window.location.href = `/${checkerSlug}/vragen-en-uitkomst?loadChecker`;
+      checkerContext.setChecker(undefined);
+      checkerContext.setAutofillData(
+        saveAddress ? { address: topicData.address } : null
+      );
+      history.push(geturl(routes.checker, { slug: checkerSlug }));
     }
   };
 

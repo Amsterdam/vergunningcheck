@@ -18,11 +18,7 @@ const currentDateTime = date.toLocaleDateString("nl-NL", options);
 export default () => (
   <PrintOnly>
     <Heading forwardedAs="h3">Pagina</Heading>
-    <Paragraph fontSize={12}>
-      {
-        removeQueryStrings(window.location.href) // Prevent the display of ?loadChecker
-      }
-    </Paragraph>
+    <Paragraph fontSize={12}>{window.location.href}</Paragraph>
 
     <Heading forwardedAs="h3">Datum</Heading>
     <Paragraph>{currentDateTime} uur.</Paragraph>
