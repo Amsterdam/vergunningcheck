@@ -23,7 +23,7 @@ const strings = {
  * Monument can either be a bool or list question, that why we need 2.
  */
 export const autofillResolvers: AutofillResolverMap = {
-  cityScape: ({ address }: AutofillData, question: Question) => {
+  cityScapeForBuilding: ({ address }: AutofillData, question: Question) => {
     type Options = { [id: string]: string };
     const answers: Options = {
       NATIONAL:
@@ -43,7 +43,7 @@ export const autofillResolvers: AutofillResolverMap = {
       ? addQuotes(answers[cityScape?.scope as string])
       : !!cityScape;
   },
-  cityScapeSlopen: ({ address }: AutofillData, question: Question) => {
+  cityScapeWithoutEntity: ({ address }: AutofillData, question: Question) => {
     type Options = { [id: string]: string };
     const answers: Options = {
       NATIONAL: "Ja, in een rijksbeschermd stads- of dorpsgezicht.",
