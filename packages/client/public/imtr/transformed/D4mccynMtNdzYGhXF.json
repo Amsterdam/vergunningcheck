@@ -1,74 +1,53 @@
 {
   "permits": [
     {
-      "version": 28,
+      "version": 43,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
-          "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer afgebroken/ weggehaald/ verwijderd. Een voorbeeld is een strandtent of een oliebollenkraam.",
-          "type": "boolean",
-          "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-          "prio": 10
-        },
-        {
-          "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
-          "type": "boolean",
-          "id": "uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-          "prio": 20
-        },
-        {
-          "text": "Is de hoeveelheid sloopafval meer dan 10 kubieke meter?",
-          "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   ● 3,6 meter lang\n*   ● 1,9 meter breed\n*   ● 1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.",
+          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter?",
+          "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   3,6 meter lang\n*   1,9 meter breed\n*   1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.",
           "type": "boolean",
           "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
-          "prio": 30
+          "prio": 10
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-          "prio": 40
+          "prio": 20
         },
         {
-          "text": "Is het een erkend sloopbedrijf dat gaat slopen?",
+          "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
+          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Bijvoorbeeld een strandtent of een oliebollenkraam.",
           "type": "boolean",
-          "id": "uitv__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab",
-          "prio": 50
+          "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+          "prio": 30,
+          "uuid": "sloop seizoen1"
         },
         {
-          "text": "Waar zit het asbest in?",
-          "description": "Als u het antwoord niet weet, vraag het dan aan het sloopbedrijf.",
-          "collection": true,
-          "options": [
-            "In geklemde vloerplaten onder verwarmingstoestellen.",
-            "In beglazingskit dat is verwerkt in de constructie van kassen.",
-            "In rem- en frictiematerialen.",
-            "In pakkingen uit verbrandingsmotoren.",
-            "In pakkingen uit procesinstallaties  met een nominaal vermogen tot en met 2.250 kW.",
-            "In pakkingen uit verwarmingstoestellen met een nominaal vermogen tot en met 2.250 kW",
-            "In iets anders."
-          ],
-          "type": "string",
-          "id": "uitv__ae70ceb8-0565-47e7-b926-8bcbec394f6d",
-          "prio": 60
+          "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
+          "type": "boolean",
+          "id": "uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
+          "prio": 40,
+          "uuid": "sloop aanschrijving1"
         }
       ],
       "decisions": {
-        "_faa739be-8449-45ab-ab1b-faba66bcc855": {
+        "_930e9d83-370f-43a3-89ee-8d6f79a51941": {
           "requiredInputs": [
+            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03"
+            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, true],
+                "inputs": [true, false, false],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": [false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -76,155 +55,39 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false],
+                "inputs": ["-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_0cbbb1aa-fbe5-4db6-bc4d-fc0898730351": {
+        "_bb8c95fe-894d-4865-be40-9a0f4c871239": {
           "requiredInputs": [
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-            "#input__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab"
+            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, false, true, false],
+                "inputs": [false, true, false, false],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
+                "inputs": [true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-"],
+                "inputs": ["-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-"],
+                "inputs": ["-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_83365dfa-d2b5-42df-b4b6-dcaace294f57": {
-          "requiredInputs": [
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
-            "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-            "#input__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab",
-            "#input__ae70ceb8-0565-47e7-b926-8bcbec394f6d"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  false,
-                  false,
-                  true,
-                  true,
-                  "\"In iets anders.\""
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In geklemde vloerplaten onder verwarmingstoestellen.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In beglazingskit dat is verwerkt in de constructie van kassen.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In rem- en frictiematerialen.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In pakkingen uit verbrandingsmotoren.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In pakkingen uit procesinstallaties  met een nominaal vermogen tot en met 2.250 kW.\""
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"In pakkingen uit verwarmingstoestellen met een nominaal vermogen tot en met 2.250 kW\""
-                ],
+                "inputs": ["-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
@@ -232,26 +95,21 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_faa739be-8449-45ab-ab1b-faba66bcc855",
-            "#_0cbbb1aa-fbe5-4db6-bc4d-fc0898730351",
-            "#_83365dfa-d2b5-42df-b4b6-dcaace294f57"
+            "#_930e9d83-370f-43a3-89ee-8d6f79a51941",
+            "#_bb8c95fe-894d-4865-be40-9a0f4c871239"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Meldingsplicht\"", "-", "-"],
+                "inputs": ["\"Meldingsplicht\"", "-"],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["-", "\"Meldingsplicht\"", "-"],
+                "inputs": ["-", "\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["-", "-", "\"Meldingsplicht\""],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": ["\"no hit\"", "\"no hit\"", "\"no hit\""],
+                "inputs": ["\"no hit\"", "\"no hit\""],
                 "output": "\"Toestemmingsvrij\""
               }
             ]
@@ -259,14 +117,6 @@
         }
       },
       "inputs": {
-        "input__9d010148-e1ed-47c2-b5d3-7c12d3055ced": {
-          "href": "#uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-          "type": "boolean"
-        },
-        "input__7f20e585-f04f-4f9b-911f-9adc948ce51e": {
-          "href": "#uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-          "type": "boolean"
-        },
         "input__917b37c9-451c-422a-90fc-90a2fa84eb03": {
           "href": "#uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
           "type": "boolean"
@@ -275,13 +125,13 @@
           "href": "#uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "type": "boolean"
         },
-        "input__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab": {
-          "href": "#uitv__7f9fd8bb-0d58-4e9b-891a-babf12fd72ab",
+        "input__9d010148-e1ed-47c2-b5d3-7c12d3055ced": {
+          "href": "#uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
           "type": "boolean"
         },
-        "input__ae70ceb8-0565-47e7-b926-8bcbec394f6d": {
-          "href": "#uitv__ae70ceb8-0565-47e7-b926-8bcbec394f6d",
-          "type": "string"
+        "input__7f20e585-f04f-4f9b-911f-9adc948ce51e": {
+          "href": "#uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
+          "type": "boolean"
         }
       }
     }

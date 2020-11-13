@@ -1,17 +1,17 @@
 {
   "permits": [
     {
-      "version": 22,
+      "version": 38,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
           "text": "Ligt het adres waar u wilt slopen in een beschermd stads- of dorpsgezicht?",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk op de kaart of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScape",
+          "autofill": "cityScapeSlopen",
           "options": [
-            "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
-            "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
-            "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+            "Ja, in een rijksbeschermd stads- of dorpsgezicht.",
+            "Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.",
+            "Nee"
           ],
           "type": "string",
           "id": "uitv__b6796191-3670-45a7-a02d-17b8c9591131",
@@ -19,10 +19,11 @@
         },
         {
           "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer afgebroken/ weggehaald/ verwijderd. Een voorbeeld is een strandtent of een oliebollenkraam.",
+          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Een voorbeeld is een strandtent of een oliebollenkraam.",
           "type": "boolean",
           "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
-          "prio": 20
+          "prio": 20,
+          "uuid": "sloop seizoen1"
         },
         {
           "text": "Als u het bouwwerk dat u wilt slopen opnieuw zou gaan bouwen, mag dat dan zonder vergunning?",
@@ -35,36 +36,41 @@
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "id": "uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
-          "prio": 40
+          "prio": 40,
+          "uuid": "sloop aanschrijving1"
         },
         {
           "text": "Gaat u een onderdeel  van een gebouw  slopen?",
           "description": "Denk aan het verwijderen van een raamkozijn, een dakgoot of dakpannen.",
           "type": "boolean",
           "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
-          "prio": 50
+          "prio": 50,
+          "uuid": "sloop onderhoud1"
         },
         {
           "text": "Gaat u dat onderdeel vervangen door een nieuw onderdeel?",
           "type": "boolean",
           "id": "uitv_696173ef-6bad-4411-848e-ec97a8566c10",
-          "prio": 60
+          "prio": 60,
+          "uuid": "sloop onderhoud2"
         },
         {
           "text": "Verandert de kleur of het materiaal?",
           "type": "boolean",
           "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
-          "prio": 70
+          "prio": 70,
+          "uuid": "sloop onderhoud3"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "type": "boolean",
           "id": "uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
-          "prio": 80
+          "prio": 80,
+          "uuid": "sloop onderhoud4"
         }
       ],
       "decisions": {
-        "_8e6c079e-9a80-4975-acae-068c6b661727": {
+        "_0aded30e-ea3f-4107-89f9-30de9f6ddbc5": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -74,7 +80,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
                   false,
                   false
                 ],
@@ -82,18 +88,14 @@
               },
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["\"Nee\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -107,7 +109,7 @@
             ]
           }
         },
-        "_4eaeff18-78ad-4a57-8a3a-8bf1d8710e75": {
+        "_3ad3aa79-ec2f-4038-85e4-041a8457746a": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -117,7 +119,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   false
                 ],
@@ -125,18 +127,14 @@
               },
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["\"Nee\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -150,7 +148,7 @@
             ]
           }
         },
-        "_ef6c534d-b143-4895-8cad-d269503e1b29": {
+        "_ca176d2d-1030-4893-baaf-04db8d8a8a17": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -161,7 +159,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   true,
                   false
@@ -170,7 +168,7 @@
               },
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-",
                   "-"
@@ -178,12 +176,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["\"Nee\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -201,7 +194,7 @@
             ]
           }
         },
-        "_4347a8a1-e4bd-47a6-b88e-7741e769477b": {
+        "_4d24d98f-b412-44c7-82ab-92afa9508e36": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -213,7 +206,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   true,
                   true,
@@ -223,7 +216,7 @@
               },
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-",
                   "-",
@@ -232,13 +225,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["\"Nee\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -260,7 +247,7 @@
             ]
           }
         },
-        "_cc42a9b3-bf07-4a80-88e1-8761c3ca31fb": {
+        "_63118162-8579-4ea2-9879-f504762551de": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -273,7 +260,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
                   true,
                   true,
@@ -284,7 +271,7 @@
               },
               {
                 "inputs": [
-                  "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
                   "-",
                   "-",
                   "-",
@@ -294,14 +281,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["\"Nee\"", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -329,11 +309,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_8e6c079e-9a80-4975-acae-068c6b661727",
-            "#_4eaeff18-78ad-4a57-8a3a-8bf1d8710e75",
-            "#_ef6c534d-b143-4895-8cad-d269503e1b29",
-            "#_4347a8a1-e4bd-47a6-b88e-7741e769477b",
-            "#_cc42a9b3-bf07-4a80-88e1-8761c3ca31fb"
+            "#_0aded30e-ea3f-4107-89f9-30de9f6ddbc5",
+            "#_3ad3aa79-ec2f-4038-85e4-041a8457746a",
+            "#_ca176d2d-1030-4893-baaf-04db8d8a8a17",
+            "#_4d24d98f-b412-44c7-82ab-92afa9508e36",
+            "#_63118162-8579-4ea2-9879-f504762551de"
           ],
           "decisionTable": {
             "rules": [

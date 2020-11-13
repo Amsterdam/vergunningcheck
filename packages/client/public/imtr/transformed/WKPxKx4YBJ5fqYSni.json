@@ -1,16 +1,22 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 13,
       "name": "Conclusie Dakkapel monument",
       "questions": [
         {
-          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
           "prio": 10,
-          "uuid": "monument"
+          "uuid": "dakkapel monument"
         },
         {
           "text": "Gaat u een dakkapel plaatsen of vernieuwen?",
@@ -36,22 +42,29 @@
         }
       ],
       "decisions": {
-        "_a9897952-c33a-418b-a32e-172f71c1c1ff": {
+        "_82fc1501-2ae1-4347-a221-3a12da7b8a2b": {
           "requiredInputs": [
-            "#input__797c410f-2502-4626-9b14-7be7c49b0751",
+            "#input__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
             "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -64,9 +77,9 @@
             ]
           }
         },
-        "_8a8513df-1cf6-414a-8dba-50315bfb2ded": {
+        "_b2a9a8c5-9700-43e3-90d8-6ada212d48b6": {
           "requiredInputs": [
-            "#input__797c410f-2502-4626-9b14-7be7c49b0751",
+            "#input__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
             "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
             "#input_369fe23a-09dd-4f86-819a-58c2acb4d8ac"
           ],
@@ -74,14 +87,22 @@
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de dakkapel verandert.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de dakkapel verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -105,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_a9897952-c33a-418b-a32e-172f71c1c1ff",
-            "#_8a8513df-1cf6-414a-8dba-50315bfb2ded"
+            "#_82fc1501-2ae1-4347-a221-3a12da7b8a2b",
+            "#_b2a9a8c5-9700-43e3-90d8-6ada212d48b6"
           ],
           "decisionTable": {
             "rules": [
@@ -130,9 +151,9 @@
         }
       },
       "inputs": {
-        "input__797c410f-2502-4626-9b14-7be7c49b0751": {
-          "href": "#uitv__797c410f-2502-4626-9b14-7be7c49b0751",
-          "type": "boolean"
+        "input__cfd21373-8a4f-4c9f-b56c-d4c7730bada3": {
+          "href": "#uitv__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
+          "type": "string"
         },
         "input_5cd6194f-5607-444e-8ed1-d44c6aabde7f": {
           "href": "#uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
