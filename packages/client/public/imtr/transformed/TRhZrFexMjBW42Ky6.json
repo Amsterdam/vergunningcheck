@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 16,
+      "version": 17,
       "name": "Conclusie Zonnepaneel en zonneboiler monument",
       "questions": [
         {
@@ -73,7 +73,7 @@
         }
       ],
       "decisions": {
-        "_51d8a1e6-24a4-46b1-8e3d-f6979bc5d72c": {
+        "_c4e3926c-63fb-466f-b673-17373dc1413e": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
@@ -116,7 +116,7 @@
             ]
           }
         },
-        "_4cac2c94-db06-4d6e-b98a-305eb9ea22ff": {
+        "_6a64c31e-a398-4351-b437-499c1890a630": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
@@ -135,7 +135,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  "\"Geen monument\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
@@ -145,7 +145,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Gemeentelijk monument\"", "-"],
+                "inputs": ["-", "\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -159,7 +159,7 @@
             ]
           }
         },
-        "_b5fc8df7-b244-45ca-8ab2-d1ffd9906722": {
+        "_fc278159-38a1-4636-94ac-efdfe42adca7": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
@@ -215,7 +215,7 @@
             ]
           }
         },
-        "_01a9ea9f-4cf2-4888-a07d-d78a9efd638e": {
+        "_9de7e8d7-7c42-478a-acdc-fd5a72bfb72f": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
@@ -236,7 +236,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  "\"Geen monument\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de zonneboiler verandert.\""
                 ],
@@ -247,7 +247,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Gemeentelijk monument\"", "-", "-"],
+                "inputs": ["-", "\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -273,10 +273,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_51d8a1e6-24a4-46b1-8e3d-f6979bc5d72c",
-            "#_4cac2c94-db06-4d6e-b98a-305eb9ea22ff",
-            "#_b5fc8df7-b244-45ca-8ab2-d1ffd9906722",
-            "#_01a9ea9f-4cf2-4888-a07d-d78a9efd638e"
+            "#_c4e3926c-63fb-466f-b673-17373dc1413e",
+            "#_6a64c31e-a398-4351-b437-499c1890a630",
+            "#_fc278159-38a1-4636-94ac-efdfe42adca7",
+            "#_9de7e8d7-7c42-478a-acdc-fd5a72bfb72f"
           ],
           "decisionTable": {
             "rules": [
