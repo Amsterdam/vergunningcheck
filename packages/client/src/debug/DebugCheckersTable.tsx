@@ -1,8 +1,9 @@
-import { Heading, Link, Paragraph } from "@amsterdam/asc-ui";
+import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { themeSpacing } from "@amsterdam/asc-ui";
 import { Button } from "@amsterdam/asc-ui";
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Alert } from "../atoms";
@@ -53,9 +54,7 @@ const returnedData = (apiTopic: topicProps) => {
             </Alert>
           </>
         ) : (
-          <Link href={geturl(routes.intro, apiTopic)} variant="inline">
-            {title}
-          </Link>
+          <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
         )}
       </td>
       <td>{imtrTopic ? "configured" : "single"}</td>
@@ -124,11 +123,10 @@ const DebugCheckersTable: React.FC = () => {
               <tr key={slug}>
                 <td>
                   <Link
-                    href={geturl(
+                    to={geturl(
                       redirectToOlo ? routes.oloRedirect : routes.intro,
                       { slug }
                     )}
-                    variant="inline"
                   >
                     {name}
                   </Link>
