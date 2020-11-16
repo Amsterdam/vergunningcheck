@@ -46,18 +46,18 @@ export default ({
   return (
     <>
       <Paragraph>{introSentence}</Paragraph>
-      <Paragraph gutterBottom={usableForBullets?.length > 0 ? 8 : undefined}>
-        {usableForBullets?.length > 0 &&
-          t("introPage.common.check for permit intro")}{" "}
-        {usableForBullets?.length > 0 && t("introPage.common.permit for")}
-      </Paragraph>
-
       {usableForBullets?.length > 0 && (
-        <List data-testid={INTRO_USABLE_FOR_BULLETS} variant="bullet">
-          {usableForBullets?.map((bulletText) => (
-            <ListItem key={bulletText}>{bulletText}</ListItem>
-          ))}
-        </List>
+        <>
+          <Paragraph gutterBottom={8}>
+            {t("introPage.common.check for permit intro")}{" "}
+            {t("introPage.common.permit for")}
+          </Paragraph>
+          <List data-testid={INTRO_USABLE_FOR_BULLETS} variant="bullet">
+            {usableForBullets?.map((bulletText) => (
+              <ListItem key={bulletText}>{bulletText}</ListItem>
+            ))}
+          </List>
+        </>
       )}
 
       {influence && (

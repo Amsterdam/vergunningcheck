@@ -7,8 +7,6 @@ import { urls } from "../../../config";
 import { PERMIT_FREE } from "../../../utils/test-ids";
 import Link from "../../Link";
 
-// @TODO: Verify texts (robin)
-
 const DemolitionPermitFree: React.FC = () => {
   const { t } = useTranslation();
   return (

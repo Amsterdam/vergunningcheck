@@ -7,8 +7,6 @@ import { urls } from "../../../config";
 import { NEED_REPORT } from "../../../utils/test-ids";
 import Link from "../../Link";
 
-// @TODO: Verify texts (robin)
-
 const DemolitionNeedReport: React.FC = () => {
   const { t } = useTranslation();
   return (

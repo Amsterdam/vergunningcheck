@@ -8,14 +8,8 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-xit("SopenIntro renders correctly", () => {
-  render(
-    <SlopenIntro
-      introSentence={text.translation.introPage.slopen["need report"]}
-      showContactInformation={false}
-      usableForText={text.translation.introPage.slopen["intro description"]}
-    />
-  );
+it("SlopenIntro renders correctly", () => {
+  render(<SlopenIntro />);
 
   expect(
     screen.queryByText(text.translation.introPage.slopen["intro description"], {
