@@ -1,43 +1,47 @@
 import { Heading, ListItem } from "@amsterdam/asc-ui";
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 import { List } from "../../../atoms/index";
+import { urls } from "../../../config";
 import { NEED_REPORT } from "../../../utils/test-ids";
+import Link from "../../Link";
 
-// @DONE: Insert correct texts (robin)
-// @TODO: Fix URL (sven)
-// @TODO: Fix translations (sven)
 // @TODO: Verify texts (robin)
 
-const DemolitionNeedReport: React.FC = () => (
-  <>
-    <Heading forwardedAs="h3" data-testid={NEED_REPORT}>
-      Dit is waar u verder op moet letten:
-    </Heading>
-    <List variant="bullet">
-      <ListItem>
-        Misschien staat in het bestemmingsplan dat een vergunning toch nodig is.
-        Lees hiervoor verder op de pagina Bestemmingsplan bekijken.
-      </ListItem>
-      <ListItem>
-        U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een
-        nest zwaluwen onder de dakpannen.
-      </ListItem>
-    </List>
-    <Heading forwardedAs={"h3"}>Denk ook aan:</Heading>
-    <List variant={"bullet"}>
-      <ListItem>
-        Het plaatsen van een hijskraan of container op straat of het reserveren
-        van een parkeervak.
-      </ListItem>
-      <ListItem>Het afvoeren van bouw- en sloopafval.</ListItem>
-      <ListItem>Toestemming van de VvE.</ListItem>
-      <ListItem>
-        Toestemming van uw buren als het gaat om een gezamenlijke muur of
-        schutting.
-      </ListItem>
-    </List>
-  </>
-);
+const DemolitionNeedReport: React.FC = () => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Heading forwardedAs="h3" data-testid={NEED_REPORT}>
+        {t("outcome.payAttentionTo.pay attention heading")}
+      </Heading>
+      <List variant="bullet">
+        <ListItem>
+          <Trans
+            i18nKey={"outcome.payAttentionTo.permit free demolition exception"}
+          >
+            Misschien staat in het bestemmingsplan dat een vergunning toch nodig
+            is. Lees hiervoor verder op de pagina{" "}
+            <Link href={urls.VIEW_ZONING_PLAN} variant="inline" target="_blank">
+              Bestemmingsplan bekijken
+            </Link>
+            .
+          </Trans>
+        </ListItem>
+        <ListItem>{t("outcome.thinkAbout.take in account")}</ListItem>
+      </List>
+      <Heading forwardedAs={"h3"}>
+        {t("outcome.thinkAbout.also think about")}
+      </Heading>
+      <List variant={"bullet"}>
+        <ListItem>{t("outcome.thinkAbout.placement of a crane")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.disposal of waste")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.permission from the VvE")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.consent from neighbors")}</ListItem>
+      </List>
+    </>
+  );
+};
 
 export default DemolitionNeedReport;
