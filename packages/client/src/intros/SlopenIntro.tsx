@@ -7,9 +7,9 @@ export default () => {
   const { t } = useTranslation();
   return (
     <Intro
-      needReport
+      introSentence={t("introPage.slopen.need report")}
       showContactInformation={false}
-      usableForText={t("introPage.demolition.intro description")}
+      usableForText={t("introPage.slopen.intro description")}
     />
   );
 };

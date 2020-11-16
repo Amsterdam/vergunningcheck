@@ -50,9 +50,11 @@ export default {
           "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.",
         "placing bullet": "het plaatsen van de kozijnen zelf.",
       },
-      demolition: {
-        "intro description": "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
-        "need report": "U wilt gaan slopen. U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen. "
+      slopen: {
+        "intro description":
+          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
+        "need report":
+          "U wilt gaan slopen. U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen. ",
       },
       zonnepanelen: {
         "intro description":

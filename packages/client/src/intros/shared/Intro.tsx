@@ -16,7 +16,7 @@ type Props = {
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
   exceptions?: string[];
-  needReport?: boolean;
+  introSentence?: string;
   showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
@@ -26,7 +26,7 @@ export default ({
   dependantOnQuestions = true,
   dependantOnSituation = true,
   exceptions = [],
-  needReport = false,
+  introSentence,
   showContactInformation = true,
   usableForBullets = [],
   usableForText,
@@ -45,12 +45,10 @@ export default ({
 
   return (
     <>
-      { needReport && <Paragraph>
-        {t("introPage.demolition.need report")}{" "}
-      </Paragraph> }
-
+      <Paragraph>{introSentence}</Paragraph>
       <Paragraph gutterBottom={usableForBullets?.length > 0 ? 8 : undefined}>
-        {!needReport && t("introPage.common.check for permit intro")}{" "}
+        {usableForBullets?.length > 0 &&
+          t("introPage.common.check for permit intro")}{" "}
         {usableForBullets?.length > 0 && t("introPage.common.permit for")}
       </Paragraph>
 
