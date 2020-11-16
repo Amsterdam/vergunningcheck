@@ -23,7 +23,7 @@ const DemolitionPermitFree: React.FC = () => {
           >
             Misschien staat in het bestemmingsplan dat een vergunning toch nodig
             is. Lees hiervoor verder op de pagina
-            <Link href={urls.VIEW_ZONING_PLAN} variant="inline">
+            <Link href={urls.VIEW_ZONING_PLAN} variant="inline" target="_blank">
               Bestemmingsplan bekijken
             </Link>
             .
