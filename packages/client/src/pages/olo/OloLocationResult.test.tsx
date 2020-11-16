@@ -5,17 +5,13 @@ import React from "react";
 import mockAddress from "../../__mocks__/addressMock";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { NEXT_BUTTON } from "../../utils/test-ids";
-import { fireEvent, render, screen } from "../../utils/test-utils";
+import {
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+  screen,
+} from "../../utils/test-utils";
 import OloLocationResult from "./OloLocationResult";
-
-const mockMatomoTrackEvent = jest.fn();
-const mockMatomoTrackPageView = jest.fn();
-jest.mock("../../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-    matomoPageView: mockMatomoTrackPageView,
-  }));
-});
 
 jest.mock("../../hooks/useTopicData", () => () => ({
   topicData: { address: mockAddress },
