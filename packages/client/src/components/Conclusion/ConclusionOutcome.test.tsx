@@ -1,3 +1,4 @@
+import { imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { actions, eventNames } from "../../config/matomo";
@@ -7,17 +8,15 @@ import {
   NEED_PERMIT_BUTTON,
   NO_PERMIT_NEEDED,
 } from "../../utils/test-ids";
-import { act, fireEvent, render } from "../../utils/test-utils";
+import {
+  act,
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+} from "../../utils/test-utils";
 import ConclusionOutcome from "./ConclusionOutcome";
 import NeedPermitContent from "./NeedPermitContent";
 import NoPermitDescription from "./NoPermitDescription";
-
-const mockMatomoTrackEvent = jest.fn();
-jest.mock("../../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-  }));
-});
 
 describe("ConclusionOutcome", () => {
   it("renders the 'needs permit' conclusion correctly", () => {
@@ -27,6 +26,7 @@ describe("ConclusionOutcome", () => {
           mainContent: <NeedPermitContent />,
           title: "title",
         }}
+        outcomeType={imtrOutcomes.NEED_PERMIT}
       />
     );
 
@@ -59,6 +59,7 @@ describe("ConclusionOutcome", () => {
           footerContent: <NoPermitDescription />,
           title: "title",
         }}
+        outcomeType={imtrOutcomes.PERMIT_FREE}
       />
     );
     // Should be in document

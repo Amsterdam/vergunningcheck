@@ -32,11 +32,9 @@ export default () => {
         const topicRequest = await fetch(
           `${window.location.origin}/${topicConfig.path}`
         );
-
         const newChecker = getChecker(await topicRequest.json());
         const address = topicData.address;
 
-        debugger;
         // Find if we have missing data needs
         if (address) {
           newChecker.autofill(autofillResolvers, { address });
@@ -60,6 +58,7 @@ export default () => {
         checkerContext.setChecker(newChecker);
         setChecker(newChecker);
       } catch (e) {
+        console.error(e);
         setError(e);
       }
     }

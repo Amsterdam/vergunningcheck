@@ -1,18 +1,13 @@
 import React from "react";
 
-import { act, fireEvent, render, screen } from "../utils/test-utils";
+import {
+  act,
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+  screen,
+} from "../utils/test-utils";
 import Link from "./Link";
-
-jest.mock("react-router-dom", () => ({
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
-}));
-
-const mockMatomoTrackEvent = jest.fn();
-jest.mock("../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-  }));
-});
 
 describe("Link", () => {
   it("renders correctly", () => {
