@@ -123,6 +123,9 @@ export default {
           "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
         "you need a report for demolition":
           "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
+        "on this page you can read more":
+          "Op de pagina 'Sloopmelding doen' leest u hoe u de melding doet.",
+        "notify a demolition": "Sloopmelding doen",
       },
       payAttentionTo: {
         "apply to building code":

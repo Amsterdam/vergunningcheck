@@ -103,6 +103,16 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
         title: t("outcome.needPermit.you need a permit for demolition"),
       },
       [NEED_REPORT]: {
+        mainContent: (
+          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
+          // Maybe rename this to `OutcomeLink` or `OutcomeMainContent`
+          <NeedPermit
+            contentText={t("outcome.needReport.on this page you can read more")}
+            eventName={eventNames.HOW_TO_NOTIFY_A_DEMOLITION}
+            linkText={t("outcome.needReport.notify a demolition")}
+            url={urls.DEMOLITION_PERMIT_PAGE}
+          />
+        ),
         footerContent: <DemolitionNeedReport />,
         title: t("outcome.needReport.you need a report for demolition"),
       },

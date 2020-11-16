@@ -64,6 +64,7 @@ export const eventNames = {
   GOTO_PREV_QUESTION: "naar vorige vraag",
   HOW_TO_APPLY_FOR_A_PERMIT: "zo werkt aanvragen",
   HOW_TO_APPLY_FOR_A_DEMOLITION: "zo werkt sloop: melding en vergunning",
+  HOW_TO_NOTIFY_A_DEMOLITION: "sloopmelding doen",
   IAMSTERDAM: "iamsterdam.com",
   INSTAGRAM: "instagram",
   LINKEDIN: "linkedin",
