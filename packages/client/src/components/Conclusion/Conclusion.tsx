@@ -8,7 +8,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Topic } from "../../config";
+import { Topic, urls } from "../../config";
 import { sections } from "../../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import Disclaimer from "../Disclaimer";
@@ -16,7 +16,6 @@ import Markdown from "../Markdown";
 import ConclusionOutcome from "./ConclusionOutcome";
 import {
   DemolitionNeedBothReportAndPermit,
-  DemolitionNeedPermit,
   DemolitionNeedReport,
   DemolitionPermitFree,
   NeedPermit,
@@ -100,7 +99,9 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
         ),
       },
       [NEED_PERMIT]: {
-        mainContent: <DemolitionNeedPermit />,
+        mainContent: (
+          <NeedPermit howToApplyHref={urls.DEMOLITION_PERMIT_PAGE} />
+        ),
         title: t("outcome.needPermit.you need a permit for demolition"),
       },
       [NEED_REPORT]: {

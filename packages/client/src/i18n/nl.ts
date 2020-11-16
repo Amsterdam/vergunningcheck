@@ -79,12 +79,15 @@ export default {
         "you need both permit and report":
           "U hebt een omgevingsvergunning nodig.",
         "you need both permit and report for demolition":
-          "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+          "U hebt een omgevingsvergunning nodig. U moet de sloop ook melden.",
       },
       needPermit: {
         "you need a permit": "U hebt een omgevingsvergunning nodig.",
         "you need a permit for demolition":
           "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+        "on this page you can read more how to apply":
+          "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
+        "how to apply": "Zo werkt aanvragen",
       },
       needReport: {
         "you need a report":
