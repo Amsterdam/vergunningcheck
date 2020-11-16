@@ -75,11 +75,27 @@ export default {
     outcome: {
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
+      needBothPermitAndReport: {
+        "you need both permit and report":
+          "U hebt een omgevingsvergunning nodig.",
+        "you need both permit and report for demolition":
+          "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+      },
       needPermit: {
         "you need a permit": "U hebt een omgevingsvergunning nodig.",
+        "you need a permit for demolition":
+          "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+      },
+      needReport: {
+        "you need a report":
+          "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
+        "you need a report for demolition":
+          "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
       },
       permitFree: {
         "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+        "you dont need a permit for demolition":
+          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
       },
     },
   },

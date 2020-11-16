@@ -1,14 +1,14 @@
 import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
-import { HideForPrint, PrintOnly } from "../../atoms";
-import ComponentWrapper from "../../atoms/ComponentWrapper";
-import { urls } from "../../config";
-import { actions, eventNames } from "../../config/matomo";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
-import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
+import { HideForPrint, PrintOnly } from "../../../atoms";
+import ComponentWrapper from "../../../atoms/ComponentWrapper";
+import { urls } from "../../../config";
+import { actions, eventNames } from "../../../config/matomo";
+import withTracking, { MatomoTrackEventProps } from "../../../hoc/withTracking";
+import { NEED_PERMIT_BUTTON } from "../../../utils/test-ids";
 
-const NeedPermitContent: React.FC<MatomoTrackEventProps> = ({
+const DemolitionNeedPermit: React.FC<MatomoTrackEventProps> = ({
   matomoTrackEvent,
 }) => {
   const handlePermitInfoButton = () => {
@@ -50,4 +50,4 @@ const NeedPermitContent: React.FC<MatomoTrackEventProps> = ({
   );
 };
 
-export default withTracking(NeedPermitContent);
+export default withTracking(DemolitionNeedPermit);

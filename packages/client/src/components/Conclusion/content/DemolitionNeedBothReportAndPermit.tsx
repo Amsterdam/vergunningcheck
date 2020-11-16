@@ -1,6 +1,6 @@
 import React from "react";
 
-const NeedReportAndPermitContent: React.FC = () => (
+const DemolitionNeedBothReportAndPermit: React.FC = () => (
   <>
     <p>Dubbele plicht:</p>
     <ul>
@@ -10,4 +10,4 @@ const NeedReportAndPermitContent: React.FC = () => (
   </>
 );
 
-export default NeedReportAndPermitContent;
+export default DemolitionNeedBothReportAndPermit;

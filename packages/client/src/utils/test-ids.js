@@ -42,7 +42,7 @@ export const QUESTION_ALERT = "question-alert";
 export const NEED_CONTACT = "need-contact";
 export const NEED_PERMIT = "need-permit";
 export const NEED_PERMIT_BUTTON = "need-permit-button";
-export const NO_PERMIT_NEEDED = "no-permit-needed";
+export const PERMIT_FREE = "permit-free";
 export const DISCLAIMER_TEXT = "disclaimer-text";
 
 // Modal window

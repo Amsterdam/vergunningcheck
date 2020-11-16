@@ -8,17 +8,20 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { Topic } from "../../config";
 import { sections } from "../../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import Disclaimer from "../Disclaimer";
 import Markdown from "../Markdown";
-import NeedReportAndPermitContent from "./NeedReportAndPermitContent";
+import ConclusionOutcome from "./ConclusionOutcome";
 import {
-  ConclusionOutcome,
-  NeedPermitContent,
-  NeedReportContent,
-  NoPermitDescription,
-} from ".";
+  DemolitionNeedBothReportAndPermit,
+  DemolitionNeedPermit,
+  DemolitionNeedReport,
+  DemolitionNoPermit,
+  NeedPermit,
+  PermitFree,
+} from "./content";
 
 const ConclusionWrapper = styled.div`
   @media screen {
@@ -34,9 +37,15 @@ const {
   PERMIT_FREE,
 } = clientOutcomes;
 
-const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
+type ConclusionProps = {
+  checker: Checker;
+  topic: Topic;
+};
+
+const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
   checker,
   matomoTrackEvent,
+  topic,
 }) => {
   const { t } = useTranslation();
 
@@ -52,34 +61,63 @@ const Conclusion: React.FC<{ checker: Checker } & MatomoTrackEventProps> = ({
 
   // Define the content for the Conclusion components
   const contents = {
-    [NEED_BOTH_PERMIT_AND_REPORT]: {
-      mainContent: <NeedReportAndPermitContent />,
-      title: "U hebt zowel een meldingsplicht als vergunnngsplicht.",
+    default: {
+      // This default outcome is not used yet
+      // [NEED_BOTH_PERMIT_AND_REPORT]: {
+      //   mainContent: <NeedBothReportAndPermit />,
+      //   title: t(
+      //     "outcome.needBothPermitAndReport.you need both permit and report"
+      //   ),
+      // },
+      [NEED_CONTACT]: {
+        mainContent: (
+          <Markdown
+            eventLocation={sections.CONCLUSION}
+            source={getNeedContactContent?.description || ""}
+          />
+        ),
+        title: getNeedContactContent?.title || "",
+      },
+      [NEED_PERMIT]: {
+        mainContent: <NeedPermit />,
+        title: t("outcome.needPermit.you need a permit"),
+      },
+      // This default outcome is not used yet:
+      // [NEED_REPORT]: {
+      //   mainContent: <NeedReport />,
+      //   title: t("outcome.needReport.you need a report"),
+      // },
+      [PERMIT_FREE]: {
+        footerContent: <PermitFree />,
+        title: t("outcome.permitFree.you dont need a permit"),
+      },
     },
-    [NEED_CONTACT]: {
-      mainContent: (
-        <Markdown
-          eventLocation={sections.CONCLUSION}
-          source={getNeedContactContent?.description || ""}
-        />
-      ),
-      title: getNeedContactContent?.title || "",
-    },
-    [NEED_PERMIT]: {
-      mainContent: <NeedPermitContent />,
-      title: t("outcome.needPermit.you need a permit"),
-    },
-    [NEED_REPORT]: {
-      mainContent: <NeedReportContent />,
-      title: "U hebt een meldingsplicht.",
-    },
-    [PERMIT_FREE]: {
-      footerContent: <NoPermitDescription />,
-      title: t("outcome.permitFree.you dont need a permit"),
+    demolition: {
+      [NEED_BOTH_PERMIT_AND_REPORT]: {
+        mainContent: <DemolitionNeedBothReportAndPermit />,
+        title: t(
+          "outcome.needBothPermitAndReport.you need both permit and report for demolition"
+        ),
+      },
+      [NEED_PERMIT]: {
+        mainContent: <DemolitionNeedPermit />,
+        title: t("outcome.needPermit.you need a permit for demolition"),
+      },
+      [NEED_REPORT]: {
+        mainContent: <DemolitionNeedReport />,
+        title: t("outcome.needReport.you need a report for demolition"),
+      },
+      [PERMIT_FREE]: {
+        footerContent: <DemolitionNoPermit />,
+        title: t("outcome.permitFree.you dont need a permit for demolition"),
+      },
     },
   };
 
-  const conclusionContent = contents[outcomeType];
+  // This part can be refactored whenever we have another checker that have custom outcomes
+  const checkerContent =
+    topic.name === "Bouwwerk slopen" ? contents.demolition : contents.default;
+  const conclusionContent = checkerContent[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;
 
   if (!conclusionContent) {

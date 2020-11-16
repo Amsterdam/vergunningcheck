@@ -1,12 +1,12 @@
 import { Heading, ListItem } from "@amsterdam/asc-ui";
 import React from "react";
 
-import { List } from "../../atoms/index";
-import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
+import { List } from "../../../atoms/index";
+import { PERMIT_FREE } from "../../../utils/test-ids";
 
-const NoPermitDescription: React.FC = () => (
+const PermitFree: React.FC = () => (
   <>
-    <Heading forwardedAs="h3" data-testid={NO_PERMIT_NEEDED}>
+    <Heading forwardedAs="h3" data-testid={PERMIT_FREE}>
       Dit is waar u verder op moet letten:
     </Heading>
     <List variant="bullet">
@@ -37,4 +37,4 @@ const NoPermitDescription: React.FC = () => (
   </>
 );
 
-export default NoPermitDescription;
+export default PermitFree;
