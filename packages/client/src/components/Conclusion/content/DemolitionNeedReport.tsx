@@ -22,14 +22,14 @@ const DemolitionNeedReport: React.FC = () => {
             i18nKey={"outcome.payAttentionTo.permit free demolition exception"}
           >
             Misschien staat in het bestemmingsplan dat een vergunning toch nodig
-            is. Lees hiervoor verder op de pagina{" "}
+            is. Lees hiervoor verder op de pagina
             <Link href={urls.VIEW_ZONING_PLAN} variant="inline" target="_blank">
               Bestemmingsplan bekijken
             </Link>
             .
           </Trans>
         </ListItem>
-        <ListItem>{t("outcome.thinkAbout.take in account")}</ListItem>
+        <ListItem>{t("outcome.payAttentionTo.take in account")}</ListItem>
       </List>
       <Heading forwardedAs={"h3"}>
         {t("outcome.thinkAbout.also think about")}
