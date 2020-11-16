@@ -4,6 +4,7 @@ import { Trans, useTranslation } from "react-i18next";
 
 import { List } from "../../../atoms/index";
 import { urls } from "../../../config";
+import { eventNames } from "../../../config/matomo";
 import { NEED_REPORT } from "../../../utils/test-ids";
 import Link from "../../Link";
 
@@ -21,7 +22,12 @@ const DemolitionNeedReport: React.FC = () => {
           >
             Misschien staat in het bestemmingsplan dat een vergunning toch nodig
             is. Lees hiervoor verder op de pagina
-            <Link href={urls.VIEW_ZONING_PLAN} variant="inline" target="_blank">
+            <Link
+              eventName={eventNames.VIEW_ZONING_PLAN}
+              href={urls.VIEW_ZONING_PLAN}
+              target="_blank"
+              variant="inline"
+            >
               Bestemmingsplan bekijken
             </Link>
             .
