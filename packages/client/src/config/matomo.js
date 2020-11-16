@@ -80,6 +80,7 @@ export const eventNames = {
   TEXT_LINK: "tekst link",
   TO_OLO: "naar het omgevingsloket",
   TWITTER: "twitter",
+  VIEW_ZONING_PLAN: "bestemmingsplan bekijken",
   WEBARCHIEF: "webarchief",
   WITH_THE_SAME_ADDRESS: "op hetzelfde adres",
   WITHOUT_THE_SAME_ADDRESS: "op een ander adres",
