@@ -104,7 +104,7 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
         title: t("outcome.needPermit.you need a permit for demolition"),
       },
       [NEED_REPORT]: {
-        mainContent: <DemolitionNeedReport />,
+        footerContent: <DemolitionNeedReport />,
         title: t("outcome.needReport.you need a report for demolition"),
       },
       [PERMIT_FREE]: {
