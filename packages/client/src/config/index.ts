@@ -54,6 +54,8 @@ export const urls = {
   OLO_HOME: oloHome,
   OLO_INTRO: `${oloHome}Particulier/particulier/home?init=true`,
   OLO_LOCATION: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
+  VIEW_ZONING_PLAN:
+    "https://www.amsterdam.nl/veelgevraagd/?productid=%7bC25A69DB-3548-4E12-97BB-DB71318EDFB2%7d",
 };
 
 export const generateOloUrl = ({

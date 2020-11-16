@@ -1,44 +1,36 @@
 import { Heading, ListItem } from "@amsterdam/asc-ui";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { List } from "../../../atoms/index";
 import { PERMIT_FREE } from "../../../utils/test-ids";
-import {useTranslation} from "react-i18next";
 
 const PermitFree: React.FC = () => {
   const { t } = useTranslation();
   return (
     <>
       <Heading forwardedAs="h3" data-testid={PERMIT_FREE}>
-        {t('pay attention heading')}
+        {t("outcome.permitFree.pay attention heading")}
       </Heading>
       <List variant="bullet">
-        <ListItem>
-          U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit
-          staan ook eisen voor de brandveiligheid.
-        </ListItem>
-        <ListItem>
-          U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een
-          nest zwaluwen onder de dakpannen.
-        </ListItem>
+        <ListItem>{t("outcome.permitFree.apply to building code")}</ListItem>
+        <ListItem>{t("outcome.permitFree.take in account")}</ListItem>
       </List>
-      <Heading forwardedAs={"h3"}>Denk ook aan:</Heading>
+      <Heading forwardedAs={"h3"}>
+        {"outcome.permitFree.also think about"}
+      </Heading>
       <List variant={"bullet"}>
+        <ListItem>{t("outcome.permitFree.placement of a crane")}</ListItem>
+        <ListItem>{t("outcome.permitFree.disposal of waste")}</ListItem>
+        <ListItem>{t("outcome.permitFree.the risk of asbestos")}</ListItem>
+        <ListItem>{t("outcome.permitFree.view on neighbors grounds")}</ListItem>
         <ListItem>
-          Het plaatsen van een hijskraan of container op straat of het reserveren
-          van een parkeervak.
+          {t("outcome.permitFree.the consequences for the WOZ")}
         </ListItem>
-        <ListItem>Het afvoeren van bouw- en sloopafval.</ListItem>
-        <ListItem>Het risico dat u asbest tegenkomt.</ListItem>
-        <ListItem>
-          Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein
-          van de buren.
-        </ListItem>
-        <ListItem>De gevolgen voor de WOZ-waarde van uw huis.</ListItem>
-        <ListItem>Toestemming van de VvE.</ListItem>
+        <ListItem>{t("outcome.permitFree.permission from the VvE")}</ListItem>
       </List>
     </>
   );
-}
+};
 
 export default PermitFree;

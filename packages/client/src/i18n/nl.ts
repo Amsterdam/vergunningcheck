@@ -73,9 +73,6 @@ export default {
       },
     },
     outcome: {
-      common: {
-        "pay attention heading": "Dit is waar u verder op moet letten:",
-      },
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
 
@@ -86,22 +83,56 @@ export default {
           "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
       },
       needPermit: {
+        "how to apply": "Zo werkt aanvragen",
+        "on the page this is how apply works":
+          "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
         "you need a permit": "U hebt een omgevingsvergunning nodig.",
         "you need a permit for demolition":
           "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
       },
       needReport: {
+        "also think about": "Denk ook aan:",
+        "consent from neighbors":
+          "Toestemming van uw buren als het gaat om een gezamenlijke muur of schutting.",
+        "disposal of waste": "Het afvoeren van bouw- en sloopafval.",
+        "pay attention heading": "Dit is waar u verder op moet letten:",
+        "permit free demolition exception":
+          "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina <1>Bestemmingsplan bekijken</1>.",
+        "permission from the VvE": "Toestemming van de VvE.",
+        "placement of a crane":
+          "Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.",
+        "take in account":
+          "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.",
         "you need a report":
           "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
         "you need a report for demolition":
           "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
       },
       permitFree: {
-        "permit free demolition exception": "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina Bestemmingsplan bekijken.",
-        "permit free demolition exception": "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina Bestemmingsplan bekijken.",
+        "apply to building code":
+          "U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.",
+        "also think about": "Denk ook aan:",
+        "consent from neighbors":
+          "Toestemming van uw buren als het gaat om een gezamenlijke muur of schutting.",
+        "disposal of waste": "Het afvoeren van bouw- en sloopafval.",
+        "pay attention heading": "Dit is waar u verder op moet letten:",
+        "permit free demolition exception":
+          "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina <1>Bestemmingsplan bekijken</1>.",
+        "permission from the VvE": "Toestemming van de VvE.",
+        "placement of a crane":
+          "Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.",
+        "take in account":
+          "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.",
+        "the risk of asbestos": "Het risico dat u asbest tegenkomt.",
+        "the risk of still encountering asbestos":
+          "Het risico dat u toch asbest tegenkomt.",
+        "the consequences for the WOZ":
+          "De gevolgen voor de WOZ-waarde van uw huis.",
+        "view on neighbors grounds":
+          "Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.",
         "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
         "you dont need a permit for demolition":
-          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden."
+          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
       },
     },
   },

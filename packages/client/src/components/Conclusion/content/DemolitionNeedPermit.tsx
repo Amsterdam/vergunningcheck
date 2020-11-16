@@ -1,5 +1,6 @@
 import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { HideForPrint, PrintOnly } from "../../../atoms";
 import ComponentWrapper from "../../../atoms/ComponentWrapper";
@@ -11,6 +12,7 @@ import { NEED_PERMIT_BUTTON } from "../../../utils/test-ids";
 const DemolitionNeedPermit: React.FC<MatomoTrackEventProps> = ({
   matomoTrackEvent,
 }) => {
+  const { t } = useTranslation();
   const handlePermitInfoButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
@@ -22,8 +24,7 @@ const DemolitionNeedPermit: React.FC<MatomoTrackEventProps> = ({
   return (
     <ComponentWrapper marginBottom={40}>
       <Paragraph>
-        Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe
-        lang het duurt en wat het kost.
+        {t("outcome.needPermit.on the page this is how apply works")}
       </Paragraph>
       <PrintOnly>
         <Link
@@ -32,7 +33,7 @@ const DemolitionNeedPermit: React.FC<MatomoTrackEventProps> = ({
           onClick={handlePermitInfoButton}
           variant="inline"
         >
-          Zo werkt aanvragen
+          {t("outcome.needPermit.how to apply")}
         </Link>
       </PrintOnly>
       <HideForPrint>
@@ -42,7 +43,7 @@ const DemolitionNeedPermit: React.FC<MatomoTrackEventProps> = ({
             type="button"
             variant="primaryInverted"
           >
-            Zo werkt aanvragen
+            {t("outcome.needPermit.how to apply")}
           </Button>
         </ComponentWrapper>
       </HideForPrint>
