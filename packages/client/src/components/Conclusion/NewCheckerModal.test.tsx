@@ -10,17 +10,15 @@ import {
   RADIO_ADDRESS_1,
   RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
-import { act, fireEvent, render } from "../../utils/test-utils";
+import {
+  act,
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+} from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
 const customTopic = findTopicBySlug("dakraam-plaatsen") as Topic;
-
-const mockMatomoTrackEvent = jest.fn();
-jest.mock("../../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-  }));
-});
 
 it("NewCheckerModal should render as expected", () => {
   const { queryByText, queryByTestId } = render(<NewCheckerModal />);

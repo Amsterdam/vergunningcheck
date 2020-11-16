@@ -1,6 +1,5 @@
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 
 import { trackingEnabled } from "../config/matomo";
 import { findTopicBySlug, getSlugFromPathname } from "../utils";
@@ -14,9 +13,8 @@ type TrackingProps = {
 export default () => {
   /* Get slug and topic from url. Please note this hook can be used when no slug is available.
      Therefore we cannot use useSlug and useTopic, because they throw when not available. */
-  const location = useLocation();
   const { t } = useTranslation();
-  const slug = getSlugFromPathname(location.pathname);
+  const slug = getSlugFromPathname(window.location.pathname);
   const topic = findTopicBySlug(slug);
 
   const { trackEvent, trackPageView } = useMatomo();
