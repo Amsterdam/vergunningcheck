@@ -18,7 +18,7 @@ import {
   DemolitionNeedBothReportAndPermit,
   DemolitionNeedPermit,
   DemolitionNeedReport,
-  DemolitionNoPermit,
+  DemolitionPermitFree,
   NeedPermit,
   PermitFree,
 } from "./content";
@@ -108,7 +108,7 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
         title: t("outcome.needReport.you need a report for demolition"),
       },
       [PERMIT_FREE]: {
-        footerContent: <DemolitionNoPermit />,
+        footerContent: <DemolitionPermitFree />,
         title: t("outcome.permitFree.you dont need a permit for demolition"),
       },
     },

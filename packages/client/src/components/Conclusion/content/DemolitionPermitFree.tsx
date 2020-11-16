@@ -4,7 +4,7 @@ import React from "react";
 import { List } from "../../../atoms/index";
 import { PERMIT_FREE } from "../../../utils/test-ids";
 
-const DemolitionNoPermit: React.FC = () => (
+const DemolitionPermitFree: React.FC = () => (
   <>
     <Heading forwardedAs="h3" data-testid={PERMIT_FREE}>
       Dit is waar u verder op moet letten:
@@ -37,4 +37,4 @@ const DemolitionNoPermit: React.FC = () => (
   </>
 );
 
-export default DemolitionNoPermit;
+export default DemolitionPermitFree;
