@@ -73,8 +73,12 @@ export default {
       },
     },
     outcome: {
+      common: {
+        "pay attention heading": "Dit is waar u verder op moet letten:",
+      },
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
+
       needBothPermitAndReport: {
         "you need both permit and report":
           "U hebt een omgevingsvergunning nodig.",
@@ -93,9 +97,11 @@ export default {
           "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
       },
       permitFree: {
+        "permit free demolition exception": "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina Bestemmingsplan bekijken.",
+        "permit free demolition exception": "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina Bestemmingsplan bekijken.",
         "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
         "you dont need a permit for demolition":
-          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
+          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden."
       },
     },
   },
