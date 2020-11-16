@@ -8,15 +8,13 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Topic } from "../../config";
-import { sections } from "../../config/matomo";
+import { Topic, urls } from "../../config";
+import { eventNames, sections } from "../../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
 import Disclaimer from "../Disclaimer";
 import Markdown from "../Markdown";
 import ConclusionOutcome from "./ConclusionOutcome";
 import {
-  DemolitionNeedBothReportAndPermit,
-  DemolitionNeedPermit,
   DemolitionNeedReport,
   DemolitionPermitFree,
   NeedPermit,
@@ -61,14 +59,8 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
 
   // Define the content for the Conclusion components
   const contents = {
+    // This is the default content
     default: {
-      // This default outcome is not used yet
-      // [NEED_BOTH_PERMIT_AND_REPORT]: {
-      //   mainContent: <NeedBothReportAndPermit />,
-      //   title: t(
-      //     "outcome.needBothPermitAndReport.you need both permit and report"
-      //   ),
-      // },
       [NEED_CONTACT]: {
         mainContent: (
           <Markdown
@@ -82,25 +74,32 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
         mainContent: <NeedPermit />,
         title: t("outcome.needPermit.you need a permit"),
       },
-      // This default outcome is not used yet:
-      // [NEED_REPORT]: {
-      //   mainContent: <NeedReport />,
-      //   title: t("outcome.needReport.you need a report"),
-      // },
       [PERMIT_FREE]: {
         footerContent: <PermitFree />,
         title: t("outcome.permitFree.you dont need a permit"),
       },
     },
+    // This content is only relevant for the demolition checker
     demolition: {
       [NEED_BOTH_PERMIT_AND_REPORT]: {
-        mainContent: <DemolitionNeedBothReportAndPermit />,
+        mainContent: (
+          <NeedPermit
+            contentText={t(
+              "outcome.needBothPermitAndReport.on this page you can read more how to do apply for demolition"
+            )}
+            eventName={eventNames.HOW_TO_APPLY_FOR_A_DEMOLITION}
+            linkText={t(
+              "outcome.needBothPermitAndReport.demolition permit and report"
+            )}
+            url={urls.DEMOLITION_PERMIT_PAGE}
+          />
+        ),
         title: t(
           "outcome.needBothPermitAndReport.you need both permit and report for demolition"
         ),
       },
       [NEED_PERMIT]: {
-        mainContent: <DemolitionNeedPermit />,
+        mainContent: <NeedPermit url={urls.DEMOLITION_PERMIT_PAGE} />,
         title: t("outcome.needPermit.you need a permit for demolition"),
       },
       [NEED_REPORT]: {

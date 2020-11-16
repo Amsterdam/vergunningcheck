@@ -49,6 +49,8 @@ export const isProduction: boolean =
 const oloHome: string = "https://www.omgevingsloket.nl/";
 
 export const urls = {
+  DEMOLITION_PERMIT_PAGE:
+    "https://www.amsterdam.nl/veelgevraagd/?caseid=%7BAEA35C69-4DAD-483E-8AA1-C068D88B792C%7D",
   GENERAL_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
   OLO_HOME: oloHome,

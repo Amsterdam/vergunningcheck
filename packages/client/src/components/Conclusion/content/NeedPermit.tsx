@@ -9,42 +9,59 @@ import { actions, eventNames } from "../../../config/matomo";
 import withTracking, { MatomoTrackEventProps } from "../../../hoc/withTracking";
 import { NEED_PERMIT_BUTTON } from "../../../utils/test-ids";
 
-const NeedPermit: React.FC<MatomoTrackEventProps> = ({ matomoTrackEvent }) => {
+type NeedPermitProps = {
+  contentText?: string;
+  eventName?: string;
+  linkText?: string;
+  url?: string;
+};
+
+const NeedPermit: React.FC<NeedPermitProps & MatomoTrackEventProps> = ({
+  contentText,
+  eventName = eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
+  matomoTrackEvent,
+  linkText,
+  url = urls.GENERAL_PERMIT_PAGE,
+}) => {
   const { t } = useTranslation();
+
+  const content =
+    contentText ??
+    t("outcome.needPermit.on this page you can read more how to apply");
+
+  const link = linkText ?? t("outcome.needPermit.how to apply");
+
+  // Make sure to render the component with content
+  if (!content || !link) return null;
+
   const handlePermitInfoButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
+      name: eventName,
     });
-    window.open(urls.GENERAL_PERMIT_PAGE, "_blank");
+    window.open(url, "_blank");
   };
 
   return (
     <ComponentWrapper marginBottom={40}>
-      <Paragraph>
-        {t("outcome.needPermit.on the page this is how apply works")}
-      </Paragraph>
-      <PrintOnly>
-        <Link
-          data-testid={NEED_PERMIT_BUTTON}
-          href={urls.GENERAL_PERMIT_PAGE}
-          onClick={handlePermitInfoButton}
-          variant="inline"
-        >
-          {t("outcome.needPermit.how to apply")}
-        </Link>
-      </PrintOnly>
+      <Paragraph>{content}</Paragraph>
       <HideForPrint>
         <ComponentWrapper marginBottom={32}>
           <Button
+            data-testid={NEED_PERMIT_BUTTON}
             onClick={handlePermitInfoButton}
             type="button"
             variant="primaryInverted"
           >
-            {t("outcome.needPermit.how to apply")}
+            {link}
           </Button>
         </ComponentWrapper>
       </HideForPrint>
+      <PrintOnly>
+        <Link href={url} onClick={handlePermitInfoButton} variant="inline">
+          {link}
+        </Link>
+      </PrintOnly>
     </ComponentWrapper>
   );
 };
