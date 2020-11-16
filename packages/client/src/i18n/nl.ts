@@ -71,6 +71,16 @@ export default {
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
     },
+    question: {
+      alert: {
+        "this answer causes a need for permit":
+          "Door dit antwoord hebt u een vergunning nodig.",
+        "if you make another choice you might not need a permit":
+          "Als u een andere keuze maakt, hebt u misschien geen vergunning nodig.",
+        "this anwser makes it unable to determine the outcome":
+          "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.",
+      },
+    },
     outcome: {
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",

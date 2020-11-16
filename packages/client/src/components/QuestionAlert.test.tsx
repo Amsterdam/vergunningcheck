@@ -4,15 +4,17 @@ import { ascDefaultTheme, themeSpacing } from "@amsterdam/asc-ui";
 import { clientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
+import text from "../i18n/nl";
 import { QUESTION_ALERT } from "../utils/test-ids";
 import { render, screen } from "../utils/test-utils";
 import QuestionAlert from "./QuestionAlert";
 
-const needPermitText = "Door dit antwoord hebt u een vergunning nodig.";
+const needPermitText =
+  text.translation.question.alert["this answer causes a need for permit"];
 const needContactText =
-  "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.";
-
-// @TODO: get this text from i18n
+  text.translation.question.alert[
+    "this anwser makes it unable to determine the outcome"
+  ];
 
 describe("QuestionAlert", () => {
   it("renders NEED_PERMIT variant correctly", () => {

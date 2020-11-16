@@ -1,6 +1,7 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import { clientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { HideForPrint } from "../atoms";
 import { QUESTION_ALERT } from "../utils/test-ids";
@@ -13,12 +14,12 @@ export type QuestionAlertProps = {
 
 const { NEED_CONTACT, NEED_PERMIT } = clientOutcomes;
 
-// @TODO: get the texts from i18n
-
 const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,
   outcomeType,
 }) => {
+  const { t } = useTranslation();
+
   // Only show this Alert for select outcomes (or on development to debug)
   if (
     outcomeType === NEED_PERMIT ||
@@ -33,15 +34,18 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
         <Paragraph>
           {outcomeType === NEED_PERMIT && (
             <>
-              Door dit antwoord hebt u een vergunning nodig.{" "}
+              {t("question.alert.this answer causes a need for permit")}{" "}
               <HideForPrint as="span">
-                Als u een andere keuze maakt, hebt u misschien geen vergunning
-                nodig.
+                {t(
+                  "question.alert.if you make another choice you might not need a permit"
+                )}
               </HideForPrint>
             </>
           )}
           {outcomeType === NEED_CONTACT &&
-            "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."}
+            t(
+              "question.alert.this anwser makes it unable to determine the outcome"
+            )}
         </Paragraph>
       </QuestionAlertStyle>
     );
