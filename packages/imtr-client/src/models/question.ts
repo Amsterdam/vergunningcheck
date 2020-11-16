@@ -1,8 +1,8 @@
 import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
-import { Answer, ClientSimpleType } from "../types";
+import { Answer, AnswerType } from "../types";
 
-import { collectionOfType } from "../utils";
+import { addQuotes, collectionOfType } from "../utils";
 
 const DESC_MAX_LENGTH = 2048;
 export const questionTypes = ["boolean", "string", "number", "geo"];
@@ -19,6 +19,7 @@ export const questionTypes = ["boolean", "string", "number", "geo"];
 export type QuestionProps = {
   answer?: Answer;
   autofill?: string;
+  collection?: boolean;
   description?: string;
   id: string;
   longDescription?: string;
@@ -33,10 +34,11 @@ export type QuestionProps = {
  * A Question
  */
 export default class Question {
-  private _answer?: Answer;
+  private _answer?: AnswerType;
 
   readonly __type = "Question";
   readonly autofill?: string;
+  readonly collection: boolean;
   readonly description?: string;
   readonly id: string;
   readonly longDescription?: string;
@@ -49,6 +51,7 @@ export default class Question {
   constructor({
     answer,
     autofill,
+    collection,
     description,
     id,
     longDescription,
@@ -98,14 +101,28 @@ export default class Question {
     if (options !== undefined && !collectionOfType(options, "String")) {
       throw Error(`Options must be array of String's`);
     }
+    if (
+      (options === undefined || !collectionOfType(options, "String")) &&
+      collection === true
+    ) {
+      throw Error(
+        "Cannot construct question with collection: true but no options provided"
+      );
+    }
+    if (collection === true && type !== "string") {
+      throw Error(
+        `Cannot construct question with collection: true but not type string (got '${type}')`
+      );
+    }
 
     this.id = id;
     this.type = type;
+    this.collection = collection === true;
     this.text = text;
     this.uuid = uuid;
     this.prio = prio;
     this.autofill = autofill;
-    this.options = options ? options.map((val) => `"${val}"`) : undefined;
+    this.options = options ? options.map(addQuotes) : undefined;
     this.description = description;
     this.longDescription = longDescription;
 
@@ -116,15 +133,31 @@ export default class Question {
   // plugin:@typescript-eslint/recommended
   // eslint@typescript-eslint/explicit-module-boundary-types
 
-  get answer(): Answer {
+  get answer(): AnswerType {
     return this._answer;
   }
 
-  setAnswer(value: ClientSimpleType): void {
+  setAnswer(value: Answer): void {
     /* eslint-disable valid-typeof */
     if (this.type === "geo") {
       // temporary fix to make current checkers work:
       // throw Error(`'geo' is not yet supported.`);
+    } else if (this.collection) {
+      if (!Array.isArray(value)) {
+        throw Error(
+          `value for setAnswer must be of type string[] for collections, got '${value}'`
+        );
+      }
+
+      const unsupportedOption = value.find(
+        (val) => !(this.options || []).includes(val as string)
+      );
+
+      if (unsupportedOption) {
+        throw Error(
+          `value '${unsupportedOption}' in setAnswer is not in options-list '${this.options}'`
+        );
+      }
     } else if (
       this.options &&
       (typeof value !== "string" || !this.options.includes(value))
