@@ -67,7 +67,7 @@ export default () => {
 
   return {
     checker,
-    setChecker: (checker: Checker | undefined) => {
+    setChecker: (checker: { _getUpcomingQuestions: any[]; getAutofillDataNeeds: any[] }) => {
       checkerContext.setChecker(checker);
       checkerContext.setAutofillData({});
       setChecker(checker);

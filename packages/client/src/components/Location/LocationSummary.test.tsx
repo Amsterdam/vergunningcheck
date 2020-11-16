@@ -24,7 +24,12 @@ describe("LocationSummary", () => {
   };
 
   it("renders in STTR Flow on LocationFinder (with all restrictions)", () => {
-    render(<WrapperWithContext isBelowInputFields showTitle />);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMock}
+        isBelowInputFields
+        showTitle
+      />);
 
     // Expext to find:
     expect(
@@ -101,7 +106,10 @@ describe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow above the questionnaire (with all restrictions)", () => {
-    render(<WrapperWithContext showEditLocationModal />);
+    render(<WrapperWithContext
+      addressFromLocation={addressMock}
+      showEditLocationModal
+    />);
 
     // Expext to find:
     expect(

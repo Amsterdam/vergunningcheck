@@ -13,7 +13,7 @@ import {
 import { act, fireEvent, render } from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
-const customTopic = findTopicBySlug("dakraam-plaatsen") as Topic;
+const customTopic = findTopicBySlug("") as Topic;
 
 const mockMatomoTrackEvent = jest.fn();
 jest.mock("../../hooks/useTracking", () => {
