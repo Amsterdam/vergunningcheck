@@ -12,7 +12,7 @@ it("SopenIntro renders correctly", () => {
 
   expect(
     screen.queryByText(
-      "Deze vergunningcheck gaat over slopen van bouwwerken.",
+      "U wilt gaan slopen. U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen. ",
       { exact: false }
     )
   ).toBeInTheDocument();
