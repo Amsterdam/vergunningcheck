@@ -4,6 +4,11 @@ import React from "react";
 import { List } from "../../../atoms/index";
 import { PERMIT_FREE } from "../../../utils/test-ids";
 
+// @DONE: Insert correct texts (robin)
+// @TODO: Fix URL (sven)
+// @TODO: Fix translations (sven)
+// @TODO: Verify texts (robin)
+
 const DemolitionPermitFree: React.FC = () => (
   <>
     <Heading forwardedAs="h3" data-testid={PERMIT_FREE}>
@@ -11,8 +16,8 @@ const DemolitionPermitFree: React.FC = () => (
     </Heading>
     <List variant="bullet">
       <ListItem>
-        U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit
-        staan ook eisen voor de brandveiligheid.
+        Misschien staat in het bestemmingsplan dat een vergunning toch nodig is.
+        Lees hiervoor verder op de pagina Bestemmingsplan bekijken.
       </ListItem>
       <ListItem>
         U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een
@@ -26,13 +31,12 @@ const DemolitionPermitFree: React.FC = () => (
         van een parkeervak.
       </ListItem>
       <ListItem>Het afvoeren van bouw- en sloopafval.</ListItem>
-      <ListItem>Het risico dat u asbest tegenkomt.</ListItem>
-      <ListItem>
-        Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein
-        van de buren.
-      </ListItem>
-      <ListItem>De gevolgen voor de WOZ-waarde van uw huis.</ListItem>
+      <ListItem>Het risico dat u toch asbest tegenkomt.</ListItem>
       <ListItem>Toestemming van de VvE.</ListItem>
+      <ListItem>
+        Toestemming van uw buren als het gaat om een gezamenlijke muur of
+        schutting.
+      </ListItem>
     </List>
   </>
 );

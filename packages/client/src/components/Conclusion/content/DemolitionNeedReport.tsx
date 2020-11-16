@@ -31,7 +31,6 @@ const DemolitionNeedReport: React.FC = () => (
         van een parkeervak.
       </ListItem>
       <ListItem>Het afvoeren van bouw- en sloopafval.</ListItem>
-      <ListItem>Het risico dat u asbest tegenkomt.</ListItem>
       <ListItem>Toestemming van de VvE.</ListItem>
       <ListItem>
         Toestemming van uw buren als het gaat om een gezamenlijke muur of
