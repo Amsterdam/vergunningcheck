@@ -1,5 +1,6 @@
 import React from "react";
 
+import text from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import SlopenIntro from "./SlopenIntro";
 
@@ -12,7 +13,7 @@ it("SopenIntro renders correctly", () => {
 
   expect(
     screen.queryByText(
-      "U wilt gaan slopen. U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen. ",
+      text.translation.introPage.demolition["intro description"],
       { exact: false }
     )
   ).toBeInTheDocument();
