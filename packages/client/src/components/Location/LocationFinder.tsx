@@ -30,8 +30,8 @@ const isTrueExactMatch = (
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
 type LocationFinderProps = {
+  errorMessage?: ApolloError;
   focus: boolean;
-  hasError?: ApolloError;
   sessionAddress: any; // @TODO replace any with address type.
   setAddress: (address: object) => void;
   setError: (error: ApolloError | undefined) => void;
@@ -40,8 +40,8 @@ type LocationFinderProps = {
 };
 
 const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
+  errorMessage,
   focus,
-  hasError,
   matomoTrackEvent,
   sessionAddress,
   setAddress,
@@ -61,7 +61,6 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
     sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
-  // const [currentError, setCurrentError] = useState<string | undefined>("");
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   const variables = {
@@ -150,14 +149,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   // GraphQL error
   useEffect(() => {
-    if (graphqlError && hasError?.message !== graphqlError?.message) {
+    if (graphqlError && errorMessage?.message !== graphqlError?.message) {
       setError(graphqlError);
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
     }
-  }, [hasError, graphqlError, matomoTrackEvent, setError]);
+  }, [errorMessage, graphqlError, matomoTrackEvent, setError]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
@@ -205,7 +204,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const showLoading = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
-    !hasError &&
+    !errorMessage &&
     !showAutoSuggest &&
     !showExactMatch &&
     !showLocationNotFound &&
@@ -225,14 +224,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
       setHouseNumber(parseInt(value));
       setHouseNumberFull(value);
 
-      if (value && !hasError) {
+      if (value && !errorMessage) {
         // Allow references to the event to be retained
         event.persist();
         setShowResult(false);
         debouncedUpdateResult();
       }
     },
-    [debouncedUpdateResult, hasError]
+    [debouncedUpdateResult, errorMessage]
   );
 
   // @TODO: we can refactor this component by separating all inputs and input handles

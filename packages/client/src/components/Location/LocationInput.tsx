@@ -41,7 +41,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [hasError, setError] = useState<ApolloError | undefined>(error);
+  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
@@ -116,10 +116,10 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
 
   return (
     <>
-      {hasError && (
+      {errorMessage && (
         <Error
           heading={t("common.no address found api down")}
-          stack={hasError?.stack}
+          stack={errorMessage?.stack}
         >
           <Paragraph>
             {t("common.try again or contact city of amsterdam")}{" "}
@@ -136,8 +136,8 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
+            errorMessage,
             focus,
-            hasError,
             matomoTrackEvent,
             sessionAddress,
             setAddress,
