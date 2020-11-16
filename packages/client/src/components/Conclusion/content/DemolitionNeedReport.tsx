@@ -14,12 +14,12 @@ const DemolitionNeedReport: React.FC = () => {
   return (
     <>
       <Heading forwardedAs="h3" data-testid={NEED_REPORT}>
-        {t("outcome.pay attention heading")}
+        {t("outcome.payAttentionTo.pay attention heading")}
       </Heading>
       <List variant="bullet">
         <ListItem>
           <Trans
-            i18nKey={"outcome.needReport.permit free demolition exception"}
+            i18nKey={"outcome.payAttentionTo.permit free demolition exception"}
           >
             Misschien staat in het bestemmingsplan dat een vergunning toch nodig
             is. Lees hiervoor verder op de pagina{" "}
@@ -29,16 +29,16 @@ const DemolitionNeedReport: React.FC = () => {
             .
           </Trans>
         </ListItem>
-        <ListItem>{t("outcome.needReport.take in account")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.take in account")}</ListItem>
       </List>
       <Heading forwardedAs={"h3"}>
-        {t("outcome.needReport.also think about")}
+        {t("outcome.thinkAbout.also think about")}
       </Heading>
       <List variant={"bullet"}>
-        <ListItem>{t("outcome.needReport.placement of a crane")}</ListItem>
-        <ListItem>{t("outcome.needReport.disposal of waste")}</ListItem>
-        <ListItem>{t("outcome.needReport.permission from the VvE")}</ListItem>
-        <ListItem>{t("outcome.needReport.consent from neighbors")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.placement of a crane")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.disposal of waste")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.permission from the VvE")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.consent from neighbors")}</ListItem>
       </List>
     </>
   );

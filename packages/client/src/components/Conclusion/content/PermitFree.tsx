@@ -10,24 +10,26 @@ const PermitFree: React.FC = () => {
   return (
     <>
       <Heading forwardedAs="h3" data-testid={PERMIT_FREE}>
-        {t("outcome.permitFree.pay attention heading")}
+        {t("outcome.payAttentionTo.pay attention heading")}
       </Heading>
       <List variant="bullet">
-        <ListItem>{t("outcome.permitFree.apply to building code")}</ListItem>
-        <ListItem>{t("outcome.permitFree.take in account")}</ListItem>
+        <ListItem>
+          {t("outcome.payAttentionTo.apply to building code")}
+        </ListItem>
+        <ListItem>{t("outcome.payAttentionTo.take in account")}</ListItem>
       </List>
       <Heading forwardedAs={"h3"}>
-        {"outcome.permitFree.also think about"}
+        {"outcome.thinkAbout.also think about"}
       </Heading>
       <List variant={"bullet"}>
-        <ListItem>{t("outcome.permitFree.placement of a crane")}</ListItem>
-        <ListItem>{t("outcome.permitFree.disposal of waste")}</ListItem>
-        <ListItem>{t("outcome.permitFree.the risk of asbestos")}</ListItem>
-        <ListItem>{t("outcome.permitFree.view on neighbors grounds")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.placement of a crane")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.disposal of waste")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.the risk of asbestos")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.view on neighbors grounds")}</ListItem>
         <ListItem>
-          {t("outcome.permitFree.the consequences for the WOZ")}
+          {t("outcome.thinkAbout.the consequences for the WOZ")}
         </ListItem>
-        <ListItem>{t("outcome.permitFree.permission from the VvE")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.permission from the VvE")}</ListItem>
       </List>
     </>
   );

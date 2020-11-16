@@ -14,34 +14,34 @@ const DemolitionPermitFree: React.FC = () => {
   return (
     <>
       <Heading forwardedAs="h3" data-testid={PERMIT_FREE}>
-        {t("outcome.permitFree.pay attention heading")}
+        {t("outcome.payAttentionTo.pay attention heading")}
       </Heading>
       <List variant="bullet">
         <ListItem>
           <Trans
-            i18nKey={"outcome.permitFree.permit free demolition exception"}
+            i18nKey={"outcome.payAttentionTo.permit free demolition exception"}
           >
             Misschien staat in het bestemmingsplan dat een vergunning toch nodig
-            is. Lees hiervoor verder op de pagina{" "}
+            is. Lees hiervoor verder op de pagina
             <Link href={urls.VIEW_ZONING_PLAN} variant="inline">
               Bestemmingsplan bekijken
             </Link>
             .
           </Trans>
         </ListItem>
-        <ListItem>{t("outcome.permitFree.take in account")}</ListItem>
+        <ListItem>{t("outcome.payAttentionTo.take in account")}</ListItem>
       </List>
       <Heading forwardedAs={"h3"}>
-        {t("outcome.permitFree.also think about")}
+        {t("outcome.thinkAbout.also think about")}
       </Heading>
       <List variant={"bullet"}>
-        <ListItem>{t("outcome.permitFree.placement of a crane")}</ListItem>
-        <ListItem>{t("outcome.permitFree.disposal of waste")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.placement of a crane")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.disposal of waste")}</ListItem>
         <ListItem>
-          {t("outcome.permitFree.the risk of still encountering asbestos")}
+          {t("outcome.thinkAbout.the risk of still encountering asbestos")}
         </ListItem>
-        <ListItem>{t("outcome.permitFree.permission from the VvE")}</ListItem>
-        <ListItem>{t("outcome.permitFree.consent from neighbors")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.permission from the VvE")}</ListItem>
+        <ListItem>{t("outcome.thinkAbout.consent from neighbors")}</ListItem>
       </List>
     </>
   );
