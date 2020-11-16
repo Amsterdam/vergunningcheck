@@ -16,6 +16,7 @@ type Props = {
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
   exceptions?: string[];
+  introSentence?: string;
   showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
@@ -25,6 +26,7 @@ export default ({
   dependantOnQuestions = true,
   dependantOnSituation = true,
   exceptions = [],
+  introSentence,
   showContactInformation = true,
   usableForBullets = [],
   usableForText,
@@ -43,14 +45,16 @@ export default ({
 
   return (
     <>
-      <Paragraph gutterBottom={usableForBullets.length > 0 ? 8 : undefined}>
-        {t("introPage.common.check for permit intro")}{" "}
-        {usableForBullets.length > 0 && t("introPage.common.permit for")}
+      <Paragraph>{introSentence}</Paragraph>
+      <Paragraph gutterBottom={usableForBullets?.length > 0 ? 8 : undefined}>
+        {usableForBullets?.length > 0 &&
+          t("introPage.common.check for permit intro")}{" "}
+        {usableForBullets?.length > 0 && t("introPage.common.permit for")}
       </Paragraph>
 
-      {usableForBullets.length > 0 && (
+      {usableForBullets?.length > 0 && (
         <List data-testid={INTRO_USABLE_FOR_BULLETS} variant="bullet">
-          {usableForBullets.map((bulletText) => (
+          {usableForBullets?.map((bulletText) => (
             <ListItem key={bulletText}>{bulletText}</ListItem>
           ))}
         </List>
@@ -69,7 +73,7 @@ export default ({
         </Paragraph>
       )}
 
-      {exceptions.length > 0 && (
+      {exceptions?.length > 0 && (
         <>
           <Heading forwardedAs="h4">
             {t("introPage.common.exceptions title")}
@@ -82,7 +86,7 @@ export default ({
             style={{ marginBottom: 12 }}
             variant="bullet"
           >
-            {exceptions.map((exception) => (
+            {exceptions?.map((exception) => (
               <ListItem key={exception}>{exception}</ListItem>
             ))}
           </List>
@@ -94,7 +98,7 @@ export default ({
         </>
       )}
 
-      {exceptions.length === 0 && showContactInformation && (
+      {exceptions?.length === 0 && showContactInformation && (
         <Paragraph>
           <ContactSentence
             eventName={sections.INTRO}
