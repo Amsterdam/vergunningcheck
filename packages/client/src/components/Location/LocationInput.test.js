@@ -155,7 +155,7 @@ describe("LocationInput", () => {
     });
 
     expect(matomoTrackEvent).toBeCalledWith({
-      action: actions.SUBMIT_LOCATION,
+      action: actions.SUBMIT_MONUMENT,
       name: resultMonument,
     });
 

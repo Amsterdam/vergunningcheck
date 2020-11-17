@@ -26,7 +26,11 @@ export const actions = {
   EDIT_QUESTION: "wijzig vraag",
   ERROR: "foutmelding",
   OPEN_MODAL: "open modal",
+  SUBMIT_CITYSCAPE: "stadsgezicht invoer",
+  SUBMIT_DISTRICT: "wijk invoer",
   SUBMIT_LOCATION: "locatie invoer",
+  SUBMIT_MONUMENT: "monument invoer",
+  SUBMIT_NEIGHBORHOOD: "buurt invoer",
   START_ANOTHER_CHECK: "start een andere vergunningcheck",
 };
 

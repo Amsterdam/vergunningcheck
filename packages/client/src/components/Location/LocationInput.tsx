@@ -67,19 +67,19 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
         name: address.postalCode.substring(0, 4),
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_MONUMENT,
         name: monument || eventNames.NO_MONUMENT,
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_CITYSCAPE,
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_NEIGHBORHOOD,
         name: address.neighborhoodName || t("common.unknown"),
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_DISTRICT,
         name: address.districtName || t("common.unknown"),
       });
 
