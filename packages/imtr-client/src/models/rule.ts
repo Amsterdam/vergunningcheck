@@ -1,4 +1,4 @@
-import { ClientSimpleType } from "../types";
+import { AnswerType, ClientSimpleType } from "../types";
 import { collectionOfSimpleTypes, isSimpleType } from "../utils";
 
 /**
@@ -52,7 +52,7 @@ export default class Rule {
    *
    * @returns indexes of matching values
    */
-  evaluateNew(values: (ClientSimpleType | null | undefined)[]): number[] {
+  evaluateNew(values: AnswerType[]): number[] {
     if (!collectionOfSimpleTypes(values)) {
       throw Error(`'values' should be an array of simple types, got ${values}`);
     }

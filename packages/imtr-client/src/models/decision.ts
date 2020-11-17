@@ -1,5 +1,5 @@
 import isString from "lodash.isstring";
-import { ClientSimpleType, Input } from "../types";
+import { AnswerType, ClientSimpleType, Input } from "../types";
 
 import { collectionOfType } from "../utils";
 import Question from "./question";
@@ -54,8 +54,8 @@ export default class Decision {
   /**
    * Return the outputValue for the first matching rule
    */
-  get answer(): ClientSimpleType | null {
-    return this.getMatchingRules().shift()?.outputValue || null;
+  get answer(): AnswerType {
+    return this.getMatchingRules().shift()?.outputValue || undefined;
   }
 
   getMatchingRules(inputReducer?: InputReducer): Rule[] {
