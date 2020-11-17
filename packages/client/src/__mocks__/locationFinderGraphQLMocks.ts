@@ -155,12 +155,8 @@ export default [
       },
     },
     result: {
-      data: {
-        findAddress: {
-          exactMatch: null,
-          matches: [],
-        },
-      },
+      data: null,
+      errors: [{ stack: ["GraphQLError: ..."], message: "..." }],
     },
   },
 ];

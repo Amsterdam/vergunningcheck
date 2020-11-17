@@ -21,11 +21,11 @@ import {
 import LocationFinder from "./LocationFinder";
 
 const setAddress = jest.fn();
-const setErrorMessage = jest.fn();
+const setError = jest.fn();
 const matomoTrackEvent = jest.fn();
 
 const mockedFunctions = {
-  ...{ matomoTrackEvent, setAddress, setErrorMessage },
+  ...{ matomoTrackEvent, setAddress, setError },
 };
 
 jest.mock("react-router-dom", () => ({
@@ -43,7 +43,7 @@ describe("LocationFinder", () => {
         topic={topic}
         sessionAddress={{}}
         {...mockedFunctions}
-        {...{ focus, setFocus, setErrorMessage }}
+        {...{ focus, setFocus, setError }}
       />
     );
   };
@@ -153,7 +153,7 @@ describe("LocationFinder", () => {
         target: { value: "666" },
       });
     });
-    await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(3);
+
+    expect(setError).toHaveBeenCalled();
   });
 });
