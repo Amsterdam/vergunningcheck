@@ -14,7 +14,7 @@ export default {
       "no address found api down":
         "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
       "no address found postalcode houseNumber combination":
-        "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer",
+        "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer.",
       "no valid postalcode":
         "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       unknown: "Onbekend",
@@ -22,7 +22,7 @@ export default {
     introPage: {
       common: {
         "amount of houses exception": "Het aantal woningen verandert.",
-        "call with questions": "Heeft u vragen? Bel dan.",
+        "call with questions": "Heeft u vragen? Bel dan",
         "change answer":
           "U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
         "check for permit intro":
