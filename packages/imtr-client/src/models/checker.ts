@@ -53,16 +53,17 @@ export default class Checker {
   }
 
   /**
-   * Returns a list of questionIds with the given answers.
+   * Returns an object of questionIds with the given answers.
    * Useful to store in React.Context or in sessionStorage
    *
-   * @returns {({string: boolean|string|number|[string]})}  - a list of answers
+   * @returns an object with question-id as key and answer as value
    */
   getQuestionAnswers(): Answers {
     return this.stack
       .concat(this._getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .filter((question) => question.answer !== undefined) // only interested in questions with answers
       .reduce((acc: Answers, question: Question) => {
-        acc[question.id] = question.answer;
+        acc[question.id] = question.answer as Answer;
         return acc;
       }, {});
   }
