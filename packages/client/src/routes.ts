@@ -62,7 +62,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     name: "intro",
     exact: true,
-    path: `/:slug(${imtrSlugs}|${oloSlugs})`,
+    path: `/:slug(${imtrSlugs})`,
   },
   {
     component: React.lazy(
@@ -78,7 +78,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "oloLocationInput",
-    path: `/:slug(${oloSlugs})/locatie`,
+    path: `/:slug(${oloSlugs})`,
   },
   {
     component: React.lazy(

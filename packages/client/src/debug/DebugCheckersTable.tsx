@@ -124,7 +124,9 @@ const DebugCheckersTable: React.FC = () => {
                 <td>
                   <Link
                     to={geturl(
-                      redirectToOlo ? routes.oloRedirect : routes.intro,
+                      redirectToOlo
+                        ? routes.oloRedirect
+                        : routes.oloLocationInput,
                       { slug }
                     )}
                   >
