@@ -25,9 +25,15 @@ xdescribe("LocationSummary", () => {
   };
 
   it("renders in STTR Flow on LocationFinder (with all restrictions)", () => {
-    render(<WrapperWithContext isBelowInputFields showTitle />);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMock}
+        isBelowInputFields
+        showTitle
+      />
+    );
 
-    // Expext to find:
+    // Expect to find:
     expect(
       screen.queryByText("Het gebouw is een monument.")
     ).toBeInTheDocument();
@@ -102,7 +108,11 @@ xdescribe("LocationSummary", () => {
   });
 
   it("renders in STTR Flow above the questionnaire (with all restrictions)", () => {
-    render(<WrapperWithContext showEditLocationModal />);
+    render(
+      <WrapperWithContext
+        addressFromLocation={addressMock}
+        showEditLocationModal
+      />);
 
     // Expext to find:
     expect(
