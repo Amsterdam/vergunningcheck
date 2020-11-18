@@ -33,8 +33,10 @@ jest.mock("../hooks/useTracking", () => {
 
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
-  useLocation: () => ({ pathname: "/dakkapel-plaatsen" }),
-  useParams: () => ({ slug: "aanbouw-of-uitbouw-maken" }),
+  useLocation: () => ({
+    pathname: "/dakkapel-plaatsen",
+  }),
+  useParams: () => ({ slug: "dakkapel-plaatsen" }),
   useHistory: () => ({
     push: jest.fn(),
     replace: jest.fn(),
@@ -43,6 +45,27 @@ jest.mock("react-router-dom", () => ({
     },
   }),
 }));
+
+// @TODO: extend this to dynamically load a slug for `react-router-dom`
+// export const mockSlug = (mockSlug: string) => {
+//   jest.mock("../hooks/useSlug", () => {
+//     return mockSlug;
+//   });
+//   jest.mock("react-router-dom", () => {
+//     return {
+//       ...(jest.requireActual("react-router-dom") as {}),
+//       useLocation: () => ({ pathname: `/${mockSlug}` }),
+//       useParams: () => ({ mockSlug }),
+//       useHistory: () => ({
+//         push: jest.fn(),
+//         replace: jest.fn(),
+//         location: {
+//           pathname: `/${mockSlug}`,
+//         },
+//       }),
+//     };
+//   });
+// };
 
 type TestProviderProps = {
   mocks: readonly MockedResponse<Record<string, any>>[];

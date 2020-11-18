@@ -73,7 +73,7 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
     setTag("cityscape", cityScape);
   }
 
-  const showSummary = monument || cityScape || !hasIMTR;
+  const showSummary = !!(monument || cityScape || !hasIMTR);
 
   return (
     <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>

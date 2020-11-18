@@ -4,7 +4,6 @@ import { findTopicBySlug } from "../utils";
 import useTopic from "./useTopic";
 
 jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
   useLocation: () => ({
     pathname: `/${"dakkapel-plaatsen"}/go`,
     params: { slug: "dakkapel-plaatsen" },
