@@ -34,7 +34,7 @@ type QuestionProps = {
   onGoToPrev: () => void;
   questionIndex: number;
   questionNeedsContactExit: boolean;
-  saveAnswer: (value: string) => void;
+  saveAnswer: (value: string | string[]) => void;
   shouldGoToConlusion: () => boolean;
   showQuestionAlert: boolean;
   showNext: boolean;
@@ -56,6 +56,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
 }) => {
   const {
     answer: currentAnswer,
+    collection,
     description,
     id: questionId,
     longDescription,
@@ -102,11 +103,15 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     requiredFieldRadio,
   ]);
 
-  const handleChange = (e: React.MouseEvent) => {
+  const handleChange = (e: React.FormEvent, collection: boolean) => {
     const { name, type, value } = e.target as HTMLInputElement;
 
     // Save the changed answer to the question.
-    saveAnswer(value);
+    if (collection) {
+      saveAnswer([value]);
+    } else {
+      saveAnswer(value);
+    }
 
     // Set the value of the radio group to the selected value with react-hook-form's setValue
     if (type === "radio") setValue(name, value);
@@ -144,6 +149,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
       )}
       <Answers
         answers={answers}
+        collection={collection} //
         errors={errors}
         onChange={handleChange}
         questionId={questionId}

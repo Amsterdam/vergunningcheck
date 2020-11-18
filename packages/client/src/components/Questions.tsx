@@ -1,4 +1,4 @@
-import { setTag } from "@sentry/browser";
+// import { setTag } from "@sentry/browser";
 import {
   Checker,
   Decision,
@@ -235,7 +235,7 @@ const Questions: React.FC<
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
-  const saveAnswer = (value: string) => {
+  const saveAnswer = (value: string | string[]) => {
     // This makes sure when a question is changed that a possible visible Conclusion is removed
     if (isFinished(sections.QUESTIONS)) {
       setFinishedState(sections.QUESTIONS, false);
@@ -247,7 +247,11 @@ const Questions: React.FC<
     if (question.options && value !== undefined) {
       // List question
       userAnswer = value;
-      userAnswerLabel = removeQuotes(value);
+      if (question.collection) {
+        userAnswerLabel = (value as string[]).map(removeQuotes);
+      } else {
+        userAnswerLabel = removeQuotes(value as string);
+      }
     } else if (!question.options && value) {
       // Boolean question
       const responseObj = booleanOptions.find(
@@ -265,7 +269,7 @@ const Questions: React.FC<
     question.setAnswer(userAnswer);
 
     // Store in Sentry
-    setTag(question.text, userAnswerLabel);
+    // setTag(question.text, userAnswerLabel); // XXXX
 
     matomoTrackEvent({
       action: question.text,

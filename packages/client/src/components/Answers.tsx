@@ -13,8 +13,9 @@ export type AnswerProps = {
 
 type AnswersProps = {
   answers?: AnswerProps[];
+  collection: boolean;
   errors: any;
-  onChange: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onChange: (e: React.FormEvent<HTMLInputElement>, collection: boolean) => void;
   questionId: string;
   questionIndex: number;
   userAnswer: string;
@@ -22,16 +23,17 @@ type AnswersProps = {
 
 const Answers: React.FC<AnswersProps> = ({
   answers,
+  collection,
   errors,
   onChange,
   questionId,
   questionIndex,
   userAnswer,
-}) => (
-  <ComponentWrapper data-testid={QUESTION_ANSWERS}>
-    <RadioGroup name={questionId}>
-      {answers &&
-        answers.map((answer, index) => {
+}) => {
+  return (
+    <ComponentWrapper data-testid={QUESTION_ANSWERS}>
+      {collection ? (
+        answers?.map((answer, index) => {
           const { label, formValue } = answer;
           const answerId = `${questionId}-${formValue}`;
           return (
@@ -41,22 +43,49 @@ const Answers: React.FC<AnswersProps> = ({
               key={answerId}
               label={removeQuotes(label)}
             >
-              <Radio
+              <input
+                type="checkbox"
                 checked={userAnswer === label}
-                error={errors[questionId]}
+                // error={errors[questionId]}
                 key={answerId}
                 id={answerId}
-                onChange={onChange}
+                onChange={(e) => onChange(e, true)}
                 value={formValue}
               />
             </Label>
           );
-        })}
-    </RadioGroup>
-    {errors[questionId] && (
-      <ErrorMessage message={errors[questionId].message} />
-    )}
-  </ComponentWrapper>
-);
+        })
+      ) : (
+        <RadioGroup name={questionId}>
+          {answers &&
+            answers.map((answer, index) => {
+              const { label, formValue } = answer;
+              const answerId = `${questionId}-${formValue}`;
+              return (
+                <Label
+                  data-testid={`q${questionIndex + 1}-a${index + 1}`}
+                  htmlFor={answerId}
+                  key={answerId}
+                  label={removeQuotes(label)}
+                >
+                  <Radio
+                    checked={userAnswer === label}
+                    error={errors[questionId]}
+                    key={answerId}
+                    id={answerId}
+                    onChange={(e) => onChange(e, false)}
+                    value={formValue}
+                  />
+                </Label>
+              );
+            })}
+        </RadioGroup>
+      )}
+      {errors[questionId] && (
+        <ErrorMessage message={errors[questionId].message} />
+      )}
+    </ComponentWrapper>
+  );
+};
 
 export default Answers;
