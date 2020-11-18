@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 112,
-      "name": "Conclusie Ketentest - Boom kappen",
+      "name": "Conclusie Ketentest - boom kappen",
       "questions": [
         {
           "text": "Gaat u kappen omdat er spoed is of gevaar?",
@@ -42,7 +42,7 @@
         }
       ],
       "decisions": {
-        "_f30e79a1-001b-48bd-9fbf-87057e148cb9": {
+        "_ede5b8a3-926d-49ad-a3d1-b9ab52def772": {
           "requiredInputs": ["#input__db462e43-84a7-418f-a666-bf03cb57e874"],
           "decisionTable": {
             "rules": [
@@ -57,7 +57,7 @@
             ]
           }
         },
-        "_da1e72f3-1f02-4a6a-8310-83d6d3c6a713": {
+        "_991c68ad-80b0-4faf-9753-e1f8fd8d15dd": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -84,7 +84,7 @@
             ]
           }
         },
-        "_0caa1f8f-3d6a-46e3-abb7-54a8e2dd29f8": {
+        "_4c108058-3982-44f0-9ad3-149a17102a6b": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -116,7 +116,7 @@
             ]
           }
         },
-        "_2614da5e-2203-4b1d-b45c-9eeb37b74967": {
+        "_51a047ad-3b80-4cc5-8321-ada41e430011": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -148,7 +148,7 @@
             ]
           }
         },
-        "_28c62715-08dd-458b-a7d9-8b4773b9d2af": {
+        "_ac5f5f5a-3174-4908-9cde-a0340daf100b": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -187,11 +187,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_f30e79a1-001b-48bd-9fbf-87057e148cb9",
-            "#_da1e72f3-1f02-4a6a-8310-83d6d3c6a713",
-            "#_0caa1f8f-3d6a-46e3-abb7-54a8e2dd29f8",
-            "#_2614da5e-2203-4b1d-b45c-9eeb37b74967",
-            "#_28c62715-08dd-458b-a7d9-8b4773b9d2af"
+            "#_ede5b8a3-926d-49ad-a3d1-b9ab52def772",
+            "#_991c68ad-80b0-4faf-9753-e1f8fd8d15dd",
+            "#_4c108058-3982-44f0-9ad3-149a17102a6b",
+            "#_51a047ad-3b80-4cc5-8321-ada41e430011",
+            "#_ac5f5f5a-3174-4908-9cde-a0340daf100b"
           ],
           "decisionTable": {
             "rules": [
