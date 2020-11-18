@@ -5,6 +5,7 @@ import React from "react";
 import addressGraphQLMock from "../../__mocks__/address";
 import Context from "../../__mocks__/context";
 import { actions, eventNames, sections } from "../../config/matomo";
+import text from "../../i18n/nl";
 import { findTopicBySlug } from "../../utils";
 import { LOCATION_FOUND, PREV_BUTTON } from "../../utils/test-ids";
 import {
@@ -52,20 +53,25 @@ describe("LocationInput", () => {
   it("should render correctly on OLO flow", () => {
     render(<Wrapper topicMock={findTopicBySlug("intern-verbouwen")} />);
 
-    expect(screen.queryByText("Invullen adres")).toBeInTheDocument();
+    expect(
+      screen.queryByText(text.translation.common["fill in address"])
+    ).toBeInTheDocument();
   });
 
   it("should render correctly on first load", () => {
     render(<Wrapper />);
 
+    // @TODO: remove this, because this makes no sense!
     expect(
-      screen.queryByText(
-        "Voer het adres in waar u de dakkapel wilt gaan plaatsen."
-      )
+      screen.queryByText(text.translation.locationInputTest["address input"])
     ).toBeInTheDocument();
 
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputPostalCode = screen.getByLabelText(
+      text.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      text.translation.common["housenumber label"]
+    );
 
     expect(inputPostalCode).toBeInTheDocument();
     expect(inputPostalCode).not.toHaveValue();
@@ -95,8 +101,12 @@ describe("LocationInput", () => {
 
     render(<Wrapper />, {}, addressGraphQLMock);
 
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputPostalCode = screen.getByLabelText(
+      text.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      text.translation.common["housenumber label"]
+    );
 
     expect(inputPostalCode).not.toHaveValue();
     expect(inputHouseNumber).not.toHaveValue();
@@ -126,7 +136,6 @@ describe("LocationInput", () => {
     /**
      * The correct address is displayed on the screen
      */
-
     expect(
       screen.queryByText(`${resultStreetName} ${resultHouseNumberFull}`, {
         exact: false,
@@ -147,11 +156,11 @@ describe("LocationInput", () => {
     });
 
     expect(matomoTrackEvent).toBeCalledWith({
-      action: actions.SUBMIT_LOCATION,
+      action: actions.SUBMIT_MONUMENT,
       name: resultMonument,
     });
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(4);
+    expect(matomoTrackEvent).toHaveBeenCalledTimes(6);
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(1);
   });
 
@@ -167,10 +176,12 @@ describe("LocationInput", () => {
       />
     );
 
-    expect(screen.getByLabelText(/postcode/i)).toHaveValue(resultPostalCode);
-    expect(screen.getByLabelText(/huisnummer/i)).toHaveValue(
-      resultHouseNumberFull
-    );
+    expect(
+      screen.getByLabelText(text.translation.common["postalcode label"])
+    ).toHaveValue(resultPostalCode);
+    expect(
+      screen.getByLabelText(text.translation.common["housenumber label"])
+    ).toHaveValue(resultHouseNumberFull);
 
     const prevButton = screen.queryByTestId(PREV_BUTTON);
     expect(prevButton).toBeInTheDocument();
@@ -204,10 +215,7 @@ describe("LocationInput", () => {
     render(<Wrapper error={{ stack: "error message" }} />);
 
     expect(
-      screen.queryByText(
-        /helaas. wij kunnen nu geen adresgegevens opvragen waardoor/i,
-        { exact: false }
-      )
+      screen.queryByText(text.translation.common["no address found api down"])
     ).toBeInTheDocument();
 
     expect(
