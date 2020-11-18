@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ComponentWrapper } from "../atoms";
 import { actions, eventNames } from "../config/matomo";
 import { useTracking } from "../hooks";
-import { QUESTION_PAGE } from "../utils/test-ids";
+import { QUESTION_FORM } from "../utils/test-ids";
 import Answers, { AnswerProps } from "./Answers";
 import Form from "./Form";
 import Markdown from "./Markdown";
@@ -128,7 +128,7 @@ const Question: React.FC<QuestionProps> = ({
   return (
     <Form
       dataId={questionId}
-      dataTestId={QUESTION_PAGE}
+      dataTestId={QUESTION_FORM}
       onSubmit={handleSubmit(onGoToNext)}
     >
       {description && (

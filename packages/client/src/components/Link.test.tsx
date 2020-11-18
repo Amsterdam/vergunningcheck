@@ -9,6 +9,8 @@ import {
 } from "../utils/test-utils";
 import Link from "./Link";
 
+// @TODO: file contains Dutch text, translate using i18n or import from matomo.ts
+
 describe("Link", () => {
   it("renders correctly", () => {
     render(

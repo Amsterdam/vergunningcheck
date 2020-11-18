@@ -4,11 +4,13 @@ import { ApolloError } from "@apollo/client";
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-import Context from "../../__mocks__/context";
-import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { findTopicBySlug } from "../../utils";
-import { LOCATION_FOUND, PREV_BUTTON } from "../../utils/test-ids";
+import nl from "../../i18n/nl";
+import {
+  LOCATION_FOUND,
+  LOCATION_SUMMARY,
+  PREV_BUTTON,
+} from "../../utils/test-ids";
 import {
   act,
   fireEvent,
@@ -21,49 +23,17 @@ import LocationInput from "./LocationInput";
 
 const handleNewAddressSubmit = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-  useHistory: () => ({
-    location: {
-      pathname: "/dakkapel-plaatsen/vragen-en-uitkomst",
-    },
-    push: jest.fn(),
-  }),
-  useLocation: () => jest.fn(),
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
-}));
-
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
 describe("LocationInput", () => {
-  const Wrapper = ({
-    addressMock,
-    error,
-    topicMock,
-  }: {
-    addressMock?: any;
-    error?: ApolloError | undefined;
-    topicMock?: Topic | null;
-  }) => {
-    return (
-      <Context
-        topicMock={topicMock || (findTopicBySlug("intern-verbouwen") as Topic)}
-        addressMock={addressMock || addressGraphQLMock}
-      >
-        <LocationInput
-          error={error}
-          handleNewAddressSubmit={handleNewAddressSubmit}
-        />
-      </Context>
-    );
-  };
-
-  it("should render correctly on OLO flow", () => {
-    render(<Wrapper topicMock={findTopicBySlug("intern-verbouwen")} />);
-
-    expect(screen.queryByText("Invullen adres")).toBeInTheDocument();
-  });
+  const Wrapper = ({ error }: { error?: ApolloError | undefined }) => (
+    <LocationInput
+      error={error}
+      handleNewAddressSubmit={handleNewAddressSubmit}
+    />
+  );
 
   it("should render correctly on first load", () => {
     render(<Wrapper />);
@@ -108,6 +78,15 @@ describe("LocationInput", () => {
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
 
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "" },
+      });
+    });
+
     expect(inputPostalCode).not.toHaveValue();
     expect(inputHouseNumber).not.toHaveValue();
 
@@ -137,6 +116,9 @@ describe("LocationInput", () => {
      * The correct address is displayed on the screen
      */
 
+    expect(screen.queryByTestId(LOCATION_FOUND)).toBeInTheDocument();
+    expect(screen.queryByTestId(LOCATION_SUMMARY)).toBeInTheDocument();
+
     expect(
       screen.queryByText(`${resultStreetName} ${resultHouseNumberFull}`, {
         exact: false,
@@ -152,7 +134,6 @@ describe("LocationInput", () => {
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
-      // fireEvent.click(screen.getByText("Naar de vragen"));
       fireEvent.submit(screen.queryByTestId("form") as HTMLElement);
     });
 
@@ -163,33 +144,6 @@ describe("LocationInput", () => {
 
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(4);
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(1);
-  });
-
-  it("should handle with context", async () => {
-    const {
-      houseNumberFull: resultHouseNumberFull,
-      postalCode: resultPostalCode,
-    } = addressGraphQLMock[0].result.data.findAddress.exactMatch;
-
-    render(
-      <Wrapper
-        addressMock={addressGraphQLMock[0].result.data.findAddress.exactMatch}
-      />
-    );
-
-    expect(screen.getByLabelText(/postcode/i)).toHaveValue(resultPostalCode);
-    expect(screen.getByLabelText(/huisnummer/i)).toHaveValue(
-      resultHouseNumberFull
-    );
-
-    const prevButton = screen.queryByTestId(PREV_BUTTON) as HTMLElement;
-    expect(prevButton).toBeInTheDocument();
-
-    act(() => {
-      fireEvent.click(prevButton);
-    });
-
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
   });
 
   it("should handle the prev button", async () => {
@@ -215,13 +169,19 @@ describe("LocationInput", () => {
 
     expect(
       screen.queryByText(
-        /helaas. wij kunnen nu geen adresgegevens opvragen waardoor/i,
-        { exact: false }
+        nl.translation.errorMessages[
+          "unfortunately we cannot get address results"
+        ]
       )
     ).toBeInTheDocument();
 
     expect(
-      screen.queryByText("error message", { exact: false })
+      screen.queryByText(
+        nl.translation.errorMessages[
+          "please try again later or contact the city on"
+        ],
+        { exact: false }
+      )
     ).toBeInTheDocument();
   });
 });

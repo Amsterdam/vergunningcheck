@@ -4,12 +4,18 @@ export default {
       "category not found": "category niet gevonden",
     },
     common: {
-      "error occured": "Er is een fout opgetreden.",
       "address loading": "Wij zoeken het adres.",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
       "try again or contact city of amsterdam":
         "Probeer het opnieuw. Of neem contact op met de gemeente op telefoonnummer",
+    },
+    errorMessages: {
+      "error occured": "Er is een fout opgetreden.", // Not used...
+      "unfortunately we cannot get address results":
+        "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
+      "please try again later or contact the city on":
+        "Probeer het later opnieuw. Of neem contact op met de gemeente op telefoonnummer",
     },
     introPage: {
       common: {
@@ -68,6 +74,9 @@ export default {
         "placing bullet":
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
+    },
+    location: {
+      "enter location": "Invullen adres",
     },
     outcome: {
       disclaimer:

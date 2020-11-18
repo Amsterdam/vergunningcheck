@@ -2,6 +2,7 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import { CheckerContext } from "../../CheckerContext";
@@ -30,6 +31,7 @@ const LocationInput = ({
   const { matomoTrackEvent } = useTracking();
   const { handleSubmit } = useForm();
   const { topicData, setTopicData } = useTopicData();
+  const { t } = useTranslation();
 
   const { hasIMTR, slug, text } = topic;
   const address = topicData.address || {};
@@ -94,18 +96,21 @@ const LocationInput = ({
     <>
       {errorMessage && (
         <Error
-          heading="Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen."
+          heading={t(
+            "errorMessages.unfortunately we cannot get address results"
+          )}
           stack={errorMessage?.stack}
         >
           <Paragraph>
-            Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer{" "}
+            {t("errorMessages.please try again later or contact the city on")}{" "}
             <PhoneNumber eventName={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}
 
-      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!hasIMTR && (
+        <Heading forwardedAs="h3">{t("location.enter location")}</Heading>
+      )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
