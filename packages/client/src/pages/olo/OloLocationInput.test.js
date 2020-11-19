@@ -19,6 +19,7 @@ import OloLocationInput from "./OloLocationInput";
 Object.defineProperty(window, "matchMedia", matchMedia);
 
 const matomoTrackEvent = jest.fn();
+
 window.open = jest.fn();
 window.scrollTo = jest.fn();
 

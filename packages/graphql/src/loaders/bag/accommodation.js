@@ -12,6 +12,8 @@ const loader = {
     lat: o.geometrie.coordinates[0],
     lon: o.geometrie.coordinates[1],
     mainAddressNationalId: o.hoofdadres.landelijk_id,
+    neighborhoodName: o.buurt.naam,
+    districtName: o._buurtcombinatie.naam,
   }),
   fetch: (id) =>
     fetchJson(`${HOST}${config.url}verblijfsobject/${id}/`).then(

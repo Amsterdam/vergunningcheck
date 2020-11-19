@@ -2,6 +2,7 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import { Topic } from "../../config";
@@ -27,6 +28,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   matomoTrackEvent,
   topic,
 }) => {
+  const { t } = useTranslation();
   const history = useHistory();
   const { handleSubmit } = useForm();
   // @TODO: replace with custom topic hooks
@@ -39,9 +41,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   const sessionAddress = sessionContext[slug]?.address || {};
 
   const [address, setAddress] = useState(sessionAddress);
-  const [errorMessage, setErrorMessage] = useState<ApolloError | undefined>(
-    error
-  );
+  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
@@ -67,12 +67,20 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
         name: address.postalCode.substring(0, 4),
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_MONUMENT,
         name: monument || eventNames.NO_MONUMENT,
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_CITYSCAPE,
         name: cityScape || eventNames.NO_CITYSCAPE,
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_NEIGHBORHOOD,
+        name: address.neighborhoodName || t("common.unknown"),
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_DISTRICT,
+        name: address.districtName || t("common.unknown"),
       });
 
       // Store the data
@@ -110,34 +118,36 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
     <>
       {errorMessage && (
         <Error
-          heading="Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen."
+          heading={t("common.no address found api down")}
           stack={errorMessage?.stack}
         >
           <Paragraph>
-            Probeer het later opnieuw. Of neem contact op met de gemeente op
-            telefoonnummer{" "}
+            {t("common.try again or contact city of amsterdam")}{" "}
             <PhoneNumber eventName={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}
 
-      {!hasIMTR && <Heading forwardedAs="h3">Invullen adres</Heading>}
+      {!hasIMTR && (
+        <Heading forwardedAs="h3">{t("common.fill in address")}</Heading>
+      )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
+            errorMessage,
             focus,
             matomoTrackEvent,
             sessionAddress,
             setAddress,
-            setErrorMessage,
+            setError,
             setFocus,
             topic,
           }}
         />
         <Nav
-          nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
+          nextText={hasIMTR ? t("common.to the questions") : t("common.next")}
           noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext

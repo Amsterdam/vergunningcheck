@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 112,
+      "version": 114,
       "name": "Conclusie Ketentest - boom kappen",
       "questions": [
         {
@@ -13,7 +13,6 @@
         {
           "text": "Wat is de conditie van de boom?",
           "longDescription": "Deze vraag is opgenomen om de gebruiker te informeren dat de regels ook gelden voor dode bomen.",
-          "collection": true,
           "options": ["ziek", "gezond of dood"],
           "type": "string",
           "id": "uitv__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -42,7 +41,7 @@
         }
       ],
       "decisions": {
-        "_726191b5-2a77-4ae0-8935-780ebd0d677c": {
+        "_550cf97e-cecc-4c70-b79e-7572a4d199b8": {
           "requiredInputs": ["#input__db462e43-84a7-418f-a666-bf03cb57e874"],
           "decisionTable": {
             "rules": [
@@ -57,7 +56,7 @@
             ]
           }
         },
-        "_cc8cf770-d49a-4f0e-adf0-586f58b54aa7": {
+        "_bb2e9c8e-ea8d-46dd-96b1-8df204002e7d": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -84,7 +83,7 @@
             ]
           }
         },
-        "_975dabf5-8bd0-461a-9bdc-2231e036e2b5": {
+        "_af724ebd-36aa-47ff-aae5-a9a8b940e8f1": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -116,7 +115,7 @@
             ]
           }
         },
-        "_81be6161-0e2f-4ea5-aa43-f16075aaee5d": {
+        "_2d2abd75-7ce6-48a2-8ecc-880de49eefda": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -148,7 +147,7 @@
             ]
           }
         },
-        "_d5d3b889-7955-40e6-af47-ba67df83a836": {
+        "_28d63e29-f7e7-4572-a84a-8556b40c10bb": {
           "requiredInputs": [
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
@@ -187,11 +186,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_726191b5-2a77-4ae0-8935-780ebd0d677c",
-            "#_cc8cf770-d49a-4f0e-adf0-586f58b54aa7",
-            "#_975dabf5-8bd0-461a-9bdc-2231e036e2b5",
-            "#_81be6161-0e2f-4ea5-aa43-f16075aaee5d",
-            "#_d5d3b889-7955-40e6-af47-ba67df83a836"
+            "#_550cf97e-cecc-4c70-b79e-7572a4d199b8",
+            "#_bb2e9c8e-ea8d-46dd-96b1-8df204002e7d",
+            "#_af724ebd-36aa-47ff-aae5-a9a8b940e8f1",
+            "#_2d2abd75-7ce6-48a2-8ecc-880de49eefda",
+            "#_28d63e29-f7e7-4572-a84a-8556b40c10bb"
           ],
           "decisionTable": {
             "rules": [
