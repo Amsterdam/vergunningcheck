@@ -48,7 +48,7 @@
         }
       ],
       "decisions": {
-        "_6e42aff3-7905-4007-beba-cdb46b1cffa3": {
+        "_18f3f483-8c1d-4c9d-a2c0-f9460aab597a": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -74,7 +74,7 @@
             ]
           }
         },
-        "_ef752e04-2b49-4271-b99e-51c05e6e0207": {
+        "_61d21e76-4d48-44e5-9a01-229c2839dd1b": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -105,7 +105,7 @@
             ]
           }
         },
-        "_7ef458ec-b2c0-4eac-af86-af1aad8975c8": {
+        "_ccdc5c9c-d896-47bb-82c2-17942bf85c1e": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -146,7 +146,7 @@
             ]
           }
         },
-        "_4ae847e0-ab7e-4ece-a168-82d28c84c636": {
+        "_aa03d991-64fe-4e29-8893-2800a9b627f0": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -201,10 +201,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6e42aff3-7905-4007-beba-cdb46b1cffa3",
-            "#_ef752e04-2b49-4271-b99e-51c05e6e0207",
-            "#_7ef458ec-b2c0-4eac-af86-af1aad8975c8",
-            "#_4ae847e0-ab7e-4ece-a168-82d28c84c636"
+            "#_18f3f483-8c1d-4c9d-a2c0-f9460aab597a",
+            "#_61d21e76-4d48-44e5-9a01-229c2839dd1b",
+            "#_ccdc5c9c-d896-47bb-82c2-17942bf85c1e",
+            "#_aa03d991-64fe-4e29-8893-2800a9b627f0"
           ],
           "decisionTable": {
             "rules": [
@@ -261,6 +261,141 @@
       }
     },
     {
+      "version": 44,
+      "name": "Conclusie Sloopmelding",
+      "questions": [
+        {
+          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter?",
+          "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   3,6 meter lang\n*   1,9 meter breed\n*   1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Sloop.png)",
+          "type": "boolean",
+          "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
+          "prio": 10010
+        },
+        {
+          "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
+          "type": "boolean",
+          "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
+          "prio": 10020
+        },
+        {
+          "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
+          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Bijvoorbeeld een strandtent of een oliebollenkraam.",
+          "type": "boolean",
+          "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+          "prio": 10030,
+          "uuid": "sloop seizoen1"
+        },
+        {
+          "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
+          "type": "boolean",
+          "id": "uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
+          "prio": 10040,
+          "uuid": "sloop aanschrijving1"
+        }
+      ],
+      "decisions": {
+        "_cd1e02a0-dc84-4e2b-b53e-efeea13a9116": {
+          "requiredInputs": [
+            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
+            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true, false, false],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f7ab8403-dcf5-4d25-ab0f-3717f0877a13": {
+          "requiredInputs": [
+            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
+            "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
+            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, true, false, false],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_cd1e02a0-dc84-4e2b-b53e-efeea13a9116",
+            "#_f7ab8403-dcf5-4d25-ab0f-3717f0877a13"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Meldingsplicht\"", "-"],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["-", "\"Meldingsplicht\""],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__917b37c9-451c-422a-90fc-90a2fa84eb03": {
+          "href": "#uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
+          "type": "boolean"
+        },
+        "input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5": {
+          "href": "#uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
+          "type": "boolean"
+        },
+        "input__9d010148-e1ed-47c2-b5d3-7c12d3055ced": {
+          "href": "#uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+          "type": "boolean"
+        },
+        "input__7f20e585-f04f-4f9b-911f-9adc948ce51e": {
+          "href": "#uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
+          "type": "boolean"
+        }
+      }
+    },
+    {
       "version": 38,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
@@ -275,14 +410,14 @@
           ],
           "type": "string",
           "id": "uitv__b6796191-3670-45a7-a02d-17b8c9591131",
-          "prio": 10
+          "prio": 20010
         },
         {
           "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
           "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Een voorbeeld is een strandtent of een oliebollenkraam.",
           "type": "boolean",
           "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
-          "prio": 20,
+          "prio": 20020,
           "uuid": "sloop seizoen1"
         },
         {
@@ -290,13 +425,13 @@
           "description": "Als u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u een aparte vergunningcheck doen om hierachter te komen.",
           "type": "boolean",
           "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
-          "prio": 30
+          "prio": 20030
         },
         {
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "id": "uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
-          "prio": 40,
+          "prio": 20040,
           "uuid": "sloop aanschrijving1"
         },
         {
@@ -304,33 +439,33 @@
           "description": "Denk aan het verwijderen van een raamkozijn, een dakgoot of dakpannen.",
           "type": "boolean",
           "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
-          "prio": 50,
+          "prio": 20050,
           "uuid": "sloop onderhoud1"
         },
         {
           "text": "Gaat u dat onderdeel vervangen door een nieuw onderdeel?",
           "type": "boolean",
           "id": "uitv_696173ef-6bad-4411-848e-ec97a8566c10",
-          "prio": 60,
+          "prio": 20060,
           "uuid": "sloop onderhoud2"
         },
         {
           "text": "Verandert de kleur of het materiaal?",
           "type": "boolean",
           "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
-          "prio": 70,
+          "prio": 20070,
           "uuid": "sloop onderhoud3"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "type": "boolean",
           "id": "uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
-          "prio": 80,
+          "prio": 20080,
           "uuid": "sloop onderhoud4"
         }
       ],
       "decisions": {
-        "_517e5694-60fa-4441-8da4-055c48f4a46d": {
+        "_26609f60-b15a-4bfd-b137-bbba8af8f8ac": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -369,7 +504,7 @@
             ]
           }
         },
-        "_b2988cfb-a5b6-4228-8a01-79c4c7ac7d56": {
+        "_03f9db56-4617-47e1-8963-96487882d63b": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -408,7 +543,7 @@
             ]
           }
         },
-        "_7d72235b-8bf4-4942-b24b-8b002252d28a": {
+        "_03602c41-3acb-4432-b3a7-b64fd3bd2b4b": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -454,7 +589,7 @@
             ]
           }
         },
-        "_c30c2ace-fe85-4ae0-8f25-63ce09ec54cf": {
+        "_5d3cf5c1-8f60-415e-b1b1-814e2637ac96": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -507,7 +642,7 @@
             ]
           }
         },
-        "_2e51617f-5dd1-4ccc-be93-d8850ef962d7": {
+        "_d4efcda6-78e8-4408-bc5c-1e59712c638d": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -569,11 +704,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_517e5694-60fa-4441-8da4-055c48f4a46d",
-            "#_b2988cfb-a5b6-4228-8a01-79c4c7ac7d56",
-            "#_7d72235b-8bf4-4942-b24b-8b002252d28a",
-            "#_c30c2ace-fe85-4ae0-8f25-63ce09ec54cf",
-            "#_2e51617f-5dd1-4ccc-be93-d8850ef962d7"
+            "#_26609f60-b15a-4bfd-b137-bbba8af8f8ac",
+            "#_03f9db56-4617-47e1-8963-96487882d63b",
+            "#_03602c41-3acb-4432-b3a7-b64fd3bd2b4b",
+            "#_5d3cf5c1-8f60-415e-b1b1-814e2637ac96",
+            "#_d4efcda6-78e8-4408-bc5c-1e59712c638d"
           ],
           "decisionTable": {
             "rules": [
@@ -642,141 +777,6 @@
         },
         "input_26d72338-54c8-4528-ad01-6693b1d2f909": {
           "href": "#uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
-          "type": "boolean"
-        }
-      }
-    },
-    {
-      "version": 44,
-      "name": "Conclusie Sloopmelding",
-      "questions": [
-        {
-          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter?",
-          "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   3,6 meter lang\n*   1,9 meter breed\n*   1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Sloop.png)",
-          "type": "boolean",
-          "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
-          "prio": 10
-        },
-        {
-          "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
-          "type": "boolean",
-          "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-          "prio": 20
-        },
-        {
-          "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Bijvoorbeeld een strandtent of een oliebollenkraam.",
-          "type": "boolean",
-          "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-          "prio": 30,
-          "uuid": "sloop seizoen1"
-        },
-        {
-          "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
-          "type": "boolean",
-          "id": "uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-          "prio": 40,
-          "uuid": "sloop aanschrijving1"
-        }
-      ],
-      "decisions": {
-        "_e6cd8ea9-7a04-46a7-aa9d-26a27f290415": {
-          "requiredInputs": [
-            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [true, false, false],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_015325f0-dba6-44c5-bde3-07fb400c8eea": {
-          "requiredInputs": [
-            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
-            "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, true, false, false],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "dummy": {
-          "requiredDecisions": [
-            "#_e6cd8ea9-7a04-46a7-aa9d-26a27f290415",
-            "#_015325f0-dba6-44c5-bde3-07fb400c8eea"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"Meldingsplicht\"", "-"],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": ["-", "\"Meldingsplicht\""],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": ["\"no hit\"", "\"no hit\""],
-                "output": "\"Toestemmingsvrij\""
-              }
-            ]
-          }
-        }
-      },
-      "inputs": {
-        "input__917b37c9-451c-422a-90fc-90a2fa84eb03": {
-          "href": "#uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
-          "type": "boolean"
-        },
-        "input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5": {
-          "href": "#uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-          "type": "boolean"
-        },
-        "input__9d010148-e1ed-47c2-b5d3-7c12d3055ced": {
-          "href": "#uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-          "type": "boolean"
-        },
-        "input__7f20e585-f04f-4f9b-911f-9adc948ce51e": {
-          "href": "#uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
           "type": "boolean"
         }
       }

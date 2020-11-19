@@ -7,6 +7,7 @@
         {
           "text": "Staat er een monument op het adres waar u gaat slopen?",
           "description": "Het rijk of de gemeente kan een gebouw, schuur of fontein als monument aanwijzen.",
+          "autofill": "monumentOnAddress",
           "options": [
             "Ja, een rijksmonument.",
             "Ja, een gemeentelijk monument.",
@@ -47,7 +48,7 @@
         }
       ],
       "decisions": {
-        "_ef2ebb8c-bef6-474f-a7bd-83bf6a89cc82": {
+        "_18f3f483-8c1d-4c9d-a2c0-f9460aab597a": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -73,7 +74,7 @@
             ]
           }
         },
-        "_a303f94b-bc3a-4294-aa1e-d1f663daa4c2": {
+        "_61d21e76-4d48-44e5-9a01-229c2839dd1b": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -104,7 +105,7 @@
             ]
           }
         },
-        "_f57e703f-96c7-4814-a530-016a3270f8bd": {
+        "_ccdc5c9c-d896-47bb-82c2-17942bf85c1e": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -145,7 +146,7 @@
             ]
           }
         },
-        "_fe47318d-fa97-4a5a-95c3-8328c01d9ca4": {
+        "_aa03d991-64fe-4e29-8893-2800a9b627f0": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -200,10 +201,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_ef2ebb8c-bef6-474f-a7bd-83bf6a89cc82",
-            "#_a303f94b-bc3a-4294-aa1e-d1f663daa4c2",
-            "#_f57e703f-96c7-4814-a530-016a3270f8bd",
-            "#_fe47318d-fa97-4a5a-95c3-8328c01d9ca4"
+            "#_18f3f483-8c1d-4c9d-a2c0-f9460aab597a",
+            "#_61d21e76-4d48-44e5-9a01-229c2839dd1b",
+            "#_ccdc5c9c-d896-47bb-82c2-17942bf85c1e",
+            "#_aa03d991-64fe-4e29-8893-2800a9b627f0"
           ],
           "decisionTable": {
             "rules": [
