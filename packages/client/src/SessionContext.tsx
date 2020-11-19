@@ -2,7 +2,7 @@ import { Answer } from "@vergunningcheck/imtr-client";
 import React, { useEffect, useReducer } from "react";
 import { createContext } from "react";
 
-// import { useSlug } from "./hooks";
+import { sections } from "./config/matomo";
 import { getSlugFromPathname } from "./utils";
 
 export type TopicData = {
@@ -16,7 +16,7 @@ export type TopicData = {
 };
 
 export const defaultTopicSession: TopicData = {
-  activeComponents: ["locatie invoer"],
+  activeComponents: [sections.LOCATION_INPUT],
   answers: {},
   address: null,
   finishedComponents: [],
