@@ -1,5 +1,6 @@
 import React from "react";
 
+import text from "../../i18n/nl";
 import {
   INTRO_EXCEPTION_BULLETS,
   INTRO_USABLE_FOR_BULLETS,
@@ -23,22 +24,46 @@ describe("<Intro />", () => {
   describe("User influence on result", () => {
     it("supports situation and answers", () => {
       render(<Intro />);
-      screen.getByText(/Uw situatie en uw antwoorden bepalen/);
-      screen.getByText(/U kunt een antwoord wijzigen\. Zo kunt u zien/);
+      screen.getByText(
+        text.translation.introPage.common[
+          "situation dependent on both situation and questions"
+        ],
+        {
+          exact: false,
+        }
+      );
+      screen.getByText(text.translation.introPage.common["change answer"], {
+        exact: false,
+      });
     });
 
     it("supports situation only", () => {
       render(<Intro dependantOnQuestions={false} />);
-      screen.getByText(/Uw situatie bepaalt/);
+      screen.getByText(
+        text.translation.introPage.common[
+          "situation dependent on situation only"
+        ]
+      );
       expect(
-        screen.queryByText(/U kunt een antwoord wijzigen\. Zo kunt u zien/)
+        screen.queryByText(text.translation.introPage.common["change answer"], {
+          exact: false,
+        })
       ).not.toBeInTheDocument();
     });
 
     it("supports questions only", () => {
       render(<Intro dependantOnSituation={false} />);
-      screen.getByText(/Uw antwoorden bepalen/);
-      screen.getByText(/U kunt een antwoord wijzigen\. Zo kunt u zien/);
+      screen.queryByText(
+        text.translation.introPage.common[
+          "situation dependent on questions only"
+        ],
+        {
+          exact: false,
+        }
+      );
+      screen.getByText(text.translation.introPage.common["change answer"], {
+        exact: false,
+      });
     });
 
     it("supports no questions and no situation too", () => {
@@ -46,7 +71,7 @@ describe("<Intro />", () => {
         <Intro dependantOnSituation={false} dependantOnQuestions={false} />
       );
       expect(
-        screen.queryByText(/U kunt een antwoord wijzigen\. Zo kunt u zien/)
+        screen.queryByText(text.translation.introPage.common["change answer"])
       ).not.toBeInTheDocument();
       expect(
         screen.queryByTestId(INTRO_USER_INFLUENCE)
@@ -57,14 +82,16 @@ describe("<Intro />", () => {
       it("renders no extra sentence", () => {
         render(<Intro />);
         expect(
-          screen.queryByText(/U kunt een vergunning nodig hebben voor:/)
+          screen.queryByText(text.translation.introPage.common["permit for"])
         ).toBeNull();
       });
 
       it("renders extra sentence with colon (:)", () => {
         render(<Intro usableForBullets={["x", "y"]} />);
         expect(
-          screen.queryByText(/ U kunt een vergunning nodig hebben voor:/)
+          screen.queryByText(
+            `${text.translation.introPage.common["check for permit intro"]} ${text.translation.introPage.common["permit for"]}`
+          )
         ).toBeInTheDocument();
       });
 
@@ -99,12 +126,16 @@ describe("<Intro />", () => {
     describe("exceptions", () => {
       it("doesn't render extra sentence", () => {
         render(<Intro />);
-        expect(screen.queryByText(/Uitzonderingen/)).not.toBeInTheDocument();
+        expect(
+          screen.queryByText(
+            text.translation.introPage.common["exceptions title"]
+          )
+        ).not.toBeInTheDocument();
       });
 
       it("renders extra sentence with colon (:)", () => {
         render(<Intro exceptions={["x"]} />);
-        screen.getByText(/Uitzonderingen:/);
+        screen.getByText(text.translation.introPage.common["exceptions title"]);
       });
 
       it("renders the actual exceptions in a list", () => {
