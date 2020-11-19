@@ -80,7 +80,7 @@ export default async (argv: Props) => {
       const { slug, permits } = topic;
       const topicJsonContent = {
         permits: await Promise.all(
-          permits.map(async (permitId, count) => {
+          permits.map(async (permitId, permitIndex) => {
             const apiPermit = apiPermits.find(
               (apiPermit: TopicInputType) => apiPermit._id === permitId
             );
@@ -137,7 +137,7 @@ export default async (argv: Props) => {
               imtr.questions = imtr.questions.map((question: any) => {
                 return {
                   ...question,
-                  prio: question.prio + count * 10000,
+                  prio: question.prio + permitIndex * 10000,
                 };
               });
 
