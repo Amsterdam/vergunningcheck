@@ -11,9 +11,9 @@ type ErrorProps = {
 const Error: React.FC<ErrorProps> = ({ children, content, heading, stack }) => (
   <ComponentWrapper>
     <Alert
-      level="error"
-      heading={heading || `Er is een fout opgetreden.`}
       content={content}
+      heading={heading || `Er is een fout opgetreden.`}
+      level="error"
     >
       {children}
 

@@ -291,7 +291,7 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
       {showExactMatch && (
         <>
           <ComponentWrapper marginBottom={16}>
-            <Alert data-testid={LOCATION_FOUND} level="attention">
+            <Alert data-testid={LOCATION_FOUND} level="info">
               <Paragraph gutterBottom={8} strong>
                 Dit is het gekozen adres:
               </Paragraph>

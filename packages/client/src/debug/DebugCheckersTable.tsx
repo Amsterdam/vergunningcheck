@@ -42,7 +42,7 @@ const returnedData = (apiTopic: topicProps) => {
           <>
             {title}
             <br />
-            <Alert level="attention">
+            <Alert level="info">
               IMTR file found for <strong>{imtrTopic.name}</strong>, but we
               can't load '<strong>{imtrTopic.slug}</strong>' because it's
               configured to be{" "}
@@ -73,7 +73,7 @@ const DebugCheckersTable: React.FC = () => {
 
   return (
     <>
-      <Alert level="attention" heading="Let op">
+      <Alert level="info" heading="Let op">
         <Paragraph>
           Deze pagina bevat links naar vergunningchecks die mogelijk (nog) niet
           correct werken. Als u niet bij de gemeente Amsterdam werkt dient u
