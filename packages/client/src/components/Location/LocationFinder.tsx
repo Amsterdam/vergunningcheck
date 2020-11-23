@@ -72,8 +72,6 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
     queryExtra: false,
   };
 
-  console.log(variables);
-
   // Validate forms
   const validate = (
     name: string,
