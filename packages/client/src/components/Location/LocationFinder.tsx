@@ -65,7 +65,9 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: houseNumberFull,
+    houseNumberFull: houseNumberFull
+      ?.replace(/([^0-9])([0-9])/g, " $1 $2")
+      .toUpperCase(),
     postalCode,
     queryExtra: false,
   };
@@ -182,10 +184,12 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const showAutoSuggest = autoSuggestMatches.length > 0 && focus;
 
   const options = autoSuggestMatches.map(
-    (address: { houseNumberFull: string }) => ({
-      id: address.houseNumberFull.replace(" ", "-"),
-      value: address.houseNumberFull,
-    })
+    (address: { houseNumberFull: string }) => {
+      return {
+        id: address.houseNumberFull.replace(" ", "-"),
+        value: address.houseNumberFull,
+      };
+    }
   );
 
   // Determine when to show components
