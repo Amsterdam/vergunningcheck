@@ -66,11 +66,13 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const variables = {
     extraHouseNumberFull: "",
     houseNumberFull: houseNumberFull
-      ?.replace(/([^0-9])([0-9])/g, " $1 $2")
+      ?.replace(/([^0-9])([a-zA-Z])([0-9])/g, " $1 $2 $3")
       .toUpperCase(),
     postalCode,
     queryExtra: false,
   };
+
+  console.log(variables);
 
   // Validate forms
   const validate = (
