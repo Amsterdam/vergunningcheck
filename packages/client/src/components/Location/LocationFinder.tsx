@@ -184,12 +184,10 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const showAutoSuggest = autoSuggestMatches.length > 0 && focus;
 
   const options = autoSuggestMatches.map(
-    (address: { houseNumberFull: string }) => {
-      return {
-        id: address.houseNumberFull.replace(" ", "-"),
-        value: address.houseNumberFull,
-      };
-    }
+    (address: { houseNumberFull: string }) => ({
+      id: address.houseNumberFull.replace(" ", "-"),
+      value: address.houseNumberFull,
+    })
   );
 
   // Determine when to show components
