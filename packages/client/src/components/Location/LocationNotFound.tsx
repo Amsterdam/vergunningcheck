@@ -14,7 +14,9 @@ const LocationNotFound: React.FC = () => {
       <Alert
         data-testid={LOCATION_NOT_FOUND}
         heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
-        level="warning"
+        level="error"
+        outline
+        style={{ background: "white" }} // @TODO: This style is a temporary fix, need to fix default white background at @masterdam/asc-ui
       >
         <Paragraph>
           {t("common.try again or contact city of amsterdam")}{" "}

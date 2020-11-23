@@ -3,6 +3,7 @@ import { removeQuotes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
+import { EDIT_BUTTON } from "../utils/test-ids";
 import QuestionAlert from "./QuestionAlert";
 
 type QuestionAnswerProps = {
@@ -26,7 +27,7 @@ const QuestionAnswer: React.FC<
     <>
       <Paragraph gutterBottom={0}>
         <TextToEdit>{removeQuotes(userAnswer.toString())}</TextToEdit>
-        <EditButton {...{ disabled, onClick }} />
+        <EditButton dataTestid={EDIT_BUTTON} {...{ disabled, onClick }} />
       </Paragraph>
       {showQuestionAlert && (
         <QuestionAlert marginBottom={8} {...{ questionNeedsContactExit }} />

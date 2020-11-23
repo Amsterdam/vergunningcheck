@@ -1,9 +1,8 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
-import { HideForPrint } from "../atoms";
+import { Alert, HideForPrint } from "../atoms";
 import { QUESTION_ALERT } from "../utils/test-ids";
-import { QuestionAlertStyle } from "./QuestionAlertStyles";
 
 export type QuestionAlertProps = {
   marginBottom?: number;
@@ -14,7 +13,11 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,
   questionNeedsContactExit,
 }) => (
-  <QuestionAlertStyle data-testid={QUESTION_ALERT} marginBottom={marginBottom}>
+  <Alert
+    data-testid={QUESTION_ALERT}
+    level="warning"
+    marginBottom={marginBottom}
+  >
     <Paragraph>
       {questionNeedsContactExit ? (
         "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."
@@ -28,7 +31,7 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
         </>
       )}
     </Paragraph>
-  </QuestionAlertStyle>
+  </Alert>
 );
 
 export default QuestionAlert;
