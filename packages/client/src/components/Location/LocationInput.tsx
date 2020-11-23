@@ -1,11 +1,10 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { CheckerContext } from "../../CheckerContext";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
@@ -27,7 +26,6 @@ const LocationInput = ({
 }: LocationInputProps) => {
   const topic = useTopic();
   const history = useHistory();
-  const { setAutofillData } = useContext(CheckerContext);
   const { matomoTrackEvent } = useTracking();
   const { handleSubmit } = useForm();
   const { topicData, setTopicData } = useTopicData();
@@ -72,7 +70,6 @@ const LocationInput = ({
         name: cityScape || eventNames.NO_CITYSCAPE,
       });
 
-      setAutofillData({ address });
       handleNewAddressSubmit(address);
     }
   };

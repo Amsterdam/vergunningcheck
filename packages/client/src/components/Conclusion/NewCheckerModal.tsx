@@ -68,14 +68,11 @@ const NewCheckerModal: React.FC = () => {
         activeComponents: [activeComponents],
         address: saveAddress ? topicData.address : null,
         answers: {},
-        finishedComponents: saveAddress ? [sections.LOCATION_RESULT] : [],
+        finishedComponents: saveAddress ? [sections.LOCATION_INPUT] : [],
         questionIndex: 0,
       });
 
       checkerContext.setChecker(undefined);
-      checkerContext.setAutofillData(
-        saveAddress ? { address: topicData.address } : null
-      );
       history.push(geturl(routes.checker, { slug: checkerSlug }));
     }
   };

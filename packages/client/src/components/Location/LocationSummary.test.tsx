@@ -11,13 +11,11 @@ import LocationSummary from "./LocationSummary";
 describe("LocationSummary", () => {
   const WrapperWithContext = (
     props: React.ComponentProps<typeof LocationSummary>
-  ) => {
-    return (
-      <CheckerProvider defaultAutofillData={{ address: addressMock }}>
-        <LocationSummary {...props} />
-      </CheckerProvider>
-    );
-  };
+  ) => (
+    <CheckerProvider>
+      <LocationSummary {...props} />
+    </CheckerProvider>
+  );
 
   describe("renders in STTR Flow", () => {
     it("on LocationFinder (with all restrictions)", () => {

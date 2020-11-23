@@ -15,13 +15,21 @@ export default () => {
   const topic = useTopic();
 
   useEffect(() => {
-    initChecker();
+    // Initilize the checker on first load, reload and on reset
+    if (!checker && !checkerContext.checker) {
+      initChecker();
+    }
+    // Force clearing the checker when the checker has been reset on the context
+    if (checker && !checkerContext.checker) {
+      setChecker(undefined);
+    }
     //eslint-disable-next-line
-  }, []);
+  }, [checker, checkerContext]);
 
   const initChecker = async () => {
     // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    if (!checker && !error && (!topic || topic.hasIMTR)) {
+    const loadChecker = !checker && !error && (!topic || topic.hasIMTR);
+    if (loadChecker) {
       try {
         const topicConfig = topicsJson
           .flat()
@@ -54,7 +62,6 @@ export default () => {
         }
 
         // Store the entire `imtr-checker` in React Context
-        checkerContext.setAutofillData({ address });
         checkerContext.setChecker(newChecker);
         setChecker(newChecker);
       } catch (e) {
@@ -68,8 +75,6 @@ export default () => {
     checker,
     setChecker: (checker: Checker | undefined) => {
       checkerContext.setChecker(checker);
-      checkerContext.setAutofillData({});
-      setChecker(checker);
     },
   };
 };
