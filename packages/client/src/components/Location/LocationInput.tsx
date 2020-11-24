@@ -89,7 +89,7 @@ const LocationInput = ({
     }
     history.push(geturl(routes.intro, { slug }));
   };
-
+  const showMap = true;
   return (
     <>
       {errorMessage && (
@@ -112,16 +112,19 @@ const LocationInput = ({
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <LocationMap />
-        <LocationFinder
-          {...{
-            focus,
-            matomoTrackEvent,
-            sessionAddress: address,
-            setErrorMessage,
-            setFocus,
-          }}
-        />
+        {showMap ? (
+          <LocationMap />
+        ) : (
+          <LocationFinder
+            {...{
+              focus,
+              matomoTrackEvent,
+              sessionAddress: address,
+              setErrorMessage,
+              setFocus,
+            }}
+          />
+        )}
         <Nav
           nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
           noMarginBottom={!hasIMTR}
