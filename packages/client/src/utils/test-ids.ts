@@ -52,6 +52,7 @@ export const MODAL_DECLINE_BUTTON = "modal-decline-button";
 export const MODAL_CONFIRM_BUTTON = "modal-confirm-button";
 export const MODAL_OPEN_BUTTON = "modal-open-button";
 export const LOCATION_MODAL_OPEN_BUTTON = "location-modal-open-button";
+export const NEW_CHECKER_MODAL_SAME_ADDRESS = "new-checker-modal-same-address";
 
 // Image tags
 export const IMG = "img";

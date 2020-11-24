@@ -2,25 +2,26 @@ import { Answer } from "@vergunningcheck/imtr-client";
 import React, { useEffect, useReducer } from "react";
 import { createContext } from "react";
 
-import { sections } from "./config/matomo";
 import { getSlugFromPathname } from "./utils";
 
 export type TopicData = {
   activeComponents?: string[];
+  address: null | any;
   answers: {
     [id: string]: Answer;
   };
-  address: null | any;
   finishedComponents: string[];
+  type: string;
   questionIndex: number;
 };
 
 export const defaultTopicSession: TopicData = {
-  activeComponents: [sections.LOCATION_INPUT],
-  answers: {},
+  activeComponents: [],
   address: null,
+  answers: {},
   finishedComponents: [],
   questionIndex: 0,
+  type: "",
 };
 
 export type setTopicFn = (topicData: null | Partial<TopicData>) => void;
@@ -37,8 +38,8 @@ export type setTopicSessionDataFn = (
 type AppSessionContext = {
   session: SessionData;
   setSession: setSessionFn;
-  topicData: TopicData;
   setTopicData: setTopicFn;
+  topicData: TopicData;
 };
 
 const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
@@ -48,8 +49,8 @@ const startSession = session ? session : {};
 const startContext: AppSessionContext = {
   session: startSession,
   setSession: () => {},
-  topicData: defaultTopicSession,
   setTopicData: () => {},
+  topicData: defaultTopicSession,
 };
 
 export const SessionContext = createContext(startContext);
@@ -80,6 +81,8 @@ export const SessionProvider: React.FC = ({ children }) => {
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, startSession);
   const slug = getSlugFromPathname(window.location.pathname);
+  defaultTopicSession.type = slug;
+
   const initialState = session[slug] || defaultTopicSession;
   const [topicData, setTopicData] = useReducer(topicReducer, initialState);
 

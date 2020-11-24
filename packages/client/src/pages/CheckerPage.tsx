@@ -11,6 +11,7 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import { getDataNeed } from "../config/autofill";
 import { actions, eventNames, sections } from "../config/matomo";
 import { DebugDecisionTable } from "../debug";
 import { useChecker, useTopic, useTopicData, useTracking } from "../hooks";
@@ -22,43 +23,9 @@ const CheckerPage = () => {
   const { checker } = useChecker();
   const topic = useTopic();
   const { matomoTrackEvent } = useTracking();
+  const { text } = topic;
 
-  const { hasIMTR, text } = topic;
-
-  useEffect(() => {
-    // Make the app backwards compatible:
-
-    // LOCATION_RESULT does not exist anymore in the IMTR flow
-    const isOldSectionActive = hasIMTR && isActive(sections.LOCATION_RESULT);
-    const isOldSectionFinished =
-      hasIMTR && isFinished(sections.LOCATION_RESULT);
-
-    if (isOldSectionActive || isOldSectionFinished) {
-      // Reset LOCATION_INPUT to active component in case LOCATION_RESULT is active
-      const newActiveComponents = isOldSectionActive
-        ? [sections.LOCATION_INPUT]
-        : activeComponents;
-
-      // Remove LOCATION_RESULT from the finished components and replace with LOCATION_INPUT
-      const newFinishedComponents = finishedComponents.filter(
-        (section) => section !== sections.LOCATION_RESULT
-      );
-      newFinishedComponents.push(sections.LOCATION_INPUT);
-
-      console.warn(
-        "Resetting components, because an old section was found active"
-      );
-
-      // Remove old sections from existing local storage data and set active component to Location Input
-      setTopicData({
-        activeComponents: newActiveComponents,
-        finishedComponents: newFinishedComponents,
-      });
-    }
-
-    // Prevent linter to add all dependencies, now the useEffect is only called on mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const hasDataNeeds = !!getDataNeed(checker);
 
   const {
     activeComponents,
@@ -96,6 +63,22 @@ const CheckerPage = () => {
     // sessionContext[slug].activeComponents = [component];
     setTopicData({ activeComponents: [component] });
   };
+
+  useEffect(() => {
+    // Checker is initialized but there are no active components yet
+    if (checker && (!activeComponents || !activeComponents.length)) {
+      if (hasDataNeeds) {
+        // Make location input the first step
+        setActiveState(sections.LOCATION_INPUT);
+      } else {
+        // Skip data need and go to Questions
+        setActiveState(sections.QUESTIONS);
+      }
+      setTopicData({ finishedComponents: [] });
+    }
+    // Prevent linter to add all dependencies, now the useEffect is only called on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeComponents, checker, hasDataNeeds]);
 
   /**
    * Set given components to the given finished state
@@ -174,9 +157,7 @@ const CheckerPage = () => {
   // On LocationSubmit
   const handleNewAddressSubmit = (address: any) => {
     setTopicData({
-      activeComponents: [
-        hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT,
-      ],
+      activeComponents: [sections.QUESTIONS],
       finishedComponents: [sections.LOCATION_INPUT],
       address,
     });
@@ -196,30 +177,34 @@ const CheckerPage = () => {
         highlightActive
         lineBetweenItems
       >
-        <StepByStepItem
-          active={isActive(sections.LOCATION_INPUT)}
-          checked={isFinished(sections.LOCATION_INPUT)}
-          done={isActive(sections.LOCATION_INPUT)}
-          heading="Adresgegevens"
-          largeCircle
-          // Overwrite the line between the Items
-          style={
-            isActive(sections.LOCATION_INPUT) || questionIndex === 0
-              ? checkedStyle
-              : {}
-          }
-        >
-          {isActive(sections.LOCATION_INPUT) && (
-            <LocationInput
-              {...{
-                handleNewAddressSubmit,
-              }}
-            />
-          )}
-          {!isActive(sections.LOCATION_INPUT) && (
-            <LocationSummary showEditLocationModal />
-          )}
-        </StepByStepItem>
+        {hasDataNeeds ? (
+          <StepByStepItem
+            active={isActive(sections.LOCATION_INPUT)}
+            checked={isFinished(sections.LOCATION_INPUT)}
+            done={isActive(sections.LOCATION_INPUT)}
+            heading="Adresgegevens"
+            largeCircle
+            // Overwrite the line between the Items
+            style={
+              isActive(sections.LOCATION_INPUT) || questionIndex === 0
+                ? checkedStyle
+                : {}
+            }
+          >
+            {hasDataNeeds && isActive(sections.LOCATION_INPUT) && (
+              <LocationInput
+                {...{
+                  handleNewAddressSubmit,
+                }}
+              />
+            )}
+            {hasDataNeeds && !isActive(sections.LOCATION_INPUT) && (
+              <LocationSummary showEditLocationModal />
+            )}
+          </StepByStepItem>
+        ) : (
+          <span />
+        )}
         <StepByStepItem
           active={isActive(sections.QUESTIONS) && questionIndex === 0}
           checked={isFinished(sections.QUESTIONS)}
