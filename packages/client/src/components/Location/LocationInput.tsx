@@ -14,6 +14,7 @@ import Form from "../Form";
 import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
+import LocationMap from "./Map";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
@@ -111,6 +112,7 @@ const LocationInput = ({
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <LocationMap />
         <LocationFinder
           {...{
             focus,
