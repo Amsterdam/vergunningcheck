@@ -67,11 +67,13 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
     ?.toUpperCase()
     ?.match(/[a-z]+|[^a-z]+/gi);
 
+  const graphQlHouseNumber = `${splitHouseNumber?.[0]?.trim() || ""} ${
+    splitHouseNumber?.[1]?.trim() || ""
+  } ${splitHouseNumber?.[2]?.trim() || ""}`;
+
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: `${splitHouseNumber?.[0]?.trim() || ""} ${
-      splitHouseNumber?.[1]?.trim() || ""
-    } ${splitHouseNumber?.[2]?.trim() || ""}`,
+    houseNumberFull: graphQlHouseNumber.trim(),
     postalCode,
     queryExtra: false,
   };
