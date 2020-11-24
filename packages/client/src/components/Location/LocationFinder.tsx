@@ -63,11 +63,15 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
+  const splitHouseNumber = houseNumberFull
+    ?.toUpperCase()
+    ?.match(/[a-z]+|[^a-z]+/gi);
+
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: houseNumberFull
-      ?.replace(/([^0-9])([a-zA-Z])([0-9])/g, " $1 $2 $3")
-      .toUpperCase(),
+    houseNumberFull: `${splitHouseNumber?.[0]?.trim() || ""} ${
+      splitHouseNumber?.[1]?.trim() || ""
+    } ${splitHouseNumber?.[2]?.trim() || ""}`,
     postalCode,
     queryExtra: false,
   };
