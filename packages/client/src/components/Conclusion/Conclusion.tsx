@@ -74,6 +74,12 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
         mainContent: <NeedPermit />,
         title: t("outcome.needPermit.you need a permit"),
       },
+      [NEED_REPORT]: {
+        mainContent: (
+          <NeedPermit contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
+        ),
+        title: t("outcome.needReport.you need a report"),
+      },
       [PERMIT_FREE]: {
         footerContent: <PermitFree />,
         title: t("outcome.permitFree.you dont need a permit"),
