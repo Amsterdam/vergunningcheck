@@ -29,16 +29,18 @@ const isTrueExactMatch = (
   stripString(match?.houseNumberFull) === stripString(houseNumberFull);
 
 type LocationFinderProps = {
+  errorMessage?: ApolloError;
   focus: boolean;
   sessionAddress: any; // @TODO replace any with address type.
-  setErrorMessage: (error: ApolloError | undefined) => void;
+  setError: (error: ApolloError | undefined) => void;
   setFocus: (focus: boolean) => void;
 };
 
 const LocationFinder: React.FC<LocationFinderProps> = ({
+  errorMessage,
   focus,
   sessionAddress,
-  setErrorMessage,
+  setError,
   setFocus,
 }) => {
   const { matomoTrackEvent } = useTracking();
@@ -75,7 +77,7 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
         return t("common.required field text");
       }
       if (name === "postalCode" && !isValidPostalcode(value.toString())) {
-        return "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.";
+        return t("common.no valid postalcode");
       }
     }
     return undefined;
@@ -143,14 +145,14 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
 
   // GraphQL error
   useEffect(() => {
-    if (graphqlError) {
-      setErrorMessage(graphqlError);
+    if (graphqlError && errorMessage?.message !== graphqlError?.message) {
+      setError(graphqlError);
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
     }
-  }, [graphqlError, matomoTrackEvent, setErrorMessage]);
+  }, [errorMessage, graphqlError, matomoTrackEvent, setError]);
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     // This fixes the focus error
@@ -198,6 +200,7 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
   const showLoading = !!(
     houseNumberFull &&
     isValidPostalcode(postalCode) &&
+    !errorMessage &&
     !showAutoSuggest &&
     !showExactMatch &&
     !showLocationNotFound &&
@@ -217,14 +220,14 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
       setHouseNumber(parseInt(value));
       setHouseNumberFull(value);
 
-      if (value) {
+      if (value && !errorMessage) {
         // Allow references to the event to be retained
         event.persist();
         setShowResult(false);
         debouncedUpdateResult();
       }
     },
-    [debouncedUpdateResult]
+    [debouncedUpdateResult, errorMessage]
   );
 
   // @TODO: we can refactor this component by separating all inputs and input handles
@@ -239,7 +242,7 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
             !!postalCodeError ||
             (showLocationNotFound && isValidPostalcode(postalCode))
           }
-          label="Postcode"
+          label={t("common.postalcode label")}
           name="postalCode"
           onBlur={handleBlur}
           onChange={(e) => {
@@ -260,7 +263,7 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
             (showLocationNotFound && isValidPostalcode(postalCode))
           }
           id="houseNumberFull"
-          label="Huisnummer + toevoeging"
+          label={t("common.housenumber label")}
           name="houseNumberFull"
           onBlur={handleBlur}
           onChange={handleChange}
@@ -284,7 +287,7 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={showLoading || loading} />
+      <LocationLoading loading={showLoading} />
 
       {showLocationNotFound && <LocationNotFound />}
 

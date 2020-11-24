@@ -5,23 +5,26 @@ const { gql } = require("../util");
 
 let typeDefs = gql`
   type Address implements Node {
-    id: ID!
-    streetName: String!
     houseNumber: Int!
-    houseNumberSuffix: String
     houseNumberFull: String!
+    houseNumberSuffix: String
+    id: ID!
     postalCode: String!
     residence: String!
+    streetName: String!
     type: AddressType!
   }
+
   enum AddressType {
     BERTH
     BUILDING
   }
+
   type AddressSearch {
     matches: [Address!]!
     exactMatch: Address
   }
+
   type Query {
     address(id: ID!): Address
     findAddress(

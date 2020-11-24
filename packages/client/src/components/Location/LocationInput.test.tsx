@@ -34,18 +34,19 @@ describe("LocationInput", () => {
       handleNewAddressSubmit={handleNewAddressSubmit}
     />
   );
-
   it("should render correctly on first load", () => {
     render(<Wrapper />);
 
     expect(
-      screen.queryByText(
-        "Voer het adres in waar u de dakkapel wilt gaan plaatsen."
-      )
+      screen.queryByText(nl.translation.location.testing["address input"])
     ).toBeInTheDocument();
 
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputPostalCode = screen.getByLabelText(
+      nl.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      nl.translation.common["housenumber label"]
+    );
 
     expect(inputPostalCode).toBeInTheDocument();
     expect(inputPostalCode).not.toHaveValue();
@@ -75,8 +76,12 @@ describe("LocationInput", () => {
 
     render(<Wrapper />, {}, addressGraphQLMock);
 
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
+    const inputPostalCode = screen.getByLabelText(
+      nl.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      nl.translation.common["housenumber label"]
+    );
 
     await act(async () => {
       fireEvent.change(inputPostalCode, {
@@ -138,11 +143,10 @@ describe("LocationInput", () => {
     });
 
     expect(mockMatomoTrackEvent).toBeCalledWith({
-      action: actions.SUBMIT_LOCATION,
+      action: actions.SUBMIT_MONUMENT,
       name: resultMonument,
     });
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(4);
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(1);
   });
 
