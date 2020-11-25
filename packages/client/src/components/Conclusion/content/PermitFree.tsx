@@ -19,7 +19,7 @@ const PermitFree: React.FC = () => {
         <ListItem>{t("outcome.payAttentionTo.take in account")}</ListItem>
       </List>
       <Heading forwardedAs={"h3"}>
-        {"outcome.thinkAbout.also think about"}
+        {t("outcome.thinkAbout.also think about")}
       </Heading>
       <List variant={"bullet"}>
         <ListItem>{t("outcome.thinkAbout.placement of a crane")}</ListItem>
