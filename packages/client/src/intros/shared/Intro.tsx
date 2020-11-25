@@ -15,7 +15,7 @@ import {
 type Props = {
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
-  exceptions?: string[];
+  exceptions: string[];
   introSentence?: string;
   showContactInformation?: boolean;
   usableForBullets?: string[];
@@ -73,7 +73,7 @@ export default ({
         </Paragraph>
       )}
 
-      {exceptions?.length > 0 && (
+      {exceptions.length > 0 && (
         <>
           <Heading forwardedAs="h4">
             {t("introPage.common.exceptions title")}
@@ -86,7 +86,7 @@ export default ({
             style={{ marginBottom: 12 }}
             variant="bullet"
           >
-            {exceptions?.map((exception) => (
+            {exceptions.map((exception) => (
               <ListItem key={exception}>{exception}</ListItem>
             ))}
           </List>
@@ -98,7 +98,7 @@ export default ({
         </>
       )}
 
-      {exceptions?.length === 0 && showContactInformation && (
+      {exceptions.length === 0 && showContactInformation && (
         <Paragraph>
           <ContactSentence
             eventName={sections.INTRO}
