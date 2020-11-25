@@ -93,7 +93,6 @@ export default {
           "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.",
       },
     },
-    // @TODO: remove this, because this makes no sense!
     locationInputTest: {
       "address input":
         "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",

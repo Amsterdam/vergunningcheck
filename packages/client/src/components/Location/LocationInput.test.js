@@ -61,7 +61,6 @@ describe("LocationInput", () => {
   it("should render correctly on first load", () => {
     render(<Wrapper />);
 
-    // @TODO: remove this, because this makes no sense!
     expect(
       screen.queryByText(text.translation.locationInputTest["address input"])
     ).toBeInTheDocument();

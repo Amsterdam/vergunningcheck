@@ -20,12 +20,8 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  // Only show this Alert for select outcomes (or on development to debug)
-  if (
-    outcomeType === NEED_PERMIT ||
-    outcomeType === NEED_CONTACT ||
-    process.env.NODE_ENV === "development"
-  ) {
+  // Only show this Alert for select outcomes
+  if (outcomeType === NEED_PERMIT || outcomeType === NEED_CONTACT) {
     return (
       <QuestionAlertStyle
         data-testid={QUESTION_ALERT}

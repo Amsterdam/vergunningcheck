@@ -214,18 +214,19 @@ const Questions: React.FC<
 
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
-  const permitsPerQuestion = [] as ClientOutcomes[];
+  const permitsPerQuestion: ClientOutcomes[] = [];
   checker.permits.forEach((permit: Permit) => {
     const conclusionDecision = permit.getDecisionById("dummy");
 
     if (conclusionDecision) {
+      const imtrOutcome = conclusionDecision.getOutput();
       let outcomeType = ClientOutcomes.PERMIT_FREE;
 
-      if (conclusionDecision.getOutput() === imtrOutcomes.NEED_CONTACT) {
+      if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
         outcomeType = ClientOutcomes.NEED_CONTACT;
-      } else if (conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT) {
+      } else if (imtrOutcome === imtrOutcomes.NEED_PERMIT) {
         outcomeType = ClientOutcomes.NEED_PERMIT;
-      } else if (conclusionDecision?.getOutput() === imtrOutcomes.NEED_REPORT) {
+      } else if (imtrOutcome === imtrOutcomes.NEED_REPORT) {
         outcomeType = ClientOutcomes.NEED_REPORT;
       }
 
