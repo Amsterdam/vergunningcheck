@@ -39,56 +39,56 @@ export default [
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjEzNA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 A",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA0Mw==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 B",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA2NA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 C",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA2Mg==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 D",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA4Ng==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 E",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA4NA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 F",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
           ],
         },
@@ -108,36 +108,33 @@ export default [
     result: {
       data: {
         findAddress: {
-          __typename: "",
           exactMatch: {
             __typename: "Address",
             id: "MDM2MzAxMDAxMjA2MjA2NA==",
-            streetName: "Louise de Colignystraat",
-            postalCode: "1055XD",
             houseNumber: 19,
             houseNumberFull: "19 C",
+            postalCode: "1055XD",
             residence: "Amsterdam",
+            streetName: "Louise de Colignystraat",
             restrictions: [
               {
                 __typename: "Monument",
                 name: "Gemeentelijk monument",
               },
             ],
+            districtName: "Landlust",
+            neighborhoodName: "Landlust Noord",
             zoningPlans: [
               {
-                __typename: "",
                 name: "Paraplubestemmingsplan Stadsdeel West",
               },
               {
-                __typename: "",
-                name: "Landlust en Gibraltarbuurt",
-              },
-              {
-                __typename: "",
                 name: "Aanpassen geluidzone Westpoort en Hoogtij",
               },
               {
-                __typename: "",
+                name: "Landlust en Gibraltarbuurt",
+              },
+              {
                 name: "Drijvende bouwwerken",
               },
             ],
@@ -159,12 +156,7 @@ export default [
     },
     result: {
       data: null,
-      errors: [
-        {
-          stack: ["GraphQLError: ..."],
-          message: "...",
-        },
-      ],
+      errors: [{ stack: ["GraphQLError: ..."], message: "..." }],
     },
   },
 ];

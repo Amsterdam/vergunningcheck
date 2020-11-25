@@ -1,14 +1,19 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 23,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
           "text": "Staat er een monument op het adres waar u gaat slopen?",
-          "description": "Het rijk of de gemeente kan een gebouw, schuur, fontein als monument aanwijzen.",
-          "type": "boolean",
-          "id": "uitv__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d",
+          "description": "Het rijk of de gemeente kan een gebouw, schuur of fontein als monument aanwijzen.",
+          "options": [
+            "Ja, een rijksmonument.",
+            "Ja, een gemeentelijk monument.",
+            "Nee, geen monument."
+          ],
+          "type": "string",
+          "id": "uitv__6ca301ca-182a-49ab-878b-146cb18f814a",
           "prio": 10
         },
         {
@@ -16,41 +21,49 @@
           "description": "Denk aan het verwijderen van een raamkozijn, een dakgoot of dakpannen.",
           "type": "boolean",
           "id": "uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
-          "prio": 20
+          "prio": 20,
+          "uuid": "sloop onderhoud1"
         },
         {
           "text": "Gaat u dat onderdeel vervangen door een nieuw onderdeel?",
           "type": "boolean",
           "id": "uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
-          "prio": 30
+          "prio": 30,
+          "uuid": "sloop onderhoud2"
         },
         {
           "text": "Verandert de kleur of het materiaal?",
           "type": "boolean",
           "id": "uitv_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
-          "prio": 40
+          "prio": 40,
+          "uuid": "sloop onderhoud3"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "type": "boolean",
           "id": "uitv_76e2ac3b-a5f3-4c86-8e77-f775134d396d",
-          "prio": 50
+          "prio": 50,
+          "uuid": "sloop onderhoud4"
         }
       ],
       "decisions": {
-        "_25bcc1b2-ad76-4bbb-bfc8-f8e1702ac44e": {
+        "_ef2ebb8c-bef6-474f-a7bd-83bf6a89cc82": {
           "requiredInputs": [
-            "#input__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d",
+            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true, false],
+                "inputs": ["\"Ja, een rijksmonument.\"", false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-"],
+                "inputs": ["\"Ja, een gemeentelijk monument.\"", false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Nee, geen monument.\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -60,20 +73,24 @@
             ]
           }
         },
-        "_160669da-1d0f-4071-8f44-ddabc67c87af": {
+        "_a303f94b-bc3a-4294-aa1e-d1f663daa4c2": {
           "requiredInputs": [
-            "#input__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d",
+            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
             "#input_a56a79b8-4086-4a05-ae42-bcbab2890a1b"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true, true, false],
+                "inputs": ["\"Ja, een rijksmonument.\"", true, false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-"],
+                "inputs": ["\"Ja, een gemeentelijk monument.\"", true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Nee, geen monument.\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -87,9 +104,9 @@
             ]
           }
         },
-        "_d82d22d6-ba88-4cfd-8f87-5aa39ebf8a87": {
+        "_f57e703f-96c7-4814-a530-016a3270f8bd": {
           "requiredInputs": [
-            "#input__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d",
+            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
             "#input_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
             "#input_61caccd0-ecae-4c33-81d6-7e8c6f467c35"
@@ -97,11 +114,20 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true, true, true, true],
+                "inputs": ["\"Ja, een rijksmonument.\"", true, true, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-", "-"],
+                "inputs": [
+                  "\"Ja, een gemeentelijk monument.\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Nee, geen monument.\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -119,9 +145,9 @@
             ]
           }
         },
-        "_0439e966-db2f-47e8-aa5a-fc071d6701b1": {
+        "_fe47318d-fa97-4a5a-95c3-8328c01d9ca4": {
           "requiredInputs": [
-            "#input__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d",
+            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
             "#input_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
             "#input_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
@@ -130,11 +156,27 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true, true, true, false, true],
+                "inputs": [
+                  "\"Ja, een rijksmonument.\"",
+                  true,
+                  true,
+                  false,
+                  true
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-", "-", "-"],
+                "inputs": [
+                  "\"Ja, een gemeentelijk monument.\"",
+                  true,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Nee, geen monument.\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -158,10 +200,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_25bcc1b2-ad76-4bbb-bfc8-f8e1702ac44e",
-            "#_160669da-1d0f-4071-8f44-ddabc67c87af",
-            "#_d82d22d6-ba88-4cfd-8f87-5aa39ebf8a87",
-            "#_0439e966-db2f-47e8-aa5a-fc071d6701b1"
+            "#_ef2ebb8c-bef6-474f-a7bd-83bf6a89cc82",
+            "#_a303f94b-bc3a-4294-aa1e-d1f663daa4c2",
+            "#_f57e703f-96c7-4814-a530-016a3270f8bd",
+            "#_fe47318d-fa97-4a5a-95c3-8328c01d9ca4"
           ],
           "decisionTable": {
             "rules": [
@@ -195,9 +237,9 @@
         }
       },
       "inputs": {
-        "input__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d": {
-          "href": "#uitv__0ca2bc4c-e9c8-46cc-9684-9a9415e6a22d",
-          "type": "boolean"
+        "input__6ca301ca-182a-49ab-878b-146cb18f814a": {
+          "href": "#uitv__6ca301ca-182a-49ab-878b-146cb18f814a",
+          "type": "string"
         },
         "input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03": {
           "href": "#uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",

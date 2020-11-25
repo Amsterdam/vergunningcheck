@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.1] (2020-11-25)
+
+#### New Features
+
+- `client`, `graphql`
+  - [#685](https://github.com/Amsterdam/vergunningcheck/pull/685) Added Matomo events for `neighborhood` and `district` ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+
+- `e2e`
+  - [#679](https://github.com/Amsterdam/vergunningcheck/pull/679) Update todo's and add a test ([@afjlambert](https://github.com/afjlambert))
+
+#### Documentation changes
+
+- [#698](https://github.com/Amsterdam/vergunningcheck/pull/698) Added Automated tests part to contributing ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.4.0] (2020-11-11)
 
 #### New Features

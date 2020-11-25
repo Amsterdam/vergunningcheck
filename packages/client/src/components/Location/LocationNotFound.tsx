@@ -1,19 +1,27 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Alert, ComponentWrapper } from "../../atoms";
-import { sections } from "../../config/matomo";
-import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
+import { Alert, ComponentWrapper } from "../../atoms";
+import { actions, eventNames, sections } from "../../config/matomo";
+import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
+import { MatomoTrackEventProps } from "../../hoc/withTracking";
 
-const LocationNotFound: React.FC = () => {
+const LocationNotFound: React.FC<MatomoTrackEventProps> = ({ matomoTrackEvent }) => {
   const { t } = useTranslation();
+  useEffect(() => {
+    matomoTrackEvent({
+      action: actions.ERROR,
+      name: eventNames.ADDRESS_NOT_FOUND,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <ComponentWrapper>
       <Alert
         data-testid={LOCATION_NOT_FOUND}
-        heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
+        heading={t("common.no address found postalcode houseNumber combination")}
         level="warning"
       >
         <Paragraph>

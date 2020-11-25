@@ -10,7 +10,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("LocationNotFound", () => {
   it("renders correctly correctly", () => {
-    render(<LocationNotFound />);
+    render(<LocationNotFound matomoTrackEvent={jest.fn()} />);
     // Should not be in document
     expect(
       screen.queryByText(

@@ -15,36 +15,33 @@ export default [
     result: {
       data: {
         findAddress: {
-          __typename: "",
           exactMatch: {
             __typename: "Address",
             id: "MDM2MzAxMDAxMjA2MjA2NA==",
-            streetName: "Louise de Colignystraat",
-            postalCode: "1055XD",
             houseNumber: 19,
             houseNumberFull: "19 C",
+            postalCode: "1055XD",
             residence: "Amsterdam",
+            streetName: "Louise de Colignystraat",
             restrictions: [
               {
                 __typename: "Monument",
                 name: "Gemeentelijk monument",
               },
             ],
+            districtName: "Landlust",
+            neighborhoodName: "Landlust Noord",
             zoningPlans: [
               {
-                __typename: "",
                 name: "Paraplubestemmingsplan Stadsdeel West",
               },
               {
-                __typename: "",
-                name: "Landlust en Gibraltarbuurt",
-              },
-              {
-                __typename: "",
                 name: "Aanpassen geluidzone Westpoort en Hoogtij",
               },
               {
-                __typename: "",
+                name: "Landlust en Gibraltarbuurt",
+              },
+              {
                 name: "Drijvende bouwwerken",
               },
             ],

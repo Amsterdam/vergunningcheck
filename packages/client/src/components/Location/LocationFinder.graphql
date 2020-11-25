@@ -34,6 +34,8 @@ fragment exactMatchFragment on Address {
       name
     }
   }
+  districtName
+  neighborhoodName
   zoningPlans {
     name
   }
@@ -41,9 +43,9 @@ fragment exactMatchFragment on Address {
 fragment basicAddress on Address {
   __typename
   id
-  streetName
-  postalCode
   houseNumber
   houseNumberFull
+  postalCode
   residence
+  streetName
 }
