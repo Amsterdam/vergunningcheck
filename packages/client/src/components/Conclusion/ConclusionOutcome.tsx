@@ -1,5 +1,5 @@
 import { Heading, themeSpacing } from "@amsterdam/asc-ui";
-import { imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
@@ -31,7 +31,7 @@ type ConclusionContentProps = {
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
   matomoTrackEvent: Function;
-  outcomeType: string; // @TODO: maybe define imtrOutcomes types and import from imtr-client?
+  outcomeType: ClientOutcomes;
   showDiscaimer?: boolean;
 };
 
@@ -69,7 +69,7 @@ const ConclusionOutcome: React.FC<
         {!isIE && !isMobile && (
           <PrintButton
             data-testid={PRINT_BUTTON}
-            marginBottom={outcomeType === imtrOutcomes.PERMIT_FREE ? 32 : 40}
+            marginBottom={outcomeType === ClientOutcomes.PERMIT_FREE ? 32 : 40}
             onClick={handlePrintButton}
             variant="textButton"
           >
