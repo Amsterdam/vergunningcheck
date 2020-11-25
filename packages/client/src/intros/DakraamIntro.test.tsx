@@ -1,5 +1,6 @@
 import React from "react";
 
+import text from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import DakraamIntro from "./DakraamIntro";
 
@@ -12,7 +13,7 @@ it("DakraamIntro renders correctly", () => {
 
   expect(
     screen.queryByText(
-      "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten.",
+      text.translation.introPage.dakraam["intro description"],
       { exact: false }
     )
   ).toBeInTheDocument();

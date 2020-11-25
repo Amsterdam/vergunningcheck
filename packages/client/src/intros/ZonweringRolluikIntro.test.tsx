@@ -1,5 +1,6 @@
 import React from "react";
 
+import text from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import ZonweringRolluikIntro from "./ZonweringRolluikIntro";
 
@@ -11,6 +12,9 @@ it("ZonweringRolluikIntro renders correctly", () => {
   render(<ZonweringRolluikIntro />);
 
   expect(
-    screen.queryByText("zonwering, rolhek, rolluik of luik", { exact: false })
+    screen.queryByText(
+      text.translation.introPage.zonwering["intro description"],
+      { exact: false }
+    )
   ).toBeInTheDocument();
 });
