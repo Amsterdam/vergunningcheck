@@ -67,13 +67,16 @@ const CheckerPage = () => {
   useEffect(() => {
     // Checker is initialized but there are no active components yet
     if (checker && (!activeComponents || !activeComponents.length)) {
-      if (hasDataNeeds) {
-        // Make location input the first step
-        setActiveState(sections.LOCATION_INPUT);
-      } else {
-        // Skip data need and go to Questions
-        setActiveState(sections.QUESTIONS);
-      }
+      const activeStep = hasDataNeeds
+        ? sections.LOCATION_INPUT
+        : sections.QUESTIONS;
+
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: activeStep,
+      });
+
+      setActiveState(activeStep);
       setTopicData({ finishedComponents: [] });
     }
     // Prevent linter to add all dependencies, now the useEffect is only called on mount

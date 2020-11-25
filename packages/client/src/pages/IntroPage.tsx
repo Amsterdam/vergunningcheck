@@ -6,14 +6,12 @@ import { CheckerContext } from "../CheckerContext";
 import { TopicLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
-import { actions, sections } from "../config/matomo";
-import { useSlug, useTopic, useTopicData, useTracking } from "../hooks";
+import { useSlug, useTopic, useTopicData } from "../hooks";
 import { IntroProps } from "../intros";
 import { geturl, routes } from "../routes";
 
 const IntroPage: React.FC = () => {
   const history = useHistory();
-  const { matomoTrackEvent } = useTracking();
   const checkerContext = useContext(CheckerContext);
   const { topicData } = useTopicData();
   const slug = useSlug();
@@ -27,13 +25,6 @@ const IntroPage: React.FC = () => {
   ) as IntroProps;
 
   const goToNext = () => {
-    matomoTrackEvent({
-      // @TODO: Replace this whole event.
-      // Something like: `go to checker page`
-      action: actions.ACTIVE_STEP,
-      name: sections.LOCATION_INPUT,
-    });
-
     // Unset the current checker in case the topicData contains an old checker
     if (topicData.type !== slug) {
       checkerContext.setChecker(undefined);
