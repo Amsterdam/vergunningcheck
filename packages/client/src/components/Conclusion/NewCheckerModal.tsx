@@ -27,6 +27,7 @@ const NewCheckerModal: React.FC = () => {
   const [finished, setFinished] = useState(false);
   const [hasError, setError] = useState(false);
   const [saveAddress, setSaveAddress] = useState<null | boolean>(
+    // If there are no data-needs we skip the question to save your address
     topicData.address ? null : false
   );
 
