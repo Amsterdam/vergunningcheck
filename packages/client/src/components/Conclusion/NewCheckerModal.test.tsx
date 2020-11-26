@@ -97,8 +97,6 @@ describe("NewCheckerModal", () => {
         action: actions.OPEN_MODAL,
         name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
       });
-
-      // expect(window.location.href).toContain(customTopic.slug);
     });
 
     // @TODO: This test could be extended to verify that the SessionData has been updated
