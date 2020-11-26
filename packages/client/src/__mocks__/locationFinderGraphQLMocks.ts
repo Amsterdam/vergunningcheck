@@ -149,6 +149,79 @@ export default [
       query: findAddress,
       variables: {
         extraHouseNumberFull: "",
+        houseNumberFull: "546 K 1",
+        postalCode: "1024BV",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: {
+            __typename: "Address",
+            id: "MDM2MzAxMDAwMDk4OTA3Ng==",
+            houseNumber: 546,
+            houseNumberFull: "546 K 1",
+            postalCode: "1024BV",
+            residence: "Amsterdam",
+            streetName: "Beemsterstraat",
+            restrictions: [],
+            districtName: "Waterlandpleinbuurt",
+            neighborhoodName: "Werengouw Midden",
+            zoningPlans: [
+              {
+                name: "Bestemmingsplan Nieuwendam Noord - Werengouw",
+              },
+            ],
+          },
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
+        houseNumberFull: "20 H L",
+        postalCode: "1027AE",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: {
+            __typename: "Address",
+            id: "MDM2MzAxMDAwMDgyNDYzMQ==",
+            houseNumber: 20,
+            houseNumberFull: "20 H L",
+            postalCode: "1027AE",
+            residence: "Amsterdam",
+            streetName: "'t Nopeind",
+            restrictions: [],
+            districtName: "Waterland",
+            neighborhoodName: "Zunderdorp",
+            zoningPlans: [
+              {
+                name: "Drijvende bouwwerken",
+              },
+              {
+                name: "Landelijk Noord",
+              },
+            ],
+          },
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
         houseNumberFull: "666",
         postalCode: "6666AB",
         queryExtra: false,

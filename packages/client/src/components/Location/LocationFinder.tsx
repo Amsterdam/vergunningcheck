@@ -69,7 +69,9 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   const graphQlHouseNumber = `${splitHouseNumber?.[0]?.trim() || ""} ${
     splitHouseNumber?.[1]?.trim() || ""
-  } ${splitHouseNumber?.[2]?.trim() || ""}`;
+  } ${splitHouseNumber?.[2]?.trim() || ""} ${
+    splitHouseNumber?.[3]?.trim() || ""
+  }`.replace(/\s+/g, " ");
 
   const variables = {
     extraHouseNumberFull: "",
