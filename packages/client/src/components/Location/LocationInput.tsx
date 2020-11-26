@@ -11,10 +11,10 @@ import { geturl, routes } from "../../routes";
 import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
 import Form from "../Form";
+import LocationMap from "../Map/Map";
 import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
-import LocationMap from "./Map";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
