@@ -16,7 +16,7 @@ export default {
       unknown: "Onbekend",
     },
     errorMessages: {
-      "error occured": "Er is een fout opgetreden.", // Not used...
+      "error occured": "Er is een fout opgetreden.",
       "unfortunately we cannot get address results":
         "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
       "please try again later or contact the city on":

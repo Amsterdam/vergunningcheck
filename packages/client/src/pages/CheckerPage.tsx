@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { HideForPrint } from "../atoms";
@@ -14,16 +14,26 @@ import {
 import { getDataNeed } from "../config/autofill";
 import { actions, eventNames, sections } from "../config/matomo";
 import { DebugDecisionTable } from "../debug";
-import { useChecker, useTopic, useTopicData, useTracking } from "../hooks";
+import {
+  useChecker,
+  useSlug,
+  useTopic,
+  useTopicData,
+  useTracking,
+} from "../hooks";
+import { SessionContext } from "../SessionContext";
 import { isEmptyObject } from "../utils";
+import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 
 const CheckerPage = () => {
   const { topicData, setTopicData } = useTopicData();
   const { checker } = useChecker();
   const topic = useTopic();
+  const slug = useSlug();
   const { matomoTrackEvent } = useTracking();
   const { text } = topic;
+  const sessionContext = useContext(SessionContext);
 
   const hasDataNeeds = !!getDataNeed(checker);
 
@@ -60,7 +70,6 @@ const CheckerPage = () => {
       });
     }
 
-    // sessionContext[slug].activeComponents = [component];
     setTopicData({ activeComponents: [component] });
   };
 
@@ -109,6 +118,10 @@ const CheckerPage = () => {
 
   if (!checker) {
     return <LoadingPage />;
+  }
+
+  if (!sessionContext.session[slug]) {
+    return <ErrorPage />;
   }
 
   /**

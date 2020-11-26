@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import LoadingPage from "../pages/LoadingPage";
 import { redirectConfig, routeConfig } from "../routes";
@@ -7,7 +7,7 @@ import ScrollToTop from "./ScrollToTop";
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Suspense fallback={<LoadingPage />}>
         <Switch>
@@ -21,7 +21,7 @@ const Router = () => {
             ))}
         </Switch>
       </Suspense>
-    </BrowserRouter>
+    </>
   );
 };
 
