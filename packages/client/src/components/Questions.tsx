@@ -345,7 +345,7 @@ const Questions: React.FC<
         const showQuestionAlert = !!permitsPerQuestion[i];
 
         // Define the outcome type
-        const outcomeType = permitsPerQuestion[i] as ClientOutcomes;
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -405,7 +405,7 @@ const Questions: React.FC<
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
         // Define the outcome type
-        const outcomeType = permitsPerQuestion[i] as ClientOutcomes;
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
