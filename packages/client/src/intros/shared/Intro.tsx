@@ -15,7 +15,7 @@ import {
 type Props = {
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
-  exceptions: string[];
+  exceptions?: string[];
   introSentence?: string;
   showContactInformation?: boolean;
   usableForBullets?: string[];
