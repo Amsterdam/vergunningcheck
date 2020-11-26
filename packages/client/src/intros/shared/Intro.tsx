@@ -45,7 +45,7 @@ export default ({
 
   return (
     <>
-      <Paragraph>{introSentence}</Paragraph>
+      {introSentence && <Paragraph>{introSentence}</Paragraph>}
       {usableForBullets?.length > 0 && (
         <>
           <Paragraph gutterBottom={8}>
