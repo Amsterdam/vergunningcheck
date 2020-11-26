@@ -120,6 +120,8 @@ const CheckerPage = () => {
     return <LoadingPage />;
   }
 
+  // In case `topicData` is not found on the Session Context display an error
+  // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
   if (!sessionContext.session[slug]) {
     return <ErrorPage />;
   }
