@@ -9,12 +9,21 @@ import Footer from "../Footer";
 import Header from "../Header";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
-const BaseLayout: React.FC = ({ children }) => {
+type BaseLayoutProps = {
+  disablePageView?: boolean;
+};
+
+const BaseLayout: React.FC<BaseLayoutProps> = ({
+  children,
+  disablePageView,
+}) => {
   const { matomoPageView } = useTracking();
   const { location } = useHistory();
 
   useEffect(() => {
-    matomoPageView();
+    if (!disablePageView) {
+      matomoPageView();
+    }
     // @TODO: We need to fix this!
     //eslint-disable-next-line
   }, [location.pathname]);
