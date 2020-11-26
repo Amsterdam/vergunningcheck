@@ -29,10 +29,9 @@ import LoadingPage from "./LoadingPage";
 const CheckerPage = () => {
   const { topicData, setTopicData } = useTopicData();
   const { checker } = useChecker();
-  const topic = useTopic();
+  const { text } = useTopic();
   const slug = useSlug();
   const { matomoTrackEvent } = useTracking();
-  const { text } = topic;
   const sessionContext = useContext(SessionContext);
 
   const hasDataNeeds = !!getDataNeed(checker);
