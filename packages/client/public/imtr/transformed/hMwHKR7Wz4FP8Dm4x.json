@@ -1,16 +1,22 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 10,
       "name": "Conclusie Het wijzigen van een monument bij een dakraam",
       "questions": [
         {
-          "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
           "prio": 10,
-          "uuid": "monument-dakraam-bouwen"
+          "uuid": "dakraam monument"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
@@ -36,22 +42,29 @@
         }
       ],
       "decisions": {
-        "_8f8a09b8-b2c2-48e0-afaa-91fa8620ac1d": {
+        "_022c2f94-d1c8-43a1-9507-65cc032ff682": {
           "requiredInputs": [
-            "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
+            "#input__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -64,9 +77,9 @@
             ]
           }
         },
-        "_7c3f34d2-1c66-404a-9032-93a68c9b729f": {
+        "_96bff835-6a18-4238-881f-afb0a7dcc1df": {
           "requiredInputs": [
-            "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
+            "#input__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
             "#input_c907156c-d205-44f2-ad36-46f37f505763"
           ],
@@ -74,14 +87,22 @@
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, het dakraam verandert.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, het dakraam verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -105,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_8f8a09b8-b2c2-48e0-afaa-91fa8620ac1d",
-            "#_7c3f34d2-1c66-404a-9032-93a68c9b729f"
+            "#_022c2f94-d1c8-43a1-9507-65cc032ff682",
+            "#_96bff835-6a18-4238-881f-afb0a7dcc1df"
           ],
           "decisionTable": {
             "rules": [
@@ -130,9 +151,9 @@
         }
       },
       "inputs": {
-        "input__a165828d-8708-4db6-92c4-9c767ad7cc72": {
-          "href": "#uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
-          "type": "boolean"
+        "input__b2039271-3498-4dbf-8ef8-14fb795f6a1d": {
+          "href": "#uitv__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
+          "type": "string"
         },
         "input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67": {
           "href": "#uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",

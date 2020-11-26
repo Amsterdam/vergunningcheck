@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 17,
       "name": "Conclusie Zonnepaneel en zonneboiler monument",
       "questions": [
         {
@@ -14,12 +14,18 @@
           "uuid": "zonnepaneel-warmtecollector"
         },
         {
-          "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__30a75386-d045-473c-b4b8-3aad506986f2",
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__954f5950-820d-42ac-8cef-07b5afd80b43",
           "prio": 20,
-          "uuid": "monument-zonnepaneel"
+          "uuid": "zonnepaneel en zonneboiler monument"
         },
         {
           "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
@@ -44,14 +50,6 @@
           "uuid": "zonnepanelen - onderhoud2"
         },
         {
-          "text": "Gaat u de zonneboiler plaatsen op of bij een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
-          "prio": 50,
-          "uuid": "monument-zonneboiler"
-        },
-        {
           "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
           "options": [
             "Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.",
@@ -59,7 +57,7 @@
           ],
           "type": "string",
           "id": "uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-          "prio": 60,
+          "prio": 50,
           "uuid": "zonneboiler - onderhoud1"
         },
         {
@@ -70,15 +68,15 @@
           ],
           "type": "string",
           "id": "uitv_0954e203-e649-4d46-9732-d5defdfc57be",
-          "prio": 70,
+          "prio": 60,
           "uuid": "zonneboiler - onderhoud2"
         }
       ],
       "decisions": {
-        "_ad48cbcf-0c0f-4171-ac6a-920206440c2b": {
+        "_a39eaa1e-d340-4725-bafb-b64279632e97": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__30a75386-d045-473c-b4b8-3aad506986f2",
+            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
             "#input_2bea0591-a028-413a-8bcb-f9f1b01270c2"
           ],
           "decisionTable": {
@@ -86,7 +84,15 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\""
                 ],
                 "output": "\"Vergunningplicht\""
@@ -96,7 +102,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-"],
+                "inputs": ["-", "\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -110,10 +116,10 @@
             ]
           }
         },
-        "_b3d54f24-285d-41b2-826e-05aef16da72e": {
+        "_1ba1db23-2119-4587-8c00-209fa7fbbc23": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
             "#input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2"
           ],
           "decisionTable": {
@@ -121,7 +127,15 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonneboiler\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
@@ -131,7 +145,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-"],
+                "inputs": ["-", "\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -145,10 +159,10 @@
             ]
           }
         },
-        "_93e53343-0d17-4c41-8815-7178708e63f4": {
+        "_592f2449-65f1-45e3-8972-eeaf8b50f12b": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__30a75386-d045-473c-b4b8-3aad506986f2",
+            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
             "#input_2bea0591-a028-413a-8bcb-f9f1b01270c2",
             "#input_45c1eabc-bddb-418d-9145-e26d97e914dc"
           ],
@@ -157,7 +171,16 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
+                  "\"Ja, de zonnepanelen veranderen.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de zonnepanelen veranderen.\""
                 ],
@@ -168,7 +191,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-"],
+                "inputs": ["-", "\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -192,10 +215,10 @@
             ]
           }
         },
-        "_c6305534-b375-4970-b5f4-9bbca4ece003": {
+        "_85f1d0e3-d00b-45e4-937a-261d449d3aae": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
+            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
             "#input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
             "#input_0954e203-e649-4d46-9732-d5defdfc57be"
           ],
@@ -204,7 +227,16 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de zonneboiler verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonneboiler\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de zonneboiler verandert.\""
                 ],
@@ -215,7 +247,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-"],
+                "inputs": ["-", "\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -241,10 +273,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_ad48cbcf-0c0f-4171-ac6a-920206440c2b",
-            "#_b3d54f24-285d-41b2-826e-05aef16da72e",
-            "#_93e53343-0d17-4c41-8815-7178708e63f4",
-            "#_c6305534-b375-4970-b5f4-9bbca4ece003"
+            "#_a39eaa1e-d340-4725-bafb-b64279632e97",
+            "#_1ba1db23-2119-4587-8c00-209fa7fbbc23",
+            "#_592f2449-65f1-45e3-8972-eeaf8b50f12b",
+            "#_85f1d0e3-d00b-45e4-937a-261d449d3aae"
           ],
           "decisionTable": {
             "rules": [
@@ -287,9 +319,9 @@
           "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
           "type": "string"
         },
-        "input__30a75386-d045-473c-b4b8-3aad506986f2": {
-          "href": "#uitv__30a75386-d045-473c-b4b8-3aad506986f2",
-          "type": "boolean"
+        "input__954f5950-820d-42ac-8cef-07b5afd80b43": {
+          "href": "#uitv__954f5950-820d-42ac-8cef-07b5afd80b43",
+          "type": "string"
         },
         "input_2bea0591-a028-413a-8bcb-f9f1b01270c2": {
           "href": "#uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
@@ -298,10 +330,6 @@
         "input_45c1eabc-bddb-418d-9145-e26d97e914dc": {
           "href": "#uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
           "type": "string"
-        },
-        "input__a0f9b9d3-918d-4b8d-a392-545b46c4591d": {
-          "href": "#uitv__a0f9b9d3-918d-4b8d-a392-545b46c4591d",
-          "type": "boolean"
         },
         "input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2": {
           "href": "#uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
@@ -314,7 +342,7 @@
       }
     },
     {
-      "version": 73,
+      "version": 97,
       "name": "Conclusie Zonnepaneel en zonneboiler bouwen",
       "questions": [
         {
@@ -327,12 +355,18 @@
           "uuid": "zonnepaneel-warmtecollector"
         },
         {
-          "text": "Gaat u de zonnepanelen plaatsen op of bij een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__7a581a66-8143-4f7f-b864-a7dabd06850d",
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__b7fb5569-9743-4d55-8737-2c801521fa7f",
           "prio": 20,
-          "uuid": "monument-zonnepaneel"
+          "uuid": "zonnepaneel en zonneboiler monument"
         },
         {
           "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
@@ -377,14 +411,6 @@
           "prio": 60
         },
         {
-          "text": "Gaat u de zonneboiler plaatsen op of bij een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
-          "prio": 70,
-          "uuid": "monument-zonneboiler"
-        },
-        {
           "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
           "options": [
             "Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.",
@@ -392,7 +418,7 @@
           ],
           "type": "string",
           "id": "uitv_c0ae71cb-c1e3-496b-add2-9a761a162873",
-          "prio": 80,
+          "prio": 70,
           "uuid": "zonneboiler - onderhoud1"
         },
         {
@@ -403,7 +429,7 @@
           ],
           "type": "string",
           "id": "uitv_e2c0f8e2-122f-4e6d-b355-06d8423a9b3c",
-          "prio": 90,
+          "prio": 80,
           "uuid": "zonneboiler - onderhoud2"
         },
         {
@@ -414,7 +440,7 @@
           ],
           "type": "string",
           "id": "uitv_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
-          "prio": 100
+          "prio": 90
         },
         {
           "text": "U gaat een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -424,7 +450,7 @@
           ],
           "type": "string",
           "id": "uitv_83bddc0b-da36-443e-9d7e-df76baddaed5",
-          "prio": 110
+          "prio": 100
         },
         {
           "text": "Ligt het gebouw waarop u de zonnepanelen gaat plaatsen in een beschermd stads- of dorpsgezicht?",
@@ -437,7 +463,7 @@
           ],
           "type": "string",
           "id": "uitv_d43a5159-cab4-4a5d-a929-2a7a497a4400",
-          "prio": 120
+          "prio": 110
         },
         {
           "text": "Ligt het gebouw waarop u de zonneboiler gaat plaatsen in een beschermd stads- of dorpsgezicht?",
@@ -450,77 +476,77 @@
           ],
           "type": "string",
           "id": "uitv_3953efcc-2690-4eee-9205-8810cfe57315",
-          "prio": 130
+          "prio": 120
         },
         {
           "text": "Gaat u de zonnepanelen plaatsen aan de achterkant van het gebouw?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_Zonnepaneel_achterkant_plaatsen.png)",
           "type": "boolean",
           "id": "uitv__9f885868-4033-487c-8e38-6ccf211c5539",
-          "prio": 140
+          "prio": 130
         },
         {
           "text": "Gaat u de zonneboiler plaatsen aan de achterkant van het gebouw?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_Zonnepaneel_achterkant_plaatsen.png)",
           "type": "boolean",
           "id": "uitv__cd6951fb-d2e9-4325-a7e0-1b7faa238d6a",
-          "prio": 150
+          "prio": 140
         },
         {
           "text": "U gaat zonnepanelen plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_b_Zonnepaneel_OTG_Achterkant_weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__e9b7860d-f422-4a85-9afe-fd7fb9936cc6",
-          "prio": 160
+          "prio": 150
         },
         {
           "text": "U gaat een zonneboiler plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_b_Zonnepaneel_OTG_Achterkant_weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__cc40ea7e-fc38-40f6-a835-93c9766aae31",
-          "prio": 170
+          "prio": 160
         },
         {
           "text": "U gaat zonnepanelen plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_c_Zonnepaneel_OTG_Achterkant_water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__f7154f29-6663-4900-88b3-516fc3955a5c",
-          "prio": 180
+          "prio": 170
         },
         {
           "text": "U gaat een zonneboiler plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_c_Zonnepaneel_OTG_Achterkant_water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__e032e036-03df-4553-b053-02cd1d71c88d",
-          "prio": 190
+          "prio": 180
         },
         {
           "text": "U gaat zonnepanelen plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_d_Zonnepaneel_OTG_Achterkant_plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__52dcbe27-9a39-4097-bdf1-70cc20e3bcc0",
-          "prio": 200
+          "prio": 190
         },
         {
           "text": "U gaat een zonneboiler plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_d_Zonnepaneel_OTG_Achterkant_plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__ad2495c7-1de5-46d9-884f-2f74b97bc6eb",
-          "prio": 210
+          "prio": 200
         },
         {
           "text": "Gaat u een losse omvormer plaatsen?",
           "description": "Een omvormer zet de energie die door zonnepanelen is opgewekt, om in bruikbare elektriciteit. De omvormer zit vast aan het zonnepaneel of is een los apparaat.",
           "type": "boolean",
           "id": "uitv__d2e1d3a6-4ed8-45dd-8876-107db345d841",
-          "prio": 220
+          "prio": 210
         },
         {
           "text": "Gaat u een los voorraadvat plaatsen?",
           "description": "In het voorraadvat wordt het verwarmde water bewaard. Het voorraadvat zit vast aan het zonnepaneel of is een los apparaat.",
           "type": "boolean",
           "id": "uitv__63d8e3e4-8881-4eea-a453-c466e4c4a9d1",
-          "prio": 230
+          "prio": 220
         },
         {
           "text": "Komt de omvormer voor het omzetten van elektriciteit binnen of buiten te staan?",
@@ -528,7 +554,7 @@
           "options": ["Binnen", "Buiten"],
           "type": "string",
           "id": "uitv__68ba9cd2-be70-4595-b29d-2ae9f8f4a371",
-          "prio": 240
+          "prio": 230
         },
         {
           "text": "Komt het voorraadvat binnen of buiten te staan?",
@@ -536,110 +562,110 @@
           "options": ["Binnen", "Buiten"],
           "type": "string",
           "id": "uitv__038790bf-63a1-4bf7-9e35-410f47b57e67",
-          "prio": 250
+          "prio": 240
         },
         {
           "text": "Gaat u de zonnepanelen plaatsen op een plat dak?",
           "type": "boolean",
           "id": "uitv__0b0105bb-169d-47ff-a96b-ebf93256dff4",
-          "prio": 260
+          "prio": 250
         },
         {
           "text": "Gaat u de zonneboiler plaatsen op een plat dak?",
           "type": "boolean",
           "id": "uitv__eedcc481-936b-45ac-b4aa-46b655c84fe1",
-          "prio": 270
+          "prio": 260
         },
         {
           "text": "Komen de zonnepanelen verder van de dakrand te staan dan de hoogte van de zonnepanelen?",
           "description": "Voorbeeld: is het hoogste punt van de panelen 25 centimeter? Dan moeten ze minstens 25 centimeter van de dakranden af komen te staan.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/7_b_Zonnepaneel_afstand_groter_dan_hoogte.png)\n\nDit is een van de voorwaarden om zonnepanelen vergunningvrij te plaatsen.",
           "type": "boolean",
           "id": "uitv__4af95a13-5cfc-4f9e-b56a-7e3b1d8d3579",
-          "prio": 280
+          "prio": 270
         },
         {
           "text": "Komt de zonneboiler verder van de dakrand te staan dan de hoogte van de zonneboiler?",
           "description": "Voorbeeld: is het hoogste punt van de zonneboiler 25 centimeter? Dan moet deze minstens 25 centimeter van de dakranden af komen te staan.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/7_b_Zonnepaneel_afstand_groter_dan_hoogte.png)",
           "type": "boolean",
           "id": "uitv__eb22d2da-227b-47da-9fdc-3d98d9e7a10a",
-          "prio": 290
+          "prio": 280
         },
         {
           "text": "Gaat u de zonnepanelen plaatsen op een schuin dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_a_Zonnepaneel_Schuin_dak.png)",
           "type": "boolean",
           "id": "uitv__9dbf6ab3-894f-4453-9987-b74f84fd66ce",
-          "prio": 300
+          "prio": 290
         },
         {
           "text": "Gaat u de zonneboiler plaatsen op een schuin dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_a_Zonnepaneel_Schuin_dak.png)",
           "type": "boolean",
           "id": "uitv__4cfc314d-90c1-4bfc-8360-c33ccbf1c547",
-          "prio": 310
+          "prio": 300
         },
         {
           "text": "Blijven de zonnepanelen binnen de randen van het dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_b_Zonnepaneel_binnen_dakranden.png)",
           "type": "boolean",
           "id": "uitv__fa95f7d6-7342-4fc1-ab2d-8533d1c0c891",
-          "prio": 320
+          "prio": 310
         },
         {
           "text": "Blijft de zonneboiler binnen de randen van het dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_b_Zonnepaneel_binnen_dakranden.png)",
           "type": "boolean",
           "id": "uitv__1403dc92-3e65-4934-8070-a6f9ec99cdef",
-          "prio": 330
+          "prio": 320
         },
         {
           "text": "Gaat u de zonnepanelen in het dak plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_d_Zonnepaneel_in_dak.png)\n\nEen zonnepaneel kan onderdeel van het dak zijn, bijvoorbeeld bij dakpannen die zonnestroom opwekken.",
           "type": "boolean",
           "id": "uitv__679562df-0ee1-4958-b173-677c95eb812f",
-          "prio": 340
+          "prio": 330
         },
         {
           "text": "Gaat u de zonneboiler in het dak plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_d_Zonnepaneel_in_dak.png)\n\nEen zonneboiler kan onderdeel van het dak zijn.",
           "type": "boolean",
           "id": "uitv__5e419ead-eaa8-42d0-be82-fceb34f173ed",
-          "prio": 350
+          "prio": 340
         },
         {
           "text": "Gaat u de zonnepanelen direct op het dak plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_c_Zonnepaneel_direct_op_dak.png)\n\n![](https://sttr-files.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\nAls u de standaard bevestigingsmiddelen van de fabrikant gaat gebruiken, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__4a6d1c04-9f16-4c2a-8abe-6af395cd886d",
-          "prio": 360
+          "prio": 350
         },
         {
           "text": "Gaat u de zonneboiler direct op het dak plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_c_Zonnepaneel_direct_op_dak.png)\n\n![](https://sttr-files.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\nAls u de standaard bevestigingsmiddelen van de fabrikant gaat gebruiken, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__ef38dee3-3552-421b-9578-32c460867ca1",
-          "prio": 370
+          "prio": 360
         },
         {
           "text": "Gaat u de zonnepanelen net zo schuin plaatsen als het dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\n![](https://sttr-files.flolegal.app/00000001002564440000/9_b_Zonnepaneel_helling_op_dak.png)\n\nAls de zonnepanelen niet de helling van het dak volgen, is er altijd een vergunning nodig voor het plaatsen.",
           "type": "boolean",
           "id": "uitv__03596543-74bc-43ef-bd91-81bc09fa3b1a",
-          "prio": 380
+          "prio": 370
         },
         {
           "text": "Gaat u de zonneboiler net zo schuin plaatsen als het dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\n![](https://sttr-files.flolegal.app/00000001002564440000/9_b_Zonnepaneel_helling_op_dak.png)\n\nAls de zonneboiler niet de helling van het dak volgt, is er altijd een vergunning nodig voor het plaatsen.",
           "type": "boolean",
           "id": "uitv__bd21dfb5-21e9-4e26-ad3c-e1227e186015",
-          "prio": 390
+          "prio": 380
         }
       ],
       "decisions": {
-        "_2988aed2-2018-4e4e-bfd6-8a87385b60ab": {
+        "_d06e103f-fe16-4aea-b756-95941a4088e1": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_75f7f266-f944-4f94-bc6b-1fd6ee43777e"
           ],
           "decisionTable": {
@@ -647,7 +673,15 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\""
                 ],
                 "output": "\"Vergunningplicht\""
@@ -657,7 +691,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-"],
+                "inputs": ["-", "\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -671,10 +705,10 @@
             ]
           }
         },
-        "_200e0bca-795b-4959-a779-961a9a0f25f0": {
+        "_19f7fb1d-6dc6-452f-8283-d95eab832453": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_c0ae71cb-c1e3-496b-add2-9a761a162873"
           ],
           "decisionTable": {
@@ -682,7 +716,15 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonneboiler\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
@@ -692,7 +734,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-"],
+                "inputs": ["-", "\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -706,10 +748,10 @@
             ]
           }
         },
-        "_f03c6366-95af-4d1b-af18-4ffdb22c0c3e": {
+        "_e7132af4-dda5-4fa6-b5b7-e2803671a6ee": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_c0ae71cb-c1e3-496b-add2-9a761a162873",
             "#input_e2c0f8e2-122f-4e6d-b355-06d8423a9b3c"
           ],
@@ -718,7 +760,16 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de zonneboiler verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonneboiler\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de zonneboiler verandert.\""
                 ],
@@ -729,7 +780,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-"],
+                "inputs": ["-", "\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -753,10 +804,10 @@
             ]
           }
         },
-        "_7c39c706-4d8c-4a9c-8380-7e0fc5d5e96b": {
+        "_40bbefe3-38db-44f5-a4e1-2abd8827d883": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_75f7f266-f944-4f94-bc6b-1fd6ee43777e",
             "#input_661bbffe-a3bb-4eb0-8a48-3a4302aca06f"
           ],
@@ -765,7 +816,16 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  true,
+                  "\"Rijksmonument\"",
+                  "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
+                  "\"Ja, de zonnepanelen veranderen.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Zonnepanelen\"",
+                  "\"Gemeentelijk monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de zonnepanelen veranderen.\""
                 ],
@@ -776,7 +836,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-"],
+                "inputs": ["-", "\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -800,10 +860,10 @@
             ]
           }
         },
-        "_4aab57ab-f95d-4d29-9b70-123ffbc83aea": {
+        "_390e778c-c3e1-4354-8441-0352ac02f2b5": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__9f885868-4033-487c-8e38-6ccf211c5539"
@@ -813,7 +873,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   false
@@ -825,7 +885,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -865,10 +929,10 @@
             ]
           }
         },
-        "_abd282f6-6cdc-4911-83a9-d8c2bb8c0dee": {
+        "_2952533c-43fb-4d2a-9711-1e2a8b6daade": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__cd6951fb-d2e9-4325-a7e0-1b7faa238d6a"
@@ -878,7 +942,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   false
@@ -890,7 +954,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -930,10 +998,10 @@
             ]
           }
         },
-        "_03b019c3-e8d8-41d3-b3e0-f9221dfde865": {
+        "_5a3864e1-b93a-4b46-892e-6b00aea7cde7": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -944,7 +1012,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -955,7 +1023,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -968,7 +1036,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1004,10 +1083,10 @@
             ]
           }
         },
-        "_84c429e2-95d6-40a0-92d2-4ceb7279444f": {
+        "_fee40183-55c8-4046-8404-84b5ec9f1496": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -1018,7 +1097,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -1031,7 +1110,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1085,10 +1175,10 @@
             ]
           }
         },
-        "_1de790aa-90d8-4113-b362-cd183411501a": {
+        "_3b32fe8c-3853-4816-92e3-0064250a6ba9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__9f885868-4033-487c-8e38-6ccf211c5539",
@@ -1099,7 +1189,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1112,7 +1202,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1159,10 +1260,10 @@
             ]
           }
         },
-        "_fbacbf05-bade-42bf-a5a0-d218152505e4": {
+        "_240a924a-b14d-4ecb-8016-c885b0d45bcb": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -1173,7 +1274,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -1184,7 +1285,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -1197,7 +1298,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1233,10 +1345,10 @@
             ]
           }
         },
-        "_d7f52c35-74f0-430c-9c86-e4ff50e6c5d2": {
+        "_73f682c2-b0bc-47c5-b3af-bbf3c3b766df": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__cd6951fb-d2e9-4325-a7e0-1b7faa238d6a",
@@ -1247,7 +1359,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1260,7 +1372,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1307,10 +1430,10 @@
             ]
           }
         },
-        "_e7e62ddf-407e-46c2-920a-348956a7b7e4": {
+        "_3ccbaa44-fac4-4691-8b7e-f080cd62e9db": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1321,7 +1444,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -1332,7 +1455,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -1345,7 +1468,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1381,10 +1515,10 @@
             ]
           }
         },
-        "_04007932-b25c-4b27-ad6f-eefa3ba959cd": {
+        "_233fe88f-3e23-4df0-93af-2321a6fe4232": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__cd6951fb-d2e9-4325-a7e0-1b7faa238d6a",
@@ -1395,7 +1529,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1408,7 +1542,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1455,10 +1600,10 @@
             ]
           }
         },
-        "_81dbf9ba-d358-4f3e-a47c-bcfe8ef93a44": {
+        "_0194a6e5-9d41-4f69-bed4-7f3820b19bb8": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__9f885868-4033-487c-8e38-6ccf211c5539",
@@ -1469,7 +1614,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1482,7 +1627,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1529,10 +1685,10 @@
             ]
           }
         },
-        "_4174af94-50cc-4a4a-a493-5f4a0aeeec48": {
+        "_7e6796d7-86fe-4ccc-9750-ad7102d0b66b": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -1543,7 +1699,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -1556,7 +1712,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1610,10 +1777,10 @@
             ]
           }
         },
-        "_3f8286af-d711-428c-9865-4e7184f1749c": {
+        "_32808881-bd22-42e7-bba3-17cc22ca14db": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1624,7 +1791,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1635,7 +1802,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1648,7 +1815,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1684,10 +1862,10 @@
             ]
           }
         },
-        "_a2367170-eaf9-4cbd-af27-71323b03546b": {
+        "_803095b4-2af4-49da-b6a2-0cbc5e2caa53": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__63d8e3e4-8881-4eea-a453-c466e4c4a9d1",
@@ -1698,7 +1876,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1709,7 +1887,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1722,7 +1900,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1758,10 +1947,10 @@
             ]
           }
         },
-        "_4048aac3-e808-457e-9479-813c8f45ad36": {
+        "_b8066139-7d55-4191-a9d9-e75491479567": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__d2e1d3a6-4ed8-45dd-8876-107db345d841",
@@ -1772,7 +1961,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1783,7 +1972,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   true,
@@ -1796,7 +1985,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1832,10 +2032,10 @@
             ]
           }
         },
-        "_75663b3e-1413-4d06-807a-290913a56622": {
+        "_38380037-5568-49cc-80bc-9cd39aa9d6c5": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1847,7 +2047,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -1859,7 +2059,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -1873,7 +2073,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1915,10 +2127,10 @@
             ]
           }
         },
-        "_9e1ee72a-a2bf-478b-af3d-21d315c90960": {
+        "_bc887899-308c-4e84-a3b9-0e68dfc5b82e": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -1930,7 +2142,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -1942,7 +2154,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -1956,7 +2168,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2006,10 +2230,10 @@
             ]
           }
         },
-        "_e3e4ae1e-bcad-4dae-b266-5a9aac430152": {
+        "_25251830-d5c2-43aa-b25e-8f92f867c46d": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -2021,7 +2245,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -2033,7 +2257,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -2047,7 +2271,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2097,10 +2333,10 @@
             ]
           }
         },
-        "_ab22fe28-af51-4308-88eb-b90f46221840": {
+        "_47e13e58-e5b9-4796-8197-d9418ac3c9a3": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -2112,7 +2348,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -2124,7 +2360,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -2138,7 +2374,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2188,10 +2436,10 @@
             ]
           }
         },
-        "_1ef91843-5e5d-4371-9ac3-a0bb60cab6ac": {
+        "_4ba21433-dd09-4568-81d4-29d528a009ef": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -2203,7 +2451,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -2215,7 +2463,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -2229,7 +2477,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2279,10 +2539,10 @@
             ]
           }
         },
-        "_f0a22b44-c67a-4a66-aaff-0f1d4ae20623": {
+        "_c453c246-083f-474d-a3b1-b9d9109feaa1": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__cd6951fb-d2e9-4325-a7e0-1b7faa238d6a",
@@ -2294,7 +2554,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -2308,7 +2568,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2362,10 +2634,10 @@
             ]
           }
         },
-        "_17d74f57-33df-49d0-9bf0-88658ac9d320": {
+        "_755ca7be-abcb-4346-9989-e96bb42204c1": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -2377,7 +2649,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -2389,7 +2661,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -2403,7 +2675,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2453,10 +2737,10 @@
             ]
           }
         },
-        "_73c429b3-3bd7-4f41-9566-642b3af03384": {
+        "_c70ba820-fe00-46c7-97d6-a209ddcb246d": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -2468,7 +2752,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -2482,7 +2766,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2544,10 +2840,10 @@
             ]
           }
         },
-        "_ad6297d8-7813-4611-bd73-739cfcba3d74": {
+        "_679836d2-bbeb-4672-82f5-61623ff4290b": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -2559,7 +2855,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -2571,7 +2867,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -2585,7 +2881,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2627,10 +2935,10 @@
             ]
           }
         },
-        "_ae175620-aa02-465b-9873-202e5dfdbe49": {
+        "_bd313bf6-530f-477c-a93c-f625c8478f83": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -2642,7 +2950,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -2654,7 +2962,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -2668,7 +2976,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2718,10 +3038,10 @@
             ]
           }
         },
-        "_10fd48f3-a2a6-46a5-ae07-88a8804df23e": {
+        "_355214c1-b47b-4256-9d5a-2cc7aea63c89": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -2733,7 +3053,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -2747,7 +3067,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2809,10 +3141,10 @@
             ]
           }
         },
-        "_ff227661-7643-4d5b-91bb-95f3b549359a": {
+        "_b2c7c2db-7e0d-4455-aac1-ea5f4c3a1707": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -2824,7 +3156,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -2838,7 +3170,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2900,10 +3244,10 @@
             ]
           }
         },
-        "_2e14b439-9e35-4789-a06c-488ec5346510": {
+        "_88659223-15f6-45b1-8957-75f5c2f336c9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__9f885868-4033-487c-8e38-6ccf211c5539",
@@ -2915,7 +3259,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -2929,7 +3273,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2983,10 +3339,10 @@
             ]
           }
         },
-        "_b6611fcc-daa3-4684-8975-9885141829ee": {
+        "_45b2468a-7aa6-44f4-ba38-1159b457afa2": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -2998,7 +3354,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -3012,7 +3368,19 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3074,10 +3442,10 @@
             ]
           }
         },
-        "_b9633ba9-d024-4a08-9eb5-7e0ca35677d1": {
+        "_bd81c2d8-ae75-4860-b824-cbe448d0833c": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -3090,7 +3458,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -3114,7 +3482,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3184,10 +3574,10 @@
             ]
           }
         },
-        "_d7897c65-9a6f-4256-b9e1-291894784649": {
+        "_4cbcfe73-e950-48a5-88c7-e761ab7069ad": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__9f885868-4033-487c-8e38-6ccf211c5539",
@@ -3200,7 +3590,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -3224,7 +3614,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3285,10 +3697,10 @@
             ]
           }
         },
-        "_fb2101cd-0983-417f-a7bf-2b4607487630": {
+        "_dc0ed987-d1b4-4a4b-8be8-0397a1215702": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -3301,7 +3713,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -3314,7 +3726,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -3338,7 +3750,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3395,10 +3829,10 @@
             ]
           }
         },
-        "_820b4ff5-0d3b-4742-bda3-58422edfa17f": {
+        "_99666eb7-3a0f-4a02-b502-02924968848e": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__cd6951fb-d2e9-4325-a7e0-1b7faa238d6a",
@@ -3411,7 +3845,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
                   true,
@@ -3435,7 +3869,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3496,10 +3952,10 @@
             ]
           }
         },
-        "_a0c16afb-ea18-45bd-93b4-6364045b2ea0": {
+        "_1926fbc0-db13-4381-9c03-d5d6b44b2716": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -3512,7 +3968,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -3525,7 +3981,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -3549,7 +4005,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3606,10 +4084,10 @@
             ]
           }
         },
-        "_9ae73349-44a7-4209-a310-8315bdea9c29": {
+        "_cbd8558e-a8a8-4944-95de-74fe251cfc25": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -3622,7 +4100,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -3646,7 +4124,29 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3716,10 +4216,10 @@
             ]
           }
         },
-        "_260bbcb8-756b-4df4-b778-4940e80cdbc5": {
+        "_eca22854-07c3-4605-bfed-78b3a49aab85": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -3733,7 +4233,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -3747,7 +4247,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -3773,7 +4273,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3827,10 +4351,10 @@
             ]
           }
         },
-        "_62d5f930-2028-43ff-9314-d63b4af44b2a": {
+        "_0dee4c2f-63fe-4827-9314-a4f6298f313d": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -3844,7 +4368,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -3858,7 +4382,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -3884,7 +4408,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -3938,10 +4486,10 @@
             ]
           }
         },
-        "_2281e87b-987c-4aa0-aebf-f584c214effd": {
+        "_520b17f5-e95e-4eed-987c-9d1992a6a3d9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -3955,7 +4503,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -3981,7 +4529,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4059,10 +4631,10 @@
             ]
           }
         },
-        "_d68e5414-43f0-41f0-8086-47451fb4f511": {
+        "_506f3ee8-dace-4db5-b7fc-a67f179fc478": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -4076,7 +4648,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4090,7 +4662,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4116,7 +4688,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4170,10 +4766,10 @@
             ]
           }
         },
-        "_de4e3911-d4b5-4912-a9ba-12ea66493bb4": {
+        "_6de29999-5079-4c1c-98c9-c72af6e94af5": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -4187,7 +4783,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4201,7 +4797,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4227,7 +4823,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4281,10 +4901,10 @@
             ]
           }
         },
-        "_667520af-d350-4c6c-9a51-0b07d7608f22": {
+        "_ba908140-6da6-4912-9f49-f3201a727bf7": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -4298,7 +4918,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -4324,7 +4944,31 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4402,10 +5046,10 @@
             ]
           }
         },
-        "_fe36a77e-32a0-4255-980d-40971ed200c7": {
+        "_e8fb6470-f256-43be-99a7-f0c97157205d": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -4420,7 +5064,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -4435,7 +5079,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -4463,7 +5107,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4534,10 +5204,10 @@
             ]
           }
         },
-        "_f36c3f39-8281-4243-a073-ae69becd08d5": {
+        "_88d2ee68-ab43-4767-b986-6ff85ed8f1aa": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -4552,7 +5222,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -4567,7 +5237,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -4595,7 +5265,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4666,10 +5362,10 @@
             ]
           }
         },
-        "_ed4cf64d-2333-4ec5-8621-07e3d775f67f": {
+        "_94f806ff-c4ca-49b4-aad2-7093b12ba86a": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -4684,7 +5380,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4699,7 +5395,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe zonneboiler plaatsen op een plek waar er eerst geen was.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4727,7 +5423,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4787,10 +5509,10 @@
             ]
           }
         },
-        "_5fb880aa-f600-4d06-a075-e6d81385aa89": {
+        "_a387c2ac-c8d3-45d8-ac3d-6d6081501012": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -4805,7 +5527,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -4820,7 +5542,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -4848,7 +5570,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -4919,10 +5667,10 @@
             ]
           }
         },
-        "_8f905a0c-c768-4ef6-9843-6d826b4486a3": {
+        "_4803978f-d11f-408d-b5b2-4c5535203942": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -4937,7 +5685,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4952,7 +5700,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga nieuwe zonnepanelen plaatsen op een plek waar er eerst geen waren.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
                   false,
@@ -4980,7 +5728,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -5040,10 +5814,10 @@
             ]
           }
         },
-        "_0d77a337-f5cd-4d8c-9f2a-555c2f09450a": {
+        "_1466f4bc-bbb4-4515-9765-2b1fc6f09004": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -5058,7 +5832,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -5073,7 +5847,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -5101,7 +5875,33 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -5172,10 +5972,10 @@
             ]
           }
         },
-        "_89ae2722-dd3f-42a2-a1d2-0099a82de84e": {
+        "_d02621ae-33e1-4ebe-b9c2-1bbd397570a7": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_f0e59f2b-706a-4dfe-bdd0-b1e7d3a1a109",
             "#input_83bddc0b-da36-443e-9d7e-df76baddaed5",
             "#input_3953efcc-2690-4eee-9205-8810cfe57315",
@@ -5191,7 +5991,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -5207,7 +6007,7 @@
               {
                 "inputs": [
                   "\"Zonneboiler\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -5239,7 +6039,23 @@
               {
                 "inputs": [
                   "-",
-                  true,
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
                   "-",
                   "-",
                   "-",
@@ -5399,10 +6215,10 @@
             ]
           }
         },
-        "_55db237b-950c-4ba4-baa2-13518e9e57c3": {
+        "_82190aa4-36a7-412d-839a-13d780f233b3": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
-            "#input__7a581a66-8143-4f7f-b864-a7dabd06850d",
+            "#input__b7fb5569-9743-4d55-8737-2c801521fa7f",
             "#input_2e35b849-7554-48a6-8910-7042055ebc70",
             "#input_a947ac44-6b53-43e0-8401-8a829773ea4f",
             "#input_d43a5159-cab4-4a5d-a929-2a7a497a4400",
@@ -5418,7 +6234,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
@@ -5434,7 +6250,7 @@
               {
                 "inputs": [
                   "\"Zonnepanelen\"",
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.\"",
@@ -5466,7 +6282,23 @@
               {
                 "inputs": [
                   "-",
-                  true,
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Gemeentelijk monument\"",
                   "-",
                   "-",
                   "-",
@@ -5628,58 +6460,58 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_2988aed2-2018-4e4e-bfd6-8a87385b60ab",
-            "#_200e0bca-795b-4959-a779-961a9a0f25f0",
-            "#_f03c6366-95af-4d1b-af18-4ffdb22c0c3e",
-            "#_7c39c706-4d8c-4a9c-8380-7e0fc5d5e96b",
-            "#_4aab57ab-f95d-4d29-9b70-123ffbc83aea",
-            "#_abd282f6-6cdc-4911-83a9-d8c2bb8c0dee",
-            "#_03b019c3-e8d8-41d3-b3e0-f9221dfde865",
-            "#_84c429e2-95d6-40a0-92d2-4ceb7279444f",
-            "#_1de790aa-90d8-4113-b362-cd183411501a",
-            "#_fbacbf05-bade-42bf-a5a0-d218152505e4",
-            "#_d7f52c35-74f0-430c-9c86-e4ff50e6c5d2",
-            "#_e7e62ddf-407e-46c2-920a-348956a7b7e4",
-            "#_04007932-b25c-4b27-ad6f-eefa3ba959cd",
-            "#_81dbf9ba-d358-4f3e-a47c-bcfe8ef93a44",
-            "#_4174af94-50cc-4a4a-a493-5f4a0aeeec48",
-            "#_3f8286af-d711-428c-9865-4e7184f1749c",
-            "#_a2367170-eaf9-4cbd-af27-71323b03546b",
-            "#_4048aac3-e808-457e-9479-813c8f45ad36",
-            "#_75663b3e-1413-4d06-807a-290913a56622",
-            "#_9e1ee72a-a2bf-478b-af3d-21d315c90960",
-            "#_e3e4ae1e-bcad-4dae-b266-5a9aac430152",
-            "#_ab22fe28-af51-4308-88eb-b90f46221840",
-            "#_1ef91843-5e5d-4371-9ac3-a0bb60cab6ac",
-            "#_f0a22b44-c67a-4a66-aaff-0f1d4ae20623",
-            "#_17d74f57-33df-49d0-9bf0-88658ac9d320",
-            "#_73c429b3-3bd7-4f41-9566-642b3af03384",
-            "#_ad6297d8-7813-4611-bd73-739cfcba3d74",
-            "#_ae175620-aa02-465b-9873-202e5dfdbe49",
-            "#_10fd48f3-a2a6-46a5-ae07-88a8804df23e",
-            "#_ff227661-7643-4d5b-91bb-95f3b549359a",
-            "#_2e14b439-9e35-4789-a06c-488ec5346510",
-            "#_b6611fcc-daa3-4684-8975-9885141829ee",
-            "#_b9633ba9-d024-4a08-9eb5-7e0ca35677d1",
-            "#_d7897c65-9a6f-4256-b9e1-291894784649",
-            "#_fb2101cd-0983-417f-a7bf-2b4607487630",
-            "#_820b4ff5-0d3b-4742-bda3-58422edfa17f",
-            "#_a0c16afb-ea18-45bd-93b4-6364045b2ea0",
-            "#_9ae73349-44a7-4209-a310-8315bdea9c29",
-            "#_260bbcb8-756b-4df4-b778-4940e80cdbc5",
-            "#_62d5f930-2028-43ff-9314-d63b4af44b2a",
-            "#_2281e87b-987c-4aa0-aebf-f584c214effd",
-            "#_d68e5414-43f0-41f0-8086-47451fb4f511",
-            "#_de4e3911-d4b5-4912-a9ba-12ea66493bb4",
-            "#_667520af-d350-4c6c-9a51-0b07d7608f22",
-            "#_fe36a77e-32a0-4255-980d-40971ed200c7",
-            "#_f36c3f39-8281-4243-a073-ae69becd08d5",
-            "#_ed4cf64d-2333-4ec5-8621-07e3d775f67f",
-            "#_5fb880aa-f600-4d06-a075-e6d81385aa89",
-            "#_8f905a0c-c768-4ef6-9843-6d826b4486a3",
-            "#_0d77a337-f5cd-4d8c-9f2a-555c2f09450a",
-            "#_89ae2722-dd3f-42a2-a1d2-0099a82de84e",
-            "#_55db237b-950c-4ba4-baa2-13518e9e57c3"
+            "#_d06e103f-fe16-4aea-b756-95941a4088e1",
+            "#_19f7fb1d-6dc6-452f-8283-d95eab832453",
+            "#_e7132af4-dda5-4fa6-b5b7-e2803671a6ee",
+            "#_40bbefe3-38db-44f5-a4e1-2abd8827d883",
+            "#_390e778c-c3e1-4354-8441-0352ac02f2b5",
+            "#_2952533c-43fb-4d2a-9711-1e2a8b6daade",
+            "#_5a3864e1-b93a-4b46-892e-6b00aea7cde7",
+            "#_fee40183-55c8-4046-8404-84b5ec9f1496",
+            "#_3b32fe8c-3853-4816-92e3-0064250a6ba9",
+            "#_240a924a-b14d-4ecb-8016-c885b0d45bcb",
+            "#_73f682c2-b0bc-47c5-b3af-bbf3c3b766df",
+            "#_3ccbaa44-fac4-4691-8b7e-f080cd62e9db",
+            "#_233fe88f-3e23-4df0-93af-2321a6fe4232",
+            "#_0194a6e5-9d41-4f69-bed4-7f3820b19bb8",
+            "#_7e6796d7-86fe-4ccc-9750-ad7102d0b66b",
+            "#_32808881-bd22-42e7-bba3-17cc22ca14db",
+            "#_803095b4-2af4-49da-b6a2-0cbc5e2caa53",
+            "#_b8066139-7d55-4191-a9d9-e75491479567",
+            "#_38380037-5568-49cc-80bc-9cd39aa9d6c5",
+            "#_bc887899-308c-4e84-a3b9-0e68dfc5b82e",
+            "#_25251830-d5c2-43aa-b25e-8f92f867c46d",
+            "#_47e13e58-e5b9-4796-8197-d9418ac3c9a3",
+            "#_4ba21433-dd09-4568-81d4-29d528a009ef",
+            "#_c453c246-083f-474d-a3b1-b9d9109feaa1",
+            "#_755ca7be-abcb-4346-9989-e96bb42204c1",
+            "#_c70ba820-fe00-46c7-97d6-a209ddcb246d",
+            "#_679836d2-bbeb-4672-82f5-61623ff4290b",
+            "#_bd313bf6-530f-477c-a93c-f625c8478f83",
+            "#_355214c1-b47b-4256-9d5a-2cc7aea63c89",
+            "#_b2c7c2db-7e0d-4455-aac1-ea5f4c3a1707",
+            "#_88659223-15f6-45b1-8957-75f5c2f336c9",
+            "#_45b2468a-7aa6-44f4-ba38-1159b457afa2",
+            "#_bd81c2d8-ae75-4860-b824-cbe448d0833c",
+            "#_4cbcfe73-e950-48a5-88c7-e761ab7069ad",
+            "#_dc0ed987-d1b4-4a4b-8be8-0397a1215702",
+            "#_99666eb7-3a0f-4a02-b502-02924968848e",
+            "#_1926fbc0-db13-4381-9c03-d5d6b44b2716",
+            "#_cbd8558e-a8a8-4944-95de-74fe251cfc25",
+            "#_eca22854-07c3-4605-bfed-78b3a49aab85",
+            "#_0dee4c2f-63fe-4827-9314-a4f6298f313d",
+            "#_520b17f5-e95e-4eed-987c-9d1992a6a3d9",
+            "#_506f3ee8-dace-4db5-b7fc-a67f179fc478",
+            "#_6de29999-5079-4c1c-98c9-c72af6e94af5",
+            "#_ba908140-6da6-4912-9f49-f3201a727bf7",
+            "#_e8fb6470-f256-43be-99a7-f0c97157205d",
+            "#_88d2ee68-ab43-4767-b986-6ff85ed8f1aa",
+            "#_94f806ff-c4ca-49b4-aad2-7093b12ba86a",
+            "#_a387c2ac-c8d3-45d8-ac3d-6d6081501012",
+            "#_4803978f-d11f-408d-b5b2-4c5535203942",
+            "#_1466f4bc-bbb4-4515-9765-2b1fc6f09004",
+            "#_d02621ae-33e1-4ebe-b9c2-1bbd397570a7",
+            "#_82190aa4-36a7-412d-839a-13d780f233b3"
           ],
           "decisionTable": {
             "rules": [
@@ -8766,9 +9598,9 @@
           "href": "#uitv__d09a954d-cb3c-441c-b564-d2c1e6530974",
           "type": "string"
         },
-        "input__7a581a66-8143-4f7f-b864-a7dabd06850d": {
-          "href": "#uitv__7a581a66-8143-4f7f-b864-a7dabd06850d",
-          "type": "boolean"
+        "input__b7fb5569-9743-4d55-8737-2c801521fa7f": {
+          "href": "#uitv__b7fb5569-9743-4d55-8737-2c801521fa7f",
+          "type": "string"
         },
         "input_75f7f266-f944-4f94-bc6b-1fd6ee43777e": {
           "href": "#uitv_75f7f266-f944-4f94-bc6b-1fd6ee43777e",
@@ -8785,10 +9617,6 @@
         "input_a947ac44-6b53-43e0-8401-8a829773ea4f": {
           "href": "#uitv_a947ac44-6b53-43e0-8401-8a829773ea4f",
           "type": "string"
-        },
-        "input__a2047d87-2ba2-4803-a9d3-37d624a4de0c": {
-          "href": "#uitv__a2047d87-2ba2-4803-a9d3-37d624a4de0c",
-          "type": "boolean"
         },
         "input_c0ae71cb-c1e3-496b-add2-9a761a162873": {
           "href": "#uitv_c0ae71cb-c1e3-496b-add2-9a761a162873",

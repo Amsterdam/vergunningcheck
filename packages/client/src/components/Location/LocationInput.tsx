@@ -33,9 +33,7 @@ const LocationInput = ({
 
   const { hasIMTR, slug, text } = topic;
   const address = topicData.address || {};
-  const [errorMessage, setErrorMessage] = useState<ApolloError | undefined>(
-    error
-  );
+  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
 
   const [focus, setFocus] = useState(false);
 
@@ -62,12 +60,20 @@ const LocationInput = ({
         name: address.postalCode.substring(0, 4),
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_MONUMENT,
         name: monument || eventNames.NO_MONUMENT,
       });
       matomoTrackEvent({
-        action: actions.SUBMIT_LOCATION,
+        action: actions.SUBMIT_CITYSCAPE,
         name: cityScape || eventNames.NO_CITYSCAPE,
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_NEIGHBORHOOD,
+        name: address.neighborhoodName || t("common.unknown"),
+      });
+      matomoTrackEvent({
+        action: actions.SUBMIT_DISTRICT,
+        name: address.districtName || t("common.unknown"),
       });
 
       handleNewAddressSubmit(address);
@@ -113,15 +119,16 @@ const LocationInput = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
+            errorMessage,
             focus,
             matomoTrackEvent,
             sessionAddress: address,
-            setErrorMessage,
+            setError,
             setFocus,
           }}
         />
         <Nav
-          nextText={hasIMTR ? "Naar de vragen" : "Volgende"}
+          nextText={hasIMTR ? t("common.to the questions") : t("common.next")}
           noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext
