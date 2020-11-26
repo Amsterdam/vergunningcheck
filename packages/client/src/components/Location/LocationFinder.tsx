@@ -67,13 +67,12 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
     ?.toUpperCase()
     ?.match(/[a-z]+|[^a-z]+/gi);
 
-  const graphQlHouseNumber = `${splitHouseNumber?.[0]?.trim() || ""} ${
-    splitHouseNumber?.[1]?.trim() || ""
-  } ${splitHouseNumber?.[2]?.trim() || ""} ${
-    splitHouseNumber?.[3]?.trim() || ""
-  }`
-    .replace(/\s+/g, " ")
-    .trim();
+  const graphQlHouseNumber = splitHouseNumber
+    ?.map((part) => `${part.trim()} `) // Split each part with a space
+    .toString() // Revert to one string
+    .replace(/,/g, "") // Remove all commas
+    .replace(/\s+/g, " ") // Remove duplicate spaces
+    .trim(); // Remove and spaces
 
   const variables = {
     extraHouseNumberFull: "",
