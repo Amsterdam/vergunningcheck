@@ -5,7 +5,7 @@ import { BaseLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 
 const LoadingPage: React.FC = () => (
-  <BaseLayout>
+  <BaseLayout disablePageView>
     <Helmet>
       <title>Laden... - Amsterdam Vergunningcheck</title>
     </Helmet>

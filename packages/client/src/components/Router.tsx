@@ -20,7 +20,7 @@ const Router = () => {
               <Route key={i} {...route} />
             ))}
         </Switch>
-      </Suspense>{" "}
+      </Suspense>
     </BrowserRouter>
   );
 };
