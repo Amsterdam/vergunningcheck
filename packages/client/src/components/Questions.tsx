@@ -67,7 +67,7 @@ const Questions: React.FC<CheckerPageProps> = ({
       scrollToRef(conclusionRef, 20);
     });
   }, [
-    checker.stack,
+    checker,
     matomoTrackEvent,
     questionIndex,
     setActiveState,
@@ -194,7 +194,9 @@ const Questions: React.FC<CheckerPageProps> = ({
         name: eventNames.ACTIVE_QUESTION,
       });
     }
-  }, [checker.stack, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
+  }, [checker, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
+
+  if (!checker) return null;
 
   let disableFutureQuestions = false;
 
