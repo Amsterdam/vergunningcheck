@@ -10,7 +10,7 @@ export type {
 
 export {
   default as Checker,
-  clientOutcomes,
+  ClientOutcomes,
   imtrOutcomes,
 } from "./src/models/checker";
 export { default as Decision } from "./src/models/decision";

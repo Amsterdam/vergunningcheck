@@ -1,5 +1,5 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import { clientOutcomes } from "@vergunningcheck/imtr-client";
+import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -9,10 +9,10 @@ import { QuestionAlertStyle } from "./QuestionAlertStyles";
 
 export type QuestionAlertProps = {
   marginBottom?: number;
-  outcomeType: string;
+  outcomeType: ClientOutcomes;
 };
 
-const { NEED_CONTACT, NEED_PERMIT } = clientOutcomes;
+const { NEED_CONTACT, NEED_PERMIT } = ClientOutcomes;
 
 const QuestionAlert: React.FC<QuestionAlertProps> = ({
   marginBottom,

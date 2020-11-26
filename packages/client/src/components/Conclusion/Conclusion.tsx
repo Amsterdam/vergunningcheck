@@ -1,7 +1,7 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
 import {
   Checker,
-  clientOutcomes,
+  ClientOutcomes,
   imtrOutcomes,
 } from "@vergunningcheck/imtr-client";
 import React from "react";
@@ -33,7 +33,7 @@ const {
   NEED_PERMIT,
   NEED_REPORT,
   PERMIT_FREE,
-} = clientOutcomes;
+} = ClientOutcomes;
 
 type ConclusionProps = {
   checker: Checker;
@@ -61,6 +61,11 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
   const contents = {
     // This is the default content
     default: {
+      [NEED_BOTH_PERMIT_AND_REPORT]: {
+        title: t(
+          "outcome.needBothPermitAndReport.you need both permit and report"
+        ),
+      },
       [NEED_CONTACT]: {
         mainContent: (
           <Markdown
@@ -68,7 +73,10 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
             source={getNeedContactContent?.description || ""}
           />
         ),
-        title: getNeedContactContent?.title || "",
+        title:
+          getNeedContactContent?.title ||
+          t("outcome.needContact.Neem contact op met de gemeente") || // Fallback text
+          "",
       },
       [NEED_PERMIT]: {
         mainContent: <NeedPermit />,
@@ -87,6 +95,12 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
     },
     // This content is only relevant for the demolition checker
     demolition: {
+      [NEED_CONTACT]: {
+        title:
+          getNeedContactContent?.title ||
+          t("outcome.needContact.Neem contact op met de gemeente") || // Fallback text
+          "",
+      },
       [NEED_BOTH_PERMIT_AND_REPORT]: {
         mainContent: (
           <NeedPermit
@@ -132,6 +146,7 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
   // This part can be refactored whenever we have another checker that have custom outcomes
   const checkerContent =
     topic.name === "Bouwwerk slopen" ? contents.demolition : contents.default;
+
   const conclusionContent = checkerContent[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;
 

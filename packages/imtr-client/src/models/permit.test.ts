@@ -1,4 +1,4 @@
-import Checker, { clientOutcomes, imtrOutcomes } from "./checker";
+import Checker, { ClientOutcomes, imtrOutcomes } from "./checker";
 import Decision from "./decision";
 import Permit from "./permit";
 import Question from "./question";
@@ -70,7 +70,7 @@ describe("Permit", () => {
       imtrOutcomes.NEED_PERMIT
     );
     expect(checker.getAllOutcomeTypes()).toEqual([imtrOutcomes.NEED_PERMIT]);
-    expect(checker.getClientOutcomeType()).toBe(clientOutcomes.NEED_PERMIT);
+    expect(checker.getClientOutcomeType()).toBe(ClientOutcomes.NEED_PERMIT);
 
     question.setAnswer(false);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
@@ -87,6 +87,6 @@ describe("Permit", () => {
       imtrOutcomes.NEED_CONTACT
     );
     expect(checker.getAllOutcomeTypes()).toEqual([imtrOutcomes.NEED_CONTACT]);
-    expect(checker.getClientOutcomeType()).toBe(clientOutcomes.NEED_CONTACT);
+    expect(checker.getClientOutcomeType()).toBe(ClientOutcomes.NEED_CONTACT);
   });
 });

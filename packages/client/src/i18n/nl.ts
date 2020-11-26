@@ -119,12 +119,15 @@ export default {
       },
       needBothPermitAndReport: {
         "you need both permit and report":
-          "U hebt een omgevingsvergunning nodig.",
+          "U hebt een omgevingsvergunning nodig. U moet de activiteit ook melden.", // This text should only be used for unconfigured (non-amsterdam) checkers
         "you need both permit and report for demolition":
           "U hebt een omgevingsvergunning nodig. U moet de sloop ook melden.",
         "on this page you can read more how to do apply for demolition":
           "Op de pagina 'Sloop: melding en vergunning' leest u hoe u dit doet, hoe lang het duurt en wat het kost.",
         "demolition permit and report": "Sloop: melding en vergunning",
+      },
+      needContact: {
+        "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
       },
       needPermit: {
         "you need a permit": "U hebt een omgevingsvergunning nodig.",

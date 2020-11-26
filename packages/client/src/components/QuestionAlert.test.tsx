@@ -1,7 +1,7 @@
 import "jest-styled-components";
 
 import { ascDefaultTheme, themeSpacing } from "@amsterdam/asc-ui";
-import { clientOutcomes } from "@vergunningcheck/imtr-client";
+import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import text from "../i18n/nl";
@@ -18,7 +18,7 @@ const needContactText =
 
 describe("QuestionAlert", () => {
   it("renders NEED_PERMIT variant correctly", () => {
-    render(<QuestionAlert outcomeType={clientOutcomes.NEED_PERMIT} />);
+    render(<QuestionAlert outcomeType={ClientOutcomes.NEED_PERMIT} />);
 
     const variant1 = screen.queryByText(needPermitText, { exact: false });
     expect(variant1).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("QuestionAlert", () => {
     render(
       <QuestionAlert
         marginBottom={1}
-        outcomeType={clientOutcomes.NEED_CONTACT}
+        outcomeType={ClientOutcomes.NEED_CONTACT}
       />
     );
 

@@ -12,13 +12,13 @@ export const imtrOutcomes = {
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
 
-export const clientOutcomes = {
-  NEED_BOTH_PERMIT_AND_REPORT: "NEED_BOTH_PERMIT_AND_REPORT",
-  NEED_CONTACT: "NEED_CONTACT",
-  NEED_PERMIT: "NEED_PERMIT",
-  NEED_REPORT: "NEED_REPORT",
-  PERMIT_FREE: "PERMIT_FREE",
-};
+export enum ClientOutcomes {
+  NEED_BOTH_PERMIT_AND_REPORT,
+  NEED_CONTACT,
+  NEED_PERMIT,
+  NEED_REPORT,
+  PERMIT_FREE,
+}
 
 export type AutofillData = {
   address?: any; // eslint-disable-line
@@ -368,10 +368,10 @@ export default class Checker {
 
   /**
    *
-   * Returns the final outcome for the client (as defined in `clientOutcomes`)
+   * Returns the final outcome for the client (as defined in `ClientOutcomes`)
    *
    */
-  getClientOutcomeType(): string {
+  getClientOutcomeType(): ClientOutcomes {
     const outcomes = this.getAllOutcomeTypes();
 
     const needContactOutcome = outcomes.find(
@@ -386,16 +386,16 @@ export default class Checker {
 
     if (needContactOutcome) {
       // The contact outcome has most priority to display
-      return clientOutcomes.NEED_CONTACT;
+      return ClientOutcomes.NEED_CONTACT;
     } else if (needPermitOutcome && needReportOutcome) {
-      return clientOutcomes.NEED_BOTH_PERMIT_AND_REPORT;
+      return ClientOutcomes.NEED_BOTH_PERMIT_AND_REPORT;
     } else if (needPermitOutcome) {
-      return clientOutcomes.NEED_PERMIT;
+      return ClientOutcomes.NEED_PERMIT;
     } else if (needReportOutcome) {
-      return clientOutcomes.NEED_REPORT;
+      return ClientOutcomes.NEED_REPORT;
     } else {
       // The fallback outcome is permit-free, this is inherited from Flo Legal and IMTR
-      return clientOutcomes.PERMIT_FREE;
+      return ClientOutcomes.PERMIT_FREE;
     }
   }
 }

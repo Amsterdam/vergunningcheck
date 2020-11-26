@@ -1,10 +1,10 @@
 import { setTag } from "@sentry/browser";
 import {
   Checker,
+  ClientOutcomes,
   Decision,
   Question as ImtrQuestion,
   Permit,
-  clientOutcomes,
   imtrOutcomes,
   removeQuotes,
 } from "@vergunningcheck/imtr-client";
@@ -214,19 +214,20 @@ const Questions: React.FC<
 
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
-  const permitsPerQuestion: string[] = [];
+  const permitsPerQuestion: ClientOutcomes[] = [];
   checker.permits.forEach((permit: Permit) => {
     const conclusionDecision = permit.getDecisionById("dummy");
 
     if (conclusionDecision) {
-      const imtrOutcome = conclusionDecision.getOutput() as any;
-      let outcomeType = "";
+      const imtrOutcome = conclusionDecision.getOutput();
+      let outcomeType = ClientOutcomes.PERMIT_FREE;
+
       if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
-        outcomeType = clientOutcomes.NEED_CONTACT;
+        outcomeType = ClientOutcomes.NEED_CONTACT;
       } else if (imtrOutcome === imtrOutcomes.NEED_PERMIT) {
-        outcomeType = clientOutcomes.NEED_PERMIT;
+        outcomeType = ClientOutcomes.NEED_PERMIT;
       } else if (imtrOutcome === imtrOutcomes.NEED_REPORT) {
-        outcomeType = clientOutcomes.NEED_REPORT;
+        outcomeType = ClientOutcomes.NEED_REPORT;
       }
 
       if (outcomeType) {
@@ -344,7 +345,7 @@ const Questions: React.FC<
         const showQuestionAlert = !!permitsPerQuestion[i];
 
         // Define the outcome type
-        const outcomeType = permitsPerQuestion[i];
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -404,7 +405,7 @@ const Questions: React.FC<
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
         // Define the outcome type
-        const outcomeType = permitsPerQuestion[i];
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
