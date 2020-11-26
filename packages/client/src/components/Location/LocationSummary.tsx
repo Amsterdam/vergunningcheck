@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
+import { Address } from "../../SessionContext";
 import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
@@ -44,7 +45,7 @@ const StyledListItem = styled(ListItem)`
 `;
 
 type LocationSummaryProps = {
-  addressFromLocation?: any;
+  addressFromLocation?: Address;
   isBelowInputFields?: boolean;
   showEditLocationModal?: boolean;
   showTitle?: boolean;
@@ -78,7 +79,7 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
   return (
     <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>
       <AddressLines
-        {...address}
+        address={address}
         editAddressRenderer={() =>
           showEditLocationModal && <EditLocationModal />
         }

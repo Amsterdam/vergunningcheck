@@ -4,10 +4,10 @@ import { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { Topic } from "../config";
-import { SessionContext } from "../SessionContext";
+import { Address, SessionContext } from "../SessionContext";
 
 type Props = {
-  addressMock?: any;
+  addressMock?: Address;
   answers?: Answers;
   checker?: Checker;
   questionIndex?: number;

@@ -2,7 +2,7 @@ import { Checker } from "@vergunningcheck/imtr-client";
 import React from "react";
 import { createContext, useState } from "react";
 
-export type setCheckerFn = (checker: any) => void;
+export type setCheckerFn = (checker?: Checker) => void;
 
 type CheckerContextType = {
   checker?: Checker;

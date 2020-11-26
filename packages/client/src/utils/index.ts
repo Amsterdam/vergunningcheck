@@ -2,6 +2,7 @@ import { matchPath } from "react-router";
 
 import { Topic, topics } from "../config";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
+import { Restriction } from "../SessionContext";
 import topicsJson from "../topics.json";
 
 // Get slug from url
@@ -37,13 +38,7 @@ export const findTopicBySlug = (slug: string) => {
 
 // Data utils
 export const getRestrictionByTypeName = (
-  restrictions?: [
-    {
-      __typename: string;
-      name: string;
-      scope: string;
-    }
-  ],
+  restrictions?: Restriction[],
   typeName?: string
 ) => (restrictions || []).find(({ __typename }) => __typename === typeName);
 

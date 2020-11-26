@@ -9,7 +9,7 @@ describe("AddressLine", () => {
     const { queryByText } = render(
       <AddressLines
         gutterBottom={0}
-        houseNumberFull={addressMock.houseNumberFull}
+        address={addressMock}
         postalCode={addressMock.postalCode}
         residence={addressMock.residence}
         streetName={addressMock.streetName}
@@ -27,7 +27,7 @@ describe("AddressLine", () => {
       <AddressLines
         gutterBottom={0}
         editAddressRenderer={() => <span>rendered</span>}
-        houseNumberFull={addressMock.houseNumberFull}
+        address={addressMock}
         postalCode={addressMock.postalCode}
         residence={addressMock.residence}
         streetName={addressMock.streetName}

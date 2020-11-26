@@ -11,7 +11,7 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-import { getDataNeed } from "../config/autofill";
+import { autofillResolvers, getDataNeed } from "../config/autofill";
 import { actions, eventNames, sections } from "../config/matomo";
 import { DebugDecisionTable } from "../debug";
 import {
@@ -21,7 +21,7 @@ import {
   useTopicData,
   useTracking,
 } from "../hooks";
-import { SessionContext } from "../SessionContext";
+import { Address, SessionContext } from "../SessionContext";
 import { isEmptyObject } from "../utils";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
@@ -172,12 +172,15 @@ const CheckerPage = () => {
   };
 
   // On LocationSubmit
-  const handleNewAddressSubmit = (address: any) => {
+  const handleNewAddressSubmit = (address: Address) => {
     setTopicData({
       activeComponents: [sections.QUESTIONS],
       finishedComponents: [sections.LOCATION_INPUT],
       address,
     });
+
+    // Autofill `checker` when `address` is submitted
+    checker.autofill(autofillResolvers, { address });
   };
 
   return (

@@ -4,9 +4,35 @@ import { createContext } from "react";
 
 import { useSlug } from "./hooks";
 
+// @TODO: All these types are going to be moved from this file when we merge this with `checker-slopen`
+export type Restriction = {
+  __typename?: string;
+  name?: string;
+  scope?: string;
+};
+export type ZoningPlan = {
+  __typename?: string;
+  name?: string;
+  scope?: string;
+};
+export type AddressType = {
+  __typename?: string;
+  districtName: string;
+  houseNumber: number;
+  houseNumberFull: string;
+  id: string;
+  neighborhoodName: string;
+  postalCode: string;
+  residence: string;
+  restrictions: Restriction[];
+  streetName: string;
+  zoningPlans: ZoningPlan[];
+};
+export type Address = null | AddressType;
+
 export type TopicData = {
   activeComponents?: string[];
-  address: null | any;
+  address: Address;
   answers: {
     [id: string]: Answer;
   };

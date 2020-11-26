@@ -8,6 +8,7 @@ import { Alert, ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopicData, useTracking } from "../../hooks";
 import useDebounce from "../../hooks/useDebounce";
+import { Address } from "../../SessionContext";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList, { Option } from "../AutoSuggestList";
@@ -31,7 +32,7 @@ const isTrueExactMatch = (
 type LocationFinderProps = {
   errorMessage?: ApolloError;
   focus: boolean;
-  sessionAddress: any; // @TODO replace any with address type.
+  sessionAddress: Address;
   setError: (error: ApolloError | undefined) => void;
   setFocus: (focus: boolean) => void;
 };
@@ -47,13 +48,13 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
   const { setTopicData } = useTopicData();
   const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
-  const [postalCode, setPostalCode] = useState<string>(
-    sessionAddress.postalCode
+  const [postalCode, setPostalCode] = useState<string | undefined>(
+    sessionAddress?.postalCode
   );
-  const [houseNumber, setHouseNumber] = useState<number>(
-    sessionAddress?.houseNumber && parseInt(sessionAddress.houseNumber)
+  const [houseNumber, setHouseNumber] = useState<number | undefined>(
+    sessionAddress?.houseNumber
   );
-  const [houseNumberFull, setHouseNumberFull] = useState<string>(
+  const [houseNumberFull, setHouseNumberFull] = useState<string | undefined>(
     sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
@@ -69,14 +70,14 @@ const LocationFinder: React.FC<LocationFinderProps> = ({
   // Validate forms
   const validate = (
     name: string,
-    value: number | string,
-    required: boolean
+    value?: number | string,
+    required?: boolean
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return t("common.required field text");
       }
-      if (name === "postalCode" && !isValidPostalcode(value.toString())) {
+      if (name === "postalCode" && !isValidPostalcode(value?.toString())) {
         return t("common.no valid postalcode");
       }
     }
