@@ -26,6 +26,44 @@ export default [
       query: findAddress,
       variables: {
         extraHouseNumberFull: "",
+        houseNumberFull: "54 6 K 1",
+        postalCode: "1024BV",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: null,
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
+        houseNumberFull: "20 HL",
+        postalCode: "1027AE",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: null,
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
         houseNumberFull: "19",
         postalCode: "1055XD",
         queryExtra: false,

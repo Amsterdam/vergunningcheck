@@ -63,11 +63,9 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
-  const splitHouseNumber = houseNumberFull
+  const graphQlHouseNumber = houseNumberFull
     ?.toUpperCase()
-    ?.match(/[a-z]+|[^a-z]+/gi);
-
-  const graphQlHouseNumber = splitHouseNumber
+    ?.match(/[a-z]+|[^a-z]+/gi)
     ?.map((part) => `${part.trim()} `) // Split each part with a space
     .toString() // Revert to one string
     .replace(/,/g, "") // Remove all commas
