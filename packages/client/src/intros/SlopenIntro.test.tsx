@@ -7,6 +7,7 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
+/* TODO: move next paragraphs to translation files as soon as we have a solution to include <Markdown source..> */
 const sentence1 = `U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.`;
 const sentence2 = `Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.`;
 
