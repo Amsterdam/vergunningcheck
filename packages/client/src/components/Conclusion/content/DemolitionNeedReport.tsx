@@ -40,6 +40,9 @@ const DemolitionNeedReport: React.FC = () => {
       <List variant={"bullet"}>
         <ListItem>{t("outcome.thinkAbout.placement of a crane")}</ListItem>
         <ListItem>{t("outcome.thinkAbout.disposal of waste")}</ListItem>
+        <ListItem>
+          {t("outcome.thinkAbout.the risk of still encountering asbestos")}
+        </ListItem>
         <ListItem>{t("outcome.thinkAbout.permission from the VvE")}</ListItem>
         <ListItem>{t("outcome.thinkAbout.consent from neighbors")}</ListItem>
       </List>
