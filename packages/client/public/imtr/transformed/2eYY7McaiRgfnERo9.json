@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 49,
+      "version": 50,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -26,7 +26,7 @@
           "uuid": "sloop seizoen1"
         },
         {
-          "text": "Als u het bouwwerk dat u wilt slopen opnieuw zou gaan bouwen, mag dat dan zonder vergunning?",
+          "text": "Stel: u gaat het bouwwerk niet slopen, maar bouwen. Mag dat dan zonder vergunning?",
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAls u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
           "type": "boolean",
           "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
@@ -71,7 +71,7 @@
         }
       ],
       "decisions": {
-        "_1a0e1ab6-2223-4e07-b130-5fda2bb08ea8": {
+        "_7c232f00-da31-48b4-9141-744ddaf54e64": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -110,7 +110,7 @@
             ]
           }
         },
-        "_f0141d34-bf45-432d-914f-b87780c884d3": {
+        "_8157e6b9-8b6e-4105-940a-15aaa026fa42": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -149,7 +149,7 @@
             ]
           }
         },
-        "_b737d2c2-91ee-4eaa-9446-b8f59d0f565b": {
+        "_06e2e913-cd23-4d25-96ef-15bb97365cf2": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -195,7 +195,7 @@
             ]
           }
         },
-        "_ced9de38-965a-4038-9c88-504fc3434794": {
+        "_38acd2c1-8ab8-406f-aca8-1a1b21c45f4b": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -248,7 +248,7 @@
             ]
           }
         },
-        "_091b3278-ff7d-4b0d-863c-0dfce5e19ed2": {
+        "_0db97b22-45fd-46ec-a5aa-2ccbe862d2e9": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -310,11 +310,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_1a0e1ab6-2223-4e07-b130-5fda2bb08ea8",
-            "#_f0141d34-bf45-432d-914f-b87780c884d3",
-            "#_b737d2c2-91ee-4eaa-9446-b8f59d0f565b",
-            "#_ced9de38-965a-4038-9c88-504fc3434794",
-            "#_091b3278-ff7d-4b0d-863c-0dfce5e19ed2"
+            "#_7c232f00-da31-48b4-9141-744ddaf54e64",
+            "#_8157e6b9-8b6e-4105-940a-15aaa026fa42",
+            "#_06e2e913-cd23-4d25-96ef-15bb97365cf2",
+            "#_38acd2c1-8ab8-406f-aca8-1a1b21c45f4b",
+            "#_0db97b22-45fd-46ec-a5aa-2ccbe862d2e9"
           ],
           "decisionTable": {
             "rules": [

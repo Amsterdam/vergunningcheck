@@ -1,12 +1,12 @@
 {
   "permits": [
     {
-      "version": 52,
+      "version": 54,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
-          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter?",
-          "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   3,6 meter lang\n*   1,9 meter breed\n*   1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Sloop.png)",
+          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
+          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   3 kamers of een verdieping herinrichten: 10 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
           "type": "boolean",
           "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
           "prio": 10
@@ -35,7 +35,7 @@
         }
       ],
       "decisions": {
-        "_2255e04e-c3b4-45b5-ac0e-9ffd3383e6cc": {
+        "_be57bdd3-f2a2-44b1-9d30-b3bc53f0e239": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
@@ -62,7 +62,7 @@
             ]
           }
         },
-        "_c535c89d-a4b9-47d5-9431-ea79c3002dc9": {
+        "_5d2b21d4-01a4-4bad-91f1-5f3aec74dffd": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
@@ -96,8 +96,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_2255e04e-c3b4-45b5-ac0e-9ffd3383e6cc",
-            "#_c535c89d-a4b9-47d5-9431-ea79c3002dc9"
+            "#_be57bdd3-f2a2-44b1-9d30-b3bc53f0e239",
+            "#_5d2b21d4-01a4-4bad-91f1-5f3aec74dffd"
           ],
           "decisionTable": {
             "rules": [
