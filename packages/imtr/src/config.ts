@@ -23,8 +23,8 @@ export const apis: APIConfig[] = [
       "bouwwerk-slopen": [
         // demolition
         "bxBCdnrFZSbwxgmxC", // monument
-        "D4mccynMtNdzYGhXF", // report
         "2eYY7McaiRgfnERo9", // cityscape
+        "D4mccynMtNdzYGhXF", // report
       ],
       "zonnepanelen-of-zonneboiler-plaatsen": [
         // solar panels or solar water heater
