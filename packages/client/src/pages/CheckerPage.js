@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 import { HideForPrint } from "../atoms";
 import { Conclusion } from "../components/Conclusion";
@@ -22,6 +23,7 @@ import LoadingPage from "./LoadingPage";
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { hasIMTR, slug, text } = topic;
+  const { t } = useTranslation();
 
   // @TODO: replace with custom hooks
   const { questionIndex } = sessionContext[slug] || {};
@@ -162,7 +164,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       newQuestionIndex = value;
       // Matomo event props
       action = actions.EDIT_QUESTION;
-      eventName = checker.stack[newQuestionIndex].text;
+      eventName = checker.stack[newQuestionIndex]?.text || t("common.unknown");
     } else if (value === "next" || value === "prev") {
       // Either go 1 question next or prev
       newQuestionIndex =
