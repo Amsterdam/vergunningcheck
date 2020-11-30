@@ -21,16 +21,15 @@ const DemolitionPermitFree: React.FC = () => {
             i18nKey={"outcome.payAttentionTo.permit free demolition exception"}
           >
             Misschien staat in het bestemmingsplan dat een vergunning toch nodig
-            is. Lees hiervoor verder op de pagina
+            is.
             <Link
               eventName={eventNames.VIEW_ZONING_PLAN}
               href={urls.VIEW_ZONING_PLAN}
               variant="inline"
               target="_blank"
             >
-              Bestemmingsplan bekijken
+              Lees verder hoe u een bestemmingsplan bekijken kunt.
             </Link>
-            .
           </Trans>
         </ListItem>
         <ListItem>{t("outcome.payAttentionTo.take in account")}</ListItem>

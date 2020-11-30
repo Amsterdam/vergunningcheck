@@ -63,10 +63,8 @@ export default {
         "placing bullet": "het plaatsen van de kozijnen zelf.",
       },
       slopen: {
-        "intro description":
-          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
         "need report":
-          "U wilt gaan slopen. U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen. ",
+          "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
       },
       zonnepanelen: {
         "intro description":
@@ -113,7 +111,7 @@ export default {
           "De gevolgen voor de WOZ-waarde van uw huis.",
         "the risk of asbestos": "Het risico dat u asbest tegenkomt.",
         "the risk of still encountering asbestos":
-          "Het risico dat u toch asbest tegenkomt.",
+          "Het veilig verwijderen van asbest, als u dit tegenkomt.",
         "view on neighbors grounds":
           "Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.",
       },
@@ -151,7 +149,7 @@ export default {
           "U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.",
         "pay attention heading": "Dit is waar u verder op moet letten:",
         "permit free demolition exception":
-          "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. Lees hiervoor verder op de pagina <1>Bestemmingsplan bekijken</1>.",
+          "Misschien staat in het bestemmingsplan dat een vergunning toch nodig is. <1>Lees verder hoe u een bestemmingsplan bekijken kunt.</1>",
         "take in account":
           "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.",
       },
