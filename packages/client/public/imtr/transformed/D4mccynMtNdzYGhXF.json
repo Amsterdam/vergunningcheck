@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 44,
+      "version": 52,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
@@ -13,13 +13,14 @@
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAsbest is na 1994 grotendeels verboden. Bij de nieuwe woningen is de kans klein dat er asbest zit.",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "prio": 20
         },
         {
           "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Bijvoorbeeld een strandtent of een oliebollenkraam.",
+          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
           "prio": 30,
@@ -34,7 +35,7 @@
         }
       ],
       "decisions": {
-        "_674b5d9a-18f6-4532-8bd2-9e57e19a65aa": {
+        "_8bc7d349-04ee-4c61-b756-41ac282f0760": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
@@ -61,7 +62,7 @@
             ]
           }
         },
-        "_f9db45aa-b70b-4094-b254-3eafe324a542": {
+        "_4e59cef9-e3e3-4700-81b2-a9d40f462515": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
@@ -95,8 +96,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_674b5d9a-18f6-4532-8bd2-9e57e19a65aa",
-            "#_f9db45aa-b70b-4094-b254-3eafe324a542"
+            "#_8bc7d349-04ee-4c61-b756-41ac282f0760",
+            "#_4e59cef9-e3e3-4700-81b2-a9d40f462515"
           ],
           "decisionTable": {
             "rules": [

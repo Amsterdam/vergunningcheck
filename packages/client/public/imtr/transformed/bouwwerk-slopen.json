@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 23,
+      "version": 25,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
@@ -18,15 +18,16 @@
           "prio": 10
         },
         {
-          "text": "Gaat u een onderdeel  van een gebouw  slopen?",
-          "description": "Denk aan het verwijderen van een raamkozijn, een dakgoot of dakpannen.",
+          "text": "Gaat u een deel van een bouwwerk slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakgoot of dakpannen.",
           "type": "boolean",
           "id": "uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
           "prio": 20,
           "uuid": "sloop onderhoud1"
         },
         {
-          "text": "Gaat u dat onderdeel vervangen door een nieuw onderdeel?",
+          "text": "Gaat u dat deel vervangen door een nieuw deel?",
+          "description": "U gaat bijvoorbeeld een raamkozijn vervangen door een nieuw raamkozijn.",
           "type": "boolean",
           "id": "uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
           "prio": 30,
@@ -48,7 +49,7 @@
         }
       ],
       "decisions": {
-        "_6e42aff3-7905-4007-beba-cdb46b1cffa3": {
+        "_e460cc72-d7d2-4e5b-ae1c-87703ca49417": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -74,7 +75,7 @@
             ]
           }
         },
-        "_ef752e04-2b49-4271-b99e-51c05e6e0207": {
+        "_1659b9e3-eb53-40b6-afe0-c3b35c9af9c2": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -105,7 +106,7 @@
             ]
           }
         },
-        "_7ef458ec-b2c0-4eac-af86-af1aad8975c8": {
+        "_b3371d7d-b30e-4339-8108-9586ee436137": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -146,7 +147,7 @@
             ]
           }
         },
-        "_4ae847e0-ab7e-4ece-a168-82d28c84c636": {
+        "_8c673181-2039-49eb-901e-5da07f763c6d": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -201,10 +202,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6e42aff3-7905-4007-beba-cdb46b1cffa3",
-            "#_ef752e04-2b49-4271-b99e-51c05e6e0207",
-            "#_7ef458ec-b2c0-4eac-af86-af1aad8975c8",
-            "#_4ae847e0-ab7e-4ece-a168-82d28c84c636"
+            "#_e460cc72-d7d2-4e5b-ae1c-87703ca49417",
+            "#_1659b9e3-eb53-40b6-afe0-c3b35c9af9c2",
+            "#_b3371d7d-b30e-4339-8108-9586ee436137",
+            "#_8c673181-2039-49eb-901e-5da07f763c6d"
           ],
           "decisionTable": {
             "rules": [
@@ -261,12 +262,12 @@
       }
     },
     {
-      "version": 38,
+      "version": 49,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
           "text": "Ligt het adres waar u wilt slopen in een beschermd stads- of dorpsgezicht?",
-          "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk op de kaart of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
+          "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk op de kaart of het adres in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
           "autofill": "cityScapeWithoutEntity",
           "options": [
             "Ja, in een rijksbeschermd stads- of dorpsgezicht.",
@@ -275,62 +276,63 @@
           ],
           "type": "string",
           "id": "uitv__b6796191-3670-45a7-a02d-17b8c9591131",
-          "prio": 10
+          "prio": 10010
         },
         {
           "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Een voorbeeld is een strandtent of een oliebollenkraam.",
+          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
-          "prio": 20,
+          "prio": 10020,
           "uuid": "sloop seizoen1"
         },
         {
           "text": "Als u het bouwwerk dat u wilt slopen opnieuw zou gaan bouwen, mag dat dan zonder vergunning?",
-          "description": "Als u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u een aparte vergunningcheck doen om hierachter te komen.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAls u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
           "type": "boolean",
           "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
-          "prio": 30
+          "prio": 10030
         },
         {
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "id": "uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
-          "prio": 40,
+          "prio": 10040,
           "uuid": "sloop aanschrijving1"
         },
         {
-          "text": "Gaat u een onderdeel  van een gebouw  slopen?",
-          "description": "Denk aan het verwijderen van een raamkozijn, een dakgoot of dakpannen.",
+          "text": "Gaat u een deel van een bouwwerk slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakgoot of dakpannen.",
           "type": "boolean",
           "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
-          "prio": 50,
+          "prio": 10050,
           "uuid": "sloop onderhoud1"
         },
         {
-          "text": "Gaat u dat onderdeel vervangen door een nieuw onderdeel?",
+          "text": "Gaat u dat deel vervangen door een nieuw deel?",
+          "description": "U gaat bijvoorbeeld een raamkozijn vervangen door een nieuw raamkozijn.",
           "type": "boolean",
           "id": "uitv_696173ef-6bad-4411-848e-ec97a8566c10",
-          "prio": 60,
+          "prio": 10060,
           "uuid": "sloop onderhoud2"
         },
         {
           "text": "Verandert de kleur of het materiaal?",
           "type": "boolean",
           "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
-          "prio": 70,
+          "prio": 10070,
           "uuid": "sloop onderhoud3"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "type": "boolean",
           "id": "uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
-          "prio": 80,
+          "prio": 10080,
           "uuid": "sloop onderhoud4"
         }
       ],
       "decisions": {
-        "_517e5694-60fa-4441-8da4-055c48f4a46d": {
+        "_a18700dc-e8a9-472b-bfe8-12922daef0da": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -369,7 +371,7 @@
             ]
           }
         },
-        "_b2988cfb-a5b6-4228-8a01-79c4c7ac7d56": {
+        "_f31193f4-2582-4724-a5f8-e0d2b1ff573d": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -408,7 +410,7 @@
             ]
           }
         },
-        "_7d72235b-8bf4-4942-b24b-8b002252d28a": {
+        "_6c747363-1aa4-4bf6-8bef-ebb71f269707": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -454,7 +456,7 @@
             ]
           }
         },
-        "_c30c2ace-fe85-4ae0-8f25-63ce09ec54cf": {
+        "_0125b416-f2cb-4221-a2bf-d3a54b10920c": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -507,7 +509,7 @@
             ]
           }
         },
-        "_2e51617f-5dd1-4ccc-be93-d8850ef962d7": {
+        "_9b1ef71e-857e-4996-9f89-acbdd206b8e2": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -569,11 +571,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_517e5694-60fa-4441-8da4-055c48f4a46d",
-            "#_b2988cfb-a5b6-4228-8a01-79c4c7ac7d56",
-            "#_7d72235b-8bf4-4942-b24b-8b002252d28a",
-            "#_c30c2ace-fe85-4ae0-8f25-63ce09ec54cf",
-            "#_2e51617f-5dd1-4ccc-be93-d8850ef962d7"
+            "#_a18700dc-e8a9-472b-bfe8-12922daef0da",
+            "#_f31193f4-2582-4724-a5f8-e0d2b1ff573d",
+            "#_6c747363-1aa4-4bf6-8bef-ebb71f269707",
+            "#_0125b416-f2cb-4221-a2bf-d3a54b10920c",
+            "#_9b1ef71e-857e-4996-9f89-acbdd206b8e2"
           ],
           "decisionTable": {
             "rules": [
@@ -647,7 +649,7 @@
       }
     },
     {
-      "version": 44,
+      "version": 52,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
@@ -655,32 +657,33 @@
           "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   3,6 meter lang\n*   1,9 meter breed\n*   1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Sloop.png)",
           "type": "boolean",
           "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
-          "prio": 10
+          "prio": 20010
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAsbest is na 1994 grotendeels verboden. Bij de nieuwe woningen is de kans klein dat er asbest zit.",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-          "prio": 20
+          "prio": 20020
         },
         {
           "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Bijvoorbeeld een strandtent of een oliebollenkraam.",
+          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-          "prio": 30,
+          "prio": 20030,
           "uuid": "sloop seizoen1"
         },
         {
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "id": "uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
-          "prio": 40,
+          "prio": 20040,
           "uuid": "sloop aanschrijving1"
         }
       ],
       "decisions": {
-        "_e6cd8ea9-7a04-46a7-aa9d-26a27f290415": {
+        "_8bc7d349-04ee-4c61-b756-41ac282f0760": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
@@ -707,7 +710,7 @@
             ]
           }
         },
-        "_015325f0-dba6-44c5-bde3-07fb400c8eea": {
+        "_4e59cef9-e3e3-4700-81b2-a9d40f462515": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
@@ -741,8 +744,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_e6cd8ea9-7a04-46a7-aa9d-26a27f290415",
-            "#_015325f0-dba6-44c5-bde3-07fb400c8eea"
+            "#_8bc7d349-04ee-4c61-b756-41ac282f0760",
+            "#_4e59cef9-e3e3-4700-81b2-a9d40f462515"
           ],
           "decisionTable": {
             "rules": [
