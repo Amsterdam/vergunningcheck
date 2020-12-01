@@ -68,7 +68,7 @@ const NewCheckerModal: React.FC = () => {
 
       // Clear or set session data for the new checker
       setTopicData({
-        activeComponents: [],
+        activeComponents: saveAddress ? [sections.QUESTIONS] : [],
         address: saveAddress ? topicData.address : null,
         answers: {},
         finishedComponents: saveAddress ? [sections.LOCATION_INPUT] : [],
