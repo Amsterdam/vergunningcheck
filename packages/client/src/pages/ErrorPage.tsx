@@ -1,20 +1,31 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 import Error from "../components/Error";
 import { BaseLayout } from "../components/Layouts";
 
-type Props = {
-  error: Error;
+type ErrorProps = {
+  message?: string;
+  stack?: string;
 };
 
-const ErrorPage: React.FC<Props> = ({ error }) => (
-  <BaseLayout>
-    <Helmet>
-      <title>Er is een fout opgetreden - Amsterdam Vergunningcheck</title>
-    </Helmet>
-    <Error stack={error.stack} content={error.message} />
-  </BaseLayout>
-);
+type ErrorPageProps = {
+  error?: ErrorProps;
+};
+
+const ErrorPage: React.FC<ErrorPageProps> = ({ error }) => {
+  const { t } = useTranslation();
+  return (
+    <BaseLayout>
+      <Helmet>
+        <title>
+          {t("errorMessages.error occured")} - Amsterdam Vergunningcheck
+        </title>
+      </Helmet>
+      <Error stack={error?.stack} content={error?.message} />
+    </BaseLayout>
+  );
+};
 
 export default ErrorPage;

@@ -2,11 +2,37 @@ import { Answer } from "@vergunningcheck/imtr-client";
 import React, { useEffect, useReducer } from "react";
 import { createContext } from "react";
 
-import { getSlugFromPathname } from "./utils";
+import { useSlug } from "./hooks";
+
+// @TODO: All these types are going to be moved from this file when we merge this with `checker-slopen`
+export type Restriction = {
+  __typename?: string;
+  name?: string;
+  scope?: string;
+};
+export type ZoningPlan = {
+  __typename?: string;
+  name?: string;
+  scope?: string;
+};
+export type AddressType = {
+  __typename?: string;
+  districtName: string;
+  houseNumber: number;
+  houseNumberFull: string;
+  id: string;
+  neighborhoodName: string;
+  postalCode: string;
+  residence: string;
+  restrictions: Restriction[];
+  streetName: string;
+  zoningPlans: ZoningPlan[];
+};
+export type Address = null | AddressType;
 
 export type TopicData = {
   activeComponents?: string[];
-  address: null | any;
+  address: Address;
   answers: {
     [id: string]: Answer;
   };
@@ -80,19 +106,30 @@ export const SessionProvider: React.FC = ({ children }) => {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, startSession);
-  const slug = getSlugFromPathname(window.location.pathname);
-  defaultTopicSession.type = slug;
+  const slug = useSlug();
 
   const initialState = session[slug] || defaultTopicSession;
   const [topicData, setTopicData] = useReducer(topicReducer, initialState);
 
   useEffect(() => {
-    sessionStorage.setItem("sessionData", JSON.stringify(session));
-  }, [session]);
+    // Update the `session` with default `topicData` when the `slug` changes
+    if (slug && !session[slug]) {
+      setSession({ [slug]: defaultTopicSession });
+      setTopicData(defaultTopicSession);
+    }
+    // eslint-disable-next-line
+  }, [slug]);
 
   useEffect(() => {
+    // Update the `slug` key in `session` with the updated `topicData`
     setSession({ [slug]: topicData });
-  }, [slug, topicData]);
+    // eslint-disable-next-line
+  }, [topicData]);
+
+  useEffect(() => {
+    // Update the browser Session Storage with the whole `session`
+    sessionStorage.setItem("sessionData", JSON.stringify(session));
+  }, [session]);
 
   // The session provider makes the data from the context available on all pages.
   // We can use the setSessionData function to add new data to the sessionStorage.

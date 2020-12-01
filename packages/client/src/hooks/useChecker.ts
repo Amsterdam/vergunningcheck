@@ -4,11 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
 import topicsJson from "../topics.json";
-import useTopicSession from "./useTopicData";
+import useTopicData from "./useTopicData";
 import { useTopic } from ".";
 
 export default () => {
-  const { topicData } = useTopicSession();
+  const { topicData } = useTopicData();
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();

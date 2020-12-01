@@ -11,6 +11,7 @@ import { init } from "@sentry/browser";
 import dotenv from "dotenv-flow";
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";
@@ -38,19 +39,21 @@ const AppGlobalStyle = createGlobalStyle`
 init(sentryConfig);
 
 ReactDOM.render(
-  <SessionProvider>
-    <CheckerProvider>
-      <ApolloProvider client={apolloClient}>
-        <ThemeProvider>
-          <GlobalStyle />
-          <AppGlobalStyle />
-          <MatomoProvider value={createInstance(matomo)}>
-            <Router />
-          </MatomoProvider>
-        </ThemeProvider>
-      </ApolloProvider>
-    </CheckerProvider>
-  </SessionProvider>,
+  <BrowserRouter>
+    <SessionProvider>
+      <CheckerProvider>
+        <ApolloProvider client={apolloClient}>
+          <ThemeProvider>
+            <GlobalStyle />
+            <AppGlobalStyle />
+            <MatomoProvider value={createInstance(matomo)}>
+              <Router />
+            </MatomoProvider>
+          </ThemeProvider>
+        </ApolloProvider>
+      </CheckerProvider>
+    </SessionProvider>
+  </BrowserRouter>,
 
   document.getElementById("root")
 );

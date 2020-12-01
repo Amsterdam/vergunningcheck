@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { HideForPrint } from "../atoms";
@@ -11,19 +11,28 @@ import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-import { getDataNeed } from "../config/autofill";
+import { autofillResolvers, getDataNeed } from "../config/autofill";
 import { actions, eventNames, sections } from "../config/matomo";
 import { DebugDecisionTable } from "../debug";
-import { useChecker, useTopic, useTopicData, useTracking } from "../hooks";
+import {
+  useChecker,
+  useSlug,
+  useTopic,
+  useTopicData,
+  useTracking,
+} from "../hooks";
+import { Address, SessionContext } from "../SessionContext";
 import { isEmptyObject } from "../utils";
+import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 
 const CheckerPage = () => {
   const { topicData, setTopicData } = useTopicData();
   const { checker } = useChecker();
-  const topic = useTopic();
+  const { text } = useTopic();
+  const slug = useSlug();
   const { matomoTrackEvent } = useTracking();
-  const { text } = topic;
+  const sessionContext = useContext(SessionContext);
 
   const hasDataNeeds = !!getDataNeed(checker);
 
@@ -60,7 +69,6 @@ const CheckerPage = () => {
       });
     }
 
-    // sessionContext[slug].activeComponents = [component];
     setTopicData({ activeComponents: [component] });
   };
 
@@ -111,6 +119,12 @@ const CheckerPage = () => {
     return <LoadingPage />;
   }
 
+  // In case `topicData` is not found on the Session Context display an error
+  // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
+  if (!sessionContext.session[slug]) {
+    return <ErrorPage />;
+  }
+
   /**
    * Set the questionIndex the next questionId, previous questionId, or the given id.
    */
@@ -158,12 +172,15 @@ const CheckerPage = () => {
   };
 
   // On LocationSubmit
-  const handleNewAddressSubmit = (address: any) => {
+  const handleNewAddressSubmit = (address: Address) => {
     setTopicData({
       activeComponents: [sections.QUESTIONS],
       finishedComponents: [sections.LOCATION_INPUT],
       address,
     });
+
+    // Autofill `checker` when `address` is submitted
+    checker.autofill(autofillResolvers, { address });
   };
 
   return (

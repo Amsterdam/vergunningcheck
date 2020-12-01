@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
+import { Address } from "../../SessionContext";
 import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
 import Form from "../Form";
@@ -17,7 +18,7 @@ import LocationFinder from "./LocationFinder";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
-  handleNewAddressSubmit: (address: any) => void;
+  handleNewAddressSubmit: (address: Address) => void;
 };
 
 const LocationInput = ({
@@ -32,19 +33,19 @@ const LocationInput = ({
   const { t } = useTranslation();
 
   const { hasIMTR, slug, text } = topic;
-  const address = topicData.address || {};
+  const address: Address = topicData.address || null;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
 
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
-    if (address?.postalCode) {
+    if (address && address.postalCode) {
       const monument = getRestrictionByTypeName(
-        address?.restrictions,
+        address.restrictions,
         "Monument"
       )?.name;
       const cityScape = getRestrictionByTypeName(
-        address?.restrictions,
+        address.restrictions,
         "CityScape"
       )?.scope;
 

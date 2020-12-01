@@ -38,7 +38,7 @@ type RedirectToOloTopic = {
 export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 
 type OloUrlProps = {
-  houseNumber: string;
+  houseNumber: number;
   houseNumberFull: string;
   postalCode: string;
 };
@@ -62,7 +62,7 @@ export const generateOloUrl = ({
   postalCode,
 }: OloUrlProps) => {
   // Get correct suffix
-  const suffix = houseNumberFull.replace(houseNumber, "").trim();
+  const suffix = houseNumberFull.replace(houseNumber.toString(), "").trim();
   // Redirect user to OLO with all parameters
   return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };

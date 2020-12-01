@@ -8,6 +8,7 @@ import {
 } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
+import Permit from "../../../imtr-client/src/models/permit";
 import { CheckerContext } from "../CheckerContext";
 import HiddenDebugInfo from "../components/HiddenDebugInfo";
 import { useSession, useSlug, useTopic, useTopicData } from "../hooks";
@@ -84,6 +85,8 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
                     houseNumber: 19,
                     houseNumberFull: "19 C",
                     residence: "Amsterdam",
+                    districtName: "Landlust",
+                    neighborhoodName: "Landlust Noord",
                   },
                 })
               }
@@ -177,7 +180,7 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
           <Card backgroundColor="level2" shadow>
             <CardContent>
               <Heading forwardedAs="h2">permits from checkerContext</Heading>
-              {checkerContext.checker?.permits?.map((permit: any) => {
+              {checkerContext.checker?.permits?.map((permit: Permit) => {
                 return <Paragraph key={permit.name}>{permit.name}</Paragraph>;
               })}
             </CardContent>

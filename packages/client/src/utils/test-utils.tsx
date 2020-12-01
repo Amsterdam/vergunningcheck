@@ -7,6 +7,7 @@ import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { render as reactRender } from "@testing-library/react";
 import dotenv from "dotenv-flow";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 import matchMedia from "../__mocks__/matchMedia";
 import { CheckerProvider } from "../CheckerContext";
@@ -75,17 +76,19 @@ const TestProvider: React.FC<TestProviderProps> = ({
   children,
   mocks = [],
 }) => (
-  <SessionProvider>
-    <CheckerProvider>
-      <ApolloProvider client={getTestClient(mocks)}>
-        <ThemeProvider>
-          <MatomoProvider value={createInstance(matomo)}>
-            {children}
-          </MatomoProvider>
-        </ThemeProvider>
-      </ApolloProvider>
-    </CheckerProvider>
-  </SessionProvider>
+  <BrowserRouter>
+    <SessionProvider>
+      <CheckerProvider>
+        <ApolloProvider client={getTestClient(mocks)}>
+          <ThemeProvider>
+            <MatomoProvider value={createInstance(matomo)}>
+              {children}
+            </MatomoProvider>
+          </ThemeProvider>
+        </ApolloProvider>
+      </CheckerProvider>
+    </SessionProvider>
+  </BrowserRouter>
 );
 
 export const getTestClient = (
