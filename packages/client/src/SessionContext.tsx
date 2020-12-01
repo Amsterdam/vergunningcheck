@@ -54,7 +54,7 @@ export type setTopicFn = (topicData: null | Partial<TopicData>) => void;
 export type setSessionFn = (sessionData: Partial<SessionData>) => void;
 
 export type SessionData = {
-  [slug: string]: TopicData;
+  [slug: string]: null | TopicData;
 };
 
 export type setTopicSessionDataFn = (
@@ -114,13 +114,23 @@ export const SessionProvider: React.FC = ({ children }) => {
   useEffect(() => {
     // Update the `session` with default `topicData` when the `slug` changes
     if (slug && !session[slug]) {
+      // In this case the default data has to be set, because the `topic` has not been visited
       setSession({ [slug]: defaultTopicSession });
       setTopicData(defaultTopicSession);
+    } else if (slug && topicData.type !== session[slug]?.type) {
+      // In this case the `topic` has already been visited and the old topicData does not match the new required topic
+      // so the new topicData needs to be forced from the new `slug`
+      setTopicData(session[slug]);
     }
     // eslint-disable-next-line
   }, [slug]);
 
   useEffect(() => {
+    // Set the topic `type` to the session, so we can compare the topicData
+    if (!topicData.type) {
+      topicData.type = slug;
+    }
+
     // Update the `slug` key in `session` with the updated `topicData`
     setSession({ [slug]: topicData });
     // eslint-disable-next-line
