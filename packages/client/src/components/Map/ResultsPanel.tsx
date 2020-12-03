@@ -6,16 +6,14 @@ import {
   MapPanelDrawer,
   MapPanelLegendButton,
   MapPanelProvider,
-  Marker,
   Zoom,
-  usePanToLatLng,
 } from "@amsterdam/arm-core";
 import { Paragraph, Spinner, ViewerContainer } from "@amsterdam/asc-ui";
-import { useMatchMedia } from "@amsterdam/asc-ui/es/utils/hooks";
-import { useMapInstance } from "@amsterdam/react-maps";
-import { LatLng, LeafletMouseEvent } from "leaflet";
+import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useContext, useEffect, useState } from "react";
-import styled, { createGlobalStyle, css } from "styled-components";
+import styled, { css } from "styled-components";
+
+import { Tree } from "./Map";
 
 type StyledViewerContainerProps = {
   leftOffset?: string;
@@ -103,62 +101,25 @@ const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
   );
 };
 
-const GlobalStyle = createGlobalStyle`
-  body { 
-    touch-action: none;
-    overflow: hidden; // This will prevent the scrollBar on iOS due to navigation bar
-  }
-`;
-
-const CustomMarker: React.FC<{
-  setCurrentLatLng: (latLng: LatLng | null) => void;
-  currentLatLng: LatLng | null;
-}> = ({ setCurrentLatLng, currentLatLng }) => {
-  const {
-    drawerPosition,
-    setPositionFromSnapPoint,
-    matchPositionWithSnapPoint,
-    variant,
-  } = useContext(MapPanelContext);
-  const mapInstance = useMapInstance();
-  const { pan } = usePanToLatLng();
-
-  useEffect(() => {
-    const clickHandler = (e: LeafletMouseEvent) => {
-      setPositionFromSnapPoint(SnapPoint.Halfway);
-      setCurrentLatLng(e.latlng);
-    };
-
-    mapInstance.on("click", clickHandler);
-
-    return () => {
-      setCurrentLatLng(null);
-      mapInstance.off("click", clickHandler);
-    };
-  }, [mapInstance, setCurrentLatLng, setPositionFromSnapPoint]);
-
-  // Use this logic to automatically pan the map to the center of the marker when the drawer is positioned in the middle
-  useEffect(() => {
-    if (matchPositionWithSnapPoint(SnapPoint.Halfway) && currentLatLng) {
-      pan(currentLatLng, variant === "drawer" ? "vertical" : "horizontal", 20);
-    }
-  }, [currentLatLng, drawerPosition, matchPositionWithSnapPoint, pan, variant]);
-  return currentLatLng ? <Marker latLng={currentLatLng} /> : null;
-};
-
-const MapLegendContent = ({ ...otherProps }) => (
-  <MapPanelContent {...otherProps}>test</MapPanelContent>
-);
+// @Sven: This disabled scrolling on desktop, should this only be enabled on tablet / mobile?
+// const GlobalStyle = createGlobalStyle`
+//   body {
+//     touch-action: none;
+//     overflow: hidden; // This will prevent the scrollBar on iOS due to navigation bar
+//   }
+// `;
 
 type ResultProps = {
+  currentTree: Tree | null;
   currentOverlay: Overlay;
-  currentLatLng: LatLng | null;
+  setCurrentTree: any; // xxx
   setCurrentOverlay: (overlay: Overlay) => void;
 };
 
 const Results: React.FC<ResultProps> = ({
+  currentTree,
   currentOverlay,
-  currentLatLng,
+  setCurrentTree,
   setCurrentOverlay,
 }) => {
   const [loading, setLoading] = useState(false);
@@ -167,86 +128,88 @@ const Results: React.FC<ResultProps> = ({
     // Fake loading time
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
-  }, [currentLatLng]);
+    }, 500);
+  }, [currentTree]);
+
   return (
     <MapPanelContent
       title="Resultaten"
       animate
       stackOrder={currentOverlay === Overlay.Results ? 2 : 1}
       onClose={() => {
+        setCurrentTree(null);
         setCurrentOverlay(Overlay.None);
       }}
     >
       {loading ? (
         <Spinner />
       ) : (
-        <Paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
-          nobis odit reiciendis totam! Ad adipisci alias aliquid beatae commodi,
-          consequatur cumque debitis delectus dolorem eius error fugit, harum
-          hic iure labore laborum laudantium minima, neque non nulla quam
-          quibusdam sapiente similique sit suscipit ut vel vero! Accusamus ad
-          consequatur dolore esse, facere fugiat illum maxime mollitia nihil
-          optio, quasi quisquam reprehenderit saepe sunt totam unde vel veniam
-          veritatis vero voluptates.
-        </Paragraph>
+        <>
+          {currentTree && (
+            <>
+              <Paragraph gutterBottom={0}>
+                Boom geselecteerd: {currentTree?.id}
+              </Paragraph>
+              <Paragraph>
+                Boom coordinaten:{" "}
+                {JSON.stringify(currentTree?.geo?.geometry?.coordinates)}
+              </Paragraph>
+            </>
+          )}
+          <Paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
+            nobis odit reiciendis totam! Ad adipisci alias aliquid beatae
+            commodi, consequatur cumque debitis delectus dolorem eius error
+            fugit, harum hic iure labore laborum laudantium minima, neque non
+            nulla quam quibusdam sapiente similique sit suscipit ut vel vero!
+            Accusamus ad consequatur dolore esse, facere fugiat illum maxime
+            mollitia nihil optio, quasi quisquam reprehenderit saepe sunt totam
+            unde vel veniam veritatis vero voluptates.
+          </Paragraph>
+        </>
       )}
     </MapPanelContent>
   );
 };
 
 interface ResultsPanelProps {
+  currentTree: Tree | undefined;
   currentOverlay: Overlay;
-  panelTitle?: string;
-  panelSubTitle?: string;
   setCurrentOverlay: (overlay: Overlay) => void;
+  setCurrentTree: any; // xxx
 }
 
 const ResultsPanel: React.FC<ResultsPanelProps> = ({
+  currentTree,
   currentOverlay,
-  panelTitle,
-  panelSubTitle,
   setCurrentOverlay,
+  setCurrentTree,
 }) => {
-  const [currentLatLng, setCurrentLatLng] = useState<LatLng | null>(null);
   const [showDesktopVariant] = useMatchMedia({
     minBreakpoint: "tabletM",
   });
+
+  if (!currentTree) {
+    return null;
+  }
+
   const Element = showDesktopVariant ? MapPanel : MapPanelDrawer;
   return (
     <>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       <MapPanelProvider
         variant={showDesktopVariant ? "panel" : "drawer"}
-        initialPosition={SnapPoint.Closed}
+        initialPosition={SnapPoint.Full}
       >
         <Element>
-          <CustomMarker
-            setCurrentLatLng={setCurrentLatLng}
-            currentLatLng={currentLatLng}
+          <Results
+            {...{
+              currentTree,
+              currentOverlay,
+              setCurrentTree,
+              setCurrentOverlay,
+            }}
           />
-          {currentOverlay === Overlay.Legend && (
-            <MapLegendContent
-              title={panelTitle}
-              subTitle={panelSubTitle}
-              stackOrder={3}
-              animate
-              onClose={() => {
-                setCurrentOverlay(Overlay.None);
-              }}
-            />
-          )}
-          {currentOverlay === Overlay.Results && (
-            <Results
-              {...{
-                currentOverlay,
-                setCurrentOverlay,
-                currentLatLng,
-              }}
-            />
-          )}
-          <MapLegendContent title={panelTitle} subTitle={panelSubTitle} />
         </Element>
         <ViewerContainerWithMapDrawerOffset
           {...{
