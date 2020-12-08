@@ -1,11 +1,4 @@
-import {
-  Accordion,
-  Card,
-  CardContent,
-  Heading,
-  Link,
-  Paragraph,
-} from "@amsterdam/asc-ui";
+import { Accordion, Card, CardContent, Heading, Link } from "@amsterdam/asc-ui";
 import React, { useContext } from "react";
 
 import Permit from "../../../imtr-client/src/models/permit";
@@ -37,88 +30,127 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
       <Accordion title="Debug informatie">
         <Card backgroundColor="level2" shadow>
           <CardContent>
-            <Heading forwardedAs="h2">Checker context</Heading>
+            <Heading forwardedAs="h2">Summary</Heading>
+            <p>
+              current slug (slug): <strong>{slug}</strong>
+            </p>
+
+            <p>
+              current topic (topicData): <strong>{topicData?.type}</strong>
+            </p>
+
+            <p>
+              current topic (topic): <strong>{topic?.slug}</strong>
+            </p>
+
+            {checkerContext.checker && (
+              <>
+                <p>current checker:</p>
+                <ul>
+                  {checkerContext.checker?.permits?.map((permit: Permit) => {
+                    return <li key={permit.name}>{permit.name}</li>;
+                  })}
+                </ul>
+              </>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card backgroundColor="level2" shadow>
+          <CardContent>
+            <Heading forwardedAs="h2">useChecker</Heading>
             <Debug json={checkerContext} condensed />
-          </CardContent>
-        </Card>
-
-        <Card backgroundColor="level2" shadow>
-          <CardContent>
-            <Heading forwardedAs="h2">Topic Data</Heading>
-            <Debug json={topicData} />
-            <button
-              onClick={() =>
-                setTopicData({
-                  finishedComponents: ["locatie invoer"],
-                  activeComponents: ["vragen"],
-                  questionIndex: 0,
-                  answers: {},
-                  address: {
-                    __typename: "Address",
-                    restrictions: [
-                      {
-                        __typename: "Monument",
-                        name: "Gemeentelijk monument",
-                      },
-                    ],
-                    zoningPlans: [
-                      {
-                        __typename: "zoningPlan",
-                        name: "Paraplubestemmingsplan Stadsdeel West",
-                      },
-                      {
-                        __typename: "zoningPlan",
-                        name: "Aanpassen geluidzone Westpoort en Hoogtij",
-                      },
-                      {
-                        __typename: "zoningPlan",
-                        name: "Landlust en Gibraltarbuurt",
-                      },
-                      {
-                        __typename: "zoningPlan",
-                        name: "Drijvende bouwwerken",
-                      },
-                    ],
-                    id: "MDM2MzAxMDAxMjA2MjA2NA==",
-                    streetName: "Louise de Colignystraat",
-                    postalCode: "1055XD",
-                    houseNumber: 19,
-                    houseNumberFull: "19 C",
-                    residence: "Amsterdam",
-                    districtName: "Landlust",
-                    neighborhoodName: "Landlust Noord",
-                  },
-                })
-              }
-            >
-              update topic
-            </button>
-          </CardContent>
-        </Card>
-
-        <Card backgroundColor="level2" shadow>
-          <CardContent>
-            <Heading forwardedAs="h2">Session</Heading>
-            <Debug json={session} />
-            <button
-              onClick={() => {
-                setSession({ fake1: defaultTopicSession });
-                setSession({ fake2: defaultTopicSession });
-              }}
-            >
-              update session
-            </button>
           </CardContent>
         </Card>
 
         {topic && (
           <Card backgroundColor="level2" shadow>
             <CardContent>
-              <Heading forwardedAs="h2">Topic</Heading>
+              <Heading forwardedAs="h2">useTopic</Heading>
               <Debug json={topic} />
             </CardContent>
           </Card>
         )}
+
+        <Card backgroundColor="level2" shadow>
+          <CardContent>
+            <Heading forwardedAs="h2">useTopicData</Heading>
+            <Accordion title="Toon topicData">
+              <Debug json={topicData} />
+              <button
+                onClick={() =>
+                  setTopicData({
+                    finishedComponents: ["locatie invoer"],
+                    activeComponents: ["vragen"],
+                    questionIndex: 0,
+                    answers: {},
+                    address: {
+                      __typename: "Address",
+                      restrictions: [
+                        {
+                          __typename: "Monument",
+                          name: "Gemeentelijk monument",
+                        },
+                      ],
+                      zoningPlans: [
+                        {
+                          __typename: "zoningPlan",
+                          name: "Paraplubestemmingsplan Stadsdeel West",
+                        },
+                        {
+                          __typename: "zoningPlan",
+                          name: "Aanpassen geluidzone Westpoort en Hoogtij",
+                        },
+                        {
+                          __typename: "zoningPlan",
+                          name: "Landlust en Gibraltarbuurt",
+                        },
+                        {
+                          __typename: "zoningPlan",
+                          name: "Drijvende bouwwerken",
+                        },
+                      ],
+                      id: "MDM2MzAxMDAxMjA2MjA2NA==",
+                      streetName: "Louise de Colignystraat",
+                      postalCode: "1055XD",
+                      houseNumber: 19,
+                      houseNumberFull: "19 C",
+                      residence: "Amsterdam",
+                      districtName: "Landlust",
+                      neighborhoodName: "Landlust Noord",
+                    },
+                  })
+                }
+              >
+                update topic
+              </button>
+            </Accordion>
+          </CardContent>
+        </Card>
+
+        <Card backgroundColor="level2" shadow>
+          <CardContent>
+            <Heading forwardedAs="h2">useSession</Heading>
+            <Accordion title="Toon session">
+              <Debug json={session} />
+              <button
+                onClick={() => {
+                  setSession({ fake1: defaultTopicSession });
+                  setSession({ fake2: defaultTopicSession });
+                }}
+              >
+                update session
+              </button>
+            </Accordion>
+          </CardContent>
+        </Card>
+
+        <Card backgroundColor="level2" shadow>
+          <CardContent>
+            <Heading forwardedAs="h2">useSlug</Heading>
+            <Debug json={slug} />
+          </CardContent>
+        </Card>
 
         <Card backgroundColor="level2" shadow>
           <CardContent>
@@ -168,24 +200,6 @@ const DebugVariables: React.FC<DebugVariablesProps> = () => {
             </HiddenDebugInfo>
           </CardContent>
         </Card>
-
-        <Card backgroundColor="level2" shadow>
-          <CardContent>
-            <Heading forwardedAs="h2">useSlug</Heading>
-            <Debug json={slug} />
-          </CardContent>
-        </Card>
-
-        {checkerContext.checker && (
-          <Card backgroundColor="level2" shadow>
-            <CardContent>
-              <Heading forwardedAs="h2">permits from checkerContext</Heading>
-              {checkerContext.checker?.permits?.map((permit: Permit) => {
-                return <Paragraph key={permit.name}>{permit.name}</Paragraph>;
-              })}
-            </CardContent>
-          </Card>
-        )}
       </Accordion>
     </HiddenDebugInfo>
   );

@@ -40,8 +40,8 @@ init(sentryConfig);
 
 ReactDOM.render(
   <BrowserRouter>
-    <SessionProvider>
-      <CheckerProvider>
+    <CheckerProvider>
+      <SessionProvider>
         <ApolloProvider client={apolloClient}>
           <ThemeProvider>
             <GlobalStyle />
@@ -51,8 +51,8 @@ ReactDOM.render(
             </MatomoProvider>
           </ThemeProvider>
         </ApolloProvider>
-      </CheckerProvider>
-    </SessionProvider>
+      </SessionProvider>
+    </CheckerProvider>
   </BrowserRouter>,
 
   document.getElementById("root")

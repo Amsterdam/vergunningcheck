@@ -25,6 +25,7 @@ window.scrollTo = jest.fn();
 
 export const mockMatomoTrackEvent = jest.fn();
 export const mockMatomoPageView = jest.fn();
+
 jest.mock("../hooks/useTracking", () => {
   return jest.fn(() => ({
     matomoTrackEvent: mockMatomoTrackEvent,
@@ -77,8 +78,8 @@ const TestProvider: React.FC<TestProviderProps> = ({
   mocks = [],
 }) => (
   <BrowserRouter>
-    <SessionProvider>
-      <CheckerProvider>
+    <CheckerProvider>
+      <SessionProvider>
         <ApolloProvider client={getTestClient(mocks)}>
           <ThemeProvider>
             <MatomoProvider value={createInstance(matomo)}>
@@ -86,8 +87,8 @@ const TestProvider: React.FC<TestProviderProps> = ({
             </MatomoProvider>
           </ThemeProvider>
         </ApolloProvider>
-      </CheckerProvider>
-    </SessionProvider>
+      </SessionProvider>
+    </CheckerProvider>
   </BrowserRouter>
 );
 

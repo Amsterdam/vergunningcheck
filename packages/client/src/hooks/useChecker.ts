@@ -41,7 +41,7 @@ export default () => {
           `${window.location.origin}/${topicConfig.path}`
         );
         const newChecker = getChecker(await topicRequest.json());
-        const address = topicData.address;
+        const { address, answers } = topicData;
 
         // Find if we have missing data needs
         if (address) {
@@ -56,7 +56,6 @@ export default () => {
         // Restore available answers from previous session. If we have
         // an unfulfilled dataNeed we don't restore the answers to
         // prevent issues with older sessions.
-        const answers = topicData.answers;
         if (answers && !unfulfilledDataNeed) {
           newChecker.setQuestionAnswers(answers);
         }

@@ -9,7 +9,7 @@ import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
-import { SessionContext } from "../../SessionContext";
+import { SessionContext, defaultTopicSession } from "../../SessionContext";
 import {
   NEW_CHECKER_MODAL_SAME_ADDRESS,
   RADIO_ADDRESS_1,
@@ -69,17 +69,18 @@ const NewCheckerModal: React.FC = () => {
       });
 
       // Set the the new session data for `doSaveAddress`
-      const topicDataForSaveAddress = {
+      const topicSessionWithSavedAddress = {
+        ...defaultTopicSession,
         activeComponents: [sections.QUESTIONS],
         address: topicData.address,
-        answers: {},
         finishedComponents: [sections.LOCATION_INPUT],
-        questionIndex: 0,
         type: checkerSlug,
       };
 
       // Set the new topic data. SessionContext will interpret `null` by replacing it with default data.
-      const newTopicData = doSaveAddress ? topicDataForSaveAddress : null;
+      const newTopicData = doSaveAddress
+        ? topicSessionWithSavedAddress
+        : defaultTopicSession;
 
       if (checkerSlug === slug) {
         // Only change the topicData for the current topic

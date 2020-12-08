@@ -21,7 +21,11 @@ import {
   useTopicData,
   useTracking,
 } from "../hooks";
-import { Address, SessionContext } from "../SessionContext";
+import {
+  Address,
+  SessionContext,
+  defaultTopicSession,
+} from "../SessionContext";
 import { isEmptyObject } from "../utils";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
@@ -38,6 +42,7 @@ const CheckerPage = () => {
 
   const {
     activeComponents,
+    address,
     answers,
     questionIndex = 0,
     finishedComponents = [],
@@ -87,6 +92,13 @@ const CheckerPage = () => {
       setActiveState(activeStep);
       setTopicData({ finishedComponents: [] });
     }
+
+    // Prevent bug when manually erasing data Session Storage
+    if (hasDataNeeds && !address && !isActive(sections.LOCATION_INPUT)) {
+      setTopicData(defaultTopicSession);
+      setActiveState(sections.LOCATION_INPUT);
+    }
+
     // Prevent linter to add all dependencies, now the useEffect is only called on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeComponents, checker, hasDataNeeds]);

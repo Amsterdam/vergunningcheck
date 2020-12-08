@@ -8,6 +8,14 @@ import { CheckerProvider } from "../../CheckerContext";
 import { render, screen } from "../../utils/test-utils";
 import LocationSummary from "./LocationSummary";
 
+// Somehow this testfile needs to reinitialize `pathname`
+jest.mock("react-router-dom", () => ({
+  ...(jest.requireActual("react-router-dom") as {}),
+  useLocation: () => ({
+    pathname: "/dakkapel-plaatsen",
+  }),
+}));
+
 describe("LocationSummary", () => {
   const WrapperWithContext = (
     props: React.ComponentProps<typeof LocationSummary>

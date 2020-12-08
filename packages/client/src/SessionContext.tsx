@@ -3,6 +3,7 @@ import React, { useEffect, useReducer } from "react";
 import { createContext } from "react";
 
 import { useSlug } from "./hooks";
+import { findTopicBySlug } from "./utils";
 
 // @TODO: All these types are going to be moved from this file when we merge this with `checker-slopen`
 export type Restriction = {
@@ -50,7 +51,7 @@ export const defaultTopicSession: TopicData = {
   type: "",
 };
 
-export type setTopicFn = (topicData: null | Partial<TopicData>) => void;
+export type setTopicFn = (topicData: Partial<TopicData>) => void;
 export type setSessionFn = (sessionData: Partial<SessionData>) => void;
 
 export type SessionData = {
@@ -90,12 +91,8 @@ const sessionReducer = (session: SessionData, data: Partial<SessionData>) => {
 
 export const topicReducer = (
   topicData: TopicData,
-  data: null | Partial<TopicData>
+  data: Partial<TopicData>
 ) => {
-  if (data === null) {
-    console.warn("Reset topicData to defaultTopicSession");
-    return defaultTopicSession;
-  }
   return {
     ...topicData,
     ...data,
@@ -107,32 +104,49 @@ export const SessionProvider: React.FC = ({ children }) => {
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, startSession);
   const slug = useSlug();
+  const slugSession = session[slug];
 
-  const initialState = session[slug] || defaultTopicSession;
-  const [topicData, setTopicData] = useReducer(topicReducer, initialState);
+  const [topicData, setTopicData] = useReducer(
+    topicReducer,
+    defaultTopicSession
+  );
 
   useEffect(() => {
-    // Update the `session` with default `topicData` when the `slug` changes
-    if (slug && !session[slug]) {
-      // In this case the default data has to be set, because the `topic` has not been visited
-      setSession({ [slug]: defaultTopicSession });
-      setTopicData(defaultTopicSession);
-    } else if (slug && topicData.type !== session[slug]?.type) {
-      // In this case the `topic` has already been visited and the old topicData does not match the new required topic
-      // so the new topicData needs to be forced from the new `slug`
-      setTopicData(session[slug]);
+    // Prevent HomePage and other pages from not setting session data
+    if (!findTopicBySlug(slug)) {
+      return;
     }
+
+    // Set the topic/session data when (re)initilizing
+    const initialState = slugSession || defaultTopicSession;
+    if (!topicData || topicData.type !== slug) {
+      if (!initialState.type || initialState.type !== slug) {
+        // Set the topic `type` to the session, so we can compare the topicData
+        initialState.type = slug;
+      }
+
+      setTopicData(initialState);
+      setSession({ [slug]: initialState });
+    }
+
     // eslint-disable-next-line
   }, [slug]);
 
   useEffect(() => {
-    // Set the topic `type` to the session, so we can compare the topicData
-    if (!topicData.type) {
-      topicData.type = slug;
+    // Prevent HomePage and other pages from not setting session data
+    if (!findTopicBySlug(slug)) {
+      return;
     }
 
     // Update the `slug` key in `session` with the updated `topicData`
+    if (topicData?.type !== slug) {
+      throw new Error(
+        `topicData.type ('${topicData.type}') is not equal to slug ('${slug}')`
+      );
+    }
+
     setSession({ [slug]: topicData });
+
     // eslint-disable-next-line
   }, [topicData]);
 
