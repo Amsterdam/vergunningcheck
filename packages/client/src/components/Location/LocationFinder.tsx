@@ -65,7 +65,7 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
   const graphQlHouseNumber = houseNumberFull
     ?.toUpperCase()
-    ?.match(/[a-z]+|[^a-z]+/gi)
+    ?.match(/[^a-z]+|[a-z]|[a-z]/gi)
     ?.map((part) => `${part.trim()} `) // Split each part with a space
     .toString() // Revert to one string
     .replace(/,/g, "") // Remove all commas
