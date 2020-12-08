@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 25,
+      "version": 27,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
@@ -19,7 +19,7 @@
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakgoot of dakpannen.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "id": "uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
           "prio": 20,
@@ -34,7 +34,7 @@
           "uuid": "sloop onderhoud2"
         },
         {
-          "text": "Verandert de kleur of het materiaal?",
+          "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "id": "uitv_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
           "prio": 40,
@@ -49,7 +49,7 @@
         }
       ],
       "decisions": {
-        "_04fa8325-ced5-45a2-8854-07ceac06ed89": {
+        "_9692c0bb-12c9-4640-8700-df43e661e92a": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -75,7 +75,7 @@
             ]
           }
         },
-        "_4b6d5065-685d-48ac-9604-af34ae889595": {
+        "_e7182368-8ad1-4d16-afcd-06683877e718": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -106,7 +106,7 @@
             ]
           }
         },
-        "_464b5aeb-b3e4-43b9-9e4e-b9925fc98e8b": {
+        "_8b662106-9164-442a-97ac-326fb089110c": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -147,7 +147,7 @@
             ]
           }
         },
-        "_cc223cc6-f538-4bef-bde4-3a02af0428ae": {
+        "_b2259fea-b928-4ef3-84aa-8b055a70a29f": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -202,10 +202,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_04fa8325-ced5-45a2-8854-07ceac06ed89",
-            "#_4b6d5065-685d-48ac-9604-af34ae889595",
-            "#_464b5aeb-b3e4-43b9-9e4e-b9925fc98e8b",
-            "#_cc223cc6-f538-4bef-bde4-3a02af0428ae"
+            "#_9692c0bb-12c9-4640-8700-df43e661e92a",
+            "#_e7182368-8ad1-4d16-afcd-06683877e718",
+            "#_8b662106-9164-442a-97ac-326fb089110c",
+            "#_b2259fea-b928-4ef3-84aa-8b055a70a29f"
           ],
           "decisionTable": {
             "rules": [
@@ -262,7 +262,7 @@
       }
     },
     {
-      "version": 50,
+      "version": 54,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -280,7 +280,7 @@
         },
         {
           "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
           "prio": 10020,
@@ -302,7 +302,7 @@
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakgoot of dakpannen.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
           "prio": 10050,
@@ -317,7 +317,7 @@
           "uuid": "sloop onderhoud2"
         },
         {
-          "text": "Verandert de kleur of het materiaal?",
+          "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
           "prio": 10070,
@@ -332,7 +332,7 @@
         }
       ],
       "decisions": {
-        "_7c232f00-da31-48b4-9141-744ddaf54e64": {
+        "_cb9dc120-14a7-4350-8388-3ecd29865e2a": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -371,7 +371,7 @@
             ]
           }
         },
-        "_8157e6b9-8b6e-4105-940a-15aaa026fa42": {
+        "_fd444ac7-f133-4208-a416-b99179039033": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -410,7 +410,7 @@
             ]
           }
         },
-        "_06e2e913-cd23-4d25-96ef-15bb97365cf2": {
+        "_3a79e852-b616-4224-a86e-f680e89835af": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -456,7 +456,7 @@
             ]
           }
         },
-        "_38acd2c1-8ab8-406f-aca8-1a1b21c45f4b": {
+        "_5cab5613-3a04-449a-b23e-e3f42ae08aba": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -509,7 +509,7 @@
             ]
           }
         },
-        "_0db97b22-45fd-46ec-a5aa-2ccbe862d2e9": {
+        "_364fce5d-918b-48b3-b726-50b420abc168": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -571,11 +571,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_7c232f00-da31-48b4-9141-744ddaf54e64",
-            "#_8157e6b9-8b6e-4105-940a-15aaa026fa42",
-            "#_06e2e913-cd23-4d25-96ef-15bb97365cf2",
-            "#_38acd2c1-8ab8-406f-aca8-1a1b21c45f4b",
-            "#_0db97b22-45fd-46ec-a5aa-2ccbe862d2e9"
+            "#_cb9dc120-14a7-4350-8388-3ecd29865e2a",
+            "#_fd444ac7-f133-4208-a416-b99179039033",
+            "#_3a79e852-b616-4224-a86e-f680e89835af",
+            "#_5cab5613-3a04-449a-b23e-e3f42ae08aba",
+            "#_364fce5d-918b-48b3-b726-50b420abc168"
           ],
           "decisionTable": {
             "rules": [
@@ -649,26 +649,26 @@
       }
     },
     {
-      "version": 54,
+      "version": 62,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
           "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
-          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   3 kamers of een verdieping herinrichten: 10 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
+          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   Muren verwijderen van 3 kamers of een verdieping: ongeveer 11 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
           "type": "boolean",
           "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
           "prio": 20010
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAsbest is na 1994 grotendeels verboden. Bij de nieuwe woningen is de kans klein dat er asbest zit.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nIn bouwwerken gebouwd na juli 1993 mag geen asbest zitten. Bij nieuwere bouwwerken is de kans klein dat er asbest in zit.",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "prio": 20020
         },
         {
-          "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
-          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
           "prio": 20030,
@@ -683,7 +683,7 @@
         }
       ],
       "decisions": {
-        "_be57bdd3-f2a2-44b1-9d30-b3bc53f0e239": {
+        "_f293c78a-024a-4aec-9fc7-351768c5485b": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
@@ -710,7 +710,7 @@
             ]
           }
         },
-        "_5d2b21d4-01a4-4bad-91f1-5f3aec74dffd": {
+        "_7965371a-63e2-4b8a-a93a-58d68a743184": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
@@ -744,8 +744,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_be57bdd3-f2a2-44b1-9d30-b3bc53f0e239",
-            "#_5d2b21d4-01a4-4bad-91f1-5f3aec74dffd"
+            "#_f293c78a-024a-4aec-9fc7-351768c5485b",
+            "#_7965371a-63e2-4b8a-a93a-58d68a743184"
           ],
           "decisionTable": {
             "rules": [

@@ -1,26 +1,26 @@
 {
   "permits": [
     {
-      "version": 54,
+      "version": 62,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
           "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
-          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   3 kamers of een verdieping herinrichten: 10 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
+          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   Muren verwijderen van 3 kamers of een verdieping: ongeveer 11 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
           "type": "boolean",
           "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
           "prio": 10
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAsbest is na 1994 grotendeels verboden. Bij de nieuwe woningen is de kans klein dat er asbest zit.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nIn bouwwerken gebouwd na juli 1993 mag geen asbest zitten. Bij nieuwere bouwwerken is de kans klein dat er asbest in zit.",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "prio": 20
         },
         {
-          "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
-          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
           "prio": 30,
@@ -35,7 +35,7 @@
         }
       ],
       "decisions": {
-        "_be57bdd3-f2a2-44b1-9d30-b3bc53f0e239": {
+        "_f293c78a-024a-4aec-9fc7-351768c5485b": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
@@ -62,7 +62,7 @@
             ]
           }
         },
-        "_5d2b21d4-01a4-4bad-91f1-5f3aec74dffd": {
+        "_7965371a-63e2-4b8a-a93a-58d68a743184": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
@@ -96,8 +96,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_be57bdd3-f2a2-44b1-9d30-b3bc53f0e239",
-            "#_5d2b21d4-01a4-4bad-91f1-5f3aec74dffd"
+            "#_f293c78a-024a-4aec-9fc7-351768c5485b",
+            "#_7965371a-63e2-4b8a-a93a-58d68a743184"
           ],
           "decisionTable": {
             "rules": [

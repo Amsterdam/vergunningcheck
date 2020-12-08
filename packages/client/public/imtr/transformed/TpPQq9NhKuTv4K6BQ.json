@@ -1,14 +1,22 @@
 {
   "permits": [
     {
-      "version": 114,
-      "name": "Conclusie [IN ONTWIKKELING] Ketentest - boom kappen",
+      "version": 157,
+      "name": "Conclusie [IN ONTWIKKELING] Ketentest - vellen houtopstand",
       "questions": [
         {
-          "text": "Gaat u kappen omdat er spoed is of gevaar?",
+          "text": "Wat wilt u gaan doen?",
+          "description": "Bij kappen wordt de boom boven de grond gekapt. Bij rooien wordt de boom met het wortelgestel in zijn geheel verwijderd.",
+          "options": ["kappen", "rooien"],
+          "type": "string",
+          "id": "uitv__d4079147-19b1-49ae-8273-246ad2e86d99",
+          "prio": 10
+        },
+        {
+          "text": "Gaat u deze activiteit uitvoeren omdat er spoed is of gevaar?",
           "type": "boolean",
           "id": "uitv__db462e43-84a7-418f-a666-bf03cb57e874",
-          "prio": 10
+          "prio": 20
         },
         {
           "text": "Wat is de conditie van de boom?",
@@ -16,48 +24,56 @@
           "options": ["ziek", "gezond of dood"],
           "type": "string",
           "id": "uitv__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
-          "prio": 20
+          "prio": 30
         },
         {
-          "text": "Gaat u kappen vanwege de iepziekte of de Plantenziektenwet?",
+          "text": "Gaat u deze activiteit uitvoeren vanwege de iepziekte of de Plantenziektenwet?",
           "description": "Meer informatie over de  Iepenziekte of Plantenziektenwet volgt nog",
           "type": "boolean",
           "id": "uitv__304d2c85-2b07-4fd4-9717-c598e2d997ec",
-          "prio": 30
+          "prio": 40
         },
         {
           "text": "Is de boom geplant vanwege een herplantplicht?",
           "longDescription": "Deze vraag is pas relevant als de omtrek minder dan 31 cm is.",
           "type": "boolean",
           "id": "uitv__a695d1b2-ba1e-48f6-b6b3-071788a67396",
-          "prio": 40
+          "prio": 50
         },
         {
           "text": "Is de omtrek van de boom gemeten op 1,30 m boven de grond gelijk aan of  meer dan 31 cm?",
           "description": "Als de boom uit meerdere stammen bestaat meet u omtrek van de dikste boom",
           "type": "boolean",
           "id": "uitv__9cee6d50-b690-469c-bdba-c1483fa9a8c3",
-          "prio": 50
+          "prio": 60
         }
       ],
       "decisions": {
-        "_c9030acc-33bc-4a4b-9f18-7e1d03027155": {
-          "requiredInputs": ["#input__db462e43-84a7-418f-a666-bf03cb57e874"],
+        "_1d770100-2947-4078-b2c7-fdc364b61bf6": {
+          "requiredInputs": [
+            "#input__d4079147-19b1-49ae-8273-246ad2e86d99",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874"
+          ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
+                "inputs": ["\"kappen\"", true],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": [false],
+                "inputs": ["\"rooien\"", true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_4c04d6ed-0fa8-4854-958d-83bbb2e76f2c": {
+        "_e84d161d-e323-460f-af80-b109ad1edef4": {
           "requiredInputs": [
+            "#input__d4079147-19b1-49ae-8273-246ad2e86d99",
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
             "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396"
@@ -65,47 +81,19 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, "\"gezond of dood\"", true],
+                "inputs": ["\"kappen\"", false, "\"gezond of dood\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"ziek\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_7a1709a0-517e-4da3-8400-0574158b5206": {
-          "requiredInputs": [
-            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
-            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
-            "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396",
-            "#input__9cee6d50-b690-469c-bdba-c1483fa9a8c3"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, "\"gezond of dood\"", false, true],
+                "inputs": ["\"rooien\"", false, "\"gezond of dood\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"ziek\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-"],
+                "inputs": ["-", "-", "\"ziek\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -115,62 +103,42 @@
             ]
           }
         },
-        "_75e97971-4913-4db5-9b48-ec0e2e63f568": {
+        "_c8b14331-2d48-4c6e-bf3b-5ea1fb7ac9ba": {
           "requiredInputs": [
+            "#input__d4079147-19b1-49ae-8273-246ad2e86d99",
             "#input__db462e43-84a7-418f-a666-bf03cb57e874",
             "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
-            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
-            "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, "\"ziek\"", false, true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"gezond of dood\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_af590580-0812-4d87-a1b8-b80cbdd309d1": {
-          "requiredInputs": [
-            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
-            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
-            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
             "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396",
             "#input__9cee6d50-b690-469c-bdba-c1483fa9a8c3"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, "\"ziek\"", false, false, true],
+                "inputs": [
+                  "\"kappen\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
+                "inputs": [
+                  "\"rooien\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"gezond of dood\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-"],
+                "inputs": ["-", "-", "\"ziek\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -184,35 +152,119 @@
             ]
           }
         },
+        "_a6fdd562-d1df-40f5-8ee7-acbe6ea744a3": {
+          "requiredInputs": [
+            "#input__d4079147-19b1-49ae-8273-246ad2e86d99",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+            "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"kappen\"", false, "\"ziek\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"rooien\"", false, "\"ziek\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"gezond of dood\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_57bc894b-05fe-4ee1-b801-0e3d866eb440": {
+          "requiredInputs": [
+            "#input__d4079147-19b1-49ae-8273-246ad2e86d99",
+            "#input__db462e43-84a7-418f-a666-bf03cb57e874",
+            "#input__489d4615-5c8b-4c44-8cc7-c4241b0594f4",
+            "#input__304d2c85-2b07-4fd4-9717-c598e2d997ec",
+            "#input__a695d1b2-ba1e-48f6-b6b3-071788a67396",
+            "#input__9cee6d50-b690-469c-bdba-c1483fa9a8c3"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"kappen\"", false, "\"ziek\"", false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"rooien\"", false, "\"ziek\"", false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"gezond of dood\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
         "dummy": {
           "requiredDecisions": [
-            "#_c9030acc-33bc-4a4b-9f18-7e1d03027155",
-            "#_4c04d6ed-0fa8-4854-958d-83bbb2e76f2c",
-            "#_7a1709a0-517e-4da3-8400-0574158b5206",
-            "#_75e97971-4913-4db5-9b48-ec0e2e63f568",
-            "#_af590580-0812-4d87-a1b8-b80cbdd309d1"
+            "#_1d770100-2947-4078-b2c7-fdc364b61bf6",
+            "#_e84d161d-e323-460f-af80-b109ad1edef4",
+            "#_c8b14331-2d48-4c6e-bf3b-5ea1fb7ac9ba",
+            "#_a6fdd562-d1df-40f5-8ee7-acbe6ea744a3",
+            "#_57bc894b-05fe-4ee1-b801-0e3d866eb440"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": ["\"NeemContactOpMet\"", "-", "-", "-", "-"],
-                "output": "\"NeemContactOpMet\""
+                "output": "\"NeemContactOpMet\"",
+                "description": "Neem contact op met de gemeente via nummer [14 020](tel:14020)"
               },
               {
                 "inputs": ["-", "\"Vergunningplicht\"", "-", "-", "-"],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": ["-", "-", "\"Vergunningplicht\"", "-", "-"],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-"],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
@@ -222,13 +274,18 @@
                   "\"no hit\"",
                   "\"no hit\""
                 ],
-                "output": "\"Toestemmingsvrij\""
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U heeft geen omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u wel een vergunning nodig heeft voor een andere activiteit"
               }
             ]
           }
         }
       },
       "inputs": {
+        "input__d4079147-19b1-49ae-8273-246ad2e86d99": {
+          "href": "#uitv__d4079147-19b1-49ae-8273-246ad2e86d99",
+          "type": "string"
+        },
         "input__db462e43-84a7-418f-a666-bf03cb57e874": {
           "href": "#uitv__db462e43-84a7-418f-a666-bf03cb57e874",
           "type": "boolean"

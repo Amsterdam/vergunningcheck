@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 50,
+      "version": 54,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -19,7 +19,7 @@
         },
         {
           "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
           "prio": 20,
@@ -41,7 +41,7 @@
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakgoot of dakpannen.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
           "prio": 50,
@@ -56,7 +56,7 @@
           "uuid": "sloop onderhoud2"
         },
         {
-          "text": "Verandert de kleur of het materiaal?",
+          "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
           "prio": 70,
@@ -71,7 +71,7 @@
         }
       ],
       "decisions": {
-        "_7c232f00-da31-48b4-9141-744ddaf54e64": {
+        "_cb9dc120-14a7-4350-8388-3ecd29865e2a": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -110,7 +110,7 @@
             ]
           }
         },
-        "_8157e6b9-8b6e-4105-940a-15aaa026fa42": {
+        "_fd444ac7-f133-4208-a416-b99179039033": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -149,7 +149,7 @@
             ]
           }
         },
-        "_06e2e913-cd23-4d25-96ef-15bb97365cf2": {
+        "_3a79e852-b616-4224-a86e-f680e89835af": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -195,7 +195,7 @@
             ]
           }
         },
-        "_38acd2c1-8ab8-406f-aca8-1a1b21c45f4b": {
+        "_5cab5613-3a04-449a-b23e-e3f42ae08aba": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -248,7 +248,7 @@
             ]
           }
         },
-        "_0db97b22-45fd-46ec-a5aa-2ccbe862d2e9": {
+        "_364fce5d-918b-48b3-b726-50b420abc168": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -310,11 +310,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_7c232f00-da31-48b4-9141-744ddaf54e64",
-            "#_8157e6b9-8b6e-4105-940a-15aaa026fa42",
-            "#_06e2e913-cd23-4d25-96ef-15bb97365cf2",
-            "#_38acd2c1-8ab8-406f-aca8-1a1b21c45f4b",
-            "#_0db97b22-45fd-46ec-a5aa-2ccbe862d2e9"
+            "#_cb9dc120-14a7-4350-8388-3ecd29865e2a",
+            "#_fd444ac7-f133-4208-a416-b99179039033",
+            "#_3a79e852-b616-4224-a86e-f680e89835af",
+            "#_5cab5613-3a04-449a-b23e-e3f42ae08aba",
+            "#_364fce5d-918b-48b3-b726-50b420abc168"
           ],
           "decisionTable": {
             "rules": [

@@ -46,6 +46,7 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
       </QuestionAlertStyle>
     );
   }
+  return null;
 };
 
 export default QuestionAlert;
