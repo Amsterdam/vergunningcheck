@@ -61,7 +61,6 @@ export default class Decision {
   getMatchingRules(inputReducer?: InputReducer): Rule[] {
     // Find the values for our inputs
     const inputs = inputReducer ? this.inputs.map(inputReducer) : this.inputs;
-
     const values = inputs.map((input) => input?.answer);
     return this.rules.filter((rule) => rule.evaluateNew(values).length !== 0);
   }

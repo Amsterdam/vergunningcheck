@@ -1,6 +1,6 @@
+import { captureException } from "@sentry/browser";
 import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useTranslation } from "react-i18next";
 
 import { HideForPrint } from "../atoms";
 import { Conclusion } from "../components/Conclusion";
@@ -23,7 +23,6 @@ import LoadingPage from "./LoadingPage";
 const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
   const sessionContext = useContext(SessionContext);
   const { hasIMTR, slug, text } = topic;
-  const { t } = useTranslation();
 
   // @TODO: replace with custom hooks
   const { questionIndex } = sessionContext[slug] || {};
@@ -162,13 +161,25 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
     if (Number.isInteger(value)) {
       // Edit specific question index (value), go directly to this new question index
       newQuestionIndex = value;
+      if (!checker.stack[newQuestionIndex]) {
+        captureException(
+          `Go to question, question with index: ${newQuestionIndex} not found`
+        );
+        return null;
+      }
       // Matomo event props
       action = actions.EDIT_QUESTION;
-      eventName = checker.stack[newQuestionIndex]?.text || t("common.unknown");
+      eventName = checker.stack[newQuestionIndex].text;
     } else if (value === "next" || value === "prev") {
       // Either go 1 question next or prev
       newQuestionIndex =
         value === "next" ? questionIndex + 1 : questionIndex - 1;
+      if (!checker.stack[newQuestionIndex]) {
+        captureException(
+          `Go to question, question with index: ${newQuestionIndex} not found`
+        );
+        return null;
+      }
       // Matomo event props
       action = checker.stack[questionIndex].text;
       eventName =
@@ -180,7 +191,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       console.error(
         `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
       );
-      return;
+      return null;
     }
 
     matomoTrackEvent({
