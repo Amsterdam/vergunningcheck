@@ -1,25 +1,15 @@
 import {
-  BaseLayer,
   MapPanel,
   MapPanelContent,
-  MapPanelContext,
   MapPanelDrawer,
-  MapPanelLegendButton,
   MapPanelProvider,
-  Zoom,
 } from "@amsterdam/arm-core";
-import { Paragraph, Spinner, ViewerContainer } from "@amsterdam/asc-ui";
+import { Button, Paragraph, Spinner, ViewerContainer } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
-import React, { useContext, useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import { Tree } from "./Map";
-
-type StyledViewerContainerProps = {
-  leftOffset?: string;
-  viewerHeight?: string;
-  ignoreTransition: boolean;
-};
 
 export enum Overlay {
   Results,
@@ -33,20 +23,14 @@ export enum SnapPoint {
   Closed,
 }
 
-const StyledViewerContainer = styled(ViewerContainer).attrs<
-  StyledViewerContainerProps
->(({ viewerHeight, leftOffset }) => ({
-  style: {
-    height: viewerHeight,
-    left: leftOffset,
-  },
-}))<StyledViewerContainerProps>`
+const StylerViewerContainer = styled(ViewerContainer)`
   z-index: 400;
-  ${({ ignoreTransition }) =>
-    !ignoreTransition &&
-    css`
-      transition: height 0.3s ease-in-out;
-    `}
+  height: 400px;
+`;
+const StyledMapPanel = styled(MapPanel)`
+  z-index: 401;
+  top: 88px;
+  height: 600px;
 `;
 
 type Props = {
@@ -56,49 +40,14 @@ type Props = {
 };
 
 const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
-  currentOverlay,
-  setCurrentOverlay,
-  showDesktopVariant,
   ...otherProps
 }) => {
-  const { drawerPosition, draggable } = useContext(MapPanelContext);
-  const height =
-    parseInt(drawerPosition, 10) < window.innerHeight / 2
-      ? "50%"
-      : drawerPosition;
+  // const height =
+  //   parseInt(drawerPosition, 10) < window.innerHeight / 2
+  //     ? "50%"
+  //     : drawerPosition;
 
-  return (
-    <>
-      {!showDesktopVariant ? (
-        <StyledViewerContainer
-          {...otherProps}
-          ignoreTransition={draggable}
-          viewerHeight={height}
-          bottomLeft={
-            <MapPanelLegendButton
-              showDesktopVariant={showDesktopVariant}
-              currentOverlay={currentOverlay}
-              setCurrentOverlay={setCurrentOverlay}
-            />
-          }
-        />
-      ) : (
-        <StyledViewerContainer
-          {...otherProps}
-          ignoreTransition={draggable}
-          leftOffset={drawerPosition}
-          topLeft={
-            <MapPanelLegendButton
-              showDesktopVariant={showDesktopVariant}
-              currentOverlay={currentOverlay}
-              setCurrentOverlay={setCurrentOverlay}
-            />
-          }
-          bottomRight={<Zoom />}
-        />
-      )}
-    </>
-  );
+  return <StylerViewerContainer {...otherProps} />;
 };
 
 // @Sven: This disabled scrolling on desktop, should this only be enabled on tablet / mobile?
@@ -118,7 +67,6 @@ type ResultProps = {
 
 const Results: React.FC<ResultProps> = ({
   currentTree,
-  currentOverlay,
   setCurrentTree,
   setCurrentOverlay,
 }) => {
@@ -128,14 +76,15 @@ const Results: React.FC<ResultProps> = ({
     // Fake loading time
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 700);
   }, [currentTree]);
 
   return (
     <MapPanelContent
-      title="Resultaten"
+      title="Kies een boom"
+      subTitle="U kunt meer dan 1 keuze maken"
       animate
-      stackOrder={currentOverlay === Overlay.Results ? 2 : 1}
+      variant={"drawer"}
       onClose={() => {
         setCurrentTree(null);
         setCurrentOverlay(Overlay.None);
@@ -154,18 +103,11 @@ const Results: React.FC<ResultProps> = ({
                 Boom coordinaten:{" "}
                 {JSON.stringify(currentTree?.geo?.geometry?.coordinates)}
               </Paragraph>
+              <Button onClick={() => console.log("asdsad")} variant="primary">
+                Ik wil deze boom kappen
+              </Button>
             </>
           )}
-          <Paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
-            nobis odit reiciendis totam! Ad adipisci alias aliquid beatae
-            commodi, consequatur cumque debitis delectus dolorem eius error
-            fugit, harum hic iure labore laborum laudantium minima, neque non
-            nulla quam quibusdam sapiente similique sit suscipit ut vel vero!
-            Accusamus ad consequatur dolore esse, facere fugiat illum maxime
-            mollitia nihil optio, quasi quisquam reprehenderit saepe sunt totam
-            unde vel veniam veritatis vero voluptates.
-          </Paragraph>
         </>
       )}
     </MapPanelContent>
@@ -193,10 +135,9 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({
     return null;
   }
 
-  const Element = showDesktopVariant ? MapPanel : MapPanelDrawer;
+  const Element = showDesktopVariant ? StyledMapPanel : MapPanelDrawer;
   return (
-    <>
-      {/* <GlobalStyle /> */}
+    <div>
       <MapPanelProvider
         variant={showDesktopVariant ? "panel" : "drawer"}
         initialPosition={SnapPoint.Full}
@@ -219,8 +160,7 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({
           }}
         />
       </MapPanelProvider>
-      <BaseLayer />
-    </>
+    </div>
   );
 };
 

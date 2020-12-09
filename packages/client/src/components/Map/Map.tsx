@@ -47,6 +47,18 @@ const markers = trees.map((tree) => tree.geo.geometry.coordinates);
 
 const StyledMap = styled(Map)`
   height: 600px;
+  overflow: hidden;
+`;
+
+const StyledViewerContainer = styled(ViewerContainer)`
+  z-index: 400;
+  height: 640px;
+  margin-top: 40px;
+`;
+const StyledResults = styled(ResultsPanel)`
+  z-index: 400;
+  height: 600px;
+  margin: 100px;
 `;
 
 const LocationMap = () => {
@@ -55,13 +67,13 @@ const LocationMap = () => {
 
   return (
     <StyledMap fullScreen>
-      <ResultsPanel
+      <StyledResults
         currentTree={currentTree}
         currentOverlay={currentOverlay}
         setCurrentOverlay={setCurrentOverlay}
         setCurrentTree={setCurrentTree}
       />
-      <ViewerContainer bottomRight={<Zoom />} />
+      <StyledViewerContainer bottomRight={<Zoom />} />
       <MarkerClusterGroup
         markers={createClusterMarkers({
           markers,
