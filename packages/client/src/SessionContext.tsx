@@ -134,17 +134,18 @@ export const SessionProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     // Prevent HomePage and other pages from not setting session data
-    if (!findTopicBySlug(slug) || !topicData.type) {
+    if (!findTopicBySlug(slug)) {
       return;
     }
 
-    // Update the `slug` key in `session` with the updated `topicData`
-    if (topicData.type !== slug) {
+    // Error when there's a mismatch between expected slug
+    if (topicData.type && topicData.type !== slug) {
       throw new Error(
         `topicData.type ('${topicData.type}') is not equal to slug ('${slug}')`
       );
     }
 
+    // Update the `slug` key in `session` with the updated `topicData`
     setSession({ [slug]: topicData });
 
     // eslint-disable-next-line
