@@ -118,15 +118,15 @@ export const SessionProvider: React.FC = ({ children }) => {
     }
 
     // Set the topic/session data when (re)initilizing
-    const initialState = slugSession || defaultTopicSession;
+    const newTopicData = slugSession || defaultTopicSession;
     if (!topicData || topicData.type !== slug) {
-      if (!initialState.type || initialState.type !== slug) {
+      if (!newTopicData.type || newTopicData.type !== slug) {
         // Set the topic `type` to the session, so we can compare the topicData
-        initialState.type = slug;
+        newTopicData.type = slug;
       }
 
-      setTopicData(initialState);
-      setSession({ [slug]: initialState });
+      setTopicData(newTopicData);
+      setSession({ [slug]: newTopicData });
     }
 
     // eslint-disable-next-line
@@ -134,12 +134,12 @@ export const SessionProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     // Prevent HomePage and other pages from not setting session data
-    if (!findTopicBySlug(slug)) {
+    if (!findTopicBySlug(slug) || !topicData.type) {
       return;
     }
 
     // Update the `slug` key in `session` with the updated `topicData`
-    if (topicData?.type !== slug) {
+    if (topicData.type !== slug) {
       throw new Error(
         `topicData.type ('${topicData.type}') is not equal to slug ('${slug}')`
       );
