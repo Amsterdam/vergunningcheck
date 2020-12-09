@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 49,
+      "version": 54,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -19,14 +19,14 @@
         },
         {
           "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Bijvoorbeeld een strandtent of een oliebollenkraam die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
           "prio": 20,
           "uuid": "sloop seizoen1"
         },
         {
-          "text": "Als u het bouwwerk dat u wilt slopen opnieuw zou gaan bouwen, mag dat dan zonder vergunning?",
+          "text": "Stel: u gaat het bouwwerk niet slopen, maar bouwen. Mag dat dan zonder vergunning?",
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAls u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
           "type": "boolean",
           "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
@@ -41,7 +41,7 @@
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakgoot of dakpannen.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
           "prio": 50,
@@ -56,7 +56,7 @@
           "uuid": "sloop onderhoud2"
         },
         {
-          "text": "Verandert de kleur of het materiaal?",
+          "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
           "prio": 70,
@@ -71,7 +71,7 @@
         }
       ],
       "decisions": {
-        "_1a0e1ab6-2223-4e07-b130-5fda2bb08ea8": {
+        "_64a6f43b-ff44-45f1-a653-7cd61e2d6954": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -110,7 +110,7 @@
             ]
           }
         },
-        "_f0141d34-bf45-432d-914f-b87780c884d3": {
+        "_f248a2d2-c223-4a9a-935f-957a96eb535f": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -149,7 +149,7 @@
             ]
           }
         },
-        "_b737d2c2-91ee-4eaa-9446-b8f59d0f565b": {
+        "_2bdd4e1e-416e-4529-a11f-55a130a7fd1a": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -195,7 +195,7 @@
             ]
           }
         },
-        "_ced9de38-965a-4038-9c88-504fc3434794": {
+        "_2ddb2b02-9a73-4bce-9274-185fb4581206": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -248,7 +248,7 @@
             ]
           }
         },
-        "_091b3278-ff7d-4b0d-863c-0dfce5e19ed2": {
+        "_3668ae95-3804-42b2-8133-8ae3d0d82461": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -310,11 +310,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_1a0e1ab6-2223-4e07-b130-5fda2bb08ea8",
-            "#_f0141d34-bf45-432d-914f-b87780c884d3",
-            "#_b737d2c2-91ee-4eaa-9446-b8f59d0f565b",
-            "#_ced9de38-965a-4038-9c88-504fc3434794",
-            "#_091b3278-ff7d-4b0d-863c-0dfce5e19ed2"
+            "#_64a6f43b-ff44-45f1-a653-7cd61e2d6954",
+            "#_f248a2d2-c223-4a9a-935f-957a96eb535f",
+            "#_2bdd4e1e-416e-4529-a11f-55a130a7fd1a",
+            "#_2ddb2b02-9a73-4bce-9274-185fb4581206",
+            "#_3668ae95-3804-42b2-8133-8ae3d0d82461"
           ],
           "decisionTable": {
             "rules": [
