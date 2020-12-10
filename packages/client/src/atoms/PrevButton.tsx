@@ -1,5 +1,5 @@
 import { Button, themeSpacing } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 import styled from "styled-components";
 
 import { PREV_BUTTON } from "../utils/test-ids";
@@ -9,7 +9,7 @@ const PrevButtonStyle = styled(Button)`
   align-self: center;
 `;
 
-const PrevButton: React.FC<React.HTMLAttributes<HTMLElement>> = ({
+const PrevButton: FunctionComponent<HTMLAttributes<HTMLElement>> = ({
   children,
   onClick,
 }) => (

@@ -1,6 +1,6 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import { removeQuotes } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
 import { EDIT_BUTTON } from "../utils/test-ids";
@@ -13,8 +13,8 @@ type QuestionAnswerProps = {
   userAnswer: string;
 };
 
-const QuestionAnswer: React.FC<
-  QuestionAnswerProps & React.HTMLAttributes<HTMLElement>
+const QuestionAnswer: FunctionComponent<
+  QuestionAnswerProps & HTMLAttributes<HTMLElement>
 > = ({
   disabled,
   onClick,

@@ -1,45 +1,15 @@
-import { Answer } from "@vergunningcheck/imtr-client";
-import React, { useEffect, useReducer } from "react";
+import React, { FunctionComponent, useEffect, useReducer } from "react";
 import { createContext } from "react";
 
 import { useSlug } from "./hooks";
+import { SessionData, TopicData, setSessionFn, setTopicFn } from "./types";
 import { findTopicBySlug } from "./utils";
 
-// @TODO: All these types are going to be moved from this file when we merge this with `checker-slopen`
-export type Restriction = {
-  __typename?: string;
-  name?: string;
-  scope?: string;
-};
-export type ZoningPlan = {
-  __typename?: string;
-  name?: string;
-  scope?: string;
-};
-export type AddressType = {
-  __typename?: string;
-  districtName: string;
-  houseNumber: number;
-  houseNumberFull: string;
-  id: string;
-  neighborhoodName: string;
-  postalCode: string;
-  residence: string;
-  restrictions: Restriction[];
-  streetName: string;
-  zoningPlans: ZoningPlan[];
-};
-export type Address = null | AddressType;
-
-export type TopicData = {
-  activeComponents?: string[];
-  address: Address;
-  answers: {
-    [id: string]: Answer;
-  };
-  finishedComponents: string[];
-  type: string;
-  questionIndex: number;
+type AppSessionContext = {
+  session: SessionData;
+  setSession: setSessionFn;
+  setTopicData: setTopicFn;
+  topicData: TopicData;
 };
 
 export const defaultTopicSession: TopicData = {
@@ -49,24 +19,6 @@ export const defaultTopicSession: TopicData = {
   finishedComponents: [],
   questionIndex: 0,
   type: "",
-};
-
-export type setTopicFn = (topicData: Partial<TopicData>) => void;
-export type setSessionFn = (sessionData: Partial<SessionData>) => void;
-
-export type SessionData = {
-  [slug: string]: null | TopicData;
-};
-
-export type setTopicSessionDataFn = (
-  topicData: null | Partial<TopicData>
-) => void;
-
-type AppSessionContext = {
-  session: SessionData;
-  setSession: setSessionFn;
-  setTopicData: setTopicFn;
-  topicData: TopicData;
 };
 
 const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
@@ -99,7 +51,7 @@ export const topicReducer = (
   };
 };
 
-export const SessionProvider: React.FC = ({ children }) => {
+export const SessionProvider: FunctionComponent = ({ children }) => {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, startSession);

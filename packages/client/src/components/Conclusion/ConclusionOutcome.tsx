@@ -1,6 +1,6 @@
 import { Heading, themeSpacing } from "@amsterdam/asc-ui";
 import { imtrOutcomes } from "@vergunningcheck/imtr-client";
-import React, { ReactNode, useEffect } from "react";
+import React, { FunctionComponent, ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
@@ -34,7 +34,7 @@ type ConclusionOutcomeProps = {
   showDiscaimer?: boolean;
 };
 
-const ConclusionOutcome: React.FC<ConclusionOutcomeProps> = ({
+const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
   conclusionContent,
   outcomeType,
   showDiscaimer,

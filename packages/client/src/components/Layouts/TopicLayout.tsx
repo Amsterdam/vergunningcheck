@@ -1,5 +1,5 @@
 import { FormTitle, Heading } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { HideForPrint } from "../../atoms";
 import { DebugVariables } from "../../debug";
@@ -11,7 +11,7 @@ interface TopicLayoutProps {
   heading?: string;
 }
 
-const TopicLayout: React.FC<TopicLayoutProps> = ({
+const TopicLayout: FunctionComponent<TopicLayoutProps> = ({
   children,
   formTitle: formTitleProp,
   heading: headingProp,

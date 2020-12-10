@@ -1,5 +1,5 @@
 import { reverse } from "named-urls";
-import React from "react";
+import { lazy } from "react";
 import { RouteProps } from "react-router-dom";
 import slugify from "slugify";
 
@@ -44,20 +44,20 @@ const baseRouteConfig: RoutePropExtended[] = [
   {
     component:
       process.env.NODE_ENV !== "production"
-        ? React.lazy(() => import(`./pages/HomePage`))
+        ? lazy(() => import(`./pages/HomePage`))
         : undefined,
     exact: true,
     name: "home",
     path: "/",
   },
   {
-    component: React.lazy(() => import(`./pages/HomePage`)),
+    component: lazy(() => import(`./pages/HomePage`)),
     exact: true,
     path: "/test",
     name: "test",
   },
   {
-    component: React.lazy(
+    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/IntroPage`)
     ),
     name: "intro",
@@ -65,7 +65,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     path: `/:slug(${imtrSlugs})`,
   },
   {
-    component: React.lazy(
+    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
     exact: true,
@@ -73,7 +73,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     path: `/:slug(${imtrSlugs})/vragen-en-uitkomst`,
   },
   {
-    component: React.lazy(
+    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationInput`)
     ),
     exact: true,
@@ -81,7 +81,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     path: `/:slug(${oloSlugs})`,
   },
   {
-    component: React.lazy(
+    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationResult`)
     ),
     exact: true,
@@ -89,7 +89,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     path: `/:slug(${oloSlugs})/adresgegevens`,
   },
   {
-    component: React.lazy(
+    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/olo/OloRedirectPage`)
     ),
     exact: true,
@@ -97,7 +97,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     path: `/:slug(${oloRedirectSlugs})`,
   },
   {
-    component: React.lazy(() => import("./pages/NotFoundPage")),
+    component: lazy(() => import("./pages/NotFoundPage")),
     name: "notfound",
     path: "*",
   },

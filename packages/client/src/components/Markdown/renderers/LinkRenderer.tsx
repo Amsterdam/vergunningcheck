@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactChildren } from "react";
 
 import { actions } from "../../../config/matomo";
 import Link from "../../Link";
 
 type LinkRendererProps = {
-  children: React.ReactChildren;
+  children: ReactChildren;
   eventLocation: string;
   href: string;
 };

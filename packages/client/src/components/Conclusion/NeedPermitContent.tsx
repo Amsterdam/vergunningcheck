@@ -1,5 +1,5 @@
 import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { HideForPrint, PrintOnly } from "../../atoms";
 import ComponentWrapper from "../../atoms/ComponentWrapper";
@@ -8,7 +8,7 @@ import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 
-const NeedPermitContent: React.FC = () => {
+const NeedPermitContent: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
   const handlePermitInfoButton = () => {
     matomoTrackEvent({

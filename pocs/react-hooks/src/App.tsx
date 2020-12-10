@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import React, {
+  createContext,
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 // - Context is needed to update everything at once
 // - Reducer is needed so we can call hooks multiple times in 1 render pass
@@ -116,7 +122,7 @@ export const sessionReducer = (
   } as SessionData;
 };
 
-const SessionProvider: React.FC = ({ children }) => {
+const SessionProvider: FunctionComponent = ({ children }) => {
   // We use the reducer to take care of too complex logic for setState.
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, defaultSession);

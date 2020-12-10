@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
 
 import { BaseLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 
-const LoadingPage: React.FC = () => (
+const LoadingPage: FunctionComponent = () => (
   <BaseLayout disablePageView>
     <Helmet>
       <title>Laden... - Amsterdam Vergunningcheck</title>

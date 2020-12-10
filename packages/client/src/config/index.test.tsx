@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { render } from "../utils/test-utils";
 import { getMatomoSiteId } from "./matomo";
@@ -15,7 +15,7 @@ const tryIntroFile = (intro: string) => {
   }
 };
 
-const AllIntroPages: React.FC = () => (
+const AllIntroPages: FunctionComponent = () => (
   <>
     {topics.map((t) =>
       t.intro ? <p key={t.intro}>{tryIntroFile(t.intro)}</p> : null

@@ -21,11 +21,8 @@ import {
   useTopicData,
   useTracking,
 } from "../hooks";
-import {
-  Address,
-  SessionContext,
-  defaultTopicSession,
-} from "../SessionContext";
+import { SessionContext, defaultTopicSession } from "../SessionContext";
+import { Address } from "../types";
 import { isEmptyObject } from "../utils";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";

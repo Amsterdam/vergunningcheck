@@ -1,5 +1,5 @@
 import { Accordion, Card, CardContent, Column, Row } from "@amsterdam/asc-ui";
-import React, { useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
@@ -15,7 +15,7 @@ type BaseLayoutProps = {
   disablePageView?: boolean;
 };
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({
+const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
   children,
   disablePageView,
 }) => {

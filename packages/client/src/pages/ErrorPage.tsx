@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
@@ -14,7 +14,7 @@ type ErrorPageProps = {
   error?: ErrorProps;
 };
 
-const ErrorPage: React.FC<ErrorPageProps> = ({ error }) => {
+const ErrorPage: FunctionComponent<ErrorPageProps> = ({ error }) => {
   const { t } = useTranslation();
   return (
     <BaseLayout>

@@ -1,9 +1,9 @@
 /* istanbul ignore file */
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { HiddenDiv } from "./HiddenDebugInfoStyles";
 
-const HiddenDebugInfo: React.FC<React.HTMLAttributes<HTMLElement>> = ({
+const HiddenDebugInfo: FunctionComponent<HTMLAttributes<HTMLElement>> = ({
   children,
   style,
 }) => (

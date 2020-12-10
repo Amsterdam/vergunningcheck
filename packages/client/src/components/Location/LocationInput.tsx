@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
-import { Address } from "../../SessionContext";
+import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import Error from "../Error";
 import Form from "../Form";

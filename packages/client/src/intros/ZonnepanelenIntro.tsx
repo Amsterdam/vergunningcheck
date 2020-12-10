@@ -1,10 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Intro } from "./shared";
-import { IntroProps } from ".";
 
-const ZonnepanelenIntro: React.FC<IntroProps> = () => {
+const ZonnepanelenIntro: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <Intro

@@ -1,5 +1,5 @@
 import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import React, { useContext, useState } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -17,7 +17,7 @@ import {
 } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const NewCheckerModal: React.FC = () => {
+const NewCheckerModal: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
   const { topicData, setTopicData } = useTopicData();
   const slug = useSlug();

@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { printOnly } from "../utils/themeUtils";
 import { avoidPageBreak } from "../utils/themeUtils";
 
-export type PrintOnlyProps = {
+type PrintOnlyProps = {
   avoidPageBreak?: boolean;
   withBorder?: boolean;
 };

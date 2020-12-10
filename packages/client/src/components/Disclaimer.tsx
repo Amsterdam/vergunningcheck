@@ -1,10 +1,10 @@
 import { CompactThemeProvider, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { DISCLAIMER_TEXT } from "../utils/test-ids";
 
-const Disclaimer: React.FC = () => {
+const Disclaimer: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <CompactThemeProvider>

@@ -13,7 +13,7 @@ import {
 export const Header = () => {
   const { matomoTrackEvent } = useTracking();
 
-  const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleClick = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: `${eventNames.LOGO} - ${sections.HEADER}`,

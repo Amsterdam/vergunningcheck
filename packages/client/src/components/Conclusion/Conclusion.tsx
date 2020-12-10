@@ -1,6 +1,6 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
 import { imtrOutcomes } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -18,7 +18,7 @@ const ConclusionWrapper = styled.div`
 `;
 const { NEED_CONTACT, NEED_PERMIT, PERMIT_FREE } = imtrOutcomes;
 
-const Conclusion: React.FC = () => {
+const Conclusion: FunctionComponent = () => {
   const { checker } = useChecker();
   const { t } = useTranslation();
 
