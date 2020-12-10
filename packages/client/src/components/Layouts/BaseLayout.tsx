@@ -69,6 +69,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
               -->`,
           }}
         />
+
         <HiddenDebugInfo>
           <Accordion title="Process debug informatie">
             <Card backgroundColor="level2" shadow>
