@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 27,
+      "version": 29,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
@@ -27,7 +27,7 @@
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
-          "description": "U gaat bijvoorbeeld een raamkozijn vervangen door een nieuw raamkozijn.",
+          "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
           "id": "uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
           "prio": 30,
@@ -49,7 +49,7 @@
         }
       ],
       "decisions": {
-        "_93507d41-1ea6-4ccf-8b7b-d39127fa2be7": {
+        "_472133d9-3025-4e47-9591-9211856d10c3": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -75,7 +75,7 @@
             ]
           }
         },
-        "_9be63635-dce8-4029-8d34-7110fe36dcf0": {
+        "_49e87c04-befc-484c-8829-154f7f5eab31": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -106,7 +106,7 @@
             ]
           }
         },
-        "_3848b954-7e1e-489a-acef-cddf4384178c": {
+        "_d9677ac1-c510-4825-8ecf-7aa36b8c0e33": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -147,7 +147,7 @@
             ]
           }
         },
-        "_79b1bd70-4d8e-4e6d-8ffb-5cff44011fa0": {
+        "_c5f42158-f2fa-4de2-9209-1a0a4260b656": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -202,10 +202,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_93507d41-1ea6-4ccf-8b7b-d39127fa2be7",
-            "#_9be63635-dce8-4029-8d34-7110fe36dcf0",
-            "#_3848b954-7e1e-489a-acef-cddf4384178c",
-            "#_79b1bd70-4d8e-4e6d-8ffb-5cff44011fa0"
+            "#_472133d9-3025-4e47-9591-9211856d10c3",
+            "#_49e87c04-befc-484c-8829-154f7f5eab31",
+            "#_d9677ac1-c510-4825-8ecf-7aa36b8c0e33",
+            "#_c5f42158-f2fa-4de2-9209-1a0a4260b656"
           ],
           "decisionTable": {
             "rules": [
@@ -262,7 +262,7 @@
       }
     },
     {
-      "version": 54,
+      "version": 70,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -279,16 +279,20 @@
           "prio": 10010
         },
         {
-          "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
+          "text": "Gaat het om een bouwwerk dat maar een deel van het jaar op zijn plek staat?",
           "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
-          "type": "boolean",
-          "id": "uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
+          "options": [
+            "Ja, het staat maar een deel van het jaar op zijn plek.",
+            "Nee, het staat het hele jaar op zijn plek."
+          ],
+          "type": "string",
+          "id": "uitv__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
           "prio": 10020,
           "uuid": "sloop seizoen1"
         },
         {
-          "text": "Stel: u gaat het bouwwerk niet slopen, maar bouwen. Mag dat dan zonder vergunning?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nAls u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
+          "text": "Als u het bouwwerk opnieuw zou bouwen, mag dat dan zonder vergunning?",
+          "description": "Als u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
           "type": "boolean",
           "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
           "prio": 10030
@@ -310,7 +314,7 @@
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
-          "description": "U gaat bijvoorbeeld een raamkozijn vervangen door een nieuw raamkozijn.",
+          "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
           "id": "uitv_696173ef-6bad-4411-848e-ec97a8566c10",
           "prio": 10060,
@@ -332,10 +336,10 @@
         }
       ],
       "decisions": {
-        "_64a6f43b-ff44-45f1-a653-7cd61e2d6954": {
+        "_4216f8f1-cc2b-478d-aa3f-e261a025758f": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
-            "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
+            "#input__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
             "#input__776dd6ba-8555-407a-b58c-dbce8e897db5"
           ],
           "decisionTable": {
@@ -343,7 +347,7 @@
               {
                 "inputs": [
                   "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
-                  false,
+                  "\"Nee, het staat het hele jaar op zijn plek.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -361,7 +365,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-"],
+                "inputs": [
+                  "-",
+                  "\"Ja, het staat maar een deel van het jaar op zijn plek.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -371,7 +379,7 @@
             ]
           }
         },
-        "_f248a2d2-c223-4a9a-935f-957a96eb535f": {
+        "_0151a341-f73b-4528-8945-cca3e26b0dfb": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -410,7 +418,7 @@
             ]
           }
         },
-        "_2bdd4e1e-416e-4529-a11f-55a130a7fd1a": {
+        "_b658a9bc-f3ff-424f-826c-b39377593440": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -456,7 +464,7 @@
             ]
           }
         },
-        "_2ddb2b02-9a73-4bce-9274-185fb4581206": {
+        "_2a60fec8-88b5-4708-b132-2d0f72ba37bd": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -509,7 +517,7 @@
             ]
           }
         },
-        "_3668ae95-3804-42b2-8133-8ae3d0d82461": {
+        "_8b276165-b281-4bd2-899d-ff75bbb3adac": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -571,11 +579,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_64a6f43b-ff44-45f1-a653-7cd61e2d6954",
-            "#_f248a2d2-c223-4a9a-935f-957a96eb535f",
-            "#_2bdd4e1e-416e-4529-a11f-55a130a7fd1a",
-            "#_2ddb2b02-9a73-4bce-9274-185fb4581206",
-            "#_3668ae95-3804-42b2-8133-8ae3d0d82461"
+            "#_4216f8f1-cc2b-478d-aa3f-e261a025758f",
+            "#_0151a341-f73b-4528-8945-cca3e26b0dfb",
+            "#_b658a9bc-f3ff-424f-826c-b39377593440",
+            "#_2a60fec8-88b5-4708-b132-2d0f72ba37bd",
+            "#_8b276165-b281-4bd2-899d-ff75bbb3adac"
           ],
           "decisionTable": {
             "rules": [
@@ -618,9 +626,9 @@
           "href": "#uitv__b6796191-3670-45a7-a02d-17b8c9591131",
           "type": "string"
         },
-        "input__ce32658d-7608-4c54-a52b-e06e4f75ca2c": {
-          "href": "#uitv__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
-          "type": "boolean"
+        "input__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212": {
+          "href": "#uitv__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
+          "type": "string"
         },
         "input__776dd6ba-8555-407a-b58c-dbce8e897db5": {
           "href": "#uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
@@ -649,7 +657,7 @@
       }
     },
     {
-      "version": 62,
+      "version": 68,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
@@ -661,16 +669,20 @@
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
-          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nIn bouwwerken gebouwd na juli 1993 mag geen asbest zitten. Bij nieuwere bouwwerken is de kans klein dat er asbest in zit.",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.  \n\nDe kans op asbest in bouwwerken gebouwd vanaf 1994 is klein.",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "prio": 20020
         },
         {
-          "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
-          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
-          "type": "boolean",
-          "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+          "text": "Gaat het om een bouwwerk dat maar een deel van het jaar op zijn plek staat?",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "options": [
+            "Ja, het staat maar een deel van het jaar op zijn plek.",
+            "Nee, het staat het hele jaar op zijn plek."
+          ],
+          "type": "string",
+          "id": "uitv__9b6a1042-2ef2-4204-b086-24b9238d9e81",
           "prio": 20030,
           "uuid": "sloop seizoen1"
         },
@@ -683,16 +695,20 @@
         }
       ],
       "decisions": {
-        "_c7a42904-f10b-450b-b184-9a67d683b45e": {
+        "_c8446b65-c9cf-41e9-9d73-fc97576fd6f0": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
+            "#input__9b6a1042-2ef2-4204-b086-24b9238d9e81",
             "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true, false, false],
+                "inputs": [
+                  true,
+                  "\"Nee, het staat het hele jaar op zijn plek.\"",
+                  false
+                ],
                 "output": "\"Meldingsplicht\""
               },
               {
@@ -700,7 +716,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-"],
+                "inputs": [
+                  "-",
+                  "\"Ja, het staat maar een deel van het jaar op zijn plek.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -710,33 +730,28 @@
             ]
           }
         },
-        "_7987cb91-2fcb-4c45-9f40-f91b2e9232dc": {
+        "_f7b0bcc6-653d-4ff1-996b-a1e593c1d190": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
-            "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
             "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, true, false, false],
+                "inputs": [false, true, false],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-"],
+                "inputs": ["-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true],
+                "inputs": ["-", "-", true],
                 "output": "\"no hit\""
               }
             ]
@@ -744,8 +759,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_c7a42904-f10b-450b-b184-9a67d683b45e",
-            "#_7987cb91-2fcb-4c45-9f40-f91b2e9232dc"
+            "#_c8446b65-c9cf-41e9-9d73-fc97576fd6f0",
+            "#_f7b0bcc6-653d-4ff1-996b-a1e593c1d190"
           ],
           "decisionTable": {
             "rules": [
@@ -774,9 +789,9 @@
           "href": "#uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "type": "boolean"
         },
-        "input__9d010148-e1ed-47c2-b5d3-7c12d3055ced": {
-          "href": "#uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
-          "type": "boolean"
+        "input__9b6a1042-2ef2-4204-b086-24b9238d9e81": {
+          "href": "#uitv__9b6a1042-2ef2-4204-b086-24b9238d9e81",
+          "type": "string"
         },
         "input__7f20e585-f04f-4f9b-911f-9adc948ce51e": {
           "href": "#uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",

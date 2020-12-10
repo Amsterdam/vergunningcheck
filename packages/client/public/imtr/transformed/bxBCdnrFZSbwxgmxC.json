@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 27,
+      "version": 29,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
@@ -27,7 +27,7 @@
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
-          "description": "U gaat bijvoorbeeld een raamkozijn vervangen door een nieuw raamkozijn.",
+          "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
           "id": "uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
           "prio": 30,
@@ -49,7 +49,7 @@
         }
       ],
       "decisions": {
-        "_6621eec8-ff19-4f8f-bf52-006f0990b413": {
+        "_472133d9-3025-4e47-9591-9211856d10c3": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -75,7 +75,7 @@
             ]
           }
         },
-        "_d8a8f7e8-0cd7-40fd-a525-e49b5eca1f88": {
+        "_49e87c04-befc-484c-8829-154f7f5eab31": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -106,7 +106,7 @@
             ]
           }
         },
-        "_945a873f-f962-4b6f-8fb4-d6fd2c73ce6d": {
+        "_d9677ac1-c510-4825-8ecf-7aa36b8c0e33": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -147,7 +147,7 @@
             ]
           }
         },
-        "_8ea686c9-29a8-478f-9613-98521ad65d8e": {
+        "_c5f42158-f2fa-4de2-9209-1a0a4260b656": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -202,10 +202,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6621eec8-ff19-4f8f-bf52-006f0990b413",
-            "#_d8a8f7e8-0cd7-40fd-a525-e49b5eca1f88",
-            "#_945a873f-f962-4b6f-8fb4-d6fd2c73ce6d",
-            "#_8ea686c9-29a8-478f-9613-98521ad65d8e"
+            "#_472133d9-3025-4e47-9591-9211856d10c3",
+            "#_49e87c04-befc-484c-8829-154f7f5eab31",
+            "#_d9677ac1-c510-4825-8ecf-7aa36b8c0e33",
+            "#_c5f42158-f2fa-4de2-9209-1a0a4260b656"
           ],
           "decisionTable": {
             "rules": [
