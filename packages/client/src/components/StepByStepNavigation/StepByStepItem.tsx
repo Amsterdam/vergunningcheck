@@ -31,11 +31,13 @@ export type StepByStepItemProps = {
   highlightActive?: boolean;
   largeCircle?: boolean;
   small?: boolean;
-} & AnchorHTMLAttributes<HTMLAnchorElement> &
-  HTMLAttributes<HTMLDivElement>;
+};
 
 const StepByStepItem: FunctionComponent<
-  StepByStepItemProps & HTMLAttributes<HTMLElement> & StyledProps<any>
+  StepByStepItemProps &
+    AnchorHTMLAttributes<HTMLAnchorElement> &
+    HTMLAttributes<HTMLDivElement> &
+    StyledProps<any>
 > = ({
   active,
   checked,
