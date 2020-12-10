@@ -38,7 +38,7 @@ const DebugDecisionTable: FunctionComponent = () => {
 
   return (
     <HiddenDebugInfo>
-      <Accordion title="Debug Decision Table:">
+      <Accordion title="Checker debug-informatie:">
         <div style={{ display: "block" }}>
           {autofilled.filter((q: Question) => q.autofill).length > 0 && (
             <>

@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-import nl from "../../i18n/nl";
+// import nl from "../../i18n/nl";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import {
   act,
@@ -17,27 +17,32 @@ import OloLocationInput from "./OloLocationInput";
 
 window.history.pushState({}, "Locatie pagina", "/dakkapel-plaatsen/locatie");
 
-// XXX to fix
-xdescribe("OloLocationInput", () => {
-  it("should render correctly", () => {
-    render(<OloLocationInput />);
-    screen.debug();
-    expect(
-      screen.queryByText(nl.translation.location["enter location"])
-    ).toBeInTheDocument();
+const mockAddress = {
+  ...addressGraphQLMock[0].request.variables,
+};
+
+jest.mock("../../hooks/useTopicData", () => () => ({
+  topicData: { address: mockAddress },
+  setTopicData: jest.fn(),
+}));
+
+describe("OloLocationInput", () => {
+  it("should render correctly with preset context", () => {
+    const {
+      houseNumberFull,
+      postalCode,
+    } = addressGraphQLMock[0].request.variables;
+
+    render(<OloLocationInput />, {}, addressGraphQLMock);
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
 
-    expect(inputPostalCode).toBeInTheDocument();
-    expect(inputPostalCode).not.toHaveValue();
-
-    expect(inputHouseNumber).toBeInTheDocument();
-    expect(inputHouseNumber).not.toHaveValue();
-
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(inputPostalCode).toHaveValue(postalCode);
+    expect(inputHouseNumber).toHaveValue(houseNumberFull);
   });
 
+  // @TODO: fix this test. This test fails because it mocks a non-OLO-url
   xit("should handle next button", async () => {
     const {
       houseNumberFull,
@@ -55,9 +60,6 @@ xdescribe("OloLocationInput", () => {
 
     const inputPostalCode = screen.getByLabelText(/postcode/i);
     const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-
-    expect(inputPostalCode).not.toHaveValue();
-    expect(inputHouseNumber).not.toHaveValue();
 
     expect(
       screen.queryByText(resultHouseNumberFull, { exact: false })
@@ -124,27 +126,5 @@ xdescribe("OloLocationInput", () => {
     });
 
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
-  });
-
-  xit("should render correctly with preset context", () => {
-    const mockAddress = {
-      ...addressGraphQLMock[0].request.variables,
-    };
-    jest.mock("../../hooks/useTopicData", () => () => ({
-      topicData: { address: mockAddress },
-    }));
-
-    const {
-      houseNumberFull,
-      postalCode,
-    } = addressGraphQLMock[0].request.variables;
-
-    render(<OloLocationInput />, {}, addressGraphQLMock);
-
-    const inputPostalCode = screen.getByLabelText(/postcode/i);
-    const inputHouseNumber = screen.getByLabelText(/huisnummer/i);
-
-    expect(inputPostalCode).toHaveValue(postalCode);
-    expect(inputHouseNumber).toHaveValue(houseNumberFull);
   });
 });

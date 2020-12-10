@@ -4,20 +4,18 @@ import React from "react";
 
 import { actions, eventNames } from "../../config/matomo";
 import { MODAL } from "../../utils/test-ids";
-import { act, fireEvent, render } from "../../utils/test-utils";
+import {
+  act,
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+} from "../../utils/test-utils";
 import EditLocationModal from "./EditLocationModal";
-
-const mockMatomoTrackEvent = jest.fn();
-jest.mock("../../hooks/useTracking", () => {
-  return jest.fn(() => ({
-    matomoTrackEvent: mockMatomoTrackEvent,
-  }));
-});
 
 jest.mock("../../hooks/useTracking");
 
 describe("EditLocationModal", () => {
-  xit("Modal should render as expected", async () => {
+  it("Modal should render as expected", async () => {
     const { getByText, queryByTestId } = render(<EditLocationModal />);
 
     expect(getByText("Wijzig")).toBeInTheDocument();

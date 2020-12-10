@@ -1,5 +1,6 @@
 import React from "react";
 
+import { actions } from "../config/matomo";
 import {
   act,
   fireEvent,
@@ -8,8 +9,6 @@ import {
   screen,
 } from "../utils/test-utils";
 import Link from "./Link";
-
-// @TODO: file contains Dutch text, translate using i18n or import from matomo.ts
 
 describe("Link", () => {
   it("renders correctly", () => {
@@ -27,7 +26,7 @@ describe("Link", () => {
     });
 
     expect(mockMatomoTrackEvent).toBeCalledWith({
-      action: "uitgaande links",
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: "test",
     });
   });
@@ -45,7 +44,7 @@ describe("Link", () => {
     });
 
     expect(mockMatomoTrackEvent).toBeCalledWith({
-      action: "uitgaande links",
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: "test",
     });
   });

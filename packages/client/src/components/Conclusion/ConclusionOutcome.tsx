@@ -30,7 +30,7 @@ type ConclusionContentProps = {
 
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
-  outcomeType: string; // @TODO: maybe define imtrOutcomes types and import from imtr-client?
+  outcomeType: string;
   showDiscaimer?: boolean;
 };
 

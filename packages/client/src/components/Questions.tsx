@@ -170,7 +170,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
-    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in useChecker)
+    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers())
     if (!contactConclusion) {
       checker.stack.forEach((q, i) => {
         if (checker.needContactExit(q)) {
@@ -295,7 +295,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       {checker.stack.map((q, i) => {
         // @TODO: Refactor this code and move to checker.js
         // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
-        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in useChecker)
+        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers())
         if (
           contactConclusion &&
           !checker._getUpcomingQuestions().length &&

@@ -1,4 +1,4 @@
-import { Accordion, Card, CardContent, Heading, Link } from "@amsterdam/asc-ui";
+import { Accordion, Card, CardContent, Heading } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useContext } from "react";
 
 import Permit from "../../../imtr-client/src/models/permit";
@@ -22,12 +22,9 @@ const DebugVariables: FunctionComponent<DebugVariablesProps> = () => {
     return null;
   }
 
-  // Array.from(process.env)
-  const ENV = process.env as { [key: string]: string | undefined };
-
   return (
     <HiddenDebugInfo>
-      <Accordion title="Debug informatie">
+      <Accordion title="Topic debug-informatie">
         <Card backgroundColor="level2" shadow>
           <CardContent>
             <Heading forwardedAs="h2">Summary</Heading>
@@ -149,55 +146,6 @@ const DebugVariables: FunctionComponent<DebugVariablesProps> = () => {
           <CardContent>
             <Heading forwardedAs="h2">useSlug</Heading>
             <Debug json={slug} />
-          </CardContent>
-        </Card>
-
-        <Card backgroundColor="level2" shadow>
-          <CardContent>
-            <HiddenDebugInfo title="Environment">
-              <Heading forwardedAs="h2">process.env</Heading>
-              <code>
-                <pre>
-                  {Object.entries(ENV).map(([key, value]) => (
-                    <span key={key}>
-                      {key}:{" "}
-                      {(() => {
-                        switch (key) {
-                          case "REACT_APP_GIT_SHA":
-                            return (
-                              <Link
-                                href={`https://github.com/Amsterdam/vergunningcheck/commit/${value}`}
-                                target="_blank"
-                              >
-                                {value}
-                              </Link>
-                            );
-                          case "REACT_APP_GRAPHQL_API_URL":
-                            return (
-                              <Link href={value} target="_blank">
-                                {value}
-                              </Link>
-                            );
-                          case "REACT_APP_GIT_BRANCH":
-                            return (
-                              <Link
-                                href={`https://github.com/Amsterdam/vergunningcheck/tree/${value}`}
-                                target="_blank"
-                              >
-                                {value}
-                              </Link>
-                            );
-                          default: {
-                            return value;
-                          }
-                        }
-                      })()}
-                      {`\n`}
-                    </span>
-                  ))}
-                </pre>
-              </code>
-            </HiddenDebugInfo>
           </CardContent>
         </Card>
       </Accordion>
