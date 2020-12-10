@@ -1,3 +1,4 @@
+// @TODO: Add translations
 import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { FunctionComponent } from "react";

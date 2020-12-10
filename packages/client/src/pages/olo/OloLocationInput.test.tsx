@@ -1,9 +1,9 @@
+// @TODO: Add translations
 import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-// import nl from "../../i18n/nl";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import {
   act,

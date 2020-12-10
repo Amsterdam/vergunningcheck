@@ -1,3 +1,4 @@
+// @TODO: Add translations
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
