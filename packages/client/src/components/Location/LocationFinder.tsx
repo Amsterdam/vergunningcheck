@@ -203,13 +203,14 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   );
 
   const showLoading = !!(
-    houseNumberFull &&
-    isValidPostalcode(postalCode) &&
-    !errorMessage &&
-    !showAutoSuggest &&
-    !showExactMatch &&
-    !showLocationNotFound &&
-    !showResult
+    (houseNumberFull &&
+      isValidPostalcode(postalCode) &&
+      !errorMessage &&
+      !showAutoSuggest &&
+      !showExactMatch &&
+      !showLocationNotFound &&
+      !showResult) ||
+    loading
   );
 
   // Debounce showing the LocationNotFound component

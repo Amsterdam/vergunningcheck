@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/browser";
 import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
@@ -163,6 +164,14 @@ const CheckerPage = () => {
       // Either go 1 question next or prev
       newQuestionIndex =
         value === "next" ? questionIndex + 1 : questionIndex - 1;
+
+      if (!checker.stack[newQuestionIndex]) {
+        captureException(
+          `Go to question, question with index: ${newQuestionIndex} not found on stack`
+        );
+        return;
+      }
+
       // Matomo event props
       action = checker.stack[questionIndex].text;
       eventName =
@@ -172,6 +181,14 @@ const CheckerPage = () => {
     } else {
       // Edit specific question index (value), go directly to this new question index
       newQuestionIndex = value;
+
+      if (!checker.stack[newQuestionIndex]) {
+        captureException(
+          `Go to question, question with index: ${newQuestionIndex} not found on stack`
+        );
+        return;
+      }
+
       // Matomo event props
       action = actions.EDIT_QUESTION;
       eventName = (checker.stack[newQuestionIndex] as any).text;
