@@ -1,8 +1,8 @@
 const { address, domain, selectors } = require("../config");
 
 const {
-  conclusionContact,
-  conclusionNeedPermitButton,
+  outcomeContact,
+  outcomeNeedPermitButton,
   introBullets,
   locationHouseNumberFull,
   locationFound,
@@ -67,8 +67,8 @@ module.exports = {
     assert.containsText(main, "Naar de uitkomst");
     b.click(navButtonNext);
 
-    // Contact conclusion has loaded
-    b.waitForElementVisible(conclusionContact);
+    // Contact outcome has loaded
+    b.waitForElementVisible(outcomeContact);
     assert.containsText(main, "Neem contact op met de gemeente");
     assert.containsText(main, "Nog een vergunningcheck doen");
     b.click(questionEditButton);
@@ -90,13 +90,13 @@ module.exports = {
     assert.containsText(main, "Naar de uitkomst");
     b.click(navButtonNext);
 
-    // Permit conclusion has loaded
-    b.waitForElementVisible(conclusionNeedPermitButton);
+    // Permit outcome has loaded
+    b.waitForElementVisible(outcomeNeedPermitButton);
     assert.containsText(main, "U hebt een omgevingsvergunning nodig.");
     assert.containsText(main, "Zo werkt aanvragen");
     assert.containsText(main, "Uitkomst opslaan");
     assert.containsText(main, "Nog een vergunningcheck doen");
-    b.click(conclusionNeedPermitButton);
+    b.click(outcomeNeedPermitButton);
 
     // The page `HOW_TO_APPLY_FOR_A_PERMIT` has loaded
     const result = await b.windowHandles();

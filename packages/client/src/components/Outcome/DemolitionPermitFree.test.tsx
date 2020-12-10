@@ -1,7 +1,7 @@
 import React from "react";
 
-import text from "../../../i18n/nl";
-import { render, screen } from "../../../utils/test-utils";
+import text from "../../i18n/nl";
+import { render, screen } from "../../utils/test-utils";
 import DemolitionPermitFree from "./DemolitionPermitFree";
 
 jest.mock("react-router-dom", () => ({
@@ -9,7 +9,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("DemolitionPermitFree", () => {
-  it("renders the 'needs permit' conclusion correctly", () => {
+  it("renders the 'needs permit' outcome correctly", () => {
     render(<DemolitionPermitFree />);
 
     expect(

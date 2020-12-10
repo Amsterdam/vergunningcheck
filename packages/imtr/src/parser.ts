@@ -1,7 +1,7 @@
 import { getAutofillResolverKey } from "./autofill.ts";
 
 import {
-  CONTENT_CONCLUSION_EXPLANATION,
+  CONTENT_OUTCOME_EXPLANATION,
   CONTENT_EXECUTION_RULE_EXPLANATION,
   CONTENT_EXPLANATION,
   CONTENT_LONG_EXPLANATION,
@@ -116,9 +116,9 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
     const rules = table[DMN_RULE].reduce((rules: JSONRule[], rule) => {
       const outputEntry = rule[DMN_OUTPUT_ENTRY][0];
       const extensionElements = outputEntry[DMN_EXTENSION_ELEMENTS];
-      const conclusionDescription =
-        extensionElements?.[0][CONTENT_CONCLUSION_EXPLANATION];
-      const description = conclusionDescription?.[0][CONTENT_EXPLANATION];
+      const outcomeDescription =
+        extensionElements?.[0][CONTENT_OUTCOME_EXPLANATION];
+      const description = outcomeDescription?.[0][CONTENT_EXPLANATION];
 
       const jsonRule: JSONRule = {
         inputs: rule[DMN_INPUT_ENTRY].reduce(
