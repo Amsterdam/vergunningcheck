@@ -165,7 +165,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         captureException(
           `Go to question, question with index: ${newQuestionIndex} not found`
         );
-        return null;
+        return;
       }
       // Matomo event props
       action = actions.EDIT_QUESTION;
@@ -178,7 +178,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
         captureException(
           `Go to question, question with index: ${newQuestionIndex} not found`
         );
-        return null;
+        return;
       }
       // Matomo event props
       action = checker.stack[questionIndex].text;
@@ -191,7 +191,7 @@ const CheckerPage = ({ checker, matomoTrackEvent, resetChecker, topic }) => {
       console.error(
         `goToQuestion(): ${value} is not an integer, 'next' or 'prev'`
       );
-      return null;
+      return;
     }
 
     matomoTrackEvent({
