@@ -16,6 +16,7 @@ type Props = {
   dependantOnQuestions?: boolean;
   dependantOnSituation?: boolean;
   exceptions?: string[];
+  introSentence?: string;
   showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
@@ -25,6 +26,7 @@ export default ({
   dependantOnQuestions = true,
   dependantOnSituation = true,
   exceptions = [],
+  introSentence,
   showContactInformation = true,
   usableForBullets = [],
   usableForText,
@@ -43,17 +45,19 @@ export default ({
 
   return (
     <>
-      <Paragraph gutterBottom={usableForBullets.length > 0 ? 8 : undefined}>
-        {t("introPage.common.check for permit intro")}{" "}
-        {usableForBullets.length > 0 && t("introPage.common.permit for")}
-      </Paragraph>
-
-      {usableForBullets.length > 0 && (
-        <List data-testid={INTRO_USABLE_FOR_BULLETS} variant="bullet">
-          {usableForBullets.map((bulletText) => (
-            <ListItem key={bulletText}>{bulletText}</ListItem>
-          ))}
-        </List>
+      {introSentence && <Paragraph>{introSentence}</Paragraph>}
+      {usableForBullets?.length > 0 && (
+        <>
+          <Paragraph gutterBottom={8}>
+            {t("introPage.common.check for permit intro")}{" "}
+            {t("introPage.common.permit for")}
+          </Paragraph>
+          <List data-testid={INTRO_USABLE_FOR_BULLETS} variant="bullet">
+            {usableForBullets?.map((bulletText) => (
+              <ListItem key={bulletText}>{bulletText}</ListItem>
+            ))}
+          </List>
+        </>
       )}
 
       {influence && (

@@ -6,12 +6,11 @@ import {
   NEED_CONTACT,
   NEED_PERMIT,
   NEED_PERMIT_BUTTON,
-  NO_PERMIT_NEEDED,
+  PERMIT_FREE,
 } from "../../utils/test-ids";
-import { act, fireEvent, render } from "../../utils/test-utils";
+import { act, fireEvent, render, screen } from "../../utils/test-utils";
 import ConclusionOutcome from "./ConclusionOutcome";
-import NeedPermitContent from "./NeedPermitContent";
-import NoPermitDescription from "./NoPermitDescription";
+import { NeedPermit, PermitFree } from "./content";
 
 const matomoTrackEvent = jest.fn();
 window.open = jest.fn();
@@ -25,28 +24,26 @@ jest.mock("react-router-dom", () => ({
 
 describe("ConclusionOutcome", () => {
   it("renders the 'needs permit' conclusion correctly", () => {
-    const { getByText, queryByTestId } = render(
+    render(
       <ConclusionOutcome
         conclusionContent={{
-          mainContent: (
-            <NeedPermitContent matomoTrackEvent={matomoTrackEvent} />
-          ),
+          mainContent: <NeedPermit matomoTrackEvent={matomoTrackEvent} />,
           title: "title",
         }}
         matomoTrackEvent={matomoTrackEvent}
       />
     );
     // Should be in document
-    expect(queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
-    expect(getByText("title")).toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
+    expect(screen.getByText("title")).toBeInTheDocument();
 
     // Shouldn't be in document
-    expect(queryByTestId(NO_PERMIT_NEEDED)).not.toBeInTheDocument();
-    expect(queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(PERMIT_FREE)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
 
     // Make sure the "Get Permit" Button works
     act(() => {
-      fireEvent.click(queryByTestId(NEED_PERMIT_BUTTON));
+      fireEvent.click(screen.queryByTestId(NEED_PERMIT_BUTTON));
     });
 
     expect(window.open).toHaveBeenCalledTimes(1);
@@ -59,22 +56,22 @@ describe("ConclusionOutcome", () => {
   });
 
   it("renders the 'permit free' conclusion correctly", () => {
-    const { getByText, queryByTestId } = render(
+    render(
       <ConclusionOutcome
         conclusionContent={{
-          footerContent: <NoPermitDescription />,
+          footerContent: <PermitFree />,
           title: "title",
         }}
         matomoTrackEvent={matomoTrackEvent}
       />
     );
     // Should be in document
-    expect(queryByTestId(NO_PERMIT_NEEDED)).toBeInTheDocument();
-    expect(getByText("title")).toBeInTheDocument();
+    expect(screen.queryByTestId(PERMIT_FREE)).toBeInTheDocument();
+    expect(screen.getByText("title")).toBeInTheDocument();
 
     // Shouldn't be in document
-    expect(queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
-    expect(queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
 
     // @TODO: Write test for PRINT_BUTTON
   });

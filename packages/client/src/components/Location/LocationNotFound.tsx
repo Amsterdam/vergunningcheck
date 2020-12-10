@@ -2,13 +2,15 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import PhoneNumber from "../PhoneNumber";
 import { Alert, ComponentWrapper } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
 import { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
+import PhoneNumber from "../PhoneNumber";
 
-const LocationNotFound: React.FC<MatomoTrackEventProps> = ({ matomoTrackEvent }) => {
+const LocationNotFound: React.FC<MatomoTrackEventProps> = ({
+  matomoTrackEvent,
+}) => {
   const { t } = useTranslation();
   useEffect(() => {
     matomoTrackEvent({
@@ -21,7 +23,9 @@ const LocationNotFound: React.FC<MatomoTrackEventProps> = ({ matomoTrackEvent })
     <ComponentWrapper>
       <Alert
         data-testid={LOCATION_NOT_FOUND}
-        heading={t("common.no address found postalcode houseNumber combination")}
+        heading={t(
+          "common.no address found postalcode houseNumber combination"
+        )}
         level="warning"
       >
         <Paragraph>

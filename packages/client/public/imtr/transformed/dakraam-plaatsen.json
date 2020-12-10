@@ -180,7 +180,7 @@
           ],
           "type": "string",
           "id": "uitv__e6c50f9d-f2fb-4ac2-b310-6de1a051b347",
-          "prio": 10,
+          "prio": 10010,
           "uuid": "dakraam monument"
         },
         {
@@ -191,7 +191,7 @@
           ],
           "type": "string",
           "id": "uitv_c60af738-8e05-4add-8f4a-9fd68b1f9161",
-          "prio": 20,
+          "prio": 10020,
           "uuid": "dakraam - onderhoud1"
         },
         {
@@ -202,7 +202,7 @@
           ],
           "type": "string",
           "id": "uitv_579db16f-0e97-43e5-913c-29a9e8d82691",
-          "prio": 30,
+          "prio": 10030,
           "uuid": "dakraam - onderhoud2"
         },
         {
@@ -213,7 +213,7 @@
           ],
           "type": "string",
           "id": "uitv_a7f7d3bc-1d0d-4646-9075-671b8f5d0e6d",
-          "prio": 40
+          "prio": 10040
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -223,12 +223,12 @@
           ],
           "type": "string",
           "id": "uitv_d2879ae6-323d-4f84-ba6d-1c411d13e3f2",
-          "prio": 50
+          "prio": 10050
         },
         {
           "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScape",
+          "autofill": "cityScapeForBuilding",
           "options": [
             "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
             "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
@@ -236,49 +236,49 @@
           ],
           "type": "string",
           "id": "uitv_e3585fd7-6eb0-45d4-9431-50af59dcec93",
-          "prio": 60
+          "prio": 10060
         },
         {
           "text": "Gaat u het dakraam plaatsen aan de achterkant van het gebouw?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Achterkant.png)",
           "type": "boolean",
           "id": "uitv__ee8c045e-b188-4285-8a60-f6b115f692e1",
-          "prio": 70
+          "prio": 10070
         },
         {
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Dakraam-Achterkant-weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__13eea7b4-8965-4a08-9e58-53b7ce506682",
-          "prio": 80
+          "prio": 10080
         },
         {
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__e27d16fb-f4dd-496a-9212-8550153875e4",
-          "prio": 90
+          "prio": 10090
         },
         {
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__461052be-8046-4d9e-9c0d-c4989650e765",
-          "prio": 100
+          "prio": 10100
         },
         {
           "text": "Gaat u het dakraam plaatsen op een plat dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/5_a_Platdak.png)",
           "type": "boolean",
           "id": "uitv__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-          "prio": 110
+          "prio": 10110
         },
         {
           "text": "Steekt het dakraam meer dan 60 centimeter uit het platte dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_plat_dak_3D_v3.png)",
           "type": "boolean",
           "id": "uitv__66f8c20a-4e2b-4783-ab74-0a48d896064f",
-          "prio": 120
+          "prio": 10120
         },
         {
           "text": "Worden de afstanden van het dakraam tot aan alle randen van uw dak meer dan 50 centimeter?",
@@ -286,7 +286,7 @@
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/12_Dakraam_afstand_tot_randen_plat_dak_v3.png)\n\nU meet deze afstanden tot de randen van uw dak.",
           "type": "boolean",
           "id": "uitv__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad",
-          "prio": 130
+          "prio": 10130
         },
         {
           "text": "Waar gaat u een dakraam plaatsen?",
@@ -294,49 +294,49 @@
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
-          "prio": 140
+          "prio": 10140
         },
         {
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__6eab41f3-c3b3-4b30-bc39-a68c36b49f32",
-          "prio": 150
+          "prio": 10150
         },
         {
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__a7e982de-940d-4e30-a300-8858c4a7de1a",
-          "prio": 160
+          "prio": 10160
         },
         {
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__68f23f69-4ecb-41db-8a79-e32eef011782",
-          "prio": 170
+          "prio": 10170
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
           "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__869431f0-45a4-4f55-b984-63b1ff6fffb2",
-          "prio": 180
+          "prio": 10180
         },
         {
           "text": "Steekt het dakraam uit het dakvlak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D_a.png)",
           "type": "boolean",
           "id": "uitv__1f671af8-95bb-493c-b6fc-d886507aeb26",
-          "prio": 190
+          "prio": 10190
         },
         {
           "text": "Steekt het dakraam meer dan 60 centimeter uit het dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
           "type": "boolean",
           "id": "uitv__f00d3f88-c82a-4b43-aa54-07f718a397b4",
-          "prio": 200
+          "prio": 10200
         },
         {
           "text": "Worden de afstanden van het dakraam tot aan alle randen van het dak meer dan 50 centimeter?",
@@ -344,7 +344,7 @@
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)\n\nU meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
           "type": "boolean",
           "id": "uitv__3d1da624-b4f0-4207-9244-b1c809258b90",
-          "prio": 210
+          "prio": 10210
         }
       ],
       "decisions": {

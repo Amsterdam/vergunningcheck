@@ -356,7 +356,7 @@
           ],
           "type": "string",
           "id": "uitv__d3f42e93-2d61-46a7-b429-a641ace772dc",
-          "prio": 10,
+          "prio": 10010,
           "uuid": "zonwering, rolhek, rolluik of luik - monument"
         },
         {
@@ -365,7 +365,7 @@
           "options": ["Zonwering", "Rolhek, rolluik of luik"],
           "type": "string",
           "id": "uitv__0f50d481-52e0-4f42-8416-f67e97a779fd",
-          "prio": 20,
+          "prio": 10020,
           "uuid": "zonwering, rolhek, rolluik of luik - wat"
         },
         {
@@ -376,7 +376,7 @@
           ],
           "type": "string",
           "id": "uitv__070c2723-b85a-47dc-99ac-edd3e5954606",
-          "prio": 30,
+          "prio": 10030,
           "uuid": "zonwering - onderhoud1"
         },
         {
@@ -387,7 +387,7 @@
           ],
           "type": "string",
           "id": "uitv__8235e864-1fe0-4d78-aabe-ae6d97960656",
-          "prio": 40,
+          "prio": 10040,
           "uuid": "zonwering - onderhoud2"
         },
         {
@@ -398,7 +398,7 @@
           ],
           "type": "string",
           "id": "uitv__54b731a0-df64-4119-b6fb-a69c4a7606ba",
-          "prio": 50,
+          "prio": 10050,
           "uuid": "rolhek, rolluik of luik - onderhoud1"
         },
         {
@@ -409,7 +409,7 @@
           ],
           "type": "string",
           "id": "uitv__82d622bb-6029-4b42-aed7-afd8e68246a6",
-          "prio": 60,
+          "prio": 10060,
           "uuid": "rolhek, rolluik of luik - onderhoud2"
         },
         {
@@ -420,7 +420,7 @@
           ],
           "type": "string",
           "id": "uitv__d068bb43-8b22-490b-ae52-3e7436a3a845",
-          "prio": 70
+          "prio": 10070
         },
         {
           "text": "U gaat een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -430,7 +430,7 @@
           ],
           "type": "string",
           "id": "uitv__80c39427-d48b-4e05-9a3e-32951c475ae0",
-          "prio": 80
+          "prio": 10080
         },
         {
           "text": "Gaat u een rolhek, rolluik of luik plaatsen of vernieuwen?",
@@ -440,7 +440,7 @@
           ],
           "type": "string",
           "id": "uitv__0dc80d83-37af-4e6b-8d20-65a15c2b61ee",
-          "prio": 90
+          "prio": 10090
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -450,12 +450,12 @@
           ],
           "type": "string",
           "id": "uitv__9b5fc8ca-c85a-485c-8888-aa388de017ef",
-          "prio": 100
+          "prio": 10100
         },
         {
           "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScape",
+          "autofill": "cityScapeForBuilding",
           "options": [
             "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
             "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
@@ -463,7 +463,7 @@
           ],
           "type": "string",
           "id": "uitv_11e6ddf2-297c-4ffa-a5ca-1a8a59161bd7",
-          "prio": 110
+          "prio": 10110
         },
         {
           "text": "Aan welke kant van het gebouw gaat u de zonwering plaatsen?",
@@ -471,28 +471,28 @@
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__89087f8f-c4c5-4c1a-8951-e1386ebee710",
-          "prio": 120
+          "prio": 10120
         },
         {
           "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__74c589ae-48f4-46a0-8d67-ff7371d96c7f",
-          "prio": 130
+          "prio": 10130
         },
         {
           "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__e36a40c6-bf92-42cd-805e-7e0b432cbcb7",
-          "prio": 140
+          "prio": 10140
         },
         {
           "text": "U gaat zonwering plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Zonwering_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__5c42ff66-4e28-4373-9223-a216c36c9d5e",
-          "prio": 150
+          "prio": 10150
         },
         {
           "text": "Aan wat voor gebouw gaat u het rolhek, rolluik of luik plaatsen?",
@@ -502,7 +502,7 @@
           ],
           "type": "string",
           "id": "uitv__bdcb18e7-d13a-41dd-af07-da2d12498d37",
-          "prio": 160
+          "prio": 10160
         },
         {
           "text": "Gaat u het rolhek, rolluik of luik plaatsen aan een hoofdgebouw of aan een bijgebouw?",
@@ -510,7 +510,7 @@
           "options": ["Hoofdgebouw", "Bijgebouw"],
           "type": "string",
           "id": "uitv__a51597de-d4a8-4c5a-87d1-bc834d7b0c67",
-          "prio": 170
+          "prio": 10170
         },
         {
           "text": "Aan welke kant van het gebouw gaat u het rolhek, rolluik of luik plaatsen?",
@@ -518,49 +518,49 @@
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__1643e5e2-b4a7-4237-9603-782f222ca017",
-          "prio": 180
+          "prio": 10180
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__a826d467-683e-4c5b-ac64-c553f13110df",
-          "prio": 190
+          "prio": 10190
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__7242f56f-63ff-4bf2-9f40-d08b6d49b3ae",
-          "prio": 200
+          "prio": 10200
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__cace8372-68da-466c-b6ec-50c89c38370f",
-          "prio": 210
+          "prio": 10210
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__b1ebb559-cb14-40d9-b42e-bb7d762a640c",
-          "prio": 220
+          "prio": 10220
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__9b680856-c4df-4892-8a0b-847b37d541d1",
-          "prio": 230
+          "prio": 10230
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__ef30e672-d2ab-4503-b333-eeb6636a18f6",
-          "prio": 240
+          "prio": 10240
         },
         {
           "text": "Komt het rolhek, rolluik of luik aan de binnenkant van de muur of het kozijn?",
@@ -568,13 +568,13 @@
           "options": ["Ja, aan de binnenkant.", "Nee, niet aan de binnenkant."],
           "type": "string",
           "id": "uitv__6b3da69a-d90f-4311-ab7b-1ea8ed513357",
-          "prio": 250
+          "prio": 10250
         },
         {
           "text": "Is 75 procent of meer van het rolhek, rolluik of luik helemaal doorzichtig of open?",
           "type": "boolean",
           "id": "uitv__33fbd679-7121-44ef-81ed-4d6b9df916bf",
-          "prio": 260
+          "prio": 10260
         }
       ],
       "decisions": {

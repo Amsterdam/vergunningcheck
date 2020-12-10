@@ -105,6 +105,15 @@ const Modal: React.FC<ModalProps> = ({
             <CompactThemeProvider>{children}</CompactThemeProvider>
 
             <ModalFooterButtons>
+              {showCloseButton && (
+                <ModalButton
+                  data-testid={MODAL_DECLINE_BUTTON}
+                  onClick={() => toggleModal(false)}
+                  variant="primaryInverted"
+                >
+                  {closeButtonText}
+                </ModalButton>
+              )}
               {showConfirmButton && (
                 <ModalButton
                   data-testid={MODAL_CONFIRM_BUTTON}
@@ -115,15 +124,6 @@ const Modal: React.FC<ModalProps> = ({
                   variant="primary"
                 >
                   {confirmText}
-                </ModalButton>
-              )}
-              {showCloseButton && (
-                <ModalButton
-                  data-testid={MODAL_DECLINE_BUTTON}
-                  onClick={() => toggleModal(false)}
-                  variant="primaryInverted"
-                >
-                  {closeButtonText}
                 </ModalButton>
               )}
             </ModalFooterButtons>

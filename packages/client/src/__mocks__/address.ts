@@ -27,6 +27,7 @@ export default [
               {
                 __typename: "Monument",
                 name: "Gemeentelijk monument",
+                scope: "MUNICIPAL",
               },
             ],
             districtName: "Landlust",
