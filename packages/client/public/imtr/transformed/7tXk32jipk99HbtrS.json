@@ -1,34 +1,34 @@
 {
   "permits": [
     {
-      "version": 1,
-      "name": "Conclusie [AUB VERWIJDEREN] aansluit digikoppeling test",
+      "version": 3,
+      "name": "Conclusie Testactiviteit FLO legal",
       "questions": [
         {
-          "text": "testvraag ivm aansluit digikoppeling",
+          "text": "Vraag 1",
           "type": "boolean",
-          "id": "uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
+          "id": "uitv__83a2953d-ca3e-4358-8c1a-4723589b9dee",
           "prio": 10
         }
       ],
       "decisions": {
-        "_204179cc-01c0-41b1-b2e9-4cf1fd6701d9": {
-          "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
+        "_ad4bc3d8-1d96-466d-9c56-835eea536050": {
+          "requiredInputs": ["#input__83a2953d-ca3e-4358-8c1a-4723589b9dee"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
+                "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false],
+                "inputs": [true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_204179cc-01c0-41b1-b2e9-4cf1fd6701d9"],
+          "requiredDecisions": ["#_ad4bc3d8-1d96-466d-9c56-835eea536050"],
           "decisionTable": {
             "rules": [
               {
@@ -44,12 +44,12 @@
         }
       },
       "inputs": {
-        "input__b2344eb2-d67c-498d-b89d-9049affb14a4": {
-          "href": "#uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
+        "input__83a2953d-ca3e-4358-8c1a-4723589b9dee": {
+          "href": "#uitv__83a2953d-ca3e-4358-8c1a-4723589b9dee",
           "type": "boolean"
         }
       }
     }
   ],
-  "slug": "oeDaandaPbYNMgh4J"
+  "slug": "7tXk32jipk99HbtrS"
 }
