@@ -1,6 +1,8 @@
 import { Checker } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { useEffect } from "react";
 import { createContext, useState } from "react";
+
+import { useSlug } from "./hooks";
 
 export type setCheckerFn = (checker?: Checker) => void;
 
@@ -26,6 +28,12 @@ export const CheckerProvider: React.FC<CheckerProviderProps> = ({
   defaultChecker = undefined,
 }) => {
   const [checker, setChecker] = useState(defaultChecker);
+  const slug = useSlug();
+
+  useEffect(() => {
+    // The slug changed, so uncheck the current checker
+    setChecker(undefined);
+  }, [slug]);
 
   return (
     <CheckerContext.Provider

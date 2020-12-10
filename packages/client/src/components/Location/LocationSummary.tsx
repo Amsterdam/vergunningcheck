@@ -59,7 +59,7 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
 }) => {
   const topic = useTopic();
   const { topicData } = useTopicData();
-  const address = addressFromLocation ? addressFromLocation : topicData.address;
+  const address = addressFromLocation ?? topicData.address;
 
   const { restrictions } = address || {};
   const { hasIMTR } = topic;

@@ -3,6 +3,7 @@ import React, { useEffect, useReducer } from "react";
 import { createContext } from "react";
 
 import { useSlug } from "./hooks";
+import { findTopicBySlug } from "./utils";
 
 // @TODO: All these types are going to be moved from this file when we merge this with `checker-slopen`
 export type Restriction = {
@@ -50,11 +51,11 @@ export const defaultTopicSession: TopicData = {
   type: "",
 };
 
-export type setTopicFn = (topicData: null | Partial<TopicData>) => void;
+export type setTopicFn = (topicData: Partial<TopicData>) => void;
 export type setSessionFn = (sessionData: Partial<SessionData>) => void;
 
 export type SessionData = {
-  [slug: string]: TopicData;
+  [slug: string]: null | TopicData;
 };
 
 export type setTopicSessionDataFn = (
@@ -90,12 +91,8 @@ const sessionReducer = (session: SessionData, data: Partial<SessionData>) => {
 
 export const topicReducer = (
   topicData: TopicData,
-  data: null | Partial<TopicData>
+  data: Partial<TopicData>
 ) => {
-  if (data === null) {
-    console.warn("Reset topicData to defaultTopicSession");
-    return defaultTopicSession;
-  }
   return {
     ...topicData,
     ...data,
@@ -107,22 +104,50 @@ export const SessionProvider: React.FC = ({ children }) => {
   // Because we sometimes need to clear the sessionStorage.
   const [session, setSession] = useReducer(sessionReducer, startSession);
   const slug = useSlug();
+  const slugSession = session[slug];
 
-  const initialState = session[slug] || defaultTopicSession;
-  const [topicData, setTopicData] = useReducer(topicReducer, initialState);
+  const [topicData, setTopicData] = useReducer(
+    topicReducer,
+    defaultTopicSession
+  );
 
   useEffect(() => {
-    // Update the `session` with default `topicData` when the `slug` changes
-    if (slug && !session[slug]) {
-      setSession({ [slug]: defaultTopicSession });
-      setTopicData(defaultTopicSession);
+    // Prevent HomePage and other pages from not setting session data
+    if (!findTopicBySlug(slug)) {
+      return;
     }
+
+    // Set the topic/session data when (re)initilizing
+    const newTopicData = slugSession || defaultTopicSession;
+    if (!topicData || topicData.type !== slug) {
+      if (!newTopicData.type || newTopicData.type !== slug) {
+        // Set the topic `type` to the session, so we can compare the topicData
+        newTopicData.type = slug;
+      }
+
+      setTopicData(newTopicData);
+      setSession({ [slug]: newTopicData });
+    }
+
     // eslint-disable-next-line
   }, [slug]);
 
   useEffect(() => {
+    // Prevent HomePage and other pages from not setting session data
+    if (!findTopicBySlug(slug)) {
+      return;
+    }
+
+    // Error when there's a mismatch between expected slug
+    if (topicData.type && topicData.type !== slug) {
+      throw new Error(
+        `topicData.type ('${topicData.type}') is not equal to slug ('${slug}')`
+      );
+    }
+
     // Update the `slug` key in `session` with the updated `topicData`
     setSession({ [slug]: topicData });
+
     // eslint-disable-next-line
   }, [topicData]);
 

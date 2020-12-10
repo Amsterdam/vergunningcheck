@@ -9,6 +9,7 @@ import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
+import { SessionContext, defaultTopicSession } from "../../SessionContext";
 import {
   NEW_CHECKER_MODAL_SAME_ADDRESS,
   RADIO_ADDRESS_1,
@@ -20,7 +21,8 @@ const NewCheckerModal: React.FC = () => {
   const { matomoTrackEvent } = useTracking();
   const { topicData, setTopicData } = useTopicData();
   const slug = useSlug();
-  const checkerContext = useContext(CheckerContext);
+  const { setChecker } = useContext(CheckerContext);
+  const { setSession } = useContext(SessionContext);
   const { t } = useTranslation();
   const [checkerSlug, setCheckerSlug] = useState(slug);
   const history = useHistory();
@@ -66,16 +68,32 @@ const NewCheckerModal: React.FC = () => {
         name: `${eventNames.DO_ANOTHER_CHECK} - ${saveAddressEvent}`,
       });
 
-      // Clear or set session data for the new checker
-      setTopicData({
-        activeComponents: saveAddress ? [sections.QUESTIONS] : [],
-        address: saveAddress ? topicData.address : null,
-        answers: {},
-        finishedComponents: saveAddress ? [sections.LOCATION_INPUT] : [],
-        questionIndex: 0,
-      });
+      // Set the the new session data for `doSaveAddress`
+      const topicSessionWithSavedAddress = {
+        ...defaultTopicSession,
+        activeComponents: [sections.QUESTIONS],
+        address: topicData.address,
+        finishedComponents: [sections.LOCATION_INPUT],
+        type: checkerSlug,
+      };
 
-      checkerContext.setChecker(undefined);
+      // Set the new topic data. SessionContext will interpret `null` by replacing it with default data.
+      const newTopicData = doSaveAddress
+        ? topicSessionWithSavedAddress
+        : defaultTopicSession;
+
+      if (checkerSlug === slug) {
+        // Only change the topicData for the current topic
+        setTopicData(newTopicData);
+      } else {
+        // Change the topicData for another topic
+        setSession({
+          [checkerSlug]: newTopicData,
+        });
+      }
+
+      // Clear checker and go to the new topic slug
+      setChecker(undefined);
       history.push(geturl(routes.checker, { slug: checkerSlug }));
     }
   };

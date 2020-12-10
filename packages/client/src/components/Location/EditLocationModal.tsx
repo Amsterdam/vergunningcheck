@@ -4,6 +4,7 @@ import React from "react";
 import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { defaultTopicSession } from "../../SessionContext";
 import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
@@ -25,7 +26,7 @@ const EditLocationModal: React.FC = () => {
       name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
     });
 
-    setTopicData(null);
+    setTopicData(defaultTopicSession);
     setChecker(undefined);
   };
 

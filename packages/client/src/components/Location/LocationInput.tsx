@@ -33,13 +33,13 @@ const LocationInput = ({
   const { t } = useTranslation();
 
   const { hasIMTR, slug, text } = topic;
-  const address: Address = topicData.address || null;
+  const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
 
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
-    if (address && address.postalCode) {
+    if (address?.postalCode) {
       const monument = getRestrictionByTypeName(
         address.restrictions,
         "Monument"

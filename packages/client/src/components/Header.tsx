@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import { useHistory } from "react-router-dom";
 
 import { actions, eventNames, sections } from "../config/matomo";
 import { useTracking } from "../hooks";
@@ -13,29 +12,29 @@ import {
 
 export const Header = () => {
   const { matomoTrackEvent } = useTracking();
-  const history = useHistory();
 
   const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: `${eventNames.LOGO} - ${sections.HEADER}`,
     });
-    if (process.env.NODE_ENV !== "production") {
-      e.preventDefault();
-      history.push(routes.home);
-    }
   };
+
+  const homeLink =
+    process.env.NODE_ENV === "production"
+      ? "https://amsterdam.nl/"
+      : routes.home;
 
   return (
     <StyledHeader
-      homeLink="https://amsterdam.nl/"
-      tall
       css={StyledHeaderWrapper}
+      homeLink=""
       logo={() => (
-        <StyledLogoWrapper onClick={handleClick} tabIndex={4}>
+        <StyledLogoWrapper href={homeLink} onClick={handleClick} tabIndex={4}>
           <StyledLogo />
         </StyledLogoWrapper>
       )}
+      tall
     />
   );
 };
