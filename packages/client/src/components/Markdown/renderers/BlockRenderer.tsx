@@ -1,9 +1,9 @@
-import React from "react";
+import React, { ReactChildren } from "react";
 
 import { StyledParagraph } from "./BlockRendererStyles";
 
 type Props = {
-  children: React.ReactChildren;
+  children: ReactChildren;
 };
 
 /**

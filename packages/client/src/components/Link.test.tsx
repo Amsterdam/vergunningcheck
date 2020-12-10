@@ -1,18 +1,19 @@
 import React from "react";
 
-import { act, fireEvent, render, screen } from "../utils/test-utils";
+import { actions } from "../config/matomo";
+import {
+  act,
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+  screen,
+} from "../utils/test-utils";
 import Link from "./Link";
-
-jest.mock("react-router-dom", () => ({
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
-}));
-
-const matomoTrackEvent = jest.fn();
 
 describe("Link", () => {
   it("renders correctly", () => {
     render(
-      <Link href="/link" matomoTrackEvent={matomoTrackEvent}>
+      <Link href="/link" eventName="test">
         link
       </Link>
     );
@@ -24,11 +25,14 @@ describe("Link", () => {
       fireEvent.click(anchor);
     });
 
-    expect(matomoTrackEvent).not.toBeCalled();
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: "test",
+    });
   });
   it("tracks the event correctly", () => {
     render(
-      <Link eventName="test" href="/link" matomoTrackEvent={matomoTrackEvent}>
+      <Link eventName="test" href="/link">
         link
       </Link>
     );
@@ -39,6 +43,9 @@ describe("Link", () => {
       fireEvent.click(anchor);
     });
 
-    expect(matomoTrackEvent).toBeCalled();
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.CLICK_EXTERNAL_NAVIGATION,
+      name: "test",
+    });
   });
 });

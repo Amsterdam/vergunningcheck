@@ -1,17 +1,14 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import {
-  Checker,
-  ClientOutcomes,
-  imtrOutcomes,
-} from "@vergunningcheck/imtr-client";
-import React from "react";
+import { ClientOutcomes, imtrOutcomes } from "@vergunningcheck/imtr-client";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Topic, urls } from "../../config";
+import { urls } from "../../config";
 import { eventNames, sections } from "../../config/matomo";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { useChecker, useTopic } from "../../hooks";
 import Disclaimer from "../Disclaimer";
+import Loading from "../Loading";
 import Markdown from "../Markdown";
 import ConclusionOutcome from "./ConclusionOutcome";
 import {
@@ -27,26 +24,22 @@ const ConclusionWrapper = styled.div`
   }
 `;
 
-const {
-  NEED_BOTH_PERMIT_AND_REPORT,
-  NEED_CONTACT,
-  NEED_PERMIT,
-  NEED_REPORT,
-  PERMIT_FREE,
-} = ClientOutcomes;
-
-type ConclusionProps = {
-  checker: Checker;
-  topic: Topic;
-};
-
-const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
-  checker,
-  matomoTrackEvent,
-  topic,
-}) => {
+const Conclusion: FunctionComponent = () => {
+  const { checker } = useChecker();
+  const topic = useTopic();
   const { t } = useTranslation();
 
+  const {
+    NEED_BOTH_PERMIT_AND_REPORT,
+    NEED_CONTACT,
+    NEED_PERMIT,
+    NEED_REPORT,
+    PERMIT_FREE,
+  } = ClientOutcomes;
+
+  if (checker === undefined) {
+    return <Loading />;
+  }
   // Get all the outcomes to display
   const outcomes = checker.getOutcomesToDisplay();
 
@@ -160,7 +153,6 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
       <ConclusionOutcome
         {...{
           conclusionContent,
-          matomoTrackEvent,
           outcomeType,
           showDiscaimer,
         }}
@@ -171,4 +163,4 @@ const Conclusion: React.FC<ConclusionProps & MatomoTrackEventProps> = ({
   );
 };
 
-export default withTracking(Conclusion);
+export default Conclusion;

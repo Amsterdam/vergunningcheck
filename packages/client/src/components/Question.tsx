@@ -2,14 +2,15 @@ import {
   ClientOutcomes,
   Question as ImtrQuestion,
 } from "@vergunningcheck/imtr-client";
-import React, { useEffect } from "react";
+import React, { FormEvent, FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../atoms";
 import { actions, eventNames } from "../config/matomo";
-import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
-import { QUESTION_PAGE } from "../utils/test-ids";
+import { useTracking } from "../hooks";
+import { BooleanOption } from "../types";
+import { QUESTION_FORM } from "../utils/test-ids";
 import Answers, { AnswerProps } from "./Answers";
 import Form from "./Form";
 import Markdown from "./Markdown";
@@ -17,7 +18,7 @@ import Modal from "./Modal";
 import Nav from "./Nav";
 import QuestionAlert from "./QuestionAlert";
 
-export const booleanOptions = [
+export const booleanOptions: BooleanOption[] = [
   {
     label: "Ja",
     formValue: "yes",
@@ -31,7 +32,6 @@ export const booleanOptions = [
 ];
 
 type QuestionProps = {
-  matomoTrackEvent: any;
   question: ImtrQuestion;
   onGoToNext: () => void;
   onGoToPrev: () => void;
@@ -41,11 +41,10 @@ type QuestionProps = {
   shouldGoToConlusion: () => boolean;
   showQuestionAlert: boolean;
   showNext: boolean;
-  userAnswer: string;
+  userAnswer?: string;
 };
 
-const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
-  matomoTrackEvent,
+const Question: FunctionComponent<QuestionProps> = ({
   question,
   questionIndex,
   outcomeType,
@@ -66,6 +65,8 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     text: questionTitle,
     type: questionType,
   } = question;
+  const { matomoTrackEvent } = useTracking();
+
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const { t } = useTranslation();
   const listAnswers = questionAnswers?.map(
@@ -105,7 +106,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
     requiredFieldRadio,
   ]);
 
-  const handleChange = (e: React.MouseEvent) => {
+  const handleChange = (e: FormEvent) => {
     const { name, type, value } = e.target as HTMLInputElement;
 
     // Save the changed answer to the question.
@@ -125,7 +126,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
   return (
     <Form
       dataId={questionId}
-      dataTestId={QUESTION_PAGE}
+      dataTestId={QUESTION_FORM}
       onSubmit={handleSubmit(onGoToNext)}
     >
       {description && (
@@ -167,4 +168,4 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
   );
 };
 
-export default withTracking(Question);
+export default Question;

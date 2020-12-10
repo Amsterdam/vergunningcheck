@@ -1,10 +1,20 @@
-import { Alert } from "@amsterdam/asc-ui";
-import styled from "styled-components";
+import { Alert, themeSpacing } from "@amsterdam/asc-ui";
+import styled, { css } from "styled-components";
 
-export default styled(Alert)`
+type AlertProps = {
+  marginBottom?: number;
+};
+
+export default styled(Alert)<AlertProps>`
+  margin-top: ${themeSpacing(4)};
   /* IE11 Fix */
   display: block;
   white-space: pre-line;
+
+  ${({ marginBottom }) =>
+    css`
+      margin-bottom: ${marginBottom ? marginBottom + "px" : themeSpacing(6)};
+    `}
 
   @media print {
     -webkit-print-color-adjust: exact;

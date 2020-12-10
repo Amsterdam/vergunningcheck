@@ -1,12 +1,13 @@
+// @TODO: TRANSLATE
 import { Heading, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
-import React, { ReactNode, useEffect } from "react";
+import React, { FunctionComponent, ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
-import { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { useTracking } from "../../hooks";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
@@ -30,14 +31,16 @@ type ConclusionContentProps = {
 
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
-  matomoTrackEvent: Function;
   outcomeType: ClientOutcomes;
   showDiscaimer?: boolean;
 };
 
-const ConclusionOutcome: React.FC<
-  ConclusionOutcomeProps & MatomoTrackEventProps
-> = ({ conclusionContent, matomoTrackEvent, outcomeType, showDiscaimer }) => {
+const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
+  conclusionContent,
+  outcomeType,
+  showDiscaimer,
+}) => {
+  const { matomoTrackEvent } = useTracking();
   const { footerContent, mainContent, title } = conclusionContent;
 
   useEffect(() => {

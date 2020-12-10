@@ -1,12 +1,12 @@
 import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { HideForPrint, PrintOnly } from "../../../atoms";
 import ComponentWrapper from "../../../atoms/ComponentWrapper";
 import { urls } from "../../../config";
 import { actions, eventNames } from "../../../config/matomo";
-import withTracking, { MatomoTrackEventProps } from "../../../hoc/withTracking";
+import { useTracking } from "../../../hooks";
 import { NEED_PERMIT_BUTTON } from "../../../utils/test-ids";
 
 type NeedPermitProps = {
@@ -16,13 +16,13 @@ type NeedPermitProps = {
   url?: string;
 };
 
-const NeedPermit: React.FC<NeedPermitProps & MatomoTrackEventProps> = ({
+const NeedPermit: FunctionComponent<NeedPermitProps> = ({
   contentText,
   eventName = eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
-  matomoTrackEvent,
   linkText,
   url = urls.GENERAL_PERMIT_PAGE,
 }) => {
+  const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
   const content =
@@ -66,4 +66,4 @@ const NeedPermit: React.FC<NeedPermitProps & MatomoTrackEventProps> = ({
   );
 };
 
-export default withTracking(NeedPermit);
+export default NeedPermit;

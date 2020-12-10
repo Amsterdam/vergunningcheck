@@ -1,11 +1,10 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { HideForPrint } from "../atoms";
+import { Alert, HideForPrint } from "../atoms";
 import { QUESTION_ALERT } from "../utils/test-ids";
-import { QuestionAlertStyle } from "./QuestionAlertStyles";
 
 export type QuestionAlertProps = {
   marginBottom?: number;
@@ -14,7 +13,7 @@ export type QuestionAlertProps = {
 
 const { NEED_CONTACT, NEED_PERMIT } = ClientOutcomes;
 
-const QuestionAlert: React.FC<QuestionAlertProps> = ({
+const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
   marginBottom,
   outcomeType,
 }) => {
@@ -23,8 +22,9 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
   // Only show this Alert for select outcomes
   if (outcomeType === NEED_PERMIT || outcomeType === NEED_CONTACT) {
     return (
-      <QuestionAlertStyle
+      <Alert
         data-testid={QUESTION_ALERT}
+        level="warning"
         marginBottom={marginBottom}
       >
         <Paragraph>
@@ -43,7 +43,7 @@ const QuestionAlert: React.FC<QuestionAlertProps> = ({
               "question.alert.this anwser makes it unable to determine the outcome"
             )}
         </Paragraph>
-      </QuestionAlertStyle>
+      </Alert>
     );
   }
   return null;

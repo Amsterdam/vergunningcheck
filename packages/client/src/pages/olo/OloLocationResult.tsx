@@ -1,35 +1,28 @@
+// @TODO: Add translations
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
-import React, { Suspense, useContext } from "react";
+import React, { FormEvent, FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import Form from "../../components/Form";
-import Layout from "../../components/Layouts/DefaultLayout";
+import { TopicLayout } from "../../components/Layouts";
 import Loading from "../../components/Loading";
 import { LocationSummary } from "../../components/Location/";
 import Nav from "../../components/Nav";
-import { Topic, generateOloUrl } from "../../config";
+import { generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { SessionContext, SessionDataType } from "../../context";
-import withChecker from "../../hoc/withChecker";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 
-export type OloLocationResultProps = {
-  topic: Topic;
-};
-
-const OloLocationResult: React.FC<
-  OloLocationResultProps & MatomoTrackEventProps
-> = ({ matomoTrackEvent, topic }) => {
-  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
-    SessionContext
-  );
+const OloLocationResult: FunctionComponent = () => {
+  const topic = useTopic();
   const history = useHistory();
+  const { topicData } = useTopicData();
+  const { matomoTrackEvent } = useTracking();
 
   const { text } = topic;
-  const { address } = sessionContext[topic.slug] || {};
+  const { address } = topicData;
 
   // This is to prevent a bug when the Session Storage data is manually cleared
   if (!address) {
@@ -37,7 +30,7 @@ const OloLocationResult: React.FC<
     return null;
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
@@ -55,7 +48,7 @@ const OloLocationResult: React.FC<
   };
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Adresgegevens - {text.heading}</title>
       </Helmet>
@@ -96,8 +89,8 @@ const OloLocationResult: React.FC<
           />
         </Form>
       </Suspense>
-    </Layout>
+    </TopicLayout>
   );
 };
 
-export default withTracking(withChecker(OloLocationResult));
+export default OloLocationResult;

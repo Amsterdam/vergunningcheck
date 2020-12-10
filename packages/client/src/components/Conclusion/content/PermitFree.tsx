@@ -1,11 +1,11 @@
 import { Heading, ListItem } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { List } from "../../../atoms/index";
 import { PERMIT_FREE } from "../../../utils/test-ids";
 
-const PermitFree: React.FC = () => {
+const PermitFree: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <>

@@ -35,7 +35,7 @@ export type AutofillResolverMap = { [name: string]: Resolver };
  */
 export default class Checker {
   readonly permits: Permit[];
-  private _stack: Question[] = [];
+  readonly stack: Question[] = [];
   private autofillData = "";
   private done = false;
 
@@ -55,15 +55,8 @@ export default class Checker {
   }
 
   /**
-   * @returns - a list of questions in the stack
-   */
-  get stack(): Question[] {
-    return this._stack;
-  }
-
-  /**
    * Returns a list of questionIds with the given answers.
-   * Useful to store in React.Context or in sessionStorage
+   * Useful to store in Context or in sessionStorage
    *
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
@@ -316,7 +309,7 @@ export default class Checker {
     }
     const question = this._getNextQuestion();
     if (question) {
-      this._stack.push(question);
+      this.stack.push(question);
     } else {
       this.done = true;
     }

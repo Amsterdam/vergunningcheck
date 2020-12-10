@@ -1,23 +1,17 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React, { useContext } from "react";
+import React, { FunctionComponent } from "react";
 
 import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { SessionContext, SessionDataType } from "../../context";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { defaultTopicSession } from "../../SessionContext";
 import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const EditLocationModal: React.FC<
-  {
-    resetChecker: () => void;
-    slug: string;
-  } & MatomoTrackEventProps
-> = ({ matomoTrackEvent, resetChecker, slug }) => {
-  // @TODO: replace this with React custom hooks
-  const sessionContext = useContext<
-    SessionDataType & { setSessionData?: any; resetSessionData?: any }
-  >(SessionContext);
+const EditLocationModal: FunctionComponent = () => {
+  const { matomoTrackEvent } = useTracking();
+  const { setChecker } = useChecker();
+  const { setTopicData } = useTopicData();
 
   const handleOpenModal = () => {
     matomoTrackEvent({
@@ -32,8 +26,8 @@ const EditLocationModal: React.FC<
       name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
     });
 
-    sessionContext.resetSessionData(slug);
-    resetChecker();
+    setTopicData(defaultTopicSession);
+    setChecker(undefined);
   };
 
   return (
@@ -64,4 +58,4 @@ const EditLocationModal: React.FC<
   );
 };
 
-export default withTracking(EditLocationModal);
+export default EditLocationModal;

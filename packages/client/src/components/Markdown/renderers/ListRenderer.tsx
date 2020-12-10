@@ -1,7 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { List } from "../../../atoms";
 
-export default ({ children }: { children: React.ReactChildren }) => (
+const ListRenderer: FunctionComponent = ({ children }) => (
   <List variant="bullet">{children}</List>
 );
+
+export default ListRenderer;

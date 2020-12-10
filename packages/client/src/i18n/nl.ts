@@ -2,22 +2,25 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
-      "fill in address": "Invullen adres",
       "housenumber label": "Huisnummer + toevoeging",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
       "to the questions": "Naar de vragen",
-      "try again or contact city of amsterdam":
-        "Probeer het opnieuw. Of neem contact op met de gemeente op telefoonnummer",
       next: "Volgende",
-      "no address found api down":
-        "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
-      "no address found postalcode houseNumber combination":
-        "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer.",
       "no valid postalcode":
         "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       unknown: "Onbekend",
+    },
+    errorMessages: {
+      "category not found": "category niet gevonden",
+      "error occured": "Er is een fout opgetreden.",
+      "unfortunately we cannot get address results":
+        "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
+      "please try again later or contact the city on":
+        "Probeer het opnieuw. Of neem contact op met de gemeente op telefoonnummer",
+      "no address found postalcode houseNumber combination":
+        "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer.",
     },
     introPage: {
       common: {
@@ -81,6 +84,13 @@ export default {
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
     },
+    location: {
+      "enter location": "Invullen adres",
+      testing: {
+        "address input":
+          "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
+      },
+    },
     question: {
       alert: {
         "this answer causes a need for permit":
@@ -90,10 +100,6 @@ export default {
         "this anwser makes it unable to determine the outcome":
           "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.",
       },
-    },
-    locationInputTest: {
-      "address input":
-        "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
     },
     outcome: {
       disclaimer:
