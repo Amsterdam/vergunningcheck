@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 import { actions } from "../config/matomo";
 import { useTracking } from "../hooks";
 
-type Props = {
+type LinkProps = {
   action?: string;
   children: ReactNode;
   darkBackground?: boolean;
@@ -13,6 +13,7 @@ type Props = {
   internal?: boolean;
   inList?: boolean;
   strong?: boolean;
+  target?: string;
   variant?: string | null;
 };
 
@@ -22,7 +23,7 @@ const Link = ({
   eventName,
   href,
   ...rest
-}: Props) => {
+}: LinkProps) => {
   const { matomoTrackEvent } = useTracking();
 
   const onClick = () => {

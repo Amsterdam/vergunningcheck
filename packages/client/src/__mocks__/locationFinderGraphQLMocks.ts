@@ -120,6 +120,7 @@ export default [
               {
                 __typename: "Monument",
                 name: "Gemeentelijk monument",
+                scope: "MUNICIPAL",
               },
             ],
             districtName: "Landlust",
@@ -127,15 +128,19 @@ export default [
             zoningPlans: [
               {
                 name: "Paraplubestemmingsplan Stadsdeel West",
-              },
-              {
-                name: "Aanpassen geluidzone Westpoort en Hoogtij",
+                scope: "MUNICIPAL",
               },
               {
                 name: "Landlust en Gibraltarbuurt",
+                scope: "MUNICIPAL",
+              },
+              {
+                name: "Aanpassen geluidzone Westpoort en Hoogtij",
+                scope: "MUNICIPAL",
               },
               {
                 name: "Drijvende bouwwerken",
+                scope: "MUNICIPAL",
               },
             ],
           },

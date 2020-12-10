@@ -45,6 +45,24 @@ const CheckerPage = () => {
     finishedComponents = [],
   } = topicData || {};
 
+  useEffect(() => {
+    // In case no active sections are found, reset the checker
+    // This is a fallback to prevent users being stuck without any active component
+    const activeComponent = [
+      sections.CONCLUSION,
+      sections.LOCATION_INPUT,
+      sections.QUESTIONS,
+    ].find((section) => isActive(section));
+
+    if (!activeComponent) {
+      console.error("Resetting checker, because no active section was found");
+      setTopicData(defaultTopicSession);
+    }
+
+    // Prevent linter to add all dependencies, now the useEffect is only called on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const isActive = useCallback(
     (component: string[] | string, finished: boolean = false) => {
       // If component is only a string, we make it a array first

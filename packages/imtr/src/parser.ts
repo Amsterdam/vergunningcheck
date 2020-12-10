@@ -231,7 +231,10 @@ const getQuestions = (
     }
 
     result.id = rule.attributes.id; // TODO: generate our own hash for id's
-    if (rule[INTER_PRIORITY]) result.prio = rule[INTER_PRIORITY];
+    // Just pass prio from rule-definition here, we'll fix the prio when merging the permits together
+    result.prio = rule[INTER_PRIORITY];
+
+    // Questions can be deduplicated with uuid
     if (rule[UITV_REUSABLE_ID]) result.uuid = rule[UITV_REUSABLE_ID];
 
     const x: JSONQuestion = result;

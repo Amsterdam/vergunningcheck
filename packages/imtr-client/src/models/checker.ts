@@ -6,10 +6,19 @@ import Permit from "./permit";
 import Question from "./question";
 
 export const imtrOutcomes = {
-  NEED_PERMIT: '"Vergunningplicht"',
   NEED_CONTACT: '"NeemContactOpMet"',
+  NEED_PERMIT: '"Vergunningplicht"',
+  NEED_REPORT: '"Meldingsplicht"',
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
+
+export enum ClientOutcomes {
+  NEED_BOTH_PERMIT_AND_REPORT,
+  NEED_CONTACT,
+  NEED_PERMIT,
+  NEED_REPORT,
+  PERMIT_FREE,
+}
 
 export type AutofillData = {
   address?: any; // eslint-disable-line
@@ -342,32 +351,44 @@ export default class Checker {
 
   /**
    *
-   * Returns the type of the outcome as defined in `imtrOutcomes`
+   * Returns an outcome (as defined in `imtrOutcomes`) for each permit
    *
    */
-  outcomeType(): string {
+  getAllOutcomeTypes(): string[] {
     const outcomes = this.getOutcomesToDisplay();
+    return outcomes.map(({ outcome }) => outcome);
+  }
 
-    // Check if one of the outcomes has 'need contact'
+  /**
+   *
+   * Returns the final outcome for the client (as defined in `ClientOutcomes`)
+   *
+   */
+  getClientOutcomeType(): ClientOutcomes {
+    const outcomes = this.getAllOutcomeTypes();
+
     const needContactOutcome = outcomes.find(
-      ({ outcome }: { outcome: string }) =>
-        outcome === imtrOutcomes.NEED_CONTACT
+      (outcome) => outcome === imtrOutcomes.NEED_CONTACT
     );
-
-    // Check if one of the outcomes has 'need permit'
     const needPermitOutcome = outcomes.find(
-      ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_PERMIT
+      (outcome) => outcome === imtrOutcomes.NEED_PERMIT
+    );
+    const needReportOutcome = outcomes.find(
+      (outcome) => outcome === imtrOutcomes.NEED_REPORT
     );
 
     if (needContactOutcome) {
       // The contact outcome has most priority to display
-      return imtrOutcomes.NEED_CONTACT;
+      return ClientOutcomes.NEED_CONTACT;
+    } else if (needPermitOutcome && needReportOutcome) {
+      return ClientOutcomes.NEED_BOTH_PERMIT_AND_REPORT;
     } else if (needPermitOutcome) {
-      // @TODO: extend this with 'need report' and 'need report AND need permit'
-      return imtrOutcomes.NEED_PERMIT;
+      return ClientOutcomes.NEED_PERMIT;
+    } else if (needReportOutcome) {
+      return ClientOutcomes.NEED_REPORT;
     } else {
       // The fallback outcome is permit-free, this is inherited from Flo Legal and IMTR
-      return imtrOutcomes.PERMIT_FREE;
+      return ClientOutcomes.PERMIT_FREE;
     }
   }
 }

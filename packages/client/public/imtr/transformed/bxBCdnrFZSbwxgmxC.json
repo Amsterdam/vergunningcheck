@@ -1,12 +1,13 @@
 {
   "permits": [
     {
-      "version": 23,
+      "version": 27,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
           "text": "Staat er een monument op het adres waar u gaat slopen?",
           "description": "Het rijk of de gemeente kan een gebouw, schuur of fontein als monument aanwijzen.",
+          "autofill": "monumentOnAddress",
           "options": [
             "Ja, een rijksmonument.",
             "Ja, een gemeentelijk monument.",
@@ -17,22 +18,23 @@
           "prio": 10
         },
         {
-          "text": "Gaat u een onderdeel  van een gebouw  slopen?",
-          "description": "Denk aan het verwijderen van een raamkozijn, een dakgoot of dakpannen.",
+          "text": "Gaat u een deel van een bouwwerk slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "id": "uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
           "prio": 20,
           "uuid": "sloop onderhoud1"
         },
         {
-          "text": "Gaat u dat onderdeel vervangen door een nieuw onderdeel?",
+          "text": "Gaat u dat deel vervangen door een nieuw deel?",
+          "description": "U gaat bijvoorbeeld een raamkozijn vervangen door een nieuw raamkozijn.",
           "type": "boolean",
           "id": "uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
           "prio": 30,
           "uuid": "sloop onderhoud2"
         },
         {
-          "text": "Verandert de kleur of het materiaal?",
+          "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "id": "uitv_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
           "prio": 40,
@@ -47,7 +49,7 @@
         }
       ],
       "decisions": {
-        "_ef2ebb8c-bef6-474f-a7bd-83bf6a89cc82": {
+        "_6621eec8-ff19-4f8f-bf52-006f0990b413": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
@@ -73,7 +75,7 @@
             ]
           }
         },
-        "_a303f94b-bc3a-4294-aa1e-d1f663daa4c2": {
+        "_d8a8f7e8-0cd7-40fd-a525-e49b5eca1f88": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -104,7 +106,7 @@
             ]
           }
         },
-        "_f57e703f-96c7-4814-a530-016a3270f8bd": {
+        "_945a873f-f962-4b6f-8fb4-d6fd2c73ce6d": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -145,7 +147,7 @@
             ]
           }
         },
-        "_fe47318d-fa97-4a5a-95c3-8328c01d9ca4": {
+        "_8ea686c9-29a8-478f-9613-98521ad65d8e": {
           "requiredInputs": [
             "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
             "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
@@ -200,10 +202,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_ef2ebb8c-bef6-474f-a7bd-83bf6a89cc82",
-            "#_a303f94b-bc3a-4294-aa1e-d1f663daa4c2",
-            "#_f57e703f-96c7-4814-a530-016a3270f8bd",
-            "#_fe47318d-fa97-4a5a-95c3-8328c01d9ca4"
+            "#_6621eec8-ff19-4f8f-bf52-006f0990b413",
+            "#_d8a8f7e8-0cd7-40fd-a525-e49b5eca1f88",
+            "#_945a873f-f962-4b6f-8fb4-d6fd2c73ce6d",
+            "#_8ea686c9-29a8-478f-9613-98521ad65d8e"
           ],
           "decisionTable": {
             "rules": [

@@ -1,5 +1,6 @@
+// @TODO: TRANSLATE
 import { Heading, themeSpacing } from "@amsterdam/asc-ui";
-import { imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent, ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
@@ -30,7 +31,7 @@ type ConclusionContentProps = {
 
 type ConclusionOutcomeProps = {
   conclusionContent: ConclusionContentProps;
-  outcomeType: string;
+  outcomeType: ClientOutcomes;
   showDiscaimer?: boolean;
 };
 
@@ -71,7 +72,7 @@ const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
         {!isIE && !isMobile && (
           <PrintButton
             data-testid={PRINT_BUTTON}
-            marginBottom={outcomeType === imtrOutcomes.PERMIT_FREE ? 32 : 40}
+            marginBottom={outcomeType === ClientOutcomes.PERMIT_FREE ? 32 : 40}
             onClick={handlePrintButton}
             variant="textButton"
           >

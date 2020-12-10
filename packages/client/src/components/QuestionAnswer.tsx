@@ -1,36 +1,30 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import { removeQuotes } from "@vergunningcheck/imtr-client";
+import { ClientOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { EditButton, TextToEdit } from "../atoms";
-import { EDIT_BUTTON } from "../utils/test-ids";
 import QuestionAlert from "./QuestionAlert";
 
 type QuestionAnswerProps = {
   disabled?: boolean;
+  outcomeType: ClientOutcomes;
   questionNeedsContactExit?: boolean;
   showQuestionAlert: boolean;
-  userAnswer: string;
+  userAnswer?: string;
 };
 
 const QuestionAnswer: FunctionComponent<
   QuestionAnswerProps & HTMLAttributes<HTMLElement>
-> = ({
-  disabled,
-  onClick,
-  questionNeedsContactExit,
-  showQuestionAlert,
-  userAnswer,
-}) => {
+> = ({ disabled, onClick, outcomeType, showQuestionAlert, userAnswer }) => {
   if (!userAnswer) return null;
   return (
     <>
       <Paragraph gutterBottom={0}>
         <TextToEdit>{removeQuotes(userAnswer.toString())}</TextToEdit>
-        <EditButton dataTestid={EDIT_BUTTON} {...{ disabled, onClick }} />
+        <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showQuestionAlert && (
-        <QuestionAlert marginBottom={8} {...{ questionNeedsContactExit }} />
+        <QuestionAlert marginBottom={8} {...{ outcomeType }} />
       )}
     </>
   );

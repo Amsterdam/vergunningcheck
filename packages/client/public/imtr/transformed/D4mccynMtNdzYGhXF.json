@@ -1,25 +1,26 @@
 {
   "permits": [
     {
-      "version": 44,
+      "version": 62,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
-          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter?",
-          "description": "Een container waar 10 kubieke meter in kan, heeft de volgende maten:\n\n*   3,6 meter lang\n*   1,9 meter breed\n*   1,7 meter hoog\n\nZo’n container past goed op een parkeerplaats.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Sloop.png)",
+          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
+          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   Muren verwijderen van 3 kamers of een verdieping: ongeveer 11 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
           "type": "boolean",
           "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
           "prio": 10
         },
         {
           "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nIn bouwwerken gebouwd na juli 1993 mag geen asbest zitten. Bij nieuwere bouwwerken is de kans klein dat er asbest in zit.",
           "type": "boolean",
           "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
           "prio": 20
         },
         {
-          "text": "Gaat u een bouwwerk slopen dat een deel van het jaar op zijn plek staat?",
-          "description": "Het bouwwerk wordt elk jaar opgebouwd, een paar maanden gebruikt en dan weer verwijderd. Bijvoorbeeld een strandtent of een oliebollenkraam.",
+          "text": "Gaat het om een bouwwerk dat een deel van het jaar op zijn plek staat?",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
           "type": "boolean",
           "id": "uitv__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
           "prio": 30,
@@ -34,7 +35,7 @@
         }
       ],
       "decisions": {
-        "_674b5d9a-18f6-4532-8bd2-9e57e19a65aa": {
+        "_716c9040-cf67-48d7-bc47-4dae8c608185": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__9d010148-e1ed-47c2-b5d3-7c12d3055ced",
@@ -61,7 +62,7 @@
             ]
           }
         },
-        "_f9db45aa-b70b-4094-b254-3eafe324a542": {
+        "_cd07b731-2cb5-4ea1-b613-f4ec1cbaab70": {
           "requiredInputs": [
             "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
             "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
@@ -95,8 +96,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_674b5d9a-18f6-4532-8bd2-9e57e19a65aa",
-            "#_f9db45aa-b70b-4094-b254-3eafe324a542"
+            "#_716c9040-cf67-48d7-bc47-4dae8c608185",
+            "#_cd07b731-2cb5-4ea1-b613-f4ec1cbaab70"
           ],
           "decisionTable": {
             "rules": [

@@ -11,7 +11,15 @@ jest.mock("react-router-dom", () => ({
 describe("LocationNotFound", () => {
   it("renders correctly correctly", () => {
     render(<LocationNotFound />);
-    // Should not be in document
+
+    expect(
+      screen.queryByText(
+        nl.translation.errorMessages[
+          "no address found postalcode houseNumber combination"
+        ]
+      )
+    ).toBeInTheDocument();
+
     expect(
       screen.queryByText(
         nl.translation.errorMessages[

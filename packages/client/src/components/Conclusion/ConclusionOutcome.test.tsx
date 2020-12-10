@@ -1,4 +1,4 @@
-import { imtrOutcomes } from "@vergunningcheck/imtr-client";
+import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import { actions, eventNames } from "../../config/matomo";
@@ -6,41 +6,42 @@ import {
   NEED_CONTACT,
   NEED_PERMIT,
   NEED_PERMIT_BUTTON,
-  NO_PERMIT_NEEDED,
+  PERMIT_FREE,
 } from "../../utils/test-ids";
 import {
   act,
   fireEvent,
   mockMatomoTrackEvent,
   render,
+  screen,
 } from "../../utils/test-utils";
 import ConclusionOutcome from "./ConclusionOutcome";
-import NeedPermitContent from "./NeedPermitContent";
-import NoPermitDescription from "./NoPermitDescription";
+import { NeedPermit, PermitFree } from "./content";
 
 describe("ConclusionOutcome", () => {
-  it("renders the 'needs permit' conclusion correctly", () => {
-    const { getByText, queryByTestId } = render(
+  it("renders NEED_PERMIT conclusion correctly", () => {
+    render(
       <ConclusionOutcome
         conclusionContent={{
-          mainContent: <NeedPermitContent />,
+          mainContent: <NeedPermit />,
           title: "title",
         }}
-        outcomeType={imtrOutcomes.NEED_PERMIT}
+        outcomeType={ClientOutcomes.NEED_PERMIT}
       />
     );
 
     // Should be in document
-    expect(queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
-    expect(getByText("title")).toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
+    expect(screen.getByText("title")).toBeInTheDocument();
 
     // Shouldn't be in document
-    expect(queryByTestId(NO_PERMIT_NEEDED)).not.toBeInTheDocument();
-    expect(queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(PERMIT_FREE)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
 
     // Make sure the "Get Permit" Button works
     act(() => {
-      fireEvent.click(queryByTestId(NEED_PERMIT_BUTTON) as any);
+      // fireEvent.click(queryByTestId(NEED_PERMIT_BUTTON) as any);
+      fireEvent.click(screen.queryByTestId(NEED_PERMIT_BUTTON) as any);
     });
 
     expect(window.open).toHaveBeenCalledTimes(1);
@@ -52,23 +53,23 @@ describe("ConclusionOutcome", () => {
     });
   });
 
-  it("renders the 'permit free' conclusion correctly", () => {
-    const { getByText, queryByTestId } = render(
+  it("renders the PERMIT_FREE conclusion correctly", () => {
+    render(
       <ConclusionOutcome
         conclusionContent={{
-          footerContent: <NoPermitDescription />,
+          footerContent: <PermitFree />,
           title: "title",
         }}
-        outcomeType={imtrOutcomes.PERMIT_FREE}
+        outcomeType={ClientOutcomes.PERMIT_FREE}
       />
     );
     // Should be in document
-    expect(queryByTestId(NO_PERMIT_NEEDED)).toBeInTheDocument();
-    expect(getByText("title")).toBeInTheDocument();
+    expect(screen.queryByTestId(PERMIT_FREE)).toBeInTheDocument();
+    expect(screen.getByText("title")).toBeInTheDocument();
 
     // Shouldn't be in document
-    expect(queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
-    expect(queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
 
     // @TODO: Write test for PRINT_BUTTON
   });
