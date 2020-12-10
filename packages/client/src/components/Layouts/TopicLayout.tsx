@@ -7,14 +7,14 @@ import { useTopic } from "../../hooks";
 import { BaseLayout } from ".";
 
 interface TopicLayoutProps {
-  heading?: string;
   formTitle?: string;
+  heading?: string;
 }
 
 const TopicLayout: React.FC<TopicLayoutProps> = ({
   children,
-  heading: headingProp,
   formTitle: formTitleProp,
+  heading: headingProp,
 }) => {
   const topic = useTopic();
 

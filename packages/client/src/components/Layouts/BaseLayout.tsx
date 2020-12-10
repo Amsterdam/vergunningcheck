@@ -24,7 +24,6 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
     if (!disablePageView) {
       matomoPageView();
     }
-    // @TODO: We need to fix this!
     //eslint-disable-next-line
   }, [location.pathname]);
 
