@@ -24,7 +24,7 @@ export default () => {
     matomoPageView: () => enabled && trackPageView({}),
     matomoTrackEvent: ({
       action,
-      category = topic?.name || slug || t("category not found"),
+      category = topic?.name || slug || t("errorMessages.category not found"),
       name,
     }: TrackingProps) =>
       enabled &&

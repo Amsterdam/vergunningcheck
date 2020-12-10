@@ -1,8 +1,5 @@
 export default {
   translation: {
-    matomo: {
-      "category not found": "category niet gevonden",
-    },
     common: {
       "address loading": "Wij zoeken het adres.",
       "housenumber label": "Huisnummer + toevoeging",
@@ -16,6 +13,7 @@ export default {
       unknown: "Onbekend",
     },
     errorMessages: {
+      "category not found": "category niet gevonden",
       "error occured": "Er is een fout opgetreden.",
       "unfortunately we cannot get address results":
         "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
