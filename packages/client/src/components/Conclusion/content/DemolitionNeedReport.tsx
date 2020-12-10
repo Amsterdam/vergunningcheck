@@ -1,5 +1,5 @@
 import { Heading, ListItem } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 import { List } from "../../../atoms/index";
@@ -8,7 +8,7 @@ import { eventNames } from "../../../config/matomo";
 import { NEED_REPORT } from "../../../utils/test-ids";
 import Link from "../../Link";
 
-const DemolitionNeedReport: React.FC = () => {
+const DemolitionNeedReport: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <>

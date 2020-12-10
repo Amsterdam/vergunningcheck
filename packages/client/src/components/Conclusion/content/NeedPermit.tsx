@@ -1,5 +1,5 @@
 import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { HideForPrint, PrintOnly } from "../../../atoms";
@@ -16,7 +16,7 @@ type NeedPermitProps = {
   url?: string;
 };
 
-const NeedPermit: React.FC<NeedPermitProps> = ({
+const NeedPermit: FunctionComponent<NeedPermitProps> = ({
   contentText,
   eventName = eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
   linkText,

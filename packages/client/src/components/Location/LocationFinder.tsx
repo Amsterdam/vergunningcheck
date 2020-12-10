@@ -11,8 +11,7 @@ import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTopicData, useTracking } from "../../hooks";
-import useDebounce from "../../hooks/useDebounce";
+import { useDebounce, useTopicData, useTracking } from "../../hooks";
 import { Address } from "../../types";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
