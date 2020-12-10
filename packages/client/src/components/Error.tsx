@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../atoms";
@@ -9,7 +9,12 @@ type ErrorProps = {
   stack?: string;
 };
 
-const Error: React.FC<ErrorProps> = ({ children, content, heading, stack }) => {
+const Error: FunctionComponent<ErrorProps> = ({
+  children,
+  content,
+  heading,
+  stack,
+}) => {
   const { t } = useTranslation();
   return (
     <ComponentWrapper>

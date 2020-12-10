@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 
-import React from "react";
+import React, { useState } from "react";
 
 import locationFinderGraphQLMocks from "../../__mocks__/locationFinderGraphQLMocks";
 import text from "../../i18n/nl";
@@ -36,7 +36,7 @@ describe("LocationFinder", () => {
   const topic = findTopicBySlug("dakkapel-plaatsen");
 
   const Wrapper = () => {
-    const [focus, setFocus] = React.useState(false);
+    const [focus, setFocus] = useState(false);
 
     return (
       <LocationFinder

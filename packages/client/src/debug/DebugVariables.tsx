@@ -1,5 +1,5 @@
 import { Accordion, Card, CardContent, Heading, Link } from "@amsterdam/asc-ui";
-import React, { useContext } from "react";
+import React, { FunctionComponent, useContext } from "react";
 
 import Permit from "../../../imtr-client/src/models/permit";
 import { CheckerContext } from "../CheckerContext";
@@ -10,7 +10,7 @@ import { Debug } from ".";
 
 type DebugVariablesProps = {};
 
-const DebugVariables: React.FC<DebugVariablesProps> = () => {
+const DebugVariables: FunctionComponent<DebugVariablesProps> = () => {
   const slug = useSlug();
   const topic = useTopic();
   const { session, setSession } = useSession();

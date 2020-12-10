@@ -2,7 +2,7 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { TextToEdit } from "../atoms";
-import { Address } from "../SessionContext";
+import { Address } from "../types";
 
 type AddressLinesProps = {
   address: Address;

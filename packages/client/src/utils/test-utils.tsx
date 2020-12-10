@@ -6,7 +6,7 @@ import { MockLink, MockedResponse } from "@apollo/client/testing";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { render as reactRender } from "@testing-library/react";
 import dotenv from "dotenv-flow";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import matchMedia from "../__mocks__/matchMedia";
@@ -73,7 +73,7 @@ type TestProviderProps = {
   mocks: readonly MockedResponse<Record<string, any>>[];
 };
 
-const TestProvider: React.FC<TestProviderProps> = ({
+const TestProvider: FunctionComponent<TestProviderProps> = ({
   children,
   mocks = [],
 }) => (
@@ -106,7 +106,7 @@ export const render = (
   mocks?: readonly MockedResponse<Record<string, any>>[]
 ) => {
   // Added new Component to be able to pass the `mocks` prop
-  const WrapperWithMocks: React.FC = ({ children }) => (
+  const WrapperWithMocks: FunctionComponent = ({ children }) => (
     <TestProvider mocks={mocks ? mocks : []}>{children}</TestProvider>
   );
   return reactRender(ui, { wrapper: WrapperWithMocks, ...options });

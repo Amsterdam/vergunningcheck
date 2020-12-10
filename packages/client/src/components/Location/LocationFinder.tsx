@@ -1,14 +1,19 @@
 import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopicData, useTracking } from "../../hooks";
 import useDebounce from "../../hooks/useDebounce";
-import { Address } from "../../SessionContext";
+import { Address } from "../../types";
 import { isValidPostalcode, stripString } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList, { Option } from "../AutoSuggestList";
@@ -37,7 +42,7 @@ type LocationFinderProps = {
   setFocus: (focus: boolean) => void;
 };
 
-const LocationFinder: React.FC<LocationFinderProps> = ({
+const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   errorMessage,
   focus,
   sessionAddress,

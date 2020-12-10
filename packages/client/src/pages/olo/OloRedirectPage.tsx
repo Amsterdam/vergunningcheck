@@ -1,12 +1,12 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
-import React, { useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { TopicLayout } from "../../components/Layouts";
 import { urls } from "../../config";
 import { useTopic } from "../../hooks";
 
-const OloRedirectPage: React.FC = () => {
+const OloRedirectPage: FunctionComponent = () => {
   const topic = useTopic();
 
   useEffect(() => {

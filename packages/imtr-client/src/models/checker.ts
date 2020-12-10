@@ -47,7 +47,7 @@ export default class Checker {
 
   /**
    * Returns a list of questionIds with the given answers.
-   * Useful to store in React.Context or in sessionStorage
+   * Useful to store in Context or in sessionStorage
    *
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */

@@ -1,11 +1,11 @@
 import { Accordion } from "@amsterdam/asc-ui";
 import { Decision, Permit, Question } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import HiddenDebugInfo from "../components/HiddenDebugInfo";
 import { useChecker, useTopicData } from "../hooks";
 
-const QuestionSummary: React.FC<{ question: Question }> = ({
+const QuestionSummary: FunctionComponent<{ question: Question }> = ({
   question: { prio, autofill, text },
 }) => (
   <>
@@ -13,7 +13,9 @@ const QuestionSummary: React.FC<{ question: Question }> = ({
   </>
 );
 
-const Answer: React.FC<{ question: Question }> = ({ question: { answer } }) => (
+const Answer: FunctionComponent<{ question: Question }> = ({
+  question: { answer },
+}) => (
   <>
     {answer === null ? (
       "NULL"
@@ -23,7 +25,7 @@ const Answer: React.FC<{ question: Question }> = ({ question: { answer } }) => (
   </>
 );
 
-const DebugDecisionTable: React.FC = () => {
+const DebugDecisionTable: FunctionComponent = () => {
   const { checker } = useChecker();
   const { topicData } = useTopicData();
   const decisionId = "dummy";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 
 import addressMock from "../../__mocks__/addressMock";
 import addressMockNoMonument from "../../__mocks__/addressMockNoMonument";
@@ -18,7 +18,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("LocationSummary", () => {
   const WrapperWithContext = (
-    props: React.ComponentProps<typeof LocationSummary>
+    props: ComponentProps<typeof LocationSummary>
   ) => (
     <CheckerProvider>
       <LocationSummary {...props} />

@@ -1,12 +1,12 @@
 import { Answers, Checker } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
-import { Topic } from "../config";
-import { Address, SessionContext } from "../SessionContext";
+import { SessionContext } from "../SessionContext";
+import { Address, Topic } from "../types";
 
-type Props = {
+type SessionContextProviderProps = {
   addressMock?: Address;
   answers?: Answers;
   checker?: Checker;
@@ -14,7 +14,7 @@ type Props = {
   topicMock: Topic;
 };
 
-const SessionContextProvider: React.FC<Props> = ({
+const SessionContextProvider: FunctionComponent<SessionContextProviderProps> = ({
   addressMock,
   answers: answersMock,
   checker,

@@ -1,11 +1,11 @@
 import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
-import { Address } from "../../SessionContext";
+import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
@@ -51,7 +51,7 @@ type LocationSummaryProps = {
   showTitle?: boolean;
 };
 
-const LocationSummary: React.FC<LocationSummaryProps> = ({
+const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   addressFromLocation,
   isBelowInputFields,
   showEditLocationModal,

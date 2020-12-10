@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { FunctionComponent, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
@@ -6,19 +6,18 @@ import { TopicLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { useTopic } from "../hooks";
-import { IntroProps } from "../intros";
 import { geturl, routes } from "../routes";
 
-const IntroPage: React.FC = () => {
+const IntroPage: FunctionComponent = () => {
   const history = useHistory();
 
   const topic = useTopic();
   const { text, intro } = topic;
 
   const introComponentPath = intro || "shared/DynamicIMTRIntro";
-  const Intro = React.lazy(
+  const Intro = lazy(
     () => import(`../intros/${introComponentPath}`)
-  ) as IntroProps;
+  ) as FunctionComponent;
 
   const goToNext = () => {
     history.push(geturl(routes.checker, topic));

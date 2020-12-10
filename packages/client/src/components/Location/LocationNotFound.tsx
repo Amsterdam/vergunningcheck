@@ -1,5 +1,5 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React, { useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
@@ -8,7 +8,7 @@ import { useTracking } from "../../hooks";
 import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
 
-const LocationNotFound: React.FC = () => {
+const LocationNotFound: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 

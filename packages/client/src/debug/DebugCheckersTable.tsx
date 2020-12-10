@@ -1,7 +1,7 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { themeSpacing } from "@amsterdam/asc-ui";
 import { Button } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -68,7 +68,7 @@ const returnedData = (apiTopic: topicProps) => {
   );
 };
 
-const DebugCheckersTable: React.FC = () => {
+const DebugCheckersTable: FunctionComponent = () => {
   const [showChecks, setShowChecks] = useState(false);
 
   return (

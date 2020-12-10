@@ -1,12 +1,12 @@
 import { Link as StyledComponentLink } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { actions } from "../config/matomo";
 import { useTracking } from "../hooks";
 
 type Props = {
   action?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   darkBackground?: boolean;
   href?: string;
   eventName: string;

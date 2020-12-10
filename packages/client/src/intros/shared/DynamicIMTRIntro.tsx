@@ -1,12 +1,11 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { autofillResolvers } from "../../config/autofill";
 import { useChecker } from "../../hooks";
 import LoadingPage from "../../pages/LoadingPage";
 import { Intro } from ".";
-import { IntroProps } from "..";
 
-const DynamicIMTRIntro: IntroProps = () => {
+const DynamicIMTRIntro: FunctionComponent = () => {
   const { checker } = useChecker();
   if (checker) {
     const dependantOnQuestions = checker._getUpcomingQuestions().length > 0;

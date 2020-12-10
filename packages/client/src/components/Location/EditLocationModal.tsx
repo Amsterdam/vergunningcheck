@@ -1,5 +1,5 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
@@ -8,7 +8,7 @@ import { defaultTopicSession } from "../../SessionContext";
 import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const EditLocationModal: React.FC = () => {
+const EditLocationModal: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
   const { setChecker } = useChecker();
   const { setTopicData } = useTopicData();

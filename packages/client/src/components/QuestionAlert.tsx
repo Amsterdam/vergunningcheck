@@ -1,15 +1,15 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { Alert, HideForPrint } from "../atoms";
 import { QUESTION_ALERT } from "../utils/test-ids";
 
-export type QuestionAlertProps = {
+type QuestionAlertProps = {
   marginBottom?: number;
   questionNeedsContactExit?: Boolean;
 };
 
-const QuestionAlert: React.FC<QuestionAlertProps> = ({
+const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
   marginBottom,
   questionNeedsContactExit,
 }) => (

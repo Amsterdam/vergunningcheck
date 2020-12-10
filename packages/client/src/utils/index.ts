@@ -1,9 +1,10 @@
+import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
-import { Topic, topics } from "../config";
+import { topics } from "../config";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
-import { Restriction } from "../SessionContext";
 import topicsJson from "../topics.json";
+import { Restriction, Topic } from "../types";
 
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
@@ -60,11 +61,11 @@ export const isEmptyObject = (obj: object) =>
  * Scroll to `ref` in page. This function calculates the distance between
  * the top of the window and the top of the element and scrolls to it.
  *
- * @param {object} ref - reference to an element created by React.useRef()
+ * @param {object} ref - reference to an element created by useRef()
  * @param {number} offset - pass an offset to reduce from the total distance
  */
 export const scrollToRef = (
-  ref: React.MutableRefObject<HTMLAnchorElement>,
+  ref: MutableRefObject<HTMLAnchorElement>,
   offset: number = 0
 ) =>
   ref &&

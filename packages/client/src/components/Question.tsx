@@ -1,11 +1,12 @@
 import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
-import React, { useEffect } from "react";
+import React, { FormEvent, FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../atoms";
 import { actions, eventNames } from "../config/matomo";
 import { useTracking } from "../hooks";
+import { BooleanOption } from "../types";
 import { QUESTION_FORM } from "../utils/test-ids";
 import Answers, { AnswerProps } from "./Answers";
 import Form from "./Form";
@@ -13,12 +14,6 @@ import Markdown from "./Markdown";
 import Modal from "./Modal";
 import Nav from "./Nav";
 import QuestionAlert from "./QuestionAlert";
-
-export type BooleanOption = {
-  formValue: string;
-  label: string;
-  value: boolean;
-};
 
 export const booleanOptions: BooleanOption[] = [
   {
@@ -46,7 +41,7 @@ type QuestionProps = {
   userAnswer?: string;
 };
 
-const Question: React.FC<QuestionProps> = ({
+const Question: FunctionComponent<QuestionProps> = ({
   question,
   questionIndex,
   questionNeedsContactExit,
@@ -108,7 +103,7 @@ const Question: React.FC<QuestionProps> = ({
     requiredFieldRadio,
   ]);
 
-  const handleChange = (e: React.FormEvent) => {
+  const handleChange = (e: FormEvent) => {
     const { name, type, value } = e.target as HTMLInputElement;
 
     // Save the changed answer to the question.

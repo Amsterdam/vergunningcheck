@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { StyledForm } from "./FormStyles";
 
@@ -7,7 +7,7 @@ type FormProps = {
   dataTestId?: string;
 };
 
-const Form: React.FC<FormProps & React.HTMLAttributes<HTMLElement>> = ({
+const Form: FunctionComponent<FormProps & HTMLAttributes<HTMLElement>> = ({
   children,
   dataId,
   dataTestId = "form",

@@ -7,21 +7,29 @@ import {
   imtrOutcomes,
   removeQuotes,
 } from "@vergunningcheck/imtr-client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { ScrollAnchor } from "../atoms";
 import { eventNames, sections } from "../config/matomo";
 import { useChecker, useTopic, useTracking } from "../hooks";
 import useTopicSession from "../hooks/useTopicData";
+import { BooleanOption } from "../types";
 import { scrollToRef } from "../utils";
-import Question, { BooleanOption, booleanOptions } from "./Question";
+import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
 
 export type GoToQuestionProp = "next" | "prev" | number;
 
 type BoolFunctionProp = (component: string, value?: boolean) => boolean;
-export type CheckerPageProps = {
+
+type QuestionsProps = {
   goToQuestion: (value: GoToQuestionProp) => void;
   isActive: BoolFunctionProp;
   isFinished: BoolFunctionProp;
@@ -38,7 +46,7 @@ export const getUserAnswer = (question: ImtrQuestion) => {
   return question.answer;
 };
 
-const Questions: React.FC<CheckerPageProps> = ({
+const Questions: FunctionComponent<QuestionsProps> = ({
   goToQuestion,
   isActive,
   isFinished,

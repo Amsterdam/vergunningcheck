@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -9,7 +9,7 @@ import { LocationInput } from "../../components/Location/";
 import { useTopic } from "../../hooks";
 import { geturl, routes } from "../../routes";
 
-const OloLocationInput: React.FC = () => {
+const OloLocationInput: FunctionComponent = () => {
   const topic = useTopic();
   const history = useHistory();
   const { t } = useTranslation();

@@ -1,10 +1,10 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
 
 import { BaseLayout } from "../components/Layouts";
 
-const NotFoundPage: React.FC = () => (
+const NotFoundPage: FunctionComponent = () => (
   <BaseLayout>
     <Helmet>
       <title>Pagina niet gevonden - Amsterdam Vergunningcheck</title>

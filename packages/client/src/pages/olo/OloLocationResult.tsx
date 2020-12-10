@@ -1,5 +1,5 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
-import React, { Suspense } from "react";
+import React, { FormEvent, FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
@@ -14,7 +14,7 @@ import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 
-const OloLocationResult: React.FC = () => {
+const OloLocationResult: FunctionComponent = () => {
   const topic = useTopic();
   const history = useHistory();
   const { topicData } = useTopicData();
@@ -29,7 +29,7 @@ const OloLocationResult: React.FC = () => {
     return null;
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,

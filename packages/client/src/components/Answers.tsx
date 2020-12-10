@@ -1,6 +1,6 @@
 import { ErrorMessage, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import { removeQuotes } from "@vergunningcheck/imtr-client";
-import React from "react";
+import React, { FormEvent, FunctionComponent } from "react";
 
 import { ComponentWrapper, Label } from "../atoms";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
@@ -11,16 +11,16 @@ export type AnswerProps = {
   value: boolean | string;
 };
 
-export type AnswersProps = {
+type AnswersProps = {
   answers?: AnswerProps[];
   errors: any;
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange: (e: FormEvent<HTMLInputElement>) => void;
   questionId: string;
   questionIndex: number;
   userAnswer?: string;
 };
 
-const Answers: React.FC<AnswersProps> = ({
+const Answers: FunctionComponent<AnswersProps> = ({
   answers,
   errors,
   onChange,

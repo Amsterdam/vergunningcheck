@@ -1,10 +1,10 @@
 import { Heading, ListItem, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { List } from "../../atoms/index";
 import { NO_PERMIT_NEEDED } from "../../utils/test-ids";
 
-const NoPermitDescription: React.FC = () => (
+const NoPermitDescription: FunctionComponent = () => (
   <>
     <Paragraph data-testid={NO_PERMIT_NEEDED}>
       U moet wel op een aantal dingen letten voordat u gaat beginnen. Uw

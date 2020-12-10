@@ -1,5 +1,10 @@
 import { Checkmark } from "@amsterdam/asc-assets";
-import React from "react";
+import React, {
+  AnchorHTMLAttributes,
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEvent,
+} from "react";
 import { StyledProps } from "styled-components";
 
 import { STEPBYSTEPITEM } from "../../utils/test-ids";
@@ -8,12 +13,29 @@ import StepByStepItemStyle, {
   CircleStyle,
   CircleWrapperStyle,
   ContentWrapperStyle,
-  Props,
 } from "./StepByStepItemStyle";
 import StepByStepTitle from "./StepByStepTitle";
 
-const StepByStepItem: React.FC<
-  Props & React.HTMLAttributes<HTMLElement> & StyledProps<any>
+export type StepByStepItemProps = {
+  active?: boolean;
+  checked?: boolean;
+  circleBackgroundColor?: string;
+  clickable?: boolean;
+  customSize?: boolean;
+  disabled?: boolean;
+  disabledTextColor?: string;
+  done?: boolean;
+  doneTextColor?: string;
+  heading?: string;
+  headingProps?: any;
+  highlightActive?: boolean;
+  largeCircle?: boolean;
+  small?: boolean;
+} & AnchorHTMLAttributes<HTMLAnchorElement> &
+  HTMLAttributes<HTMLDivElement>;
+
+const StepByStepItem: FunctionComponent<
+  StepByStepItemProps & HTMLAttributes<HTMLElement> & StyledProps<any>
 > = ({
   active,
   checked,
@@ -45,7 +67,7 @@ const StepByStepItem: React.FC<
   const small = (!customSize && !active) || (customSize && !largeCircle);
 
   // @TODO: also enable the ENTER key to act as onClick
-  const handleOnClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleOnClick = (event: MouseEvent<HTMLElement, MouseEvent>) => {
     onClick && onClick(event);
   };
 
