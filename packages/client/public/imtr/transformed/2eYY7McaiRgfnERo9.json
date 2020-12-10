@@ -7,7 +7,7 @@
         {
           "text": "Ligt het adres waar u wilt slopen in een beschermd stads- of dorpsgezicht?",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk op de kaart of het adres in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScapeWithoutEntity",
+          "autofill": "cityScape",
           "options": [
             "Ja, in een rijksbeschermd stads- of dorpsgezicht.",
             "Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.",
@@ -71,7 +71,7 @@
         }
       ],
       "decisions": {
-        "_64a6f43b-ff44-45f1-a653-7cd61e2d6954": {
+        "_81c409e6-d19a-4033-9f4a-a482ce8c6e69": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__ce32658d-7608-4c54-a52b-e06e4f75ca2c",
@@ -110,7 +110,7 @@
             ]
           }
         },
-        "_f248a2d2-c223-4a9a-935f-957a96eb535f": {
+        "_eee50bbe-65d2-446e-b7e6-c127ad3f5e24": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -149,7 +149,7 @@
             ]
           }
         },
-        "_2bdd4e1e-416e-4529-a11f-55a130a7fd1a": {
+        "_29ab34e5-3ed5-4df7-b7c3-78a65a99c9b5": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -195,7 +195,7 @@
             ]
           }
         },
-        "_2ddb2b02-9a73-4bce-9274-185fb4581206": {
+        "_a3f56168-94d4-4871-8069-39e85d4e5786": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -248,7 +248,7 @@
             ]
           }
         },
-        "_3668ae95-3804-42b2-8133-8ae3d0d82461": {
+        "_4b2a3a35-7210-4acf-bca7-fb75a52c7d4b": {
           "requiredInputs": [
             "#input__b6796191-3670-45a7-a02d-17b8c9591131",
             "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
@@ -310,11 +310,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_64a6f43b-ff44-45f1-a653-7cd61e2d6954",
-            "#_f248a2d2-c223-4a9a-935f-957a96eb535f",
-            "#_2bdd4e1e-416e-4529-a11f-55a130a7fd1a",
-            "#_2ddb2b02-9a73-4bce-9274-185fb4581206",
-            "#_3668ae95-3804-42b2-8133-8ae3d0d82461"
+            "#_81c409e6-d19a-4033-9f4a-a482ce8c6e69",
+            "#_eee50bbe-65d2-446e-b7e6-c127ad3f5e24",
+            "#_29ab34e5-3ed5-4df7-b7c3-78a65a99c9b5",
+            "#_a3f56168-94d4-4871-8069-39e85d4e5786",
+            "#_4b2a3a35-7210-4acf-bca7-fb75a52c7d4b"
           ],
           "decisionTable": {
             "rules": [

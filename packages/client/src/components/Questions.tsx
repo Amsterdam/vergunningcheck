@@ -214,7 +214,7 @@ const Questions: React.FC<
 
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
-  let permitsPerQuestion: ClientOutcomes[] = [];
+  const permitsPerQuestion: ClientOutcomes[] = [];
   checker.permits.forEach((permit: Permit) => {
     const conclusionDecision = permit.getDecisionById("dummy");
 
@@ -238,10 +238,7 @@ const Questions: React.FC<
             .getDecisiveInputs()
             .pop() as ImtrQuestion;
           const index = checker.stack.indexOf(decisiveQuestion);
-
-          if (!permitsPerQuestion[index]) {
-            permitsPerQuestion[index] = outcomeType;
-          }
+          permitsPerQuestion[index] = outcomeType;
         });
       }
     }
