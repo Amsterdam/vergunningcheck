@@ -74,6 +74,14 @@ const baseRouteConfig: RoutePropExtended[] = [
   },
   {
     component: React.lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/Pdf`)
+    ),
+    exact: true,
+    name: "pdf",
+    path: `/pdf`,
+  },
+  {
+    component: React.lazy(
       () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationInput`)
     ),
     exact: true,
