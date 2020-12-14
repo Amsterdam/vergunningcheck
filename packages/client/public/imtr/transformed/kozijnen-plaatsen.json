@@ -41,22 +41,8 @@
           "uuid": "kozijn - onderhoud2"
         }
       ],
-      "inputs": {
-        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
-          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
-          "type": "string"
-        },
-        "input_dbf957ae-3d1e-4713-8454-34406ca722c8": {
-          "href": "#uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
-          "type": "string"
-        },
-        "input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2": {
-          "href": "#uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_47e5606c-6b29-45d4-bac9-658d39557b6b": {
+        "_3a684d60-b378-4a8f-9c80-43d44f9e35df": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input_dbf957ae-3d1e-4713-8454-34406ca722c8"
@@ -91,7 +77,7 @@
             ]
           }
         },
-        "_d886fc1b-6e58-4326-ab49-7ff113903527": {
+        "_4a0e0e2a-df5c-45a0-97f9-90be6248fb34": {
           "requiredInputs": [
             "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
             "#input_dbf957ae-3d1e-4713-8454-34406ca722c8",
@@ -140,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_47e5606c-6b29-45d4-bac9-658d39557b6b",
-            "#_d886fc1b-6e58-4326-ab49-7ff113903527"
+            "#_3a684d60-b378-4a8f-9c80-43d44f9e35df",
+            "#_4a0e0e2a-df5c-45a0-97f9-90be6248fb34"
           ],
           "decisionTable": {
             "rules": [
@@ -163,6 +149,20 @@
             ]
           }
         }
+      },
+      "inputs": {
+        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
+          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
+          "type": "string"
+        },
+        "input_dbf957ae-3d1e-4713-8454-34406ca722c8": {
+          "href": "#uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
+          "type": "string"
+        },
+        "input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2": {
+          "href": "#uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
+          "type": "string"
+        }
       }
     },
     {
@@ -180,7 +180,7 @@
           ],
           "type": "string",
           "id": "uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
-          "prio": 10,
+          "prio": 10010,
           "uuid": "kozijn monument"
         },
         {
@@ -191,7 +191,7 @@
           ],
           "type": "string",
           "id": "uitv_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
-          "prio": 20,
+          "prio": 10020,
           "uuid": "kozijn - onderhoud1"
         },
         {
@@ -202,7 +202,7 @@
           ],
           "type": "string",
           "id": "uitv_ecb82efe-05cf-492d-af97-30f3ea151cfd",
-          "prio": 30,
+          "prio": 10030,
           "uuid": "kozijn - onderhoud2"
         },
         {
@@ -213,7 +213,7 @@
           ],
           "type": "string",
           "id": "uitv_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
-          "prio": 40
+          "prio": 10040
         },
         {
           "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -223,12 +223,12 @@
           ],
           "type": "string",
           "id": "uitv_eae73c17-7f37-4d41-97b9-554f430bf886",
-          "prio": 50
+          "prio": 10050
         },
         {
           "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScape",
+          "autofill": "cityScapeForBuilding",
           "options": [
             "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
             "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
@@ -236,7 +236,7 @@
           ],
           "type": "string",
           "id": "uitv_66dc2837-a2be-442c-a824-663055a5e4c5",
-          "prio": 60
+          "prio": 10060
         },
         {
           "text": "Gaat u het kozijn plaatsen in een hoofdgebouw of in een aanbouw, uitbouw of bijgebouw?",
@@ -247,7 +247,7 @@
           ],
           "type": "string",
           "id": "uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
-          "prio": 70
+          "prio": 10070
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
@@ -255,111 +255,53 @@
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
-          "prio": 80
+          "prio": 10080
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
-          "prio": 90
+          "prio": 10090
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
           "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
-          "prio": 100
+          "prio": 10100
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
-          "prio": 110
+          "prio": 10110
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
-          "prio": 120
+          "prio": 10120
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
-          "prio": 130
+          "prio": 10130
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
-          "prio": 140
+          "prio": 10140
         }
       ],
-      "inputs": {
-        "input__383f1988-b06b-4fe9-90d8-8041f01d832b": {
-          "href": "#uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
-          "type": "string"
-        },
-        "input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c": {
-          "href": "#uitv_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
-          "type": "string"
-        },
-        "input_ecb82efe-05cf-492d-af97-30f3ea151cfd": {
-          "href": "#uitv_ecb82efe-05cf-492d-af97-30f3ea151cfd",
-          "type": "string"
-        },
-        "input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d": {
-          "href": "#uitv_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
-          "type": "string"
-        },
-        "input_eae73c17-7f37-4d41-97b9-554f430bf886": {
-          "href": "#uitv_eae73c17-7f37-4d41-97b9-554f430bf886",
-          "type": "string"
-        },
-        "input_66dc2837-a2be-442c-a824-663055a5e4c5": {
-          "href": "#uitv_66dc2837-a2be-442c-a824-663055a5e4c5",
-          "type": "string"
-        },
-        "input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1": {
-          "href": "#uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
-          "type": "string"
-        },
-        "input__61242aca-2bec-4fa9-bba4-b8f18f37c174": {
-          "href": "#uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
-          "type": "string"
-        },
-        "input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60": {
-          "href": "#uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
-          "type": "boolean"
-        },
-        "input__efdf42a1-eda9-478d-a6a2-f1b790520606": {
-          "href": "#uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
-          "type": "boolean"
-        },
-        "input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33": {
-          "href": "#uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
-          "type": "boolean"
-        },
-        "input__36aad415-6261-4996-8db5-20d4e2b999d1": {
-          "href": "#uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
-          "type": "boolean"
-        },
-        "input__4955c3f0-3d2c-4712-a838-7657afc8a982": {
-          "href": "#uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
-          "type": "boolean"
-        },
-        "input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f": {
-          "href": "#uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_d1d26f6e-1cc9-4c71-81aa-5a3d8d276dda": {
+        "_53f1eac3-0537-430a-929a-a739a4508dcc": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c"
@@ -394,7 +336,7 @@
             ]
           }
         },
-        "_526a52b5-678e-4b62-b552-95c1b47029b7": {
+        "_3b520c6f-cb0b-4b86-8455-967e79a6fd88": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -433,7 +375,7 @@
             ]
           }
         },
-        "_719af572-8ed3-4909-bc47-8fd4f4f8c4e2": {
+        "_eed9e3a5-7c89-44ca-98d5-df1852ca97fb": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
@@ -480,7 +422,7 @@
             ]
           }
         },
-        "_6f8871c8-1f73-4d9c-aca0-ed72b2486b95": {
+        "_904e4195-a880-4fb2-87fc-a2f28d48adf0": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -531,7 +473,7 @@
             ]
           }
         },
-        "_e3dd329a-d0e8-4b47-bcc9-ad3634717ed6": {
+        "_01b30bb1-3b74-443b-a17e-859a599a29f3": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -616,7 +558,7 @@
             ]
           }
         },
-        "_5e772c31-a4f4-4f1e-aa9e-c4595237b3fa": {
+        "_7a7c4009-dffd-496f-8e84-cbd078b65f9d": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -712,7 +654,7 @@
             ]
           }
         },
-        "_3c9069de-6cd6-4d12-a08d-561bf7085edd": {
+        "_5bb5f53b-23d4-41dc-8f07-dceebd042182": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -822,7 +764,7 @@
             ]
           }
         },
-        "_40ea630e-7f03-4b89-a3d4-727b49294764": {
+        "_e72ef172-b0a2-4dd4-a1a5-fa1bde2ceed7": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -918,7 +860,7 @@
             ]
           }
         },
-        "_20021d3d-b3c9-46b7-bb5d-f17e482bb239": {
+        "_b465634a-504d-4f6c-9b64-718c427ce65c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1025,7 +967,7 @@
             ]
           }
         },
-        "_40c4d2bc-5c48-48ca-8aaf-113894fe2d96": {
+        "_ece339e2-1548-4614-a6b1-6ea948a9e31c": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1132,7 +1074,7 @@
             ]
           }
         },
-        "_dca50830-7878-4fe7-9040-f048dabf6e21": {
+        "_32dd605d-c4b1-4841-9cb6-742a0a8ebc72": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1247,7 +1189,7 @@
             ]
           }
         },
-        "_41373257-b65c-4f97-ba6e-006c53218a3b": {
+        "_e5cd3917-ec1f-4d4e-a680-df3ad889be0b": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1362,7 +1304,7 @@
             ]
           }
         },
-        "_18450a55-0cbb-49c7-9822-d6b60b6a90c0": {
+        "_3ae1ab3a-85ae-42c8-bb34-087450170d48": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1489,7 +1431,7 @@
             ]
           }
         },
-        "_ea3df299-fcef-4ba9-923a-016c4dfa2a71": {
+        "_32a9f50d-d5c8-4ef0-8045-3d161e7ef657": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1625,7 +1567,7 @@
             ]
           }
         },
-        "_2c10828c-6e8f-41b2-b346-037c640c2541": {
+        "_549cd721-feec-47ae-8c41-cfc758466bf6": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1752,7 +1694,7 @@
             ]
           }
         },
-        "_ca283bc4-aae3-41eb-8780-61e255a7713e": {
+        "_fab62edb-7fa1-4110-8dbf-62bc47c3ad47": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -1888,7 +1830,7 @@
             ]
           }
         },
-        "_e6ce4857-350c-4241-bf2a-a7023e0a14c1": {
+        "_aa8351f3-c4e9-4820-9557-f91e71dca2f0": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -2057,7 +1999,7 @@
             ]
           }
         },
-        "_2f4eac79-1908-4f82-b37c-8595417a4593": {
+        "_b36b3daa-6459-4927-9d7d-d3fc67d28073": {
           "requiredInputs": [
             "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
             "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
@@ -2228,24 +2170,24 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_d1d26f6e-1cc9-4c71-81aa-5a3d8d276dda",
-            "#_526a52b5-678e-4b62-b552-95c1b47029b7",
-            "#_719af572-8ed3-4909-bc47-8fd4f4f8c4e2",
-            "#_6f8871c8-1f73-4d9c-aca0-ed72b2486b95",
-            "#_e3dd329a-d0e8-4b47-bcc9-ad3634717ed6",
-            "#_5e772c31-a4f4-4f1e-aa9e-c4595237b3fa",
-            "#_3c9069de-6cd6-4d12-a08d-561bf7085edd",
-            "#_40ea630e-7f03-4b89-a3d4-727b49294764",
-            "#_20021d3d-b3c9-46b7-bb5d-f17e482bb239",
-            "#_40c4d2bc-5c48-48ca-8aaf-113894fe2d96",
-            "#_dca50830-7878-4fe7-9040-f048dabf6e21",
-            "#_41373257-b65c-4f97-ba6e-006c53218a3b",
-            "#_18450a55-0cbb-49c7-9822-d6b60b6a90c0",
-            "#_ea3df299-fcef-4ba9-923a-016c4dfa2a71",
-            "#_2c10828c-6e8f-41b2-b346-037c640c2541",
-            "#_ca283bc4-aae3-41eb-8780-61e255a7713e",
-            "#_e6ce4857-350c-4241-bf2a-a7023e0a14c1",
-            "#_2f4eac79-1908-4f82-b37c-8595417a4593"
+            "#_53f1eac3-0537-430a-929a-a739a4508dcc",
+            "#_3b520c6f-cb0b-4b86-8455-967e79a6fd88",
+            "#_eed9e3a5-7c89-44ca-98d5-df1852ca97fb",
+            "#_904e4195-a880-4fb2-87fc-a2f28d48adf0",
+            "#_01b30bb1-3b74-443b-a17e-859a599a29f3",
+            "#_7a7c4009-dffd-496f-8e84-cbd078b65f9d",
+            "#_5bb5f53b-23d4-41dc-8f07-dceebd042182",
+            "#_e72ef172-b0a2-4dd4-a1a5-fa1bde2ceed7",
+            "#_b465634a-504d-4f6c-9b64-718c427ce65c",
+            "#_ece339e2-1548-4614-a6b1-6ea948a9e31c",
+            "#_32dd605d-c4b1-4841-9cb6-742a0a8ebc72",
+            "#_e5cd3917-ec1f-4d4e-a680-df3ad889be0b",
+            "#_3ae1ab3a-85ae-42c8-bb34-087450170d48",
+            "#_32a9f50d-d5c8-4ef0-8045-3d161e7ef657",
+            "#_549cd721-feec-47ae-8c41-cfc758466bf6",
+            "#_fab62edb-7fa1-4110-8dbf-62bc47c3ad47",
+            "#_aa8351f3-c4e9-4820-9557-f91e71dca2f0",
+            "#_b36b3daa-6459-4927-9d7d-d3fc67d28073"
           ],
           "decisionTable": {
             "rules": [
@@ -2707,6 +2649,64 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__383f1988-b06b-4fe9-90d8-8041f01d832b": {
+          "href": "#uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
+          "type": "string"
+        },
+        "input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c": {
+          "href": "#uitv_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
+          "type": "string"
+        },
+        "input_ecb82efe-05cf-492d-af97-30f3ea151cfd": {
+          "href": "#uitv_ecb82efe-05cf-492d-af97-30f3ea151cfd",
+          "type": "string"
+        },
+        "input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d": {
+          "href": "#uitv_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+          "type": "string"
+        },
+        "input_eae73c17-7f37-4d41-97b9-554f430bf886": {
+          "href": "#uitv_eae73c17-7f37-4d41-97b9-554f430bf886",
+          "type": "string"
+        },
+        "input_66dc2837-a2be-442c-a824-663055a5e4c5": {
+          "href": "#uitv_66dc2837-a2be-442c-a824-663055a5e4c5",
+          "type": "string"
+        },
+        "input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1": {
+          "href": "#uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+          "type": "string"
+        },
+        "input__61242aca-2bec-4fa9-bba4-b8f18f37c174": {
+          "href": "#uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+          "type": "string"
+        },
+        "input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60": {
+          "href": "#uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+          "type": "boolean"
+        },
+        "input__efdf42a1-eda9-478d-a6a2-f1b790520606": {
+          "href": "#uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
+          "type": "boolean"
+        },
+        "input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33": {
+          "href": "#uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
+          "type": "boolean"
+        },
+        "input__36aad415-6261-4996-8db5-20d4e2b999d1": {
+          "href": "#uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
+          "type": "boolean"
+        },
+        "input__4955c3f0-3d2c-4712-a838-7657afc8a982": {
+          "href": "#uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
+          "type": "boolean"
+        },
+        "input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f": {
+          "href": "#uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
+          "type": "boolean"
         }
       }
     }

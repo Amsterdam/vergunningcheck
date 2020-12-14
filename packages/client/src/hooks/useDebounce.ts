@@ -7,7 +7,7 @@
  */
 import { useRef } from "react";
 
-const useDebounce = (func: Function, wait: number) => {
+export default (func: Function, wait: number) => {
   const timeout = useRef(null) as any;
 
   return function (this: any, ...args: any[]) {
@@ -21,5 +21,3 @@ const useDebounce = (func: Function, wait: number) => {
     }, wait);
   };
 };
-
-export default useDebounce;

@@ -1,11 +1,12 @@
+// @TODO: Add translations
 import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
-import React, { useContext } from "react";
+import React, { FunctionComponent } from "react";
 import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../../atoms";
-import { Topic } from "../../config";
-import { SessionContext, SessionDataType } from "../../context";
+import { useTopic, useTopicData } from "../../hooks";
+import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
@@ -27,7 +28,7 @@ const StyledList = styled(List)<{
     `}
 
   /* In case List isBelowInputFields make it appear white, instead of black */
-  ${({ isBelowInputFields }) =>
+${({ isBelowInputFields }) =>
     isBelowInputFields &&
     css`
       li {
@@ -45,29 +46,25 @@ const StyledListItem = styled(ListItem)`
 `;
 
 type LocationSummaryProps = {
-  addressFromLocation?: any;
+  addressFromLocation?: Address;
   isBelowInputFields?: boolean;
-  resetChecker?: () => void;
   showEditLocationModal?: boolean;
   showTitle?: boolean;
-  topic: Topic; // TODO: Replace with react-hook
 };
 
-const LocationSummary: React.FC<LocationSummaryProps> = ({
+const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   addressFromLocation,
   isBelowInputFields,
-  resetChecker,
   showEditLocationModal,
   showTitle,
-  topic,
 }) => {
-  // TODO: replace with react hooks
-  const { hasIMTR, slug } = topic;
-  const sessionContext = useContext<SessionDataType>(SessionContext);
-  const address = addressFromLocation
-    ? addressFromLocation
-    : sessionContext[slug].address; // @TODO: replace with type Session and/or Address
-  const { restrictions } = address;
+  const topic = useTopic();
+  const { topicData } = useTopicData();
+  const address = addressFromLocation ?? topicData.address;
+
+  const { restrictions } = address || {};
+  const { hasIMTR } = topic;
+
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
 
@@ -78,16 +75,14 @@ const LocationSummary: React.FC<LocationSummaryProps> = ({
     setTag("cityscape", cityScape);
   }
 
-  const showSummary = monument || cityScape || !hasIMTR;
+  const showSummary = !!(monument || cityScape || !hasIMTR);
 
   return (
     <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>
       <AddressLines
-        {...address}
+        address={address}
         editAddressRenderer={() =>
-          showEditLocationModal && (
-            <EditLocationModal {...{ resetChecker, slug }} />
-          )
+          showEditLocationModal && <EditLocationModal />
         }
         gutterBottom={showSummary ? 16 : 0}
       />

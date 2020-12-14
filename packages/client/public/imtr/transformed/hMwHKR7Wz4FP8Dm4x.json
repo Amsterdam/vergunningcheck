@@ -1,16 +1,22 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 10,
       "name": "Conclusie Het wijzigen van een monument bij een dakraam",
       "questions": [
         {
-          "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "id": "uitv__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
           "prio": 10,
-          "uuid": "monument-dakraam-bouwen"
+          "uuid": "dakraam monument"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
@@ -35,37 +41,30 @@
           "uuid": "dakraam - onderhoud2"
         }
       ],
-      "inputs": {
-        "input__a165828d-8708-4db6-92c4-9c767ad7cc72": {
-          "href": "#uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
-          "type": "boolean"
-        },
-        "input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67": {
-          "href": "#uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
-          "type": "string"
-        },
-        "input_c907156c-d205-44f2-ad36-46f37f505763": {
-          "href": "#uitv_c907156c-d205-44f2-ad36-46f37f505763",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_1757f08c-5d37-44e2-a105-2f9acde71c3d": {
+        "_7f8b95eb-0dd6-409d-9ea2-fa62dd81ac88": {
           "requiredInputs": [
-            "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
+            "#input__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een nieuw dakraam plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -78,9 +77,9 @@
             ]
           }
         },
-        "_bb4c1e06-bceb-41bf-98c8-140bd14d6bf9": {
+        "_67541842-9b16-4fba-8213-eb00ea24ecd2": {
           "requiredInputs": [
-            "#input__a165828d-8708-4db6-92c4-9c767ad7cc72",
+            "#input__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
             "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
             "#input_c907156c-d205-44f2-ad36-46f37f505763"
           ],
@@ -88,14 +87,22 @@
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, het dakraam verandert.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, het dakraam verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -119,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_1757f08c-5d37-44e2-a105-2f9acde71c3d",
-            "#_bb4c1e06-bceb-41bf-98c8-140bd14d6bf9"
+            "#_7f8b95eb-0dd6-409d-9ea2-fa62dd81ac88",
+            "#_67541842-9b16-4fba-8213-eb00ea24ecd2"
           ],
           "decisionTable": {
             "rules": [
@@ -141,6 +148,20 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__b2039271-3498-4dbf-8ef8-14fb795f6a1d": {
+          "href": "#uitv__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
+          "type": "string"
+        },
+        "input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67": {
+          "href": "#uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
+          "type": "string"
+        },
+        "input_c907156c-d205-44f2-ad36-46f37f505763": {
+          "href": "#uitv_c907156c-d205-44f2-ad36-46f37f505763",
+          "type": "string"
         }
       }
     }

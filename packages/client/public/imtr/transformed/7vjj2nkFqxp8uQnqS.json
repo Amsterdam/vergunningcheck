@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Afmonteren voor DSO V2",
+      "name": "Conclusie [AUB VERWIJDEREN] Afmonteren voor DSO V2",
       "questions": [
         {
           "text": "Mag het uitvoeren van een werk in de gemeente Amsterdam?",
@@ -11,14 +11,8 @@
           "prio": 10
         }
       ],
-      "inputs": {
-        "input__d178a46c-5401-471e-91c2-7ac4aada0d1c": {
-          "href": "#uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_cd5072dc-6e88-49d2-81c3-acc7c8832f9f": {
+        "_23d36c93-2968-47e2-843b-7b4a8e031ccb": {
           "requiredInputs": ["#input__d178a46c-5401-471e-91c2-7ac4aada0d1c"],
           "decisionTable": {
             "rules": [
@@ -34,7 +28,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_cd5072dc-6e88-49d2-81c3-acc7c8832f9f"],
+          "requiredDecisions": ["#_23d36c93-2968-47e2-843b-7b4a8e031ccb"],
           "decisionTable": {
             "rules": [
               {
@@ -47,6 +41,12 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__d178a46c-5401-471e-91c2-7ac4aada0d1c": {
+          "href": "#uitv__d178a46c-5401-471e-91c2-7ac4aada0d1c",
+          "type": "boolean"
         }
       }
     }

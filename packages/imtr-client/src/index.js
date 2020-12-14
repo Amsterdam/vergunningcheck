@@ -83,7 +83,7 @@ function getDecision(id, decisionConfig, questions) {
  * @param {any} config - the config coming from json
  * @returns {Checker} the new Checker object
  */
-export default (config) => {
+export const getChecker = (config) => {
   const { permits: permitsConfig } = config;
   if (!permitsConfig || permitsConfig.length === 0) {
     throw new Error("Permits cannot be empty.");
@@ -93,12 +93,18 @@ export default (config) => {
       const previousByUUID = question.uuid
         ? acc.find((q) => q.uuid === question.uuid)
         : null;
+
       if (previousByUUID) {
+        if (question.prio < previousByUUID.prio) {
+          // If new question has lower prio (more important) to override the value in our accumulator
+          previousByUUID.prio = question.prio;
+        }
         previousByUUID.ids.push(question.id);
       } else {
         acc.push({ ...question, ids: [question.id] });
       }
     });
+
     return acc;
   }, []);
 

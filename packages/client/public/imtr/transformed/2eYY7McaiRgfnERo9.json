@@ -1,0 +1,400 @@
+{
+  "permits": [
+    {
+      "version": 70,
+      "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
+      "questions": [
+        {
+          "text": "Ligt het adres waar u wilt slopen in een beschermd stads- of dorpsgezicht?",
+          "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk op de kaart of het adres in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
+          "autofill": "cityScapeWithoutEntity",
+          "options": [
+            "Ja, in een rijksbeschermd stads- of dorpsgezicht.",
+            "Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.",
+            "Nee"
+          ],
+          "type": "string",
+          "id": "uitv__b6796191-3670-45a7-a02d-17b8c9591131",
+          "prio": 10
+        },
+        {
+          "text": "Gaat het om een bouwwerk dat maar een deel van het jaar op zijn plek staat?",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "options": [
+            "Ja, het staat maar een deel van het jaar op zijn plek.",
+            "Nee, het staat het hele jaar op zijn plek."
+          ],
+          "type": "string",
+          "id": "uitv__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
+          "prio": 20,
+          "uuid": "sloop seizoen1"
+        },
+        {
+          "text": "Als u het bouwwerk opnieuw zou bouwen, mag dat dan zonder vergunning?",
+          "description": "Als u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
+          "type": "boolean",
+          "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
+          "prio": 30
+        },
+        {
+          "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
+          "type": "boolean",
+          "id": "uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
+          "prio": 40,
+          "uuid": "sloop aanschrijving1"
+        },
+        {
+          "text": "Gaat u een deel van een bouwwerk slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
+          "type": "boolean",
+          "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
+          "prio": 50,
+          "uuid": "sloop onderhoud1"
+        },
+        {
+          "text": "Gaat u dat deel vervangen door een nieuw deel?",
+          "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
+          "type": "boolean",
+          "id": "uitv_696173ef-6bad-4411-848e-ec97a8566c10",
+          "prio": 60,
+          "uuid": "sloop onderhoud2"
+        },
+        {
+          "text": "Verandert de kleur of het soort materiaal?",
+          "type": "boolean",
+          "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
+          "prio": 70,
+          "uuid": "sloop onderhoud3"
+        },
+        {
+          "text": "Verandert de vorm, de grootte of het profiel?",
+          "type": "boolean",
+          "id": "uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
+          "prio": 80,
+          "uuid": "sloop onderhoud4"
+        }
+      ],
+      "decisions": {
+        "_4216f8f1-cc2b-478d-aa3f-e261a025758f": {
+          "requiredInputs": [
+            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
+            "#input__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
+            "#input__776dd6ba-8555-407a-b58c-dbce8e897db5"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "\"Nee, het staat het hele jaar op zijn plek.\"",
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Nee\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, het staat maar een deel van het jaar op zijn plek.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_0151a341-f73b-4528-8945-cca3e26b0dfb": {
+          "requiredInputs": [
+            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
+            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
+            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Nee\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b658a9bc-f3ff-424f-826c-b39377593440": {
+          "requiredInputs": [
+            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
+            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
+            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619",
+            "#input_696173ef-6bad-4411-848e-ec97a8566c10"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Nee\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2a60fec8-88b5-4708-b132-2d0f72ba37bd": {
+          "requiredInputs": [
+            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
+            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
+            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619",
+            "#input_696173ef-6bad-4411-848e-ec97a8566c10",
+            "#input_43dd922f-2c71-4119-b8e6-568e1100e3c7"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Nee\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_8b276165-b281-4bd2-899d-ff75bbb3adac": {
+          "requiredInputs": [
+            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
+            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
+            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619",
+            "#input_696173ef-6bad-4411-848e-ec97a8566c10",
+            "#input_43dd922f-2c71-4119-b8e6-568e1100e3c7",
+            "#input_26d72338-54c8-4528-ad01-6693b1d2f909"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.\"",
+                  false,
+                  true,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Ja, in een rijksbeschermd stads- of dorpsgezicht.\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Nee\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_4216f8f1-cc2b-478d-aa3f-e261a025758f",
+            "#_0151a341-f73b-4528-8945-cca3e26b0dfb",
+            "#_b658a9bc-f3ff-424f-826c-b39377593440",
+            "#_2a60fec8-88b5-4708-b132-2d0f72ba37bd",
+            "#_8b276165-b281-4bd2-899d-ff75bbb3adac"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\"", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "\"Vergunningplicht\"", "-", "-", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "-", "\"Vergunningplicht\"", "-", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__b6796191-3670-45a7-a02d-17b8c9591131": {
+          "href": "#uitv__b6796191-3670-45a7-a02d-17b8c9591131",
+          "type": "string"
+        },
+        "input__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212": {
+          "href": "#uitv__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
+          "type": "string"
+        },
+        "input__776dd6ba-8555-407a-b58c-dbce8e897db5": {
+          "href": "#uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
+          "type": "boolean"
+        },
+        "input__68883947-e42e-4d89-b99d-f48373ee6ffe": {
+          "href": "#uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
+          "type": "boolean"
+        },
+        "input_614e91cd-4da2-4c3d-bc66-677f393f4619": {
+          "href": "#uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
+          "type": "boolean"
+        },
+        "input_696173ef-6bad-4411-848e-ec97a8566c10": {
+          "href": "#uitv_696173ef-6bad-4411-848e-ec97a8566c10",
+          "type": "boolean"
+        },
+        "input_43dd922f-2c71-4119-b8e6-568e1100e3c7": {
+          "href": "#uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
+          "type": "boolean"
+        },
+        "input_26d72338-54c8-4528-ad01-6693b1d2f909": {
+          "href": "#uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
+          "type": "boolean"
+        }
+      }
+    }
+  ],
+  "slug": "2eYY7McaiRgfnERo9"
+}

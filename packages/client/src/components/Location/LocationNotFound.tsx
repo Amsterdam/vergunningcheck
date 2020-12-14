@@ -1,23 +1,38 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { sections } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
+import { useTracking } from "../../hooks";
 import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
 import PhoneNumber from "../PhoneNumber";
 
-const LocationNotFound: React.FC = () => {
+const LocationNotFound: FunctionComponent = () => {
+  const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    matomoTrackEvent({
+      action: actions.ERROR,
+      name: eventNames.ADDRESS_NOT_FOUND,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ComponentWrapper>
       <Alert
         data-testid={LOCATION_NOT_FOUND}
-        heading="Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer."
-        level="warning"
+        heading={t(
+          "errorMessages.no address found postalcode houseNumber combination"
+        )}
+        level="error"
+        outline
+        style={{ background: "white" }} // @TODO: This style is a temporary fix, need to fix default white background at @masterdam/asc-ui
       >
         <Paragraph>
-          {t("common.try again or contact city of amsterdam")}{" "}
+          {t("errorMessages.please try again later or contact the city on")}{" "}
           <PhoneNumber eventName={sections.ALERT_ADDRESS_NOT_FOUND} />.
         </Paragraph>
       </Alert>

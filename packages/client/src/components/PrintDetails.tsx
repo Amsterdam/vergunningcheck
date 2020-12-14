@@ -2,7 +2,6 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { PrintOnly } from "../atoms";
-import { removeQueryStrings } from "../utils";
 
 // Format the date to show in Print
 const date = new Date();
@@ -18,11 +17,7 @@ const currentDateTime = date.toLocaleDateString("nl-NL", options);
 export default () => (
   <PrintOnly>
     <Heading forwardedAs="h3">Pagina</Heading>
-    <Paragraph fontSize={12}>
-      {
-        removeQueryStrings(window.location.href) // Prevent the display of ?loadChecker
-      }
-    </Paragraph>
+    <Paragraph fontSize={12}>{window.location.href}</Paragraph>
 
     <Heading forwardedAs="h3">Datum</Heading>
     <Paragraph>{currentDateTime} uur.</Paragraph>

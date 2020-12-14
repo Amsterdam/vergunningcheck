@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Aanbouw gebruiken",
+      "name": "Conclusie [IN ONTWIKKELING] Aanbouw gebruiken",
       "questions": [
         {
           "text": "Gaat u de aanbouw bouwen achter een tussenpand?",
@@ -56,42 +56,8 @@
           "prio": 80
         }
       ],
-      "inputs": {
-        "input__92107c8a-c42a-4991-9b2f-641b1c4b593b": {
-          "href": "#uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
-          "type": "boolean"
-        },
-        "input__71fce1ff-c6bf-4601-aedb-5581f1183cc5": {
-          "href": "#uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
-          "type": "boolean"
-        },
-        "input__895ee2a4-f282-4181-924c-b1880686ba98": {
-          "href": "#uitv__895ee2a4-f282-4181-924c-b1880686ba98",
-          "type": "boolean"
-        },
-        "input__d819946c-59ec-42f5-8f45-fb0bc6b139d0": {
-          "href": "#uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
-          "type": "boolean"
-        },
-        "input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c": {
-          "href": "#uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
-          "type": "boolean"
-        },
-        "input__c084dabb-6af6-4b5b-afde-838582c7a45b": {
-          "href": "#uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
-          "type": "boolean"
-        },
-        "input__11eb9026-dee0-412c-96f4-689407b813ce": {
-          "href": "#uitv__11eb9026-dee0-412c-96f4-689407b813ce",
-          "type": "boolean"
-        },
-        "input__041564fd-7ab5-45b5-b5bb-96d531af5846": {
-          "href": "#uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_398fe429-0d63-47da-8e65-957094c1dd5f": {
+        "_cdbaf5cc-38f7-4a48-81db-b4bdd7696f92": {
           "requiredInputs": ["#input__92107c8a-c42a-4991-9b2f-641b1c4b593b"],
           "decisionTable": {
             "rules": [
@@ -106,7 +72,7 @@
             ]
           }
         },
-        "_c029e3a0-5107-48be-a2cc-fca2ac098389": {
+        "_c0ed9b21-7682-4a56-895b-833f9995032d": {
           "requiredInputs": ["#input__71fce1ff-c6bf-4601-aedb-5581f1183cc5"],
           "decisionTable": {
             "rules": [
@@ -121,7 +87,7 @@
             ]
           }
         },
-        "_e8715ef6-cb6d-4fb3-b759-1ec3a760b16d": {
+        "_c7f8515d-352f-4d48-a8b5-3cde4e29957e": {
           "requiredInputs": ["#input__895ee2a4-f282-4181-924c-b1880686ba98"],
           "decisionTable": {
             "rules": [
@@ -136,7 +102,7 @@
             ]
           }
         },
-        "_7c0f5c03-e46d-4315-8488-4e4879d18fe7": {
+        "_e408486c-c0ce-46c8-8e6d-9bdcd1a5987b": {
           "requiredInputs": ["#input__d819946c-59ec-42f5-8f45-fb0bc6b139d0"],
           "decisionTable": {
             "rules": [
@@ -151,7 +117,7 @@
             ]
           }
         },
-        "_f89919e2-de52-471b-b3f8-8d2b54cd1fa4": {
+        "_e37ec397-23a8-4ca0-9c7d-b8f66f830923": {
           "requiredInputs": ["#input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c"],
           "decisionTable": {
             "rules": [
@@ -166,7 +132,7 @@
             ]
           }
         },
-        "_72248e41-0257-4602-8cfa-d1b419899314": {
+        "_b785219c-0a16-49cb-8a29-7f09a9f0c44f": {
           "requiredInputs": ["#input__c084dabb-6af6-4b5b-afde-838582c7a45b"],
           "decisionTable": {
             "rules": [
@@ -181,7 +147,7 @@
             ]
           }
         },
-        "_aacceab6-78cb-4906-8c95-b5de21a0e826": {
+        "_620258c6-47c4-4665-a7b9-9ac0d59c680f": {
           "requiredInputs": ["#input__11eb9026-dee0-412c-96f4-689407b813ce"],
           "decisionTable": {
             "rules": [
@@ -196,7 +162,7 @@
             ]
           }
         },
-        "_536ee3f6-660d-4ebb-b9a8-8853fbfddb37": {
+        "_1613c3a5-400f-4f9a-b37a-649b4f05c09e": {
           "requiredInputs": ["#input__041564fd-7ab5-45b5-b5bb-96d531af5846"],
           "decisionTable": {
             "rules": [
@@ -213,14 +179,14 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_398fe429-0d63-47da-8e65-957094c1dd5f",
-            "#_c029e3a0-5107-48be-a2cc-fca2ac098389",
-            "#_e8715ef6-cb6d-4fb3-b759-1ec3a760b16d",
-            "#_7c0f5c03-e46d-4315-8488-4e4879d18fe7",
-            "#_f89919e2-de52-471b-b3f8-8d2b54cd1fa4",
-            "#_72248e41-0257-4602-8cfa-d1b419899314",
-            "#_aacceab6-78cb-4906-8c95-b5de21a0e826",
-            "#_536ee3f6-660d-4ebb-b9a8-8853fbfddb37"
+            "#_cdbaf5cc-38f7-4a48-81db-b4bdd7696f92",
+            "#_c0ed9b21-7682-4a56-895b-833f9995032d",
+            "#_c7f8515d-352f-4d48-a8b5-3cde4e29957e",
+            "#_e408486c-c0ce-46c8-8e6d-9bdcd1a5987b",
+            "#_e37ec397-23a8-4ca0-9c7d-b8f66f830923",
+            "#_b785219c-0a16-49cb-8a29-7f09a9f0c44f",
+            "#_620258c6-47c4-4665-a7b9-9ac0d59c680f",
+            "#_1613c3a5-400f-4f9a-b37a-649b4f05c09e"
           ],
           "decisionTable": {
             "rules": [
@@ -344,6 +310,40 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__92107c8a-c42a-4991-9b2f-641b1c4b593b": {
+          "href": "#uitv__92107c8a-c42a-4991-9b2f-641b1c4b593b",
+          "type": "boolean"
+        },
+        "input__71fce1ff-c6bf-4601-aedb-5581f1183cc5": {
+          "href": "#uitv__71fce1ff-c6bf-4601-aedb-5581f1183cc5",
+          "type": "boolean"
+        },
+        "input__895ee2a4-f282-4181-924c-b1880686ba98": {
+          "href": "#uitv__895ee2a4-f282-4181-924c-b1880686ba98",
+          "type": "boolean"
+        },
+        "input__d819946c-59ec-42f5-8f45-fb0bc6b139d0": {
+          "href": "#uitv__d819946c-59ec-42f5-8f45-fb0bc6b139d0",
+          "type": "boolean"
+        },
+        "input__6b3852b2-c047-4c0a-bac0-cb2f88002e3c": {
+          "href": "#uitv__6b3852b2-c047-4c0a-bac0-cb2f88002e3c",
+          "type": "boolean"
+        },
+        "input__c084dabb-6af6-4b5b-afde-838582c7a45b": {
+          "href": "#uitv__c084dabb-6af6-4b5b-afde-838582c7a45b",
+          "type": "boolean"
+        },
+        "input__11eb9026-dee0-412c-96f4-689407b813ce": {
+          "href": "#uitv__11eb9026-dee0-412c-96f4-689407b813ce",
+          "type": "boolean"
+        },
+        "input__041564fd-7ab5-45b5-b5bb-96d531af5846": {
+          "href": "#uitv__041564fd-7ab5-45b5-b5bb-96d531af5846",
+          "type": "boolean"
         }
       }
     }

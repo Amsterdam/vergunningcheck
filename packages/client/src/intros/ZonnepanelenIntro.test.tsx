@@ -1,5 +1,6 @@
 import React from "react";
 
+import text from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import ZonnepanelenIntro from "./ZonnepanelenIntro";
 
@@ -11,8 +12,11 @@ it("ZonnepanelenIntro renders correctly", () => {
   render(<ZonnepanelenIntro />);
 
   expect(
-    screen.queryByText("nieuwe zonnepanelen of een nieuwe zonneboiler", {
-      exact: false,
-    })
+    screen.queryByText(
+      text.translation.introPage.zonnepanelen["intro description"],
+      {
+        exact: false,
+      }
+    )
   ).toBeInTheDocument();
 });

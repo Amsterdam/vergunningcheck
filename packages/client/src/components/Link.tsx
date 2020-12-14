@@ -1,38 +1,45 @@
-import { Link as UILink } from "@amsterdam/asc-ui";
-import React from "react";
+import { Link as StyledComponentLink } from "@amsterdam/asc-ui";
+import React, { ReactNode } from "react";
 
 import { actions } from "../config/matomo";
-import withTracking, { MatomoTrackEventProps } from "../hoc/withTracking";
+import { useTracking } from "../hooks";
 
 type LinkProps = {
-  action: string;
-  children: React.ReactChildren;
+  action?: string;
+  children: ReactNode;
+  darkBackground?: boolean;
+  href?: string;
   eventName: string;
-  href: string;
+  internal?: boolean;
+  inList?: boolean;
+  strong?: boolean;
+  target?: string;
+  variant?: string | null;
 };
 
 const Link = ({
-  action,
+  action = actions.CLICK_EXTERNAL_NAVIGATION,
   children,
   eventName,
   href,
-  matomoTrackEvent,
-  ...otherLinkProps
-}: LinkProps & React.ComponentProps<typeof UILink> & MatomoTrackEventProps) => {
+  ...rest
+}: LinkProps) => {
+  const { matomoTrackEvent } = useTracking();
+
   const onClick = () => {
     if (eventName) {
       matomoTrackEvent({
-        action: action || actions.CLICK_EXTERNAL_NAVIGATION,
+        action,
         name: eventName,
       });
     }
   };
 
   return (
-    <UILink href={href} onClick={href && onClick} {...otherLinkProps}>
+    <StyledComponentLink href={href} onClick={href && onClick} {...rest}>
       {children}
-    </UILink>
+    </StyledComponentLink>
   );
 };
 
-export default withTracking(Link);
+export default Link;

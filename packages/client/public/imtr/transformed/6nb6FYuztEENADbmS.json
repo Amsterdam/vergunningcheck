@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Kennis Omgevingswet",
+      "name": "Conclusie [AUB VERWIJDEREN] Kennis Omgevingswet",
       "questions": [
         {
           "text": "Betreft de Omgevingswet ook persoonsgebonden gedragingen?",
@@ -26,22 +26,8 @@
           "prio": 30
         }
       ],
-      "inputs": {
-        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
-          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
-          "type": "boolean"
-        },
-        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
-          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
-          "type": "boolean"
-        },
-        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
-          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_1703fea9-7f7f-4a19-acb9-c5324c684b59": {
+        "_679aee6c-aadf-4b1e-9b9f-379ad4ed10cc": {
           "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
           "decisionTable": {
             "rules": [
@@ -56,7 +42,7 @@
             ]
           }
         },
-        "_1f16ef00-8ea6-4b0e-afa2-f9a7b8a3e212": {
+        "_77d946de-5c32-45c6-b453-9061639574cf": {
           "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
           "decisionTable": {
             "rules": [
@@ -71,7 +57,7 @@
             ]
           }
         },
-        "_1c63e40b-2ce8-4817-bb84-2d9765f25e37": {
+        "_5c4a3bb0-ee0c-43d8-b5fc-a24caccf5dad": {
           "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
           "decisionTable": {
             "rules": [
@@ -88,9 +74,9 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_1703fea9-7f7f-4a19-acb9-c5324c684b59",
-            "#_1f16ef00-8ea6-4b0e-afa2-f9a7b8a3e212",
-            "#_1c63e40b-2ce8-4817-bb84-2d9765f25e37"
+            "#_679aee6c-aadf-4b1e-9b9f-379ad4ed10cc",
+            "#_77d946de-5c32-45c6-b453-9061639574cf",
+            "#_5c4a3bb0-ee0c-43d8-b5fc-a24caccf5dad"
           ],
           "decisionTable": {
             "rules": [
@@ -112,6 +98,20 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
+          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
+          "type": "boolean"
+        },
+        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
+          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
+          "type": "boolean"
+        },
+        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
+          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
+          "type": "boolean"
         }
       }
     }

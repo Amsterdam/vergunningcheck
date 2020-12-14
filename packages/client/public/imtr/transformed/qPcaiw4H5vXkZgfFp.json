@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Aanbouw monument",
+      "name": "Conclusie [IN ONTWIKKELING] Aanbouw monument",
       "questions": [
         {
           "identification": "nl.imow-gm0363.gebied.4",
@@ -12,14 +12,8 @@
           "prio": 10
         }
       ],
-      "inputs": {
-        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
-          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_d270d53b-7976-4d50-94b7-6ac9a20e1856": {
+        "_68c8558b-594d-4269-b5e6-8c1ee4f33b16": {
           "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
@@ -39,7 +33,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_d270d53b-7976-4d50-94b7-6ac9a20e1856"],
+          "requiredDecisions": ["#_68c8558b-594d-4269-b5e6-8c1ee4f33b16"],
           "decisionTable": {
             "rules": [
               {
@@ -53,6 +47,12 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
+          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "type": "string"
         }
       }
     }
