@@ -27,7 +27,8 @@ export const BEDR_FUNCTIONAL_STRUCTURE_REF = "bedr:functioneleStructuurRef";
 
 // XML fields for content-spec from IMTR
 export const CONTENT_CONCLUSION_EXPLANATION = "content:conclusieToelichting";
-export const CONTENT_EXECUTION_RULE_EXPLANATION = "content:uitvoeringsregelToelichting";
+export const CONTENT_EXECUTION_RULE_EXPLANATION =
+  "content:uitvoeringsregelToelichting";
 export const CONTENT_EXPLANATION = "content:toelichting";
 export const CONTENT_IMPORTANT = "content:belangrijk";
 export const CONTENT_LONG_EXPLANATION = "content:langeToelichting";
@@ -52,30 +53,29 @@ export const DMN_RULE = "dmn:rule";
 export const DMN_TEXT = "dmn:text";
 export const DMN_VARIABLE = "dmn:variable";
 
-
 // Map field-types from 'feel'-spec to our representation.
 export const feelTypes = {
   "feel:boolean": "boolean",
   "feel:string": "string",
-}
+};
 
 export type DMNDocument = {
-  [DMN_DEFINITIONS]: DMNDefinition[]
-}
+  [DMN_DEFINITIONS]: DMNDefinition[];
+};
 
 export type DMNDefinition = {
-  attributes: DMNDefinitionAttributes,
-  [DMN_EXTENSION_ELEMENTS]: DMNExtensionElement[]
-  [DMN_INPUT_DATA]: DMNInputData[]
-  [DMN_DECISION]: DMNDecision[]
+  attributes: DMNDefinitionAttributes;
+  [DMN_EXTENSION_ELEMENTS]: DMNExtensionElement[];
+  [DMN_INPUT_DATA]: DMNInputData[];
+  [DMN_DECISION]: DMNDecision[];
 };
 
 export type DMNDefinitionAttributes = {
-  "exporter": "Geodan FLO Legal STTR Builder";
-  "exporterVersion": string;
+  exporter: "Geodan FLO Legal STTR Builder";
+  exporterVersion: string;
   id: string;
   name: string;
-  "namespace": "http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000";
+  namespace: "http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000";
   "xmlns:dmn": "http://www.omg.org/spec/DMN/20151101/dmn.xsd";
   "xmlns:feel": "http://www.omg.org/spec/FEEL/20140401";
   "xmlns:xsd": "http://www.w3.org/2001/XMLSchema";
@@ -84,29 +84,29 @@ export type DMNDefinitionAttributes = {
   "xmlns:bedr": "http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Bedrijfsregel";
   "xmlns:uitv": "http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Uitvoeringsregel";
   "xmlns:content": "http://toepasbare-regels.omgevingswet.overheid.nl/v1.0/Content";
-  "xmlns": "http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000";
-}
+  xmlns: "http://toepasbare-regels.omgevingswet.overheid.nl/00000001002564440000";
+};
 
 export type DMNVariable = {
   attributes: {
     id: string;
     name: string;
     typeRef: TypeRef;
-  }
+  };
 };
 
 export type DMNInput = {
   attributes: {
     id: string;
     label: string;
-  },
+  };
   [DMN_INPUT_EXPRESSION]: {
     attributes: {
       typeRef: TypeRef;
-    },
+    };
     [DMN_TEXT]: string;
-  }[]
-}
+  }[];
+};
 
 export type DMNOutput = {
   attributes: {
@@ -115,15 +115,15 @@ export type DMNOutput = {
   };
   [DMN_OUTPUT_VALUES]: {
     [DMN_TEXT]: string;
-  }[]
-}
+  }[];
+};
 
 export type DMNInputEntry = {
   attributes: {
     id: string;
   };
   [DMN_TEXT]: boolean | string;
-}
+};
 
 export type DMNRule = {
   attributes: {
@@ -140,17 +140,17 @@ export type DMNRule = {
         [CONTENT_EXPLANATION]: string;
       }[];
     }[];
-  }[]
-}
+  }[];
+};
 
 export type DMNExtensionElement = {
   [INTER_RULE_GROUPS]: {
-    [INTER_RULE_GROUP]: IMTRRuleGroup[]
-  }[]
+    [INTER_RULE_GROUP]: IMTRRuleGroup[];
+  }[];
   [UITV_EXECUTION_RULES]: {
-    [UITV_EXECUTION_RULE]: IMTRExecutionRule[]
-  }[]
-}
+    [UITV_EXECUTION_RULE]: IMTRExecutionRule[];
+  }[];
+};
 
 export type DMNDecision = {
   attributes: {
@@ -162,48 +162,49 @@ export type DMNDecision = {
     [BEDR_FUNCTIONAL_STRUCTURE_REF]: {
       attributes: {
         href: string;
-      }
+      };
     }[];
   }[];
-  [DMN_INFORMATION_REQUIREMENT]: DMNInformationRequirement[]
+  [DMN_INFORMATION_REQUIREMENT]: DMNInformationRequirement[];
   [DMN_DECISION_TABLE]: {
     attributes: {
-      hitPolicy: HitPolicy,
+      hitPolicy: HitPolicy;
       id: string;
       outputLabel: string;
-    },
+    };
     [DMN_INPUT]: DMNInput[];
     [DMN_OUTPUT]: DMNOutput[];
     [DMN_RULE]: DMNRule[];
-  }[]
-}
+  }[];
+};
 
 export type RequiredInputOrDecision = {
   attributes: {
     href: string;
-  }
-}
+  };
+};
 
-export type DMNInformationRequirement = { // improve with union ??
-  [DMN_REQUIRED_INPUT]?: RequiredInputOrDecision[]
-  [DMN_REQUIRED_DECISION]?: RequiredInputOrDecision[]
-}
+export type DMNInformationRequirement = {
+  // improve with union ??
+  [DMN_REQUIRED_INPUT]?: RequiredInputOrDecision[];
+  [DMN_REQUIRED_DECISION]?: RequiredInputOrDecision[];
+};
 
 export type DMNInputData = {
   attributes: {
     id: string;
     label: string;
     name: string;
-  },
+  };
   [DMN_EXTENSION_ELEMENTS]: {
     [UITV_EXECUTION_RULE_REF]: {
       attributes: {
         href: string;
-      }
-    }[]
-  }[]
-  [DMN_VARIABLE]: DMNVariable[]
-}
+      };
+    }[];
+  }[];
+  [DMN_VARIABLE]: DMNVariable[];
+};
 
 export type HitPolicy = "ANY";
 
@@ -211,10 +212,10 @@ export type HitPolicy = "ANY";
 export type IMTRRuleGroup = {
   attributes: {
     id: string;
-  },
+  };
   [INTER_NAME]: string;
   [INTER_PRIORITY]: number;
-}
+};
 
 export type IMTROption = {
   [UITV_SEQUENCE_ID]: number;
@@ -225,42 +226,42 @@ export type IMTRQuestionOptionType = "enkelAntwoord"; // singleAnswer
 
 export type IMTRQuestionOptions = {
   [UITV_OPTION_TYPE]: IMTRQuestionOptionType;
-  [UITV_OPTION]: IMTROption[],
+  [UITV_OPTION]: IMTROption[];
 };
 
 export type IMTRQuestionDataType = "boolean" | "list";
 
 export type IMTRQuestion = {
-  [UITV_DATA_TYPE]: IMTRQuestionDataType,
+  [UITV_DATA_TYPE]: IMTRQuestionDataType;
   [UITV_QUESTION_TEXT]: string;
-  [UITV_OPTIONS]?: [IMTRQuestionOptions]
+  [UITV_OPTIONS]?: [IMTRQuestionOptions];
 };
 
 export type IMTRExecutionRule = {
   attributes: {
     id: string;
-  },
+  };
   [UITV_REUSABLE_ID]?: string;
   [UITV_GEO_REF]?: {
     [UITV_QUESTION_TEXT]: string;
     [UITV_LOCATION]: {
       attributes: {
         [UITV_LOCATION_IDENTIFICATION]: string;
-      }
+      };
     }[];
   }[];
   [UITV_RULE_GROUP_REF]: {
     attributes: {
       href: "#groep1";
-    }
-  }[]
+    };
+  }[];
   [INTER_PRIORITY]: number;
   [UITV_QUESTION]: IMTRQuestion[];
   [CONTENT_EXECUTION_RULE_EXPLANATION]?: {
     [CONTENT_EXPLANATION]: string;
     [CONTENT_IMPORTANT]: boolean;
     [CONTENT_LONG_EXPLANATION]?: string;
-  }[]
-}
+  }[];
+};
 
 export type TypeRef = "feel:boolean" | "feel:string";

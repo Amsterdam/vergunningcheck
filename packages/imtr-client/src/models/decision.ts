@@ -74,7 +74,7 @@ export default class Decision {
     const rules = this.rules.flatMap((rule) =>
       rule.evaluateNew(values).map((index) => this.inputs[index])
     );
-    return [...new Set(rules)]; // unique set of rules
+    return [...new Set(rules as Input[])]; // unique set of rules
   }
 
   /**

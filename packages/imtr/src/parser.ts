@@ -1,4 +1,4 @@
-import { getAutofillResolverKey } from "./autofill.ts";
+import { getAutofillResolverKey } from "./autofill";
 
 import {
   CONTENT_CONCLUSION_EXPLANATION,
@@ -34,7 +34,7 @@ import {
   UITV_QUESTION_TEXT,
   UITV_QUESTION,
   UITV_REUSABLE_ID,
-} from "./types/imtr.ts";
+} from "./types/imtr";
 
 import type {
   DMNDecision,
@@ -46,7 +46,7 @@ import type {
   DMNInputEntry,
   IMTROption,
   RequiredInputOrDecision,
-} from "./types/imtr.ts";
+} from "./types/imtr";
 
 import type {
   JSONDecisions,
@@ -55,9 +55,12 @@ import type {
   JSONQuestion,
   JSONRule,
   JSONRuleInput,
-} from "./types/json.ts";
+} from "./types/json";
 
-import { format, strFmt } from "./util.ts";
+const log = (x: any) => {};
+export const strFmt = (str: string) => str.trim();
+export const format = (el: string | undefined) =>
+  typeof el === "string" ? strFmt(el) : el;
 
 /**
  * TODO: todo implement consistent hashing for id's:
@@ -178,8 +181,11 @@ const getQuestions = (
   xmlExtensionElements: DMNExtensionElement[]
 ): JSONQuestion[] => {
   const extElement = xmlExtensionElements[0] as DMNExtensionElement;
+  log({ extElement });
   const rulesCollection = extElement[UITV_EXECUTION_RULES];
+  log({ rulesCollection });
   const rules = rulesCollection[0][UITV_EXECUTION_RULE];
+  log({ rules });
 
   return rules.map((rule) => {
     let result: any;
@@ -197,6 +203,11 @@ const getQuestions = (
       if (text) {
         result.text = text;
       }
+    } else if (rule["uitv:bijlage"]) {
+      log("BIJLAGE!");
+      result = {
+        type: "bijlage",
+      };
     } else {
       // list or boolean
       const question = rule[UITV_QUESTION][0];
@@ -230,6 +241,7 @@ const getQuestions = (
       result.type = imtrType === "list" ? "string" : imtrType;
     }
 
+    log(rule.attributes);
     result.id = rule.attributes.id; // TODO: generate our own hash for id's
     // Just pass prio from rule-definition here, we'll fix the prio when merging the permits together
     result.prio = rule[INTER_PRIORITY];

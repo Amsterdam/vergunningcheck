@@ -5,7 +5,14 @@ import { Answer, ClientSimpleType } from "../types";
 import { collectionOfType } from "../utils";
 
 const DESC_MAX_LENGTH = 2048;
-export const questionTypes = ["boolean", "string", "number", "geo"];
+export const questionTypes = [
+  "boolean",
+  "string",
+  "number",
+  "geo",
+  "bijlage",
+  "date",
+];
 
 /**
  * @param answer the values inputs should have

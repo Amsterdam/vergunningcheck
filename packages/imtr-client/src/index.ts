@@ -32,7 +32,7 @@ function getQuestions(questionConfig) {
         text,
         description,
         longDescription,
-        collection,
+        // collection,
         options,
         autofill,
         uuid,
@@ -83,7 +83,7 @@ function getDecision(id, decisionConfig, questions) {
  * @param {any} config - the config coming from json
  * @returns {Checker} the new Checker object
  */
-export const getChecker = (config) => {
+export const getChecker = (config: any) => {
   const { permits: permitsConfig } = config;
   if (!permitsConfig || permitsConfig.length === 0) {
     throw new Error("Permits cannot be empty.");
@@ -109,7 +109,7 @@ export const getChecker = (config) => {
   }, []);
 
   const allQuestions = getQuestions(x);
-  const permits = permitsConfig.map((permit) => {
+  const permits = permitsConfig.map((permit: any) => {
     const { name, version, questions, decisions } = permit;
 
     const decisionConfigs = Object.entries(decisions);
@@ -121,12 +121,12 @@ export const getChecker = (config) => {
     }
 
     const simpleDecisions = decisionConfigs
-      .filter(([_, json]) => !json.requiredDecisions) // filter out complex-decisions
+      .filter(([_, json]: [any, any]) => !json.requiredDecisions) // filter out complex-decisions
       .map(([id, json]) => getDecision(id, json, allQuestions));
 
     const complexDecisions = decisionConfigs
-      .filter(([_, json]) => !!json.requiredDecisions) // only get complex ones
-      .map(([id, json]) => {
+      .filter(([_, json]: [any, any]) => !!json.requiredDecisions) // only get complex ones
+      .map(([id, json]: [any, any]) => {
         const requiredDecisions = json.requiredDecisions.map((href) =>
           simpleDecisions.find((sd) => sd.id === href.substring(1))
         );
