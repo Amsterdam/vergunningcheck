@@ -78,7 +78,7 @@ const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "pdf",
-    path: `/pdf`,
+    path: `/:slug(${imtrSlugs})/pdf`,
   },
   {
     component: React.lazy(

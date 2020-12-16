@@ -1,17 +1,21 @@
-import { Document, PDFViewer, Page } from "@react-pdf/renderer";
-import React from "react";
+import { MenuButton } from "@amsterdam/asc-ui";
+import ReactPDF, { Document, Page } from "@react-pdf/renderer";
+import React, { FunctionComponent } from "react";
 
-import CheckerPage from "./CheckerPage";
+import IntroPage from "./IntroPage";
 
-// Create Document Component
-const Pdf: React.FC = () => (
-  <PDFViewer>
-    <Document>
-      <Page size="A4">
-        <CheckerPage />
-      </Page>
-    </Document>
-  </PDFViewer>
+const Pdf: FunctionComponent = () => (
+  <Document>
+    <Page size="A4">
+      <IntroPage />
+    </Page>
+  </Document>
 );
 
-export default Pdf;
+export default (
+  <MenuButton
+    onClick={() => ReactPDF.render(<Pdf />, `${__dirname}/example.pdf`)}
+  >
+    test
+  </MenuButton>
+);
