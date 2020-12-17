@@ -11,6 +11,7 @@ const config = {
   cache: {
     redis: false,
   },
+  pdfFrontend: "http://localhost:3000",
   enableContentSecurityPolicy: false,
   loaders: {
     datapunt: {

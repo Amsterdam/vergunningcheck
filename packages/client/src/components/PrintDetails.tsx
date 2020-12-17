@@ -17,6 +17,7 @@ const currentDateTime = date.toLocaleDateString("nl-NL", options);
 export default () => (
   <PrintOnly>
     <Heading forwardedAs="h3">Pagina</Heading>
+    {/* TODO: hide ?data=... from url */}
     <Paragraph fontSize={12}>{window.location.href}</Paragraph>
 
     <Heading forwardedAs="h3">Datum</Heading>

@@ -7,7 +7,7 @@ import styled, { css } from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
 import { actions, eventNames } from "../../config/matomo";
-import { useTracking } from "../../hooks";
+import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
@@ -40,6 +40,8 @@ const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
   outcomeType,
   showDiscaimer,
 }) => {
+  const slug = useSlug();
+  const { topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { footerContent, mainContent, title } = conclusionContent;
 
@@ -67,8 +69,19 @@ const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
       </ComponentWrapper>
 
       {mainContent}
-
       <HideForPrint>
+        <p>
+          <a
+            href={`${
+              process.env.REACT_APP_GRAPHQL_API_URL
+            }/pdfr/${slug}?data=${encodeURIComponent(
+              JSON.stringify({ [slug]: topicData })
+            )}`}
+          >
+            Download pdf
+          </a>
+        </p>
+
         {!isIE && !isMobile && (
           <PrintButton
             data-testid={PRINT_BUTTON}

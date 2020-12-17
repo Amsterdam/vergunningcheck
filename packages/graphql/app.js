@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const puppeteer = require("puppeteer");
 
 const config = require("./config");
 const { server } = require("./src/graphql");
@@ -27,6 +28,28 @@ app.use(bodyParser.json());
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).send("Something broke!");
+});
+
+// Setup pdf service
+app.get("/graphql/pdfr/:slug", async (req, res) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  const pdfFrontend =
+    config.pdfFrontend || `${req.protocol}://${req.headers.host}`;
+  const url = `${pdfFrontend}/${
+    req.params.slug
+  }/vragen-en-uitkomst?data=${encodeURIComponent(req.query.data)}`;
+
+  await page.goto(url);
+  const pdf = await page.pdf();
+  res.contentType("application/pdf");
+
+  // res.setHeader('Content-Length', stat.size);
+  res.setHeader(
+    "Content-Disposition",
+    "attachment; filename=indieningsvereisten.pdf"
+  );
+  res.send(pdf);
 });
 
 // Setup main graphql application logic

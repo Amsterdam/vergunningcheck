@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 import { useSlug } from "./hooks";
 import { SessionData, TopicData, setSessionFn, setTopicFn } from "./types";
-import { findTopicBySlug } from "./utils";
+import { findTopicBySlug, getQueryVariable } from "./utils";
 
 type AppSessionContext = {
   session: SessionData;
@@ -21,7 +21,10 @@ export const defaultTopicSession: TopicData = {
   type: "",
 };
 
-const session = JSON.parse(sessionStorage.getItem("sessionData") as string);
+const urlSession = getQueryVariable("data");
+const storedSession = sessionStorage.getItem("sessionData") as string;
+
+const session = JSON.parse(urlSession ? urlSession : storedSession);
 
 const startSession = session ? session : {};
 

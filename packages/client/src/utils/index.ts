@@ -15,6 +15,20 @@ export const getSlugFromPathname = (pathname: string) => {
   return match?.params?.slug;
 };
 
+// Get variable from query string
+// TODO: add tests
+export const getQueryVariable = (variable: string) => {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (decodeURIComponent(pair[0]) === variable) {
+      return decodeURIComponent(pair[1]);
+    }
+  }
+  return;
+};
+
 // Find a topic by the slug
 export const findTopicBySlug = (slug: string) => {
   const topic = topics.find((t) => t.slug === slug);
