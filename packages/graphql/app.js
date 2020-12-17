@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const { Pool, Client } = require("pg");
 
 const config = require("./config");
 const { server } = require("./src/graphql");
@@ -11,6 +12,8 @@ const app = secure(express());
 if (process.env.NODE_ENV !== "production") {
   development(app);
 }
+
+// TODO: const pool = new Pool()
 
 // Basic access log, BUT no permission to log IP
 app.use(
@@ -27,6 +30,25 @@ app.use(bodyParser.json());
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).send("Something broke!");
+});
+
+const c = {
+  host: "db01.acc.dsq.amsterdam.nl",
+  database: "dsr_vergunningchecker_dev",
+  // port: 5432,
+  user: "vergunningchecker",
+  password: process.env.DB_PASS,
+};
+
+// db poc
+app.use(`/db`, async (_, resp) => {
+  const client = new Client(c);
+  await client.connect();
+  const res = await client.query("SELECT * FROM grn_vegetatieobject");
+  console.log(res.rows);
+  const result = JSON.stringify(res.rows);
+  await client.end();
+  resp.send(result);
 });
 
 // Setup main graphql application logic
