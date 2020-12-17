@@ -1,6 +1,7 @@
 import { setTag } from "@sentry/browser";
 import {
   Checker,
+  ClientOutcomes,
   Decision,
   Question as ImtrQuestion,
   Permit,
@@ -212,25 +213,38 @@ const Questions: React.FC<
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
-  // @TODO: We can refactor this and move to checker.js
-  const permitsPerQuestion = [] as boolean[];
-  checker.isConclusive() &&
-    checker.permits.forEach((permit: Permit) => {
-      const conclusionDecision = permit.getDecisionById("dummy");
-      if (
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT
-      ) {
+  // @TODO: Move this to `imtr-client`
+  let permitsPerQuestion: ClientOutcomes[] = [];
+  checker.permits.forEach((permit: Permit) => {
+    const conclusionDecision = permit.getDecisionById("dummy");
+
+    if (conclusionDecision) {
+      const imtrOutcome = conclusionDecision.getOutput();
+      let outcomeType = ClientOutcomes.PERMIT_FREE;
+
+      if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
+        outcomeType = ClientOutcomes.NEED_CONTACT;
+      } else if (imtrOutcome === imtrOutcomes.NEED_PERMIT) {
+        outcomeType = ClientOutcomes.NEED_PERMIT;
+      } else if (imtrOutcome === imtrOutcomes.NEED_REPORT) {
+        outcomeType = ClientOutcomes.NEED_REPORT;
+      }
+
+      if (outcomeType) {
         const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
+
         decisiveDecisions.forEach((decision) => {
           const decisiveQuestion = decision
             .getDecisiveInputs()
             .pop() as ImtrQuestion;
           const index = checker.stack.indexOf(decisiveQuestion);
-          permitsPerQuestion[index] = true;
+          if (!permitsPerQuestion[index]) {
+            permitsPerQuestion[index] = outcomeType;
+          }
         });
       }
-    });
+    }
+  });
 
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
@@ -329,8 +343,11 @@ const Questions: React.FC<
           disableFutureQuestions = true;
         }
 
-        // Check if currect question is causing a permit requirement
+        // Check if current question is causing a permit requirement
         const showQuestionAlert = !!permitsPerQuestion[i];
+
+        // Define the outcome type
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -346,7 +363,6 @@ const Questions: React.FC<
               // Show the current question
               <Question
                 question={q}
-                questionNeedsContactExit={checker.needContactExit(q)}
                 onGoToPrev={onQuestionPrev}
                 onGoToNext={onQuestionNext}
                 saveAnswer={saveAnswer}
@@ -354,6 +370,7 @@ const Questions: React.FC<
                 showPrev
                 {...{
                   checker,
+                  outcomeType,
                   questionIndex,
                   shouldGoToConlusion,
                   showQuestionAlert,
@@ -364,9 +381,8 @@ const Questions: React.FC<
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                questionNeedsContactExit={checker.needContactExit(q)}
-                userAnswer={userAnswer ? userAnswer.toString() : ""}
-                {...{ showQuestionAlert }}
+                userAnswer={userAnswer?.toString()}
+                {...{ outcomeType, showQuestionAlert }}
               />
             )}
           </StepByStepItem>
@@ -390,6 +406,9 @@ const Questions: React.FC<
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
+        // Define the outcome type
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
+
         return (
           <StepByStepItem
             active
@@ -400,8 +419,8 @@ const Questions: React.FC<
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              userAnswer={userAnswer ? userAnswer.toString() : ""}
-              {...{ disabled, showQuestionAlert }}
+              userAnswer={userAnswer.toString()}
+              {...{ disabled, outcomeType, showQuestionAlert }}
             />
           </StepByStepItem>
         );

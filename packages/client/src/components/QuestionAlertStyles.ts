@@ -2,7 +2,10 @@ import { themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import { Alert } from "../atoms";
-import { QuestionAlertProps } from "./QuestionAlert";
+
+type QuestionAlertProps = {
+  marginBottom?: number;
+};
 
 export const QuestionAlertStyle = styled(Alert)<QuestionAlertProps>`
   margin-top: ${themeSpacing(4)};

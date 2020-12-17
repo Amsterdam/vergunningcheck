@@ -1,4 +1,7 @@
-import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
+import {
+  ClientOutcomes,
+  Question as ImtrQuestion,
+} from "@vergunningcheck/imtr-client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -33,7 +36,7 @@ type QuestionProps = {
   onGoToNext: () => void;
   onGoToPrev: () => void;
   questionIndex: number;
-  questionNeedsContactExit: boolean;
+  outcomeType: ClientOutcomes;
   saveAnswer: (value: string) => void;
   shouldGoToConlusion: () => boolean;
   showQuestionAlert: boolean;
@@ -45,7 +48,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
   matomoTrackEvent,
   question,
   questionIndex,
-  questionNeedsContactExit,
+  outcomeType,
   onGoToNext,
   onGoToPrev,
   saveAnswer,
@@ -150,7 +153,7 @@ const Question: React.FC<QuestionProps & MatomoTrackEventProps> = ({
         questionIndex={questionIndex}
         userAnswer={userAnswer}
       />
-      {showQuestionAlert && <QuestionAlert {...{ questionNeedsContactExit }} />}
+      {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
       <Nav
         formEnds={shouldGoToConlusion()}
         nextText={shouldGoToConlusion() ? "Naar de uitkomst" : "Volgende vraag"}

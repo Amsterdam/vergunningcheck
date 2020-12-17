@@ -202,13 +202,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   );
 
   const showLoading = !!(
-    houseNumberFull &&
-    isValidPostalcode(postalCode) &&
-    !errorMessage &&
-    !showAutoSuggest &&
-    !showExactMatch &&
-    !showLocationNotFound &&
-    !showResult
+    (houseNumberFull &&
+      isValidPostalcode(postalCode) &&
+      !errorMessage &&
+      !showAutoSuggest &&
+      !showExactMatch &&
+      !showLocationNotFound &&
+      !showResult) ||
+    loading
   );
 
   // Debounce showing the LocationNotFound component

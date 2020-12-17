@@ -12,10 +12,9 @@ import type {
 type Props = {
   config: string;
   dir: string;
-}
+};
 
 export default async (argv: Props) => {
-
   const baseDir = join(Deno.cwd(), argv.dir);
   const publicDir = join(baseDir, "public");
 
@@ -67,7 +66,9 @@ export default async (argv: Props) => {
 
     apiPermitIds.forEach((permitId) => {
       topics.push({
-        name: apiPermits.find((permit) => permit._id === permitId)?.name?.trim(),
+        name: apiPermits
+          .find((permit) => permit._id === permitId)
+          ?.name?.trim(),
         path: `${transformedUrlPath}/${permitId}.json`,
         permits: [permitId],
         slug: permitId,
@@ -79,7 +80,7 @@ export default async (argv: Props) => {
       const { slug, permits } = topic;
       const topicJsonContent = {
         permits: await Promise.all(
-          permits.map(async (permitId) => {
+          permits.map(async (permitId, permitIndex) => {
             const apiPermit = apiPermits.find(
               (apiPermit: TopicInputType) => apiPermit._id === permitId
             );
@@ -100,7 +101,11 @@ export default async (argv: Props) => {
             await Deno.writeTextFile(xmlPath, xml);
 
             // parse xml and save as json
-            const parsedPath = join(publicDir, outputDir, `${permitId}.parsed.json`);
+            const parsedPath = join(
+              publicDir,
+              outputDir,
+              `${permitId}.parsed.json`
+            );
 
             const p = await Deno.run({
               cmd: ["packages/imtr/xml2json", xmlPath],
@@ -113,27 +118,47 @@ export default async (argv: Props) => {
 
             // apply all reducers to imtr
             try {
-              const json = JSON.parse(preprocessors.reduce((acc, curr) => curr(acc), jsonText));
+              // Run preprocessors on raw json string
+              const json = JSON.parse(
+                preprocessors.reduce((acc, reducer) => reducer(acc), jsonText)
+              );
+
               await writeJson(parsedPath, json);
-              const imtr = await imtrbuild(json) as any;
+              const imtr = (await imtrbuild(json)) as any;
+
+              /* Give questions a higher priority-number (so _less_ important) matching
+               * the weight with the number of questions per permit
+               *
+               * One implementation could be like this:
+               *   `result.prio = permit.questions.length * 10000 + question.prio`
+               * Another solution would be using the order of permit-id's in our config.
+               * See implementation below.
+               */
+              imtr.questions = imtr.questions.map((question: any) => {
+                return {
+                  ...question,
+                  prio: question.prio + permitIndex * 10000,
+                };
+              });
+
               return {
                 version,
                 ...imtr,
               };
             } catch (e) {
-              console.error(`failed to convert json for ${permitId}`)
-              throw (e);
+              console.error(`failed to convert json for ${permitId}`);
+              throw e;
             }
           })
         ),
         slug,
       };
 
-      writeJson(join(transformedDir, `${slug}.json`), topicJsonContent)
+      writeJson(join(transformedDir, `${slug}.json`), topicJsonContent);
     });
     return topics;
   });
 
   const permitsJsons = await Promise.all(apisMap);
-  writeJson(topicsJsonPath, permitsJsons)
-}
+  writeJson(topicsJsonPath, permitsJsons);
+};
