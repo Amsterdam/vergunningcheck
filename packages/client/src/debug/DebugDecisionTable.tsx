@@ -108,9 +108,9 @@ const DebugDecisionTable: FunctionComponent = () => {
 
         <h1>Permits</h1>
         {checker.permits.map((permit: Permit, index: number) => {
-          const conclusionString = permit.getOutputByDecisionId(decisionId);
-          const conclusion = permit.getDecisionById(decisionId) as Decision;
-          const decisiveDecisions = conclusion.getDecisiveInputs();
+          const outcomeString = permit.getOutputByDecisionId(decisionId);
+          const outcome = permit.getDecisionById(decisionId) as Decision;
+          const decisiveDecisions = outcome.getDecisiveInputs();
 
           return (
             <div key={`${permit.name} - ${index}`}>
@@ -185,7 +185,7 @@ const DebugDecisionTable: FunctionComponent = () => {
                 })}
 
               <p>
-                <b>{conclusionString || <em>[unknown]</em>}</b>
+                <b>{outcomeString || <em>[unknown]</em>}</b>
                 .<br />
                 {decisiveDecisions.map((decision: any) =>
                   decision

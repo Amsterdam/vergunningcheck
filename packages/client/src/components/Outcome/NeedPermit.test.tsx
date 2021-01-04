@@ -1,8 +1,8 @@
 import React from "react";
 
-import text from "../../../i18n/nl";
-import { NEED_PERMIT_BUTTON } from "../../../utils/test-ids";
-import { render, screen } from "../../../utils/test-utils";
+import text from "../../i18n/nl";
+import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
+import { render, screen } from "../../utils/test-utils";
 import NeedPermit from "./NeedPermit";
 
 jest.mock("react-router-dom", () => ({
