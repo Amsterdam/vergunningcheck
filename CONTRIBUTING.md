@@ -14,7 +14,7 @@ First a brief intro on some of the terminology and concepts we use, to make sure
 - STTR-builder; the tool used to build IMTR-files
 - check; the activity of checking whether you need a permit (see permit)
 - visitor; the person performing a check
-- checker; the tool itself (including an intro page, register lookups, a set of questions and a conclusion)
+- checker; the tool itself (including an intro page, register lookups, a set of questions and an outcome)
 
 ## Commiting
 
