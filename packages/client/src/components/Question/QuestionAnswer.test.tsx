@@ -1,10 +1,10 @@
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
-import nl from "../i18n/nl";
-import { EDIT_BUTTON } from "../utils/test-ids";
-import { render, screen } from "../utils/test-utils";
-import QuestionAnswer from "./QuestionAnswer";
+import nl from "../../i18n/nl";
+import { EDIT_BUTTON } from "../../utils/test-ids";
+import { render, screen } from "../../utils/test-utils";
+import { QuestionAnswer } from "./";
 
 const expectPermit =
   nl.translation.question.alert["this answer causes a need for permit"];

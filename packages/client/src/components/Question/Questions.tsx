@@ -16,26 +16,26 @@ import React, {
   useState,
 } from "react";
 
-import { ScrollAnchor } from "../atoms";
-import { eventNames, sections } from "../config/matomo";
-import { useChecker, useTopic, useTracking } from "../hooks";
-import useTopicSession from "../hooks/useTopicData";
-import { BooleanOption } from "../types";
-import { scrollToRef } from "../utils";
-import Question, { booleanOptions } from "./Question";
-import QuestionAnswer from "./QuestionAnswer";
-import { StepByStepItem } from "./StepByStepNavigation";
+import { ScrollAnchor } from "../../atoms";
+import { eventNames } from "../../config/matomo";
+import { useChecker, useTopic, useTracking } from "../../hooks";
+import useTopicSession from "../../hooks/useTopicData";
+import { BooleanOption } from "../../types";
+import { scrollToRef } from "../../utils";
+import { StepByStepItem } from "../StepByStepNavigation";
+import { Question, QuestionAnswer, booleanOptions } from "./";
 
 export type GoToQuestionProp = "next" | "prev" | number;
 
-type BoolFunctionProp = (component: string, value?: boolean) => boolean;
-
 type QuestionsProps = {
+  activate: any; // XXX
+  activateQuestionSection: any; // XXX
+  complete: any; // XXX
   goToQuestion: (value: GoToQuestionProp) => void;
-  isActive: BoolFunctionProp;
-  isFinished: BoolFunctionProp;
-  setActiveState: (component: string, value?: boolean) => void;
-  setFinishedState: (component: string[] | string, value: boolean) => void;
+  isActive: boolean;
+  isCompleted: boolean;
+  goToNextSection: any; // XXX
+  goToPrevSection: any; // XXX
 };
 
 // @TODO: Move to checker.js
@@ -48,11 +48,13 @@ export const getUserAnswer = (question: ImtrQuestion) => {
 };
 
 const Questions: FunctionComponent<QuestionsProps> = ({
+  activateQuestionSection,
+  complete,
   goToQuestion,
+  goToNextSection,
+  goToPrevSection,
   isActive,
-  isFinished,
-  setActiveState,
-  setFinishedState,
+  isCompleted,
 }) => {
   const topic = useTopic();
   const { matomoTrackEvent } = useTracking();
@@ -65,8 +67,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const outcomeRef = useRef<any>(null);
 
   const goToOutcome = useCallback(() => {
-    setActiveState(sections.OUTCOME);
-    setFinishedState([sections.QUESTIONS, sections.OUTCOME], true);
+    goToNextSection();
+
     matomoTrackEvent({
       action: checker.stack[questionIndex].text,
       name: eventNames.GOTO_OUTCOME,
@@ -75,13 +77,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     setImmediate(() => {
       scrollToRef(outcomeRef, 20);
     });
-  }, [
-    checker,
-    matomoTrackEvent,
-    questionIndex,
-    setActiveState,
-    setFinishedState,
-  ]);
+  }, [checker, goToNextSection, matomoTrackEvent, questionIndex]);
 
   const onQuestionNext = useCallback(() => {
     const question = checker.stack[questionIndex];
@@ -116,9 +112,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     if (answers && questionIndex > 0) {
       goToQuestion("prev");
     } else {
-      // Go to Location Result, because the user was at the first question
-      setActiveState(sections.LOCATION_INPUT);
-      setFinishedState(sections.LOCATION_INPUT, false);
+      // Go to Location, because the user was at the first question
+      goToPrevSection();
     }
   };
 
@@ -126,13 +121,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     (questionId) => {
       // Checker rewinding also needs to work when you already have a conlusion
       // Go to the specific question in the stack
-      setActiveState(sections.QUESTIONS);
-      setFinishedState([sections.OUTCOME, sections.QUESTIONS], false);
-      setFinishedState(sections.LOCATION_INPUT, true);
+      activateQuestionSection();
 
       goToQuestion(questionId);
     },
-    [goToQuestion, setActiveState, setFinishedState]
+    [goToQuestion, activateQuestionSection]
   );
 
   const shouldGoToConlusion = () => {
@@ -159,7 +152,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         const userAnswer = getUserAnswer(q);
 
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
+          q === checker.stack[questionIndex] && isActive;
 
         // Skip question if already answered
         if (isCurrentQuestion && userAnswer) {
@@ -187,17 +180,15 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     }
   }, [checker, contactOutcome, topicData, setContactOutcome, setTopicData]);
 
-  const isQuestionSectionActive = isActive(sections.QUESTIONS);
-
   useEffect(() => {
     // Track active questions
-    if (isQuestionSectionActive) {
+    if (isActive) {
       matomoTrackEvent({
         action: checker.stack[questionIndex]?.text || "unknown question",
         name: eventNames.ACTIVE_QUESTION,
       });
     }
-  }, [checker, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
+  }, [checker, isActive, matomoTrackEvent, questionIndex]);
 
   if (!checker) return null;
 
@@ -242,8 +233,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   const saveAnswer = (value: string) => {
     // This makes sure when a question is changed that a possible visible Outcome is removed
-    if (isFinished(sections.QUESTIONS)) {
-      setFinishedState(sections.QUESTIONS, false);
+    if (isCompleted) {
+      complete();
     }
 
     const question = checker.stack[questionIndex];
@@ -317,7 +308,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         // Define if question is the current one
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive(sections.QUESTIONS);
+          q === checker.stack[questionIndex] && isActive;
 
         // Hide unanswered questions (eg: on browser refresh)
         if (!isCurrentQuestion && !userAnswer) {

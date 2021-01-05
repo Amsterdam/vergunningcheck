@@ -4,10 +4,10 @@ import { ascDefaultTheme, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
-import text from "../i18n/nl";
-import { QUESTION_ALERT } from "../utils/test-ids";
-import { render, screen } from "../utils/test-utils";
-import QuestionAlert from "./QuestionAlert";
+import text from "../../i18n/nl";
+import { QUESTION_ALERT } from "../../utils/test-ids";
+import { render, screen } from "../../utils/test-utils";
+import { QuestionAlert } from "./";
 
 const needPermitText =
   text.translation.question.alert["this answer causes a need for permit"];

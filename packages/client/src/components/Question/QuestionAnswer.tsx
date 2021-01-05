@@ -2,8 +2,8 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import { ClientOutcomes, removeQuotes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent, HTMLAttributes } from "react";
 
-import { EditButton, TextToEdit } from "../atoms";
-import QuestionAlert from "./QuestionAlert";
+import { EditButton, TextToEdit } from "../../atoms";
+import { QuestionAlert } from "./";
 
 type QuestionAnswerProps = {
   disabled?: boolean;

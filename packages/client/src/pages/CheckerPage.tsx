@@ -5,9 +5,12 @@ import { Helmet } from "react-helmet";
 import { HideForPrint } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
 import { LocationInput, LocationSummary } from "../components/Location";
-import { Outcome } from "../components/Outcome";
+import { OutcomeSection } from "../components/Outcome";
 import PrintDetails from "../components/PrintDetails";
-import Questions, { GoToQuestionProp } from "../components/Questions";
+import {
+  GoToQuestionProp,
+  QuestionsOriginal as Questions,
+} from "../components/Question";
 import {
   StepByStepItem,
   StepByStepNavigation,
@@ -272,7 +275,6 @@ const CheckerPage = () => {
         <StepByStepItem
           active={isActive(sections.QUESTIONS) && questionIndex === 0}
           checked={isFinished(sections.QUESTIONS)}
-          customSize
           done={!isEmptyObject(answers) || isActive(sections.QUESTIONS)}
           heading="Vragen"
           largeCircle
@@ -300,7 +302,7 @@ const CheckerPage = () => {
           // Overwrite the line between the Items
           style={{ marginTop: -1 }}
         >
-          {isFinished(sections.QUESTIONS) && <Outcome />}
+          {isFinished(sections.QUESTIONS) && <OutcomeSection />}
         </StepByStepItem>
       </StepByStepNavigation>
 

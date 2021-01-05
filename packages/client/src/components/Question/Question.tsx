@@ -6,17 +6,17 @@ import React, { FormEvent, FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { ComponentWrapper } from "../atoms";
-import { actions, eventNames } from "../config/matomo";
-import { useTracking } from "../hooks";
-import { BooleanOption } from "../types";
-import { QUESTION_FORM } from "../utils/test-ids";
-import Answers, { AnswerProps } from "./Answers";
-import Form from "./Form";
-import Markdown from "./Markdown";
-import Modal from "./Modal";
-import Nav from "./Nav";
-import QuestionAlert from "./QuestionAlert";
+import { ComponentWrapper } from "../../atoms";
+import { actions, eventNames } from "../../config/matomo";
+import { useTracking } from "../../hooks";
+import { BooleanOption } from "../../types";
+import { QUESTION_FORM } from "../../utils/test-ids";
+import Answers, { AnswerProps } from "../Answers";
+import Form from "../Form";
+import Markdown from "../Markdown";
+import Modal from "../Modal";
+import Nav from "../Nav";
+import { QuestionAlert } from "./";
 
 export const booleanOptions: BooleanOption[] = [
   {
