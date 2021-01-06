@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 import { TopicLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
@@ -40,43 +41,44 @@ const defaultSectionData = {
   isCompleted: false,
 };
 
-const defaultSections: SectionObjectProps[] = [
-  {
-    ...defaultSectionData,
-    component: (props) => {
-      return <QuestionSection {...props} />;
-    },
-    heading: "Vragen",
-    renderOutsideWrapper: true,
-  },
-  {
-    ...defaultSectionData,
-    component: (props) => {
-      return <OutcomeSection {...props} />;
-    },
-    heading: "Uitkomt",
-  },
-];
-const locationSection: SectionObjectProps[] = [
-  {
-    ...defaultSectionData,
-    component: (props) => {
-      return <LocationSection {...props} />;
-    },
-    heading: "Adresgegevens",
-  },
-];
-
 const CheckerPage: FunctionComponent = () => {
   const { checker } = useChecker();
+  const hasDataNeeds = !!getDataNeed(checker);
+  const { t } = useTranslation();
+
+  const defaultSections: SectionObjectProps[] = [
+    {
+      ...defaultSectionData,
+      component: (props) => {
+        return <QuestionSection {...props} />;
+      },
+      heading: t("question.heading"),
+      renderOutsideWrapper: true,
+    },
+    {
+      ...defaultSectionData,
+      component: (props) => {
+        return <OutcomeSection {...props} />;
+      },
+      heading: t("outcome.heading"),
+    },
+  ];
+  const locationSection: SectionObjectProps[] = [
+    {
+      ...defaultSectionData,
+      component: (props) => {
+        return <LocationSection {...props} />;
+      },
+      heading: t("location.address.heading"), // Add an alternative heading here when adding the map
+    },
+  ];
+
   const sessionContext = useContext(SessionContext);
   const [sections, updateSections] = useState(defaultSections);
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-
   const { sectionData } = topicData;
-  const hasDataNeeds = !!getDataNeed(checker);
 
   const setSectionData = (sections: SectionObjectProps[]) => {
     updateSections(sections);
@@ -143,7 +145,7 @@ const CheckerPage: FunctionComponent = () => {
 
   const getActiveSection = () => sections[getActiveSectionIndex()];
 
-  // change to setActive
+  // @TODO: change to setActive
   const activate = (
     section: SectionObjectProps,
     initialize: boolean = false
@@ -161,7 +163,7 @@ const CheckerPage: FunctionComponent = () => {
     setSectionData(newSections);
   };
 
-  // change to setCompleted
+  // @TODO: change to setCompleted
   const complete = (
     state: null | boolean = null,
     section: SectionObjectProps | null = null
@@ -184,7 +186,7 @@ const CheckerPage: FunctionComponent = () => {
       ? sections[getActiveSectionIndex() + 1]
       : null;
 
-  // change to getLastSection
+  // @TODO: change to getLastSection
   const isLastSection = (section: SectionObjectProps) =>
     section.index === sections.length - 1;
 
@@ -268,6 +270,7 @@ const CheckerPage: FunctionComponent = () => {
             customSize
             // `done` is a state when a future section is completed but the active section is not completed
             done={hasFutureCompletedSections(section)}
+            // @TODO: highlight the Questions Section Wrapper only when the first question is active
             highlightActive={!renderOutsideWrapper}
             largeCircle
             key={computedIndex}

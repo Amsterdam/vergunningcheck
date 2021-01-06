@@ -112,7 +112,9 @@ const LocationInput = ({
       )}
 
       {!hasIMTR && (
-        <Heading forwardedAs="h3">{t("location.enter location")}</Heading>
+        <Heading forwardedAs="h3">
+          {t("location.address.enter address")}
+        </Heading>
       )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 

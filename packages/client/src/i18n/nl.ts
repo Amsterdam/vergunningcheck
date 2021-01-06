@@ -85,13 +85,20 @@ export default {
       },
     },
     location: {
-      "enter location": "Invullen adres",
+      address: {
+        heading: "Adresgegevens",
+        "enter address": "Invullen adres",
+      },
+      map: {
+        heading: "Locatiegegevens",
+      },
       testing: {
         "address input":
           "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
       },
     },
     question: {
+      heading: "Vragen",
       alert: {
         "this answer causes a need for permit":
           "Door dit antwoord hebt u een vergunning nodig.",
@@ -102,6 +109,7 @@ export default {
       },
     },
     outcome: {
+      heading: "Uitkomst",
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
 
