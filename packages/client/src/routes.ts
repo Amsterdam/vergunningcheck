@@ -66,27 +66,19 @@ const baseRouteConfig: RoutePropExtended[] = [
   },
   {
     component: lazy(
+      () => import(/* webpackPrefetch: true */ `./pages/CheckerPageOld`)
+    ),
+    exact: true,
+    name: "checker",
+    path: `/:slug(${imtrSlugs})/old-checker`,
+  },
+  {
+    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
     exact: true,
     name: "checker",
     path: `/:slug(${imtrSlugs})/vragen-en-uitkomst`,
-  },
-  {
-    component: lazy(
-      () => import(/* webpackPrefetch: true */ `./pages/CheckerPage2`)
-    ),
-    exact: true,
-    name: "checker",
-    path: `/:slug(${imtrSlugs})/checker2`,
-  },
-  {
-    component: lazy(
-      () => import(/* webpackPrefetch: true */ `./pages/CheckerPage3`)
-    ),
-    exact: true,
-    name: "checker",
-    path: `/:slug(${imtrSlugs})/checker3`,
   },
   {
     component: lazy(

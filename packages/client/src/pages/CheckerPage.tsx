@@ -1,154 +1,217 @@
-import { captureException } from "@sentry/browser";
-import React, { useCallback, useContext, useEffect } from "react";
+import React, {
+  Fragment,
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Helmet } from "react-helmet";
 
-import { HideForPrint } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
-import { LocationInput, LocationSummary } from "../components/Location";
+import { LocationSection } from "../components/Location";
 import { OutcomeSection } from "../components/Outcome";
-import PrintDetails from "../components/PrintDetails";
-import {
-  GoToQuestionProp,
-  QuestionsOriginal as Questions,
-} from "../components/Question";
+import { QuestionSection } from "../components/Question";
 import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
-import { autofillResolvers, getDataNeed } from "../config/autofill";
-import { actions, eventNames, sections } from "../config/matomo";
-import { DebugDecisionTable } from "../debug";
-import {
-  useChecker,
-  useSlug,
-  useTopic,
-  useTopicData,
-  useTracking,
-} from "../hooks";
-import { SessionContext, defaultTopicSession } from "../SessionContext";
-import { Address } from "../types";
-import { isEmptyObject } from "../utils";
+import { getDataNeed } from "../config/autofill";
+import { useChecker, useSlug, useTopic } from "../hooks";
+import { SessionContext } from "../SessionContext";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 
-const CheckerPage = () => {
-  const { topicData, setTopicData } = useTopicData();
+export type SectionProps = {
+  currentSection?: any;
+  sectionFunctions?: any;
+};
+
+type SectionObjectProps = {
+  index: number;
+  isActive: boolean;
+  isCompleted: boolean;
+  renderer?: (props: SectionProps) => {};
+  renderOutsideWrapper?: boolean;
+  title?: string;
+};
+
+const defaultSections: SectionObjectProps[] = [
+  {
+    index: 0,
+    isActive: false,
+    isCompleted: false,
+    renderer: (props) => {
+      return <QuestionSection {...props} />;
+    },
+    renderOutsideWrapper: true,
+    title: "Vragen",
+  },
+  {
+    index: 0,
+    isActive: false,
+    isCompleted: false,
+    renderer: (props) => {
+      return <OutcomeSection {...props} />;
+    },
+    title: "Uitkomt",
+  },
+];
+const locationSection: SectionObjectProps[] = [
+  {
+    index: 0,
+    isActive: false,
+    isCompleted: false,
+    renderer: (props) => {
+      return <LocationSection {...props} />;
+    },
+    title: "Adresgegevens",
+  },
+];
+
+const CheckerPage: FunctionComponent = () => {
+  // Initialize hooks
   const { checker } = useChecker();
-  const { text } = useTopic();
-  const slug = useSlug();
-  const { matomoTrackEvent } = useTracking();
   const sessionContext = useContext(SessionContext);
+  const [sections, updateSections] = useState(defaultSections);
+  const slug = useSlug();
+  const { text } = useTopic();
 
   const hasDataNeeds = !!getDataNeed(checker);
 
-  const {
-    activeComponents,
-    address,
-    answers,
-    questionIndex = 0,
-    finishedComponents = [],
-  } = topicData || {};
-
   useEffect(() => {
-    // In case no active sections are found, reset the checker
-    // This is a fallback to prevent users being stuck without any active component
-    const activeComponent = [
-      sections.OUTCOME,
-      sections.LOCATION_INPUT,
-      sections.QUESTIONS,
-    ].find((section) => isActive(section));
+    if (checker) {
+      // Add location section if required by `hasDataNeeds`
+      let initialSections: SectionObjectProps[] = hasDataNeeds
+        ? [...locationSection, ...defaultSections]
+        : [...sections];
 
-    if (!activeComponent) {
-      console.error("Resetting checker, because no active section was found");
-      setTopicData(defaultTopicSession);
-    }
+      initialSections.map((section, index) => {
+        // Reorder the indexes (in case sections have been added)
+        section.index = index;
 
-    // Prevent linter to add all dependencies, now the useEffect is only called on mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        // Make the first section active
+        section.isActive = index === 0;
 
-  const isActive = useCallback(
-    (component: string[] | string, finished: boolean = false) => {
-      // If component is only a string, we make it a array first
-      const allComponents = Array.isArray(component) ? component : [component];
+        // Mark all sections as incomplete
+        section.isCompleted = false;
 
-      // If finished is true we check if it's finished, else check activeComponents.
-      const components = finished
-        ? finishedComponents
-        : activeComponents
-        ? activeComponents
-        : [];
-      return components.includes(allComponents[0]);
-    },
-    [activeComponents, finishedComponents]
-  );
-
-  // Only one component can be active at the same time.
-  const setActiveState = (component: string) => {
-    // Do not track the active step
-    if (!isActive(component)) {
-      matomoTrackEvent({
-        action: actions.ACTIVE_STEP,
-        name: component,
-      });
-    }
-
-    setTopicData({ activeComponents: [component] });
-  };
-
-  useEffect(() => {
-    // Checker is initialized but there are no active components yet
-    if (checker && (!activeComponents || !activeComponents.length)) {
-      const activeStep = hasDataNeeds
-        ? sections.LOCATION_INPUT
-        : sections.QUESTIONS;
-
-      matomoTrackEvent({
-        action: actions.ACTIVE_STEP,
-        name: activeStep,
+        return section;
       });
 
-      setActiveState(activeStep);
-      setTopicData({ finishedComponents: [] });
+      updateSections(initialSections);
     }
 
-    // Prevent bug when manually erasing data Session Storage
-    if (hasDataNeeds && !address && !isActive(sections.LOCATION_INPUT)) {
-      setTopicData(defaultTopicSession);
-      setActiveState(sections.LOCATION_INPUT);
-    }
-
-    // Prevent linter to add all dependencies, now the useEffect is only called on mount
+    // Prevent linter to add all dependencies, now the useEffect is only called when `checker` updates
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeComponents, checker, hasDataNeeds]);
+  }, [checker]);
 
-  /**
-   * Set given components to the given finished state
-   *
-   * @param component - name or names of the components
-   * @param value - Set components to finished state or remove from finished state.
-   */
-  const setFinishedState = (component: string[] | string, value: boolean) => {
-    // If component is only a string, we make it a array first
-    const allComponents = Array.isArray(component) ? component : [component];
-
-    // If value is false, remove the components from the fishedComponents array
-    const newFinishedComponents: string[] =
-      typeof value === "boolean" && value === false
-        ? finishedComponents?.filter(
-            (c: string) => !allComponents.includes(c)
-          ) || []
-        : [...finishedComponents, ...allComponents];
-
-    setTopicData({ finishedComponents: newFinishedComponents });
+  const getActiveSectionIndex = () => {
+    const activeSection = sections.filter(
+      (currentSection) => currentSection.isActive === true
+    );
+    if (!activeSection || activeSection.length !== 1) {
+      // Always expect one section to be active
+      throw new Error(
+        `"getActiveSectionIndex()": Expected one active section, got "${activeSection.length}"`
+      );
+    }
+    return activeSection[0].index;
   };
 
-  const isFinished = (component: string[] | string) =>
-    isActive(component, true);
+  const getActiveSection = () => sections[getActiveSectionIndex()];
 
-  if (!checker) {
-    return <LoadingPage />;
-  }
+  // change to setActive
+  const activate = (
+    section: SectionObjectProps,
+    initialize: boolean = false
+  ) => {
+    // console.log("  ~ file: CheckerPage.tsx ~ line 128 ~ section", section);
+
+    let newSections = [...sections];
+
+    if (!initialize) {
+      // Deactivate current active section
+      newSections[getActiveSectionIndex()].isActive = false;
+    }
+
+    // Mark new section as active
+    newSections[section.index].isActive = true;
+
+    updateSections(newSections);
+  };
+
+  // change to setCompleted
+  const complete = (
+    state: null | boolean = null,
+    section: SectionObjectProps | null = null
+  ) => {
+    // console.log("complete:", state, section?.index);
+    let newSections = [...sections];
+    const newState = state === null ? true : state;
+
+    if (section) {
+      // Mark specific section as complete
+      newSections[section.index].isCompleted = newState;
+    } else {
+      // Mark current section as complete || as state
+      newSections[getActiveSectionIndex()].isCompleted = newState;
+    }
+    updateSections(newSections);
+  };
+
+  const getNextSection = () =>
+    sections[getActiveSectionIndex() + 1]
+      ? sections[getActiveSectionIndex() + 1]
+      : null;
+
+  // change to getLastSection
+  const isLastSection = (section: SectionObjectProps) =>
+    section.index === sections.length - 1;
+
+  const goToNextSection = () => {
+    const newSectionIndex = getActiveSectionIndex() + 1;
+    // console.log("goToNextSection:", newSectionIndex);
+    const newSection = sections[newSectionIndex];
+
+    if (newSection) {
+      complete();
+      activate(newSection);
+
+      // The last section is always completed when activated
+      if (isLastSection(newSection)) {
+        complete(true, newSection);
+      }
+    } else {
+      // Expect new section to exist
+      throw new Error(
+        `"goToNextSection()": Failed going to next section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`
+      );
+    }
+  };
+
+  const goToPrevSection = () => {
+    const newSectionIndex = getActiveSectionIndex() - 1;
+    const newSection = sections[newSectionIndex];
+
+    if (newSection) {
+      activate(newSection);
+    } else {
+      // Expect new section to exist
+      throw new Error(
+        `"goToPrevSection()": Failed going to prev section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`
+      );
+    }
+  };
+
+  const hasFutureActiveSections = (
+    section: SectionObjectProps = getActiveSection()
+  ) => {
+    const lastActiveSection = sections
+      .filter((s) => s.isCompleted)
+      .map((s) => s.index)
+      .pop();
+    return lastActiveSection && lastActiveSection > section.index;
+  };
 
   // In case `topicData` is not found on the Session Context display an error
   // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
@@ -156,78 +219,56 @@ const CheckerPage = () => {
     return <ErrorPage />;
   }
 
-  /**
-   * Set the questionIndex the next questionId, previous questionId, or the given id.
-   */
-  const goToQuestion = (value: GoToQuestionProp) => {
-    let action, eventName;
-    let newQuestionIndex: number;
+  if (!checker) {
+    return <LoadingPage />;
+  }
 
-    if (value === "next" || value === "prev") {
-      // Either go 1 question next or prev
-      newQuestionIndex =
-        value === "next" ? questionIndex + 1 : questionIndex - 1;
+  const sectionsRenderer = (sections: SectionObjectProps[]) => {
+    const sectionFunctions = {
+      activate,
+      complete,
+      getActiveSection,
+      getNextSection,
+      goToNextSection,
+      goToPrevSection,
+      hasFutureActiveSections,
+      isLastSection,
+    };
 
-      if (!checker.stack[newQuestionIndex]) {
-        captureException(
-          `Go to question, question with index: ${newQuestionIndex} not found on stack`
-        );
-        return;
-      }
+    return sections.map((section, computedIndex) => {
+      const {
+        isActive,
+        isCompleted,
+        renderer,
+        renderOutsideWrapper,
+        title,
+      } = section;
 
-      // Matomo event props
-      action = checker.stack[questionIndex].text;
-      eventName =
-        value === "next"
-          ? eventNames.GOTO_NEXT_QUESTION
-          : eventNames.GOTO_PREV_QUESTION;
-    } else {
-      // Edit specific question index (value), go directly to this new question index
-      newQuestionIndex = value;
+      const componentToRender =
+        renderer &&
+        renderer({
+          currentSection: section,
+          sectionFunctions,
+        });
 
-      if (!checker.stack[newQuestionIndex]) {
-        captureException(
-          `Go to question, question with index: ${newQuestionIndex} not found on stack`
-        );
-        return;
-      }
-
-      // Matomo event props
-      action = actions.EDIT_QUESTION;
-      eventName = (checker.stack[newQuestionIndex] as any).text;
-    }
-
-    matomoTrackEvent({
-      action,
-      name: eventName,
+      return (
+        <Fragment key={computedIndex}>
+          <StepByStepItem
+            active={isActive}
+            checked={isCompleted}
+            customSize
+            // `done` is a state when a future section is completed but the active section is not completed
+            done={hasFutureActiveSections(section)}
+            heading={title}
+            highlightActive={!renderOutsideWrapper}
+            largeCircle
+          >
+            {!renderOutsideWrapper && componentToRender}
+          </StepByStepItem>
+          {renderOutsideWrapper && componentToRender}
+        </Fragment>
+      );
     });
-
-    setTopicData({
-      questionIndex: newQuestionIndex,
-    });
-  };
-
-  // Callback to go to the Outcome section
-  // `false` is to prevent unexpected click, hover and focus states on already active section
-  const handleOutcomeClick =
-    !isActive(sections.OUTCOME) && isFinished(sections.QUESTIONS)
-      ? () => setActiveState(sections.OUTCOME)
-      : false;
-
-  const checkedStyle = {
-    borderColor: "white",
-  };
-
-  // On LocationSubmit
-  const handleNewAddressSubmit = (address: Address) => {
-    setTopicData({
-      activeComponents: [sections.QUESTIONS],
-      finishedComponents: [sections.LOCATION_INPUT],
-      address,
-    });
-
-    // Autofill `checker` when `address` is submitted
-    checker.autofill(autofillResolvers, { address });
   };
 
   return (
@@ -235,8 +276,6 @@ const CheckerPage = () => {
       <Helmet>
         <title>Vragen en uitkomst - {text.heading}</title>
       </Helmet>
-
-      <PrintDetails />
       <StepByStepNavigation
         customSize
         disabledTextColor="inherit"
@@ -244,76 +283,10 @@ const CheckerPage = () => {
         highlightActive
         lineBetweenItems
       >
-        {hasDataNeeds ? (
-          <StepByStepItem
-            active={isActive(sections.LOCATION_INPUT)}
-            checked={isFinished(sections.LOCATION_INPUT)}
-            done={isActive(sections.LOCATION_INPUT)}
-            heading="Adresgegevens"
-            largeCircle
-            // Overwrite the line between the Items
-            style={
-              isActive(sections.LOCATION_INPUT) || questionIndex === 0
-                ? checkedStyle
-                : {}
-            }
-          >
-            {hasDataNeeds && isActive(sections.LOCATION_INPUT) && (
-              <LocationInput
-                {...{
-                  handleNewAddressSubmit,
-                }}
-              />
-            )}
-            {hasDataNeeds && !isActive(sections.LOCATION_INPUT) && (
-              <LocationSummary showEditLocationModal />
-            )}
-          </StepByStepItem>
-        ) : (
-          <span />
-        )}
-        <StepByStepItem
-          active={isActive(sections.QUESTIONS) && questionIndex === 0}
-          checked={isFinished(sections.QUESTIONS)}
-          done={!isEmptyObject(answers) || isActive(sections.QUESTIONS)}
-          heading="Vragen"
-          largeCircle
-          // Overwrite the line between the Items
-          style={checkedStyle}
-        />
-        <Questions
-          {...{
-            goToQuestion,
-            isActive,
-            isFinished,
-            setActiveState,
-            setFinishedState,
-          }}
-        />
-        <StepByStepItem
-          active={isActive(sections.OUTCOME)}
-          checked={isFinished(sections.QUESTIONS)}
-          as="div"
-          done={isFinished(sections.QUESTIONS)}
-          customSize
-          heading="Uitkomst"
-          largeCircle
-          onClick={handleOutcomeClick}
-          // Overwrite the line between the Items
-          style={{ marginTop: -1 }}
-        >
-          {
-            <OutcomeSection
-              currentSection={{ isCompleted: isFinished(sections.QUESTIONS) }}
-            />
-          }
-        </StepByStepItem>
+        {sectionsRenderer(sections)}
       </StepByStepNavigation>
-
-      <HideForPrint>
-        <DebugDecisionTable />
-      </HideForPrint>
     </TopicLayout>
   );
 };
+
 export default CheckerPage;

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { SectionProps } from "../../pages/CheckerPage3";
+import { SectionProps } from "../../pages/CheckerPage";
 import { Questions } from "./";
 
 const QuestionSection: FunctionComponent<SectionProps> = (props) => {

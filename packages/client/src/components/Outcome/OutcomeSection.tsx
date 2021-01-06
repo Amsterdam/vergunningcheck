@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { urls } from "../../config";
 import { eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopic } from "../../hooks";
-import { SectionProps } from "../../pages/CheckerPage3";
+import { SectionProps } from "../../pages/CheckerPage";
 import Disclaimer from "../Disclaimer";
 import Loading from "../Loading";
 import Markdown from "../Markdown";

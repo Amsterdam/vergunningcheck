@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 
 import { autofillResolvers } from "../../config/autofill";
 import { useChecker, useTopicData } from "../../hooks";
-import { SectionProps } from "../../pages/CheckerPage3";
+import { SectionProps } from "../../pages/CheckerPage";
 import { Address } from "../../types";
 import LocationSummary from "./LocationSummary";
 import { LocationInput } from ".";
