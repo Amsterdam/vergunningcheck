@@ -28,13 +28,11 @@ import { Question, QuestionAnswer, booleanOptions } from "./";
 export type GoToQuestionProp = "next" | "prev" | number;
 
 type QuestionsProps = {
-  activateQuestionSection: any; // XXX
-  complete: any; // XXX
   goToNextSection: any; // XXX
   goToPrevSection: any; // XXX
+  goToQuestionHook?: any; // XXX
   isActive: boolean;
-  isCompleted?: boolean;
-  updateQuestionHook: any; // XXX
+  updateQuestionHook?: any; // XXX
 };
 
 // @TODO: Move to checker.js
@@ -47,12 +45,10 @@ export const getUserAnswer = (question: ImtrQuestion) => {
 };
 
 const Questions: FunctionComponent<QuestionsProps> = ({
-  activateQuestionSection,
-  complete,
   goToNextSection,
   goToPrevSection,
+  goToQuestionHook,
   isActive,
-  isCompleted,
   updateQuestionHook,
 }) => {
   const topic = useTopic();
@@ -170,13 +166,12 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   const onGoToQuestion = useCallback(
     (questionId) => {
-      // Checker rewinding also needs to work when you already have a conlusion
-      // Go to the specific question in the stack
-      activateQuestionSection();
+      goToQuestionHook && goToQuestionHook();
 
+      // Go to the specific question in the stack
       goToQuestion(questionId);
     },
-    [goToQuestion, activateQuestionSection]
+    [goToQuestion, goToQuestionHook]
   );
 
   const shouldGoToConlusion = () => {
@@ -283,12 +278,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
   const saveAnswer = (value: string) => {
-    updateQuestionHook();
-
-    // This makes sure when a question is changed that a possible visible Outcome is removed
-    if (isCompleted) {
-      complete();
-    }
+    updateQuestionHook && updateQuestionHook();
 
     const question = checker.stack[questionIndex];
 

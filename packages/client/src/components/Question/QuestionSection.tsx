@@ -15,25 +15,29 @@ const QuestionSection: FunctionComponent<SectionProps> = (props) => {
     },
   } = props;
 
-  const { isActive, isCompleted } = currentSection;
+  const { isActive } = currentSection;
 
   const updateQuestionHook = () => {
-    if (getNextSection()) {
-      complete(false, getNextSection());
-    }
+    // Mark current and next section as incomplete
+    complete(false);
+    complete(false, getNextSection());
   };
 
-  const activateQuestionSection = () => activate(currentSection);
+  const goToQuestionHook = () => {
+    // Activate the Question Section in case another section is active
+    if (!isActive) {
+      activate(currentSection);
+    }
+  };
 
   return (
     <Questions
       {...{
-        activateQuestionSection,
         complete,
         goToNextSection,
         goToPrevSection,
+        goToQuestionHook,
         isActive,
-        isCompleted,
         updateQuestionHook,
       }}
     />

@@ -8,6 +8,7 @@ import React, {
 import { Helmet } from "react-helmet";
 
 import { TopicLayout } from "../components/Layouts";
+import Loading from "../components/Loading";
 import { LocationSection } from "../components/Location";
 import { OutcomeSection } from "../components/Outcome";
 import { QuestionSection } from "../components/Question";
@@ -16,11 +17,11 @@ import {
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
 import { getDataNeed } from "../config/autofill";
+import { DebugDecisionTable } from "../debug";
 import { useChecker, useSlug, useTopic, useTopicData } from "../hooks";
 import { SessionContext } from "../SessionContext";
 import { SectionData } from "../types";
 import ErrorPage from "./ErrorPage";
-import LoadingPage from "./LoadingPage";
 
 export type SectionProps = {
   currentSection?: any;
@@ -28,9 +29,9 @@ export type SectionProps = {
 };
 
 type SectionObjectProps = SectionData & {
-  renderer?: (props: SectionProps) => {};
+  component?: (props: SectionProps) => {};
+  heading?: string;
   renderOutsideWrapper?: boolean;
-  title?: string;
 };
 
 const defaultSectionData = {
@@ -42,27 +43,27 @@ const defaultSectionData = {
 const defaultSections: SectionObjectProps[] = [
   {
     ...defaultSectionData,
-    renderer: (props) => {
+    component: (props) => {
       return <QuestionSection {...props} />;
     },
+    heading: "Vragen",
     renderOutsideWrapper: true,
-    title: "Vragen",
   },
   {
     ...defaultSectionData,
-    renderer: (props) => {
+    component: (props) => {
       return <OutcomeSection {...props} />;
     },
-    title: "Uitkomt",
+    heading: "Uitkomt",
   },
 ];
 const locationSection: SectionObjectProps[] = [
   {
     ...defaultSectionData,
-    renderer: (props) => {
+    component: (props) => {
       return <LocationSection {...props} />;
     },
-    title: "Adresgegevens",
+    heading: "Adresgegevens",
   },
 ];
 
@@ -221,15 +222,14 @@ const CheckerPage: FunctionComponent = () => {
     }
   };
 
-  const hasFutureActiveSections = (
+  // Check if a future section is completed
+  const hasFutureCompletedSections = (
     section: SectionObjectProps = getActiveSection()
-  ) => {
-    const lastActiveSection = sections
+  ) =>
+    sections
       .filter((s) => s.isCompleted)
       .map((s) => s.index)
-      .pop();
-    return lastActiveSection && lastActiveSection > section.index;
-  };
+      .pop() || -1 > section.index;
 
   // In case `topicData` is not found on the Session Context display an error
   // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
@@ -237,34 +237,27 @@ const CheckerPage: FunctionComponent = () => {
     return <ErrorPage />;
   }
 
-  if (!checker) {
-    return <LoadingPage />;
-  }
+  const sectionFunctions = {
+    activate,
+    complete,
+    getNextSection,
+    goToNextSection,
+    goToPrevSection,
+  };
 
-  const sectionsRenderer = (sections: SectionObjectProps[]) => {
-    const sectionFunctions = {
-      activate,
-      complete,
-      getActiveSection,
-      getNextSection,
-      goToNextSection,
-      goToPrevSection,
-      hasFutureActiveSections,
-      isLastSection,
-    };
-
-    return sections.map((section, computedIndex) => {
+  const sectionsRenderer = () =>
+    sections.map((section, computedIndex) => {
       const {
-        isActive,
-        isCompleted,
-        renderer,
+        isActive: active,
+        isCompleted: checked,
+        component,
+        heading,
         renderOutsideWrapper,
-        title,
       } = section;
 
       const componentToRender =
-        renderer &&
-        renderer({
+        component &&
+        component({
           currentSection: section,
           sectionFunctions,
         });
@@ -272,14 +265,13 @@ const CheckerPage: FunctionComponent = () => {
       return (
         <Fragment key={computedIndex}>
           <StepByStepItem
-            active={isActive}
-            checked={isCompleted}
             customSize
             // `done` is a state when a future section is completed but the active section is not completed
-            done={hasFutureActiveSections(section)}
-            heading={title}
+            done={hasFutureCompletedSections(section)}
             highlightActive={!renderOutsideWrapper}
             largeCircle
+            key={computedIndex}
+            {...{ active, checked, heading }}
           >
             {!renderOutsideWrapper && componentToRender}
           </StepByStepItem>
@@ -287,22 +279,26 @@ const CheckerPage: FunctionComponent = () => {
         </Fragment>
       );
     });
-  };
 
   return (
     <TopicLayout>
       <Helmet>
         <title>Vragen en uitkomst - {text.heading}</title>
       </Helmet>
-      <StepByStepNavigation
-        customSize
-        disabledTextColor="inherit"
-        doneTextColor="inherit"
-        highlightActive
-        lineBetweenItems
-      >
-        {sectionsRenderer(sections)}
-      </StepByStepNavigation>
+
+      {checker ? (
+        <StepByStepNavigation
+          disabledTextColor="inherit"
+          doneTextColor="inherit"
+          lineBetweenItems
+        >
+          {sectionsRenderer()}
+        </StepByStepNavigation>
+      ) : (
+        <Loading />
+      )}
+
+      <DebugDecisionTable />
     </TopicLayout>
   );
 };
