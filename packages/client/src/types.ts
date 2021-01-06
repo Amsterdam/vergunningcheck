@@ -32,13 +32,37 @@ export type AddressType = {
 export type Address = null | AddressType;
 
 /**
- * Context and session types
+ * Section types
  */
-export type SectionData = {
+
+export type SectionComponent = {
+  currentSection: SectionObject;
+  sectionFunctions: SectionFunctions;
+};
+
+type SectionData = {
   index: number;
   isActive: boolean;
   isCompleted: boolean;
 };
+
+export type SectionObject = SectionData & {
+  component?: (props: SectionComponent) => {};
+  heading?: string;
+  renderOutsideWrapper?: boolean;
+};
+
+export type SectionFunctions = {
+  activateSection: (section: SectionObject) => void;
+  completeSection: (state?: boolean, section?: SectionObject | null) => void;
+  getNextSection: () => SectionObject | null;
+  goToNextSection: () => void;
+  goToPrevSection: () => void;
+};
+
+/**
+ * Context and session types
+ */
 
 export type TopicData = {
   address: Address;

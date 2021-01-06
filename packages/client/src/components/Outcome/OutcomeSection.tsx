@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { urls } from "../../config";
 import { eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopic } from "../../hooks";
-import { SectionProps } from "../../pages/CheckerPage";
+import { SectionComponent } from "../../types";
 import Disclaimer from "../Disclaimer";
 import Loading from "../Loading";
 import Markdown from "../Markdown";
@@ -25,7 +25,7 @@ const OutcomeWrapper = styled.div`
   }
 `;
 
-const OutcomeSection: FunctionComponent<SectionProps> = (props) => {
+const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const topic = useTopic();
   const { t } = useTranslation();

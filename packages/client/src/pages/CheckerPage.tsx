@@ -21,19 +21,8 @@ import { getDataNeed } from "../config/autofill";
 import { DebugDecisionTable } from "../debug";
 import { useChecker, useSlug, useTopic, useTopicData } from "../hooks";
 import { SessionContext } from "../SessionContext";
-import { SectionData } from "../types";
+import { SectionFunctions, SectionObject } from "../types";
 import ErrorPage from "./ErrorPage";
-
-export type SectionProps = {
-  currentSection?: any;
-  sectionFunctions?: any;
-};
-
-type SectionObjectProps = SectionData & {
-  component?: (props: SectionProps) => {};
-  heading?: string;
-  renderOutsideWrapper?: boolean;
-};
 
 const defaultSectionData = {
   index: 0,
@@ -46,7 +35,7 @@ const CheckerPage: FunctionComponent = () => {
   const hasDataNeeds = !!getDataNeed(checker);
   const { t } = useTranslation();
 
-  const defaultSections: SectionObjectProps[] = [
+  const defaultSections: SectionObject[] = [
     {
       ...defaultSectionData,
       component: (props) => {
@@ -63,7 +52,7 @@ const CheckerPage: FunctionComponent = () => {
       heading: t("outcome.heading"),
     },
   ];
-  const locationSection: SectionObjectProps[] = [
+  const locationSection: SectionObject[] = [
     {
       ...defaultSectionData,
       component: (props) => {
@@ -80,7 +69,7 @@ const CheckerPage: FunctionComponent = () => {
   const { setTopicData, topicData } = useTopicData();
   const { address, sectionData } = topicData;
 
-  const setSectionData = (sections: SectionObjectProps[]) => {
+  const setSectionData = (sections: SectionObject[]) => {
     updateSections(sections);
 
     setTopicData({
@@ -95,7 +84,7 @@ const CheckerPage: FunctionComponent = () => {
   useEffect(() => {
     if (checker) {
       // Add location section if required by `hasDataNeeds`
-      let initialSections: SectionObjectProps[] = hasDataNeeds
+      let initialSections: SectionObject[] = hasDataNeeds
         ? [...locationSection, ...defaultSections]
         : [...sections];
 
@@ -154,9 +143,13 @@ const CheckerPage: FunctionComponent = () => {
 
   const getActiveSection = () => sections[getActiveSectionIndex()];
 
-  // @TODO: change to setActive
-  const activate = (
-    section: SectionObjectProps,
+  /**
+   *
+   * @param section - The section to activate
+   * @param initialize - Only use when there's no active section yet
+   */
+  const activateSection = (
+    section: SectionObject,
     initialize: boolean = false
   ) => {
     let newSections = [...sections];
@@ -172,20 +165,23 @@ const CheckerPage: FunctionComponent = () => {
     setSectionData(newSections);
   };
 
-  // @TODO: change to setCompleted
-  const complete = (
-    state: null | boolean = null,
-    section: SectionObjectProps | null = null
+  /**
+   *
+   * @param state - Pass a boolean to (in)complete the section (optional - default: true)
+   * @param section - Pass a specific section to complete or by default it completes the active section. (optional)
+   */
+  const completeSection = (
+    state: boolean = true,
+    section: SectionObject | null = null
   ) => {
     let newSections = [...sections];
-    const newState = state === null ? true : state;
 
     if (section) {
       // Mark specific section as complete
-      newSections[section.index].isCompleted = newState;
+      newSections[section.index].isCompleted = state;
     } else {
       // Mark current section as complete || as state
-      newSections[getActiveSectionIndex()].isCompleted = newState;
+      newSections[getActiveSectionIndex()].isCompleted = state;
     }
     setSectionData(newSections);
   };
@@ -195,8 +191,7 @@ const CheckerPage: FunctionComponent = () => {
       ? sections[getActiveSectionIndex() + 1]
       : null;
 
-  // @TODO: change to getLastSection
-  const isLastSection = (section: SectionObjectProps) =>
+  const isLastSection = (section: SectionObject) =>
     section.index === sections.length - 1;
 
   const goToNextSection = () => {
@@ -204,12 +199,12 @@ const CheckerPage: FunctionComponent = () => {
     const newSection = sections[newSectionIndex];
 
     if (newSection) {
-      complete();
-      activate(newSection);
+      completeSection();
+      activateSection(newSection);
 
       // The last section is always completed when activated
       if (isLastSection(newSection)) {
-        complete(true, newSection);
+        completeSection(true, newSection);
       }
     } else {
       // Expect new section to exist
@@ -224,7 +219,7 @@ const CheckerPage: FunctionComponent = () => {
     const newSection = sections[newSectionIndex];
 
     if (newSection) {
-      activate(newSection);
+      activateSection(newSection);
     } else {
       // Expect new section to exist
       throw new Error(
@@ -235,7 +230,7 @@ const CheckerPage: FunctionComponent = () => {
 
   // Check if a future section is completed
   const hasFutureCompletedSections = (
-    section: SectionObjectProps = getActiveSection()
+    section: SectionObject = getActiveSection()
   ) =>
     sections
       .filter((s) => s.isCompleted)
@@ -248,9 +243,9 @@ const CheckerPage: FunctionComponent = () => {
     return <ErrorPage />;
   }
 
-  const sectionFunctions = {
-    activate,
-    complete,
+  const sectionFunctions: SectionFunctions = {
+    activateSection,
+    completeSection,
     getNextSection,
     goToNextSection,
     goToPrevSection,

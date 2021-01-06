@@ -2,12 +2,11 @@ import React, { FunctionComponent } from "react";
 
 import { autofillResolvers } from "../../config/autofill";
 import { useChecker, useTopicData } from "../../hooks";
-import { SectionProps } from "../../pages/CheckerPage";
-import { Address } from "../../types";
+import { Address, SectionComponent } from "../../types";
 import LocationSummary from "./LocationSummary";
 import { LocationInput } from ".";
 
-const LocationSection: FunctionComponent<SectionProps> = (props) => {
+const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const { setTopicData } = useTopicData();
 
