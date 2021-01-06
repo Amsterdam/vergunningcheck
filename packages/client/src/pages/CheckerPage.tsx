@@ -302,7 +302,11 @@ const CheckerPage = () => {
           // Overwrite the line between the Items
           style={{ marginTop: -1 }}
         >
-          {isFinished(sections.QUESTIONS) && <OutcomeSection />}
+          {
+            <OutcomeSection
+              currentSection={{ isCompleted: isFinished(sections.QUESTIONS) }}
+            />
+          }
         </StepByStepItem>
       </StepByStepNavigation>
 

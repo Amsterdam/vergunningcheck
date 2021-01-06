@@ -25,10 +25,17 @@ const OutcomeWrapper = styled.div`
   }
 `;
 
-const OutcomeSection: FunctionComponent<SectionProps> = () => {
+const OutcomeSection: FunctionComponent<SectionProps> = (props) => {
   const { checker } = useChecker();
   const topic = useTopic();
   const { t } = useTranslation();
+
+  const {
+    currentSection: { isCompleted },
+  } = props;
+
+  // Hide content if outcome section is not completed
+  if (!isCompleted) return null;
 
   const {
     NEED_BOTH_PERMIT_AND_REPORT,

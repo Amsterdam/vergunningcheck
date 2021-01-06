@@ -35,7 +35,6 @@ const LocationInput = ({
   const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
-
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {

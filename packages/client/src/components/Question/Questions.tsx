@@ -1,4 +1,4 @@
-import { setTag } from "@sentry/browser";
+import { captureException, setTag } from "@sentry/browser";
 import {
   Checker,
   ClientOutcomes,
@@ -28,14 +28,13 @@ import { Question, QuestionAnswer, booleanOptions } from "./";
 export type GoToQuestionProp = "next" | "prev" | number;
 
 type QuestionsProps = {
-  activate: any; // XXX
   activateQuestionSection: any; // XXX
   complete: any; // XXX
-  goToQuestion: (value: GoToQuestionProp) => void;
-  isActive: boolean;
-  isCompleted: boolean;
   goToNextSection: any; // XXX
   goToPrevSection: any; // XXX
+  isActive: boolean;
+  isCompleted?: boolean;
+  updateQuestionHook: any; // XXX
 };
 
 // @TODO: Move to checker.js
@@ -50,11 +49,11 @@ export const getUserAnswer = (question: ImtrQuestion) => {
 const Questions: FunctionComponent<QuestionsProps> = ({
   activateQuestionSection,
   complete,
-  goToQuestion,
   goToNextSection,
   goToPrevSection,
   isActive,
   isCompleted,
+  updateQuestionHook,
 }) => {
   const topic = useTopic();
   const { matomoTrackEvent } = useTracking();
@@ -65,6 +64,58 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const { name } = topic;
   const { answers, questionIndex } = topicData;
   const outcomeRef = useRef<any>(null);
+
+  // Set the questionIndex the next questionId, previous questionId, or the given id.
+  const goToQuestion = useCallback(
+    (value: GoToQuestionProp) => {
+      // let action, eventName;
+      let newQuestionIndex: number;
+
+      if (value === "next" || value === "prev") {
+        // Either go 1 question next or prev
+        newQuestionIndex =
+          value === "next" ? questionIndex + 1 : questionIndex - 1;
+
+        if (!checker.stack[newQuestionIndex]) {
+          captureException(
+            `Go to question, question with index: ${newQuestionIndex} not found on stack`
+          );
+          return;
+        }
+
+        // Matomo event props
+        // action = checker.stack[questionIndex].text;
+        // eventName =
+        //   value === "next"
+        //     ? eventNames.GOTO_NEXT_QUESTION
+        //     : eventNames.GOTO_PREV_QUESTION;
+      } else {
+        // Edit specific question index (value), go directly to this new question index
+        newQuestionIndex = value;
+
+        if (!checker.stack[newQuestionIndex]) {
+          captureException(
+            `Go to question, question with index: ${newQuestionIndex} not found on stack`
+          );
+          return;
+        }
+
+        // Matomo event props
+        // action = actions.EDIT_QUESTION;
+        // eventName = (checker.stack[newQuestionIndex] as any).text;
+      }
+
+      // matomoTrackEvent({
+      //   action,
+      //   name: eventName,
+      // });
+
+      setTopicData({
+        questionIndex: newQuestionIndex,
+      });
+    },
+    [checker.stack, questionIndex, setTopicData]
+  );
 
   const goToOutcome = useCallback(() => {
     goToNextSection();
@@ -232,6 +283,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
   const saveAnswer = (value: string) => {
+    updateQuestionHook();
+
     // This makes sure when a question is changed that a possible visible Outcome is removed
     if (isCompleted) {
       complete();

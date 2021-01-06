@@ -78,38 +78,27 @@ const CheckerPage: FunctionComponent = () => {
 
   const hasDataNeeds = !!getDataNeed(checker);
 
-  const initializeSections = (sections: SectionObjectProps[]) => {
-    let newSections = [...sections];
-
-    newSections.map((section, index) => {
-      let indexedSection = section;
-      indexedSection.index = index;
-
-      // Make the first section active
-      if (index === 0) {
-        indexedSection.isActive = true;
-      } else {
-        indexedSection.isActive = false;
-      }
-
-      return indexedSection;
-    });
-    updateSections(newSections);
-  };
-
   useEffect(() => {
-    // Add location section
-    if (checker && hasDataNeeds) {
-      let currentSections: SectionObjectProps[] = [
-        ...locationSection,
-        ...defaultSections,
-      ];
+    if (checker) {
+      // Add location section if required by `hasDataNeeds`
+      let initialSections: SectionObjectProps[] = hasDataNeeds
+        ? [...locationSection, ...defaultSections]
+        : [...sections];
 
-      initializeSections(currentSections);
-    }
+      initialSections.map((section, index) => {
+        // Reorder the indexes (in case sections have been added)
+        section.index = index;
 
-    if (checker && !hasDataNeeds) {
-      initializeSections(sections);
+        // Make the first section active
+        section.isActive = index === 0;
+
+        // Mark all sections as incomplete
+        section.isCompleted = false;
+
+        return section;
+      });
+
+      updateSections(initialSections);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called when `checker` updates
@@ -168,6 +157,11 @@ const CheckerPage: FunctionComponent = () => {
     updateSections(newSections);
   };
 
+  const getNextSection = () =>
+    sections[getActiveSectionIndex() + 1]
+      ? sections[getActiveSectionIndex() + 1]
+      : null;
+
   // change to getLastSection
   const isLastSection = (section: SectionObjectProps) =>
     section.index === sections.length - 1;
@@ -217,7 +211,28 @@ const CheckerPage: FunctionComponent = () => {
     return lastActiveSection && lastActiveSection > section.index;
   };
 
+  // In case `topicData` is not found on the Session Context display an error
+  // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
+  if (!sessionContext.session[slug]) {
+    return <ErrorPage />;
+  }
+
+  if (!checker) {
+    return <LoadingPage />;
+  }
+
   const sectionsRenderer = (sections: SectionObjectProps[]) => {
+    const sectionFunctions = {
+      activate,
+      complete,
+      getActiveSection,
+      getNextSection,
+      goToNextSection,
+      goToPrevSection,
+      hasFutureActiveSections,
+      isLastSection,
+    };
+
     return sections.map((section, computedIndex) => {
       const {
         isActive,
@@ -226,16 +241,6 @@ const CheckerPage: FunctionComponent = () => {
         renderOutsideWrapper,
         title,
       } = section;
-
-      const sectionFunctions = {
-        activate,
-        complete,
-        getActiveSection,
-        goToNextSection,
-        goToPrevSection,
-        hasFutureActiveSections,
-        isLastSection,
-      };
 
       const componentToRender =
         renderer &&
@@ -253,6 +258,7 @@ const CheckerPage: FunctionComponent = () => {
             // `done` is a state when a future section is completed but the active section is not completed
             done={hasFutureActiveSections(section)}
             heading={title}
+            highlightActive={!renderOutsideWrapper}
             largeCircle
           >
             {!renderOutsideWrapper && componentToRender}
@@ -262,16 +268,6 @@ const CheckerPage: FunctionComponent = () => {
       );
     });
   };
-
-  // In case `topicData` is not found on the Session Context display an error
-  // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
-  if (!sessionContext.session[slug]) {
-    return <ErrorPage />;
-  }
-
-  if (!checker) {
-    return <LoadingPage />;
-  }
 
   return (
     <TopicLayout>
