@@ -23,9 +23,6 @@ const LocationSection: FunctionComponent<SectionProps> = (props) => {
   // On LocationSubmit
   const handleNewAddressSubmit = (address: Address) => {
     setTopicData({
-      // XXX: Somehow save the state on reload
-      // activeComponents: [sections.QUESTIONS],
-      // finishedComponents: [sections.LOCATION_INPUT],
       address,
     });
 

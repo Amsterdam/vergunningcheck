@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { ComponentWrapper, Label } from "../../atoms";
 import { CheckerContext } from "../../CheckerContext";
 import { topics } from "../../config";
-import { actions, eventNames, sections } from "../../config/matomo";
+import { actions, eventNames } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
@@ -71,9 +71,7 @@ const NewCheckerModal: FunctionComponent = () => {
       // Set the the new session data for `doSaveAddress`
       const topicSessionWithSavedAddress = {
         ...defaultTopicSession,
-        activeComponents: [sections.QUESTIONS],
         address: topicData.address,
-        finishedComponents: [sections.LOCATION_INPUT],
         type: checkerSlug,
       };
 

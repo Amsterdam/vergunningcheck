@@ -13,10 +13,8 @@ type AppSessionContext = {
 };
 
 export const defaultTopicSession: TopicData = {
-  activeComponents: [],
   address: null,
   answers: {},
-  finishedComponents: [],
   questionIndex: 0,
   sectionData: [],
   type: "",

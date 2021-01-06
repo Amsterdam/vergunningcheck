@@ -18,6 +18,7 @@ import {
 import { getDataNeed } from "../config/autofill";
 import { useChecker, useSlug, useTopic, useTopicData } from "../hooks";
 import { SessionContext } from "../SessionContext";
+import { SectionData } from "../types";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 
@@ -26,20 +27,21 @@ export type SectionProps = {
   sectionFunctions?: any;
 };
 
-type SectionObjectProps = {
-  index: number;
-  isActive: boolean;
-  isCompleted: boolean;
+type SectionObjectProps = SectionData & {
   renderer?: (props: SectionProps) => {};
   renderOutsideWrapper?: boolean;
   title?: string;
 };
 
+const defaultSectionData = {
+  index: 0,
+  isActive: false,
+  isCompleted: false,
+};
+
 const defaultSections: SectionObjectProps[] = [
   {
-    index: 0,
-    isActive: false,
-    isCompleted: false,
+    ...defaultSectionData,
     renderer: (props) => {
       return <QuestionSection {...props} />;
     },
@@ -47,9 +49,7 @@ const defaultSections: SectionObjectProps[] = [
     title: "Vragen",
   },
   {
-    index: 0,
-    isActive: false,
-    isCompleted: false,
+    ...defaultSectionData,
     renderer: (props) => {
       return <OutcomeSection {...props} />;
     },
@@ -58,9 +58,7 @@ const defaultSections: SectionObjectProps[] = [
 ];
 const locationSection: SectionObjectProps[] = [
   {
-    index: 0,
-    isActive: false,
-    isCompleted: false,
+    ...defaultSectionData,
     renderer: (props) => {
       return <LocationSection {...props} />;
     },
@@ -69,7 +67,6 @@ const locationSection: SectionObjectProps[] = [
 ];
 
 const CheckerPage: FunctionComponent = () => {
-  // Initialize hooks
   const { checker } = useChecker();
   const sessionContext = useContext(SessionContext);
   const [sections, updateSections] = useState(defaultSections);
@@ -84,9 +81,9 @@ const CheckerPage: FunctionComponent = () => {
     updateSections(sections);
 
     setTopicData({
-      sectionData: sections.map(({ isActive, index, isCompleted }) => ({
-        isActive,
+      sectionData: sections.map(({ index, isActive, isCompleted }) => ({
         index,
+        isActive,
         isCompleted,
       })),
     });
@@ -99,9 +96,12 @@ const CheckerPage: FunctionComponent = () => {
         ? [...locationSection, ...defaultSections]
         : [...sections];
 
-      // Initialize and potentially restore new sections
-      const restoreTopicData = sectionData.length === initialSections.length;
+      // Potentially restore new sections from session
+      const restoreTopicData =
+        sectionData.length === initialSections.length &&
+        sectionData.filter((s) => s.isActive).length === 1;
 
+      // Initialize new sections
       initialSections.map((section, index) => {
         // Reorder the indexes (in case sections have been added)
         section.index = index;

@@ -41,12 +41,10 @@ export type SectionData = {
 };
 
 export type TopicData = {
-  activeComponents?: string[];
   address: Address;
   answers: {
     [id: string]: Answer;
   };
-  finishedComponents: string[];
   sectionData: SectionData[];
   type: string;
   questionIndex: number;

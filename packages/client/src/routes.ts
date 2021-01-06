@@ -66,14 +66,6 @@ const baseRouteConfig: RoutePropExtended[] = [
   },
   {
     component: lazy(
-      () => import(/* webpackPrefetch: true */ `./pages/CheckerPageOld`)
-    ),
-    exact: true,
-    name: "checker",
-    path: `/:slug(${imtrSlugs})/old-checker`,
-  },
-  {
-    component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/CheckerPage`)
     ),
     exact: true,
