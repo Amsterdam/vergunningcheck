@@ -78,7 +78,7 @@ const CheckerPage: FunctionComponent = () => {
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-  const { sectionData } = topicData;
+  const { address, sectionData } = topicData;
 
   const setSectionData = (sections: SectionObjectProps[]) => {
     updateSections(sections);
@@ -122,6 +122,15 @@ const CheckerPage: FunctionComponent = () => {
 
         return section;
       });
+
+      // Autocomplete the location section in case a new checker with data needs was started with a stored address
+      if (address && hasDataNeeds && !sectionData.length) {
+        // Complete the location section
+        initialSections[0].isActive = false;
+        initialSections[0].isCompleted = true;
+        // Activate the question section
+        initialSections[1].isActive = true;
+      }
 
       setSectionData(initialSections);
     }
