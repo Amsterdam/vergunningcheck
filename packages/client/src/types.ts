@@ -34,6 +34,12 @@ export type Address = null | AddressType;
 /**
  * Context and session types
  */
+export type SectionData = {
+  index: number;
+  isActive: boolean;
+  isCompleted: boolean;
+};
+
 export type TopicData = {
   activeComponents?: string[];
   address: Address;
@@ -41,6 +47,7 @@ export type TopicData = {
     [id: string]: Answer;
   };
   finishedComponents: string[];
+  sectionData: SectionData[];
   type: string;
   questionIndex: number;
 };

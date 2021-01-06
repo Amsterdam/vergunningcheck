@@ -16,7 +16,7 @@ import {
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
 import { getDataNeed } from "../config/autofill";
-import { useChecker, useSlug, useTopic } from "../hooks";
+import { useChecker, useSlug, useTopic, useTopicData } from "../hooks";
 import { SessionContext } from "../SessionContext";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
@@ -75,8 +75,22 @@ const CheckerPage: FunctionComponent = () => {
   const [sections, updateSections] = useState(defaultSections);
   const slug = useSlug();
   const { text } = useTopic();
+  const { setTopicData, topicData } = useTopicData();
 
+  const { sectionData } = topicData;
   const hasDataNeeds = !!getDataNeed(checker);
+
+  const setSectionData = (sections: SectionObjectProps[]) => {
+    updateSections(sections);
+
+    setTopicData({
+      sectionData: sections.map(({ isActive, index, isCompleted }) => ({
+        isActive,
+        index,
+        isCompleted,
+      })),
+    });
+  };
 
   useEffect(() => {
     if (checker) {
@@ -85,20 +99,28 @@ const CheckerPage: FunctionComponent = () => {
         ? [...locationSection, ...defaultSections]
         : [...sections];
 
+      // Initialize and potentially restore new sections
+      const restoreTopicData = sectionData.length === initialSections.length;
+
       initialSections.map((section, index) => {
         // Reorder the indexes (in case sections have been added)
         section.index = index;
 
-        // Make the first section active
-        section.isActive = index === 0;
-
-        // Mark all sections as incomplete
-        section.isCompleted = false;
+        if (restoreTopicData) {
+          // Restore sectionData from session
+          section.isActive = sectionData[index].isActive;
+          section.isCompleted = sectionData[index].isCompleted;
+        } else {
+          // Set the first section active
+          section.isActive = index === 0;
+          // Set all sections incomplete
+          section.isCompleted = false;
+        }
 
         return section;
       });
 
-      updateSections(initialSections);
+      setSectionData(initialSections);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called when `checker` updates
@@ -125,8 +147,6 @@ const CheckerPage: FunctionComponent = () => {
     section: SectionObjectProps,
     initialize: boolean = false
   ) => {
-    // console.log("  ~ file: CheckerPage.tsx ~ line 128 ~ section", section);
-
     let newSections = [...sections];
 
     if (!initialize) {
@@ -137,7 +157,7 @@ const CheckerPage: FunctionComponent = () => {
     // Mark new section as active
     newSections[section.index].isActive = true;
 
-    updateSections(newSections);
+    setSectionData(newSections);
   };
 
   // change to setCompleted
@@ -145,7 +165,6 @@ const CheckerPage: FunctionComponent = () => {
     state: null | boolean = null,
     section: SectionObjectProps | null = null
   ) => {
-    // console.log("complete:", state, section?.index);
     let newSections = [...sections];
     const newState = state === null ? true : state;
 
@@ -156,7 +175,7 @@ const CheckerPage: FunctionComponent = () => {
       // Mark current section as complete || as state
       newSections[getActiveSectionIndex()].isCompleted = newState;
     }
-    updateSections(newSections);
+    setSectionData(newSections);
   };
 
   const getNextSection = () =>
@@ -170,7 +189,6 @@ const CheckerPage: FunctionComponent = () => {
 
   const goToNextSection = () => {
     const newSectionIndex = getActiveSectionIndex() + 1;
-    // console.log("goToNextSection:", newSectionIndex);
     const newSection = sections[newSectionIndex];
 
     if (newSection) {

@@ -18,6 +18,7 @@ export const defaultTopicSession: TopicData = {
   answers: {},
   finishedComponents: [],
   questionIndex: 0,
+  sectionData: [],
   type: "",
 };
 
