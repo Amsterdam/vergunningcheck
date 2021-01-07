@@ -17,7 +17,7 @@ import {
   NeedPermit,
   OutcomeContent,
   PermitFree,
-} from ".";
+} from "./";
 
 const OutcomeWrapper = styled.div`
   @media screen {

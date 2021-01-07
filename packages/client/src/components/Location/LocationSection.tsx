@@ -28,20 +28,18 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     // Autofill `checker` when `address` is submitted
     checker.autofill(autofillResolvers, { address });
 
+    // Go to Question Section
     goToNextSection();
   };
 
-  return (
-    <>
-      {isActive && (
-        <LocationInput
-          {...{
-            handleNewAddressSubmit,
-          }}
-        />
-      )}
-      {!isActive && <LocationSummary showEditLocationModal />}
-    </>
+  return isActive ? (
+    <LocationInput
+      {...{
+        handleNewAddressSubmit,
+      }}
+    />
+  ) : (
+    <LocationSummary showEditLocationModal />
   );
 };
 
