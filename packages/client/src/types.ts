@@ -120,8 +120,8 @@ export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 /**
  * Checker related types
  */
-export type BooleanOption = {
+export type AnswerOptions = {
   formValue: string;
   label: string;
-  value: boolean;
+  value: boolean | string;
 };

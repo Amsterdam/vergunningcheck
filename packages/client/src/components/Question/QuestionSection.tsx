@@ -4,20 +4,13 @@ import { SectionComponent } from "../../types";
 import { Questions } from "./";
 
 const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
-  const {
-    currentSection,
-    sectionFunctions: {
-      activateSection,
-      completeSection,
-      getNextSection,
-      goToNextSection,
-      goToPrevSection,
-    },
-  } = props;
+  const { currentSection, sectionFunctions } = props;
+
+  const { activateSection, completeSection, getNextSection } = sectionFunctions;
 
   const { isActive } = currentSection;
 
-  const updateQuestionHook = () => {
+  const saveAnswerHook = () => {
     // Mark current and next section as incomplete
     completeSection(false);
     completeSection(false, getNextSection());
@@ -33,11 +26,10 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   return (
     <Questions
       {...{
-        goToNextSection,
-        goToPrevSection,
         goToQuestionHook,
         isActive,
-        updateQuestionHook,
+        saveAnswerHook,
+        sectionFunctions,
       }}
     />
   );

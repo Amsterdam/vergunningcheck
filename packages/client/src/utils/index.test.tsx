@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 
+import nl from "../i18n/nl";
 import {
+  getAnswerLabel,
   isEmptyObject,
   isValidPostalcode,
   removeQueryStrings,
@@ -100,5 +102,15 @@ describe("util", () => {
     expect(isEmptyObject(new Set() as any)).toBe(false);
     expect(isEmptyObject(new Date() as any)).toBe(false);
     expect(isEmptyObject((<></>) as any)).toBe(false);
+  });
+
+  test("getAnswerLabel", () => {
+    const { no, yes } = nl.translation.common;
+    expect(getAnswerLabel('"Yes"')).toBe("Yes");
+    expect(getAnswerLabel("Yes")).toBe("Yes");
+    expect(getAnswerLabel("yes")).toBe("yes");
+    expect(getAnswerLabel(true)).toBe(yes);
+    expect(getAnswerLabel(false)).toBe(no);
+    expect(getAnswerLabel(0)).toBe(0);
   });
 });

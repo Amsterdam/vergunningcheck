@@ -6,7 +6,6 @@ import {
   Question as ImtrQuestion,
   Permit,
   imtrOutcomes,
-  removeQuotes,
 } from "@vergunningcheck/imtr-client";
 import React, {
   FunctionComponent,
@@ -15,51 +14,41 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useForm } from "react-hook-form";
 
 import { ScrollAnchor } from "../../atoms";
 import { eventNames } from "../../config/matomo";
-import { useChecker, useTopic, useTracking } from "../../hooks";
-import useTopicSession from "../../hooks/useTopicData";
-import { BooleanOption } from "../../types";
+import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { AnswerOptions, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
 import { StepByStepItem } from "../StepByStepNavigation";
-import { Question, QuestionAnswer, booleanOptions } from "./";
+import { Question, QuestionAnswer } from "./";
 
 export type GoToQuestionProp = "next" | "prev" | number;
 
 type QuestionsProps = {
-  goToNextSection: any; // XXX
-  goToPrevSection: any; // XXX
-  goToQuestionHook?: any; // XXX
+  goToQuestionHook?: () => void;
   isActive: boolean;
-  updateQuestionHook?: any; // XXX
-};
-
-// @TODO: Move to checker.js
-export const getUserAnswer = (question: ImtrQuestion) => {
-  if (typeof question.answer === "boolean") {
-    const answers = booleanOptions.find((o) => o.value === question.answer);
-    return answers?.label;
-  }
-  return question.answer;
+  saveAnswerHook?: () => void;
+  sectionFunctions: SectionFunctions;
 };
 
 const Questions: FunctionComponent<QuestionsProps> = ({
-  goToNextSection,
-  goToPrevSection,
   goToQuestionHook,
   isActive,
-  updateQuestionHook,
+  saveAnswerHook,
+  sectionFunctions,
 }) => {
-  const topic = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { checker } = useChecker() as { checker: Checker };
-  const { topicData, setTopicData } = useTopicSession();
+  const { setValue } = useForm();
+  const outcomeRef = useRef<any>(null);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactOutcome, setContactOutcome] = useState(false);
-  const { name } = topic;
+  const { topicData, setTopicData } = useTopicData();
+
   const { answers, questionIndex } = topicData;
-  const outcomeRef = useRef<any>(null);
+  const { goToNextSection, goToPrevSection } = sectionFunctions;
 
   // Set the questionIndex the next questionId, previous questionId, or the given id.
   const goToQuestion = useCallback(
@@ -174,6 +163,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     [goToQuestion, goToQuestionHook]
   );
 
+  // @TODO: move to checker.js
   const shouldGoToConlusion = () => {
     if (!checker.isConclusive()) {
       return false;
@@ -195,13 +185,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
       // Loop through questions
       checker.stack.forEach((q) => {
-        const userAnswer = getUserAnswer(q);
-
         const isCurrentQuestion =
           q === checker.stack[questionIndex] && isActive;
 
         // Skip question if already answered
-        if (isCurrentQuestion && userAnswer) {
+        if (isCurrentQuestion && q.answer !== undefined) {
           onQuestionNext();
         }
       });
@@ -230,6 +218,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     // Track active questions
     if (isActive) {
       matomoTrackEvent({
+        // @TODO: fix "unknown question"
         action: checker.stack[questionIndex]?.text || "unknown question",
         name: eventNames.ACTIVE_QUESTION,
       });
@@ -277,39 +266,29 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
-  const saveAnswer = (value: string) => {
-    updateQuestionHook && updateQuestionHook();
+  /**
+   *
+   * This function handles everything when an answer is updated
+   *
+   * @param {AnswerOptions} answer
+   */
+  const saveAnswer = (answer: AnswerOptions) => {
+    // Save the changed answer to the question
+    saveAnswerHook && saveAnswerHook();
 
+    const { label, value } = answer;
     const question = checker.stack[questionIndex];
-
-    let userAnswer, userAnswerLabel;
-    if (question.options && value !== undefined) {
-      // List question
-      userAnswer = value;
-      userAnswerLabel = removeQuotes(value);
-    } else if (!question.options && value) {
-      // Boolean question
-      const responseObj = booleanOptions.find(
-        (o) => o.formValue === value
-      ) as BooleanOption;
-      userAnswer = responseObj.value;
-      userAnswerLabel = responseObj.label;
-    } else {
-      // Undefined answer
-      console.error("Undefined answer");
-      return;
-    }
+    const { id, text } = question;
 
     // Handle the given answer
-    question.setAnswer(userAnswer);
+    question.setAnswer(value);
 
     // Store in Sentry
-    setTag(question.text, userAnswerLabel);
+    setTag(text, label);
 
     matomoTrackEvent({
-      action: question.text,
-      category: name,
-      name: `${eventNames.ANSWERED_WITH} - ${userAnswerLabel}`,
+      action: text,
+      name: `${eventNames.ANSWERED_WITH} - ${label}`,
     });
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
@@ -325,6 +304,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     setTopicData({
       answers: checker.getQuestionAnswers(),
     });
+
+    // @TODO: find out if this is still necessary:
+    // Set the value of the radio group to the selected value with react-hook-form's setValue
+    // if (type === "radio") setValue(name, value);
+    setValue(id, label);
   };
 
   if (checker.stack.length === 0) {
@@ -346,15 +330,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           return null;
         }
 
-        // Define userAnswer
-        const userAnswer = getUserAnswer(q);
+        const { answer } = q;
 
         // Define if question is the current one
         const isCurrentQuestion =
           q === checker.stack[questionIndex] && isActive;
 
         // Hide unanswered questions (eg: on browser refresh)
-        if (!isCurrentQuestion && !userAnswer) {
+        if (answer === undefined && !isCurrentQuestion) {
           return null;
         }
 
@@ -374,7 +357,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         return (
           <StepByStepItem
             active={isCurrentQuestion}
-            checked={!!userAnswer}
+            checked={answer !== undefined}
             customSize
             heading={q.text}
             highlightActive={isCurrentQuestion}
@@ -388,14 +371,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
                 onGoToPrev={onQuestionPrev}
                 onGoToNext={onQuestionNext}
                 showNext
-                userAnswer={
-                  userAnswer === undefined ? userAnswer : userAnswer.toString()
-                }
                 {...{
-                  saveAnswer,
                   checker,
                   outcomeType,
-                  questionIndex,
+                  saveAnswer,
                   shouldGoToConlusion,
                   showQuestionAlert,
                 }}
@@ -404,19 +383,17 @@ const Questions: FunctionComponent<QuestionsProps> = ({
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                userAnswer={userAnswer?.toString()}
-                {...{ outcomeType, showQuestionAlert }}
+                {...{ answer, outcomeType, showQuestionAlert }}
               />
             )}
           </StepByStepItem>
         );
       })}
       {checker._getUpcomingQuestions().map((q, i) => {
-        // Define userAnswer
-        const userAnswer = getUserAnswer(q);
+        const { answer } = q;
 
         // Skip unanswered questions or in case of Contact Outcome
-        if (!userAnswer || contactOutcome) {
+        if (answer === undefined || contactOutcome) {
           return null;
         }
 
@@ -442,8 +419,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              userAnswer={userAnswer.toString()}
-              {...{ disabled, outcomeType, showQuestionAlert }}
+              {...{ answer, disabled, outcomeType, showQuestionAlert }}
             />
           </StepByStepItem>
         );

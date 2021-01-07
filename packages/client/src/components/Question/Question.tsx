@@ -2,51 +2,36 @@ import {
   ClientOutcomes,
   Question as ImtrQuestion,
 } from "@vergunningcheck/imtr-client";
-import React, { FormEvent, FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTracking } from "../../hooks";
-import { BooleanOption } from "../../types";
+import { useTopicData, useTracking } from "../../hooks";
+import { AnswerOptions } from "../../types";
+import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
-import Answers, { AnswerProps } from "../Answers";
+import Answers from "../Answers";
 import Form from "../Form";
 import Markdown from "../Markdown";
 import Modal from "../Modal";
 import Nav from "../Nav";
 import { QuestionAlert } from "./";
 
-export const booleanOptions: BooleanOption[] = [
-  {
-    label: "Ja",
-    formValue: "yes",
-    value: true,
-  },
-  {
-    label: "Nee",
-    formValue: "no",
-    value: false,
-  },
-];
-
 type QuestionProps = {
   question: ImtrQuestion;
   onGoToNext: () => void;
   onGoToPrev: () => void;
-  questionIndex: number;
   outcomeType: ClientOutcomes;
-  saveAnswer: (value: string) => void;
+  saveAnswer: (answer: AnswerOptions) => void;
   shouldGoToConlusion: () => boolean;
   showQuestionAlert: boolean;
   showNext: boolean;
-  userAnswer?: string;
 };
 
 const Question: FunctionComponent<QuestionProps> = ({
   question,
-  questionIndex,
   outcomeType,
   onGoToNext,
   onGoToPrev,
@@ -54,31 +39,23 @@ const Question: FunctionComponent<QuestionProps> = ({
   shouldGoToConlusion,
   showQuestionAlert,
   showNext,
-  userAnswer,
 }) => {
+  const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const {
-    answer: currentAnswer,
+    topicData: { questionIndex },
+  } = useTopicData();
+  const { matomoTrackEvent } = useTracking();
+  const { t } = useTranslation();
+
+  const requiredFieldRadio = t("common.required field radio");
+
+  const {
+    answer,
     description,
     id: questionId,
     longDescription,
-    options: questionAnswers,
     text: questionTitle,
-    type: questionType,
   } = question;
-  const { matomoTrackEvent } = useTracking();
-
-  const { handleSubmit, register, unregister, setValue, errors } = useForm();
-  const { t } = useTranslation();
-  const listAnswers = questionAnswers?.map(
-    (answer) =>
-      ({
-        formValue: answer,
-        label: answer,
-        value: answer,
-      } as AnswerProps)
-  );
-  const answers = questionType === "string" ? listAnswers : booleanOptions;
-  const requiredFieldRadio = t("common.required field radio");
 
   useEffect(() => {
     if (questionId) {
@@ -89,32 +66,12 @@ const Question: FunctionComponent<QuestionProps> = ({
         }
       );
 
-      if (userAnswer) {
-        setValue(questionId, userAnswer);
+      if (answer !== undefined) {
+        setValue(questionId, getAnswerLabel(answer));
       }
     }
     return () => unregister(questionId);
-  }, [
-    questionId,
-    register,
-    unregister,
-    currentAnswer,
-    questionAnswers,
-    setValue,
-    userAnswer,
-    t,
-    requiredFieldRadio,
-  ]);
-
-  const handleChange = (e: FormEvent) => {
-    const { name, type, value } = e.target as HTMLInputElement;
-
-    // Save the changed answer to the question.
-    saveAnswer(value);
-
-    // Set the value of the radio group to the selected value with react-hook-form's setValue
-    if (type === "radio") setValue(name, value);
-  };
+  }, [answer, questionId, register, unregister, setValue, requiredFieldRadio]);
 
   const handleOpenModal = () => {
     matomoTrackEvent({
@@ -132,12 +89,13 @@ const Question: FunctionComponent<QuestionProps> = ({
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
       )}
+
       {longDescription && (
         <ComponentWrapper>
           <Modal
             handleOpenModal={handleOpenModal}
-            heading="Toelichting"
-            openButtonText="Toelichting"
+            heading={t("question.meta.description")}
+            openButtonText={t("question.meta.description")}
           >
             <Markdown
               eventLocation={eventNames.LONG_DESCRIPTION}
@@ -146,18 +104,18 @@ const Question: FunctionComponent<QuestionProps> = ({
           </Modal>
         </ComponentWrapper>
       )}
-      <Answers
-        answers={answers}
-        errors={errors}
-        onChange={handleChange}
-        questionId={questionId}
-        questionIndex={questionIndex}
-        userAnswer={userAnswer}
-      />
+
+      <Answers {...{ errors, question, saveAnswer }} />
+
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
+
       <Nav
         formEnds={shouldGoToConlusion()}
-        nextText={shouldGoToConlusion() ? "Naar de uitkomst" : "Volgende vraag"}
+        nextText={
+          shouldGoToConlusion()
+            ? t("outcome.goToOutcome")
+            : t("question.nextQuestion")
+        }
         showPrev={questionIndex > 0} // Do not show back-button at the first question
         {...{
           onGoToPrev,

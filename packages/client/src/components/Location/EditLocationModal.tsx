@@ -1,5 +1,6 @@
 import { Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper, EditButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
@@ -12,6 +13,7 @@ const EditLocationModal: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
   const { setChecker } = useChecker();
   const { setTopicData } = useTopicData();
+  const { t } = useTranslation();
 
   const handleOpenModal = () => {
     matomoTrackEvent({
@@ -32,11 +34,13 @@ const EditLocationModal: FunctionComponent = () => {
 
   return (
     <Modal
-      closeButtonText="Nee"
-      confirmText="Ja"
+      closeButtonText={t("common.no")}
+      confirmText={t("common.yes")}
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}
-      heading="Weet u zeker dat u het adres wilt wijzigen?"
+      heading={t(
+        "location.address.are you sure you want to change the address"
+      )}
       openButtonRenderer={({ openModal }: { openModal: () => void }) => (
         <EditButton
           dataTestid={LOCATION_MODAL_OPEN_BUTTON}
@@ -50,8 +54,9 @@ const EditLocationModal: FunctionComponent = () => {
     >
       <ComponentWrapper>
         <Paragraph>
-          Alle gegeven antwoorden en de uitkomst worden gewist. Weet u zeker dat
-          u wilt doorgaan met een ander adres?
+          {t(
+            "location.address.are you sure you want to continue with a different address"
+          )}
         </Paragraph>
       </ComponentWrapper>
     </Modal>
