@@ -4,7 +4,7 @@ From the git-root:
 
 ```bash
 docker build -t vergunningcheck-graphql -f ci/Dockerfile.graphql .
-docker run -p 4000:8080 -e DISABLE_REDIS=1 vergunningcheck-graphql
+docker run -p 4000:8080 -e REDIS_ENABLED=0 vergunningcheck-graphql
 ```
 
 ```bash

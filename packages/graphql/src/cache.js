@@ -2,9 +2,13 @@ const redis = require("redis");
 const { promisify } = require("util");
 const config = require("../config");
 
-// Setup cache
-const redisConfig = config.cache.redis;
-const client = redisConfig && redis.createClient(redisConfig);
+const { enabled, redisUrl } = config.cache;
+
+const client =
+  enabled &&
+  redis.createClient({
+    url: redisUrl,
+  });
 
 const cachePrefix = "4_";
 
@@ -16,7 +20,7 @@ if (client) {
 module.exports = {
   cachePrefix,
   client,
-  enabled: !!client,
+  enabled,
   getAsync,
   setSync: client && client.set.bind(client),
 };

@@ -25,7 +25,7 @@ let typeDefs = gql`
     exactMatch: Address
   }
 
-  type Query {
+  extend type Query {
     address(id: ID!): Address
     findAddress(
       streetName: String
