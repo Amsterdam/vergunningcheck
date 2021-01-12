@@ -1,5 +1,9 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import { ClientOutcomes, imtrOutcomes } from "@vergunningcheck/imtr-client";
+import {
+  Checker,
+  ClientOutcomes,
+  imtrOutcomes,
+} from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -9,7 +13,6 @@ import { eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
 import Disclaimer from "../Disclaimer";
-import Loading from "../Loading";
 import Markdown from "../Markdown";
 import {
   DemolitionNeedReport,
@@ -26,16 +29,16 @@ const OutcomeWrapper = styled.div`
 `;
 
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
-  const { checker } = useChecker();
+  const { checker } = useChecker() as { checker: Checker };
   const topic = useTopic();
   const { t } = useTranslation();
 
   const {
-    currentSection: { isCompleted },
+    currentSection: { isActive },
   } = props;
 
-  // Hide content if outcome section is not completed
-  if (!isCompleted) return null;
+  // Hide content if outcome section is not active / completed
+  if (!isActive) return null;
 
   const {
     NEED_BOTH_PERMIT_AND_REPORT,
@@ -45,9 +48,6 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
     PERMIT_FREE,
   } = ClientOutcomes;
 
-  if (checker === undefined) {
-    return <Loading />;
-  }
   // Get all the outcomes to display
   const outcomes = checker.getOutcomesToDisplay();
 

@@ -25,6 +25,7 @@ import { SectionFunctions, SectionObject } from "../types";
 import ErrorPage from "./ErrorPage";
 
 const defaultSectionData = {
+  hideSection: false,
   index: 0,
   isActive: false,
   isCompleted: false,
@@ -35,30 +36,39 @@ const CheckerPage: FunctionComponent = () => {
   const hasDataNeeds = !!getDataNeed(checker);
   const { t } = useTranslation();
 
+  // Show the Question Section only when it has questions to render
+  const skipQuestionSection =
+    checker &&
+    checker.stack.length === 0 &&
+    checker._getUpcomingQuestions().length === 0;
+
   const defaultSections: SectionObject[] = [
-    {
-      ...defaultSectionData,
-      component: (props) => {
-        return <QuestionSection {...props} />;
-      },
-      heading: t("question.heading"),
-      renderOutsideWrapper: true,
-    },
-    {
-      ...defaultSectionData,
-      component: (props) => {
-        return <OutcomeSection {...props} />;
-      },
-      heading: t("outcome.heading"),
-    },
-  ];
-  const locationSection: SectionObject[] = [
+    // Location Section:
     {
       ...defaultSectionData,
       component: (props) => {
         return <LocationSection {...props} />;
       },
       heading: t("location.address.heading"), // Add an alternative heading here when adding the map
+      hideSection: !hasDataNeeds, // Show this section only when required by `hasDataNeeds`
+    },
+    // Question Section:
+    {
+      ...defaultSectionData,
+      component: (props) => {
+        return <QuestionSection {...props} />;
+      },
+      heading: t("question.heading"),
+      hideSection: skipQuestionSection,
+      renderOutsideWrapper: true,
+    },
+    // Outcome Section:
+    {
+      ...defaultSectionData,
+      component: (props) => {
+        return <OutcomeSection {...props} />;
+      },
+      heading: t("outcome.heading"),
     },
   ];
 
@@ -83,18 +93,13 @@ const CheckerPage: FunctionComponent = () => {
 
   useEffect(() => {
     if (checker) {
-      // Add location section if required by `hasDataNeeds`
-      let initialSections: SectionObject[] = hasDataNeeds
-        ? [...locationSection, ...defaultSections]
-        : [...sections];
-
       // Potentially restore new sections from session
       const restoreTopicData =
-        sectionData.length === initialSections.length &&
+        sectionData.length === defaultSections.length &&
         sectionData.filter((s) => s.isActive).length === 1;
 
       // Initialize new sections
-      initialSections.map((section, index) => {
+      defaultSections.map((section, index) => {
         // Reorder the indexes (in case sections have been added)
         section.index = index;
 
@@ -115,13 +120,13 @@ const CheckerPage: FunctionComponent = () => {
       // Autocomplete the location section in case a new checker with data needs was started with a stored address
       if (address && hasDataNeeds && !sectionData.length) {
         // Complete the location section
-        initialSections[0].isActive = false;
-        initialSections[0].isCompleted = true;
+        defaultSections[0].isActive = false;
+        defaultSections[0].isCompleted = true;
         // Activate the question section
-        initialSections[1].isActive = true;
+        defaultSections[1].isActive = true;
       }
 
-      setSectionData(initialSections);
+      setSectionData(defaultSections);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called when `checker` updates
@@ -258,8 +263,17 @@ const CheckerPage: FunctionComponent = () => {
         isCompleted: checked,
         component,
         heading,
+        hideSection,
         renderOutsideWrapper,
       } = section;
+
+      if (hideSection) {
+        if (active) {
+          goToNextSection();
+        }
+
+        return <span />;
+      }
 
       const componentToRender =
         component &&

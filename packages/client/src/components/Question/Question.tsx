@@ -20,23 +20,23 @@ import Nav from "../Nav";
 import { QuestionAlert } from "./";
 
 type QuestionProps = {
+  isCheckerConclusive: () => boolean;
   question: ImtrQuestion;
   onGoToNext: () => void;
   onGoToPrev: () => void;
   outcomeType: ClientOutcomes;
   saveAnswer: (answer: AnswerOptions) => void;
-  shouldGoToConlusion: () => boolean;
   showQuestionAlert: boolean;
   showNext: boolean;
 };
 
 const Question: FunctionComponent<QuestionProps> = ({
+  isCheckerConclusive,
   question,
   outcomeType,
   onGoToNext,
   onGoToPrev,
   saveAnswer,
-  shouldGoToConlusion,
   showQuestionAlert,
   showNext,
 }) => {
@@ -110,9 +110,9 @@ const Question: FunctionComponent<QuestionProps> = ({
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 
       <Nav
-        formEnds={shouldGoToConlusion()}
+        formEnds={isCheckerConclusive()}
         nextText={
-          shouldGoToConlusion()
+          isCheckerConclusive()
             ? t("outcome.goToOutcome")
             : t("question.nextQuestion")
         }

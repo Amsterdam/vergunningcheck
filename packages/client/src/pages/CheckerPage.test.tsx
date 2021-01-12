@@ -27,6 +27,7 @@ jest.mock("../hooks/useTopicData");
 // Mock the checker
 jest.mock("../hooks/useChecker");
 (useChecker as any).mockReturnValue({
+  // @TODO: replace checkerMock with static mockfile
   checker: getChecker(checkerMock) as any,
 });
 
@@ -63,8 +64,11 @@ describe("CheckerPage", () => {
 
     render(<CheckerPage />);
 
-    expect(screen.queryByText("Dakkapel plaatsen")).toBeInTheDocument();
-
     await waitFor(() => screen.getByTestId(STEPBYSTEPNAVIGATION));
+
+    // @Todo: translate
+    await waitFor(() => screen.queryByText("Neem contact op met de gemeente"));
   });
 });
+
+// @TODO: extend this test with a checker without dataNeeds

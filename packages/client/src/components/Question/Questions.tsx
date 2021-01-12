@@ -17,24 +17,22 @@ import React, {
 import { useForm } from "react-hook-form";
 
 import { ScrollAnchor } from "../../atoms";
-import { eventNames } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { AnswerOptions, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Question, QuestionAnswer } from "./";
 
-export type GoToQuestionProp = "next" | "prev" | number;
-
 type QuestionsProps = {
-  goToQuestionHook?: () => void;
+  editQuestionHook?: () => void;
   isActive: boolean;
   saveAnswerHook?: () => void;
   sectionFunctions: SectionFunctions;
 };
 
 const Questions: FunctionComponent<QuestionsProps> = ({
-  goToQuestionHook,
+  editQuestionHook,
   isActive,
   saveAnswerHook,
   sectionFunctions,
@@ -47,124 +45,142 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const [contactOutcome, setContactOutcome] = useState(false);
   const { topicData, setTopicData } = useTopicData();
 
-  const { answers, questionIndex } = topicData;
-  const { goToNextSection, goToPrevSection } = sectionFunctions;
+  const { questionIndex } = topicData;
+  const { goToNextSection } = sectionFunctions;
 
-  // Set the questionIndex the next questionId, previous questionId, or the given id.
+  const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION } = eventNames;
+  const { EDIT_QUESTION } = actions;
+
+  // This function handles the user-event of going to a new question
   const goToQuestion = useCallback(
-    (value: GoToQuestionProp) => {
-      // let action, eventName;
-      let newQuestionIndex: number;
+    (index: number, eventType?: string) => {
+      if (!checker.stack[index]) {
+        captureException(
+          `Go to question, question with index "${index}" not found on stack`
+        );
+        return;
+      }
+      console.log(eventType);
 
-      if (value === "next" || value === "prev") {
-        // Either go 1 question next or prev
-        newQuestionIndex =
-          value === "next" ? questionIndex + 1 : questionIndex - 1;
+      const { text } = checker.stack[questionIndex];
 
-        if (!checker.stack[newQuestionIndex]) {
-          captureException(
-            `Go to question, question with index: ${newQuestionIndex} not found on stack`
-          );
-          return;
-        }
-
-        // Matomo event props
-        // action = checker.stack[questionIndex].text;
-        // eventName =
-        //   value === "next"
-        //     ? eventNames.GOTO_NEXT_QUESTION
-        //     : eventNames.GOTO_PREV_QUESTION;
-      } else {
-        // Edit specific question index (value), go directly to this new question index
-        newQuestionIndex = value;
-
-        if (!checker.stack[newQuestionIndex]) {
-          captureException(
-            `Go to question, question with index: ${newQuestionIndex} not found on stack`
-          );
-          return;
-        }
-
-        // Matomo event props
-        // action = actions.EDIT_QUESTION;
-        // eventName = (checker.stack[newQuestionIndex] as any).text;
+      // TrackEvent for specfic event type
+      if (
+        eventType === GOTO_NEXT_QUESTION ||
+        eventType === GOTO_PREV_QUESTION
+      ) {
+        matomoTrackEvent({
+          action: text,
+          name: eventType,
+        });
+      } else if (eventType === EDIT_QUESTION) {
+        matomoTrackEvent({
+          action: eventType,
+          name: text,
+        });
       }
 
-      // matomoTrackEvent({
-      //   action,
-      //   name: eventName,
-      // });
+      // TrackEvent for next active question
+      if (eventType) {
+        matomoTrackEvent({
+          action: checker.stack[index].text,
+          name: eventNames.ACTIVE_QUESTION,
+        });
+      }
 
+      // Update session with new question to rerender the page
       setTopicData({
-        questionIndex: newQuestionIndex,
+        questionIndex: index,
       });
     },
-    [checker.stack, questionIndex, setTopicData]
+
+    //eslint-disable-next-line
+    [checker.stack, questionIndex]
   );
 
-  const goToOutcome = useCallback(() => {
-    goToNextSection();
+  // @TODO: rename to handleNextQuestion
+  const onQuestionNext = useCallback(
+    (disableTracking = false) => {
+      // @TODO: Fix the disableTracking when going to next question but the checker `isCheckerConclusive()`
+      const question = checker.stack[questionIndex];
+      const eventType = disableTracking ? undefined : GOTO_NEXT_QUESTION;
 
-    matomoTrackEvent({
-      action: checker.stack[questionIndex].text,
-      name: eventNames.GOTO_OUTCOME,
-    });
-    // Wrap the function to prevent a miscalculation when the `Question` component collapses
-    setImmediate(() => {
-      scrollToRef(outcomeRef, 20);
-    });
-  }, [checker, goToNextSection, matomoTrackEvent, questionIndex]);
-
-  const onQuestionNext = useCallback(() => {
-    const question = checker.stack[questionIndex];
-
-    if (checker.needContactExit(question)) {
-      // Go directly to "Contact Outcome" and skip other questions
-      goToOutcome();
-    } else {
-      // Load the next question or go to the "Outcome"
-      if (checker.stack.length - 1 === questionIndex) {
-        // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
-        const next = checker.next();
-
-        if (next) {
-          goToQuestion("next");
-          // Turn skipping answered questions off
-          setSkipAnsweredQuestions(true);
-        } else {
-          goToOutcome();
-        }
+      if (checker.needContactExit(question)) {
+        // Go directly to "Contact Outcome" and skip other questions
+        goToOutcome(disableTracking);
       } else {
-        // In this case, the user is changing a previously answered question and we don't want to load a new question
-        goToQuestion("next");
-        // Turn skipping answered questions off
-        setSkipAnsweredQuestions(true);
-      }
-    }
-  }, [checker, questionIndex, goToQuestion, goToOutcome]);
+        // Load the next question or go to the "Outcome"
 
+        // @TODO: refactor this code
+        if (checker.stack.length - 1 === questionIndex) {
+          // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
+          const next = checker.next();
+
+          if (next) {
+            goToQuestion(questionIndex + 1, eventType);
+
+            // Turn skipping answered questions on
+            setSkipAnsweredQuestions(true);
+          } else {
+            goToOutcome(disableTracking);
+          }
+        } else {
+          // In this case, the user is changing a previously answered question and we don't want to load a new question
+          goToQuestion(questionIndex + 1, eventType);
+          // Turn skipping answered questions on
+          setSkipAnsweredQuestions(true);
+        }
+      }
+    },
+    //eslint-disable-next-line
+    [checker, questionIndex]
+  );
+
+  // @TODO: rename to handlePrevQuestion
   const onQuestionPrev = () => {
     // Load the previous question
-    if (answers && questionIndex > 0) {
-      goToQuestion("prev");
-    } else {
-      // Go to Location, because the user was at the first question
-      goToPrevSection();
-    }
+    goToQuestion(questionIndex - 1, GOTO_PREV_QUESTION);
   };
 
-  const onGoToQuestion = useCallback(
+  const editQuestion = useCallback(
     (questionId) => {
-      goToQuestionHook && goToQuestionHook();
+      editQuestionHook && editQuestionHook();
 
       // Go to the specific question in the stack
-      goToQuestion(questionId);
+      goToQuestion(questionId, EDIT_QUESTION);
     },
-    [goToQuestion, goToQuestionHook]
+    //eslint-disable-next-line
+    [editQuestionHook]
   );
 
-  // @TODO: move to checker.js
-  const shouldGoToConlusion = () => {
+  const goToOutcome = useCallback(
+    (disableTracking = false) => {
+      goToNextSection();
+
+      // Toggle tracking of the
+      if (!disableTracking) {
+        matomoTrackEvent({
+          action: checker.stack[questionIndex].text,
+          name: eventNames.GOTO_OUTCOME,
+        });
+      }
+
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: sections.OUTCOME,
+      });
+
+      // Wrap the function to prevent a miscalculation when the `Question` component collapses
+      setImmediate(() => {
+        scrollToRef(outcomeRef, 20);
+      });
+    },
+    //eslint-disable-next-line
+    [checker, questionIndex]
+  );
+
+  // @TODO: fix this part, because it should just be handled by `checker.isConclusive()`
+  const isCheckerConclusive = () => {
     if (!checker.isConclusive()) {
       return false;
     } else if (contactOutcome) {
@@ -179,6 +195,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   };
 
   useEffect(() => {
+    // Make sure that the current question is skipped when it's already answered
     if (skipAnsweredQuestions) {
       // Turn skipping answered questions off
       setSkipAnsweredQuestions(false);
@@ -190,11 +207,12 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         // Skip question if already answered
         if (isCurrentQuestion && q.answer !== undefined) {
-          onQuestionNext();
+          onQuestionNext(true);
         }
       });
     }
-  }, [checker, isActive, questionIndex, skipAnsweredQuestions, onQuestionNext]);
+    //eslint-disable-next-line
+  }, [checker, isActive, questionIndex, skipAnsweredQuestions]);
 
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
@@ -212,18 +230,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         }
       });
     }
-  }, [checker, contactOutcome, topicData, setContactOutcome, setTopicData]);
-
-  useEffect(() => {
-    // Track active questions
-    if (isActive) {
-      matomoTrackEvent({
-        // @TODO: fix "unknown question"
-        action: checker.stack[questionIndex]?.text || "unknown question",
-        name: eventNames.ACTIVE_QUESTION,
-      });
-    }
-  }, [checker, isActive, matomoTrackEvent, questionIndex]);
+    //eslint-disable-next-line
+  }, [checker, contactOutcome]);
 
   if (!checker) return null;
 
@@ -263,6 +271,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     }
   });
 
+  // @TODO: fix this style
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
@@ -375,14 +384,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
                   checker,
                   outcomeType,
                   saveAnswer,
-                  shouldGoToConlusion,
+                  isCheckerConclusive,
                   showQuestionAlert,
                 }}
               />
             ) : (
               // Show the answer with an edit button
               <QuestionAnswer
-                onClick={() => onGoToQuestion(i)}
+                onClick={() => editQuestion(i)}
                 {...{ answer, outcomeType, showQuestionAlert }}
               />
             )}
@@ -418,7 +427,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              onClick={() => onGoToQuestion(index)}
+              onClick={() => editQuestion(index)}
               {...{ answer, disabled, outcomeType, showQuestionAlert }}
             />
           </StepByStepItem>

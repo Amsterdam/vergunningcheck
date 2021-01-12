@@ -78,6 +78,11 @@ export default class Checker {
       throw Error("Answers must be of type object");
     }
 
+    // Skip when answers are empty (to prevent error with checkers without questions to render)
+    if (Object.keys(answers).length === 0) {
+      return;
+    }
+
     // Load the first question
     if (!this.last) {
       this.next();

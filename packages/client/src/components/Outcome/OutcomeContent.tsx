@@ -44,6 +44,7 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   const { footerContent, mainContent, title } = outcomeContent;
 
   useEffect(() => {
+    // @TODO: this event should be handled by the user event and should not be triggered on reload
     matomoTrackEvent({
       action: actions.THIS_IS_THE_OUTCOME,
       name: title,

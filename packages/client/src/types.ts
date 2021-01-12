@@ -49,6 +49,7 @@ type SectionData = {
 export type SectionObject = SectionData & {
   component?: (props: SectionComponent) => {};
   heading?: string;
+  hideSection?: boolean;
   renderOutsideWrapper?: boolean;
 };
 
