@@ -253,6 +253,9 @@ const CheckerPage: FunctionComponent = () => {
     goToPrevSection,
   };
 
+  // @TODO: refactor this style
+  const activeStyle = { marginTop: -1, borderColor: "white" };
+
   const sectionsRenderer = () =>
     sections.map((section, computedIndex) => {
       const {
@@ -272,16 +275,18 @@ const CheckerPage: FunctionComponent = () => {
         return null;
       }
 
-      const handleOnClick = () => {
-        activateSection(section);
-      };
-
       const componentToRender =
         component &&
         component({
           currentSection: section,
           sectionFunctions,
         });
+
+      const handleOnClick = () => {
+        activateSection(section);
+      };
+
+      const needsOnClick = isLastSection(section) && isCompleted && !isActive;
 
       return (
         <Fragment key={computedIndex}>
@@ -293,12 +298,8 @@ const CheckerPage: FunctionComponent = () => {
             highlightActive={!renderOutsideWrapper}
             key={computedIndex}
             largeCircle
-            onClick={
-              isLastSection(section) &&
-              isCompleted &&
-              !isActive &&
-              handleOnClick
-            }
+            onClick={needsOnClick && handleOnClick}
+            style={isLastSection(section) ? activeStyle : {}}
             {...{ heading }}
           >
             {!renderOutsideWrapper && componentToRender}
