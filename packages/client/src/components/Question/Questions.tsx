@@ -98,8 +98,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     [checker.stack, questionIndex]
   );
 
-  // @TODO: rename to onQuestionNext to handleNextQuestion
-  const onQuestionNext = useCallback(
+  const handleNextQuestion = useCallback(
     (isUserEvent = true) => {
       const question = checker.stack[questionIndex];
 
@@ -115,6 +114,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         // Load the next question or go to the "Outcome"
 
         // @TODO: refactor this code
+        // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
         if (checker.stack.length - 1 === questionIndex) {
           // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
           const next = checker.next();
@@ -139,13 +139,12 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     [checker, questionIndex]
   );
 
-  // @TODO: rename to handlePrevQuestion
-  const onQuestionPrev = () => {
+  const handlePrevQuestion = () => {
     // Load the previous question
     goToQuestion(questionIndex - 1, GOTO_PREV_QUESTION);
   };
 
-  const editQuestion = useCallback(
+  const handleEditQuestion = useCallback(
     (questionId) => {
       editQuestionHook && editQuestionHook();
 
@@ -183,6 +182,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   );
 
   // @TODO: fix this part, because it should just be handled by `checker.isConclusive()`
+  // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
   const isCheckerConclusive = () => {
     if (!checker.isConclusive()) {
       return false;
@@ -210,7 +210,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         // Skip question if already answered
         if (isCurrentQuestion && q.answer !== undefined) {
-          onQuestionNext(false);
+          handleNextQuestion(false);
         }
       });
     }
@@ -218,8 +218,9 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   }, [checker, isActive, questionIndex, skipAnsweredQuestions]);
 
   useEffect(() => {
-    // @TODO: Refactor this code and move to checker.js
+    // @TODO: Refactor this code and move to checker.ts
     // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers())
+    // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
     if (!contactOutcome) {
       checker.stack.forEach((q, i) => {
         if (checker.needContactExit(q)) {
@@ -246,6 +247,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
+  // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
   let permitsPerQuestion: ClientOutcomes[] = [];
   checker.permits.forEach((permit: Permit) => {
     const outcomeDecision = permit.getDecisionById("dummy");
@@ -319,7 +321,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
     // @TODO: find out if this is still necessary:
     // Set the value of the radio group to the selected value with react-hook-form's setValue
-    // if (type === "radio") setValue(name, value);
+    // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
     setValue(id, label);
   };
 
@@ -327,9 +329,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   return (
     <>
       {checker.stack.map((q, i) => {
-        // @TODO: Refactor this code and move to checker.js
+        // @TODO: Refactor this code and move to checker.ts
         // We don't want to render future questions if the current index is the decisive answer for the Contact Outcome
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers())
+        // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
         if (
           contactOutcome &&
           !checker._getUpcomingQuestions().length &&
@@ -352,6 +355,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         // Disable all future question if this question is last of the stack
         // We need this because it is very hard to detect future open questions and this is causing bugs
         // @TODO: fix this by stop using the combo of checker.stack and checker._getUpcomingQuestions()
+        // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
         if (isCurrentQuestion && checker.stack.length === i + 1) {
           disableFutureQuestions = true;
         }
@@ -376,8 +380,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
               // Show the current question
               <Question
                 question={q}
-                onGoToPrev={onQuestionPrev}
-                onGoToNext={onQuestionNext}
+                onGoToPrev={handlePrevQuestion}
+                onGoToNext={handleNextQuestion}
                 showNext
                 {...{
                   checker,
@@ -390,7 +394,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             ) : (
               // Show the answer with an edit button
               <QuestionAnswer
-                onClick={() => editQuestion(i)}
+                onClick={() => handleEditQuestion(i)}
                 {...{ answer, outcomeType, showQuestionAlert }}
               />
             )}
@@ -426,7 +430,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             key={`question-${q.id}-${index}`}
           >
             <QuestionAnswer
-              onClick={() => editQuestion(index)}
+              onClick={() => handleEditQuestion(index)}
               {...{ answer, disabled, outcomeType, showQuestionAlert }}
             />
           </StepByStepItem>
