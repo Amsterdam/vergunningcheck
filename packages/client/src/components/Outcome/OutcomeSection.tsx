@@ -34,11 +34,11 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { t } = useTranslation();
 
   const {
-    currentSection: { isActive },
+    currentSection: { isActive, isCompleted },
   } = props;
 
   // Hide content if outcome section is not active / completed
-  if (!isActive) return null;
+  if (!isActive && !isCompleted) return null;
 
   const {
     NEED_BOTH_PERMIT_AND_REPORT,

@@ -154,8 +154,6 @@ const CheckerPage: FunctionComponent = () => {
     return activeSection[0].index;
   };
 
-  const getActiveSection = () => sections[getActiveSectionIndex()];
-
   /**
    *
    * @param section - The section to activate
@@ -241,15 +239,6 @@ const CheckerPage: FunctionComponent = () => {
     }
   };
 
-  // Check if a future section is completed
-  const hasFutureCompletedSections = (
-    section: SectionObject = getActiveSection()
-  ) =>
-    sections
-      .filter((s) => s.isCompleted)
-      .map((s) => s.index)
-      .pop() || -1 > section.index;
-
   // In case `topicData` is not found on the Session Context display an error
   // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
   if (!sessionContext.session[slug]) {
@@ -267,8 +256,8 @@ const CheckerPage: FunctionComponent = () => {
   const sectionsRenderer = () =>
     sections.map((section, computedIndex) => {
       const {
-        isActive: active,
-        isCompleted: checked,
+        isActive,
+        isCompleted,
         component,
         heading,
         hideSection,
@@ -277,11 +266,15 @@ const CheckerPage: FunctionComponent = () => {
 
       if (hideSection) {
         // Skip to the next section if the section to be hidden is active
-        if (active) {
+        if (isActive) {
           goToNextSection();
         }
         return null;
       }
+
+      const handleOnClick = () => {
+        activateSection(section);
+      };
 
       const componentToRender =
         component &&
@@ -293,14 +286,20 @@ const CheckerPage: FunctionComponent = () => {
       return (
         <Fragment key={computedIndex}>
           <StepByStepItem
+            active={renderOutsideWrapper ? false : isActive}
+            checked={isCompleted}
             customSize
-            // `done` is a state when a future section is completed but the active section is not completed
-            done={hasFutureCompletedSections(section)}
-            // @TODO: highlight the Questions Section Wrapper only when the first question is active
+            done={renderOutsideWrapper && isActive}
             highlightActive={!renderOutsideWrapper}
-            largeCircle
             key={computedIndex}
-            {...{ active, checked, heading }}
+            largeCircle
+            onClick={
+              isLastSection(section) &&
+              isCompleted &&
+              !isActive &&
+              handleOnClick
+            }
+            {...{ heading }}
           >
             {!renderOutsideWrapper && componentToRender}
           </StepByStepItem>
