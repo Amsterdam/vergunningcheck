@@ -58,6 +58,8 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
+  // @TODO: We should refactor this to support an array of outcomes.
+  // See: https://trello.com/c/5FstLxRd/210-technical-dept-checker-slopen
   // Define the content for the Outcome components
   const contents = {
     // This is the default content

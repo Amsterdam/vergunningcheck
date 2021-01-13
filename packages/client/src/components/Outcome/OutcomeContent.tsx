@@ -45,6 +45,7 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
 
   useEffect(() => {
     // @TODO: this event should be handled by the user event and should not be triggered on reload
+    // See: https://trello.com/c/5FstLxRd/210-technical-dept-checker-slopen
     matomoTrackEvent({
       action: actions.THIS_IS_THE_OUTCOME,
       name: title,
