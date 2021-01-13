@@ -70,6 +70,7 @@ export type TopicData = {
   answers: {
     [id: string]: Answer;
   };
+  timesCheckerLoaded: number;
   sectionData: SectionData[];
   type: string;
   questionIndex: number;

@@ -77,7 +77,7 @@ const CheckerPage: FunctionComponent = () => {
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-  const { address, sectionData } = topicData;
+  const { address, timesCheckerLoaded, sectionData } = topicData;
 
   const setSectionData = (sections: SectionObject[]) => {
     updateSections(sections);
@@ -90,6 +90,14 @@ const CheckerPage: FunctionComponent = () => {
       })),
     });
   };
+
+  useEffect(() => {
+    // Count the times the checker is loaded
+    setTopicData({
+      timesCheckerLoaded: timesCheckerLoaded + 1,
+    });
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (checker) {
@@ -268,11 +276,11 @@ const CheckerPage: FunctionComponent = () => {
       } = section;
 
       if (hideSection) {
+        // Skip to the next section if the section to be hidden is active
         if (active) {
           goToNextSection();
         }
-
-        return <span />;
+        return null;
       }
 
       const componentToRender =
@@ -308,18 +316,19 @@ const CheckerPage: FunctionComponent = () => {
       </Helmet>
 
       {checker ? (
-        <StepByStepNavigation
-          disabledTextColor="inherit"
-          doneTextColor="inherit"
-          lineBetweenItems
-        >
-          {sectionsRenderer()}
-        </StepByStepNavigation>
+        <>
+          <StepByStepNavigation
+            disabledTextColor="inherit"
+            doneTextColor="inherit"
+            lineBetweenItems
+          >
+            {sectionsRenderer()}
+          </StepByStepNavigation>
+          <DebugDecisionTable />
+        </>
       ) : (
         <Loading />
       )}
-
-      <DebugDecisionTable />
     </TopicLayout>
   );
 };

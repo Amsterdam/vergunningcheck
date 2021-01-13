@@ -84,7 +84,7 @@ const Question: FunctionComponent<QuestionProps> = ({
     <Form
       dataId={questionId}
       dataTestId={QUESTION_FORM}
-      onSubmit={handleSubmit(onGoToNext)}
+      onSubmit={handleSubmit(() => onGoToNext())}
     >
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />

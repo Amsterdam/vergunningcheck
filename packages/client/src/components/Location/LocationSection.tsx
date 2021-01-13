@@ -1,8 +1,7 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 
-import { CheckerContext } from "../../CheckerContext";
 import { autofillResolvers } from "../../config/autofill";
-import { actions, sections } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { Address, SectionComponent } from "../../types";
 import LocationSummary from "./LocationSummary";
@@ -10,8 +9,10 @@ import { LocationInput } from ".";
 
 const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
-  const checkerContext = useContext(CheckerContext);
-  const { setTopicData } = useTopicData();
+  const {
+    setTopicData,
+    topicData: { timesCheckerLoaded },
+  } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
   const {
@@ -19,19 +20,35 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     sectionFunctions: { goToNextSection },
   } = props;
 
+  useEffect(() => {
+    if (timesCheckerLoaded === 1) {
+      // TrackEvent for active step (only on first load)
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: sections.LOCATION_INPUT,
+      });
+    }
+    // eslint-disable-next-line
+  }, []);
+
   if (!checker) {
     return null;
   }
 
   const handleNewAddressSubmit = (address: Address) => {
-    // @TODO: fix the autofill bug
-    const skipTheBug = true;
+    checker.autofill(autofillResolvers, { address });
 
-    if (skipTheBug) {
-      // Reset checker to fix the autofill bug
-      checkerContext.setChecker(undefined);
-    } else {
-      checker.autofill(autofillResolvers, { address });
+    // Activate the first question
+    if (checker.stack.length === 0) {
+      const next = checker.next();
+
+      if (next) {
+        // TrackEvent for first question
+        matomoTrackEvent({
+          action: checker.stack[0].text,
+          name: eventNames.ACTIVE_QUESTION,
+        });
+      }
     }
 
     // Update session data with the new address

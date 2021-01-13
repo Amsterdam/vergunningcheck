@@ -48,7 +48,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const { questionIndex } = topicData;
   const { goToNextSection } = sectionFunctions;
 
-  const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION } = eventNames;
+  const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION, GOTO_OUTCOME } = eventNames;
   const { EDIT_QUESTION } = actions;
 
   // This function handles the user-event of going to a new question
@@ -60,14 +60,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         );
         return;
       }
-      console.log(eventType);
 
       const { text } = checker.stack[questionIndex];
 
       // TrackEvent for specfic event type
       if (
         eventType === GOTO_NEXT_QUESTION ||
-        eventType === GOTO_PREV_QUESTION
+        eventType === GOTO_PREV_QUESTION ||
+        eventType === GOTO_OUTCOME
       ) {
         matomoTrackEvent({
           action: text,
@@ -81,7 +81,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       }
 
       // TrackEvent for next active question
-      if (eventType) {
+      if (eventType && eventType !== GOTO_OUTCOME) {
         matomoTrackEvent({
           action: checker.stack[index].text,
           name: eventNames.ACTIVE_QUESTION,
@@ -98,16 +98,19 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     [checker.stack, questionIndex]
   );
 
-  // @TODO: rename to handleNextQuestion
+  // @TODO: rename to onQuestionNext to handleNextQuestion
   const onQuestionNext = useCallback(
-    (disableTracking = false) => {
-      // @TODO: Fix the disableTracking when going to next question but the checker `isCheckerConclusive()`
+    (isUserEvent = true) => {
       const question = checker.stack[questionIndex];
-      const eventType = disableTracking ? undefined : GOTO_NEXT_QUESTION;
+
+      const userEvent = isCheckerConclusive()
+        ? GOTO_OUTCOME
+        : GOTO_NEXT_QUESTION;
+      const eventType = isUserEvent ? userEvent : "";
 
       if (checker.needContactExit(question)) {
         // Go directly to "Contact Outcome" and skip other questions
-        goToOutcome(disableTracking);
+        goToOutcome(isUserEvent);
       } else {
         // Load the next question or go to the "Outcome"
 
@@ -122,7 +125,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             // Turn skipping answered questions on
             setSkipAnsweredQuestions(true);
           } else {
-            goToOutcome(disableTracking);
+            goToOutcome(isUserEvent);
           }
         } else {
           // In this case, the user is changing a previously answered question and we don't want to load a new question
@@ -154,14 +157,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   );
 
   const goToOutcome = useCallback(
-    (disableTracking = false) => {
+    (isUserEvent = true) => {
       goToNextSection();
 
       // Toggle tracking of the
-      if (!disableTracking) {
+      if (isUserEvent) {
         matomoTrackEvent({
           action: checker.stack[questionIndex].text,
-          name: eventNames.GOTO_OUTCOME,
+          name: GOTO_OUTCOME,
         });
       }
 
@@ -207,7 +210,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         // Skip question if already answered
         if (isCurrentQuestion && q.answer !== undefined) {
-          onQuestionNext(true);
+          onQuestionNext(false);
         }
       });
     }
@@ -234,6 +237,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   }, [checker, contactOutcome]);
 
   if (!checker) return null;
+
+  // @TODO: fix this style
+  // Styling to overwrite the line between the Items
+  const activeStyle = { marginTop: -1, borderColor: "white" };
 
   let disableFutureQuestions = false;
 
@@ -270,10 +277,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       }
     }
   });
-
-  // @TODO: fix this style
-  // Styling to overwrite the line between the Items
-  const activeStyle = { marginTop: -1, borderColor: "white" };
 
   /**
    *
@@ -319,10 +322,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     // if (type === "radio") setValue(name, value);
     setValue(id, label);
   };
-
-  if (checker.stack.length === 0) {
-    checker.next();
-  }
 
   // Loop through all questions
   return (
