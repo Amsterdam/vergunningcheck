@@ -1,29 +1,41 @@
 import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import React, { useContext, useState } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { ComponentWrapper, Label } from "../../atoms";
+import { CheckerContext } from "../../CheckerContext";
 import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { SessionContext, SessionDataType } from "../../context";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
-import { RADIO_ADDRESS_1, RADIO_ADDRESS_2 } from "../../utils/test-ids";
+import { useSlug, useTopicData, useTracking } from "../../hooks";
+import { geturl, routes } from "../../routes";
+import { SessionContext, defaultTopicSession } from "../../SessionContext";
+import {
+  NEW_CHECKER_MODAL_SAME_ADDRESS,
+  RADIO_ADDRESS_1,
+  RADIO_ADDRESS_2,
+} from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
-  matomoTrackEvent,
-}) => {
-  // @TODO: replace with custom topic hooks
-  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
-    SessionContext
-  );
+const NewCheckerModal: FunctionComponent = () => {
+  const { matomoTrackEvent } = useTracking();
+  const { topicData, setTopicData } = useTopicData();
+  const slug = useSlug();
+  const { setChecker } = useContext(CheckerContext);
+  const { setSession } = useContext(SessionContext);
   const { t } = useTranslation();
-  const { slug } = useParams<{ slug: string }>();
   const [checkerSlug, setCheckerSlug] = useState(slug);
+  const history = useHistory();
   const [finished, setFinished] = useState(false);
   const [hasError, setError] = useState(false);
-  const [saveAddress, setSaveAddress] = useState<null | boolean>(null);
+  const [saveAddress, setSaveAddress] = useState<null | boolean>(
+    // If there are no data-needs we skip the question to save your address
+    topicData.address ? null : false
+  );
+
+  if (!slug) {
+    throw new Error("Cannot render NewCheckerModal without a slug.");
+  }
 
   const handleOpenModal = () => {
     matomoTrackEvent({
@@ -56,25 +68,33 @@ const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
         name: `${eventNames.DO_ANOTHER_CHECK} - ${saveAddressEvent}`,
       });
 
-      const address = saveAddress ? sessionContext[slug].address : null;
-      const activeComponents = saveAddress
-        ? sections.QUESTIONS
-        : sections.LOCATION_INPUT;
-      const finishedComponents = saveAddress && sections.LOCATION_INPUT;
-      // Clear or set session data for the new checker
-      sessionContext.setSessionData([
-        checkerSlug,
-        {
-          activeComponents: [activeComponents],
-          address,
-          answers: null,
-          finishedComponents: [finishedComponents],
-          questionIndex: 0,
-        },
-      ]);
+      // Set the the new session data for `doSaveAddress`
+      const topicSessionWithSavedAddress = {
+        ...defaultTopicSession,
+        activeComponents: [sections.QUESTIONS],
+        address: topicData.address,
+        finishedComponents: [sections.LOCATION_INPUT],
+        type: checkerSlug,
+      };
 
-      // @TODO: We need to find a better solution for restarting the same checker.
-      window.location.href = `/${checkerSlug}/vragen-en-uitkomst?loadChecker`;
+      // Set the new topic data. SessionContext will interpret `null` by replacing it with default data.
+      const newTopicData = doSaveAddress
+        ? topicSessionWithSavedAddress
+        : defaultTopicSession;
+
+      if (checkerSlug === slug) {
+        // Only change the topicData for the current topic
+        setTopicData(newTopicData);
+      } else {
+        // Change the topicData for another topic
+        setSession({
+          [checkerSlug]: newTopicData,
+        });
+      }
+
+      // Clear checker and go to the new topic slug
+      setChecker(undefined);
+      history.push(geturl(routes.checker, { slug: checkerSlug }));
     }
   };
 
@@ -88,34 +108,41 @@ const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
       openButtonText="Nog een vergunningcheck doen"
       showConfirmButton
     >
-      <ComponentWrapper>
-        <Paragraph gutterBottom={8} strong>
-          Wilt u nog een vergunningcheck doen voor hetzelfde adres?
-        </Paragraph>
-        <RadioGroup name="address">
-          <Label htmlFor="address-input-1" label="Ja">
-            <Radio
-              checked={saveAddress === true}
-              data-testid={RADIO_ADDRESS_1}
-              error={!!hasError}
-              id="address-input-1"
-              onChange={() => setSaveAddress(true)}
-            />
-          </Label>
-          <Label htmlFor="address-input-2" label="Nee">
-            <Radio
-              checked={saveAddress === false}
-              data-testid={RADIO_ADDRESS_2}
-              error={!!hasError}
-              id="address-input-2"
-              onChange={() => setSaveAddress(false)}
-            />
-          </Label>
-        </RadioGroup>
-        <ErrorMessage
-          message={hasError ? t("common.required field radio") : ""}
-        />
-      </ComponentWrapper>
+      {topicData.address && (
+        // Do not show this part for checkers without data need
+        <ComponentWrapper>
+          <Paragraph
+            data-testid={NEW_CHECKER_MODAL_SAME_ADDRESS}
+            gutterBottom={8}
+            strong
+          >
+            Wilt u nog een vergunningcheck doen voor hetzelfde adres?
+          </Paragraph>
+          <RadioGroup name="address">
+            <Label htmlFor="address-input-1" label="Ja">
+              <Radio
+                checked={saveAddress === true}
+                data-testid={RADIO_ADDRESS_1}
+                error={!!hasError}
+                id="address-input-1"
+                onChange={() => setSaveAddress(true)}
+              />
+            </Label>
+            <Label htmlFor="address-input-2" label="Nee">
+              <Radio
+                checked={saveAddress === false}
+                data-testid={RADIO_ADDRESS_2}
+                error={!!hasError}
+                id="address-input-2"
+                onChange={() => setSaveAddress(false)}
+              />
+            </Label>
+          </RadioGroup>
+          <ErrorMessage
+            message={hasError ? t("common.required field radio") : ""}
+          />
+        </ComponentWrapper>
+      )}
 
       <ComponentWrapper>
         <Paragraph strong gutterBottom={8}>
@@ -147,4 +174,4 @@ const NewCheckerModal: React.FC<MatomoTrackEventProps> = ({
   );
 };
 
-export default withTracking(NewCheckerModal);
+export default NewCheckerModal;

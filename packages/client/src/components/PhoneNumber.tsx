@@ -9,7 +9,7 @@ const Wrapper = styled.span`
   white-space: nowrap;
 `;
 
-export type Props = {
+type Props = {
   darkBackground?: boolean;
   eventName: string;
   href?: string;

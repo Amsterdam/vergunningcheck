@@ -1,39 +1,42 @@
-import { Column, FormTitle, Heading, Row } from "@amsterdam/asc-ui";
-import React from "react";
+import { Accordion, Card, CardContent, Column, Row } from "@amsterdam/asc-ui";
+import React, { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { HideForPrint } from "../../atoms";
-import { Topic } from "../../config";
-import { findTopicBySlug } from "../../utils";
-import DebugVariables from "../DebugVariables";
+import { DebugProcessVariables } from "../../debug";
+import { useTracking } from "../../hooks";
 import Footer from "../Footer";
 import Header from "../Header";
+import HiddenDebugInfo from "../HiddenDebugInfo";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
-export type BaseLayoutProps = {
-  heading?: String;
-  formTitle?: String;
+type BaseLayoutProps = {
+  disablePageView?: boolean;
 };
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({
+const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
   children,
-  heading: headingProp,
-  formTitle: formTitleProp,
+  disablePageView,
 }) => {
-  const { slug } = useParams<{ slug: string }>();
-  const topic = findTopicBySlug(slug) as Topic;
-  const { hasIMTR, name, text } = topic || {};
-  const formTitle = formTitleProp || text?.heading;
+  const { matomoPageView } = useTracking();
+  const { location } = useHistory();
 
-  const heading = hasIMTR && name ? name : headingProp;
+  useEffect(() => {
+    if (!disablePageView) {
+      matomoPageView();
+    }
+    //eslint-disable-next-line
+  }, [location.pathname]);
 
   return (
     <Container>
       <Helmet>
         <title>Amsterdam Vergunningcheck</title>
       </Helmet>
+
       <Header />
+
       <ContentContainer>
         <Row hasMargin={false}>
           <Column
@@ -46,38 +49,37 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
               xLarge: 9,
             }}
           >
-            <Content>
-              {formTitle && <FormTitle>{formTitle}</FormTitle>}
-              {heading && (
-                <Heading forwardedAs="h2" gutterBottom={16} styleAs="h1">
-                  {heading}
-                </Heading>
-              )}
-              {children}
-
-              <HideForPrint>
-                <DebugVariables />
-              </HideForPrint>
-            </Content>
+            <Content>{children}</Content>
           </Column>
         </Row>
       </ContentContainer>
 
       <HideForPrint>
-        <Footer />
         <div
           // comment to see app version and environment
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `<!--
-            Node environment: ${process.env.NODE_ENV}
-            App Version: ${process.env.REACT_APP_VERSION}
-            Branch: ${process.env.REACT_APP_GIT_BRANCH}
-            Commit: https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}
-            GraphQL: ${process.env.REACT_APP_GRAPHQL_API_URL}
-            -->`,
+              Node environment: ${process.env.NODE_ENV}
+              App Version: ${process.env.REACT_APP_VERSION}
+              Branch: ${process.env.REACT_APP_GIT_BRANCH}
+              Commit: https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}
+              GraphQL: ${process.env.REACT_APP_GRAPHQL_API_URL}
+              -->`,
           }}
         />
+
+        <HiddenDebugInfo>
+          <Accordion title="Process debug informatie">
+            <Card backgroundColor="level2" shadow>
+              <CardContent>
+                <DebugProcessVariables />
+              </CardContent>
+            </Card>
+          </Accordion>
+        </HiddenDebugInfo>
+
+        <Footer />
       </HideForPrint>
     </Container>
   );

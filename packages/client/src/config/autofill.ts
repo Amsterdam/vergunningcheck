@@ -23,23 +23,55 @@ const strings = {
  * Monument can either be a bool or list question, that why we need 2.
  */
 export const autofillResolvers: AutofillResolverMap = {
-  cityScape: ({ address }: AutofillData, question: Question) => {
+  cityScapeForBuilding: ({ address }: AutofillData, question: Question) => {
+    type Options = { [id: string]: string };
+    const answers: Options = {
+      NATIONAL:
+        "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
+      MUNICIPAL:
+        "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
+      undefined:
+        "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
+    };
+
     const cityScape =
       address?.restrictions &&
       getRestrictionByTypeName(address.restrictions, "CityScape");
 
-    if (question.options) {
-      const answers: { [id: string]: string } = {
-        NATIONAL:
-          "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
-        MUNICIPAL:
-          "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
-        undefined:
-          "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
-      };
-      return addQuotes(answers[cityScape?.scope as string]);
-    }
-    return !!cityScape;
+    // This resolver can be used for boolean and list-questions
+    return question.options
+      ? addQuotes(answers[cityScape?.scope as string])
+      : !!cityScape;
+  },
+  cityScapeWithoutEntity: ({ address }: AutofillData, question: Question) => {
+    type Options = { [id: string]: string };
+    const answers: Options = {
+      NATIONAL: "Ja, in een rijksbeschermd stads- of dorpsgezicht.",
+      MUNICIPAL: "Ja, in een gemeentelijk beschermd stads- of dorpsgezicht.",
+      undefined: "Nee",
+    };
+
+    const cityScape =
+      address?.restrictions &&
+      getRestrictionByTypeName(address.restrictions, "CityScape");
+
+    return question.options
+      ? addQuotes(answers[cityScape?.scope as string])
+      : !!cityScape;
+  },
+  monumentOnAddress: ({ address }: AutofillData) => {
+    type Options = { [id: string]: string };
+    const answers: Options = {
+      NATIONAL: "Ja, een rijksmonument.",
+      MUNICIPAL: "Ja, een gemeentelijk monument.",
+      undefined: "Nee, geen monument.",
+    };
+
+    const monument =
+      address?.restrictions &&
+      getRestrictionByTypeName(address.restrictions, "Monument");
+
+    return addQuotes(answers[monument?.scope as string]);
   },
   monumentBoolean: ({ address }) =>
     address?.restrictions &&
@@ -50,7 +82,7 @@ export const autofillResolvers: AutofillResolverMap = {
         address.restrictions,
         "Monument"
       );
-      if (monumentData) {
+      if (monumentData?.name) {
         return addQuotes(monumentData.name);
       }
     }

@@ -1,14 +1,18 @@
 import { ErrorMessage, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError, useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, ComponentWrapper } from "../../atoms";
-import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
-import { MatomoTrackEventProps } from "../../hoc/withTracking";
-import useDebounce from "../../hooks/useDebounce";
+import { useDebounce, useTopicData, useTracking } from "../../hooks";
+import { Address } from "../../types";
 import {
   isValidPostalcode,
   stripString,
@@ -36,32 +40,29 @@ const isTrueExactMatch = (
 type LocationFinderProps = {
   errorMessage?: ApolloError;
   focus: boolean;
-  sessionAddress: any; // @TODO replace any with address type.
-  setAddress: (address: object) => void;
+  sessionAddress: Address;
   setError: (error: ApolloError | undefined) => void;
   setFocus: (focus: boolean) => void;
-  topic: Topic; // TODO: Remove topic from this component.
 };
 
-const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
+const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   errorMessage,
   focus,
-  matomoTrackEvent,
   sessionAddress,
-  setAddress,
   setError,
   setFocus,
-  topic,
 }) => {
+  const { matomoTrackEvent } = useTracking();
+  const { setTopicData } = useTopicData();
   const { t } = useTranslation();
   const [showResult, setShowResult] = useState<boolean>(true);
-  const [postalCode, setPostalCode] = useState<string>(
-    sessionAddress.postalCode
+  const [postalCode, setPostalCode] = useState<string | undefined>(
+    sessionAddress?.postalCode
   );
-  const [houseNumber, setHouseNumber] = useState<number>(
-    sessionAddress?.houseNumber && parseInt(sessionAddress.houseNumber)
+  const [houseNumber, setHouseNumber] = useState<number | undefined>(
+    sessionAddress?.houseNumber
   );
-  const [houseNumberFull, setHouseNumberFull] = useState<string>(
+  const [houseNumberFull, setHouseNumberFull] = useState<string | undefined>(
     sessionAddress?.houseNumberFull
   );
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
@@ -77,14 +78,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   // Validate forms
   const validate = (
     name: string,
-    value: number | string,
-    required: boolean
+    value?: number | string,
+    required?: boolean
   ) => {
     if (touched[name]) {
       if (required && (!value || value?.toString().trim() === "")) {
         return t("common.required field text");
       }
-      if (name === "postalCode" && !isValidPostalcode(value.toString())) {
+      if (name === "postalCode" && !isValidPostalcode(value?.toString())) {
         return t("common.no valid postalcode");
       }
     }
@@ -147,9 +148,9 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   // Prevent setState error
   useEffect(() => {
     if (allowToSetAddress) {
-      setAddress(exactMatch);
+      setTopicData({ address: exactMatch });
     }
-  }, [allowToSetAddress, exactMatch, setAddress]);
+  }, [allowToSetAddress, exactMatch, setTopicData]);
 
   // GraphQL error
   useEffect(() => {
@@ -206,13 +207,14 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   );
 
   const showLoading = !!(
-    houseNumberFull &&
-    isValidPostalcode(postalCode) &&
-    !errorMessage &&
-    !showAutoSuggest &&
-    !showExactMatch &&
-    !showLocationNotFound &&
-    !showResult
+    (houseNumberFull &&
+      isValidPostalcode(postalCode) &&
+      !errorMessage &&
+      !showAutoSuggest &&
+      !showExactMatch &&
+      !showLocationNotFound &&
+      !showResult) ||
+    loading
   );
 
   // Debounce showing the LocationNotFound component
@@ -297,14 +299,12 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
 
       <LocationLoading loading={showLoading} />
 
-      {showLocationNotFound && (
-        <LocationNotFound matomoTrackEvent={matomoTrackEvent} />
-      )}
+      {showLocationNotFound && <LocationNotFound />}
 
       {showExactMatch && (
         <>
           <ComponentWrapper marginBottom={16}>
-            <Alert data-testid={LOCATION_FOUND} level="attention">
+            <Alert data-testid={LOCATION_FOUND} level="info">
               <Paragraph gutterBottom={8} strong>
                 Dit is het gekozen adres:
               </Paragraph>
@@ -312,7 +312,6 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
                 addressFromLocation={exactMatch}
                 isBelowInputFields
                 showTitle
-                topic={topic}
               />
             </Alert>
           </ComponentWrapper>

@@ -1,6 +1,7 @@
 import { setTag } from "@sentry/browser";
 import {
   Checker,
+  ClientOutcomes,
   Decision,
   Question as ImtrQuestion,
   Permit,
@@ -8,39 +9,33 @@ import {
   removeQuotes,
 } from "@vergunningcheck/imtr-client";
 import React, {
+  FunctionComponent,
   useCallback,
-  useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
 
 import { ScrollAnchor } from "../atoms";
-import { Topic } from "../config";
 import { eventNames, sections } from "../config/matomo";
-import { SessionContext, SessionDataType } from "../context";
-import { MatomoTrackEventProps } from "../hoc/withTracking";
-import { scrollToRef } from "../utils/index";
-import { AnswerProps } from "./Answers";
+import { useChecker, useTopic, useTracking } from "../hooks";
+import useTopicSession from "../hooks/useTopicData";
+import { BooleanOption } from "../types";
+import { scrollToRef } from "../utils";
 import Question, { booleanOptions } from "./Question";
 import QuestionAnswer from "./QuestionAnswer";
 import { StepByStepItem } from "./StepByStepNavigation";
 
-// @TODO: import these props from CheckerPage when TS-ed
-type ComponentType = string | string[];
-type VoidFunctionProp = (component: ComponentType, value?: boolean) => void;
-type BoolFunctionProp = (component: ComponentType, value?: boolean) => boolean;
-export type CheckerPageProps = {
-  goToQuestion: VoidFunctionProp;
-  isActive: BoolFunctionProp;
-  isFinished: BoolFunctionProp;
-  setActiveState: VoidFunctionProp;
-  setFinishedState: VoidFunctionProp;
-};
+export type GoToQuestionProp = "next" | "prev" | number;
+
+type BoolFunctionProp = (component: string, value?: boolean) => boolean;
 
 type QuestionsProps = {
-  checker: Checker;
-  topic: Topic;
+  goToQuestion: (value: GoToQuestionProp) => void;
+  isActive: BoolFunctionProp;
+  isFinished: BoolFunctionProp;
+  setActiveState: (component: string, value?: boolean) => void;
+  setFinishedState: (component: string[] | string, value: boolean) => void;
 };
 
 // @TODO: Move to checker.js
@@ -52,23 +47,21 @@ export const getUserAnswer = (question: ImtrQuestion) => {
   return question.answer;
 };
 
-const Questions: React.FC<
-  QuestionsProps & CheckerPageProps & MatomoTrackEventProps
-> = ({
-  checker,
+const Questions: FunctionComponent<QuestionsProps> = ({
   goToQuestion,
   isActive,
   isFinished,
-  matomoTrackEvent,
   setActiveState,
   setFinishedState,
-  topic,
 }) => {
-  const sessionContext = useContext<SessionDataType>(SessionContext);
+  const topic = useTopic();
+  const { matomoTrackEvent } = useTracking();
+  const { checker } = useChecker() as { checker: Checker };
+  const { topicData, setTopicData } = useTopicSession();
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactConclusion, setContactConclusion] = useState(false);
-  const { name, slug } = topic;
-  const { answers, questionIndex } = sessionContext[slug];
+  const { name } = topic;
+  const { answers, questionIndex } = topicData;
   const conclusionRef = useRef<any>(null);
 
   const goToConclusion = useCallback(() => {
@@ -83,7 +76,7 @@ const Questions: React.FC<
       scrollToRef(conclusionRef, 20);
     });
   }, [
-    checker.stack,
+    checker,
     matomoTrackEvent,
     questionIndex,
     setActiveState,
@@ -178,24 +171,27 @@ const Questions: React.FC<
 
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
-    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers() in withChecker)
+    // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers())
     if (!contactConclusion) {
       checker.stack.forEach((q, i) => {
         if (checker.needContactExit(q)) {
           // Set questionIndex to this question index to make sure already answered questions are hidden
-          sessionContext.setSessionData([
-            slug,
-            {
-              questionIndex: i,
-            },
-          ]);
+          setTopicData({
+            questionIndex: i,
+          });
 
           // Set Contact Conclusion
           setContactConclusion(true);
         }
       });
     }
-  }, [checker, contactConclusion, sessionContext, setContactConclusion, slug]);
+  }, [
+    checker,
+    contactConclusion,
+    topicData,
+    setContactConclusion,
+    setTopicData,
+  ]);
 
   const isQuestionSectionActive = isActive(sections.QUESTIONS);
 
@@ -207,30 +203,45 @@ const Questions: React.FC<
         name: eventNames.ACTIVE_QUESTION,
       });
     }
-  }, [checker.stack, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
+  }, [checker, isQuestionSectionActive, matomoTrackEvent, questionIndex]);
+
+  if (!checker) return null;
 
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
-  // @TODO: We can refactor this and move to checker.js
-  const permitsPerQuestion = [] as boolean[];
-  checker.isConclusive() &&
-    checker.permits.forEach((permit: Permit) => {
-      const conclusionDecision = permit.getDecisionById("dummy");
-      if (
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_PERMIT ||
-        conclusionDecision?.getOutput() === imtrOutcomes.NEED_CONTACT
-      ) {
+  // @TODO: Move this to `imtr-client`
+  let permitsPerQuestion: ClientOutcomes[] = [];
+  checker.permits.forEach((permit: Permit) => {
+    const conclusionDecision = permit.getDecisionById("dummy");
+
+    if (conclusionDecision) {
+      const imtrOutcome = conclusionDecision.getOutput();
+      let outcomeType = ClientOutcomes.PERMIT_FREE;
+
+      if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
+        outcomeType = ClientOutcomes.NEED_CONTACT;
+      } else if (imtrOutcome === imtrOutcomes.NEED_PERMIT) {
+        outcomeType = ClientOutcomes.NEED_PERMIT;
+      } else if (imtrOutcome === imtrOutcomes.NEED_REPORT) {
+        outcomeType = ClientOutcomes.NEED_REPORT;
+      }
+
+      if (outcomeType) {
         const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
+
         decisiveDecisions.forEach((decision) => {
           const decisiveQuestion = decision
             .getDecisiveInputs()
             .pop() as ImtrQuestion;
           const index = checker.stack.indexOf(decisiveQuestion);
-          permitsPerQuestion[index] = true;
+          if (!permitsPerQuestion[index]) {
+            permitsPerQuestion[index] = outcomeType;
+          }
         });
       }
-    });
+    }
+  });
 
   // Styling to overwrite the line between the Items
   const activeStyle = { marginTop: -1, borderColor: "white" };
@@ -252,7 +263,7 @@ const Questions: React.FC<
       // Boolean question
       const responseObj = booleanOptions.find(
         (o) => o.formValue === value
-      ) as AnswerProps;
+      ) as BooleanOption;
       userAnswer = responseObj.value;
       userAnswerLabel = responseObj.label;
     } else {
@@ -283,12 +294,9 @@ const Questions: React.FC<
     setContactConclusion(checker.needContactExit(question));
 
     // Store all answers in the session context
-    sessionContext.setSessionData([
-      slug,
-      {
-        answers: checker.getQuestionAnswers(),
-      },
-    ]);
+    setTopicData({
+      answers: checker.getQuestionAnswers(),
+    });
   };
 
   if (checker.stack.length === 0) {
@@ -301,7 +309,7 @@ const Questions: React.FC<
       {checker.stack.map((q, i) => {
         // @TODO: Refactor this code and move to checker.js
         // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
-        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers() in withChecker)
+        // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers())
         if (
           contactConclusion &&
           !checker._getUpcomingQuestions().length &&
@@ -329,8 +337,11 @@ const Questions: React.FC<
           disableFutureQuestions = true;
         }
 
-        // Check if currect question is causing a permit requirement
+        // Check if current question is causing a permit requirement
         const showQuestionAlert = !!permitsPerQuestion[i];
+
+        // Define the outcome type
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
 
         return (
           <StepByStepItem
@@ -346,27 +357,27 @@ const Questions: React.FC<
               // Show the current question
               <Question
                 question={q}
-                questionNeedsContactExit={checker.needContactExit(q)}
                 onGoToPrev={onQuestionPrev}
                 onGoToNext={onQuestionNext}
-                saveAnswer={saveAnswer}
                 showNext
-                showPrev
+                userAnswer={
+                  userAnswer === undefined ? userAnswer : userAnswer.toString()
+                }
                 {...{
+                  saveAnswer,
                   checker,
+                  outcomeType,
                   questionIndex,
                   shouldGoToConlusion,
                   showQuestionAlert,
-                  userAnswer,
                 }}
               />
             ) : (
               // Show the answer with an edit button
               <QuestionAnswer
                 onClick={() => onGoToQuestion(i)}
-                questionNeedsContactExit={checker.needContactExit(q)}
-                userAnswer={userAnswer ? userAnswer.toString() : ""}
-                {...{ showQuestionAlert }}
+                userAnswer={userAnswer?.toString()}
+                {...{ outcomeType, showQuestionAlert }}
               />
             )}
           </StepByStepItem>
@@ -390,6 +401,9 @@ const Questions: React.FC<
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
+        // Define the outcome type
+        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
+
         return (
           <StepByStepItem
             active
@@ -400,8 +414,8 @@ const Questions: React.FC<
           >
             <QuestionAnswer
               onClick={() => onGoToQuestion(index)}
-              userAnswer={userAnswer ? userAnswer.toString() : ""}
-              {...{ disabled, showQuestionAlert }}
+              userAnswer={userAnswer.toString()}
+              {...{ disabled, outcomeType, showQuestionAlert }}
             />
           </StepByStepItem>
         );

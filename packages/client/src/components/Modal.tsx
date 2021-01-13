@@ -1,6 +1,6 @@
 import { Close } from "@amsterdam/asc-assets";
 import { CompactThemeProvider, Divider, Icon, TopBar } from "@amsterdam/asc-ui";
-import React, { useState } from "react";
+import React, { FunctionComponent, MouseEvent, useState } from "react";
 
 import {
   MODAL,
@@ -32,7 +32,7 @@ type ModalProps = {
   showConfirmButton?: boolean;
 };
 
-const Modal: React.FC<ModalProps> = ({
+const Modal: FunctionComponent<ModalProps> = ({
   children,
   closeButtonText = "Sluiten",
   closeModalAfterConfirm = true,
@@ -84,7 +84,7 @@ const Modal: React.FC<ModalProps> = ({
               {heading}
               <ModalButton
                 data-testid={MODAL_CLOSE_BUTTON}
-                onClick={(e: React.MouseEvent) => {
+                onClick={(e: MouseEvent) => {
                   e.stopPropagation();
                   toggleModal(false);
                 }}
@@ -105,6 +105,15 @@ const Modal: React.FC<ModalProps> = ({
             <CompactThemeProvider>{children}</CompactThemeProvider>
 
             <ModalFooterButtons>
+              {showCloseButton && (
+                <ModalButton
+                  data-testid={MODAL_DECLINE_BUTTON}
+                  onClick={() => toggleModal(false)}
+                  variant="primaryInverted"
+                >
+                  {closeButtonText}
+                </ModalButton>
+              )}
               {showConfirmButton && (
                 <ModalButton
                   data-testid={MODAL_CONFIRM_BUTTON}
@@ -115,15 +124,6 @@ const Modal: React.FC<ModalProps> = ({
                   variant="primary"
                 >
                   {confirmText}
-                </ModalButton>
-              )}
-              {showCloseButton && (
-                <ModalButton
-                  data-testid={MODAL_DECLINE_BUTTON}
-                  onClick={() => toggleModal(false)}
-                  variant="primaryInverted"
-                >
-                  {closeButtonText}
                 </ModalButton>
               )}
             </ModalFooterButtons>

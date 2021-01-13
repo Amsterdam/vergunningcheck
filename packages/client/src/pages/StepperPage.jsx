@@ -6,13 +6,13 @@ import { Heading, Paragraph, themeColor } from "@amsterdam/asc-ui";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
-import DebugDecisionTable from "../components/DebugDecisionTable";
-import Layout from "../components/Layouts/DefaultLayout";
+import { TopicLayout } from "../components/Layouts";
 import Nav from "../components/Nav";
 import {
   StepByStepItem,
   StepByStepNavigation,
 } from "../components/StepByStepNavigation";
+import DebugDecisionTable from "../dev/DebugDecisionTable";
 import withTopic from "../hoc/withTopic";
 
 /**
@@ -57,7 +57,7 @@ const StepperPage = ({ checker, topic }) => {
   };
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
         <title>Stepper Page</title>
       </Helmet>
@@ -238,8 +238,8 @@ const StepperPage = ({ checker, topic }) => {
         <StepByStepItem heading="Step 6" disabled />
       </StepByStepNavigation>
 
-      <DebugDecisionTable checker={checker} topic={topic} />
-    </Layout>
+      <DebugDecisionTable />
+    </TopicLayout>
   );
 };
 
