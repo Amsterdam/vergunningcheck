@@ -200,7 +200,7 @@ describe("LocationFinder", () => {
     await waitFor(() =>
       screen.queryByText(text.translation.common["address loading"])
     );
-    await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
 
     await act(async () => {
       fireEvent.change(inputPostalCode, {

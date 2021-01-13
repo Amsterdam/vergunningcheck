@@ -57,6 +57,20 @@ export const isValidPostalcode = (value?: string) => {
 
 /**
  *
+ * This function transforms some cases where a user for example makes a typo or makes a strange space combination to a valid option.
+ *
+ * @param {string} value
+ */
+export const transformHousenumberToValid = (value: string) =>
+  !/[a-z]/i.test(value) // First we test if your string contains a letter. If not, return as is, there is no need processing it
+    ? value
+    : (value?.toUpperCase().match(/[^a-z\s]+|[a-z]/gi) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
+        .join("") // Revert to one string
+        .replace(/(?<=\D)|(?=\D)/g, " ") // Add spaces before/after a non-digit
+        .trim(); // Trim space before and after
+
+/**
+ *
  * This function removes all query strings from an URL
  *
  * @param {string} value

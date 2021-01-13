@@ -5,6 +5,7 @@ import {
   removeQueryStrings,
   scrollToRef,
   stripString,
+  transformHousenumberToValid,
 } from "../utils";
 import { render } from "./test-utils";
 
@@ -59,6 +60,18 @@ describe("util", () => {
     expect(isValidPostalcode("1055 Xd")).toBe(true);
     expect(isValidPostalcode(" 1055XD ")).toBe(true);
     expect(isValidPostalcode(" 1055 XD ")).toBe(true);
+  });
+  test("transformHousenumberToValid", () => {
+    expect(transformHousenumberToValid("")).toBe("");
+    expect(transformHousenumberToValid("110")).toBe("110");
+    expect(transformHousenumberToValid("1 10")).toBe("1 10");
+    expect(transformHousenumberToValid("19-c")).toBe("19 - C");
+    expect(transformHousenumberToValid("19-c        ")).toBe("19 - C");
+    expect(transformHousenumberToValid("          19-c        ")).toBe(
+      "19 - C"
+    );
+    expect(transformHousenumberToValid("10hl")).toBe("10 H L");
+    expect(transformHousenumberToValid("10h l")).toBe("10 H L");
   });
   test("removeQueryStrings", () => {
     expect(removeQueryStrings("")).toBe("");

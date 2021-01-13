@@ -9,7 +9,11 @@ import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { MatomoTrackEventProps } from "../../hoc/withTracking";
 import useDebounce from "../../hooks/useDebounce";
-import { isValidPostalcode, stripString } from "../../utils";
+import {
+  isValidPostalcode,
+  stripString,
+  transformHousenumberToValid,
+} from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList, { Option } from "../AutoSuggestList";
 import LocationLoading from "./LocationLoading";
@@ -63,18 +67,9 @@ const LocationFinder: React.FC<LocationFinderProps & MatomoTrackEventProps> = ({
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
-  const graphQlHouseNumber = houseNumberFull
-    ?.toUpperCase()
-    ?.match(/[^a-z]+|[a-z]|[a-z]/gi)
-    ?.map((part) => `${part.trim()} `) // Split each part with a space
-    .toString() // Revert to one string
-    .replace(/,/g, "") // Remove all commas
-    .replace(/\s+/g, " ") // Remove duplicate spaces
-    .trim(); // Remove and spaces
-
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: graphQlHouseNumber,
+    houseNumberFull: transformHousenumberToValid(houseNumberFull),
     postalCode,
     queryExtra: false,
   };
