@@ -369,7 +369,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         return (
           <StepByStepItem
             active={isCurrentQuestion}
-            checked={answer !== undefined}
+            checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             heading={q.text}
             highlightActive={isCurrentQuestion}
