@@ -70,7 +70,9 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
 
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: transformHousenumberToValid(houseNumberFull),
+    houseNumberFull: houseNumberFull
+      ? transformHousenumberToValid(houseNumberFull)
+      : "",
     postalCode,
     queryExtra: false,
   };
