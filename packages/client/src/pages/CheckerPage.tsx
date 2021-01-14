@@ -36,11 +36,15 @@ const CheckerPage: FunctionComponent = () => {
   const hasDataNeeds = !!getDataNeed(checker);
   const { t } = useTranslation();
 
+  // Show the Location Section only when required by `hasDataNeeds`
+  const skipLocationSection = !!(checker && !hasDataNeeds);
+
   // Show the Question Section only when it has questions to render
-  const skipQuestionSection =
+  const skipQuestionSection = !!(
     checker &&
     checker.stack.length === 0 &&
-    checker._getUpcomingQuestions().length === 0;
+    checker._getUpcomingQuestions().length === 0
+  );
 
   const defaultSections: SectionObject[] = [
     // Location Section:
@@ -50,7 +54,7 @@ const CheckerPage: FunctionComponent = () => {
         return <LocationSection {...props} />;
       },
       heading: t("location.address.heading"), // Add an alternative heading here when adding the map
-      hideSection: !hasDataNeeds, // Show this section only when required by `hasDataNeeds`
+      hideSection: skipLocationSection,
     },
     // Question Section:
     {
@@ -73,14 +77,23 @@ const CheckerPage: FunctionComponent = () => {
   ];
 
   const sessionContext = useContext(SessionContext);
+  const sectionsRef = React.useRef(defaultSections);
   const [sections, updateSections] = useState(defaultSections);
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
   const { address, timesCheckerLoaded, sectionData } = topicData;
 
+  useEffect(() => {
+    // Next to the useState hook, we also need the useRef hook to make sure the state is always up to date
+    // See: https://stackoverflow.com/a/58877875
+    sectionsRef.current = sections;
+  }, [sections]);
+
   const setSectionData = (sections: SectionObject[]) => {
-    updateSections(sections);
+    const newSections = [...sections];
+
+    updateSections(newSections);
 
     setTopicData({
       sectionData: sections.map(({ index, isActive, isCompleted }) => ({
@@ -142,7 +155,7 @@ const CheckerPage: FunctionComponent = () => {
   }, [checker]);
 
   const getActiveSectionIndex = () => {
-    const activeSection = sections.filter(
+    const activeSection = sectionsRef.current.filter(
       (currentSection) => currentSection.isActive === true
     );
     if (!activeSection || activeSection.length !== 1) {
@@ -163,7 +176,7 @@ const CheckerPage: FunctionComponent = () => {
     section: SectionObject,
     initialize: boolean = false
   ) => {
-    let newSections = [...sections];
+    let newSections = [...sectionsRef.current];
 
     if (!initialize) {
       // Deactivate current active section
@@ -185,7 +198,7 @@ const CheckerPage: FunctionComponent = () => {
     state: boolean = true,
     section: SectionObject | null = null
   ) => {
-    let newSections = [...sections];
+    let newSections = [...sectionsRef.current];
 
     if (section) {
       // Mark specific section as complete
@@ -198,16 +211,16 @@ const CheckerPage: FunctionComponent = () => {
   };
 
   const getNextSection = () =>
-    sections[getActiveSectionIndex() + 1]
-      ? sections[getActiveSectionIndex() + 1]
+    sectionsRef.current[getActiveSectionIndex() + 1]
+      ? sectionsRef.current[getActiveSectionIndex() + 1]
       : null;
 
   const isLastSection = (section: SectionObject) =>
-    section.index === sections.length - 1;
+    section.index === sectionsRef.current.length - 1;
 
   const goToNextSection = () => {
     const newSectionIndex = getActiveSectionIndex() + 1;
-    const newSection = sections[newSectionIndex];
+    const newSection = sectionsRef.current[newSectionIndex];
 
     if (newSection) {
       completeSection();
@@ -227,7 +240,7 @@ const CheckerPage: FunctionComponent = () => {
 
   const goToPrevSection = () => {
     const newSectionIndex = getActiveSectionIndex() - 1;
-    const newSection = sections[newSectionIndex];
+    const newSection = sectionsRef.current[newSectionIndex];
 
     if (newSection) {
       activateSection(newSection);
@@ -257,7 +270,7 @@ const CheckerPage: FunctionComponent = () => {
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
   const sectionsRenderer = () =>
-    sections.map((section, computedIndex) => {
+    sectionsRef.current.map((section, computedIndex) => {
       const {
         isActive,
         isCompleted,
@@ -282,23 +295,23 @@ const CheckerPage: FunctionComponent = () => {
           sectionFunctions,
         });
 
-      const handleOnClick = () => {
-        activateSection(section);
-      };
-
       const needsOnClick = isLastSection(section) && isCompleted && !isActive;
+      const handleOnClick = needsOnClick
+        ? () => activateSection(section)
+        : false;
 
       return (
         <Fragment key={computedIndex}>
           <StepByStepItem
             active={renderOutsideWrapper ? false : isActive}
+            as="div"
             checked={isCompleted}
             customSize
             done={renderOutsideWrapper && isActive}
             highlightActive={!renderOutsideWrapper}
             key={computedIndex}
             largeCircle
-            onClick={needsOnClick && handleOnClick}
+            onClick={handleOnClick}
             style={isLastSection(section) ? activeStyle : {}}
             {...{ heading }}
           >
