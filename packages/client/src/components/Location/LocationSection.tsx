@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 
 import { autofillResolvers } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
@@ -11,9 +11,10 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const {
     setTopicData,
-    topicData: { timesCheckerLoaded },
+    topicData: { address, sectionData, timesCheckerLoaded },
   } = useTopicData();
   const { matomoTrackEvent } = useTracking();
+  const [skipSection, setSkipSection] = useState(false);
 
   const {
     currentSection: { isActive },
@@ -31,7 +32,23 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     // eslint-disable-next-line
   }, []);
 
-  if (!checker) {
+  useEffect(() => {
+    // Autocomplete the location section in case the NewCheckerModal has been used with a stored address
+
+    // Detect if the user has used the NewCheckerModal with a stored address
+    if (address && !sectionData.length && !skipSection) {
+      setSkipSection(true);
+    }
+
+    // Wait until the sectionData has been set by CheckerPage and go to the next section
+    if (isActive && sectionData.length && skipSection) {
+      goToNextSection();
+      setSkipSection(false);
+    }
+    // eslint-disable-next-line
+  }, [isActive, sectionData.length, skipSection]);
+
+  if (!checker || !sectionData || skipSection) {
     return null;
   }
 

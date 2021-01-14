@@ -82,7 +82,7 @@ const CheckerPage: FunctionComponent = () => {
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-  const { address, timesCheckerLoaded, sectionData } = topicData;
+  const { timesCheckerLoaded, sectionData } = topicData;
 
   useEffect(() => {
     // Next to the useState hook, we also need the useRef hook to make sure the state is always up to date
@@ -137,15 +137,6 @@ const CheckerPage: FunctionComponent = () => {
 
         return section;
       });
-
-      // Autocomplete the location section in case a new checker with data needs was started with a stored address
-      if (address && hasDataNeeds && !sectionData.length) {
-        // Complete the location section
-        defaultSections[0].isActive = false;
-        defaultSections[0].isCompleted = true;
-        // Activate the question section
-        defaultSections[1].isActive = true;
-      }
 
       setSectionData(defaultSections);
     }
