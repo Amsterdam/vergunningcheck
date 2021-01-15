@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 29,
+      "version": 32,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
@@ -14,45 +14,46 @@
             "Nee, geen monument."
           ],
           "type": "string",
-          "id": "uitv__6ca301ca-182a-49ab-878b-146cb18f814a",
-          "prio": 10
+          "prio": 10,
+          "id": "9f24b5c00af73e225d52c2fdf28284e7"
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
-          "id": "uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
           "prio": 20,
-          "uuid": "sloop onderhoud1"
+          "uuid": "sloop onderhoud1",
+          "id": "17691196d0941f98caf523d4b12b0329"
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
           "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
-          "id": "uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
           "prio": 30,
-          "uuid": "sloop onderhoud2"
+          "uuid": "sloop onderhoud2",
+          "id": "612923004697b19f70a73653c9434a15"
         },
         {
           "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
-          "id": "uitv_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
           "prio": 40,
-          "uuid": "sloop onderhoud3"
+          "uuid": "sloop onderhoud3",
+          "id": "2e3ae326993730314d728ef1c8ee7c22"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
+          "description": "U vervangt bijvoorbeeld de openslaande deuren door een schuifpui, waardoor het profiel van het kozijn verandert.\n\nOf u verandert de dikte van het dak. Een ander voorbeeld is dat u het dak schuiner of rechter op het gebouw plaatst.",
           "type": "boolean",
-          "id": "uitv_76e2ac3b-a5f3-4c86-8e77-f775134d396d",
           "prio": 50,
-          "uuid": "sloop onderhoud4"
+          "uuid": "sloop onderhoud4",
+          "id": "833cc8352aa95a1571144a676ed11698"
         }
       ],
       "decisions": {
-        "_472133d9-3025-4e47-9591-9211856d10c3": {
+        "948cd3259d5f52c3063c3bd0d58e9905": {
           "requiredInputs": [
-            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
-            "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03"
+            "9f24b5c00af73e225d52c2fdf28284e7",
+            "17691196d0941f98caf523d4b12b0329"
           ],
           "decisionTable": {
             "rules": [
@@ -75,11 +76,11 @@
             ]
           }
         },
-        "_49e87c04-befc-484c-8829-154f7f5eab31": {
+        "818a7f82f6f1aa68ba5167bbb632715b": {
           "requiredInputs": [
-            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
-            "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
-            "#input_a56a79b8-4086-4a05-ae42-bcbab2890a1b"
+            "9f24b5c00af73e225d52c2fdf28284e7",
+            "17691196d0941f98caf523d4b12b0329",
+            "612923004697b19f70a73653c9434a15"
           ],
           "decisionTable": {
             "rules": [
@@ -106,12 +107,12 @@
             ]
           }
         },
-        "_d9677ac1-c510-4825-8ecf-7aa36b8c0e33": {
+        "2e03bb010bf3987223420c9067d2eef9": {
           "requiredInputs": [
-            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
-            "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
-            "#input_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
-            "#input_61caccd0-ecae-4c33-81d6-7e8c6f467c35"
+            "9f24b5c00af73e225d52c2fdf28284e7",
+            "17691196d0941f98caf523d4b12b0329",
+            "612923004697b19f70a73653c9434a15",
+            "2e3ae326993730314d728ef1c8ee7c22"
           ],
           "decisionTable": {
             "rules": [
@@ -147,13 +148,13 @@
             ]
           }
         },
-        "_c5f42158-f2fa-4de2-9209-1a0a4260b656": {
+        "5f03da3e5c477ff7f3df7e5b8fd1828c": {
           "requiredInputs": [
-            "#input__6ca301ca-182a-49ab-878b-146cb18f814a",
-            "#input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
-            "#input_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
-            "#input_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
-            "#input_76e2ac3b-a5f3-4c86-8e77-f775134d396d"
+            "9f24b5c00af73e225d52c2fdf28284e7",
+            "17691196d0941f98caf523d4b12b0329",
+            "612923004697b19f70a73653c9434a15",
+            "2e3ae326993730314d728ef1c8ee7c22",
+            "833cc8352aa95a1571144a676ed11698"
           ],
           "decisionTable": {
             "rules": [
@@ -202,10 +203,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_472133d9-3025-4e47-9591-9211856d10c3",
-            "#_49e87c04-befc-484c-8829-154f7f5eab31",
-            "#_d9677ac1-c510-4825-8ecf-7aa36b8c0e33",
-            "#_c5f42158-f2fa-4de2-9209-1a0a4260b656"
+            "948cd3259d5f52c3063c3bd0d58e9905",
+            "818a7f82f6f1aa68ba5167bbb632715b",
+            "2e03bb010bf3987223420c9067d2eef9",
+            "5f03da3e5c477ff7f3df7e5b8fd1828c"
           ],
           "decisionTable": {
             "rules": [
@@ -236,28 +237,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__6ca301ca-182a-49ab-878b-146cb18f814a": {
-          "href": "#uitv__6ca301ca-182a-49ab-878b-146cb18f814a",
-          "type": "string"
-        },
-        "input_9d28ffdd-4090-4afa-aab4-b9c6e506aa03": {
-          "href": "#uitv_9d28ffdd-4090-4afa-aab4-b9c6e506aa03",
-          "type": "boolean"
-        },
-        "input_a56a79b8-4086-4a05-ae42-bcbab2890a1b": {
-          "href": "#uitv_a56a79b8-4086-4a05-ae42-bcbab2890a1b",
-          "type": "boolean"
-        },
-        "input_61caccd0-ecae-4c33-81d6-7e8c6f467c35": {
-          "href": "#uitv_61caccd0-ecae-4c33-81d6-7e8c6f467c35",
-          "type": "boolean"
-        },
-        "input_76e2ac3b-a5f3-4c86-8e77-f775134d396d": {
-          "href": "#uitv_76e2ac3b-a5f3-4c86-8e77-f775134d396d",
-          "type": "boolean"
         }
       }
     }
