@@ -1,10 +1,10 @@
-const debug = require("debug")("datapuntDb");
+const debug = require("debug")("database");
 const { Pool } = require("pg");
-const config = require("../config").resources.datapuntDb.client;
+const config = require("../config").resources.amsterdam.database;
 
 let connected = false;
 debug("instantiating db pool now...");
-const pool = new Pool(config);
+const pool = new Pool(config.connection);
 
 module.exports = async () => {
   try {

@@ -3,7 +3,7 @@ const {
   monument: config,
   CACHE_TIMEOUT,
   HOST,
-} = require("../../../config").resources.datapuntApi;
+} = require("../../../config").resources.amsterdam.api;
 
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 

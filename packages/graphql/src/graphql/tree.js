@@ -1,29 +1,35 @@
-const uniqBy = require("lodash/uniqBy");
-const debug = require("debug")("graphql:address");
-const { GraphQLError } = require("graphql");
 const { gql } = require("../util");
 
-let typeDefs = gql`
-  # type Geo {
-  #   type: String
-  #   features {
-  #     type
-  #     geometry {
-  #       type
-  #       coordinates
-  #     }
-  #     properties {
-  #       id
-  #     }
-  #   }
-  # }
+/**
+ * TODO extend GraphQL schema with geolocation.
+ *
+ * ```
+ * type Geo {
+ *   type: String
+ *   features {
+ *     type
+ *     geometry {
+ *       type
+ *       coordinates
+ *     }
+ *     properties {
+ *       id
+ *     }
+ *   }
+ * }
+ *
+ * type Tree implements Node {
+ *   meta: {
+ *     monument: MonumentTree!
+ *   }
+ *   geo: Geo
+ * }
+ * ```
+ */
 
+const typeDefs = gql`
   type Tree implements Node {
     id: ID!
-    # meta: {
-    #   monument: MonumentTree!
-    # }
-    # geo: Geo
   }
 
   extend type Query {
