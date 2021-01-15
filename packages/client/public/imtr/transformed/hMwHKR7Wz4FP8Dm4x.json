@@ -14,9 +14,9 @@
             "Geen monument"
           ],
           "type": "string",
-          "id": "uitv__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
           "prio": 10,
-          "uuid": "dakraam monument"
+          "uuid": "dakraam monument",
+          "id": "6bce22e09b29e12250229c875dfb67ac"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
@@ -25,9 +25,9 @@
             "Ik ga een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
           "prio": 20,
-          "uuid": "dakraam - onderhoud1"
+          "uuid": "dakraam - onderhoud1",
+          "id": "b9f32c2666558d5c186a06a865151cb9"
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -36,16 +36,16 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_c907156c-d205-44f2-ad36-46f37f505763",
           "prio": 30,
-          "uuid": "dakraam - onderhoud2"
+          "uuid": "dakraam - onderhoud2",
+          "id": "2db1e14f7ffb20b63d21b954744fb7b8"
         }
       ],
       "decisions": {
-        "_7f8b95eb-0dd6-409d-9ea2-fa62dd81ac88": {
+        "703c6283fbc1fa21c2d2193679e26227": {
           "requiredInputs": [
-            "#input__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
-            "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67"
+            "6bce22e09b29e12250229c875dfb67ac",
+            "b9f32c2666558d5c186a06a865151cb9"
           ],
           "decisionTable": {
             "rules": [
@@ -77,11 +77,11 @@
             ]
           }
         },
-        "_67541842-9b16-4fba-8213-eb00ea24ecd2": {
+        "82905c164e278544076988533d455bff": {
           "requiredInputs": [
-            "#input__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
-            "#input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
-            "#input_c907156c-d205-44f2-ad36-46f37f505763"
+            "6bce22e09b29e12250229c875dfb67ac",
+            "b9f32c2666558d5c186a06a865151cb9",
+            "2db1e14f7ffb20b63d21b954744fb7b8"
           ],
           "decisionTable": {
             "rules": [
@@ -126,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_7f8b95eb-0dd6-409d-9ea2-fa62dd81ac88",
-            "#_67541842-9b16-4fba-8213-eb00ea24ecd2"
+            "703c6283fbc1fa21c2d2193679e26227",
+            "82905c164e278544076988533d455bff"
           ],
           "decisionTable": {
             "rules": [
@@ -148,20 +148,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__b2039271-3498-4dbf-8ef8-14fb795f6a1d": {
-          "href": "#uitv__b2039271-3498-4dbf-8ef8-14fb795f6a1d",
-          "type": "string"
-        },
-        "input_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67": {
-          "href": "#uitv_a6ea7ea6-8842-4a11-86f5-3a81b7ba4f67",
-          "type": "string"
-        },
-        "input_c907156c-d205-44f2-ad36-46f37f505763": {
-          "href": "#uitv_c907156c-d205-44f2-ad36-46f37f505763",
-          "type": "string"
         }
       }
     }

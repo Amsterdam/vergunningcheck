@@ -9,9 +9,9 @@
           "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
           "options": ["Zonnepanelen", "Zonneboiler"],
           "type": "string",
-          "id": "uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
           "prio": 10,
-          "uuid": "zonnepaneel-warmtecollector"
+          "uuid": "zonnepaneel-warmtecollector",
+          "id": "ca36af0200df1e14b81d04d2015bb629"
         },
         {
           "text": "Is het gebouw een monument?",
@@ -23,9 +23,9 @@
             "Geen monument"
           ],
           "type": "string",
-          "id": "uitv__954f5950-820d-42ac-8cef-07b5afd80b43",
           "prio": 20,
-          "uuid": "zonnepaneel en zonneboiler monument"
+          "uuid": "zonnepaneel en zonneboiler monument",
+          "id": "a0ddb26a3499eb8806dfc2d5126f3495"
         },
         {
           "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
@@ -34,9 +34,9 @@
             "Ik ga zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren."
           ],
           "type": "string",
-          "id": "uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
           "prio": 30,
-          "uuid": "zonnepanelen - onderhoud1"
+          "uuid": "zonnepanelen - onderhoud1",
+          "id": "f3a1d620483a9a2a59e2ea1422e32053"
         },
         {
           "text": "U gaat zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -45,9 +45,9 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
           "prio": 40,
-          "uuid": "zonnepanelen - onderhoud2"
+          "uuid": "zonnepanelen - onderhoud2",
+          "id": "b1f03b239bf2c26ea84dbe6e70812bd2"
         },
         {
           "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
@@ -56,9 +56,9 @@
             "Ik ga een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
           "prio": 50,
-          "uuid": "zonneboiler - onderhoud1"
+          "uuid": "zonneboiler - onderhoud1",
+          "id": "ba1e183c96f329fac18b49bceb0508cf"
         },
         {
           "text": "U gaat een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -67,17 +67,17 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_0954e203-e649-4d46-9732-d5defdfc57be",
           "prio": 60,
-          "uuid": "zonneboiler - onderhoud2"
+          "uuid": "zonneboiler - onderhoud2",
+          "id": "91bda4f339a005792db3ca048660f7ae"
         }
       ],
       "decisions": {
-        "_baff44e7-4358-4841-b675-2dbc6921b27b": {
+        "5db4ca6aed3df4c77704cd8255de5e13": {
           "requiredInputs": [
-            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
-            "#input_2bea0591-a028-413a-8bcb-f9f1b01270c2"
+            "ca36af0200df1e14b81d04d2015bb629",
+            "a0ddb26a3499eb8806dfc2d5126f3495",
+            "f3a1d620483a9a2a59e2ea1422e32053"
           ],
           "decisionTable": {
             "rules": [
@@ -116,11 +116,11 @@
             ]
           }
         },
-        "_97e8d464-855c-4499-891e-c7fdf68abd9c": {
+        "f355535615cfab9f1e49d5edd47bbe81": {
           "requiredInputs": [
-            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
-            "#input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2"
+            "ca36af0200df1e14b81d04d2015bb629",
+            "a0ddb26a3499eb8806dfc2d5126f3495",
+            "ba1e183c96f329fac18b49bceb0508cf"
           ],
           "decisionTable": {
             "rules": [
@@ -159,12 +159,12 @@
             ]
           }
         },
-        "_6ed90286-26d7-4662-8e9e-5328edabaf28": {
+        "58df9c33657fa3cd7169a301cd190d4c": {
           "requiredInputs": [
-            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
-            "#input_2bea0591-a028-413a-8bcb-f9f1b01270c2",
-            "#input_45c1eabc-bddb-418d-9145-e26d97e914dc"
+            "ca36af0200df1e14b81d04d2015bb629",
+            "a0ddb26a3499eb8806dfc2d5126f3495",
+            "f3a1d620483a9a2a59e2ea1422e32053",
+            "b1f03b239bf2c26ea84dbe6e70812bd2"
           ],
           "decisionTable": {
             "rules": [
@@ -215,12 +215,12 @@
             ]
           }
         },
-        "_38f321bc-ce8d-4c3a-889f-9549ea0e74d1": {
+        "a0ced1fc0a4696fb857ee88d18ca45de": {
           "requiredInputs": [
-            "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-            "#input__954f5950-820d-42ac-8cef-07b5afd80b43",
-            "#input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-            "#input_0954e203-e649-4d46-9732-d5defdfc57be"
+            "ca36af0200df1e14b81d04d2015bb629",
+            "a0ddb26a3499eb8806dfc2d5126f3495",
+            "ba1e183c96f329fac18b49bceb0508cf",
+            "91bda4f339a005792db3ca048660f7ae"
           ],
           "decisionTable": {
             "rules": [
@@ -273,10 +273,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_baff44e7-4358-4841-b675-2dbc6921b27b",
-            "#_97e8d464-855c-4499-891e-c7fdf68abd9c",
-            "#_6ed90286-26d7-4662-8e9e-5328edabaf28",
-            "#_38f321bc-ce8d-4c3a-889f-9549ea0e74d1"
+            "5db4ca6aed3df4c77704cd8255de5e13",
+            "f355535615cfab9f1e49d5edd47bbe81",
+            "58df9c33657fa3cd7169a301cd190d4c",
+            "a0ced1fc0a4696fb857ee88d18ca45de"
           ],
           "decisionTable": {
             "rules": [
@@ -312,32 +312,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec": {
-          "href": "#uitv__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
-          "type": "string"
-        },
-        "input__954f5950-820d-42ac-8cef-07b5afd80b43": {
-          "href": "#uitv__954f5950-820d-42ac-8cef-07b5afd80b43",
-          "type": "string"
-        },
-        "input_2bea0591-a028-413a-8bcb-f9f1b01270c2": {
-          "href": "#uitv_2bea0591-a028-413a-8bcb-f9f1b01270c2",
-          "type": "string"
-        },
-        "input_45c1eabc-bddb-418d-9145-e26d97e914dc": {
-          "href": "#uitv_45c1eabc-bddb-418d-9145-e26d97e914dc",
-          "type": "string"
-        },
-        "input_05f2f0ec-d538-4ba8-a568-037b2eecd9e2": {
-          "href": "#uitv_05f2f0ec-d538-4ba8-a568-037b2eecd9e2",
-          "type": "string"
-        },
-        "input_0954e203-e649-4d46-9732-d5defdfc57be": {
-          "href": "#uitv_0954e203-e649-4d46-9732-d5defdfc57be",
-          "type": "string"
         }
       }
     }
