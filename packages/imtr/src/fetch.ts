@@ -59,7 +59,6 @@ export default async (argv: Props) => {
           async (activity: TopicInputType) => {
             const permitId: string = activity._id;
 
-            // const requestPromise = async () => {
             const result = await fetch(`${host}/conclusie/sttr`, {
               body: `activiteitId=${permitId}`,
               headers: {
