@@ -1,4 +1,4 @@
-const getPool = require("../../datapuntDb");
+const getPool = require("../../database");
 
 // TODO: consider moving this file to a different folder as it is not related to
 // the rest api loaders. Also the setup is different and it uses no caching.
