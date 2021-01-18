@@ -8,7 +8,7 @@ import { NEXT_BUTTON } from "../utils/test-ids";
 import { render, screen, waitFor } from "../utils/test-utils";
 import IntroPage from "./IntroPage";
 
-let mockIntro: Topic = {
+const mockIntro: Topic = {
   hasIMTR: true,
   intro: "DakkapelIntro",
   name: "Dakkapel plaatsen",
