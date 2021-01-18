@@ -1,39 +1,40 @@
 import React from "react";
 
 import addressMock from "../__mocks__/addressMock";
-import { render } from "../utils/test-utils";
+import { render, screen } from "../utils/test-utils";
 import AddressLines from "./AddressLines";
 
 describe("AddressLine", () => {
   it("renders correctly", () => {
-    const { queryByText } = render(
-      <AddressLines
-        gutterBottom={0}
-        address={addressMock}
-        postalCode={addressMock.postalCode}
-        residence={addressMock.residence}
-        streetName={addressMock.streetName}
-      />
-    );
+    render(<AddressLines gutterBottom={0} address={addressMock} />);
 
-    expect(queryByText("streetname 123")).toBeInTheDocument();
-    expect(queryByText("1234 AB Amsterdam")).toBeInTheDocument();
+    expect(screen.queryByText("streetname 123")).toBeInTheDocument();
+    expect(screen.queryByText("1234 AB Amsterdam")).toBeInTheDocument();
 
-    expect(queryByText("rendered")).not.toBeInTheDocument();
+    expect(screen.queryByText("rendered")).not.toBeInTheDocument();
   });
 
   it("renders correctly with editAddressRenderer", () => {
-    const { queryByText } = render(
+    render(
       <AddressLines
         gutterBottom={0}
         editAddressRenderer={() => <span>rendered</span>}
         address={addressMock}
-        postalCode={addressMock.postalCode}
-        residence={addressMock.residence}
-        streetName={addressMock.streetName}
       />
     );
 
-    expect(queryByText("rendered")).toBeInTheDocument();
+    expect(screen.queryByText("rendered")).toBeInTheDocument();
+  });
+
+  it("should not render", () => {
+    render(
+      <AddressLines
+        address={null}
+        editAddressRenderer={() => <span>rendered</span>}
+        gutterBottom={0}
+      />
+    );
+
+    expect(screen.queryByText("rendered")).not.toBeInTheDocument();
   });
 });
