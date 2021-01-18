@@ -138,6 +138,12 @@ const CheckerPage: FunctionComponent = () => {
         return section;
       });
 
+      // @TODO: if `skipLocationSection` trigger event activate first question
+      // @TODO: if `skipLocationSection` disable trigger event goto location section
+      if (skipLocationSection) {
+        checker.next();
+      }
+
       setSectionData(defaultSections);
     }
 
@@ -338,3 +344,5 @@ const CheckerPage: FunctionComponent = () => {
 };
 
 export default CheckerPage;
+
+// 277,279,291
