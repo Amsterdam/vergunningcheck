@@ -162,4 +162,13 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck kappen of snoeien",
     },
   },
+  {
+    hasIMTR: false,
+    name: "Brandveilig gebruik",
+    redirectToOlo: true,
+    slug: "brandveilig-gebruik",
+    text: {
+      heading: "Vergunningcheck brandveilig gebruik",
+    },
+  },
 ];
