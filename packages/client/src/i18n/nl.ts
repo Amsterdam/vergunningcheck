@@ -91,6 +91,10 @@ export default {
           "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
       },
     },
+    notFoundPage: {
+      heading: "Helaas",
+      paragraph: "Deze pagina is niet gevonden",
+    },
     question: {
       alert: {
         "this answer causes a need for permit":
