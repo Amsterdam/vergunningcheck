@@ -92,8 +92,8 @@ export default {
       },
     },
     notFoundPage: {
-      heading: "Helaas",
-      paragraph: "Deze pagina is niet gevonden",
+      heading: "Deze pagina is niet gevonden.",
+      paragraph: "Helaas",
     },
     question: {
       alert: {

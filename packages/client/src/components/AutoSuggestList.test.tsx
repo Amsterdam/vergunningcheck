@@ -7,7 +7,7 @@ import AutoSuggestList from "./AutoSuggestList";
 
 describe("AutoSuggestList", () => {
   it("renders correctly without options", async () => {
-    let handleSelect = jest.fn();
+    const handleSelect = jest.fn();
 
     const { container } = render(
       <AutoSuggestList
