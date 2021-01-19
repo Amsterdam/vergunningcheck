@@ -104,13 +104,13 @@ export const isValidPostalcode = (value?: string) => {
 export const sanitizeHouseNumberFull = (value: string) => {
   const spacesBeforeAndAfterNonDigit = /(?<=\D)|(?=\D)/g;
   const nonDigits = /[a-z]/i;
-  const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/gi;
-  if (nonDigits.test(value))
-    return (value?.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
-      .join("") // Revert to one string
-      .replace(spacesBeforeAndAfterNonDigit, " ") // Add spaces before/after a non-digit
-      .trim(); // Trim space before and after
-  return value;
+  const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/g;
+
+  if (!nonDigits.test(value)) return value;
+  return (value?.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
+    .join("") // Revert to one string
+    .replace(spacesBeforeAndAfterNonDigit, " ") // Add spaces before/after a non-digit
+    .trim(); // Trim space before and after
 };
 
 /**
