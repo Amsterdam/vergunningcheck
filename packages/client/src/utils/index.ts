@@ -101,13 +101,17 @@ export const isValidPostalcode = (value?: string) => {
  *
  * @param {string} value
  */
-export const transformHousenumberToValid = (value: string) =>
-  !/[a-z]/i.test(value) // First we test if your string contains a letter. If not, return as is, there is no need processing it
-    ? value
-    : (value?.toUpperCase().match(/[^a-z\s]+|[a-z]/gi) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
-        .join("") // Revert to one string
-        .replace(/(?<=\D)|(?=\D)/g, " ") // Add spaces before/after a non-digit
-        .trim(); // Trim space before and after
+export const sanitizeHouseNumberFull = (value: string) => {
+  const spacesBeforeAndAfterNonDigit = /(?<=\D)|(?=\D)/g;
+  const nonDigits = /[a-z]/i;
+  const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/gi;
+  if (nonDigits.test(value))
+    return (value?.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
+      .join("") // Revert to one string
+      .replace(spacesBeforeAndAfterNonDigit, " ") // Add spaces before/after a non-digit
+      .trim(); // Trim space before and after
+  return value;
+};
 
 /**
  *

@@ -15,8 +15,8 @@ import { useDebounce, useTopicData, useTracking } from "../../hooks";
 import { Address } from "../../types";
 import {
   isValidPostalcode,
+  sanitizeHouseNumberFull,
   stripString,
-  transformHousenumberToValid,
 } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList, { Option } from "../AutoSuggestList";
@@ -71,7 +71,7 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   const variables = {
     extraHouseNumberFull: "",
     houseNumberFull: houseNumberFull
-      ? transformHousenumberToValid(houseNumberFull)
+      ? sanitizeHouseNumberFull(houseNumberFull)
       : "",
     postalCode,
     queryExtra: false,
