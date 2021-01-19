@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import locationFinderGraphQLMocks from "../../__mocks__/locationFinderGraphQLMocks";
 import text from "../../i18n/nl";
-import { findTopicBySlug } from "../../utils/index";
+import { findTopicBySlug } from "../../utils";
 import {
   AUTOSUGGEST_ITEM,
   AUTOSUGGEST_LIST,

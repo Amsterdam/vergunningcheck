@@ -5,13 +5,13 @@ import React, { FunctionComponent, ReactNode, useEffect } from "react";
 import { isIE, isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms/index";
+import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
-const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
+const OutcomeContentWrapper = styled.div<{ showDiscaimer?: boolean }>`
   margin-bottom: ${themeSpacing(9)};
 
   ${({ showDiscaimer }) =>
@@ -21,7 +21,7 @@ const ConclusionOutcomeWrapper = styled.div<{ showDiscaimer?: boolean }>`
     `};
 `;
 
-type ConclusionContentProps = {
+type OutcomeContent = {
   description?: string;
   eventName?: string;
   footerContent?: ReactNode;
@@ -29,23 +29,23 @@ type ConclusionContentProps = {
   title: string;
 };
 
-type ConclusionOutcomeProps = {
-  conclusionContent: ConclusionContentProps;
+type OutcomeContentProps = {
+  outcomeContent: OutcomeContent;
   outcomeType: ClientOutcomes;
   showDiscaimer?: boolean;
 };
 
-const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
-  conclusionContent,
+const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
+  outcomeContent,
   outcomeType,
   showDiscaimer,
 }) => {
   const { matomoTrackEvent } = useTracking();
-  const { footerContent, mainContent, title } = conclusionContent;
+  const { footerContent, mainContent, title } = outcomeContent;
 
   useEffect(() => {
     matomoTrackEvent({
-      action: actions.CONCLUSION_OUTCOME,
+      action: actions.THIS_IS_THE_OUTCOME,
       name: title,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,13 +54,13 @@ const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
   const handlePrintButton = () => {
     matomoTrackEvent({
       action: actions.DOWNLOAD,
-      name: eventNames.SAVE_CONCLUSION,
+      name: eventNames.SAVE_OUTCOME,
     });
     window.print();
   };
 
   return (
-    <ConclusionOutcomeWrapper {...{ showDiscaimer }}>
+    <OutcomeContentWrapper {...{ showDiscaimer }}>
       <ComponentWrapper marginBottom={16} />
       <ComponentWrapper marginBottom={24}>
         <Heading forwardedAs="h2">{title}</Heading>
@@ -89,8 +89,8 @@ const ConclusionOutcome: FunctionComponent<ConclusionOutcomeProps> = ({
         <NewCheckerModal />
         {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
       </HideForPrint>
-    </ConclusionOutcomeWrapper>
+    </OutcomeContentWrapper>
   );
 };
 
-export default ConclusionOutcome;
+export default OutcomeContent;

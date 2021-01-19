@@ -2,12 +2,12 @@ import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { HideForPrint, PrintOnly } from "../../../atoms";
-import ComponentWrapper from "../../../atoms/ComponentWrapper";
-import { urls } from "../../../config";
-import { actions, eventNames } from "../../../config/matomo";
-import { useTracking } from "../../../hooks";
-import { NEED_PERMIT_BUTTON } from "../../../utils/test-ids";
+import { HideForPrint, PrintOnly } from "../../atoms";
+import ComponentWrapper from "../../atoms/ComponentWrapper";
+import { urls } from "../../config";
+import { actions, eventNames } from "../../config/matomo";
+import { useTracking } from "../../hooks";
+import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 
 type NeedPermitProps = {
   contentText?: string;
