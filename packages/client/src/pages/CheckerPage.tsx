@@ -37,10 +37,10 @@ const CheckerPage: FunctionComponent = () => {
   const { t } = useTranslation();
 
   // Show the Location Section only when required by `hasDataNeeds`
-  const skipLocationSection = !!(checker && !hasDataNeeds);
+  const hideLocationSection = !!(checker && !hasDataNeeds);
 
   // Show the Question Section only when it has questions to render
-  const skipQuestionSection = !!(
+  const hideQuestionSection = !!(
     checker &&
     checker.stack.length === 0 &&
     checker._getUpcomingQuestions().length === 0
@@ -54,7 +54,7 @@ const CheckerPage: FunctionComponent = () => {
         return <LocationSection {...props} />;
       },
       heading: t("location.address.heading"), // Add an alternative heading here when adding the map
-      hideSection: skipLocationSection,
+      hideSection: hideLocationSection,
     },
     // Question Section:
     {
@@ -63,7 +63,7 @@ const CheckerPage: FunctionComponent = () => {
         return <QuestionSection {...props} />;
       },
       heading: t("question.heading"),
-      hideSection: skipQuestionSection,
+      hideSection: hideQuestionSection,
       renderOutsideWrapper: true,
     },
     // Outcome Section:
@@ -138,9 +138,9 @@ const CheckerPage: FunctionComponent = () => {
         return section;
       });
 
-      // @TODO: if `skipLocationSection` trigger event activate first question
-      // @TODO: if `skipLocationSection` disable trigger event goto location section
-      if (skipLocationSection) {
+      // @TODO: if `hideLocationSection` trigger event activate first question
+      // @TODO: if `hideLocationSection` disable trigger event goto location section
+      if (hideLocationSection) {
         checker.next();
       }
 
@@ -278,7 +278,7 @@ const CheckerPage: FunctionComponent = () => {
       } = section;
 
       if (hideSection) {
-        // Skip to the next section if the section to be hidden is active
+        // Hide to the next section if the section to be hidden is active
         if (isActive) {
           goToNextSection();
         }
