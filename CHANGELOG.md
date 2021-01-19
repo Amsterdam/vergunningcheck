@@ -3,17 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 ## [2.4.2] (2020-12-16)
+
 #### New Features
-* `client`, `imtr-client`, `imtr`
-  * [#696](https://github.com/Amsterdam/vergunningcheck/pull/696) Checker "demolition" with new outcomes and ordering ([@robinpiets](https://github.com/robinpiets))
+
+- `client`, `imtr-client`, `imtr`
+  - [#696](https://github.com/Amsterdam/vergunningcheck/pull/696) Checker "demolition" with new outcomes and ordering ([@robinpiets](https://github.com/robinpiets))
 
 #### Bug fixes
-* `client`
-  * [#728](https://github.com/Amsterdam/vergunningcheck/pull/728) Bugs: Incorrect loading state and incorrect alert show.  ([@svenjens](https://github.com/svenjens))
+
+- `client`
+  - [#728](https://github.com/Amsterdam/vergunningcheck/pull/728) Bugs: Incorrect loading state and incorrect alert show. ([@svenjens](https://github.com/svenjens))
 
 #### Chores
-* `client`
-  * [#701](https://github.com/Amsterdam/vergunningcheck/pull/701) Added intro text translations to tests ([@svenjens](https://github.com/svenjens))
+
+- `client`
+  - [#701](https://github.com/Amsterdam/vergunningcheck/pull/701) Added intro text translations to tests ([@svenjens](https://github.com/svenjens))
+  - [#773](https://github.com/Amsterdam/vergunningcheck/pull/773) Created link for new checker ([@robinpiets](https://github.com/robinpiets))
 
 ## [2.4.1] (2020-11-25)
 
