@@ -32,27 +32,25 @@ describe("Visual", () => {
     expect(screen.queryByTestId(FIGCAPTION)).toBeInTheDocument();
   });
 
-  it("renders correctly with on error", () => {
-    const { container } = render(
-      <Visual alt="alt text" src="folder/image.jpg" title="title" />
-    );
-
-    const img = container.querySelector("img");
-    expect(img).not.toBeNull();
-    fireEvent(img, new Event("error"));
-    expect(img).toHaveStyleRule("border", "1px solid #767676");
-  });
-
   it("renders correctly with on load", () => {
     const { container } = render(
       <Visual alt="alt text" src="folder/image.jpg" title="title" />
     );
 
-    const img = container.querySelector("img");
+    const img = container.querySelector("img") as HTMLImageElement;
     expect(img).not.toBeNull();
-    if (img) {
-      fireEvent(img, new Event("load"));
-      expect(img).toHaveStyleRule("border", "1px solid #767676");
-    }
+    fireEvent(img, new Event("load"));
+    expect(img).toHaveStyleRule("border", "1px solid #767676");
+  });
+
+  it("renders correctly with on error", () => {
+    const { container } = render(
+      <Visual alt="alt text" src="folder/image.jpg" title="title" />
+    );
+
+    const img = container.querySelector("img") as HTMLImageElement;
+    expect(img).not.toBeNull();
+    fireEvent(img, new Event("error"));
+    expect(img).toHaveStyleRule("border", "1px solid #767676");
   });
 });
