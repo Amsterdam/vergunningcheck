@@ -1,9 +1,5 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import {
-  Checker,
-  ClientOutcomes,
-  imtrOutcomes,
-} from "@vergunningcheck/imtr-client";
+import { ClientOutcomes, imtrOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -14,6 +10,7 @@ import { useChecker, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
 import Disclaimer from "../Disclaimer";
 import Markdown from "../Markdown";
+import { StepByStepItem } from "../StepByStepNavigation";
 import {
   DemolitionNeedReport,
   DemolitionPermitFree,
@@ -29,16 +26,16 @@ const OutcomeWrapper = styled.div`
 `;
 
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
-  const { checker } = useChecker() as { checker: Checker };
+  const { checker } = useChecker();
   const topic = useTopic();
   const { t } = useTranslation();
 
   const {
-    currentSection: { isActive, isCompleted },
+    currentSection,
+    sectionFunctions: { activateSection },
   } = props;
 
-  // Hide content if outcome section is not active / completed
-  if (!isActive && !isCompleted) return null;
+  const { isActive, isCompleted } = currentSection;
 
   const {
     NEED_BOTH_PERMIT_AND_REPORT,
@@ -47,6 +44,8 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
     NEED_REPORT,
     PERMIT_FREE,
   } = ClientOutcomes;
+
+  if (!checker) return null;
 
   // Get all the outcomes to display
   const outcomes = checker.getOutcomesToDisplay();
@@ -154,22 +153,44 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const showDiscaimer = outcomeType !== NEED_CONTACT;
 
   if (!outcomeContent) {
-    // Convert this to a unit test
+    // @TODO: Convert this to a unit test
     throw new Error("The contents have not been configured properly.");
   }
 
-  return (
-    <OutcomeWrapper>
-      <OutcomeContent
-        {...{
-          outcomeContent,
-          outcomeType,
-          showDiscaimer,
-        }}
-      />
+  // Show content only when this section is active or completed
+  const showOutcome = isActive || isCompleted;
+  const handleOnClick =
+    isCompleted && !isActive ? () => activateSection(currentSection) : false;
 
-      {showDiscaimer && <Disclaimer />}
-    </OutcomeWrapper>
+  showOutcome && console.log("nu wordt de uitkomst gerendered");
+
+  return (
+    <StepByStepItem
+      active={isActive}
+      as="div"
+      checked={isCompleted}
+      customSize
+      heading={t("outcome.heading")}
+      highlightActive
+      largeCircle
+      onClick={handleOnClick}
+      // @TODO: fix active style
+      // style={isLastSection(section) ? activeStyle : {}}
+    >
+      {showOutcome ? (
+        <OutcomeWrapper>
+          <OutcomeContent
+            {...{
+              outcomeContent,
+              outcomeType,
+              showDiscaimer,
+            }}
+          />
+
+          {showDiscaimer && <Disclaimer />}
+        </OutcomeWrapper>
+      ) : null}
+    </StepByStepItem>
   );
 };
 

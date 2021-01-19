@@ -6,18 +6,13 @@ import React, {
   useState,
 } from "react";
 import { Helmet } from "react-helmet";
-import { useTranslation } from "react-i18next";
 
 import { TopicLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
 import { LocationSection } from "../components/Location";
 import { OutcomeSection } from "../components/Outcome";
 import { QuestionSection } from "../components/Question";
-import {
-  StepByStepItem,
-  StepByStepNavigation,
-} from "../components/StepByStepNavigation";
-import { getDataNeed } from "../config/autofill";
+import { StepByStepNavigation } from "../components/StepByStepNavigation";
 import { DebugDecisionTable } from "../debug";
 import { useChecker, useSlug, useTopic, useTopicData } from "../hooks";
 import { SessionContext } from "../SessionContext";
@@ -33,18 +28,6 @@ const defaultSectionData = {
 
 const CheckerPage: FunctionComponent = () => {
   const { checker } = useChecker();
-  const hasDataNeeds = !!getDataNeed(checker);
-  const { t } = useTranslation();
-
-  // Show the Location Section only when required by `hasDataNeeds`
-  const hideLocationSection = !!(checker && !hasDataNeeds);
-
-  // Show the Question Section only when it has questions to render
-  const hideQuestionSection = !!(
-    checker &&
-    checker.stack.length === 0 &&
-    checker._getUpcomingQuestions().length === 0
-  );
 
   const defaultSections: SectionObject[] = [
     // Location Section:
@@ -53,8 +36,6 @@ const CheckerPage: FunctionComponent = () => {
       component: (props) => {
         return <LocationSection {...props} />;
       },
-      heading: t("location.address.heading"), // Add an alternative heading here when adding the map
-      hideSection: hideLocationSection,
     },
     // Question Section:
     {
@@ -62,9 +43,6 @@ const CheckerPage: FunctionComponent = () => {
       component: (props) => {
         return <QuestionSection {...props} />;
       },
-      heading: t("question.heading"),
-      hideSection: hideQuestionSection,
-      renderOutsideWrapper: true,
     },
     // Outcome Section:
     {
@@ -72,7 +50,6 @@ const CheckerPage: FunctionComponent = () => {
       component: (props) => {
         return <OutcomeSection {...props} />;
       },
-      heading: t("outcome.heading"),
     },
   ];
 
@@ -137,12 +114,6 @@ const CheckerPage: FunctionComponent = () => {
 
         return section;
       });
-
-      // @TODO: if `hideLocationSection` trigger event activate first question
-      // @TODO: if `hideLocationSection` disable trigger event goto location section
-      if (hideLocationSection) {
-        checker.next();
-      }
 
       setSectionData(defaultSections);
     }
@@ -263,76 +234,29 @@ const CheckerPage: FunctionComponent = () => {
     goToPrevSection,
   };
 
-  // @TODO: refactor this style
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
-  const sectionsRenderer = () =>
-    sectionsRef.current.map((section, computedIndex) => {
-      const {
-        isActive,
-        isCompleted,
-        component,
-        heading,
-        hideSection,
-        renderOutsideWrapper,
-      } = section;
-
-      if (hideSection) {
-        // Hide to the next section if the section to be hidden is active
-        if (isActive) {
-          goToNextSection();
-        }
-        return null;
-      }
-
-      const componentToRender =
-        component &&
-        component({
-          currentSection: section,
-          sectionFunctions,
-        });
-
-      const needsOnClick = isLastSection(section) && isCompleted && !isActive;
-      const handleOnClick = needsOnClick
-        ? () => activateSection(section)
-        : false;
-
-      return (
-        <Fragment key={computedIndex}>
-          <StepByStepItem
-            active={renderOutsideWrapper ? false : isActive}
-            as="div"
-            checked={isCompleted}
-            customSize
-            done={renderOutsideWrapper && isActive}
-            highlightActive={!renderOutsideWrapper}
-            key={computedIndex}
-            largeCircle
-            onClick={handleOnClick}
-            style={isLastSection(section) ? activeStyle : {}}
-            {...{ heading }}
-          >
-            {!renderOutsideWrapper && componentToRender}
-          </StepByStepItem>
-          {renderOutsideWrapper && componentToRender}
-        </Fragment>
-      );
-    });
-
   return (
     <TopicLayout>
       <Helmet>
         <title>Vragen en uitkomst - {text.heading}</title>
       </Helmet>
 
-      {checker ? (
+      {checker && topicData.type === slug ? (
         <>
           <StepByStepNavigation
             disabledTextColor="inherit"
             doneTextColor="inherit"
             lineBetweenItems
           >
-            {sectionsRenderer()}
+            {sectionsRef.current.map(
+              (section: SectionObject, computedIndex) => (
+                <Fragment key={computedIndex}>
+                  {section.component({
+                    currentSection: section,
+                    sectionFunctions,
+                  })}
+                </Fragment>
+              )
+            )}
           </StepByStepNavigation>
           <DebugDecisionTable />
         </>
