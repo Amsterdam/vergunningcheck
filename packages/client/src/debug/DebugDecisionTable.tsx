@@ -31,9 +31,11 @@ const DebugDecisionTable: FunctionComponent = () => {
   const { topicData } = useTopicData();
   const decisionId = "dummy";
 
-  if (!checker || !checker.permits) {
+  // Do not render without checker or when testing with Jest
+  if (!checker?.permits || process.env.JEST_WORKER_ID) {
     return <></>;
   }
+
   const allQuestions = checker._getAllQuestions();
   const autofilled = allQuestions.filter((q: Question) => q.autofill);
 

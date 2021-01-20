@@ -21,6 +21,7 @@ import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
 import { AnswerOptions, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
 import getOutcomeContent from "../../utils/getOutcomeContent";
+import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Question, QuestionAnswer } from "./";
 
@@ -386,6 +387,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             active={isCurrentQuestion}
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
+            data-testid={QUESTION}
             heading={q.text}
             highlightActive={isCurrentQuestion}
             key={`question-${q.id}-${i}`}
@@ -441,6 +443,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             active
             checked
             customSize
+            data-testid={QUESTION}
             heading={q.text}
             key={`question-${q.id}-${index}`}
           >

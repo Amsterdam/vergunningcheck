@@ -10,6 +10,7 @@ import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
+import { LOCATION_INPUT } from "../../utils/test-ids";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -119,7 +120,7 @@ const LocationInput = ({
       )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form dataTestId={LOCATION_INPUT} onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
             errorMessage,

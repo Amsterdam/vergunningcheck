@@ -5,6 +5,7 @@ import { autofillResolvers, getDataNeed } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { Address, SectionComponent } from "../../types";
+import { LOCATION_SECTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import LocationSummary from "./LocationSummary";
 import { LocationInput } from ".";
@@ -108,15 +109,19 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   // Add an alternative heading here when adding the map
   const heading = t("location.address.heading");
 
+  // @TODO: fix the active style in a proper way without `style`
+  const activeStyle = { marginTop: -1, borderColor: "white" };
+
   return (
     <StepByStepItem
       active={isActive}
       checked={isCompleted}
       customSize
+      data-testid={LOCATION_SECTION}
       done={isActive}
       highlightActive
       largeCircle
-      // @TODO: fix the style with the grey bottom-border
+      style={activeStyle}
       {...{ heading }}
     >
       {isActive ? (

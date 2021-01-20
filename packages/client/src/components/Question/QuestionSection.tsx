@@ -5,6 +5,7 @@ import { actions, sections } from "../../config/matomo";
 import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
 import { SectionComponent } from "../../types";
 import getOutcomeContent from "../../utils/getOutcomeContent";
+import { QUESTION_SECTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Questions } from "./";
 
@@ -87,13 +88,18 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     }
   };
 
+  const highlightSection = isActive && questionIndex === 0;
+
   return (
     <>
       <StepByStepItem
+        active={highlightSection}
         checked={isCompleted}
         customSize
+        data-testid={QUESTION_SECTION}
         done={isActive}
         heading={t("question.heading")}
+        highlightActive={highlightSection}
         largeCircle
       />
 

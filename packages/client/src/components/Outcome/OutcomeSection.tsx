@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useChecker, useSlug } from "../../hooks";
 import { SectionComponent } from "../../types";
 import getOutcomeContent from "../../utils/getOutcomeContent";
+import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
 import Disclaimer from "../Disclaimer";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { OutcomeContent } from "./";
@@ -42,21 +43,24 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const handleOnClick =
     isCompleted && !isActive ? () => activateSection(currentSection) : false;
 
+  // @TODO: fix the active style in a proper way without `style`
+  const activeStyle = { marginTop: -1, borderColor: "white" };
+
   return (
     <StepByStepItem
       active={isActive}
       as="div"
       checked={isCompleted}
       customSize
+      data-testid={OUTCOME_SECTION}
       heading={t("outcome.heading")}
       highlightActive
       largeCircle
       onClick={handleOnClick}
-      // @TODO: fix the last active style
-      // style={isLastSection(section) ? activeStyle : {}}
+      style={isActive ? activeStyle : {}}
     >
       {showOutcome ? (
-        <OutcomeWrapper>
+        <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
           <OutcomeContent
             {...{
               outcomeContent,
