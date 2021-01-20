@@ -56,7 +56,6 @@ export type SectionFunctions = {
   completeSection: (state?: boolean, section?: SectionObject | null) => void;
   getNextSection: () => SectionObject | null;
   goToNextSection: () => void;
-  goToPrevSection: () => void;
 };
 
 /**

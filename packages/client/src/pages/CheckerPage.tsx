@@ -84,7 +84,7 @@ const CheckerPage: FunctionComponent = () => {
   useEffect(() => {
     // Count the times the checker is loaded
     setTopicData({
-      timesCheckerLoaded: timesCheckerLoaded + 1,
+      timesCheckerLoaded: timesCheckerLoaded ? timesCheckerLoaded + 1 : 1,
     });
     // eslint-disable-next-line
   }, []);
@@ -206,20 +206,6 @@ const CheckerPage: FunctionComponent = () => {
     }
   };
 
-  const goToPrevSection = () => {
-    const newSectionIndex = getActiveSectionIndex() - 1;
-    const newSection = sectionsRef.current[newSectionIndex];
-
-    if (newSection) {
-      activateSection(newSection);
-    } else {
-      // Expect new section to exist
-      throw new Error(
-        `"goToPrevSection()": Failed going to prev section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`
-      );
-    }
-  };
-
   // In case `topicData` is not found on the Session Context display an error
   // This is to prevent a bug when `topicData` is passing old data or when the Session Storage is manually deleted
   if (!sessionContext.session[slug]) {
@@ -231,7 +217,6 @@ const CheckerPage: FunctionComponent = () => {
     completeSection,
     getNextSection,
     goToNextSection,
-    goToPrevSection,
   };
 
   return (

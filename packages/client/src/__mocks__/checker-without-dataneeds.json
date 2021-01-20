@@ -1,0 +1,148 @@
+{
+  "permits": [
+    {
+      "version": 68,
+      "name": "Conclusie Sloopmelding",
+      "questions": [
+        {
+          "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
+          "description": "Hoeveel sloopafval er ontstaat, hangt af van wat u wilt gaan slopen. Enkele voorbeelden:\n\n*   Een schuurtje van 12 vierkante meter is ongeveer 4 m3 sloopafval.\n*   Een dak van 20 vierkante meter levert ongeveer 7 m3 sloopafval op.\n*   Muren verwijderen van 3 kamers of een verdieping: ongeveer 11 m3 sloopafval.\n*   Een muur van 10 meter lang en 2,5 meter hoog is ongeveer 4 m3 sloopafval.",
+          "type": "boolean",
+          "id": "uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
+          "prio": 10
+        },
+        {
+          "text": "Zit er asbest in het bouwwerk dat u gaat slopen?",
+          "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.  \n\nDe kans op asbest in bouwwerken gebouwd vanaf 1994 is klein.",
+          "type": "boolean",
+          "id": "uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
+          "prio": 20
+        },
+        {
+          "text": "Gaat het om een bouwwerk dat maar een deel van het jaar op zijn plek staat?",
+          "description": "Bijvoorbeeld een strandtent die ieder jaar wordt opgebouwd, een paar maanden gebruikt en dan weer verwijderd.",
+          "options": [
+            "Ja, het staat maar een deel van het jaar op zijn plek.",
+            "Nee, het staat het hele jaar op zijn plek."
+          ],
+          "type": "string",
+          "id": "uitv__9b6a1042-2ef2-4204-b086-24b9238d9e81",
+          "prio": 30,
+          "uuid": "sloop seizoen1"
+        },
+        {
+          "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
+          "type": "boolean",
+          "id": "uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
+          "prio": 40,
+          "uuid": "sloop aanschrijving1"
+        }
+      ],
+      "decisions": {
+        "_c8446b65-c9cf-41e9-9d73-fc97576fd6f0": {
+          "requiredInputs": [
+            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
+            "#input__9b6a1042-2ef2-4204-b086-24b9238d9e81",
+            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  "\"Nee, het staat het hele jaar op zijn plek.\"",
+                  false
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Ja, het staat maar een deel van het jaar op zijn plek.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f7b0bcc6-653d-4ff1-996b-a1e593c1d190": {
+          "requiredInputs": [
+            "#input__917b37c9-451c-422a-90fc-90a2fa84eb03",
+            "#input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
+            "#input__7f20e585-f04f-4f9b-911f-9adc948ce51e"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, true, false],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_c8446b65-c9cf-41e9-9d73-fc97576fd6f0",
+            "#_f7b0bcc6-653d-4ff1-996b-a1e593c1d190"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Meldingsplicht\"", "-"],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["-", "\"Meldingsplicht\""],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": ["\"no hit\"", "\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      },
+      "inputs": {
+        "input__917b37c9-451c-422a-90fc-90a2fa84eb03": {
+          "href": "#uitv__917b37c9-451c-422a-90fc-90a2fa84eb03",
+          "type": "boolean"
+        },
+        "input__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5": {
+          "href": "#uitv__1d9c7c58-a8e0-4a20-b79a-dbfabdc07dd5",
+          "type": "boolean"
+        },
+        "input__9b6a1042-2ef2-4204-b086-24b9238d9e81": {
+          "href": "#uitv__9b6a1042-2ef2-4204-b086-24b9238d9e81",
+          "type": "string"
+        },
+        "input__7f20e585-f04f-4f9b-911f-9adc948ce51e": {
+          "href": "#uitv__7f20e585-f04f-4f9b-911f-9adc948ce51e",
+          "type": "boolean"
+        }
+      }
+    }
+  ],
+  "slug": "D4mccynMtNdzYGhXF"
+}
