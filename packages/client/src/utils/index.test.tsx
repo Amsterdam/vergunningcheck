@@ -63,6 +63,7 @@ describe("util", () => {
     expect(isValidPostalcode(" 1055 XD ")).toBe(true);
   });
   test("transformHousenumberToValid", () => {
+    expect(sanitizeHouseNumberFull(undefined)).toBe("");
     expect(sanitizeHouseNumberFull("")).toBe("");
     expect(sanitizeHouseNumberFull("110")).toBe("110");
     expect(sanitizeHouseNumberFull("1 10")).toBe("1 10");

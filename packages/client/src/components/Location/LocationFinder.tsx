@@ -70,9 +70,7 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
 
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: houseNumberFull
-      ? sanitizeHouseNumberFull(houseNumberFull)
-      : "",
+    houseNumberFull: sanitizeHouseNumberFull(houseNumberFull),
     postalCode,
     queryExtra: false,
   };

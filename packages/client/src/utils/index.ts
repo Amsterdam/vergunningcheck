@@ -97,15 +97,18 @@ export const isValidPostalcode = (value?: string) => {
 
 /**
  *
- * This function transforms some cases where a user for example makes a typo or makes a strange space combination to a valid option.<
- *
+ * This function transforms some cases where a user for example makes a typo or makes a strange space combination to a valid option.
+ * For example:
+ *  10h l -> 10 H L
+ *  10hl -> 10 H L
  * @param {string} value
  */
-export const sanitizeHouseNumberFull = (value: string) => {
+export const sanitizeHouseNumberFull = (value: string | undefined) => {
   const spacesBeforeAndAfterNonDigit = /(?<=\D)|(?=\D)/g;
   const nonDigits = /[a-z]/i;
   const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/g;
 
+  if (!value) return "";
   if (!nonDigits.test(value)) return value;
   return (value?.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
     .join("") // Revert to one string
