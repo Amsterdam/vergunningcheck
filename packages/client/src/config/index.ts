@@ -50,6 +50,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
+    showMap: false,
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
@@ -60,6 +61,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
+    showMap: false,
     slug: "dakraam-plaatsen",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
@@ -69,6 +71,7 @@ export const topics: Topic[] = [
   {
     hasIMTR: false,
     name: "Aanbouw of uitbouw maken",
+    showMap: false,
     slug: "aanbouw-of-uitbouw-maken",
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
@@ -80,6 +83,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
+    showMap: false,
     slug: "kozijnen-plaatsen",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen",
@@ -90,6 +94,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
+    showMap: false,
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
@@ -101,6 +106,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "SlopenIntro",
     name: "Bouwwerk slopen",
+    showMap: false,
     slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
@@ -120,6 +126,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "ZonweringRolluikIntro",
     name: "Zonwering of rolluik plaatsen",
+    showMap: false,
     slug: "zonwering-of-rolluik-plaatsen",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
@@ -128,12 +135,14 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasIMTR: false,
-    name: "Kappen of snoeien",
-    redirectToOlo: true,
+    hasIMTR: true,
+    intro: "ZonweringRolluikIntro",
+    name: "kappen of snoeien",
+    showMap: true,
     slug: "kappen-of-snoeien",
     text: {
-      heading: "Vergunningcheck kappen of snoeien",
+      heading: "kappen of snoeien",
+      locationIntro: "kappen of snoeien",
     },
   },
   {

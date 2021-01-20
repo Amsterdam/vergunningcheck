@@ -72,6 +72,7 @@ type IMTRTopic = {
   hasIMTR: true;
   intro?: string;
   redirectToOlo?: false;
+  showMap: boolean;
 } & BaseTopic;
 
 type OloTopic = {
