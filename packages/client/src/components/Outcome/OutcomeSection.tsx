@@ -42,8 +42,6 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const handleOnClick =
     isCompleted && !isActive ? () => activateSection(currentSection) : false;
 
-  showOutcome && console.log("nu wordt de uitkomst gerendered");
-
   return (
     <StepByStepItem
       active={isActive}
