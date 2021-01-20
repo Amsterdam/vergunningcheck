@@ -3,16 +3,17 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper, EditButton } from "../../atoms";
-import { actions, eventNames } from "../../config/matomo";
-import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { actions, eventNames, sections } from "../../config/matomo";
+import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
 import { defaultTopicSession } from "../../SessionContext";
 import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
 const EditLocationModal: FunctionComponent = () => {
-  const { matomoTrackEvent } = useTracking();
   const { setChecker } = useChecker();
+  const slug = useSlug();
   const { setTopicData } = useTopicData();
+  const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
   const handleOpenModal = () => {
@@ -25,10 +26,21 @@ const EditLocationModal: FunctionComponent = () => {
   const handleConfirmButton = () => {
     matomoTrackEvent({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
 
-    setTopicData(defaultTopicSession);
+    matomoTrackEvent({
+      action: actions.ACTIVE_STEP,
+      name: sections.LOCATION_INPUT,
+    });
+
+    const newTopicData = {
+      ...defaultTopicSession,
+      type: slug,
+    };
+
+    setTopicData(newTopicData);
+
     setChecker(undefined);
   };
 

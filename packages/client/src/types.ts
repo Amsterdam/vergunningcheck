@@ -1,4 +1,5 @@
 import { Answer } from "@vergunningcheck/imtr-client";
+import { ReactNode } from "react";
 
 /**
  * Location types
@@ -61,7 +62,6 @@ export type SectionFunctions = {
 /**
  * Context and session types
  */
-
 export type TopicData = {
   address: Address;
   answers: {
@@ -123,4 +123,15 @@ export type AnswerOptions = {
   formValue: string;
   label: string;
   value: boolean | string;
+};
+
+/**
+ * Content related types
+ */
+export type OutcomeContentType = {
+  description?: string;
+  eventName?: string;
+  footerContent?: ReactNode;
+  mainContent?: ReactNode;
+  title: string;
 };

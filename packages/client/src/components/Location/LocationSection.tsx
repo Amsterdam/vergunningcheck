@@ -96,7 +96,6 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       address,
     });
 
-    // Go to Question Section
     goToNextSection();
 
     // TrackEvent for active step

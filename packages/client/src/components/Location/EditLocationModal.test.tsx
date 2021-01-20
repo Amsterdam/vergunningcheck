@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
-import { actions, eventNames } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
 import nl from "../../i18n/nl";
 import { MODAL } from "../../utils/test-ids";
 import {
@@ -41,10 +41,10 @@ describe("EditLocationModal", () => {
     });
     // Modal = closed
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(2);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(3);
     expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
   });
 });

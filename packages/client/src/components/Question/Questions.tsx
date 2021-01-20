@@ -1,6 +1,5 @@
 import { captureException, setTag } from "@sentry/browser";
 import {
-  Checker,
   ClientOutcomes,
   Decision,
   Question as ImtrQuestion,
@@ -18,9 +17,10 @@ import { useForm } from "react-hook-form";
 
 import { ScrollAnchor } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
 import { AnswerOptions, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
+import getOutcomeContent from "../../utils/getOutcomeContent";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Question, QuestionAnswer } from "./";
 
@@ -37,13 +37,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   saveAnswerHook,
   sectionFunctions,
 }) => {
-  const { matomoTrackEvent } = useTracking();
-  const { checker } = useChecker() as { checker: Checker };
+  const { checker } = useChecker();
   const { setValue } = useForm();
   const outcomeRef = useRef<any>(null);
-  const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const [contactOutcome, setContactOutcome] = useState(false);
+  const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
+  const slug = useSlug();
   const { topicData, setTopicData } = useTopicData();
+  const { matomoTrackEvent } = useTracking();
 
   const { questionIndex } = topicData;
   const { goToNextSection } = sectionFunctions;
@@ -54,10 +55,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // This function handles the user-event of going to a new question
   const goToQuestion = useCallback(
     (index: number, eventType?: string) => {
+      if (!checker) return;
+
       if (!checker.stack[index]) {
-        captureException(
-          `Go to question, question with index "${index}" not found on stack`
-        );
+        const error = `goToQuestion failed: question with index "${index}" not found on stack`;
+
+        console.error(error);
+        captureException(error);
         return;
       }
 
@@ -95,11 +99,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     },
 
     //eslint-disable-next-line
-    [checker.stack, questionIndex]
+    [checker?.stack, questionIndex]
   );
 
   const handleNextQuestion = useCallback(
     (isUserEvent = true) => {
+      if (!checker) return;
+
       const question = checker.stack[questionIndex];
 
       const userEvent = isCheckerConclusive()
@@ -107,7 +113,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         : GOTO_NEXT_QUESTION;
       const eventType = isUserEvent ? userEvent : "";
 
-      if (checker.needContactExit(question)) {
+      if (question && checker.needContactExit(question)) {
         // Go directly to "Contact Outcome" and skip other questions
         goToOutcome(isUserEvent);
       } else {
@@ -157,6 +163,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   const goToOutcome = useCallback(
     (isUserEvent = true) => {
+      if (!checker) return;
+
       goToNextSection();
 
       // Toggle tracking of the
@@ -172,6 +180,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         name: sections.OUTCOME,
       });
 
+      const { title } = getOutcomeContent(checker, slug);
+
+      matomoTrackEvent({
+        action: actions.THIS_IS_THE_OUTCOME,
+        name: title,
+      });
+
       // Wrap the function to prevent a miscalculation when the `Question` component collapses
       setImmediate(() => {
         scrollToRef(outcomeRef, 20);
@@ -184,7 +199,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // @TODO: fix this part, because it should just be handled by `checker.isConclusive()`
   // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
   const isCheckerConclusive = () => {
-    if (!checker.isConclusive()) {
+    if (!checker || !checker.isConclusive()) {
       return false;
     } else if (contactOutcome) {
       return true;
@@ -199,7 +214,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   useEffect(() => {
     // Make sure that the current question is skipped when it's already answered
-    if (skipAnsweredQuestions) {
+    if (checker && skipAnsweredQuestions) {
       // Turn skipping answered questions off
       setSkipAnsweredQuestions(false);
 
@@ -221,7 +236,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     // @TODO: Refactor this code and move to checker.ts
     // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers())
     // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-    if (!contactOutcome) {
+    if (checker && !contactOutcome) {
       checker.stack.forEach((q, i) => {
         if (checker.needContactExit(q)) {
           // Set questionIndex to this question index to make sure already answered questions are hidden

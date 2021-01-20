@@ -240,7 +240,7 @@ const CheckerPage: FunctionComponent = () => {
         <title>Vragen en uitkomst - {text.heading}</title>
       </Helmet>
 
-      {checker && topicData.type === slug ? (
+      {checker ? (
         <>
           <StepByStepNavigation
             disabledTextColor="inherit"
@@ -268,5 +268,3 @@ const CheckerPage: FunctionComponent = () => {
 };
 
 export default CheckerPage;
-
-// 277,279,291
