@@ -86,6 +86,7 @@ const CircleWrapperStyle = styled.div<StepByStepItemProps>`
     -webkit-print-color-adjust: exact;
   }
 
+  /* This is styling for the in vertical line on the left side */
   &:after {
     content: "";
     position: absolute;
@@ -107,7 +108,6 @@ const CircleStyle = styled(Icon)<StepByStepItemProps>`
   background-color: ${themeColor("tint", "level4")};
   border-radius: 50%;
   justify-content: center;
-  transition: background-color 0.2s ease-in-out;
   z-index: 1;
 
   @media ${breakpoint("min-width", "tabletM")} {

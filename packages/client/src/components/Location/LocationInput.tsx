@@ -10,6 +10,7 @@ import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
+import { LOCATION_INPUT } from "../../utils/test-ids";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -35,7 +36,6 @@ const LocationInput = ({
   const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
-
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
@@ -53,6 +53,7 @@ const LocationInput = ({
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
+          // @TODO: there's a small bug here with directly going to OUTCOME when there's no questions to render
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
@@ -113,11 +114,13 @@ const LocationInput = ({
       )}
 
       {!hasIMTR && (
-        <Heading forwardedAs="h3">{t("location.enter location")}</Heading>
+        <Heading forwardedAs="h3">
+          {t("location.address.enter address")}
+        </Heading>
       )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form dataTestId={LOCATION_INPUT} onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
             errorMessage,

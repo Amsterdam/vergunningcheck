@@ -1,10 +1,14 @@
+import { ClientSimpleType, removeQuotes } from "@vergunningcheck/imtr-client";
 import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
 import { topics } from "../config";
+import nl from "../i18n/nl";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
-import { Restriction, Topic } from "../types";
+import { AnswerOptions, Restriction, Topic } from "../types";
+
+const { no, yes } = nl.translation.common;
 
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
@@ -103,4 +107,37 @@ export const isValidPostalcode = (value?: string) => {
  */
 export const removeQueryStrings = (value: string) => {
   return value.split("?")[0];
+};
+
+/**
+ *
+ * These are the hardcoded values and label for boolean questions
+ *
+ */
+export const booleanOptions: AnswerOptions[] = [
+  {
+    formValue: "yes",
+    label: yes,
+    value: true,
+  },
+  {
+    formValue: "no",
+    label: no,
+    value: false,
+  },
+];
+
+/**
+ *
+ * This function can be used to get the labels of boolean questions
+ *
+ * @param {ClientSimpleType} answer
+ */
+export const getAnswerLabel = (answer: ClientSimpleType) => {
+  if (typeof answer === "boolean") {
+    return answer ? yes : no;
+  } else if (typeof answer === "string") {
+    return removeQuotes(answer);
+  }
+  return answer;
 };

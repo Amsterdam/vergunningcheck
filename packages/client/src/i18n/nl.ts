@@ -2,15 +2,18 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      edit: "Wijzig",
       "housenumber label": "Huisnummer + toevoeging",
+      next: "Volgende",
+      no: "Nee",
+      "no valid postalcode":
+        "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
       "to the questions": "Naar de vragen",
-      next: "Volgende",
-      "no valid postalcode":
-        "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       unknown: "Onbekend",
+      yes: "Ja",
     },
     errorMessages: {
       "category not found": "category niet gevonden",
@@ -85,7 +88,18 @@ export default {
       },
     },
     location: {
-      "enter location": "Invullen adres",
+      address: {
+        "are you sure you want to change the address":
+          "Weet u zeker dat u het adres wilt wijzigen?",
+        "are you sure you want to continue with a different address":
+          "Alle gegeven antwoorden en de uitkomst worden gewist. Weet u zeker dat u wilt doorgaan met een ander adres?",
+        heading: "Adresgegevens",
+        "enter address": "Invullen adres",
+      },
+      map: {
+        heading: "Locatiegegevens",
+      },
+
       testing: {
         "address input":
           "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
@@ -100,8 +114,15 @@ export default {
         "this anwser makes it unable to determine the outcome":
           "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.",
       },
+      heading: "Vragen",
+      meta: {
+        description: "Toelichting",
+      },
+      nextQuestion: "Volgende vraag",
     },
     outcome: {
+      heading: "Uitkomst",
+      goToOutcome: "Naar de uitkomst",
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
 

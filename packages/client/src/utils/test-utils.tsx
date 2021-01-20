@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import "../i18n";
 
 import { ThemeProvider } from "@amsterdam/asc-ui";
@@ -16,7 +17,10 @@ import { SessionProvider } from "../SessionContext";
 
 export * from "@testing-library/react";
 
-dotenv.config();
+dotenv.config({
+  // With this option you can suppress all the console outputs except errors and deprecation warnings.
+  silent: true,
+});
 
 Object.defineProperty(window, "matchMedia", matchMedia);
 

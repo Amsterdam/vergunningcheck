@@ -8,6 +8,7 @@ import { actions, eventNames, sections } from "../../config/matomo";
 import nl from "../../i18n/nl";
 import {
   LOCATION_FOUND,
+  LOCATION_INPUT,
   LOCATION_SUMMARY,
   PREV_BUTTON,
 } from "../../utils/test-ids";
@@ -95,7 +96,7 @@ describe("LocationInput", () => {
     expect(inputPostalCode).not.toHaveValue();
     expect(inputHouseNumber).not.toHaveValue();
 
-    fireEvent.submit(screen.queryByTestId("form") as HTMLElement);
+    fireEvent.submit(screen.queryByTestId(LOCATION_INPUT) as HTMLElement);
 
     expect(
       screen.queryByText(resultHouseNumberFull, { exact: false })
@@ -139,7 +140,7 @@ describe("LocationInput", () => {
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
-      fireEvent.submit(screen.queryByTestId("form") as HTMLElement);
+      fireEvent.submit(screen.queryByTestId(LOCATION_INPUT) as HTMLElement);
     });
 
     expect(mockMatomoTrackEvent).toBeCalledWith({

@@ -18,12 +18,14 @@ const passPropsToChildren = (
   propsOrCallback: PropsWithoutRef<{}> | Callback
 ) => {
   const children = Children.map(childrenProp, (child, index) =>
-    cloneElement(
-      child as ReactElement<any>,
-      typeof propsOrCallback === "function"
-        ? propsOrCallback(index)
-        : propsOrCallback
-    )
+    child
+      ? cloneElement(
+          child as ReactElement<any>,
+          typeof propsOrCallback === "function"
+            ? propsOrCallback(index)
+            : propsOrCallback
+        )
+      : null
   );
 
   return { children };

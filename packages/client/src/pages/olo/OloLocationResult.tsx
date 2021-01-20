@@ -2,6 +2,7 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { FormEvent, FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import Form from "../../components/Form";
@@ -20,6 +21,7 @@ const OloLocationResult: FunctionComponent = () => {
   const history = useHistory();
   const { topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
+  const { t } = useTranslation();
 
   const { text } = topic;
   const { address } = topicData;
@@ -50,11 +52,13 @@ const OloLocationResult: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Adresgegevens - {text.heading}</title>
+        <title>
+          {t("location.address.heading")} - {text.heading}
+        </title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Form data-testid={LOCATION_RESULT} onSubmit={onSubmit}>
-          <Heading forwardedAs="h3">Adresgegevens</Heading>
+          <Heading forwardedAs="h3">{t("location.address.heading")}</Heading>
           <LocationSummary
             showTitle
             {...{

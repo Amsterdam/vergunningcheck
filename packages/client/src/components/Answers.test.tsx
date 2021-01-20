@@ -1,39 +1,39 @@
 import React from "react";
 
+import { booleanQuestion, booleanQuestionError } from "../__mocks__/question";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
-import { act, fireEvent, render } from "../utils/test-utils";
+import { act, fireEvent, render, screen } from "../utils/test-utils";
 import Answers from "./Answers";
-import { booleanOptions } from "./Question";
 
 const onChangeMock = jest.fn();
 
 const mockProps = {
-  answers: booleanOptions,
-  errors: {
-    "uitv__ef6f95f6-bd48-498c-9b19-52d20d8ba364": {
-      message: "Error message",
-    },
-  },
-  questionId: "uitv__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
-  questionIndex: 0,
-  onChange: onChangeMock,
-  userAnswer: "",
+  errors: {},
+  question: booleanQuestion,
+  saveAnswer: onChangeMock,
 };
 
 it("Answers should render", () => {
-  const { getByTestId } = render(<Answers {...mockProps} />);
-  expect(getByTestId(QUESTION_ANSWERS)).toBeInTheDocument();
+  render(<Answers {...mockProps} />);
+  expect(screen.getByTestId(QUESTION_ANSWERS)).toBeInTheDocument();
+
+  // Don't find the error
+  expect(screen.queryByRole("alert")).not.toBeInTheDocument();
 });
 
 it("Answers should render the error message", () => {
-  const { getByText } = render(<Answers {...mockProps} />);
-  expect(getByText("Error message")).toBeInTheDocument();
+  render(<Answers {...mockProps} errors={booleanQuestionError} />);
+
+  expect(screen.queryByRole("alert")).toBeInTheDocument();
+  expect(
+    screen.getByText(booleanQuestionError[booleanQuestion.id].message)
+  ).toBeInTheDocument();
 });
 
 it("Answers should handle the onChange", () => {
-  const { getByLabelText } = render(<Answers {...mockProps} />);
+  render(<Answers {...mockProps} />);
   act(() => {
-    fireEvent.click(getByLabelText("Ja"));
+    fireEvent.click(screen.getByLabelText("Ja"));
   });
   expect(onChangeMock).toHaveBeenCalledTimes(1);
 });
