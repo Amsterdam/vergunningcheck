@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 10,
+      "version": 19,
       "name": "Conclusie Het wijzigen van een monument bij een dakraam",
       "questions": [
         {
@@ -15,8 +15,8 @@
           ],
           "type": "string",
           "prio": 10,
-          "uuid": "dakraam monument",
-          "id": "6bce22e09b29e12250229c875dfb67ac"
+          "uuid": "dakraam-monument",
+          "id": "a8efb8b052d45f28767f444240679a56"
         },
         {
           "text": "Gaat u een dakraam plaatsen of vernieuwen?",
@@ -26,8 +26,8 @@
           ],
           "type": "string",
           "prio": 20,
-          "uuid": "dakraam - onderhoud1",
-          "id": "b9f32c2666558d5c186a06a865151cb9"
+          "uuid": "dakraam-onderhoud1",
+          "id": "fbfcfdb563ce310a0aa2fb20a2d4b4bf"
         },
         {
           "text": "U gaat een dakraam plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -37,15 +37,15 @@
           ],
           "type": "string",
           "prio": 30,
-          "uuid": "dakraam - onderhoud2",
-          "id": "2db1e14f7ffb20b63d21b954744fb7b8"
+          "uuid": "dakraam-onderhoud2",
+          "id": "a8146320ac51873d460829bc1b6a96cc"
         }
       ],
       "decisions": {
-        "703c6283fbc1fa21c2d2193679e26227": {
+        "6eb666575af83f6e972774f30f011797": {
           "requiredInputs": [
-            "6bce22e09b29e12250229c875dfb67ac",
-            "b9f32c2666558d5c186a06a865151cb9"
+            "a8efb8b052d45f28767f444240679a56",
+            "fbfcfdb563ce310a0aa2fb20a2d4b4bf"
           ],
           "decisionTable": {
             "rules": [
@@ -77,11 +77,11 @@
             ]
           }
         },
-        "82905c164e278544076988533d455bff": {
+        "983e712cd6d318562cc145411b2c961b": {
           "requiredInputs": [
-            "6bce22e09b29e12250229c875dfb67ac",
-            "b9f32c2666558d5c186a06a865151cb9",
-            "2db1e14f7ffb20b63d21b954744fb7b8"
+            "a8efb8b052d45f28767f444240679a56",
+            "fbfcfdb563ce310a0aa2fb20a2d4b4bf",
+            "a8146320ac51873d460829bc1b6a96cc"
           ],
           "decisionTable": {
             "rules": [
@@ -126,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "703c6283fbc1fa21c2d2193679e26227",
-            "82905c164e278544076988533d455bff"
+            "6eb666575af83f6e972774f30f011797",
+            "983e712cd6d318562cc145411b2c961b"
           ],
           "decisionTable": {
             "rules": [
