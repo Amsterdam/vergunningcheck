@@ -238,8 +238,3 @@ describe("CheckerPage", () => {
     });
   });
 });
-
-// @TODO: extend this test with:
-// it("error because of multiple active sections")
-// it("is loading") => <Loading />
-// clean up the multiple `topicData`
