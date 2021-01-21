@@ -42,6 +42,8 @@ describe("Visual", () => {
 
     const img = container.querySelector("img") as HTMLImageElement;
     expect(img).not.toBeNull();
+
+    // trigger load event
     fireEvent(img, new Event("load"));
     expect(img).toHaveStyleRule("border", "1px solid #767676");
     expect(img).toHaveStyleRule("padding", "0");
@@ -54,6 +56,9 @@ describe("Visual", () => {
 
     const img = container.querySelector("img") as HTMLImageElement;
     expect(img).not.toBeNull();
+    expect(captureException).toBeCalledTimes(0);
+
+    // trigger error event
     fireEvent(img, new Event("error"));
     expect(captureException).toHaveBeenCalledWith("folder/image.jpg not found");
     expect(img).toHaveStyleRule("padding", "33px");
