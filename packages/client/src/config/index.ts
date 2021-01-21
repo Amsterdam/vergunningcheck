@@ -137,9 +137,10 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasIMTR: false,
+    hasIMTR: true,
+    intro: "BrandveiligGebruikIntro",
     name: "Brandveilig gebruik",
-    redirectToOlo: true,
+    redirectToOlo: false,
     slug: "brandveilig-gebruik",
     text: {
       heading: "Vergunningcheck brandveilig gebruik",

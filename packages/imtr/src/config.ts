@@ -26,6 +26,10 @@ export const apis: APIConfig[] = [
         "2eYY7McaiRgfnERo9", // cityscape
         "D4mccynMtNdzYGhXF", // report
       ],
+      "brandveilig-gebruik": [
+        // firesafety
+        "8hqLFZcdXKaesAJgS", // report
+      ],
       "zonnepanelen-of-zonneboiler-plaatsen": [
         // solar panels or solar water heater
         "TRhZrFexMjBW42Ky6", // monument
