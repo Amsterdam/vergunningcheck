@@ -1,4 +1,3 @@
-// import { renderHook } from "@testing-library/react-hooks";
 import { addQuotes, getChecker } from "@vergunningcheck/imtr-client";
 import React from "react";
 
@@ -11,6 +10,7 @@ import { defaultTopicSession } from "../SessionContext";
 import { TopicData } from "../types";
 import {
   EDIT_BUTTON,
+  LOADING_TEXT,
   LOCATION_INPUT,
   LOCATION_SECTION,
   LOCATION_SUMMARY,
@@ -186,6 +186,27 @@ describe("CheckerPage", () => {
 
       expect(
         screen.queryByTestId(OUTCOME_SECTION_CONTENT)
+      ).not.toBeInTheDocument();
+    });
+
+    it("is loading", async () => {
+      // Mock the checker
+      (useChecker as any).mockReturnValue({
+        checker: undefined,
+      });
+
+      // Mock the topicData
+      (useTopicData as any).mockReturnValue({
+        setTopicData: () => {},
+        topicData: defaultTopicSession,
+      });
+
+      render(<CheckerPage />);
+
+      expect(screen.queryByTestId(LOADING_TEXT)).toBeInTheDocument();
+
+      expect(
+        screen.queryByTestId(STEPBYSTEPNAVIGATION)
       ).not.toBeInTheDocument();
     });
   });
