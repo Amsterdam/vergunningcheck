@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 70,
+      "version": 74,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -14,8 +14,8 @@
             "Nee"
           ],
           "type": "string",
-          "id": "uitv__b6796191-3670-45a7-a02d-17b8c9591131",
-          "prio": 10
+          "prio": 10,
+          "id": "80991a38ef0825dc373c6a2065cdf7f3"
         },
         {
           "text": "Gaat het om een bouwwerk dat maar een deel van het jaar op zijn plek staat?",
@@ -25,61 +25,62 @@
             "Nee, het staat het hele jaar op zijn plek."
           ],
           "type": "string",
-          "id": "uitv__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
           "prio": 20,
-          "uuid": "sloop seizoen1"
+          "uuid": "sloop seizoen1",
+          "id": "dfbc94352208ba9e8fbf3ebc8a80d3b3"
         },
         {
           "text": "Als u het bouwwerk opnieuw zou bouwen, mag dat dan zonder vergunning?",
           "description": "Als u geen vergunning nodig hebt voor het bouwen, dan hebt u ook geen vergunning nodig voor het slopen. Weet u het antwoord nog niet, dan kunt u [een aparte vergunningcheck doen](https://www.amsterdam.nl/veelgevraagd/?productid=%7BF739272F-F234-4475-B7EC-31DB44365F96%7D) om hierachter te komen.",
           "type": "boolean",
-          "id": "uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
-          "prio": 30
+          "prio": 30,
+          "id": "71ea53d7b6d0d5e904a27475a3d73951"
         },
         {
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
-          "id": "uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
           "prio": 40,
-          "uuid": "sloop aanschrijving1"
+          "uuid": "sloop aanschrijving1",
+          "id": "98f4c711e6331338fd2295157c6a0fca"
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
-          "id": "uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
           "prio": 50,
-          "uuid": "sloop onderhoud1"
+          "uuid": "sloop onderhoud1",
+          "id": "27cc90dca6288dda784491caa49aa8d1"
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
           "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
-          "id": "uitv_696173ef-6bad-4411-848e-ec97a8566c10",
           "prio": 60,
-          "uuid": "sloop onderhoud2"
+          "uuid": "sloop onderhoud2",
+          "id": "d299b02ce91cdff0f94527341555c1d8"
         },
         {
           "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
-          "id": "uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
           "prio": 70,
-          "uuid": "sloop onderhoud3"
+          "uuid": "sloop onderhoud3",
+          "id": "c6e5edbfa16f2ab4ebdc14031821194e"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
+          "description": "U vervangt bijvoorbeeld de openslaande deuren door een schuifpui, waardoor het profiel van het kozijn verandert.\n\nOf u verandert de dikte van het dak. Een ander voorbeeld is dat u het dak schuiner of rechter op het gebouw plaatst.",
           "type": "boolean",
-          "id": "uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
           "prio": 80,
-          "uuid": "sloop onderhoud4"
+          "uuid": "sloop onderhoud4",
+          "id": "cb833397549ae0ab01bc0e2a16f1950b"
         }
       ],
       "decisions": {
-        "_4216f8f1-cc2b-478d-aa3f-e261a025758f": {
+        "c704b8132b9c250bf984b1c96eb4a8c4": {
           "requiredInputs": [
-            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
-            "#input__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
-            "#input__776dd6ba-8555-407a-b58c-dbce8e897db5"
+            "80991a38ef0825dc373c6a2065cdf7f3",
+            "dfbc94352208ba9e8fbf3ebc8a80d3b3",
+            "71ea53d7b6d0d5e904a27475a3d73951"
           ],
           "decisionTable": {
             "rules": [
@@ -118,11 +119,11 @@
             ]
           }
         },
-        "_0151a341-f73b-4528-8945-cca3e26b0dfb": {
+        "615d68f83965d31f20ae1a87c61a0081": {
           "requiredInputs": [
-            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
-            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
-            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619"
+            "80991a38ef0825dc373c6a2065cdf7f3",
+            "98f4c711e6331338fd2295157c6a0fca",
+            "27cc90dca6288dda784491caa49aa8d1"
           ],
           "decisionTable": {
             "rules": [
@@ -157,12 +158,12 @@
             ]
           }
         },
-        "_b658a9bc-f3ff-424f-826c-b39377593440": {
+        "334d4864207a468543f46fd386aee24c": {
           "requiredInputs": [
-            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
-            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
-            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619",
-            "#input_696173ef-6bad-4411-848e-ec97a8566c10"
+            "80991a38ef0825dc373c6a2065cdf7f3",
+            "98f4c711e6331338fd2295157c6a0fca",
+            "27cc90dca6288dda784491caa49aa8d1",
+            "d299b02ce91cdff0f94527341555c1d8"
           ],
           "decisionTable": {
             "rules": [
@@ -203,13 +204,13 @@
             ]
           }
         },
-        "_2a60fec8-88b5-4708-b132-2d0f72ba37bd": {
+        "9f81fa87e15d397cc7aa1599d5dd450a": {
           "requiredInputs": [
-            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
-            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
-            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619",
-            "#input_696173ef-6bad-4411-848e-ec97a8566c10",
-            "#input_43dd922f-2c71-4119-b8e6-568e1100e3c7"
+            "80991a38ef0825dc373c6a2065cdf7f3",
+            "98f4c711e6331338fd2295157c6a0fca",
+            "27cc90dca6288dda784491caa49aa8d1",
+            "d299b02ce91cdff0f94527341555c1d8",
+            "c6e5edbfa16f2ab4ebdc14031821194e"
           ],
           "decisionTable": {
             "rules": [
@@ -256,14 +257,14 @@
             ]
           }
         },
-        "_8b276165-b281-4bd2-899d-ff75bbb3adac": {
+        "ca044dd8332f65d6f927d2bc5791938d": {
           "requiredInputs": [
-            "#input__b6796191-3670-45a7-a02d-17b8c9591131",
-            "#input__68883947-e42e-4d89-b99d-f48373ee6ffe",
-            "#input_614e91cd-4da2-4c3d-bc66-677f393f4619",
-            "#input_696173ef-6bad-4411-848e-ec97a8566c10",
-            "#input_43dd922f-2c71-4119-b8e6-568e1100e3c7",
-            "#input_26d72338-54c8-4528-ad01-6693b1d2f909"
+            "80991a38ef0825dc373c6a2065cdf7f3",
+            "98f4c711e6331338fd2295157c6a0fca",
+            "27cc90dca6288dda784491caa49aa8d1",
+            "d299b02ce91cdff0f94527341555c1d8",
+            "c6e5edbfa16f2ab4ebdc14031821194e",
+            "cb833397549ae0ab01bc0e2a16f1950b"
           ],
           "decisionTable": {
             "rules": [
@@ -318,11 +319,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_4216f8f1-cc2b-478d-aa3f-e261a025758f",
-            "#_0151a341-f73b-4528-8945-cca3e26b0dfb",
-            "#_b658a9bc-f3ff-424f-826c-b39377593440",
-            "#_2a60fec8-88b5-4708-b132-2d0f72ba37bd",
-            "#_8b276165-b281-4bd2-899d-ff75bbb3adac"
+            "c704b8132b9c250bf984b1c96eb4a8c4",
+            "615d68f83965d31f20ae1a87c61a0081",
+            "334d4864207a468543f46fd386aee24c",
+            "9f81fa87e15d397cc7aa1599d5dd450a",
+            "ca044dd8332f65d6f927d2bc5791938d"
           ],
           "decisionTable": {
             "rules": [
@@ -358,40 +359,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__b6796191-3670-45a7-a02d-17b8c9591131": {
-          "href": "#uitv__b6796191-3670-45a7-a02d-17b8c9591131",
-          "type": "string"
-        },
-        "input__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212": {
-          "href": "#uitv__6a3a4fcc-0ea9-4f3e-abe4-c193569c9212",
-          "type": "string"
-        },
-        "input__776dd6ba-8555-407a-b58c-dbce8e897db5": {
-          "href": "#uitv__776dd6ba-8555-407a-b58c-dbce8e897db5",
-          "type": "boolean"
-        },
-        "input__68883947-e42e-4d89-b99d-f48373ee6ffe": {
-          "href": "#uitv__68883947-e42e-4d89-b99d-f48373ee6ffe",
-          "type": "boolean"
-        },
-        "input_614e91cd-4da2-4c3d-bc66-677f393f4619": {
-          "href": "#uitv_614e91cd-4da2-4c3d-bc66-677f393f4619",
-          "type": "boolean"
-        },
-        "input_696173ef-6bad-4411-848e-ec97a8566c10": {
-          "href": "#uitv_696173ef-6bad-4411-848e-ec97a8566c10",
-          "type": "boolean"
-        },
-        "input_43dd922f-2c71-4119-b8e6-568e1100e3c7": {
-          "href": "#uitv_43dd922f-2c71-4119-b8e6-568e1100e3c7",
-          "type": "boolean"
-        },
-        "input_26d72338-54c8-4528-ad01-6693b1d2f909": {
-          "href": "#uitv_26d72338-54c8-4528-ad01-6693b1d2f909",
-          "type": "boolean"
         }
       }
     }

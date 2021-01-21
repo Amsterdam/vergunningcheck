@@ -14,9 +14,9 @@
             "Geen monument"
           ],
           "type": "string",
-          "id": "uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
           "prio": 10,
-          "uuid": "kozijn monument"
+          "uuid": "kozijn monument",
+          "id": "a27c8cc419fc21b7d6b8e7245604afc8"
         },
         {
           "text": "Gaat u een kozijn plaatsen of vernieuwen?",
@@ -25,9 +25,9 @@
             "Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
           "prio": 20,
-          "uuid": "kozijn - onderhoud1"
+          "uuid": "kozijn - onderhoud1",
+          "id": "2408b15246280d9f334f288ff3ec3203"
         },
         {
           "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -36,16 +36,16 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
           "prio": 30,
-          "uuid": "kozijn - onderhoud2"
+          "uuid": "kozijn - onderhoud2",
+          "id": "5555e6f4af679427646a075d06698bda"
         }
       ],
       "decisions": {
-        "_3a684d60-b378-4a8f-9c80-43d44f9e35df": {
+        "32da9dc35e4735fcbe64efcb955cc323": {
           "requiredInputs": [
-            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
-            "#input_dbf957ae-3d1e-4713-8454-34406ca722c8"
+            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "2408b15246280d9f334f288ff3ec3203"
           ],
           "decisionTable": {
             "rules": [
@@ -77,11 +77,11 @@
             ]
           }
         },
-        "_4a0e0e2a-df5c-45a0-97f9-90be6248fb34": {
+        "b40b55f3613f86386f17e6ff70e62a7e": {
           "requiredInputs": [
-            "#input__27bca644-4f3c-4782-9235-33fddf6b9840",
-            "#input_dbf957ae-3d1e-4713-8454-34406ca722c8",
-            "#input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2"
+            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "2408b15246280d9f334f288ff3ec3203",
+            "5555e6f4af679427646a075d06698bda"
           ],
           "decisionTable": {
             "rules": [
@@ -126,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_3a684d60-b378-4a8f-9c80-43d44f9e35df",
-            "#_4a0e0e2a-df5c-45a0-97f9-90be6248fb34"
+            "32da9dc35e4735fcbe64efcb955cc323",
+            "b40b55f3613f86386f17e6ff70e62a7e"
           ],
           "decisionTable": {
             "rules": [
@@ -148,20 +148,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__27bca644-4f3c-4782-9235-33fddf6b9840": {
-          "href": "#uitv__27bca644-4f3c-4782-9235-33fddf6b9840",
-          "type": "string"
-        },
-        "input_dbf957ae-3d1e-4713-8454-34406ca722c8": {
-          "href": "#uitv_dbf957ae-3d1e-4713-8454-34406ca722c8",
-          "type": "string"
-        },
-        "input_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2": {
-          "href": "#uitv_bcbefc31-07d0-4934-b9c8-3d19a6be0fb2",
-          "type": "string"
         }
       }
     }

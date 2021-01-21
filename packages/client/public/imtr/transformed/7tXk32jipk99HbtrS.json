@@ -7,13 +7,13 @@
         {
           "text": "Vraag 1",
           "type": "boolean",
-          "id": "uitv__83a2953d-ca3e-4358-8c1a-4723589b9dee",
-          "prio": 10
+          "prio": 10,
+          "id": "5fd8194279ec61a3645523035b5ecbd4"
         }
       ],
       "decisions": {
-        "_08d2b8d1-54e0-4f13-8da0-cdffb4b27ac5": {
-          "requiredInputs": ["#input__83a2953d-ca3e-4358-8c1a-4723589b9dee"],
+        "820e29e1173d5a303322af2922caadd2": {
+          "requiredInputs": ["5fd8194279ec61a3645523035b5ecbd4"],
           "decisionTable": {
             "rules": [
               {
@@ -28,7 +28,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_08d2b8d1-54e0-4f13-8da0-cdffb4b27ac5"],
+          "requiredDecisions": ["820e29e1173d5a303322af2922caadd2"],
           "decisionTable": {
             "rules": [
               {
@@ -41,12 +41,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__83a2953d-ca3e-4358-8c1a-4723589b9dee": {
-          "href": "#uitv__83a2953d-ca3e-4358-8c1a-4723589b9dee",
-          "type": "boolean"
         }
       }
     }
