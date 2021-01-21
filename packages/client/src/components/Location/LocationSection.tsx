@@ -29,7 +29,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const skipLocationSection = !!(checker && !getDataNeed(checker));
 
   useEffect(() => {
-    if (timesCheckerLoaded === 1 && !skipLocationSection) {
+    if (timesCheckerLoaded === 1 && !skipLocationSection && !address) {
       // TrackEvent for active step (only on first load)
       matomoTrackEvent({
         action: actions.ACTIVE_STEP,
