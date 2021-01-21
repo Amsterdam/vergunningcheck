@@ -95,6 +95,11 @@ export default {
       heading: "Deze pagina is niet gevonden.",
       paragraph: "Helaas",
     },
+    oloRedirectPage: {
+      heading: "Een ogenblik geduld alstublieft",
+      paragraph: "Wij sturen u automatisch door naar de website van het",
+      link: "landelijke Omgevingsloket",
+    },
     question: {
       alert: {
         "this answer causes a need for permit":
