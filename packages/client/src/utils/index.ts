@@ -29,7 +29,10 @@ export const findTopicBySlug = (slug: string) => {
     return null;
   }
 
-  const name = topicConfig.name || topicConfig.slug;
+  // Provide name (with slug as fallback)
+  // Ignore in coverage because by default topics.json doesn't contain nameless topics
+  /* istanbul ignore next */
+  const { name = slug } = topicConfig;
 
   return {
     hasIMTR: true,
@@ -45,7 +48,10 @@ export const findTopicBySlug = (slug: string) => {
 export const getRestrictionByTypeName = (
   restrictions?: Restriction[],
   typeName?: string
-) => (restrictions || []).find(({ __typename }) => __typename === typeName);
+) =>
+  (restrictions || []).find(
+    ({ __typename }) => __typename?.toLowerCase() === typeName?.toLowerCase()
+  );
 
 /**
  * Test if obj is `{}`

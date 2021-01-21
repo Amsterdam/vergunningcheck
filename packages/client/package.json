@@ -26,6 +26,8 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,jsx}",
+      "!src/components/Hidden**",
+      "!src/utils/test-utils.*",
       "!src/debug/*"
     ]
   },

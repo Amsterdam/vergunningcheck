@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import "../i18n";
 
 import { ThemeProvider } from "@amsterdam/asc-ui";

@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { HiddenDiv } from "./HiddenDebugInfoStyles";
