@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/browser";
 import React, {
   Fragment,
   FunctionComponent,
@@ -20,7 +21,6 @@ import { SectionFunctions, SectionObject } from "../types";
 import ErrorPage from "./ErrorPage";
 
 const defaultSectionData = {
-  hideSection: false,
   index: 0,
   isActive: false,
   isCompleted: false,
@@ -128,9 +128,8 @@ const CheckerPage: FunctionComponent = () => {
     );
     if (!activeSection || activeSection.length !== 1) {
       // Always expect one section to be active
-      throw new Error(
-        `"getActiveSectionIndex()": Expected one active section, got "${activeSection.length}"`
-      );
+      const error = `"getActiveSectionIndex()": Expected one active section, got "${activeSection.length}"`;
+      captureException(error);
     }
     return activeSection[0].index;
   };
@@ -200,9 +199,8 @@ const CheckerPage: FunctionComponent = () => {
       }
     } else {
       // Expect new section to exist
-      throw new Error(
-        `"goToNextSection()": Failed going to next section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`
-      );
+      const error = `"goToNextSection()": Failed going to next section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`;
+      captureException(error);
     }
   };
 

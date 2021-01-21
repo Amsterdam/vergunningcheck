@@ -3,8 +3,8 @@ import { addQuotes, getChecker } from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import address from "../__mocks__/address";
-import mockedChecker1 from "../__mocks__/checker-dakkapel-plaatsen.json";
-import mockedChecker2 from "../__mocks__/checker-without-dataneeds.json";
+import mockedChecker1 from "../__mocks__/checker-dakkapel-plaatsen-mock.json";
+import mockedChecker2 from "../__mocks__/checker-without-dataneeds-mock.json";
 import { useChecker, useTopicData } from "../hooks";
 import nl from "../i18n/nl";
 import { defaultTopicSession } from "../SessionContext";

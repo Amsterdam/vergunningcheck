@@ -1,8 +1,8 @@
 import { getChecker } from "@vergunningcheck/imtr-client";
 
 import { addQuotes } from "../../../imtr-client/src/utils/index";
-import mockedChecker2 from "../__mocks__/checker-bouwwerk-slopen.json";
-import mockedChecker1 from "../__mocks__/checker-dakkapel-plaatsen.json";
+import mockedChecker2 from "../__mocks__/checker-bouwwerk-slopen-mock.json";
+import mockedChecker1 from "../__mocks__/checker-dakkapel-plaatsen-mock.json";
 import nl from "../i18n/nl";
 import getOutcomeContent from "./getOutcomeContent";
 
