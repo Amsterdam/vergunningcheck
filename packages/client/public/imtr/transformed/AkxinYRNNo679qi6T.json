@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 15,
       "name": "Conclusie Zonwering, rolhek, luik of rolluik monument",
       "questions": [
         {
@@ -15,8 +15,8 @@
           ],
           "type": "string",
           "prio": 10,
-          "uuid": "zonwering, rolhek, rolluik of luik - monument",
-          "id": "0509c90303e8c9648cf6bcfae5d35c62"
+          "uuid": "zonwering-monument",
+          "id": "dbb10a79d250c08b28dd0cda8fbf497a"
         },
         {
           "text": "Wat gaat u plaatsen?",
@@ -24,8 +24,8 @@
           "options": ["Zonwering", "Rolhek, rolluik of luik"],
           "type": "string",
           "prio": 20,
-          "uuid": "zonwering, rolhek, rolluik of luik - wat",
-          "id": "c05279618ea6cc1bb3674e5a5619daf9"
+          "uuid": "zonwering-wat",
+          "id": "433a2ea9ba4fb7670e095b7cb759192f"
         },
         {
           "text": "Gaat u een zonwering plaatsen of vernieuwen?",
@@ -35,8 +35,8 @@
           ],
           "type": "string",
           "prio": 30,
-          "uuid": "zonwering - onderhoud1",
-          "id": "3df0c98db4e8824e2e402e775eb7c3c4"
+          "uuid": "zonwering-onderhoud1",
+          "id": "097b67ce6c823a909ac71fa86ba9473e"
         },
         {
           "text": "U gaat een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -46,8 +46,8 @@
           ],
           "type": "string",
           "prio": 40,
-          "uuid": "zonwering - onderhoud2",
-          "id": "53e58e4be4254d122adff9a359b6ab3d"
+          "uuid": "zonwering-onderhoud2",
+          "id": "d3d1cf135bf5d9989feca2007c3728a3"
         },
         {
           "text": "Gaat u een rolhek, rolluik of luik plaatsen of vernieuwen?",
@@ -57,8 +57,8 @@
           ],
           "type": "string",
           "prio": 50,
-          "uuid": "rolhek, rolluik of luik - onderhoud1",
-          "id": "e9b21648fdefafefea02b3212eda8e67"
+          "uuid": "rolhek-onderhoud1",
+          "id": "d7f180c22b2a5590fcfe1d2118b3cb28"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -68,16 +68,16 @@
           ],
           "type": "string",
           "prio": 60,
-          "uuid": "rolhek, rolluik of luik - onderhoud2",
-          "id": "47df77024bf1b4fc7ae41fd467279929"
+          "uuid": "rolhek-onderhoud2",
+          "id": "7fa49d2ec1994795beedb34c88bbd063"
         }
       ],
       "decisions": {
-        "4c5fc8725e639b24c39c08916cd66446": {
+        "39a6061ad689f2315be7f815f8f5f764": {
           "requiredInputs": [
-            "0509c90303e8c9648cf6bcfae5d35c62",
-            "c05279618ea6cc1bb3674e5a5619daf9",
-            "3df0c98db4e8824e2e402e775eb7c3c4"
+            "dbb10a79d250c08b28dd0cda8fbf497a",
+            "433a2ea9ba4fb7670e095b7cb759192f",
+            "097b67ce6c823a909ac71fa86ba9473e"
           ],
           "decisionTable": {
             "rules": [
@@ -116,11 +116,11 @@
             ]
           }
         },
-        "4708a21fbfae39fac7bacdcd1fe897c8": {
+        "7209dce89cc47c748b416ed28406efd7": {
           "requiredInputs": [
-            "0509c90303e8c9648cf6bcfae5d35c62",
-            "c05279618ea6cc1bb3674e5a5619daf9",
-            "e9b21648fdefafefea02b3212eda8e67"
+            "dbb10a79d250c08b28dd0cda8fbf497a",
+            "433a2ea9ba4fb7670e095b7cb759192f",
+            "d7f180c22b2a5590fcfe1d2118b3cb28"
           ],
           "decisionTable": {
             "rules": [
@@ -159,12 +159,12 @@
             ]
           }
         },
-        "7351328b89d0d5770eca84f899ac67af": {
+        "5ecb02241081eb5eb96d7259002ed8cb": {
           "requiredInputs": [
-            "0509c90303e8c9648cf6bcfae5d35c62",
-            "c05279618ea6cc1bb3674e5a5619daf9",
-            "3df0c98db4e8824e2e402e775eb7c3c4",
-            "53e58e4be4254d122adff9a359b6ab3d"
+            "dbb10a79d250c08b28dd0cda8fbf497a",
+            "433a2ea9ba4fb7670e095b7cb759192f",
+            "097b67ce6c823a909ac71fa86ba9473e",
+            "d3d1cf135bf5d9989feca2007c3728a3"
           ],
           "decisionTable": {
             "rules": [
@@ -215,12 +215,12 @@
             ]
           }
         },
-        "7ecd974d4c96b4cb424bba31643f129f": {
+        "80f51842a6deadc675d3f406a8c92da2": {
           "requiredInputs": [
-            "0509c90303e8c9648cf6bcfae5d35c62",
-            "c05279618ea6cc1bb3674e5a5619daf9",
-            "e9b21648fdefafefea02b3212eda8e67",
-            "47df77024bf1b4fc7ae41fd467279929"
+            "dbb10a79d250c08b28dd0cda8fbf497a",
+            "433a2ea9ba4fb7670e095b7cb759192f",
+            "d7f180c22b2a5590fcfe1d2118b3cb28",
+            "7fa49d2ec1994795beedb34c88bbd063"
           ],
           "decisionTable": {
             "rules": [
@@ -273,10 +273,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "4c5fc8725e639b24c39c08916cd66446",
-            "4708a21fbfae39fac7bacdcd1fe897c8",
-            "7351328b89d0d5770eca84f899ac67af",
-            "7ecd974d4c96b4cb424bba31643f129f"
+            "39a6061ad689f2315be7f815f8f5f764",
+            "7209dce89cc47c748b416ed28406efd7",
+            "5ecb02241081eb5eb96d7259002ed8cb",
+            "80f51842a6deadc675d3f406a8c92da2"
           ],
           "decisionTable": {
             "rules": [
