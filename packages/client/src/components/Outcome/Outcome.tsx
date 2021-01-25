@@ -123,7 +123,7 @@ const Outcome: FunctionComponent = () => {
             contentText={t(
               "outcome.needReport.on this page you can read more about report for demolition"
             )}
-            eventName={eventNames.HOW_TO_NOTIFY_A_DEMOLITION}
+            eventName={eventNames.HOW_TO_REPORT_A_DEMOLITION}
             linkText={t("outcome.needReport.how to report for demolition")}
             url={urls.DEMOLITION_PERMIT_PAGE}
           />
@@ -150,7 +150,7 @@ const Outcome: FunctionComponent = () => {
             contentText={t(
               "outcome.needReport.on this page you can read more about report"
             )}
-            eventName={eventNames.HOW_TO_NOTIFY_A_DEMOLITION}
+            eventName={eventNames.HOW_TO_REPORT}
             linkText={t("outcome.needReport.how to report")}
             url={urls.DEMOLITION_PERMIT_PAGE}
           />
