@@ -139,7 +139,11 @@ const Outcome: FunctionComponent = () => {
     // This content is only relevant for the firesafety checker
     firesafety: {
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit />,
+        // @TODO: This url is just for testing purposes
+        mainContent: (
+          <NeedPermit url="https://www.amsterdam.nl/veelgevraagd/?productid=%7B1DA41981-4A37-457D-A57C-0E202F43C60B%7D" />
+        ),
+        // The URL must be replaced before going live
         title: t("outcome.needPermit.you need a permit and not to report"),
       },
       [NEED_REPORT]: {
@@ -152,8 +156,8 @@ const Outcome: FunctionComponent = () => {
             )}
             eventName={eventNames.HOW_TO_REPORT}
             linkText={t("outcome.needReport.how to report")}
-            // @TODO: This is just for testing purposes
-            url=""
+            // @TODO: This url is just for testing purposes
+            url="https://www.amsterdam.nl/veelgevraagd/?productid=%7B1DA41981-4A37-457D-A57C-0E202F43C60B%7D"
             // The URL must be replaced before going live
           />
         ),
