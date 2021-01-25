@@ -1,5 +1,3 @@
-import "@testing-library/jest-dom/extend-expect";
-
 import React from "react";
 
 import { AUTOSUGGEST_ITEM, AUTOSUGGEST_LIST } from "../utils/test-ids";
