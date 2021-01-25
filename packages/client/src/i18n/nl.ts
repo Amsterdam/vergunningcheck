@@ -3,6 +3,7 @@ export default {
     common: {
       "address loading": "Wij zoeken het adres.",
       "housenumber label": "Huisnummer + toevoeging",
+      "one moment please": "Een ogenblik geduld alstublieft",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
@@ -96,7 +97,7 @@ export default {
       paragraph: "Helaas",
     },
     oloRedirectPage: {
-      heading: "Een ogenblik geduld alstublieft",
+      "page title": "Redirect naar OLO",
       paragraph: "Wij sturen u automatisch door naar de website van het",
       link: "landelijke Omgevingsloket",
     },

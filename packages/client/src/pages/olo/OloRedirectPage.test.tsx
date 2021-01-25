@@ -1,5 +1,3 @@
-import "@testing-library/jest-dom/extend-expect";
-
 import React from "react";
 
 import { urls } from "../../config";
@@ -10,30 +8,22 @@ import OloRedirectPage from "./OloRedirectPage";
 jest.useFakeTimers();
 
 describe("OloRedirectPage", () => {
-  const { open: originalWindowOpen } = window;
-
-  beforeEach(() => {
-    window.open = jest.fn();
-  });
-
-  afterEach(() => {
-    window.open = originalWindowOpen;
-  });
-
   it("should render and redirect correctly", async () => {
     render(<OloRedirectPage />);
 
-    const headingText = nl.translation.oloRedirectPage.heading;
-    await screen.findByText(headingText, {
-      exact: false,
-    });
-    const bodyText = nl.translation.oloRedirectPage.paragraph;
-    await screen.findByText(bodyText, { exact: false });
-    const linkText = nl.translation.oloRedirectPage.link;
-    await screen.findByText(linkText, { exact: false });
+    expect(
+      screen.getByText(nl.translation.common["one moment please"])
+    ).toBeInTheDocument();
 
-    // schedule redirect
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+    expect(
+      screen.getByText(nl.translation.oloRedirectPage.paragraph, {
+        exact: false,
+      })
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(nl.translation.oloRedirectPage.link)
+    ).toBeInTheDocument();
 
     // Fast-forward until all timers have been executed
     jest.advanceTimersByTime(3000);

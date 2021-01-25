@@ -24,9 +24,11 @@ const OloRedirectPage: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Redirect naar OLO - {topic.text.heading}</title>
+        <title>
+          {t("oloRedirectPage.page title")} - {topic.text.heading}
+        </title>
       </Helmet>
-      <Heading forwardedAs="h2">{t("oloRedirectPage.heading")}</Heading>
+      <Heading forwardedAs="h2">{t("common.one moment please")}</Heading>
       <Paragraph>
         {t("oloRedirectPage.paragraph")}{" "}
         <a title={t("oloRedirectPage.link")} href={urls.OLO_INTRO}>
