@@ -112,6 +112,7 @@ export default {
       },
     },
     outcome: {
+      // @TODO: refactor this per checker, like introPage
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
 
@@ -147,6 +148,8 @@ export default {
         "you need a permit": "U hebt een omgevingsvergunning nodig.",
         "you need a permit for demolition":
           "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+        "you need a permit and not to report":
+          "U hebt een omgevingsvergunning nodig. U hoeft geen aparte melding te doen.",
         "on this page you can read more how to apply":
           "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
         "how to apply": "Zo werkt aanvragen",
@@ -156,9 +159,14 @@ export default {
           "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
         "you need a report for demolition":
           "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
-        "on this page you can read more":
+        "you need a report for firesafety":
+          "U moet een melding 'Brandveilig gebruik' doen. U hebt geen omgevingsvergunning nodig.",
+        "on this page you can read more about report for demolition":
           "Op de pagina 'Zo werkt een sloopmelding' leest u hoe u de melding doet.",
-        "notify a demolition": "Zo werkt een sloopmelding",
+        "on this page you can read more about report":
+          "Op de pagina 'Zo werkt een melding doen' leest u hoe u de melding doet.",
+        "how to report": "Zo werkt een melding doen",
+        "how to report for demolition": "Zo werkt een sloopmelding",
       },
       payAttentionTo: {
         "apply to building code":
@@ -171,6 +179,8 @@ export default {
       },
       permitFree: {
         "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+        "you dont need a permit and dont need to report":
+          "U hebt geen omgevingsvergunning nodig. U hoeft ook geen melding te doen.",
         "you dont need a permit for demolition":
           "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
       },

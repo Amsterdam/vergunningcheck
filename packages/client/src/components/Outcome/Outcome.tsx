@@ -120,9 +120,11 @@ const Outcome: FunctionComponent = () => {
           // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
           // Maybe rename this to `OutcomeLink` or `OutcomeMainContent`
           <NeedPermit
-            contentText={t("outcome.needReport.on this page you can read more")}
+            contentText={t(
+              "outcome.needReport.on this page you can read more about report for demolition"
+            )}
             eventName={eventNames.HOW_TO_NOTIFY_A_DEMOLITION}
-            linkText={t("outcome.needReport.notify a demolition")}
+            linkText={t("outcome.needReport.how to report for demolition")}
             url={urls.DEMOLITION_PERMIT_PAGE}
           />
         ),
@@ -134,11 +136,43 @@ const Outcome: FunctionComponent = () => {
         title: t("outcome.permitFree.you dont need a permit for demolition"),
       },
     },
+    // This content is only relevant for the firesafety checker
+    firesafety: {
+      [NEED_PERMIT]: {
+        mainContent: <NeedPermit />,
+        title: t("outcome.needPermit.you need a permit and not to report"),
+      },
+      [NEED_REPORT]: {
+        mainContent: (
+          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
+          // Maybe rename this to `OutcomeLink` or `OutcomeMainContent`
+          <NeedPermit
+            contentText={t(
+              "outcome.needReport.on this page you can read more about report"
+            )}
+            eventName={eventNames.HOW_TO_NOTIFY_A_DEMOLITION}
+            linkText={t("outcome.needReport.how to report")}
+            url={urls.DEMOLITION_PERMIT_PAGE}
+          />
+        ),
+        title: t("outcome.needReport.you need a report for firesafety"),
+      },
+      [PERMIT_FREE]: {
+        title: t(
+          "outcome.permitFree.you dont need a permit and dont need to report"
+        ),
+      },
+    },
   };
 
-  // This part can be refactored whenever we have another checker that have custom outcomes
-  const checkerContent =
-    topic.name === "Bouwwerk slopen" ? contents.demolition : contents.default;
+  // This part is refactored in [this PR](https://github.com/Amsterdam/vergunningcheck/pull/758)
+  let checkerContent = contents.default as any;
+
+  if (topic.name === "Bouwwerk slopen") {
+    checkerContent = contents.demolition;
+  } else if (topic.name === "Brandveilig gebruik") {
+    checkerContent = contents.firesafety;
+  }
 
   const outcomeContent = checkerContent[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;
