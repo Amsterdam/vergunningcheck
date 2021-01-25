@@ -152,7 +152,9 @@ const Outcome: FunctionComponent = () => {
             )}
             eventName={eventNames.HOW_TO_REPORT}
             linkText={t("outcome.needReport.how to report")}
-            url={urls.DEMOLITION_PERMIT_PAGE}
+            // @TODO: This is just for testing purposes
+            url=""
+            // The URL must be replaced before going live
           />
         ),
         title: t("outcome.needReport.you need a report for firesafety"),
