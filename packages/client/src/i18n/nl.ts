@@ -41,6 +41,8 @@ export default {
           "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
         "situation dependent on situation only":
           "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
+        "sometimes it's written in a destination plan that a permit is required":
+          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
       },
       dakkapel: {
         "build without permit exception":
@@ -66,8 +68,10 @@ export default {
         "placing bullet": "het plaatsen van de kozijnen zelf.",
       },
       slopen: {
-        "need report":
+        "you want to demolish a structure":
           "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
+        "you may need a permit or to report":
+          "U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.",
       },
       zonnepanelen: {
         "intro description":
@@ -82,6 +86,12 @@ export default {
           "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.",
         "placing bullet":
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
+      },
+      firesafety: {
+        "the building must be safe and the city must be able to verify":
+          "U gaat een gebouw in gebruik nemen of het gebruik wijzigen. Het gebouw moet veilig zijn voor bewoners, gasten en personeel. De gemeente moet kunnen controleren of dat zo is.",
+        "you might need to report and in some case you need a permit":
+          "Het kan zijn dat u een melding voor brandveilig gebruik moet doen. In sommige gevallen moet u een omgevingsvergunning voor brandveilig gebruik aanvragen. Met deze vergunningcheck kunt u zien wat u moet doen.",
       },
     },
     location: {
