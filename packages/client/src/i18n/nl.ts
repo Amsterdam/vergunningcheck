@@ -14,8 +14,6 @@ export default {
       "required field text": "Verplicht veld is niet ingevuld",
       "to the questions": "Naar de vragen",
       unknown: "Onbekend",
-      "we will automatically redirect you to olo":
-        "Wij sturen u automatisch door naar de website van het <1>landelijke Omgevingsloket</1>.",
       yes: "Ja",
     },
     errorMessages: {
