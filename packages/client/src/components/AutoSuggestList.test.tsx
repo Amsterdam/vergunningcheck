@@ -62,17 +62,13 @@ describe("AutoSuggestList", () => {
     expect(listItems[0]).not.toHaveFocus();
     expect(listItems[1]).not.toHaveFocus();
 
-    //try navigating with keyboard
+    // try navigating with keyboard
     fireEvent.keyDown(listItems[0], { key: "ArrowUp" });
     fireEvent.keyDown(listItems[0], { key: "ArrowDown" });
 
     // simulate other keyboard events
     fireEvent.keyDown(listItems[0], { key: "A" });
     fireEvent.keyDown(listItems[0], { key: "a" });
-
-    // for IE
-    fireEvent.keyDown(listItems[0], { key: "Up" });
-    fireEvent.keyDown(listItems[0], { key: "Down" });
 
     // selection was not updated
     expect(handleSelect).not.toHaveBeenCalled();
