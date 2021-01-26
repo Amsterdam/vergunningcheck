@@ -153,6 +153,7 @@ export default {
         "view on neighbors grounds":
           "Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.",
       },
+      // @TODO: refactor this per checker, like introPage
       needBothPermitAndReport: {
         "you need both permit and report":
           "U hebt een omgevingsvergunning nodig. U moet de activiteit ook melden.", // This text should only be used for unconfigured (non-amsterdam) checkers
