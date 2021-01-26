@@ -45,6 +45,8 @@ export default {
           "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
         "situation dependent on situation only":
           "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
+        "sometimes it's written in a destination plan that a permit is required":
+          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
       },
       dakkapel: {
         "build without permit exception":
@@ -62,6 +64,12 @@ export default {
           "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
         "placing bullet": "het plaatsen van het dakraam zelf.",
       },
+      firesafety: {
+        "the building must be safe and the city must be able to verify":
+          "U gaat een gebouw in gebruik nemen of het gebruik wijzigen. Het gebouw moet veilig zijn voor bewoners, gasten en personeel. De gemeente moet kunnen controleren of dat zo is.",
+        "you might need to report and in some case you need a permit":
+          "Het kan zijn dat u een melding voor brandveilig gebruik moet doen. In sommige gevallen moet u een omgevingsvergunning voor brandveilig gebruik aanvragen. Met deze vergunningcheck kunt u zien wat u moet doen.",
+      },
       kozijnen: {
         "build without permit exception":
           "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
@@ -70,8 +78,10 @@ export default {
         "placing bullet": "het plaatsen van de kozijnen zelf.",
       },
       slopen: {
-        "need report":
+        "you want to demolish a structure":
           "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
+        "you may need a permit or to report":
+          "U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.",
       },
       zonnepanelen: {
         "intro description":
@@ -159,6 +169,8 @@ export default {
         "you need a permit": "U hebt een omgevingsvergunning nodig.",
         "you need a permit for demolition":
           "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+        "you need a permit and not to report":
+          "U hebt een omgevingsvergunning nodig. U hoeft geen aparte melding te doen.",
         "on this page you can read more how to apply":
           "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
         "how to apply": "Zo werkt aanvragen",
@@ -168,9 +180,14 @@ export default {
           "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
         "you need a report for demolition":
           "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
-        "on this page you can read more":
+        "you need a report for firesafety":
+          "U moet een melding 'Brandveilig gebruik' doen. U hebt geen omgevingsvergunning nodig.",
+        "on this page you can read more about report for demolition":
           "Op de pagina 'Zo werkt een sloopmelding' leest u hoe u de melding doet.",
-        "notify a demolition": "Zo werkt een sloopmelding",
+        "on this page you can read more about report":
+          "Op de pagina 'Zo werkt een melding doen' leest u hoe u de melding doet.",
+        "how to report": "Zo werkt een melding doen",
+        "how to report for demolition": "Zo werkt een sloopmelding",
       },
       payAttentionTo: {
         "apply to building code":
@@ -183,6 +200,8 @@ export default {
       },
       permitFree: {
         "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+        "you dont need a permit and dont need to report":
+          "U hebt geen omgevingsvergunning nodig. U hoeft ook geen melding te doen.",
         "you dont need a permit for demolition":
           "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
       },
