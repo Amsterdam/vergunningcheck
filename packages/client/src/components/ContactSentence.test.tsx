@@ -2,16 +2,8 @@ import "jest-styled-components";
 
 import React from "react";
 
-// import matchMedia from "../__mocks__/matchMedia";
 import { render } from "../utils/test-utils";
 import ContactSentence from "./ContactSentence";
-
-// Object.defineProperty(window, "matchMedia", matchMedia);
-
-// jest.mock("react-router-dom", () => ({
-//   ...jest.requireActual("react-router-dom"),
-//   useParams: () => ({}),
-// }));
 
 it("ContactSentence renders correctly without the `link` prop", () => {
   const { container, queryByText } = render(
@@ -19,7 +11,6 @@ it("ContactSentence renders correctly without the `link` prop", () => {
   );
 
   // Default texts
-  // `exact: false`, because otherwise it expects nested elements as well (eg: `text <p>text</p>`)
   expect(
     queryByText("Bel in een van deze situaties de gemeente op", {
       exact: false,
