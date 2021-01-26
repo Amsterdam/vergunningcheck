@@ -9,7 +9,7 @@ type LinkProps = {
   children: ReactNode;
   darkBackground?: boolean;
   href?: string;
-  eventName?: string;
+  eventName: string;
   internal?: boolean;
   inList?: boolean;
   strong?: boolean;

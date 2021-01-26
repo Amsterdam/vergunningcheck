@@ -53,7 +53,11 @@ describe("Link", () => {
     });
   });
   it("should not track an event", () => {
-    render(<Link href="/link">link</Link>);
+    render(
+      <Link eventName="" href="/link">
+        link
+      </Link>
+    );
 
     const anchor = screen.queryByText("link") as HTMLElement;
 
