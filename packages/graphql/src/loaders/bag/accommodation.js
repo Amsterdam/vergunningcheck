@@ -3,7 +3,7 @@ const {
   bag: config,
   CACHE_TIMEOUT,
   HOST,
-} = require("../../../config").loaders.datapunt;
+} = require("../../../config").resources.amsterdam.api;
 
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 

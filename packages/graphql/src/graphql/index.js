@@ -9,22 +9,25 @@ const bagLoader = require("../loaders/bag");
 const monumentLoader = require("../loaders/monument");
 const geoSearchLoader = require("../loaders/geoSearch");
 const zoningPlanLoader = require("../loaders/zoningPlan");
+const treeLoader = require("../loaders/tree");
 
-const node = require("./node");
 const address = require("./address");
 const area = require("./area");
-const monument = require("./monument");
 const cityScape = require("./cityScape");
+const monument = require("./monument");
+const node = require("./node");
 const restriction = require("./restriction");
+const tree = require("./tree");
 const zoningPlan = require("./zoningPlan");
 
 const modules = [
-  node,
   address,
   area,
-  monument,
   cityScape,
+  monument,
+  node,
   restriction,
+  tree,
   zoningPlan,
 ];
 
@@ -45,12 +48,13 @@ const server = graphqlHTTP({
       bag: {
         accommodation: new DataLoader(bagLoader.accommodation.load),
       },
-      zoningPlan: new DataLoader(zoningPlanLoader.load),
       geoSearch: new DataLoader(geoSearchLoader.load),
       monument: {
         situation: new DataLoader(monumentLoader.situation.load),
         monument: new DataLoader(monumentLoader.monument.load),
       },
+      tree: treeLoader,
+      zoningPlan: new DataLoader(zoningPlanLoader.load),
     },
   },
   customFormatErrorFn: ({ stack, ...rest }) => ({
