@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 3,
+      "version": 9,
       "name": "Conclusie Kozijn plaatsen in een monument",
       "questions": [
         {
@@ -15,8 +15,8 @@
           ],
           "type": "string",
           "prio": 10,
-          "uuid": "kozijn monument",
-          "id": "a27c8cc419fc21b7d6b8e7245604afc8"
+          "uuid": "kozijn-monument",
+          "id": "fd9899df974598b284692646da0ff8b5"
         },
         {
           "text": "Gaat u een kozijn plaatsen of vernieuwen?",
@@ -26,8 +26,8 @@
           ],
           "type": "string",
           "prio": 20,
-          "uuid": "kozijn - onderhoud1",
-          "id": "2408b15246280d9f334f288ff3ec3203"
+          "uuid": "kozijn-onderhoud1",
+          "id": "37be1589dc9eb87496f29bfe5ea054d2"
         },
         {
           "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -37,15 +37,15 @@
           ],
           "type": "string",
           "prio": 30,
-          "uuid": "kozijn - onderhoud2",
-          "id": "5555e6f4af679427646a075d06698bda"
+          "uuid": "kozijn-onderhoud2",
+          "id": "8cca423541aeca3590b1b130ce850341"
         }
       ],
       "decisions": {
-        "32da9dc35e4735fcbe64efcb955cc323": {
+        "62afe1cd6ab025646855fc78064a6290": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
-            "2408b15246280d9f334f288ff3ec3203"
+            "fd9899df974598b284692646da0ff8b5",
+            "37be1589dc9eb87496f29bfe5ea054d2"
           ],
           "decisionTable": {
             "rules": [
@@ -77,11 +77,11 @@
             ]
           }
         },
-        "b40b55f3613f86386f17e6ff70e62a7e": {
+        "725dfa3809ff1f9e0a7942b1827d41c8": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
-            "2408b15246280d9f334f288ff3ec3203",
-            "5555e6f4af679427646a075d06698bda"
+            "fd9899df974598b284692646da0ff8b5",
+            "37be1589dc9eb87496f29bfe5ea054d2",
+            "8cca423541aeca3590b1b130ce850341"
           ],
           "decisionTable": {
             "rules": [
@@ -126,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "32da9dc35e4735fcbe64efcb955cc323",
-            "b40b55f3613f86386f17e6ff70e62a7e"
+            "62afe1cd6ab025646855fc78064a6290",
+            "725dfa3809ff1f9e0a7942b1827d41c8"
           ],
           "decisionTable": {
             "rules": [

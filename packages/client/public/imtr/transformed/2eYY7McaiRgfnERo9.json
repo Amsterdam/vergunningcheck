@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 74,
+      "version": 80,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -26,8 +26,8 @@
           ],
           "type": "string",
           "prio": 20,
-          "uuid": "sloop seizoen1",
-          "id": "dfbc94352208ba9e8fbf3ebc8a80d3b3"
+          "uuid": "sloop-seizoen1",
+          "id": "c3207570964c9cc5e7cc857ab4283495"
         },
         {
           "text": "Als u het bouwwerk opnieuw zou bouwen, mag dat dan zonder vergunning?",
@@ -40,46 +40,46 @@
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "prio": 40,
-          "uuid": "sloop aanschrijving1",
-          "id": "98f4c711e6331338fd2295157c6a0fca"
+          "uuid": "sloop-aanschrijving1",
+          "id": "fddd986b23f788e73f3516eecfac98a0"
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "prio": 50,
-          "uuid": "sloop onderhoud1",
-          "id": "27cc90dca6288dda784491caa49aa8d1"
+          "uuid": "sloop-onderhoud1",
+          "id": "0edd3b629315b4f729a32303f4113c2d"
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
           "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
           "prio": 60,
-          "uuid": "sloop onderhoud2",
-          "id": "d299b02ce91cdff0f94527341555c1d8"
+          "uuid": "sloop-onderhoud2",
+          "id": "9ebd2bfe5997e836ee16d790ee48867e"
         },
         {
           "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "prio": 70,
-          "uuid": "sloop onderhoud3",
-          "id": "c6e5edbfa16f2ab4ebdc14031821194e"
+          "uuid": "sloop-onderhoud3",
+          "id": "35dbeca2829f7cb9af92616b2e3bff40"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "description": "U vervangt bijvoorbeeld de openslaande deuren door een schuifpui, waardoor het profiel van het kozijn verandert.\n\nOf u verandert de dikte van het dak. Een ander voorbeeld is dat u het dak schuiner of rechter op het gebouw plaatst.",
           "type": "boolean",
           "prio": 80,
-          "uuid": "sloop onderhoud4",
-          "id": "cb833397549ae0ab01bc0e2a16f1950b"
+          "uuid": "sloop-onderhoud4",
+          "id": "7b96f0ed7bb4ea82390a2b6f2de16db0"
         }
       ],
       "decisions": {
-        "c704b8132b9c250bf984b1c96eb4a8c4": {
+        "e6f59aacbf307550a446f73b4848377e": {
           "requiredInputs": [
             "80991a38ef0825dc373c6a2065cdf7f3",
-            "dfbc94352208ba9e8fbf3ebc8a80d3b3",
+            "c3207570964c9cc5e7cc857ab4283495",
             "71ea53d7b6d0d5e904a27475a3d73951"
           ],
           "decisionTable": {
@@ -119,11 +119,11 @@
             ]
           }
         },
-        "615d68f83965d31f20ae1a87c61a0081": {
+        "b171734e84ca8a0c3fbc7bf9c7468c38": {
           "requiredInputs": [
             "80991a38ef0825dc373c6a2065cdf7f3",
-            "98f4c711e6331338fd2295157c6a0fca",
-            "27cc90dca6288dda784491caa49aa8d1"
+            "fddd986b23f788e73f3516eecfac98a0",
+            "0edd3b629315b4f729a32303f4113c2d"
           ],
           "decisionTable": {
             "rules": [
@@ -158,12 +158,12 @@
             ]
           }
         },
-        "334d4864207a468543f46fd386aee24c": {
+        "63e7a2824e341b38047c33a1bf652c3d": {
           "requiredInputs": [
             "80991a38ef0825dc373c6a2065cdf7f3",
-            "98f4c711e6331338fd2295157c6a0fca",
-            "27cc90dca6288dda784491caa49aa8d1",
-            "d299b02ce91cdff0f94527341555c1d8"
+            "fddd986b23f788e73f3516eecfac98a0",
+            "0edd3b629315b4f729a32303f4113c2d",
+            "9ebd2bfe5997e836ee16d790ee48867e"
           ],
           "decisionTable": {
             "rules": [
@@ -204,13 +204,13 @@
             ]
           }
         },
-        "9f81fa87e15d397cc7aa1599d5dd450a": {
+        "ec8e627b140857fab9cdbc1374de3d98": {
           "requiredInputs": [
             "80991a38ef0825dc373c6a2065cdf7f3",
-            "98f4c711e6331338fd2295157c6a0fca",
-            "27cc90dca6288dda784491caa49aa8d1",
-            "d299b02ce91cdff0f94527341555c1d8",
-            "c6e5edbfa16f2ab4ebdc14031821194e"
+            "fddd986b23f788e73f3516eecfac98a0",
+            "0edd3b629315b4f729a32303f4113c2d",
+            "9ebd2bfe5997e836ee16d790ee48867e",
+            "35dbeca2829f7cb9af92616b2e3bff40"
           ],
           "decisionTable": {
             "rules": [
@@ -257,14 +257,14 @@
             ]
           }
         },
-        "ca044dd8332f65d6f927d2bc5791938d": {
+        "b1d5c8e8cbbc43e8e7e1b453fceeb123": {
           "requiredInputs": [
             "80991a38ef0825dc373c6a2065cdf7f3",
-            "98f4c711e6331338fd2295157c6a0fca",
-            "27cc90dca6288dda784491caa49aa8d1",
-            "d299b02ce91cdff0f94527341555c1d8",
-            "c6e5edbfa16f2ab4ebdc14031821194e",
-            "cb833397549ae0ab01bc0e2a16f1950b"
+            "fddd986b23f788e73f3516eecfac98a0",
+            "0edd3b629315b4f729a32303f4113c2d",
+            "9ebd2bfe5997e836ee16d790ee48867e",
+            "35dbeca2829f7cb9af92616b2e3bff40",
+            "7b96f0ed7bb4ea82390a2b6f2de16db0"
           ],
           "decisionTable": {
             "rules": [
@@ -319,11 +319,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "c704b8132b9c250bf984b1c96eb4a8c4",
-            "615d68f83965d31f20ae1a87c61a0081",
-            "334d4864207a468543f46fd386aee24c",
-            "9f81fa87e15d397cc7aa1599d5dd450a",
-            "ca044dd8332f65d6f927d2bc5791938d"
+            "e6f59aacbf307550a446f73b4848377e",
+            "b171734e84ca8a0c3fbc7bf9c7468c38",
+            "63e7a2824e341b38047c33a1bf652c3d",
+            "ec8e627b140857fab9cdbc1374de3d98",
+            "b1d5c8e8cbbc43e8e7e1b453fceeb123"
           ],
           "decisionTable": {
             "rules": [

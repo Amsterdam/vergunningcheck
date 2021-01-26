@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 70,
+      "version": 72,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
@@ -13,8 +13,8 @@
           ],
           "type": "string",
           "prio": 10,
-          "uuid": "sloop seizoen1",
-          "id": "119647954bfaa586a15998d6fdb70fc3"
+          "uuid": "sloop-seizoen1",
+          "id": "12177dcd857e5832b3e3e3ddf60bbeac"
         },
         {
           "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
@@ -34,16 +34,16 @@
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "prio": 40,
-          "uuid": "sloop aanschrijving1",
-          "id": "98f4c711e6331338fd2295157c6a0fca"
+          "uuid": "sloop-aanschrijving1",
+          "id": "fddd986b23f788e73f3516eecfac98a0"
         }
       ],
       "decisions": {
-        "78c03ba70935fec61b32d6e7602d0ced": {
+        "87ec8e83c50d1d746d9323f0c9b8147a": {
           "requiredInputs": [
-            "119647954bfaa586a15998d6fdb70fc3",
+            "12177dcd857e5832b3e3e3ddf60bbeac",
             "95fbd3bf33afc81132df2517cc0916d2",
-            "98f4c711e6331338fd2295157c6a0fca"
+            "fddd986b23f788e73f3516eecfac98a0"
           ],
           "decisionTable": {
             "rules": [
@@ -74,12 +74,12 @@
             ]
           }
         },
-        "525e889fefe07e20209d1b12b38b0878": {
+        "3866e7c8c63efb69083a2c96deb71df9": {
           "requiredInputs": [
-            "119647954bfaa586a15998d6fdb70fc3",
+            "12177dcd857e5832b3e3e3ddf60bbeac",
             "95fbd3bf33afc81132df2517cc0916d2",
             "b5b37cb88800f35285ecfb562daff9a4",
-            "98f4c711e6331338fd2295157c6a0fca"
+            "fddd986b23f788e73f3516eecfac98a0"
           ],
           "decisionTable": {
             "rules": [
@@ -118,8 +118,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "78c03ba70935fec61b32d6e7602d0ced",
-            "525e889fefe07e20209d1b12b38b0878"
+            "87ec8e83c50d1d746d9323f0c9b8147a",
+            "3866e7c8c63efb69083a2c96deb71df9"
           ],
           "decisionTable": {
             "rules": [
