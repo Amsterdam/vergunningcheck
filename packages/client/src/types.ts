@@ -89,6 +89,7 @@ export type setTopicSessionDataFn = (
  */
 type BaseTopic = {
   name: string;
+  showMap: boolean;
   slug: string;
   text: {
     heading: string;
@@ -100,7 +101,6 @@ type IMTRTopic = {
   hasIMTR: true;
   intro?: string;
   redirectToOlo?: false;
-  showMap: boolean;
 } & BaseTopic;
 
 type OloTopic = {

@@ -35,6 +35,7 @@ export const findTopicBySlug = (slug: string) => {
     hasIMTR: true,
     name,
     slug,
+    showMap: true,
     text: {
       heading: name,
     },

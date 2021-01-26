@@ -61,7 +61,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
-    showMap: false,
+    showMap: true,
     slug: "dakraam-plaatsen",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
@@ -71,7 +71,7 @@ export const topics: Topic[] = [
   {
     hasIMTR: false,
     name: "Aanbouw of uitbouw maken",
-    showMap: false,
+    showMap: true,
     slug: "aanbouw-of-uitbouw-maken",
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
@@ -83,7 +83,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
-    showMap: false,
+    showMap: true,
     slug: "kozijnen-plaatsen",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen",
@@ -94,7 +94,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
-    showMap: false,
+    showMap: true,
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
@@ -106,7 +106,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "SlopenIntro",
     name: "Bouwwerk slopen",
-    showMap: false,
+    showMap: true,
     slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
@@ -117,9 +117,20 @@ export const topics: Topic[] = [
     hasIMTR: false,
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
+    showMap: false,
     text: {
       heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
+    },
+  },
+  {
+    hasIMTR: true,
+    name: "kappen of snoeien",
+    showMap: true,
+    slug: "kappen-of-snoeien",
+    text: {
+      heading: "kappen of snoeien",
+      locationIntro: "kappen of snoeien",
     },
   },
   {
@@ -135,20 +146,10 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasIMTR: true,
-    intro: "ZonweringRolluikIntro",
-    name: "kappen of snoeien",
-    showMap: true,
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "kappen of snoeien",
-      locationIntro: "kappen of snoeien",
-    },
-  },
-  {
     hasIMTR: false,
     name: "Brandveilig gebruik",
     redirectToOlo: true,
+    showMap: false,
     slug: "brandveilig-gebruik",
     text: {
       heading: "Vergunningcheck brandveilig gebruik",
