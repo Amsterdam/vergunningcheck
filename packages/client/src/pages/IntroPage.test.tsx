@@ -12,13 +12,7 @@ describe("IntroPage", () => {
   it("renders correctly with topic", async () => {
     render(<IntroPage />);
 
-    await waitFor(() =>
-      expect(
-        screen.getAllByText("Dakkapel plaatsen", { exact: false })[0]
-      ).toBeInTheDocument()
-    );
-
-    // wait for first page element to appear
+    // Wait for first page element to appear
     await waitFor(() =>
       expect(
         screen.getByText(
@@ -28,20 +22,16 @@ describe("IntroPage", () => {
       ).toBeInTheDocument()
     );
 
-    // render bullets
+    // Render bullets
     expect(
-      screen.getByText(nl.translation.introPage.common["monument bullet"], {
-        exact: false,
-      })
+      screen.getByText(nl.translation.introPage.common["monument bullet"])
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(nl.translation.introPage.dakkapel["placing bullet"], {
-        exact: false,
-      })
+      screen.getByText(nl.translation.introPage.dakkapel["placing bullet"])
     ).toBeInTheDocument();
 
-    // render second paragraph
+    // Render second paragraph
     expect(
       screen.getByText(
         nl.translation.introPage.common[
@@ -53,31 +43,24 @@ describe("IntroPage", () => {
       )
     ).toBeInTheDocument();
 
-    // render third paragraph
+    // Render third paragraph
     expect(
-      screen.getByText(nl.translation.introPage.dakkapel["intro description"], {
-        exact: false,
-      })
+      screen.getByText(nl.translation.introPage.dakkapel["intro description"])
     ).toBeInTheDocument();
 
-    // render exceptions heading
+    // Render exceptions heading
     expect(
-      screen.getByText(nl.translation.introPage.common["exceptions title"], {
-        exact: false,
-      })
+      screen.getByText(nl.translation.introPage.common["exceptions title"])
     ).toBeInTheDocument();
 
-    // render paragraph
+    // Render paragraph
     expect(
       screen.getByText(
-        nl.translation.introPage.common["exceptions description"],
-        {
-          exact: false,
-        }
+        nl.translation.introPage.common["exceptions description"]
       )
     ).toBeInTheDocument();
 
-    // render bullets
+    // Render bullets
     expect(
       screen.getByText(nl.translation.introPage.dakkapel["exception"], {
         exact: false,
@@ -86,19 +69,13 @@ describe("IntroPage", () => {
 
     expect(
       screen.getByText(
-        nl.translation.introPage.common["amount of houses exception"],
-        {
-          exact: false,
-        }
+        nl.translation.introPage.common["amount of houses exception"]
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        nl.translation.introPage.dakkapel["build without permit exception"],
-        {
-          exact: false,
-        }
+        nl.translation.introPage.dakkapel["build without permit exception"]
       )
     ).toBeInTheDocument();
 

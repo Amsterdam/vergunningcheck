@@ -6,7 +6,7 @@ import nl from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import NotFoundPage from "./NotFoundPage";
 
-it("NotFoundPage renders correctly", async () => {
+it("NotFoundPage renders correctly", () => {
   render(<NotFoundPage />);
 
   expect(

@@ -8,7 +8,7 @@ import OloRedirectPage from "./OloRedirectPage";
 jest.useFakeTimers();
 
 describe("OloRedirectPage", () => {
-  it("should render and redirect correctly", async () => {
+  it("should render and redirect correctly", () => {
     render(<OloRedirectPage />);
 
     expect(
