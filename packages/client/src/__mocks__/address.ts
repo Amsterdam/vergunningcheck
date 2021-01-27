@@ -30,8 +30,8 @@ export default [
                 scope: "MUNICIPAL",
               },
             ],
-            districtName: "Landlust",
-            neighborhoodName: "Landlust Noord",
+            districtName: "", // Purposely made empty
+            neighborhoodName: "", // Purposely made empty
             zoningPlans: [
               {
                 name: "Paraplubestemmingsplan Stadsdeel West",
