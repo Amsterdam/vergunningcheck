@@ -7,7 +7,7 @@ export default [
       query: findAddress,
       variables: {
         extraHouseNumberFull: "",
-        houseNumberFull: "19c",
+        houseNumberFull: "19 C",
         postalCode: "1055XD",
         queryExtra: false,
       },
