@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopicData, useTracking } from "../../hooks";
-import { AnswerOptions } from "../../types";
+import { Answer } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
 import Answers from "../Answers";
@@ -25,7 +25,7 @@ type QuestionProps = {
   onGoToNext: () => void;
   onGoToPrev: () => void;
   outcomeType: ClientOutcomes;
-  saveAnswer: (answer: AnswerOptions) => void;
+  saveAnswer: (answer: Answer) => void;
   showQuestionAlert: boolean;
   showNext: boolean;
 };

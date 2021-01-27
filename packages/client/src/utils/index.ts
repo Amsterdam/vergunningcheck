@@ -6,7 +6,7 @@ import { topics } from "../config";
 import nl from "../i18n/nl";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
-import { AnswerOptions, Restriction, Topic } from "../types";
+import { Answer, Restriction, Topic } from "../types";
 
 const { no, yes } = nl.translation.common;
 
@@ -107,6 +107,27 @@ export const isValidPostalcode = (value?: string) => {
 
 /**
  *
+ * This function transforms some cases where a user for example makes a typo or makes a strange space combination to a valid option.
+ * For example:
+ *  10h l -> 10 H L
+ *  10hl -> 10 H L
+ * @param {string} value
+ */
+export const sanitizeHouseNumberFull = (value?: string) => {
+  const spacesBeforeAndAfterNonDigit = /(?<=\D)|(?=\D)/g;
+  const nonDigits = /[a-z]/i;
+  const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/g;
+
+  if (!value) return "";
+  if (!nonDigits.test(value)) return value;
+  return (value.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
+    .join("") // Revert to one string
+    .replace(spacesBeforeAndAfterNonDigit, " ") // Add spaces before/after a non-digit
+    .trim(); // Trim space before and after
+};
+
+/**
+ *
  * This function removes all query strings from an URL
  *
  * @param {string} value
@@ -120,7 +141,7 @@ export const removeQueryStrings = (value: string) => {
  * These are the hardcoded values and label for boolean questions
  *
  */
-export const booleanOptions: AnswerOptions[] = [
+export const booleanOptions: Answer[] = [
   {
     formValue: "yes",
     label: yes,
