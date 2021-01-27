@@ -116,6 +116,15 @@ export default {
           "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
       },
     },
+    notFoundPage: {
+      heading: "Deze pagina is niet gevonden.",
+      paragraph: "Helaas",
+    },
+    oloRedirectPage: {
+      "page title": "Redirect naar OLO",
+      paragraph: "Wij sturen u automatisch door naar de website van het",
+      link: "landelijke Omgevingsloket",
+    },
     question: {
       alert: {
         "this answer causes a need for permit":
