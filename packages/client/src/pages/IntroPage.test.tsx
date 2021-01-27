@@ -2,7 +2,7 @@ import React from "react";
 
 import nl from "../i18n/nl";
 import { geturl } from "../routes";
-import { NEXT_BUTTON } from "../utils/test-ids";
+import { LOADING_TEXT, NEXT_BUTTON } from "../utils/test-ids";
 import { act, fireEvent, render, screen, waitFor } from "../utils/test-utils";
 import IntroPage from "./IntroPage";
 
@@ -11,6 +11,11 @@ jest.mock("../routes");
 describe("IntroPage", () => {
   it("renders correctly with topic", async () => {
     render(<IntroPage />);
+
+    // First wait for loading text
+    await waitFor(() =>
+      expect(screen.queryByTestId(LOADING_TEXT)).toBeInTheDocument()
+    );
 
     // Wait for first page element to appear
     await waitFor(() =>
