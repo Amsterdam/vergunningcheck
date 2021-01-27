@@ -117,11 +117,13 @@ const getOutcomeContent = (checker: Checker, slug: string) => {
           <NeedPermit
             contentText={
               nl.translation.outcome.needReport[
-                "on this page you can read more"
+                "on this page you can read more about report for demolition"
               ]
             }
             eventName={eventNames.HOW_TO_NOTIFY_A_DEMOLITION}
-            linkText={nl.translation.outcome.needReport["notify a demolition"]}
+            linkText={
+              nl.translation.outcome.needReport["how to report for demolition"]
+            }
             url={urls.DEMOLITION_PERMIT_PAGE}
           />
         ),
@@ -137,6 +139,41 @@ const getOutcomeContent = (checker: Checker, slug: string) => {
           ],
       },
     },
+    // This content is only relevant for the firesafety checker
+    firesafety: {
+      [NEED_CONTACT]: {},
+      [NEED_BOTH_PERMIT_AND_REPORT]: {},
+      [NEED_PERMIT]: {
+        mainContent: <NeedPermit url={urls.FIRESAFETY_PAGE} />,
+        title:
+          nl.translation.outcome.needPermit[
+            "you need a permit and not to report"
+          ],
+      },
+      [NEED_REPORT]: {
+        mainContent: (
+          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
+          <NeedPermit
+            contentText={
+              nl.translation.outcome.needReport[
+                "on this page you can read more about report"
+              ]
+            }
+            eventName={eventNames.HOW_TO_REPORT}
+            linkText={nl.translation.outcome.needReport["how to report"]}
+            url={urls.FIRESAFETY_PAGE}
+          />
+        ),
+        title:
+          nl.translation.outcome.needReport["you need a report for firesafety"],
+      },
+      [PERMIT_FREE]: {
+        title:
+          nl.translation.outcome.permitFree[
+            "you dont need a permit and dont need to report"
+          ],
+      },
+    },
   };
 
   // Get the current outcome
@@ -144,6 +181,8 @@ const getOutcomeContent = (checker: Checker, slug: string) => {
 
   if (slug === "bouwwerk-slopen") {
     return contents.demolition[outcomeType] as OutcomeContentType;
+  } else if (slug === "brandveilig-gebruik") {
+    return contents.firesafety[outcomeType] as OutcomeContentType;
   }
   return contents.default[outcomeType] as OutcomeContentType;
 };
