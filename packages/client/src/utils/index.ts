@@ -1,10 +1,14 @@
+import { ClientSimpleType, removeQuotes } from "@vergunningcheck/imtr-client";
 import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
 import { topics } from "../config";
+import nl from "../i18n/nl";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
-import { Restriction, Topic } from "../types";
+import { Answer, Restriction, Topic } from "../types";
+
+const { no, yes } = nl.translation.common;
 
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
@@ -25,7 +29,10 @@ export const findTopicBySlug = (slug: string) => {
     return null;
   }
 
-  const name = topicConfig.name || topicConfig.slug;
+  // Provide name (with slug as fallback)
+  // Ignore in coverage because by default topics.json doesn't contain nameless topics
+  /* istanbul ignore next */
+  const { name = slug } = topicConfig;
 
   return {
     hasIMTR: true,
@@ -41,7 +48,10 @@ export const findTopicBySlug = (slug: string) => {
 export const getRestrictionByTypeName = (
   restrictions?: Restriction[],
   typeName?: string
-) => (restrictions || []).find(({ __typename }) => __typename === typeName);
+) =>
+  (restrictions || []).find(
+    ({ __typename }) => __typename?.toLowerCase() === typeName?.toLowerCase()
+  );
 
 /**
  * Test if obj is `{}`
@@ -124,4 +134,37 @@ export const sanitizeHouseNumberFull = (value?: string) => {
  */
 export const removeQueryStrings = (value: string) => {
   return value.split("?")[0];
+};
+
+/**
+ *
+ * These are the hardcoded values and label for boolean questions
+ *
+ */
+export const booleanOptions: Answer[] = [
+  {
+    formValue: "yes",
+    label: yes,
+    value: true,
+  },
+  {
+    formValue: "no",
+    label: no,
+    value: false,
+  },
+];
+
+/**
+ *
+ * This function can be used to get the labels of boolean questions
+ *
+ * @param {ClientSimpleType} answer
+ */
+export const getAnswerLabel = (answer: ClientSimpleType) => {
+  if (typeof answer === "boolean") {
+    return answer ? yes : no;
+  } else if (typeof answer === "string") {
+    return removeQuotes(answer);
+  }
+  return answer;
 };

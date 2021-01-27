@@ -2,7 +2,8 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
-import { actions, eventNames } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
+import nl from "../../i18n/nl";
 import { MODAL } from "../../utils/test-ids";
 import {
   act,
@@ -14,15 +15,17 @@ import EditLocationModal from "./EditLocationModal";
 
 jest.mock("../../hooks/useTracking");
 
+const { edit, yes } = nl.translation.common;
+
 describe("EditLocationModal", () => {
   it("Modal should render as expected", async () => {
     const { getByText, queryByTestId } = render(<EditLocationModal />);
 
-    expect(getByText("Wijzig")).toBeInTheDocument();
+    expect(getByText(edit)).toBeInTheDocument();
     expect(queryByTestId(MODAL)).not.toBeInTheDocument();
 
     act(() => {
-      fireEvent.click(getByText("Wijzig"));
+      fireEvent.click(getByText(edit));
     });
     // Modal = open
 
@@ -34,14 +37,14 @@ describe("EditLocationModal", () => {
     });
 
     act(() => {
-      fireEvent.click(getByText("Ja"));
+      fireEvent.click(getByText(yes));
     });
     // Modal = closed
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(2);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(3);
     expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
   });
 });

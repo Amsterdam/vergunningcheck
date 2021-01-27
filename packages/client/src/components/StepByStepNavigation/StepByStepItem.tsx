@@ -87,10 +87,10 @@ const StepByStepItem: FunctionComponent<
         href,
       }}
       data-testid={STEPBYSTEPITEM}
-      aria-label={clickable ? heading : ""}
+      aria-label={clickable ? heading : ""} // @TODO: Refactor with `??`
       as={clickable ? "a" : "div"}
       onClick={handleOnClick}
-      role={clickable ? "menuitem" : ""}
+      role={clickable ? "menuitem" : ""} // @TODO: Refactor with `??`
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >

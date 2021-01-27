@@ -9,12 +9,6 @@ export type APIConfig = {
   topics: { [key: string]: string[] };
 };
 
-export type ApiResult = {
-  permitId: string;
-  version: number;
-  xml: string;
-};
-
 export type ActivitiesResponse = {
   error?: string;
 };
