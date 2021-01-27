@@ -14,6 +14,7 @@ const treeLoader = require("../loaders/tree");
 const address = require("./address");
 const area = require("./area");
 const cityScape = require("./cityScape");
+const geo = require("./geo");
 const monument = require("./monument");
 const node = require("./node");
 const restriction = require("./restriction");
@@ -24,6 +25,7 @@ const modules = [
   address,
   area,
   cityScape,
+  geo,
   monument,
   node,
   restriction,
@@ -40,7 +42,7 @@ const schema = makeExecutableSchema({
 const server = graphqlHTTP({
   ...config,
   schema,
-  validationRules: [depthLimit(3)],
+  validationRules: [depthLimit(config.depthLimit)],
   context: {
     // request,
     loaders: {

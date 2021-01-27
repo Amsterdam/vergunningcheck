@@ -13,7 +13,11 @@ import { Alert, ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useDebounce, useTopicData, useTracking } from "../../hooks";
 import { Address } from "../../types";
-import { isValidPostalcode, stripString } from "../../utils";
+import {
+  isValidPostalcode,
+  sanitizeHouseNumberFull,
+  stripString,
+} from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList, { Option } from "../AutoSuggestList";
 import LocationLoading from "./LocationLoading";
@@ -66,7 +70,7 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
 
   const variables = {
     extraHouseNumberFull: "",
-    houseNumberFull: houseNumberFull,
+    houseNumberFull: sanitizeHouseNumberFull(houseNumberFull),
     postalCode,
     queryExtra: false,
   };

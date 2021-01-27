@@ -5,6 +5,26 @@ const DEV = !PROD;
 
 const defaultQuery = `
   query findAddress {
+    trees {
+      id
+      meta {
+        monument
+      }
+      geo {
+        type
+        features {
+          type
+          geometry {
+            type
+            coordinates
+          }
+          properties {
+            id
+          }
+        }
+      }
+    }
+
     findAddress(postalCode: "1055xd", houseNumberFull: "19c") {
       exactMatch {
         ... on Address {
@@ -52,6 +72,7 @@ module.exports = {
   healthPath: "health",
   graphql: {
     graphiql: DEV ? { defaultQuery } : false,
+    depthLimit: 4,
   },
   enableContentSecurityPolicy: PROD,
   cache: {

@@ -144,8 +144,23 @@ describe("LocationInput", () => {
     });
 
     expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.FORWARD} ${sections.QUESTIONS}`,
+    });
+
+    expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.SUBMIT_MONUMENT,
       name: resultMonument,
+    });
+
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.SUBMIT_NEIGHBORHOOD,
+      name: nl.translation.common.unknown,
+    });
+
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.SUBMIT_DISTRICT,
+      name: nl.translation.common.unknown,
     });
 
     expect(handleNewAddressSubmit).toHaveBeenCalledTimes(1);

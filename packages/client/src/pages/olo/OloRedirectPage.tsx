@@ -1,7 +1,7 @@
-// @TODO: Add translations
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 import { TopicLayout } from "../../components/Layouts";
 import { urls } from "../../config";
@@ -9,6 +9,7 @@ import { useTopic } from "../../hooks";
 
 const OloRedirectPage: FunctionComponent = () => {
   const topic = useTopic();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const redirect = setTimeout(() => {
@@ -23,13 +24,15 @@ const OloRedirectPage: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Redirect naar OLO - {topic.text.heading}</title>
+        <title>
+          {t("oloRedirectPage.page title")} - {topic.text.heading}
+        </title>
       </Helmet>
-      <Heading forwardedAs="h2">Een ogenblik geduld alstublieft</Heading>
+      <Heading forwardedAs="h2">{t("common.one moment please")}</Heading>
       <Paragraph>
-        Wij sturen u automatisch door naar de website van het{" "}
-        <a title="landelijke Omgevingsloket" href={urls.OLO_INTRO}>
-          landelijke Omgevingsloket
+        {t("oloRedirectPage.paragraph")}{" "}
+        <a title={t("oloRedirectPage.link")} href={urls.OLO_INTRO}>
+          {t("oloRedirectPage.link")}
         </a>
         .
       </Paragraph>

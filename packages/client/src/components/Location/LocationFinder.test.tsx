@@ -119,6 +119,146 @@ describe("LocationFinder", () => {
     await waitFor(() => screen.getByTestId(LOCATION_FOUND));
   });
 
+  it("should render multiple housenumber types", async () => {
+    render(<Wrapper />, {}, locationFinderGraphQLMocks);
+
+    const inputPostalCode = screen.getByLabelText(
+      text.translation.common["postalcode label"]
+    );
+    const inputHouseNumber = screen.getByLabelText(
+      text.translation.common["housenumber label"]
+    );
+
+    expect(inputPostalCode).toHaveValue("");
+    expect(inputHouseNumber).toHaveValue("");
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1024BV" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "546 K 1" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1024BV" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "546k1" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1024BV" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "546 k1" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1024BV" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "546k 1" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1024BV" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "54 6k 1" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1027AE" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "20 H L" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1027AE" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "20 HL" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1027AE" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "20hl" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1027AE" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "20 hl" },
+      });
+    });
+
+    await waitFor(() =>
+      screen.queryByText(text.translation.common["address loading"])
+    );
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+  });
+
   it("should handle errors", async () => {
     render(<Wrapper />, {}, locationFinderGraphQLMocks);
 
