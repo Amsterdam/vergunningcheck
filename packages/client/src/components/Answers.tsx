@@ -11,7 +11,7 @@ import { booleanOptions } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswersProps = {
-  errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook failes fetching `errors` in this component
+  errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
   question: ImtrQuestion;
   saveAnswer: (answer: AnswerOptions) => void;
 };

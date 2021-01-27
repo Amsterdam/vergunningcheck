@@ -52,7 +52,7 @@ export type SectionObject = SectionData & {
 };
 
 export type SectionFunctions = {
-  activateSection: (section: SectionObject) => void;
+  changeActiveSection: (section: SectionObject) => void;
   completeSection: (state?: boolean, section?: SectionObject | null) => void;
   getNextSection: () => SectionObject | null;
   goToNextSection: () => void;

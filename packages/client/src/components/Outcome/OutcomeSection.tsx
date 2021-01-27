@@ -27,7 +27,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
 
   const {
     currentSection,
-    sectionFunctions: { activateSection },
+    sectionFunctions: { changeActiveSection },
   } = props;
 
   const { isActive, isCompleted } = currentSection;
@@ -41,7 +41,9 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   // Show content only when this section is active or completed
   const showOutcome = isActive || isCompleted;
   const handleOnClick =
-    isCompleted && !isActive ? () => activateSection(currentSection) : false;
+    isCompleted && !isActive
+      ? () => changeActiveSection(currentSection)
+      : false;
 
   // @TODO: fix the active style in a proper way without `style`
   const activeStyle = { marginTop: -1, borderColor: "white" };
