@@ -6,7 +6,7 @@ import { topics } from "../config";
 import nl from "../i18n/nl";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
-import { AnswerOptions, Restriction, Topic } from "../types";
+import { Answer, Restriction, Topic } from "../types";
 
 const { no, yes } = nl.translation.common;
 
@@ -120,7 +120,7 @@ export const removeQueryStrings = (value: string) => {
  * These are the hardcoded values and label for boolean questions
  *
  */
-export const booleanOptions: AnswerOptions[] = [
+export const booleanOptions: Answer[] = [
   {
     formValue: "yes",
     label: yes,

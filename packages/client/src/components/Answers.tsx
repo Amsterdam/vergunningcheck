@@ -6,14 +6,14 @@ import { FieldErrors } from "react-hook-form";
 
 import { ComponentWrapper, Label } from "../atoms";
 import { useTopicData } from "../hooks";
-import { AnswerOptions } from "../types";
+import { Answer } from "../types";
 import { booleanOptions } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswersProps = {
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
   question: ImtrQuestion;
-  saveAnswer: (answer: AnswerOptions) => void;
+  saveAnswer: (answer: Answer) => void;
 };
 
 const Answers: FunctionComponent<AnswersProps> = ({
@@ -27,7 +27,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
 
   const { answer: userAnswer, id, options } = question;
 
-  const answers: AnswerOptions[] = options
+  const answers: Answer[] = options
     ? options.map((option) => ({
         formValue: option,
         label: removeQuotes(option),
