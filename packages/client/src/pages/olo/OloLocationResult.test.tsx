@@ -28,7 +28,7 @@ describe("OloLocationResult", () => {
     expect(screen.queryByText("streetname 123")).toBeInTheDocument();
     expect(screen.queryByText("1234 AB Amsterdam")).toBeInTheDocument();
     expect(
-      screen.queryByText("Het gebouw is een monument.")
+      screen.queryByText("Het gebouw is een gemeentelijk monument.")
     ).toBeInTheDocument();
     expect(
       screen.queryByText(

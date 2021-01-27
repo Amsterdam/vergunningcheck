@@ -16,6 +16,15 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
+const monumentText = "Het gebouw is een gemeentelijk monument.";
+const noMonumentText = "Het gebouw is geen monument.";
+const nationalCityScapeText =
+  "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.";
+const municipalCityScapeText =
+  "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.";
+const noCityScapeText =
+  "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.";
+
 describe("LocationSummary", () => {
   const WrapperWithContext = (
     props: ComponentProps<typeof LocationSummary>
@@ -36,15 +45,10 @@ describe("LocationSummary", () => {
       );
 
       // Expect to find:
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).toBeInTheDocument();
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(nationalCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "has NATIONAL cityscape"
 
       // Expect NOT to find:
@@ -64,20 +68,13 @@ describe("LocationSummary", () => {
 
       // Expext to find:
       expect(
-        screen.queryByText(
-          "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(municipalCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "has MUNICIPAL cityscape"
 
       // Expect NOT to find:
-      expect(
-        screen.queryByText("Het gebouw is geen monument.")
-      ).not.toBeInTheDocument(); // Beware: it should NOT find the result: "no monument"
+      expect(screen.queryByText(noMonumentText)).not.toBeInTheDocument(); // Beware: it should NOT find the result: "no monument"
 
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).not.toBeInTheDocument(); // Beware: it should NOT find the result: "a monument"
+      expect(screen.queryByText(monumentText)).not.toBeInTheDocument(); // Beware: it should NOT find the result: "a monument"
 
       expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
 
@@ -94,13 +91,9 @@ describe("LocationSummary", () => {
       );
 
       // Expect NOT to find:
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).not.toBeInTheDocument();
 
-      expect(
-        screen.queryByText("Het gebouw is geen monument.")
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(noMonumentText)).not.toBeInTheDocument();
 
       expect(
         screen.queryByText("stads- of dorpsgezicht.", { exact: false })
@@ -118,15 +111,10 @@ describe("LocationSummary", () => {
       );
 
       // Expext to find:
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).toBeInTheDocument();
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(nationalCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "has NATIONAL cityscape"
 
       expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
@@ -144,24 +132,15 @@ describe("LocationSummary", () => {
       expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(municipalCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "has MUNICIPAL cityscape"
 
       // Expect NOT to find:
-      expect(
-        screen.queryByText("Het gebouw is geen monument.")
-      ).not.toBeInTheDocument(); // Beware: it should NOT find the result: "no monument"
+      expect(screen.queryByText(noMonumentText)).not.toBeInTheDocument(); // Beware: it should NOT find the result: "no monument"
 
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).not.toBeInTheDocument(); // Beware: it should NOT find the result: "a monument"
+      expect(screen.queryByText(monumentText)).not.toBeInTheDocument(); // Beware: it should NOT find the result: "a monument"
 
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).not.toBeInTheDocument(); // Beware: it should NOT find the result: "a monument"
+      expect(screen.queryByText(monumentText)).not.toBeInTheDocument(); // Beware: it should NOT find the result: "a monument"
     });
 
     it("above the questionnaire (without any restrictions)", () => {
@@ -176,13 +155,9 @@ describe("LocationSummary", () => {
       expect(screen.queryByText(/wijzig/i)).toBeInTheDocument();
 
       // Expect NOT to find:
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).not.toBeInTheDocument();
 
-      expect(
-        screen.queryByText("Het gebouw is geen monument.")
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(noMonumentText)).not.toBeInTheDocument();
 
       expect(
         screen.queryByText("stads- of dorpsgezicht.", { exact: false })
@@ -207,15 +182,10 @@ describe("LocationSummary", () => {
       );
 
       // Expext to find:
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).toBeInTheDocument();
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(nationalCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "has NATIONAL cityscape"
 
       // Expect NOT to find:
@@ -233,15 +203,10 @@ describe("LocationSummary", () => {
       );
 
       // Expect to find:
-      expect(
-        screen.queryByText("Het gebouw is geen monument.")
-      ).toBeInTheDocument(); // Beware: it should find the result: "no monument"
+      expect(screen.queryByText(noMonumentText)).toBeInTheDocument(); // Beware: it should find the result: "no monument"
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(noCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "no cityscape"
 
       // Expect NOT to find:
@@ -254,15 +219,10 @@ describe("LocationSummary", () => {
       );
 
       // Expext to find:
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).toBeInTheDocument();
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(nationalCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "has NATIONAL cityscape"
 
       // Expect NOT to find:
@@ -278,23 +238,16 @@ describe("LocationSummary", () => {
         />
       );
 
-      expect(
-        screen.queryByText("Het gebouw is geen monument.")
-      ).toBeInTheDocument(); // Beware: it should find the result: "no monument"
+      expect(screen.queryByText(noMonumentText)).toBeInTheDocument(); // Beware: it should find the result: "no monument"
 
       expect(
-        screen.queryByText(
-          "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
-          { exact: false }
-        )
+        screen.queryByText(noCityScapeText, { exact: false })
       ).toBeInTheDocument(); // Beware: it should find the result: "no cityscape"
 
       // Expect NOT to find:
       expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
 
-      expect(
-        screen.queryByText("Het gebouw is een monument.")
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(monumentText)).not.toBeInTheDocument();
     });
 
     it("renders in OLO Flow on the Results Page (without any zoningplans)", () => {

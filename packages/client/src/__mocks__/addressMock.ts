@@ -8,7 +8,7 @@ export default {
   restrictions: [
     {
       __typename: "Monument",
-      name: "monument",
+      name: "Gemeentelijk monument",
     },
     {
       __typename: "CityScape",

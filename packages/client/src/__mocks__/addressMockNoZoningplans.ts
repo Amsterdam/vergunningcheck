@@ -1,3 +1,5 @@
+import { AddressType } from "../types";
+
 export default {
   houseNumberFull: "123",
   houseNumber: 123,
@@ -11,5 +13,5 @@ export default {
     },
   ],
   streetName: "streetname",
-  zoningPlans: [],
-};
+  zoningPlans: [{}],
+} as AddressType;
