@@ -3,9 +3,9 @@ import React, { useCallback, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { HideForPrint } from "../atoms";
-import { Conclusion } from "../components/Conclusion";
 import { TopicLayout } from "../components/Layouts";
 import { LocationInput, LocationSummary } from "../components/Location";
+import { Outcome } from "../components/Outcome";
 import PrintDetails from "../components/PrintDetails";
 import Questions, { GoToQuestionProp } from "../components/Questions";
 import {
@@ -50,7 +50,7 @@ const CheckerPage = () => {
     // In case no active sections are found, reset the checker
     // This is a fallback to prevent users being stuck without any active component
     const activeComponent = [
-      sections.CONCLUSION,
+      sections.OUTCOME,
       sections.LOCATION_INPUT,
       sections.QUESTIONS,
     ].find((section) => isActive(section));
@@ -204,11 +204,11 @@ const CheckerPage = () => {
     });
   };
 
-  // Callback to go to the Conclusion section
+  // Callback to go to the Outcome section
   // `false` is to prevent unexpected click, hover and focus states on already active section
-  const handleConclusionClick =
-    !isActive(sections.CONCLUSION) && isFinished(sections.QUESTIONS)
-      ? () => setActiveState(sections.CONCLUSION)
+  const handleOutcomeClick =
+    !isActive(sections.OUTCOME) && isFinished(sections.QUESTIONS)
+      ? () => setActiveState(sections.OUTCOME)
       : false;
 
   const checkedStyle = {
@@ -289,18 +289,18 @@ const CheckerPage = () => {
           }}
         />
         <StepByStepItem
-          active={isActive(sections.CONCLUSION)}
+          active={isActive(sections.OUTCOME)}
           checked={isFinished(sections.QUESTIONS)}
           as="div"
           done={isFinished(sections.QUESTIONS)}
           customSize
           heading="Uitkomst"
           largeCircle
-          onClick={handleConclusionClick}
+          onClick={handleOutcomeClick}
           // Overwrite the line between the Items
           style={{ marginTop: -1 }}
         >
-          {isFinished(sections.QUESTIONS) && <Conclusion />}
+          {isFinished(sections.QUESTIONS) && <Outcome />}
         </StepByStepItem>
       </StepByStepNavigation>
 

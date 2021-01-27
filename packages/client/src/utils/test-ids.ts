@@ -38,7 +38,7 @@ export const QUESTION_FORM = "question-form";
 export const QUESTION_ANSWERS = "question-answers";
 export const QUESTION_ALERT = "question-alert";
 
-// Conclusion
+// Outcomes
 export const NEED_CONTACT = "need-contact";
 export const NEED_PERMIT = "need-permit";
 export const NEED_PERMIT_BUTTON = "need-permit-button";

@@ -59,21 +59,21 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const { checker } = useChecker() as { checker: Checker };
   const { topicData, setTopicData } = useTopicSession();
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
-  const [contactConclusion, setContactConclusion] = useState(false);
+  const [contactOutcome, setContactOutcome] = useState(false);
   const { name } = topic;
   const { answers, questionIndex } = topicData;
-  const conclusionRef = useRef<any>(null);
+  const outcomeRef = useRef<any>(null);
 
-  const goToConclusion = useCallback(() => {
-    setActiveState(sections.CONCLUSION);
-    setFinishedState([sections.QUESTIONS, sections.CONCLUSION], true);
+  const goToOutcome = useCallback(() => {
+    setActiveState(sections.OUTCOME);
+    setFinishedState([sections.QUESTIONS, sections.OUTCOME], true);
     matomoTrackEvent({
       action: checker.stack[questionIndex].text,
-      name: eventNames.GOTO_CONCLUSION,
+      name: eventNames.GOTO_OUTCOME,
     });
     // Wrap the function to prevent a miscalculation when the `Question` component collapses
     setImmediate(() => {
-      scrollToRef(conclusionRef, 20);
+      scrollToRef(outcomeRef, 20);
     });
   }, [
     checker,
@@ -87,10 +87,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     const question = checker.stack[questionIndex];
 
     if (checker.needContactExit(question)) {
-      // Go directly to "Contact Conclusion" and skip other questions
-      goToConclusion();
+      // Go directly to "Contact Outcome" and skip other questions
+      goToOutcome();
     } else {
-      // Load the next question or go to the "Conclusion"
+      // Load the next question or go to the "Outcome"
       if (checker.stack.length - 1 === questionIndex) {
         // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
         const next = checker.next();
@@ -100,7 +100,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           // Turn skipping answered questions off
           setSkipAnsweredQuestions(true);
         } else {
-          goToConclusion();
+          goToOutcome();
         }
       } else {
         // In this case, the user is changing a previously answered question and we don't want to load a new question
@@ -109,7 +109,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         setSkipAnsweredQuestions(true);
       }
     }
-  }, [checker, questionIndex, goToQuestion, goToConclusion]);
+  }, [checker, questionIndex, goToQuestion, goToOutcome]);
 
   const onQuestionPrev = () => {
     // Load the previous question
@@ -127,7 +127,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // Checker rewinding also needs to work when you already have a conlusion
       // Go to the specific question in the stack
       setActiveState(sections.QUESTIONS);
-      setFinishedState([sections.CONCLUSION, sections.QUESTIONS], false);
+      setFinishedState([sections.OUTCOME, sections.QUESTIONS], false);
       setFinishedState(sections.LOCATION_INPUT, true);
 
       goToQuestion(questionId);
@@ -138,7 +138,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const shouldGoToConlusion = () => {
     if (!checker.isConclusive()) {
       return false;
-    } else if (contactConclusion) {
+    } else if (contactOutcome) {
       return true;
     }
 
@@ -172,7 +172,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.js
     // Bug fix in case of refresh: hide already future answered questions (caused by setQuestionAnswers())
-    if (!contactConclusion) {
+    if (!contactOutcome) {
       checker.stack.forEach((q, i) => {
         if (checker.needContactExit(q)) {
           // Set questionIndex to this question index to make sure already answered questions are hidden
@@ -180,18 +180,12 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             questionIndex: i,
           });
 
-          // Set Contact Conclusion
-          setContactConclusion(true);
+          // Set Contact Outcome
+          setContactOutcome(true);
         }
       });
     }
-  }, [
-    checker,
-    contactConclusion,
-    topicData,
-    setContactConclusion,
-    setTopicData,
-  ]);
+  }, [checker, contactOutcome, topicData, setContactOutcome, setTopicData]);
 
   const isQuestionSectionActive = isActive(sections.QUESTIONS);
 
@@ -213,10 +207,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // @TODO: Move this to `imtr-client`
   let permitsPerQuestion: ClientOutcomes[] = [];
   checker.permits.forEach((permit: Permit) => {
-    const conclusionDecision = permit.getDecisionById("dummy");
+    const outcomeDecision = permit.getDecisionById("dummy");
 
-    if (conclusionDecision) {
-      const imtrOutcome = conclusionDecision.getOutput();
+    if (outcomeDecision) {
+      const imtrOutcome = outcomeDecision.getOutput();
       let outcomeType = ClientOutcomes.PERMIT_FREE;
 
       if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
@@ -228,7 +222,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       }
 
       if (outcomeType) {
-        const decisiveDecisions = conclusionDecision.getDecisiveInputs() as Decision[];
+        const decisiveDecisions = outcomeDecision.getDecisiveInputs() as Decision[];
 
         decisiveDecisions.forEach((decision) => {
           const decisiveQuestion = decision
@@ -247,7 +241,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
   const saveAnswer = (value: string) => {
-    // This makes sure when a question is changed that a possible visible Conclusion is removed
+    // This makes sure when a question is changed that a possible visible Outcome is removed
     if (isFinished(sections.QUESTIONS)) {
       setFinishedState(sections.QUESTIONS, false);
     }
@@ -290,8 +284,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       checker.rewindTo(questionIndex);
     }
 
-    // Set Contact Conclusion
-    setContactConclusion(checker.needContactExit(question));
+    // Set Contact Outcome
+    setContactOutcome(checker.needContactExit(question));
 
     // Store all answers in the session context
     setTopicData({
@@ -308,10 +302,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     <>
       {checker.stack.map((q, i) => {
         // @TODO: Refactor this code and move to checker.js
-        // We don't want to render future questions if the current index is the decisive answer for the Contact Conclusion
+        // We don't want to render future questions if the current index is the decisive answer for the Contact Outcome
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers())
         if (
-          contactConclusion &&
+          contactOutcome &&
           !checker._getUpcomingQuestions().length &&
           questionIndex < i
         ) {
@@ -387,15 +381,15 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         // Define userAnswer
         const userAnswer = getUserAnswer(q);
 
-        // Skip unanswered questions or in case of Contact Conclusion
-        if (!userAnswer || contactConclusion) {
+        // Skip unanswered questions or in case of Contact Outcome
+        if (!userAnswer || contactOutcome) {
           return null;
         }
 
         // Get new index
         const index = i + 1 + checker.stack.length;
 
-        // Check if current question is causing a conclusion
+        // Check if current question is causing a outcome
         const showQuestionAlert = !!permitsPerQuestion[index];
 
         // Disable the EditButton or not
@@ -421,7 +415,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         );
       })}
 
-      <ScrollAnchor ref={conclusionRef} />
+      <ScrollAnchor ref={outcomeRef} />
     </>
   );
 };

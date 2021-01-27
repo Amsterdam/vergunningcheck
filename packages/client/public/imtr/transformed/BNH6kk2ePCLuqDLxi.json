@@ -9,55 +9,55 @@
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_voorkant.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_zijkant.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_kant_achterkant.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een rolhek, rolluik of luik plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
-          "id": "uitv__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-          "prio": 10
+          "prio": 10,
+          "id": "bdda2bdf59bf70037b4fa2331facd4de"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_weg.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__b14b35d8-2b69-4fa0-9415-da722db190ca",
-          "prio": 20
+          "prio": 20,
+          "id": "aade4378ba8f2672df0c4437280ef9f8"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_water.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667",
-          "prio": 30
+          "prio": 30,
+          "id": "f419ff3b297512324934f83e6f9c4959"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_zijkant_plantsoen.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__e881ef9d-5de4-4617-b1c3-1a8b325eefc0",
-          "prio": 40
+          "prio": 40,
+          "id": "af3e7f8b25386bb48ec7f922488c516b"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Weg.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__170dd9cf-83f5-4c39-abd2-765a532009fc",
-          "prio": 50
+          "prio": 50,
+          "id": "1ced141870fd3d40e47a780b812298ce"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Water.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__61326502-a8a7-4ad1-b7da-653cee3ceb84",
-          "prio": 60
+          "prio": 60,
+          "id": "decb47ebfe30d600cd94656f77d43ba0"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/Rolluik_OTG_achterkant_Plantsoen.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__a2b77822-2cb9-4c66-a55a-4755a2a513fb",
-          "prio": 70
+          "prio": 70,
+          "id": "6fda647acf8f483d8e40ee2056d3b8a1"
         }
       ],
       "decisions": {
-        "_c8cec8c0-079c-49f5-8440-85ceaea1ff33": {
-          "requiredInputs": ["#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3"],
+        "ea34c9869fadc74ba205b68ceecb0aa5": {
+          "requiredInputs": ["bdda2bdf59bf70037b4fa2331facd4de"],
           "decisionTable": {
             "rules": [
               {
@@ -83,10 +83,10 @@
             ]
           }
         },
-        "_98485991-8147-4771-af21-df1dfedd3722": {
+        "dfd21479106e7d275c0a451797d60915": {
           "requiredInputs": [
-            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-            "#input__b14b35d8-2b69-4fa0-9415-da722db190ca"
+            "bdda2bdf59bf70037b4fa2331facd4de",
+            "aade4378ba8f2672df0c4437280ef9f8"
           ],
           "decisionTable": {
             "rules": [
@@ -113,10 +113,10 @@
             ]
           }
         },
-        "_6311493c-ee65-4d4c-8819-aeebfe43bccc": {
+        "953e39625aa49adb27f56be2bcc2cad9": {
           "requiredInputs": [
-            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-            "#input__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667"
+            "bdda2bdf59bf70037b4fa2331facd4de",
+            "f419ff3b297512324934f83e6f9c4959"
           ],
           "decisionTable": {
             "rules": [
@@ -143,10 +143,10 @@
             ]
           }
         },
-        "_f88cf542-f1c3-4e3f-86a4-9d48fff70a2e": {
+        "d971c70fb9908fd50a300ca83670acab": {
           "requiredInputs": [
-            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-            "#input__e881ef9d-5de4-4617-b1c3-1a8b325eefc0"
+            "bdda2bdf59bf70037b4fa2331facd4de",
+            "af3e7f8b25386bb48ec7f922488c516b"
           ],
           "decisionTable": {
             "rules": [
@@ -173,10 +173,10 @@
             ]
           }
         },
-        "_ac83998f-5e0d-4a3b-8240-14c2c796c964": {
+        "377703253b954576aeeee416028df295": {
           "requiredInputs": [
-            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-            "#input__170dd9cf-83f5-4c39-abd2-765a532009fc"
+            "bdda2bdf59bf70037b4fa2331facd4de",
+            "1ced141870fd3d40e47a780b812298ce"
           ],
           "decisionTable": {
             "rules": [
@@ -199,10 +199,10 @@
             ]
           }
         },
-        "_d5edc251-3a66-4030-b4b8-6b27c49855b6": {
+        "79ca6b60280f2c44b0da22df491beb38": {
           "requiredInputs": [
-            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-            "#input__61326502-a8a7-4ad1-b7da-653cee3ceb84"
+            "bdda2bdf59bf70037b4fa2331facd4de",
+            "decb47ebfe30d600cd94656f77d43ba0"
           ],
           "decisionTable": {
             "rules": [
@@ -225,10 +225,10 @@
             ]
           }
         },
-        "_d6cce826-590c-4cb8-86d3-599e97b47c6f": {
+        "760555a5f1ee0fa8ed06fac2f477a003": {
           "requiredInputs": [
-            "#input__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-            "#input__a2b77822-2cb9-4c66-a55a-4755a2a513fb"
+            "bdda2bdf59bf70037b4fa2331facd4de",
+            "6fda647acf8f483d8e40ee2056d3b8a1"
           ],
           "decisionTable": {
             "rules": [
@@ -253,13 +253,13 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_c8cec8c0-079c-49f5-8440-85ceaea1ff33",
-            "#_98485991-8147-4771-af21-df1dfedd3722",
-            "#_6311493c-ee65-4d4c-8819-aeebfe43bccc",
-            "#_f88cf542-f1c3-4e3f-86a4-9d48fff70a2e",
-            "#_ac83998f-5e0d-4a3b-8240-14c2c796c964",
-            "#_d5edc251-3a66-4030-b4b8-6b27c49855b6",
-            "#_d6cce826-590c-4cb8-86d3-599e97b47c6f"
+            "ea34c9869fadc74ba205b68ceecb0aa5",
+            "dfd21479106e7d275c0a451797d60915",
+            "953e39625aa49adb27f56be2bcc2cad9",
+            "d971c70fb9908fd50a300ca83670acab",
+            "377703253b954576aeeee416028df295",
+            "79ca6b60280f2c44b0da22df491beb38",
+            "760555a5f1ee0fa8ed06fac2f477a003"
           ],
           "decisionTable": {
             "rules": [
@@ -368,36 +368,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__9aed1ad7-4af0-4878-8260-b65fc0d125e3": {
-          "href": "#uitv__9aed1ad7-4af0-4878-8260-b65fc0d125e3",
-          "type": "string"
-        },
-        "input__b14b35d8-2b69-4fa0-9415-da722db190ca": {
-          "href": "#uitv__b14b35d8-2b69-4fa0-9415-da722db190ca",
-          "type": "boolean"
-        },
-        "input__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667": {
-          "href": "#uitv__07b21b7f-1edc-4b6b-96bc-7c75c7a5b667",
-          "type": "boolean"
-        },
-        "input__e881ef9d-5de4-4617-b1c3-1a8b325eefc0": {
-          "href": "#uitv__e881ef9d-5de4-4617-b1c3-1a8b325eefc0",
-          "type": "boolean"
-        },
-        "input__170dd9cf-83f5-4c39-abd2-765a532009fc": {
-          "href": "#uitv__170dd9cf-83f5-4c39-abd2-765a532009fc",
-          "type": "boolean"
-        },
-        "input__61326502-a8a7-4ad1-b7da-653cee3ceb84": {
-          "href": "#uitv__61326502-a8a7-4ad1-b7da-653cee3ceb84",
-          "type": "boolean"
-        },
-        "input__a2b77822-2cb9-4c66-a55a-4755a2a513fb": {
-          "href": "#uitv__a2b77822-2cb9-4c66-a55a-4755a2a513fb",
-          "type": "boolean"
         }
       }
     }

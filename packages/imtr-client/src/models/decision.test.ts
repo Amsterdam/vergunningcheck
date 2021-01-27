@@ -14,24 +14,24 @@ const getMock = () => {
   });
   const decision = new Decision("fake-id", [question], [yes, no]);
 
-  const conclusionYes = new Rule(["Something big"], "You need this permit.");
-  const conclusionNo = new Rule(
+  const outcomeYes = new Rule(["Something big"], "You need this permit.");
+  const outcomeNo = new Rule(
     ["Something small"],
     "You don't need this permit."
   );
 
-  const conclusionDecision = new Decision(
+  const outcomeDecision = new Decision(
     "dummy",
     [decision],
-    [conclusionYes, conclusionNo]
+    [outcomeYes, outcomeNo]
   );
   return {
     rules: { yes, no },
     question,
     decision,
-    conclusion: {
-      decision: conclusionDecision,
-      rules: { yes: conclusionYes, no: conclusionNo },
+    outcome: {
+      decision: outcomeDecision,
+      rules: { yes: outcomeYes, no: outcomeNo },
     },
   };
 };
@@ -109,7 +109,7 @@ describe("Decision", () => {
   describe("for recursive-decision", () => {
     test("getMatchingRules", () => {
       const mock = getMock();
-      const concl = mock.conclusion;
+      const concl = mock.outcome;
       expect(concl.decision.getMatchingRules()[0]).toBe(undefined);
       mock.question.setAnswer(true);
       expect(mock.decision.getMatchingRules()[0]).toBe(mock.rules.yes);
@@ -119,9 +119,9 @@ describe("Decision", () => {
       expect(concl.decision.getMatchingRules()[0]).toBe(concl.rules.no);
     });
 
-    test("getQuestions on conclusion doesn't give questions", () => {
+    test("getQuestions on outcome doesn't give questions", () => {
       const mock = getMock();
-      expect(mock.conclusion.decision.getQuestions()).toStrictEqual([]);
+      expect(mock.outcome.decision.getQuestions()).toStrictEqual([]);
     });
   });
 });

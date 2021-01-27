@@ -91,7 +91,7 @@ export default class Checker {
       const questionAnswer = answers[this.last.id];
 
       // The checker is completed when `questionAnswer` is undefined
-      // or if the same question is handled again (to allow `Contact` conclusions)
+      // or if the same question is handled again (to allow `Contact` outcomes)
       if (questionAnswer === undefined || prevId === this.last.id) {
         done = true;
       } else {
@@ -111,7 +111,7 @@ export default class Checker {
   }
 
   /**
-   * Find all permits that have a "contact" conclusion,
+   * Find all permits that have a "contact" outcome,
    * for every permit see if the decisive decision's last question
    * equals the currentQuestion.
    *
@@ -122,13 +122,13 @@ export default class Checker {
    */
   needContactExit(currentQuestion: Question): boolean {
     return !!this.permits.find((permit) => {
-      const conclusion = permit.getDecisionById("dummy") as Decision;
-      const conclusionMatchingRules = conclusion.getMatchingRules();
-      const matchingContactRule = conclusionMatchingRules.find(
+      const outcome = permit.getDecisionById("dummy") as Decision;
+      const outcomeMatchingRules = outcome.getMatchingRules();
+      const matchingContactRule = outcomeMatchingRules.find(
         (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
       );
       if (matchingContactRule) {
-        const decisiveDecisions = conclusion.getDecisiveInputs() as Decision[];
+        const decisiveDecisions = outcome.getDecisiveInputs() as Decision[];
 
         // find the contact decision
         const contactDecision = decisiveDecisions.find((decision) =>
@@ -149,7 +149,7 @@ export default class Checker {
   /**
    * We consider a checker to be finished or conclusive when either we
    * have one or more permits with a contact-outcome, or all permits
-   * have a conclusion.
+   * have a outcomes.
    * @returns Returns true if "at least one" of the permits inside checker has a final outcome
    */
   isConclusive(): boolean {
@@ -244,24 +244,22 @@ export default class Checker {
   }
 
   /**
-   * Get all decisions for the conclusion of every permit.
+   * Get all decisions for the outcome of every permit.
    */
-  _getConclusionDecisions(): Decision[] {
+  _getOutcomeDecisions(): Decision[] {
     return this.permits
       .map((permit) => permit.getDecisionById("dummy"))
-      .flatMap((conclusion) => (conclusion as Decision).inputs) as Decision[];
+      .flatMap((outcome) => (outcome as Decision).inputs) as Decision[];
   }
 
   /**
    * Get all questions for the permits in this checker
    */
   _getAllQuestions(): Question[] {
-    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // for every unanswsered decision in 'outcome' we push it's questions on
     // our accumulator, but only if it's not already on the stack
     return this.dedupeAndSortQuestions(
-      this._getConclusionDecisions().flatMap((decision) =>
-        decision.getQuestions()
-      )
+      this._getOutcomeDecisions().flatMap((decision) => decision.getQuestions())
     );
   }
 
@@ -277,10 +275,10 @@ export default class Checker {
         : null;
     };
 
-    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // for every unanswsered decision in 'outcome' we push it's questions on
     // our accumulator, but only if it's not already on the stack
     return this.dedupeAndSortQuestions(
-      this._getConclusionDecisions()
+      this._getOutcomeDecisions()
         .filter((d) => d.getMatchingRules(inputReducer).length === 0)
         .flatMap((decision) => decision.getQuestions())
         .filter((q) => !this.stack.includes(q) || q.autofill)
@@ -326,12 +324,12 @@ export default class Checker {
       .filter((permit: Permit) => !!permit.getOutputByDecisionId("dummy"))
       .map((permit: Permit) => {
         const conclusion = permit.getDecisionById("dummy") as Decision;
-        const conclusionMatchingRules = conclusion.getMatchingRules() as Rule[];
-        const contactOutcome = conclusionMatchingRules.find(
+        const outcomeMatchingRules = conclusion.getMatchingRules() as Rule[];
+        const contactOutcome = outcomeMatchingRules.find(
           (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
         ) as Rule;
         const outcome = (contactOutcome?.outputValue ||
-          conclusionMatchingRules[0].outputValue) as string;
+          outcomeMatchingRules[0].outputValue) as string;
 
         return {
           outcome,
@@ -344,7 +342,7 @@ export default class Checker {
           description:
             outcome === imtrOutcomes.NEED_CONTACT
               ? contactOutcome.description
-              : conclusionMatchingRules[0].description,
+              : outcomeMatchingRules[0].description,
         };
       });
   }
