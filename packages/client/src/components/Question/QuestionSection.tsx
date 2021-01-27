@@ -20,7 +20,11 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   const { currentSection, sectionFunctions } = props;
 
   const { isActive, isCompleted } = currentSection;
-  const { activateSection, completeSection, getNextSection } = sectionFunctions;
+  const {
+    changeActiveSection,
+    completeSection,
+    getNextSection,
+  } = sectionFunctions;
 
   const hideQuestionSection = !!(
     address &&
@@ -52,7 +56,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     if (checker && checker.isConclusive() && hideQuestionSection && isActive) {
       const nextSection = getNextSection();
       if (nextSection) {
-        activateSection(nextSection);
+        changeActiveSection(nextSection);
       }
 
       // TrackEvent for next step
@@ -94,7 +98,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
 
     if (!isActive) {
       // Activate the Question Section in case another section is active
-      activateSection(currentSection);
+      changeActiveSection(currentSection);
 
       // TrackEvent for next active step
       matomoTrackEvent({

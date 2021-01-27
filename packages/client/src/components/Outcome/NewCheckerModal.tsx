@@ -73,8 +73,11 @@ const NewCheckerModal: FunctionComponent = () => {
       // Set the new topic data with the correct `type` and potentially the `address`
       const newTopicData = {
         ...defaultTopicSession,
+        // Optionally save address
         address: doSaveAddress ? topicData.address : null,
-        timesCheckerLoaded: checkerSlug === slug ? 2 : 0,
+        // Update timesCheckerLoaded + 1 or reset to zero if going to a new checker
+        timesCheckerLoaded:
+          checkerSlug === slug ? topicData.timesCheckerLoaded + 1 : 0,
         type: checkerSlug,
       };
 

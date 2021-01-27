@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import { ScrollAnchor } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
-import { AnswerOptions, SectionFunctions } from "../../types";
+import { Answer, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION } from "../../utils/test-ids";
@@ -300,9 +300,9 @@ const Questions: FunctionComponent<QuestionsProps> = ({
    *
    * This function handles everything when an answer is updated
    *
-   * @param {AnswerOptions} answer
+   * @param {Answer} answer
    */
-  const saveAnswer = (answer: AnswerOptions) => {
+  const saveAnswer = (answer: Answer) => {
     // Save the changed answer to the question
     saveAnswerHook && saveAnswerHook();
 

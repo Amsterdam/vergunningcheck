@@ -33,7 +33,7 @@ const DebugDecisionTable: FunctionComponent = () => {
 
   // Do not render without checker or when testing with Jest
   if (!checker?.permits || process.env.JEST_WORKER_ID) {
-    return <></>;
+    return null;
   }
 
   const allQuestions = checker._getAllQuestions();
