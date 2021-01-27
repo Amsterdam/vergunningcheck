@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 21,
+      "version": 28,
       "name": "Conclusie Kozijn plaatsen",
       "questions": [
         {
@@ -15,8 +15,8 @@
           ],
           "type": "string",
           "prio": 10,
-          "uuid": "kozijn monument",
-          "id": "a27c8cc419fc21b7d6b8e7245604afc8"
+          "uuid": "kozijn-monument",
+          "id": "fd9899df974598b284692646da0ff8b5"
         },
         {
           "text": "Gaat u een kozijn plaatsen of vernieuwen?",
@@ -26,8 +26,8 @@
           ],
           "type": "string",
           "prio": 20,
-          "uuid": "kozijn - onderhoud1",
-          "id": "2408b15246280d9f334f288ff3ec3203"
+          "uuid": "kozijn-onderhoud1",
+          "id": "37be1589dc9eb87496f29bfe5ea054d2"
         },
         {
           "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -37,8 +37,8 @@
           ],
           "type": "string",
           "prio": 30,
-          "uuid": "kozijn - onderhoud2",
-          "id": "5555e6f4af679427646a075d06698bda"
+          "uuid": "kozijn-onderhoud2",
+          "id": "8cca423541aeca3590b1b130ce850341"
         },
         {
           "text": "Gaat u een kozijn plaatsen of vernieuwen?",
@@ -136,10 +136,10 @@
         }
       ],
       "decisions": {
-        "32da9dc35e4735fcbe64efcb955cc323": {
+        "62afe1cd6ab025646855fc78064a6290": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
-            "2408b15246280d9f334f288ff3ec3203"
+            "fd9899df974598b284692646da0ff8b5",
+            "37be1589dc9eb87496f29bfe5ea054d2"
           ],
           "decisionTable": {
             "rules": [
@@ -171,9 +171,9 @@
             ]
           }
         },
-        "59f861ce5ea23924a5ee824bf680f2c8": {
+        "2051b02658589f5a18ad0aafe112f2ed": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "a3bf0ccfcf0169c3279a20c6733f3ece"
           ],
@@ -210,11 +210,11 @@
             ]
           }
         },
-        "b40b55f3613f86386f17e6ff70e62a7e": {
+        "725dfa3809ff1f9e0a7942b1827d41c8": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
-            "2408b15246280d9f334f288ff3ec3203",
-            "5555e6f4af679427646a075d06698bda"
+            "fd9899df974598b284692646da0ff8b5",
+            "37be1589dc9eb87496f29bfe5ea054d2",
+            "8cca423541aeca3590b1b130ce850341"
           ],
           "decisionTable": {
             "rules": [
@@ -257,9 +257,9 @@
             ]
           }
         },
-        "989b2bff6c62eee930e49ee3cb440e77": {
+        "0f1d8b0e4fb84dc96f2982a5daf18b7d": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "a3bf0ccfcf0169c3279a20c6733f3ece"
@@ -308,9 +308,9 @@
             ]
           }
         },
-        "2fb6e42232b220d55856b9884f5bb077": {
+        "bf4da5c579ab1c0f91d3277f4200ec9e": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -393,9 +393,9 @@
             ]
           }
         },
-        "10b617a9897baa816d3bfb7755b3da37": {
+        "98e14a3f209bc0ffb16fb044a20afbff": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -489,9 +489,9 @@
             ]
           }
         },
-        "89b64160b876c540038a10abc02877f0": {
+        "eb2a81158da21ec61a42e717633c0a08": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -599,9 +599,9 @@
             ]
           }
         },
-        "952e25ba6d7f3743b142116ae157e6e2": {
+        "559853d784d1d7937834806c412683d9": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -695,9 +695,9 @@
             ]
           }
         },
-        "61cbcf3627bf96803a42187af1d21426": {
+        "0b292a20b0148d5a8263e8c270083fe4": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -802,9 +802,9 @@
             ]
           }
         },
-        "48deed07bb9c268cec7298cb998884d6": {
+        "3091e710b9b0dd8fa5bb7d6f83f25768": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -909,9 +909,9 @@
             ]
           }
         },
-        "c248d2ea578ac369faeee794e3f1b162": {
+        "543192588dba693a1704a37d11f9fb8d": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -1024,9 +1024,9 @@
             ]
           }
         },
-        "74fed386364020345ce1e6c34b830da3": {
+        "85e96e58d5b94410a915ad9d9b4fc689": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -1139,9 +1139,9 @@
             ]
           }
         },
-        "41a7f9615e9e63717e234ea52b191472": {
+        "331dd0c10aade5d2273187f35c6edfcf": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -1266,9 +1266,9 @@
             ]
           }
         },
-        "11c6a5116b3297692c72b7d137b303b1": {
+        "b4419eda780c74e669ce7d55b199a2e5": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -1402,9 +1402,9 @@
             ]
           }
         },
-        "3e2e373e17ad898ea927cdae351bf5ba": {
+        "8517b4a6212445268a8148c4ded9e466": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
             "a3bf0ccfcf0169c3279a20c6733f3ece",
@@ -1529,9 +1529,9 @@
             ]
           }
         },
-        "37acf51b24e4942495393a460f9f3b3b": {
+        "a68f2edffa6b7c82bceb34b9a0b1f5b2": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -1665,9 +1665,9 @@
             ]
           }
         },
-        "47039d518c31b5a44951cb89481db960": {
+        "cc3fd334cb0ae4960981b99e1c252936": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -1834,9 +1834,9 @@
             ]
           }
         },
-        "768bfd84fffe0b4a895775eacefdd16f": {
+        "5e34d07b4f8276c7bd5d429c178ec30f": {
           "requiredInputs": [
-            "a27c8cc419fc21b7d6b8e7245604afc8",
+            "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
@@ -2005,24 +2005,24 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "32da9dc35e4735fcbe64efcb955cc323",
-            "59f861ce5ea23924a5ee824bf680f2c8",
-            "b40b55f3613f86386f17e6ff70e62a7e",
-            "989b2bff6c62eee930e49ee3cb440e77",
-            "2fb6e42232b220d55856b9884f5bb077",
-            "10b617a9897baa816d3bfb7755b3da37",
-            "89b64160b876c540038a10abc02877f0",
-            "952e25ba6d7f3743b142116ae157e6e2",
-            "61cbcf3627bf96803a42187af1d21426",
-            "48deed07bb9c268cec7298cb998884d6",
-            "c248d2ea578ac369faeee794e3f1b162",
-            "74fed386364020345ce1e6c34b830da3",
-            "41a7f9615e9e63717e234ea52b191472",
-            "11c6a5116b3297692c72b7d137b303b1",
-            "3e2e373e17ad898ea927cdae351bf5ba",
-            "37acf51b24e4942495393a460f9f3b3b",
-            "47039d518c31b5a44951cb89481db960",
-            "768bfd84fffe0b4a895775eacefdd16f"
+            "62afe1cd6ab025646855fc78064a6290",
+            "2051b02658589f5a18ad0aafe112f2ed",
+            "725dfa3809ff1f9e0a7942b1827d41c8",
+            "0f1d8b0e4fb84dc96f2982a5daf18b7d",
+            "bf4da5c579ab1c0f91d3277f4200ec9e",
+            "98e14a3f209bc0ffb16fb044a20afbff",
+            "eb2a81158da21ec61a42e717633c0a08",
+            "559853d784d1d7937834806c412683d9",
+            "0b292a20b0148d5a8263e8c270083fe4",
+            "3091e710b9b0dd8fa5bb7d6f83f25768",
+            "543192588dba693a1704a37d11f9fb8d",
+            "85e96e58d5b94410a915ad9d9b4fc689",
+            "331dd0c10aade5d2273187f35c6edfcf",
+            "b4419eda780c74e669ce7d55b199a2e5",
+            "8517b4a6212445268a8148c4ded9e466",
+            "a68f2edffa6b7c82bceb34b9a0b1f5b2",
+            "cc3fd334cb0ae4960981b99e1c252936",
+            "5e34d07b4f8276c7bd5d429c178ec30f"
           ],
           "decisionTable": {
             "rules": [

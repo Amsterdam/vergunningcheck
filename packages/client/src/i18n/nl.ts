@@ -3,6 +3,7 @@ export default {
     common: {
       "address loading": "Wij zoeken het adres.",
       "housenumber label": "Huisnummer + toevoeging",
+      "one moment please": "Een ogenblik geduld alstublieft",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
@@ -90,6 +91,15 @@ export default {
         "address input":
           "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
       },
+    },
+    notFoundPage: {
+      heading: "Deze pagina is niet gevonden.",
+      paragraph: "Helaas",
+    },
+    oloRedirectPage: {
+      "page title": "Redirect naar OLO",
+      paragraph: "Wij sturen u automatisch door naar de website van het",
+      link: "landelijke Omgevingsloket",
     },
     question: {
       alert: {

@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 32,
+      "version": 40,
       "name": "Conclusie Sloopvergunning - toestemming monument",
       "questions": [
         {
@@ -22,38 +22,38 @@
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "prio": 20,
-          "uuid": "sloop onderhoud1",
-          "id": "17691196d0941f98caf523d4b12b0329"
+          "uuid": "sloop-onderhoud1",
+          "id": "d8868155db6866bbf083a528671efc44"
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
           "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
           "prio": 30,
-          "uuid": "sloop onderhoud2",
-          "id": "612923004697b19f70a73653c9434a15"
+          "uuid": "sloop-onderhoud2",
+          "id": "376e82735079492f9c2cd8dbbd53dff3"
         },
         {
           "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "prio": 40,
-          "uuid": "sloop onderhoud3",
-          "id": "2e3ae326993730314d728ef1c8ee7c22"
+          "uuid": "sloop-onderhoud3",
+          "id": "652087cafff8e16035f08173e5bc51ac"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "description": "U vervangt bijvoorbeeld de openslaande deuren door een schuifpui, waardoor het profiel van het kozijn verandert.\n\nOf u verandert de dikte van het dak. Een ander voorbeeld is dat u het dak schuiner of rechter op het gebouw plaatst.",
           "type": "boolean",
           "prio": 50,
-          "uuid": "sloop onderhoud4",
-          "id": "833cc8352aa95a1571144a676ed11698"
+          "uuid": "sloop-onderhoud4",
+          "id": "7c200092a7463292770beb315320c0ef"
         }
       ],
       "decisions": {
-        "948cd3259d5f52c3063c3bd0d58e9905": {
+        "0f5e6104006477f246e17a9ab1ee4317": {
           "requiredInputs": [
             "9f24b5c00af73e225d52c2fdf28284e7",
-            "17691196d0941f98caf523d4b12b0329"
+            "d8868155db6866bbf083a528671efc44"
           ],
           "decisionTable": {
             "rules": [
@@ -76,11 +76,11 @@
             ]
           }
         },
-        "818a7f82f6f1aa68ba5167bbb632715b": {
+        "f89859d93106f7f390cdb16e6195a2ed": {
           "requiredInputs": [
             "9f24b5c00af73e225d52c2fdf28284e7",
-            "17691196d0941f98caf523d4b12b0329",
-            "612923004697b19f70a73653c9434a15"
+            "d8868155db6866bbf083a528671efc44",
+            "376e82735079492f9c2cd8dbbd53dff3"
           ],
           "decisionTable": {
             "rules": [
@@ -107,12 +107,12 @@
             ]
           }
         },
-        "2e03bb010bf3987223420c9067d2eef9": {
+        "36297660281a08abde30024569da4c96": {
           "requiredInputs": [
             "9f24b5c00af73e225d52c2fdf28284e7",
-            "17691196d0941f98caf523d4b12b0329",
-            "612923004697b19f70a73653c9434a15",
-            "2e3ae326993730314d728ef1c8ee7c22"
+            "d8868155db6866bbf083a528671efc44",
+            "376e82735079492f9c2cd8dbbd53dff3",
+            "652087cafff8e16035f08173e5bc51ac"
           ],
           "decisionTable": {
             "rules": [
@@ -148,13 +148,13 @@
             ]
           }
         },
-        "5f03da3e5c477ff7f3df7e5b8fd1828c": {
+        "eded482047b76f473f88cdfe68137285": {
           "requiredInputs": [
             "9f24b5c00af73e225d52c2fdf28284e7",
-            "17691196d0941f98caf523d4b12b0329",
-            "612923004697b19f70a73653c9434a15",
-            "2e3ae326993730314d728ef1c8ee7c22",
-            "833cc8352aa95a1571144a676ed11698"
+            "d8868155db6866bbf083a528671efc44",
+            "376e82735079492f9c2cd8dbbd53dff3",
+            "652087cafff8e16035f08173e5bc51ac",
+            "7c200092a7463292770beb315320c0ef"
           ],
           "decisionTable": {
             "rules": [
@@ -203,10 +203,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "948cd3259d5f52c3063c3bd0d58e9905",
-            "818a7f82f6f1aa68ba5167bbb632715b",
-            "2e03bb010bf3987223420c9067d2eef9",
-            "5f03da3e5c477ff7f3df7e5b8fd1828c"
+            "0f5e6104006477f246e17a9ab1ee4317",
+            "f89859d93106f7f390cdb16e6195a2ed",
+            "36297660281a08abde30024569da4c96",
+            "eded482047b76f473f88cdfe68137285"
           ],
           "decisionTable": {
             "rules": [
@@ -241,7 +241,7 @@
       }
     },
     {
-      "version": 74,
+      "version": 80,
       "name": "Conclusie Sloopvergunning - toestemming slopen in BSG",
       "questions": [
         {
@@ -266,8 +266,8 @@
           ],
           "type": "string",
           "prio": 10020,
-          "uuid": "sloop seizoen1",
-          "id": "a63f4afa7db0df82655ab201ee295fdb"
+          "uuid": "sloop-seizoen1",
+          "id": "2007586d0cb3181d1b3f5c021941875d"
         },
         {
           "text": "Als u het bouwwerk opnieuw zou bouwen, mag dat dan zonder vergunning?",
@@ -280,46 +280,46 @@
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "prio": 10040,
-          "uuid": "sloop aanschrijving1",
-          "id": "ae2b3e910d6d73a2bcdbb391f113a38d"
+          "uuid": "sloop-aanschrijving1",
+          "id": "17b10cbfb4d885fd671d2138f0d0bac8"
         },
         {
           "text": "Gaat u een deel van een bouwwerk slopen?",
           "description": "Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.\n\nEen deel van een bouwwerk is bijvoorbeeld een raamkozijn, een dakkapel of een dak.",
           "type": "boolean",
           "prio": 10050,
-          "uuid": "sloop onderhoud1",
-          "id": "14e70359c0fb3addffd6823b29c3dd3f"
+          "uuid": "sloop-onderhoud1",
+          "id": "be408f877f25dd973a36f6d439bec2e6"
         },
         {
           "text": "Gaat u dat deel vervangen door een nieuw deel?",
           "description": "U gaat bijvoorbeeld een raamkozijn, een dakkapel of een dak vervangen door een nieuwe.",
           "type": "boolean",
           "prio": 10060,
-          "uuid": "sloop onderhoud2",
-          "id": "88b6e966ecc9a5b1a391341ee7acdddf"
+          "uuid": "sloop-onderhoud2",
+          "id": "aaa823a4ecdcd854fa11e62fc18ea2cf"
         },
         {
           "text": "Verandert de kleur of het soort materiaal?",
           "type": "boolean",
           "prio": 10070,
-          "uuid": "sloop onderhoud3",
-          "id": "08ab685b4f55eebeeac54da2e98be066"
+          "uuid": "sloop-onderhoud3",
+          "id": "933d60aa5d55feb83277b973905ae28e"
         },
         {
           "text": "Verandert de vorm, de grootte of het profiel?",
           "description": "U vervangt bijvoorbeeld de openslaande deuren door een schuifpui, waardoor het profiel van het kozijn verandert.\n\nOf u verandert de dikte van het dak. Een ander voorbeeld is dat u het dak schuiner of rechter op het gebouw plaatst.",
           "type": "boolean",
           "prio": 10080,
-          "uuid": "sloop onderhoud4",
-          "id": "60d21ea19f88310523e37de7d684b63e"
+          "uuid": "sloop-onderhoud4",
+          "id": "888001f86ecdc097bf9406f9e82dc491"
         }
       ],
       "decisions": {
-        "1bb3985f7ef79f6278a4c06ff7047684": {
+        "0e2aeda79c1f4785d99cff8277dcbc1a": {
           "requiredInputs": [
             "665e0cb914aaccc63fe2aba9087c47ad",
-            "a63f4afa7db0df82655ab201ee295fdb",
+            "2007586d0cb3181d1b3f5c021941875d",
             "635d4716d440bd2d507b33c3ae53c34c"
           ],
           "decisionTable": {
@@ -359,11 +359,11 @@
             ]
           }
         },
-        "e7e8bd81d614ff65a4d35d48f1a44bf0": {
+        "9eaeb3536adfe35dcba8c9b41bf0d6e7": {
           "requiredInputs": [
             "665e0cb914aaccc63fe2aba9087c47ad",
-            "ae2b3e910d6d73a2bcdbb391f113a38d",
-            "14e70359c0fb3addffd6823b29c3dd3f"
+            "17b10cbfb4d885fd671d2138f0d0bac8",
+            "be408f877f25dd973a36f6d439bec2e6"
           ],
           "decisionTable": {
             "rules": [
@@ -398,12 +398,12 @@
             ]
           }
         },
-        "3aefe8c37fd4b9cde88ae9a426462b39": {
+        "79bc12b30f5028d57a899be12e026601": {
           "requiredInputs": [
             "665e0cb914aaccc63fe2aba9087c47ad",
-            "ae2b3e910d6d73a2bcdbb391f113a38d",
-            "14e70359c0fb3addffd6823b29c3dd3f",
-            "88b6e966ecc9a5b1a391341ee7acdddf"
+            "17b10cbfb4d885fd671d2138f0d0bac8",
+            "be408f877f25dd973a36f6d439bec2e6",
+            "aaa823a4ecdcd854fa11e62fc18ea2cf"
           ],
           "decisionTable": {
             "rules": [
@@ -444,13 +444,13 @@
             ]
           }
         },
-        "40b7396bfe8c17871399621b37e264f9": {
+        "14352fa96be8b16a07ff46af8acdc808": {
           "requiredInputs": [
             "665e0cb914aaccc63fe2aba9087c47ad",
-            "ae2b3e910d6d73a2bcdbb391f113a38d",
-            "14e70359c0fb3addffd6823b29c3dd3f",
-            "88b6e966ecc9a5b1a391341ee7acdddf",
-            "08ab685b4f55eebeeac54da2e98be066"
+            "17b10cbfb4d885fd671d2138f0d0bac8",
+            "be408f877f25dd973a36f6d439bec2e6",
+            "aaa823a4ecdcd854fa11e62fc18ea2cf",
+            "933d60aa5d55feb83277b973905ae28e"
           ],
           "decisionTable": {
             "rules": [
@@ -497,14 +497,14 @@
             ]
           }
         },
-        "9559438c03e80fb11c8b85e680f8aa8c": {
+        "584448c31bbb5108376bd1e41d879188": {
           "requiredInputs": [
             "665e0cb914aaccc63fe2aba9087c47ad",
-            "ae2b3e910d6d73a2bcdbb391f113a38d",
-            "14e70359c0fb3addffd6823b29c3dd3f",
-            "88b6e966ecc9a5b1a391341ee7acdddf",
-            "08ab685b4f55eebeeac54da2e98be066",
-            "60d21ea19f88310523e37de7d684b63e"
+            "17b10cbfb4d885fd671d2138f0d0bac8",
+            "be408f877f25dd973a36f6d439bec2e6",
+            "aaa823a4ecdcd854fa11e62fc18ea2cf",
+            "933d60aa5d55feb83277b973905ae28e",
+            "888001f86ecdc097bf9406f9e82dc491"
           ],
           "decisionTable": {
             "rules": [
@@ -559,11 +559,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "1bb3985f7ef79f6278a4c06ff7047684",
-            "e7e8bd81d614ff65a4d35d48f1a44bf0",
-            "3aefe8c37fd4b9cde88ae9a426462b39",
-            "40b7396bfe8c17871399621b37e264f9",
-            "9559438c03e80fb11c8b85e680f8aa8c"
+            "0e2aeda79c1f4785d99cff8277dcbc1a",
+            "9eaeb3536adfe35dcba8c9b41bf0d6e7",
+            "79bc12b30f5028d57a899be12e026601",
+            "14352fa96be8b16a07ff46af8acdc808",
+            "584448c31bbb5108376bd1e41d879188"
           ],
           "decisionTable": {
             "rules": [
@@ -603,7 +603,7 @@
       }
     },
     {
-      "version": 70,
+      "version": 72,
       "name": "Conclusie Sloopmelding",
       "questions": [
         {
@@ -615,8 +615,8 @@
           ],
           "type": "string",
           "prio": 20010,
-          "uuid": "sloop seizoen1",
-          "id": "f2b209ce25255406fe43cb613b3713c2"
+          "uuid": "sloop-seizoen1",
+          "id": "7a3a9ed98d768891d4c16e07c1ecd401"
         },
         {
           "text": "Wordt de hoeveelheid sloopafval meer dan 10 kubieke meter (m3)?",
@@ -636,16 +636,16 @@
           "text": "Hebt u van de gemeente een brief ontvangen waarin staat dat u moet slopen?",
           "type": "boolean",
           "prio": 20040,
-          "uuid": "sloop aanschrijving1",
-          "id": "0567f9e24e9b096ecb8b78eaddbd74d1"
+          "uuid": "sloop-aanschrijving1",
+          "id": "37a285fbc1fd81270c1b3810482806b9"
         }
       ],
       "decisions": {
-        "fa475b902a06d7c64d828671c460122a": {
+        "b54ac819c1459d1ad9fff980035ba6b6": {
           "requiredInputs": [
-            "f2b209ce25255406fe43cb613b3713c2",
+            "7a3a9ed98d768891d4c16e07c1ecd401",
             "b44183d2a46df775f6b963ad22938147",
-            "0567f9e24e9b096ecb8b78eaddbd74d1"
+            "37a285fbc1fd81270c1b3810482806b9"
           ],
           "decisionTable": {
             "rules": [
@@ -676,12 +676,12 @@
             ]
           }
         },
-        "0a6d417bbb40f7361f6c3e7a995e14b5": {
+        "b31c91e332594859b3e69d0bffcc593b": {
           "requiredInputs": [
-            "f2b209ce25255406fe43cb613b3713c2",
+            "7a3a9ed98d768891d4c16e07c1ecd401",
             "b44183d2a46df775f6b963ad22938147",
             "6c32e3f9267a1c827d28bc43f35ef8b6",
-            "0567f9e24e9b096ecb8b78eaddbd74d1"
+            "37a285fbc1fd81270c1b3810482806b9"
           ],
           "decisionTable": {
             "rules": [
@@ -720,8 +720,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "fa475b902a06d7c64d828671c460122a",
-            "0a6d417bbb40f7361f6c3e7a995e14b5"
+            "b54ac819c1459d1ad9fff980035ba6b6",
+            "b31c91e332594859b3e69d0bffcc593b"
           ],
           "decisionTable": {
             "rules": [

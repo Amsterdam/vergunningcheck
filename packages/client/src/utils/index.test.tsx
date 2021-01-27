@@ -4,9 +4,10 @@ import {
   isEmptyObject,
   isValidPostalcode,
   removeQueryStrings,
+  sanitizeHouseNumberFull,
   scrollToRef,
   stripString,
-} from "../utils";
+} from "./index";
 import { render } from "./test-utils";
 
 window.scrollTo = jest.fn();
@@ -60,6 +61,22 @@ describe("util", () => {
     expect(isValidPostalcode("1055 Xd")).toBe(true);
     expect(isValidPostalcode(" 1055XD ")).toBe(true);
     expect(isValidPostalcode(" 1055 XD ")).toBe(true);
+  });
+  test("sanitizeHouseNumberFull", () => {
+    expect(sanitizeHouseNumberFull(undefined)).toBe("");
+    expect(sanitizeHouseNumberFull("")).toBe("");
+    expect(sanitizeHouseNumberFull("110")).toBe("110");
+    expect(sanitizeHouseNumberFull("1 10")).toBe("1 10");
+    expect(sanitizeHouseNumberFull("19-c")).toBe("19 - C");
+    expect(sanitizeHouseNumberFull("19-c   ")).toBe("19 - C");
+    expect(sanitizeHouseNumberFull("   19-c   ")).toBe("19 - C");
+    expect(sanitizeHouseNumberFull("10hl")).toBe("10 H L");
+    expect(sanitizeHouseNumberFull("10h l")).toBe("10 H L");
+    expect(sanitizeHouseNumberFull("&")).toBe("&");
+    expect(sanitizeHouseNumberFull("101&")).toBe("101&");
+    expect(sanitizeHouseNumberFull("101 &")).toBe("101 &");
+    expect(sanitizeHouseNumberFull("101 &a")).toBe("101 & A");
+    expect(sanitizeHouseNumberFull("101 &1")).toBe("101 &1");
   });
   test("removeQueryStrings", () => {
     expect(removeQueryStrings("")).toBe("");

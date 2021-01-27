@@ -1,17 +1,17 @@
 {
   "permits": [
     {
-      "version": 17,
+      "version": 23,
       "name": "Conclusie Zonnepaneel en zonneboiler monument",
       "questions": [
         {
           "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
-          "description": "Het verschil tussen zonnepanelen en een zonneboiler:  \n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
+          "description": "Het verschil tussen zonnepanelen en een zonneboiler:\n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
           "options": ["Zonnepanelen", "Zonneboiler"],
           "type": "string",
           "prio": 10,
           "uuid": "zonnepaneel-warmtecollector",
-          "id": "ca36af0200df1e14b81d04d2015bb629"
+          "id": "7cd376a2f6709351680cffa82181cc78"
         },
         {
           "text": "Is het gebouw een monument?",
@@ -24,8 +24,8 @@
           ],
           "type": "string",
           "prio": 20,
-          "uuid": "zonnepaneel en zonneboiler monument",
-          "id": "a0ddb26a3499eb8806dfc2d5126f3495"
+          "uuid": "zonnepaneel-en-zonneboiler-monument",
+          "id": "b6da89bdda769bd3ebfb0e15d432125c"
         },
         {
           "text": "Gaat u zonnepanelen plaatsen of vernieuwen?",
@@ -35,8 +35,8 @@
           ],
           "type": "string",
           "prio": 30,
-          "uuid": "zonnepanelen - onderhoud1",
-          "id": "f3a1d620483a9a2a59e2ea1422e32053"
+          "uuid": "zonnepanelen-onderhoud1",
+          "id": "896d7a02d7a14907b3a32d565a2f19b3"
         },
         {
           "text": "U gaat zonnepanelen plaatsen of vernieuwen op een plek waar er eerst al zonnepanelen waren. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -46,8 +46,8 @@
           ],
           "type": "string",
           "prio": 40,
-          "uuid": "zonnepanelen - onderhoud2",
-          "id": "b1f03b239bf2c26ea84dbe6e70812bd2"
+          "uuid": "zonnepanelen-onderhoud2",
+          "id": "f2e3c034002fc83236ae4574f77d4a71"
         },
         {
           "text": "Gaat u een zonneboiler plaatsen of vernieuwen?",
@@ -57,8 +57,8 @@
           ],
           "type": "string",
           "prio": 50,
-          "uuid": "zonneboiler - onderhoud1",
-          "id": "ba1e183c96f329fac18b49bceb0508cf"
+          "uuid": "zonneboiler-onderhoud1",
+          "id": "e56421285c0094e5ddf8a4c83ce9811c"
         },
         {
           "text": "U gaat een zonneboiler plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -68,16 +68,16 @@
           ],
           "type": "string",
           "prio": 60,
-          "uuid": "zonneboiler - onderhoud2",
-          "id": "91bda4f339a005792db3ca048660f7ae"
+          "uuid": "zonneboiler-onderhoud2",
+          "id": "d1a6aa0ebfb02751c65cb897eb9395ae"
         }
       ],
       "decisions": {
-        "5db4ca6aed3df4c77704cd8255de5e13": {
+        "80f05a6d1d9894d28b4af2f693aaa0c1": {
           "requiredInputs": [
-            "ca36af0200df1e14b81d04d2015bb629",
-            "a0ddb26a3499eb8806dfc2d5126f3495",
-            "f3a1d620483a9a2a59e2ea1422e32053"
+            "7cd376a2f6709351680cffa82181cc78",
+            "b6da89bdda769bd3ebfb0e15d432125c",
+            "896d7a02d7a14907b3a32d565a2f19b3"
           ],
           "decisionTable": {
             "rules": [
@@ -116,11 +116,11 @@
             ]
           }
         },
-        "f355535615cfab9f1e49d5edd47bbe81": {
+        "95bd6178ab808b0a0a81cd18a7196262": {
           "requiredInputs": [
-            "ca36af0200df1e14b81d04d2015bb629",
-            "a0ddb26a3499eb8806dfc2d5126f3495",
-            "ba1e183c96f329fac18b49bceb0508cf"
+            "7cd376a2f6709351680cffa82181cc78",
+            "b6da89bdda769bd3ebfb0e15d432125c",
+            "e56421285c0094e5ddf8a4c83ce9811c"
           ],
           "decisionTable": {
             "rules": [
@@ -159,12 +159,12 @@
             ]
           }
         },
-        "58df9c33657fa3cd7169a301cd190d4c": {
+        "fe03b5791ddad5231f29e461c3356949": {
           "requiredInputs": [
-            "ca36af0200df1e14b81d04d2015bb629",
-            "a0ddb26a3499eb8806dfc2d5126f3495",
-            "f3a1d620483a9a2a59e2ea1422e32053",
-            "b1f03b239bf2c26ea84dbe6e70812bd2"
+            "7cd376a2f6709351680cffa82181cc78",
+            "b6da89bdda769bd3ebfb0e15d432125c",
+            "896d7a02d7a14907b3a32d565a2f19b3",
+            "f2e3c034002fc83236ae4574f77d4a71"
           ],
           "decisionTable": {
             "rules": [
@@ -215,12 +215,12 @@
             ]
           }
         },
-        "a0ced1fc0a4696fb857ee88d18ca45de": {
+        "b6bad829433d811295effc9bb481ff3e": {
           "requiredInputs": [
-            "ca36af0200df1e14b81d04d2015bb629",
-            "a0ddb26a3499eb8806dfc2d5126f3495",
-            "ba1e183c96f329fac18b49bceb0508cf",
-            "91bda4f339a005792db3ca048660f7ae"
+            "7cd376a2f6709351680cffa82181cc78",
+            "b6da89bdda769bd3ebfb0e15d432125c",
+            "e56421285c0094e5ddf8a4c83ce9811c",
+            "d1a6aa0ebfb02751c65cb897eb9395ae"
           ],
           "decisionTable": {
             "rules": [
@@ -273,10 +273,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "5db4ca6aed3df4c77704cd8255de5e13",
-            "f355535615cfab9f1e49d5edd47bbe81",
-            "58df9c33657fa3cd7169a301cd190d4c",
-            "a0ced1fc0a4696fb857ee88d18ca45de"
+            "80f05a6d1d9894d28b4af2f693aaa0c1",
+            "95bd6178ab808b0a0a81cd18a7196262",
+            "fe03b5791ddad5231f29e461c3356949",
+            "b6bad829433d811295effc9bb481ff3e"
           ],
           "decisionTable": {
             "rules": [
