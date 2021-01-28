@@ -1,6 +1,15 @@
 const debug = require("debug")("database");
-const { Pool } = require("pg");
+const { Query, Pool } = require("pg");
 const config = require("../config").resources.amsterdam.database;
+
+const { submit } = Query.prototype;
+Query.prototype.submit = function () {
+  const text = this.text;
+  const values = this.values;
+  const query = values.reduce((q, v, i) => q.replace(`$${i + 1}`, v), text);
+  console.log(query);
+  submit.apply(this, arguments);
+};
 
 let connected = false;
 debug("instantiating db pool now...");

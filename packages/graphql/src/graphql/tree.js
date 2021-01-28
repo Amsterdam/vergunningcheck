@@ -12,15 +12,14 @@ const typeDefs = gql`
   }
 
   extend type Query {
-    tree(id: ID!): Tree
-    trees(search: GeoSearchInput): [Tree!]!
+    trees(ids: [ID!], search: GeoSearchInput): [Tree!]!
   }
 `;
 
 const resolvers = {
   Query: {
-    tree: (_, { id }, { loaders }) => loaders.tree.fetch(id),
-    trees: (_, { search }, { loaders }) => loaders.tree.search(search),
+    trees: (_, { search, ids }, { loaders }) =>
+      ids ? loaders.tree.fetch(ids) : loaders.tree.search(search),
   },
   Tree: {
     meta: () => ({}),
