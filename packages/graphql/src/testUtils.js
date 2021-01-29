@@ -1,6 +1,8 @@
 const debug = require("debug")("graphql:testUtil");
 const { client } = require("./cache");
 
+jest.mock("redis");
+
 const loaderFunctionsTest = (module, key1, key2) => {
   /* eslint-disable no-param-reassign */
   module.load = jest.fn(module.load);

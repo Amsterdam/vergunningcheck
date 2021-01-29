@@ -1,4 +1,4 @@
-const debug = require("debug")("database");
+const debug = require("debug")("graphql:database");
 const { Query, Pool } = require("pg");
 const config = require("../config").resources.amsterdam.database;
 
