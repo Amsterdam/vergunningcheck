@@ -85,17 +85,12 @@ module.exports = {
   resources: {
     amsterdam: {
       database: {
-        CACHE_TIMEOUT: 600,
         ENABLED: yn(process.env.DATAPUNT_DB_ENABLED),
         connection: {
           database: "dsr_vergunningchecker_dev",
           host: "db01.acc.dsq.amsterdam.nl", // TODO replace acc db with prod, via env var?
           password: process.env.DATAPUNT_DB_SECRET,
-          // port: 5432,
           user: "vergunningchecker",
-        },
-        tree: {
-          cacheTimeout: 600,
         },
       },
       api: {

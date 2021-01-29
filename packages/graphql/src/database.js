@@ -7,36 +7,35 @@ Query.prototype.submit = function () {
   const text = this.text;
   const values = this.values;
   const query = values.reduce((q, v, i) => q.replace(`$${i + 1}`, v), text);
-  console.log(query);
+  debug(query);
   submit.apply(this, arguments);
 };
 
-let connected = false;
 debug("instantiating db pool now...");
-const connectionPool = new Pool(config.connection);
+const pool = new Pool(config.connection);
+
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle postgres client", err);
+});
 
 const db = {
-  getPool: async () => {
-    try {
-      debug(
-        connected ? "Already connected!" : "Not connected, connecting now..."
-      );
-      if (!connected) {
-        await connectionPool.connect();
-        debug("Set connected to true");
-        connected = true;
-      }
-      return connectionPool;
-    } catch (e) {
-      console.error(e);
-      throw e;
-    }
+  close: () => {
+    pool.end();
   },
   query: async (text, params, reducer, many = true) => {
-    const pool = await db.getPool();
-    const res = await pool.query(text, params);
-    const rows = res.rows.map(reducer);
-    return many ? rows : rows[0];
+    const client = await pool.connect();
+
+    let rows;
+    try {
+      rows = (await pool.query(text, params)).rows;
+    } finally {
+      // Make sure to release the client before any error handling,
+      // just in case the error handling itself throws an error.
+      client.release();
+    }
+    return many ? rows.map(reducer) : reducer(rows[0]);
   },
 };
 

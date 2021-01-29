@@ -1,11 +1,11 @@
 const debug = require("debug")("graphql:loaders:tree");
 const geojsonArea = require("@mapbox/geojson-area");
-const { query } = require("../../database");
+const db = require("../../database");
 
 const maxAreaMetersSquared = 10000;
 const sridRD = 28992;
 const sridLatLon = 4326;
-const limit = 3;
+const limit = 300;
 const table = "grn_vegetatieobject";
 const fieldMap = {
   id: "bk_grn_vegetatieobject",
@@ -21,21 +21,28 @@ const loader = {
     ...o,
     geometry: JSON.parse(o.geometry),
   }),
-  fetch: (ids) =>
-    query(
+  fetch: (ids) => {
+    if (ids.length > limit) {
+      return new Error(`Request size too large. Please limit to ${limit}`);
+    }
+    return db.query(
       `SELECT ${fields} FROM ${table}
-       WHERE ${fieldMap.id} = ANY($1)`,
+       WHERE ${fieldMap.id} = ANY($1)
+       ORDER BY ${fieldMap.id} ASC -- rows are 'out of order' without an ORDER here
+      `,
       [ids],
       loader.reducer
-    ),
+    );
+  },
   search: async (geojson) => {
     if (geojsonArea.geometry(geojson) > maxAreaMetersSquared) {
       return new Error("Search area too big. Please zoom in.");
     }
 
-    const result = await query(
+    const result = await db.query(
       `SELECT ${fields} FROM ${table}
        WHERE geometrie && ST_Transform(ST_SetSRID(ST_GeomFromGeoJSON($1), ${sridLatLon}), ${sridRD})
+       ORDER BY ${fieldMap.id} ASC -- rows are 'out of order' without an ORDER here
        LIMIT ${limit}`,
       [JSON.stringify(geojson)],
       loader.reducer
