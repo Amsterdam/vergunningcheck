@@ -41,17 +41,25 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
 
   useEffect(() => {
     if (checker && isActive && skipLocationSection) {
-      // Skip this section
-      goToNextSection();
+      if (address) {
+        // In this case a NewCheckerModal has been used with a stored address, but the location section is not necessary
+        // So remove the address data to restart initialisation to point the user to right section and question
+        setTopicData({
+          address: null,
+        });
+      } else {
+        // Skip this section
+        goToNextSection();
 
-      // Activate the first question
-      checker.next();
+        // Activate the first question
+        checker.next();
 
-      // TrackEvent for next step (only when active)
-      matomoTrackEvent({
-        action: actions.ACTIVE_STEP,
-        name: sections.QUESTIONS,
-      });
+        // TrackEvent for next step (only when active)
+        matomoTrackEvent({
+          action: actions.ACTIVE_STEP,
+          name: sections.QUESTIONS,
+        });
+      }
     }
     // eslint-disable-next-line
   }, [checker, isActive, skipLocationSection]);
