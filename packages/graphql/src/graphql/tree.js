@@ -23,8 +23,8 @@ const resolvers = {
       meta: {},
       ...args,
     }),
-    trees: async (_, { search }, { loaders }) => {
-      return (await loaders.tree.fetch(search)).map((data) => ({
+    trees: async (_, { search }, { loaders }) =>
+      (await loaders.tree.fetch(search)).map((data) => ({
         meta: {},
         geo: {
           type: "POINT",
@@ -42,8 +42,7 @@ const resolvers = {
           ],
         },
         ...data,
-      }));
-    },
+      })),
   },
   TreeMeta: {
     isProtected: () => Math.random() < 0.5, // rand bool

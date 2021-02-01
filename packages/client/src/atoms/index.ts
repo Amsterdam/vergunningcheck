@@ -1,3 +1,4 @@
+export { default as AccordionList } from "./AccordionList";
 export { default as Alert } from "./Alert";
 export { default as ComponentWrapper } from "./ComponentWrapper";
 export { default as EditButton } from "./EditButton";

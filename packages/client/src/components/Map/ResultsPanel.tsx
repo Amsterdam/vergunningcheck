@@ -4,11 +4,13 @@ import {
   MapPanelDrawer,
   MapPanelProvider,
 } from "@amsterdam/arm-core";
-import { Button, Paragraph, Spinner, ViewerContainer } from "@amsterdam/asc-ui";
+import { Spinner, ViewerContainer } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { AccordionList } from "../../atoms";
+import treesListMocks from "./__mocks__/treeListMocks";
 import { Tree } from "./Map";
 
 export enum Overlay {
@@ -71,6 +73,29 @@ const Results: React.FC<ResultProps> = ({
   setCurrentOverlay,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [treesList, setTreesList] = useState([...treesListMocks]);
+
+  const updateTreesList = (id: string) => () => {
+    const updatedTreesList = treesList.map((item) => {
+      if (id === item.id) {
+        return { ...item, isOpen: !item.isOpen };
+      }
+      return item;
+    });
+    setTreesList(updatedTreesList);
+  };
+
+  const deleteTree = (id: string) => (event: any) => {
+    event.stopPropagation();
+    const updatedTreesList = treesList.filter((item) => item.id !== id);
+    setTreesList(updatedTreesList);
+  };
+
+  const closeMapPanelContent = () => {
+    setCurrentTree(null);
+    setCurrentOverlay(Overlay.None);
+  };
+
   useEffect(() => {
     setLoading(true);
     // Fake loading time
@@ -82,31 +107,20 @@ const Results: React.FC<ResultProps> = ({
   return (
     <MapPanelContent
       title="Kies een boom"
-      subTitle="U kunt meer dan 1 keuze maken"
       animate
       variant={"drawer"}
-      onClose={() => {
-        setCurrentTree(null);
-        setCurrentOverlay(Overlay.None);
-      }}
+      onClose={closeMapPanelContent}
     >
       {loading ? (
         <Spinner />
       ) : (
         <>
           {currentTree && (
-            <>
-              <Paragraph gutterBottom={0}>
-                Boom geselecteerd: {currentTree?.id}
-              </Paragraph>
-              <Paragraph>
-                Boom coordinaten:{" "}
-                {JSON.stringify(currentTree?.geo?.geometry?.coordinates)}
-              </Paragraph>
-              <Button onClick={() => console.log("asdsad")} variant="primary">
-                Ik wil deze boom kappen
-              </Button>
-            </>
+            <AccordionList
+              treesList={treesList}
+              updateTreesList={updateTreesList}
+              deleteTree={deleteTree}
+            />
           )}
         </>
       )}

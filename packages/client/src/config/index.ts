@@ -49,12 +49,12 @@ export const topics: Topic[] = [
   {
     hasIMTR: true,
     intro: "DakkapelIntro",
-    name: "Dakkapel plaatsen",
+    name: "Bomen kappen",
     showMap: false,
     slug: "dakkapel-plaatsen",
     text: {
-      heading: "Vergunningcheck dakkapel plaatsen",
-      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+      heading: "Vergunningcheck bomen kappen",
+      locationIntro: "Kies welke bomen je wilt kappen.",
     },
   },
   {

@@ -86,7 +86,8 @@ const loader = {
       `SELECT *, ST_AsGeoJSON(ST_FlipCoordinates(ST_Transform(geometrie, ${sridLatLon}))) as geo
        FROM grn_vegetatieobject
        WHERE geometrie && ST_Transform(ST_SetSRID(ST_GeomFromGeoJSON('${geojson}'), ${sridLatLon}), ${sridRD})
-       LIMIT 50`
+       LIMIT 100
+      `
     );
     return res.rows.map(loader.reducer);
   },
