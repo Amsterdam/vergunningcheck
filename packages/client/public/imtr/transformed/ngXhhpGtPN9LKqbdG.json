@@ -260,23 +260,53 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"NeemContactOpMet\"", "-", "-", "-", "-"],
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": ["-", "\"NeemContactOpMet\"", "-", "-", "-"],
+                "inputs": [
+                  "not(null)",
+                  "\"NeemContactOpMet\"",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": ["-", "-", "\"NeemContactOpMet\"", "-", "-"],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "\"NeemContactOpMet\"",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-"],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\""],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\""
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {

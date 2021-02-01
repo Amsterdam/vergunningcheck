@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 244,
-      "name": "Conclusie [IN ONTWIKKELING] Ketentest - vellen houtopstand",
+      "name": "Conclusie Ketentest - vellen houtopstand",
       "questions": [
         {
           "text": "Wat wilt u gaan doen?",
@@ -571,13 +571,13 @@
               {
                 "inputs": [
                   "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"NeemContactOpMet\"",
                 "description": "Neem contact op met de gemeente via nummer [14 020](tel:14020)"
@@ -585,110 +585,110 @@
               {
                 "inputs": [
                   "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
-                  "-",
+                  "not(null)",
                   "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"NeemContactOpMet\"",
                 "description": "Neem contact op met de gemeente via nummer [14 020](tel:14020)"
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
+                  "not(null)",
+                  "not(null)",
                   "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
                   "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
                   "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
                   "\"Vergunningplicht\"",
-                  "-",
-                  "-"
+                  "not(null)",
+                  "not(null)"
                 ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
                   "\"Vergunningplicht\"",
-                  "-"
+                  "not(null)"
                 ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
                   "\"Vergunningplicht\""
                 ],
                 "output": "\"Vergunningplicht\"",

@@ -211,19 +211,39 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-", "-", "-"],
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
+                "inputs": [
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\""
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -568,23 +588,53 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-", "-", "-", "-"],
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\"", "-", "-", "-"],
+                "inputs": [
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "\"Vergunningplicht\"", "-", "-"],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-"],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\""],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\""
+                ],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -726,11 +776,11 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Meldingsplicht\"", "-"],
+                "inputs": ["\"Meldingsplicht\"", "not(null)"],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["-", "\"Meldingsplicht\""],
+                "inputs": ["not(null)", "\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
               {

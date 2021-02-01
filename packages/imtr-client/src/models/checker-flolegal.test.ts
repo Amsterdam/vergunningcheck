@@ -5,7 +5,7 @@ import Question from "./question";
 import Rule from "./rule";
 
 describe("IMTR specific", () => {
-  test('"-" and "no hit" support', () => {
+  test('"not(null)" and "no hit" support', () => {
     const q1 = new Question({
       id: "aaa",
       type: "boolean",

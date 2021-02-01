@@ -18,6 +18,14 @@ describe("Rule", () => {
       new Rule([true, "-", false], "yes").evaluateNew([true, false, false])
     ).toEqual([0, 2]);
 
+    expect(
+      new Rule([true, "not(null)", false], "yes").evaluateNew([
+        true,
+        false,
+        false,
+      ])
+    ).toEqual([0, 2]);
+
     // non-match values
     expect(new Rule([true, false], "yes").evaluateNew([true])).toStrictEqual(
       []

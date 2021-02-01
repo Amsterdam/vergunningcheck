@@ -281,22 +281,42 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "-", "-", "-"],
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
+                "inputs": [
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\"",
+                  "not(null)"
+                ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
+                "inputs": [
+                  "not(null)",
+                  "not(null)",
+                  "not(null)",
+                  "\"Vergunningplicht\""
+                ],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt zonnepanelen of een zonneboiler plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
