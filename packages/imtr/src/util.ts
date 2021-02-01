@@ -6,7 +6,7 @@ export const format = (el: string | undefined) =>
 
 // This function is to prevent bugs in the API. The API somehow returned "not(null)" instead of the expected "-"
 export const validateDmnText = (str?: any) =>
-  str && typeof str === "string" ? str.replace("not(null)", "-") : str;
+  typeof str === "string" ? str.replace("not(null)", "-") : str;
 
 /**
  * Consistent hashing for id's
