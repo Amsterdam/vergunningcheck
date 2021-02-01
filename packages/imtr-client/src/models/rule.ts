@@ -59,7 +59,7 @@ export default class Rule {
 
     const result = this.inputConditions.reduce(
       (acc: number[] | false, curr, index) => {
-        if (acc !== false && curr !== "-" && curr !== "not(null)") {
+        if (acc !== false && curr !== "-") {
           if (curr === values[index]) {
             acc.push(index);
           } else {

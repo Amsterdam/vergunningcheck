@@ -124,11 +124,11 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Meldingsplicht\"", "not(null)"],
+                "inputs": ["\"Meldingsplicht\"", "-"],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": ["not(null)", "\"Meldingsplicht\""],
+                "inputs": ["-", "\"Meldingsplicht\""],
                 "output": "\"Meldingsplicht\""
               },
               {

@@ -81,15 +81,15 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Informatieplicht\"", "not(null)", "not(null)"],
+                "inputs": ["\"Informatieplicht\"", "-", "-"],
                 "output": "\"Informatieplicht\""
               },
               {
-                "inputs": ["not(null)", "\"Informatieplicht\"", "not(null)"],
+                "inputs": ["-", "\"Informatieplicht\"", "-"],
                 "output": "\"Informatieplicht\""
               },
               {
-                "inputs": ["not(null)", "not(null)", "\"Informatieplicht\""],
+                "inputs": ["-", "-", "\"Informatieplicht\""],
                 "output": "\"Informatieplicht\""
               },
               {

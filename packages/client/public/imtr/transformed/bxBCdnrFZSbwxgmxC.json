@@ -211,39 +211,19 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  "\"Vergunningplicht\"",
-                  "not(null)",
-                  "not(null)",
-                  "not(null)"
-                ],
+                "inputs": ["\"Vergunningplicht\"", "-", "-", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "not(null)",
-                  "\"Vergunningplicht\"",
-                  "not(null)",
-                  "not(null)"
-                ],
+                "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "not(null)",
-                  "not(null)",
-                  "\"Vergunningplicht\"",
-                  "not(null)"
-                ],
+                "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  "not(null)",
-                  "not(null)",
-                  "not(null)",
-                  "\"Vergunningplicht\""
-                ],
+                "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\""
               },
               {

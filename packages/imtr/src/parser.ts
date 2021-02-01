@@ -57,7 +57,7 @@ import type {
   JSONRuleInput,
 } from "./types/json.ts";
 
-import { format, strFmt } from "./util.ts";
+import { format, strFmt, validateDmnText } from "./util.ts";
 
 type ParserQuestion = JSONQuestion & {
   _id: string;
@@ -121,7 +121,12 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
           (inputEntries: JSONRuleInput[], inputEntry: DMNInputEntry) => {
             const text = inputEntry[DMN_TEXT];
             const value =
-              text === "true" ? true : text === "false" ? false : text;
+              text === "true"
+                ? true
+                : text === "false"
+                ? false
+                : validateDmnText(text);
+
             inputEntries.push(value);
             return inputEntries;
           },

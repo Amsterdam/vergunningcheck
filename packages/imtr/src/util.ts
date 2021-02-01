@@ -4,6 +4,10 @@ export const strFmt = (str: string) => str.trim();
 export const format = (el: string | undefined) =>
   typeof el === "string" ? strFmt(el) : el;
 
+// This function is to prevent bugs in the API. The API somehow returned "not(null)" instead of the expected "-"
+export const validateDmnText = (str?: any) =>
+  str && typeof str === "string" ? str.replace("not(null)", "-") : str;
+
 /**
  * Consistent hashing for id's
  */

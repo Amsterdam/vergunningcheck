@@ -132,12 +132,12 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Vergunningplicht\"", "not(null)"],
+                "inputs": ["\"Vergunningplicht\"", "-"],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt een dakkapel plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": ["not(null)", "\"Vergunningplicht\""],
+                "inputs": ["-", "\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt een dakkapel plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
