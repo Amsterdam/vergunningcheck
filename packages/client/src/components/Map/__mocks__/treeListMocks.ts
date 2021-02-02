@@ -16,7 +16,9 @@ export type tree = {
     owner: string;
     administrator: string;
   };
-  treesListCoordinates: LatLngTuple;
+  geometry: {
+    coordinates: LatLngTuple;
+  };
 };
 
 export default [
@@ -35,7 +37,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.378158, 4.84652],
+    geometry: {
+      coordinates: [52.3706736230273, 4.90402531512053],
+    },
   },
   {
     id: uuidv4(),
@@ -52,7 +56,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.378102, 4.84615],
+    geometry: {
+      coordinates: [52.3701168980927, 4.90397039814735],
+    },
   },
   {
     id: uuidv4(),
@@ -69,7 +75,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377933, 4.846711],
+    geometry: {
+      coordinates: [52.3707669432068, 4.90550562949144],
+    },
   },
   {
     id: uuidv4(),
@@ -86,7 +94,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377866, 4.846322],
+    geometry: {
+      coordinates: [52.370438514487, 4.90428768918262],
+    },
   },
   {
     id: uuidv4(),
@@ -103,7 +113,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377997, 4.845759],
+    geometry: {
+      coordinates: [52.3702637443156, 4.9043153028201],
+    },
   },
   {
     id: uuidv4(),
@@ -120,7 +132,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377742, 4.845783],
+    geometry: {
+      coordinates: [52.3705954604083, 4.90411206637859],
+    },
   },
   {
     id: uuidv4(),
@@ -137,7 +151,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377684, 4.845524],
+    geometry: {
+      coordinates: [52.3704747170414, 4.90481245762887],
+    },
   },
   {
     id: uuidv4(),
@@ -154,7 +170,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377859, 4.845406],
+    geometry: {
+      coordinates: [52.370695240745, 4.90533369756735],
+    },
   },
   {
     id: uuidv4(),
@@ -171,7 +189,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377896, 4.84508],
+    geometry: {
+      coordinates: [52.3705161377, 4.90420087099772],
+    },
   },
   {
     id: uuidv4(),
@@ -188,7 +208,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.377675, 4.845014],
+    geometry: {
+      coordinates: [52.3705906393038, 4.90352556220802],
+    },
   },
   {
     id: uuidv4(),
@@ -205,7 +227,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381187, 4.872907],
+    geometry: {
+      coordinates: [52.3703942559505, 4.90462200433021],
+    },
   },
   {
     id: uuidv4(),
@@ -222,7 +246,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381226, 4.873103],
+    geometry: {
+      coordinates: [52.370819506211, 4.90562123704666],
+    },
   },
   {
     id: uuidv4(),
@@ -239,7 +265,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381139, 4.873189],
+    geometry: {
+      coordinates: [52.3703697951395, 4.90436498323601],
+    },
   },
   {
     id: uuidv4(),
@@ -256,7 +284,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381141, 4.873264],
+    geometry: {
+      coordinates: [52.3703697951395, 4.90436498323601],
+    },
   },
   {
     id: uuidv4(),
@@ -273,7 +303,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.38108, 4.873339],
+    geometry: {
+      coordinates: [52.3707573580705, 4.90393859095072],
+    },
   },
   {
     id: uuidv4(),
@@ -290,7 +322,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.38102, 4.87336],
+    geometry: {
+      coordinates: [52.3706987106787, 4.90378603404174],
+    },
   },
   {
     id: uuidv4(),
@@ -307,7 +341,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.380963, 4.873472],
+    geometry: {
+      coordinates: [52.3700488668313, 4.90380885652741],
+    },
   },
   {
     id: uuidv4(),
@@ -324,7 +360,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381035, 4.873471],
+    geometry: {
+      coordinates: [52.3706333381144, 4.90518469851331],
+    },
   },
   {
     id: uuidv4(),
@@ -341,7 +379,9 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381073, 4.873482],
+    geometry: {
+      coordinates: [52.3701933737181, 4.90414421190167],
+    },
   },
   {
     id: uuidv4(),
@@ -358,6 +398,8 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    treesListCoordinates: [52.381084, 4.873506],
+    geometry: {
+      coordinates: [52.3706476509254, 4.90366042762065],
+    },
   },
 ];

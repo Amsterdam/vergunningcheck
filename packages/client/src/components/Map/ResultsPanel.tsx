@@ -10,7 +10,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { AccordionList } from "../../atoms";
-import treesListMocks from "./__mocks__/treeListMocks";
+import { Tree } from "./__mocks__/pinsTreesListMocks";
+import treesListMocks, { tree } from "./__mocks__/treeListMocks";
 
 export enum Overlay {
   Results,
@@ -43,26 +44,17 @@ type Props = {
 const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
   ...otherProps
 }) => {
-  // const height =
-  //   parseInt(drawerPosition, 10) < window.innerHeight / 2
-  //     ? "50%"
-  //     : drawerPosition;
-
   return <StylerViewerContainer {...otherProps} />;
 };
-
-// @Sven: This disabled scrolling on desktop, should this only be enabled on tablet / mobile?
-// const GlobalStyle = createGlobalStyle`
-//   body {
-//     touch-action: none;
-//     overflow: hidden; // This will prevent the scrollBar on iOS due to navigation bar
-//   }
-// `;
 
 type ResultProps = {
   currentTree: Tree | null;
   currentOverlay: Overlay;
   setCurrentTree: any; // xxx
+  treesList: tree[];
+  updateTreesList: Function;
+  deleteDotTree: Function;
+  handleVisibilityPinTrees: Function;
   setCurrentOverlay: (overlay: Overlay) => void;
 };
 

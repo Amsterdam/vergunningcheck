@@ -21,7 +21,7 @@ const CirclesTrees = ({
       {currentTreesGroupsDotsList &&
         currentTreesGroupsDotsList.length > 0 &&
         currentTreesGroupsDotsList.map((item) => {
-          const { isSelected, treesListCoordinates } = item;
+          const { isSelected } = item;
           return (
             <CircleMarker
               key={uuidv4()}
@@ -35,7 +35,6 @@ const CirclesTrees = ({
               events={{
                 click: selectTree,
               }}
-              args={[treesListCoordinates]}
             />
           );
         })}

@@ -25,6 +25,7 @@ import styled from "styled-components";
 
 import { Tree } from "./__mocks__/pinsTreesListMocks";
 import treesListMocks, { tree } from "./__mocks__/treeListMocks";
+import CirclesTrees from "./CircleTrees";
 import ResultsPanel, { Overlay } from "./ResultsPanel";
 
 const getTrees = loader("./getTrees.graphql");
@@ -123,28 +124,9 @@ const LocationMap = () => {
       mapInstance?.off("dragend", onChange);
       mapInstance?.off("zoomend", onChange);
     };
-  }, [mapInstance, zoomLevel]);
+  }, [loading, mapInstance, refetch, zoomLevel]);
 
-  const getSelectedTreesGroupCoordinates = (coordinates: LatLngTuple) => {
-    const updatedtreesList = treesList.map((item) => {
-      if (
-        item.treesListCoordinates[0] === coordinates[0] &&
-        item.treesListCoordinates[1] === coordinates[1]
-      ) {
-        return { ...item, isSelected: !item.isSelected };
-      }
-      return item;
-    });
-    settreesList(updatedtreesList);
-  };
-
-  const getTreesGroupCoordinates = (coordinates: Tree) => {
-    if (Object.keys(coordinates).length > 0) {
-      mapInstance?.fitBounds(coordinates.geometry.treesListCoordinates);
-    }
-  };
-
-  const updatetreesList = (id: string) => {
+  const updateTreesList = (id: string) => {
     const updatedtreesList = treesList.map((item) => {
       if (id === item.id) {
         return { ...item, isOpen: !item.isOpen };
@@ -154,13 +136,7 @@ const LocationMap = () => {
     settreesList(updatedtreesList);
   };
 
-  const deleteDotTree = ({
-    dotsList,
-    id,
-  }: {
-    dotsList: tree[];
-    id: string;
-  }) => {
+  const deleteTree = ({ dotsList, id }: { dotsList: tree[]; id: string }) => {
     const updatedTreesList = dotsList.filter((item) => item.id !== id);
     settreesList(updatedTreesList);
   };
@@ -179,12 +155,10 @@ const LocationMap = () => {
         currentOverlay={currentOverlay}
         setCurrentOverlay={setCurrentOverlay}
         setCurrentTree={setCurrentTree}
-        getTreesGroupCoordinates={getTreesGroupCoordinates}
-        getSelectedTreesGroupCoordinates={getSelectedTreesGroupCoordinates}
-        treesList={treesList}
-        updatetreesList={updatetreesList}
-        deleteDotTree={deleteDotTree}
+        updatetreesList={updateTreesList}
+        deleteTree={deleteTree}
         handleVisibilityPinTrees={setDisplayedPinTrees(true)}
+        treesList={treesList}
       />
       <StyledViewerContainer
         bottomRight={<StyledZoom />}
@@ -247,10 +221,7 @@ const LocationMap = () => {
         })}
       />
       {!isDisplayedPinTrees && (
-        <CirclesTrees
-          currentTreesGroupsDotsList={treesList}
-          getSelectedTreesGroupCoordinates={getSelectedTreesGroupCoordinates}
-        />
+        <CirclesTrees currentTreesGroupsDotsList={treesList} />
       )}
       <BaseLayer />
     </StyledMap>
