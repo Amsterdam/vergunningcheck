@@ -15,7 +15,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const [autoCompleteSection, setAutoCompleteSection] = useState(false);
   const {
     setTopicData,
-    topicData: { address, sectionData, timesCheckerLoaded },
+    topicData: { address, sectionData, timesLoaded },
   } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const skipLocationSection = !!(checker && !getDataNeed(checker));
 
   useEffect(() => {
-    if (timesCheckerLoaded === 1 && !skipLocationSection && !address) {
+    if (timesLoaded === 1 && !skipLocationSection && !address) {
       // TrackEvent for active step (only on first load)
       matomoTrackEvent({
         action: actions.ACTIVE_STEP,
