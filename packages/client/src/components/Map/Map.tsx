@@ -22,73 +22,17 @@ import { loader } from "graphql.macro";
 import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
-import treesListMocks, { dotsTree } from "../../__mocks__/treesListMocks";
-import CirclesTrees from "./CirclesTrees";
+import { Tree } from "./__mocks__/pinsTreesListMocks";
+import { dotsTree } from "./__mocks__/treesListMocks";
 import ResultsPanel, { Overlay } from "./ResultsPanel";
 
 const getTrees = loader("./getTrees.graphql");
 
-type TreeGeo = {
-  geometry: {
-    coordinates: LatLngTuple;
-    type?: string;
-  };
-};
-export type Tree = {
-  id: string;
-  geo: TreeGeo;
-};
-
-// const trees: Tree[] = [
-//   {
-//     id: "boom 1",
-//     geo: {
-//       geometry: {
-//         coordinates: [52.3784493, 4.8471094],
-//       },
-//     },
-//   },
-//   {
-//     id: "boom 2",
-//     geo: {
-//       geometry: {
-//         coordinates: [52.381266, 4.8727906],
-//       },
-//     },
-//   },
-// ];
-
-// const dots: Tree[] = [
-//   {
-//     id: "boom num 1",
-//     geo: {
-//       geometry: {
-//         coordinates: [52.381329, 4.873074],
-//       },
-//     },
-//   },
-//   {
-//     id: "boom num 2",
-//     geo: {
-//       geometry: {
-//         coordinates: [52.381491, 4.873006],
-//       },
-//     },
-//   },
-//   {
-//     id: "boom num 3",
-//     geo: {
-//       geometry: {
-//         coordinates: [52.381406, 4.87305],
-//       },
-//     },
-//   },
-// ];
 
 const StyledMap = styled(Map)`
   height: 600px;
   overflow: hidden;
+  width: 1500px;
 `;
 
 const StyledViewerContainer = styled(ViewerContainer)`
@@ -116,6 +60,7 @@ const LocationMap = () => {
   const [showDrawTool, setShowDrawTool] = useState(false);
   const [mapInstance, setMapInstance] = useState<L.Map>();
   const [zoomLevel, setZoomLevel] = useState(10);
+  const [currentTree, setCurrentTree] = useState<Tree>();
   const [mapLocation, setMapLocation] = useState<LatLngTuple>([
     52.3711013,
     4.8893335,
@@ -137,11 +82,11 @@ const LocationMap = () => {
     variables: !mapInstance
       ? undefined
       : {
-          search: {
-            type: "Polygon",
-            coordinates: [coordinates],
-          },
+        search: {
+          type: "Polygon",
+          coordinates: [coordinates],
         },
+      },
   });
 
   console.error(graphqlError);
@@ -181,6 +126,19 @@ const LocationMap = () => {
     };
   }, [mapInstance, zoomLevel]);
 
+  const getSelectedTreesGroupCoordinates = (coordinates: LatLngTuple) => {
+    const updatedDotsTreesList = dotsTreesList.map((item) => {
+      if (
+        item.treesListCoordinates[0] === coordinates[0] &&
+        item.treesListCoordinates[1] === coordinates[1]
+      ) {
+        return { ...item, isSelected: !item.isSelected };
+      }
+      return item;
+    });
+    setDotsTreesList(updatedDotsTreesList);
+  };
+
   const getTreesGroupCoordinates = (coordinates: Tree) => {
     if (Object.keys(coordinates).length > 0) {
       mapInstance?.fitBounds(coordinates.geometry.treesListCoordinates);
@@ -197,28 +155,22 @@ const LocationMap = () => {
     setDotsTreesList(updatedDotsTreesList);
   };
 
-  const getSelectedTreesGroupCoordinates = (coordinates: LatLngTuple) => {
-    const updatedDotsTreesList = dotsTreesList.map((item) => {
-      if (
-        item.treesListCoordinates[0] === coordinates[0] &&
-        item.treesListCoordinates[1] === coordinates[1]
-      ) {
-        return { ...item, isSelected: !item.isSelected };
-      }
-      return item;
-    });
-    setDotsTreesList(updatedDotsTreesList);
-  };
   const deleteDotTree = ({
-    dotsList,
-    id,
-  }: {
+                           dotsList,
+                           id,
+                         }: {
     dotsList: dotsTree[];
     id: string;
   }) => {
     const updatedTreesList = dotsList.filter((item) => item.id !== id);
     setDotsTreesList(updatedTreesList);
   };
+
+  const handleVisibilityPinTrees = (bool: boolean) =>
+    setDisplayedPinTrees(bool);
+
+  const zoomLevel = mapInstance?.getZoom();
+
 
   return (
     <StyledMap
@@ -280,11 +232,34 @@ const LocationMap = () => {
               setCurrentTree(e.latlng);
               setCurrentOverlay(Overlay.Results);
 
-              // setCurrentTree(currentTree);
+
+              const currentTree = trees.find((tree) => {
+                const { coordinates } = tree.geo.geometry;
+                return (
+                  coordinates[0] === e.latlng.lat &&
+                  coordinates[1] === e.latlng.lng
+                );
+              });
+
+              const currentDotsTreesList: any =
+                currentTree &&
+                Object.keys(currentTree).length > 0 &&
+                treesListMocks.filter(
+                  (tree) => tree.pinTreeId === currentTree.id
+                );
+
+              setDotsTreesList(currentDotsTreesList);
+              setCurrentTree(currentTree);
             },
           },
         })}
       />
+      {!isDisplayedPinTrees && (
+        <CirclesTrees
+          currentTreesGroupsDotsList={dotsTreesList}
+          getSelectedTreesGroupCoordinates={getSelectedTreesGroupCoordinates}
+        />
+      )}
       <BaseLayer />
     </StyledMap>
   );
