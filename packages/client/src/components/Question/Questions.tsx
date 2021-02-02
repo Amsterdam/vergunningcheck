@@ -481,7 +481,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             {isForm ? (
               // Show all questions
               <Question
-                hideNav={isForm && !isActive && !isFinalQuestion}
+                hideNav={isForm && (!isFinalQuestion || !isActive)}
                 question={q}
                 onGoToNext={handleNextQuestion}
                 showNext
