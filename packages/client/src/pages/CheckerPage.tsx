@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/browser";
 import React, {
   Fragment,
   FunctionComponent,
@@ -20,7 +21,6 @@ import { SectionFunctions, SectionObject } from "../types";
 import ErrorPage from "./ErrorPage";
 
 const defaultSectionData = {
-  hideSection: false,
   index: 0,
   isActive: false,
   isCompleted: false,
@@ -29,7 +29,7 @@ const defaultSectionData = {
 const CheckerPage: FunctionComponent = () => {
   const { checker } = useChecker();
 
-  const defaultSections: SectionObject[] = [
+  const initialSections: SectionObject[] = [
     // Location Section:
     {
       ...defaultSectionData,
@@ -54,8 +54,8 @@ const CheckerPage: FunctionComponent = () => {
   ];
 
   const sessionContext = useContext(SessionContext);
-  const sectionsRef = React.useRef(defaultSections);
-  const [sections, updateSections] = useState(defaultSections);
+  const sectionsRef = React.useRef(initialSections);
+  const [sections, updateSections] = useState(initialSections);
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
@@ -84,7 +84,7 @@ const CheckerPage: FunctionComponent = () => {
   useEffect(() => {
     // Count the times the checker is loaded
     setTopicData({
-      timesCheckerLoaded: timesCheckerLoaded + 1,
+      timesCheckerLoaded: timesCheckerLoaded ? timesCheckerLoaded + 1 : 1,
     });
     // eslint-disable-next-line
   }, []);
@@ -93,11 +93,11 @@ const CheckerPage: FunctionComponent = () => {
     if (checker) {
       // Potentially restore new sections from session
       const restoreTopicData =
-        sectionData.length === defaultSections.length &&
+        sectionData.length === initialSections.length &&
         sectionData.filter((s) => s.isActive).length === 1;
 
       // Initialize new sections
-      defaultSections.map((section, index) => {
+      initialSections.map((section, index) => {
         // Reorder the indexes (in case sections have been added)
         section.index = index;
 
@@ -115,7 +115,7 @@ const CheckerPage: FunctionComponent = () => {
         return section;
       });
 
-      setSectionData(defaultSections);
+      setSectionData(initialSections);
     }
 
     // Prevent linter to add all dependencies, now the useEffect is only called when `checker` updates
@@ -128,9 +128,11 @@ const CheckerPage: FunctionComponent = () => {
     );
     if (!activeSection || activeSection.length !== 1) {
       // Always expect one section to be active
-      throw new Error(
-        `"getActiveSectionIndex()": Expected one active section, got "${activeSection.length}"`
-      );
+      const error = `"getActiveSectionIndex()": Expected one active section, got "${activeSection.length}"`;
+      captureException(error);
+
+      // Return the first index
+      return 0;
     }
     return activeSection[0].index;
   };
@@ -140,7 +142,7 @@ const CheckerPage: FunctionComponent = () => {
    * @param section - The section to activate
    * @param initialize - Only use when there's no active section yet
    */
-  const activateSection = (
+  const changeActiveSection = (
     section: SectionObject,
     initialize: boolean = false
   ) => {
@@ -192,7 +194,7 @@ const CheckerPage: FunctionComponent = () => {
 
     if (newSection) {
       completeSection();
-      activateSection(newSection);
+      changeActiveSection(newSection);
 
       // The last section is always completed when activated
       if (isLastSection(newSection)) {
@@ -200,23 +202,8 @@ const CheckerPage: FunctionComponent = () => {
       }
     } else {
       // Expect new section to exist
-      throw new Error(
-        `"goToNextSection()": Failed going to next section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`
-      );
-    }
-  };
-
-  const goToPrevSection = () => {
-    const newSectionIndex = getActiveSectionIndex() - 1;
-    const newSection = sectionsRef.current[newSectionIndex];
-
-    if (newSection) {
-      activateSection(newSection);
-    } else {
-      // Expect new section to exist
-      throw new Error(
-        `"goToPrevSection()": Failed going to prev section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`
-      );
+      const error = `"goToNextSection()": Failed going to next section, because "newSectionIndex" doesn't exist. Received: "${newSectionIndex}"`;
+      captureException(error);
     }
   };
 
@@ -227,11 +214,10 @@ const CheckerPage: FunctionComponent = () => {
   }
 
   const sectionFunctions: SectionFunctions = {
-    activateSection,
+    changeActiveSection,
     completeSection,
     getNextSection,
     goToNextSection,
-    goToPrevSection,
   };
 
   return (

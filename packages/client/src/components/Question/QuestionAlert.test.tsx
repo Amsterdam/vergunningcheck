@@ -4,15 +4,15 @@ import { ascDefaultTheme, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React from "react";
 
-import text from "../../i18n/nl";
+import nl from "../../i18n/nl";
 import { QUESTION_ALERT } from "../../utils/test-ids";
 import { render, screen } from "../../utils/test-utils";
 import { QuestionAlert } from "./";
 
 const needPermitText =
-  text.translation.question.alert["this answer causes a need for permit"];
+  nl.translation.question.alert["this answer causes a need for permit"];
 const needContactText =
-  text.translation.question.alert[
+  nl.translation.question.alert[
     "this anwser makes it unable to determine the outcome"
   ];
 

@@ -16,12 +16,20 @@
     "build:netlify": "REACT_APP_GIT_BRANCH=$BRANCH REACT_APP_GIT_SHA=$COMMIT_REF REACT_APP_GRAPHQL_API_URL=/.netlify/functions/graphql npm run build",
     "build:size-report": "npm ci && npm run build && node scripts/rename.js build/static/js '(.*)\\.(.*)(.chunk?)\\.(js)$' '$1.$4' && node scripts/rename.js build/static/css '(.*)\\.(.*)(.chunk?)\\.(css)$' '$1.$4'",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
-    "test:coverage": "npm run test -- --watchAll=false --collect-coverage --collectCoverageFrom=!src/debug/*",
+    "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
     "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",
     "lint": "eslint . --ignore-path .gitignore --max-warnings=0",
     "precommit": "lint-staged",
     "eject": "react-scripts eject",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,jsx}",
+      "!src/components/Hidden**",
+      "!src/utils/test-utils.*",
+      "!src/debug/*"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

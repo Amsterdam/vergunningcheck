@@ -4,13 +4,13 @@ import { CircleMarker } from "@amsterdam/react-maps";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { dotsTree } from "../../__mocks__/treesListMocks";
+import { tree } from "./__mocks__/treeListMocks";
 
 const CirclesTrees = ({
   currentTreesGroupsDotsList,
   getSelectedTreesGroupCoordinates,
 }: {
-  currentTreesGroupsDotsList: dotsTree[] | undefined | false;
+  currentTreesGroupsDotsList: tree[] | undefined | false;
   getSelectedTreesGroupCoordinates: Function;
 }) => {
   const selectTree = (event: any) => {

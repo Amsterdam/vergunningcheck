@@ -1,4 +1,4 @@
-import { Answer } from "@vergunningcheck/imtr-client";
+import { Answer as IMTRAnswer } from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
 
 /**
@@ -52,11 +52,10 @@ export type SectionObject = SectionData & {
 };
 
 export type SectionFunctions = {
-  activateSection: (section: SectionObject) => void;
+  changeActiveSection: (section: SectionObject) => void;
   completeSection: (state?: boolean, section?: SectionObject | null) => void;
   getNextSection: () => SectionObject | null;
   goToNextSection: () => void;
-  goToPrevSection: () => void;
 };
 
 /**
@@ -65,7 +64,7 @@ export type SectionFunctions = {
 export type TopicData = {
   address: Address;
   answers: {
-    [id: string]: Answer;
+    [id: string]: IMTRAnswer;
   };
   timesCheckerLoaded: number;
   sectionData: SectionData[];
@@ -89,7 +88,6 @@ export type setTopicSessionDataFn = (
  */
 type BaseTopic = {
   name: string;
-  showMap: boolean;
   slug: string;
   text: {
     heading: string;
@@ -120,7 +118,7 @@ export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 /**
  * Checker related types
  */
-export type AnswerOptions = {
+export type Answer = {
   formValue: string;
   label: string;
   value: boolean | string;

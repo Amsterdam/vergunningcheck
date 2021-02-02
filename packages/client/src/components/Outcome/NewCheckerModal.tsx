@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { ComponentWrapper, Label } from "../../atoms";
 import { CheckerContext } from "../../CheckerContext";
 import { topics } from "../../config";
-import { actions, eventNames } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
@@ -60,25 +60,35 @@ const NewCheckerModal: FunctionComponent = () => {
       setFinished(!!checkerSlug);
 
       const doSaveAddress = saveAddress === true;
-      const saveAddressEvent = doSaveAddress
-        ? eventNames.WITH_THE_SAME_ADDRESS
-        : eventNames.WITHOUT_THE_SAME_ADDRESS;
 
       matomoTrackEvent({
         action: actions.START_ANOTHER_CHECK,
-        name: `${eventNames.DO_ANOTHER_CHECK} - ${saveAddressEvent}`,
+        name: `${eventNames.DO_ANOTHER_CHECK} - ${
+          doSaveAddress
+            ? eventNames.WITH_THE_SAME_ADDRESS
+            : eventNames.WITHOUT_THE_SAME_ADDRESS
+        }`,
       });
 
       // Set the new topic data with the correct `type` and potentially the `address`
       const newTopicData = {
         ...defaultTopicSession,
+        // Optionally save address
         address: doSaveAddress ? topicData.address : null,
+        // Update timesCheckerLoaded + 1 or reset to zero if going to a new checker
+        timesCheckerLoaded:
+          checkerSlug === slug ? topicData.timesCheckerLoaded + 1 : 0,
         type: checkerSlug,
       };
 
       if (checkerSlug === slug) {
         // Only change the topicData for the current topic
         setTopicData(newTopicData);
+
+        matomoTrackEvent({
+          action: actions.ACTIVE_STEP,
+          name: doSaveAddress ? sections.QUESTIONS : sections.LOCATION_INPUT,
+        });
       } else {
         // Change the topicData for another topic
         setSession({

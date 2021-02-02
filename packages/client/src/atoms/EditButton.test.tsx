@@ -17,7 +17,7 @@ describe("EditButton", () => {
     expect(screen.queryByText(nl.translation.common.edit)).toBeInTheDocument();
 
     act(() => {
-      fireEvent.click(screen.queryByTestId(EDIT_BUTTON));
+      fireEvent.click(screen.getByTestId(EDIT_BUTTON));
     });
 
     expect(onClickMock).toHaveBeenCalledTimes(1);

@@ -22,12 +22,12 @@ import { loader } from "graphql.macro";
 import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import { Tree } from "./__mocks__/pinsTreesListMocks";
-import { dotsTree } from "./__mocks__/treesListMocks";
+import treesListMocks, { tree } from "./__mocks__/treeListMocks";
 import ResultsPanel, { Overlay } from "./ResultsPanel";
 
 const getTrees = loader("./getTrees.graphql");
-
 
 const StyledMap = styled(Map)`
   height: 600px;
@@ -60,7 +60,6 @@ const LocationMap = () => {
   const [showDrawTool, setShowDrawTool] = useState(false);
   const [mapInstance, setMapInstance] = useState<L.Map>();
   const [zoomLevel, setZoomLevel] = useState(10);
-  const [currentTree, setCurrentTree] = useState<Tree>();
   const [mapLocation, setMapLocation] = useState<LatLngTuple>([
     52.3711013,
     4.8893335,
@@ -68,7 +67,7 @@ const LocationMap = () => {
   const [coordinates, setCoordinates] = useState([[], [], [], []]);
   const [markers, setMarkers] = useState([]);
   const [currentTree, setCurrentTree] = useState<Tree | undefined>(undefined);
-  const [dotsTreesList, setDotsTreesList] = useState<dotsTree[]>([]);
+  const [treesList, settreesList] = useState<tree[]>([]);
   const [isDisplayedPinTrees, setDisplayedPinTrees] = useState(true);
 
   const setMarkerData = () => {
@@ -82,11 +81,11 @@ const LocationMap = () => {
     variables: !mapInstance
       ? undefined
       : {
-        search: {
-          type: "Polygon",
-          coordinates: [coordinates],
+          search: {
+            type: "Polygon",
+            coordinates: [coordinates],
+          },
         },
-      },
   });
 
   console.error(graphqlError);
@@ -127,7 +126,7 @@ const LocationMap = () => {
   }, [mapInstance, zoomLevel]);
 
   const getSelectedTreesGroupCoordinates = (coordinates: LatLngTuple) => {
-    const updatedDotsTreesList = dotsTreesList.map((item) => {
+    const updatedtreesList = treesList.map((item) => {
       if (
         item.treesListCoordinates[0] === coordinates[0] &&
         item.treesListCoordinates[1] === coordinates[1]
@@ -136,7 +135,7 @@ const LocationMap = () => {
       }
       return item;
     });
-    setDotsTreesList(updatedDotsTreesList);
+    settreesList(updatedtreesList);
   };
 
   const getTreesGroupCoordinates = (coordinates: Tree) => {
@@ -145,32 +144,26 @@ const LocationMap = () => {
     }
   };
 
-  const updateDotsTreesList = (id: string) => {
-    const updatedDotsTreesList = dotsTreesList.map((item) => {
+  const updatetreesList = (id: string) => {
+    const updatedtreesList = treesList.map((item) => {
       if (id === item.id) {
         return { ...item, isOpen: !item.isOpen };
       }
       return item;
     });
-    setDotsTreesList(updatedDotsTreesList);
+    settreesList(updatedtreesList);
   };
 
   const deleteDotTree = ({
-                           dotsList,
-                           id,
-                         }: {
-    dotsList: dotsTree[];
+    dotsList,
+    id,
+  }: {
+    dotsList: tree[];
     id: string;
   }) => {
     const updatedTreesList = dotsList.filter((item) => item.id !== id);
-    setDotsTreesList(updatedTreesList);
+    settreesList(updatedTreesList);
   };
-
-  const handleVisibilityPinTrees = (bool: boolean) =>
-    setDisplayedPinTrees(bool);
-
-  const zoomLevel = mapInstance?.getZoom();
-
 
   return (
     <StyledMap
@@ -188,8 +181,8 @@ const LocationMap = () => {
         setCurrentTree={setCurrentTree}
         getTreesGroupCoordinates={getTreesGroupCoordinates}
         getSelectedTreesGroupCoordinates={getSelectedTreesGroupCoordinates}
-        dotsTreesList={dotsTreesList}
-        updateDotsTreesList={updateDotsTreesList}
+        treesList={treesList}
+        updatetreesList={updatetreesList}
         deleteDotTree={deleteDotTree}
         handleVisibilityPinTrees={setDisplayedPinTrees(true)}
       />
@@ -232,7 +225,6 @@ const LocationMap = () => {
               setCurrentTree(e.latlng);
               setCurrentOverlay(Overlay.Results);
 
-
               const currentTree = trees.find((tree) => {
                 const { coordinates } = tree.geo.geometry;
                 return (
@@ -241,14 +233,14 @@ const LocationMap = () => {
                 );
               });
 
-              const currentDotsTreesList: any =
+              const currenttreesList: any =
                 currentTree &&
                 Object.keys(currentTree).length > 0 &&
                 treesListMocks.filter(
                   (tree) => tree.pinTreeId === currentTree.id
                 );
 
-              setDotsTreesList(currentDotsTreesList);
+              settreesList(currenttreesList);
               setCurrentTree(currentTree);
             },
           },
@@ -256,7 +248,7 @@ const LocationMap = () => {
       />
       {!isDisplayedPinTrees && (
         <CirclesTrees
-          currentTreesGroupsDotsList={dotsTreesList}
+          currentTreesGroupsDotsList={treesList}
           getSelectedTreesGroupCoordinates={getSelectedTreesGroupCoordinates}
         />
       )}

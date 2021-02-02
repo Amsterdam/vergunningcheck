@@ -11,7 +11,6 @@ import styled from "styled-components";
 
 import { AccordionList } from "../../atoms";
 import treesListMocks from "./__mocks__/treeListMocks";
-import { Tree } from "./Map";
 
 export enum Overlay {
   Results,

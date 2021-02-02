@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-import { dotsTree } from "../../__mocks__/treesListMocks";
-import AccordionTab from "../AccordionTab/AccordionTab";
+import { tree } from "../components/Map/__mocks__/treeListMocks";
+import AccordionTab from "./AccordionTab";
 
 interface schemaLabels {
   [key: string]: string;
@@ -40,7 +40,7 @@ const AccordionList = ({
   expandAccordionWithDetailInfo,
   deleteTree,
 }: {
-  treesList: dotsTree[];
+  treesList: tree[];
   expandAccordionWithDetailInfo: Function;
   deleteTree: Function;
 }) => {
@@ -73,7 +73,7 @@ const AccordionList = ({
       }}
     >
       <div>
-        {currentData.map((item: dotsTree) => {
+        {currentData.map((item: tree) => {
           const {
             id,
             title,

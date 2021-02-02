@@ -6,7 +6,6 @@ import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { Address, SectionComponent } from "../../types";
 import { LOCATION_SECTION } from "../../utils/test-ids";
-import Map from "../Map/Map";
 import { StepByStepItem } from "../StepByStepNavigation";
 import LocationSummary from "./LocationSummary";
 import { LocationInput } from ".";
@@ -20,10 +19,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
-  // const { showMap } = useTopic();
-  const showMap = true;
 
-  console.log("showMap", showMap);
   const {
     currentSection: { isActive, isCompleted },
     sectionFunctions: { goToNextSection },
@@ -33,7 +29,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const skipLocationSection = !!(checker && !getDataNeed(checker));
 
   useEffect(() => {
-    if (timesCheckerLoaded === 1 && !skipLocationSection) {
+    if (timesCheckerLoaded === 1 && !skipLocationSection && !address) {
       // TrackEvent for active step (only on first load)
       matomoTrackEvent({
         action: actions.ACTIVE_STEP,
@@ -45,17 +41,25 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
 
   useEffect(() => {
     if (checker && isActive && skipLocationSection) {
-      // Skip this section
-      goToNextSection();
+      if (address) {
+        // In this case a NewCheckerModal has been used with a stored address, but the location section is not necessary
+        // So remove the address data to restart initialisation to point the user to right section and question
+        setTopicData({
+          address: null,
+        });
+      } else {
+        // Skip this section
+        goToNextSection();
 
-      // Activate the first question
-      checker.next();
+        // Activate the first question
+        checker.next();
 
-      // TrackEvent for next step (only when active)
-      matomoTrackEvent({
-        action: actions.ACTIVE_STEP,
-        name: sections.QUESTIONS,
-      });
+        // TrackEvent for next step (only when active)
+        matomoTrackEvent({
+          action: actions.ACTIVE_STEP,
+          name: sections.QUESTIONS,
+        });
+      }
     }
     // eslint-disable-next-line
   }, [checker, isActive, skipLocationSection]);
@@ -128,14 +132,12 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       style={activeStyle}
       {...{ heading }}
     >
-      {isActive && !showMap ? (
+      {isActive ? (
         <LocationInput
           {...{
             handleNewAddressSubmit,
           }}
         />
-      ) : isActive && showMap ? (
-        <Map />
       ) : (
         <LocationSummary showEditLocationModal />
       )}

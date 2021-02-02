@@ -1,8 +1,13 @@
 import React, { useRef } from "react";
 
+import addressMock from "../__mocks__/addressMock";
+import { topics } from "../config";
 import nl from "../i18n/nl";
+import topicsJson from "../topics.json";
 import {
+  findTopicBySlug,
   getAnswerLabel,
+  getRestrictionByTypeName,
   isEmptyObject,
   isValidPostalcode,
   removeQueryStrings,
@@ -129,5 +134,40 @@ describe("util", () => {
     expect(getAnswerLabel(true)).toBe(yes);
     expect(getAnswerLabel(false)).toBe(no);
     expect(getAnswerLabel(0)).toBe(0);
+  });
+
+  test("findTopicBySlug", () => {
+    expect(findTopicBySlug("")).toBe(null);
+    expect(findTopicBySlug("wrong")).toBe(null);
+    expect(findTopicBySlug(topics[0].slug)).toBe(topics[0]);
+
+    // 'Find' an "unconfigured" topic
+    const topicMock = topicsJson
+      .flat()
+      .find((t) => t.permits.length === 1) as any;
+    const { slug } = topicMock;
+    expect(slug).toBeTruthy();
+    expect(findTopicBySlug(slug)?.slug).toBe(slug);
+  });
+
+  test("getRestrictionByTypeName", () => {
+    expect(getRestrictionByTypeName()).toBe(undefined);
+
+    expect(
+      getRestrictionByTypeName(addressMock.restrictions, "Monument")
+    ).toStrictEqual({ __typename: "Monument", name: "monument" });
+
+    expect(
+      getRestrictionByTypeName(addressMock.restrictions, "CityScape")
+    ).toStrictEqual({
+      __typename: "CityScape",
+      name: "cityscape",
+      scope: "NATIONAL",
+    });
+
+    // Should be case insensitive
+    expect(
+      getRestrictionByTypeName(addressMock.restrictions, "monument")
+    ).toStrictEqual({ __typename: "Monument", name: "monument" });
   });
 });

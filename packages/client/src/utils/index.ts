@@ -6,7 +6,7 @@ import { topics } from "../config";
 import nl from "../i18n/nl";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import topicsJson from "../topics.json";
-import { AnswerOptions, Restriction, Topic } from "../types";
+import { Answer, Restriction, Topic } from "../types";
 
 const { no, yes } = nl.translation.common;
 
@@ -29,13 +29,15 @@ export const findTopicBySlug = (slug: string) => {
     return null;
   }
 
-  const name = topicConfig.name || topicConfig.slug;
+  // Provide name (with slug as fallback)
+  // Ignore in coverage because by default topics.json doesn't contain nameless topics
+  /* istanbul ignore next */
+  const { name = slug } = topicConfig;
 
   return {
     hasIMTR: true,
     name,
     slug,
-    showMap: true,
     text: {
       heading: name,
     },
@@ -46,7 +48,10 @@ export const findTopicBySlug = (slug: string) => {
 export const getRestrictionByTypeName = (
   restrictions?: Restriction[],
   typeName?: string
-) => (restrictions || []).find(({ __typename }) => __typename === typeName);
+) =>
+  (restrictions || []).find(
+    ({ __typename }) => __typename?.toLowerCase() === typeName?.toLowerCase()
+  );
 
 /**
  * Test if obj is `{}`
@@ -136,7 +141,7 @@ export const removeQueryStrings = (value: string) => {
  * These are the hardcoded values and label for boolean questions
  *
  */
-export const booleanOptions: AnswerOptions[] = [
+export const booleanOptions: Answer[] = [
   {
     formValue: "yes",
     label: yes,

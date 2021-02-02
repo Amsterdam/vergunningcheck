@@ -1,7 +1,7 @@
 import { LatLngTuple } from "leaflet";
 import { v4 as uuidv4 } from "uuid";
 
-export type dotsTree = {
+export type tree = {
   id: string;
   title: string;
   pinTreeId: string;

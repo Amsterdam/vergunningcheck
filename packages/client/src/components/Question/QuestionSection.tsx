@@ -12,15 +12,19 @@ import { Questions } from "./";
 const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const slug = useSlug();
-  const { topicData } = useTopicData();
+  const { setTopicData, topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
-  const { address, questionIndex } = topicData;
+  const { address, questionIndex, timesCheckerLoaded } = topicData;
   const { currentSection, sectionFunctions } = props;
 
   const { isActive, isCompleted } = currentSection;
-  const { activateSection, completeSection, getNextSection } = sectionFunctions;
+  const {
+    changeActiveSection,
+    completeSection,
+    getNextSection,
+  } = sectionFunctions;
 
   const hideQuestionSection = !!(
     address &&
@@ -32,11 +36,27 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   );
 
   useEffect(() => {
+    if (timesCheckerLoaded === 0 && address) {
+      // TrackEvent for active step (only when NewCheckerModal is used with saveAddress)
+      // This might need tweaking in case we have configured checkers that can render without questions
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: sections.QUESTIONS,
+      });
+
+      setTopicData({
+        timesCheckerLoaded: 1,
+      });
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
     // In case there are no questions to render but this section is active, go to the Outcome Section
     if (checker && checker.isConclusive() && hideQuestionSection && isActive) {
       const nextSection = getNextSection();
       if (nextSection) {
-        activateSection(nextSection);
+        changeActiveSection(nextSection);
       }
 
       // TrackEvent for next step
@@ -78,7 +98,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
 
     if (!isActive) {
       // Activate the Question Section in case another section is active
-      activateSection(currentSection);
+      changeActiveSection(currentSection);
 
       // TrackEvent for next active step
       matomoTrackEvent({
