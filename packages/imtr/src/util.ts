@@ -4,7 +4,7 @@ export const strFmt = (str: string) => str.trim();
 export const format = (el: string | undefined) =>
   typeof el === "string" ? strFmt(el) : el;
 
-// This function is to prevent bugs in the API. The API somehow returned "not(null)" instead of the expected "-"
+// This function is to prevent issues with multiple values in DMN:text, like "not(null)" instead of the expected "-"
 export const validateDmnText = (str?: any) =>
   typeof str === "string" ? str.replace("not(null)", "-") : str;
 
