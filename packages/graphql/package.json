@@ -22,12 +22,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@mapbox/geojson-area": "^0.2.2",
     "apollo-server": "^2.18.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dataloader": "^2.0.0",
     "debug": "^4.1.1",
-    "dotenv-flow": "^3.2.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "feature-policy": "^0.5.0",
@@ -64,6 +65,9 @@
     "setup-polly-jest": "^0.9.1"
   },
   "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "collectCoverageFrom": [
       "**/*.js"
     ],

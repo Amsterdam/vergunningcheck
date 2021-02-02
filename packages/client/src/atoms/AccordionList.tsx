@@ -1,58 +1,15 @@
-import { ChevronLeft, ChevronRight, Close } from "@amsterdam/asc-assets";
+import { ChevronLeft, ChevronRight } from "@amsterdam/asc-assets";
 import chunk from "lodash/chunk";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
-interface treeInformation {
-  id: string;
-  title: string;
-  isOpen: boolean;
-  detailsInfo: {
-    treeId: string;
-    speciesName: string;
-    treeType: string;
-    height: string;
-    recordYear: number;
-    owner: string;
-    administrator: string;
-  };
-}
-
-interface Props {
-  isOpen: boolean;
-}
+import { dotsTree } from "../../__mocks__/treesListMocks";
+import AccordionTab from "../AccordionTab/AccordionTab";
 
 interface schemaLabels {
   [key: string]: string;
 }
-
-const AccordionItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 0 5px 12px;
-  cursor: pointer;
-  background-color: ${(props: Props) => (props.isOpen ? "#efefef" : "#fff")};
-  &:hover h4 {
-    text-decoration: underline;
-  }
-`;
-
-const Chevron = styled(ChevronRight)`
-  width: 12px;
-  height: 12px;
-  margin-right: 12px;
-  transform: ${(props: Props) =>
-    props.isOpen ? "rotate(90deg)" : "rotate(0)"};
-`;
-
-const CloseIcon = styled(Close)`
-  width: 28px;
-  height: 28px;
-  margin-right: 12px;
-  padding: 4px;
-  border: 1px solid black;
-`;
 
 const ArrowRight = styled(ChevronRight)`
   width: 10%;
@@ -80,18 +37,20 @@ const schema: schemaLabels = {
 
 const AccordionList = ({
   treesList,
-  updateTreesList,
+  expandAccordionWithDetailInfo,
   deleteTree,
 }: {
-  treesList: treeInformation[];
-  updateTreesList: Function;
+  treesList: dotsTree[];
+  expandAccordionWithDetailInfo: Function;
   deleteTree: Function;
 }) => {
+  const treesListForRender = treesList.filter((tree) => tree.isSelected);
+
   const [currentPageList, setCurrentPageList] = useState(1);
   const maxRecordOnPage = 6;
-  const totalPages = Math.ceil(treesList.length / maxRecordOnPage);
-  const splittedData = chunk(treesList, maxRecordOnPage);
-  const currentData = splittedData[currentPageList - 1];
+  const totalPages = Math.ceil(treesListForRender.length / maxRecordOnPage);
+  const splittedData = chunk(treesListForRender, maxRecordOnPage) || [];
+  const currentData = splittedData[currentPageList - 1] || [];
 
   const paginatePage = (direction: string) => () => {
     if (direction === "prev") {
@@ -114,28 +73,30 @@ const AccordionList = ({
       }}
     >
       <div>
-        {currentData.map((item: treeInformation) => {
+        {currentData.map((item: dotsTree) => {
           const {
             id,
             title,
             isOpen,
+
             detailsInfo,
           }: {
             id: string;
             title: string;
             isOpen: boolean;
+
             detailsInfo: object;
           } = item;
-          return (
-            <div>
-              <AccordionItem isOpen={isOpen} onClick={updateTreesList(id)}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <Chevron isOpen={isOpen} />
-                  <h4 style={{ margin: 0 }}>{title}</h4>
-                </div>
-                <CloseIcon onClick={deleteTree(id)} />
-              </AccordionItem>
 
+          return (
+            <div key={id}>
+              <AccordionTab
+                id={id}
+                title={title}
+                isOpen={isOpen}
+                deleteTree={deleteTree}
+                expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
+              />
               {isOpen && (
                 <dl
                   style={{
@@ -148,7 +109,7 @@ const AccordionList = ({
                 >
                   {Object.entries(detailsInfo).map((item) => {
                     return (
-                      <>
+                      <React.Fragment key={uuidv4()}>
                         <dt
                           style={{
                             width: 100,
@@ -167,7 +128,7 @@ const AccordionList = ({
                         >
                           {item[1]}
                         </dd>
-                      </>
+                      </React.Fragment>
                     );
                   })}
                 </dl>
@@ -176,33 +137,37 @@ const AccordionList = ({
           );
         })}
       </div>
-      <div
-        style={{
-          width: 300,
-          marginBottom: 20,
-          display: "flex",
-          alignSelf: "center",
-        }}
-      >
-        <ArrowLeft onClick={paginatePage("prev")} />
+      {totalPages > 1 && (
         <div
           style={{
-            width: "80%",
-            border: "1px solid #a8a8a8",
-            borderLeft: 0,
-            borderRight: 0,
-            textAlign: "center",
-            lineHeight: "2.1",
+            width: 300,
+            marginBottom: 20,
+            display: "flex",
+            alignSelf: "center",
           }}
         >
-          <span>
-            <span style={{ fontWeight: 700 }}>{currentPageList}</span>
-            <span style={{ margin: 5 }}>van</span>
-            <span>{totalPages}</span>
-          </span>
+          <ArrowLeft onClick={paginatePage("prev")} />
+
+          <div
+            style={{
+              width: "80%",
+              border: "1px solid #a8a8a8",
+              borderLeft: 0,
+              borderRight: 0,
+              textAlign: "center",
+              lineHeight: "2.1",
+            }}
+          >
+            <span>
+              <span style={{ fontWeight: 700 }}>{currentPageList}</span>
+              <span style={{ margin: 5 }}>van</span>
+              <span>{totalPages}</span>
+            </span>
+          </div>
+
+          <ArrowRight onClick={paginatePage("next")} />
         </div>
-        <ArrowRight onClick={paginatePage("next")} />
-      </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,4 @@
-require("dotenv-flow").config({
-  path: "./config",
-});
+require("dotenv").config();
 
 const config = require("./config");
 const app = require("./app");

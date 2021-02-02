@@ -1,10 +1,31 @@
+import { LatLngTuple } from "leaflet";
 import { v4 as uuidv4 } from "uuid";
+
+export type dotsTree = {
+  id: string;
+  title: string;
+  pinTreeId: string;
+  isOpen: boolean;
+  isSelected: boolean;
+  detailsInfo: {
+    treeId: string;
+    speciesName: string;
+    treeType: string;
+    height: string;
+    recordYear: number;
+    owner: string;
+    administrator: string;
+  };
+  treesListCoordinates: LatLngTuple;
+};
 
 export default [
   {
     id: uuidv4(),
     title: "Boom nummer 1",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -14,11 +35,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.378158, 4.84652],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 2",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -28,11 +52,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.378102, 4.84615],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 3",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -42,11 +69,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377933, 4.846711],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 4",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -56,11 +86,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377866, 4.846322],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 5",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -70,16 +103,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
-    coordinatesTreesList: [
-      [52.381329, 4.873074],
-      [52.381491, 4.873006],
-      [52.381406, 4.87305],
-    ],
+    treesListCoordinates: [52.377997, 4.845759],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 6",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -89,11 +120,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377742, 4.845783],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 7",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -103,11 +137,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377684, 4.845524],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 8",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -117,11 +154,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377859, 4.845406],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 9",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -131,11 +171,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377896, 4.84508],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 10",
+    pinTreeId: "boom 1",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -145,11 +188,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.377675, 4.845014],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 11",
+    pinTreeId: "boom 2",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -159,11 +205,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.381187, 4.872907],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 12",
+    pinTreeId: "boom 2",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -173,11 +222,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.381226, 4.873103],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 13",
+    pinTreeId: "boom 2",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -187,11 +239,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.381139, 4.873189],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 14",
+    pinTreeId: "boom 2",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -201,11 +256,14 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.381141, 4.873264],
   },
   {
     id: uuidv4(),
     title: "Boom nummer 15",
+    pinTreeId: "boom 2",
     isOpen: false,
+    isSelected: false,
     detailsInfo: {
       treeId: "344594",
       speciesName: "Ulmus hollandica",
@@ -215,5 +273,91 @@ export default [
       owner: "Gemeente Amsterdam",
       administrator: "Stadsdeel Centrum",
     },
+    treesListCoordinates: [52.38108, 4.873339],
+  },
+  {
+    id: uuidv4(),
+    title: "Boom nummer 16",
+    pinTreeId: "boom 2",
+    isOpen: false,
+    isSelected: false,
+    detailsInfo: {
+      treeId: "344594",
+      speciesName: "Ulmus hollandica",
+      treeType: "Boom vrij uitgroeiend",
+      height: "12 tot 15m.",
+      recordYear: 1950,
+      owner: "Gemeente Amsterdam",
+      administrator: "Stadsdeel Centrum",
+    },
+    treesListCoordinates: [52.38102, 4.87336],
+  },
+  {
+    id: uuidv4(),
+    title: "Boom nummer 17",
+    pinTreeId: "boom 2",
+    isOpen: false,
+    isSelected: false,
+    detailsInfo: {
+      treeId: "344594",
+      speciesName: "Ulmus hollandica",
+      treeType: "Boom vrij uitgroeiend",
+      height: "12 tot 15m.",
+      recordYear: 1950,
+      owner: "Gemeente Amsterdam",
+      administrator: "Stadsdeel Centrum",
+    },
+    treesListCoordinates: [52.380963, 4.873472],
+  },
+  {
+    id: uuidv4(),
+    title: "Boom nummer 18",
+    pinTreeId: "boom 2",
+    isOpen: false,
+    isSelected: false,
+    detailsInfo: {
+      treeId: "344594",
+      speciesName: "Ulmus hollandica",
+      treeType: "Boom vrij uitgroeiend",
+      height: "12 tot 15m.",
+      recordYear: 1950,
+      owner: "Gemeente Amsterdam",
+      administrator: "Stadsdeel Centrum",
+    },
+    treesListCoordinates: [52.381035, 4.873471],
+  },
+  {
+    id: uuidv4(),
+    title: "Boom nummer 19",
+    pinTreeId: "boom 2",
+    isOpen: false,
+    isSelected: false,
+    detailsInfo: {
+      treeId: "344594",
+      speciesName: "Ulmus hollandica",
+      treeType: "Boom vrij uitgroeiend",
+      height: "12 tot 15m.",
+      recordYear: 1950,
+      owner: "Gemeente Amsterdam",
+      administrator: "Stadsdeel Centrum",
+    },
+    treesListCoordinates: [52.381073, 4.873482],
+  },
+  {
+    id: uuidv4(),
+    title: "Boom nummer 20",
+    pinTreeId: "boom 2",
+    isOpen: false,
+    isSelected: false,
+    detailsInfo: {
+      treeId: "344594",
+      speciesName: "Ulmus hollandica",
+      treeType: "Boom vrij uitgroeiend",
+      height: "12 tot 15m.",
+      recordYear: 1950,
+      owner: "Gemeente Amsterdam",
+      administrator: "Stadsdeel Centrum",
+    },
+    treesListCoordinates: [52.381084, 4.873506],
   },
 ];

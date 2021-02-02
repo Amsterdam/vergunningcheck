@@ -2,7 +2,8 @@ const debug = require("debug")("graphql:util");
 const xml2js = require("xml2js");
 const fetch = require("node-fetch");
 const { stringify } = require("querystring");
-const { enabled, getAsync, setSync, cachePrefix } = require("./cache");
+const { cache } = require("../config");
+const { getAsync, setSync, cachePrefix } = require("./cache");
 
 const parser = new xml2js.Parser();
 
@@ -50,5 +51,5 @@ module.exports = {
   getUrl,
   postXml,
   withLog,
-  withCache: enabled ? withCache : noop,
+  withCache: cache.enabled ? withCache : noop,
 };

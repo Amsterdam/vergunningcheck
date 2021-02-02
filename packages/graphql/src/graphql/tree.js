@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Tree implements Node {
     id: ID!
     meta: TreeMeta!
-    geo: GeoJSONPoint!
+    geometry: GeoJSONPoint!
   }
 
   type TreeMeta {
@@ -12,37 +12,17 @@ const typeDefs = gql`
   }
 
   extend type Query {
-    tree(id: ID!): Tree
-    trees(search: GeoSearchInput): [Tree!]!
+    trees(ids: [ID!], search: GeoSearchInput): [Tree!]!
   }
 `;
 
 const resolvers = {
   Query: {
-    tree: (_, args) => ({
-      meta: {},
-      ...args,
-    }),
-    trees: async (_, { search }, { loaders }) =>
-      (await loaders.tree.fetch(search)).map((data) => ({
-        meta: {},
-        geo: {
-          type: "POINT",
-          features: [
-            {
-              type: "POINT",
-              crs: {
-                type: "NAME",
-                properties: {
-                  name: "the name",
-                },
-              },
-              bbox: [2.1],
-            },
-          ],
-        },
-        ...data,
-      })),
+    trees: (_, { search, ids }, { loaders }) =>
+      ids ? loaders.tree.fetch(ids) : loaders.tree.search(search),
+  },
+  Tree: {
+    meta: () => ({}),
   },
   TreeMeta: {
     isProtected: () => Math.random() < 0.5, // rand bool
