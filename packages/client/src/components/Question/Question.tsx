@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTopicData, useTracking } from "../../hooks";
+import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { Answer } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
@@ -20,17 +20,19 @@ import Nav from "../Nav";
 import { QuestionAlert } from "./";
 
 type QuestionProps = {
+  hideNav?: boolean;
   isCheckerConclusive: () => boolean;
   question: ImtrQuestion;
-  onGoToNext: () => void;
-  onGoToPrev: () => void;
+  onGoToNext?: () => void;
+  onGoToPrev?: () => void;
   outcomeType: ClientOutcomes;
-  saveAnswer: (answer: Answer) => void;
+  saveAnswer: (answer: Answer, question?: ImtrQuestion) => void;
   showQuestionAlert: boolean;
-  showNext: boolean;
+  showNext?: boolean;
 };
 
 const Question: FunctionComponent<QuestionProps> = ({
+  hideNav,
   isCheckerConclusive,
   question,
   outcomeType,
@@ -44,6 +46,7 @@ const Question: FunctionComponent<QuestionProps> = ({
   const {
     topicData: { questionIndex },
   } = useTopicData();
+  const { isForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -84,7 +87,7 @@ const Question: FunctionComponent<QuestionProps> = ({
     <Form
       dataId={questionId}
       dataTestId={QUESTION_FORM}
-      onSubmit={handleSubmit(() => onGoToNext())}
+      onSubmit={handleSubmit(() => onGoToNext && onGoToNext())}
     >
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
@@ -109,19 +112,23 @@ const Question: FunctionComponent<QuestionProps> = ({
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 
-      <Nav
-        formEnds={isCheckerConclusive()}
-        nextText={
-          isCheckerConclusive()
-            ? t("outcome.goToOutcome")
-            : t("question.nextQuestion")
-        }
-        showPrev={questionIndex > 0} // Do not show back-button at the first question
-        {...{
-          onGoToPrev,
-          showNext,
-        }}
-      />
+      {!hideNav && (
+        <Nav
+          formEnds={isCheckerConclusive() || isForm}
+          nextText={
+            isForm
+              ? "Ga naar volgende stap"
+              : isCheckerConclusive()
+              ? t("outcome.goToOutcome")
+              : t("question.nextQuestion")
+          }
+          showPrev={questionIndex > 0} // Do not show back-button at the first question
+          {...{
+            onGoToPrev,
+            showNext,
+          }}
+        />
+      )}
     </Form>
   );
 };

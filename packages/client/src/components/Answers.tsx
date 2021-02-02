@@ -13,7 +13,7 @@ import { QUESTION_ANSWERS } from "../utils/test-ids";
 type AnswersProps = {
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
   question: ImtrQuestion;
-  saveAnswer: (answer: Answer) => void;
+  saveAnswer: (answer: Answer, question?: ImtrQuestion) => void;
 };
 
 const Answers: FunctionComponent<AnswersProps> = ({
@@ -53,7 +53,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
                 error={errors[id]}
                 key={answerId}
                 id={answerId}
-                onChange={() => saveAnswer(answer)}
+                onChange={() => saveAnswer(answer, question)}
                 value={formValue}
               />
             </Label>

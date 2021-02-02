@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { useChecker, useSlug } from "../../hooks";
+import { useChecker, useSlug, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
@@ -21,6 +21,7 @@ const OutcomeWrapper = styled.div`
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const slug = useSlug();
+  const { isForm } = useTopic();
   const { t } = useTranslation();
 
   if (!checker) return null;
@@ -39,7 +40,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const outcomeContent = getOutcomeContent(checker, slug);
 
   // Show content only when this section is active or completed
-  const showOutcome = isActive || isCompleted;
+  const showContent = isActive || isCompleted;
   const handleOnClick =
     isCompleted && !isActive
       ? () => changeActiveSection(currentSection)
@@ -47,6 +48,23 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
 
   // @TODO: fix the active style in a proper way without `style`
   const activeStyle = { marginTop: -1, borderColor: "white" };
+
+  // @TODO: place outside this component
+  const Outcome = () =>
+    isForm ? (
+      <div>Hier uw aanvraag formulier</div>
+    ) : (
+      <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
+        <OutcomeContent
+          {...{
+            outcomeContent,
+            outcomeType,
+            showDiscaimer,
+          }}
+        />
+        {showDiscaimer && <Disclaimer />}
+      </OutcomeWrapper>
+    );
 
   return (
     <StepByStepItem
@@ -61,19 +79,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
       onClick={handleOnClick}
       style={isActive ? activeStyle : {}}
     >
-      {showOutcome ? (
-        <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
-          <OutcomeContent
-            {...{
-              outcomeContent,
-              outcomeType,
-              showDiscaimer,
-            }}
-          />
-
-          {showDiscaimer && <Disclaimer />}
-        </OutcomeWrapper>
-      ) : null}
+      {showContent ? <Outcome /> : null}
     </StepByStepItem>
   );
 };

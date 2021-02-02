@@ -39,6 +39,8 @@ const EditLocationModal: FunctionComponent = () => {
       type: slug,
     };
 
+    // @TODO: decide if the all data is cleared when `isForm`...
+
     setTopicData(newTopicData);
 
     setChecker(undefined);

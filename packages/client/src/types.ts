@@ -96,18 +96,21 @@ type BaseTopic = {
 };
 
 type IMTRTopic = {
+  isForm?: false | true;
   hasIMTR: true;
   intro?: string;
   redirectToOlo?: false;
 } & BaseTopic;
 
 type OloTopic = {
+  isForm?: false;
   hasIMTR: false;
   intro?: string;
   redirectToOlo?: false;
 } & BaseTopic;
 
 type RedirectToOloTopic = {
+  isForm?: false;
   hasIMTR: false;
   redirectToOlo: true;
   intro?: undefined;
