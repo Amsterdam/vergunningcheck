@@ -145,4 +145,14 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck brandveilig gebruik",
     },
   },
+  {
+    hasIMTR: true,
+    isForm: true,
+    name: "Bomen kappen",
+    redirectToOlo: false,
+    slug: "formulier",
+    text: {
+      heading: "Formulier aanvraag bomenkap",
+    },
+  },
 ];
