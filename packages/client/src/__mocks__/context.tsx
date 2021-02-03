@@ -1,4 +1,4 @@
-import { Answers, Checker } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useContext } from "react";
 
@@ -8,8 +8,8 @@ import { Address, Topic } from "../types";
 
 type SessionContextProviderProps = {
   addressMock?: Address;
-  answers?: Answers;
-  checker?: Checker;
+  answers?: imtr.Answers;
+  checker?: imtr.Checker;
   questionIndex?: number;
   topicMock: Topic;
 };

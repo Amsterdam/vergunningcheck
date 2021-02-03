@@ -1,4 +1,4 @@
-import { Answer as IMTRAnswer } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
 
 /**
@@ -64,7 +64,7 @@ export type SectionFunctions = {
 export type TopicData = {
   address: Address;
   answers: {
-    [id: string]: IMTRAnswer;
+    [id: string]: imtr.Answer;
   };
   timesLoaded: number;
   sectionData: SectionData[];
@@ -121,6 +121,7 @@ export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 /**
  * Checker related types
  */
+// @TODO: AnswerInput
 export type Answer = {
   formValue: string;
   label: string;
