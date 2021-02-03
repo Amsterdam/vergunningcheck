@@ -1,4 +1,3 @@
-import { LatLngTuple } from "leaflet";
 import { v4 as uuidv4 } from "uuid";
 
 export type tree = {
@@ -16,9 +15,9 @@ export type tree = {
     owner: string;
     administrator: string;
   };
-  treesListCoordinates: LatLngTuple;
+  treesListCoordinates: any;
   geometry: {
-    coordinates: LatLngTuple;
+    coordinates: any;
   };
 };
 

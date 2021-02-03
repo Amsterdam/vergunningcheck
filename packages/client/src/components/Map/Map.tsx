@@ -220,7 +220,14 @@ const LocationMap = () => {
           },
         })}
       />
-      {!isDisplayedPinTrees && <CirclesTrees />}
+      {!isDisplayedPinTrees && (
+        <CirclesTrees
+          currentTreesGroupsDotsList={[]}
+          getSelectedTreesGroupCoordinates={() =>
+            console.log("get selected tree group")
+          }
+        />
+      )}
       <BaseLayer />
     </StyledMap>
   );

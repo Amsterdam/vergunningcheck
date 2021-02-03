@@ -3,11 +3,11 @@ import { LatLngTuple } from "leaflet";
 export type Tree = {
   id: string;
   geometry: {
-    coordinates: LatLngTuple[];
+    coordinates: any;
     type?: string;
   };
-  treesListCoordinates: LatLngTuple[];
-  selectedTreesListCoordinates?: LatLngTuple[];
+  treesListCoordinates: any;
+  selectedTreesListCoordinates?: any;
 };
 
 export type CircleMarkerTree = {

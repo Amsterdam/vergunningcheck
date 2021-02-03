@@ -6,6 +6,7 @@ import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { Address, SectionComponent } from "../../types";
 import { LOCATION_SECTION } from "../../utils/test-ids";
+import Map from "../Map/Map";
 import { StepByStepItem } from "../StepByStepNavigation";
 import LocationSummary from "./LocationSummary";
 import { LocationInput } from ".";
@@ -19,6 +20,10 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
+  // const { showMap } = useTopic();
+  const showMap = true;
+
+  console.log("showMap", showMap);
 
   const {
     currentSection: { isActive, isCompleted },
@@ -132,12 +137,14 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       style={activeStyle}
       {...{ heading }}
     >
-      {isActive ? (
+      {isActive && !showMap ? (
         <LocationInput
           {...{
             handleNewAddressSubmit,
           }}
         />
+      ) : isActive && showMap ? (
+        <Map />
       ) : (
         <LocationSummary showEditLocationModal />
       )}

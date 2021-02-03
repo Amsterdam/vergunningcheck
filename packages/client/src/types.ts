@@ -98,18 +98,21 @@ type BaseTopic = {
 type IMTRTopic = {
   hasIMTR: true;
   intro?: string;
+  showMap: boolean;
   redirectToOlo?: false;
 } & BaseTopic;
 
 type OloTopic = {
   hasIMTR: false;
   intro?: string;
+  showMap: boolean;
   redirectToOlo?: false;
 } & BaseTopic;
 
 type RedirectToOloTopic = {
   hasIMTR: false;
   redirectToOlo: true;
+  showMap: boolean;
   intro?: undefined;
 } & BaseTopic;
 

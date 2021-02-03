@@ -57,17 +57,17 @@ type ResultProps = {
   currentOverlay: Overlay;
   setCurrentTree: any; // xxx
   setCurrentOverlay: (overlay: Overlay) => void;
-  dotsTreesList: tree[];
+  treesList: tree[];
   updateTreesList: Function;
   deleteTree: Function;
-  handleVisibilityPinTrees: (bool: Boolean) => void;
+  handleVisibilityPinTrees: any;
 };
 
 const Results: React.FC<ResultProps> = ({
   currentTree,
   setCurrentTree,
   setCurrentOverlay,
-  dotsTreesList,
+  treesList,
   updateTreesList,
   deleteTree,
   handleVisibilityPinTrees,
@@ -126,7 +126,7 @@ const Results: React.FC<ResultProps> = ({
               </Button>
               {isOpenTreesList && (
                 <AccordionList
-                  treesList={dotsTreesList}
+                  treesList={treesList}
                   deleteTree={deleteTree}
                   expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
                 />
