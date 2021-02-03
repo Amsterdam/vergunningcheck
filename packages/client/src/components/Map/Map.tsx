@@ -155,8 +155,8 @@ const LocationMap = () => {
         currentOverlay={currentOverlay}
         setCurrentOverlay={setCurrentOverlay}
         setCurrentTree={setCurrentTree}
-        updatetreesList={updateTreesList}
         deleteTree={deleteTree}
+        updateTreesList={updateTreesList}
         handleVisibilityPinTrees={setDisplayedPinTrees(true)}
         treesList={treesList}
       />
@@ -199,8 +199,8 @@ const LocationMap = () => {
               setCurrentTree(e.latlng);
               setCurrentOverlay(Overlay.Results);
 
-              const currentTree = trees.find((tree) => {
-                const { coordinates } = tree.geo.geometry;
+              const currentTree = treesListMocks.find((tree) => {
+                const { coordinates } = tree.geometry;
                 return (
                   coordinates[0] === e.latlng.lat &&
                   coordinates[1] === e.latlng.lng
@@ -220,9 +220,7 @@ const LocationMap = () => {
           },
         })}
       />
-      {!isDisplayedPinTrees && (
-        <CirclesTrees currentTreesGroupsDotsList={treesList} />
-      )}
+      {!isDisplayedPinTrees && <CirclesTrees />}
       <BaseLayer />
     </StyledMap>
   );

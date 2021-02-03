@@ -3,7 +3,7 @@ import { LatLngTuple } from "leaflet";
 export type Tree = {
   id: string;
   geometry: {
-    coordinates: LatLngTuple;
+    coordinates: LatLngTuple[];
     type?: string;
   };
   treesListCoordinates: LatLngTuple[];

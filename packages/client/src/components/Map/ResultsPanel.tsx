@@ -4,14 +4,14 @@ import {
   MapPanelDrawer,
   MapPanelProvider,
 } from "@amsterdam/arm-core";
-import { Spinner, ViewerContainer } from "@amsterdam/asc-ui";
+import { Button, Paragraph, Spinner, ViewerContainer } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { AccordionList } from "../../atoms";
 import { Tree } from "./__mocks__/pinsTreesListMocks";
-import treesListMocks, { tree } from "./__mocks__/treeListMocks";
+import { tree } from "./__mocks__/treeListMocks";
 
 export enum Overlay {
   Results,
@@ -44,6 +44,11 @@ type Props = {
 const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
   ...otherProps
 }) => {
+  // const height =
+  //   parseInt(drawerPosition, 10) < window.innerHeight / 2
+  //     ? "50%"
+  //     : drawerPosition;
+
   return <StylerViewerContainer {...otherProps} />;
 };
 
@@ -51,40 +56,40 @@ type ResultProps = {
   currentTree: Tree | null;
   currentOverlay: Overlay;
   setCurrentTree: any; // xxx
-  treesList: tree[];
-  updateTreesList: Function;
-  deleteDotTree: Function;
-  handleVisibilityPinTrees: Function;
   setCurrentOverlay: (overlay: Overlay) => void;
+  dotsTreesList: tree[];
+  updateTreesList: Function;
+  deleteTree: Function;
+  handleVisibilityPinTrees: (bool: Boolean) => void;
 };
 
 const Results: React.FC<ResultProps> = ({
   currentTree,
   setCurrentTree,
   setCurrentOverlay,
+  dotsTreesList,
+  updateTreesList,
+  deleteTree,
+  handleVisibilityPinTrees,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [treesList, setTreesList] = useState([...treesListMocks]);
+  const [isOpenTreesList, setOpenTreesList] = useState(false);
 
-  const updateTreesList = (id: string) => () => {
-    const updatedTreesList = treesList.map((item) => {
-      if (id === item.id) {
-        return { ...item, isOpen: !item.isOpen };
-      }
-      return item;
-    });
-    setTreesList(updatedTreesList);
+  const expandAccordionWithDetailInfo = (id: string) => () => {
+    updateTreesList(id);
   };
 
-  const deleteTree = (id: string) => (event: any) => {
-    event.stopPropagation();
-    const updatedTreesList = treesList.filter((item) => item.id !== id);
-    setTreesList(updatedTreesList);
+  const cutDownTree = () => {
+    setOpenTreesList(true);
+    handleVisibilityPinTrees(false);
+    // getTreesGroupCoordinates(currentTree);
   };
 
   const closeMapPanelContent = () => {
     setCurrentTree(null);
     setCurrentOverlay(Overlay.None);
+    // getTreesGroupCoordinates({});
+    handleVisibilityPinTrees(true);
   };
 
   useEffect(() => {
@@ -98,6 +103,7 @@ const Results: React.FC<ResultProps> = ({
   return (
     <MapPanelContent
       title="Kies een boom"
+      subTitle="U kunt meer dan 1 keuze maken"
       animate
       variant={"drawer"}
       onClose={closeMapPanelContent}
@@ -107,11 +113,25 @@ const Results: React.FC<ResultProps> = ({
       ) : (
         <>
           {currentTree && (
-            <AccordionList
-              treesList={treesList}
-              updateTreesList={updateTreesList}
-              deleteTree={deleteTree}
-            />
+            <>
+              <Paragraph gutterBottom={0}>
+                Boom geselecteerd: {currentTree?.id}
+              </Paragraph>
+              <Paragraph>
+                Boom coordinaten:{" "}
+                {JSON.stringify(currentTree?.geometry?.coordinates)}
+              </Paragraph>
+              <Button onClick={cutDownTree} variant="primary">
+                Ik wil deze boom kappen
+              </Button>
+              {isOpenTreesList && (
+                <AccordionList
+                  treesList={dotsTreesList}
+                  deleteTree={deleteTree}
+                  expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
+                />
+              )}
+            </>
           )}
         </>
       )}
@@ -124,6 +144,10 @@ interface ResultsPanelProps {
   currentOverlay: Overlay;
   setCurrentOverlay: (overlay: Overlay) => void;
   setCurrentTree: any; // xxx
+  treesList: tree[];
+  updateTreesList: Function;
+  deleteTree: Function;
+  handleVisibilityPinTrees: void;
 }
 
 const ResultsPanel: React.FC<ResultsPanelProps> = ({
@@ -131,6 +155,10 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({
   currentOverlay,
   setCurrentOverlay,
   setCurrentTree,
+  treesList,
+  updateTreesList,
+  deleteTree,
+  handleVisibilityPinTrees,
 }) => {
   const [showDesktopVariant] = useMatchMedia({
     minBreakpoint: "tabletM",
@@ -154,6 +182,10 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({
               currentOverlay,
               setCurrentTree,
               setCurrentOverlay,
+              treesList,
+              updateTreesList,
+              deleteTree,
+              handleVisibilityPinTrees,
             }}
           />
         </Element>
