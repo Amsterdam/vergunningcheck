@@ -222,7 +222,7 @@ const LocationMap = () => {
       <StyledViewerContainer
         topLeft={
           zoomLevel &&
-          zoomLevel > 9 && (
+          zoomLevel < 11 && (
             <StyledParagraph>Zoom in om de bomen te zien.</StyledParagraph>
           )
         }
