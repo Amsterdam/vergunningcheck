@@ -26,6 +26,9 @@ const CloseIcon = styled(Close)`
   padding: 4px;
   border: 1px solid black;
 `;
+const StyledTitle = styled.h4`
+  margin: 0px;
+`;
 
 const AccordionTab = ({
   id,
@@ -49,7 +52,7 @@ const AccordionTab = ({
         <Chevron
           style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0)" }}
         />
-        <h4 style={{ margin: 0 }}>{title}</h4>
+        <StyledTitle>{title}</StyledTitle>
       </div>
       <CloseIcon onClick={deleteTree(id)} />
     </AccordionItem>

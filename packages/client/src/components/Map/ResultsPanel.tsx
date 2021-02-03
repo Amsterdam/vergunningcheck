@@ -9,9 +9,9 @@ import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { Tree } from "../../__mocks__/pinsTreesListMocks";
+import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
 import { AccordionList } from "../../atoms";
-import { Tree } from "./__mocks__/pinsTreesListMocks";
-import { tree } from "./__mocks__/treeListMocks";
 
 export enum Overlay {
   Results,
@@ -52,44 +52,57 @@ const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
   return <StylerViewerContainer {...otherProps} />;
 };
 
+// @Sven: This disabled scrolling on desktop, should this only be enabled on tablet / mobile?
+// const GlobalStyle = createGlobalStyle`
+//   body {
+//     touch-action: none;
+//     overflow: hidden; // This will prevent the scrollBar on iOS due to navigation bar
+//   }
+// `;
+
 type ResultProps = {
-  currentTree: Tree | null;
+  currentPinMarkerTreesGroup: Tree | null;
   currentOverlay: Overlay;
-  setCurrentTree: any; // xxx
+  setCurrentPinMarkerTreesGroup: any; // xxx
   setCurrentOverlay: (overlay: Overlay) => void;
-  treesList: tree[];
-  updateTreesList: Function;
-  deleteTree: Function;
-  handleVisibilityPinTrees: any;
+  zoomToCircleMarkerTreesGroup: Function;
+  getSelectedTreesGroupCoordinates: Function;
+  circleMarkersTreesList: CircleMarkerTreeInfo[];
+  expandAccordionItemTreeInfo: Function;
+  deleteCircleMarkerTree: Function;
 };
 
 const Results: React.FC<ResultProps> = ({
-  currentTree,
-  setCurrentTree,
+  currentPinMarkerTreesGroup,
+  setCurrentPinMarkerTreesGroup,
   setCurrentOverlay,
-  treesList,
-  updateTreesList,
-  deleteTree,
-  handleVisibilityPinTrees,
+  zoomToCircleMarkerTreesGroup,
+  circleMarkersTreesList,
+  expandAccordionItemTreeInfo,
+  deleteCircleMarkerTree,
 }) => {
   const [loading, setLoading] = useState(false);
   const [isOpenTreesList, setOpenTreesList] = useState(false);
 
   const expandAccordionWithDetailInfo = (id: string) => () => {
-    updateTreesList(id);
+    expandAccordionItemTreeInfo(id);
+  };
+
+  const deleteTree = (id: string) => (event: any) => {
+    event.stopPropagation();
+    deleteCircleMarkerTree({ treesList: circleMarkersTreesList, id });
   };
 
   const cutDownTree = () => {
     setOpenTreesList(true);
-    handleVisibilityPinTrees(false);
-    // getTreesGroupCoordinates(currentTree);
+    zoomToCircleMarkerTreesGroup(currentPinMarkerTreesGroup);
   };
 
   const closeMapPanelContent = () => {
-    setCurrentTree(null);
+    setCurrentPinMarkerTreesGroup(null);
     setCurrentOverlay(Overlay.None);
-    // getTreesGroupCoordinates({});
-    handleVisibilityPinTrees(true);
+    zoomToCircleMarkerTreesGroup({});
+    setOpenTreesList(false);
   };
 
   useEffect(() => {
@@ -98,7 +111,7 @@ const Results: React.FC<ResultProps> = ({
     setTimeout(() => {
       setLoading(false);
     }, 700);
-  }, [currentTree]);
+  }, [currentPinMarkerTreesGroup]);
 
   return (
     <MapPanelContent
@@ -112,21 +125,25 @@ const Results: React.FC<ResultProps> = ({
         <Spinner />
       ) : (
         <>
-          {currentTree && (
+          {currentPinMarkerTreesGroup && (
             <>
               <Paragraph gutterBottom={0}>
-                Boom geselecteerd: {currentTree?.id}
+                Boom geselecteerd: {currentPinMarkerTreesGroup?.id}
               </Paragraph>
               <Paragraph>
                 Boom coordinaten:{" "}
-                {JSON.stringify(currentTree?.geometry?.coordinates)}
+                {JSON.stringify(
+                  currentPinMarkerTreesGroup?.geo?.geometry?.coordinates
+                )}
               </Paragraph>
-              <Button onClick={cutDownTree} variant="primary">
-                Ik wil deze boom kappen
-              </Button>
+              {!isOpenTreesList && (
+                <Button onClick={cutDownTree} variant="primary">
+                  Ik wil deze boom kappen
+                </Button>
+              )}
               {isOpenTreesList && (
                 <AccordionList
-                  treesList={treesList}
+                  treesList={circleMarkersTreesList}
                   deleteTree={deleteTree}
                   expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
                 />
@@ -140,31 +157,33 @@ const Results: React.FC<ResultProps> = ({
 };
 
 interface ResultsPanelProps {
-  currentTree: Tree | undefined;
+  currentPinMarkerTreesGroup: Tree | undefined;
   currentOverlay: Overlay;
   setCurrentOverlay: (overlay: Overlay) => void;
-  setCurrentTree: any; // xxx
-  treesList: tree[];
-  updateTreesList: Function;
-  deleteTree: Function;
-  handleVisibilityPinTrees: void;
+  setCurrentPinMarkerTreesGroup: any; // xxx
+  zoomToCircleMarkerTreesGroup: Function;
+  getSelectedTreesGroupCoordinates: Function;
+  circleMarkersTreesList: CircleMarkerTreeInfo[];
+  expandAccordionItemTreeInfo: Function;
+  deleteCircleMarkerTree: Function;
 }
 
 const ResultsPanel: React.FC<ResultsPanelProps> = ({
-  currentTree,
+  currentPinMarkerTreesGroup,
   currentOverlay,
   setCurrentOverlay,
-  setCurrentTree,
-  treesList,
-  updateTreesList,
-  deleteTree,
-  handleVisibilityPinTrees,
+  setCurrentPinMarkerTreesGroup,
+  zoomToCircleMarkerTreesGroup,
+  getSelectedTreesGroupCoordinates,
+  circleMarkersTreesList,
+  expandAccordionItemTreeInfo,
+  deleteCircleMarkerTree,
 }) => {
   const [showDesktopVariant] = useMatchMedia({
     minBreakpoint: "tabletM",
   });
 
-  if (!currentTree) {
+  if (!currentPinMarkerTreesGroup) {
     return null;
   }
 
@@ -178,14 +197,15 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({
         <Element>
           <Results
             {...{
-              currentTree,
+              currentPinMarkerTreesGroup,
               currentOverlay,
-              setCurrentTree,
+              setCurrentPinMarkerTreesGroup,
               setCurrentOverlay,
-              treesList,
-              updateTreesList,
-              deleteTree,
-              handleVisibilityPinTrees,
+              zoomToCircleMarkerTreesGroup,
+              getSelectedTreesGroupCoordinates,
+              circleMarkersTreesList,
+              expandAccordionItemTreeInfo,
+              deleteCircleMarkerTree,
             }}
           />
         </Element>

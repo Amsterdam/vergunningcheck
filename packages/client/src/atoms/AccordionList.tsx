@@ -1,10 +1,9 @@
-import { ChevronLeft, ChevronRight } from "@amsterdam/asc-assets";
+import { ChevronLeft, ChevronRight, List } from "@amsterdam/asc-assets";
 import chunk from "lodash/chunk";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 
-import { tree } from "../components/Map/__mocks__/treeListMocks";
+import { CircleMarkerTreeInfo } from "../__mocks__/treesListMocks";
 import AccordionTab from "./AccordionTab";
 
 interface schemaLabels {
@@ -25,6 +24,12 @@ const ArrowLeft = styled(ChevronLeft)`
   border: 1px solid #a8a8a8;
 `;
 
+const StyledListIcon = styled(List)`
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+`;
+
 const schema: schemaLabels = {
   treeId: "Boom",
   speciesName: "Soortnaam",
@@ -40,7 +45,7 @@ const AccordionList = ({
   expandAccordionWithDetailInfo,
   deleteTree,
 }: {
-  treesList: tree[];
+  treesList: CircleMarkerTreeInfo[];
   expandAccordionWithDetailInfo: Function;
   deleteTree: Function;
 }) => {
@@ -51,6 +56,11 @@ const AccordionList = ({
   const totalPages = Math.ceil(treesListForRender.length / maxRecordOnPage);
   const splittedData = chunk(treesListForRender, maxRecordOnPage) || [];
   const currentData = splittedData[currentPageList - 1] || [];
+
+  const checkedCurrentData =
+    currentPageList > 1 && currentData.length === 0
+      ? splittedData[0] || []
+      : currentData || [];
 
   const paginatePage = (direction: string) => () => {
     if (direction === "prev") {
@@ -65,109 +75,128 @@ const AccordionList = ({
   return (
     <div
       style={{
-        minHeight: 300,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        border: "1px solid #a8a8a8",
       }}
     >
-      <div>
-        {currentData.map((item: tree) => {
-          const {
-            id,
-            title,
-            isOpen,
-
-            detailsInfo,
-          }: {
-            id: string;
-            title: string;
-            isOpen: boolean;
-
-            detailsInfo: object;
-          } = item;
-
-          return (
-            <div key={id}>
-              <AccordionTab
-                id={id}
-                title={title}
-                isOpen={isOpen}
-                deleteTree={deleteTree}
-                expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
-              />
-              {isOpen && (
-                <dl
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "max-content auto",
-                    margin: 0,
-                    padding: "5px 10px 10px 35px",
-                    backgroundColor: isOpen ? "#efefef" : "#fff",
-                  }}
-                >
-                  {Object.entries(detailsInfo).map((item) => {
-                    return (
-                      <React.Fragment key={uuidv4()}>
-                        <dt
-                          style={{
-                            width: 100,
-                            gridColumnStart: 1,
-                            margin: "5px 0",
-                          }}
-                        >
-                          {schema[item[0]]}
-                        </dt>
-                        <dd
-                          style={{
-                            gridColumnStart: 2,
-                            margin: "5px 0",
-                            fontWeight: 700,
-                          }}
-                        >
-                          {item[1]}
-                        </dd>
-                      </React.Fragment>
-                    );
-                  })}
-                </dl>
-              )}
-            </div>
-          );
-        })}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          alignSelf: "flex-end",
+          padding: "5px 10px",
+          border: "3px solid black",
+          marginBottom: "15px",
+        }}
+      >
+        <StyledListIcon />
+        <h4 style={{ margin: 0, fontSize: 18 }}>Tabel weergeven</h4>
       </div>
-      {totalPages > 1 && (
-        <div
-          style={{
-            width: 300,
-            marginBottom: 20,
-            display: "flex",
-            alignSelf: "center",
-          }}
-        >
-          <ArrowLeft onClick={paginatePage("prev")} />
+      <div
+        style={{
+          minHeight: 300,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          border: "1px solid #a8a8a8",
+        }}
+      >
+        <div>
+          {checkedCurrentData.map((item: CircleMarkerTreeInfo) => {
+            const {
+              id,
+              title,
+              isOpen,
+              detailsInfo,
+            }: {
+              id: string;
+              title: string;
+              isOpen: boolean;
 
+              detailsInfo: object;
+            } = item;
+
+            return (
+              <div key={id}>
+                <AccordionTab
+                  id={id}
+                  title={title}
+                  isOpen={isOpen}
+                  deleteTree={deleteTree}
+                  expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
+                />
+                {isOpen && (
+                  <dl
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "max-content auto",
+                      margin: 0,
+                      padding: "5px 10px 10px 35px",
+                      backgroundColor: isOpen ? "#efefef" : "#fff",
+                    }}
+                  >
+                    {Object.entries(detailsInfo).map((item) => {
+                      return (
+                        <React.Fragment key={id}>
+                          <dt
+                            style={{
+                              width: 100,
+                              gridColumnStart: 1,
+                              margin: "5px 0",
+                            }}
+                          >
+                            {schema[item[0]]}
+                          </dt>
+                          <dd
+                            style={{
+                              gridColumnStart: 2,
+                              margin: "5px 0",
+                              fontWeight: 700,
+                            }}
+                          >
+                            {item[1]}
+                          </dd>
+                        </React.Fragment>
+                      );
+                    })}
+                  </dl>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {totalPages > 1 && (
           <div
             style={{
-              width: "80%",
-              border: "1px solid #a8a8a8",
-              borderLeft: 0,
-              borderRight: 0,
-              textAlign: "center",
-              lineHeight: "2.1",
+              width: 300,
+              marginBottom: 20,
+              display: "flex",
+              alignSelf: "center",
             }}
           >
-            <span>
-              <span style={{ fontWeight: 700 }}>{currentPageList}</span>
-              <span style={{ margin: 5 }}>van</span>
-              <span>{totalPages}</span>
-            </span>
-          </div>
+            <ArrowLeft onClick={paginatePage("prev")} />
 
-          <ArrowRight onClick={paginatePage("next")} />
-        </div>
-      )}
+            <div
+              style={{
+                width: "80%",
+                border: "1px solid #a8a8a8",
+                borderLeft: 0,
+                borderRight: 0,
+                textAlign: "center",
+                lineHeight: "2.1",
+              }}
+            >
+              <span>
+                <span style={{ fontWeight: 700 }}>{currentPageList}</span>
+                <span style={{ margin: 5 }}>van</span>
+                <span>{totalPages}</span>
+              </span>
+            </div>
+
+            <ArrowRight onClick={paginatePage("next")} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

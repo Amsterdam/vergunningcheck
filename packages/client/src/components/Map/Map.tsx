@@ -23,9 +23,11 @@ import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Tree } from "./__mocks__/pinsTreesListMocks";
-import treesListMocks, { tree } from "./__mocks__/treeListMocks";
-import CirclesTrees from "./CircleTrees";
+import { Tree, trees } from "../../__mocks__/pinsTreesListMocks";
+import treesListMocks, {
+  CircleMarkerTreeInfo,
+} from "../../__mocks__/treesListMocks";
+import CirclesTrees from "./CirclesTrees";
 import ResultsPanel, { Overlay } from "./ResultsPanel";
 
 const getTrees = loader("./getTrees.graphql");
@@ -39,16 +41,11 @@ const StyledMap = styled(Map)`
 const StyledViewerContainer = styled(ViewerContainer)`
   z-index: 400;
   height: 640px;
-  padding: 40px;
   margin-top: 40px;
 `;
 const StyledResults = styled(ResultsPanel)`
   z-index: 400;
   height: 600px;
-  margin: 100px;
-`;
-const StyledZoom = styled(Zoom)`s
-  padding: 40px;
   margin: 100px;
 `;
 export const StyledParagraph = styled(Paragraph)`
@@ -58,22 +55,32 @@ export const StyledParagraph = styled(Paragraph)`
 
 const LocationMap = () => {
   const [currentOverlay, setCurrentOverlay] = useState<Overlay>(Overlay.None);
-  const [showDrawTool, setShowDrawTool] = useState(false);
+  const [showDrawTool, setShowDrawTool] = useState(Boolean);
   const [mapInstance, setMapInstance] = useState<L.Map>();
+  const [coordinates, setCoordinates] = useState([[], [], [], []]);
   const [zoomLevel, setZoomLevel] = useState(10);
   const [mapLocation, setMapLocation] = useState<LatLngTuple>([
     52.3711013,
     4.8893335,
   ]);
-  const [coordinates, setCoordinates] = useState([[], [], [], []]);
-  const [markers, setMarkers] = useState([]);
-  const [currentTree, setCurrentTree] = useState<Tree | undefined>(undefined);
-  const [treesList, settreesList] = useState<tree[]>([]);
-  const [isDisplayedPinTrees, setDisplayedPinTrees] = useState(true);
+
+  const [currentPinMarkerTreesGroup, setCurrentPinMarkerTreesGroup] = useState<
+    Tree
+  >();
+  const [circleMarkersTreesList, setCircleMarkersTreesList] = useState<
+    CircleMarkerTreeInfo[]
+  >([]);
+  const [zoomLevelMap, setZoomLevelMap] = useState(mapInstance?.getZoom());
 
   const setMarkerData = () => {
     const result = data?.trees?.map((tree: any) => tree.geometry.coordinates);
-    setMarkers(result as any);
+    setCircleMarkersTreesList(
+      result.data.trees > 1 ? (result as any) : circleMarkersTreesList
+    );
+
+    console.log(currentPinMarkerTreesGroup);
+    console.log("call this");
+    console.log("circleMarkersTreesList", circleMarkersTreesList);
   };
 
   const { loading, error: graphqlError, data, refetch } = useQuery(getTrees, {
@@ -89,7 +96,10 @@ const LocationMap = () => {
         },
   });
 
-  console.error(graphqlError);
+  console.log(graphqlError);
+  console.log(data);
+  console.log(treesListMocks);
+
   useEffect(() => {
     function onChange() {
       setCoordinates([
@@ -126,61 +136,109 @@ const LocationMap = () => {
     };
   }, [loading, mapInstance, refetch, zoomLevel]);
 
-  const updateTreesList = (id: string) => {
-    const updatedtreesList = treesList.map((item) => {
+  // const updateTreesList = (id: string) => {
+  //   const updatedtreesList = treesList.map((item) => {
+  //     if (id === item.id) {
+  //       return { ...item, isOpen: !item.isOpen };
+  //     }
+  //     return item;
+  //   });
+  //   settreesList(updatedtreesList);
+  // };
+
+  const selectCircleMarkerTree = (coordinates: LatLngTuple) => {
+    const updatedDotsTreesList = circleMarkersTreesList.map((item) => {
+      if (
+        item.treesListCoordinates[0] === coordinates[0] &&
+        item.treesListCoordinates[1] === coordinates[1]
+      ) {
+        return { ...item, isSelected: !item.isSelected };
+      }
+      return item;
+    });
+
+    setCircleMarkersTreesList(updatedDotsTreesList);
+  };
+
+  const zoomToCircleMarkerTreesGroup = (coordinates: Tree) => {
+    if (Object.keys(coordinates).length > 0) {
+      mapInstance?.fitBounds(coordinates.geo.treesListCoordinates);
+    }
+  };
+
+  const handleDrawTool = (drawToolState: boolean) => () => {
+    setShowDrawTool(drawToolState);
+  };
+
+  const expandAccordionItemTreeInfo = (id: string) => {
+    const updatedDotsTreesList = circleMarkersTreesList.map((item) => {
       if (id === item.id) {
         return { ...item, isOpen: !item.isOpen };
       }
       return item;
     });
-    settreesList(updatedtreesList);
+    setCircleMarkersTreesList(updatedDotsTreesList);
   };
 
-  const deleteTree = ({ dotsList, id }: { dotsList: tree[]; id: string }) => {
-    const updatedTreesList = dotsList.filter((item) => item.id !== id);
-    settreesList(updatedTreesList);
+  const deleteCircleMarkerTree = ({
+    treesList,
+    id,
+  }: {
+    treesList: CircleMarkerTreeInfo[];
+    id: string;
+  }) => {
+    const updatedTreesList = treesList.filter((item) => item.id !== id);
+    setCircleMarkersTreesList(updatedTreesList);
   };
+
+  // const zoomLevel = mapInstance?.getZoom();
+
+  console.log(zoomLevelMap);
 
   return (
     <StyledMap
+      fullScreen
       setInstance={setMapInstance}
       options={{
         ...constants.DEFAULT_AMSTERDAM_MAPS_OPTIONS,
         zoom: zoomLevel,
         center: mapLocation,
       }}
+      events={{
+        zoomend: () => setZoomLevelMap(mapInstance?.getZoom()),
+      }}
     >
       <StyledResults
-        currentTree={currentTree}
+        currentPinMarkerTreesGroup={currentPinMarkerTreesGroup}
         currentOverlay={currentOverlay}
         setCurrentOverlay={setCurrentOverlay}
-        setCurrentTree={setCurrentTree}
-        deleteTree={deleteTree}
-        updateTreesList={updateTreesList}
-        handleVisibilityPinTrees={setDisplayedPinTrees(true)}
-        treesList={treesList}
+        setCurrentPinMarkerTreesGroup={setCurrentPinMarkerTreesGroup}
+        zoomToCircleMarkerTreesGroup={zoomToCircleMarkerTreesGroup}
+        getSelectedTreesGroupCoordinates={selectCircleMarkerTree}
+        circleMarkersTreesList={circleMarkersTreesList}
+        expandAccordionItemTreeInfo={expandAccordionItemTreeInfo}
+        deleteCircleMarkerTree={deleteCircleMarkerTree}
       />
       <StyledViewerContainer
-        bottomRight={<StyledZoom />}
         topLeft={
-          zoomLevel < 11 && (
+          zoomLevel &&
+          zoomLevel > 9 && (
             <StyledParagraph>Zoom in om de bomen te zien.</StyledParagraph>
           )
         }
         topRight={
           !showDrawTool ? (
-            <DrawToolOpenButton onClick={() => setShowDrawTool(true)} />
+            <DrawToolOpenButton onClick={handleDrawTool(true)} />
           ) : (
             <DrawTool
               onDrawEnd={async (layer: ExtendedLayer) => {
                 console.log(layer);
               }}
-              onClose={() => {
-                setShowDrawTool(false);
-              }}
+              onClose={handleDrawTool(false)}
             />
           )
         }
+        bottomRight={<Zoom />}
       />
       <MarkerClusterGroup
         optionsOverrides={{
@@ -192,42 +250,40 @@ const LocationMap = () => {
           disableClusteringAtZoom: 16,
         }}
         markers={createClusterMarkers({
-          markers: zoomLevel > 10 ? markers : [],
+          markers: [],
           events: {
             click: (e: any) => {
-              console.log(e);
-              setCurrentTree(e.latlng);
+              setCurrentPinMarkerTreesGroup(e.latlng);
               setCurrentOverlay(Overlay.Results);
 
-              const currentTree = treesListMocks.find((tree) => {
-                const { coordinates } = tree.geometry;
+              console.log(e.latlng);
+
+              const currentPinMarkerTreesGroup = trees.find((tree) => {
+                const { coordinates } = tree.geo.geometry;
                 return (
                   coordinates[0] === e.latlng.lat &&
                   coordinates[1] === e.latlng.lng
                 );
               });
 
-              const currenttreesList: any =
-                currentTree &&
-                Object.keys(currentTree).length > 0 &&
+              const currentDotsTreesList: any =
+                currentPinMarkerTreesGroup &&
+                Object.keys(currentPinMarkerTreesGroup).length > 0 &&
                 treesListMocks.filter(
-                  (tree) => tree.pinTreeId === currentTree.id
+                  (tree) => tree.pinTreeId === currentPinMarkerTreesGroup.id
                 );
 
-              settreesList(currenttreesList);
-              setCurrentTree(currentTree);
+              setCircleMarkersTreesList(currentDotsTreesList);
+              setCurrentPinMarkerTreesGroup(currentPinMarkerTreesGroup);
             },
           },
         })}
       />
-      {!isDisplayedPinTrees && (
-        <CirclesTrees
-          currentTreesGroupsDotsList={[]}
-          getSelectedTreesGroupCoordinates={() =>
-            console.log("get selected tree group")
-          }
-        />
-      )}
+      <CirclesTrees
+        zoomLevelMap={zoomLevelMap}
+        circleMarkerTreesList={data}
+        selectCircleMarkerTree={selectCircleMarkerTree}
+      />
       <BaseLayer />
     </StyledMap>
   );
