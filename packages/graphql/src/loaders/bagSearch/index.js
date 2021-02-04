@@ -1,4 +1,6 @@
-const { withCache, fetchJson, getUrl } = require("../../util");
+const debug = require("debug")("graphql:loaders:bagSearch");
+const { fetchJson, getUrl } = require("../../util");
+const { withCache } = require("../../cache");
 const {
   bagSearch: config,
   CACHE_TIMEOUT,

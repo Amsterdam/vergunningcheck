@@ -1,5 +1,6 @@
 const get = require("lodash/get");
-const { withCache, postXml } = require("../../util");
+const { postXml } = require("../../util");
+const { withCache } = require("../../cache");
 const config = require("../../../config").resources.national.zoningPlan;
 
 const TTL = config.cacheTimeout;

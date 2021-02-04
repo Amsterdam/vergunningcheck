@@ -1,7 +1,6 @@
 const yn = require("yn");
 
 const PROD = process.env.NODE_ENV === "production";
-const DEV = !PROD;
 
 const defaultQuery = `
   query findAddress {
@@ -71,26 +70,33 @@ module.exports = {
   path: "graphql",
   healthPath: "health",
   graphql: {
-    graphiql: DEV ? { defaultQuery } : false,
+    graphiql: PROD ? false : { defaultQuery },
     depthLimit: 4,
   },
   enableContentSecurityPolicy: PROD,
   cache: {
-    dataLoaderEnabled: true,
+    dataLoader: {
+      enabled: true,
+    },
     dnsCacheEnabled: true,
-    enabled: yn(process.env.REDIS_ENABLED, { default: PROD }),
+    mocked: yn(process.env.MOCK_REDIS, { default: !PROD }),
     redisUrl: process.env.REDIS_URL,
     requestCacheEnabled: true,
   },
   resources: {
     amsterdam: {
       database: {
-        ENABLED: yn(process.env.DATAPUNT_DB_ENABLED),
+        enabled: yn(process.env.DATAPUNT_DB_ENABLED, { default: PROD }),
         connection: {
-          database: "dsr_vergunningchecker_dev",
-          host: "db01.acc.dsq.amsterdam.nl", // TODO replace acc db with prod, via env var?
+          database: process.env.DATAPUNT_DB_DATABASE_NAME,
+          host: process.env.DATAPUNT_DB_HOST,
           password: process.env.DATAPUNT_DB_SECRET,
           user: "vergunningchecker",
+          // TODO: enable SSL again, maybe use rejectUnauthorized: PROD
+          //   (for insecure dev-envs).
+          // ssl: {
+          //   rejectUnauthorized: PROD,
+          // },
         },
       },
       api: {

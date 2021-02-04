@@ -1,4 +1,5 @@
-const { withCache, fetchJson, getUrl } = require("../../util");
+const { fetchJson, getUrl } = require("../../util");
+const { withCache } = require("../../cache");
 const {
   cityScape: config,
   CACHE_TIMEOUT,
@@ -18,9 +19,8 @@ const loader = {
   reducer: (o) => ({
     scope: scopeMap[o.status],
   }),
-  fetch: (id) => {
-    return fetchJson(getUrl(`${URL}${id}/`, { fields })).then(loader.reducer);
-  },
+  fetch: (id) =>
+    fetchJson(getUrl(`${URL}${id}/`, { fields })).then(loader.reducer),
   cached: (id) => withCache(`cityScape:${id}`, () => loader.fetch(id), TTL),
   load: async (keys) => keys.map(loader.cached),
 };
