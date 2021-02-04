@@ -1,9 +1,9 @@
 import "leaflet/dist/leaflet.css";
 
-import {
-  MarkerClusterGroup,
-  createClusterMarkers,
-} from "@amsterdam/arm-cluster";
+// import {
+//   MarkerClusterGroup,
+//   createClusterMarkers,
+// } from "@amsterdam/arm-cluster";
 import {
   BaseLayer,
   Map,
@@ -23,7 +23,7 @@ import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Tree, trees } from "../../__mocks__/pinsTreesListMocks";
+import { Tree } from "../../__mocks__/pinsTreesListMocks";
 import treesListMocks, {
   CircleMarkerTreeInfo,
 } from "../../__mocks__/treesListMocks";
@@ -35,7 +35,6 @@ const getTrees = loader("./getTrees.graphql");
 const StyledMap = styled(Map)`
   height: 600px;
   overflow: hidden;
-  width: 1500px;
 `;
 
 const StyledViewerContainer = styled(ViewerContainer)`
@@ -64,6 +63,7 @@ const LocationMap = () => {
     4.8893335,
   ]);
 
+  console.log("currentOverlay", currentOverlay);
   const [currentPinMarkerTreesGroup, setCurrentPinMarkerTreesGroup] = useState<
     Tree
   >();
@@ -74,9 +74,7 @@ const LocationMap = () => {
 
   const setMarkerData = () => {
     const result = data?.trees?.map((tree: any) => tree.geometry.coordinates);
-    setCircleMarkersTreesList(
-      result.data.trees > 1 ? (result as any) : circleMarkersTreesList
-    );
+    setCircleMarkersTreesList(result as any);
 
     console.log(currentPinMarkerTreesGroup);
     console.log("call this");
@@ -97,8 +95,8 @@ const LocationMap = () => {
   });
 
   console.log(graphqlError);
-  console.log(data);
-  console.log(treesListMocks);
+  console.log("data", data);
+  console.log("treesListMocks", treesListMocks);
 
   useEffect(() => {
     function onChange() {
@@ -116,10 +114,8 @@ const LocationMap = () => {
           mapInstance!.getBounds()?.getNorthWest()
         ).reverse() as any,
       ]);
-      console.log(mapInstance!.getCenter());
       setMapLocation(mapInstance!.getCenter() as any);
       setZoomLevel(mapInstance!.getZoom());
-      console.log(zoomLevel);
       zoomLevel > 10 && !loading && refetch();
     }
 
@@ -240,50 +236,53 @@ const LocationMap = () => {
         }
         bottomRight={<Zoom />}
       />
-      <MarkerClusterGroup
-        optionsOverrides={{
-          spiderfyOnMaxZoom: false,
-          showCoverageOnHover: false,
-          zoomToBoundsOnClick: true,
-          maxClusterRadius: 50,
-          chunkedLoading: true,
-          disableClusteringAtZoom: 16,
-        }}
-        markers={createClusterMarkers({
-          markers: [],
-          events: {
-            click: (e: any) => {
-              setCurrentPinMarkerTreesGroup(e.latlng);
-              setCurrentOverlay(Overlay.Results);
+      {/*<MarkerClusterGroup*/}
+      {/*  optionsOverrides={{*/}
+      {/*    spiderfyOnMaxZoom: false,*/}
+      {/*    showCoverageOnHover: false,*/}
+      {/*    zoomToBoundsOnClick: true,*/}
+      {/*    maxClusterRadius: 50,*/}
+      {/*    chunkedLoading: true,*/}
+      {/*    disableClusteringAtZoom: 16,*/}
+      {/*  }}*/}
+      {/*  markers={createClusterMarkers({*/}
+      {/*    markers: [],*/}
+      {/*    events: {*/}
+      {/*      click: (e: any) => {*/}
+      {/*        setCurrentPinMarkerTreesGroup(e.latlng);*/}
+      {/*        setCurrentOverlay(Overlay.Results);*/}
 
-              console.log(e.latlng);
+      {/*        const currentPinMarkerTreesGroup = trees.find((tree) => {*/}
+      {/*          const { coordinates } = tree.geo.geometry;*/}
+      {/*          return (*/}
+      {/*            coordinates[0] === e.latlng.lat &&*/}
+      {/*            coordinates[1] === e.latlng.lng*/}
+      {/*          );*/}
+      {/*        });*/}
 
-              const currentPinMarkerTreesGroup = trees.find((tree) => {
-                const { coordinates } = tree.geo.geometry;
-                return (
-                  coordinates[0] === e.latlng.lat &&
-                  coordinates[1] === e.latlng.lng
-                );
-              });
+      {/*        const currentDotsTreesList: any =*/}
+      {/*          currentPinMarkerTreesGroup &&*/}
+      {/*          Object.keys(currentPinMarkerTreesGroup).length > 0 &&*/}
+      {/*          treesListMocks.filter(*/}
+      {/*            (tree) => tree.pinTreeId === currentPinMarkerTreesGroup.id*/}
+      {/*          );*/}
 
-              const currentDotsTreesList: any =
-                currentPinMarkerTreesGroup &&
-                Object.keys(currentPinMarkerTreesGroup).length > 0 &&
-                treesListMocks.filter(
-                  (tree) => tree.pinTreeId === currentPinMarkerTreesGroup.id
-                );
-
-              setCircleMarkersTreesList(currentDotsTreesList);
-              setCurrentPinMarkerTreesGroup(currentPinMarkerTreesGroup);
-            },
-          },
-        })}
-      />
-      <CirclesTrees
-        zoomLevelMap={zoomLevelMap}
-        circleMarkerTreesList={data}
-        selectCircleMarkerTree={selectCircleMarkerTree}
-      />
+      {/*        setCircleMarkersTreesList(currentDotsTreesList);*/}
+      {/*        setCurrentPinMarkerTreesGroup(currentPinMarkerTreesGroup);*/}
+      {/*      },*/}
+      {/*    },*/}
+      {/*  })}*/}
+      {/*/>*/}
+      {zoomLevel > 10 && (
+        <CirclesTrees
+          zoomLevelMap={zoomLevelMap}
+          setCurrentOverlay={setCurrentOverlay}
+          circleMarkerTreesList={
+            circleMarkersTreesList ? circleMarkersTreesList : treesListMocks
+          } // if no graphql data use mock data.
+          selectCircleMarkerTree={selectCircleMarkerTree}
+        />
+      )}
       <BaseLayer />
     </StyledMap>
   );

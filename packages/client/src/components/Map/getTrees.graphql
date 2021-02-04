@@ -1,8 +1,7 @@
-query getTrees {
-  trees {
+query getTrees($search: GeoSearchInput!) {
+  trees(search: $search) {
     id
-    geojson {
-      type
+    geometry {
       coordinates
     }
   }

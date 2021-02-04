@@ -7,15 +7,18 @@ import { v4 as uuidv4 } from "uuid";
 
 import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
 import CircleIcon from "./circle-icon.png";
+import { Overlay } from "./ResultsPanel";
 
 const CirclesTrees = ({
   zoomLevelMap,
   circleMarkerTreesList,
   selectCircleMarkerTree,
+  setCurrentOverlay,
 }: {
   zoomLevelMap: number | undefined;
-  circleMarkerTreesList: CircleMarkerTreeInfo[];
+  circleMarkerTreesList: any;
   selectCircleMarkerTree: Function;
+  setCurrentOverlay: Function;
 }) => {
   const setSizeSelectedCircle = (arg: any): PointTuple => {
     switch (arg) {
@@ -45,14 +48,14 @@ const CirclesTrees = ({
   const selectTree = (coords: LatLngTuple) => () =>
     selectCircleMarkerTree(coords);
 
-  console.log("circleMarkerTreesList", circleMarkerTreesList);
   return (
     <>
       {circleMarkerTreesList &&
         circleMarkerTreesList.length > 0 &&
-        circleMarkerTreesList.map((item) => {
+        circleMarkerTreesList.map((item: CircleMarkerTreeInfo) => {
           const { isSelected, treesListCoordinates } = item;
 
+          console.log("item", item);
           if (isSelected) {
             return (
               <Marker
@@ -80,7 +83,11 @@ const CirclesTrees = ({
                 fillOpacity: 1,
               }}
               events={{
-                click: selectTree(treesListCoordinates),
+                click: () => {
+                  setCurrentOverlay(Overlay.Results);
+                  console.log("show results");
+                  selectTree(treesListCoordinates);
+                },
               }}
               args={[treesListCoordinates]}
             />

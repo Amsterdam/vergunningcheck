@@ -4,7 +4,7 @@ import {
   MapPanelDrawer,
   MapPanelProvider,
 } from "@amsterdam/arm-core";
-import { Button, Paragraph, Spinner, ViewerContainer } from "@amsterdam/asc-ui";
+import { Spinner, ViewerContainer } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -27,7 +27,7 @@ export enum SnapPoint {
 
 const StylerViewerContainer = styled(ViewerContainer)`
   z-index: 400;
-  height: 400px;
+  // height: 400px;
 `;
 const StyledMapPanel = styled(MapPanel)`
   z-index: 401;
@@ -44,21 +44,8 @@ type Props = {
 const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
   ...otherProps
 }) => {
-  // const height =
-  //   parseInt(drawerPosition, 10) < window.innerHeight / 2
-  //     ? "50%"
-  //     : drawerPosition;
-
   return <StylerViewerContainer {...otherProps} />;
 };
-
-// @Sven: This disabled scrolling on desktop, should this only be enabled on tablet / mobile?
-// const GlobalStyle = createGlobalStyle`
-//   body {
-//     touch-action: none;
-//     overflow: hidden; // This will prevent the scrollBar on iOS due to navigation bar
-//   }
-// `;
 
 type ResultProps = {
   currentPinMarkerTreesGroup: Tree | null;
@@ -82,7 +69,6 @@ const Results: React.FC<ResultProps> = ({
   deleteCircleMarkerTree,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [isOpenTreesList, setOpenTreesList] = useState(false);
 
   const expandAccordionWithDetailInfo = (id: string) => () => {
     expandAccordionItemTreeInfo(id);
@@ -93,16 +79,10 @@ const Results: React.FC<ResultProps> = ({
     deleteCircleMarkerTree({ treesList: circleMarkersTreesList, id });
   };
 
-  const cutDownTree = () => {
-    setOpenTreesList(true);
-    zoomToCircleMarkerTreesGroup(currentPinMarkerTreesGroup);
-  };
-
   const closeMapPanelContent = () => {
     setCurrentPinMarkerTreesGroup(null);
     setCurrentOverlay(Overlay.None);
     zoomToCircleMarkerTreesGroup({});
-    setOpenTreesList(false);
   };
 
   useEffect(() => {
@@ -116,7 +96,6 @@ const Results: React.FC<ResultProps> = ({
   return (
     <MapPanelContent
       title="Kies een boom"
-      subTitle="U kunt meer dan 1 keuze maken"
       animate
       variant={"drawer"}
       onClose={closeMapPanelContent}
@@ -124,33 +103,11 @@ const Results: React.FC<ResultProps> = ({
       {loading ? (
         <Spinner />
       ) : (
-        <>
-          {currentPinMarkerTreesGroup && (
-            <>
-              <Paragraph gutterBottom={0}>
-                Boom geselecteerd: {currentPinMarkerTreesGroup?.id}
-              </Paragraph>
-              <Paragraph>
-                Boom coordinaten:{" "}
-                {JSON.stringify(
-                  currentPinMarkerTreesGroup?.geo?.geometry?.coordinates
-                )}
-              </Paragraph>
-              {!isOpenTreesList && (
-                <Button onClick={cutDownTree} variant="primary">
-                  Ik wil deze boom kappen
-                </Button>
-              )}
-              {isOpenTreesList && (
-                <AccordionList
-                  treesList={circleMarkersTreesList}
-                  deleteTree={deleteTree}
-                  expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
-                />
-              )}
-            </>
-          )}
-        </>
+        <AccordionList
+          treesList={circleMarkersTreesList}
+          deleteTree={deleteTree}
+          expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
+        />
       )}
     </MapPanelContent>
   );
