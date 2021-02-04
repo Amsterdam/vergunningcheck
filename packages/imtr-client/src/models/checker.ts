@@ -1,14 +1,24 @@
-import { Answer, Input } from "../types";
-import { collectionOfType, isObject } from "../utils";
+import { Rule } from "../..";
+import { Answer, Input, Outcome } from "../types";
+import { collectionOfType, isObject, removeQuotes } from "../utils";
 import Decision, { InputReducer } from "./decision";
 import Permit from "./permit";
 import Question from "./question";
 
 export const imtrOutcomes = {
-  NEED_PERMIT: '"Vergunningplicht"',
   NEED_CONTACT: '"NeemContactOpMet"',
+  NEED_PERMIT: '"Vergunningplicht"',
+  NEED_REPORT: '"Meldingsplicht"',
   PERMIT_FREE: '"Toestemmingsvrij"',
 };
+
+export enum ClientOutcomes {
+  NEED_BOTH_PERMIT_AND_REPORT,
+  NEED_CONTACT,
+  NEED_PERMIT,
+  NEED_REPORT,
+  PERMIT_FREE,
+}
 
 export type AutofillData = {
   address?: any; // eslint-disable-line
@@ -25,7 +35,7 @@ export type AutofillResolverMap = { [name: string]: Resolver };
  */
 export default class Checker {
   readonly permits: Permit[];
-  private _stack: Question[] = [];
+  readonly stack: Question[] = [];
   private autofillData = "";
   private done = false;
 
@@ -45,15 +55,8 @@ export default class Checker {
   }
 
   /**
-   * @returns - a list of questions in the stack
-   */
-  get stack(): Question[] {
-    return this._stack;
-  }
-
-  /**
    * Returns a list of questionIds with the given answers.
-   * Useful to store in React.Context or in sessionStorage
+   * Useful to store in Context or in sessionStorage
    *
    * @returns {({string: boolean|string|number|[string]})}  - a list of answers
    */
@@ -75,6 +78,11 @@ export default class Checker {
       throw Error("Answers must be of type object");
     }
 
+    // Skip when answers are empty (to prevent error with checkers without questions to render)
+    if (Object.keys(answers).length === 0) {
+      return;
+    }
+
     // Load the first question
     if (!this.last) {
       this.next();
@@ -88,7 +96,7 @@ export default class Checker {
       const questionAnswer = answers[this.last.id];
 
       // The checker is completed when `questionAnswer` is undefined
-      // or if the same question is handled again (to allow `Contact` conclusions)
+      // or if the same question is handled again (to allow `Contact` outcomes)
       if (questionAnswer === undefined || prevId === this.last.id) {
         done = true;
       } else {
@@ -108,7 +116,7 @@ export default class Checker {
   }
 
   /**
-   * Find all permits that have a "contact" conclusion,
+   * Find all permits that have a "contact" outcome,
    * for every permit see if the decisive decision's last question
    * equals the currentQuestion.
    *
@@ -119,13 +127,13 @@ export default class Checker {
    */
   needContactExit(currentQuestion: Question): boolean {
     return !!this.permits.find((permit) => {
-      const conclusion = permit.getDecisionById("dummy") as Decision;
-      const conclusionMatchingRules = conclusion.getMatchingRules();
-      const matchingContactRule = conclusionMatchingRules.find(
+      const outcome = permit.getDecisionById("dummy") as Decision;
+      const outcomeMatchingRules = outcome.getMatchingRules();
+      const matchingContactRule = outcomeMatchingRules.find(
         (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
       );
       if (matchingContactRule) {
-        const decisiveDecisions = conclusion.getDecisiveInputs() as Decision[];
+        const decisiveDecisions = outcome.getDecisiveInputs() as Decision[];
 
         // find the contact decision
         const contactDecision = decisiveDecisions.find((decision) =>
@@ -146,7 +154,7 @@ export default class Checker {
   /**
    * We consider a checker to be finished or conclusive when either we
    * have one or more permits with a contact-outcome, or all permits
-   * have a conclusion.
+   * have a outcomes.
    * @returns Returns true if "at least one" of the permits inside checker has a final outcome
    */
   isConclusive(): boolean {
@@ -241,24 +249,22 @@ export default class Checker {
   }
 
   /**
-   * Get all decisions for the conclusion of every permit.
+   * Get all decisions for the outcome of every permit.
    */
-  _getConclusionDecisions(): Decision[] {
+  _getOutcomeDecisions(): Decision[] {
     return this.permits
       .map((permit) => permit.getDecisionById("dummy"))
-      .flatMap((conclusion) => (conclusion as Decision).inputs) as Decision[];
+      .flatMap((outcome) => (outcome as Decision).inputs) as Decision[];
   }
 
   /**
    * Get all questions for the permits in this checker
    */
   _getAllQuestions(): Question[] {
-    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // for every unanswsered decision in 'outcome' we push it's questions on
     // our accumulator, but only if it's not already on the stack
     return this.dedupeAndSortQuestions(
-      this._getConclusionDecisions().flatMap((decision) =>
-        decision.getQuestions()
-      )
+      this._getOutcomeDecisions().flatMap((decision) => decision.getQuestions())
     );
   }
 
@@ -274,10 +280,10 @@ export default class Checker {
         : null;
     };
 
-    // for every unanswsered decision in 'conclusion' we push it's questions on
+    // for every unanswsered decision in 'outcome' we push it's questions on
     // our accumulator, but only if it's not already on the stack
     return this.dedupeAndSortQuestions(
-      this._getConclusionDecisions()
+      this._getOutcomeDecisions()
         .filter((d) => d.getMatchingRules(inputReducer).length === 0)
         .flatMap((decision) => decision.getQuestions())
         .filter((q) => !this.stack.includes(q) || q.autofill)
@@ -306,10 +312,86 @@ export default class Checker {
     }
     const question = this._getNextQuestion();
     if (question) {
-      this._stack.push(question);
+      this.stack.push(question);
     } else {
       this.done = true;
     }
     return question || null;
+  }
+
+  /**
+   *
+   * Returns an Array of possible Outcome objects
+   *
+   */
+  getOutcomesToDisplay(): Outcome[] {
+    return this.permits
+      .filter((permit: Permit) => !!permit.getOutputByDecisionId("dummy"))
+      .map((permit: Permit) => {
+        const conclusion = permit.getDecisionById("dummy") as Decision;
+        const outcomeMatchingRules = conclusion.getMatchingRules() as Rule[];
+        const contactOutcome = outcomeMatchingRules.find(
+          (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+        ) as Rule;
+        const outcome = (contactOutcome?.outputValue ||
+          outcomeMatchingRules[0].outputValue) as string;
+
+        return {
+          outcome,
+          title:
+            outcome === imtrOutcomes.NEED_CONTACT
+              ? "Neem contact op met de gemeente"
+              : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
+                  outcome
+                )}`,
+          description:
+            outcome === imtrOutcomes.NEED_CONTACT
+              ? contactOutcome.description
+              : outcomeMatchingRules[0].description,
+        };
+      });
+  }
+
+  /**
+   *
+   * Returns an outcome (as defined in `imtrOutcomes`) for each permit
+   *
+   */
+  getAllOutcomeTypes(): string[] {
+    const outcomes = this.getOutcomesToDisplay();
+    return outcomes.map(({ outcome }) => outcome);
+  }
+
+  /**
+   *
+   * Returns the final outcome for the client (as defined in `ClientOutcomes`)
+   *
+   */
+  getClientOutcomeType(): ClientOutcomes {
+    const outcomes = this.getAllOutcomeTypes();
+
+    const needContactOutcome = outcomes.find(
+      (outcome) => outcome === imtrOutcomes.NEED_CONTACT
+    );
+    const needPermitOutcome = outcomes.find(
+      (outcome) => outcome === imtrOutcomes.NEED_PERMIT
+    );
+    const needReportOutcome = outcomes.find(
+      (outcome) => outcome === imtrOutcomes.NEED_REPORT
+    );
+
+    if (needContactOutcome) {
+      // The contact outcome has most priority to display
+      return ClientOutcomes.NEED_CONTACT;
+    } else if (needPermitOutcome && needReportOutcome) {
+      return ClientOutcomes.NEED_BOTH_PERMIT_AND_REPORT;
+    } else if (needPermitOutcome) {
+      return ClientOutcomes.NEED_PERMIT;
+    } else if (needReportOutcome) {
+      return ClientOutcomes.NEED_REPORT;
+    } else {
+      // The fallback outcome is permit-free, this is inherited from Flo Legal and IMTR
+      return ClientOutcomes.PERMIT_FREE;
+    }
   }
 }

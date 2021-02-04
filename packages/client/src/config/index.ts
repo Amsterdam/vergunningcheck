@@ -1,40 +1,37 @@
 /**
- * @param hasIMTR If topic has an imtr-file. If `false` it's olo/olo-redirect flow
- * @param intro The name of the component that has all texts on the Intro page
- * @param name The name of the checker/topic
- * @param redirectToOlo If this flow should redirect the user to OLO
- * @param slug The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
- * @param text This is part that holds specific texts for each permit-checker
+ * Merge the different topic types
+ *
+ * hasIMTR: If topic has an imtr-file. If `false` it's olo/olo-redirect flow
+ * intro: The name of the component that has all texts on the Intro page
+ * name: The name of the checker/topic
+ * redirectToOlo: If this flow should redirect the user to OLO
+ * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
+ * text: This is part that holds specific texts for each permit-checker
  */
-export type Topic = {
-  hasIMTR: boolean;
-  intro?: string;
-  name: string;
-  redirectToOlo?: boolean;
-  slug: string;
-  text: {
-    heading: string;
-    locationIntro?: string;
-  };
-};
+
+import { Topic } from "../types";
 
 type OloUrlProps = {
-  houseNumber: string;
+  houseNumber: number;
   houseNumberFull: string;
   postalCode: string;
 };
 
+const oloHome: string = "https://www.omgevingsloket.nl/";
+
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
 
-const oloHome: string = "https://www.omgevingsloket.nl/";
-
 export const urls = {
+  DEMOLITION_PERMIT_PAGE:
+    "https://www.amsterdam.nl/veelgevraagd/?caseid=%7BAEA35C69-4DAD-483E-8AA1-C068D88B792C%7D",
   GENERAL_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
   OLO_HOME: oloHome,
   OLO_INTRO: `${oloHome}Particulier/particulier/home?init=true`,
   OLO_LOCATION: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`,
+  VIEW_ZONING_PLAN:
+    "https://www.amsterdam.nl/veelgevraagd/?productid=%7bC25A69DB-3548-4E12-97BB-DB71318EDFB2%7d",
 };
 
 export const generateOloUrl = ({
@@ -43,7 +40,7 @@ export const generateOloUrl = ({
   postalCode,
 }: OloUrlProps) => {
   // Get correct suffix
-  const suffix = houseNumberFull.replace(houseNumber, "").trim();
+  const suffix = houseNumberFull.replace(houseNumber.toString(), "").trim();
   // Redirect user to OLO with all parameters
   return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
@@ -101,7 +98,8 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasIMTR: false,
+    hasIMTR: true,
+    intro: "SlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
     text: {
@@ -138,9 +136,13 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck kappen of snoeien",
     },
   },
+  {
+    hasIMTR: false,
+    name: "Brandveilig gebruik",
+    redirectToOlo: true,
+    slug: "brandveilig-gebruik",
+    text: {
+      heading: "Vergunningcheck brandveilig gebruik",
+    },
+  },
 ];
-
-// @TODO: replace this with i18n
-export const requiredFieldText: string = "Verplicht veld is niet ingevuld";
-
-export const requiredFieldRadio: string = "Maak een keuze";

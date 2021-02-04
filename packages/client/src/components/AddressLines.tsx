@@ -2,33 +2,32 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 
 import { TextToEdit } from "../atoms";
+import { Address } from "../types";
 
 type AddressLinesProps = {
-  editAddressRenderer?: Function;
+  address: Address;
+  editAddressRenderer?: () => void;
   gutterBottom: number;
-  houseNumberFull: string;
-  postalCode: string;
-  residence: string;
-  streetName: string;
 };
 
 export default ({
+  address,
   editAddressRenderer,
   gutterBottom,
-  houseNumberFull,
-  postalCode,
-  residence,
-  streetName,
-}: AddressLinesProps) => (
-  <>
-    <Paragraph gutterBottom={0}>
-      <TextToEdit>
-        {streetName} {houseNumberFull}
-      </TextToEdit>
-      {editAddressRenderer && editAddressRenderer()}
-    </Paragraph>
-    <Paragraph gutterBottom={gutterBottom}>
-      {postalCode} {residence}
-    </Paragraph>
-  </>
-);
+}: AddressLinesProps) => {
+  if (!address) return null;
+  const { houseNumberFull, postalCode, residence, streetName } = address;
+  return (
+    <>
+      <Paragraph gutterBottom={0}>
+        <TextToEdit>
+          {streetName} {houseNumberFull}
+        </TextToEdit>
+        {editAddressRenderer && editAddressRenderer()}
+      </Paragraph>
+      <Paragraph gutterBottom={gutterBottom}>
+        {postalCode} {residence}
+      </Paragraph>
+    </>
+  );
+};

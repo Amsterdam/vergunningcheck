@@ -1,17 +1,22 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Intro } from "./shared";
 
-export default () => (
-  <Intro
-    // Not sure why we wouldn't want to show the contact information in this intro-page.
-    // It's the only exception.
-    showContactInformation={false}
-    usableForBullets={[
-      "het wijzigen van een monument.",
-      "het plaatsen van de zonnepanelen of zonneboiler zelf.",
-    ]}
-    usableForText={`U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een
-      nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.`}
-  />
-);
+const ZonnepanelenIntro: FunctionComponent = () => {
+  const { t } = useTranslation();
+  return (
+    <Intro
+      // Not sure why we wouldn't want to show the contact information in this intro-page.
+      // It's the only exception.
+      showContactInformation={false}
+      usableForBullets={[
+        t("introPage.common.monument bullet"),
+        t("introPage.zonnepanelen.placing bullet"),
+      ]}
+      usableForText={t("introPage.zonnepanelen.intro description")}
+    />
+  );
+};
+
+export default ZonnepanelenIntro;

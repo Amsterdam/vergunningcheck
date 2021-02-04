@@ -1,0 +1,718 @@
+{
+  "permits": [
+    {
+      "version": 244,
+      "name": "Conclusie [IN ONTWIKKELING] Ketentest - vellen houtopstand",
+      "questions": [
+        {
+          "text": "Wat wilt u gaan doen?",
+          "description": "Bij kappen wordt de boom boven de grond gekapt. Bij rooien wordt de boom met het wortelgestel in zijn geheel verwijderd.",
+          "options": [
+            "kappen",
+            "rooien",
+            "kandelaberen",
+            "verplanten",
+            "handelingen die de boom beschadigen, ontsieren of doden"
+          ],
+          "type": "string",
+          "prio": 10,
+          "id": "677d758249771ee55aba92c46230a87c"
+        },
+        {
+          "text": "Gaat u deze activiteit uitvoeren omdat er spoed is of direct gevaar?",
+          "type": "boolean",
+          "prio": 20,
+          "id": "5a23ded3a1440de0b9c96ccb8e341f3d"
+        },
+        {
+          "text": "Wat is de conditie van de boom?",
+          "longDescription": "Deze vraag is opgenomen om de gebruiker te informeren dat de regels ook gelden voor dode bomen.",
+          "options": ["ziek", "gezond of dood"],
+          "type": "string",
+          "prio": 30,
+          "id": "10c954a326010d2b39f5fd2297ce4969"
+        },
+        {
+          "text": "Gaat u deze activiteit uitvoeren vanwege de iepziekte of de Plantenziektenwet?",
+          "description": "Meer informatie over de  Iepenziekte of Plantenziektenwet volgt nog",
+          "type": "boolean",
+          "prio": 40,
+          "id": "d1f9f633a12901c2a57355b9b4a1da15"
+        },
+        {
+          "text": "Is de boom geplant vanwege een herplantplicht?",
+          "longDescription": "Deze vraag is pas relevant als de omtrek minder dan 31 cm is.",
+          "type": "boolean",
+          "prio": 50,
+          "id": "7d3f8602bd9ce7067eef5caf46185591"
+        },
+        {
+          "text": "Is de omtrek van de boom gemeten op 1,30 m boven de grond gelijk aan of  meer dan 31 cm?",
+          "description": "Als de boom uit meerdere stammen bestaat meet u omtrek van de dikste boom",
+          "type": "boolean",
+          "prio": 60,
+          "id": "b15ebef68e3fe1b1d328d6f79d98a50d"
+        },
+        {
+          "text": "Gaat u kandelaberen of knotten voor het uitvoeren van regulier onderhoud?",
+          "description": "U bent vergunningplichtig als u voor de eerste keer de boom tot de hoofdstructuur gaat terugbrengen of tot op de stam in geval van een wilg (kandelaberen)?\n\nDe eerste keer knotten is ook kandelaberen.\n\nMaar bij knotten worden hoofdzakelijk de zijtakken van de hoofdstructuur verwijderd.",
+          "type": "boolean",
+          "prio": 70,
+          "id": "c3f9e774ac062a61ce9230e8726e2c58"
+        },
+        {
+          "text": "Heeft u al eerder een vergunning voor het kandelaberen of knotten gekregen?",
+          "type": "boolean",
+          "prio": 80,
+          "id": "5141c351aa554eb4c152225e7984c654"
+        }
+      ],
+      "decisions": {
+        "f2d09e4176582bf5d27864a0fed00d54": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"kappen\"", true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"rooien\"", true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"verplanten\"", true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  true
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "acec8bc2f179a58bc91ec9809d20a73f": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"verplanten\"", false, "\"ziek\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  false,
+                  "\"ziek\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"kappen\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"rooien\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"gezond of dood\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "b586f8f72d9566906a9ab7a1751ea662": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969",
+            "7d3f8602bd9ce7067eef5caf46185591"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"kappen\"", false, "\"gezond of dood\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"rooien\"", false, "\"gezond of dood\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"kandelaberen\"",
+                  false,
+                  "\"gezond of dood\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", false, "\"ziek\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"verplanten\"", false, "\"gezond of dood\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  false,
+                  "\"gezond of dood\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "4b2da5fa6d23d2e94f1f0d7a2e5cff2b": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969",
+            "7d3f8602bd9ce7067eef5caf46185591",
+            "b15ebef68e3fe1b1d328d6f79d98a50d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kappen\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"rooien\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"kandelaberen\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", false, "\"ziek\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"verplanten\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "c298c519a1b408282727b4f1eb73e185": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969",
+            "d1f9f633a12901c2a57355b9b4a1da15",
+            "7d3f8602bd9ce7067eef5caf46185591"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"kappen\"", false, "\"ziek\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"rooien\"", false, "\"ziek\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"verplanten\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"gezond of dood\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "2e4a4ecd74cf941385a08829d1531466": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969",
+            "d1f9f633a12901c2a57355b9b4a1da15",
+            "7d3f8602bd9ce7067eef5caf46185591",
+            "b15ebef68e3fe1b1d328d6f79d98a50d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"kappen\"", false, "\"ziek\"", false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"rooien\"", false, "\"ziek\"", false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"verplanten\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"gezond of dood\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "5a5d317f1f4d028d7efad79d306fb3e4": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969",
+            "7d3f8602bd9ce7067eef5caf46185591",
+            "b15ebef68e3fe1b1d328d6f79d98a50d",
+            "c3f9e774ac062a61ce9230e8726e2c58"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kandelaberen\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"kandelaberen\"",
+                  false,
+                  "\"ziek\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"kappen\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"rooien\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"verplanten\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "5016e11b807e3b0ae3e8e6fe4e5cdcf2": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "10c954a326010d2b39f5fd2297ce4969",
+            "7d3f8602bd9ce7067eef5caf46185591",
+            "b15ebef68e3fe1b1d328d6f79d98a50d",
+            "c3f9e774ac062a61ce9230e8726e2c58",
+            "5141c351aa554eb4c152225e7984c654"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"kandelaberen\"",
+                  false,
+                  "\"gezond of dood\"",
+                  false,
+                  true,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"kandelaberen\"",
+                  false,
+                  "\"ziek\"",
+                  false,
+                  true,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"kappen\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"rooien\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"verplanten\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "f2d09e4176582bf5d27864a0fed00d54",
+            "acec8bc2f179a58bc91ec9809d20a73f",
+            "b586f8f72d9566906a9ab7a1751ea662",
+            "4b2da5fa6d23d2e94f1f0d7a2e5cff2b",
+            "c298c519a1b408282727b4f1eb73e185",
+            "2e4a4ecd74cf941385a08829d1531466",
+            "5a5d317f1f4d028d7efad79d306fb3e4",
+            "5016e11b807e3b0ae3e8e6fe4e5cdcf2"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "Neem contact op met de gemeente via nummer [14 020](tel:14020)"
+              },
+              {
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "Neem contact op met de gemeente via nummer [14 020](tel:14020)"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U heeft geen omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u wel een vergunning nodig heeft voor een andere activiteit"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "TpPQq9NhKuTv4K6BQ"
+}

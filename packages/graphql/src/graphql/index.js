@@ -12,20 +12,22 @@ const geoSearchLoader = require("../loaders/geoSearch");
 const zoningPlanLoader = require("../loaders/zoningPlan");
 
 const address = require("./address");
+const area = require("./area");
 const cityScape = require("./cityScape");
-const topic = require("./topic");
 const monument = require("./monument");
 const node = require("./node");
 const restriction = require("./restriction");
+const topic = require("./topic");
 const zoningPlan = require("./zoningPlan");
 
 const modules = [
-  node,
   address,
-  monument,
+  area,
   cityScape,
-  topic,
+  monument,
+  node,
   restriction,
+  topic,
   zoningPlan,
 ];
 

@@ -1,22 +1,20 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React, { useContext } from "react";
+import React, { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper, EditButton } from "../../atoms";
-import { actions, eventNames } from "../../config/matomo";
-import { SessionContext, SessionDataType } from "../../context";
-import withTracking from "../../hoc/withTracking";
+import { actions, eventNames, sections } from "../../config/matomo";
+import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
+import { defaultTopicSession } from "../../SessionContext";
 import { LOCATION_MODAL_OPEN_BUTTON } from "../../utils/test-ids";
 import Modal from "../Modal";
 
-const EditLocationModal: React.FC<{
-  matomoTrackEvent: Function;
-  resetChecker: Function;
-  slug: string;
-}> = ({ matomoTrackEvent, resetChecker, slug }) => {
-  // @TODO: replace this with React custom hooks
-  const sessionContext = useContext<
-    SessionDataType & { setSessionData?: any; resetSessionData?: any }
-  >(SessionContext);
+const EditLocationModal: FunctionComponent = () => {
+  const { setChecker } = useChecker();
+  const slug = useSlug();
+  const { setTopicData } = useTopicData();
+  const { matomoTrackEvent } = useTracking();
+  const { t } = useTranslation();
 
   const handleOpenModal = () => {
     matomoTrackEvent({
@@ -28,21 +26,34 @@ const EditLocationModal: React.FC<{
   const handleConfirmButton = () => {
     matomoTrackEvent({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
 
-    sessionContext.resetSessionData(slug);
-    resetChecker();
+    matomoTrackEvent({
+      action: actions.ACTIVE_STEP,
+      name: sections.LOCATION_INPUT,
+    });
+
+    const newTopicData = {
+      ...defaultTopicSession,
+      type: slug,
+    };
+
+    setTopicData(newTopicData);
+
+    setChecker(undefined);
   };
 
   return (
     <Modal
-      closeButtonText="Nee"
-      confirmText="Ja"
+      closeButtonText={t("common.no")}
+      confirmText={t("common.yes")}
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}
-      heading="Weet u zeker dat u het adres wilt wijzigen?"
-      openButtonRenderer={({ openModal }: { openModal: Function }) => (
+      heading={t(
+        "location.address.are you sure you want to change the address"
+      )}
+      openButtonRenderer={({ openModal }: { openModal: () => void }) => (
         <EditButton
           dataTestid={LOCATION_MODAL_OPEN_BUTTON}
           onClick={() => {
@@ -55,12 +66,13 @@ const EditLocationModal: React.FC<{
     >
       <ComponentWrapper>
         <Paragraph>
-          Alle gegeven antwoorden en de conclusie worden gewist. Weet u zeker
-          dat u wilt doorgaan met een ander adres?
+          {t(
+            "location.address.are you sure you want to continue with a different address"
+          )}
         </Paragraph>
       </ComponentWrapper>
     </Modal>
   );
 };
 
-export default withTracking(EditLocationModal);
+export default EditLocationModal;

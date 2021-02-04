@@ -1,20 +1,23 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Intro } from "./shared";
 
-export default () => (
-  <Intro
-    usableForBullets={[
-      "het wijzigen van een monument.",
-      "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
-    ]}
-    usableForText={`U kunt deze vergunningcheck gebruiken als u een nieuwe
-      zonwering, rolhek, rolluik of luik plaatst of als u een bestaande
-      vernieuwt.`}
-    exceptions={[
-      "Het aantal woningen verandert.",
-      `Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek,
-        rolluik of luik komt, is zonder vergunning gebouwd.`,
-    ]}
-  />
-);
+const ZonweringRolluikIntro: FunctionComponent = () => {
+  const { t } = useTranslation();
+  return (
+    <Intro
+      usableForBullets={[
+        t("introPage.common.monument bullet"),
+        t("introPage.zonwering.placing bullet"),
+      ]}
+      usableForText={t("introPage.zonwering.intro description")}
+      exceptions={[
+        t("introPage.common.amount of houses exception"),
+        t("introPage.zonwering.build without permit exception"),
+      ]}
+    />
+  );
+};
+
+export default ZonweringRolluikIntro;

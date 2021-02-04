@@ -1,8 +1,8 @@
 const { address, domain, selectors } = require("../config");
 
 const {
-  conclusionContact,
-  conclusionNeedPermitButton,
+  outcomeContact,
+  outcomeNeedPermitButton,
   introBullets,
   locationHouseNumberFull,
   locationFound,
@@ -64,18 +64,18 @@ module.exports = {
       main,
       "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."
     );
-    assert.containsText(main, "Naar conclusie");
+    assert.containsText(main, "Naar de uitkomst");
     b.click(navButtonNext);
 
-    // Contact conclusion has loaded
-    b.waitForElementVisible(conclusionContact);
+    // Contact outcome has loaded
+    b.waitForElementVisible(outcomeContact);
     assert.containsText(main, "Neem contact op met de gemeente");
     assert.containsText(main, "Nog een vergunningcheck doen");
     b.click(questionEditButton);
 
     // Question q1 has loaded (again)
     b.waitForElementVisible(questionForm);
-    assert.containsText(main, "Naar conclusie");
+    assert.containsText(main, "Naar de uitkomst");
     b.click(q1a1);
     assert.containsText(main, "Volgende vraag");
     b.click(navButtonNext);
@@ -87,16 +87,16 @@ module.exports = {
     b.click(q2a1);
     b.waitForElementVisible(questionAlert);
     assert.containsText(main, "Door dit antwoord hebt u een vergunning nodig.");
-    assert.containsText(main, "Naar conclusie");
+    assert.containsText(main, "Naar de uitkomst");
     b.click(navButtonNext);
 
-    // Permit conclusion has loaded
-    b.waitForElementVisible(conclusionNeedPermitButton);
+    // Permit outcome has loaded
+    b.waitForElementVisible(outcomeNeedPermitButton);
     assert.containsText(main, "U hebt een omgevingsvergunning nodig.");
     assert.containsText(main, "Zo werkt aanvragen");
-    assert.containsText(main, "Conclusie opslaan");
+    assert.containsText(main, "Uitkomst opslaan");
     assert.containsText(main, "Nog een vergunningcheck doen");
-    b.click(conclusionNeedPermitButton);
+    b.click(outcomeNeedPermitButton);
 
     // The page `HOW_TO_APPLY_FOR_A_PERMIT` has loaded
     const result = await b.windowHandles();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { StyledForm } from "./FormStyles";
 
@@ -7,28 +7,24 @@ type FormProps = {
   dataTestId?: string;
 };
 
-const Form: React.FC<FormProps & React.HTMLAttributes<HTMLElement>> = ({
+const Form: FunctionComponent<FormProps & HTMLAttributes<HTMLElement>> = ({
   children,
-  className,
   dataId,
   dataTestId = "form",
   onSubmit,
-}) => {
-  return (
-    <StyledForm
-      className={className}
-      data-id={dataId}
-      data-testid={dataTestId}
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (onSubmit) {
-          onSubmit(e);
-        }
-      }}
-    >
-      {children}
-    </StyledForm>
-  );
-};
+}) => (
+  <StyledForm
+    data-id={dataId}
+    data-testid={dataTestId}
+    onSubmit={(e) => {
+      e.preventDefault();
+      if (onSubmit) {
+        onSubmit(e);
+      }
+    }}
+  >
+    {children}
+  </StyledForm>
+);
 
 export default Form;

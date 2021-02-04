@@ -1,12 +1,20 @@
 import { themeColor } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import passPropsToChildren from "../../utils/passPropsToChildren";
 import { STEPBYSTEPNAVIGATION } from "../../utils/test-ids";
-import StepByStepNavigationStyle, { Props } from "./StepByStepNavigationStyle";
+import StepByStepNavigationStyle from "./StepByStepNavigationStyle";
 
-const StepByStepNavigation: React.FC<
-  Props & React.HTMLAttributes<HTMLElement>
+export type StepByStepNavigationProps = {
+  customSize?: boolean;
+  disabledTextColor?: any;
+  doneTextColor?: any;
+  highlightActive?: boolean;
+  lineBetweenItems?: boolean;
+};
+
+const StepByStepNavigation: FunctionComponent<
+  StepByStepNavigationProps & HTMLAttributes<HTMLElement>
 > = ({
   children: childrenProp,
   customSize,
@@ -43,6 +51,6 @@ const StepByStepNavigation: React.FC<
 StepByStepNavigation.defaultProps = {
   disabledTextColor: themeColor("tint", "level5"),
   doneTextColor: themeColor("tint", "level4"),
-} as Props;
+} as StepByStepNavigationProps;
 
 export default StepByStepNavigation;

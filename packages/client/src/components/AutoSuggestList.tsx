@@ -1,9 +1,20 @@
 import { ChevronRight } from "@amsterdam/asc-assets";
 import { Icon, themeColor, themeSpacing } from "@amsterdam/asc-ui";
-import React, { Fragment, useCallback, useEffect, useRef } from "react";
+import React, {
+  Fragment,
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import styled from "styled-components";
 
 import { AUTOSUGGEST_ITEM, AUTOSUGGEST_LIST } from "../utils/test-ids";
+
+export type Option = {
+  id: number;
+  value: string;
+};
 
 const StyledList = styled.ul`
   max-width: 160px;
@@ -35,11 +46,11 @@ const StyledIcon = styled(Icon)`
   display: inline-block;
 `;
 
-const SuggestList: React.FC<{
+const SuggestList: FunctionComponent<{
   activeIndex: number;
   className?: string;
-  onSelectOption: Function;
-  options: [{ id: number; value: string }];
+  onSelectOption: (option: Option) => void;
+  options: Option[];
   role: string;
 }> = ({ activeIndex, className, onSelectOption, options, role }) => {
   const listRef = useRef<HTMLUListElement>(null);

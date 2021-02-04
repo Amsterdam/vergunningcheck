@@ -1,5 +1,5 @@
 import { captureException } from "@sentry/browser";
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 
 import { FIGCAPTION, FIGURE, IMG } from "../utils/test-ids";
 import { Caption, Figure, Img } from "./VisualStyles";
@@ -10,7 +10,7 @@ type VisualProps = {
   title?: string;
 };
 
-const Visual: React.FC<VisualProps> = ({ alt, src, title }) => {
+const Visual: FunctionComponent<VisualProps> = ({ alt, src, title }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
 

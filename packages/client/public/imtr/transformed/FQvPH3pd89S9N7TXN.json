@@ -1,0 +1,49 @@
+{
+  "permits": [
+    {
+      "version": 3,
+      "name": "Conclusie Tankstation",
+      "questions": [
+        {
+          "text": "Dit is een test voor het aansluiten van de OD",
+          "type": "boolean",
+          "prio": 10,
+          "id": "ab1c5eb41d57a78a1efded5407866261"
+        }
+      ],
+      "decisions": {
+        "e94f80c1f30a00e0f6ed89b199dcefaa": {
+          "requiredInputs": ["ab1c5eb41d57a78a1efded5407866261"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["e94f80c1f30a00e0f6ed89b199dcefaa"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "FQvPH3pd89S9N7TXN"
+}

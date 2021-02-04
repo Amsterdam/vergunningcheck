@@ -1,16 +1,22 @@
 {
   "permits": [
     {
-      "version": 7,
+      "version": 15,
       "name": "Conclusie Dakkapel monument",
       "questions": [
         {
-          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
           "prio": 10,
-          "uuid": "monument"
+          "uuid": "dakkapel-monument",
+          "id": "8d85f37a570a4e00f7b4f7e63eb90863"
         },
         {
           "text": "Gaat u een dakkapel plaatsen of vernieuwen?",
@@ -19,9 +25,9 @@
             "Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
           "prio": 20,
-          "uuid": "dakkapel - onderhoud1"
+          "uuid": "dakkapel-onderhoud1",
+          "id": "132975e6a1ec11fccc246c946c4ad557"
         },
         {
           "text": "U gaat een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -30,42 +36,35 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
           "prio": 30,
-          "uuid": "dakkapel - onderhoud2"
+          "uuid": "dakkapel-onderhoud2",
+          "id": "b4edbf1301ad07b2fe00700a1481c17f"
         }
       ],
-      "inputs": {
-        "input__797c410f-2502-4626-9b14-7be7c49b0751": {
-          "href": "#uitv__797c410f-2502-4626-9b14-7be7c49b0751",
-          "type": "boolean"
-        },
-        "input_5cd6194f-5607-444e-8ed1-d44c6aabde7f": {
-          "href": "#uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
-          "type": "string"
-        },
-        "input_369fe23a-09dd-4f86-819a-58c2acb4d8ac": {
-          "href": "#uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
-          "type": "string"
-        }
-      },
       "decisions": {
-        "_887014ab-3cf2-4dc1-8b05-976449301184": {
+        "81628873dee69b5d37894f4b9ec294ff": {
           "requiredInputs": [
-            "#input__797c410f-2502-4626-9b14-7be7c49b0751",
-            "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f"
+            "8d85f37a570a4e00f7b4f7e63eb90863",
+            "132975e6a1ec11fccc246c946c4ad557"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -78,24 +77,32 @@
             ]
           }
         },
-        "_b1e19ccd-13b7-4931-9902-ecfef4c6f521": {
+        "8950db3dfa4485353ece9bf93bf2ec7f": {
           "requiredInputs": [
-            "#input__797c410f-2502-4626-9b14-7be7c49b0751",
-            "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
-            "#input_369fe23a-09dd-4f86-819a-58c2acb4d8ac"
+            "8d85f37a570a4e00f7b4f7e63eb90863",
+            "132975e6a1ec11fccc246c946c4ad557",
+            "b4edbf1301ad07b2fe00700a1481c17f"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de dakkapel verandert.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de dakkapel verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -119,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_887014ab-3cf2-4dc1-8b05-976449301184",
-            "#_b1e19ccd-13b7-4931-9902-ecfef4c6f521"
+            "81628873dee69b5d37894f4b9ec294ff",
+            "8950db3dfa4485353ece9bf93bf2ec7f"
           ],
           "decisionTable": {
             "rules": [
@@ -145,23 +152,29 @@
       }
     },
     {
-      "version": 28,
+      "version": 46,
       "name": "Conclusie Dakkapel bouwen",
       "questions": [
         {
           "text": "Staat het gebouw waarop u de dakkapel gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
           "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__51fe2afb-ebfa-48e0-b81d-822c38eaf87a",
-          "prio": 10
+          "prio": 10010,
+          "id": "f412378b8216ca350d4ab8c8d03b6fac"
         },
         {
-          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
-          "autofill": "monumentBoolean",
-          "type": "boolean",
-          "id": "uitv__e3f23320-186c-4507-b6a6-84170426cc0a",
-          "prio": 20,
-          "uuid": "monument"
+          "text": "Is het gebouw een monument?",
+          "description": "Het rijk of de gemeente kan een gebouw als monument aanwijzen.",
+          "autofill": "monumentList",
+          "options": [
+            "Rijksmonument",
+            "Gemeentelijk monument",
+            "Geen monument"
+          ],
+          "type": "string",
+          "prio": 10020,
+          "uuid": "dakkapel-monument",
+          "id": "03efe1cc128a9402ae57ab9c693f2120"
         },
         {
           "text": "Gaat u een dakkapel plaatsen of vernieuwen?",
@@ -170,9 +183,9 @@
             "Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_e8111db4-8a83-4d79-9d05-4f6f9905b882",
-          "prio": 30,
-          "uuid": "dakkapel - onderhoud1"
+          "prio": 10030,
+          "uuid": "dakkapel-onderhoud1",
+          "id": "3361562f6b70631412cfd05647836d0d"
         },
         {
           "text": "U gaat een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -181,9 +194,9 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_8b235cec-7f69-42f7-8aad-d49668fe720b",
-          "prio": 40,
-          "uuid": "dakkapel - onderhoud2"
+          "prio": 10040,
+          "uuid": "dakkapel-onderhoud2",
+          "id": "71581887513fdfca526b195e2b175205"
         },
         {
           "text": "Gaat u een dakkapel plaatsen of vernieuwen?",
@@ -192,8 +205,8 @@
             "Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_fc74c97d-266b-4b96-b618-99910669e546",
-          "prio": 50
+          "prio": 10050,
+          "id": "aec53e4572888e14d691494cb3267bbc"
         },
         {
           "text": "U gaat een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -202,189 +215,111 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_bb2328ac-a595-4311-9beb-1934469d6245",
-          "prio": 60
+          "prio": 10060,
+          "id": "93246ee196426b817bc265b1b8837d86"
         },
         {
           "text": "Aan welke kant van het gebouw gaat u de dakkapel plaatsen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/3_a_Voorkant_v2.png \"Voorkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/3_b_Zijkant_v2.png \"Zijkant\")\n\n![](https://sttr-files.flolegal.app/00000001002564440000/3_c_Achterkant_1_v2.png \"Achterkant\")",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
-          "id": "uitv__2af9eafd-fd78-439f-a06c-bb7566c21154",
-          "prio": 70
+          "prio": 10070,
+          "id": "99cfb2036372abbf3d38eb28c93a817a"
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_a_OTG_Zijkant-weg_v2.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-          "prio": 80
+          "prio": 10080,
+          "id": "941367604a8a705c91b8a8096803d08b"
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_c_OTG_Zijkant-water_v2.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__76fea73f-9000-4c9a-92e3-fc1003f6de60",
-          "prio": 90
+          "prio": 10090,
+          "id": "c65517d02f8a725d19831ff3089f5749"
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/4_b_OTG_Zijkant-plantsoen_v2.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__2cf98565-883d-4eb0-9bb8-175ed6fc2f24",
-          "prio": 100
+          "prio": 10100,
+          "id": "af45e89761626c6fe1f6508baa5d628c"
         },
         {
           "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScape",
+          "autofill": "cityScapeForBuilding",
           "options": [
             "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
             "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",
             "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
           ],
           "type": "string",
-          "id": "uitv__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-          "prio": 110
+          "prio": 10110,
+          "id": "81059ba6e7a56f8726afd61010e30727"
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad, waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/6_a_OTG_Achterkant-weg_v2.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-          "prio": 120
+          "prio": 10120,
+          "id": "2f55f187bb11022d2b4b6f0ad25870ab"
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/6_c_OTG_Achterkant-water_v2.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "id": "uitv__1c4854f4-ea25-450b-a7f4-734203024943",
-          "prio": 130
+          "prio": 10130,
+          "id": "53a58712c70eb89b59e803f4dd99e316"
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/6_b_OTG_Achterkant-plantsoen_v2.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__69f71c11-edb3-4949-8951-1861308beb03",
-          "prio": 140
+          "prio": 10140,
+          "id": "2f240000bcdf26903d5d92cc66a30df4"
         },
         {
           "text": "Krijgt de dakkapel een plat dak?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/7_a_platdak_v2.png)",
           "type": "boolean",
-          "id": "uitv__01938ee8-1007-4b10-b672-6ebb050df5bf",
-          "prio": 150
+          "prio": 10150,
+          "id": "7a5e056fdc9236c25158191fd8d08bce"
         },
         {
           "text": "Wordt de dakkapel hoger dan 1,75 meter?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/8_a_hoogte_dakkapel_3D-_v2.png)",
           "type": "boolean",
-          "id": "uitv__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6",
-          "prio": 160
+          "prio": 10160,
+          "id": "349d04b48d5f9fcab65c3dcc5dc92b5a"
         },
         {
           "text": "Wordt de afstand van het laagste punt van het dak tot de onderkant van de dakkapel tussen de 50 en 100 centimeter?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/9_a_afstand_tot_onderkant_3D_v2.png)",
           "type": "boolean",
-          "id": "uitv__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a",
-          "prio": 170
+          "prio": 10170,
+          "id": "acdd4d6dad4f6cab23e63e32377a4a9c"
         },
         {
           "text": "Wordt de afstand tussen de bovenkant van de dakkapel en de bovenkant van het dak meer dan 50 centimeter?",
           "description": "Toelichting 'bovenkant van het dak': het gaat om het hoogste punt van het dak van het gebouw. U rekent een schoorsteen, schotel of antenne niet mee.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/10_a_afstand_tot_bovenkant_3D-_v2.png)",
           "type": "boolean",
-          "id": "uitv__4420be2f-e8ca-46e8-9eec-e9036076fbff",
-          "prio": 180
+          "prio": 10180,
+          "id": "497e9522aeea4bdcee0e262085a4747a"
         },
         {
           "text": "Worden de afstanden tussen de zijkanten van de dakkapel en de zijkanten van uw dak meer dan 50 centimeter?",
           "description": "![](https://sttr-files.flolegal.app/00000001002564440000/11_a_afstand_tot_dakrand_2D-v4.png)",
           "type": "boolean",
-          "id": "uitv__e097c508-67a8-408c-9e9b-b813eda85db0",
-          "prio": 190
+          "prio": 10190,
+          "id": "5d7ba4a96b98b1e41d340eb69d82a177"
         }
       ],
-      "inputs": {
-        "input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a": {
-          "href": "#uitv__51fe2afb-ebfa-48e0-b81d-822c38eaf87a",
-          "type": "boolean"
-        },
-        "input__e3f23320-186c-4507-b6a6-84170426cc0a": {
-          "href": "#uitv__e3f23320-186c-4507-b6a6-84170426cc0a",
-          "type": "boolean"
-        },
-        "input_e8111db4-8a83-4d79-9d05-4f6f9905b882": {
-          "href": "#uitv_e8111db4-8a83-4d79-9d05-4f6f9905b882",
-          "type": "string"
-        },
-        "input_8b235cec-7f69-42f7-8aad-d49668fe720b": {
-          "href": "#uitv_8b235cec-7f69-42f7-8aad-d49668fe720b",
-          "type": "string"
-        },
-        "input_fc74c97d-266b-4b96-b618-99910669e546": {
-          "href": "#uitv_fc74c97d-266b-4b96-b618-99910669e546",
-          "type": "string"
-        },
-        "input_bb2328ac-a595-4311-9beb-1934469d6245": {
-          "href": "#uitv_bb2328ac-a595-4311-9beb-1934469d6245",
-          "type": "string"
-        },
-        "input__2af9eafd-fd78-439f-a06c-bb7566c21154": {
-          "href": "#uitv__2af9eafd-fd78-439f-a06c-bb7566c21154",
-          "type": "string"
-        },
-        "input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705": {
-          "href": "#uitv__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-          "type": "boolean"
-        },
-        "input__76fea73f-9000-4c9a-92e3-fc1003f6de60": {
-          "href": "#uitv__76fea73f-9000-4c9a-92e3-fc1003f6de60",
-          "type": "boolean"
-        },
-        "input__2cf98565-883d-4eb0-9bb8-175ed6fc2f24": {
-          "href": "#uitv__2cf98565-883d-4eb0-9bb8-175ed6fc2f24",
-          "type": "boolean"
-        },
-        "input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8": {
-          "href": "#uitv__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-          "type": "string"
-        },
-        "input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7": {
-          "href": "#uitv__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-          "type": "boolean"
-        },
-        "input__1c4854f4-ea25-450b-a7f4-734203024943": {
-          "href": "#uitv__1c4854f4-ea25-450b-a7f4-734203024943",
-          "type": "boolean"
-        },
-        "input__69f71c11-edb3-4949-8951-1861308beb03": {
-          "href": "#uitv__69f71c11-edb3-4949-8951-1861308beb03",
-          "type": "boolean"
-        },
-        "input__01938ee8-1007-4b10-b672-6ebb050df5bf": {
-          "href": "#uitv__01938ee8-1007-4b10-b672-6ebb050df5bf",
-          "type": "boolean"
-        },
-        "input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6": {
-          "href": "#uitv__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6",
-          "type": "boolean"
-        },
-        "input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a": {
-          "href": "#uitv__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a",
-          "type": "boolean"
-        },
-        "input__4420be2f-e8ca-46e8-9eec-e9036076fbff": {
-          "href": "#uitv__4420be2f-e8ca-46e8-9eec-e9036076fbff",
-          "type": "boolean"
-        },
-        "input__e097c508-67a8-408c-9e9b-b813eda85db0": {
-          "href": "#uitv__e097c508-67a8-408c-9e9b-b813eda85db0",
-          "type": "boolean"
-        }
-      },
       "decisions": {
-        "_cfecbbbf-66ff-4a5b-84b7-c11c597dec4e": {
-          "requiredInputs": ["#input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"],
+        "1e978b51d96e64ab9c2de9a8caf57555": {
+          "requiredInputs": ["f412378b8216ca350d4ab8c8d03b6fac"],
           "decisionTable": {
             "rules": [
               {
@@ -398,22 +333,29 @@
             ]
           }
         },
-        "_65345dc5-b98d-4d18-8c36-6c18698e1cf8": {
+        "d0c1cb3c81f69e117306ece4d12e8c4d": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_e8111db4-8a83-4d79-9d05-4f6f9905b882"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "3361562f6b70631412cfd05647836d0d"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -426,24 +368,32 @@
             ]
           }
         },
-        "_2ee9d98c-415c-47e7-8446-01d1513e55e3": {
+        "7302eb9a31aaa05c877cc7d76ce12925": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_e8111db4-8a83-4d79-9d05-4f6f9905b882",
-            "#input_8b235cec-7f69-42f7-8aad-d49668fe720b"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "3361562f6b70631412cfd05647836d0d",
+            "71581887513fdfca526b195e2b175205"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  true,
+                  "\"Rijksmonument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de dakkapel verandert.\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false, "-", "-"],
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
+                  "\"Ja, de dakkapel verandert.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -465,24 +415,28 @@
             ]
           }
         },
-        "_3876fae7-ec81-4aed-b4d2-eafde78c9114": {
+        "2878b399080b09aae132f11358997cff": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Voorkant\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -504,24 +458,28 @@
             ]
           }
         },
-        "_2d2c91cd-e22a-4154-bb87-02ffede96187": {
+        "03039541b751b64448fbe9d1a89337ce": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "5d7ba4a96b98b1e41d340eb69d82a177"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -539,24 +497,28 @@
             ]
           }
         },
-        "_165b65d4-2a01-4a21-b892-4eb5f835a267": {
+        "ab67b7b16418668ba264e28359ebf743": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "7a5e056fdc9236c25158191fd8d08bce"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -574,24 +536,28 @@
             ]
           }
         },
-        "_a06872dc-f4d8-4bb4-bc1e-b4fb7ef752b7": {
+        "5bbdb56030d1429db30f4882618c573a": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "497e9522aeea4bdcee0e262085a4747a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -609,24 +575,28 @@
             ]
           }
         },
-        "_9fe16ced-88bf-4e28-ac45-7a4bf225692c": {
+        "f1f0c6f8eac8701505b198b1e287a8f3": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "349d04b48d5f9fcab65c3dcc5dc92b5a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -644,24 +614,28 @@
             ]
           }
         },
-        "_665cc1fa-4cb8-4432-960f-5198f53807b4": {
+        "08629543d30bc403a70f715c5059c3e2": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "acdd4d6dad4f6cab23e63e32377a4a9c"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   false
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -679,18 +653,18 @@
             ]
           }
         },
-        "_4dbc3fe5-6cd0-4a58-afdd-afb9753a0bc4": {
+        "17b3dd05489961f512f3634337e04f63": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "349d04b48d5f9fcab65c3dcc5dc92b5a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   true
@@ -698,7 +672,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -726,18 +704,18 @@
             ]
           }
         },
-        "_f940b24a-ca54-465f-ada3-1b26dff0d6d3": {
+        "8e29b9c34eb45eb1be85773d105cfc3f": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "7a5e056fdc9236c25158191fd8d08bce"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false
@@ -745,7 +723,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -773,18 +755,18 @@
             ]
           }
         },
-        "_e9bab51e-bbc8-4e6c-b64f-734dd5ff37fa": {
+        "4382b67fd1dd9ec69845d3ecb6f1f752": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "497e9522aeea4bdcee0e262085a4747a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false
@@ -792,7 +774,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -820,18 +806,18 @@
             ]
           }
         },
-        "_c120b335-d2b9-424c-809e-b83f685b9578": {
+        "091c64c1c11bb601944dddff8e2f7fe0": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Voorkant\""
@@ -839,7 +825,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -871,18 +861,18 @@
             ]
           }
         },
-        "_06c49ebd-1de0-47c4-a237-45e91bcae1dc": {
+        "4996b831974a4502ac65ec75ca5a3a7d": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "5d7ba4a96b98b1e41d340eb69d82a177"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false
@@ -890,7 +880,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -918,18 +912,18 @@
             ]
           }
         },
-        "_e40a43da-a3d9-47a6-b581-2546e5e3f09d": {
+        "694b1a5eb5307516b3813f7c2e8fec6e": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "941367604a8a705c91b8a8096803d08b"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Zijkant\"",
                   true
@@ -937,7 +931,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -964,18 +962,18 @@
             ]
           }
         },
-        "_20d1fc13-655c-4400-ba5d-625c669f173a": {
+        "89d79205e2d9a43e98e6c27a252b4d7b": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "acdd4d6dad4f6cab23e63e32377a4a9c"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   false
@@ -983,7 +981,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1011,19 +1013,19 @@
             ]
           }
         },
-        "_ab37c312-b3b9-4d9b-8ad7-7c0d25a0e052": {
+        "453a0eeb03c62459e1965d434e25d2f9": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "941367604a8a705c91b8a8096803d08b"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Zijkant\"",
@@ -1032,7 +1034,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1070,19 +1076,19 @@
             ]
           }
         },
-        "_e500ef33-4e7a-4031-a7d0-e479a5f45c7b": {
+        "c97daba3f2164f1d1ceb48d49cad0348": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "941367604a8a705c91b8a8096803d08b",
+            "c65517d02f8a725d19831ff3089f5749"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Zijkant\"",
                   false,
@@ -1091,7 +1097,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1123,19 +1133,19 @@
             ]
           }
         },
-        "_058318a0-242e-46c5-93cb-39de3f7335fe": {
+        "667e0cf4d97a5d100e0599451dfa667b": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "81059ba6e7a56f8726afd61010e30727",
+            "2f55f187bb11022d2b4b6f0ad25870ab"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Achterkant\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -1144,7 +1154,11 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"Gemeentelijk monument\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1192,20 +1206,20 @@
             ]
           }
         },
-        "_4d9cbc00-e003-47ac-8de7-5b5e69b35774": {
+        "2478ee9833961912db422d72bd8b7234": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60",
-            "#input__2cf98565-883d-4eb0-9bb8-175ed6fc2f24"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "941367604a8a705c91b8a8096803d08b",
+            "c65517d02f8a725d19831ff3089f5749",
+            "af45e89761626c6fe1f6508baa5d628c"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Zijkant\"",
                   false,
@@ -1215,7 +1229,18 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1252,20 +1277,20 @@
             ]
           }
         },
-        "_23ab00b0-73e6-4644-ab29-1f99db58d542": {
+        "2052c1326076b474cb420dfd9def0f2a": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "81059ba6e7a56f8726afd61010e30727",
+            "2f55f187bb11022d2b4b6f0ad25870ab",
+            "53a58712c70eb89b59e803f4dd99e316"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Achterkant\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -1275,7 +1300,18 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1330,20 +1366,20 @@
             ]
           }
         },
-        "_ebbc3aa1-6e4a-47e8-90ab-69cb721a78d3": {
+        "5b185744b7dec4e239faaa28011000e2": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "941367604a8a705c91b8a8096803d08b",
+            "c65517d02f8a725d19831ff3089f5749"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Zijkant\"",
@@ -1353,7 +1389,18 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1397,20 +1444,20 @@
             ]
           }
         },
-        "_169ad719-75bc-4dc7-8ac1-9ec00b64417d": {
+        "f3ad28eef78f7576959c737de79e4a5a": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "81059ba6e7a56f8726afd61010e30727",
+            "2f55f187bb11022d2b4b6f0ad25870ab"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Achterkant\"",
@@ -1420,7 +1467,18 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1482,21 +1540,21 @@
             ]
           }
         },
-        "_9b8e9953-bf1d-4c0a-9058-2abbae3fba78": {
+        "229e7ccc4f6fd8eb4dfd1c75fb66eee4": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
-            "#input__76fea73f-9000-4c9a-92e3-fc1003f6de60",
-            "#input__2cf98565-883d-4eb0-9bb8-175ed6fc2f24"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "941367604a8a705c91b8a8096803d08b",
+            "c65517d02f8a725d19831ff3089f5749",
+            "af45e89761626c6fe1f6508baa5d628c"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Zijkant\"",
@@ -1507,7 +1565,19 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1557,21 +1627,21 @@
             ]
           }
         },
-        "_eb998cec-6349-46fc-a845-9176cd93e309": {
+        "00fd207e27eea09a969af789e4dd7b2e": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "81059ba6e7a56f8726afd61010e30727",
+            "2f55f187bb11022d2b4b6f0ad25870ab",
+            "53a58712c70eb89b59e803f4dd99e316"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Achterkant\"",
@@ -1582,7 +1652,19 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1652,21 +1734,21 @@
             ]
           }
         },
-        "_d8c02509-cc40-40d1-b2fc-c4645faa5ac1": {
+        "e21fd6983f1e5515226b0214ad6410ab": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943",
-            "#input__69f71c11-edb3-4949-8951-1861308beb03"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "81059ba6e7a56f8726afd61010e30727",
+            "2f55f187bb11022d2b4b6f0ad25870ab",
+            "53a58712c70eb89b59e803f4dd99e316",
+            "2f240000bcdf26903d5d92cc66a30df4"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een nieuwe dakkapel plaatsen op een plek waar er eerst geen was.\"",
                   "\"Achterkant\"",
                   "\"Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.\"",
@@ -1677,7 +1759,19 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "inputs": ["\"Rijksmonument\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1739,22 +1833,22 @@
             ]
           }
         },
-        "_649563ef-09ed-4b95-959e-9e1fbf695a2d": {
+        "ae359972340beb2f81cb8135ffcb01f8": {
           "requiredInputs": [
-            "#input__e3f23320-186c-4507-b6a6-84170426cc0a",
-            "#input_fc74c97d-266b-4b96-b618-99910669e546",
-            "#input_bb2328ac-a595-4311-9beb-1934469d6245",
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__1650957d-1b62-4f1d-bb6f-d1eea9bbfbb8",
-            "#input__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
-            "#input__1c4854f4-ea25-450b-a7f4-734203024943",
-            "#input__69f71c11-edb3-4949-8951-1861308beb03"
+            "03efe1cc128a9402ae57ab9c693f2120",
+            "aec53e4572888e14d691494cb3267bbc",
+            "93246ee196426b817bc265b1b8837d86",
+            "99cfb2036372abbf3d38eb28c93a817a",
+            "81059ba6e7a56f8726afd61010e30727",
+            "2f55f187bb11022d2b4b6f0ad25870ab",
+            "53a58712c70eb89b59e803f4dd99e316",
+            "2f240000bcdf26903d5d92cc66a30df4"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
-                  false,
+                  "\"Geen monument\"",
                   "\"Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was.\"",
                   "\"Ja, de vorm, de grootte of het profiel verandert.\"",
                   "\"Achterkant\"",
@@ -1766,7 +1860,29 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1846,33 +1962,33 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_cfecbbbf-66ff-4a5b-84b7-c11c597dec4e",
-            "#_65345dc5-b98d-4d18-8c36-6c18698e1cf8",
-            "#_2ee9d98c-415c-47e7-8446-01d1513e55e3",
-            "#_3876fae7-ec81-4aed-b4d2-eafde78c9114",
-            "#_2d2c91cd-e22a-4154-bb87-02ffede96187",
-            "#_165b65d4-2a01-4a21-b892-4eb5f835a267",
-            "#_a06872dc-f4d8-4bb4-bc1e-b4fb7ef752b7",
-            "#_9fe16ced-88bf-4e28-ac45-7a4bf225692c",
-            "#_665cc1fa-4cb8-4432-960f-5198f53807b4",
-            "#_4dbc3fe5-6cd0-4a58-afdd-afb9753a0bc4",
-            "#_f940b24a-ca54-465f-ada3-1b26dff0d6d3",
-            "#_e9bab51e-bbc8-4e6c-b64f-734dd5ff37fa",
-            "#_c120b335-d2b9-424c-809e-b83f685b9578",
-            "#_06c49ebd-1de0-47c4-a237-45e91bcae1dc",
-            "#_e40a43da-a3d9-47a6-b581-2546e5e3f09d",
-            "#_20d1fc13-655c-4400-ba5d-625c669f173a",
-            "#_ab37c312-b3b9-4d9b-8ad7-7c0d25a0e052",
-            "#_e500ef33-4e7a-4031-a7d0-e479a5f45c7b",
-            "#_058318a0-242e-46c5-93cb-39de3f7335fe",
-            "#_4d9cbc00-e003-47ac-8de7-5b5e69b35774",
-            "#_23ab00b0-73e6-4644-ab29-1f99db58d542",
-            "#_ebbc3aa1-6e4a-47e8-90ab-69cb721a78d3",
-            "#_169ad719-75bc-4dc7-8ac1-9ec00b64417d",
-            "#_9b8e9953-bf1d-4c0a-9058-2abbae3fba78",
-            "#_eb998cec-6349-46fc-a845-9176cd93e309",
-            "#_d8c02509-cc40-40d1-b2fc-c4645faa5ac1",
-            "#_649563ef-09ed-4b95-959e-9e1fbf695a2d"
+            "1e978b51d96e64ab9c2de9a8caf57555",
+            "d0c1cb3c81f69e117306ece4d12e8c4d",
+            "7302eb9a31aaa05c877cc7d76ce12925",
+            "2878b399080b09aae132f11358997cff",
+            "03039541b751b64448fbe9d1a89337ce",
+            "ab67b7b16418668ba264e28359ebf743",
+            "5bbdb56030d1429db30f4882618c573a",
+            "f1f0c6f8eac8701505b198b1e287a8f3",
+            "08629543d30bc403a70f715c5059c3e2",
+            "17b3dd05489961f512f3634337e04f63",
+            "8e29b9c34eb45eb1be85773d105cfc3f",
+            "4382b67fd1dd9ec69845d3ecb6f1f752",
+            "091c64c1c11bb601944dddff8e2f7fe0",
+            "4996b831974a4502ac65ec75ca5a3a7d",
+            "694b1a5eb5307516b3813f7c2e8fec6e",
+            "89d79205e2d9a43e98e6c27a252b4d7b",
+            "453a0eeb03c62459e1965d434e25d2f9",
+            "c97daba3f2164f1d1ceb48d49cad0348",
+            "667e0cf4d97a5d100e0599451dfa667b",
+            "2478ee9833961912db422d72bd8b7234",
+            "2052c1326076b474cb420dfd9def0f2a",
+            "5b185744b7dec4e239faaa28011000e2",
+            "f3ad28eef78f7576959c737de79e4a5a",
+            "229e7ccc4f6fd8eb4dfd1c75fb66eee4",
+            "00fd207e27eea09a969af789e4dd7b2e",
+            "e21fd6983f1e5515226b0214ad6410ab",
+            "ae359972340beb2f81cb8135ffcb01f8"
           ],
           "decisionTable": {
             "rules": [

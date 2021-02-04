@@ -15,4 +15,3 @@ COPY packages/client ./
 RUN npm i
 RUN npm test
 RUN npm start
-# @TODO check intro on localhost:3000/some-checker

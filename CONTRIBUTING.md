@@ -1,7 +1,20 @@
 # Contributing
 
-Thanks for considering to contribute to this project. Please follow the below guidelines before you
-open up a pull request. See [README.md](README.md) for nomenclature.
+Thanks for considering to contribute to this project. Please follow the below guidelines before you open up a pull request. See [README.md](README.md) how to install and run this project.
+
+## Nomenclature
+
+First a brief intro on some of the terminology and concepts we use, to make sure the steps below make sense.
+
+- permit, ('vergunning' in dutch). You might need a permit for an activity (activiteit).
+- topic, a type of doing (werkzaamheid in dutch). Could be multiple activities / permits in one topic. It corresponds with a configured checker with one or more permits.
+- STTR; STTR is a spec dutch DSO legislation
+- IMTR-file; IMTR is an XML standard for dutch DSO legislation
+- xml to json; we convert IMTR-XML to JSON for better performance
+- STTR-builder; the tool used to build IMTR-files
+- check; the activity of checking whether you need a permit (see permit)
+- visitor; the person performing a check
+- checker; the tool itself (including an intro page, register lookups, a set of questions and an outcome)
 
 ## Commiting
 
@@ -29,9 +42,7 @@ Example usage:
 
 ```scss
 padding-top: ${themeSpacing(1)}; // This will have a padding of 1 * 4 = 4px
-padding-right: ${themeSpacing(2)}; // This will have a padding of 2 * 4 = 8px
 padding-bottom: ${themeSpacing(3)}; // This will have a padding of 3 * 4 = 12px
-padding-left: ${themeSpacing(4)}; // This will have a padding of 4 * 4 = 16px
 ```
 
 To simplify things you can also use:
@@ -48,14 +59,13 @@ packages. This is not a bug. Therefore we need to do a little additional work.
 To add an npm-package to one of our managed lerna-packages, run:
 
 ```
-lerna add cowsay --scope=@vergunningcheck/client
+lerna add cowsay --scope=@vergunningcheck/client [--dev]
 ```
 
 To remove a package, remove the dependency from the package.json manually, then;
 
 ```
-lerna clean -y
-lerna bootstrap
+npm run cleaninstall
 ```
 
 ## Link lerna packages
@@ -66,6 +76,21 @@ Ie. if you want to install `mocking` into `graphql`, run:
 ```
 lerna add @vergunningcheck/mocking --scope=graphql
 ```
+
+## Automated tests
+
+When you're making a new PR for a feature or a bug, it says "Please make sure you added the necessary automated tests." Please help us by:
+
+- adding unit tests (to atoms / components / utils)
+- adding or extending the e2e tests, when you're working on new routes or pages (see [packages/e2e/README.md](./packages/e2e/README.md))
+- fixing and extending failing tests
+- writing tests in (or converting tests to) TypeScript
+
+These commands may help you:
+
+- `npm run test:coverage` - to test the coverage for all files
+- `npm run test -- src/atoms --collect-coverage` - to test the coverage for certain files (in packages/client)
+- `jest --clearCache` - in case there are failed tests, but the tests work on another computer or in another folder
 
 ## Updating permits
 

@@ -1,6 +1,6 @@
 # Vergunningcheck [![codecov](https://codecov.io/gh/Amsterdam/vergunningcheck/branch/develop/graph/badge.svg)](https://codecov.io/gh/Amsterdam/vergunningcheck) [![Github CI](https://github.com/Amsterdam/vergunningcheck/workflows/Github%20CI/badge.svg)](https://github.com/Amsterdam/vergunningcheck/actions)
 
-This application allows residents of Amsterdam to easily see if they need a permit for a construction activity for their specific building. For various activities, like installing a window or solar panels on the roof or extending the house, we ask a number of questions about the location and plans. This leads to an outcome, either license-free or licensing obligation, where it is clear which questions lead to this conclusion. This tool can therefore be used to see how in a specific location you could carry out a construction activity without the requirement of a permit.
+This application allows residents of Amsterdam to easily see if they need a permit for a construction activity for their specific building. For various activities, like installing a window or solar panels on the roof or extending the house, we ask a number of questions about the location and plans. This leads to an outcome, either license-free or licensing obligation, where it is clear which questions lead to this outcome. This tool can therefore be used to see how in a specific location you could carry out a construction activity without the requirement of a permit.
 
 ## Install / run
 
@@ -29,20 +29,6 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 - [Matomo Tracker React](https://github.com/Amsterdam/matomo-tracker)
 - Prettier
 - Jest + Testing Library
-
-## Nomenclature
-
-First a brief intro on some of the terminology and concepts we use, to make sure the steps below make sense.
-
-- permit, ('vergunning' in dutch). You might need a permit for an activity (activiteit).
-- topic, a type of doing (werkzaamheid in dutch). Could be multiple activities / permits in one topic. It corresponds with a configured checker with one or more permits.
-- STTR; STTR is a spec dutch DSO legislation
-- IMTR-file; IMTR is an XML standard for dutch DSO legislation
-- xml to json; we convert IMTR-XML to JSON for better performance
-- STTR-builder; the tool used to build IMTR-files
-- check; the activity of checking whether you need a permit (see permit)
-- visitor; the person performing a check
-- checker; the tool itself (including an intro page, register lookups, a set of questions and a conclusion)
 
 ## Known issues
 
