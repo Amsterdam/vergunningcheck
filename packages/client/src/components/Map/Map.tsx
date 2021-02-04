@@ -189,7 +189,7 @@ const LocationMap = () => {
 
   // const zoomLevel = mapInstance?.getZoom();
 
-  console.log(zoomLevelMap);
+  console.log("current Overlay", currentOverlay);
 
   return (
     <StyledMap
@@ -206,7 +206,7 @@ const LocationMap = () => {
     >
       <StyledResults
         currentPinMarkerTreesGroup={currentPinMarkerTreesGroup}
-        currentOverlay={currentOverlay}
+        currentOverlay={Overlay.Results}
         setCurrentOverlay={setCurrentOverlay}
         setCurrentPinMarkerTreesGroup={setCurrentPinMarkerTreesGroup}
         zoomToCircleMarkerTreesGroup={zoomToCircleMarkerTreesGroup}
@@ -277,9 +277,7 @@ const LocationMap = () => {
         <CirclesTrees
           zoomLevelMap={zoomLevelMap}
           setCurrentOverlay={setCurrentOverlay}
-          circleMarkerTreesList={
-            circleMarkersTreesList ? circleMarkersTreesList : treesListMocks
-          } // if no graphql data use mock data.
+          circleMarkerTreesList={treesListMocks} // if no graphql data use mock data.
           selectCircleMarkerTree={selectCircleMarkerTree}
         />
       )}

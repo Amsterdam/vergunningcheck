@@ -2,7 +2,7 @@ const debug = require("debug")("graphql:loaders:tree");
 const geojsonArea = require("@mapbox/geojson-area");
 const db = require("../../database");
 
-const maxAreaMetersSquared = 10000;
+const maxAreaMetersSquared = 50000;
 const sridRD = 28992;
 const sridLatLon = 4326;
 const limit = 300;

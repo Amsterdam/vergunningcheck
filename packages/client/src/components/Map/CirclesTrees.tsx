@@ -55,7 +55,6 @@ const CirclesTrees = ({
         circleMarkerTreesList.map((item: CircleMarkerTreeInfo) => {
           const { isSelected, treesListCoordinates } = item;
 
-          console.log("item", item);
           if (isSelected) {
             return (
               <Marker
