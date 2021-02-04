@@ -19,11 +19,7 @@ All notable changes to this project will be documented in this file.
 * `client`
   * [#772](https://github.com/Amsterdam/vergunningcheck/pull/772) Added missing tests ([@svenjens](https://github.com/svenjens))
   * [#773](https://github.com/Amsterdam/vergunningcheck/pull/773) Created link for new checker ([@robinpiets](https://github.com/robinpiets))
-  * [#773](https://github.com/Amsterdam/vergunningcheck/pull/773) Created link for new checker ([@robinpiets](https://github.com/robinpiets))
-* `client`, `e2e`, `imtr-client`, `imtr`
   * [#732](https://github.com/Amsterdam/vergunningcheck/pull/732) Replaced instances of Conclusion to Outcome ([@robinpiets](https://github.com/robinpiets))
-  * [#732](https://github.com/Amsterdam/vergunningcheck/pull/732) Replaced instances of Conclusion to Outcome ([@robinpiets](https://github.com/robinpiets))
-* `client`, `imtr-client`, `imtr`
   * [#766](https://github.com/Amsterdam/vergunningcheck/pull/766) Implement consistent id's for imtr-files ([@afjlambert](https://github.com/afjlambert))
 * `e2e`, `graphql`
   * [#759](https://github.com/Amsterdam/vergunningcheck/pull/759) Updated dependencies ([@robinpiets](https://github.com/robinpiets))
