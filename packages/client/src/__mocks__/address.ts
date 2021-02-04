@@ -7,7 +7,7 @@ export default [
       query: findAddress,
       variables: {
         extraHouseNumberFull: "",
-        houseNumberFull: "19c",
+        houseNumberFull: "19 C",
         postalCode: "1055XD",
         queryExtra: false,
       },
@@ -30,8 +30,8 @@ export default [
                 scope: "MUNICIPAL",
               },
             ],
-            districtName: "Landlust",
-            neighborhoodName: "Landlust Noord",
+            districtName: "", // Purposely made empty
+            neighborhoodName: "", // Purposely made empty
             zoningPlans: [
               {
                 name: "Paraplubestemmingsplan Stadsdeel West",

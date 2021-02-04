@@ -55,29 +55,34 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
       </ContentContainer>
 
       <HideForPrint>
-        <div
-          // comment to see app version and environment
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: `<!--
+        {!process.env.JEST_WORKER_ID && (
+          // Don't render when testing
+          <>
+            <div
+              // comment to see app version and environment
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: `<!--
               Node environment: ${process.env.NODE_ENV}
               App Version: ${process.env.REACT_APP_VERSION}
               Branch: ${process.env.REACT_APP_GIT_BRANCH}
               Commit: https://github.com/Amsterdam/vergunningcheck/commit/${process.env.REACT_APP_GIT_SHA}
               GraphQL: ${process.env.REACT_APP_GRAPHQL_API_URL}
               -->`,
-          }}
-        />
+              }}
+            />
 
-        <HiddenDebugInfo>
-          <Accordion title="Process debug informatie">
-            <Card backgroundColor="level2" shadow>
-              <CardContent>
-                <DebugProcessVariables />
-              </CardContent>
-            </Card>
-          </Accordion>
-        </HiddenDebugInfo>
+            <HiddenDebugInfo>
+              <Accordion title="Process debug informatie">
+                <Card backgroundColor="level2" shadow>
+                  <CardContent>
+                    <DebugProcessVariables />
+                  </CardContent>
+                </Card>
+              </Accordion>
+            </HiddenDebugInfo>
+          </>
+        )}
 
         <Footer />
       </HideForPrint>

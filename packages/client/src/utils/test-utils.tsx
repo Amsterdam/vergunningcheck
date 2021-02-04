@@ -16,7 +16,10 @@ import { SessionProvider } from "../SessionContext";
 
 export * from "@testing-library/react";
 
-dotenv.config();
+dotenv.config({
+  // With this option you can suppress all the console outputs except errors and deprecation warnings.
+  silent: true,
+});
 
 Object.defineProperty(window, "matchMedia", matchMedia);
 
@@ -68,6 +71,19 @@ jest.mock("react-router-dom", () => ({
 //     };
 //   });
 // };
+
+// How to mock the topic:
+// const mockTopic = {
+//   hasIMTR: false,
+//   intro: "DakkapelIntrosdfsdf",
+//   name: "Ddsfdsen 2",
+//   slug: "daksdftsen",
+//   text: {
+//     heading: "Vergsdftsen",
+//     locationIntro: "Vsdftsen",
+//   },
+// };
+// jest.mock("../hooks/useTst.mock("../hooks/useTopic", () => () => mockTopic);
 
 type TestProviderProps = {
   mocks: readonly MockedResponse<Record<string, any>>[];

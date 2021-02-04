@@ -58,33 +58,37 @@ const NewCheckerModal: FunctionComponent = () => {
       });
     } else {
       setFinished(!!checkerSlug);
+
       const doSaveAddress = saveAddress === true;
-      const saveAddressEvent = doSaveAddress
-        ? eventNames.WITH_THE_SAME_ADDRESS
-        : eventNames.WITHOUT_THE_SAME_ADDRESS;
 
       matomoTrackEvent({
         action: actions.START_ANOTHER_CHECK,
-        name: `${eventNames.DO_ANOTHER_CHECK} - ${saveAddressEvent}`,
+        name: `${eventNames.DO_ANOTHER_CHECK} - ${
+          doSaveAddress
+            ? eventNames.WITH_THE_SAME_ADDRESS
+            : eventNames.WITHOUT_THE_SAME_ADDRESS
+        }`,
       });
 
-      // Set the the new session data for `doSaveAddress`
-      const topicSessionWithSavedAddress = {
+      // Set the new topic data with the correct `type` and potentially the `address`
+      const newTopicData = {
         ...defaultTopicSession,
-        activeComponents: [sections.QUESTIONS],
-        address: topicData.address,
-        finishedComponents: [sections.LOCATION_INPUT],
+        // Optionally save address
+        address: doSaveAddress ? topicData.address : null,
+        // Update timesCheckerLoaded + 1 or reset to zero if going to a new checker
+        timesCheckerLoaded:
+          checkerSlug === slug ? topicData.timesCheckerLoaded + 1 : 0,
         type: checkerSlug,
       };
-
-      // Set the new topic data. SessionContext will interpret `null` by replacing it with default data.
-      const newTopicData = doSaveAddress
-        ? topicSessionWithSavedAddress
-        : defaultTopicSession;
 
       if (checkerSlug === slug) {
         // Only change the topicData for the current topic
         setTopicData(newTopicData);
+
+        matomoTrackEvent({
+          action: actions.ACTIVE_STEP,
+          name: doSaveAddress ? sections.QUESTIONS : sections.LOCATION_INPUT,
+        });
       } else {
         // Change the topicData for another topic
         setSession({

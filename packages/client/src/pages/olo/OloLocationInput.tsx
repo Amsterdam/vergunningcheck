@@ -18,7 +18,7 @@ const OloLocationInput: FunctionComponent = () => {
     <TopicLayout>
       <Helmet>
         <title>
-          {t("location.enter location")} - {topic.text.heading}
+          {t("location.address.enter address")} - {topic.text.heading}
         </title>
       </Helmet>
       <Suspense fallback={<Loading />}>

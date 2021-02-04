@@ -3,8 +3,8 @@ import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Alert, HideForPrint } from "../atoms";
-import { QUESTION_ALERT } from "../utils/test-ids";
+import { Alert, HideForPrint } from "../../atoms";
+import { QUESTION_ALERT } from "../../utils/test-ids";
 
 export type QuestionAlertProps = {
   marginBottom?: number;

@@ -1,4 +1,5 @@
-import { Answer } from "@vergunningcheck/imtr-client";
+import { Answer as IMTRAnswer } from "@vergunningcheck/imtr-client";
+import { ReactNode } from "react";
 
 /**
  * Location types
@@ -32,15 +33,41 @@ export type AddressType = {
 export type Address = null | AddressType;
 
 /**
+ * Section types
+ */
+
+export type SectionComponent = {
+  currentSection: SectionObject;
+  sectionFunctions: SectionFunctions;
+};
+
+type SectionData = {
+  index: number;
+  isActive: boolean;
+  isCompleted: boolean;
+};
+
+export type SectionObject = SectionData & {
+  component: (props: SectionComponent) => {};
+};
+
+export type SectionFunctions = {
+  changeActiveSection: (section: SectionObject) => void;
+  completeSection: (state?: boolean, section?: SectionObject | null) => void;
+  getNextSection: () => SectionObject | null;
+  goToNextSection: () => void;
+};
+
+/**
  * Context and session types
  */
 export type TopicData = {
-  activeComponents?: string[];
   address: Address;
   answers: {
-    [id: string]: Answer;
+    [id: string]: IMTRAnswer;
   };
-  finishedComponents: string[];
+  timesCheckerLoaded: number;
+  sectionData: SectionData[];
   type: string;
   questionIndex: number;
 };
@@ -91,8 +118,19 @@ export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 /**
  * Checker related types
  */
-export type BooleanOption = {
+export type Answer = {
   formValue: string;
   label: string;
-  value: boolean;
+  value: boolean | string;
+};
+
+/**
+ * Content related types
+ */
+export type OutcomeContentType = {
+  description?: string;
+  eventName?: string;
+  footerContent?: ReactNode;
+  mainContent?: ReactNode;
+  title: string;
 };

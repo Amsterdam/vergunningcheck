@@ -45,7 +45,7 @@ describe("OutcomeContent", () => {
 
     expect(window.open).toHaveBeenCalledTimes(1);
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(2); // For the active section, and the outcome.
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
     expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
