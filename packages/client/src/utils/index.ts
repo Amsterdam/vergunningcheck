@@ -5,8 +5,8 @@ import { matchPath } from "react-router";
 import { topics } from "../config";
 import nl from "../i18n/nl";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
-import topicsJson from "../topics.json";
-import { Answer, Restriction, Topic } from "../types";
+import apiTopics from "../topics.json";
+import { Answer, Restriction, Topic, TopicType } from "../types";
 
 const { no, yes } = nl.translation.common;
 
@@ -24,23 +24,22 @@ export const findTopicBySlug = (slug: string) => {
   const topic = topics.find((t) => t.slug === slug);
   if (topic) return topic;
 
-  const topicConfig = topicsJson.flat().find((topic) => topic.slug === slug);
+  const topicConfig = apiTopics.flat().find((topic) => topic.slug === slug);
   if (!topicConfig) {
     return null;
   }
 
   // Provide name (with slug as fallback)
-  // Ignore in coverage because by default topics.json doesn't contain nameless topics
-  /* istanbul ignore next */
+  // This test coverage can be achieved by mocking `topics.json` (see: /client/src/utils/index.test.tsx)
   const { name = slug } = topicConfig;
 
   return {
-    hasIMTR: true,
     name,
     slug,
     text: {
       heading: name,
     },
+    type: TopicType.PERMIT_CHECK,
   } as Topic;
 };
 
@@ -167,4 +166,58 @@ export const getAnswerLabel = (answer: ClientSimpleType) => {
     return removeQuotes(answer);
   }
   return answer;
+};
+
+/**
+ *
+ * Validates if the corresponding slug has a transformed IMTR file
+ * `apiTopics` contains all files in `/public/imtr/transformed/`
+ *
+ * @param {Topic} topic
+ */
+export const hasIMTR = (topic?: Topic) => {
+  return !!(
+    topic?.slug && apiTopics.flat().find((api) => api.slug === topic.slug)
+  );
+};
+
+/**
+ *
+ * Returns true if an IMTR file is found AND the topic type if equal to `PERMIT_CHECK`
+ * This only returns configured checks and ignores OLO flow permit-checks
+ *
+ * @param {Topic} topic
+ */
+export const isConfiguredPermitCheck = (topic: Topic) => {
+  return topic.type === TopicType.PERMIT_CHECK && hasIMTR(topic);
+};
+
+/**
+ *
+ * Returns true if topic type if equal to `PERMIT_CHECK`
+ *
+ * @param {Topic} topic
+ */
+export const isPermitCheck = (topic?: Topic) => {
+  return topic?.type === TopicType.PERMIT_CHECK;
+};
+
+/**
+ *
+ * Returns true if topic type if equal to `PERMIT_FORM`
+ *
+ * @param {Topic} topic
+ */
+export const isPermitForm = (topic?: Topic) => {
+  return topic?.type === TopicType.PERMIT_FORM;
+};
+
+/**
+ *
+ * Returns true if topic type if equal to `REDIRECT`
+ *
+ * @param {Topic} topic
+ */
+export const isRedirect = (topic?: Topic) => {
+  return topic?.type === TopicType.REDIRECT;
 };

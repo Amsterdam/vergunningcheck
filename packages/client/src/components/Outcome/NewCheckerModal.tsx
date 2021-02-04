@@ -10,6 +10,7 @@ import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
+import { isConfiguredPermitCheck } from "../../utils";
 import {
   NEW_CHECKER_MODAL_SAME_ADDRESS,
   RADIO_ADDRESS_1,
@@ -155,7 +156,7 @@ const NewCheckerModal: FunctionComponent = () => {
         <ComponentWrapper>
           <RadioGroup name="checkers">
             {topics
-              .filter((topic) => topic.hasIMTR)
+              .filter((topic) => isConfiguredPermitCheck(topic))
               .sort((a, b) => a.name.localeCompare(b.name))
               .map(({ name, slug }) => (
                 <Label htmlFor={slug} key={name} label={name}>

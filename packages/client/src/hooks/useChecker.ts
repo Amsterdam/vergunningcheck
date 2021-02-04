@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
 import topicsJson from "../topics.json";
+import { hasIMTR } from "../utils/index";
 import { useTopic, useTopicData } from "./";
 
 export default () => {
@@ -26,8 +27,8 @@ export default () => {
   }, [checker, checkerContext]);
 
   const initChecker = async () => {
-    // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    const loadChecker = !checker && !error && (!topic || topic.hasIMTR);
+    // Load the checker if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
+    const loadChecker = !checker && !error && hasIMTR(topic);
     if (loadChecker) {
       try {
         const topicConfig = topicsJson

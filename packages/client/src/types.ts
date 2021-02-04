@@ -35,7 +35,6 @@ export type Address = null | AddressType;
 /**
  * Section types
  */
-
 export type SectionComponent = {
   currentSection: SectionObject;
   sectionFunctions: SectionFunctions;
@@ -86,42 +85,34 @@ export type setTopicSessionDataFn = (
 /**
  * Topic types
  */
-type BaseTopic = {
+export enum TopicType {
+  PERMIT_CHECK, // A permit-check that is either an "OLO flow" or an "IMTR flow" check. IMTR checks are configured in `packages/imtr/src/config`.
+  PERMIT_FORM, // A permit-form - required when PERMIT_NEEDED - with the main focus on generating a PDF
+  REDIRECT, // A direct redirect to "OLO". We only use this to track the visitor count from amsterdam.nl
+}
+
+export type Topic = {
+  intro?: string;
+  loadIMTR?: boolean;
   name: string;
   slug: string;
   text: {
     heading: string;
     locationIntro?: string;
   };
+  type: TopicType;
 };
 
-type IMTRTopic = {
-  isForm?: false | true;
-  hasIMTR: true;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
-
-type OloTopic = {
-  isForm?: false;
-  hasIMTR: false;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
-
-type RedirectToOloTopic = {
-  isForm?: false;
-  hasIMTR: false;
-  redirectToOlo: true;
-  intro?: undefined;
-} & BaseTopic;
-
-export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
+export type ApiTopic = {
+  name?: string;
+  path?: string;
+  permits: string[];
+  slug: string;
+};
 
 /**
  * Checker related types
  */
-// @TODO: AnswerInput
 export type Answer = {
   formValue: string;
   label: string;

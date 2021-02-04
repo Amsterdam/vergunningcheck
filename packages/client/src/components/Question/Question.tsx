@@ -10,7 +10,7 @@ import { ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { Answer } from "../../types";
-import { getAnswerLabel } from "../../utils";
+import { getAnswerLabel, isPermitForm } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
 import Answers from "../Answers";
 import Form from "../Form";
@@ -46,10 +46,11 @@ const Question: FunctionComponent<QuestionProps> = ({
   const {
     topicData: { questionIndex },
   } = useTopicData();
-  const { isForm } = useTopic();
+  const topic = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
+  const isForm = isPermitForm(topic);
   const requiredFieldRadio = t("common.required field radio");
 
   const {

@@ -39,7 +39,7 @@ const EditLocationModal: FunctionComponent = () => {
       type: slug,
     };
 
-    // @TODO: decide if the all data is cleared when `isForm`...
+    // @TODO: only clear all data is cleared when `!isPermitForm(topic)`
 
     setTopicData(newTopicData);
 

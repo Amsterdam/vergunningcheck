@@ -108,12 +108,17 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     }
   };
 
+  const handleOnClick = !isActive
+    ? () => changeActiveSection(currentSection)
+    : false;
+
   const highlightSection = isActive && questionIndex === 0;
 
   return (
     <>
       <StepByStepItem
         active={highlightSection}
+        as="div"
         checked={isCompleted}
         customSize
         data-testid={QUESTION_SECTION}
@@ -121,6 +126,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
         heading={t("question.heading")}
         highlightActive={highlightSection}
         largeCircle
+        onClick={handleOnClick}
       />
 
       <Questions

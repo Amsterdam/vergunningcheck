@@ -25,7 +25,7 @@ import {
   useTracking,
 } from "../../hooks";
 import { Answer, SectionFunctions } from "../../types";
-import { scrollToRef } from "../../utils";
+import { isPermitForm, scrollToRef } from "../../utils";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
@@ -54,10 +54,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
-  const { isForm } = topic;
   const { address, questionIndex } = topicData;
   const { goToNextSection } = sectionFunctions;
 
+  const isForm = isPermitForm(topic);
   const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION, GOTO_OUTCOME } = eventNames;
   const { EDIT_QUESTION } = actions;
 
@@ -409,7 +409,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         return (
           <StepByStepItem
-            active={isForm ?? isCurrentQuestion}
+            active={isForm ? true : isCurrentQuestion} // @TODO refactor this ternary
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}

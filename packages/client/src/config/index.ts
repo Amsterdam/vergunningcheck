@@ -1,15 +1,14 @@
 /**
  * Merge the different topic types
  *
- * hasIMTR: If topic has an imtr-file. If `false` it's olo/olo-redirect flow
  * intro: The name of the component that has all texts on the Intro page
  * name: The name of the checker/topic
- * redirectToOlo: If this flow should redirect the user to OLO
  * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
  * text: This is part that holds specific texts for each permit-checker
+ * type: See {TopicType} for the different types of Topic
  */
 
-import { Topic } from "../types";
+import { Topic, TopicType } from "../types";
 
 type OloUrlProps = {
   houseNumber: number;
@@ -47,7 +46,6 @@ export const generateOloUrl = ({
 
 export const topics: Topic[] = [
   {
-    hasIMTR: true,
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
     slug: "dakkapel-plaatsen",
@@ -55,9 +53,9 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: true,
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
     slug: "dakraam-plaatsen",
@@ -65,9 +63,9 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck dakraam plaatsen",
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: false,
     name: "Aanbouw of uitbouw maken",
     slug: "aanbouw-of-uitbouw-maken",
     text: {
@@ -75,9 +73,9 @@ export const topics: Topic[] = [
       locationIntro:
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: true,
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
     slug: "kozijnen-plaatsen",
@@ -85,9 +83,9 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck kozijnen plaatsen",
       locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: true,
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
@@ -96,9 +94,9 @@ export const topics: Topic[] = [
       locationIntro:
         "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: true,
     intro: "SlopenIntro",
     name: "Bouwwerk slopen",
     slug: "bouwwerk-slopen",
@@ -106,18 +104,18 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: false,
     name: "Intern verbouwen",
     slug: "intern-verbouwen",
     text: {
       heading: "Vergunningcheck intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: true,
     intro: "ZonweringRolluikIntro",
     name: "Zonwering of rolluik plaatsen",
     slug: "zonwering-of-rolluik-plaatsen",
@@ -126,33 +124,30 @@ export const topics: Topic[] = [
       locationIntro:
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },
+    type: TopicType.PERMIT_CHECK,
   },
   {
-    hasIMTR: false,
     name: "Kappen of snoeien",
-    redirectToOlo: true,
     slug: "kappen-of-snoeien",
     text: {
       heading: "Vergunningcheck kappen of snoeien",
     },
+    type: TopicType.REDIRECT,
   },
   {
-    hasIMTR: false,
     name: "Brandveilig gebruik",
-    redirectToOlo: true,
     slug: "brandveilig-gebruik",
     text: {
       heading: "Vergunningcheck brandveilig gebruik",
     },
+    type: TopicType.REDIRECT,
   },
   {
-    hasIMTR: true,
-    isForm: true,
     name: "Bomen kappen",
-    redirectToOlo: false,
     slug: "formulier",
     text: {
       heading: "Formulier aanvraag bomenkap",
     },
+    type: TopicType.PERMIT_FORM,
   },
 ];
