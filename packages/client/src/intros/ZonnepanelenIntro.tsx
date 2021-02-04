@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Intro } from "./shared";
 
-export default () => {
+const ZonnepanelenIntro: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <Intro
@@ -18,3 +18,5 @@ export default () => {
     />
   );
 };
+
+export default ZonnepanelenIntro;

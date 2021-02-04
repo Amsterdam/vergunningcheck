@@ -17,7 +17,7 @@ export default class Rule {
    *
    * @param inputConditions the values inputs should have
    * @param outputValue the resulting value if this rule evaluates to true
-   * @param description - A description for this rule. Can be used for conclusion.
+   * @param description - A description for this rule. Can be used for outcome.
    */
   constructor(
     inputConditions: ClientSimpleType[],

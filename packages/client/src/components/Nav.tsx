@@ -1,5 +1,5 @@
 import { ChevronLeft } from "@amsterdam/asc-assets";
-import React from "react";
+import React, { FormEvent, FunctionComponent } from "react";
 
 import { PrevButton } from "../atoms";
 import { NEXT_BUTTON } from "../utils/test-ids";
@@ -9,14 +9,14 @@ export type NavProps = {
   formEnds?: boolean;
   nextText?: string;
   noMarginBottom?: boolean;
-  onGoToNext?: (event: React.FormEvent) => void;
-  onGoToPrev?: (event: React.FormEvent) => void;
+  onGoToNext?: (event: FormEvent) => void;
+  onGoToPrev?: (event: FormEvent) => void;
   prevText?: string;
   showNext?: boolean;
   showPrev?: boolean;
 };
 
-const Nav: React.FC<NavProps> = ({
+const Nav: FunctionComponent<NavProps> = ({
   formEnds,
   nextText = "Volgende",
   noMarginBottom,

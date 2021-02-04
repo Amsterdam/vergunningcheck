@@ -1,34 +1,34 @@
 {
   "permits": [
     {
-      "version": 1,
-      "name": "Conclusie Kennis Omgevingswet",
+      "version": 2,
+      "name": "Conclusie [AUB VERWIJDEREN] Kennis Omgevingswet",
       "questions": [
         {
           "text": "Betreft de Omgevingswet ook persoonsgebonden gedragingen?",
           "description": "De Omgevingswet betreft alleen de fysieke leefomgeving. Bijv. bouwen, planologisch gebruik, milieu, natuur.",
           "type": "boolean",
-          "id": "uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
-          "prio": 10
+          "prio": 10,
+          "id": "149d511746a8e52741a1834e6823702b"
         },
         {
           "text": "Vervalt de omgevingsvergunning-plicht voor brandveilig gebruik?",
           "description": "Op basis van het Besluit bouwwerken leefomgeving geldt alleen een schriftelijke meldingsplicht zoals we die nu ook kennen uit het Bouwbesluit 2012.",
           "type": "boolean",
-          "id": "uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
-          "prio": 20
+          "prio": 20,
+          "id": "d4329af763cb2d2523df446383cae361"
         },
         {
           "text": "Vervalt de onlosmakelijkheid voor diverse activiteiten, zoals we die nu kennen?",
           "description": "Onder de Omgevingswet kunnen alle activiteiten los worden aangevraagd. Maar een werkzaamheid mag pas worden uitgevoerd als alle benodigde vergunningen zijn verkregen.",
           "type": "boolean",
-          "id": "uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
-          "prio": 30
+          "prio": 30,
+          "id": "52aa32bdf49e626e92ca81fbfb66d6fb"
         }
       ],
       "decisions": {
-        "_6c067ad0-a0e6-4c3d-a6b6-33ce8de101d0": {
-          "requiredInputs": ["#input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c"],
+        "f00392fe7f8cf1f955c60fc9ef0dffde": {
+          "requiredInputs": ["149d511746a8e52741a1834e6823702b"],
           "decisionTable": {
             "rules": [
               {
@@ -42,8 +42,8 @@
             ]
           }
         },
-        "_3f535ca3-f85e-4c63-a8b1-b6f0280b005b": {
-          "requiredInputs": ["#input__6b084501-82ea-4e18-87a5-c82423a9bbe8"],
+        "e71291c631645bb667af43c437371120": {
+          "requiredInputs": ["d4329af763cb2d2523df446383cae361"],
           "decisionTable": {
             "rules": [
               {
@@ -57,8 +57,8 @@
             ]
           }
         },
-        "_4a5a9533-4ff1-417c-ad16-19d77e6d46d6": {
-          "requiredInputs": ["#input__768f26ec-0675-4078-9e49-6dc05aec70f8"],
+        "77d42c7b13664a4cf0f4515dda40c578": {
+          "requiredInputs": ["52aa32bdf49e626e92ca81fbfb66d6fb"],
           "decisionTable": {
             "rules": [
               {
@@ -74,9 +74,9 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6c067ad0-a0e6-4c3d-a6b6-33ce8de101d0",
-            "#_3f535ca3-f85e-4c63-a8b1-b6f0280b005b",
-            "#_4a5a9533-4ff1-417c-ad16-19d77e6d46d6"
+            "f00392fe7f8cf1f955c60fc9ef0dffde",
+            "e71291c631645bb667af43c437371120",
+            "77d42c7b13664a4cf0f4515dda40c578"
           ],
           "decisionTable": {
             "rules": [
@@ -98,20 +98,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c": {
-          "href": "#uitv__5bc12694-f3ac-45e8-9bb3-ed4760c6db6c",
-          "type": "boolean"
-        },
-        "input__6b084501-82ea-4e18-87a5-c82423a9bbe8": {
-          "href": "#uitv__6b084501-82ea-4e18-87a5-c82423a9bbe8",
-          "type": "boolean"
-        },
-        "input__768f26ec-0675-4078-9e49-6dc05aec70f8": {
-          "href": "#uitv__768f26ec-0675-4078-9e49-6dc05aec70f8",
-          "type": "boolean"
         }
       }
     }

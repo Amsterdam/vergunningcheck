@@ -1,19 +1,19 @@
 {
   "permits": [
     {
-      "version": 1,
-      "name": "Conclusie aansluit digikoppeling test",
+      "version": 3,
+      "name": "Conclusie [AUB VERWIJDEREN] aansluit digikoppeling test",
       "questions": [
         {
           "text": "testvraag ivm aansluit digikoppeling",
           "type": "boolean",
-          "id": "uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
-          "prio": 10
+          "prio": 10,
+          "id": "a79e42e9a47aaae4f023d59726b28acc"
         }
       ],
       "decisions": {
-        "_ce131ba0-3813-4bfc-9320-8f7dbfece2b6": {
-          "requiredInputs": ["#input__b2344eb2-d67c-498d-b89d-9049affb14a4"],
+        "b249ac962b518bceee3af62737095f88": {
+          "requiredInputs": ["a79e42e9a47aaae4f023d59726b28acc"],
           "decisionTable": {
             "rules": [
               {
@@ -28,7 +28,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_ce131ba0-3813-4bfc-9320-8f7dbfece2b6"],
+          "requiredDecisions": ["b249ac962b518bceee3af62737095f88"],
           "decisionTable": {
             "rules": [
               {
@@ -41,12 +41,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__b2344eb2-d67c-498d-b89d-9049affb14a4": {
-          "href": "#uitv__b2344eb2-d67c-498d-b89d-9049affb14a4",
-          "type": "boolean"
         }
       }
     }

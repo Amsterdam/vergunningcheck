@@ -26,6 +26,44 @@ export default [
       query: findAddress,
       variables: {
         extraHouseNumberFull: "",
+        houseNumberFull: "54 6 K 1",
+        postalCode: "1024BV",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: null,
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
+        houseNumberFull: "20 HL",
+        postalCode: "1027AE",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: null,
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
         houseNumberFull: "19",
         postalCode: "1055XD",
         queryExtra: false,
@@ -39,56 +77,56 @@ export default [
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjEzNA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 A",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA0Mw==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 B",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA2NA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 C",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA2Mg==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 D",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA4Ng==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 E",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
             {
               __typename: "Address",
               id: "MDM2MzAxMDAxMjA2MjA4NA==",
-              streetName: "Louise de Colignystraat",
-              postalCode: "1055XD",
               houseNumber: 19,
               houseNumberFull: "19 F",
+              postalCode: "1055XD",
               residence: "Amsterdam",
+              streetName: "Louise de Colignystraat",
             },
           ],
         },
@@ -108,37 +146,112 @@ export default [
     result: {
       data: {
         findAddress: {
-          __typename: "",
           exactMatch: {
             __typename: "Address",
             id: "MDM2MzAxMDAxMjA2MjA2NA==",
-            streetName: "Louise de Colignystraat",
-            postalCode: "1055XD",
             houseNumber: 19,
             houseNumberFull: "19 C",
+            postalCode: "1055XD",
             residence: "Amsterdam",
+            streetName: "Louise de Colignystraat",
             restrictions: [
               {
                 __typename: "Monument",
                 name: "Gemeentelijk monument",
+                scope: "MUNICIPAL",
               },
             ],
+            districtName: "Landlust",
+            neighborhoodName: "Landlust Noord",
             zoningPlans: [
               {
-                __typename: "",
                 name: "Paraplubestemmingsplan Stadsdeel West",
+                scope: "MUNICIPAL",
               },
               {
-                __typename: "",
                 name: "Landlust en Gibraltarbuurt",
+                scope: "MUNICIPAL",
               },
               {
-                __typename: "",
                 name: "Aanpassen geluidzone Westpoort en Hoogtij",
+                scope: "MUNICIPAL",
               },
               {
-                __typename: "",
                 name: "Drijvende bouwwerken",
+                scope: "MUNICIPAL",
+              },
+            ],
+          },
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
+        houseNumberFull: "546 K 1",
+        postalCode: "1024BV",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: {
+            __typename: "Address",
+            id: "MDM2MzAxMDAwMDk4OTA3Ng==",
+            houseNumber: 546,
+            houseNumberFull: "546 K 1",
+            postalCode: "1024BV",
+            residence: "Amsterdam",
+            streetName: "Beemsterstraat",
+            restrictions: [],
+            districtName: "Waterlandpleinbuurt",
+            neighborhoodName: "Werengouw Midden",
+            zoningPlans: [
+              {
+                name: "Bestemmingsplan Nieuwendam Noord - Werengouw",
+              },
+            ],
+          },
+          matches: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: findAddress,
+      variables: {
+        extraHouseNumberFull: "",
+        houseNumberFull: "20 H L",
+        postalCode: "1027AE",
+        queryExtra: false,
+      },
+    },
+    result: {
+      data: {
+        findAddress: {
+          exactMatch: {
+            __typename: "Address",
+            id: "MDM2MzAxMDAwMDgyNDYzMQ==",
+            houseNumber: 20,
+            houseNumberFull: "20 H L",
+            postalCode: "1027AE",
+            residence: "Amsterdam",
+            streetName: "'t Nopeind",
+            restrictions: [],
+            districtName: "Waterland",
+            neighborhoodName: "Zunderdorp",
+            zoningPlans: [
+              {
+                name: "Drijvende bouwwerken",
+              },
+              {
+                name: "Landelijk Noord",
               },
             ],
           },
@@ -159,12 +272,7 @@ export default [
     },
     result: {
       data: null,
-      errors: [
-        {
-          stack: ["GraphQLError: ..."],
-          message: "...",
-        },
-      ],
+      errors: [{ stack: ["GraphQLError: ..."], message: "..." }],
     },
   },
 ];

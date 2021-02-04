@@ -59,12 +59,9 @@ function getDecision(id, decisionConfig, questions) {
 
   const inputs =
     (requiredInputs &&
-      requiredInputs.map((href) => {
-        const res = questions.find((q) =>
-          q.ids.includes(href.replace("#input_", "uitv_"))
-        );
-        return res.question;
-      })) ||
+      requiredInputs.map(
+        (href) => questions.find((q) => q.ids.includes(href)).question
+      )) ||
     requiredDecisions;
 
   return new Decision(
@@ -93,12 +90,18 @@ export const getChecker = (config) => {
       const previousByUUID = question.uuid
         ? acc.find((q) => q.uuid === question.uuid)
         : null;
+
       if (previousByUUID) {
+        if (question.prio < previousByUUID.prio) {
+          // If new question has lower prio (more important) to override the value in our accumulator
+          previousByUUID.prio = question.prio;
+        }
         previousByUUID.ids.push(question.id);
       } else {
         acc.push({ ...question, ids: [question.id] });
       }
     });
+
     return acc;
   }, []);
 
@@ -122,7 +125,7 @@ export const getChecker = (config) => {
       .filter(([_, json]) => !!json.requiredDecisions) // only get complex ones
       .map(([id, json]) => {
         const requiredDecisions = json.requiredDecisions.map((href) =>
-          simpleDecisions.find((sd) => sd.id === href.substring(1))
+          simpleDecisions.find((sd) => sd.id === href)
         );
         const decisionConfig = { ...json, requiredDecisions };
         return getDecision(id, decisionConfig, allQuestions);

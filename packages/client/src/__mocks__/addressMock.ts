@@ -1,5 +1,8 @@
+import { AddressType } from "../types";
+
 export default {
   houseNumberFull: "123",
+  houseNumber: 123,
   postalCode: "1234 AB",
   residence: "Amsterdam",
   restrictions: [
@@ -19,4 +22,4 @@ export default {
       name: "zoningplan",
     },
   ],
-};
+} as AddressType;

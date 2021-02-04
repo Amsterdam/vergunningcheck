@@ -14,7 +14,7 @@ First a brief intro on some of the terminology and concepts we use, to make sure
 - STTR-builder; the tool used to build IMTR-files
 - check; the activity of checking whether you need a permit (see permit)
 - visitor; the person performing a check
-- checker; the tool itself (including an intro page, register lookups, a set of questions and a conclusion)
+- checker; the tool itself (including an intro page, register lookups, a set of questions and an outcome)
 
 ## Commiting
 
@@ -76,6 +76,21 @@ Ie. if you want to install `mocking` into `graphql`, run:
 ```
 lerna add @vergunningcheck/mocking --scope=graphql
 ```
+
+## Automated tests
+
+When you're making a new PR for a feature or a bug, it says "Please make sure you added the necessary automated tests." Please help us by:
+
+- adding unit tests (to atoms / components / utils)
+- adding or extending the e2e tests, when you're working on new routes or pages (see [packages/e2e/README.md](./packages/e2e/README.md))
+- fixing and extending failing tests
+- writing tests in (or converting tests to) TypeScript
+
+These commands may help you:
+
+- `npm run test:coverage` - to test the coverage for all files
+- `npm run test -- src/atoms --collect-coverage` - to test the coverage for certain files (in packages/client)
+- `jest --clearCache` - in case there are failed tests, but the tests work on another computer or in another folder
 
 ## Updating permits
 

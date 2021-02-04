@@ -1,5 +1,6 @@
 import React from "react";
 
+import text from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import KozijnenIntro from "./KozijnenIntro";
 
@@ -12,7 +13,7 @@ it("KozijnenIntro renders correctly", () => {
 
   expect(
     screen.queryByText(
-      "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen.",
+      text.translation.introPage.kozijnen["intro description"],
       { exact: false }
     )
   ).toBeInTheDocument();

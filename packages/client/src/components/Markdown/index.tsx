@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { ListItem } from "../../atoms";
@@ -9,10 +9,13 @@ import ListRenderer from "./renderers/ListRenderer";
 
 type MarkDownProps = {
   eventLocation: string;
-  source: string;
+  source?: string;
 };
 
-const Markdown = ({ eventLocation, source }: MarkDownProps) => (
+const Markdown: FunctionComponent<MarkDownProps> = ({
+  eventLocation,
+  source,
+}) => (
   <ReactMarkdown
     source={source}
     renderers={{

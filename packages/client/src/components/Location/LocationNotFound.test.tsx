@@ -1,6 +1,6 @@
 import React from "react";
 
-import text from "../../i18n/nl";
+import nl from "../../i18n/nl";
 import { render, screen } from "../../utils/test-utils";
 import LocationNotFound from "./LocationNotFound";
 
@@ -11,10 +11,20 @@ jest.mock("react-router-dom", () => ({
 describe("LocationNotFound", () => {
   it("renders correctly correctly", () => {
     render(<LocationNotFound />);
-    // Should not be in document
+
     expect(
       screen.queryByText(
-        text.translation.common["try again or contact city of amsterdam"],
+        nl.translation.errorMessages[
+          "no address found postalcode houseNumber combination"
+        ]
+      )
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByText(
+        nl.translation.errorMessages[
+          "please try again later or contact the city on"
+        ],
         { exact: false }
       )
     ).toBeInTheDocument();

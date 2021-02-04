@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 1,
-      "name": "Conclusie Test outcomes/conclusions",
+      "name": "Conclusie [IN ONTWIKKELING] Test checker for development",
       "questions": [
         {
           "text": "Which outcome would you like to test?",
@@ -10,13 +10,13 @@
           "description": "Please pick [one](https://en.wikipedia.org/wiki/1).\n\n![this is the alt](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/hoera.gif \"this is the caption\")\n\nMore text.",
           "options": ["contact", "permit free", "permit required"],
           "type": "string",
-          "id": "uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
-          "prio": 10
+          "prio": 10,
+          "id": "988b3cc023f4b21b521f04dd2e265669"
         }
       ],
       "decisions": {
-        "_72e3dc1f-bd96-4eea-8873-41303cacf274": {
-          "requiredInputs": ["#input__b0e2ed23-4919-4037-ad55-94e518290be5"],
+        "6fc55eb5e1a97153f46ee6d2c909e61e": {
+          "requiredInputs": ["988b3cc023f4b21b521f04dd2e265669"],
           "decisionTable": {
             "rules": [
               {
@@ -35,7 +35,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_72e3dc1f-bd96-4eea-8873-41303cacf274"],
+          "requiredDecisions": ["6fc55eb5e1a97153f46ee6d2c909e61e"],
           "decisionTable": {
             "rules": [
               {
@@ -54,12 +54,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__b0e2ed23-4919-4037-ad55-94e518290be5": {
-          "href": "#uitv__b0e2ed23-4919-4037-ad55-94e518290be5",
-          "type": "string"
         }
       }
     }

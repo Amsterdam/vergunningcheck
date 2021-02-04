@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.2] (2020-12-16)
+
+#### New Features
+
+- `client`, `imtr-client`, `imtr`
+  - [#696](https://github.com/Amsterdam/vergunningcheck/pull/696) Checker "demolition" with new outcomes and ordering ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+
+- `client`
+  - [#728](https://github.com/Amsterdam/vergunningcheck/pull/728) Bugs: Incorrect loading state and incorrect alert show. ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+
+- `client`
+  - [#701](https://github.com/Amsterdam/vergunningcheck/pull/701) Added intro text translations to tests ([@svenjens](https://github.com/svenjens))
+  - [#773](https://github.com/Amsterdam/vergunningcheck/pull/773) Created link for new checker ([@robinpiets](https://github.com/robinpiets))
+
+## [2.4.1] (2020-11-25)
+
+#### New Features
+
+- `client`, `graphql`
+  - [#685](https://github.com/Amsterdam/vergunningcheck/pull/685) Added Matomo events for `neighborhood` and `district` ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+
+- `e2e`
+  - [#679](https://github.com/Amsterdam/vergunningcheck/pull/679) Update todo's and add a test ([@afjlambert](https://github.com/afjlambert))
+
+#### Documentation changes
+
+- [#698](https://github.com/Amsterdam/vergunningcheck/pull/698) Added Automated tests part to contributing ([@robinpiets](https://github.com/robinpiets))
+
 ## [2.4.0] (2020-11-11)
 
 #### New Features

@@ -1,80 +1,80 @@
 {
   "permits": [
     {
-      "version": 1,
-      "name": "Conclusie Eendaags evenement",
+      "version": 2,
+      "name": "Conclusie [AUB VERWIJDEREN] Eendaags evenement",
       "questions": [
         {
           "text": "Is het een eendaags evenement?",
           "type": "boolean",
-          "id": "uitv__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
-          "prio": 10
+          "prio": 10,
+          "id": "9d626febed132de9158af3ec229a3269"
         },
         {
           "text": "Is er een aanwijsbare organisator?",
           "type": "boolean",
-          "id": "uitv__7e0111f6-47c4-4f96-84b9-99b57741188d",
-          "prio": 20
+          "prio": 20,
+          "id": "0422ef4c70dedb31386b6d89f6446ea5"
         },
         {
           "text": "Gaat u het evenement houden tussen 9.00u en 23.00u?",
           "type": "boolean",
-          "id": "uitv__ae919236-b2a4-48b7-8ce7-95980f06ad01",
-          "prio": 30
+          "prio": 30,
+          "id": "f885a998420e08c8087a27ea94c920d4"
         },
         {
           "text": "Verwacht u meer dan 100 personen tegelijkertijd?",
           "type": "boolean",
-          "id": "uitv__abbd6563-821b-4cdc-a24f-89e8632977ec",
-          "prio": 40
+          "prio": 40,
+          "id": "201be1e65155c9ced8d224a1596bcdb8"
         },
         {
           "text": "Gaat u versterkt geluid maken?",
           "type": "boolean",
-          "id": "uitv__6956c15b-9967-4391-9ff0-e87cc70549fc",
-          "prio": 50
+          "prio": 50,
+          "id": "eb7bd900f1c8e973cbb6d4e77363556d"
         },
         {
           "text": "Vindt het evenement plaats op het fietspad, op de autoweg of op een waterweg?",
           "type": "boolean",
-          "id": "uitv__406c221e-a8de-4473-bc0a-9ed40f76b362",
-          "prio": 60
+          "prio": 60,
+          "id": "7bb30a25cf994cfba23cb8ff17204d04"
         },
         {
           "text": "Gaat u meer dan twee objecten plaatsen?",
           "type": "boolean",
-          "id": "uitv__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
-          "prio": 70
+          "prio": 70,
+          "id": "e3d4f507cac78cb8a971a04b1072bf99"
         },
         {
           "text": "Heeft één van deze objecten een oppervlakte van 10m2 of groter?",
           "type": "boolean",
-          "id": "uitv__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
-          "prio": 80
+          "prio": 80,
+          "id": "df6bb895faac161b16e4aeb90976433d"
         },
         {
           "text": "Gaat u goederen (zoals drank en etenswaar) met winstoogmerk verkopen?",
           "type": "boolean",
-          "id": "uitv__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
-          "prio": 90
+          "prio": 90,
+          "id": "903975c46a21cc85d7fc72a13fa8a7b0"
         },
         {
           "text": "Heeft het evenement een commercieel karakter?",
           "description": "commercieel karakter bedoelen we blabla",
           "type": "boolean",
-          "id": "uitv__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
-          "prio": 100
+          "prio": 100,
+          "id": "a33f980b347edfb2d22190f536176ed5"
         },
         {
           "text": "Gaat u dieren inzetten bij het evenement?",
           "type": "boolean",
-          "id": "uitv__ffd5cd4b-9fe1-4fca-9106-8219d27377d9",
-          "prio": 110
+          "prio": 110,
+          "id": "673a2cdad36f5b80620ba787bfc181d8"
         }
       ],
       "decisions": {
-        "_b910ff40-56eb-448c-89dc-f3ae3e0fe684": {
-          "requiredInputs": ["#input__e1b9c2b7-59e4-447e-8404-0f702ae266b9"],
+        "6230c1f82d3c7bdf94afc39141539fa7": {
+          "requiredInputs": ["e3d4f507cac78cb8a971a04b1072bf99"],
           "decisionTable": {
             "rules": [
               {
@@ -88,8 +88,8 @@
             ]
           }
         },
-        "_80846f35-b7b4-49b7-b993-9236211f0ad5": {
-          "requiredInputs": ["#input__c822f8a1-24cc-49b5-8a76-dbaa3be56133"],
+        "0c763f2f294aa7b3a8201c1bd6aa6014": {
+          "requiredInputs": ["9d626febed132de9158af3ec229a3269"],
           "decisionTable": {
             "rules": [
               {
@@ -103,8 +103,8 @@
             ]
           }
         },
-        "_82b0fbcd-6940-424e-813d-105bade431fa": {
-          "requiredInputs": ["#input__ae919236-b2a4-48b7-8ce7-95980f06ad01"],
+        "b4bf0d84aea28ece68b3ff33dac343fd": {
+          "requiredInputs": ["f885a998420e08c8087a27ea94c920d4"],
           "decisionTable": {
             "rules": [
               {
@@ -118,8 +118,8 @@
             ]
           }
         },
-        "_2c654511-21c5-44ed-bb1b-c634005b3c75": {
-          "requiredInputs": ["#input__abbd6563-821b-4cdc-a24f-89e8632977ec"],
+        "579fe319144269a95e7f7a3c3da573c8": {
+          "requiredInputs": ["201be1e65155c9ced8d224a1596bcdb8"],
           "decisionTable": {
             "rules": [
               {
@@ -133,8 +133,8 @@
             ]
           }
         },
-        "_d14cc104-e568-4e42-9f90-5ccf2f9e2ab9": {
-          "requiredInputs": ["#input__6956c15b-9967-4391-9ff0-e87cc70549fc"],
+        "cddc86557b0c904422b9c351a230ef43": {
+          "requiredInputs": ["eb7bd900f1c8e973cbb6d4e77363556d"],
           "decisionTable": {
             "rules": [
               {
@@ -148,8 +148,8 @@
             ]
           }
         },
-        "_405a61d2-d09b-48b5-ac1d-0b10f9d918d6": {
-          "requiredInputs": ["#input__406c221e-a8de-4473-bc0a-9ed40f76b362"],
+        "354c0782f7eb70040ea3e3777f06759d": {
+          "requiredInputs": ["7bb30a25cf994cfba23cb8ff17204d04"],
           "decisionTable": {
             "rules": [
               {
@@ -163,8 +163,8 @@
             ]
           }
         },
-        "_e5a0864c-146a-43b6-978a-e68b8840b761": {
-          "requiredInputs": ["#input__7e0111f6-47c4-4f96-84b9-99b57741188d"],
+        "70072222ec1bad314f5467ee00f71136": {
+          "requiredInputs": ["0422ef4c70dedb31386b6d89f6446ea5"],
           "decisionTable": {
             "rules": [
               {
@@ -178,8 +178,8 @@
             ]
           }
         },
-        "_38f1f21c-2beb-48bf-9fd3-5aecb27e67e5": {
-          "requiredInputs": ["#input__ffd5cd4b-9fe1-4fca-9106-8219d27377d9"],
+        "c7a7a0626ab70b24d51afab4956290cb": {
+          "requiredInputs": ["673a2cdad36f5b80620ba787bfc181d8"],
           "decisionTable": {
             "rules": [
               {
@@ -193,8 +193,8 @@
             ]
           }
         },
-        "_3f3bd1d5-d731-4138-ad91-d443032ee0ba": {
-          "requiredInputs": ["#input__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6"],
+        "6294fb11141585d9e8c5be17f3b7e4ac": {
+          "requiredInputs": ["903975c46a21cc85d7fc72a13fa8a7b0"],
           "decisionTable": {
             "rules": [
               {
@@ -208,8 +208,8 @@
             ]
           }
         },
-        "_00783645-573b-4087-8c2b-b6d618d0bba5": {
-          "requiredInputs": ["#input__023a4702-e82e-4e4f-b2c8-fbd212208dbe"],
+        "ac5d92387cd15d604213439d165d637a": {
+          "requiredInputs": ["a33f980b347edfb2d22190f536176ed5"],
           "decisionTable": {
             "rules": [
               {
@@ -223,10 +223,10 @@
             ]
           }
         },
-        "_24279b59-f068-4841-9e37-1c02db6e5d05": {
+        "fa513277b701c5621a251bd8f91ed88a": {
           "requiredInputs": [
-            "#input__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
-            "#input__cf45259c-ddee-4ac1-94e5-dbe799e63a7b"
+            "e3d4f507cac78cb8a971a04b1072bf99",
+            "df6bb895faac161b16e4aeb90976433d"
           ],
           "decisionTable": {
             "rules": [
@@ -245,19 +245,19 @@
             ]
           }
         },
-        "_26e1e142-622f-4a2a-b701-19c9765c0b1a": {
+        "a5a8e5d1954e417d28a2fd70547a4675": {
           "requiredInputs": [
-            "#input__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
-            "#input__7e0111f6-47c4-4f96-84b9-99b57741188d",
-            "#input__ae919236-b2a4-48b7-8ce7-95980f06ad01",
-            "#input__abbd6563-821b-4cdc-a24f-89e8632977ec",
-            "#input__6956c15b-9967-4391-9ff0-e87cc70549fc",
-            "#input__406c221e-a8de-4473-bc0a-9ed40f76b362",
-            "#input__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
-            "#input__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
-            "#input__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
-            "#input__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
-            "#input__ffd5cd4b-9fe1-4fca-9106-8219d27377d9"
+            "9d626febed132de9158af3ec229a3269",
+            "0422ef4c70dedb31386b6d89f6446ea5",
+            "f885a998420e08c8087a27ea94c920d4",
+            "201be1e65155c9ced8d224a1596bcdb8",
+            "eb7bd900f1c8e973cbb6d4e77363556d",
+            "7bb30a25cf994cfba23cb8ff17204d04",
+            "e3d4f507cac78cb8a971a04b1072bf99",
+            "df6bb895faac161b16e4aeb90976433d",
+            "903975c46a21cc85d7fc72a13fa8a7b0",
+            "a33f980b347edfb2d22190f536176ed5",
+            "673a2cdad36f5b80620ba787bfc181d8"
           ],
           "decisionTable": {
             "rules": [
@@ -458,18 +458,18 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_b910ff40-56eb-448c-89dc-f3ae3e0fe684",
-            "#_80846f35-b7b4-49b7-b993-9236211f0ad5",
-            "#_82b0fbcd-6940-424e-813d-105bade431fa",
-            "#_2c654511-21c5-44ed-bb1b-c634005b3c75",
-            "#_d14cc104-e568-4e42-9f90-5ccf2f9e2ab9",
-            "#_405a61d2-d09b-48b5-ac1d-0b10f9d918d6",
-            "#_e5a0864c-146a-43b6-978a-e68b8840b761",
-            "#_38f1f21c-2beb-48bf-9fd3-5aecb27e67e5",
-            "#_3f3bd1d5-d731-4138-ad91-d443032ee0ba",
-            "#_00783645-573b-4087-8c2b-b6d618d0bba5",
-            "#_24279b59-f068-4841-9e37-1c02db6e5d05",
-            "#_26e1e142-622f-4a2a-b701-19c9765c0b1a"
+            "6230c1f82d3c7bdf94afc39141539fa7",
+            "0c763f2f294aa7b3a8201c1bd6aa6014",
+            "b4bf0d84aea28ece68b3ff33dac343fd",
+            "579fe319144269a95e7f7a3c3da573c8",
+            "cddc86557b0c904422b9c351a230ef43",
+            "354c0782f7eb70040ea3e3777f06759d",
+            "70072222ec1bad314f5467ee00f71136",
+            "c7a7a0626ab70b24d51afab4956290cb",
+            "6294fb11141585d9e8c5be17f3b7e4ac",
+            "ac5d92387cd15d604213439d165d637a",
+            "fa513277b701c5621a251bd8f91ed88a",
+            "a5a8e5d1954e417d28a2fd70547a4675"
           ],
           "decisionTable": {
             "rules": [
@@ -696,52 +696,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__c822f8a1-24cc-49b5-8a76-dbaa3be56133": {
-          "href": "#uitv__c822f8a1-24cc-49b5-8a76-dbaa3be56133",
-          "type": "boolean"
-        },
-        "input__7e0111f6-47c4-4f96-84b9-99b57741188d": {
-          "href": "#uitv__7e0111f6-47c4-4f96-84b9-99b57741188d",
-          "type": "boolean"
-        },
-        "input__ae919236-b2a4-48b7-8ce7-95980f06ad01": {
-          "href": "#uitv__ae919236-b2a4-48b7-8ce7-95980f06ad01",
-          "type": "boolean"
-        },
-        "input__abbd6563-821b-4cdc-a24f-89e8632977ec": {
-          "href": "#uitv__abbd6563-821b-4cdc-a24f-89e8632977ec",
-          "type": "boolean"
-        },
-        "input__6956c15b-9967-4391-9ff0-e87cc70549fc": {
-          "href": "#uitv__6956c15b-9967-4391-9ff0-e87cc70549fc",
-          "type": "boolean"
-        },
-        "input__406c221e-a8de-4473-bc0a-9ed40f76b362": {
-          "href": "#uitv__406c221e-a8de-4473-bc0a-9ed40f76b362",
-          "type": "boolean"
-        },
-        "input__e1b9c2b7-59e4-447e-8404-0f702ae266b9": {
-          "href": "#uitv__e1b9c2b7-59e4-447e-8404-0f702ae266b9",
-          "type": "boolean"
-        },
-        "input__cf45259c-ddee-4ac1-94e5-dbe799e63a7b": {
-          "href": "#uitv__cf45259c-ddee-4ac1-94e5-dbe799e63a7b",
-          "type": "boolean"
-        },
-        "input__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6": {
-          "href": "#uitv__5f41ffb6-d6aa-4bc2-9410-b1f1524d9aa6",
-          "type": "boolean"
-        },
-        "input__023a4702-e82e-4e4f-b2c8-fbd212208dbe": {
-          "href": "#uitv__023a4702-e82e-4e4f-b2c8-fbd212208dbe",
-          "type": "boolean"
-        },
-        "input__ffd5cd4b-9fe1-4fca-9106-8219d27377d9": {
-          "href": "#uitv__ffd5cd4b-9fe1-4fca-9106-8219d27377d9",
-          "type": "boolean"
         }
       }
     }

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactChildren } from "react";
 
 import { actions } from "../../../config/matomo";
 import Link from "../../Link";
 
 type LinkRendererProps = {
-  children: React.ReactChildren;
+  children: ReactChildren;
   eventLocation: string;
   href: string;
 };
@@ -30,7 +30,7 @@ export default ({ children, eventLocation, href }: LinkRendererProps) => {
   const rel = isPhoneLink ? "" : "noopener noreferrer";
 
   // Setup event props
-  const action = isPhoneLink && actions.CLICK_PHONE_LINK;
+  const action = isPhoneLink ? actions.CLICK_PHONE_LINK : undefined;
   const eventName = isPhoneLink ? eventLocation : `${value} - ${eventLocation}`;
 
   return (
