@@ -2,56 +2,49 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
-import { actions, eventNames } from "../../config/matomo";
+import { actions, eventNames, sections } from "../../config/matomo";
+import nl from "../../i18n/nl";
 import { MODAL } from "../../utils/test-ids";
-import { act, fireEvent, render } from "../../utils/test-utils";
+import {
+  act,
+  fireEvent,
+  mockMatomoTrackEvent,
+  render,
+} from "../../utils/test-utils";
 import EditLocationModal from "./EditLocationModal";
 
-const matomoTrackEvent = jest.fn();
-const resetChecker = jest.fn();
+jest.mock("../../hooks/useTracking");
 
-beforeEach(() => {
-  jest.clearAllMocks();
-});
-
-jest.mock("react-router-dom", () => ({
-  useParams: () => ({}),
-}));
+const { edit, yes } = nl.translation.common;
 
 describe("EditLocationModal", () => {
   it("Modal should render as expected", async () => {
-    const { getByText, queryByTestId } = render(
-      <EditLocationModal
-        matomoTrackEvent={matomoTrackEvent}
-        resetChecker={resetChecker}
-      />
-    );
+    const { getByText, queryByTestId } = render(<EditLocationModal />);
 
-    expect(getByText("Wijzig")).toBeInTheDocument();
+    expect(getByText(edit)).toBeInTheDocument();
     expect(queryByTestId(MODAL)).not.toBeInTheDocument();
 
     act(() => {
-      fireEvent.click(getByText("Wijzig"));
+      fireEvent.click(getByText(edit));
     });
     // Modal = open
 
     expect(queryByTestId(MODAL)).toBeInTheDocument();
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(1);
-    expect(matomoTrackEvent).toBeCalledWith({
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
+    expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.OPEN_MODAL,
       name: eventNames.OPEN_MODAL_EDIT_ADDRESS,
     });
 
     act(() => {
-      fireEvent.click(getByText("Ja"));
+      fireEvent.click(getByText(yes));
     });
     // Modal = closed
 
-    expect(matomoTrackEvent).toHaveBeenCalledTimes(2);
-    expect(matomoTrackEvent).toBeCalledWith({
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(3);
+    expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.EDIT_ADDRESS,
-      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${eventNames.GOTO_LOCATION}`,
+      name: `${eventNames.EDIT_ADDRESS} - ${eventNames.BACK} ${sections.LOCATION_INPUT}`,
     });
-    expect(resetChecker).toHaveBeenCalledTimes(1);
   });
 });

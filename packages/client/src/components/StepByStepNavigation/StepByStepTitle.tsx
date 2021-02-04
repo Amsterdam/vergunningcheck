@@ -1,15 +1,11 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
-import React from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 
-import { Props } from "./StepByStepItemStyle";
+import { StepByStepItemProps } from "./StepByStepItem";
 
-const StepByStepTitle: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
-  children,
-  customSize,
-  heading,
-  headingProps,
-  small,
-}) =>
+const StepByStepTitle: FunctionComponent<
+  StepByStepItemProps & HTMLAttributes<HTMLElement>
+> = ({ children, customSize, heading, headingProps, small }) =>
   small ? (
     <Paragraph
       gutterBottom={children ? 12 : 0}

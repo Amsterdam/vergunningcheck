@@ -2,16 +2,9 @@ import { themeColor } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
 import StepByStepItemStyle, { CircleWrapperStyle } from "./StepByStepItemStyle";
+import { StepByStepNavigationProps } from "./StepByStepNavigation";
 
-export type Props = {
-  customSize?: boolean;
-  disabledTextColor?: any;
-  doneTextColor?: any;
-  highlightActive?: boolean;
-  lineBetweenItems?: boolean;
-};
-
-export default styled.div<Props>`
+export default styled.div<StepByStepNavigationProps>`
   /* Remove the line (going downwards) only from the last Item */
   ${StepByStepItemStyle} {
     ${({ lineBetweenItems }) =>

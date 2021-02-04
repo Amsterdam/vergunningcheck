@@ -1,23 +1,7 @@
 import { Icon, breakpoint, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import styled, { css } from "styled-components";
 
-export type Props = {
-  active?: boolean;
-  checked?: boolean;
-  circleBackgroundColor?: string;
-  clickable?: boolean;
-  customSize?: boolean;
-  disabled?: boolean;
-  disabledTextColor?: string;
-  done?: boolean;
-  doneTextColor?: string;
-  heading?: string;
-  headingProps?: any;
-  highlightActive?: boolean;
-  largeCircle?: boolean;
-  small?: boolean;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
-  React.HTMLAttributes<HTMLDivElement>;
+import { StepByStepItemProps } from "./StepByStepItem";
 
 const circleSize = {
   desktop: {
@@ -30,7 +14,7 @@ const circleSize = {
   },
 };
 
-export default styled.div<Props>`
+export default styled.div<StepByStepItemProps>`
   position: relative;
   display: flex;
   height: 100%;
@@ -82,7 +66,7 @@ export default styled.div<Props>`
     `}
 `;
 
-const CircleWrapperStyle = styled.div<Props>`
+const CircleWrapperStyle = styled.div<StepByStepItemProps>`
   position: relative;
   display: flex;
   width: ${circleSize.mobile.large};
@@ -102,6 +86,7 @@ const CircleWrapperStyle = styled.div<Props>`
     -webkit-print-color-adjust: exact;
   }
 
+  /* This is styling for the in vertical line on the left side */
   &:after {
     content: "";
     position: absolute;
@@ -115,7 +100,7 @@ const CircleWrapperStyle = styled.div<Props>`
   }
 `;
 
-const CircleStyle = styled(Icon)<Props>`
+const CircleStyle = styled(Icon)<StepByStepItemProps>`
   position: relative;
   width: ${circleSize.mobile.large};
   height: ${circleSize.mobile.large};
@@ -123,7 +108,6 @@ const CircleStyle = styled(Icon)<Props>`
   background-color: ${themeColor("tint", "level4")};
   border-radius: 50%;
   justify-content: center;
-  transition: background-color 0.2s ease-in-out;
   z-index: 1;
 
   @media ${breakpoint("min-width", "tabletM")} {
@@ -159,7 +143,7 @@ const CircleStyle = styled(Icon)<Props>`
     `}
 `;
 
-const ContentWrapperStyle = styled.div<Props>`
+const ContentWrapperStyle = styled.div<StepByStepItemProps>`
   position: relative;
   display: flex;
   max-width: 620px;
@@ -168,7 +152,7 @@ const ContentWrapperStyle = styled.div<Props>`
   justify-content: center;
 `;
 
-const BackgroundStyle = styled.div<Props>`
+const BackgroundStyle = styled.div<StepByStepItemProps>`
   position: absolute;
   height: 100%;
   width: 300vw;

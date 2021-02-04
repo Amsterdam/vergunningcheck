@@ -135,8 +135,8 @@ describe("Checker internals", () => {
 
   const checker = new Checker([permit1, permit2]);
 
-  test("_getConclusionDecisions", () => {
-    expect(checker._getConclusionDecisions()).toStrictEqual([d1, d2]);
+  test("_getOutcomeDecisions", () => {
+    expect(checker._getOutcomeDecisions()).toStrictEqual([d1, d2]);
   });
 
   test("_getAllQuestions", () => {

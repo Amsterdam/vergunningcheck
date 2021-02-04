@@ -82,7 +82,7 @@ export const autofillResolvers: AutofillResolverMap = {
         address.restrictions,
         "Monument"
       );
-      if (monumentData) {
+      if (monumentData?.name) {
         return addQuotes(monumentData.name);
       }
     }

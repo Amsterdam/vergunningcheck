@@ -1,30 +1,3 @@
-type BaseTopic = {
-  name: string;
-  slug: string;
-  text: {
-    heading: string;
-    locationIntro?: string;
-  };
-};
-
-type IMTRTopic = {
-  hasIMTR: true;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
-
-type OloTopic = {
-  hasIMTR: false;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
-
-type RedirectToOloTopic = {
-  hasIMTR: false;
-  redirectToOlo: true;
-  intro?: undefined;
-} & BaseTopic;
-
 /**
  * Merge the different topic types
  *
@@ -35,18 +8,19 @@ type RedirectToOloTopic = {
  * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
  * text: This is part that holds specific texts for each permit-checker
  */
-export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
+
+import { Topic } from "../types";
 
 type OloUrlProps = {
-  houseNumber: string;
+  houseNumber: number;
   houseNumberFull: string;
   postalCode: string;
 };
 
+const oloHome: string = "https://www.omgevingsloket.nl/";
+
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
-
-const oloHome: string = "https://www.omgevingsloket.nl/";
 
 export const urls = {
   DEMOLITION_PERMIT_PAGE:
@@ -66,7 +40,7 @@ export const generateOloUrl = ({
   postalCode,
 }: OloUrlProps) => {
   // Get correct suffix
-  const suffix = houseNumberFull.replace(houseNumber, "").trim();
+  const suffix = houseNumberFull.replace(houseNumber.toString(), "").trim();
   // Redirect user to OLO with all parameters
   return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };

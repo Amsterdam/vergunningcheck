@@ -1,46 +1,35 @@
-import React, { Suspense } from "react";
+import React, { FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import Layout from "../../components/Layouts/DefaultLayout";
+import { TopicLayout } from "../../components/Layouts";
 import Loading from "../../components/Loading";
 import { LocationInput } from "../../components/Location/";
-import { Topic } from "../../config";
-import withChecker from "../../hoc/withChecker";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { useTopic } from "../../hooks";
 import { geturl, routes } from "../../routes";
 
-export type OloLocationInputProps = {
-  topic: Topic;
-};
-
-const OloLocationInput: React.FC<
-  OloLocationInputProps & MatomoTrackEventProps
-> = ({ matomoTrackEvent, topic }) => {
+const OloLocationInput: FunctionComponent = () => {
+  const topic = useTopic();
   const history = useHistory();
-
-  const { text } = topic;
-
-  const handleNewAddressSubmit = () => {
-    history.push(geturl(routes.oloLocationResult, topic));
-  };
+  const { t } = useTranslation();
 
   return (
-    <Layout>
+    <TopicLayout>
       <Helmet>
-        <title>Invullen adres - {text.heading}</title>
+        <title>
+          {t("location.address.enter address")} - {topic.text.heading}
+        </title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <LocationInput
-          {...{
-            handleNewAddressSubmit,
-            matomoTrackEvent,
-            topic,
+          handleNewAddressSubmit={() => {
+            history.push(geturl(routes.oloLocationResult, topic));
           }}
         />
       </Suspense>
-    </Layout>
+    </TopicLayout>
   );
 };
 
-export default withTracking(withChecker(OloLocationInput));
+export default OloLocationInput;

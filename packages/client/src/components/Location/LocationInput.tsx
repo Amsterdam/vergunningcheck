@@ -1,16 +1,16 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { ApolloError } from "@apollo/client";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { Topic } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { CheckerContext, SessionContext, SessionDataType } from "../../context";
-import withTracking, { MatomoTrackEventProps } from "../../hoc/withTracking";
+import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
+import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
+import { LOCATION_INPUT } from "../../utils/test-ids";
 import Error from "../Error";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -19,39 +19,33 @@ import LocationFinder from "./LocationFinder";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
-  handleNewAddressSubmit: () => void;
-  topic: Topic;
+  handleNewAddressSubmit: (address: Address) => void;
 };
-const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
+
+const LocationInput = ({
   error,
   handleNewAddressSubmit,
-  matomoTrackEvent,
-  topic,
-}) => {
-  const { t } = useTranslation();
+}: LocationInputProps) => {
+  const topic = useTopic();
   const history = useHistory();
+  const { matomoTrackEvent } = useTracking();
   const { handleSubmit } = useForm();
-  // @TODO: replace with custom topic hooks
-  const sessionContext = useContext<SessionDataType & { setSessionData?: any }>(
-    SessionContext
-  );
-  const checkerContext = useContext(CheckerContext);
+  const { topicData, setTopicData } = useTopicData();
+  const { t } = useTranslation();
 
   const { hasIMTR, slug, text } = topic;
-  const sessionAddress = sessionContext[slug]?.address || {};
-
-  const [address, setAddress] = useState(sessionAddress);
+  const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
   const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
     if (address?.postalCode) {
       const monument = getRestrictionByTypeName(
-        address?.restrictions,
+        address.restrictions,
         "Monument"
       )?.name;
       const cityScape = getRestrictionByTypeName(
-        address?.restrictions,
+        address.restrictions,
         "CityScape"
       )?.scope;
 
@@ -59,6 +53,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
+          // @TODO: there's a small bug here with directly going to OUTCOME when there's no questions to render
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
@@ -83,16 +78,7 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
         name: address.districtName || t("common.unknown"),
       });
 
-      // Store the data
-      sessionContext.setSessionData([
-        slug,
-        {
-          address,
-        },
-      ]);
-      checkerContext.autofillData.address = address;
-
-      handleNewAddressSubmit();
+      handleNewAddressSubmit(address);
     }
   };
 
@@ -104,46 +90,45 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
 
     // Only store the address if the address has been found, otherwise an empty address may overwrite an existing address
     if (address) {
-      sessionContext.setSessionData([
-        slug,
-        {
-          address,
-        },
-      ]);
+      setTopicData({
+        address,
+      });
     }
-    history.push(geturl(routes.intro, topic));
+    history.push(geturl(routes.intro, { slug }));
   };
 
   return (
     <>
       {errorMessage && (
         <Error
-          heading={t("common.no address found api down")}
+          heading={t(
+            "errorMessages.unfortunately we cannot get address results"
+          )}
           stack={errorMessage?.stack}
         >
           <Paragraph>
-            {t("common.try again or contact city of amsterdam")}{" "}
+            {t("errorMessages.please try again later or contact the city on")}{" "}
             <PhoneNumber eventName={sections.ALERT_LOCATION_INPUT} />.
           </Paragraph>
         </Error>
       )}
 
       {!hasIMTR && (
-        <Heading forwardedAs="h3">{t("common.fill in address")}</Heading>
+        <Heading forwardedAs="h3">
+          {t("location.address.enter address")}
+        </Heading>
       )}
       {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form dataTestId={LOCATION_INPUT} onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
           {...{
             errorMessage,
             focus,
             matomoTrackEvent,
-            sessionAddress,
-            setAddress,
+            sessionAddress: address,
             setError,
             setFocus,
-            topic,
           }}
         />
         <Nav
@@ -158,4 +143,4 @@ const LocationInput: React.FC<LocationInputProps & MatomoTrackEventProps> = ({
   );
 };
 
-export default withTracking(LocationInput);
+export default LocationInput;

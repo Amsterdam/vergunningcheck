@@ -2,22 +2,29 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
-      "fill in address": "Invullen adres",
+      edit: "Wijzig",
       "housenumber label": "Huisnummer + toevoeging",
+      next: "Volgende",
+      no: "Nee",
+      "no valid postalcode":
+        "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
+      "one moment please": "Een ogenblik geduld alstublieft",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
       "to the questions": "Naar de vragen",
-      "try again or contact city of amsterdam":
-        "Probeer het opnieuw. Of neem contact op met de gemeente op telefoonnummer",
-      next: "Volgende",
-      "no address found api down":
+      unknown: "Onbekend",
+      yes: "Ja",
+    },
+    errorMessages: {
+      "category not found": "category niet gevonden",
+      "error occured": "Er is een fout opgetreden.",
+      "unfortunately we cannot get address results":
         "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
+      "please try again later or contact the city on":
+        "Probeer het opnieuw. Of neem contact op met de gemeente op telefoonnummer",
       "no address found postalcode houseNumber combination":
         "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer.",
-      "no valid postalcode":
-        "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
-      unknown: "Onbekend",
     },
     introPage: {
       common: {
@@ -81,6 +88,33 @@ export default {
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
     },
+    location: {
+      address: {
+        "are you sure you want to change the address":
+          "Weet u zeker dat u het adres wilt wijzigen?",
+        "are you sure you want to continue with a different address":
+          "Alle gegeven antwoorden en de uitkomst worden gewist. Weet u zeker dat u wilt doorgaan met een ander adres?",
+        heading: "Adresgegevens",
+        "enter address": "Invullen adres",
+      },
+      map: {
+        heading: "Locatiegegevens",
+      },
+
+      testing: {
+        "address input":
+          "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
+      },
+    },
+    notFoundPage: {
+      heading: "Deze pagina is niet gevonden.",
+      paragraph: "Helaas",
+    },
+    oloRedirectPage: {
+      "page title": "Redirect naar OLO",
+      paragraph: "Wij sturen u automatisch door naar de website van het",
+      link: "landelijke Omgevingsloket",
+    },
     question: {
       alert: {
         "this answer causes a need for permit":
@@ -90,12 +124,15 @@ export default {
         "this anwser makes it unable to determine the outcome":
           "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt.",
       },
-    },
-    locationInputTest: {
-      "address input":
-        "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
+      heading: "Vragen",
+      meta: {
+        description: "Toelichting",
+      },
+      nextQuestion: "Volgende vraag",
     },
     outcome: {
+      heading: "Uitkomst",
+      goToOutcome: "Naar de uitkomst",
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
 

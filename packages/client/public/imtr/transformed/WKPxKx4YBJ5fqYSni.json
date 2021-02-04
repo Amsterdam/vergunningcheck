@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 13,
+      "version": 15,
       "name": "Conclusie Dakkapel monument",
       "questions": [
         {
@@ -14,9 +14,9 @@
             "Geen monument"
           ],
           "type": "string",
-          "id": "uitv__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
           "prio": 10,
-          "uuid": "dakkapel monument"
+          "uuid": "dakkapel-monument",
+          "id": "8d85f37a570a4e00f7b4f7e63eb90863"
         },
         {
           "text": "Gaat u een dakkapel plaatsen of vernieuwen?",
@@ -25,9 +25,9 @@
             "Ik ga een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "id": "uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
           "prio": 20,
-          "uuid": "dakkapel - onderhoud1"
+          "uuid": "dakkapel-onderhoud1",
+          "id": "132975e6a1ec11fccc246c946c4ad557"
         },
         {
           "text": "U gaat een dakkapel plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -36,16 +36,16 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
-          "id": "uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
           "prio": 30,
-          "uuid": "dakkapel - onderhoud2"
+          "uuid": "dakkapel-onderhoud2",
+          "id": "b4edbf1301ad07b2fe00700a1481c17f"
         }
       ],
       "decisions": {
-        "_20c2f937-f3c9-450c-acc7-a20e414294c2": {
+        "81628873dee69b5d37894f4b9ec294ff": {
           "requiredInputs": [
-            "#input__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
-            "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f"
+            "8d85f37a570a4e00f7b4f7e63eb90863",
+            "132975e6a1ec11fccc246c946c4ad557"
           ],
           "decisionTable": {
             "rules": [
@@ -77,11 +77,11 @@
             ]
           }
         },
-        "_3dfda2ea-54e8-45bd-b174-ca33d22514fe": {
+        "8950db3dfa4485353ece9bf93bf2ec7f": {
           "requiredInputs": [
-            "#input__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
-            "#input_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
-            "#input_369fe23a-09dd-4f86-819a-58c2acb4d8ac"
+            "8d85f37a570a4e00f7b4f7e63eb90863",
+            "132975e6a1ec11fccc246c946c4ad557",
+            "b4edbf1301ad07b2fe00700a1481c17f"
           ],
           "decisionTable": {
             "rules": [
@@ -126,8 +126,8 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_20c2f937-f3c9-450c-acc7-a20e414294c2",
-            "#_3dfda2ea-54e8-45bd-b174-ca33d22514fe"
+            "81628873dee69b5d37894f4b9ec294ff",
+            "8950db3dfa4485353ece9bf93bf2ec7f"
           ],
           "decisionTable": {
             "rules": [
@@ -148,20 +148,6 @@
               }
             ]
           }
-        }
-      },
-      "inputs": {
-        "input__cfd21373-8a4f-4c9f-b56c-d4c7730bada3": {
-          "href": "#uitv__cfd21373-8a4f-4c9f-b56c-d4c7730bada3",
-          "type": "string"
-        },
-        "input_5cd6194f-5607-444e-8ed1-d44c6aabde7f": {
-          "href": "#uitv_5cd6194f-5607-444e-8ed1-d44c6aabde7f",
-          "type": "string"
-        },
-        "input_369fe23a-09dd-4f86-819a-58c2acb4d8ac": {
-          "href": "#uitv_369fe23a-09dd-4f86-819a-58c2acb4d8ac",
-          "type": "string"
         }
       }
     }
