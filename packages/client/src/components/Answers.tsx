@@ -11,14 +11,12 @@ import { booleanOptions } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswersProps = {
-  collection: boolean;
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
   question: ImtrQuestion;
   saveAnswer: (answer: Answer) => void;
 };
 
 const Answers: FunctionComponent<AnswersProps> = ({
-  collection,
   errors,
   question,
   saveAnswer,
@@ -39,7 +37,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
 
   return (
     <ComponentWrapper data-testid={QUESTION_ANSWERS}>
-      {collection ? (
+      {question.collection ? (
         answers?.map((answer, index) => {
           const { label, formValue } = answer;
           const answerId = `${id}-${formValue}`;
@@ -57,7 +55,6 @@ const Answers: FunctionComponent<AnswersProps> = ({
                 key={answerId}
                 id={answerId}
                 onChange={() => {
-                  debugger;
                   saveAnswer(answer);
                 }}
                 value={formValue}

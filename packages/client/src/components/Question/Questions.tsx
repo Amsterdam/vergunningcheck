@@ -302,7 +302,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
    *
    * @param {Answer} answer
    */
-  const saveAnswer = (answer: Answer /*, collection: boolean*/) => {
+  const saveAnswer = (answer: Answer) => {
     // Save the changed answer to the question
     saveAnswerHook && saveAnswerHook();
 
@@ -311,13 +311,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     const { id, text } = question;
 
     // Handle the given answer
-    debugger;
-    // if (collection) {
-    //   question.setAnswer([value]);
-    // } else {
-    // question.setAnswer(value);
-    // }
-    question.setAnswer(value);
+    question.setAnswer(question.collection ? [value as string] : value);
 
     // Store in Sentry
     setTag(text, label);
