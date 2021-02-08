@@ -42,18 +42,22 @@ const Answers: FunctionComponent<AnswersProps> = ({
     <ComponentWrapper data-testid={QUESTION_ANSWERS}>
       {showCheckboxInput &&
         answers?.map((answer, index) => {
-          const { label, formValue } = answer;
+          const { label, formValue, value } = answer;
           const answerId = `${id}-${formValue}`;
+          const checked = !!(
+            Array.isArray(userAnswer) &&
+            userAnswer?.find((answer) => answer && answer === value)
+          );
           return (
             <Label
               data-testid={`q${questionIndex + 1}-a${index + 1}`}
               htmlFor={answerId}
               key={answerId}
-              label={removeQuotes(label)}
+              label={label}
             >
               <input
                 type="checkbox"
-                checked={userAnswer === label}
+                checked={checked}
                 // error={errors[questionId]}
                 key={answerId}
                 id={answerId}

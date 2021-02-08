@@ -308,11 +308,31 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
     const { label, value } = answer;
     const question = checker.stack[questionIndex];
-    const { id, text } = question;
+    const { answer: storedAnswer, id, text } = question;
 
     // Handle the given answer
-    // XXX: not sure what to do here. setAnswer([]) or setAnswer(string)
-    question.setAnswer(value);
+    if (question.collection) {
+      // Multi select questions
+
+      const userAnswer =
+        Array.isArray(storedAnswer) && storedAnswer.length
+          ? storedAnswer
+          : [value as string];
+
+      // Check if question is already in stored collection
+      const isAnswerInCollection = userAnswer.find(
+        (option) => option === value
+      );
+      // Remove answer from collection (uncheck) or add new answer to the collection (check)
+      question.setAnswer(
+        isAnswerInCollection
+          ? userAnswer.filter((option) => option !== value)
+          : [...userAnswer, value as string]
+      );
+    } else {
+      // Single select questions
+      question.setAnswer(value);
+    }
 
     // Store in Sentry
     setTag(text, label);
