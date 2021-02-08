@@ -80,8 +80,9 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
     <ComponentWrapper marginBottom={hasIMTR(topic) ? 4 : undefined}>
       <AddressLines
         address={address}
-        editAddressRenderer={() =>
-          showEditLocationModal && <EditLocationModal />
+        editAddressRenderer={
+          () => showEditLocationModal && <EditLocationModal />
+          // @TODO: only show the Modal `!isPermitForm(topic)`?
         }
         gutterBottom={showSummary ? 16 : 0}
       />
