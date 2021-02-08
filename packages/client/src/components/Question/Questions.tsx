@@ -1,11 +1,5 @@
 import { captureException, setTag } from "@sentry/browser";
-import {
-  ClientOutcomes,
-  Decision,
-  Question as ImtrQuestion,
-  Permit,
-  imtrOutcomes,
-} from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, {
   FunctionComponent,
   useCallback,
@@ -282,29 +276,29 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
   // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-  let permitsPerQuestion: ClientOutcomes[] = [];
-  checker.permits.forEach((permit: Permit) => {
+  let permitsPerQuestion: imtr.ClientOutcomes[] = [];
+  checker.permits.forEach((permit: imtr.Permit) => {
     const outcomeDecision = permit.getDecisionById("dummy");
 
     if (outcomeDecision) {
       const imtrOutcome = outcomeDecision.getOutput();
-      let outcomeType = ClientOutcomes.PERMIT_FREE;
+      let outcomeType = imtr.ClientOutcomes.PERMIT_FREE;
 
-      if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
-        outcomeType = ClientOutcomes.NEED_CONTACT;
-      } else if (imtrOutcome === imtrOutcomes.NEED_PERMIT) {
-        outcomeType = ClientOutcomes.NEED_PERMIT;
-      } else if (imtrOutcome === imtrOutcomes.NEED_REPORT) {
-        outcomeType = ClientOutcomes.NEED_REPORT;
+      if (imtrOutcome === imtr.imtrOutcomes.NEED_CONTACT) {
+        outcomeType = imtr.ClientOutcomes.NEED_CONTACT;
+      } else if (imtrOutcome === imtr.imtrOutcomes.NEED_PERMIT) {
+        outcomeType = imtr.ClientOutcomes.NEED_PERMIT;
+      } else if (imtrOutcome === imtr.imtrOutcomes.NEED_REPORT) {
+        outcomeType = imtr.ClientOutcomes.NEED_REPORT;
       }
 
       if (outcomeType) {
-        const decisiveDecisions = outcomeDecision.getDecisiveInputs() as Decision[];
+        const decisiveDecisions = outcomeDecision.getDecisiveInputs() as imtr.Decision[];
 
         decisiveDecisions.forEach((decision) => {
           const decisiveQuestion = decision
             .getDecisiveInputs()
-            .pop() as ImtrQuestion;
+            .pop() as imtr.Question;
           const index = checker.stack.indexOf(decisiveQuestion);
           if (!permitsPerQuestion[index]) {
             permitsPerQuestion[index] = outcomeType;
@@ -320,7 +314,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
    *
    * @param {Answer} answer
    */
-  const saveAnswer = (answer: Answer, imtrQuestion?: ImtrQuestion) => {
+  const saveAnswer = (answer: Answer, imtrQuestion?: imtr.Question) => {
     // Save the changed answer to the question
     saveAnswerHook && saveAnswerHook();
 
@@ -400,7 +394,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         const showQuestionAlert = !!permitsPerQuestion[i] && !isForm;
 
         // Define the outcome type
-        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
+        const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
 
         // Check if this is the last question
         const isFinalQuestion =
@@ -461,7 +455,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         const disabled = checker.isConclusive() || disableFutureQuestions;
 
         // Define the outcome type
-        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
+        const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
 
         // Check if this is the last question
         const isFinalQuestion =

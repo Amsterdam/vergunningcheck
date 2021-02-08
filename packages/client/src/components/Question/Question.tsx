@@ -1,7 +1,4 @@
-import {
-  ClientOutcomes,
-  Question as ImtrQuestion,
-} from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -22,11 +19,11 @@ import { QuestionAlert } from "./";
 type QuestionProps = {
   hideNav?: boolean;
   isCheckerConclusive: () => boolean;
-  question: ImtrQuestion;
+  question: imtr.Question;
   onGoToNext?: () => void;
   onGoToPrev?: () => void;
-  outcomeType: ClientOutcomes;
-  saveAnswer: (answer: Answer, question?: ImtrQuestion) => void;
+  outcomeType: imtr.ClientOutcomes;
+  saveAnswer: (answer: Answer, question?: imtr.Question) => void;
   showQuestionAlert: boolean;
   showNext?: boolean;
 };
