@@ -3,28 +3,45 @@ import Decision from "./models/decision";
 import Permit from "./models/permit";
 import Question from "./models/question";
 import Rule from "./models/rule";
+import type {
+  JSONQuestion,
+  JSONChecker,
+  JSONDecision,
+  JSONDecisionTable,
+} from "@vergunningcheck/imtr/src/types/json";
 
+type JSONQuestionWithIds = JSONQuestion & {
+  ids: string[];
+};
+
+type QConfig = {
+  ids: string[];
+  question: Question;
+};
 /**
  * Build Question array from json config
  *
- * @param {*} questionConfig - The questions from json config
- * @returns {Question[]} an array with Question objects
+ * @param questionConfig - The questions from json config
+ *
+ * @returns - an array with Question objects
  */
-function getQuestions(questionConfig) {
-  return questionConfig.map(
-    ({
+const getQuestions = (questionsConfig: JSONQuestionWithIds[]): QConfig[] => {
+  return questionsConfig.map((questionConfig) => {
+    const {
       id,
       uuid,
       text,
       type,
-      collection,
+      // collection,
       options,
       autofill,
       description,
       longDescription,
       ids,
       prio,
-    }) => ({
+    } = questionConfig;
+
+    return {
       ids,
       question: new Question({
         id,
@@ -38,20 +55,31 @@ function getQuestions(questionConfig) {
         uuid,
         prio,
       }),
-    })
-  );
-}
+    };
+  });
+};
+
+type DecisionConfig = {
+  decisionTable: JSONDecisionTable;
+  requiredInputs: false;
+  requiredDecisions: Decision[];
+};
 
 /**
  * Build Decision array from json config. Decisions have a reference
  * to the Question object so that is required input too.
  *
- * @param {string} id - Unique identifier for the decision
- * @param {*} decisionConfig - The decisions from json config
- * @param {Question[]} questions - List of all the questions
- * @returns {Decision[]} an array with Decision objects
+ * @param id - Unique identifier for the decision
+ * @param decisionConfig - The decisions from json config
+ * @param questions - List of all the questions
+ *
+ * @returns an array with Decision objects
  */
-function getDecision(id, decisionConfig, questions) {
+const getDecision = (
+  id: string,
+  decisionConfig: JSONDecision | DecisionConfig,
+  questions: QConfig[]
+) => {
   const { requiredInputs, requiredDecisions, decisionTable } = decisionConfig;
   if (!requiredInputs && !requiredDecisions) {
     throw Error("Either 'requiredInputs' or 'requiredDecisions' are needed");
@@ -60,12 +88,10 @@ function getDecision(id, decisionConfig, questions) {
   const inputs =
     (requiredInputs &&
       requiredInputs.map((href) => {
-        const res = questions.find((q) =>
-          q.ids.includes(href.replace("#input_", "uitv_"))
-        );
-        return res.question;
+        const q = questions.find((q) => q.ids.includes(href)) as QConfig;
+        return q.question;
       })) ||
-    requiredDecisions;
+    (requiredDecisions as Decision[]);
 
   return new Decision(
     id,
@@ -75,20 +101,22 @@ function getDecision(id, decisionConfig, questions) {
         new Rule(ruleInputs, output, description)
     )
   );
-}
+};
 
 /**
  * Create a Checker object
  *
- * @param {any} config - the config coming from json
- * @returns {Checker} the new Checker object
+ * @param config - the config coming from json
+ *
+ * @returns the new Checker object
  */
-export const getChecker = (config: any) => {
+export const getChecker = (config: JSONChecker): Checker => {
   const { permits: permitsConfig } = config;
   if (!permitsConfig || permitsConfig.length === 0) {
     throw new Error("Permits cannot be empty.");
   }
-  const x = permitsConfig.reduce((acc, permitConfig) => {
+
+  const x = permitsConfig.reduce((acc: JSONQuestionWithIds[], permitConfig) => {
     permitConfig.questions.forEach((question) => {
       const previousByUUID = question.uuid
         ? acc.find((q) => q.uuid === question.uuid)
@@ -109,11 +137,11 @@ export const getChecker = (config: any) => {
   }, []);
 
   const allQuestions = getQuestions(x);
-  const permits = permitsConfig.map((permit: any) => {
+  const permits = permitsConfig.map((permit) => {
     const { name, version, questions, decisions } = permit;
 
     const decisionConfigs = Object.entries(decisions);
-    if (decisions.length === 0) {
+    if (Object.keys(decisions).length === 0) {
       throw Error("'decisions' should not be empty.");
     }
     if (questions.length === 0) {
@@ -121,16 +149,20 @@ export const getChecker = (config: any) => {
     }
 
     const simpleDecisions = decisionConfigs
-      .filter(([_, json]: [any, any]) => !json.requiredDecisions) // filter out complex-decisions
+      .filter(([, json]) => !json.requiredDecisions) // filter out complex-decisions
       .map(([id, json]) => getDecision(id, json, allQuestions));
 
     const complexDecisions = decisionConfigs
-      .filter(([_, json]: [any, any]) => !!json.requiredDecisions) // only get complex ones
-      .map(([id, json]: [any, any]) => {
-        const requiredDecisions = json.requiredDecisions.map((href) =>
-          simpleDecisions.find((sd) => sd.id === href.substring(1))
+      .filter(([, json]) => !!json.requiredDecisions) // only get complex ones
+      .map(([id, json]) => {
+        const requiredDecisions = (json.requiredDecisions as string[]).map(
+          (href) => simpleDecisions.find((sd) => sd.id === href)
         );
-        const decisionConfig = { ...json, requiredDecisions };
+        const decisionConfig = {
+          ...json,
+          requiredInputs: false,
+          requiredDecisions,
+        } as DecisionConfig;
         return getDecision(id, decisionConfig, allQuestions);
       });
 

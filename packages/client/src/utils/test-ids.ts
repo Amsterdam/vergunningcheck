@@ -19,6 +19,8 @@ export const INTRO_USABLE_FOR_TEXT = "intro-usable-for-text";
 export const INTRO_EXCEPTION_BULLETS = "intro-exception-bullets";
 
 // Location
+export const LOCATION_SECTION = "location-section";
+export const LOCATION_INPUT = "location-input";
 export const LOCATION_FOUND = "location-found";
 export const LOCATION_NOT_FOUND = "location-not-found";
 export const LOCATION_RESTRICTION_CITYSCAPE = "restriction-cityscape";
@@ -34,11 +36,15 @@ export const AUTOSUGGEST_LIST = "autosuggest-list";
 export const AUTOSUGGEST_ITEM = "autosuggest-item";
 
 // Questions
+export const QUESTION_SECTION = "question-section";
+export const QUESTION = "question";
 export const QUESTION_FORM = "question-form";
 export const QUESTION_ANSWERS = "question-answers";
 export const QUESTION_ALERT = "question-alert";
 
-// Conclusion
+// Outcomes
+export const OUTCOME_SECTION = "outcome-section";
+export const OUTCOME_SECTION_CONTENT = "outcome-section-content";
 export const NEED_CONTACT = "need-contact";
 export const NEED_PERMIT = "need-permit";
 export const NEED_PERMIT_BUTTON = "need-permit-button";

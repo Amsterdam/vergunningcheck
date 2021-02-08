@@ -20,7 +20,6 @@ export const actions = {
   CLICK_EXTERNAL_NAVIGATION: "uitgaande links",
   CLICK_INTERNAL_NAVIGATION: "interne navigatie",
   CLICK_PHONE_LINK: "14 020 bellen",
-  CONCLUSION_OUTCOME: "dit is de uitkomst",
   DOWNLOAD: "download",
   EDIT_ADDRESS: "wijzig adres",
   EDIT_QUESTION: "wijzig vraag",
@@ -32,18 +31,19 @@ export const actions = {
   SUBMIT_MONUMENT: "monument invoer",
   SUBMIT_NEIGHBORHOOD: "buurt invoer",
   START_ANOTHER_CHECK: "start een andere vergunningcheck",
+  THIS_IS_THE_OUTCOME: "dit is de uitkomst",
 };
 
 export const sections = {
   ALERT_ADDRESS_NOT_FOUND:
     "we kunnen geen adres vinden bij deze combinatie (melding)",
   ALERT_LOCATION_INPUT: "we kunnen nu geen adresgegevens ophalen (melding)",
-  CONCLUSION: "conclusie",
   FOOTER: "footer",
   HEADER: "header",
   INTRO: "intro pagina",
   LOCATION_INPUT: "locatie invoer",
   LOCATION_RESULT: "locatie resultaat",
+  OUTCOME: "conclusie",
   QUESTIONS: "vragen",
 };
 
@@ -64,8 +64,7 @@ export const eventNames = {
   EDIT_ADDRESS: "wijzig adres",
   FACEBOOK: "facebook",
   FORWARD: "ga naar",
-  GOTO_CONCLUSION: "naar conclusie",
-  GOTO_LOCATION: "naar locatie",
+  GOTO_OUTCOME: "naar conclusie",
   GOTO_NEXT_QUESTION: "naar volgende vraag",
   GOTO_PREV_QUESTION: "naar vorige vraag",
   HOW_TO_APPLY_FOR_A_PERMIT: "zo werkt aanvragen",
@@ -83,7 +82,7 @@ export const eventNames = {
   NO_MONUMENT: "geen momument",
   NO_CITYSCAPE: "geen beschermd stads- of dorpsgezicht",
   PRIVACY: "privacy",
-  SAVE_CONCLUSION: "conclusie opslaan",
+  SAVE_OUTCOME: "conclusie opslaan",
   TEXT_LINK: "tekst link",
   TO_OLO: "naar het omgevingsloket",
   TWITTER: "twitter",

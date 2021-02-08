@@ -1,12 +1,20 @@
 import React, { useRef } from "react";
 
+import addressMock from "../__mocks__/addressMock";
+import { topics } from "../config";
+import nl from "../i18n/nl";
+import topicsJson from "../topics.json";
 import {
+  findTopicBySlug,
+  getAnswerLabel,
+  getRestrictionByTypeName,
   isEmptyObject,
   isValidPostalcode,
   removeQueryStrings,
+  sanitizeHouseNumberFull,
   scrollToRef,
   stripString,
-} from "../utils";
+} from "./index";
 import { render } from "./test-utils";
 
 window.scrollTo = jest.fn();
@@ -61,6 +69,22 @@ describe("util", () => {
     expect(isValidPostalcode(" 1055XD ")).toBe(true);
     expect(isValidPostalcode(" 1055 XD ")).toBe(true);
   });
+  test("sanitizeHouseNumberFull", () => {
+    expect(sanitizeHouseNumberFull(undefined)).toBe("");
+    expect(sanitizeHouseNumberFull("")).toBe("");
+    expect(sanitizeHouseNumberFull("110")).toBe("110");
+    expect(sanitizeHouseNumberFull("1 10")).toBe("1 10");
+    expect(sanitizeHouseNumberFull("19-c")).toBe("19 - C");
+    expect(sanitizeHouseNumberFull("19-c   ")).toBe("19 - C");
+    expect(sanitizeHouseNumberFull("   19-c   ")).toBe("19 - C");
+    expect(sanitizeHouseNumberFull("10hl")).toBe("10 H L");
+    expect(sanitizeHouseNumberFull("10h l")).toBe("10 H L");
+    expect(sanitizeHouseNumberFull("&")).toBe("&");
+    expect(sanitizeHouseNumberFull("101&")).toBe("101&");
+    expect(sanitizeHouseNumberFull("101 &")).toBe("101 &");
+    expect(sanitizeHouseNumberFull("101 &a")).toBe("101 & A");
+    expect(sanitizeHouseNumberFull("101 &1")).toBe("101 &1");
+  });
   test("removeQueryStrings", () => {
     expect(removeQueryStrings("")).toBe("");
     expect(removeQueryStrings("https://amsterdam.nl")).toBe(
@@ -100,5 +124,50 @@ describe("util", () => {
     expect(isEmptyObject(new Set() as any)).toBe(false);
     expect(isEmptyObject(new Date() as any)).toBe(false);
     expect(isEmptyObject((<></>) as any)).toBe(false);
+  });
+
+  test("getAnswerLabel", () => {
+    const { no, yes } = nl.translation.common;
+    expect(getAnswerLabel('"Yes"')).toBe("Yes");
+    expect(getAnswerLabel("Yes")).toBe("Yes");
+    expect(getAnswerLabel("yes")).toBe("yes");
+    expect(getAnswerLabel(true)).toBe(yes);
+    expect(getAnswerLabel(false)).toBe(no);
+    expect(getAnswerLabel(0)).toBe(0);
+  });
+
+  test("findTopicBySlug", () => {
+    expect(findTopicBySlug("")).toBe(null);
+    expect(findTopicBySlug("wrong")).toBe(null);
+    expect(findTopicBySlug(topics[0].slug)).toBe(topics[0]);
+
+    // 'Find' an "unconfigured" topic
+    const topicMock = topicsJson
+      .flat()
+      .find((t) => t.permits.length === 1) as any;
+    const { slug } = topicMock;
+    expect(slug).toBeTruthy();
+    expect(findTopicBySlug(slug)?.slug).toBe(slug);
+  });
+
+  test("getRestrictionByTypeName", () => {
+    expect(getRestrictionByTypeName()).toBe(undefined);
+
+    expect(
+      getRestrictionByTypeName(addressMock.restrictions, "Monument")
+    ).toStrictEqual({ __typename: "Monument", name: "monument" });
+
+    expect(
+      getRestrictionByTypeName(addressMock.restrictions, "CityScape")
+    ).toStrictEqual({
+      __typename: "CityScape",
+      name: "cityscape",
+      scope: "NATIONAL",
+    });
+
+    // Should be case insensitive
+    expect(
+      getRestrictionByTypeName(addressMock.restrictions, "monument")
+    ).toStrictEqual({ __typename: "Monument", name: "monument" });
   });
 });

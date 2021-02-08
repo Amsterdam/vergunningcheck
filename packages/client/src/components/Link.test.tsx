@@ -10,6 +10,10 @@ import {
 } from "../utils/test-utils";
 import Link from "./Link";
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Link", () => {
   it("renders correctly", () => {
     render(
@@ -47,5 +51,20 @@ describe("Link", () => {
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: "test",
     });
+  });
+  it("should not track an event", () => {
+    render(
+      <Link eventName="" href="/link">
+        link
+      </Link>
+    );
+
+    const anchor = screen.queryByText("link") as HTMLElement;
+
+    act(() => {
+      fireEvent.click(anchor);
+    });
+
+    expect(mockMatomoTrackEvent).not.toBeCalled();
   });
 });

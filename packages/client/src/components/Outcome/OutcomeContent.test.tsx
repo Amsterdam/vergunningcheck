@@ -15,14 +15,13 @@ import {
   render,
   screen,
 } from "../../utils/test-utils";
-import ConclusionOutcome from "./ConclusionOutcome";
-import { NeedPermit, PermitFree } from "./content";
+import { NeedPermit, OutcomeContent, PermitFree } from "./";
 
-describe("ConclusionOutcome", () => {
-  it("renders NEED_PERMIT conclusion correctly", () => {
+describe("OutcomeContent", () => {
+  it("renders NEED_PERMIT outcome correctly", () => {
     render(
-      <ConclusionOutcome
-        conclusionContent={{
+      <OutcomeContent
+        outcomeContent={{
           mainContent: <NeedPermit />,
           title: "title",
         }}
@@ -46,17 +45,17 @@ describe("ConclusionOutcome", () => {
 
     expect(window.open).toHaveBeenCalledTimes(1);
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(2); // For the active section, and the conclusion outcome.
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
     expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
     });
   });
 
-  it("renders the PERMIT_FREE conclusion correctly", () => {
+  it("renders the PERMIT_FREE outcome correctly", () => {
     render(
-      <ConclusionOutcome
-        conclusionContent={{
+      <OutcomeContent
+        outcomeContent={{
           footerContent: <PermitFree />,
           title: "title",
         }}

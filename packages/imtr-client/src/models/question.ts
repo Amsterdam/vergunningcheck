@@ -32,7 +32,7 @@ export type QuestionProps = {
   options?: string[];
   prio: number;
   text: string;
-  type: "string" | "boolean"; // geo / imtr-type from feel
+  type: "string" | "boolean" | "geo"; // imtr-type from feel
   uuid?: string;
 };
 

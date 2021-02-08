@@ -77,8 +77,6 @@ const DebugVariables: FunctionComponent<DebugVariablesProps> = () => {
               <button
                 onClick={() =>
                   setTopicData({
-                    finishedComponents: ["locatie invoer"],
-                    activeComponents: ["vragen"],
                     questionIndex: 0,
                     answers: {},
                     address: {

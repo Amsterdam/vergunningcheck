@@ -1,7 +1,7 @@
-import { getAutofillResolverKey } from "./autofill";
+import { getAutofillResolverKey } from "./autofill.ts";
 
 import {
-  CONTENT_CONCLUSION_EXPLANATION,
+  CONTENT_OUTCOME_EXPLANATION,
   CONTENT_EXECUTION_RULE_EXPLANATION,
   CONTENT_EXPLANATION,
   CONTENT_LONG_EXPLANATION,
@@ -34,7 +34,7 @@ import {
   UITV_QUESTION_TEXT,
   UITV_QUESTION,
   UITV_REUSABLE_ID,
-} from "./types/imtr";
+} from "./types/imtr.ts";
 
 import type {
   DMNDecision,
@@ -46,7 +46,7 @@ import type {
   DMNInputEntry,
   IMTROption,
   RequiredInputOrDecision,
-} from "./types/imtr";
+} from "./types/imtr.ts";
 
 import type {
   JSONDecisions,
@@ -55,24 +55,16 @@ import type {
   JSONQuestion,
   JSONRule,
   JSONRuleInput,
-} from "./types/json";
+} from "./types/json.ts;
 
 const log = (x: any) => {};
 export const strFmt = (str: string) => str.trim();
 export const format = (el: string | undefined) =>
   typeof el === "string" ? strFmt(el) : el;
 
-/**
- * TODO: todo implement consistent hashing for id's:
- * ```
- * import { createHash } from "https://deno.land/std/hash/mod.ts";
- * const getId = ({ "@_id": _, ...rest }) => {
- *   const hash = createHash("md5");
- *   hash.update(JSON.stringify(rest));
- *   return hash.toString();
- * };
- * ```
- */
+type ParserQuestion = JSONQuestion & {
+  _id: string;
+};
 
 /**
  * Main function to get configuration for imtr-client.
@@ -80,14 +72,18 @@ export const format = (el: string | undefined) =>
  */
 export default (json: DMNDocument): JSONPermit => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
+  const questions = getQuestions(definition[DMN_EXTENSION_ELEMENTS]);
+  const decisions = getDecisions(definition[DMN_DECISION]) as JSONDecisions;
+  const inputs = getInputs(definition[DMN_INPUT_DATA]);
+
   return {
     /** Please don't sort these keys, it determines the json output. Most informative fields
      * are shown first.
      */
     name: definition.attributes.name,
-    questions: getQuestions(definition[DMN_EXTENSION_ELEMENTS]),
-    decisions: getDecisions(definition[DMN_DECISION]) as JSONDecisions,
-    inputs: getInputs(definition[DMN_INPUT_DATA]),
+    questions,
+    decisions,
+    inputs,
   };
 };
 
@@ -119,9 +115,9 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
     const rules = table[DMN_RULE].reduce((rules: JSONRule[], rule) => {
       const outputEntry = rule[DMN_OUTPUT_ENTRY][0];
       const extensionElements = outputEntry[DMN_EXTENSION_ELEMENTS];
-      const conclusionDescription =
-        extensionElements?.[0][CONTENT_CONCLUSION_EXPLANATION];
-      const description = conclusionDescription?.[0][CONTENT_EXPLANATION];
+      const outcomeDescription =
+        extensionElements?.[0][CONTENT_OUTCOME_EXPLANATION];
+      const description = outcomeDescription?.[0][CONTENT_EXPLANATION];
 
       const jsonRule: JSONRule = {
         inputs: rule[DMN_INPUT_ENTRY].reduce(
@@ -161,12 +157,12 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
  */
 const getInputs = (dmnInputDataCollection: DMNInputData[]) => {
   return dmnInputDataCollection.reduce((acc: JSONInputs, dmnInputData) => {
-    const { id } = dmnInputData.attributes;
     const { href } = dmnInputData[DMN_EXTENSION_ELEMENTS][0][
       UITV_EXECUTION_RULE_REF
     ][0].attributes;
     const { typeRef } = dmnInputData[DMN_VARIABLE][0].attributes;
-    acc[id] = {
+
+    acc[dmnInputData.attributes.id] = {
       href,
       type: feelTypes[typeRef],
     };
@@ -179,7 +175,7 @@ const getInputs = (dmnInputDataCollection: DMNInputData[]) => {
  */
 const getQuestions = (
   xmlExtensionElements: DMNExtensionElement[]
-): JSONQuestion[] => {
+): ParserQuestion[] => {
   const extElement = xmlExtensionElements[0] as DMNExtensionElement;
   log({ extElement });
   const rulesCollection = extElement[UITV_EXECUTION_RULES];
@@ -242,14 +238,17 @@ const getQuestions = (
     }
 
     log(rule.attributes);
-    result.id = rule.attributes.id; // TODO: generate our own hash for id's
+
+    // Set original id, we'll fix that in transform
+    result.id = rule.attributes.id;
+
     // Just pass prio from rule-definition here, we'll fix the prio when merging the permits together
     result.prio = rule[INTER_PRIORITY];
 
     // Questions can be deduplicated with uuid
     if (rule[UITV_REUSABLE_ID]) result.uuid = rule[UITV_REUSABLE_ID];
 
-    const x: JSONQuestion = result;
+    const x: ParserQuestion = result;
     return x;
   });
 };

@@ -26,7 +26,7 @@ export const INTER_RULE_GROUPS = "inter:regelgroepen";
 export const BEDR_FUNCTIONAL_STRUCTURE_REF = "bedr:functioneleStructuurRef";
 
 // XML fields for content-spec from IMTR
-export const CONTENT_CONCLUSION_EXPLANATION = "content:conclusieToelichting";
+export const CONTENT_OUTCOME_EXPLANATION = "content:conclusieToelichting";
 export const CONTENT_EXECUTION_RULE_EXPLANATION =
   "content:uitvoeringsregelToelichting";
 export const CONTENT_EXPLANATION = "content:toelichting";
@@ -136,7 +136,7 @@ export type DMNRule = {
     };
     [DMN_TEXT]: string;
     [DMN_EXTENSION_ELEMENTS]?: {
-      [CONTENT_CONCLUSION_EXPLANATION]: {
+      [CONTENT_OUTCOME_EXPLANATION]: {
         [CONTENT_EXPLANATION]: string;
       }[];
     }[];

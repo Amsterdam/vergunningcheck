@@ -4,6 +4,7 @@ import React from "react";
 
 import mockAddress from "../../__mocks__/addressMock";
 import { actions, eventNames, sections } from "../../config/matomo";
+import nl from "../../i18n/nl";
 import { NEXT_BUTTON } from "../../utils/test-ids";
 import {
   fireEvent,
@@ -21,7 +22,9 @@ describe("OloLocationResult", () => {
   it("should render correctly", () => {
     render(<OloLocationResult />);
 
-    expect(screen.queryByText("Adresgegevens")).toBeInTheDocument();
+    expect(
+      screen.queryByText(nl.translation.location.address.heading)
+    ).toBeInTheDocument();
     expect(screen.queryByText("streetname 123")).toBeInTheDocument();
     expect(screen.queryByText("1234 AB Amsterdam")).toBeInTheDocument();
     expect(

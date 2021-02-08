@@ -17,10 +17,10 @@ type OloUrlProps = {
   postalCode: string;
 };
 
+const oloHome: string = "https://www.omgevingsloket.nl/";
+
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
-
-const oloHome: string = "https://www.omgevingsloket.nl/";
 
 export const urls = {
   DEMOLITION_PERMIT_PAGE:
@@ -134,6 +134,15 @@ export const topics: Topic[] = [
     slug: "kappen-of-snoeien",
     text: {
       heading: "Vergunningcheck kappen of snoeien",
+    },
+  },
+  {
+    hasIMTR: false,
+    name: "Brandveilig gebruik",
+    redirectToOlo: true,
+    slug: "brandveilig-gebruik",
+    text: {
+      heading: "Vergunningcheck brandveilig gebruik",
     },
   },
 ];

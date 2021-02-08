@@ -10,21 +10,21 @@ import { useChecker, useTopic } from "../../hooks";
 import Disclaimer from "../Disclaimer";
 import Loading from "../Loading";
 import Markdown from "../Markdown";
-import ConclusionOutcome from "./ConclusionOutcome";
 import {
   DemolitionNeedReport,
   DemolitionPermitFree,
   NeedPermit,
+  OutcomeContent,
   PermitFree,
-} from "./content";
+} from "./";
 
-const ConclusionWrapper = styled.div`
+const OutcomeWrapper = styled.div`
   @media screen {
     padding-bottom: ${themeSpacing(5)};
   }
 `;
 
-const Conclusion: FunctionComponent = () => {
+const Outcome: FunctionComponent = () => {
   const { checker } = useChecker();
   const topic = useTopic();
   const { t } = useTranslation();
@@ -50,7 +50,7 @@ const Conclusion: FunctionComponent = () => {
     ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
   );
 
-  // Define the content for the Conclusion components
+  // Define the content for the Outcome components
   const contents = {
     // This is the default content
     default: {
@@ -62,7 +62,7 @@ const Conclusion: FunctionComponent = () => {
       [NEED_CONTACT]: {
         mainContent: (
           <Markdown
-            eventLocation={sections.CONCLUSION}
+            eventLocation={sections.OUTCOME}
             source={getNeedContactContent?.description || ""}
           />
         ),
@@ -140,27 +140,27 @@ const Conclusion: FunctionComponent = () => {
   const checkerContent =
     topic.name === "Bouwwerk slopen" ? contents.demolition : contents.default;
 
-  const conclusionContent = checkerContent[outcomeType];
+  const outcomeContent = checkerContent[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;
 
-  if (!conclusionContent) {
+  if (!outcomeContent) {
     // Convert this to a unit test
     throw new Error("The contents have not been configured properly.");
   }
 
   return (
-    <ConclusionWrapper>
-      <ConclusionOutcome
+    <OutcomeWrapper>
+      <OutcomeContent
         {...{
-          conclusionContent,
+          outcomeContent,
           outcomeType,
           showDiscaimer,
         }}
       />
 
       {showDiscaimer && <Disclaimer />}
-    </ConclusionWrapper>
+    </OutcomeWrapper>
   );
 };
 
-export default Conclusion;
+export default Outcome;

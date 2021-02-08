@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import React, { FunctionComponent } from "react";
 
 import { BaseLayout } from "../components/Layouts";

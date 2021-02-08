@@ -4,15 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
 import topicsJson from "../topics.json";
-import useTopicData from "./useTopicData";
-import { useTopic } from ".";
+import { useTopic, useTopicData } from "./";
 
 export default () => {
-  const { topicData } = useTopicData();
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();
   const topic = useTopic();
+  const { topicData } = useTopicData();
 
   useEffect(() => {
     // Initilize the checker on first load, reload and on reset
@@ -46,6 +45,11 @@ export default () => {
         // Find if we have missing data needs
         if (address) {
           newChecker.autofill(autofillResolvers, { address });
+
+          // Load the first question
+          if (newChecker.stack.length === 0) {
+            newChecker.next();
+          }
         }
 
         const unfulfilledDataNeed = newChecker.getAutofillDataNeeds(
@@ -56,7 +60,7 @@ export default () => {
         // Restore available answers from previous session. If we have
         // an unfulfilled dataNeed we don't restore the answers to
         // prevent issues with older sessions.
-        if (answers && !unfulfilledDataNeed) {
+        if (!unfulfilledDataNeed) {
           newChecker.setQuestionAnswers(answers);
         }
 
