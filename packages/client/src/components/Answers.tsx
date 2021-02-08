@@ -35,9 +35,12 @@ const Answers: FunctionComponent<AnswersProps> = ({
       }))
     : booleanOptions;
 
+  const showCheckboxInput = question.collection;
+  const showRadioInput = !showCheckboxInput;
+
   return (
     <ComponentWrapper data-testid={QUESTION_ANSWERS}>
-      {question.collection ? (
+      {showCheckboxInput &&
         answers?.map((answer, index) => {
           const { label, formValue } = answer;
           const answerId = `${id}-${formValue}`;
@@ -61,8 +64,9 @@ const Answers: FunctionComponent<AnswersProps> = ({
               />
             </Label>
           );
-        })
-      ) : (
+        })}
+
+      {showRadioInput && (
         <RadioGroup name={id}>
           {answers?.map((answer, index) => {
             const { label, formValue, value } = answer;

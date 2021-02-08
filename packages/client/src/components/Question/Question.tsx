@@ -51,7 +51,6 @@ const Question: FunctionComponent<QuestionProps> = ({
 
   const {
     answer,
-    collection,
     description,
     id: questionId,
     longDescription,
@@ -106,7 +105,7 @@ const Question: FunctionComponent<QuestionProps> = ({
         </ComponentWrapper>
       )}
 
-      <Answers {...{ collection, errors, question, saveAnswer }} />
+      <Answers {...{ errors, question, saveAnswer }} />
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 

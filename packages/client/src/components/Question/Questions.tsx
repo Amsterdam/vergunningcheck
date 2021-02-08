@@ -311,7 +311,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     const { id, text } = question;
 
     // Handle the given answer
-    question.setAnswer(question.collection ? [value as string] : value);
+    // XXX: not sure what to do here. setAnswer([]) or setAnswer(string)
+    question.setAnswer(value);
 
     // Store in Sentry
     setTag(text, label);

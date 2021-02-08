@@ -1,5 +1,4 @@
-import { removeQuotes } from "@vergunningcheck/imtr-client";
-import { AnswerType } from "@vergunningcheck/imtr-client/src/types";
+import { AnswerType, removeQuotes } from "@vergunningcheck/imtr-client";
 import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
