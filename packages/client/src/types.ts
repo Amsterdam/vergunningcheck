@@ -93,7 +93,6 @@ export enum TopicType {
 
 export type Topic = {
   intro?: string;
-  loadIMTR?: boolean;
   name: string;
   slug: string;
   text: {
@@ -103,6 +102,7 @@ export type Topic = {
   type: TopicType;
 };
 
+// This is an imported topic from the Flo Legal api
 export type ApiTopic = {
   name?: string;
   path?: string;
