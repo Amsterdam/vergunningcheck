@@ -54,7 +54,11 @@ export default class Rule {
    */
   evaluateNew(values: AnswerType[]): number[] {
     if (!collectionOfSimpleTypes(values)) {
-      throw Error(`'values' should be an array of simple types, got ${values}`);
+      throw Error(
+        `'values' should be an array of simple types, got ${JSON.stringify(
+          values
+        )}`
+      );
     }
 
     const result = this.inputConditions.reduce(
