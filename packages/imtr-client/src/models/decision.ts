@@ -64,7 +64,17 @@ export default class Decision {
     // Find the values for our inputs
     const inputs = inputReducer ? this.inputs.map(inputReducer) : this.inputs;
     const values = inputs.map((input) => input?.answer);
-    return this.rules.filter((rule) => rule.evaluateNew(values).length !== 0);
+    // XXX: this needs to be fixed
+    return this.rules.filter((rule) => {
+      // If collection...
+      if (Array.isArray(values)) {
+        console.log("hier 1");
+        return values.find((val: any) => rule.evaluateNew(val).length !== 0);
+      } else {
+        console.log("hier 2");
+        return rule.evaluateNew(values).length !== 0;
+      }
+    });
   }
 
   /**

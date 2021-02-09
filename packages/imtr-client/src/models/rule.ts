@@ -55,13 +55,13 @@ export default class Rule {
   evaluateNew(values: AnswerType[]): number[] {
     // XXX: `collectionOfSimpleTypes` doesn't work for the new `values`
     // `values` can now be `[["Answer 1", "Answer 2"], ["Answer 3"]]` instead of ["Answer 1", "Answer 2", "Answer 3"]
-    // if (!collectionOfSimpleTypes(values)) {
-    //   throw Error(
-    //     `'values' should be an array of simple types, got ${JSON.stringify(
-    //       values
-    //     )}`
-    //   );
-    // }
+    if (!collectionOfSimpleTypes(values)) {
+      throw Error(
+        `'values' should be an array of simple types, got ${JSON.stringify(
+          values
+        )}`
+      );
+    }
 
     const result = this.inputConditions.reduce(
       (acc: number[] | false, curr, index) => {

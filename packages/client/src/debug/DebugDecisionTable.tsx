@@ -21,7 +21,7 @@ const Answer: FunctionComponent<{ question: Question }> = ({
     {answer === null ? (
       "NULL"
     ) : (
-      <b>{answer !== undefined ? answer.toString() : "..."}</b>
+      <b>{answer !== undefined ? JSON.stringify(answer) : "..."}</b>
     )}
   </>
 );
@@ -177,7 +177,7 @@ const DebugDecisionTable: FunctionComponent = () => {
                                     inputConditions:{" "}
                                     {JSON.stringify(r.inputConditions)}
                                     <br />
-                                    outputValue: {r.outputValue}
+                                    outputValue: {JSON.stringify(r.outputValue)}
                                   </li>
                                 );
                               })}
