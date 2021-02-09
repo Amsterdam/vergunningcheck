@@ -283,11 +283,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       const imtrOutcome = outcomeDecision.getOutput();
       let outcomeType = imtr.ClientOutcomes.PERMIT_FREE;
 
-      if (imtrOutcome === imtr.imtrOutcomes.NEED_CONTACT) {
+      if (imtrOutcome === imtr.outcomes.NEED_CONTACT) {
         outcomeType = imtr.ClientOutcomes.NEED_CONTACT;
-      } else if (imtrOutcome === imtr.imtrOutcomes.NEED_PERMIT) {
+      } else if (imtrOutcome === imtr.outcomes.NEED_PERMIT) {
         outcomeType = imtr.ClientOutcomes.NEED_PERMIT;
-      } else if (imtrOutcome === imtr.imtrOutcomes.NEED_REPORT) {
+      } else if (imtrOutcome === imtr.outcomes.NEED_REPORT) {
         outcomeType = imtr.ClientOutcomes.NEED_REPORT;
       }
 

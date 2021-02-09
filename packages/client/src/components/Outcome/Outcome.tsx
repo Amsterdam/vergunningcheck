@@ -1,5 +1,5 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
-import { ClientOutcomes, imtrOutcomes } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -35,7 +35,7 @@ const Outcome: FunctionComponent = () => {
     NEED_PERMIT,
     NEED_REPORT,
     PERMIT_FREE,
-  } = ClientOutcomes;
+  } = imtr.ClientOutcomes;
 
   if (checker === undefined) {
     return <Loading />;
@@ -47,7 +47,7 @@ const Outcome: FunctionComponent = () => {
   const outcomeType = checker.getClientOutcomeType();
   // This function can be moved to `imtr-client`
   const getNeedContactContent = outcomes.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
+    ({ outcome }: { outcome: string }) => outcome === imtr.outcomes.NEED_CONTACT
   );
 
   // Define the content for the Outcome components

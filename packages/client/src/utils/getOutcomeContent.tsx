@@ -1,8 +1,4 @@
-import {
-  Checker,
-  ClientOutcomes,
-  imtrOutcomes,
-} from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React from "react";
 
 import Markdown from "../components/Markdown";
@@ -23,7 +19,7 @@ const {
   NEED_PERMIT,
   NEED_REPORT,
   PERMIT_FREE,
-} = ClientOutcomes;
+} = imtr.ClientOutcomes;
 
 /**
  *
@@ -33,13 +29,13 @@ const {
  * @param {slug} string - pass the slug
  * @returns {OutcomeContentType} - an object with Outcome content
  */
-const getOutcomeContent = (checker: Checker, slug: string) => {
+const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
   // Get all the outcomes to display
   const outcomes = checker.getOutcomesToDisplay();
 
   // Get the 'NEED_CONTACT' content from 'imtr'
   const getNeedContactContent = outcomes.find(
-    ({ outcome }: { outcome: string }) => outcome === imtrOutcomes.NEED_CONTACT
+    ({ outcome }: { outcome: string }) => outcome === imtr.outcomes.NEED_CONTACT
   );
 
   const contents = {
