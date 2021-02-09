@@ -193,7 +193,7 @@ describe("LocationFinder", () => {
         target: { value: "1024BV" },
       });
       fireEvent.change(inputHouseNumber, {
-        target: { value: "54 6k 1" },
+        target: { value: "546 k 1" },
       });
     });
 
