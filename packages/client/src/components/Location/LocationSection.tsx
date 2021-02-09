@@ -7,6 +7,7 @@ import { ComponentWrapper, EditButton, TextToEdit } from "../../atoms";
 import { autofillResolvers, getDataNeed } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopic, useTopicData, useTracking } from "../../hooks";
+// @TODO: remove those files after demo
 import MapLarge from "../../static/media/map-large.png";
 import MapSmall from "../../static/media/map-small.png";
 import { Address, SectionComponent } from "../../types";
@@ -35,12 +36,10 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   } = props;
   const { isActive, isCompleted } = currentSection;
 
+  const isForm = isPermitForm(topic);
+
   // Show the Location Section only when required by `hasDataNeeds`
-  const skipLocationSection = !!(
-    checker &&
-    !getDataNeed(checker) &&
-    !isPermitForm(topic)
-  );
+  const skipLocationSection = !!(checker && !getDataNeed(checker) && !isForm);
 
   useEffect(() => {
     if (timesLoaded === 1 && !skipLocationSection && !address) {
@@ -120,7 +119,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     });
   };
 
-  const heading = isPermitForm(topic)
+  const heading = isForm
     ? t("location.map.heading")
     : t("location.address.heading");
 
@@ -139,7 +138,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       style={activeStyle}
       {...{ heading }}
     >
-      {isPermitForm(topic) && (
+      {isForm && (
         // warning: this is only for demo purposes!
         // START DEMO
         <>
@@ -155,6 +154,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
               <Paragraph>
                 Klik de boom aan op de kaart. U kunt meer bomen aanklikken.
               </Paragraph>
+              {/* @TODO: remove the files after demo */}
               <img src={MapLarge} style={{ maxWidth: 900 }} alt="demo map" />
               <Nav nextText={t("common.to the questions")} showNext />
             </Form>
@@ -174,7 +174,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
         // END DEMO
       )}
 
-      {!isPermitForm(topic) && (
+      {!isForm && (
         <>
           {isActive ? (
             <LocationInput

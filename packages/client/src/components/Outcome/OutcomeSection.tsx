@@ -80,7 +80,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
       onClick={handleOnClick}
       style={isActive ? activeStyle : {}}
     >
-      {showContent ? <Outcome /> : null}
+      {showContent && <Outcome />}
     </StepByStepItem>
   );
 };
