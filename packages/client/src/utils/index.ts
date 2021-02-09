@@ -161,6 +161,11 @@ export const booleanOptions: Answer[] = [
  * @param {ClientSimpleType} answer
  */
 export const getAnswerLabel = (answer: AnswerType) => {
+  if (Array.isArray(answer)) {
+    // @TODO: discuss with team what the visual design should look like
+    const answers = answer.join(", ");
+    return removeQuotes(answers);
+  }
   if (typeof answer === "boolean") {
     return answer ? yes : no;
   } else if (typeof answer === "string") {
