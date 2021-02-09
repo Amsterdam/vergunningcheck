@@ -142,6 +142,11 @@ const getOutcomeContent = (checker: Checker, slug: string) => {
     // This content is only relevant for the firesafety checker
     firesafety: {
       [NEED_CONTACT]: {
+        /**
+         * Warning: This outcome doesn't have a real "need contact" text,
+         * but as long as we don't support multiple outcome texts for different routes,
+         * we have to use this hack
+         */
         mainContent: (
           <>
             <Markdown
