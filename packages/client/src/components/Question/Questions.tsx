@@ -315,9 +315,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // Multi select questions
 
       const userAnswer =
-        Array.isArray(storedAnswer) && storedAnswer.length
-          ? storedAnswer
-          : [value as string];
+        Array.isArray(storedAnswer) && storedAnswer.length ? storedAnswer : [];
 
       // Check if question is already in stored collection
       const isAnswerInCollection = userAnswer.find(
