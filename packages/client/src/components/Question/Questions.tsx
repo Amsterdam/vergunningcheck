@@ -264,8 +264,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   if (!checker) return null;
 
   // Show all questions in case of an active Form
-  const showAllQuestions =
-    isForm && address && (isActive || isCheckerConclusive());
+  const showAllQuestions = isForm && address && isActive;
 
   // @TODO: fix this style
   // Styling to overwrite the line between the Items
@@ -412,7 +411,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             key={`question-${q.id}-${i}`}
             style={isCurrentQuestion || isForm ? activeStyle : {}}
           >
-            {isCurrentQuestion || isForm ? (
+            {isCurrentQuestion || (isForm && isActive) ? (
               // Show the current question
               <Question
                 hideNav={isForm && (!isFinalQuestion || !isActive)}
@@ -421,10 +420,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
                 onGoToNext={handleNextQuestion}
                 showNext
                 {...{
+                  isCheckerConclusive,
                   outcomeType,
                   saveAnswer,
                   showQuestionAlert,
-                  isCheckerConclusive,
                 }}
               />
             ) : (
@@ -472,7 +471,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             key={`question-${q.id}-${index}`}
             style={isForm ? activeStyle : {}}
           >
-            {isForm ? (
+            {isForm && isActive ? (
               // Show all questions
               <Question
                 hideNav={isForm && (!isFinalQuestion || !isActive)}
@@ -480,9 +479,9 @@ const Questions: FunctionComponent<QuestionsProps> = ({
                 onGoToNext={handleNextQuestion}
                 showNext
                 {...{
+                  isCheckerConclusive,
                   outcomeType,
                   saveAnswer,
-                  isCheckerConclusive,
                   showQuestionAlert,
                 }}
               />

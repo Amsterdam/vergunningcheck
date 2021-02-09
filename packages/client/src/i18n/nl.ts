@@ -98,7 +98,7 @@ export default {
         "enter address": "Invullen adres",
       },
       map: {
-        heading: "Locatiegegevens",
+        heading: "Waar staat de boom?",
       },
 
       testing: {

@@ -1,11 +1,19 @@
+import { Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import addressMock from "../../__mocks__/address";
+import { ComponentWrapper, EditButton, TextToEdit } from "../../atoms";
 import { autofillResolvers, getDataNeed } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { useChecker, useTopic, useTopicData, useTracking } from "../../hooks";
+import MapLarge from "../../static/media/map-large.png";
+import MapSmall from "../../static/media/map-small.png";
 import { Address, SectionComponent } from "../../types";
+import { isPermitForm } from "../../utils";
 import { LOCATION_SECTION } from "../../utils/test-ids";
+import Form from "../Form";
+import Nav from "../Nav";
 import { StepByStepItem } from "../StepByStepNavigation";
 import LocationSummary from "./LocationSummary";
 import { LocationInput } from ".";
@@ -17,16 +25,22 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     setTopicData,
     topicData: { address, sectionData, timesLoaded },
   } = useTopicData();
+  const topic = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
   const {
-    currentSection: { isActive, isCompleted },
-    sectionFunctions: { goToNextSection },
+    currentSection,
+    sectionFunctions: { changeActiveSection, goToNextSection },
   } = props;
+  const { isActive, isCompleted } = currentSection;
 
   // Show the Location Section only when required by `hasDataNeeds`
-  const skipLocationSection = !!(checker && !getDataNeed(checker));
+  const skipLocationSection = !!(
+    checker &&
+    !getDataNeed(checker) &&
+    !isPermitForm(topic)
+  );
 
   useEffect(() => {
     if (timesLoaded === 1 && !skipLocationSection && !address) {
@@ -106,8 +120,9 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     });
   };
 
-  // Add an alternative heading here when adding the map
-  const heading = t("location.address.heading");
+  const heading = isPermitForm(topic)
+    ? t("location.map.heading")
+    : t("location.address.heading");
 
   // @TODO: fix the active style in a proper way without `style`
   const activeStyle = { marginTop: -1, borderColor: "white" };
@@ -124,14 +139,53 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       style={activeStyle}
       {...{ heading }}
     >
-      {isActive ? (
-        <LocationInput
-          {...{
-            handleNewAddressSubmit,
-          }}
-        />
-      ) : (
-        <LocationSummary showEditLocationModal />
+      {isPermitForm(topic) && (
+        // warning: this is only for demo purposes!
+        // START DEMO
+        <>
+          {isActive ? (
+            <Form
+              onSubmit={() => {
+                setTopicData({
+                  address: addressMock[0].result.data.findAddress.exactMatch,
+                });
+                goToNextSection();
+              }}
+            >
+              <Paragraph>
+                Klik de boom aan op de kaart. U kunt meer bomen aanklikken.
+              </Paragraph>
+              <img src={MapLarge} style={{ maxWidth: 900 }} alt="demo map" />
+              <Nav nextText={t("common.to the questions")} showNext />
+            </Form>
+          ) : (
+            <ComponentWrapper>
+              <Paragraph gutterBottom={0}>
+                <TextToEdit>Coordinaten</TextToEdit>{" "}
+                <EditButton
+                  onClick={() => changeActiveSection(currentSection)}
+                />
+              </Paragraph>
+              <Paragraph>Amsterdam</Paragraph>
+              <img src={MapSmall} style={{ maxWidth: 380 }} alt="demo map" />
+            </ComponentWrapper>
+          )}
+        </>
+        // END DEMO
+      )}
+
+      {!isPermitForm(topic) && (
+        <>
+          {isActive ? (
+            <LocationInput
+              {...{
+                handleNewAddressSubmit,
+              }}
+            />
+          ) : (
+            <LocationSummary showEditLocationModal />
+          )}
+        </>
       )}
     </StepByStepItem>
   );

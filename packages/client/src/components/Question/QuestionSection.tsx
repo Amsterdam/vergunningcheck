@@ -108,10 +108,6 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     }
   };
 
-  const handleOnClick = !isActive
-    ? () => changeActiveSection(currentSection)
-    : false;
-
   const highlightSection = isActive && questionIndex === 0;
 
   return (
@@ -126,7 +122,6 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
         heading={t("question.heading")}
         highlightActive={highlightSection}
         largeCircle
-        onClick={handleOnClick}
       />
 
       <Questions

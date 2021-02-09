@@ -1,6 +1,6 @@
 import { ErrorMessage, Radio, RadioGroup, TextField } from "@amsterdam/asc-ui";
 import * as imtr from "@vergunningcheck/imtr-client";
-import React, { ChangeEvent, Fragment, FunctionComponent } from "react";
+import React, { ChangeEvent, FunctionComponent } from "react";
 import { FieldErrors } from "react-hook-form";
 
 import { ComponentWrapper, Label } from "../atoms";
@@ -40,7 +40,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
 
   // @TODO: place all individual form components in separate components when Checkbox is also added
   return (
-    <Fragment data-testid={QUESTION_ANSWERS}>
+    <ComponentWrapper data-testid={QUESTION_ANSWERS} marginBottom={0}>
       {showRadioInput && (
         <RadioGroup name={id}>
           {answers?.map((answer, index) => {
@@ -81,7 +81,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
         </ComponentWrapper>
       )}
       {errors[id] && <ErrorMessage message={errors[id].message} />}
-    </Fragment>
+    </ComponentWrapper>
   );
 };
 
