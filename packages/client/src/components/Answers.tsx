@@ -1,6 +1,6 @@
 import { ErrorMessage, Radio, RadioGroup, TextField } from "@amsterdam/asc-ui";
 import * as imtr from "@vergunningcheck/imtr-client";
-import React, { ChangeEvent, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { FieldErrors } from "react-hook-form";
 
 import { ComponentWrapper, Label } from "../atoms";
@@ -70,11 +70,8 @@ const Answers: FunctionComponent<AnswersProps> = ({
       {showTextField && (
         <ComponentWrapper>
           <TextField
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              saveAnswer(
-                { label: e.target.value, value: e.target.value },
-                question
-              )
+            onChange={({ target: { value } }) =>
+              saveAnswer({ label: value, value }, question)
             }
             value={userAnswer as string}
           />
