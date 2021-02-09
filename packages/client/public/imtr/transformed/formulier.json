@@ -29,21 +29,13 @@
         },
         {
           "text": "bomen vraag 3",
-          "options": [
-            "Ik ga een nieuwe zonwering plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
+          "type": "boolean",
           "prio": 30,
           "uuid": "zonwering-onderhoud1",
           "id": "097b67ce6c823a909ac71fa86ba9473e"
         },
         {
           "text": "bomen vraag 4",
-          "options": [
-            "Ja, de zonwering verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
           "type": "string",
           "prio": 40,
           "uuid": "zonwering-onderhoud2",
@@ -51,21 +43,13 @@
         },
         {
           "text": "bomen vraag 5",
-          "options": [
-            "Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.",
-            "Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was."
-          ],
-          "type": "string",
+          "type": "boolean",
           "prio": 50,
           "uuid": "rolhek-onderhoud1",
           "id": "d7f180c22b2a5590fcfe1d2118b3cb28"
         },
         {
           "text": "bomen vraag 6",
-          "options": [
-            "Ja, het rolhek, rolluik of luik verandert.",
-            "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
-          ],
           "type": "string",
           "prio": 60,
           "uuid": "rolhek-onderhoud2",
@@ -114,7 +98,6 @@
         {
           "text": "bomen vraag 11",
           "description": "We kunnen op dit moment deze vraag niet automatisch beantwoorden. Bekijk [op de kaart](https://www.amsterdam.nl/kunst-cultuur/monumenten/wet-regelgeving/beschermde-stads/) of het gebouw in een beschermd stads- of dorpsgezicht ligt. En of het om een rijksbeschermd of gemeentelijk beschermd stads- of dorpsgezicht gaat.\n\nRijksbeschermde stads- of dorpsgezichten zijn op de kaart blauw gekleurd. De gemeentelijk beschermde stads- of dorpsgezichten zijn rood of geel.",
-          "autofill": "cityScapeForBuilding",
           "options": [
             "Ja, het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.",
             "Ja, het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.",

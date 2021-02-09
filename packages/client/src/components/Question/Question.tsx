@@ -48,22 +48,30 @@ const Question: FunctionComponent<QuestionProps> = ({
   const { t } = useTranslation();
 
   const isForm = isPermitForm(topic);
-  const requiredFieldRadio = t("common.required field radio");
 
   const {
     answer,
     description,
     id: questionId,
     longDescription,
+    options,
     text: questionTitle,
+    type,
   } = question;
+
+  const isRadio = type === "boolean" || (type === "string" && options);
+
+  // @TODO: make generic functions, like: isRadioQuestion(), isCheckboxQuestion, etc
+  const requiredText = isRadio
+    ? t("common.required field radio")
+    : t("common.required field text");
 
   useEffect(() => {
     if (questionId) {
       register(
         { name: questionId },
         {
-          required: requiredFieldRadio,
+          required: requiredText,
         }
       );
 
@@ -72,7 +80,7 @@ const Question: FunctionComponent<QuestionProps> = ({
       }
     }
     return () => unregister(questionId);
-  }, [answer, questionId, register, unregister, setValue, requiredFieldRadio]);
+  }, [answer, questionId, register, unregister, setValue, requiredText]);
 
   const handleOpenModal = () => {
     matomoTrackEvent({

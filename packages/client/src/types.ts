@@ -114,7 +114,7 @@ export type ApiTopic = {
  * Checker related types
  */
 export type Answer = {
-  formValue: string;
+  formValue?: string;
   label: string;
   value: boolean | string;
 };
