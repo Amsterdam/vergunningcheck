@@ -141,7 +141,30 @@ const getOutcomeContent = (checker: Checker, slug: string) => {
     },
     // This content is only relevant for the firesafety checker
     firesafety: {
-      [NEED_CONTACT]: {},
+      [NEED_CONTACT]: {
+        mainContent: (
+          <>
+            <Markdown
+              eventLocation={sections.OUTCOME}
+              source={getNeedContactContent?.description || ""}
+            />
+            <NeedPermit
+              contentText={
+                nl.translation.outcome.needReport[
+                  "on this page you can read more about report"
+                ]
+              }
+              eventName={eventNames.HOW_TO_REPORT}
+              linkText={nl.translation.outcome.needReport["how to report"]}
+              url={urls.FIRESAFETY_PAGE}
+            />
+          </>
+        ),
+        title:
+          nl.translation.outcome.needContact[
+            "you need to contact for firesafety"
+          ],
+      },
       [NEED_BOTH_PERMIT_AND_REPORT]: {},
       [NEED_PERMIT]: {
         mainContent: <NeedPermit url={urls.FIRESAFETY_PAGE} />,

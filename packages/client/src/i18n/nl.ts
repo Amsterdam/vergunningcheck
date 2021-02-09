@@ -174,6 +174,8 @@ export default {
       },
       needContact: {
         "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
+        "you need to contact for firesafety":
+          "U hebt geen omgevingsvergunning nodig. U moet misschien wel een melding 'Brandveilig gebruik' doen.",
       },
       needPermit: {
         "you need a permit": "U hebt een omgevingsvergunning nodig.",
