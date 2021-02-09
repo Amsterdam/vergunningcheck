@@ -130,6 +130,9 @@ export default {
       },
       nextQuestion: "Volgende vraag",
     },
+    accordionList: {
+      title: "Tabel weergeven",
+    },
     outcome: {
       heading: "Uitkomst",
       goToOutcome: "Naar de uitkomst",

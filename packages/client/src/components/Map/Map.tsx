@@ -1,56 +1,35 @@
 import "leaflet/dist/leaflet.css";
 
-// import {
-//   MarkerClusterGroup,
-//   createClusterMarkers,
-// } from "@amsterdam/arm-cluster";
+/*
 import {
-  BaseLayer,
-  Map,
-  ViewerContainer,
-  Zoom,
-  constants,
-} from "@amsterdam/arm-core";
-import {
-  DrawTool,
-  DrawToolOpenButton,
-  ExtendedLayer,
-} from "@amsterdam/arm-draw";
-import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
+  MarkerClusterGroup,
+  createClusterMarkers,
+} from "@amsterdam/arm-cluster";
+*/
+import { BaseLayer, Zoom, constants } from "@amsterdam/arm-core";
+import { DrawTool, ExtendedLayer } from "@amsterdam/arm-draw";
 import { useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
 import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
 import { Tree } from "../../__mocks__/pinsTreesListMocks";
 import treesListMocks, {
   CircleMarkerTreeInfo,
 } from "../../__mocks__/treesListMocks";
 import CirclesTrees from "./CirclesTrees";
-import ResultsPanel, { Overlay } from "./ResultsPanel";
+import {
+  DrawPanel,
+  StyledDrawToolOpenButton,
+  StyledMap,
+  StyledParagraph,
+  StyledResults,
+  StyledViewerContainer,
+  StyledZoomPanel,
+} from "./MapStyles";
+import { Overlay } from "./ResultsPanel";
 
 const getTrees = loader("./getTrees.graphql");
-
-const StyledMap = styled(Map)`
-  height: 600px;
-  overflow: hidden;
-`;
-
-const StyledViewerContainer = styled(ViewerContainer)`
-  z-index: 400;
-  height: 640px;
-  margin-top: 40px;
-`;
-const StyledResults = styled(ResultsPanel)`
-  z-index: 400;
-  height: 600px;
-  margin: 100px;
-`;
-export const StyledParagraph = styled(Paragraph)`
-  background-color: ${themeColor("support", "focus")};
-  padding: 0 ${themeSpacing(4)};
-`;
 
 const LocationMap = () => {
   const [currentOverlay, setCurrentOverlay] = useState<Overlay>(Overlay.None);
@@ -63,22 +42,14 @@ const LocationMap = () => {
     4.8893335,
   ]);
 
-  console.log("currentOverlay", currentOverlay);
-  const [currentPinMarkerTreesGroup, setCurrentPinMarkerTreesGroup] = useState<
-    Tree
-  >();
   const [circleMarkersTreesList, setCircleMarkersTreesList] = useState<
     CircleMarkerTreeInfo[]
-  >([]);
+  >([...treesListMocks]); // ! MOCKED CIRCLES DATA ARRAY
   const [zoomLevelMap, setZoomLevelMap] = useState(mapInstance?.getZoom());
 
   const setMarkerData = () => {
     const result = data?.trees?.map((tree: any) => tree.geometry.coordinates);
     setCircleMarkersTreesList(result as any);
-
-    console.log(currentPinMarkerTreesGroup);
-    console.log("call this");
-    console.log("circleMarkersTreesList", circleMarkersTreesList);
   };
 
   const { loading, error: graphqlError, data, refetch } = useQuery(getTrees, {
@@ -95,8 +66,8 @@ const LocationMap = () => {
   });
 
   console.log(graphqlError);
-  console.log("data", data);
-  console.log("treesListMocks", treesListMocks);
+  // console.log("data", data);
+  // console.log("treesListMocks", treesListMocks);
 
   useEffect(() => {
     function onChange() {
@@ -132,16 +103,6 @@ const LocationMap = () => {
     };
   }, [loading, mapInstance, refetch, zoomLevel]);
 
-  // const updateTreesList = (id: string) => {
-  //   const updatedtreesList = treesList.map((item) => {
-  //     if (id === item.id) {
-  //       return { ...item, isOpen: !item.isOpen };
-  //     }
-  //     return item;
-  //   });
-  //   settreesList(updatedtreesList);
-  // };
-
   const selectCircleMarkerTree = (coordinates: LatLngTuple) => {
     const updatedDotsTreesList = circleMarkersTreesList.map((item) => {
       if (
@@ -152,7 +113,6 @@ const LocationMap = () => {
       }
       return item;
     });
-
     setCircleMarkersTreesList(updatedDotsTreesList);
   };
 
@@ -164,6 +124,10 @@ const LocationMap = () => {
 
   const handleDrawTool = (drawToolState: boolean) => () => {
     setShowDrawTool(drawToolState);
+  };
+
+  const handleDrawEnd = async (layer: ExtendedLayer) => {
+    console.log(layer);
   };
 
   const expandAccordionItemTreeInfo = (id: string) => {
@@ -188,7 +152,6 @@ const LocationMap = () => {
   };
 
   // const zoomLevel = mapInstance?.getZoom();
-
   console.log("current Overlay", currentOverlay);
 
   return (
@@ -205,10 +168,8 @@ const LocationMap = () => {
       }}
     >
       <StyledResults
-        currentPinMarkerTreesGroup={currentPinMarkerTreesGroup}
-        currentOverlay={Overlay.Results}
+        currentOverlay={currentOverlay}
         setCurrentOverlay={setCurrentOverlay}
-        setCurrentPinMarkerTreesGroup={setCurrentPinMarkerTreesGroup}
         zoomToCircleMarkerTreesGroup={zoomToCircleMarkerTreesGroup}
         getSelectedTreesGroupCoordinates={selectCircleMarkerTree}
         circleMarkersTreesList={circleMarkersTreesList}
@@ -224,60 +185,66 @@ const LocationMap = () => {
         }
         topRight={
           !showDrawTool ? (
-            <DrawToolOpenButton onClick={handleDrawTool(true)} />
+            <StyledDrawToolOpenButton onClick={handleDrawTool(true)} />
           ) : (
-            <DrawTool
-              onDrawEnd={async (layer: ExtendedLayer) => {
-                console.log(layer);
-              }}
-              onClose={handleDrawTool(false)}
-            />
+            <DrawPanel>
+              <DrawTool
+                onDrawEnd={handleDrawEnd}
+                onClose={handleDrawTool(false)}
+              />
+            </DrawPanel>
           )
         }
-        bottomRight={<Zoom />}
+        bottomRight={
+          <StyledZoomPanel>
+            <Zoom />
+          </StyledZoomPanel>
+        }
       />
-      {/*<MarkerClusterGroup*/}
-      {/*  optionsOverrides={{*/}
-      {/*    spiderfyOnMaxZoom: false,*/}
-      {/*    showCoverageOnHover: false,*/}
-      {/*    zoomToBoundsOnClick: true,*/}
-      {/*    maxClusterRadius: 50,*/}
-      {/*    chunkedLoading: true,*/}
-      {/*    disableClusteringAtZoom: 16,*/}
-      {/*  }}*/}
-      {/*  markers={createClusterMarkers({*/}
-      {/*    markers: [],*/}
-      {/*    events: {*/}
-      {/*      click: (e: any) => {*/}
-      {/*        setCurrentPinMarkerTreesGroup(e.latlng);*/}
-      {/*        setCurrentOverlay(Overlay.Results);*/}
+      {/* <MarkerClusterGroup
+        optionsOverrides={{
+          spiderfyOnMaxZoom: false,
+          showCoverageOnHover: false,
+          zoomToBoundsOnClick: true,
+          maxClusterRadius: 50,
+          chunkedLoading: true,
+          disableClusteringAtZoom: 16,
+        }}
+        markers={createClusterMarkers({
+          markers: markersTrees,
+          events: {
+            click: (e: any) => {
+              setCurrentPinMarkerTreesGroup(e.latlng);
+              setCurrentOverlay(Overlay.Results);
+              
+              const currentPinMarkerTreesGroup = trees.find((tree) => {
+                const { coordinates } = tree.geo.geometry;
+                return (
+                  coordinates[0] === e.latlng.lat &&
+                  coordinates[1] === e.latlng.lng
+                );
+              });
 
-      {/*        const currentPinMarkerTreesGroup = trees.find((tree) => {*/}
-      {/*          const { coordinates } = tree.geo.geometry;*/}
-      {/*          return (*/}
-      {/*            coordinates[0] === e.latlng.lat &&*/}
-      {/*            coordinates[1] === e.latlng.lng*/}
-      {/*          );*/}
-      {/*        });*/}
+              const currentDotsTreesList: any =
+                currentPinMarkerTreesGroup &&
+                Object.keys(currentPinMarkerTreesGroup).length > 0 &&
+                treesListMocks.filter(
+                  (tree) => tree.pinTreeId === currentPinMarkerTreesGroup.id
+                );
 
-      {/*        const currentDotsTreesList: any =*/}
-      {/*          currentPinMarkerTreesGroup &&*/}
-      {/*          Object.keys(currentPinMarkerTreesGroup).length > 0 &&*/}
-      {/*          treesListMocks.filter(*/}
-      {/*            (tree) => tree.pinTreeId === currentPinMarkerTreesGroup.id*/}
-      {/*          );*/}
-
-      {/*        setCircleMarkersTreesList(currentDotsTreesList);*/}
-      {/*        setCurrentPinMarkerTreesGroup(currentPinMarkerTreesGroup);*/}
-      {/*      },*/}
-      {/*    },*/}
-      {/*  })}*/}
-      {/*/>*/}
+              setCircleMarkersTreesList(currentDotsTreesList);
+              setCurrentPinMarkerTreesGroup(currentPinMarkerTreesGroup);
+            },
+          },
+        })}
+      /> */}
       {zoomLevel > 10 && (
         <CirclesTrees
           zoomLevelMap={zoomLevelMap}
           setCurrentOverlay={setCurrentOverlay}
-          circleMarkerTreesList={treesListMocks} // if no graphql data use mock data.
+          // if no graphql data use mock data.
+          // ! In this case uses mocked data
+          circleMarkerTreesList={circleMarkersTreesList}
           selectCircleMarkerTree={selectCircleMarkerTree}
         />
       )}

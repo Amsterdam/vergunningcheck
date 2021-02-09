@@ -68,3 +68,8 @@ export const FIGCAPTION = "figcaption";
 
 // Miscellaneous
 export const PHONE_NUMBER = "phone-number";
+
+// Accordion list
+export const ACCORDION_PAGINATION_CONTENT = "accordion-pagination-content";
+export const ACCORDION_PAGINATION_PREV = "accordion-pagination-previous";
+export const ACCORDION_PAGINATION_NEXT = "accordion-pagination-next";

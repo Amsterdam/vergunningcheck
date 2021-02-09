@@ -1,17 +1,18 @@
-import {
-  MapPanel,
-  MapPanelContent,
-  MapPanelDrawer,
-  MapPanelProvider,
-} from "@amsterdam/arm-core";
-import { Spinner, ViewerContainer } from "@amsterdam/asc-ui";
+import { MapPanelContent, MapPanelProvider } from "@amsterdam/arm-core";
+import { Spinner } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
-import { Tree } from "../../__mocks__/pinsTreesListMocks";
 import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
 import { AccordionList } from "../../atoms";
+import {
+  ArrowDown,
+  ArrowUp,
+  ButtonSlideDrawer,
+  StyledMapPanel,
+  StyledMapPanelDrawer,
+  StylerViewerContainer,
+} from "./ResultsPanelStyles";
 
 export enum Overlay {
   Results,
@@ -25,20 +26,10 @@ export enum SnapPoint {
   Closed,
 }
 
-const StylerViewerContainer = styled(ViewerContainer)`
-  z-index: 400;
-  // height: 400px;
-`;
-const StyledMapPanel = styled(MapPanel)`
-  z-index: 401;
-  top: 88px;
-  height: 600px;
-`;
-
 type Props = {
   currentOverlay: Overlay;
   setCurrentOverlay: (overlay: Overlay) => void;
-  showDesktopVariant: boolean;
+  showMobileVariant: boolean;
 };
 
 const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
@@ -48,9 +39,7 @@ const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
 };
 
 type ResultProps = {
-  currentPinMarkerTreesGroup: Tree | null;
   currentOverlay: Overlay;
-  setCurrentPinMarkerTreesGroup: any; // xxx
   setCurrentOverlay: (overlay: Overlay) => void;
   zoomToCircleMarkerTreesGroup: Function;
   getSelectedTreesGroupCoordinates: Function;
@@ -60,8 +49,6 @@ type ResultProps = {
 };
 
 const Results: React.FC<ResultProps> = ({
-  currentPinMarkerTreesGroup,
-  setCurrentPinMarkerTreesGroup,
   setCurrentOverlay,
   zoomToCircleMarkerTreesGroup,
   circleMarkersTreesList,
@@ -80,7 +67,6 @@ const Results: React.FC<ResultProps> = ({
   };
 
   const closeMapPanelContent = () => {
-    setCurrentPinMarkerTreesGroup(null);
     setCurrentOverlay(Overlay.None);
     zoomToCircleMarkerTreesGroup({});
   };
@@ -91,7 +77,7 @@ const Results: React.FC<ResultProps> = ({
     setTimeout(() => {
       setLoading(false);
     }, 700);
-  }, [currentPinMarkerTreesGroup]);
+  }, []);
 
   return (
     <MapPanelContent
@@ -114,10 +100,8 @@ const Results: React.FC<ResultProps> = ({
 };
 
 interface ResultsPanelProps {
-  currentPinMarkerTreesGroup: Tree | undefined;
   currentOverlay: Overlay;
   setCurrentOverlay: (overlay: Overlay) => void;
-  setCurrentPinMarkerTreesGroup: any; // xxx
   zoomToCircleMarkerTreesGroup: Function;
   getSelectedTreesGroupCoordinates: Function;
   circleMarkersTreesList: CircleMarkerTreeInfo[];
@@ -126,55 +110,57 @@ interface ResultsPanelProps {
 }
 
 const ResultsPanel: React.FC<ResultsPanelProps> = ({
-  currentPinMarkerTreesGroup,
   currentOverlay,
   setCurrentOverlay,
-  setCurrentPinMarkerTreesGroup,
   zoomToCircleMarkerTreesGroup,
   getSelectedTreesGroupCoordinates,
   circleMarkersTreesList,
   expandAccordionItemTreeInfo,
   deleteCircleMarkerTree,
 }) => {
-  const [showDesktopVariant] = useMatchMedia({
-    minBreakpoint: "tabletM",
+  const [isHideDrawer, setHideDrawer] = useState(false);
+
+  const [showMobileVariant] = useMatchMedia({
+    query: "(max-width: 880px)",
   });
 
-  if (!currentPinMarkerTreesGroup) {
+  const slideOutDrawer = () => setHideDrawer(!isHideDrawer);
+
+  if (currentOverlay !== 0) {
     return null;
   }
 
-  const Element = showDesktopVariant ? StyledMapPanel : MapPanelDrawer;
+  const Element = showMobileVariant ? StyledMapPanelDrawer : StyledMapPanel;
+
   return (
-    <div>
-      <MapPanelProvider
-        variant={showDesktopVariant ? "panel" : "drawer"}
-        initialPosition={SnapPoint.Full}
-      >
-        <Element>
-          <Results
-            {...{
-              currentPinMarkerTreesGroup,
-              currentOverlay,
-              setCurrentPinMarkerTreesGroup,
-              setCurrentOverlay,
-              zoomToCircleMarkerTreesGroup,
-              getSelectedTreesGroupCoordinates,
-              circleMarkersTreesList,
-              expandAccordionItemTreeInfo,
-              deleteCircleMarkerTree,
-            }}
-          />
-        </Element>
-        <ViewerContainerWithMapDrawerOffset
+    <MapPanelProvider
+      variant={showMobileVariant ? "drawer" : "panel"}
+      initialPosition={SnapPoint.Full}
+    >
+      <ButtonSlideDrawer onClick={slideOutDrawer}>
+        {isHideDrawer ? <ArrowDown /> : <ArrowUp />}
+      </ButtonSlideDrawer>
+      <Element isHide={isHideDrawer}>
+        <Results
           {...{
-            setCurrentOverlay,
             currentOverlay,
-            showDesktopVariant,
+            setCurrentOverlay,
+            zoomToCircleMarkerTreesGroup,
+            getSelectedTreesGroupCoordinates,
+            circleMarkersTreesList,
+            expandAccordionItemTreeInfo,
+            deleteCircleMarkerTree,
           }}
         />
-      </MapPanelProvider>
-    </div>
+      </Element>
+      <ViewerContainerWithMapDrawerOffset
+        {...{
+          setCurrentOverlay,
+          currentOverlay,
+          showMobileVariant,
+        }}
+      />
+    </MapPanelProvider>
   );
 };
 

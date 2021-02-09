@@ -6,7 +6,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
-import CircleIcon from "./circle-icon.png";
+import CircleIcon from "../../static/media/circle-icon.png";
 import { Overlay } from "./ResultsPanel";
 
 const CirclesTrees = ({
@@ -16,7 +16,7 @@ const CirclesTrees = ({
   setCurrentOverlay,
 }: {
   zoomLevelMap: number | undefined;
-  circleMarkerTreesList: any;
+  circleMarkerTreesList: CircleMarkerTreeInfo[];
   selectCircleMarkerTree: Function;
   setCurrentOverlay: Function;
 }) => {
@@ -26,13 +26,13 @@ const CirclesTrees = ({
         return [45, 45];
       }
       case 15: {
-        return [40, 40];
+        return [25, 25];
       }
       case 14: {
-        return [35, 35];
+        return [15, 15];
       }
       case 13: {
-        return [30, 30];
+        return [5, 5];
       }
       default: {
         return [20, 20];
@@ -45,8 +45,14 @@ const CirclesTrees = ({
     iconSize: setSizeSelectedCircle(zoomLevelMap),
   });
 
-  const selectTree = (coords: LatLngTuple) => () =>
+  const selectGreenCircle = (coords: LatLngTuple) => () => {
     selectCircleMarkerTree(coords);
+  };
+
+  const selectRedCircle = (coords: LatLngTuple) => () => {
+    setCurrentOverlay(Overlay.Results);
+    selectCircleMarkerTree(coords);
+  };
 
   return (
     <>
@@ -64,7 +70,7 @@ const CirclesTrees = ({
                   icon: SelectedRedCircleIcon,
                 }}
                 events={{
-                  click: selectTree(treesListCoordinates),
+                  click: selectGreenCircle(treesListCoordinates),
                 }}
               />
             );
@@ -82,11 +88,7 @@ const CirclesTrees = ({
                 fillOpacity: 1,
               }}
               events={{
-                click: () => {
-                  setCurrentOverlay(Overlay.Results);
-                  console.log("show results");
-                  selectTree(treesListCoordinates);
-                },
+                click: selectRedCircle(treesListCoordinates),
               }}
               args={[treesListCoordinates]}
             />
