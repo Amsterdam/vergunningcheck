@@ -17,7 +17,7 @@ type OloUrlProps = {
   postalCode: string;
 };
 
-const oloHome: string = "https://www.omgevingsloket.nl/";
+export const oloHome: string = "https://www.omgevingsloket.nl/";
 
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;

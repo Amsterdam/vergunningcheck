@@ -21,7 +21,7 @@ const OutcomeWrapper = styled.div`
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const slug = useSlug();
-  const { isPermitForm } = useTopic();
+  const { isPermitCheck } = useTopic();
   const { t } = useTranslation();
 
   if (!checker) return null;
@@ -34,7 +34,8 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { isActive, isCompleted } = currentSection;
 
   const outcomeType = checker.getClientOutcomeType();
-  const showDiscaimer = outcomeType !== ClientOutcomes.NEED_CONTACT;
+  const showDiscaimer =
+    outcomeType !== ClientOutcomes.NEED_CONTACT && isPermitCheck;
 
   // Define the content for the Outcome components
   const outcomeContent = getOutcomeContent(checker, slug);
@@ -49,22 +50,18 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   // @TODO: fix the active style in a proper way without `style`
   const activeStyle = { marginTop: -1, borderColor: "white" };
 
-  // @TODO: place outside this component
-  const Outcome = () =>
-    isPermitForm ? (
-      <div>Hier uw aanvraag formulier</div>
-    ) : (
-      <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
-        <OutcomeContent
-          {...{
-            outcomeContent,
-            outcomeType,
-            showDiscaimer,
-          }}
-        />
-        {showDiscaimer && <Disclaimer />}
-      </OutcomeWrapper>
-    );
+  const Outcome = () => (
+    <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
+      <OutcomeContent
+        {...{
+          outcomeContent,
+          outcomeType,
+          showDiscaimer,
+        }}
+      />
+      {showDiscaimer && <Disclaimer />}
+    </OutcomeWrapper>
+  );
 
   return (
     <StepByStepItem

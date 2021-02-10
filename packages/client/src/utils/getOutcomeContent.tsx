@@ -8,6 +8,7 @@ import {
   NeedPermit,
   PermitFree,
 } from "../components/Outcome";
+import CuttingTreeFormOutcome from "../components/Outcome/CuttingTreeFormOutcome";
 import { urls } from "../config";
 import { eventNames, sections } from "../config/matomo";
 import nl from "../i18n/nl";
@@ -133,6 +134,10 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
     },
+    formulier: {
+      mainContent: <CuttingTreeFormOutcome />,
+      title: nl.translation.outcome.cuttingTreeForm.title,
+    },
   };
 
   // Get the current outcome
@@ -140,6 +145,9 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
 
   if (slug === "bouwwerk-slopen") {
     return contents.demolition[outcomeType] as OutcomeContentType;
+  }
+  if (slug === "formulier") {
+    return contents.formulier as OutcomeContentType;
   }
   return contents.default[outcomeType] as OutcomeContentType;
 };

@@ -2,6 +2,7 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      "download form": "Aanvraag formulier downloaden",
       edit: "Wijzig",
       "housenumber label": "Huisnummer + toevoeging",
       next: "Volgende",
@@ -12,7 +13,9 @@ export default {
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
+      "save outcome": "Uitkomst opslaan",
       "to the questions": "Naar de vragen",
+      "to the olo": "Naar het Omgevingsloket",
       unknown: "Onbekend",
       yes: "Ja",
     },
@@ -194,6 +197,17 @@ export default {
         "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
         "you dont need a permit for demolition":
           "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
+      },
+      cuttingTreeForm: {
+        title: "Hier uw aanvraag formulier",
+        "pictures of the tree": "Een foto van de boom / bomen.",
+        "you are done with the form and you can download it": `U bent klaar met het aanvraagformulier. U kunt deze downloaden en
+        meesturen in het Omgevingsloket. In het Omgevingloket vragen ze nog naar
+        een aantal bijlagen, denk aan bijvoorbeeld:`,
+        "a plan with the situation and the tree ids":
+          "Een plan met situering en nummering van de boom waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte.",
+        "a written report":
+          "Een schriftelijk verslag, als u overleg hebt gehad met omwonenden en/of overige belanghebbenden.",
       },
     },
   },

@@ -109,8 +109,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       if (!checker) return;
 
       if (isPermitForm) {
-        // @TODO: track event
-
         goToNextSection();
       } else {
         const question = checker.stack[questionIndex];

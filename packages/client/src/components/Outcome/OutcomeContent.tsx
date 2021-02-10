@@ -1,15 +1,17 @@
-// @TODO: TRANSLATE
 import { Heading, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { isIE, isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms";
+import { Button, ComponentWrapper, HideForPrint } from "../../atoms";
+import { oloHome } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
-import { useTracking } from "../../hooks";
+import { useTopic, useTracking } from "../../hooks";
 import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
+import Link from "../Link";
 import NewCheckerModal from "./NewCheckerModal";
 
 const OutcomeContentWrapper = styled.div<{ showDiscaimer?: boolean }>`
@@ -33,7 +35,10 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   outcomeType,
   showDiscaimer,
 }) => {
+  const { isPermitCheck, isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
+  const { t } = useTranslation();
+
   const { footerContent, mainContent, title } = outcomeContent;
 
   const handlePrintButton = () => {
@@ -55,14 +60,18 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
 
       <HideForPrint>
         {!isIE && !isMobile && (
-          <PrintButton
+          <Button
             data-testid={PRINT_BUTTON}
-            marginBottom={outcomeType === ClientOutcomes.PERMIT_FREE ? 32 : 40}
+            marginBottom={
+              isPermitCheck && outcomeType === ClientOutcomes.PERMIT_FREE
+                ? 8
+                : 10
+            }
             onClick={handlePrintButton}
-            variant="textButton"
+            variant={isPermitCheck ? "textButton" : "primary"}
           >
-            Uitkomst opslaan
-          </PrintButton>
+            {t(isPermitForm ? "common.download form" : "common.save outcome")}
+          </Button>
         )}
       </HideForPrint>
 
@@ -70,10 +79,23 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
         {footerContent}
       </ComponentWrapper>
 
-      <HideForPrint>
-        <NewCheckerModal />
-        {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
-      </HideForPrint>
+      {isPermitCheck && (
+        <HideForPrint>
+          <NewCheckerModal />
+          {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
+        </HideForPrint>
+      )}
+
+      {isPermitForm && (
+        <Link
+          eventName={t("common.to the olo")}
+          href={oloHome}
+          target="_blank"
+          variant="inline"
+        >
+          {t("common.to the olo")}
+        </Link>
+      )}
     </OutcomeContentWrapper>
   );
 };
