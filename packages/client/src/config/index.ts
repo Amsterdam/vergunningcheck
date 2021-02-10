@@ -185,7 +185,7 @@ export const topics: Topic[] = [
   },
   {
     name: "Bomen kappen",
-    slug: "formulier",
+    slug: "formulier-bomenkap",
     text: {
       heading: "Formulier aanvraag bomenkap",
     },

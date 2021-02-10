@@ -1,0 +1,159 @@
+{
+  "permits": [
+    {
+      "version": 23,
+      "name": "Conclusie Vellen houtopstand - formulier Robin [IN ONTWIKKELING]",
+      "questions": [
+        {
+          "text": "Wat wilt u gaan doen?",
+          "description": "Bij kappen wordt de boom boven de grond gekapt.\n\nBij rooien wordt de boom en het wortelgestel geheel verwijderd\n\nBij kandelaberen wordt de boom gesnoeid met behoud van de hoofdtakken (minimaal 20% van de zijtakken worden verwijderd)\n\nBij verplanten wordt de boom met wortel en al op een andere plek geplant",
+          "options": [
+            "kappen",
+            "rooien",
+            "kandelaberen",
+            "verplanten",
+            "andere handelingen die een boom kunnen ontsieren, beschadigen of doden"
+          ],
+          "type": "string",
+          "prio": 10,
+          "id": "069727e9170dd08073dc8f8f79c2de64"
+        },
+        {
+          "text": "Om hoeveel bomen gaat het?",
+          "description": "Deze vraag wordt automatisch beantwoordt en overgeslagen (afhankelijk van hoeveel bomen er zijn geselecteerd op de kaart)",
+          "options": ["een", "twee"],
+          "type": "string",
+          "prio": 20,
+          "id": "92fb683f6ebb3f4236be977e063b2fb0"
+        },
+        {
+          "text": "Beschrijf per boom om welke soort het gaat",
+          "options": ["iep", "spar"],
+          "type": "string",
+          "prio": 30,
+          "id": "8982171b31f85f80c8ba4c7f10ed17ce"
+        },
+        {
+          "text": "Waarom wilt u de activiteit uitvoeren?",
+          "type": "boolean",
+          "prio": 40,
+          "id": "0f2b67c9c3ad46e56239acba7cd6bfa9"
+        },
+        {
+          "text": "Gaat het om 1 of meerdere bomen die zijn geplant vanwege een herplantplicht?",
+          "description": "Indien ja, geef dit aan in het kapplan",
+          "type": "boolean",
+          "prio": 50,
+          "id": "c736c9c9e8625576aa6898d9a945f356"
+        },
+        {
+          "text": "Beschrijf per boom of er een mogelijkheid is tot herplanten en of u van plan bent dat te gaan doen. Vermeld op welke locatie en met welke soorten u dat wilt gaan doen",
+          "type": "boolean",
+          "prio": 60,
+          "id": "990872f2485c011942f1d84c1210a39c"
+        },
+        {
+          "text": "Is er sprake van 1 of meer dode bomen?",
+          "description": "Indien ja, geef dit aan in het kapplan",
+          "type": "boolean",
+          "prio": 70,
+          "id": "f4f7567f0d87cc188f4706e35a208878"
+        },
+        {
+          "text": "Staat 1 van de bomen op een lijst met beschermenswaardige bomen?",
+          "description": "Deze vraag wordt automatisch beantwoordt a.d.h.v. de data van de geselecteerde bomen",
+          "type": "boolean",
+          "prio": 80,
+          "id": "799d94826b0e3b5ba9e2c831d661165a"
+        },
+        {
+          "text": "Is er sprake van noodkap?",
+          "type": "boolean",
+          "prio": 90,
+          "id": "7339d221040c9c7b0f3d709b4e9ed9bb"
+        },
+        {
+          "text": "Toelichting",
+          "type": "boolean",
+          "prio": 100,
+          "id": "6db51a9d84ce5330328f55d206f2fb13"
+        },
+        {
+          "text": "Bij de aanvraag moet u de volgende gegevens aanleveren",
+          "type": "boolean",
+          "prio": 110,
+          "id": "df00aec760c01155e7798a1936819f99"
+        },
+        {
+          "text": "Een plan met situering en nummering van de boom of bomen waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte",
+          "type": "boolean",
+          "prio": 120,
+          "id": "523ca44aee6353d63598e4b70b701506"
+        },
+        {
+          "text": "Voeg hier een foto toe van de boom of bomen",
+          "type": "boolean",
+          "prio": 130,
+          "id": "43b812a23d22b5f2abe581fdac022e73"
+        },
+        {
+          "text": "In geval van noodkap een schriftelijke onderbouwing waaruit blijkt dat er acuut gevaar voor de directe omgeving is",
+          "type": "boolean",
+          "prio": 140,
+          "id": "68318afa8828cc600bc23abcd06af47c"
+        },
+        {
+          "text": "Als u overleg hebt gehad met omwonenden en/of overige belanghebbenden voeg dan hier een schriftelijk verslag toe",
+          "type": "boolean",
+          "prio": 150,
+          "id": "9875ed0bb3c1e8099f2b189eeb5242d7"
+        },
+        {
+          "text": "Een veiligheidsplan voor de uitvoer van de activiteiten",
+          "type": "boolean",
+          "prio": 160,
+          "id": "ab5a7cbc6861ee1ab225af9899806b21"
+        },
+        {
+          "text": "Een uitvoeringsplan of onderbouwing voor het herplanten van nieuwe bomen of struiken.",
+          "type": "boolean",
+          "prio": 170,
+          "id": "f0dc9e8eba953e3eb384751e27518718"
+        }
+      ],
+      "decisions": {
+        "76bb4aeaa3ab46269852949054f4491c": {
+          "requiredInputs": ["f0dc9e8eba953e3eb384751e27518718"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["76bb4aeaa3ab46269852949054f4491c"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "formulier-bomenkap"
+}

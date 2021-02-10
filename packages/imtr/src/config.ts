@@ -36,10 +36,9 @@ export const apis: APIConfig[] = [
         "AkxinYRNNo679qi6T", // monument
         "TuP6ido9xpJSSxjLi", // construction
       ],
-      // @TODO: this is a test, and should be replaced with proper imtr files
-      formulier: [
-        // doing something to a tree
-        "TuP6ido9xpJSSxjLi", // construction
+      "formulier-bomenkap": [
+        // @TODO: this is a test, and should be replaced with proper imtr files
+        "Bahjnv7zHzRCW9fiD", // form for cutting a tree
       ],
     },
   },
