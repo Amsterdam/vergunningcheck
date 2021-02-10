@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 import { useChecker, useSlug, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
-import { isPermitForm } from "../../utils";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
 import Disclaimer from "../Disclaimer";
@@ -22,7 +21,7 @@ const OutcomeWrapper = styled.div`
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
   const slug = useSlug();
-  const topic = useTopic();
+  const { isPermitForm } = useTopic();
   const { t } = useTranslation();
 
   if (!checker) return null;
@@ -52,7 +51,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
 
   // @TODO: place outside this component
   const Outcome = () =>
-    isPermitForm(topic) ? (
+    isPermitForm ? (
       <div>Hier uw aanvraag formulier</div>
     ) : (
       <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>

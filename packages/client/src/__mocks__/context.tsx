@@ -4,14 +4,14 @@ import { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { SessionContext } from "../SessionContext";
-import { Address, Topic } from "../types";
+import { Address, TopicConfig } from "../types";
 
 type SessionContextProviderProps = {
   addressMock?: Address;
   answers?: imtr.Answers;
   checker?: imtr.Checker;
   questionIndex?: number;
-  topicMock: Topic;
+  topicMock: TopicConfig;
 };
 
 const SessionContextProvider: FunctionComponent<SessionContextProviderProps> = ({

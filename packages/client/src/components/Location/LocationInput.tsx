@@ -9,7 +9,7 @@ import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { Address } from "../../types";
-import { getRestrictionByTypeName, hasIMTR } from "../../utils";
+import { getRestrictionByTypeName } from "../../utils";
 import { LOCATION_INPUT } from "../../utils/test-ids";
 import Error from "../Error";
 import Form from "../Form";
@@ -33,7 +33,7 @@ const LocationInput = ({
   const { topicData, setTopicData } = useTopicData();
   const { t } = useTranslation();
 
-  const { slug, text } = topic;
+  const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
   const [focus, setFocus] = useState(false);
@@ -54,7 +54,7 @@ const LocationInput = ({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
           // @TODO: there's a small bug here with directly going to OUTCOME when there's no questions to render
-          hasIMTR(topic) ? sections.QUESTIONS : sections.LOCATION_RESULT
+          hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
       matomoTrackEvent({
@@ -113,7 +113,7 @@ const LocationInput = ({
         </Error>
       )}
 
-      {!hasIMTR(topic) && (
+      {!hasIMTR && (
         <Heading forwardedAs="h3">
           {t("location.address.enter address")}
         </Heading>
@@ -132,13 +132,11 @@ const LocationInput = ({
           }}
         />
         <Nav
-          nextText={
-            hasIMTR(topic) ? t("common.to the questions") : t("common.next")
-          }
-          noMarginBottom={!hasIMTR(topic)}
+          nextText={hasIMTR ? t("common.to the questions") : t("common.next")}
+          noMarginBottom={!hasIMTR}
           onGoToPrev={onGoToPrev}
           showNext
-          showPrev={hasIMTR(topic)}
+          showPrev={hasIMTR}
         />
       </Form>
     </>

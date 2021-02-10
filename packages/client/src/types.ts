@@ -91,7 +91,7 @@ export enum TopicType {
   REDIRECT, // A direct redirect to "OLO". We only use this to track the visitor count from amsterdam.nl
 }
 
-export type Topic = {
+export type TopicConfig = {
   intro?: string;
   name: string;
   slug: string;

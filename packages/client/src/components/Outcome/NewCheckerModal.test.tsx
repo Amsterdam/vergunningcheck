@@ -2,7 +2,7 @@ import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
 import { actions, eventNames } from "../../config/matomo";
-import { Topic } from "../../types";
+import { TopicConfig } from "../../types";
 import { findTopicBySlug } from "../../utils";
 import {
   MODAL,
@@ -20,7 +20,7 @@ import {
 } from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
-const customTopic = findTopicBySlug("dakraam-plaatsen") as Topic;
+const customTopic = findTopicBySlug("dakraam-plaatsen") as TopicConfig;
 
 const mockAddress = {
   ...addressGraphQLMock[0].result.data.findAddress.exactMatch,

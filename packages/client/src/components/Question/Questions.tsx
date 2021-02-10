@@ -19,7 +19,7 @@ import {
   useTracking,
 } from "../../hooks";
 import { Answer, SectionFunctions } from "../../types";
-import { isPermitForm, scrollToRef } from "../../utils";
+import { scrollToRef } from "../../utils";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
@@ -44,14 +44,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const [contactOutcome, setContactOutcome] = useState(false);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const slug = useSlug();
-  const topic = useTopic();
+  const { isPermitForm } = useTopic();
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
   const { address, questionIndex } = topicData;
   const { goToNextSection } = sectionFunctions;
 
-  const isForm = isPermitForm(topic);
   const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION, GOTO_OUTCOME } = eventNames;
   const { EDIT_QUESTION } = actions;
 
@@ -109,7 +108,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     (isUserEvent = true) => {
       if (!checker) return;
 
-      if (isForm) {
+      if (isPermitForm) {
         // @TODO: track event
 
         goToNextSection();
@@ -264,7 +263,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   if (!checker) return null;
 
   // Show all questions in case of an active Form
-  const showAllQuestions = isForm && address && isActive;
+  const showAllQuestions = isPermitForm && address && isActive;
 
   // @TODO: fix this style
   // Styling to overwrite the line between the Items
@@ -390,7 +389,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         }
 
         // Check if current question is causing a permit requirement
-        const showQuestionAlert = !!permitsPerQuestion[i] && !isForm;
+        const showQuestionAlert = !!permitsPerQuestion[i] && !isPermitForm;
 
         // Define the outcome type
         const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
@@ -402,19 +401,19 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         return (
           <StepByStepItem
-            active={isForm ? true : isCurrentQuestion} // @TODO refactor this ternary
+            active={isPermitForm ? true : isCurrentQuestion} // @TODO refactor this ternary
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
-            highlightActive={isForm ? isActive : isCurrentQuestion}
+            highlightActive={isPermitForm ? isActive : isCurrentQuestion}
             key={`question-${q.id}-${i}`}
-            style={isCurrentQuestion || isForm ? activeStyle : {}}
+            style={isCurrentQuestion || isPermitForm ? activeStyle : {}}
           >
-            {isCurrentQuestion || (isForm && isActive) ? (
+            {isCurrentQuestion || (isPermitForm && isActive) ? (
               // Show the current question
               <Question
-                hideNav={isForm && (!isFinalQuestion || !isActive)}
+                hideNav={isPermitForm && (!isFinalQuestion || !isActive)}
                 question={q}
                 onGoToPrev={handlePrevQuestion}
                 onGoToNext={handleNextQuestion}
@@ -448,7 +447,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         const index = i + 1 + checker.stack.length;
 
         // Check if current question is causing a outcome
-        const showQuestionAlert = !!permitsPerQuestion[index] && !isForm;
+        const showQuestionAlert = !!permitsPerQuestion[index] && !isPermitForm;
 
         // Disable the EditButton or not
         const disabled = checker.isConclusive() || disableFutureQuestions;
@@ -467,14 +466,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             customSize
             data-testid={QUESTION}
             heading={q.text}
-            highlightActive={isForm && isActive}
+            highlightActive={isPermitForm && isActive}
             key={`question-${q.id}-${index}`}
-            style={isForm ? activeStyle : {}}
+            style={isPermitForm ? activeStyle : {}}
           >
-            {isForm && isActive ? (
+            {isPermitForm && isActive ? (
               // Show all questions
               <Question
-                hideNav={isForm && (!isFinalQuestion || !isActive)}
+                hideNav={isPermitForm && (!isFinalQuestion || !isActive)}
                 question={q}
                 onGoToNext={handleNextQuestion}
                 showNext

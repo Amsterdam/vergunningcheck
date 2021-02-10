@@ -7,7 +7,7 @@ import styled, { css } from "styled-components";
 import { ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
 import { Address } from "../../types";
-import { getRestrictionByTypeName, hasIMTR } from "../../utils";
+import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
   LOCATION_RESTRICTION_MONUMENT,
@@ -58,7 +58,7 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   showEditLocationModal,
   showTitle,
 }) => {
-  const topic = useTopic();
+  const { hasIMTR } = useTopic();
   const { topicData } = useTopicData();
   const address = addressFromLocation ?? topicData.address;
 
@@ -74,15 +74,15 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
     setTag("cityscape", cityScape);
   }
 
-  const showSummary = !!(monument || cityScape || !hasIMTR(topic));
+  const showSummary = !!(monument || cityScape || !hasIMTR);
 
   return (
-    <ComponentWrapper marginBottom={hasIMTR(topic) ? 4 : undefined}>
+    <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>
       <AddressLines
         address={address}
         editAddressRenderer={
           () => showEditLocationModal && <EditLocationModal />
-          // @TODO: only show the Modal `!isPermitForm(topic)`?
+          // @TODO: only show the Modal `!isPermitForm`?
         }
         gutterBottom={showSummary ? 16 : 0}
       />
@@ -98,18 +98,18 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
           compactThemeSpacing={isBelowInputFields}
           data-testid={LOCATION_SUMMARY}
           isBelowInputFields={isBelowInputFields}
-          noMarginBottom={isBelowInputFields || hasIMTR(topic)}
+          noMarginBottom={isBelowInputFields || hasIMTR}
           noPadding
           variant="bullet"
         >
-          {(monument || !hasIMTR(topic)) && (
+          {(monument || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_MONUMENT}>
               {monument
                 ? `Het gebouw is een ${monument.toLowerCase()}.`
                 : "Het gebouw is geen monument."}
             </StyledListItem>
           )}
-          {(cityScape || !hasIMTR(topic)) && (
+          {(cityScape || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_CITYSCAPE}>
               {cityScape
                 ? `Het gebouw ligt in een ${

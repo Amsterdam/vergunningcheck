@@ -26,7 +26,7 @@ const OutcomeWrapper = styled.div`
 
 const Outcome: FunctionComponent = () => {
   const { checker } = useChecker();
-  const topic = useTopic();
+  const { name } = useTopic();
   const { t } = useTranslation();
 
   const {
@@ -138,7 +138,7 @@ const Outcome: FunctionComponent = () => {
 
   // This part can be refactored whenever we have another checker that have custom outcomes
   const checkerContent =
-    topic.name === "Bouwwerk slopen" ? contents.demolition : contents.default;
+    name === "Bouwwerk slopen" ? contents.demolition : contents.default;
 
   const outcomeContent = checkerContent[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;

@@ -4,12 +4,10 @@ import addressMock from "../__mocks__/addressMock";
 import mockTopics from "../__mocks__/topicsMock.json";
 import { topics } from "../config";
 import nl from "../i18n/nl";
-import { Topic } from "../types";
 import {
   findTopicBySlug,
   getAnswerLabel,
   getRestrictionByTypeName,
-  hasIMTR,
   isEmptyObject,
   isValidPostalcode,
   removeQueryStrings,
@@ -141,8 +139,8 @@ describe("util", () => {
   });
 
   test("findTopicBySlug", () => {
-    expect(findTopicBySlug("")).toBe(null);
-    expect(findTopicBySlug("wrong")).toBe(null);
+    expect(findTopicBySlug("")).toBe(undefined);
+    expect(findTopicBySlug("wrong")).toBe(undefined);
     expect(findTopicBySlug(topics[0].slug)).toBe(topics[0]);
 
     // 'Find' an "unconfigured" topic
@@ -173,28 +171,5 @@ describe("util", () => {
     expect(
       getRestrictionByTypeName(addressMock.restrictions, "monument")
     ).toStrictEqual({ __typename: "Monument", name: "monument" });
-  });
-
-  // hasIMTR
-  describe("hasIMTR", () => {
-    const shouldHaveIMTR = findTopicBySlug("dakkapel-plaatsen") as Topic;
-    // Beware, this topic might get an IMTR file in the future..
-    const shouldNotHaveIMTR = findTopicBySlug("kappen-of-snoeien") as Topic;
-
-    test("should succeed", () => {
-      expect(hasIMTR(shouldHaveIMTR)).toBe(true);
-    });
-    test("should fail", () => {
-      expect(hasIMTR(shouldNotHaveIMTR)).toBe(false);
-    });
-
-    test("should work with mockTopics", () => {
-      mockTopics.flat().forEach((apiTopic) => {
-        // Loop through all api topics
-        const topic = findTopicBySlug(apiTopic.slug) || undefined;
-        // If a client topic exists expect an IMTR file to also exist
-        expect(hasIMTR(topic)).toBe(!!topic);
-      });
-    });
   });
 });

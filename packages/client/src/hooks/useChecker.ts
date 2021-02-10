@@ -4,14 +4,13 @@ import { useContext, useEffect, useState } from "react";
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
 import topicsJson from "../topics.json";
-import { hasIMTR } from "../utils/index";
 import { useTopic, useTopicData } from "./";
 
 export default () => {
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();
-  const topic = useTopic();
+  const { hasIMTR, slug } = useTopic();
   const { topicData } = useTopicData();
 
   useEffect(() => {
@@ -28,12 +27,10 @@ export default () => {
 
   const initChecker = async () => {
     // Load the checker if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    const loadChecker = !checker && !error && hasIMTR(topic);
+    const loadChecker = !checker && !error && hasIMTR;
     if (loadChecker) {
       try {
-        const topicConfig = topicsJson
-          .flat()
-          .find((t) => t.slug === topic.slug) as {
+        const topicConfig = topicsJson.flat().find((t) => t.slug === slug) as {
           path: string;
         };
 

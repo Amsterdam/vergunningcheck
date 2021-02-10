@@ -11,7 +11,6 @@ import { useChecker, useTopic, useTopicData, useTracking } from "../../hooks";
 import MapLarge from "../../static/media/map-large.png";
 import MapSmall from "../../static/media/map-small.png";
 import { Address, SectionComponent } from "../../types";
-import { isPermitForm } from "../../utils";
 import { LOCATION_SECTION } from "../../utils/test-ids";
 import Form from "../Form";
 import Nav from "../Nav";
@@ -26,7 +25,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     setTopicData,
     topicData: { address, sectionData, timesLoaded },
   } = useTopicData();
-  const topic = useTopic();
+  const { isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -36,10 +35,12 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   } = props;
   const { isActive, isCompleted } = currentSection;
 
-  const isForm = isPermitForm(topic);
-
   // Show the Location Section only when required by `hasDataNeeds`
-  const skipLocationSection = !!(checker && !getDataNeed(checker) && !isForm);
+  const skipLocationSection = !!(
+    checker &&
+    !getDataNeed(checker) &&
+    !isPermitForm
+  );
 
   useEffect(() => {
     if (timesLoaded === 1 && !skipLocationSection && !address) {
@@ -119,7 +120,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     });
   };
 
-  const heading = isForm
+  const heading = isPermitForm
     ? t("location.map.heading")
     : t("location.address.heading");
 
@@ -138,7 +139,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       style={activeStyle}
       {...{ heading }}
     >
-      {isForm && (
+      {isPermitForm && (
         // warning: this is only for demo purposes!
         // START DEMO
         <>
@@ -174,7 +175,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
         // END DEMO
       )}
 
-      {!isForm && (
+      {!isPermitForm && (
         <>
           {isActive ? (
             <LocationInput

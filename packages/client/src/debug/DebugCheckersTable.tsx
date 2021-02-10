@@ -11,17 +11,16 @@ import { topics } from "../config";
 import { geturl, routes } from "../routes";
 import apiTopics from "../topics.json";
 import { ApiTopic } from "../types";
-import { hasIMTR, isPermitCheck, isPermitForm, isRedirect } from "../utils";
 
 const StyledHeading = styled(Heading)`
   margin: ${themeSpacing(4, 0, 2)};
 `;
 
 const findClientTopic = (apiTopic: ApiTopic) =>
-  topics.find((topic) => topic.slug === apiTopic.slug);
+  topics.find(({ slug }) => slug === apiTopic.slug);
 
 const returnedData = (apiTopic: ApiTopic) => {
-  const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
+  const imtrTopic = topics.find(({ slug }) => slug === apiTopic.slug);
 
   const title = imtrTopic
     ? imtrTopic.name
@@ -82,7 +81,9 @@ const DebugCheckersTable: FunctionComponent = () => {
           </tr>
           {apiTopics.map((apiTopic) =>
             apiTopic
-              .filter((apiTopic) => isPermitCheck(findClientTopic(apiTopic)))
+              .filter(
+                (apiTopic) => findClientTopic(apiTopic)?.isConfiguredPermitCheck
+              )
               .map((apiTopic) => returnedData(apiTopic))
           )}
 
@@ -94,9 +95,10 @@ const DebugCheckersTable: FunctionComponent = () => {
             </td>
           </tr>
           {topics
+            // Filter OLO flows topics (topics without IMTR file and are configured to be isPermitCheck or Redirect)
             .filter(
-              (topic) =>
-                !hasIMTR(topic) && (isPermitCheck(topic) || isRedirect(topic))
+              ({ hasIMTR, isPermitCheck, isRedirect }) =>
+                !hasIMTR && (isPermitCheck || isRedirect)
             )
             .map((topic) => {
               const { slug, name } = topic;
@@ -105,7 +107,7 @@ const DebugCheckersTable: FunctionComponent = () => {
                   <td>
                     <Link to={geturl(slug)}>{name}</Link>
                   </td>
-                  <td>{isRedirect(topic) ? "redirect" : "OLO"}</td>
+                  <td>{topic.isRedirect ? "redirect" : "OLO"}</td>
                   <td>n.a.</td>
                   <td>0</td>
                 </tr>
@@ -119,7 +121,7 @@ const DebugCheckersTable: FunctionComponent = () => {
           </tr>
           {apiTopics.map((apiTopic) =>
             apiTopic
-              .filter((apiTopic) => isPermitForm(findClientTopic(apiTopic)))
+              .filter((apiTopic) => findClientTopic(apiTopic)?.isPermitForm)
               .map((apiTopic) => returnedData(apiTopic))
           )}
 

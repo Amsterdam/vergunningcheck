@@ -8,7 +8,7 @@ import { urls } from "../../config";
 import { useTopic } from "../../hooks";
 
 const OloRedirectPage: FunctionComponent = () => {
-  const topic = useTopic();
+  const { text } = useTopic();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const OloRedirectPage: FunctionComponent = () => {
     <TopicLayout>
       <Helmet>
         <title>
-          {t("oloRedirectPage.page title")} - {topic.text.heading}
+          {t("oloRedirectPage.page title")} - {text.heading}
         </title>
       </Helmet>
       <Heading forwardedAs="h2">{t("common.one moment please")}</Heading>

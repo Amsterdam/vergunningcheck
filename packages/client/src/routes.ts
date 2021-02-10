@@ -32,11 +32,12 @@ export const geturl = (route: string, params?: { slug: string }) => {
 };
 
 export const apiTopicSlugs = apiTopics.flatMap((apiTopic) =>
-  apiTopic.map((t) => t.slug)
+  apiTopic.map(({ slug }) => slug)
 );
 
 export const imtrSlugs = apiTopicSlugs.join("|");
 
+// Get all OLO permit checks by fetching all `PERMIT_CHECK` and filter to see if they have an actual api topic file
 export const oloSlugs = findAllTopicsByType(TopicType.PERMIT_CHECK)
   .filter((t) => !apiTopicSlugs.find((apiSlug) => apiSlug === t.slug))
   .map((t) => t.slug)

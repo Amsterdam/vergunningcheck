@@ -7,7 +7,7 @@ import { ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { Answer } from "../../types";
-import { getAnswerLabel, isPermitForm } from "../../utils";
+import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
 import Answers from "../Answers";
 import Form from "../Form";
@@ -43,11 +43,9 @@ const Question: FunctionComponent<QuestionProps> = ({
   const {
     topicData: { questionIndex },
   } = useTopicData();
-  const topic = useTopic();
+  const { isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
-
-  const isForm = isPermitForm(topic);
 
   const {
     answer,
@@ -120,9 +118,9 @@ const Question: FunctionComponent<QuestionProps> = ({
 
       {!hideNav && (
         <Nav
-          formEnds={isCheckerConclusive() || isForm}
+          formEnds={isCheckerConclusive() || isPermitForm}
           nextText={
-            isForm
+            isPermitForm
               ? "Ga naar volgende stap"
               : isCheckerConclusive()
               ? t("outcome.goToOutcome")
