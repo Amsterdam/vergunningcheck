@@ -8,8 +8,8 @@
  * type: See {TopicType} for the different types of Topic
  */
 
-import apiTopics from "../topics.json";
-import { TopicConfig, TopicType } from "../types";
+import Topic from "../models/topic";
+import { TopicType } from "../types";
 
 type OloUrlProps = {
   houseNumber: number;
@@ -44,46 +44,6 @@ export const generateOloUrl = ({
   // Redirect user to OLO with all parameters
   return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
-
-export class Topic {
-  readonly intro?: string;
-  readonly name: string;
-  readonly slug: string;
-  readonly text: any;
-  readonly type: TopicType;
-
-  // readonly hasIMTR: boolean;
-
-  constructor(config: TopicConfig) {
-    this.intro = config.intro;
-    this.name = config.name;
-    this.slug = config.slug;
-    this.text = config.text;
-    this.type = config.type;
-  }
-
-  get hasIMTR(): boolean {
-    return !!(
-      this.slug && apiTopics.flat().find((api) => api.slug === this.slug)
-    );
-  }
-
-  get isPermitCheck(): boolean {
-    return this.type === TopicType.PERMIT_CHECK;
-  }
-
-  get isConfiguredPermitCheck(): boolean {
-    return this.hasIMTR && this.isPermitCheck;
-  }
-
-  get isPermitForm(): boolean {
-    return this.type === TopicType.PERMIT_FORM;
-  }
-
-  get isRedirect(): boolean {
-    return this.type === TopicType.REDIRECT;
-  }
-}
 
 export const topics: Topic[] = [
   {

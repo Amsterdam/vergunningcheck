@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Topic } from "../config";
 import nl from "../i18n/nl";
+import Topic from "../models/topic";
 import { findTopicBySlug } from "../utils";
 import { LOADING_TEXT } from "../utils/test-ids";
 import { render, screen, waitFor } from "../utils/test-utils";

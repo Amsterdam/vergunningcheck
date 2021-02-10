@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 import { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
-import { Topic } from "../config";
+import Topic from "../models/topic";
 import { SessionContext } from "../SessionContext";
 import { Address } from "../types";
 

@@ -1,8 +1,8 @@
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
-import { Topic } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
+import Topic from "../../models/topic";
 import { findTopicBySlug } from "../../utils";
 import {
   MODAL,

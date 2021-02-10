@@ -2,8 +2,9 @@ import { ClientSimpleType, removeQuotes } from "@vergunningcheck/imtr-client";
 import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
-import { Topic, topics } from "../config";
+import { topics } from "../config";
 import nl from "../i18n/nl";
+import Topic from "../models/topic";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
 import apiTopics from "../topics.json";
 import { Answer, Restriction, TopicType } from "../types";
