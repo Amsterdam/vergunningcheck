@@ -1,18 +1,16 @@
-import { MapPanelContent, MapPanelProvider } from "@amsterdam/arm-core";
-import { Spinner } from "@amsterdam/asc-ui";
+import {
+  MapPanel,
+  MapPanelContent,
+  MapPanelDrawer,
+  MapPanelProvider,
+} from "@amsterdam/arm-core";
+import { Spinner, ViewerContainer } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
 import { AccordionList } from "../../atoms";
-import {
-  ArrowDown,
-  ArrowUp,
-  ButtonSlideDrawer,
-  StyledMapPanel,
-  StyledMapPanelDrawer,
-  StylerViewerContainer,
-} from "./ResultsPanelStyles";
 
 export enum Overlay {
   Results,
@@ -26,10 +24,21 @@ export enum SnapPoint {
   Closed,
 }
 
+const StylerViewerContainer = styled(ViewerContainer)`
+  z-index: 400;
+  // height: 400px;
+`;
+
+const StyledMapPanel = styled(MapPanel)`
+  z-index: 401;
+  top: 90px;
+  height: 550px;
+`;
+
 type Props = {
   currentOverlay: Overlay;
   setCurrentOverlay: (overlay: Overlay) => void;
-  showMobileVariant: boolean;
+  showDesktopVariant: boolean;
 };
 
 const ViewerContainerWithMapDrawerOffset: React.FC<Props> = ({
@@ -118,49 +127,43 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({
   expandAccordionItemTreeInfo,
   deleteCircleMarkerTree,
 }) => {
-  const [isHideDrawer, setHideDrawer] = useState(false);
-
-  const [showMobileVariant] = useMatchMedia({
-    query: "(max-width: 880px)",
+  const [showDesktopVariant] = useMatchMedia({
+    minBreakpoint: "tabletM",
   });
-
-  const slideOutDrawer = () => setHideDrawer(!isHideDrawer);
 
   if (currentOverlay !== 0) {
     return null;
   }
 
-  const Element = showMobileVariant ? StyledMapPanelDrawer : StyledMapPanel;
-
+  const Element = showDesktopVariant ? StyledMapPanel : MapPanelDrawer;
   return (
-    <MapPanelProvider
-      variant={showMobileVariant ? "drawer" : "panel"}
-      initialPosition={SnapPoint.Full}
-    >
-      <ButtonSlideDrawer onClick={slideOutDrawer}>
-        {isHideDrawer ? <ArrowDown /> : <ArrowUp />}
-      </ButtonSlideDrawer>
-      <Element isHide={isHideDrawer}>
-        <Results
+    <div>
+      <MapPanelProvider
+        variant={showDesktopVariant ? "panel" : "drawer"}
+        initialPosition={SnapPoint.Full}
+      >
+        <Element>
+          <Results
+            {...{
+              currentOverlay,
+              setCurrentOverlay,
+              zoomToCircleMarkerTreesGroup,
+              getSelectedTreesGroupCoordinates,
+              circleMarkersTreesList,
+              expandAccordionItemTreeInfo,
+              deleteCircleMarkerTree,
+            }}
+          />
+        </Element>
+        <ViewerContainerWithMapDrawerOffset
           {...{
-            currentOverlay,
             setCurrentOverlay,
-            zoomToCircleMarkerTreesGroup,
-            getSelectedTreesGroupCoordinates,
-            circleMarkersTreesList,
-            expandAccordionItemTreeInfo,
-            deleteCircleMarkerTree,
+            currentOverlay,
+            showDesktopVariant,
           }}
         />
-      </Element>
-      <ViewerContainerWithMapDrawerOffset
-        {...{
-          setCurrentOverlay,
-          currentOverlay,
-          showMobileVariant,
-        }}
-      />
-    </MapPanelProvider>
+      </MapPanelProvider>
+    </div>
   );
 };
 

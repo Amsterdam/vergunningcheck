@@ -1,10 +1,10 @@
 import userEvent from "@testing-library/user-event";
-import i18n from "i18next";
 import React from "react";
 
 import mockedTreeList, {
   CircleMarkerTreeInfo,
 } from "../__mocks__/treesListMocks";
+import text from "../i18n/nl";
 import {
   ACCORDION_PAGINATION_CONTENT,
   ACCORDION_PAGINATION_NEXT,
@@ -22,7 +22,7 @@ describe("AccordionList", () => {
     jest.clearAllMocks();
   });
 
-  it("should render correctly whitout trees", () => {
+  it("should render correctly without trees", () => {
     render(
       <AccordionList
         treesList={treeList}
@@ -32,7 +32,7 @@ describe("AccordionList", () => {
     );
 
     // should have table heading
-    const title = i18n.t("accordionList.title");
+    const title = text.translation.accordionList.title;
     expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
 
     // should not have pagination
@@ -54,7 +54,7 @@ describe("AccordionList", () => {
     );
 
     // should have table heading
-    const title = i18n.t("accordionList.title");
+    const title = text.translation.accordionList.title;
     expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
 
     let pageElements = screen.getAllByRole("heading", { name: /boom nummer/i });
