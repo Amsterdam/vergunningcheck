@@ -1,11 +1,5 @@
 import "leaflet/dist/leaflet.css";
 
-/*
-import {
-  MarkerClusterGroup,
-  createClusterMarkers,
-} from "@amsterdam/arm-cluster";
-*/
 import { BaseLayer, Zoom, constants } from "@amsterdam/arm-core";
 import { DrawTool, ExtendedLayer } from "@amsterdam/arm-draw";
 import { useQuery } from "@apollo/client";
@@ -14,9 +8,7 @@ import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
 
 import { Tree } from "../../__mocks__/pinsTreesListMocks";
-import treesListMocks, {
-  CircleMarkerTreeInfo,
-} from "../../__mocks__/treesListMocks";
+import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
 import CirclesTrees from "./CirclesTrees";
 import {
   DrawPanel,
@@ -35,6 +27,7 @@ const LocationMap = () => {
   const [currentOverlay, setCurrentOverlay] = useState<Overlay>(Overlay.None);
   const [showDrawTool, setShowDrawTool] = useState(Boolean);
   const [mapInstance, setMapInstance] = useState<L.Map>();
+  const [error, setError] = useState<any>();
   const [coordinates, setCoordinates] = useState([[], [], [], []]);
   const [zoomLevel, setZoomLevel] = useState(10);
   const [mapLocation, setMapLocation] = useState<LatLngTuple>([
@@ -44,17 +37,45 @@ const LocationMap = () => {
 
   const [circleMarkersTreesList, setCircleMarkersTreesList] = useState<
     CircleMarkerTreeInfo[]
-  >([...treesListMocks]); // ! MOCKED CIRCLES DATA ARRAY
+  >([]);
   const [zoomLevelMap, setZoomLevelMap] = useState(mapInstance?.getZoom());
 
   const setMarkerData = () => {
-    const result = data?.trees?.map((tree: any) => tree.geometry.coordinates);
+    const result = data?.trees?.map((tree: any) => {
+      return {
+        id: tree.id,
+        title: tree.id,
+        pinTreeId: false,
+        isOpen: false,
+        treesListCoordinates: tree.geometry.coordinates,
+        detailsInfo: {
+          treeId: tree.id,
+          speciesName: "eik",
+          treeType: "boom",
+          height: "4m",
+          recordYear: 1990,
+          owner: "Gemeente Amsterdam",
+          administrator: "deze",
+        },
+        isSelected: false,
+      };
+    });
     setCircleMarkersTreesList(result as any);
+    setError(undefined);
+  };
+
+  const handleErrorMessage = () => {
+    const errorMessage = graphqlError?.networkError as any;
+    if (errorMessage?.result?.errors[0].message) {
+      setError(errorMessage?.result?.errors[0].message);
+    }
   };
 
   const { loading, error: graphqlError, data, refetch } = useQuery(getTrees, {
     skip: !mapInstance,
     onCompleted: setMarkerData,
+    onError: handleErrorMessage,
+    errorPolicy: "all",
     variables: !mapInstance
       ? undefined
       : {
@@ -64,10 +85,6 @@ const LocationMap = () => {
           },
         },
   });
-
-  console.log(graphqlError);
-  // console.log("data", data);
-  // console.log("treesListMocks", treesListMocks);
 
   useEffect(() => {
     function onChange() {
@@ -177,12 +194,7 @@ const LocationMap = () => {
         deleteCircleMarkerTree={deleteCircleMarkerTree}
       />
       <StyledViewerContainer
-        topLeft={
-          zoomLevel &&
-          zoomLevel < 11 && (
-            <StyledParagraph>Zoom in om de bomen te zien.</StyledParagraph>
-          )
-        }
+        topLeft={error && <StyledParagraph>{error}</StyledParagraph>}
         topRight={
           !showDrawTool ? (
             <StyledDrawToolOpenButton onClick={handleDrawTool(true)} />
@@ -201,49 +213,10 @@ const LocationMap = () => {
           </StyledZoomPanel>
         }
       />
-      {/* <MarkerClusterGroup
-        optionsOverrides={{
-          spiderfyOnMaxZoom: false,
-          showCoverageOnHover: false,
-          zoomToBoundsOnClick: true,
-          maxClusterRadius: 50,
-          chunkedLoading: true,
-          disableClusteringAtZoom: 16,
-        }}
-        markers={createClusterMarkers({
-          markers: markersTrees,
-          events: {
-            click: (e: any) => {
-              setCurrentPinMarkerTreesGroup(e.latlng);
-              setCurrentOverlay(Overlay.Results);
-              
-              const currentPinMarkerTreesGroup = trees.find((tree) => {
-                const { coordinates } = tree.geo.geometry;
-                return (
-                  coordinates[0] === e.latlng.lat &&
-                  coordinates[1] === e.latlng.lng
-                );
-              });
-
-              const currentDotsTreesList: any =
-                currentPinMarkerTreesGroup &&
-                Object.keys(currentPinMarkerTreesGroup).length > 0 &&
-                treesListMocks.filter(
-                  (tree) => tree.pinTreeId === currentPinMarkerTreesGroup.id
-                );
-
-              setCircleMarkersTreesList(currentDotsTreesList);
-              setCurrentPinMarkerTreesGroup(currentPinMarkerTreesGroup);
-            },
-          },
-        })}
-      /> */}
       {zoomLevel > 10 && (
         <CirclesTrees
           zoomLevelMap={zoomLevelMap}
           setCurrentOverlay={setCurrentOverlay}
-          // if no graphql data use mock data.
-          // ! In this case uses mocked data
           circleMarkerTreesList={circleMarkersTreesList}
           selectCircleMarkerTree={selectCircleMarkerTree}
         />
