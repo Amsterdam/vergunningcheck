@@ -4,6 +4,7 @@ export default {
       "address loading": "Wij zoeken het adres.",
       "download form": "Aanvraag formulier downloaden",
       edit: "Wijzig",
+      "go to the next step": "Ga naar volgende stap",
       "housenumber label": "Huisnummer + toevoeging",
       next: "Volgende",
       no: "Nee",

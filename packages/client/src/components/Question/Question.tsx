@@ -121,7 +121,7 @@ const Question: FunctionComponent<QuestionProps> = ({
           formEnds={isCheckerConclusive() || isPermitForm}
           nextText={
             isPermitForm
-              ? "Ga naar volgende stap"
+              ? t("common.go to the next step")
               : isCheckerConclusive()
               ? t("outcome.goToOutcome")
               : t("question.nextQuestion")
