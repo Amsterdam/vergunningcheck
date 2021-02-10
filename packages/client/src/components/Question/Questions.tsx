@@ -44,7 +44,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const [contactOutcome, setContactOutcome] = useState(false);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const slug = useSlug();
-  const { isPermitForm } = useTopic();
+  const { isPermitCheck, isPermitForm } = useTopic();
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
@@ -57,7 +57,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // This function handles the user-event of going to a new question
   const goToQuestion = useCallback(
     (index: number, eventType?: string) => {
-      if (!checker) return;
+      if (!checker || !isPermitCheck) return;
 
       if (!checker.stack[index]) {
         const error = `goToQuestion failed: question with index "${index}" not found on stack`;
@@ -397,6 +397,9 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           !checker._getUpcomingQuestions().length &&
           checker.stack.length === i + 1;
 
+        const showActiveStyle =
+          (isPermitCheck && isCurrentQuestion) || (isPermitForm && isActive);
+
         return (
           <StepByStepItem
             active={isPermitForm ? true : isCurrentQuestion} // @TODO refactor this ternary
@@ -406,7 +409,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             heading={q.text}
             highlightActive={isPermitForm ? isActive : isCurrentQuestion}
             key={`question-${q.id}-${i}`}
-            style={isCurrentQuestion || isPermitForm ? activeStyle : {}}
+            style={showActiveStyle ? activeStyle : {}}
           >
             {isCurrentQuestion || (isPermitForm && isActive) ? (
               // Show the current question
@@ -448,7 +451,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         const showQuestionAlert = !!permitsPerQuestion[index] && !isPermitForm;
 
         // Disable the EditButton or not
-        const disabled = checker.isConclusive() || disableFutureQuestions;
+        const disabled =
+          (checker.isConclusive() || disableFutureQuestions) && isPermitCheck;
 
         // Define the outcome type
         const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
@@ -466,7 +470,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             heading={q.text}
             highlightActive={isPermitForm && isActive}
             key={`question-${q.id}-${index}`}
-            style={isPermitForm ? activeStyle : {}}
+            style={isPermitForm && isActive ? activeStyle : {}}
           >
             {isPermitForm && isActive ? (
               // Show all questions

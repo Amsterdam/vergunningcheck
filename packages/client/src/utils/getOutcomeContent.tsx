@@ -146,7 +146,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
   if (slug === "bouwwerk-slopen") {
     return contents.demolition[outcomeType] as OutcomeContentType;
   }
-  if (slug === "formulier") {
+  if (slug === "formulier-bomenkap") {
     return contents.formulier as OutcomeContentType;
   }
   return contents.default[outcomeType] as OutcomeContentType;
