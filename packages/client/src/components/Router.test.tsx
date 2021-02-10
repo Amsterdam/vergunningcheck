@@ -1,7 +1,7 @@
 import React from "react";
 
+import { Topic } from "../config";
 import nl from "../i18n/nl";
-import { TopicConfig } from "../types";
 import { findTopicBySlug } from "../utils";
 import { LOADING_TEXT } from "../utils/test-ids";
 import { render, screen, waitFor } from "../utils/test-utils";
@@ -33,7 +33,7 @@ describe("Router", () => {
   it("renders a topic intro", async () => {
     window.history.pushState({}, "Page Title", "/dakkapel-plaatsen");
 
-    const topic = findTopicBySlug("dakkapel-plaatsen") as TopicConfig;
+    const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
 
     render(<Router />);
 

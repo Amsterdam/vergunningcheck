@@ -1,11 +1,11 @@
 import React from "react";
 
-import { TopicConfig } from "../../types";
+import { Topic } from "../../config";
 import { findTopicBySlug } from "../../utils";
 import { render, screen } from "../../utils/test-utils";
 import TopicLayout from "./TopicLayout";
 
-const topic = findTopicBySlug("dakkapel-plaatsen") as TopicConfig;
+const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
 
 describe("TopicLayout", () => {
   it("renders with text", () => {
