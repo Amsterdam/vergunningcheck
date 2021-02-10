@@ -73,7 +73,7 @@ export class Topic {
   }
 
   get isConfiguredPermitCheck(): boolean {
-    return this.hasIMTR && this.type === TopicType.PERMIT_CHECK;
+    return this.hasIMTR && this.isPermitCheck;
   }
 
   get isPermitForm(): boolean {
