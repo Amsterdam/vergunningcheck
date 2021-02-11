@@ -25,6 +25,9 @@ const db = {
     pool.end();
   },
   query: async (text, params, reducer, many = true) => {
+    if (!config.enabled) {
+      throw Error("Database is not enabled. No alternative implemented (yet).");
+    }
     const client = await pool.connect();
 
     let rows;

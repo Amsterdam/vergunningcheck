@@ -1,4 +1,5 @@
-const { withCache, fetchJson, getUrl } = require("../../util");
+const { fetchJson, getUrl } = require("../../util");
+const { withCache } = require("../../cache");
 const {
   monument: config,
   CACHE_TIMEOUT,

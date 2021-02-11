@@ -1,4 +1,5 @@
-const { withCache, fetchJson } = require("../../util");
+const { fetchJson } = require("../../util");
+const { withCache } = require("../../cache");
 const {
   bag: config,
   CACHE_TIMEOUT,

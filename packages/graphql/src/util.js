@@ -2,38 +2,30 @@ const debug = require("debug")("graphql:util");
 const xml2js = require("xml2js");
 const fetch = require("node-fetch");
 const { stringify } = require("querystring");
-const { cache } = require("../config");
-const { getAsync, setSync, cachePrefix } = require("./cache");
 
 const parser = new xml2js.Parser();
 
 const qs = (obj) => (obj ? `?${stringify(obj)}` : "");
-const noop = async (_, fn) => fn();
 const getUrl = (path, params) => path + qs(params);
 const withLog = (msg, res) => {
   debug(msg);
   return res;
 };
 
+function checkStatus(res) {
+  if (!res.ok) {
+    throw Error(res.statusText);
+  }
+  return res;
+}
+
 const fetchJson = (url) => {
   debug(`fetching '${url}'`);
-  return fetch(url).then((res) => res.json());
+  return fetch(url)
+    .then(checkStatus)
+    .then((res) => res.json());
 };
 const gql = (input) => input.toString();
-
-const withCache = async (key, fn, ttlInSeconds) => {
-  const cacheKey = `${cachePrefix}${key}`;
-  const cached = await getAsync(cacheKey);
-
-  if (cached !== null) {
-    debug("cache hit", cacheKey, cached.substring(0, 20));
-    return JSON.parse(cached);
-  }
-  const result = await fn();
-  debug("cache MISS", cacheKey, result);
-  setSync(cacheKey, JSON.stringify(result), "EX", ttlInSeconds);
-  return result;
-};
 
 const postXml = (url, body) => {
   debug(`fetching '${url}'`);
@@ -51,5 +43,4 @@ module.exports = {
   getUrl,
   postXml,
   withLog,
-  withCache: cache.enabled ? withCache : noop,
 };

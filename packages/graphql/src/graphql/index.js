@@ -2,7 +2,7 @@ const { graphqlHTTP } = require("express-graphql");
 const DataLoader = require("dataloader");
 const { makeExecutableSchema } = require("apollo-server");
 const depthLimit = require("graphql-depth-limit");
-const { graphql: config } = require("../../config");
+const { graphql: config, cache } = require("../../config");
 
 const bagSearchLoader = require("../loaders/bagSearch");
 const bagLoader = require("../loaders/bag");
@@ -38,7 +38,8 @@ const schema = makeExecutableSchema({
   resolvers: modules.map((m) => m.resolvers),
 });
 
-// const server = graphqlHTTP((request, response, graphQLParams) => ({
+const dlConfig = { cache: cache.dataLoader.enabled };
+
 const server = graphqlHTTP({
   ...config,
   schema,
@@ -46,17 +47,17 @@ const server = graphqlHTTP({
   context: {
     // request,
     loaders: {
-      bagSearch: new DataLoader(bagSearchLoader.load),
+      bagSearch: new DataLoader(bagSearchLoader.load, dlConfig),
       bag: {
-        accommodation: new DataLoader(bagLoader.accommodation.load),
+        accommodation: new DataLoader(bagLoader.accommodation.load, dlConfig),
       },
-      geoSearch: new DataLoader(geoSearchLoader.load),
+      geoSearch: new DataLoader(geoSearchLoader.load, dlConfig),
       monument: {
-        situation: new DataLoader(monumentLoader.situation.load),
-        monument: new DataLoader(monumentLoader.monument.load),
+        situation: new DataLoader(monumentLoader.situation.load, dlConfig),
+        monument: new DataLoader(monumentLoader.monument.load, dlConfig),
       },
       tree: treeLoader,
-      zoningPlan: new DataLoader(zoningPlanLoader.load),
+      zoningPlan: new DataLoader(zoningPlanLoader.load, dlConfig),
     },
   },
   customFormatErrorFn: ({ stack, ...rest }) => ({
