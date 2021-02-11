@@ -7,11 +7,11 @@ This application allows residents of Amsterdam to easily see if they need a perm
 This repo contains 6 packages, `client`, `imtr-client`, `graphql`, `imtr`, `mocking` and `e2e`. We use Lerna under the hood to install deps and run on all packages. But you can also run and configure then individually.
 
 ```bash
-npm i
+npm run cleaninstall
 npm start
 ```
 
-If you need to update the checks there are additional install steps in [packages/imtr/README.md](packages/imtr/README.md).
+If you need to update the IMTR files there are additional install steps in [packages/imtr/README.md](packages/imtr/README.md).
 
 ## Contributing
 
@@ -23,6 +23,7 @@ If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBU
 - React Hook Form
 - [Deno](https://deno.land)
 - GraphQL + ApolloClient
+- TypeScript
 - Lerna
 - Sentry
 - [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl)
