@@ -6,7 +6,7 @@ import { redirectConfig, routeConfig } from "../routes";
 import ScrollToTop from "./ScrollToTop";
 
 const Router = () => (
-  // BrowserRouter has been moved to `../index.tsx` to make it accissible for other HOC's
+  // BrowserRouter has been moved to `../index.tsx` to make it accessible for other HOC's
   <>
     <ScrollToTop />
     <Suspense fallback={<LoadingPage />}>
