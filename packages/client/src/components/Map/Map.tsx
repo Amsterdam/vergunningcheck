@@ -7,7 +7,6 @@ import { loader } from "graphql.macro";
 import L, { LatLngTuple } from "leaflet";
 import React, { useEffect, useState } from "react";
 
-import { Tree } from "../../__mocks__/pinsTreesListMocks";
 import { CircleMarkerTreeInfo } from "../../__mocks__/treesListMocks";
 import CirclesTrees from "./CirclesTrees";
 import {
@@ -133,12 +132,6 @@ const LocationMap = () => {
     setCircleMarkersTreesList(updatedDotsTreesList);
   };
 
-  const zoomToCircleMarkerTreesGroup = (coordinates: Tree) => {
-    if (Object.keys(coordinates).length > 0) {
-      mapInstance?.fitBounds(coordinates.geo.treesListCoordinates);
-    }
-  };
-
   const handleDrawTool = (drawToolState: boolean) => () => {
     setShowDrawTool(drawToolState);
   };
@@ -187,7 +180,6 @@ const LocationMap = () => {
       <StyledResults
         currentOverlay={currentOverlay}
         setCurrentOverlay={setCurrentOverlay}
-        zoomToCircleMarkerTreesGroup={zoomToCircleMarkerTreesGroup}
         getSelectedTreesGroupCoordinates={selectCircleMarkerTree}
         circleMarkersTreesList={circleMarkersTreesList}
         expandAccordionItemTreeInfo={expandAccordionItemTreeInfo}

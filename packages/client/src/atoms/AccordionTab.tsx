@@ -22,9 +22,9 @@ const AccordionTab = ({
   expandAccordionWithDetailInfo: Function;
 }) => {
   return (
-    <AccordionItem isOpen={isOpen} onClick={expandAccordionWithDetailInfo(id)}>
+    <AccordionItem $isOpen={isOpen} onClick={expandAccordionWithDetailInfo(id)}>
       <AccordionItemContent>
-        <Chevron isOpen={isOpen} />
+        <Chevron $isOpen={isOpen} />
         <AccordionItemTitle>{title}</AccordionItemTitle>
       </AccordionItemContent>
       <CloseIcon onClick={deleteTree(id)} />

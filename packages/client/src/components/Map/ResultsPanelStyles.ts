@@ -3,9 +3,7 @@ import { ChevronDown, ChevronUp } from "@amsterdam/asc-assets";
 import { ViewerContainer } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
-type StyledMapPanelDrawerProps = {
-  isHide?: boolean;
-};
+import { StyledMapPanelDrawerProps } from "./ResultsPanel";
 
 export const ArrowUp = styled(ChevronUp)`
   height: 28px;
@@ -27,26 +25,52 @@ export const StylerViewerContainer = styled(ViewerContainer)`
   z-index: 400;
 `;
 
-export const StyledMapPanel = styled(MapPanel)<StyledMapPanelDrawerProps>`
-  height: 550px;
+export const StyledMapPanel = styled(MapPanel)`
+  height: 600px;
 
-  top: 90px;
+  overflow: visible;
+  border: 2px solid #cbcbc7;
+
+  top: 40px;
   z-index: 401;
 
-  @media (max-width: 1100px) {
-    width: 400px !important;
+  .Handle-sc-1x3qvqu {
+    width: 30px;
+    height: 60px;
+
+    background-color: #fff;
+    border: 2px solid #cbcbc7;
+    border-left: 0;
+
+    position: absolute;
+    top: 40px;
+    left: 100%;
   }
 
-  @media (max-width: 990px) {
-    width: 370px !important;
+  .StyledContainer-sc-6t6po7.eNtynH {
+    width: 0;
+  }
+
+  .StyledContainer-sc-6t6po7.eNtynH .Content-sc-16cxgps {
+    width: 0;
+    padding: 0;
+  }
+
+  .StyledContainer-sc-6t6po7.eNtynH .Header-sc-i2hdjm {
+    display: none;
   }
 `;
 
-export const StyledMapPanelDrawer = styled(
-  MapPanelDrawer
-)<StyledMapPanelDrawerProps>`
-  @media (max-width: 880px) {
-    .MapPanelDrawerStyle-sc-1yh7g19 button {
+export const StyledMapPanelDrawer = styled(MapPanelDrawer)<
+  StyledMapPanelDrawerProps
+>`
+  .MapPanelDrawerStyle-sc-1yh7g19 {
+    border: 2px solid #cbcbc7;
+    border-bottom: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .MapPanelDrawerStyle-sc-1yh7g19 .Handle-sc-qxxy2a {
       display: none;
     }
 
@@ -95,13 +119,14 @@ export const ButtonSlideDrawer = styled.button`
   width: 100%;
 
   background-color: #fff;
-  border: 0;
+  border: 2px solid #cbcbc7;
+  border-top: 0;
 
   position: absolute;
   bottom: 0;
   z-index: 2000;
 
-  @media (max-width: 880px) {
+  @media (max-width: 1100px) {
     display: block;
   }
 `;

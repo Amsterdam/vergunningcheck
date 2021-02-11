@@ -2,7 +2,7 @@ import { ChevronRight, Close } from "@amsterdam/asc-assets";
 import styled from "styled-components";
 
 type Props = {
-  isOpen: boolean;
+  $isOpen: boolean;
 };
 
 export const AccordionItem = styled.div<Props>`
@@ -12,7 +12,7 @@ export const AccordionItem = styled.div<Props>`
   padding: 5px 0 5px 12px;
 
   cursor: pointer;
-  background-color: ${({ isOpen }) => (isOpen ? "#efefef" : "#fff")};
+  background-color: ${({ $isOpen }) => ($isOpen ? "#efefef" : "#fff")};
 `;
 
 export const AccordionItemContent = styled.div`
@@ -37,7 +37,7 @@ export const Chevron = styled(ChevronRight)<Props>`
   height: 12px;
   margin-right: 12px;
 
-  transform: ${({ isOpen }) => (isOpen ? "rotate(90deg)" : "rotate(0)")};
+  transform: ${({ $isOpen }) => ($isOpen ? "rotate(90deg)" : "rotate(0)")};
 `;
 
 export const CloseIcon = styled(Close)`
