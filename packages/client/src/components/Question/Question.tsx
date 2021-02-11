@@ -1,14 +1,11 @@
-import {
-  ClientOutcomes,
-  Question as ImtrQuestion,
-} from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTopicData, useTracking } from "../../hooks";
+import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { Answer } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
@@ -20,17 +17,19 @@ import Nav from "../Nav";
 import { QuestionAlert } from "./";
 
 type QuestionProps = {
+  hideNav?: boolean;
   isCheckerConclusive: () => boolean;
-  question: ImtrQuestion;
-  onGoToNext: () => void;
-  onGoToPrev: () => void;
-  outcomeType: ClientOutcomes;
-  saveAnswer: (answer: Answer) => void;
+  question: imtr.Question;
+  onGoToNext?: () => void;
+  onGoToPrev?: () => void;
+  outcomeType: imtr.ClientOutcomes;
+  saveAnswer: (answer: Answer, question?: imtr.Question) => void;
   showQuestionAlert: boolean;
-  showNext: boolean;
+  showNext?: boolean;
 };
 
 const Question: FunctionComponent<QuestionProps> = ({
+  hideNav,
   isCheckerConclusive,
   question,
   outcomeType,
@@ -44,25 +43,33 @@ const Question: FunctionComponent<QuestionProps> = ({
   const {
     topicData: { questionIndex },
   } = useTopicData();
+  const { isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
-
-  const requiredFieldRadio = t("common.required field radio");
 
   const {
     answer,
     description,
     id: questionId,
     longDescription,
+    options,
     text: questionTitle,
+    type,
   } = question;
+
+  const isRadio = type === "boolean" || (type === "string" && options);
+
+  // @TODO: make generic functions, like: isRadioQuestion(), isCheckboxQuestion, etc
+  const requiredText = isRadio
+    ? t("common.required field radio")
+    : t("common.required field text");
 
   useEffect(() => {
     if (questionId) {
       register(
         { name: questionId },
         {
-          required: requiredFieldRadio,
+          required: requiredText,
         }
       );
 
@@ -71,7 +78,7 @@ const Question: FunctionComponent<QuestionProps> = ({
       }
     }
     return () => unregister(questionId);
-  }, [answer, questionId, register, unregister, setValue, requiredFieldRadio]);
+  }, [answer, questionId, register, unregister, setValue, requiredText]);
 
   const handleOpenModal = () => {
     matomoTrackEvent({
@@ -84,7 +91,7 @@ const Question: FunctionComponent<QuestionProps> = ({
     <Form
       dataId={questionId}
       dataTestId={QUESTION_FORM}
-      onSubmit={handleSubmit(() => onGoToNext())}
+      onSubmit={handleSubmit(() => onGoToNext && onGoToNext())}
     >
       {description && (
         <Markdown eventLocation={eventNames.DESCRIPTION} source={description} />
@@ -109,19 +116,23 @@ const Question: FunctionComponent<QuestionProps> = ({
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 
-      <Nav
-        formEnds={isCheckerConclusive()}
-        nextText={
-          isCheckerConclusive()
-            ? t("outcome.goToOutcome")
-            : t("question.nextQuestion")
-        }
-        showPrev={questionIndex > 0} // Do not show back-button at the first question
-        {...{
-          onGoToPrev,
-          showNext,
-        }}
-      />
+      {!hideNav && (
+        <Nav
+          formEnds={isCheckerConclusive() || isPermitForm}
+          nextText={
+            isPermitForm
+              ? t("common.go to the next step")
+              : isCheckerConclusive()
+              ? t("outcome.goToOutcome")
+              : t("question.nextQuestion")
+          }
+          showPrev={questionIndex > 0} // Do not show back-button at the first question
+          {...{
+            onGoToPrev,
+            showNext,
+          }}
+        />
+      )}
     </Form>
   );
 };

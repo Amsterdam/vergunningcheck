@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 
 import addressMock from "../__mocks__/addressMock";
+import mockTopics from "../__mocks__/topicsMock.json";
 import { topics } from "../config";
 import nl from "../i18n/nl";
-import topicsJson from "../topics.json";
 import {
   findTopicBySlug,
   getAnswerLabel,
@@ -26,6 +26,8 @@ const Element = () => {
 
   return <div data-testid="element" ref={ref} />;
 };
+
+jest.mock("../topics.json", () => mockTopics);
 
 describe("util", () => {
   test("scrollToRef", () => {
@@ -137,12 +139,12 @@ describe("util", () => {
   });
 
   test("findTopicBySlug", () => {
-    expect(findTopicBySlug("")).toBe(null);
-    expect(findTopicBySlug("wrong")).toBe(null);
+    expect(findTopicBySlug("")).toBe(undefined);
+    expect(findTopicBySlug("wrong")).toBe(undefined);
     expect(findTopicBySlug(topics[0].slug)).toBe(topics[0]);
 
     // 'Find' an "unconfigured" topic
-    const topicMock = topicsJson
+    const topicMock = mockTopics
       .flat()
       .find((t) => t.permits.length === 1) as any;
     const { slug } = topicMock;

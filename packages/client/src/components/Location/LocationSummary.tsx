@@ -58,12 +58,11 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   showEditLocationModal,
   showTitle,
 }) => {
-  const topic = useTopic();
+  const { hasIMTR } = useTopic();
   const { topicData } = useTopicData();
   const address = addressFromLocation ?? topicData.address;
 
   const { restrictions } = address || {};
-  const { hasIMTR } = topic;
 
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
@@ -81,8 +80,9 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
     <ComponentWrapper marginBottom={hasIMTR ? 4 : undefined}>
       <AddressLines
         address={address}
-        editAddressRenderer={() =>
-          showEditLocationModal && <EditLocationModal />
+        editAddressRenderer={
+          () => showEditLocationModal && <EditLocationModal />
+          // @TODO: only show the Modal `!isPermitForm`?
         }
         gutterBottom={showSummary ? 16 : 0}
       />
