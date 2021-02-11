@@ -59,7 +59,6 @@ const CirclesTrees = ({
       {circleMarkerTreesList &&
         circleMarkerTreesList.length > 0 &&
         circleMarkerTreesList.map((item: CircleMarkerTreeInfo) => {
-          console.log(item);
           const { isSelected, treesListCoordinates } = item;
 
           if (isSelected) {

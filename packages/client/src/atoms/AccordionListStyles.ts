@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight, List } from "@amsterdam/asc-assets";
 import styled from "styled-components";
 
 type TreesListProps = {
-  isOpen?: boolean;
+  $isOpen?: boolean;
 };
 
 export const ArrowRight = styled(ChevronRight)`
@@ -85,7 +85,7 @@ export const TreesList = styled.dl<TreesListProps>`
   margin: 0;
   padding: 5px 10px 10px 35px;
 
-  background-color: ${({ isOpen }) => (isOpen ? "#efefef" : "#fff")};
+  background-color: ${({ $isOpen }) => ($isOpen ? "#efefef" : "#fff")};
 
   @media (max-width: 470px) {
     font-size: 14px;

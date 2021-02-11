@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { autofillResolvers, getDataNeed } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { useChecker, useTopicData, useTracking } from "../../hooks";
+import { useChecker, useTopic, useTopicData, useTracking } from "../../hooks";
 import { Address, SectionComponent } from "../../types";
 import { LOCATION_SECTION } from "../../utils/test-ids";
 import Map from "../Map/Map";
@@ -20,10 +20,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
-  // const { showMap } = useTopic();
-  const showMap = true;
-
-  console.log("showMap", showMap);
+  const { showMap } = useTopic();
 
   const {
     currentSection: { isActive, isCompleted },

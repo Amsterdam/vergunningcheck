@@ -161,9 +161,6 @@ const LocationMap = () => {
     setCircleMarkersTreesList(updatedTreesList);
   };
 
-  // const zoomLevel = mapInstance?.getZoom();
-  console.log("current Overlay", currentOverlay);
-
   return (
     <StyledMap
       fullScreen

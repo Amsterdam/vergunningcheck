@@ -1,3 +1,4 @@
+import { Button } from "@amsterdam/asc-ui";
 import { useMatchMedia } from "@amsterdam/asc-ui/lib/utils/hooks";
 import chunk from "lodash/chunk";
 import React, { useState } from "react";
@@ -26,6 +27,7 @@ import {
   TreesList,
 } from "./AccordionListStyles";
 import AccordionTab from "./AccordionTab";
+import Checkbox from "./Checkbox";
 
 interface schemaLabels {
   [key: string]: string;
@@ -83,66 +85,89 @@ const AccordionList = ({
         <StyledListIcon />
         <TableTitle>{t("accordionList.title")}</TableTitle>
       </TableLogo>
-      <AccordionContent>
-        <div>
-          {checkedCurrentData.map((item: CircleMarkerTreeInfo) => {
-            const {
-              id,
-              title,
-              isOpen,
-              detailsInfo,
-            }: {
-              id: string;
-              title: string;
-              isOpen: boolean;
-              detailsInfo: object;
-            } = item;
 
-            return (
-              <div key={id}>
-                <AccordionTab
-                  id={id}
-                  title={title}
-                  isOpen={isOpen}
-                  deleteTree={deleteTree}
-                  expandAccordionWithDetailInfo={expandAccordionWithDetailInfo}
-                />
-                {isOpen && (
-                  <TreesList isOpen={isOpen}>
-                    {Object.entries(detailsInfo).map((item) => {
-                      return (
-                        <React.Fragment key={id}>
-                          <TreesItemTerm>{schema[item[0]]}</TreesItemTerm>
-                          <TreesItemDefinition>{item[1]}</TreesItemDefinition>
-                        </React.Fragment>
-                      );
-                    })}
-                  </TreesList>
-                )}
-              </div>
-            );
-          })}
+      {checkedCurrentData.length > 0 ? (
+        <AccordionContent>
+          <div>
+            {checkedCurrentData.map((item: CircleMarkerTreeInfo) => {
+              const {
+                id,
+                title,
+                isOpen,
+                detailsInfo,
+              }: {
+                id: string;
+                title: string;
+                isOpen: boolean;
+                detailsInfo: object;
+              } = item;
+
+              return (
+                <div key={id}>
+                  <AccordionTab
+                    id={id}
+                    title={title}
+                    isOpen={isOpen}
+                    deleteTree={deleteTree}
+                    expandAccordionWithDetailInfo={
+                      expandAccordionWithDetailInfo
+                    }
+                  />
+                  {isOpen && (
+                    <TreesList $isOpen={isOpen}>
+                      {Object.entries(detailsInfo).map((item) => {
+                        return (
+                          <React.Fragment key={id}>
+                            <TreesItemTerm>{schema[item[0]]}</TreesItemTerm>
+                            <TreesItemDefinition>{item[1]}</TreesItemDefinition>
+                          </React.Fragment>
+                        );
+                      })}
+                    </TreesList>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {totalPages > 1 && (
+            <PaginationContainer>
+              <ArrowLeft
+                data-testid={ACCORDION_PAGINATION_PREV}
+                onClick={paginatePage("prev")}
+              />
+              <PaginationContent data-testid={ACCORDION_PAGINATION_CONTENT}>
+                <span>
+                  <PaginationCurrentPage>
+                    {currentPageList}
+                  </PaginationCurrentPage>
+                  <PaginationSeparator> van </PaginationSeparator>
+                  <span>{totalPages}</span>
+                </span>
+              </PaginationContent>
+              <ArrowRight
+                data-testid={ACCORDION_PAGINATION_NEXT}
+                onClick={paginatePage("next")}
+              />
+            </PaginationContainer>
+          )}
+        </AccordionContent>
+      ) : (
+        <div>
+          <p
+            style={{
+              padding: "40px 25px",
+              backgroundColor: "#f5f5f5",
+              textAlign: "center",
+              color: "#797979",
+            }}
+          >
+            Maak een keuze op de kaart
+          </p>
+          <Checkbox />
+          <Button variant="primary">Ik wil deze kappen</Button>
         </div>
-        {totalPages > 1 && (
-          <PaginationContainer>
-            <ArrowLeft
-              data-testid={ACCORDION_PAGINATION_PREV}
-              onClick={paginatePage("prev")}
-            />
-            <PaginationContent data-testid={ACCORDION_PAGINATION_CONTENT}>
-              <span>
-                <PaginationCurrentPage>{currentPageList}</PaginationCurrentPage>
-                <PaginationSeparator> van </PaginationSeparator>
-                <span>{totalPages}</span>
-              </span>
-            </PaginationContent>
-            <ArrowRight
-              data-testid={ACCORDION_PAGINATION_NEXT}
-              onClick={paginatePage("next")}
-            />
-          </PaginationContainer>
-        )}
-      </AccordionContent>
+      )}
     </AccordionContainer>
   );
 };

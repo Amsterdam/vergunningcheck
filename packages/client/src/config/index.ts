@@ -49,19 +49,19 @@ export const topics: Topic[] = [
   {
     hasIMTR: true,
     intro: "DakkapelIntro",
-    name: "Bomen kappen",
+    name: "Dakkapel plaatsen",
     showMap: false,
     slug: "dakkapel-plaatsen",
     text: {
-      heading: "Vergunningcheck bomen kappen",
-      locationIntro: "Kies welke bomen je wilt kappen.",
+      heading: "Vergunningcheck dakkapel plaatsen",
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
     },
   },
   {
     hasIMTR: true,
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
-    showMap: true,
+    showMap: false,
     slug: "dakraam-plaatsen",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
@@ -71,7 +71,7 @@ export const topics: Topic[] = [
   {
     hasIMTR: false,
     name: "Aanbouw of uitbouw maken",
-    showMap: true,
+    showMap: false,
     slug: "aanbouw-of-uitbouw-maken",
     text: {
       heading: "Vergunningcheck aanbouw of uitbouw maken",
@@ -94,7 +94,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
-    showMap: true,
+    showMap: false,
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
@@ -106,7 +106,7 @@ export const topics: Topic[] = [
     hasIMTR: true,
     intro: "SlopenIntro",
     name: "Bouwwerk slopen",
-    showMap: true,
+    showMap: false,
     slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningcheck bouwwerk slopen",
