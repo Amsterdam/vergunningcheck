@@ -38,13 +38,13 @@ const schema: schemaLabels = {
   speciesName: "Soortnaam",
   treeType: "Boomtype",
   height: "Hoogte",
-  recordYear: "Platjaar",
+  recordYear: "Plantjaar",
   owner: "Eigenaar",
   administrator: "Beheerder",
 };
 
 const AccordionList = ({
-  treesList,
+  treesList = [],
   expandAccordionWithDetailInfo,
   deleteTree,
 }: {
