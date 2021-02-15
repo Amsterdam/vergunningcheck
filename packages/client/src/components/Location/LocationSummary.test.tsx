@@ -3,8 +3,8 @@ import React, { ComponentProps } from "react";
 import addressMock from "../../__mocks__/addressMock";
 import addressMockNoMonument from "../../__mocks__/addressMockNoMonument";
 import addressMockNoRestrictions from "../../__mocks__/addressMockNoRestrictions";
-import addressMockNoZoningplans from "../../__mocks__/addressMockNoZoningplans";
 import { CheckerProvider } from "../../CheckerContext";
+import nl from "../../i18n/nl";
 import { render, screen } from "../../utils/test-utils";
 import LocationSummary from "./LocationSummary";
 
@@ -16,14 +16,21 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-const monumentText = "Het gebouw is een gemeentelijk monument.";
-const noMonumentText = "Het gebouw is geen monument.";
-const nationalCityScapeText =
-  "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht.";
-const municipalCityScapeText =
-  "Het gebouw ligt in een gemeentelijk beschermd stads- of dorpsgezicht.";
+const { common } = nl.translation;
+
+const monumentText = common["the building is a monument"].replace(
+  "{{monument}}",
+  "gemeentelijk monument"
+);
+const noMonumentText = common["the building is not a monument"];
+const nationalCityScapeText = common[
+  "the building is located inside a city scape"
+].replace("{{cityScape}}", common["national city scape"]);
+const municipalCityScapeText = common[
+  "the building is located inside a city scape"
+].replace("{{cityScape}}", common["municipal city scape"]);
 const noCityScapeText =
-  "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.";
+  common["the building is not located inside a city scape"];
 
 describe("LocationSummary", () => {
   const WrapperWithContext = (
@@ -248,15 +255,6 @@ describe("LocationSummary", () => {
       expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
 
       expect(screen.queryByText(monumentText)).not.toBeInTheDocument();
-    });
-
-    it("renders in OLO Flow on the Results Page (without any zoningplans)", () => {
-      render(
-        <WrapperWithContext
-          addressFromLocation={addressMockNoZoningplans}
-          showTitle
-        />
-      );
     });
   });
 });
