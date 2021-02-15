@@ -1,0 +1,477 @@
+{
+  "permits": [
+    {
+      "version": 85,
+      "name": "Conclusie ketentest- zonnepaneel plaatsen",
+      "questions": [
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen in combinatie met overige installatie onderdelen?",
+          "type": "boolean",
+          "prio": 10,
+          "id": "c0187d64e287138ff60b7ab70fbaa51d"
+        },
+        {
+          "text": "Gaat u een zonnepaneel plaatsen op een monument?",
+          "type": "boolean",
+          "prio": 20,
+          "id": "9753ffa0e723150a0ca78741726423cd"
+        },
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen in een rijksbeschermd stads- of dorpsgezicht?",
+          "type": "boolean",
+          "prio": 30,
+          "id": "4ee03069449e7b6cf4bc9a202804dd5c"
+        },
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen op een schuin achterdakvlak?",
+          "description": "uitleg over schuin achterdakvlak",
+          "type": "boolean",
+          "prio": 40,
+          "id": "47286dc287c5ea251e6f16304021fd4f"
+        },
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen die zichtbaar zijn vanaf openbaar toegankelijk gebied?",
+          "type": "boolean",
+          "prio": 50,
+          "id": "1947c1f7e361407bc5928e411e91a782"
+        },
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen op een plat dak?",
+          "type": "boolean",
+          "prio": 60,
+          "id": "cec5bfecad040e149ed822e24a1ea6ca"
+        },
+        {
+          "text": "Is de afstand tot de zijkanten van het dak tenminste gelijk aan of groter dan de hoogte het zonnepaneel?",
+          "description": "toelichten mbv plaatje of voorbeeld",
+          "type": "boolean",
+          "prio": 70,
+          "id": "6ed951062aeefbea106775488233b0ef"
+        },
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen binnen het dakvlak?",
+          "type": "boolean",
+          "prio": 80,
+          "id": "77ff42a957e8a2de0ee01acdd4c6ec25"
+        },
+        {
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen in of direct op het dakvlak?",
+          "type": "boolean",
+          "prio": 90,
+          "id": "9e872b1924df4f3321ae8a1724cd8134"
+        },
+        {
+          "text": "Is de hellinghoek van de zonnepanelen gelijk aan de hellinghoek van het dakvlak?",
+          "type": "boolean",
+          "prio": 100,
+          "id": "0cdb9b2046ef7bfc4aa580ae0b08aa44"
+        }
+      ],
+      "decisions": {
+        "6667d3e5ea195f336e651fbfd31b2003": {
+          "requiredInputs": ["c0187d64e287138ff60b7ab70fbaa51d"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "c3f861f8da7fea438b8db7b1b399dd46": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "329409b157a09d8e0829709605197efa": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd",
+            "4ee03069449e7b6cf4bc9a202804dd5c",
+            "47286dc287c5ea251e6f16304021fd4f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "b821518959f0a8e47600c071fd50eb15": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd",
+            "4ee03069449e7b6cf4bc9a202804dd5c",
+            "47286dc287c5ea251e6f16304021fd4f",
+            "1947c1f7e361407bc5928e411e91a782"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, true, true, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "7d949172680b3e82ce5af442020b1a95": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd",
+            "4ee03069449e7b6cf4bc9a202804dd5c",
+            "cec5bfecad040e149ed822e24a1ea6ca",
+            "6ed951062aeefbea106775488233b0ef"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, false, true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "2b7ee8e974ca1440d1fccfceffd934b5": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd",
+            "4ee03069449e7b6cf4bc9a202804dd5c",
+            "cec5bfecad040e149ed822e24a1ea6ca",
+            "77ff42a957e8a2de0ee01acdd4c6ec25"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, false, false, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "be655f4e768913cf349ec35a7091e211": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd",
+            "4ee03069449e7b6cf4bc9a202804dd5c",
+            "cec5bfecad040e149ed822e24a1ea6ca",
+            "77ff42a957e8a2de0ee01acdd4c6ec25",
+            "9e872b1924df4f3321ae8a1724cd8134"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, false, false, true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "fa797bcd859645527fb994cb10ef991f": {
+          "requiredInputs": [
+            "c0187d64e287138ff60b7ab70fbaa51d",
+            "9753ffa0e723150a0ca78741726423cd",
+            "4ee03069449e7b6cf4bc9a202804dd5c",
+            "cec5bfecad040e149ed822e24a1ea6ca",
+            "77ff42a957e8a2de0ee01acdd4c6ec25",
+            "9e872b1924df4f3321ae8a1724cd8134",
+            "0cdb9b2046ef7bfc4aa580ae0b08aa44"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, false, false, true, true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "6667d3e5ea195f336e651fbfd31b2003",
+            "c3f861f8da7fea438b8db7b1b399dd46",
+            "329409b157a09d8e0829709605197efa",
+            "b821518959f0a8e47600c071fd50eb15",
+            "7d949172680b3e82ce5af442020b1a95",
+            "2b7ee8e974ca1440d1fccfceffd934b5",
+            "be655f4e768913cf349ec35a7091e211",
+            "fa797bcd859645527fb994cb10ef991f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "X794ToraLGqGMGiT7"
+}
