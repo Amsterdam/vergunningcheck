@@ -80,11 +80,6 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     return null;
   }
 
-  // Activate the first question (in case of refresh)
-  if (isActive && !isCompleted && checker.stack.length === 0) {
-    checker.next();
-  }
-
   const saveAnswerHook = () => {
     // This function is triggered every time an answer is saved
 
