@@ -3,23 +3,36 @@ import "@testing-library/jest-dom/extend-expect";
 import React from "react";
 
 import mockAddress from "../../__mocks__/addressMock";
-import { actions, eventNames, sections } from "../../config/matomo";
+import { useTopicData } from "../../hooks";
 import nl from "../../i18n/nl";
+import { defaultTopicSession as mockDefaultTopic } from "../../SessionContext";
+import { Topic } from "../../types";
+import { findTopicBySlug } from "../../utils";
 import { NEXT_BUTTON } from "../../utils/test-ids";
 import {
+  act,
   fireEvent,
+  mockHistoryPush,
+  mockHistoryReplace,
   mockMatomoTrackEvent,
   render,
   screen,
 } from "../../utils/test-utils";
 import OloLocationResult from "./OloLocationResult";
 
-jest.mock("../../hooks/useTopicData", () => () => ({
-  topicData: { address: mockAddress },
-}));
+jest.mock("../../hooks/useTopicData");
+
+const mockTopic = findTopicBySlug("aanbouw-of-uitbouw-maken") as Topic;
+jest.mock("../../hooks/useTopic", () => () => mockTopic);
+
+const { common } = nl.translation;
 
 describe("OloLocationResult", () => {
   it("should render correctly", () => {
+    (useTopicData as any).mockReturnValue({
+      topicData: { address: mockAddress },
+    });
+
     render(<OloLocationResult />);
 
     expect(
@@ -28,11 +41,19 @@ describe("OloLocationResult", () => {
     expect(screen.queryByText("streetname 123")).toBeInTheDocument();
     expect(screen.queryByText("1234 AB Amsterdam")).toBeInTheDocument();
     expect(
-      screen.queryByText("Het gebouw is een gemeentelijk monument.")
+      screen.queryByText(
+        common["the building is a monument"].replace(
+          "{{monument}}",
+          "gemeentelijk monument"
+        )
+      )
     ).toBeInTheDocument();
     expect(
       screen.queryByText(
-        "Het gebouw ligt in een rijksbeschermd stads- of dorpsgezicht."
+        common["the building is located inside a city scape"].replace(
+          "{{cityScape}}",
+          "rijksbeschermd stads- of dorpsgezicht"
+        )
       )
     ).toBeInTheDocument();
 
@@ -40,18 +61,21 @@ describe("OloLocationResult", () => {
   });
 
   it("should handle next button", () => {
+    mockMatomoTrackEvent.mockReset();
+
+    (useTopicData as any).mockReturnValue({
+      topicData: { address: mockAddress },
+    });
+
     render(<OloLocationResult />);
 
     const nextButton = screen.queryByTestId(NEXT_BUTTON) as HTMLElement;
     expect(nextButton).toHaveTextContent(/naar het omgevingsloket/i);
 
-    fireEvent.click(nextButton);
-
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
-    expect(mockMatomoTrackEvent).toBeCalledWith({
-      action: actions.CLICK_EXTERNAL_NAVIGATION,
-      name: eventNames.TO_OLO,
+    act(() => {
+      fireEvent.click(nextButton);
     });
+
     expect(window.open).toHaveBeenCalledTimes(1);
   });
 
@@ -65,10 +89,16 @@ describe("OloLocationResult", () => {
 
     fireEvent.click(prevButton);
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
-    expect(mockMatomoTrackEvent).toBeCalledWith({
-      action: actions.CLICK_INTERNAL_NAVIGATION,
-      name: `${eventNames.BACK} ${sections.LOCATION_INPUT}`,
+    expect(mockHistoryPush).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call the redirect", () => {
+    (useTopicData as any).mockReturnValue({
+      topicData: mockDefaultTopic,
     });
+
+    render(<OloLocationResult />);
+
+    expect(mockHistoryReplace).toBeCalled();
   });
 });
