@@ -25,6 +25,8 @@ export const isProduction: boolean =
 export const urls = {
   DEMOLITION_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?caseid=%7BAEA35C69-4DAD-483E-8AA1-C068D88B792C%7D",
+  FIRESAFETY_PAGE:
+    "https://www.amsterdam.nl/veelgevraagd/?productid=%7B1DA41981-4A37-457D-A57C-0E202F43C60B%7D",
   GENERAL_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
   OLO_HOME: oloHome,
@@ -137,9 +139,10 @@ export const topics: Topic[] = [
     },
   },
   {
-    hasIMTR: false,
+    hasIMTR: true,
+    intro: "BrandveiligGebruikIntro",
     name: "Brandveilig gebruik",
-    redirectToOlo: true,
+    redirectToOlo: false,
     slug: "brandveilig-gebruik",
     text: {
       heading: "Vergunningcheck brandveilig gebruik",
