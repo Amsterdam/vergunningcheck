@@ -1,9 +1,9 @@
-// @TODO: Add translations
 import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
+import nl from "../../i18n/nl";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import {
   act,
@@ -85,6 +85,8 @@ describe("OloLocationInput", () => {
      * The correct address is displayed on the screen
      */
 
+    const { common } = nl.translation;
+
     expect(
       screen.queryByText(`${resultStreetName} ${resultHouseNumberFull}`, {
         exact: false,
@@ -99,17 +101,22 @@ describe("OloLocationInput", () => {
 
     expect(
       screen.queryByText(
-        "Over dit adres hebben we de volgende gegevens gevonden:"
+        common["we have found the following information about this address"]
       )
     ).toBeInTheDocument();
 
     expect(
-      screen.queryByText("Het gebouw is een gemeentelijk monument.")
+      screen.queryByText(
+        common["the building is a monument"].replace(
+          "{{monument}}",
+          "gemeentelijk monument"
+        )
+      )
     ).toBeInTheDocument();
 
     expect(
       screen.queryByText(
-        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+        common["the building is not located inside a city scape"]
       )
     ).toBeInTheDocument();
 
@@ -122,7 +129,7 @@ describe("OloLocationInput", () => {
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
-      fireEvent.click(screen.getByText("Volgende"));
+      fireEvent.click(screen.getByText(common.next));
     });
 
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
