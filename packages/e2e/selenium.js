@@ -35,12 +35,12 @@ searchTest(driverSafari);
 searchTest(driverIe);
 
 function searchTest(driver) {
-    driver.get('http://www.google.com').then(() => {
-      driver.findElement(webdriver.By.name('sq')).sendKeys('BrowserStack').then(() => {
-        driver.getTitle().then((title) => {
-          console.log(title);
-          driver.quit();
-        });
+  driver.get('http://www.google.com').then(() => {
+    driver.findElement(webdriver.By.name('sq')).sendKeys('BrowserStack').then(() => {
+      driver.getTitle().then((title) => {
+        console.log(title);
+        driver.quit();
       });
     });
+  });
 }

@@ -9,7 +9,7 @@
   "main": "puppeteer/basic.ts",
   "scripts": {
     "test": "jest",
-    "selenium:browserstack": "node selenium.js --unhandled-rejections=strict",
+    "selenium:browserstack": "node --unhandled-rejections=strict selenium.js",
     "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
     "localhost:test:puppeteer": "find puppeteer/tests/*.ts -exec ts-node {} \\;",
     "localhost:test:nightwatch": "run-p localhost:test:nightwatch:*",
