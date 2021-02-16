@@ -12,6 +12,7 @@ export default {
     {
       __typename: "Monument",
       name: "Gemeentelijk monument",
+      scope: "MUNICIPAL",
     },
     {
       __typename: "CityScape",

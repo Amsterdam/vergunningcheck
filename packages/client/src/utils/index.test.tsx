@@ -155,7 +155,11 @@ describe("util", () => {
 
     expect(
       getRestrictionByTypeName(addressMock.restrictions, "Monument")
-    ).toStrictEqual({ __typename: "Monument", name: "Gemeentelijk monument" });
+    ).toStrictEqual({
+      __typename: "Monument",
+      name: "Gemeentelijk monument",
+      scope: "MUNICIPAL",
+    });
 
     expect(
       getRestrictionByTypeName(addressMock.restrictions, "CityScape")
@@ -168,6 +172,10 @@ describe("util", () => {
     // Should be case insensitive
     expect(
       getRestrictionByTypeName(addressMock.restrictions, "monument")
-    ).toStrictEqual({ __typename: "Monument", name: "Gemeentelijk monument" });
+    ).toStrictEqual({
+      __typename: "Monument",
+      name: "Gemeentelijk monument",
+      scope: "MUNICIPAL",
+    });
   });
 });
