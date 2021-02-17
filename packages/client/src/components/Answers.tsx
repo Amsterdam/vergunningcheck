@@ -3,7 +3,7 @@ import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { FieldErrors } from "react-hook-form";
 
-import { ComponentWrapper, Label } from "../atoms";
+import { ComponentWrapper, FileUpload, Label } from "../atoms";
 import { useTopicData } from "../hooks";
 import { Answer } from "../types";
 import { booleanOptions } from "../utils";
@@ -77,6 +77,9 @@ const Answers: FunctionComponent<AnswersProps> = ({
           />
         </ComponentWrapper>
       )}
+
+      {type === "file" && <FileUpload />}
+
       {errors[id] && <ErrorMessage message={errors[id].message} />}
     </ComponentWrapper>
   );
