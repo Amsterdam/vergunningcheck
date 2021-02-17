@@ -30,10 +30,9 @@ const safari = {
   'os_version' : 'High Sierra',
   'browserName' : 'Safari',
   'browser_version' : '11.1',
-  'local': true,
   "browserstack.local" : "true",
   'browserstack.console': "errors",
-  'name' : "sjens1's First Test"
+  'name' : "Vergunningcheck safari"
 }
 
 const ie = {
@@ -41,10 +40,9 @@ const ie = {
   'os_version' : '10',
   'browserName' : 'IE',
   'browser_version' : '11.0',
-  'local': true,
   'browserstack.local': "true",
   'browserstack.console': "errors",
-  'name' : "sjens1's First Test"
+  'name' : "Vergunningcheck IE"
 }
 
 const driverSafari = new webdriver.Builder().
