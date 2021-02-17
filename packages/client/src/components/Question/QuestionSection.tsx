@@ -81,13 +81,14 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     return null;
   }
 
-  // Prevent a bug when refreshing a checker without getDataNeed (only happens when first question remains unanswered)
-  if (
+  const noDataNeedAndEmptyStack =
     !getDataNeed(checker) &&
     isActive &&
     !isCompleted &&
-    checker.stack.length === 0
-  ) {
+    checker.stack.length === 0;
+
+  // Prevent a bug when refreshing a checker without getDataNeed (only happens when first question remains unanswered)
+  if (noDataNeedAndEmptyStack) {
     checker.next();
   }
 
