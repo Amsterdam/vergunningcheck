@@ -114,7 +114,7 @@ const LocationInput = ({
       )}
 
       {!hasIMTR && (
-        <Heading forwardedAs="h3">
+        <Heading forwardedAs="h2" styleAs="h3">
           {t("location.address.enter address")}
         </Heading>
       )}
