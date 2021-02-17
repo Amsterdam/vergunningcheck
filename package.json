@@ -40,7 +40,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lerna run --concurrency 1 --stream precommit",
-      "pre-push": "lerna run --concurrency 1 --stream selenium:browserstack"
+      "pre-push": "lerna run --concurrency 1 --stream nightwatch:browserstack"
     }
   },
   "changelog": {
