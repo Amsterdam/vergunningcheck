@@ -104,12 +104,12 @@ const NewCheckerModal: FunctionComponent = () => {
 
   return (
     <Modal
-      closeButtonText="Annuleer"
+      closeButtonText={t("common.cancel")}
       closeModalAfterConfirm={finished}
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}
-      heading="U wilt nog een vergunningcheck doen."
-      openButtonText="Nog een vergunningcheck doen"
+      heading={t("outcome.newCheckerModal.heading")}
+      openButtonText={t("outcome.newCheckerModal.openModalBtnText")}
       showConfirmButton
     >
       {topicData.address && (
@@ -120,10 +120,10 @@ const NewCheckerModal: FunctionComponent = () => {
             gutterBottom={8}
             strong
           >
-            Wilt u nog een vergunningcheck doen voor hetzelfde adres?
+            {t("outcome.newCheckerModal.recheckWithSameAddress")}
           </Paragraph>
           <RadioGroup name="address">
-            <Label htmlFor="address-input-1" label="Ja">
+            <Label htmlFor="address-input-2" label={t("common.yes")}>
               <Radio
                 checked={saveAddress === true}
                 data-testid={RADIO_ADDRESS_1}
@@ -132,7 +132,7 @@ const NewCheckerModal: FunctionComponent = () => {
                 onChange={() => setSaveAddress(true)}
               />
             </Label>
-            <Label htmlFor="address-input-2" label="Nee">
+            <Label htmlFor="address-input-2" label={t("common.no")}>
               <Radio
                 checked={saveAddress === false}
                 data-testid={RADIO_ADDRESS_2}
@@ -150,7 +150,7 @@ const NewCheckerModal: FunctionComponent = () => {
 
       <ComponentWrapper>
         <Paragraph strong gutterBottom={8}>
-          Welke vergunningcheck wilt u doen?
+          {t("outcome.newCheckerModal.selectNextPermitCheck")}
         </Paragraph>
 
         <ComponentWrapper>
