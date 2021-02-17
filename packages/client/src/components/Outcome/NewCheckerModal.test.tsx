@@ -8,9 +8,6 @@ import {
   MODAL,
   MODAL_CONFIRM_BUTTON,
   MODAL_OPEN_BUTTON,
-  NEW_CHECKER_MODAL_SAME_ADDRESS,
-  RADIO_ADDRESS_1,
-  RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
 import {
   act,
@@ -67,27 +64,8 @@ describe("NewCheckerModal", () => {
     });
     // Modal = open
 
-    // Expect the "same address" components to be rendered with this `useTopicData` mock
-    expect(queryByTestId(NEW_CHECKER_MODAL_SAME_ADDRESS)).toBeInTheDocument();
-
-    act(() => {
-      // Select 'Yes' (only to mock the 'Yes')
-      fireEvent.click(queryByTestId(RADIO_ADDRESS_1) as HTMLElement);
-      // Select 'No' (because we don't send address data now)
-      fireEvent.click(queryByTestId(RADIO_ADDRESS_2) as HTMLElement);
-      // Click the new topic to open
-      fireEvent.click(
-        queryByTestId(`radio-checker-${customTopic.slug}`) as HTMLElement
-      );
-
-      // Because this event is not async, it should call `NO_CHOICE_HAS_BEEN_MADE`
-      fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON) as HTMLElement);
-
-      expect(mockMatomoTrackEvent).toBeCalledWith({
-        action: actions.START_ANOTHER_CHECK,
-        name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
-      });
-    });
+    // Because this event is not async, it should call `NO_CHOICE_HAS_BEEN_MADE`
+    fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON) as HTMLElement);
 
     // Go to new topic
     await act(async () => {
