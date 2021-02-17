@@ -75,7 +75,7 @@ export default ({
 
       {exceptions.length > 0 && (
         <>
-          <Heading forwardedAs="h4">
+          <Heading styleAs="h4" forwardedAs="h3">
             {t("introPage.common.exceptions title")}
           </Heading>
           <Paragraph gutterBottom={8}>
