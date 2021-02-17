@@ -43,7 +43,7 @@ const Question: FunctionComponent<QuestionProps> = ({
   const {
     topicData: { questionIndex },
   } = useTopicData();
-  const { isPermitForm } = useTopic();
+  const { isPermitForm, isPermitCheck } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -63,13 +63,14 @@ const Question: FunctionComponent<QuestionProps> = ({
   const requiredText = isRadio
     ? t("common.required field radio")
     : t("common.required field text");
+  //
 
   useEffect(() => {
     if (questionId) {
       register(
         { name: questionId },
         {
-          required: isPermitForm ? false : requiredText,
+          required: isPermitCheck ?? requiredText,
         }
       );
 
@@ -80,7 +81,7 @@ const Question: FunctionComponent<QuestionProps> = ({
     return () => unregister(questionId);
   }, [
     answer,
-    isPermitForm,
+    isPermitCheck,
     questionId,
     register,
     unregister,
