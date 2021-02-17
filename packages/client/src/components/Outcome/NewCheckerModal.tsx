@@ -98,7 +98,7 @@ const NewCheckerModal: FunctionComponent = () => {
 
       // Clear checker and go to the new topic slug
       setChecker(undefined);
-      history.push(geturl(routes.checker, { slug: checkerSlug }));
+      history.push(geturl(routes.intro, { slug: checkerSlug }));
     }
   };
 
