@@ -78,7 +78,15 @@ const Question: FunctionComponent<QuestionProps> = ({
       }
     }
     return () => unregister(questionId);
-  }, [answer, questionId, register, unregister, setValue, requiredText]);
+  }, [
+    answer,
+    isPermitForm,
+    questionId,
+    register,
+    unregister,
+    setValue,
+    requiredText,
+  ]);
 
   const handleOpenModal = () => {
     matomoTrackEvent({

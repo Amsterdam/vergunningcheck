@@ -31,7 +31,7 @@ const Inner = styled.div`
   text-align: center;
 `;
 
-const FileUpload: FunctionComponent<HTMLAttributes<HTMLElement>> = ({}) => (
+const FileUpload: FunctionComponent<HTMLAttributes<HTMLElement>> = () => (
   <Wrapper data-testid={TEXT_TO_EDIT_BUTTON}>
     {/* <input type="file" className="upload" /> */}
     <Inner>
