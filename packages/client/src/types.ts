@@ -12,7 +12,7 @@ export type Restriction = {
 
 export type ZoningPlan = {
   __typename?: string;
-  name?: string;
+  name: string;
   scope?: string;
 };
 

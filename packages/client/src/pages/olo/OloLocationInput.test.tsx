@@ -1,9 +1,11 @@
-// @TODO: Add translations
 import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
+import nl from "../../i18n/nl";
+import { Topic } from "../../types";
+import { findTopicBySlug } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import {
   act,
@@ -15,7 +17,10 @@ import {
 } from "../../utils/test-utils";
 import OloLocationInput from "./OloLocationInput";
 
-window.history.pushState({}, "Locatie pagina", "/dakkapel-plaatsen/locatie");
+const { common } = nl.translation;
+
+const mockTopic = findTopicBySlug("aanbouw-of-uitbouw-maken") as Topic;
+jest.mock("../../hooks/useTopic", () => () => mockTopic);
 
 const mockAddress = {
   ...addressGraphQLMock[0].request.variables,
@@ -42,8 +47,7 @@ describe("OloLocationInput", () => {
     expect(inputHouseNumber).toHaveValue(houseNumberFull);
   });
 
-  // @TODO: fix this test. This test fails because it mocks a non-OLO-url
-  xit("should handle next button", async () => {
+  it("should handle next button", async () => {
     const {
       houseNumberFull,
       postalCode,
@@ -81,10 +85,7 @@ describe("OloLocationInput", () => {
     // Wait for Location to be found
     await waitFor(() => screen.getByTestId(LOCATION_FOUND));
 
-    /**
-     * The correct address is displayed on the screen
-     */
-
+    // The correct address is displayed on the screen
     expect(
       screen.queryByText(`${resultStreetName} ${resultHouseNumberFull}`, {
         exact: false,
@@ -99,32 +100,34 @@ describe("OloLocationInput", () => {
 
     expect(
       screen.queryByText(
-        "Over dit adres hebben we de volgende gegevens gevonden:"
+        common["we have found the following information about this address"]
       )
     ).toBeInTheDocument();
 
     expect(
-      screen.queryByText("Het gebouw is een gemeentelijk monument.")
+      screen.queryByText(
+        common["the building is a monument"].replace(
+          "{{monument}}",
+          "gemeentelijk monument"
+        )
+      )
     ).toBeInTheDocument();
 
     expect(
       screen.queryByText(
-        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
+        common["the building is not located inside a city scape"]
       )
     ).toBeInTheDocument();
 
     expect(screen.queryByText("zoningplan")).not.toBeInTheDocument();
 
-    /**
-     * Continue with the next button
-     */
-
+    // Continue with the next button
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
 
     await act(async () => {
-      fireEvent.click(screen.getByText("Volgende"));
+      fireEvent.click(screen.getByText(common.next));
     });
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(0);
+    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(6);
   });
 });
