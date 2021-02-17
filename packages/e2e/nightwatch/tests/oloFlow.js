@@ -22,11 +22,14 @@ module.exports = {
     assert.containsText(main, "Invullen adres");
     // TODO: test invalid fields feedback
     assert.visible(locationPostalCode);
-    b.setValue(locationPostalCode, address.zipCode);
+    // b.setValue(locationPostalCode, address.zipCode);
+    b.setValue(locationPostalCode, '1055XD');
     assert.visible(locationHouseNumberFull);
-    b.setValue(locationHouseNumberFull, address.houseNumberFull);
+    b.setValue(locationHouseNumberFull, "19c");
+    // b.setValue(locationHouseNumberFull, address.houseNumberFull);
     b.waitForElementVisible(locationFound);
-    assert.containsText(main, address.streetName);
+    // assert.containsText(main, address.streetName);
+    assert.containsText(main, "Louise de Colignystraat");
 
     // forward, back, forward
     b.click(navButtonNext);
