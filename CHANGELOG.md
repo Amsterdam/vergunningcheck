@@ -15,8 +15,6 @@ All notable changes to this project will be documented in this file.
 
 - `client`
   - [#813](https://github.com/Amsterdam/vergunningcheck/pull/813) Prevent a bug when refreshing a checker without getDataNeed ([@robinpiets](https://github.com/robinpiets))
-  - [#805](https://github.com/Amsterdam/vergunningcheck/pull/805) Hotfix: reset address triggers wrong checker.next ([@robinpiets](https://github.com/robinpiets))
-  - [#801](https://github.com/Amsterdam/vergunningcheck/pull/801) Fixed regex bug on Safari ([@svenjens](https://github.com/svenjens))
 
 #### Chores
 
