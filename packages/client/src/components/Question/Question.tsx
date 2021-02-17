@@ -69,7 +69,7 @@ const Question: FunctionComponent<QuestionProps> = ({
       register(
         { name: questionId },
         {
-          required: requiredText,
+          required: isPermitForm ? false : requiredText,
         }
       );
 
