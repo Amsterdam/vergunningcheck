@@ -31,7 +31,7 @@ export const Header = () => {
       homeLink=""
       logo={() => (
         <StyledLogoWrapper href={homeLink} onClick={handleClick} tabIndex={4}>
-          <StyledLogo />
+          <StyledLogo>Amsterdam.nl</StyledLogo>
         </StyledLogoWrapper>
       )}
       tall

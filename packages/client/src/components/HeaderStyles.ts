@@ -46,6 +46,7 @@ export const StyledLogo = styled.span`
   cursor: pointer;
   background-size: cover;
   background-image: url("${LogoMobile}");
+  text-indent: -9999px;
 `;
 
 export const StyledLogoWrapper = styled.a`
