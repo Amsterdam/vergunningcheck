@@ -37,7 +37,6 @@ const StepByStepNavigation: FunctionComponent<
 
   return (
     <StepByStepNavigationStyle
-      aria-labelledby="menubutton"
       aria-live="polite"
       data-testid={STEPBYSTEPNAVIGATION}
       role="menu"
