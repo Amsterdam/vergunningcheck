@@ -4,6 +4,8 @@ export default {
       "address loading": "Wij zoeken het adres.",
       edit: "Wijzig",
       "housenumber label": "Huisnummer + toevoeging",
+      "municipal city scape": "gemeentelijk beschermd stads- of dorpsgezicht",
+      "national city scape": "rijksbeschermd stads- of dorpsgezicht",
       next: "Volgende",
       no: "Nee",
       "no valid postalcode":
@@ -13,7 +15,15 @@ export default {
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
       "to the questions": "Naar de vragen",
+      "the building is a monument": "Het gebouw is een {{monument}}.",
+      "the building is not a monument": "Het gebouw is geen monument.",
+      "the building is located inside a city scape":
+        "Het gebouw ligt in een {{cityScape}}.",
+      "the building is not located inside a city scape":
+        "Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.",
       unknown: "Onbekend",
+      "we have found the following information about this address":
+        "Over dit adres hebben we de volgende gegevens gevonden:",
       yes: "Ja",
     },
     errorMessages: {
