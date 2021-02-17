@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 140,
+      "version": 154,
       "name": "Conclusie Brandveilig gebruik",
       "questions": [
         {
@@ -186,12 +186,12 @@
             ]
           }
         },
-        "74a7d1d0531357db2f148c871614676a": {
+        "f60b5e58a38d2fc1d8ecbd6a7df80754": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
             "rules": [
@@ -281,26 +281,42 @@
             ]
           }
         },
-        "e71c17bf328ad5d80a94ee508e2beed3": {
+        "3907756fe56a0a8a7ad8a60172db5c68": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
-            "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
+            "0dbc77675fd3efef0404ccf8e0a3ecef",
+            "217b17bad991543c6bfbddae60d9c6fd"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, true, false, false, true],
+                "inputs": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
                 "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
               },
               {
                 "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-", "-"],
+                "inputs": ["-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -312,44 +328,13 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "2d3623e1edb1bec86e3dddf7b615e203": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, false, true, false, true],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
                 "output": "\"no hit\""
               }
             ]
@@ -392,18 +377,24 @@
             ]
           }
         },
-        "bbddab3afce515f5c7f8c04971ba6a39": {
+        "571261d448018e851e8dd7b2c1e80eb6": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
+            "678a5f18c594b9fe0f9e45781db56f03",
             "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, false, false, true],
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  true
+                ],
                 "output": "\"Meldingsplicht\""
               },
               {
@@ -415,11 +406,37 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-"],
+                "inputs": ["-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -429,217 +446,48 @@
             ]
           }
         },
-        "34116ff031e9bc10aa3d5f34153b68bd": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, true, false, true, false, true],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "9183ae0eaf8f878531813fee12ee0015": {
+        "a36e9711c660406e8d31e9a7bc0b0b2d": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
             "40190f5c62cba42202ebe99ac0a8c998",
             "678a5f18c594b9fe0f9e45781db56f03",
             "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  false,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  true
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "2a70435b77d41ba5614a312960083705": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "678a5f18c594b9fe0f9e45781db56f03",
-            "3c686963d51626bf08676858639b78da"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  true,
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  true,
-                  "\"Personen met een lichamelijke beperking.\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  true,
-                  "\"Personen met een verstandelijke beperking.\"",
-                  true
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Geen van bovenstaande.\"",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "4195d8b6efc2c9e56e48de4888d31978": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
             "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, true, false, false, true],
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  true
+                ],
                 "output": "\"Meldingsplicht\""
               },
               {
@@ -655,7 +503,14 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -669,80 +524,13 @@
             ]
           }
         },
-        "d6869eff22a63d50d2e23980bd959890": {
+        "9241755ee8fa438c8797c0495e310760": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef",
-            "217b17bad991543c6bfbddae60d9c6fd"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  "\"Ik weet het antwoord niet.\""
-                ],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
-                ],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "8fffe3df0154ee429da9a4949e750bf8": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
             "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
@@ -778,49 +566,95 @@
             ]
           }
         },
-        "453e667dd1226083900ad7185cc2b9e3": {
+        "954b10c155f0ed7b4152f49dbc2f4dcd": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, true, true, false, false, true],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "c763f998fdc8fa9143da1f77b01311b2": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "40190f5c62cba42202ebe99ac0a8c998",
             "678a5f18c594b9fe0f9e45781db56f03",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
+            "0dbc77675fd3efef0404ccf8e0a3ecef",
+            "217b17bad991543c6bfbddae60d9c6fd"
           ],
           "decisionTable": {
             "rules": [
               {
                 "inputs": [
                   false,
-                  true,
                   false,
                   true,
                   "\"Geen van bovenstaande.\"",
-                  true,
-                  true
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
                 ],
                 "output": "\"Meldingsplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "inputs": ["-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
+                "inputs": ["-", "-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -835,7 +669,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "\"Personen met een lichamelijke beperking.\"",
                   "-",
                   "-"
@@ -847,7 +680,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "\"Personen met een verstandelijke beperking.\"",
                   "-",
                   "-"
@@ -855,24 +687,106 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "inputs": ["-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "727e417e40fc839dcc6bd7860bf09bda": {
+        "be11862d09099cc3542774b5cfbf8f3b": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
+            "0dbc77675fd3efef0404ccf8e0a3ecef",
+            "217b17bad991543c6bfbddae60d9c6fd"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "759cda42da67ac981fcb3d5e4dda7410": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "788610e97e846e835b8f66a27bed890a",
+            "40190f5c62cba42202ebe99ac0a8c998",
             "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
@@ -912,13 +826,405 @@
             ]
           }
         },
-        "e2f7e9aed583da9ab0ec301d4da3266e": {
+        "a486cc89f2511e44ff2c05c1d04a6592": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "f9878119481e4bb28c6052df71756419": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "3c686963d51626bf08676858639b78da",
+            "0dbc77675fd3efef0404ccf8e0a3ecef",
+            "217b17bad991543c6bfbddae60d9c6fd"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "fd07f727ff6d717f533ae80e0e114ccb": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "3c686963d51626bf08676858639b78da"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "6768201e0a47b00c832f0ffe1ae4d1cf": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "4a4b0fa916d99c8bf4f9537f6aa23396": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "40190f5c62cba42202ebe99ac0a8c998",
             "0dbc77675fd3efef0404ccf8e0a3ecef",
             "217b17bad991543c6bfbddae60d9c6fd"
           ],
@@ -987,108 +1293,53 @@
             ]
           }
         },
-        "7c108b943c0038c32918e83065003a93": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "678a5f18c594b9fe0f9e45781db56f03",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  false,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "fa964e50d9a362184d570739a37ca5cd": {
+        "29646643b607bcddd853a86552367ab5": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
             "42719d2d9e3c04904bd452ecc681748a",
-            "9b93d82d288c98a0e46540d8f6ebbd0d",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "3c686963d51626bf08676858639b78da"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, true, false, false, true, false, true],
-                "output": "\"Meldingsplicht\""
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [true, "-", "-", "-", "-", "-", "-"],
@@ -1099,7 +1350,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1111,7 +1362,15 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1121,13 +1380,14 @@
             ]
           }
         },
-        "d18f9e66b22cd9d7dfc182f9634d3973": {
+        "b0a3a58e2d1f821db49dbbd225197a6e": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
+            "678a5f18c594b9fe0f9e45781db56f03",
             "0dbc77675fd3efef0404ccf8e0a3ecef",
             "217b17bad991543c6bfbddae60d9c6fd"
           ],
@@ -1136,10 +1396,11 @@
               {
                 "inputs": [
                   false,
-                  false,
+                  true,
                   true,
                   false,
-                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
                   false,
                   "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
                 ],
@@ -1148,41 +1409,82 @@
               {
                 "inputs": [
                   false,
-                  false,
+                  true,
                   true,
                   false,
-                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
                   false,
                   "\"Ik weet het antwoord niet.\""
                 ],
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1196,15 +1498,15 @@
             ]
           }
         },
-        "e450ab421d36f1ffd6d263842161a5a3": {
+        "a703814e88f45f4bc39807249f44911c": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
-            "788610e97e846e835b8f66a27bed890a",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
             "40190f5c62cba42202ebe99ac0a8c998",
             "678a5f18c594b9fe0f9e45781db56f03",
             "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
             "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
@@ -1214,9 +1516,35 @@
                   false,
                   true,
                   false,
+                  false,
                   true,
-                  "\"Geen van bovenstaande.\"",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
                   true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
                   false,
                   true
                 ],
@@ -1235,93 +1563,6 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "5f7e3d300380d2c6ba98e12956026942": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "42719d2d9e3c04904bd452ecc681748a",
-            "9b93d82d288c98a0e46540d8f6ebbd0d",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, true, false, false, true, true, false, true],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
                 "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
@@ -1330,7 +1571,16 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1344,7 +1594,7 @@
             ]
           }
         },
-        "d8c9b35008e7aa7e9b2746f2369ac2df": {
+        "b0fe58b74e056064f0dfb5c1111eb74e": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
@@ -1352,58 +1602,6 @@
             "9b93d82d288c98a0e46540d8f6ebbd0d",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, true, false, false, true, false, false, true],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "7ef5a40af0e3cdec1740b1f250fe2f1a": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
             "0dbc77675fd3efef0404ccf8e0a3ecef",
             "217b17bad991543c6bfbddae60d9c6fd"
           ],
@@ -1479,125 +1677,7 @@
             ]
           }
         },
-        "7776eb1d19aab965402262862be52887": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "678a5f18c594b9fe0f9e45781db56f03",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef",
-            "217b17bad991543c6bfbddae60d9c6fd"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  false,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  false,
-                  false,
-                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [
-                  false,
-                  false,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  false,
-                  false,
-                  "\"Ik weet het antwoord niet.\""
-                ],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
-                ],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "2538aa12a63096bff7935459a6ff9c56": {
+        "c2a163dd06c7386e78531cc6a44cc8c3": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
@@ -1615,8 +1695,8 @@
                   false,
                   true,
                   false,
-                  false,
                   true,
+                  false,
                   true,
                   "\"Kinderen jonger dan 12 jaar.\"",
                   true
@@ -1628,8 +1708,8 @@
                   false,
                   true,
                   false,
-                  false,
                   true,
+                  false,
                   true,
                   "\"Personen met een lichamelijke beperking.\"",
                   true
@@ -1641,8 +1721,8 @@
                   false,
                   true,
                   false,
-                  false,
                   true,
+                  false,
                   true,
                   "\"Personen met een verstandelijke beperking.\"",
                   true
@@ -1662,11 +1742,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1693,15 +1773,325 @@
             ]
           }
         },
-        "03b444ed79d2bdfcf12836b8b9a1045f": {
+        "1b17ddf46684967779cd73e7d4c40d4f": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "0dbc77675fd3efef0404ccf8e0a3ecef",
+            "217b17bad991543c6bfbddae60d9c6fd"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "e88b1c2bf504bd31152c9b34c4357300": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
             "678a5f18c594b9fe0f9e45781db56f03",
             "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "8a285e396f547216a54950fd34b5c929": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "788610e97e846e835b8f66a27bed890a",
+            "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  true,
+                  false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "91c0ecd4c6b46e9a1a552948ed34f5b9": {
+          "requiredInputs": [
+            "b62ed2cd45a1cd840cb2ff1ea705da6a",
+            "8217540daff2bf223cad78d1e6658561",
+            "42719d2d9e3c04904bd452ecc681748a",
+            "9b93d82d288c98a0e46540d8f6ebbd0d",
+            "788610e97e846e835b8f66a27bed890a",
+            "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
             "0dbc77675fd3efef0404ccf8e0a3ecef",
             "217b17bad991543c6bfbddae60d9c6fd"
           ],
@@ -1713,9 +2103,9 @@
                   true,
                   false,
                   true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
                   false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
                   false,
                   "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
                 ],
@@ -1727,9 +2117,9 @@
                   true,
                   false,
                   true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
                   false,
+                  true,
+                  "\"Geen van bovenstaande.\"",
                   false,
                   "\"Ik weet het antwoord niet.\""
                 ],
@@ -1752,45 +2142,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1798,7 +2150,45 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een lichamelijke beperking.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Personen met een verstandelijke beperking.\"",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -1822,7 +2212,7 @@
             ]
           }
         },
-        "3213edfd3ff641e008c1e4c37a80f01a": {
+        "5fddf324801f3cdead807ff8509ac38d": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
@@ -1832,7 +2222,7 @@
             "40190f5c62cba42202ebe99ac0a8c998",
             "678a5f18c594b9fe0f9e45781db56f03",
             "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489"
+            "0dbc77675fd3efef0404ccf8e0a3ecef"
           ],
           "decisionTable": {
             "rules": [
@@ -1841,11 +2231,39 @@
                   false,
                   true,
                   false,
+                  true,
                   false,
                   true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
                   true,
-                  "\"Geen van bovenstaande.\"",
+                  false,
                   true,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  true
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
                   true
                 ],
                 "output": "\"Meldingsplicht\""
@@ -1863,11 +2281,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1882,42 +2300,14 @@
                   "-",
                   "-",
                   "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
+                  "\"Geen van bovenstaande.\"",
                   "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-"],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
@@ -1927,15 +2317,15 @@
             ]
           }
         },
-        "f8c17d4a55226eabbce2b2d04da8df97": {
+        "a2f0eb4e8ca8b0b7386a52a688f74b52": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
             "42719d2d9e3c04904bd452ecc681748a",
             "9b93d82d288c98a0e46540d8f6ebbd0d",
-            "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
+            "678a5f18c594b9fe0f9e45781db56f03",
+            "3c686963d51626bf08676858639b78da",
             "0dbc77675fd3efef0404ccf8e0a3ecef",
             "217b17bad991543c6bfbddae60d9c6fd"
           ],
@@ -1948,7 +2338,7 @@
                   false,
                   false,
                   true,
-                  false,
+                  "\"Kinderen jonger dan 12 jaar.\"",
                   false,
                   false,
                   "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
@@ -1962,7 +2352,63 @@
                   false,
                   false,
                   true,
+                  "\"Personen met een lichamelijke beperking.\"",
                   false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
                   false,
                   false,
                   "\"Ik weet het antwoord niet.\""
@@ -1990,7 +2436,17 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2018,17 +2474,17 @@
             ]
           }
         },
-        "95e4fe5f002fa6867187909958bde11c": {
+        "9267a5f55fcec96a3e347e5032ad970c": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
             "42719d2d9e3c04904bd452ecc681748a",
-            "9b93d82d288c98a0e46540d8f6ebbd0d",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
             "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef"
+            "0dbc77675fd3efef0404ccf8e0a3ecef",
+            "217b17bad991543c6bfbddae60d9c6fd"
           ],
           "decisionTable": {
             "rules": [
@@ -2036,15 +2492,85 @@
                 "inputs": [
                   false,
                   true,
-                  false,
-                  false,
-                  true,
                   true,
                   false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
                   false,
-                  true
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
                 ],
                 "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
               },
               {
                 "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
@@ -2055,7 +2581,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2067,7 +2593,17 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2079,13 +2615,23 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", false],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "a1810f83f20d41b91e0ebb923a1a9176": {
+        "2e9c19c89e2388977658b624bc05707a": {
           "requiredInputs": [
             "b62ed2cd45a1cd840cb2ff1ea705da6a",
             "8217540daff2bf223cad78d1e6658561",
@@ -2093,8 +2639,8 @@
             "9b93d82d288c98a0e46540d8f6ebbd0d",
             "788610e97e846e835b8f66a27bed890a",
             "40190f5c62cba42202ebe99ac0a8c998",
+            "678a5f18c594b9fe0f9e45781db56f03",
             "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
             "0dbc77675fd3efef0404ccf8e0a3ecef",
             "217b17bad991543c6bfbddae60d9c6fd"
           ],
@@ -2105,10 +2651,10 @@
                   false,
                   true,
                   false,
-                  false,
-                  true,
                   true,
                   false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
                   false,
                   false,
                   "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
@@ -2120,10 +2666,70 @@
                   false,
                   true,
                   false,
-                  false,
-                  true,
                   true,
                   false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
+                ],
+                "output": "\"Meldingsplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  true,
+                  false,
+                  true,
+                  "\"Kinderen jonger dan 12 jaar.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een lichamelijke beperking.\"",
+                  false,
+                  false,
+                  "\"Ik weet het antwoord niet.\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  false,
+                  true,
+                  false,
+                  true,
+                  "\"Personen met een verstandelijke beperking.\"",
                   false,
                   false,
                   "\"Ik weet het antwoord niet.\""
@@ -2143,11 +2749,11 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", false, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -2155,7 +2761,18 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true, "-", "-", "-"],
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Geen van bovenstaande.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
                 "output": "\"no hit\""
               },
               {
@@ -2184,415 +2801,40 @@
             ]
           }
         },
-        "14d807070aed6a1d85c50c0cbc8e32c2": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "42719d2d9e3c04904bd452ecc681748a",
-            "9b93d82d288c98a0e46540d8f6ebbd0d",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "678a5f18c594b9fe0f9e45781db56f03",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  false,
-                  true,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  false,
-                  true
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "b77ac5347ff7389fcf14069053e6e6e2": {
-          "requiredInputs": [
-            "b62ed2cd45a1cd840cb2ff1ea705da6a",
-            "8217540daff2bf223cad78d1e6658561",
-            "42719d2d9e3c04904bd452ecc681748a",
-            "9b93d82d288c98a0e46540d8f6ebbd0d",
-            "788610e97e846e835b8f66a27bed890a",
-            "40190f5c62cba42202ebe99ac0a8c998",
-            "678a5f18c594b9fe0f9e45781db56f03",
-            "3c686963d51626bf08676858639b78da",
-            "54ffd6a4dbbcbf4173ebcd3ed7ba7489",
-            "0dbc77675fd3efef0404ccf8e0a3ecef",
-            "217b17bad991543c6bfbddae60d9c6fd"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  false,
-                  true,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  false,
-                  false,
-                  "\"Ik houd mij via een gelijkwaardige oplossing aan de regels uit hoofdstuk 6 en 7 van het Bouwbesluit.\""
-                ],
-                "output": "\"Meldingsplicht\""
-              },
-              {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  false,
-                  true,
-                  true,
-                  "\"Geen van bovenstaande.\"",
-                  true,
-                  false,
-                  false,
-                  "\"Ik weet het antwoord niet.\""
-                ],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Kinderen jonger dan 12 jaar.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een lichamelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Personen met een verstandelijke beperking.\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Ik voldoe precies aan hoofdstuk 6 en 7 van het Bouwbesluit.\""
-                ],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
         "dummy": {
           "requiredDecisions": [
             "b3b816b2102b09ea1b99b45d3fe09bf5",
             "d3f9aca0e95563ecf9795ea94b7c4857",
             "c4a827b23b971a9ebd89b824910903e7",
-            "74a7d1d0531357db2f148c871614676a",
+            "f60b5e58a38d2fc1d8ecbd6a7df80754",
             "7c0c7ea9fa760e927341fef07c83e37a",
-            "e71c17bf328ad5d80a94ee508e2beed3",
-            "2d3623e1edb1bec86e3dddf7b615e203",
+            "3907756fe56a0a8a7ad8a60172db5c68",
             "2178775f9718d03ba2111137602617ea",
-            "bbddab3afce515f5c7f8c04971ba6a39",
-            "34116ff031e9bc10aa3d5f34153b68bd",
-            "9183ae0eaf8f878531813fee12ee0015",
-            "2a70435b77d41ba5614a312960083705",
-            "4195d8b6efc2c9e56e48de4888d31978",
-            "d6869eff22a63d50d2e23980bd959890",
-            "8fffe3df0154ee429da9a4949e750bf8",
-            "453e667dd1226083900ad7185cc2b9e3",
-            "727e417e40fc839dcc6bd7860bf09bda",
-            "e2f7e9aed583da9ab0ec301d4da3266e",
-            "7c108b943c0038c32918e83065003a93",
-            "fa964e50d9a362184d570739a37ca5cd",
-            "d18f9e66b22cd9d7dfc182f9634d3973",
-            "e450ab421d36f1ffd6d263842161a5a3",
-            "5f7e3d300380d2c6ba98e12956026942",
-            "d8c9b35008e7aa7e9b2746f2369ac2df",
-            "7ef5a40af0e3cdec1740b1f250fe2f1a",
-            "7776eb1d19aab965402262862be52887",
-            "2538aa12a63096bff7935459a6ff9c56",
-            "03b444ed79d2bdfcf12836b8b9a1045f",
-            "3213edfd3ff641e008c1e4c37a80f01a",
-            "f8c17d4a55226eabbce2b2d04da8df97",
-            "95e4fe5f002fa6867187909958bde11c",
-            "a1810f83f20d41b91e0ebb923a1a9176",
-            "14d807070aed6a1d85c50c0cbc8e32c2",
-            "b77ac5347ff7389fcf14069053e6e6e2"
+            "571261d448018e851e8dd7b2c1e80eb6",
+            "a36e9711c660406e8d31e9a7bc0b0b2d",
+            "9241755ee8fa438c8797c0495e310760",
+            "954b10c155f0ed7b4152f49dbc2f4dcd",
+            "c763f998fdc8fa9143da1f77b01311b2",
+            "be11862d09099cc3542774b5cfbf8f3b",
+            "759cda42da67ac981fcb3d5e4dda7410",
+            "a486cc89f2511e44ff2c05c1d04a6592",
+            "f9878119481e4bb28c6052df71756419",
+            "fd07f727ff6d717f533ae80e0e114ccb",
+            "6768201e0a47b00c832f0ffe1ae4d1cf",
+            "4a4b0fa916d99c8bf4f9537f6aa23396",
+            "29646643b607bcddd853a86552367ab5",
+            "b0a3a58e2d1f821db49dbbd225197a6e",
+            "a703814e88f45f4bc39807249f44911c",
+            "b0fe58b74e056064f0dfb5c1111eb74e",
+            "c2a163dd06c7386e78531cc6a44cc8c3",
+            "1b17ddf46684967779cd73e7d4c40d4f",
+            "e88b1c2bf504bd31152c9b34c4357300",
+            "8a285e396f547216a54950fd34b5c929",
+            "91c0ecd4c6b46e9a1a552948ed34f5b9",
+            "5fddf324801f3cdead807ff8509ac38d",
+            "a2f0eb4e8ca8b0b7386a52a688f74b52",
+            "9267a5f55fcec96a3e347e5032ad970c",
+            "2e9c19c89e2388977658b624bc05707a"
           ],
           "decisionTable": {
             "rules": [
@@ -2629,8 +2871,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -2669,8 +2909,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -2680,8 +2918,6 @@
                 "inputs": [
                   "-",
                   "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -2749,8 +2985,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -2762,8 +2996,6 @@
                   "-",
                   "-",
                   "\"Meldingsplicht\"",
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -2829,8 +3061,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -2869,8 +3099,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -2883,9 +3111,7 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
+                  "\"NeemContactOpMet\"",
                   "-",
                   "-",
                   "-",
@@ -2913,12 +3139,11 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
               },
               {
                 "inputs": [
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -2950,7 +3175,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -2965,48 +3189,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
                   "\"Meldingsplicht\"",
                   "-",
                   "-",
@@ -3046,8 +3228,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "\"Meldingsplicht\"",
                   "-",
                   "-",
@@ -3078,6 +3258,391 @@
               },
               {
                 "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -3104,6 +3669,151 @@
                   "-",
                   "-",
                   "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een omgevingsvergunning nodig voor brandveilig gebruik. U hoeft geen aparte melding te doen."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -3130,39 +3840,6 @@
                   "-",
                   "-",
                   "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -3172,375 +3849,6 @@
                   "-",
                   "-",
                   "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"NeemContactOpMet\"",
-                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"NeemContactOpMet\"",
-                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -3589,8 +3897,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"NeemContactOpMet\"",
@@ -3629,8 +3935,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -3669,8 +3973,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -3678,88 +3980,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -3798,89 +4018,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"NeemContactOpMet\"",
-                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -3911,6 +4048,7 @@
                   "-",
                   "-",
                   "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -3942,12 +4080,162 @@
                   "-",
                   "-",
                   "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "-",
                   "-",
                   "\"Meldingsplicht\"",
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Meldingsplicht\"",
+                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Meldingsplicht\"",
                   "-",
                   "-",
                   "-",
@@ -3989,8 +4277,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"NeemContactOpMet\"",
@@ -4029,8 +4315,6 @@
                   "\"Meldingsplicht\"",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -4069,8 +4353,6 @@
                   "-",
                   "\"Meldingsplicht\"",
                   "-",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"Meldingsplicht\"",
@@ -4078,128 +4360,6 @@
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"NeemContactOpMet\"",
-                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Meldingsplicht\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Meldingsplicht\"",
-                "description": "U moet een melding brandveilig gebruik doen. U hebt geen omgevingsvergunning nodig."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -4268,8 +4428,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "\"Meldingsplicht\"",
                   "-"
                 ],
@@ -4280,6 +4438,42 @@
                 "inputs": [
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"NeemContactOpMet\"",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "U weet niet hoe u gaat voldoen aan de regels voor brandveiligheid. Daarom kunnen we niet bepalen of u een melding moet doen of niet. Neem contact op met uw adviseur of aannemer. Of doe voor de zekerheid een melding bij de gemeente."
+              },
+              {
+                "inputs": [
                   "-",
                   "-",
                   "-",
@@ -4349,8 +4543,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
                   "\"NeemContactOpMet\""
                 ],
                 "output": "\"NeemContactOpMet\"",
@@ -4358,8 +4550,6 @@
               },
               {
                 "inputs": [
-                  "\"no hit\"",
-                  "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
