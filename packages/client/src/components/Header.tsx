@@ -30,7 +30,7 @@ export const Header = () => {
       css={StyledHeaderWrapper}
       homeLink=""
       logo={() => (
-        <StyledLogoWrapper href={homeLink} onClick={handleClick} tabIndex={4}>
+        <StyledLogoWrapper href={homeLink} onClick={handleClick} tabIndex={0}>
           <StyledLogo>Amsterdam.nl</StyledLogo>
         </StyledLogoWrapper>
       )}
