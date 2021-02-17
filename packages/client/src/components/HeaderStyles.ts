@@ -46,7 +46,7 @@ export const StyledLogo = styled.span`
   cursor: pointer;
   background-size: cover;
   background-image: url("${LogoMobile}");
-  text-indent: -9999px;
+  text-indent: -9999px; // This hides the link text, added for WCAG purposes
 `;
 
 export const StyledLogoWrapper = styled.a`
