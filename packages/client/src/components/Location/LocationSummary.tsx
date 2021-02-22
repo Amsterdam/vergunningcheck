@@ -1,7 +1,7 @@
-// @TODO: Add translations
 import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../../atoms";
@@ -60,12 +60,23 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
 }) => {
   const { hasIMTR } = useTopic();
   const { topicData } = useTopicData();
-  const address = addressFromLocation ?? topicData.address;
+  const { t } = useTranslation();
 
+  const address = addressFromLocation ?? topicData.address;
   const { restrictions } = address || {};
 
-  const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
-  const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
+  const monument = getRestrictionByTypeName(
+    restrictions,
+    "Monument"
+  )?.name?.toLowerCase();
+
+  const cityScapeScope = getRestrictionByTypeName(restrictions, "CityScape")
+    ?.scope;
+  const cityScape = cityScapeScope
+    ? cityScapeScope === "NATIONAL"
+      ? t("common.national city scape")
+      : t("common.municipal city scape")
+    : "";
 
   if (monument) {
     setTag("monument", monument);
@@ -88,7 +99,9 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
 
       {showTitle && showSummary && (
         <Paragraph gutterBottom={8} strong>
-          Over dit adres hebben we de volgende gegevens gevonden:
+          {t(
+            "common.we have found the following information about this address"
+          )}
         </Paragraph>
       )}
 
@@ -104,19 +117,17 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
           {(monument || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_MONUMENT}>
               {monument
-                ? `Het gebouw is een ${monument.toLowerCase()}.`
-                : "Het gebouw is geen monument."}
+                ? t("common.the building is a monument", { monument })
+                : t("common.the building is not a monument")}
             </StyledListItem>
           )}
           {(cityScape || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_CITYSCAPE}>
               {cityScape
-                ? `Het gebouw ligt in een ${
-                    cityScape === "NATIONAL"
-                      ? "rijksbeschermd"
-                      : "gemeentelijk beschermd"
-                  } stads- of dorpsgezicht.`
-                : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+                ? t("common.the building is located inside a city scape", {
+                    cityScape,
+                  })
+                : t("common.the building is not located inside a city scape")}
             </StyledListItem>
           )}
         </StyledList>

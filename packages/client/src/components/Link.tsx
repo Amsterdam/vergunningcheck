@@ -1,27 +1,30 @@
 import { Link as StyledComponentLink } from "@amsterdam/asc-ui";
-import React, { ReactNode } from "react";
+import React, { ComponentProps } from "react";
+import styled, { css } from "styled-components";
 
 import { actions } from "../config/matomo";
 import { useTracking } from "../hooks";
 
-type LinkProps = {
+export type LinkProps = {
   action?: string;
-  children: ReactNode;
-  darkBackground?: boolean;
-  href?: string;
   eventName: string;
-  internal?: boolean;
-  inList?: boolean;
-  strong?: boolean;
-  target?: string;
-  variant?: string | null;
-};
+  underline?: boolean;
+} & ComponentProps<typeof StyledComponentLink>;
+
+const StyledLink = styled(StyledComponentLink)<LinkProps>`
+  ${({ underline }) =>
+    underline &&
+    css`
+      text-decoration: underline;
+    `}
+`;
 
 const Link = ({
   action = actions.CLICK_EXTERNAL_NAVIGATION,
   children,
   eventName,
   href,
+  underline,
   ...rest
 }: LinkProps) => {
   const { matomoTrackEvent } = useTracking();
@@ -36,9 +39,14 @@ const Link = ({
   };
 
   return (
-    <StyledComponentLink href={href} onClick={href && onClick} {...rest}>
+    <StyledLink
+      href={href}
+      onClick={href && onClick}
+      underline={underline}
+      {...rest}
+    >
       {children}
-    </StyledComponentLink>
+    </StyledLink>
   );
 };
 

@@ -101,12 +101,13 @@ export const topics: Topic[] = [
     type: TopicType.REDIRECT,
   },
   {
+    intro: "BrandveiligGebruikIntro",
     name: "Brandveilig gebruik",
     slug: "brandveilig-gebruik",
     text: {
       heading: "Vergunningcheck brandveilig gebruik",
     },
-    type: TopicType.REDIRECT,
+    type: TopicType.PERMIT_CHECK,
   },
 ].map((t) => new Topic(t));
 
@@ -120,6 +121,8 @@ export const oloHome: string = "https://www.omgevingsloket.nl/";
 export const urls = {
   DEMOLITION_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?caseid=%7BAEA35C69-4DAD-483E-8AA1-C068D88B792C%7D",
+  FIRESAFETY_PAGE:
+    "https://www.amsterdam.nl/veelgevraagd/?productid=%7B1DA41981-4A37-457D-A57C-0E202F43C60B%7D",
   GENERAL_PERMIT_PAGE:
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D",
   OLO_HOME: oloHome,
