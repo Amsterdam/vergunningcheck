@@ -70,7 +70,7 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
             onClick={handlePrintButton}
             variant={isPermitCheck ? "textButton" : "primary"}
           >
-            {t(isPermitForm ? "common.download form" : "common.save outcome")}
+            {t(isPermitCheck ? "common.save outcome" : "common.download form")}
           </Button>
         )}
       </HideForPrint>
