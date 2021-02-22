@@ -1,4 +1,4 @@
-import { ErrorMessage, Radio, RadioGroup, TextField } from "@amsterdam/asc-ui";
+import { ErrorMessage, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { FieldErrors } from "react-hook-form";
@@ -24,7 +24,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
     topicData: { questionIndex },
   } = useTopicData();
 
-  const { answer: userAnswer, id, options, type } = question;
+  const { answer: userAnswer, id, options } = question;
 
   const answers: Answer[] = options
     ? options.map((option) => ({
@@ -34,49 +34,31 @@ const Answers: FunctionComponent<AnswersProps> = ({
       }))
     : booleanOptions;
 
-  // @TODO: make generic functions, like: isRadioQuestion(), isCheckboxQuestion, etc
-  const showRadioInput = type === "boolean" || (type === "string" && options);
-  const showTextField = type === "string" && !showRadioInput;
-
-  // @TODO: place all individual form components in separate components when Checkbox is also added
   return (
     <ComponentWrapper data-testid={QUESTION_ANSWERS} marginBottom={0}>
-      {showRadioInput && (
-        <RadioGroup name={id}>
-          {answers?.map((answer, index) => {
-            const { label, formValue, value } = answer;
-            const answerId = `${id}-${formValue}`;
-            return (
-              <Label
-                data-testid={`q${questionIndex + 1}-a${index + 1}`}
-                htmlFor={answerId}
+      <RadioGroup name={id}>
+        {answers?.map((answer, index) => {
+          const { label, formValue, value } = answer;
+          const answerId = `${id}-${formValue}`;
+          return (
+            <Label
+              data-testid={`q${questionIndex + 1}-a${index + 1}`}
+              htmlFor={answerId}
+              key={answerId}
+              label={label}
+            >
+              <Radio
+                checked={userAnswer === value}
+                error={errors[id]}
                 key={answerId}
-                label={label}
-              >
-                <Radio
-                  checked={userAnswer === value}
-                  error={errors[id]}
-                  key={answerId}
-                  id={answerId}
-                  onChange={() => saveAnswer(answer, question)}
-                  value={formValue}
-                />
-              </Label>
-            );
-          })}
-        </RadioGroup>
-      )}
-
-      {showTextField && (
-        <ComponentWrapper>
-          <TextField
-            onChange={({ target: { value } }) =>
-              saveAnswer({ label: value, value }, question)
-            }
-            value={userAnswer as string}
-          />
-        </ComponentWrapper>
-      )}
+                id={answerId}
+                onChange={() => saveAnswer(answer, question)}
+                value={formValue}
+              />
+            </Label>
+          );
+        })}
+      </RadioGroup>
       {errors[id] && <ErrorMessage message={errors[id].message} />}
     </ComponentWrapper>
   );

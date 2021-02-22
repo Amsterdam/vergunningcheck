@@ -108,14 +108,6 @@ export const topics: Topic[] = [
     },
     type: TopicType.REDIRECT,
   },
-  {
-    name: "Bomen kappen",
-    slug: "formulier-bomenkap",
-    text: {
-      heading: "Formulier aanvraag bomenkap",
-    },
-    type: TopicType.PERMIT_FORM,
-  },
 ].map((t) => new Topic(t));
 
 // Is the client running on production?
