@@ -59,7 +59,7 @@ const CheckerPage: FunctionComponent = () => {
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-  const { timesLoaded, sectionData } = topicData;
+  const { timesCheckerLoaded, sectionData } = topicData;
 
   useEffect(() => {
     // Next to the useState hook, we also need the useRef hook to make sure the state is always up to date
@@ -84,7 +84,7 @@ const CheckerPage: FunctionComponent = () => {
   useEffect(() => {
     // Count the times the page is loaded
     setTopicData({
-      timesLoaded: timesLoaded ? timesLoaded + 1 : 1,
+      timesCheckerLoaded: timesCheckerLoaded ? timesCheckerLoaded + 1 : 1,
     });
     // eslint-disable-next-line
   }, []);

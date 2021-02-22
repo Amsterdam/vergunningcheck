@@ -65,7 +65,7 @@ export type TopicData = {
   answers: {
     [id: string]: imtr.Answer;
   };
-  timesLoaded: number;
+  timesCheckerLoaded: number;
   sectionData: SectionData[];
   type: string;
   questionIndex: number;

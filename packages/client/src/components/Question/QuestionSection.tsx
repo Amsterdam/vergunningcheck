@@ -17,7 +17,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
-  const { address, questionIndex, timesLoaded } = topicData;
+  const { address, questionIndex, timesCheckerLoaded } = topicData;
   const { currentSection, sectionFunctions } = props;
 
   const { isActive, isCompleted } = currentSection;
@@ -37,7 +37,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   );
 
   useEffect(() => {
-    if (timesLoaded === 0 && address) {
+    if (timesCheckerLoaded === 0 && address) {
       // TrackEvent for active step (only when NewCheckerModal is used with saveAddress)
       // This might need tweaking in case we have configured checkers that can render without questions
       matomoTrackEvent({
@@ -46,7 +46,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
       });
 
       setTopicData({
-        timesLoaded: 1,
+        timesCheckerLoaded: 1,
       });
     }
     // eslint-disable-next-line
