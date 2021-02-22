@@ -2,6 +2,7 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      "do the permit check": "Doe de vergunningcheck",
       "download form": "Aanvraag formulier downloaden",
       edit: "Wijzig",
       "go to the next step": "Ga naar volgende stap",
