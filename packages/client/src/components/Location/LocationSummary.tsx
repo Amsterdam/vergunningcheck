@@ -58,13 +58,12 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   showEditLocationModal,
   showTitle,
 }) => {
-  const topic = useTopic();
+  const { hasIMTR } = useTopic();
   const { topicData } = useTopicData();
   const { t } = useTranslation();
 
   const address = addressFromLocation ?? topicData.address;
   const { restrictions } = address || {};
-  const { hasIMTR } = topic;
 
   const monument = getRestrictionByTypeName(
     restrictions,

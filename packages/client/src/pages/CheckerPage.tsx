@@ -82,7 +82,7 @@ const CheckerPage: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    // Count the times the checker is loaded
+    // Count the times the page is loaded
     setTopicData({
       timesCheckerLoaded: timesCheckerLoaded ? timesCheckerLoaded + 1 : 1,
     });

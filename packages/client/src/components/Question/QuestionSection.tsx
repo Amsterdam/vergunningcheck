@@ -121,6 +121,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     <>
       <StepByStepItem
         active={highlightSection}
+        as="div"
         checked={isCompleted}
         customSize
         data-testid={QUESTION_SECTION}

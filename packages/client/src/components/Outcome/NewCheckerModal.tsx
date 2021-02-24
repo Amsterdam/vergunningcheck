@@ -156,7 +156,7 @@ const NewCheckerModal: FunctionComponent = () => {
         <ComponentWrapper>
           <RadioGroup name="checkers">
             {topics
-              .filter((topic) => topic.hasIMTR)
+              .filter(({ isConfiguredPermitCheck }) => isConfiguredPermitCheck)
               .sort((a, b) => a.name.localeCompare(b.name))
               .map(({ name, slug }) => (
                 <Label htmlFor={slug} key={name} label={name}>

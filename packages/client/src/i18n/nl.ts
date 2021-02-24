@@ -2,7 +2,9 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      "download form": "Aanvraag formulier downloaden",
       edit: "Wijzig",
+      "go to the next step": "Ga naar volgende stap",
       "housenumber label": "Huisnummer + toevoeging",
       "municipal city scape": "gemeentelijk beschermd stads- of dorpsgezicht",
       "national city scape": "rijksbeschermd stads- of dorpsgezicht",
@@ -14,7 +16,9 @@ export default {
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
+      "save outcome": "Uitkomst opslaan",
       "to the questions": "Naar de vragen",
+      "to the olo": "Naar het Omgevingsloket",
       "the building is a monument": "Het gebouw is een {{monument}}.",
       "the building is not a monument": "Het gebouw is geen monument.",
       "the building is located inside a city scape":
@@ -118,7 +122,7 @@ export default {
         "enter address": "Invullen adres",
       },
       map: {
-        heading: "Locatiegegevens",
+        heading: "Waar staat de boom?",
       },
 
       testing: {
@@ -226,6 +230,17 @@ export default {
           "U hebt geen omgevingsvergunning nodig. U hoeft ook geen melding te doen.",
         "you dont need a permit for demolition":
           "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
+      },
+      cuttingTreeForm: {
+        title: "Hier uw aanvraag formulier",
+        "pictures of the tree": "Een foto van de boom / bomen.",
+        "you are done with the form and you can download it": `U bent klaar met het aanvraagformulier. U kunt deze downloaden en
+        meesturen in het Omgevingsloket. In het Omgevingloket vragen ze nog naar
+        een aantal bijlagen, denk aan bijvoorbeeld:`,
+        "a plan with the situation and the tree ids":
+          "Een plan met situering en nummering van de boom waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte.",
+        "a written report":
+          "Een schriftelijk verslag, als u overleg hebt gehad met omwonenden en/of overige belanghebbenden.",
       },
     },
   },

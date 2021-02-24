@@ -11,7 +11,7 @@ export type {
 export {
   default as Checker,
   ClientOutcomes,
-  imtrOutcomes,
+  outcomes,
 } from "./src/models/checker";
 export { default as Decision } from "./src/models/decision";
 export { default as Permit } from "./src/models/permit";
