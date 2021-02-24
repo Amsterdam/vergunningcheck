@@ -37,11 +37,6 @@
     "lerna-changelog": "^1.0.1",
     "prettier": "^2.1.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lerna run --concurrency 1 --stream precommit"
-    }
-  },
   "changelog": {
     "labels": {
       "feature": "New Features",
