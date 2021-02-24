@@ -3,38 +3,27 @@ import styled from "styled-components";
 
 import { actions } from "../config/matomo";
 import { PHONE_NUMBER } from "../utils/test-ids";
-import Link from "./Link";
+import Link, { LinkProps } from "./Link";
 
 const Wrapper = styled.span`
   white-space: nowrap;
 `;
 
-type Props = {
-  darkBackground?: boolean;
-  eventName: string;
-  href?: string;
-  link?: boolean;
-  text?: string;
-  variant?: string | null;
-};
-
 export default ({
-  darkBackground = false,
-  eventName,
   href = "tel:14020",
   link = true,
   text = "14 020",
   variant = "inline",
-}: Props) => (
+  ...linkProps
+}: LinkProps) => (
   <Wrapper data-testid={PHONE_NUMBER}>
     {link ? (
       <Link
         action={actions.CLICK_PHONE_LINK}
         {...{
-          darkBackground,
-          eventName,
           href,
           variant,
+          ...linkProps,
         }}
       >
         {text}

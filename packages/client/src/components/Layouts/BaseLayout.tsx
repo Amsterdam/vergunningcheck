@@ -49,7 +49,7 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
               xLarge: 9,
             }}
           >
-            <Content>{children}</Content>
+            <Content role="main">{children}</Content>
           </Column>
         </Row>
       </ContentContainer>

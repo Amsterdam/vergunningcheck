@@ -28,6 +28,8 @@ window.scrollTo = jest.fn();
 
 export const mockMatomoTrackEvent = jest.fn();
 export const mockMatomoPageView = jest.fn();
+export const mockHistoryReplace = jest.fn();
+export const mockHistoryPush = jest.fn();
 
 jest.mock("../hooks/useTracking", () => {
   return jest.fn(() => ({
@@ -43,8 +45,8 @@ jest.mock("react-router-dom", () => ({
   }),
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
   useHistory: () => ({
-    push: jest.fn(),
-    replace: jest.fn(),
+    push: mockHistoryPush,
+    replace: mockHistoryReplace,
     location: {
       pathname: "/dakkapel-plaatsen",
     },

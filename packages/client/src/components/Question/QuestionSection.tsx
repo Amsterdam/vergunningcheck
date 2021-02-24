@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { getDataNeed } from "../../config/autofill";
 import { actions, sections } from "../../config/matomo";
 import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
 import { SectionComponent } from "../../types";
@@ -78,6 +79,17 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   // Skip the Question Section when it has no questions to render
   if (!checker || hideQuestionSection) {
     return null;
+  }
+
+  const noDataNeedAndEmptyStack =
+    !getDataNeed(checker) &&
+    isActive &&
+    !isCompleted &&
+    checker.stack.length === 0;
+
+  // Prevent an empty Question Section when refreshing a checker without getDataNeed (only happens when first question remains unanswered)
+  if (noDataNeedAndEmptyStack) {
+    checker.next();
   }
 
   const saveAnswerHook = () => {
