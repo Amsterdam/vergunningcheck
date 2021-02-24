@@ -65,13 +65,13 @@ export default {
           "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
         "placing bullet": "het plaatsen van de dakkapel zelf.",
         "intro description":
-          "U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt.",
+          "U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt. Gaat u er meer dan 1 plaatsen of vernieuwen? Doe dan per dakkapel een vergunningcheck.",
       },
       dakraam: {
         "build without permit exception":
           "Het gebouw, of het deel van het gebouw waarin het dakraam komt, is zonder vergunning gebouwd.",
         "intro description":
-          "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
+          "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt. Gaatu er meer dan 1 plaatsen of vernieuwen? Doe dan per dakraam, daklicht of lichtstraat een vergunningcheck.",
         "placing bullet": "het plaatsen van het dakraam zelf.",
       },
       firesafety: {
@@ -84,7 +84,7 @@ export default {
         "build without permit exception":
           "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
         "intro description":
-          "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.",
+          "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt. Gaat u er meer dan 1 plaatsen of vernieuwen? Doe dan per kozijn, deur, raam of paneel een vergunningcheck.",
         "placing bullet": "het plaatsen van de kozijnen zelf.",
       },
       slopen: {
@@ -95,7 +95,7 @@ export default {
       },
       zonnepanelen: {
         "intro description":
-          "U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.",
+          "U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt. Gaat u op meerdere plekken zonnepanelen of een zonneboiler plaatsen of vernieuwen? Doe dan voor iedere plek een vergunningcheck.",
         "placing bullet":
           "het plaatsen van de zonnepanelen of zonneboiler zelf.",
       },
@@ -103,7 +103,7 @@ export default {
         "build without permit exception":
           "Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik komt, is zonder vergunning gebouwd.",
         "intro description":
-          "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.",
+          "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt. Gaat u er meer plaatsen of vernieuwen? Doe dan per zonwering, rolhek, rolluik of luik een vergunningcheck.",
         "placing bullet":
           "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
       },
@@ -155,7 +155,18 @@ export default {
       goToOutcome: "Naar de uitkomst",
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
-
+      anotherCheck: {
+        "dakkapel-plaatsen":
+          "Gaat u nog een dakkapel plaatsen? Of hebt u nog andere bouwplannen? Doe dan nog een vergunningcheck.",
+        "dakraam-plaatsen":
+          "Gaat u nog een dakraam, daklicht of lichtstraat plaatsen? Of hebt u nog andere bouwplannen? Doe dan nog een vergunningcheck.",
+        "kozijnen-plaatsen":
+          "Gaat u nog een kozijn, deur, raam of paneel plaatsen? Of hebt u nog andere bouwplannen? Doe dan nog een vergunningcheck.",
+        "zonnepanelen-of-zonneboiler-plaatsen":
+          "Gaat u nog een zonnepaneel of zonneboiler plaatsen? Of hebt u nog andere bouwplannen? Doe dan nog een vergunningcheck.",
+        "zonwering-of-rolluik-plaatsen":
+          "Gaat u nog een zonwering, rolhek, rolluik of luik plaatsen? Of hebt u nog andere bouwplannen? Doe dan nog een vergunningcheck.",
+      },
       thinkAbout: {
         "also think about": "Denk ook aan:",
         "consent from neighbors":

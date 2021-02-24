@@ -1,13 +1,14 @@
 // @TODO: TRANSLATE
-import { Heading, themeSpacing } from "@amsterdam/asc-ui";
+import { Heading, Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { isIE, isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTracking } from "../../hooks";
+import { useSlug, useTracking } from "../../hooks";
 import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
@@ -35,6 +36,8 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
 }) => {
   const { matomoTrackEvent } = useTracking();
   const { footerContent, mainContent, title } = outcomeContent;
+  const { t } = useTranslation();
+  const slug = useSlug();
 
   const handlePrintButton = () => {
     matomoTrackEvent({
@@ -71,6 +74,7 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
       </ComponentWrapper>
 
       <HideForPrint>
+        <Paragraph>{t(`outcome.anotherCheck.${slug}`)}</Paragraph>
         <NewCheckerModal />
         {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
       </HideForPrint>
