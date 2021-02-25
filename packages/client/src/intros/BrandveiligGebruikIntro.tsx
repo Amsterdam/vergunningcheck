@@ -8,14 +8,13 @@ export default () => {
   return (
     <>
       <Paragraph>
-        {t("introPage.slopen.you want to demolish a structure")}
-      </Paragraph>
-      <Paragraph>
-        {t("introPage.slopen.you may need a permit or to report")}
+        {t(
+          "introPage.firesafety.the building must be safe and the city must be able to verify"
+        )}
       </Paragraph>
       <Paragraph>
         {t(
-          "introPage.common.sometimes it's written in a destination plan that a permit is required"
+          "introPage.firesafety.you might need to report and in some case you need a permit"
         )}
       </Paragraph>
     </>

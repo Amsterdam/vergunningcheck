@@ -25,7 +25,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     setTopicData,
     topicData: { address, sectionData, timesLoaded },
   } = useTopicData();
-  const { isPermitForm } = useTopic();
+  const { isPermitCheck, isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -38,8 +38,8 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   // Show the Location Section only when required by `hasDataNeeds`
   const skipLocationSection = !!(
     checker &&
-    !getDataNeed(checker) &&
-    !isPermitForm
+    isPermitCheck &&
+    !getDataNeed(checker)
   );
 
   useEffect(() => {
@@ -128,9 +128,9 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     });
   };
 
-  const heading = isPermitForm
-    ? t("location.map.heading")
-    : t("location.address.heading");
+  const heading = isPermitCheck
+    ? t("location.address.heading")
+    : t("location.map.heading");
 
   // @TODO: fix the active style in a proper way without `style`
   const activeStyle = { marginTop: -1, borderColor: "white" };
@@ -148,8 +148,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
       {...{ heading }}
     >
       {isPermitForm && (
-        // warning: this is only for demo purposes!
-        // START DEMO
+        // The Permit Form is still in development. This is only for demo purposes
         <>
           {isActive ? (
             <Form
@@ -163,7 +162,6 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
               <Paragraph>
                 Klik de boom aan op de kaart. U kunt meer bomen aanklikken.
               </Paragraph>
-              {/* @TODO: remove the files after demo */}
               <img src={MapLarge} style={{ maxWidth: 900 }} alt="demo map" />
               <Nav nextText={t("common.to the questions")} showNext />
             </Form>
@@ -180,7 +178,6 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
             </ComponentWrapper>
           )}
         </>
-        // END DEMO
       )}
 
       {!isPermitForm && (

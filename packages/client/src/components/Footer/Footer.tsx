@@ -29,6 +29,7 @@ const FirstColumn = () => (
         <PhoneNumber
           darkBackground
           eventName={sections.FOOTER}
+          underline
           variant={null}
         />
       </strong>{" "}
@@ -125,20 +126,18 @@ const SecondColumn = () => (
 );
 
 const ThirdColumn = () => (
-  <List noPadding>
-    <Paragraph>
-      Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur,
-      uitgaan, evenementen en meer vindt u op{" "}
-      <Link
-        darkBackground
-        eventName={`${eventNames.IAMSTERDAM} - ${sections.FOOTER}`}
-        href="https://www.iamsterdam.com/"
-        strong
-      >
-        Iamsterdam.com
-      </Link>
-    </Paragraph>
-  </List>
+  <Paragraph>
+    Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan,
+    evenementen en meer vindt u op{" "}
+    <Link
+      darkBackground
+      eventName={`${eventNames.IAMSTERDAM} - ${sections.FOOTER}`}
+      href="https://www.iamsterdam.com/"
+      strong
+    >
+      Iamsterdam.com
+    </Link>
+  </Paragraph>
 );
 
 const Footer = () => (

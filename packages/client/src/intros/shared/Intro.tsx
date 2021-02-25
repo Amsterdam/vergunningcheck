@@ -2,7 +2,7 @@ import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { List, ListItem } from "../../atoms";
+import { ComponentWrapper, List, ListItem } from "../../atoms";
 import ContactSentence from "../../components/ContactSentence";
 import { sections } from "../../config/matomo";
 import {
@@ -44,7 +44,7 @@ export default ({
       : null;
 
   return (
-    <>
+    <ComponentWrapper marginBottom={48}>
       {introSentence && <Paragraph>{introSentence}</Paragraph>}
       {usableForBullets?.length > 0 && (
         <>
@@ -75,7 +75,7 @@ export default ({
 
       {exceptions.length > 0 && (
         <>
-          <Heading forwardedAs="h4">
+          <Heading styleAs="h4" forwardedAs="h3">
             {t("introPage.common.exceptions title")}
           </Heading>
           <Paragraph gutterBottom={8}>
@@ -106,6 +106,6 @@ export default ({
           />
         </Paragraph>
       )}
-    </>
+    </ComponentWrapper>
   );
 };

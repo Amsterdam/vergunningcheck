@@ -40,7 +40,7 @@ describe("CheckerPage", () => {
     it("renders correctly on first load", async () => {
       // Mock the checker
       (useChecker as any).mockReturnValue({
-        checker: getChecker(mockedChecker1) as any,
+        checker: getChecker(mockedChecker1),
       });
 
       // Mock the topicData
@@ -73,9 +73,12 @@ describe("CheckerPage", () => {
       const { text: textQ2 } = mockedChecker1.permits[1].questions[0];
       const setTopicDataMock = jest.fn();
 
+      const checker = getChecker(mockedChecker1);
+      checker.next();
+
       // Mock the checker
       (useChecker as any).mockReturnValue({
-        checker: getChecker(mockedChecker1) as any,
+        checker,
       });
 
       // Mock the topicData
@@ -85,7 +88,7 @@ describe("CheckerPage", () => {
         },
         topicData: {
           address: address[0].result.data.findAddress.exactMatch,
-          answers: null,
+          answers: {},
           questionIndex: 0,
           sectionData: [
             { index: 0, isActive: false, isCompleted: true },
@@ -215,7 +218,7 @@ describe("CheckerPage", () => {
     it("renders correctly on first load", async () => {
       // Mock the checker
       (useChecker as any).mockReturnValue({
-        checker: getChecker(mockedChecker2) as any,
+        checker: getChecker(mockedChecker2),
       });
 
       // Mock the topicData

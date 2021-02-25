@@ -5,6 +5,10 @@ export const apis: APIConfig[] = [
     host: "https://sttr-builder.eu.meteorapp.com/api/v2",
     outputDir: "imtr",
     topics: {
+      "brandveilig-gebruik": [
+        // firesafety
+        "8hqLFZcdXKaesAJgS", // permit & report
+      ],
       "dakkapel-plaatsen": [
         // dormer
         "WKPxKx4YBJ5fqYSni", // monument
