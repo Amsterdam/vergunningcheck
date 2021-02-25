@@ -6,7 +6,6 @@ import mockAddress from "../../__mocks__/addressMock";
 import { useTopicData } from "../../hooks";
 import nl from "../../i18n/nl";
 import { defaultTopicSession as mockDefaultTopic } from "../../SessionContext";
-import { Topic } from "../../types";
 import { findTopicBySlug } from "../../utils";
 import { NEXT_BUTTON } from "../../utils/test-ids";
 import {
@@ -22,7 +21,7 @@ import OloLocationResult from "./OloLocationResult";
 
 jest.mock("../../hooks/useTopicData");
 
-const mockTopic = findTopicBySlug("aanbouw-of-uitbouw-maken") as Topic;
+const mockTopic = findTopicBySlug("aanbouw-of-uitbouw-maken");
 jest.mock("../../hooks/useTopic", () => () => mockTopic);
 
 const { common } = nl.translation;
