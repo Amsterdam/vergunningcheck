@@ -5,24 +5,34 @@ All notable changes to this project will be documented in this file.
 ## [2.5.0] (2021-02-04)
 
 #### New Features
-* `client`, `graphql`, `imtr-client`, `imtr`
-  * [#758](https://github.com/Amsterdam/vergunningcheck/pull/758) Section components in isolation and general refactor ([@robinpiets](https://github.com/robinpiets))
-* `client`, `imtr-client`
-  * [#461](https://github.com/Amsterdam/vergunningcheck/pull/461) React-hooks and Typescript refactor of Context's ([@afjlambert](https://github.com/afjlambert))
+
+- `client`, `graphql`, `imtr-client`, `imtr`
+  - [#758](https://github.com/Amsterdam/vergunningcheck/pull/758) Section components in isolation and general refactor ([@robinpiets](https://github.com/robinpiets))
+- `client`, `imtr-client`
+  - [#461](https://github.com/Amsterdam/vergunningcheck/pull/461) React-hooks and Typescript refactor of Context's ([@afjlambert](https://github.com/afjlambert))
 
 #### Bug fixes
-* `client`
-  * [#792](https://github.com/Amsterdam/vergunningcheck/pull/792) Fixed bugs switching between checkers ([@robinpiets](https://github.com/robinpiets))
-  * [#711](https://github.com/Amsterdam/vergunningcheck/pull/711) The houseNumberFull input can now be used with spaces between characters ([@svenjens](https://github.com/svenjens))
+
+- `client`
+  - [#792](https://github.com/Amsterdam/vergunningcheck/pull/792) Fixed bugs switching between checkers ([@robinpiets](https://github.com/robinpiets))
+  - [#711](https://github.com/Amsterdam/vergunningcheck/pull/711) The houseNumberFull input can now be used with spaces between characters ([@svenjens](https://github.com/svenjens))
+  - [#801](https://github.com/Amsterdam/vergunningcheck/pull/801) Fixed regex bug on Safari ([@svenjens](https://github.com/svenjens))
+
+#### Hot fixes
+
+- `client`
+  - [#801](https://github.com/Amsterdam/vergunningcheck/pull/801) Fixed regex bug on Safari ([@svenjens](https://github.com/svenjens))
+  - [#805](https://github.com/Amsterdam/vergunningcheck/pull/805) Hotfix: reset address triggers wrong checker.next ([@robinpiets](https://github.com/robinpiets))
 
 #### Chores
-* `client`
-  * [#772](https://github.com/Amsterdam/vergunningcheck/pull/772) Added missing tests ([@svenjens](https://github.com/svenjens))
-  * [#773](https://github.com/Amsterdam/vergunningcheck/pull/773) Created link for new checker ([@robinpiets](https://github.com/robinpiets))
-  * [#732](https://github.com/Amsterdam/vergunningcheck/pull/732) Replaced instances of Conclusion to Outcome ([@robinpiets](https://github.com/robinpiets))
-  * [#766](https://github.com/Amsterdam/vergunningcheck/pull/766) Implement consistent id's for imtr-files ([@afjlambert](https://github.com/afjlambert))
-* `e2e`, `graphql`
-  * [#759](https://github.com/Amsterdam/vergunningcheck/pull/759) Updated dependencies ([@robinpiets](https://github.com/robinpiets))
+
+- `client`
+  - [#772](https://github.com/Amsterdam/vergunningcheck/pull/772) Added missing tests ([@svenjens](https://github.com/svenjens))
+  - [#773](https://github.com/Amsterdam/vergunningcheck/pull/773) Created link for new checker ([@robinpiets](https://github.com/robinpiets))
+  - [#732](https://github.com/Amsterdam/vergunningcheck/pull/732) Replaced instances of Conclusion to Outcome ([@robinpiets](https://github.com/robinpiets))
+  - [#766](https://github.com/Amsterdam/vergunningcheck/pull/766) Implement consistent id's for imtr-files ([@afjlambert](https://github.com/afjlambert))
+- `e2e`, `graphql`
+  - [#759](https://github.com/Amsterdam/vergunningcheck/pull/759) Updated dependencies ([@robinpiets](https://github.com/robinpiets))
 
 ## [2.4.2] (2020-12-16)
 

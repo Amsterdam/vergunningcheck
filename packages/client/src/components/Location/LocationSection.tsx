@@ -25,7 +25,7 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     setTopicData,
     topicData: { address, sectionData, timesLoaded },
   } = useTopicData();
-  const { isPermitForm } = useTopic();
+  const { isPermitCheck, isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -38,8 +38,8 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   // Show the Location Section only when required by `hasDataNeeds`
   const skipLocationSection = !!(
     checker &&
-    !getDataNeed(checker) &&
-    !isPermitForm
+    isPermitCheck &&
+    !getDataNeed(checker)
   );
 
   useEffect(() => {
