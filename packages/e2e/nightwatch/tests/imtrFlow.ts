@@ -1,4 +1,5 @@
-const { address, domain, selectors } = require("../config");
+import { NightwatchClient } from 'nightwatch';
+import { address, domain, selectors } from "../config";
 
 const {
   outcomeContact,
@@ -18,7 +19,7 @@ const {
   questionForm,
 } = selectors;
 
-module.exports = {
+export default {
   [__filename]: async (b) => {
     const { assert } = b;
     b.url(`${domain}/dakkapel-plaatsen`);
@@ -37,17 +38,17 @@ module.exports = {
       "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
     );
     assert.visible(locationPostalCode);
-    b.setValue(locationPostalCode, '1055XD');
-    // b.setValue(locationPostalCode, address.zipCode);
+    // b.setValue(locationPostalCode, '1055XD');
+    b.setValue(locationPostalCode, address.zipCode);
     assert.visible(locationHouseNumberFull);
-    b.setValue(locationHouseNumberFull,'19C');
-    // b.setValue(locationHouseNumberFull, address.houseNumberFull);
+    // b.setValue(locationHouseNumberFull,'19C');
+    b.setValue(locationHouseNumberFull, address.houseNumberFull);
 
     // Address has loaded
     b.waitForElementVisible(locationFound);
     assert.visible(locationRestrictionMonument);
-    assert.containsText(main, "Louise de Colignystraat");
-    // assert.containsText(main, address.streetName);
+    // assert.containsText(main, "Louise de Colignystraat");
+    assert.containsText(main, address.streetName);
     b.click(navButtonNext);
 
     // Question 1 has loaded
