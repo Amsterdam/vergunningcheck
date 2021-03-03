@@ -9,6 +9,7 @@ String PLAYBOOK = 'deploy.yml'
 // All other data uses variables, no changes needed for static
 String NGINX_CONTAINERNAME = "ois/vergunningcheck_nginx:${env.BUILD_NUMBER}"
 String NGINX_DOCKERFILE="ci/Dockerfile.client"
+String NIGHTWATCH_CONTAINERNAME = "ois/vergunningcheck_nightwatch:${env.BUILD_NUMBER}"
 String NIGHTWATCH_DOCKERFILE="ci/Dockerfile.nightwatch"
 String BACKEND_CONTAINERNAME = "ois/vergunningcheck_graphql:${env.BUILD_NUMBER}"
 String BACKEND_DOCKERFILE="ci/Dockerfile.graphql"
@@ -38,7 +39,7 @@ node {
         stage('Run e2e test') {
             tryStep "Run e2e test", {
                 docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
-                    e2e_image = docker.build("${NIGHTWATCH_DOCKERFILE}","--pull --build-arg=JENKINS_URL=${env.JENKINS_URL} --build-arg=JOB_NAME=${env.JOB_NAME} --build-arg=BUILD_URL=${env.BUILD_URL} --build-arg=BUILD_NUMBER=${env.BUILD_NUMBER} -f ${NIGHTWATCH_DOCKERFILE} ${CONTAINERDIR}")
+                    e2e_image = docker.build("${NIGHTWATCH_CONTAINERNAME}","--pull --build-arg=JENKINS_URL=${env.JENKINS_URL} --build-arg=JOB_NAME=${env.JOB_NAME} --build-arg=BUILD_URL=${env.BUILD_URL} --build-arg=BUILD_NUMBER=${env.BUILD_NUMBER} -f ${NIGHTWATCH_DOCKERFILE} ${CONTAINERDIR}")
     //              e2e_image.push()
                 }
             }
