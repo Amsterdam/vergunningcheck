@@ -2,7 +2,7 @@ FROM node:alpine
 WORKDIR /app/
 
 # Install
-COPY packages/e2e ./
+COPY . ./
 
 # Test
 RUN npm i
