@@ -8,4 +8,4 @@ RUN rm -rf packages/client packages/graphql packages/imtr-client
 
 # Test
 RUN npm i
-RUN npm run nightwatch:browserstack
+RUN cd packages/e2e/ && CI=true npm run nightwatch:browserstack
