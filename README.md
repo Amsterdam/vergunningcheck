@@ -7,7 +7,7 @@ This application allows residents of Amsterdam to easily see if they need a perm
 This repo contains 6 packages, `client`, `imtr-client`, `graphql`, `imtr`, `mocking` and `e2e`. We use Lerna under the hood to install deps and run on all packages. But you can also run and configure then individually.
 
 ```bash
-npm run cleaninstall
+npm install
 npm start
 ```
 
