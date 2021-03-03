@@ -1,0 +1,9 @@
+FROM node:alpine
+WORKDIR /app/
+
+# Install
+COPY packages/e2e ./
+
+# Test
+RUN npm i
+RUN npm nightwatch:browserstack
