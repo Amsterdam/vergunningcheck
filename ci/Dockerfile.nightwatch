@@ -6,4 +6,4 @@ COPY packages/e2e ./
 
 # Test
 RUN npm i
-RUN npm nightwatch:browserstack
+RUN npm run nightwatch:browserstack
