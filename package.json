@@ -20,7 +20,7 @@
     "imtr:transform": "deno run --unstable --allow-write --allow-read --allow-run -c ./packages/imtr/tsconfig.json ./packages/imtr/src/main.ts transform --dir=packages/client && npm run imtr:postprocess",
     "imtr": "npm run imtr:preflight && npm run imtr:install && npm run imtr:fetch && npm run imtr:transform",
     "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
+    "postinstall": "husky install && lerna bootstrap",
     "prepare-release": "npm i && npm run back-merge && git checkout develop && npm run imtr && echo '\n\nPlease commit your changes, then push your changed and then run \"npm run release\".\n'",
     "publish": "git checkout release && git pull && lerna publish",
     "release": "git checkout release && git pull && cli-confirm \"Are you sure you want to merge develop into release? (yN)\" && git merge origin/develop && git push",
