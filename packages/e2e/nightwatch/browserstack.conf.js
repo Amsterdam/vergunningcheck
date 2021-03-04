@@ -12,7 +12,7 @@ nightwatch_config = {
   common_capabilities: {
     'build': 'nightwatch-browserstack',
     'browserstack.user': 'sjens1',
-    'browserstack.key': '3T6jZ9N4pYf9qjzoqKxU', // XXX replace with .env var
+    'browserstack.key': '3T6jZ9N4pYf9qjzoqKxU',
     'browserstack.debug': true,
     'browserstack.local': true
   },
