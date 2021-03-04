@@ -13,8 +13,8 @@ nightwatch_config = {
     'build': 'nightwatch-browserstack',
     'browserstack.user': 'sjens1',
     'browserstack.key': '3T6jZ9N4pYf9qjzoqKxU',
-    'browserstack.debug': true,
-    'browserstack.local': true
+    'browserstack.debug': false,
+    'browserstack.local': false
   },
 
   test_settings: {
