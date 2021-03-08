@@ -43,15 +43,16 @@ export default {
     },
     introPage: {
       common: {
-        "amount of houses exception": "Het aantal woningen verandert.",
+        "amount of houses exception":
+          "Het aantal woningen verandert door uw verbouwing.",
         "call with questions": "Heeft u vragen? Bel dan",
         "change answer":
-          "U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
+          "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
         "check for permit intro":
-          "Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning nodig hebt.",
+          "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
         "exceptions description":
           "In de volgende situaties is het niet mogelijk de vergunningcheck te gebruiken:",
-        "exceptions title": "Uitzonderingen:",
+        "exceptions title": "Bijzondere situaties:",
         "monument bullet": "het wijzigen van een monument.",
         "permit for": "U kunt een vergunning nodig hebben voor:",
         "situation dependent on both situation and questions":
@@ -60,8 +61,6 @@ export default {
           "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
         "situation dependent on situation only":
           "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
-        "sometimes it's written in a destination plan that a permit is required":
-          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
       },
       dakkapel: {
         "build without permit exception":
