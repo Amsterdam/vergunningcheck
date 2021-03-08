@@ -74,12 +74,12 @@ export default ({
       )}
 
       {exceptions.length > 0 && (
-        <em>
+        <>
           <Heading styleAs="h4" forwardedAs="h3">
-            {t("introPage.common.exceptions title")}
+            <em>{t("introPage.common.exceptions title")}</em>
           </Heading>
           <Paragraph gutterBottom={8}>
-            {t("introPage.common.exceptions description")}
+            <em>{t("introPage.common.exceptions description")}</em>
           </Paragraph>
           <List
             data-testid={INTRO_EXCEPTION_BULLETS}
@@ -87,7 +87,9 @@ export default ({
             variant="bullet"
           >
             {exceptions.map((exception) => (
-              <ListItem key={exception}>{exception}</ListItem>
+              <ListItem key={exception}>
+                <em>{exception}</em>
+              </ListItem>
             ))}
           </List>
           {showContactInformation && (
@@ -95,7 +97,7 @@ export default ({
               <ContactSentence eventName={sections.INTRO} />
             </Paragraph>
           )}
-        </em>
+        </>
       )}
 
       {exceptions.length === 0 && showContactInformation && (

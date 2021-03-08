@@ -61,6 +61,8 @@ export default {
           "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
         "situation dependent on situation only":
           "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
+        "sometimes it's written in a destination plan that a permit is required":
+          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
       },
       dakkapel: {
         "build without permit exception":
