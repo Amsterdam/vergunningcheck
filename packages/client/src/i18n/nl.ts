@@ -50,8 +50,6 @@ export default {
           "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
         "check for permit intro":
           "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
-        "exceptions description":
-          "In de volgende situaties is het niet mogelijk de vergunningcheck te gebruiken:",
         "exceptions title": "Bijzondere situaties:",
         "monument bullet": "het wijzigen van een monument.",
         "permit for": "U kunt een vergunning nodig hebben voor:",

@@ -78,9 +78,11 @@ export default ({
           <Heading styleAs="h4" forwardedAs="h3">
             <em>{t("introPage.common.exceptions title")}</em>
           </Heading>
-          <Paragraph gutterBottom={8}>
-            <em>{t("introPage.common.exceptions description")}</em>
-          </Paragraph>
+          {showContactInformation && (
+            <Paragraph>
+              <ContactSentence eventName={sections.INTRO} />
+            </Paragraph>
+          )}
           <List
             data-testid={INTRO_EXCEPTION_BULLETS}
             style={{ marginBottom: 12 }}
@@ -92,11 +94,6 @@ export default ({
               </ListItem>
             ))}
           </List>
-          {showContactInformation && (
-            <Paragraph>
-              <ContactSentence eventName={sections.INTRO} />
-            </Paragraph>
-          )}
         </>
       )}
 

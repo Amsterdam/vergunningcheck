@@ -15,6 +15,6 @@ export default ({
 }: Props) => (
   <em>
     {openingSentence} <PhoneNumber {...{ eventName, link }} />, maandag tot en
-    met vrijdag van 08.00 uur tot 18.00 uur.
+    met vrijdag van 08.00 uur tot 18.00 uur:
   </em>
 );
