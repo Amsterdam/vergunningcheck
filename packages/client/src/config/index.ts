@@ -1,3 +1,5 @@
+// @TODO: importing this from `../components/Question` generates an error...
+import QuestionMultipleCheckers from "../components/Question/QuestionMultipleCheckers";
 import Topic from "../models/topic";
 import { TopicType } from "../types";
 
@@ -14,6 +16,7 @@ export const topics: Topic[] = [
   {
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
+    preQuestions: [QuestionMultipleCheckers],
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",

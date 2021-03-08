@@ -34,7 +34,7 @@ type QuestionsProps = {
 
 const Questions: FunctionComponent<QuestionsProps> = ({
   editQuestionHook,
-  isActive,
+  isActive: isSectionActive,
   saveAnswerHook,
   sectionFunctions,
 }) => {
@@ -44,32 +44,40 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const [contactOutcome, setContactOutcome] = useState(false);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const slug = useSlug();
-  const { isPermitCheck, isPermitForm } = useTopic();
+  const {
+    isPermitCheck,
+    isPermitForm,
+    preQuestions,
+    preQuestionsCount,
+  } = useTopic();
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
   const { address, questionIndex } = topicData;
   const { goToNextSection } = sectionFunctions;
-
   const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION, GOTO_OUTCOME } = eventNames;
   const { EDIT_QUESTION } = actions;
+
+  const imtrQuestionIndex = questionIndex - preQuestionsCount;
 
   // This function handles the user-event of going to a new question
   const goToQuestion = useCallback(
     (index: number, eventType?: string) => {
       if (!checker || !isPermitCheck) return;
 
-      if (!checker.stack[index]) {
-        const error = `goToQuestion failed: question with index "${index}" not found on stack`;
+      const newImtQuestionIndex = index - preQuestionsCount;
+
+      if (!checker.stack[newImtQuestionIndex]) {
+        const error = `goToQuestion failed: question with index "${newImtQuestionIndex}" not found on stack`;
 
         console.error(error);
         captureException(error);
         return;
       }
 
-      const { text } = checker.stack[questionIndex];
+      const { text } = checker.stack[imtrQuestionIndex];
 
-      // TrackEvent for specfic event type
+      // TrackEvent for the current question
       if (
         eventType === GOTO_NEXT_QUESTION ||
         eventType === GOTO_PREV_QUESTION ||
@@ -89,7 +97,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // TrackEvent for next active question
       if (eventType && eventType !== GOTO_OUTCOME) {
         matomoTrackEvent({
-          action: checker.stack[index].text,
+          action: checker.stack[newImtQuestionIndex].text,
           name: eventNames.ACTIVE_QUESTION,
         });
       }
@@ -101,7 +109,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     },
 
     //eslint-disable-next-line
-    [checker?.stack, questionIndex]
+    [checker?.stack, imtrQuestionIndex]
   );
 
   const handleNextQuestion = useCallback(
@@ -111,7 +119,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       if (isPermitForm) {
         goToNextSection();
       } else {
-        const question = checker.stack[questionIndex];
+        const question = checker.stack[imtrQuestionIndex];
 
         const userEvent = isCheckerConclusive()
           ? GOTO_OUTCOME
@@ -126,7 +134,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
           // @TODO: refactor this code
           // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-          if (checker.stack.length - 1 === questionIndex) {
+          if (checker.stack.length - 1 === imtrQuestionIndex) {
             // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
             const next = checker.next();
 
@@ -157,11 +165,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   };
 
   const handleEditQuestion = useCallback(
-    (questionId) => {
+    (questionIndex) => {
       editQuestionHook && editQuestionHook();
 
       // Go to the specific question in the stack
-      goToQuestion(questionId, EDIT_QUESTION);
+      goToQuestion(questionIndex, EDIT_QUESTION);
     },
     //eslint-disable-next-line
     [editQuestionHook]
@@ -176,7 +184,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // Toggle tracking of the
       if (isUserEvent) {
         matomoTrackEvent({
-          action: checker.stack[questionIndex].text,
+          action: checker.stack[imtrQuestionIndex].text,
           name: GOTO_OUTCOME,
         });
       }
@@ -199,7 +207,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       });
     },
     //eslint-disable-next-line
-    [checker, questionIndex]
+    [checker, imtrQuestionIndex]
   );
 
   // @TODO: fix this part, because it should just be handled by `checker.isConclusive()`
@@ -227,7 +235,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // Loop through questions
       checker.stack.forEach((q) => {
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive;
+          q === checker.stack[imtrQuestionIndex] && isSectionActive;
 
         // Skip question if already answered
         if (isCurrentQuestion && q.answer !== undefined) {
@@ -236,7 +244,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       });
     }
     //eslint-disable-next-line
-  }, [checker, isActive, questionIndex, skipAnsweredQuestions]);
+  }, [checker, isSectionActive, imtrQuestionIndex, skipAnsweredQuestions]);
 
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.ts
@@ -247,7 +255,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         if (checker.needContactExit(q)) {
           // Set questionIndex to this question index to make sure already answered questions are hidden
           setTopicData({
-            questionIndex: i,
+            questionIndex: i + preQuestionsCount,
           });
 
           // Set Contact Outcome
@@ -261,7 +269,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   if (!checker) return null;
 
   // Show all questions in case of an active Form
-  const showAllQuestions = isPermitForm && address && isActive;
+  const showAllQuestions = isPermitForm && address && isSectionActive;
 
   // @TODO: fix this style
   // Styling to overwrite the line between the Items
@@ -315,7 +323,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     saveAnswerHook && saveAnswerHook();
 
     const { label, value } = answer;
-    const question = imtrQuestion ?? checker.stack[questionIndex];
+    const question = imtrQuestion ?? checker.stack[imtrQuestionIndex];
     const { id, text } = question;
 
     // Handle the given answer
@@ -331,8 +339,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
     // By rewinding, we're forcing the stack to update
-    if (checker.stack.length !== questionIndex + 1) {
-      checker.rewindTo(questionIndex);
+    if (checker.stack.length !== imtrQuestionIndex + 1) {
+      checker.rewindTo(imtrQuestionIndex);
     }
 
     // Set Contact Outcome
@@ -349,20 +357,38 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     setValue(id, label);
   };
 
-  // Loop through all questions
   return (
     <>
+      {/* Loop through Pre Questions */}
+      {preQuestions?.map((Element, index) => {
+        return (
+          <Element
+            key={index}
+            {...{
+              editQuestionHook,
+              index,
+              isSectionActive,
+              questionIndex,
+              setSkipAnsweredQuestions,
+            }}
+          />
+        );
+      })}
+
+      {/* Loop through the stack */}
       {checker.stack.map((q, i) => {
         // @TODO: Refactor this code and move to checker.ts
         // We don't want to render future questions if the current index is the decisive answer for the Contact Outcome
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers())
         // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
 
+        const mapIndex = i + preQuestionsCount;
+
         if (
           !showAllQuestions &&
           contactOutcome &&
           !checker._getUpcomingQuestions().length &&
-          questionIndex < i
+          imtrQuestionIndex < mapIndex
         ) {
           return null;
         }
@@ -371,7 +397,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         // Define if question is the current one
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive;
+          q === checker.stack[imtrQuestionIndex] && isSectionActive;
 
         // Hide unanswered questions (eg: on browser refresh)
         if (!showAllQuestions && answer === undefined && !isCurrentQuestion) {
@@ -382,12 +408,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         // We need this because it is very hard to detect future open questions and this is causing bugs
         // @TODO: fix this by stop using the combo of checker.stack and checker._getUpcomingQuestions()
         // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-        if (isCurrentQuestion && checker.stack.length === i + 1) {
+        if (isCurrentQuestion && checker.stack.length === mapIndex + 1) {
           disableFutureQuestions = true;
         }
 
         // Check if current question is causing a permit requirement
-        const showQuestionAlert = !!permitsPerQuestion[i] && !isPermitForm;
+        const showQuestionAlert =
+          !!permitsPerQuestion[mapIndex - preQuestionsCount] && !isPermitForm;
 
         // Define the outcome type
         const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
@@ -395,10 +422,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         // Check if this is the last question
         const isFinalQuestion =
           !checker._getUpcomingQuestions().length &&
-          checker.stack.length === i + 1;
+          checker.stack.length === mapIndex - preQuestionsCount + 1;
 
         const showActiveStyle =
-          (isPermitCheck && isCurrentQuestion) || (isPermitForm && isActive);
+          (isPermitCheck && isCurrentQuestion) ||
+          (isPermitForm && isSectionActive);
 
         return (
           <StepByStepItem
@@ -407,14 +435,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             customSize
             data-testid={QUESTION}
             heading={q.text}
-            highlightActive={isPermitForm ? isActive : isCurrentQuestion}
-            key={`question-${q.id}-${i}`}
+            highlightActive={isPermitForm ? isSectionActive : isCurrentQuestion}
+            key={`question-${q.id}-${mapIndex}`}
             style={showActiveStyle ? activeStyle : {}}
           >
-            {isCurrentQuestion || (isPermitForm && isActive) ? (
+            {isCurrentQuestion || (isPermitForm && isSectionActive) ? (
               // Show the current question
               <Question
-                hideNav={isPermitForm && (!isFinalQuestion || !isActive)}
+                hideNav={isPermitForm && (!isFinalQuestion || !isSectionActive)}
                 question={q}
                 onGoToPrev={handlePrevQuestion}
                 onGoToNext={handleNextQuestion}
@@ -429,14 +457,17 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             ) : (
               // Show the answer with an edit button
               <QuestionAnswer
-                onClick={() => handleEditQuestion(i)}
+                onClick={() => handleEditQuestion(mapIndex)}
                 {...{ answer, outcomeType, showQuestionAlert }}
               />
             )}
           </StepByStepItem>
         );
       })}
+
+      {/* Loop through the upcoming questions */}
       {checker._getUpcomingQuestions().map((q, i) => {
+        const mapIndex = i + preQuestionsCount;
         const { answer } = q;
 
         // Skip unanswered questions or in case of Contact Outcome
@@ -445,10 +476,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         }
 
         // Get new index
-        const index = i + 1 + checker.stack.length;
+        const index = mapIndex + 1 + checker.stack.length;
 
         // Check if current question is causing a outcome
-        const showQuestionAlert = !!permitsPerQuestion[index] && !isPermitForm;
+        const showQuestionAlert =
+          !!permitsPerQuestion[index - preQuestionsCount] && !isPermitForm;
 
         // Disable the EditButton or not
         const disabled =
@@ -468,14 +500,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             customSize
             data-testid={QUESTION}
             heading={q.text}
-            highlightActive={isPermitForm && isActive}
+            highlightActive={isPermitForm && isSectionActive}
             key={`question-${q.id}-${index}`}
-            style={isPermitForm && isActive ? activeStyle : {}}
+            style={isPermitForm && isSectionActive ? activeStyle : {}}
           >
-            {isPermitForm && isActive ? (
+            {isPermitForm && isSectionActive ? (
               // Show all questions
               <Question
-                hideNav={isPermitForm && (!isFinalQuestion || !isActive)}
+                hideNav={isPermitForm && (!isFinalQuestion || !isSectionActive)}
                 question={q}
                 onGoToNext={handleNextQuestion}
                 showNext

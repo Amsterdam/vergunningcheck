@@ -1,5 +1,5 @@
 import * as imtr from "@vergunningcheck/imtr-client";
-import { ReactNode } from "react";
+import { ElementType, ReactNode } from "react";
 
 /**
  * Location types
@@ -65,10 +65,11 @@ export type TopicData = {
   answers: {
     [id: string]: imtr.Answer;
   };
-  timesCheckerLoaded: number;
-  sectionData: SectionData[];
-  type: string;
   questionIndex: number;
+  questionMultipleCheckers?: AnswerValue;
+  sectionData: SectionData[];
+  timesCheckerLoaded: number;
+  type: string;
 };
 
 export type setTopicFn = (topicData: Partial<TopicData>) => void;
@@ -94,6 +95,7 @@ export enum TopicType {
 export type TopicConfig = {
   intro?: string;
   name: string;
+  preQuestions?: PreQuestionProps;
   slug: string;
   text: {
     heading: string;
@@ -101,6 +103,8 @@ export type TopicConfig = {
   };
   type: TopicType;
 };
+
+export type PreQuestionProps = ElementType[];
 
 // This is an imported topic from the Flo Legal api
 export type ApiTopic = {
@@ -113,10 +117,18 @@ export type ApiTopic = {
 /**
  * Checker related types
  */
+
+export type QuestionAlert = {
+  questionAnswer: boolean;
+  text: string;
+};
+
+export type AnswerValue = boolean | string;
+
 export type Answer = {
   formValue?: string; // This is only used for Radio / Checkbox answers
   label: string;
-  value: boolean | string;
+  value: AnswerValue;
 };
 
 /**

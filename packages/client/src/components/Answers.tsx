@@ -5,41 +5,45 @@ import { FieldErrors } from "react-hook-form";
 
 import { ComponentWrapper, Label } from "../atoms";
 import { useTopicData } from "../hooks";
-import { Answer } from "../types";
+import { Answer, AnswerValue } from "../types";
 import { booleanOptions } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswersProps = {
+  answer?: AnswerValue;
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
-  question: imtr.Question;
+  question?: imtr.Question;
+  questionId: string;
   saveAnswer: (answer: Answer, question?: imtr.Question) => void;
 };
 
 const Answers: FunctionComponent<AnswersProps> = ({
+  answer,
   errors,
   question,
+  questionId,
   saveAnswer,
 }) => {
   const {
     topicData: { questionIndex },
   } = useTopicData();
 
-  const { answer: userAnswer, id, options } = question;
-
-  const answers: Answer[] = options
-    ? options.map((option) => ({
+  const answers: Answer[] = question?.options
+    ? question.options.map((option) => ({
         formValue: option,
         label: imtr.removeQuotes(option),
         value: option,
       }))
     : booleanOptions;
 
+  const userAnswer = answer ?? question?.answer;
+
   return (
     <ComponentWrapper data-testid={QUESTION_ANSWERS} marginBottom={0}>
-      <RadioGroup name={id}>
+      <RadioGroup name={questionId}>
         {answers?.map((answer, index) => {
           const { label, formValue, value } = answer;
-          const answerId = `${id}-${formValue}`;
+          const answerId = `${questionId}-${formValue}`;
           return (
             <Label
               data-testid={`q${questionIndex + 1}-a${index + 1}`}
@@ -49,7 +53,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
             >
               <Radio
                 checked={userAnswer === value}
-                error={errors[id]}
+                error={errors[questionId]}
                 key={answerId}
                 id={answerId}
                 onChange={() => saveAnswer(answer, question)}
@@ -59,7 +63,9 @@ const Answers: FunctionComponent<AnswersProps> = ({
           );
         })}
       </RadioGroup>
-      {errors[id] && <ErrorMessage message={errors[id].message} />}
+      {errors[questionId] && (
+        <ErrorMessage message={errors[questionId].message} />
+      )}
     </ComponentWrapper>
   );
 };
