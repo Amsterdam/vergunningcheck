@@ -74,7 +74,7 @@ export default ({
       )}
 
       {exceptions.length > 0 && (
-        <>
+        <em>
           <Heading forwardedAs="h4">
             {t("introPage.common.exceptions title")}
           </Heading>
@@ -95,7 +95,7 @@ export default ({
               <ContactSentence eventName={sections.INTRO} />
             </Paragraph>
           )}
-        </>
+        </em>
       )}
 
       {exceptions.length === 0 && showContactInformation && (
