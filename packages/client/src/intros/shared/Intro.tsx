@@ -79,13 +79,13 @@ export default ({
             <em>{t("introPage.common.exceptions title")}</em>
           </Heading>
           {showContactInformation && (
-            <Paragraph>
+            <Paragraph gutterBottom={8}>
               <ContactSentence eventName={sections.INTRO} />
             </Paragraph>
           )}
           <List
             data-testid={INTRO_EXCEPTION_BULLETS}
-            style={{ marginBottom: 12 }}
+            style={{ marginBottom: 12, fontSize: 2 }}
             variant="bullet"
           >
             {exceptions.map((exception) => (
@@ -95,15 +95,6 @@ export default ({
             ))}
           </List>
         </>
-      )}
-
-      {exceptions.length === 0 && showContactInformation && (
-        <Paragraph>
-          <ContactSentence
-            eventName={sections.INTRO}
-            openingSentence={t("introPage.common.call with questions")}
-          />
-        </Paragraph>
       )}
     </ComponentWrapper>
   );

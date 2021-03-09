@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import PhoneNumber from "./PhoneNumber";
 
@@ -11,10 +12,14 @@ type Props = {
 export default ({
   eventName,
   link = true,
-  openingSentence = "Bel in een van deze situaties de gemeente op", // This is the text before the phonenumber `14 020`
-}: Props) => (
-  <em>
-    {openingSentence} <PhoneNumber {...{ eventName, link }} />, maandag tot en
-    met vrijdag van 08.00 uur tot 18.00 uur:
-  </em>
-);
+  openingSentence = "call in this situations", // This is the text before the phonenumber `14 020`
+}: Props) => {
+  const { t } = useTranslation();
+  return (
+    <em>
+      {t(`introPage.common.${openingSentence}`)}{" "}
+      <PhoneNumber {...{ eventName, link }} />{" "}
+      {t("introPage.common.monday till friday")}
+    </em>
+  );
+};
