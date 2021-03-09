@@ -1,13 +1,21 @@
-// @TODO: importing this from `../components/Question` generates an error...
-import QuestionMultipleCheckers from "../components/Question/QuestionMultipleCheckers";
 import Topic from "../models/topic";
 import { TopicType } from "../types";
+
+/**
+ * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
+ *
+ * Direct importing and including components does not work because the hooks lose context.
+ */
+export enum PreQuestionComponent {
+  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+}
 
 /**
  * Merge the different topic types
  *
  * intro: The name of the component that has all texts on the Intro page
  * name: The name of the checker/topic
+ * preQuestions: Question Components to render before the actual IMTR questions. See `PreQuestionComponent` above
  * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
  * text: This is part that holds specific texts for each permit-checker
  * type: See {TopicType} for the different types of Topic
@@ -16,7 +24,6 @@ export const topics: Topic[] = [
   {
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
-    preQuestions: [QuestionMultipleCheckers],
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
@@ -47,6 +54,7 @@ export const topics: Topic[] = [
   {
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "kozijnen-plaatsen",
     text: {
       heading: "Vergunningcheck kozijnen plaatsen",

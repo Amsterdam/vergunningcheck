@@ -24,6 +24,7 @@ import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Question, QuestionAnswer } from "./";
+import PreQuestions from "./PreQuestions";
 
 type QuestionsProps = {
   editQuestionHook?: () => void;
@@ -44,12 +45,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const [contactOutcome, setContactOutcome] = useState(false);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const slug = useSlug();
-  const {
-    isPermitCheck,
-    isPermitForm,
-    preQuestions,
-    preQuestionsCount,
-  } = useTopic();
+  const { isPermitCheck, isPermitForm, preQuestionsCount } = useTopic();
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
@@ -360,20 +356,14 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   return (
     <>
       {/* Loop through Pre Questions */}
-      {preQuestions?.map((Element, index) => {
-        return (
-          <Element
-            key={index}
-            {...{
-              editQuestionHook,
-              index,
-              isSectionActive,
-              questionIndex,
-              setSkipAnsweredQuestions,
-            }}
-          />
-        );
-      })}
+      <PreQuestions
+        {...{
+          editQuestionHook,
+          isSectionActive,
+          questionIndex,
+          setSkipAnsweredQuestions,
+        }}
+      />
 
       {/* Loop through the stack */}
       {checker.stack.map((q, i) => {
@@ -388,7 +378,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           !showAllQuestions &&
           contactOutcome &&
           !checker._getUpcomingQuestions().length &&
-          imtrQuestionIndex < mapIndex
+          imtrQuestionIndex < i
         ) {
           return null;
         }

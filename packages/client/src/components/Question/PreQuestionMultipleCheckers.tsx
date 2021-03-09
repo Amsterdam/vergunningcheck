@@ -2,27 +2,29 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useSlug, useTopicData } from "../../hooks";
+import { PreQuestionFunctions } from "../../types";
 import { StepByStepItem } from "../StepByStepNavigation";
 import PreQuestion from "./PreQuestion";
 import QuestionAnswer from "./QuestionAnswer";
 
 type QuestionComponentProps = {
-  editQuestionHook?: () => {};
   index: number;
   isSectionActive: boolean;
   questionIndex: number;
-  setSkipAnsweredQuestions: (val: boolean) => {};
 };
 
-const QuestionMultipleCheckers: FunctionComponent<QuestionComponentProps> = ({
-  editQuestionHook,
+const PreQuestionMultipleCheckers: FunctionComponent<
+  QuestionComponentProps & PreQuestionFunctions
+> = ({
+  editQuestion,
+  goToNextQuestion,
   index,
   isSectionActive,
   questionIndex,
-  setSkipAnsweredQuestions,
+  saveAnswer,
 }) => {
   const slug = useSlug();
-  const { setTopicData, topicData } = useTopicData();
+  const { topicData } = useTopicData();
   const { t } = useTranslation();
 
   const { questionMultipleCheckers: answer } = topicData;
@@ -35,7 +37,7 @@ const QuestionMultipleCheckers: FunctionComponent<QuestionComponentProps> = ({
   }
 
   // Question data
-  const questionId = "questionMultipleCheckers";
+  const questionId = "preQuestionMultipleCheckers"; // This is also the key in the translation file (/i18n/nl.ts)
   const heading = t(
     `preQuestions.${slug}.${questionId}.would you like to build more than one`
   );
@@ -56,14 +58,6 @@ const QuestionMultipleCheckers: FunctionComponent<QuestionComponentProps> = ({
     ({ userAnswer }) => userAnswer === answer
   )?.text;
 
-  const handleEditQuestion = (index: number) => {
-    editQuestionHook && editQuestionHook();
-
-    setTopicData({
-      questionIndex: index,
-    });
-  };
-
   return (
     <StepByStepItem
       active={isCurrentQuestion}
@@ -80,14 +74,16 @@ const QuestionMultipleCheckers: FunctionComponent<QuestionComponentProps> = ({
             {...{
               answer,
               description,
+              editQuestion,
+              goToNextQuestion,
               questionAlertText,
               questionId,
-              setSkipAnsweredQuestions,
+              saveAnswer,
             }}
           />
         ) : (
           <QuestionAnswer
-            onClick={() => handleEditQuestion(index)}
+            onClick={() => editQuestion(index)}
             showQuestionAlert={!!questionAlertText}
             {...{ answer, questionAlertText }}
           />
@@ -97,4 +93,4 @@ const QuestionMultipleCheckers: FunctionComponent<QuestionComponentProps> = ({
   );
 };
 
-export default QuestionMultipleCheckers;
+export default PreQuestionMultipleCheckers;

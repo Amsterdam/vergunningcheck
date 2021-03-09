@@ -1,5 +1,7 @@
 import * as imtr from "@vergunningcheck/imtr-client";
-import { ElementType, ReactNode } from "react";
+import { ReactNode } from "react";
+
+import { PreQuestionComponent } from "./config";
 
 /**
  * Location types
@@ -95,7 +97,7 @@ export enum TopicType {
 export type TopicConfig = {
   intro?: string;
   name: string;
-  preQuestions?: PreQuestionProps;
+  preQuestions?: PreQuestionComponent[];
   slug: string;
   text: {
     heading: string;
@@ -104,7 +106,11 @@ export type TopicConfig = {
   type: TopicType;
 };
 
-export type PreQuestionProps = ElementType[];
+export type PreQuestionFunctions = {
+  goToNextQuestion: () => void;
+  editQuestion: (index: number) => void;
+  saveAnswer: (answer: Answer) => void;
+};
 
 // This is an imported topic from the Flo Legal api
 export type ApiTopic = {

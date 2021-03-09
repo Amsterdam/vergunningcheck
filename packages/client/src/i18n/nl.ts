@@ -158,11 +158,19 @@ export default {
     preQuestions: {
       // @TODO: support multiple topics
       "dakkapel-plaatsen": {
-        questionMultipleCheckers: {
+        preQuestionMultipleCheckers: {
           "would you like to build more than one":
             "Wilt u meer dan 1 dakkapel plaatsen?",
           "you can do this permit check one at a time":
             "U kunt de vergunningcheck voor 1 dakkapel tegelijk doen. Aan het einde kunt u nog een vergunningcheck doen.",
+        },
+      },
+      "kozijnen-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 kozijn plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 kozijn tegelijk doen. Aan het einde kunt u nog een vergunningcheck doen.          ",
         },
       },
     },

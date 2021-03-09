@@ -1,10 +1,11 @@
+import { PreQuestionComponent } from "../config";
 import apiTopics from "../topics.json";
-import { PreQuestionProps, TopicConfig, TopicType } from "../types";
+import { TopicConfig, TopicType } from "../types";
 
 class Topic {
   readonly intro?: string;
   readonly name: string;
-  readonly preQuestions?: PreQuestionProps;
+  readonly preQuestions?: PreQuestionComponent[];
   readonly slug: string;
   readonly text: any;
   readonly type: TopicType;
