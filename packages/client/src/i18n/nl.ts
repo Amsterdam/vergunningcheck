@@ -57,6 +57,7 @@ export default {
           ", maandag tot en met vrijdag van 08.00 uur tot 18.00 uur:",
         "monument bullet": "het wijzigen van een monument.",
         "permit for": "U kunt een vergunning nodig hebben voor:",
+        reloadCurrentPage: "Herlaad de pagina en probeer opnieuw",
         "situation dependent on both situation and questions":
           "Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
         "situation dependent on questions only":
