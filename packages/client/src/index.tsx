@@ -16,6 +16,7 @@ import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";
 import { CheckerProvider } from "./CheckerContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Router from "./components/Router";
 import { matomo } from "./config/matomo";
 import { sentryConfig } from "./config/sentry";
@@ -39,21 +40,23 @@ const AppGlobalStyle = createGlobalStyle`
 init(sentryConfig);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <CheckerProvider>
-      <SessionProvider>
-        <ApolloProvider client={apolloClient}>
-          <ThemeProvider>
-            <GlobalStyle />
-            <AppGlobalStyle />
-            <MatomoProvider value={createInstance(matomo)}>
-              <Router />
-            </MatomoProvider>
-          </ThemeProvider>
-        </ApolloProvider>
-      </SessionProvider>
-    </CheckerProvider>
-  </BrowserRouter>,
+  <ErrorBoundary>
+    <BrowserRouter>
+      <CheckerProvider>
+        <SessionProvider>
+          <ApolloProvider client={apolloClient}>
+            <ThemeProvider>
+              <GlobalStyle />
+              <AppGlobalStyle />
+              <MatomoProvider value={createInstance(matomo)}>
+                <Router />
+              </MatomoProvider>
+            </ThemeProvider>
+          </ApolloProvider>
+        </SessionProvider>
+      </CheckerProvider>
+    </BrowserRouter>
+  </ErrorBoundary>,
 
   document.getElementById("root")
 );
