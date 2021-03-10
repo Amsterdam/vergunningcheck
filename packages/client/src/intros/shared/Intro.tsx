@@ -43,7 +43,7 @@ export default ({
 
   return (
     <ComponentWrapper marginBottom={48}>
-      {introSentence && <Paragraph fontSize={60}>{introSentence}</Paragraph>}
+      {introSentence && <Paragraph>{introSentence}</Paragraph>}
       {usableForBullets?.length > 0 && (
         <>
           <Paragraph gutterBottom={8}>
