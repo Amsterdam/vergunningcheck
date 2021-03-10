@@ -76,7 +76,7 @@ export default ({
       {exceptions.length > 0 && (
         <>
           <Heading styleAs="h4" forwardedAs="h3">
-            <em>{t("introPage.common.exceptions title")}</em>
+            {t("introPage.common.exceptions title")}
           </Heading>
           {showContactInformation && (
             <Paragraph gutterBottom={8}>
@@ -85,13 +85,11 @@ export default ({
           )}
           <List
             data-testid={INTRO_EXCEPTION_BULLETS}
-            style={{ marginBottom: 12, fontSize: 2 }}
+            style={{ marginBottom: 12 }}
             variant="bullet"
           >
             {exceptions.map((exception) => (
-              <ListItem key={exception}>
-                <em>{exception}</em>
-              </ListItem>
+              <ListItem key={exception}>{exception}</ListItem>
             ))}
           </List>
         </>

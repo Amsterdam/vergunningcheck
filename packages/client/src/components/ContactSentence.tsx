@@ -16,10 +16,10 @@ export default ({
 }: Props) => {
   const { t } = useTranslation();
   return (
-    <em>
+    <>
       {t(`introPage.common.${openingSentence}`)}{" "}
       <PhoneNumber {...{ eventName, link }} />{" "}
       {t("introPage.common.monday till friday")}
-    </em>
+    </>
   );
 };
