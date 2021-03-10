@@ -6,18 +6,13 @@ import PhoneNumber from "./PhoneNumber";
 type Props = {
   eventName: string;
   link?: boolean;
-  openingSentence?: string;
 };
 
-export default ({
-  eventName,
-  link = true,
-  openingSentence = "call in this situations", // This is the text before the phonenumber `14 020`
-}: Props) => {
+export default ({ eventName, link = true }: Props) => {
   const { t } = useTranslation();
   return (
     <>
-      {t(`introPage.common.${openingSentence}`)}{" "}
+      {t(`introPage.common.call in this situations`)}{" "}
       <PhoneNumber {...{ eventName, link }} />
       {t("introPage.common.monday till friday")}
     </>
