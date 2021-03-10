@@ -131,11 +131,14 @@ describe("<Intro />", () => {
             text.translation.introPage.common["exceptions title"]
           )
         ).not.toBeInTheDocument();
+        expect(screen.queryByTestId(PHONE_NUMBER)).not.toBeInTheDocument();
       });
 
       it("renders extra sentence with colon (:)", () => {
         render(<Intro exceptions={["x"]} />);
         screen.getByText(text.translation.introPage.common["exceptions title"]);
+
+        expect(screen.queryByTestId(PHONE_NUMBER)).toBeInTheDocument();
       });
 
       it("renders the actual exceptions in a list", () => {
@@ -146,27 +149,8 @@ describe("<Intro />", () => {
         ).toHaveLength(2);
         screen.getByText(/cant x/);
         screen.getByText(/cant y/);
-      });
-    });
-    describe("showContactInformation", () => {
-      it("should render by default (without exceptions)", () => {
-        render(<Intro showContactInformation />);
-        screen.getByTestId(PHONE_NUMBER);
-      });
 
-      it("should render by default (with exceptions)", () => {
-        render(<Intro exceptions={["bla"]} />);
-        screen.getByTestId(PHONE_NUMBER);
-      });
-
-      it("can be skipped in combination without exceptions", () => {
-        render(<Intro showContactInformation={false} />);
-        expect(screen.queryByTestId(PHONE_NUMBER)).not.toBeInTheDocument();
-      });
-
-      it("can be skipped in combination with exceptions", () => {
-        render(<Intro exceptions={["bla"]} showContactInformation={false} />);
-        expect(screen.queryByTestId(PHONE_NUMBER)).not.toBeInTheDocument();
+        expect(screen.queryByTestId(PHONE_NUMBER)).toBeInTheDocument();
       });
     });
   });

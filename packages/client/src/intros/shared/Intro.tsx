@@ -17,7 +17,6 @@ type Props = {
   dependantOnSituation?: boolean;
   exceptions?: string[];
   introSentence?: string;
-  showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
 };
@@ -27,7 +26,6 @@ export default ({
   dependantOnSituation = true,
   exceptions = [],
   introSentence,
-  showContactInformation = true,
   usableForBullets = [],
   usableForText,
 }: Props) => {
@@ -76,11 +74,9 @@ export default ({
             <Heading styleAs="h4" forwardedAs="h3">
               {t("introPage.common.exceptions title")}
             </Heading>
-            {showContactInformation && (
-              <Paragraph gutterBottom={8}>
-                <ContactSentence eventName={sections.INTRO} />
-              </Paragraph>
-            )}
+            <Paragraph gutterBottom={8}>
+              <ContactSentence eventName={sections.INTRO} />
+            </Paragraph>
             <List
               compactThemeSpacing
               data-testid={INTRO_EXCEPTION_BULLETS}
@@ -91,14 +87,6 @@ export default ({
               ))}
             </List>
           </>
-        )}
-        {exceptions.length === 0 && showContactInformation && (
-          <Paragraph>
-            <ContactSentence
-              eventName={sections.INTRO}
-              openingSentence={t("introPage.common.call with questions")}
-            />
-          </Paragraph>
         )}
       </CompactThemeProvider>
     </ComponentWrapper>
