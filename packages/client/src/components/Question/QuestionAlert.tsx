@@ -4,6 +4,7 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, HideForPrint } from "../../atoms";
+import { useSlug } from "../../hooks";
 import { QUESTION_ALERT } from "../../utils/test-ids";
 
 export type QuestionAlertProps = {
@@ -19,6 +20,7 @@ const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
   questionAlertText,
   outcomeType,
 }) => {
+  const slug = useSlug();
   const { t } = useTranslation();
 
   const imtrOutcome =
@@ -39,11 +41,13 @@ const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
           {outcomeType === NEED_PERMIT && (
             <>
               {t("question.alert.this answer causes a need for permit")}{" "}
-              <HideForPrint as="span">
-                {t(
-                  "question.alert.if you make another choice you might not need a permit"
-                )}
-              </HideForPrint>
+              {slug !== "brandveilig-gebruik" && slug !== "bouwwerk-slopen" && (
+                <HideForPrint as="span">
+                  {t(
+                    "question.alert.if you make another choice you might not need a permit"
+                  )}
+                </HideForPrint>
+              )}
             </>
           )}
           {outcomeType === NEED_CONTACT &&

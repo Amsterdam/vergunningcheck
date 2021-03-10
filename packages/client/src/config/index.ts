@@ -24,6 +24,7 @@ export const topics: Topic[] = [
   {
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
+    // preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS], @TODO: fix tests first
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
@@ -34,6 +35,7 @@ export const topics: Topic[] = [
   {
     intro: "DakraamIntro",
     name: "Dakraam plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "dakraam-plaatsen",
     text: {
       heading: "Vergunningcheck dakraam plaatsen",
@@ -65,6 +67,7 @@ export const topics: Topic[] = [
   {
     intro: "ZonnepanelenIntro",
     name: "Zonnepanelen of zonneboiler plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "zonnepanelen-of-zonneboiler-plaatsen",
     text: {
       heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
@@ -95,6 +98,7 @@ export const topics: Topic[] = [
   {
     intro: "ZonweringRolluikIntro",
     name: "Zonwering of rolluik plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "zonwering-of-rolluik-plaatsen",
     text: {
       heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",

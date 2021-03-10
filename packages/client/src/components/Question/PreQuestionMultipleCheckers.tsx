@@ -44,9 +44,12 @@ const PreQuestionMultipleCheckers: FunctionComponent<
   const description = "";
   const questionAlert = [
     {
-      text: t(
-        `preQuestions.${slug}.${questionId}.you can do this permit check one at a time`
-      ),
+      text:
+        t(
+          `preQuestions.${slug}.${questionId}.you can do this permit check one at a time`
+        ) +
+        " " +
+        t("common.at the end you can do another permit check"),
       userAnswer: true, // This is the condition on which to show the QuestionAlert
     },
   ];
