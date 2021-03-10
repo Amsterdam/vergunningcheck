@@ -42,6 +42,7 @@ const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
             <>
               {t("question.alert.this answer causes a need for permit")}{" "}
               {slug !== "brandveilig-gebruik" && slug !== "bouwwerk-slopen" && (
+                // This text will only be shown for certain permit checks
                 <HideForPrint as="span">
                   {t(
                     "question.alert.if you make another choice you might not need a permit"

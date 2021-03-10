@@ -290,27 +290,25 @@ export default {
         "Hebt u ook andere bouwplannen? Dan kunt u nog een vergunningcheck doen.",
       "if you have other plans you can do other permit checks as well":
         "Hebt u ook andere bouwplannen? Ook dan kunt u nog een vergunningcheck doen.",
-      checker: {
-        "dakkapel-plaatsen": {
-          "you would like to build more than 1 so you need to do multiple permits":
-            "U wilt meer dan 1 dakkapel plaatsen. Doe voor elke volgende een vergunningcheck.",
-        },
-        "dakraam-plaatsen": {
-          "you would like to build more than 1 so you need to do multiple permits":
-            "U wilt meer dan 1 dakraam plaatsen. Doe voor elke volgende een vergunningcheck.",
-        },
-        "kozijnen-plaatsen": {
-          "you would like to build more than 1 so you need to do multiple permits":
-            "U wilt meer dan 1 kozijn plaatsen. Doe voor elke volgende een vergunningcheck.",
-        },
-        "zonnepanelen-of-zonneboiler-plaatsen": {
-          "you would like to build more than 1 so you need to do multiple permits":
-            "U wilt op verschillende plekken zonnepanelen of een zonneboiler plaatsen. Doe voor elke plek een vergunningcheck.",
-        },
-        "zonwering-of-rolluik-plaatsen": {
-          "you would like to build more than 1 so you need to do multiple permits":
-            "U wilt meer dan 1 zonwering, rolhek, rolluik of luik plaatsen. Doe voor elke volgende een vergunningcheck.",
-        },
+      "dakkapel-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 dakkapel plaatsen. Doe voor elke volgende een vergunningcheck.",
+      },
+      "dakraam-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 dakraam plaatsen. Doe voor elke volgende een vergunningcheck.",
+      },
+      "kozijnen-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 kozijn plaatsen. Doe voor elke volgende een vergunningcheck.",
+      },
+      "zonnepanelen-of-zonneboiler-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt op verschillende plekken zonnepanelen of een zonneboiler plaatsen. Doe voor elke plek een vergunningcheck.",
+      },
+      "zonwering-of-rolluik-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 zonwering, rolhek, rolluik of luik plaatsen. Doe voor elke volgende een vergunningcheck.",
       },
     },
   },
