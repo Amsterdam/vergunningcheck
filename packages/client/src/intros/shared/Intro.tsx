@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from "@amsterdam/asc-ui";
+import { CompactThemeProvider, Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -17,7 +17,6 @@ type Props = {
   dependantOnSituation?: boolean;
   exceptions?: string[];
   introSentence?: string;
-  showContactInformation?: boolean;
   usableForBullets?: string[];
   usableForText?: string;
 };
@@ -27,7 +26,6 @@ export default ({
   dependantOnSituation = true,
   exceptions = [],
   introSentence,
-  showContactInformation = true,
   usableForBullets = [],
   usableForText,
 }: Props) => {
@@ -59,53 +57,38 @@ export default ({
           </List>
         </>
       )}
-
       {influence && (
         <Paragraph data-testid={INTRO_USER_INFLUENCE}>
           {influence}{" "}
           {dependantOnQuestions && t("introPage.common.change answer")}
         </Paragraph>
       )}
-
       {usableForText && (
         <Paragraph data-testid={INTRO_USABLE_FOR_TEXT}>
           {usableForText}
         </Paragraph>
       )}
-
-      {exceptions.length > 0 && (
-        <>
-          <Heading styleAs="h4" forwardedAs="h3">
-            {t("introPage.common.exceptions title")}
-          </Heading>
-          <Paragraph gutterBottom={8}>
-            {t("introPage.common.exceptions description")}
-          </Paragraph>
-          <List
-            data-testid={INTRO_EXCEPTION_BULLETS}
-            style={{ marginBottom: 12 }}
-            variant="bullet"
-          >
-            {exceptions.map((exception) => (
-              <ListItem key={exception}>{exception}</ListItem>
-            ))}
-          </List>
-          {showContactInformation && (
-            <Paragraph>
+      <CompactThemeProvider>
+        {exceptions.length > 0 && (
+          <>
+            <Heading styleAs="h4" forwardedAs="h3">
+              {t("introPage.common.exceptions title")}
+            </Heading>
+            <Paragraph gutterBottom={8}>
               <ContactSentence eventName={sections.INTRO} />
             </Paragraph>
-          )}
-        </>
-      )}
-
-      {exceptions.length === 0 && showContactInformation && (
-        <Paragraph>
-          <ContactSentence
-            eventName={sections.INTRO}
-            openingSentence={t("introPage.common.call with questions")}
-          />
-        </Paragraph>
-      )}
+            <List
+              compactThemeSpacing
+              data-testid={INTRO_EXCEPTION_BULLETS}
+              variant="bullet"
+            >
+              {exceptions.map((exception) => (
+                <ListItem key={exception}>{exception}</ListItem>
+              ))}
+            </List>
+          </>
+        )}
+      </CompactThemeProvider>
     </ComponentWrapper>
   );
 };
