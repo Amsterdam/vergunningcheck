@@ -63,17 +63,16 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
       const newImtQuestionIndex = index - preQuestionsCount;
 
-      if (!preQuestionsCount && !checker.stack[newImtQuestionIndex]) {
-        const error = `goToQuestion failed: question with index "${newImtQuestionIndex}" not found on stack`;
-
-        console.error(error);
-        captureException(error);
-        return;
-      }
-
       // Only track in case the question is an IMTR question, and not a PreQuestion
       if (index >= preQuestionsCount) {
-        const { text } = checker.stack[imtrQuestionIndex];
+        if (!checker.stack[newImtQuestionIndex]) {
+          const error = `goToQuestion failed: question with index "${newImtQuestionIndex}" not found on stack`;
+
+          console.error(error);
+          captureException(error);
+          return;
+        }
+        const { text } = checker.stack[newImtQuestionIndex];
 
         // TrackEvent for the current question
         if (
