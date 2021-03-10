@@ -11,6 +11,7 @@ import {
   INTRO_USABLE_FOR_TEXT,
   INTRO_USER_INFLUENCE,
 } from "../../utils/test-ids";
+import { SmallParagraph, StyedList } from "./IntroStyles";
 
 type Props = {
   dependantOnQuestions?: boolean;
@@ -79,28 +80,26 @@ export default ({
             {t("introPage.common.exceptions title")}
           </Heading>
           {showContactInformation && (
-            <Paragraph gutterBottom={8}>
+            <SmallParagraph gutterBottom={8}>
               <ContactSentence eventName={sections.INTRO} />
-            </Paragraph>
+            </SmallParagraph>
           )}
-          <List
-            data-testid={INTRO_EXCEPTION_BULLETS}
-            style={{ marginBottom: 12 }}
-            variant="bullet"
-          >
+          <StyedList data-testid={INTRO_EXCEPTION_BULLETS} variant="bullet">
             {exceptions.map((exception) => (
-              <ListItem key={exception}>{exception}</ListItem>
+              <ListItem key={exception}>
+                <SmallParagraph gutterBottom={0}>{exception}</SmallParagraph>
+              </ListItem>
             ))}
-          </List>
+          </StyedList>
         </>
       )}
       {exceptions.length === 0 && showContactInformation && (
-        <Paragraph>
+        <SmallParagraph>
           <ContactSentence
             eventName={sections.INTRO}
             openingSentence={t("introPage.common.call with questions")}
           />
-        </Paragraph>
+        </SmallParagraph>
       )}
     </ComponentWrapper>
   );

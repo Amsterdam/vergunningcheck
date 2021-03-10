@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
 import PhoneNumber from "./PhoneNumber";
 
@@ -8,6 +9,10 @@ type Props = {
   link?: boolean;
   openingSentence?: string;
 };
+
+const StyledPhoneNumber = styled(PhoneNumber)`
+  font-size: 14px;
+`;
 
 export default ({
   eventName,
@@ -18,7 +23,7 @@ export default ({
   return (
     <>
       {t(`introPage.common.${openingSentence}`)}{" "}
-      <PhoneNumber {...{ eventName, link }} />{" "}
+      <StyledPhoneNumber {...{ eventName, link }} />{" "}
       {t("introPage.common.monday till friday")}
     </>
   );
