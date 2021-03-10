@@ -66,13 +66,6 @@ describe("IntroPage", () => {
       screen.getByText(nl.translation.introPage.common["exceptions title"])
     ).toBeInTheDocument();
 
-    // Render paragraph
-    expect(
-      screen.getByText(
-        nl.translation.introPage.common["exceptions description"]
-      )
-    ).toBeInTheDocument();
-
     // Render bullets
     expect(
       screen.getByText(nl.translation.introPage.dakkapel["exception"], {
