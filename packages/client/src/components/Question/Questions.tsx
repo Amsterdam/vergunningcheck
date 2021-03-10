@@ -63,7 +63,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
       const newImtQuestionIndex = index - preQuestionsCount;
 
-      if (!checker.stack[newImtQuestionIndex]) {
+      if (!preQuestionsCount && !checker.stack[newImtQuestionIndex]) {
         const error = `goToQuestion failed: question with index "${newImtQuestionIndex}" not found on stack`;
 
         console.error(error);
@@ -71,31 +71,34 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         return;
       }
 
-      const { text } = checker.stack[imtrQuestionIndex];
+      // Only track in case the question is an IMTR question, and not a PreQuestion
+      if (index >= preQuestionsCount) {
+        const { text } = checker.stack[imtrQuestionIndex];
 
-      // TrackEvent for the current question
-      if (
-        eventType === GOTO_NEXT_QUESTION ||
-        eventType === GOTO_PREV_QUESTION ||
-        eventType === GOTO_OUTCOME
-      ) {
-        matomoTrackEvent({
-          action: text,
-          name: eventType,
-        });
-      } else if (eventType === EDIT_QUESTION) {
-        matomoTrackEvent({
-          action: eventType,
-          name: text,
-        });
-      }
+        // TrackEvent for the current question
+        if (
+          eventType === GOTO_NEXT_QUESTION ||
+          eventType === GOTO_PREV_QUESTION ||
+          eventType === GOTO_OUTCOME
+        ) {
+          matomoTrackEvent({
+            action: text,
+            name: eventType,
+          });
+        } else if (eventType === EDIT_QUESTION) {
+          matomoTrackEvent({
+            action: eventType,
+            name: text,
+          });
+        }
 
-      // TrackEvent for next active question
-      if (eventType && eventType !== GOTO_OUTCOME) {
-        matomoTrackEvent({
-          action: checker.stack[newImtQuestionIndex].text,
-          name: eventNames.ACTIVE_QUESTION,
-        });
+        // TrackEvent for next active question
+        if (eventType && eventType !== GOTO_OUTCOME) {
+          matomoTrackEvent({
+            action: checker.stack[newImtQuestionIndex].text,
+            name: eventNames.ACTIVE_QUESTION,
+          });
+        }
       }
 
       // Update session with new question to rerender the page
