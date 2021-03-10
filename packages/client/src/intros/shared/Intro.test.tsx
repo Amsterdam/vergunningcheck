@@ -150,7 +150,7 @@ describe("<Intro />", () => {
     });
     describe("showContactInformation", () => {
       it("should render by default (without exceptions)", () => {
-        render(<Intro />);
+        render(<Intro showContactInformation />);
         screen.getByTestId(PHONE_NUMBER);
       });
 

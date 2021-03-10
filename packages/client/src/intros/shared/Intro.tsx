@@ -94,6 +94,14 @@ export default ({
           </List>
         </>
       )}
+      {exceptions.length === 0 && showContactInformation && (
+        <Paragraph>
+          <ContactSentence
+            eventName={sections.INTRO}
+            openingSentence={t("introPage.common.call with questions")}
+          />
+        </Paragraph>
+      )}
     </ComponentWrapper>
   );
 };
