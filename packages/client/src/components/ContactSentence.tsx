@@ -23,7 +23,7 @@ export default ({
   return (
     <>
       {t(`introPage.common.${openingSentence}`)}{" "}
-      <StyledPhoneNumber {...{ eventName, link }} />{" "}
+      <StyledPhoneNumber {...{ eventName, link }} />
       {t("introPage.common.monday till friday")}
     </>
   );
