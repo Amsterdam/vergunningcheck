@@ -14,7 +14,7 @@ nightwatch_config = {
     'browserstack.user': 'sjens1',
     'browserstack.key': '3T6jZ9N4pYf9qjzoqKxU',
     'browserstack.debug': false,
-    'browserstack.local': false
+    'browserstack.local': true
   },
 
   test_settings: {
@@ -31,7 +31,9 @@ nightwatch_config = {
     },
     safari: {
       desiredCapabilities: {
-        browser: "safari"
+        browser: "safari",
+        osVersion: "Catalina",
+        browserVersion: "13.0"
       }
     },
     ie: {
