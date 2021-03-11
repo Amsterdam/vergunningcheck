@@ -53,23 +53,27 @@ const NewCheckerModal: FunctionComponent = () => {
     };
 
     // Clear checker
-    setChecker(undefined);
     if (checkerSlug === slug) {
       // Only change the topicData for the current topic
       setTopicData(newTopicData);
 
       matomoTrackEvent({
-        action: actions.CLICK_INTERNAL_NAVIGATION,
-        name: sections.INTRO,
+        action: actions.ACTIVE_STEP,
+        name: sections.LOCATION_INPUT,
       });
       history.push(geturl(routes.checker, { slug: checkerSlug }));
     } else {
+      matomoTrackEvent({
+        action: actions.CLICK_INTERNAL_NAVIGATION,
+        name: sections.INTRO,
+      });
       // Change the topicData for another topic
       setSession({
         [checkerSlug]: newTopicData,
       });
       history.push(geturl(routes.intro, { slug: checkerSlug }));
     }
+    setChecker(undefined);
   };
 
   return (
