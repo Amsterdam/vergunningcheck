@@ -24,7 +24,7 @@ export const topics: Topic[] = [
   {
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
-    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS], // @TODO: fix tests first
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
