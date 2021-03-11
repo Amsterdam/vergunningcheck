@@ -107,9 +107,9 @@ export type TopicConfig = {
 };
 
 export type PreQuestionFunctions = {
+  editQuestion: (index: number) => void;
   goToNextQuestion: () => void;
   isCheckerConclusive: () => boolean;
-  editQuestion: (index: number) => void;
   saveAnswer: (answer: Answer) => void;
 };
 

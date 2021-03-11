@@ -44,10 +44,6 @@ class Topic {
   get preQuestionsCount(): number {
     return this.preQuestions?.length || 0;
   }
-
-  get preQuestionsData(): any {
-    return {};
-  }
 }
 
 export default Topic;

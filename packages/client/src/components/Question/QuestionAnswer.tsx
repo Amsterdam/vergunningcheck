@@ -21,8 +21,8 @@ const QuestionAnswer: FunctionComponent<
   answer,
   disabled,
   onClick,
-  questionAlertText,
   outcomeType,
+  questionAlertText,
   showQuestionAlert,
 }) => {
   // Don't render when there's no answer
@@ -37,7 +37,7 @@ const QuestionAnswer: FunctionComponent<
       {showQuestionAlert && (
         <QuestionAlert
           marginBottom={8}
-          {...{ questionAlertText, outcomeType }}
+          {...{ outcomeType, questionAlertText }}
         />
       )}
     </>
