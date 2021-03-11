@@ -31,7 +31,7 @@ const PreQuestion: FunctionComponent<
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const { t } = useTranslation();
 
-  const requiredText = t("common.required field text");
+  const requiredText = t("common.required field radio");
 
   useEffect(() => {
     register(
