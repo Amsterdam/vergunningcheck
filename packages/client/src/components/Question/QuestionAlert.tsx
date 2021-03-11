@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, HideForPrint } from "../../atoms";
-import { useSlug } from "../../hooks";
+import { useTopic } from "../../hooks";
 import { QUESTION_ALERT } from "../../utils/test-ids";
 
 export type QuestionAlertProps = {
@@ -20,7 +20,7 @@ const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
   questionAlertText,
   outcomeType,
 }) => {
-  const slug = useSlug();
+  const { userMightNotNeedPermit } = useTopic();
   const { t } = useTranslation();
 
   const imtrOutcome =
@@ -41,8 +41,7 @@ const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
           {outcomeType === NEED_PERMIT && (
             <>
               {t("question.alert.this answer causes a need for permit")}{" "}
-              {slug !== "brandveilig-gebruik" && slug !== "bouwwerk-slopen" && (
-                // This text will only be shown for certain permit checks
+              {userMightNotNeedPermit && (
                 <HideForPrint as="span">
                   {t(
                     "question.alert.if you make another choice you might not need a permit"

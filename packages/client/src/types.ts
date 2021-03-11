@@ -104,6 +104,7 @@ export type TopicConfig = {
     locationIntro?: string;
   };
   type: TopicType;
+  userMightNotNeedPermit?: boolean;
 };
 
 export type PreQuestionFunctions = {

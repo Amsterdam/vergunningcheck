@@ -9,6 +9,7 @@ class Topic {
   readonly slug: string;
   readonly text: any;
   readonly type: TopicType;
+  readonly userMightNotNeedPermit?: boolean;
 
   constructor(config: TopicConfig) {
     this.intro = config.intro;
@@ -17,6 +18,7 @@ class Topic {
     this.slug = config.slug;
     this.text = config.text;
     this.type = config.type;
+    this.userMightNotNeedPermit = config.userMightNotNeedPermit;
   }
 
   get hasIMTR(): boolean {

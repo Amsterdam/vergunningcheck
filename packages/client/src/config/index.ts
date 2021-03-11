@@ -19,6 +19,7 @@ export enum PreQuestionComponent {
  * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
  * text: This is part that holds specific texts for each permit-checker
  * type: See {TopicType} for the different types of Topic
+ * userMightNotNeedPermit: Enables an add-on text in the QuestionAlert: "if you make another choice you might not need a permit"
  */
 export const topics: Topic[] = [
   {
@@ -31,6 +32,7 @@ export const topics: Topic[] = [
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
     },
     type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
   },
   {
     intro: "DakraamIntro",
@@ -42,6 +44,7 @@ export const topics: Topic[] = [
       locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
     },
     type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
   },
   {
     name: "Aanbouw of uitbouw maken",
@@ -52,6 +55,7 @@ export const topics: Topic[] = [
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
     },
     type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
   },
   {
     intro: "KozijnenIntro",
@@ -63,6 +67,7 @@ export const topics: Topic[] = [
       locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
     },
     type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
   },
   {
     intro: "ZonnepanelenIntro",
@@ -75,6 +80,7 @@ export const topics: Topic[] = [
         "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
     },
     type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
   },
   {
     intro: "SlopenIntro",
@@ -106,6 +112,7 @@ export const topics: Topic[] = [
         "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
     },
     type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
   },
   {
     name: "Kappen of snoeien",

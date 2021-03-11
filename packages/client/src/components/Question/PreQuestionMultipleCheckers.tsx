@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useSlug, useTopicData } from "../../hooks";
 import { PreQuestionFunctions } from "../../types";
+import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import PreQuestion from "./PreQuestion";
 import QuestionAnswer from "./QuestionAnswer";
@@ -67,7 +68,7 @@ const PreQuestionMultipleCheckers: FunctionComponent<
       active={isCurrentQuestion}
       checked={isQuestionAnswered}
       customSize
-      data-testid="{QUESTION}"
+      data-testid={QUESTION}
       highlightActive={isCurrentQuestion}
       style={isCurrentQuestion ? activeStyle : {}}
       {...{ heading }}
