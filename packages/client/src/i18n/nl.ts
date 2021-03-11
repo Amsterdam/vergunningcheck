@@ -242,6 +242,7 @@ export default {
         heading: "U wilt nog een vergunningcheck doen.",
         openModalBtnText: "Nog een vergunningcheck doen",
         selectNextPermitCheck: "Welke vergunningcheck wilt u doen?",
+      },
       cuttingTreeForm: {
         title: "Hier uw aanvraag formulier",
         "pictures of the tree": "Een foto van de boom / bomen.",
