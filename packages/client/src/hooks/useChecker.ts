@@ -10,7 +10,7 @@ export default () => {
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();
-  const topic = useTopic();
+  const { hasIMTR, slug } = useTopic();
   const { topicData } = useTopicData();
 
   useEffect(() => {
@@ -26,13 +26,11 @@ export default () => {
   }, [checker, checkerContext]);
 
   const initChecker = async () => {
-    // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    const loadChecker = !checker && !error && (!topic || topic.hasIMTR);
+    // Load the checker if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
+    const loadChecker = !checker && !error && hasIMTR;
     if (loadChecker) {
       try {
-        const topicConfig = topicsJson
-          .flat()
-          .find((t) => t.slug === topic.slug) as {
+        const topicConfig = topicsJson.flat().find((t) => t.slug === slug) as {
           path: string;
         };
 

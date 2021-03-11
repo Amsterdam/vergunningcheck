@@ -3,7 +3,10 @@ export default {
     common: {
       "address loading": "Wij zoeken het adres.",
       cancel: "Annuleer",
+      "do the permit check": "Doe de vergunningcheck",
+      "download form": "Aanvraag formulier downloaden",
       edit: "Wijzig",
+      "go to the next step": "Ga naar volgende stap",
       "housenumber label": "Huisnummer + toevoeging",
       "municipal city scape": "gemeentelijk beschermd stads- of dorpsgezicht",
       "national city scape": "rijksbeschermd stads- of dorpsgezicht",
@@ -15,7 +18,9 @@ export default {
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
+      "save outcome": "Uitkomst opslaan",
       "to the questions": "Naar de vragen",
+      "to the olo": "Naar het Omgevingsloket",
       "the building is a monument": "Het gebouw is een {{monument}}.",
       "the building is not a monument": "Het gebouw is geen monument.",
       "the building is located inside a city scape":
@@ -39,15 +44,18 @@ export default {
     },
     introPage: {
       common: {
-        "amount of houses exception": "Het aantal woningen verandert.",
+        "amount of houses exception":
+          "Het aantal woningen verandert door uw verbouwing.",
+        "call in this situations":
+          "Bel in een van deze situaties de gemeente op",
         "call with questions": "Heeft u vragen? Bel dan",
         "change answer":
-          "U kunt een antwoord wijzigen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
+          "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
         "check for permit intro":
-          "Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning nodig hebt.",
-        "exceptions description":
-          "In de volgende situaties is het niet mogelijk de vergunningcheck te gebruiken:",
-        "exceptions title": "Uitzonderingen:",
+          "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
+        "exceptions title": "Bijzondere situaties:",
+        "monday till friday":
+          ", maandag tot en met vrijdag van 08.00 uur tot 18.00 uur:",
         "monument bullet": "het wijzigen van een monument.",
         "permit for": "U kunt een vergunning nodig hebben voor:",
         "situation dependent on both situation and questions":
@@ -119,7 +127,7 @@ export default {
         "enter address": "Invullen adres",
       },
       map: {
-        heading: "Locatiegegevens",
+        heading: "Waar staat de boom?",
       },
 
       testing: {
@@ -234,6 +242,16 @@ export default {
         heading: "U wilt nog een vergunningcheck doen.",
         openModalBtnText: "Nog een vergunningcheck doen",
         selectNextPermitCheck: "Welke vergunningcheck wilt u doen?",
+      cuttingTreeForm: {
+        title: "Hier uw aanvraag formulier",
+        "pictures of the tree": "Een foto van de boom / bomen.",
+        "you are done with the form and you can download it": `U bent klaar met het aanvraagformulier. U kunt deze downloaden en
+        meesturen in het Omgevingsloket. In het Omgevingloket vragen ze nog naar
+        een aantal bijlagen, denk aan bijvoorbeeld:`,
+        "a plan with the situation and the tree ids":
+          "Een plan met situering en nummering van de boom waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte.",
+        "a written report":
+          "Een schriftelijk verslag, als u overleg hebt gehad met omwonenden en/of overige belanghebbenden.",
       },
     },
   },

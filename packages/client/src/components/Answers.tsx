@@ -1,6 +1,5 @@
 import { ErrorMessage, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import { removeQuotes } from "@vergunningcheck/imtr-client";
-import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { FieldErrors } from "react-hook-form";
 
@@ -12,8 +11,8 @@ import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswersProps = {
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
-  question: ImtrQuestion;
-  saveAnswer: (answer: Answer) => void;
+  question: imtr.Question;
+  saveAnswer: (answer: Answer, question?: imtr.Question) => void;
 };
 
 const Answers: FunctionComponent<AnswersProps> = ({
@@ -30,13 +29,13 @@ const Answers: FunctionComponent<AnswersProps> = ({
   const answers: Answer[] = options
     ? options.map((option) => ({
         formValue: option,
-        label: removeQuotes(option),
+        label: imtr.removeQuotes(option),
         value: option,
       }))
     : booleanOptions;
 
   return (
-    <ComponentWrapper data-testid={QUESTION_ANSWERS}>
+    <ComponentWrapper data-testid={QUESTION_ANSWERS} marginBottom={0}>
       <RadioGroup name={id}>
         {answers?.map((answer, index) => {
           const { label, formValue, value } = answer;
@@ -53,7 +52,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
                 error={errors[id]}
                 key={answerId}
                 id={answerId}
-                onChange={() => saveAnswer(answer)}
+                onChange={() => saveAnswer(answer, question)}
                 value={formValue}
               />
             </Label>
