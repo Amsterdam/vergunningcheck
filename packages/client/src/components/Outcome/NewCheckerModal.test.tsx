@@ -41,8 +41,8 @@ describe("NewCheckerModal", () => {
     act(() => {
       fireEvent.click(queryByTestId(MODAL_OPEN_BUTTON) as HTMLElement);
     });
-    // Modal = open
 
+    // Modal = open
     expect(queryByTestId(MODAL)).toBeInTheDocument();
     expect(queryByText(customTopic.name)).toBeInTheDocument();
     expect(queryByText("Annuleer")).toBeInTheDocument();
@@ -62,11 +62,8 @@ describe("NewCheckerModal", () => {
     act(() => {
       fireEvent.click(queryByTestId(MODAL_OPEN_BUTTON) as HTMLElement);
     });
+
     // Modal = open
-
-    // Because this event is not async, it should call `NO_CHOICE_HAS_BEEN_MADE`
-    fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON) as HTMLElement);
-
     // Go to new topic
     await act(async () => {
       fireEvent.click(queryByTestId(MODAL_CONFIRM_BUTTON) as HTMLElement);
