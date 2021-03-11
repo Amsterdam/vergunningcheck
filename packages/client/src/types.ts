@@ -108,6 +108,7 @@ export type TopicConfig = {
 
 export type PreQuestionFunctions = {
   goToNextQuestion: () => void;
+  isCheckerConclusive: () => boolean;
   editQuestion: (index: number) => void;
   saveAnswer: (answer: Answer) => void;
 };

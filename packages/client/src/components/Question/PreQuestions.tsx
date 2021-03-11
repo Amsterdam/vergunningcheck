@@ -7,6 +7,7 @@ import PreQuestionMultipleCheckers from "./PreQuestionMultipleCheckers";
 
 type PreQuestionsProps = {
   editQuestionHook?: any;
+  isCheckerConclusive: () => boolean;
   isSectionActive: boolean;
   questionIndex: number;
   setSkipAnsweredQuestions: (val: boolean) => void;
@@ -14,6 +15,7 @@ type PreQuestionsProps = {
 
 const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
   editQuestionHook,
+  isCheckerConclusive,
   isSectionActive,
   questionIndex,
   setSkipAnsweredQuestions,
@@ -46,6 +48,7 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
     ...{
       editQuestion,
       goToNextQuestion,
+      isCheckerConclusive,
       isSectionActive,
       questionIndex,
       saveAnswer,

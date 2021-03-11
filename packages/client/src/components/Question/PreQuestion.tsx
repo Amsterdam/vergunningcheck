@@ -23,6 +23,7 @@ const PreQuestion: FunctionComponent<
 > = ({
   answer,
   description,
+  isCheckerConclusive,
   goToNextQuestion,
   questionAlertText,
   questionId,
@@ -58,7 +59,14 @@ const PreQuestion: FunctionComponent<
 
       <QuestionAlert marginBottom={8} {...{ questionAlertText }} />
 
-      <Nav nextText={t("question.nextQuestion")} showNext />
+      <Nav
+        nextText={
+          isCheckerConclusive()
+            ? t("outcome.goToOutcome")
+            : t("question.nextQuestion")
+        }
+        showNext
+      />
     </Form>
   );
 };

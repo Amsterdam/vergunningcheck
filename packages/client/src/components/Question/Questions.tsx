@@ -361,6 +361,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       <PreQuestions
         {...{
           editQuestionHook,
+          isCheckerConclusive,
           isSectionActive,
           questionIndex,
           setSkipAnsweredQuestions,
