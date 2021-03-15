@@ -6,8 +6,10 @@ import mockedChecker1 from "../__mocks__/checker-dakkapel-plaatsen-mock.json";
 import mockedChecker2 from "../__mocks__/checker-without-dataneeds-mock.json";
 import { useChecker, useTopicData } from "../hooks";
 import nl from "../i18n/nl";
+import Topic from "../models/topic";
 import { defaultTopicSession } from "../SessionContext";
 import { TopicData } from "../types";
+import { findTopicBySlug } from "../utils";
 import {
   EDIT_BUTTON,
   LOADING_TEXT,
@@ -23,6 +25,13 @@ import {
 } from "../utils/test-ids";
 import { act, fireEvent, render, screen, waitFor } from "../utils/test-utils";
 import CheckerPage from "./CheckerPage";
+
+const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
+
+const preQuestionText =
+  nl.translation.preQuestions[topic.slug].preQuestionMultipleCheckers;
+const { id: idQ1, text: textQ1 } = mockedChecker1.permits[0].questions[1];
+const { text: textQ2 } = mockedChecker1.permits[1].questions[0];
 
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
@@ -68,13 +77,50 @@ describe("CheckerPage", () => {
       ).not.toBeInTheDocument();
     });
 
-    xit("renders with predefined address and goes to the Question section", async () => {
-      // PreQuestions
-      // const textQ0 = nl.translation.preQuestions["dakkapel-plaatsen"].preQuestionMultipleCheckers["would you like to build more than one"]
+    it("renders the pre questions", async () => {
+      // Mock the topicData
+      (useTopicData as any).mockReturnValue({
+        setTopicData: jest.fn(),
+        topicData: {
+          questionIndex: 0,
+          questionMultipleCheckers: true,
+          sectionData: [
+            { index: 0, isActive: false, isCompleted: true },
+            { index: 1, isActive: true, isCompleted: false },
+            { index: 2, isActive: false, isCompleted: false },
+          ],
+          type: mockedChecker1.slug,
+        } as any,
+      });
 
-      // IMTR Questions
-      const { text: textQ1 } = mockedChecker1.permits[0].questions[1];
-      const { text: textQ2 } = mockedChecker1.permits[1].questions[0];
+      render(<CheckerPage />);
+
+      expect(topic.preQuestionsCount).toEqual(1);
+
+      expect(
+        screen.getByText(
+          preQuestionText["would you like to build more than one"]
+        )
+      ).toBeInTheDocument();
+
+      expect(
+        screen.queryByText(
+          preQuestionText["you can do this permit check one at a time"],
+          { exact: false }
+        )
+      ).toBeInTheDocument();
+
+      expect(
+        screen.queryByText(
+          nl.translation.common["at the end you can do another permit check"],
+          { exact: false }
+        )
+      ).toBeInTheDocument();
+
+      expect(screen.getByLabelText(nl.translation.common.yes)).toBeChecked();
+    });
+
+    it("renders with predefined address and goes to the Question section", async () => {
       const setTopicDataMock = jest.fn();
 
       const checker = getChecker(mockedChecker1);
@@ -93,7 +139,7 @@ describe("CheckerPage", () => {
         topicData: {
           address: address[0].result.data.findAddress.exactMatch,
           answers: {},
-          questionIndex: 0,
+          questionIndex: 1,
           questionMultipleCheckers: false,
           sectionData: [
             { index: 0, isActive: false, isCompleted: true },
@@ -113,11 +159,11 @@ describe("CheckerPage", () => {
 
       expect(screen.queryByText(textQ1)).toBeInTheDocument();
       expect(screen.queryByText(textQ2)).not.toBeInTheDocument();
-      expect(screen.queryByTestId("q1-a1")).toBeInTheDocument();
+      expect(screen.getByTestId(`${idQ1}-a1`)).toBeInTheDocument();
 
       act(() => {
         // Press the answer
-        fireEvent.click(screen.getByTestId("q1-a1"));
+        fireEvent.click(screen.getByTestId(`${idQ1}-a1`));
       });
       await act(async () => {
         // Submit the form
@@ -125,10 +171,12 @@ describe("CheckerPage", () => {
       });
 
       // Validate that the questionIndex will be updated on the CheckerContext
-      expect(setTopicDataMock).toBeCalledWith({ questionIndex: 1 });
+      expect(setTopicDataMock).toBeCalledWith({
+        questionIndex: topic.preQuestionsCount + 1,
+      });
     });
 
-    xit("renders the Outcome section", async () => {
+    it("renders the Outcome section and is able to edit a question", async () => {
       const checker = getChecker(mockedChecker1);
       checker.next();
       const answers = mockedChecker1.permits[1].questions[2]
@@ -149,7 +197,7 @@ describe("CheckerPage", () => {
         topicData: {
           ...defaultTopicSession,
           address: address[0].result.data.findAddress.exactMatch,
-          questionIndex: 1,
+          questionIndex: topic?.preQuestionsCount,
           questionMultipleCheckers: false,
           sectionData: [
             { index: 0, isActive: false, isCompleted: true },
@@ -165,8 +213,10 @@ describe("CheckerPage", () => {
       // On default render with predefined address
       expect(screen.queryByTestId(LOCATION_INPUT)).not.toBeInTheDocument();
       expect(screen.queryByTestId(LOCATION_SUMMARY)).toBeInTheDocument();
-      expect(screen.queryAllByTestId(QUESTION).length).toBe(2);
-      expect(screen.queryByTestId("q1-a1")).not.toBeInTheDocument();
+      expect(screen.queryAllByTestId(QUESTION).length).toBe(
+        2 + topic.preQuestionsCount
+      );
+      expect(screen.queryByTestId(`${idQ1}-a1`)).not.toBeInTheDocument();
 
       expect(screen.queryByTestId(OUTCOME_SECTION_CONTENT)).toBeInTheDocument();
       expect(
@@ -186,13 +236,13 @@ describe("CheckerPage", () => {
       });
 
       // Expect Q1 to be visible with its answers
-      expect(screen.queryByTestId("q1-a1")).toBeInTheDocument();
-      expect(screen.queryByTestId("q1-a2")).toBeInTheDocument();
+      expect(screen.queryByTestId(`${idQ1}-a1`)).toBeInTheDocument();
+      expect(screen.queryByTestId(`${idQ1}-a2`)).toBeInTheDocument();
       expect(screen.queryByTestId(OUTCOME_SECTION_CONTENT)).toBeInTheDocument();
 
       act(() => {
         // Press the opposite answer to remove the Outcome
-        fireEvent.click(screen.getByTestId("q1-a2"));
+        fireEvent.click(screen.getByTestId(`${idQ1}-a2`));
       });
 
       expect(
@@ -226,7 +276,7 @@ describe("CheckerPage", () => {
   });
 
   describe("without data-needs", () => {
-    xit("renders correctly on first load", async () => {
+    it("renders correctly on first load", async () => {
       // Mock the checker
       (useChecker as any).mockReturnValue({
         checker: getChecker(mockedChecker2),
@@ -241,7 +291,9 @@ describe("CheckerPage", () => {
         } as any,
       });
       render(<CheckerPage />);
+
       await waitFor(() => screen.getByTestId(STEPBYSTEPNAVIGATION));
+
       expect(screen.queryByTestId(LOCATION_SECTION)).not.toBeInTheDocument();
       expect(screen.queryByTestId(QUESTION_SECTION)).toBeInTheDocument();
       expect(screen.queryByTestId(QUESTION)).toBeInTheDocument();

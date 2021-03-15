@@ -4,7 +4,6 @@ import React, { FunctionComponent } from "react";
 import { FieldErrors } from "react-hook-form";
 
 import { ComponentWrapper, Label } from "../atoms";
-import { useTopicData } from "../hooks";
 import { Answer, AnswerValue } from "../types";
 import { booleanOptions } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
@@ -24,10 +23,6 @@ const Answers: FunctionComponent<AnswersProps> = ({
   questionId,
   saveAnswer,
 }) => {
-  const {
-    topicData: { questionIndex },
-  } = useTopicData();
-
   const answers: Answer[] = question?.options
     ? question.options.map((option) => ({
         formValue: option,
@@ -46,7 +41,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
           const answerId = `${questionId}-${formValue}`;
           return (
             <Label
-              data-testid={`q${questionIndex + 1}-a${index + 1}`}
+              data-testid={`${questionId}-a${index + 1}`}
               htmlFor={answerId}
               key={answerId}
               label={label}
