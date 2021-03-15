@@ -18,9 +18,6 @@ it("ContactSentence renders correctly without the `link` prop", () => {
   ).toBeInTheDocument();
 
   expect(queryByText("14 020", { exact: false })).toBeInTheDocument();
-  expect(
-    queryByText("maandag tot en met vrijdag", { exact: false })
-  ).toBeInTheDocument();
 
   expect(container.querySelector("a")).not.toBeInTheDocument();
 });
