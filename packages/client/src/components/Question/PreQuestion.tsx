@@ -23,8 +23,8 @@ const PreQuestion: FunctionComponent<
 > = ({
   answer,
   description,
-  isCheckerConclusive,
   goToNextQuestion,
+  isCheckerConclusive,
   questionAlertText,
   questionId,
   saveAnswer,
@@ -52,7 +52,7 @@ const PreQuestion: FunctionComponent<
     <Form
       dataId={questionId}
       dataTestId={QUESTION_FORM}
-      onSubmit={handleSubmit(() => goToNextQuestion())}
+      onSubmit={handleSubmit(goToNextQuestion)}
     >
       {description && <Paragraph>{description}</Paragraph>}
       <Answers {...{ answer, errors, questionId, saveAnswer }} />
