@@ -48,15 +48,13 @@ export default {
         "amount of houses exception":
           "Het aantal woningen verandert door uw verbouwing.",
         "call in this situations":
-          "Bel in een van deze situaties de gemeente op",
+          "Bel in een van deze situaties de gemeente op telefoonnummer ",
         "call with questions": "Heeft u vragen? Bel dan",
         "change answer":
           "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
         "check for permit intro":
           "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
         "exceptions title": "Bijzondere situaties:",
-        "monday till friday":
-          ", maandag tot en met vrijdag van 08.00 uur tot 18.00 uur:",
         "monument bullet": "het wijzigen van een monument.",
         "permit for": "U kunt een vergunning nodig hebben voor:",
         "situation dependent on both situation and questions":
