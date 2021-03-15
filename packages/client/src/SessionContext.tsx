@@ -18,7 +18,7 @@ export const defaultTopicSession: TopicData = {
   questionMultipleCheckers: undefined,
   questionIndex: 0,
   sectionData: [],
-  timesCheckerLoaded: 0,
+  timesLoaded: 0,
   type: "",
 };
 

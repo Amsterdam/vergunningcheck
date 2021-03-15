@@ -70,7 +70,7 @@ export type TopicData = {
   questionIndex: number;
   questionMultipleCheckers?: AnswerValue;
   sectionData: SectionData[];
-  timesCheckerLoaded: number;
+  timesLoaded: number;
   type: string;
 };
 
