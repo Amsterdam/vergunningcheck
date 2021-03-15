@@ -46,7 +46,7 @@ export default {
         "amount of houses exception":
           "Het aantal woningen verandert door uw verbouwing.",
         "call in this situations":
-          "Bel in  een van deze situaties de gemeente op telefoonnummer ",
+          "Bel in een van deze situaties de gemeente op telefoonnummer ",
         "call with questions": "Heeft u vragen? Bel dan",
         "change answer":
           "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
