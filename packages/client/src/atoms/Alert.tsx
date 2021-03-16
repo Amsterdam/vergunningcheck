@@ -11,6 +11,11 @@ export default styled(Alert)<AlertProps>`
   display: block;
   white-space: pre-line;
 
+  a:hover {
+    color: #fff;
+    font-weight: 800;
+  }
+
   ${({ marginBottom }) =>
     css`
       margin-bottom: ${marginBottom ? marginBottom + "px" : themeSpacing(6)};
