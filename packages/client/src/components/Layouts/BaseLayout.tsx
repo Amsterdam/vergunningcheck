@@ -55,6 +55,7 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
       </ContentContainer>
 
       <HideForPrint>
+        {/* istanbul ignore if */}
         {!process.env.JEST_WORKER_ID && (
           // Don't render when testing
           <>

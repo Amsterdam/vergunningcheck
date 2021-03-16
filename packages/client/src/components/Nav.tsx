@@ -25,31 +25,29 @@ const Nav: FunctionComponent<NavProps> = ({
   prevText = "Vorige",
   showNext,
   showPrev,
-}) => {
-  return (
-    <NavStyle noMarginBottom={noMarginBottom}>
-      {showNext && (
-        <NextButton
-          data-testid={NEXT_BUTTON}
-          formEnds
-          onClick={onGoToNext}
-          taskflow={!formEnds}
-        >
-          {nextText}
-        </NextButton>
-      )}
-      {showPrev && (
-        <PrevButton onClick={onGoToPrev}>
-          <IconContainer>
-            <IconLeft size={14}>
-              <ChevronLeft />
-            </IconLeft>{" "}
-            {prevText}
-          </IconContainer>
-        </PrevButton>
-      )}
-    </NavStyle>
-  );
-};
+}) => (
+  <NavStyle noMarginBottom={noMarginBottom}>
+    {showNext && (
+      <NextButton
+        data-testid={NEXT_BUTTON}
+        formEnds={formEnds}
+        onClick={onGoToNext}
+        taskflow={!formEnds}
+      >
+        {nextText}
+      </NextButton>
+    )}
+    {showPrev && (
+      <PrevButton onClick={onGoToPrev}>
+        <IconContainer>
+          <IconLeft size={14}>
+            <ChevronLeft />
+          </IconLeft>{" "}
+          {prevText}
+        </IconContainer>
+      </PrevButton>
+    )}
+  </NavStyle>
+);
 
 export default Nav;
