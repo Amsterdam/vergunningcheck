@@ -51,7 +51,6 @@ describe("NewCheckerModal", () => {
     expect(queryByText("Annuleer")).toBeInTheDocument();
 
     // Make sure Matomo Analytics work
-    // TODO: temp disabled this matamo tracking test
     expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
     expect(mockMatomoTrackEvent).toBeCalledWith({
       action: actions.OPEN_MODAL,
@@ -98,7 +97,5 @@ describe("NewCheckerModal", () => {
         name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
       });
     });
-
-    // @TODO: This test could be extended to verify that the SessionData has been updated
   });
 });

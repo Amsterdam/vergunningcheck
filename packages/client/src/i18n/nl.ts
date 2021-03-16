@@ -30,6 +30,15 @@ export default {
       "we have found the following information about this address":
         "Over dit adres hebben we de volgende gegevens gevonden:",
       yes: "Ja",
+      "you may need this": "Dit hebt u nodig",
+      "you need to do the permit check on the OLO": `U doet deze vergunningcheck niet op de website van de gemeente, maar
+      op een andere site: die van het landelijk Omgevingsloket. Via
+      onderstaande knop gaat u daarheen.`,
+      "you need this information about your building when doing a permit check on OLO": `De informatie over het gebouw die hierboven staat hebt u nodig voor
+      het doen van de vergunningcheck. Weet u al precies wat u gaat
+      bouwen? Houd dan uw bouwplannen ook bij de hand. Ook als uw plannen
+      nog niet klaar zijn, kunt u alvast de vergunningcheck doen. U kunt
+      dan zien waar u op moet letten.`,
     },
     errorMessages: {
       "category not found": "category niet gevonden",
