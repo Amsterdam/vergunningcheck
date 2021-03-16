@@ -123,19 +123,16 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   // The heading can be made dynamic when we're adding maps or "PermitForms"
   const heading = t("location.address.heading");
 
-  // @TODO: fix the active style in a proper way without `style`
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   return (
     <StepByStepItem
       active={isActive}
+      activeStyle
       checked={isCompleted}
       customSize
       data-testid={LOCATION_SECTION}
       done={isActive}
       highlightActive
       largeCircle
-      style={activeStyle}
       {...{ heading }}
     >
       {isActive ? (
