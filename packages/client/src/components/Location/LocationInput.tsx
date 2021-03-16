@@ -53,7 +53,6 @@ const LocationInput = ({
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
-          // @TODO: there's a small bug here with directly going to OUTCOME when there's no questions to render
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
