@@ -46,9 +46,8 @@ const NewCheckerModal: FunctionComponent = () => {
     const newTopicData = {
       ...defaultTopicSession,
       address: topicData.address,
-      // Update timesCheckerLoaded + 1 or reset to zero if going to a new checker
-      timesCheckerLoaded:
-        checkerSlug === slug ? topicData.timesCheckerLoaded + 1 : 0,
+      // Update timesLoaded + 1 or reset to zero if going to a new checker
+      timesLoaded: checkerSlug === slug ? topicData.timesLoaded + 1 : 0,
       type: checkerSlug,
     };
 
@@ -67,6 +66,7 @@ const NewCheckerModal: FunctionComponent = () => {
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: sections.INTRO,
       });
+
       // Change the topicData for another topic
       setSession({
         [checkerSlug]: newTopicData,
