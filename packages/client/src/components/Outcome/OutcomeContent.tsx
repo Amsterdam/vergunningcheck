@@ -5,13 +5,12 @@ import { isIE, isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { Button, ComponentWrapper, HideForPrint } from "../../atoms";
+import { Button, ComponentWrapper, HideForPrint, Link } from "../../atoms";
 import { oloHome } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopic, useTracking } from "../../hooks";
 import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
-import Link from "../Link";
 import NewCheckerModal from "./NewCheckerModal";
 
 const OutcomeContentWrapper = styled.div<{ showDiscaimer?: boolean }>`

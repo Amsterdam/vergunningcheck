@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
-import Error from "../components/Error";
+import { Error } from "../atoms";
 import { BaseLayout } from "../components/Layouts";
 
 type ErrorProps = {

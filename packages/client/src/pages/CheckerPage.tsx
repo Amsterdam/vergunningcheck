@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import { Helmet } from "react-helmet";
 
+import { Loading } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
-import Loading from "../components/Loading";
 import { LocationSection } from "../components/Location";
 import { OutcomeSection } from "../components/Outcome";
 import { QuestionSection } from "../components/Question";

@@ -4,11 +4,11 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { Disclaimer } from "../../atoms";
 import { useChecker, useSlug, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
-import Disclaimer from "../Disclaimer";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { OutcomeContent } from "./";
 

@@ -5,9 +5,8 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import Form from "../../components/Form";
+import { Form, Loading } from "../../atoms";
 import { TopicLayout } from "../../components/Layouts";
-import Loading from "../../components/Loading";
 import { LocationSummary } from "../../components/Location/";
 import Nav from "../../components/Nav";
 import { generateOloUrl } from "../../config";

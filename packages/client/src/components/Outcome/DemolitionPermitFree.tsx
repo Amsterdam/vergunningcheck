@@ -2,11 +2,10 @@ import { Heading, ListItem } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
-import { List } from "../../atoms";
+import { Link, List } from "../../atoms";
 import { urls } from "../../config";
 import { eventNames } from "../../config/matomo";
 import { PERMIT_FREE } from "../../utils/test-ids";
-import Link from "../Link";
 
 const DemolitionPermitFree: FunctionComponent = () => {
   const { t } = useTranslation();

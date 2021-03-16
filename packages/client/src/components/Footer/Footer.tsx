@@ -10,11 +10,9 @@ import {
 } from "@amsterdam/asc-ui";
 import React, { memo } from "react";
 
-import { List, ListItem } from "../../atoms";
+import { Link, List, ListItem, PhoneNumber } from "../../atoms";
 import { eventNames, sections } from "../../config/matomo";
 import { FOOTER } from "../../utils/test-ids";
-import Link from "../Link";
-import PhoneNumber from "../PhoneNumber";
 import { ContentContainer } from "./FooterStyles";
 
 const FirstColumn = () => (
