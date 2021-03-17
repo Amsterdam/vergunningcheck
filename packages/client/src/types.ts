@@ -2,6 +2,8 @@ import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
 import { RouteProps } from "react-router-dom";
 
+import { PreQuestionComponent } from "./config";
+
 /**
  * Location types
  */
@@ -66,10 +68,11 @@ export type TopicData = {
   answers: {
     [id: string]: imtr.Answer;
   };
-  timesLoaded: number;
-  sectionData: SectionData[];
-  type: string;
   questionIndex: number;
+  questionMultipleCheckers?: AnswerValue;
+  sectionData: SectionData[];
+  timesLoaded: number;
+  type: string;
 };
 
 export type setTopicFn = (topicData: Partial<TopicData>) => void;
@@ -95,12 +98,21 @@ export enum TopicType {
 export type TopicConfig = {
   intro?: string;
   name: string;
+  preQuestions?: PreQuestionComponent[];
   slug: string;
   text: {
     heading: string;
     locationIntro?: string;
   };
   type: TopicType;
+  userMightNotNeedPermit?: boolean;
+};
+
+export type PreQuestionFunctions = {
+  editQuestion: (index: number) => void;
+  goToNextQuestion: () => void;
+  isCheckerConclusive: () => boolean;
+  saveAnswer: (answer: Answer) => void;
 };
 
 // This is an imported topic from the Flo Legal api
@@ -114,10 +126,18 @@ export type ApiTopic = {
 /**
  * Checker related types
  */
+
+export type QuestionAlert = {
+  questionAnswer: boolean;
+  text: string;
+};
+
+export type AnswerValue = boolean | string;
+
 export type Answer = {
   formValue?: string; // This is only used for Radio / Checkbox answers
   label: string;
-  value: boolean | string;
+  value: AnswerValue;
 };
 
 /**

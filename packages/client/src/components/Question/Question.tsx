@@ -111,7 +111,7 @@ const Question: FunctionComponent<QuestionProps> = ({
         </ComponentWrapper>
       )}
 
-      <Answers {...{ errors, question, saveAnswer }} />
+      <Answers {...{ errors, question, questionId, saveAnswer }} />
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 

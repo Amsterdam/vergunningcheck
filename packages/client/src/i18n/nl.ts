@@ -2,6 +2,8 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      "at the end you can do another permit check":
+        "Aan het einde kunt u nog een vergunningcheck doen.",
       cancel: "Annuleer",
       "do the permit check": "Doe de vergunningcheck",
       "download form": "Aanvraag formulier downloaden",
@@ -56,15 +58,13 @@ export default {
         "amount of houses exception":
           "Het aantal woningen verandert door uw verbouwing.",
         "call in this situations":
-          "Bel in een van deze situaties de gemeente op",
+          "Bel in een van deze situaties de gemeente op telefoonnummer ",
         "call with questions": "Heeft u vragen? Bel dan",
         "change answer":
           "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
         "check for permit intro":
           "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
         "exceptions title": "Bijzondere situaties:",
-        "monday till friday":
-          ", maandag tot en met vrijdag van 08.00 uur tot 18.00 uur:",
         "monument bullet": "het wijzigen van een monument.",
         "permit for": "U kunt een vergunning nodig hebben voor:",
         "situation dependent on both situation and questions":
@@ -168,12 +168,53 @@ export default {
       },
       nextQuestion: "Volgende vraag",
     },
+    preQuestions: {
+      "dakkapel-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 dakkapel plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 dakkapel tegelijk doen.",
+        },
+      },
+      "dakraam-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 dakraam plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 dakraam tegelijk doen.",
+        },
+      },
+      "kozijnen-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 kozijn plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 kozijn tegelijk doen.",
+        },
+      },
+      "zonnepanelen-of-zonneboiler-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u op verschillende plekken zonnepanelen of een zonneboiler plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 plek tegelijk doen.",
+        },
+      },
+      "zonwering-of-rolluik-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 zonwering, rolhek, rolluik of luik plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 zonwering, rolhek, rolluik of luik tegelijk doen.",
+        },
+      },
+    },
     outcome: {
       heading: "Uitkomst",
       goToOutcome: "Naar de uitkomst",
       disclaimer:
         "De gemeente Amsterdam doet er alles aan om u juiste informatie te geven. Maar u kunt aan deze uitkomst geen rechten ontlenen. Als u een aanvraag doet, kunt u zekerheid krijgen.",
-
       thinkAbout: {
         "also think about": "Denk ook aan:",
         "consent from neighbors":
@@ -262,6 +303,30 @@ export default {
           "Een plan met situering en nummering van de boom waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte.",
         "a written report":
           "Een schriftelijk verslag, als u overleg hebt gehad met omwonenden en/of overige belanghebbenden.",
+      },
+      "if you have other plans you can do other permit checks":
+        "Hebt u ook andere bouwplannen? Dan kunt u nog een vergunningcheck doen.",
+      "if you have other plans you can do other permit checks as well":
+        "Hebt u ook andere bouwplannen? Ook dan kunt u nog een vergunningcheck doen.",
+      "dakkapel-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 dakkapel plaatsen. Doe voor elke volgende een vergunningcheck.",
+      },
+      "dakraam-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 dakraam plaatsen. Doe voor elke volgende een vergunningcheck.",
+      },
+      "kozijnen-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 kozijn plaatsen. Doe voor elke volgende een vergunningcheck.",
+      },
+      "zonnepanelen-of-zonneboiler-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt op verschillende plekken zonnepanelen of een zonneboiler plaatsen. Doe voor elke plek een vergunningcheck.",
+      },
+      "zonwering-of-rolluik-plaatsen": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 zonwering, rolhek, rolluik of luik plaatsen. Doe voor elke volgende een vergunningcheck.",
       },
     },
   },

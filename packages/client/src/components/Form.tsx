@@ -22,6 +22,7 @@ const Form: FunctionComponent<FormProps & HTMLAttributes<HTMLElement>> = ({
         onSubmit(e);
       }
     }}
+    role="form"
   >
     {children}
   </StyledForm>

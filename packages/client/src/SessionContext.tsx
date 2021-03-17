@@ -15,9 +15,10 @@ type AppSessionContext = {
 export const defaultTopicSession: TopicData = {
   address: null,
   answers: {},
-  timesLoaded: 0,
+  questionMultipleCheckers: undefined,
   questionIndex: 0,
   sectionData: [],
+  timesLoaded: 0,
   type: "",
 };
 
