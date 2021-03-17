@@ -8,7 +8,6 @@ export const NO_CITY_SCAPE = "NO_CITY_SCAPE";
 export const NATIONAL_CITY_SCAPE = "NATIONAL_CITY_SCAPE";
 export const METRO_STATION = "METRO_STATION"; // Metro station
 export const MUNICIPAL_CITY_SCAPE = "MUNICIPAL_CITY_SCAPE";
-export const WEESP = "WEESP";
 
 export type RestrictionProperty =
   | "NO_MONUMENT"
@@ -75,9 +74,6 @@ export const fixtures = [
 
   // In procedure munical monument:
   ["1091XN", "17 2", [MUNICIPAL_MONUMENT_PROCEDURE]],
-
-  // Address in weesp:
-  ["1382RJ", "67", ["WEESP"]],
 ] as RestrictionFixture[];
 
 // Get unique array from fixtures based on restrictions
