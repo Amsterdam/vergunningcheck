@@ -104,6 +104,14 @@ describe("Autofill", () => {
         ._getAllQuestions()
         .find((q) => q.autofill === "monumentList") as Question;
 
+      // Expect mock to contain a "In procedure monument" with correct scope
+      expect(
+        addressMockInProcedureMonument.restrictions.find(
+          ({ name }) => name === "In procedure Gemeentelijk Monument"
+        )?.scope
+      ).toEqual("MUNICIPAL");
+
+      // Expect "In procedure monument" to be mapped as MUNICIPAL monument
       expect(monumentQuestion.answer).toBe('"Gemeentelijk monument"');
     });
 
