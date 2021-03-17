@@ -26,7 +26,7 @@ export const NavStyle = styled.div<NavProps>`
 export const NextButton = styled(Button).attrs({
   variant: "secondary",
   type: "submit",
-})<{ formEnds: boolean }>`
+})<NavProps>`
   margin-right: ${({ formEnds }) => (formEnds ? 10 : 25)}px;
 `;
 

@@ -1,28 +1,14 @@
 import { reverse } from "named-urls";
 import { lazy } from "react";
 import { RouteProps } from "react-router-dom";
-import slugify from "slugify";
 
 import { topics } from "./config";
 import apiTopics from "./topics.json";
-import { TopicType } from "./types";
-
-type RedirectRule = {
-  from: string;
-  to: string;
-};
-
-type RoutePropExtended = RouteProps & { name: string };
+import { RedirectRule, RoutePropExtended, TopicType } from "./types";
 
 // Find all topics by their type
 const findAllTopicsByType = (type: TopicType) =>
   topics.filter((t) => t.type === type);
-
-export const getslug = (text: string) =>
-  slugify(text, {
-    strict: true, // remove special chars
-    lower: true, // result in lower case
-  });
 
 export const geturl = (route: string, params?: { slug: string }) => {
   if (!route) {
@@ -31,7 +17,7 @@ export const geturl = (route: string, params?: { slug: string }) => {
   return reverse(route, params);
 };
 
-export const apiTopicSlugs = apiTopics.flatMap((apiTopic) =>
+const apiTopicSlugs = apiTopics.flatMap((apiTopic) =>
   apiTopic.map(({ slug }) => slug)
 );
 
@@ -47,7 +33,7 @@ export const oloRedirectSlugs = findAllTopicsByType(TopicType.REDIRECT)
   .map((t) => t.slug)
   .join("|");
 
-const baseRouteConfig: RoutePropExtended[] = [
+export const baseRouteConfig: RoutePropExtended[] = [
   {
     component:
       process.env.NODE_ENV !== "production"
@@ -131,7 +117,3 @@ export const redirectConfig: RedirectRule[] = [
 export const routes = Object.fromEntries(
   baseRouteConfig.map(({ name, path }) => [name, path as string])
 );
-
-export const autofillRoutes: { checker: [string] } = {
-  checker: [routes.checker],
-};

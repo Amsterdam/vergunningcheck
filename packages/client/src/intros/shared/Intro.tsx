@@ -2,8 +2,7 @@ import { CompactThemeProvider, Heading, Paragraph } from "@amsterdam/asc-ui";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { ComponentWrapper, List, ListItem } from "../../atoms";
-import ContactSentence from "../../components/ContactSentence";
+import { ComponentWrapper, ContactSentence, List, ListItem } from "../../atoms";
 import { sections } from "../../config/matomo";
 import {
   INTRO_EXCEPTION_BULLETS,

@@ -26,6 +26,7 @@ export default styled(Alert)<AlertProps>`
     css`
       background-color: white;
     `}
+
   ${({ marginBottom }) =>
     css`
       margin-bottom: ${marginBottom ? marginBottom + "px" : themeSpacing(6)};

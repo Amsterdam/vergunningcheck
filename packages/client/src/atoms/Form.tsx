@@ -1,11 +1,16 @@
 import React, { FunctionComponent, HTMLAttributes } from "react";
-
-import { StyledForm } from "./FormStyles";
+import styled from "styled-components";
 
 type FormProps = {
   dataId?: string;
   dataTestId?: string;
 };
+
+const StyledForm = styled.form`
+  width: 100%;
+  /* IE11 Fix */
+  flex-shrink: 0;
+`;
 
 const Form: FunctionComponent<FormProps & HTMLAttributes<HTMLElement>> = ({
   children,
@@ -22,6 +27,7 @@ const Form: FunctionComponent<FormProps & HTMLAttributes<HTMLElement>> = ({
         onSubmit(e);
       }
     }}
+    role="form"
   >
     {children}
   </StyledForm>

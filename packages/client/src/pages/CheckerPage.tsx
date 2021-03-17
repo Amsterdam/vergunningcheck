@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import { Helmet } from "react-helmet";
 
+import { Loading } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
-import Loading from "../components/Loading";
 import { LocationSection } from "../components/Location";
 import { OutcomeSection } from "../components/Outcome";
 import { QuestionSection } from "../components/Question";
@@ -59,7 +59,7 @@ const CheckerPage: FunctionComponent = () => {
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-  const { timesCheckerLoaded, sectionData } = topicData;
+  const { timesLoaded, sectionData } = topicData;
 
   useEffect(() => {
     // Next to the useState hook, we also need the useRef hook to make sure the state is always up to date
@@ -84,7 +84,7 @@ const CheckerPage: FunctionComponent = () => {
   useEffect(() => {
     // Count the times the page is loaded
     setTopicData({
-      timesCheckerLoaded: timesCheckerLoaded ? timesCheckerLoaded + 1 : 1,
+      timesLoaded: timesLoaded ? timesLoaded + 1 : 1,
     });
     // eslint-disable-next-line
   }, []);
