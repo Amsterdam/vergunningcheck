@@ -11,6 +11,7 @@ import {
 } from "@vergunningcheck/imtr-client";
 
 import addressMock from "../__mocks__/addressMock";
+import addressMockInProcedureMonument from "../__mocks__/addressMockInProcedureMonument";
 import addressMockNoCityScape from "../__mocks__/addressMockNoCityScape";
 import addressMockNoMonument from "../__mocks__/addressMockNoMonument";
 import mockedCheckerAutofill from "../__mocks__/checker-autofill-only.json";
@@ -216,6 +217,14 @@ describe("Autofill", () => {
           booleanQuestion
         )
       ).toEqual(addQuotes(monumentAnswers["undefined"]));
+
+      // `In procedure` monument should also map correctly
+      expect(
+        monumentOnAddress(
+          { address: addressMockInProcedureMonument } as AutofillData,
+          booleanQuestion
+        )
+      ).toEqual(addQuotes(monumentAnswers[monumentScope]));
     });
 
     test("monumentBoolean", () => {
@@ -232,6 +241,6 @@ describe("Autofill", () => {
     const hash = await hashFromFile(path.join(__dirname, "autofill.ts"));
 
     // IF THIS TEST FAILS; update the docs first https://docs.google.com/spreadsheets/d/12ZmbRyWoeLiQe50MqlfPNx9ta6jkQD0SK42afnDlnDU/edit?usp=sharing then update the snapshot
-    expect(hash).toMatchInlineSnapshot(`"065af60a83f98894026b301bfdde104f"`);
+    expect(hash).toMatchInlineSnapshot(`"79466c114b6f1718bd62e8d46de8ecb6"`);
   });
 });
