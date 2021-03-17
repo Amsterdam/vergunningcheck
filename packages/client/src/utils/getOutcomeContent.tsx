@@ -6,6 +6,7 @@ import {
   DemolitionNeedReport,
   DemolitionPermitFree,
   NeedPermit,
+  NeedReport,
   PermitFree,
 } from "../components/Outcome";
 import { urls } from "../config";
@@ -63,7 +64,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_REPORT]: {
         mainContent: (
-          <NeedPermit contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
+          <NeedReport contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
         ),
         title: nl.translation.outcome.needReport["you need a report"],
       },
@@ -108,9 +109,8 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_REPORT]: {
         mainContent: (
-          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
           // Maybe rename this to `OutcomeLink` or `OutcomeMainContent`
-          <NeedPermit
+          <NeedReport
             contentText={
               nl.translation.outcome.needReport[
                 "on this page you can read more about report for demolition"
@@ -149,16 +149,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
               eventLocation={sections.OUTCOME}
               source={getNeedContactContent?.description || ""}
             />
-            <NeedPermit
-              contentText={
-                nl.translation.outcome.needReport[
-                  "on this page you can read more about report"
-                ]
-              }
-              eventName={eventNames.HOW_TO_REPORT}
-              linkText={nl.translation.outcome.needReport["how to report"]}
-              url={urls.FIRESAFETY_PAGE}
-            />
+            <NeedReport url={urls.FIRESAFETY_PAGE} />
           </>
         ),
         title:
@@ -175,19 +166,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
       [NEED_REPORT]: {
-        mainContent: (
-          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
-          <NeedPermit
-            contentText={
-              nl.translation.outcome.needReport[
-                "on this page you can read more about report"
-              ]
-            }
-            eventName={eventNames.HOW_TO_REPORT}
-            linkText={nl.translation.outcome.needReport["how to report"]}
-            url={urls.FIRESAFETY_PAGE}
-          />
-        ),
+        mainContent: <NeedReport />,
         title:
           nl.translation.outcome.needReport["you need a report for firesafety"],
       },
