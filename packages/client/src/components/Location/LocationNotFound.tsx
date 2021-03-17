@@ -28,7 +28,7 @@ const LocationNotFound: FunctionComponent = () => {
         )}
         level="error"
         outline
-        style={{ background: "white" }} // @TODO: This style is a temporary fix, need to fix default white background at @masterdam/asc-ui
+        white
       >
         <Paragraph>
           {t("errorMessages.please try again later or contact the city on")}{" "}

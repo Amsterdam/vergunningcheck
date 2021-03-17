@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 
 type AlertProps = {
   marginBottom?: number;
+  white?: boolean;
 };
 
 export default styled(Alert)<AlertProps>`
@@ -10,6 +11,12 @@ export default styled(Alert)<AlertProps>`
   /* IE11 Fix */
   display: block;
   white-space: pre-line;
+
+  ${({ white }) =>
+    white &&
+    css`
+      background-color: white;
+    `}
 
   ${({ marginBottom }) =>
     css`

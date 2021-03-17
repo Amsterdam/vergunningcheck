@@ -1,4 +1,4 @@
-import { Heading, themeSpacing } from "@amsterdam/asc-ui";
+import { Heading, Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { isIE, isMobile } from "react-device-detect";
@@ -8,7 +8,7 @@ import styled, { css } from "styled-components";
 import { Button, ComponentWrapper, HideForPrint, Link } from "../../atoms";
 import { oloHome } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
-import { useTopic, useTracking } from "../../hooks";
+import { useSlug, useTopic, useTopicData, useTracking } from "../../hooks";
 import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
@@ -34,11 +34,21 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   outcomeType,
   showDiscaimer,
 }) => {
+  const slug = useSlug();
   const { isPermitCheck, isPermitForm } = useTopic();
+  const { topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
   const { footerContent, mainContent, title } = outcomeContent;
+
+  // When the PreQuestion `MultipleCheckers` has been answered with `true` we will show an alternate text above the `NewCheckerModal`
+  const multipleCheckersText =
+    t(
+      `outcome.${slug}.you would like to build more than 1 so you need to do multiple permits`
+    ) +
+    " " +
+    t("outcome.if you have other plans you can do other permit checks as well");
 
   const handlePrintButton = () => {
     matomoTrackEvent({
@@ -80,6 +90,13 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
 
       {isPermitCheck && (
         <HideForPrint>
+          <Paragraph>
+            {topicData.questionMultipleCheckers
+              ? multipleCheckersText
+              : t(
+                  "outcome.if you have other plans you can do other permit checks"
+                )}
+          </Paragraph>
           <NewCheckerModal />
           {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
         </HideForPrint>

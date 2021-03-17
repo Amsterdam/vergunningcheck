@@ -58,7 +58,6 @@ const Question: FunctionComponent<QuestionProps> = ({
 
   const isRadio = type === "boolean" || (type === "string" && options);
 
-  // @TODO: make generic functions, like: isRadioQuestion(), isCheckboxQuestion, etc
   const requiredText = isRadio
     ? t("common.required field radio")
     : t("common.required field text");
@@ -111,7 +110,7 @@ const Question: FunctionComponent<QuestionProps> = ({
         </ComponentWrapper>
       )}
 
-      <Answers {...{ errors, question, saveAnswer }} />
+      <Answers {...{ errors, question, questionId, saveAnswer }} />
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 

@@ -47,9 +47,6 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
       ? () => changeActiveSection(currentSection)
       : false;
 
-  // @TODO: fix the active style in a proper way without `style`
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   const Outcome = () => (
     <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
       <OutcomeContent
@@ -66,6 +63,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   return (
     <StepByStepItem
       active={isActive}
+      activeStyle={isActive}
       as="div"
       checked={isCompleted}
       customSize
@@ -74,7 +72,6 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
       highlightActive
       largeCircle
       onClick={handleOnClick}
-      style={isActive ? activeStyle : {}}
     >
       {showContent && <Outcome />}
     </StepByStepItem>

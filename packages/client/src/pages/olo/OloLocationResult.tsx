@@ -1,4 +1,3 @@
-// @TODO: Add translations
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import React, { FormEvent, FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
@@ -65,26 +64,22 @@ const OloLocationResult: FunctionComponent = () => {
             }}
           />
           <Paragraph gutterBottom={8} strong>
-            Dit hebt u nodig
+            {t("common.you may need this")}
           </Paragraph>
           <Paragraph>
-            De informatie over het gebouw die hierboven staat hebt u nodig voor
-            het doen van de vergunningcheck. Weet u al precies wat u gaat
-            bouwen? Houd dan uw bouwplannen ook bij de hand. Ook als uw plannen
-            nog niet klaar zijn, kunt u alvast de vergunningcheck doen. U kunt
-            dan zien waar u op moet letten.
+            {t(
+              "common.you need this information about your building when doing a permit check on OLO"
+            )}
           </Paragraph>
           <Paragraph gutterBottom={8} strong>
-            Naar het Omgevingsloket
+            {t("common.to the olo")}
           </Paragraph>
           <Paragraph>
-            U doet deze vergunningcheck niet op de website van de gemeente, maar
-            op een andere site: die van het landelijk Omgevingsloket. Via
-            onderstaande knop gaat u daarheen.
+            {t("common.you need to do the permit check on the OLO")}
           </Paragraph>
           <Nav
             formEnds
-            nextText={"Naar het Omgevingsloket"}
+            nextText={t("common.to the olo")}
             noMarginBottom
             onGoToPrev={goToPrev}
             showNext
