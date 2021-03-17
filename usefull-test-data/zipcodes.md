@@ -2,8 +2,8 @@ usefull addresses
 ---
 **NOTE**
 The description for each of these type of addresses is in dutch. For a list with English descriptions it better to visit
- - packages/mocking/zipcode/ 
- - packages/mocking/zipcode/
+ - packages//mocking/src/zipcode.ts 
+ - packages/mocking/src/restriction.ts
  
 ---
 
@@ -126,4 +126,9 @@ The description for each of these type of addresses is in dutch. For a list with
 ### In procedure gemeentelijk monument:
 ```
 1091 XN, 17 2
+```
+
+### Een adres in Weesp: 
+```
+1382RJ, 67
 ```
