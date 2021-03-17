@@ -263,10 +263,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // Show all questions in case of an active Form
   const showAllQuestions = isPermitForm && address && isActive;
 
-  // @TODO: fix this style
-  // Styling to overwrite the line between the Items
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
@@ -397,19 +393,18 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           !checker._getUpcomingQuestions().length &&
           checker.stack.length === i + 1;
 
-        const showActiveStyle =
-          (isPermitCheck && isCurrentQuestion) || (isPermitForm && isActive);
-
         return (
           <StepByStepItem
             active={isPermitForm ? true : isCurrentQuestion} // @TODO refactor this ternary
+            activeStyle={
+              (isPermitCheck && isCurrentQuestion) || (isPermitForm && isActive)
+            }
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
             highlightActive={isPermitForm ? isActive : isCurrentQuestion}
             key={`question-${q.id}-${i}`}
-            style={showActiveStyle ? activeStyle : {}}
           >
             {isCurrentQuestion || (isPermitForm && isActive) ? (
               // Show the current question
@@ -464,13 +459,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         return (
           <StepByStepItem
             active
+            activeStyle={isPermitForm && isActive}
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
             highlightActive={isPermitForm && isActive}
             key={`question-${q.id}-${index}`}
-            style={isPermitForm && isActive ? activeStyle : {}}
           >
             {isPermitForm && isActive ? (
               // Show all questions
