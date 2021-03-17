@@ -12,6 +12,15 @@ export default styled(Alert)<AlertProps>`
   display: block;
   white-space: pre-line;
 
+  a:hover {
+    ${({ white }) =>
+      !white &&
+      css`
+        color: #fff;
+        font-weight: 800;
+      `}
+  }
+
   ${({ white }) =>
     white &&
     css`
