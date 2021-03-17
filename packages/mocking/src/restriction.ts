@@ -66,9 +66,6 @@ export const fixtures = [
   ["1017GW", "279 H", [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
   ["1073JP", 1, [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
 
-  // Address of metro station
-  ["1018XA", 1, [METRO_STATION, NATIONAL_CITY_SCAPE]],
-
   // In procedure munical monument:
   ["1091XN", "17 2", [MUNICIPAL_MONUMENT_PROCEDURE]],
 ] as RestrictionFixture[];
