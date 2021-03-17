@@ -1,5 +1,10 @@
 import { Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import React, { FunctionComponent, useContext, useState } from "react";
+import React, {
+  FunctionComponent,
+  KeyboardEventHandler,
+  useContext,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -76,6 +81,13 @@ const NewCheckerModal: FunctionComponent = () => {
     setChecker(undefined);
   };
 
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    // Enable 'Enter' key to handle the confirmation
+    if (event.key === "Enter") {
+      handleConfirmButton();
+    }
+  };
+
   return (
     <Modal
       closeButtonText={t("common.cancel")}
@@ -105,6 +117,7 @@ const NewCheckerModal: FunctionComponent = () => {
                     onChange={() => {
                       setCheckerSlug(slug);
                     }}
+                    onKeyDown={handleKeyDown}
                   />
                 </Label>
               ))}
