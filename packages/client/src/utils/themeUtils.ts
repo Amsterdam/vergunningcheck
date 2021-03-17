@@ -10,7 +10,7 @@ export const printOnly = css`
   }
 `;
 
-// Avoid breaking over serarate pages (print view only)
+// Avoid breaking over separate pages (print view only)
 export const avoidPageBreak = css`
   @media print {
     page-break-inside: avoid;
