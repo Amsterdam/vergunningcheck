@@ -91,6 +91,22 @@ describe("Autofill", () => {
       );
     });
 
+    test("with in procedure monument in monumentList", () => {
+      const checker = getChecker(mockedChecker1);
+      expect(checker.stack).toEqual([]);
+      expect(checker._getAllQuestions()[0].answer).toEqual(undefined);
+
+      checker.autofill(autofillResolvers, {
+        address: addressMockInProcedureMonument,
+      });
+
+      const monumentQuestion = checker
+        ._getAllQuestions()
+        .find((q) => q.autofill === "monumentList") as Question;
+
+      expect(monumentQuestion.answer).toBe('"Gemeentelijk monument"');
+    });
+
     test("without address", () => {
       const checker = getChecker(mockedChecker1);
       expect(checker.stack).toEqual([]);
