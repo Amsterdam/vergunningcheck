@@ -3,11 +3,11 @@ import React, { FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+import { Form } from "../../atoms";
 import { AnswerValue, PreQuestionFunctions } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
 import Answers from "../Answers";
-import Form from "../Form";
 import Nav from "../Nav";
 import QuestionAlert from "./QuestionAlert";
 

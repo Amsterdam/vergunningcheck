@@ -2,9 +2,9 @@ import "jest-styled-components";
 
 import React from "react";
 
+import { Form } from "../atoms";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { fireEvent, render, screen } from "../utils/test-utils";
-import Form from "./Form";
 import Nav from "./Nav";
 
 describe("Nav", () => {
