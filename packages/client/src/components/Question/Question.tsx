@@ -3,14 +3,13 @@ import React, { FunctionComponent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { ComponentWrapper } from "../../atoms";
+import { ComponentWrapper, Form } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { Answer } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
 import Answers from "../Answers";
-import Form from "../Form";
 import Markdown from "../Markdown";
 import Modal from "../Modal";
 import Nav from "../Nav";
@@ -59,7 +58,6 @@ const Question: FunctionComponent<QuestionProps> = ({
 
   const isRadio = type === "boolean" || (type === "string" && options);
 
-  // @TODO: make generic functions, like: isRadioQuestion(), isCheckboxQuestion, etc
   const requiredText = isRadio
     ? t("common.required field radio")
     : t("common.required field text");
@@ -112,7 +110,7 @@ const Question: FunctionComponent<QuestionProps> = ({
         </ComponentWrapper>
       )}
 
-      <Answers {...{ errors, question, saveAnswer }} />
+      <Answers {...{ errors, question, questionId, saveAnswer }} />
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 

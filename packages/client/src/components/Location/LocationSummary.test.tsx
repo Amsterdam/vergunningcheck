@@ -29,8 +29,6 @@ const nationalCityScapeText = common[
 const municipalCityScapeText = common[
   "the building is located inside a city scape"
 ].replace("{{cityScape}}", common["municipal city scape"]);
-const noCityScapeText =
-  common["the building is not located inside a city scape"];
 
 describe("LocationSummary", () => {
   const WrapperWithContext = (
@@ -169,92 +167,6 @@ describe("LocationSummary", () => {
       expect(
         screen.queryByText("stads- of dorpsgezicht.", { exact: false })
       ).not.toBeInTheDocument();
-    });
-  });
-
-  /**
-   *
-   * OLO FLOW START HERE:
-   *
-   */
-
-  describe("renders in OLO Flow", () => {
-    it("renders in OLO Flow on LocationFinder (with all restrictions)", () => {
-      render(
-        <WrapperWithContext
-          addressFromLocation={addressMock}
-          isBelowInputFields
-          showTitle
-        />
-      );
-
-      // Expext to find:
-      expect(screen.queryByText(monumentText)).toBeInTheDocument();
-
-      expect(
-        screen.queryByText(nationalCityScapeText, { exact: false })
-      ).toBeInTheDocument(); // Beware: it should find the result: "has NATIONAL cityscape"
-
-      // Expect NOT to find:
-      expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-    });
-
-    // @TODO: Fix this test. It test fails because `test-utils` is mocking `pathname: "/dakkapel-plaatsen"`, which is the IMTR Flow
-    xit("renders in OLO Flow on LocationFinder (without any restrictions)", () => {
-      render(
-        <WrapperWithContext
-          addressFromLocation={addressMockNoRestrictions}
-          isBelowInputFields
-          showTitle
-        />
-      );
-
-      // Expect to find:
-      expect(screen.queryByText(noMonumentText)).toBeInTheDocument(); // Beware: it should find the result: "no monument"
-
-      expect(
-        screen.queryByText(noCityScapeText, { exact: false })
-      ).toBeInTheDocument(); // Beware: it should find the result: "no cityscape"
-
-      // Expect NOT to find:
-      expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-    });
-
-    it("renders in OLO Flow on the Results Page (with all restrictions)", () => {
-      render(
-        <WrapperWithContext addressFromLocation={addressMock} showTitle />
-      );
-
-      // Expext to find:
-      expect(screen.queryByText(monumentText)).toBeInTheDocument();
-
-      expect(
-        screen.queryByText(nationalCityScapeText, { exact: false })
-      ).toBeInTheDocument(); // Beware: it should find the result: "has NATIONAL cityscape"
-
-      // Expect NOT to find:
-      expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-    });
-
-    // @TODO: Fix this test. It test fails because `test-utils` is mocking `pathname: "/dakkapel-plaatsen"`, which is the IMTR Flow
-    xit("renders in OLO Flow on the Results Page (without any restrictions)", () => {
-      render(
-        <WrapperWithContext
-          addressFromLocation={addressMockNoRestrictions}
-          showTitle
-        />
-      );
-
-      expect(screen.queryByText(noMonumentText)).toBeInTheDocument(); // Beware: it should find the result: "no monument"
-
-      expect(
-        screen.queryByText(noCityScapeText, { exact: false })
-      ).toBeInTheDocument(); // Beware: it should find the result: "no cityscape"
-
-      // Expect NOT to find:
-      expect(screen.queryByText(/wijzig/i)).not.toBeInTheDocument();
-
-      expect(screen.queryByText(monumentText)).not.toBeInTheDocument();
     });
   });
 });

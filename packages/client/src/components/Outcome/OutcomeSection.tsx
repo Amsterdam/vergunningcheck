@@ -4,11 +4,11 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { Disclaimer } from "../../atoms";
 import { useChecker, useSlug, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
-import Disclaimer from "../Disclaimer";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { OutcomeContent } from "./";
 
@@ -47,9 +47,6 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
       ? () => changeActiveSection(currentSection)
       : false;
 
-  // @TODO: fix the active style in a proper way without `style`
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   const Outcome = () => (
     <OutcomeWrapper data-testid={OUTCOME_SECTION_CONTENT}>
       <OutcomeContent
@@ -66,6 +63,7 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   return (
     <StepByStepItem
       active={isActive}
+      activeStyle={isActive}
       as="div"
       checked={isCompleted}
       customSize
@@ -74,7 +72,6 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
       highlightActive
       largeCircle
       onClick={handleOnClick}
-      style={isActive ? activeStyle : {}}
     >
       {showContent && <Outcome />}
     </StepByStepItem>

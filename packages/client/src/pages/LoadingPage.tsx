@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
 
+import { Loading } from "../atoms";
 import { BaseLayout } from "../components/Layouts";
-import Loading from "../components/Loading";
 
 const LoadingPage: FunctionComponent = () => (
   <BaseLayout disablePageView>

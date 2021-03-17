@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import Loading from "../../components/Loading";
+import { Loading } from "../../atoms";
 import { autofillResolvers } from "../../config/autofill";
 import { useChecker } from "../../hooks";
 import { Intro } from ".";

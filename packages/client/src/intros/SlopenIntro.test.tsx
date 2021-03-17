@@ -1,5 +1,6 @@
 import React from "react";
 
+import nl from "../i18n/nl";
 import { render, screen } from "../utils/test-utils";
 import SlopenIntro from "./SlopenIntro";
 
@@ -7,9 +8,12 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-/* TODO: move next paragraphs to translation files as soon as we have a solution to include <Markdown source..> */
-const sentence1 = `U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.`;
-const sentence2 = `Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.`;
+const sentence1 =
+  nl.translation.introPage.slopen["you may need a permit or to report"];
+const sentence2 =
+  nl.translation.introPage.common[
+    "sometimes it's written in a destination plan that a permit is required"
+  ];
 
 it("SlopenIntro renders correctly", () => {
   render(<SlopenIntro />);
