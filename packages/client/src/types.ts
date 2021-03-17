@@ -1,5 +1,6 @@
 import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
+import { RouteProps } from "react-router-dom";
 
 /**
  * Location types
@@ -129,3 +130,13 @@ export type OutcomeContentType = {
   mainContent?: ReactNode;
   title: string;
 };
+
+/**
+ * Router related types
+ */
+export type RedirectRule = {
+  from: string;
+  to: string;
+};
+
+export type RoutePropExtended = RouteProps & { name: string };
