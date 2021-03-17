@@ -2,6 +2,7 @@ export default {
   translation: {
     common: {
       "address loading": "Wij zoeken het adres.",
+      cancel: "Annuleer",
       "do the permit check": "Doe de vergunningcheck",
       "download form": "Aanvraag formulier downloaden",
       edit: "Wijzig",
@@ -243,6 +244,13 @@ export default {
           "U hebt geen omgevingsvergunning nodig. U hoeft ook geen melding te doen.",
         "you dont need a permit for demolition":
           "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
+      },
+      newCheckerModal: {
+        recheckWithSameAddress:
+          "Wilt u nog een vergunningcheck doen voor hetzelfde adres?",
+        heading: "U wilt nog een vergunningcheck doen.",
+        openModalBtnText: "Nog een vergunningcheck doen",
+        selectNextPermitCheck: "Welke vergunningcheck wilt u doen?",
       },
       cuttingTreeForm: {
         title: "Hier uw aanvraag formulier",
