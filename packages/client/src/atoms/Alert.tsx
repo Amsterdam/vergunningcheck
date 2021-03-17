@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 type AlertProps = {
   marginBottom?: number;
-  level?: string;
+  white?: boolean;
 };
 
 export default styled(Alert)<AlertProps>`
@@ -12,16 +12,20 @@ export default styled(Alert)<AlertProps>`
   display: block;
   white-space: pre-line;
 
-  ${({ level }) =>
-    level &&
-    level === "error" &&
-    css`
-      a:hover {
+  a:hover {
+    ${({ white }) =>
+      !white &&
+      css`
         color: #fff;
         font-weight: 800;
-      }
-    `}
+      `}
+  }
 
+  ${({ white }) =>
+    white &&
+    css`
+      background-color: white;
+    `}
   ${({ marginBottom }) =>
     css`
       margin-bottom: ${marginBottom ? marginBottom + "px" : themeSpacing(6)};
