@@ -28,7 +28,10 @@
       "src/**/*.{js,jsx,ts,jsx}",
       "!src/components/Hidden**",
       "!src/utils/test-utils.*",
-      "!src/debug/*"
+      "!src/debug/*",
+      "!src/index.*",
+      "!src/routes.*",
+      "!src/serviceWorker.*"
     ]
   },
   "eslintConfig": {

@@ -269,10 +269,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   // Show all questions in case of an active Form
   const showAllQuestions = isPermitForm && address && isSectionActive;
 
-  // @TODO: fix this style
-  // Styling to overwrite the line between the Items
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
@@ -417,20 +413,19 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           !checker._getUpcomingQuestions().length &&
           checker.stack.length === mapIndex - preQuestionsCount + 1;
 
-        const showActiveStyle =
-          (isPermitCheck && isCurrentQuestion) ||
-          (isPermitForm && isSectionActive);
-
         return (
           <StepByStepItem
             active={isPermitForm ? true : isCurrentQuestion} // @TODO refactor this ternary
+            activeStyle={
+              (isPermitCheck && isCurrentQuestion) ||
+              (isPermitForm && isSectionActive)
+            }
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
             highlightActive={isPermitForm ? isSectionActive : isCurrentQuestion}
             key={`question-${q.id}-${mapIndex}`}
-            style={showActiveStyle ? activeStyle : {}}
           >
             {isCurrentQuestion || (isPermitForm && isSectionActive) ? (
               // Show the current question
@@ -489,13 +484,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         return (
           <StepByStepItem
             active
+            activeStyle={isPermitForm && isSectionActive}
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
             highlightActive={isPermitForm && isSectionActive}
             key={`question-${q.id}-${index}`}
-            style={isPermitForm && isSectionActive ? activeStyle : {}}
           >
             {isPermitForm && isSectionActive ? (
               // Show all questions
