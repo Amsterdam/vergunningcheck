@@ -15,8 +15,6 @@ import LocationInput from "./LocationInput";
 // This test is separated from the original `LocationInput.test
 // because the `useTopicData` mock is hard to combine with non-hooked context
 
-const handleNewAddressSubmit = jest.fn();
-
 const mockAddress = {
   ...addressGraphQLMock[0].result.data.findAddress.exactMatch,
 };
@@ -33,7 +31,7 @@ describe("LocationInput", () => {
       postalCode: resultPostalCode,
     } = addressGraphQLMock[0].result.data.findAddress.exactMatch;
 
-    render(<LocationInput handleNewAddressSubmit={handleNewAddressSubmit} />);
+    render(<LocationInput handleNewAddressSubmit={jest.fn()} />);
 
     expect(screen.getByLabelText(/postcode/i)).toHaveValue(resultPostalCode);
     expect(screen.getByLabelText(/huisnummer/i)).toHaveValue(

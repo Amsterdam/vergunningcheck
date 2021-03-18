@@ -296,6 +296,7 @@ describe("LocationFinder", () => {
     expect(mockSetError).toHaveBeenCalled();
     expect(mockSetError).not.toHaveBeenCalledWith(undefined);
 
+    // Reset the graphql errors
     await act(async () => {
       fireEvent.change(inputPostalCode, {
         target: { value: "1027AE" },
@@ -304,17 +305,6 @@ describe("LocationFinder", () => {
         target: { value: "20 HL" },
       });
     });
-
-    await waitFor(() =>
-      screen.queryByText(text.translation.common["address loading"])
-    );
-    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
-
-    await waitFor(() =>
-      screen.queryByText(text.translation.common["address loading"], {
-        exact: false,
-      })
-    );
     await waitFor(() => screen.getByTestId(LOCATION_FOUND));
 
     expect(mockSetError).toHaveBeenCalledWith(undefined);
