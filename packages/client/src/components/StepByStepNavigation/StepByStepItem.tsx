@@ -18,6 +18,7 @@ import StepByStepTitle from "./StepByStepTitle";
 
 export type StepByStepItemProps = {
   active?: boolean;
+  activeStyle?: boolean;
   checked?: boolean;
   circleBackgroundColor?: string;
   clickable?: boolean;
@@ -40,6 +41,7 @@ const StepByStepItem: FunctionComponent<
     StyledProps<any>
 > = ({
   active,
+  activeStyle,
   checked,
   children,
   circleBackgroundColor,
@@ -77,6 +79,7 @@ const StepByStepItem: FunctionComponent<
     <StepByStepItemStyle
       {...{
         active,
+        activeStyle,
         clickable,
         disabled,
         disabledTextColor,
@@ -87,10 +90,10 @@ const StepByStepItem: FunctionComponent<
         href,
       }}
       data-testid={STEPBYSTEPITEM}
-      aria-label={clickable ? heading : ""} // @TODO: Refactor with `??`
+      aria-label={clickable ? heading : ""}
       as={clickable ? "a" : "div"}
       onClick={handleOnClick}
-      role={clickable ? "menuitem" : ""} // @TODO: Refactor with `??`
+      role="menuitem"
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >

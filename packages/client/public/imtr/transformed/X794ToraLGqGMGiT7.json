@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 85,
+      "version": 102,
       "name": "Conclusie ketentest- zonnepaneel plaatsen",
       "questions": [
         {
@@ -12,9 +12,10 @@
         },
         {
           "text": "Gaat u een zonnepaneel plaatsen op een monument?",
+          "description": "Onder monument wordt ook voorbeschermd monument begrepen",
           "type": "boolean",
           "prio": 20,
-          "id": "9753ffa0e723150a0ca78741726423cd"
+          "id": "2bc4c7fe8c2ca8f9d463042f5247e99e"
         },
         {
           "text": "Gaat u 1 of meer zonnepanelen plaatsen in een rijksbeschermd stads- of dorpsgezicht?",
@@ -23,17 +24,17 @@
           "id": "4ee03069449e7b6cf4bc9a202804dd5c"
         },
         {
-          "text": "Gaat u 1 of meer zonnepanelen plaatsen op een schuin achterdakvlak?",
-          "description": "uitleg over schuin achterdakvlak",
+          "text": "Gaat u 1 of meer zonnepanelen plaatsen op een  schuin achterdakvlak?",
+          "description": "uitleg over plat en schuin achterdakvlak toevoegen",
           "type": "boolean",
           "prio": 40,
-          "id": "47286dc287c5ea251e6f16304021fd4f"
+          "id": "7b40c77c8f9a34f7bd3ebc5beeb2f098"
         },
         {
-          "text": "Gaat u 1 of meer zonnepanelen plaatsen die zichtbaar zijn vanaf openbaar toegankelijk gebied?",
+          "text": "Is het achterdakvlak gekeerd naar openbaar toegankelijk gebied?",
           "type": "boolean",
           "prio": 50,
-          "id": "1947c1f7e361407bc5928e411e91a782"
+          "id": "6aa43d4be751eb3d619a5ba1be2e7118"
         },
         {
           "text": "Gaat u 1 of meer zonnepanelen plaatsen op een plat dak?",
@@ -83,10 +84,10 @@
             ]
           }
         },
-        "c3f861f8da7fea438b8db7b1b399dd46": {
+        "e9bf5b330959643c5e0686b46de276ce": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd"
+            "2bc4c7fe8c2ca8f9d463042f5247e99e"
           ],
           "decisionTable": {
             "rules": [
@@ -105,12 +106,12 @@
             ]
           }
         },
-        "329409b157a09d8e0829709605197efa": {
+        "27f4e6637d2ae34ee9c9040b6fa1a2f3": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd",
+            "2bc4c7fe8c2ca8f9d463042f5247e99e",
             "4ee03069449e7b6cf4bc9a202804dd5c",
-            "47286dc287c5ea251e6f16304021fd4f"
+            "7b40c77c8f9a34f7bd3ebc5beeb2f098"
           ],
           "decisionTable": {
             "rules": [
@@ -137,13 +138,13 @@
             ]
           }
         },
-        "b821518959f0a8e47600c071fd50eb15": {
+        "daae52705f48fa8f88d550dfcaf4554b": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd",
+            "2bc4c7fe8c2ca8f9d463042f5247e99e",
             "4ee03069449e7b6cf4bc9a202804dd5c",
-            "47286dc287c5ea251e6f16304021fd4f",
-            "1947c1f7e361407bc5928e411e91a782"
+            "7b40c77c8f9a34f7bd3ebc5beeb2f098",
+            "6aa43d4be751eb3d619a5ba1be2e7118"
           ],
           "decisionTable": {
             "rules": [
@@ -174,10 +175,10 @@
             ]
           }
         },
-        "7d949172680b3e82ce5af442020b1a95": {
+        "89eb20f03c57a0e9cfbc45ab12cf2cba": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd",
+            "2bc4c7fe8c2ca8f9d463042f5247e99e",
             "4ee03069449e7b6cf4bc9a202804dd5c",
             "cec5bfecad040e149ed822e24a1ea6ca",
             "6ed951062aeefbea106775488233b0ef"
@@ -211,10 +212,10 @@
             ]
           }
         },
-        "2b7ee8e974ca1440d1fccfceffd934b5": {
+        "de2e4c9a9566bf015b6db5aa9ba23dcd": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd",
+            "2bc4c7fe8c2ca8f9d463042f5247e99e",
             "4ee03069449e7b6cf4bc9a202804dd5c",
             "cec5bfecad040e149ed822e24a1ea6ca",
             "77ff42a957e8a2de0ee01acdd4c6ec25"
@@ -248,10 +249,10 @@
             ]
           }
         },
-        "be655f4e768913cf349ec35a7091e211": {
+        "f13b05bd467dea2ffd8d5189e066bea5": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd",
+            "2bc4c7fe8c2ca8f9d463042f5247e99e",
             "4ee03069449e7b6cf4bc9a202804dd5c",
             "cec5bfecad040e149ed822e24a1ea6ca",
             "77ff42a957e8a2de0ee01acdd4c6ec25",
@@ -290,10 +291,10 @@
             ]
           }
         },
-        "fa797bcd859645527fb994cb10ef991f": {
+        "157a3c947f81c46f1803a0db64004190": {
           "requiredInputs": [
             "c0187d64e287138ff60b7ab70fbaa51d",
-            "9753ffa0e723150a0ca78741726423cd",
+            "2bc4c7fe8c2ca8f9d463042f5247e99e",
             "4ee03069449e7b6cf4bc9a202804dd5c",
             "cec5bfecad040e149ed822e24a1ea6ca",
             "77ff42a957e8a2de0ee01acdd4c6ec25",
@@ -340,13 +341,13 @@
         "dummy": {
           "requiredDecisions": [
             "6667d3e5ea195f336e651fbfd31b2003",
-            "c3f861f8da7fea438b8db7b1b399dd46",
-            "329409b157a09d8e0829709605197efa",
-            "b821518959f0a8e47600c071fd50eb15",
-            "7d949172680b3e82ce5af442020b1a95",
-            "2b7ee8e974ca1440d1fccfceffd934b5",
-            "be655f4e768913cf349ec35a7091e211",
-            "fa797bcd859645527fb994cb10ef991f"
+            "e9bf5b330959643c5e0686b46de276ce",
+            "27f4e6637d2ae34ee9c9040b6fa1a2f3",
+            "daae52705f48fa8f88d550dfcaf4554b",
+            "89eb20f03c57a0e9cfbc45ab12cf2cba",
+            "de2e4c9a9566bf015b6db5aa9ba23dcd",
+            "f13b05bd467dea2ffd8d5189e066bea5",
+            "157a3c947f81c46f1803a0db64004190"
           ],
           "decisionTable": {
             "rules": [

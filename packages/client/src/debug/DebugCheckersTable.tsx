@@ -9,26 +9,18 @@ import styled from "styled-components";
 import { Alert } from "../atoms";
 import { topics } from "../config";
 import { geturl, routes } from "../routes";
-import topicsJson from "../topics.json";
-
-type topicProps = {
-  path?: string;
-  permits: string[];
-  slug: string;
-  name?: string;
-};
+import apiTopics from "../topics.json";
+import { ApiTopic } from "../types";
 
 const StyledHeading = styled(Heading)`
   margin: ${themeSpacing(4, 0, 2)};
 `;
 
-const hasIMTR = (apiTopic: topicProps) => {
-  const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
-  return imtrTopic && imtrTopic.hasIMTR;
-};
+const findClientTopic = (apiTopic: ApiTopic) =>
+  topics.find(({ slug }) => slug === apiTopic.slug);
 
-const returnedData = (apiTopic: topicProps) => {
-  const imtrTopic = topics.find((topic) => topic.slug === apiTopic.slug);
+const returnedData = (apiTopic: ApiTopic) => {
+  const imtrTopic = topics.find(({ slug }) => slug === apiTopic.slug);
 
   const title = imtrTopic
     ? imtrTopic.name
@@ -38,24 +30,7 @@ const returnedData = (apiTopic: topicProps) => {
   return (
     <tr key={title}>
       <td>
-        {imtrTopic && !imtrTopic.hasIMTR ? (
-          <>
-            {title}
-            <br />
-            <Alert level="info">
-              IMTR file found for <strong>{imtrTopic.name}</strong>, but we
-              can't load '<strong>{imtrTopic.slug}</strong>' because it's
-              configured to be{" "}
-              <strong>
-                {imtrTopic.redirectToOlo ? "redirectToOlo" : "olo"}
-                -flow
-              </strong>
-              .
-            </Alert>
-          </>
-        ) : (
-          <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
-        )}
+        <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
       </td>
       <td>{imtrTopic ? "configured" : "single"}</td>
       <td>{apiTopic?.path?.split("/")[0]}</td>
@@ -101,43 +76,54 @@ const DebugCheckersTable: FunctionComponent = () => {
         <tbody>
           <tr>
             <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">
-                STTR flow (de Amsterdamse checks)
-              </StyledHeading>
+              <StyledHeading forwardedAs="h2">Vergunningchecks</StyledHeading>
             </td>
           </tr>
-          {topicsJson.map((apiConfig) => {
-            return apiConfig
-              .filter((apiTopic) => hasIMTR(apiTopic))
-              .map((apiConfig) => returnedData(apiConfig));
-          })}
+          {apiTopics.map((apiTopic) =>
+            apiTopic
+              .filter(
+                (apiTopic) => findClientTopic(apiTopic)?.isConfiguredPermitCheck
+              )
+              .map((apiTopic) => returnedData(apiTopic))
+          )}
 
           <tr>
             <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">OLO flow</StyledHeading>
+              <StyledHeading forwardedAs="h2">
+                Vergunningchecks die naar het OLO leiden
+              </StyledHeading>
             </td>
           </tr>
           {topics
-            .filter(({ hasIMTR }) => !hasIMTR) // only show olo / redir-olo topics
-            .map(({ slug, name, redirectToOlo }) => (
-              <tr key={slug}>
-                <td>
-                  <Link
-                    to={geturl(
-                      redirectToOlo
-                        ? routes.oloRedirect
-                        : routes.oloLocationInput,
-                      { slug }
-                    )}
-                  >
-                    {name}
-                  </Link>
-                </td>
-                <td>{redirectToOlo ? "Redirect" : "OLO"}</td>
-                <td>n.a.</td>
-                <td>0</td>
-              </tr>
-            ))}
+            // Filter OLO flows topics (topics without IMTR file and are configured to be isPermitCheck or Redirect)
+            .filter(
+              ({ hasIMTR, isPermitCheck, isRedirect }) =>
+                !hasIMTR && (isPermitCheck || isRedirect)
+            )
+            .map((topic) => {
+              const { slug, name } = topic;
+              return (
+                <tr key={slug}>
+                  <td>
+                    <Link to={geturl(slug)}>{name}</Link>
+                  </td>
+                  <td>{topic.isRedirect ? "redirect" : "OLO"}</td>
+                  <td>n.a.</td>
+                  <td>0</td>
+                </tr>
+              );
+            })}
+
+          <tr>
+            <td colSpan={4}>
+              <StyledHeading forwardedAs="h2">Formulieren</StyledHeading>
+            </td>
+          </tr>
+          {apiTopics.map((apiTopic) =>
+            apiTopic
+              .filter((apiTopic) => findClientTopic(apiTopic)?.isPermitForm)
+              .map((apiTopic) => returnedData(apiTopic))
+          )}
 
           <tr>
             <td colSpan={4}>
@@ -154,13 +140,12 @@ const DebugCheckersTable: FunctionComponent = () => {
               )}
             </td>
           </tr>
-
           {showChecks &&
-            topicsJson.map((apiConfig) => {
-              return apiConfig
-                .filter((apiTopic) => !hasIMTR(apiTopic))
-                .map((apiConfig) => returnedData(apiConfig));
-            })}
+            apiTopics.map((apiTopic) =>
+              apiTopic
+                .filter((apiTopic) => !findClientTopic(apiTopic))
+                .map((apiTopic) => returnedData(apiTopic))
+            )}
         </tbody>
       </table>
     </>

@@ -1,11 +1,5 @@
 import { captureException, setTag } from "@sentry/browser";
-import {
-  ClientOutcomes,
-  Decision,
-  Question as ImtrQuestion,
-  Permit,
-  imtrOutcomes,
-} from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, {
   FunctionComponent,
   useCallback,
@@ -17,13 +11,20 @@ import { useForm } from "react-hook-form";
 
 import { ScrollAnchor } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
+import {
+  useChecker,
+  useSlug,
+  useTopic,
+  useTopicData,
+  useTracking,
+} from "../../hooks";
 import { Answer, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
 import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Question, QuestionAnswer } from "./";
+import PreQuestions from "./PreQuestions";
 
 type QuestionsProps = {
   editQuestionHook?: () => void;
@@ -34,7 +35,7 @@ type QuestionsProps = {
 
 const Questions: FunctionComponent<QuestionsProps> = ({
   editQuestionHook,
-  isActive,
+  isActive: isSectionActive,
   saveAnswerHook,
   sectionFunctions,
 }) => {
@@ -44,53 +45,59 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const [contactOutcome, setContactOutcome] = useState(false);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
   const slug = useSlug();
+  const { isPermitCheck, isPermitForm, preQuestionsCount } = useTopic();
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
-  const { questionIndex } = topicData;
+  const { address, questionIndex } = topicData;
   const { goToNextSection } = sectionFunctions;
-
   const { GOTO_NEXT_QUESTION, GOTO_PREV_QUESTION, GOTO_OUTCOME } = eventNames;
   const { EDIT_QUESTION } = actions;
+
+  const imtrQuestionIndex = questionIndex - preQuestionsCount;
 
   // This function handles the user-event of going to a new question
   const goToQuestion = useCallback(
     (index: number, eventType?: string) => {
-      if (!checker) return;
+      if (!checker || !isPermitCheck) return;
 
-      if (!checker.stack[index]) {
-        const error = `goToQuestion failed: question with index "${index}" not found on stack`;
+      const newImtQuestionIndex = index - preQuestionsCount;
 
-        console.error(error);
-        captureException(error);
-        return;
-      }
+      // Only track in case the question is an IMTR question, and not a PreQuestion
+      if (index >= preQuestionsCount) {
+        if (!checker.stack[newImtQuestionIndex]) {
+          const error = `goToQuestion failed: question with index "${newImtQuestionIndex}" not found on stack`;
 
-      const { text } = checker.stack[questionIndex];
+          console.error(error);
+          captureException(error);
+          return;
+        }
+        const { text } = checker.stack[newImtQuestionIndex];
 
-      // TrackEvent for specfic event type
-      if (
-        eventType === GOTO_NEXT_QUESTION ||
-        eventType === GOTO_PREV_QUESTION ||
-        eventType === GOTO_OUTCOME
-      ) {
-        matomoTrackEvent({
-          action: text,
-          name: eventType,
-        });
-      } else if (eventType === EDIT_QUESTION) {
-        matomoTrackEvent({
-          action: eventType,
-          name: text,
-        });
-      }
+        // TrackEvent for the current question
+        if (
+          eventType === GOTO_NEXT_QUESTION ||
+          eventType === GOTO_PREV_QUESTION ||
+          eventType === GOTO_OUTCOME
+        ) {
+          matomoTrackEvent({
+            action: text,
+            name: eventType,
+          });
+        } else if (eventType === EDIT_QUESTION) {
+          matomoTrackEvent({
+            action: eventType,
+            name: text,
+          });
+        }
 
-      // TrackEvent for next active question
-      if (eventType && eventType !== GOTO_OUTCOME) {
-        matomoTrackEvent({
-          action: checker.stack[index].text,
-          name: eventNames.ACTIVE_QUESTION,
-        });
+        // TrackEvent for next active question
+        if (eventType && eventType !== GOTO_OUTCOME) {
+          matomoTrackEvent({
+            action: checker.stack[newImtQuestionIndex].text,
+            name: eventNames.ACTIVE_QUESTION,
+          });
+        }
       }
 
       // Update session with new question to rerender the page
@@ -100,45 +107,49 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     },
 
     //eslint-disable-next-line
-    [checker?.stack, questionIndex]
+    [checker?.stack, imtrQuestionIndex]
   );
 
   const handleNextQuestion = useCallback(
     (isUserEvent = true) => {
       if (!checker) return;
 
-      const question = checker.stack[questionIndex];
-
-      const userEvent = isCheckerConclusive()
-        ? GOTO_OUTCOME
-        : GOTO_NEXT_QUESTION;
-      const eventType = isUserEvent ? userEvent : "";
-
-      if (question && checker.needContactExit(question)) {
-        // Go directly to "Contact Outcome" and skip other questions
-        goToOutcome(isUserEvent);
+      if (isPermitForm) {
+        goToNextSection();
       } else {
-        // Load the next question or go to the "Outcome"
+        const question = checker.stack[imtrQuestionIndex];
 
-        // @TODO: refactor this code
-        // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-        if (checker.stack.length - 1 === questionIndex) {
-          // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
-          const next = checker.next();
+        const userEvent = isCheckerConclusive()
+          ? GOTO_OUTCOME
+          : GOTO_NEXT_QUESTION;
+        const eventType = isUserEvent ? userEvent : "";
 
-          if (next) {
+        if (question && checker.needContactExit(question)) {
+          // Go directly to "Contact Outcome" and skip other questions
+          goToOutcome(isUserEvent);
+        } else {
+          // Load the next question or go to the "Outcome"
+
+          // @TODO: refactor this code
+          // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
+          if (checker.stack.length - 1 === imtrQuestionIndex) {
+            // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
+            const next = checker.next();
+
+            if (next) {
+              goToQuestion(questionIndex + 1, eventType);
+
+              // Turn skipping answered questions on
+              setSkipAnsweredQuestions(true);
+            } else {
+              goToOutcome(isUserEvent);
+            }
+          } else {
+            // In this case, the user is changing a previously answered question and we don't want to load a new question
             goToQuestion(questionIndex + 1, eventType);
-
             // Turn skipping answered questions on
             setSkipAnsweredQuestions(true);
-          } else {
-            goToOutcome(isUserEvent);
           }
-        } else {
-          // In this case, the user is changing a previously answered question and we don't want to load a new question
-          goToQuestion(questionIndex + 1, eventType);
-          // Turn skipping answered questions on
-          setSkipAnsweredQuestions(true);
         }
       }
     },
@@ -152,11 +163,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   };
 
   const handleEditQuestion = useCallback(
-    (questionId) => {
+    (questionIndex) => {
       editQuestionHook && editQuestionHook();
 
       // Go to the specific question in the stack
-      goToQuestion(questionId, EDIT_QUESTION);
+      goToQuestion(questionIndex, EDIT_QUESTION);
     },
     //eslint-disable-next-line
     [editQuestionHook]
@@ -171,7 +182,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // Toggle tracking of the
       if (isUserEvent) {
         matomoTrackEvent({
-          action: checker.stack[questionIndex].text,
+          action: checker.stack[imtrQuestionIndex].text,
           name: GOTO_OUTCOME,
         });
       }
@@ -194,7 +205,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       });
     },
     //eslint-disable-next-line
-    [checker, questionIndex]
+    [checker, imtrQuestionIndex]
   );
 
   // @TODO: fix this part, because it should just be handled by `checker.isConclusive()`
@@ -222,7 +233,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       // Loop through questions
       checker.stack.forEach((q) => {
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive;
+          q === checker.stack[imtrQuestionIndex] && isSectionActive;
 
         // Skip question if already answered
         if (isCurrentQuestion && q.answer !== undefined) {
@@ -231,7 +242,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
       });
     }
     //eslint-disable-next-line
-  }, [checker, isActive, questionIndex, skipAnsweredQuestions]);
+  }, [checker, isSectionActive, imtrQuestionIndex, skipAnsweredQuestions]);
 
   useEffect(() => {
     // @TODO: Refactor this code and move to checker.ts
@@ -242,7 +253,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         if (checker.needContactExit(q)) {
           // Set questionIndex to this question index to make sure already answered questions are hidden
           setTopicData({
-            questionIndex: i,
+            questionIndex: i + preQuestionsCount,
           });
 
           // Set Contact Outcome
@@ -255,38 +266,37 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   if (!checker) return null;
 
-  // @TODO: fix this style
-  // Styling to overwrite the line between the Items
-  const activeStyle = { marginTop: -1, borderColor: "white" };
+  // Show all questions in case of an active Form
+  const showAllQuestions = isPermitForm && address && isSectionActive;
 
   let disableFutureQuestions = false;
 
   // Check which questions are causing the need for a permit
   // @TODO: Move this to `imtr-client`
   // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-  let permitsPerQuestion: ClientOutcomes[] = [];
-  checker.permits.forEach((permit: Permit) => {
+  let permitsPerQuestion: imtr.ClientOutcomes[] = [];
+  checker.permits.forEach((permit: imtr.Permit) => {
     const outcomeDecision = permit.getDecisionById("dummy");
 
     if (outcomeDecision) {
       const imtrOutcome = outcomeDecision.getOutput();
-      let outcomeType = ClientOutcomes.PERMIT_FREE;
+      let outcomeType = imtr.ClientOutcomes.PERMIT_FREE;
 
-      if (imtrOutcome === imtrOutcomes.NEED_CONTACT) {
-        outcomeType = ClientOutcomes.NEED_CONTACT;
-      } else if (imtrOutcome === imtrOutcomes.NEED_PERMIT) {
-        outcomeType = ClientOutcomes.NEED_PERMIT;
-      } else if (imtrOutcome === imtrOutcomes.NEED_REPORT) {
-        outcomeType = ClientOutcomes.NEED_REPORT;
+      if (imtrOutcome === imtr.outcomes.NEED_CONTACT) {
+        outcomeType = imtr.ClientOutcomes.NEED_CONTACT;
+      } else if (imtrOutcome === imtr.outcomes.NEED_PERMIT) {
+        outcomeType = imtr.ClientOutcomes.NEED_PERMIT;
+      } else if (imtrOutcome === imtr.outcomes.NEED_REPORT) {
+        outcomeType = imtr.ClientOutcomes.NEED_REPORT;
       }
 
       if (outcomeType) {
-        const decisiveDecisions = outcomeDecision.getDecisiveInputs() as Decision[];
+        const decisiveDecisions = outcomeDecision.getDecisiveInputs() as imtr.Decision[];
 
         decisiveDecisions.forEach((decision) => {
           const decisiveQuestion = decision
             .getDecisiveInputs()
-            .pop() as ImtrQuestion;
+            .pop() as imtr.Question;
           const index = checker.stack.indexOf(decisiveQuestion);
           if (!permitsPerQuestion[index]) {
             permitsPerQuestion[index] = outcomeType;
@@ -302,12 +312,12 @@ const Questions: FunctionComponent<QuestionsProps> = ({
    *
    * @param {Answer} answer
    */
-  const saveAnswer = (answer: Answer) => {
+  const saveAnswer = (answer: Answer, imtrQuestion?: imtr.Question) => {
     // Save the changed answer to the question
     saveAnswerHook && saveAnswerHook();
 
     const { label, value } = answer;
-    const question = checker.stack[questionIndex];
+    const question = imtrQuestion ?? checker.stack[imtrQuestionIndex];
     const { id, text } = question;
 
     // Handle the given answer
@@ -323,8 +333,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
     // Previous answered questions (that aren't decisive anymore) needs to be removed from the stack
     // By rewinding, we're forcing the stack to update
-    if (checker.stack.length !== questionIndex + 1) {
-      checker.rewindTo(questionIndex);
+    if (checker.stack.length !== imtrQuestionIndex + 1) {
+      checker.rewindTo(imtrQuestionIndex);
     }
 
     // Set Contact Outcome
@@ -341,18 +351,33 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     setValue(id, label);
   };
 
-  // Loop through all questions
   return (
     <>
+      {/* Loop through Pre Questions */}
+      <PreQuestions
+        {...{
+          editQuestionHook,
+          isCheckerConclusive,
+          isSectionActive,
+          questionIndex,
+          setSkipAnsweredQuestions,
+        }}
+      />
+
+      {/* Loop through the stack */}
       {checker.stack.map((q, i) => {
         // @TODO: Refactor this code and move to checker.ts
         // We don't want to render future questions if the current index is the decisive answer for the Contact Outcome
         // Mainly needed to fix bug in case of refresh (caused by setQuestionAnswers())
         // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
+
+        const mapIndex = i + preQuestionsCount;
+
         if (
+          !showAllQuestions &&
           contactOutcome &&
           !checker._getUpcomingQuestions().length &&
-          questionIndex < i
+          imtrQuestionIndex < i
         ) {
           return null;
         }
@@ -361,10 +386,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
         // Define if question is the current one
         const isCurrentQuestion =
-          q === checker.stack[questionIndex] && isActive;
+          q === checker.stack[imtrQuestionIndex] && isSectionActive;
 
         // Hide unanswered questions (eg: on browser refresh)
-        if (answer === undefined && !isCurrentQuestion) {
+        if (!showAllQuestions && answer === undefined && !isCurrentQuestion) {
           return null;
         }
 
@@ -372,85 +397,121 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         // We need this because it is very hard to detect future open questions and this is causing bugs
         // @TODO: fix this by stop using the combo of checker.stack and checker._getUpcomingQuestions()
         // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-        if (isCurrentQuestion && checker.stack.length === i + 1) {
+        if (isCurrentQuestion && checker.stack.length === mapIndex + 1) {
           disableFutureQuestions = true;
         }
 
         // Check if current question is causing a permit requirement
-        const showQuestionAlert = !!permitsPerQuestion[i];
+        const showQuestionAlert =
+          !!permitsPerQuestion[mapIndex - preQuestionsCount] && !isPermitForm;
 
         // Define the outcome type
-        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
+        const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
+
+        // Check if this is the last question
+        const isFinalQuestion =
+          !checker._getUpcomingQuestions().length &&
+          checker.stack.length === mapIndex - preQuestionsCount + 1;
 
         return (
           <StepByStepItem
-            active={isCurrentQuestion}
+            active={isPermitForm ? true : isCurrentQuestion} // @TODO refactor this ternary
+            activeStyle={
+              (isPermitCheck && isCurrentQuestion) ||
+              (isPermitForm && isSectionActive)
+            }
             checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
-            highlightActive={isCurrentQuestion}
-            key={`question-${q.id}-${i}`}
-            style={isCurrentQuestion ? activeStyle : {}}
+            highlightActive={isPermitForm ? isSectionActive : isCurrentQuestion}
+            key={`question-${q.id}-${mapIndex}`}
           >
-            {isCurrentQuestion ? (
+            {isCurrentQuestion || (isPermitForm && isSectionActive) ? (
               // Show the current question
               <Question
+                hideNav={isPermitForm && (!isFinalQuestion || !isSectionActive)}
                 question={q}
                 onGoToPrev={handlePrevQuestion}
                 onGoToNext={handleNextQuestion}
                 showNext
                 {...{
-                  checker,
+                  isCheckerConclusive,
                   outcomeType,
                   saveAnswer,
-                  isCheckerConclusive,
                   showQuestionAlert,
                 }}
               />
             ) : (
               // Show the answer with an edit button
               <QuestionAnswer
-                onClick={() => handleEditQuestion(i)}
+                onClick={() => handleEditQuestion(mapIndex)}
                 {...{ answer, outcomeType, showQuestionAlert }}
               />
             )}
           </StepByStepItem>
         );
       })}
+
+      {/* Loop through the upcoming questions */}
       {checker._getUpcomingQuestions().map((q, i) => {
+        const mapIndex = i + preQuestionsCount;
         const { answer } = q;
 
         // Skip unanswered questions or in case of Contact Outcome
-        if (answer === undefined || contactOutcome) {
+        if (!showAllQuestions && (answer === undefined || contactOutcome)) {
           return null;
         }
 
         // Get new index
-        const index = i + 1 + checker.stack.length;
+        const index = mapIndex + 1 + checker.stack.length;
 
         // Check if current question is causing a outcome
-        const showQuestionAlert = !!permitsPerQuestion[index];
+        const showQuestionAlert =
+          !!permitsPerQuestion[index - preQuestionsCount] && !isPermitForm;
 
         // Disable the EditButton or not
-        const disabled = checker.isConclusive() || disableFutureQuestions;
+        const disabled =
+          (checker.isConclusive() || disableFutureQuestions) && isPermitCheck;
 
         // Define the outcome type
-        const outcomeType: ClientOutcomes = permitsPerQuestion[i];
+        const outcomeType: imtr.ClientOutcomes = permitsPerQuestion[i];
+
+        // Check if this is the last question
+        const isFinalQuestion =
+          checker._getUpcomingQuestions().length === i + 1;
 
         return (
           <StepByStepItem
             active
-            checked
+            activeStyle={isPermitForm && isSectionActive}
+            checked={answer !== undefined} // answer can be `false` in a boolean question
             customSize
             data-testid={QUESTION}
             heading={q.text}
+            highlightActive={isPermitForm && isSectionActive}
             key={`question-${q.id}-${index}`}
           >
-            <QuestionAnswer
-              onClick={() => handleEditQuestion(index)}
-              {...{ answer, disabled, outcomeType, showQuestionAlert }}
-            />
+            {isPermitForm && isSectionActive ? (
+              // Show all questions
+              <Question
+                hideNav={isPermitForm && (!isFinalQuestion || !isSectionActive)}
+                question={q}
+                onGoToNext={handleNextQuestion}
+                showNext
+                {...{
+                  isCheckerConclusive,
+                  outcomeType,
+                  saveAnswer,
+                  showQuestionAlert,
+                }}
+              />
+            ) : (
+              <QuestionAnswer
+                onClick={() => handleEditQuestion(index)}
+                {...{ answer, disabled, outcomeType, showQuestionAlert }}
+              />
+            )}
           </StepByStepItem>
         );
       })}

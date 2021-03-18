@@ -1,7 +1,7 @@
 import React, { ReactChildren } from "react";
 
+import { Link } from "../../../atoms";
 import { actions } from "../../../config/matomo";
-import Link from "../../Link";
 
 type LinkRendererProps = {
   children: ReactChildren;

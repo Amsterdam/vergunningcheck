@@ -1,9 +1,8 @@
-import { Button, Link, Paragraph } from "@amsterdam/asc-ui";
+import { Link, Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { HideForPrint, PrintOnly } from "../../atoms";
-import ComponentWrapper from "../../atoms/ComponentWrapper";
+import { Button, ComponentWrapper, HideForPrint, PrintOnly } from "../../atoms";
 import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";
@@ -46,16 +45,14 @@ const NeedPermit: FunctionComponent<NeedPermitProps> = ({
     <ComponentWrapper marginBottom={40}>
       <Paragraph>{content}</Paragraph>
       <HideForPrint>
-        <ComponentWrapper marginBottom={32}>
-          <Button
-            data-testid={NEED_PERMIT_BUTTON}
-            onClick={handlePermitInfoButton}
-            type="button"
-            variant="primaryInverted"
-          >
-            {link}
-          </Button>
-        </ComponentWrapper>
+        <Button
+          data-testid={NEED_PERMIT_BUTTON}
+          onClick={handlePermitInfoButton}
+          type="button"
+          variant="primaryInverted"
+        >
+          {link}
+        </Button>
       </HideForPrint>
       <PrintOnly>
         <Link href={url} onClick={handlePermitInfoButton} variant="inline">

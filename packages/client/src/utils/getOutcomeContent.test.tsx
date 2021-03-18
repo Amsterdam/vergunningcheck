@@ -34,11 +34,21 @@ describe("getOutcomeContent", () => {
     );
   });
 
-  it("renders the alternative permitFree content", () => {
+  it("renders the alternative permitFree content for demolition", () => {
     const mockedSlug = "bouwwerk-slopen";
     const { title } = getOutcomeContent(getChecker(mockedChecker2), mockedSlug);
     expect(title).toMatch(
       nl.translation.outcome.permitFree["you dont need a permit for demolition"]
+    );
+  });
+
+  it("renders the alternative permitFree content for firesafelty", () => {
+    const mockedSlug = "brandveilig-gebruik";
+    const { title } = getOutcomeContent(getChecker(mockedChecker2), mockedSlug);
+    expect(title).toMatch(
+      nl.translation.outcome.permitFree[
+        "you dont need a permit and dont need to report"
+      ]
     );
   });
 });

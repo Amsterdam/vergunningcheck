@@ -1,4 +1,4 @@
-import Checker, { ClientOutcomes, imtrOutcomes } from "./checker";
+import Checker, { ClientOutcomes, outcomes } from "./checker";
 import Decision from "./decision";
 import Permit from "./permit";
 import Question from "./question";
@@ -14,9 +14,9 @@ const getChecker = (questions: Question[]) => {
     "dummy",
     [d1],
     [
-      new Rule(["no"], imtrOutcomes.PERMIT_FREE),
-      new Rule(["not sure"], imtrOutcomes.NEED_CONTACT),
-      new Rule(["yes"], imtrOutcomes.NEED_PERMIT),
+      new Rule(["no"], outcomes.PERMIT_FREE),
+      new Rule(["not sure"], outcomes.NEED_CONTACT),
+      new Rule(["yes"], outcomes.NEED_PERMIT),
     ]
   );
   return new Checker([new Permit("drivers-licence", 1, [dummy])]);
@@ -54,7 +54,7 @@ describe("Permit", () => {
     // Change the values a bit on the first question
     question.setAnswer(false);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
-      imtrOutcomes.PERMIT_FREE
+      outcomes.PERMIT_FREE
     );
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
@@ -64,17 +64,17 @@ describe("Permit", () => {
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
-      imtrOutcomes.NEED_PERMIT
+      outcomes.NEED_PERMIT
     );
     expect(checker.getOutcomesToDisplay()[0].outcome).toBe(
-      imtrOutcomes.NEED_PERMIT
+      outcomes.NEED_PERMIT
     );
-    expect(checker.getAllOutcomeTypes()).toEqual([imtrOutcomes.NEED_PERMIT]);
+    expect(checker.getAllOutcomeTypes()).toEqual([outcomes.NEED_PERMIT]);
     expect(checker.getClientOutcomeType()).toBe(ClientOutcomes.NEED_PERMIT);
 
     question.setAnswer(false);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
-      imtrOutcomes.NEED_CONTACT
+      outcomes.NEED_CONTACT
     );
 
     question = checker.next() as any;
@@ -84,9 +84,9 @@ describe("Permit", () => {
     expect(checker.isConclusive()).toBe(true);
     expect(checker.getOutcomesToDisplay().length).toBe(1);
     expect(checker.getOutcomesToDisplay()[0].outcome).toBe(
-      imtrOutcomes.NEED_CONTACT
+      outcomes.NEED_CONTACT
     );
-    expect(checker.getAllOutcomeTypes()).toEqual([imtrOutcomes.NEED_CONTACT]);
+    expect(checker.getAllOutcomeTypes()).toEqual([outcomes.NEED_CONTACT]);
     expect(checker.getClientOutcomeType()).toBe(ClientOutcomes.NEED_CONTACT);
   });
 });

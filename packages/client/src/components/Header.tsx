@@ -3,6 +3,7 @@ import React, { memo } from "react";
 import { actions, eventNames, sections } from "../config/matomo";
 import { useTracking } from "../hooks";
 import { routes } from "../routes";
+import { LOGO_WRAPPER } from "../utils/test-ids";
 import {
   StyledHeader,
   StyledHeaderWrapper,
@@ -30,8 +31,13 @@ export const Header = () => {
       css={StyledHeaderWrapper}
       homeLink=""
       logo={() => (
-        <StyledLogoWrapper href={homeLink} onClick={handleClick} tabIndex={4}>
-          <StyledLogo />
+        <StyledLogoWrapper
+          data-testid={LOGO_WRAPPER}
+          href={homeLink}
+          onClick={handleClick}
+          tabIndex={0}
+        >
+          <StyledLogo>Amsterdam.nl</StyledLogo>
         </StyledLogoWrapper>
       )}
       tall

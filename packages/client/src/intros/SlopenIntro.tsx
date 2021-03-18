@@ -7,18 +7,16 @@ export default () => {
 
   return (
     <>
-      <Paragraph>{t("introPage.slopen.need report")}</Paragraph>
-
-      {/* TODO: move next paragraphs to translation files as soon as we have a solution to include <Markdown source..> */}
       <Paragraph>
-        U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u
-        de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet
-        doen.
+        {t("introPage.slopen.you want to demolish a structure")}
       </Paragraph>
       <Paragraph>
-        Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze
-        vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen
-        hebt beantwoord, leest u hoe u dat zelf kunt bekijken.
+        {t("introPage.slopen.you may need a permit or to report")}
+      </Paragraph>
+      <Paragraph>
+        {t(
+          "introPage.common.sometimes it's written in a destination plan that a permit is required"
+        )}
       </Paragraph>
     </>
   );

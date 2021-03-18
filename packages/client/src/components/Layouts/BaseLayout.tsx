@@ -49,12 +49,13 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
               xLarge: 9,
             }}
           >
-            <Content>{children}</Content>
+            <Content role="main">{children}</Content>
           </Column>
         </Row>
       </ContentContainer>
 
       <HideForPrint>
+        {/* istanbul ignore if */}
         {!process.env.JEST_WORKER_ID && (
           // Don't render when testing
           <>
