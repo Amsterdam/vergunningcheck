@@ -5,16 +5,14 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
+import { Error, Form, PhoneNumber } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import { LOCATION_INPUT } from "../../utils/test-ids";
-import Error from "../Error";
-import Form from "../Form";
 import Nav from "../Nav";
-import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 type LocationInputProps = {
@@ -53,7 +51,6 @@ const LocationInput = ({
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
-          // @TODO: there's a small bug here with directly going to OUTCOME when there's no questions to render
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });

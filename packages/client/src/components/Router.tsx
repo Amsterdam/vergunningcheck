@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
+import { ScrollToTop } from "../atoms";
 import LoadingPage from "../pages/LoadingPage";
 import { redirectConfig, routeConfig } from "../routes";
-import ScrollToTop from "./ScrollToTop";
 
 const Router = () => (
   // BrowserRouter has been moved to `../index.tsx` to make it accessible for other HOC's

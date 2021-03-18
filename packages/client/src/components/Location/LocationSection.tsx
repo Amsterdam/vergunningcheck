@@ -1,9 +1,9 @@
 import { Paragraph } from "@amsterdam/asc-ui";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import addressMock from "../../__mocks__/address";
-import { ComponentWrapper, EditButton, TextToEdit } from "../../atoms";
+import { ComponentWrapper, EditButton, Form, TextToEdit } from "../../atoms";
 import { autofillResolvers, getDataNeed } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopic, useTopicData, useTracking } from "../../hooks";
@@ -12,7 +12,6 @@ import MapLarge from "../../static/media/map-large.png";
 import MapSmall from "../../static/media/map-small.png";
 import { Address, SectionComponent } from "../../types";
 import { LOCATION_SECTION } from "../../utils/test-ids";
-import Form from "../Form";
 import Nav from "../Nav";
 import { StepByStepItem } from "../StepByStepNavigation";
 import LocationSummary from "./LocationSummary";
@@ -20,7 +19,6 @@ import { LocationInput } from ".";
 
 const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
-  const [autoCompleteSection, setAutoCompleteSection] = useState(false);
   const {
     setTopicData,
     topicData: { address, sectionData, timesLoaded },
@@ -55,46 +53,19 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
 
   useEffect(() => {
     if (checker && isActive && skipLocationSection) {
-      if (address) {
-        // In this case a NewCheckerModal has been used with a stored address, but the location section is not necessary
-        // So remove the address data to restart initialisation to point the user to right section and question
-        setTopicData({
-          address: null,
-        });
-      } else {
-        // Skip this section
-        goToNextSection();
+      // Skip this section
+      goToNextSection();
 
-        // Activate the first question
-        checker.next();
-
-        // TrackEvent for next step (only when active)
-        matomoTrackEvent({
-          action: actions.ACTIVE_STEP,
-          name: sections.QUESTIONS,
-        });
-      }
+      // TrackEvent for next step (only when active)
+      matomoTrackEvent({
+        action: actions.ACTIVE_STEP,
+        name: sections.QUESTIONS,
+      });
     }
     // eslint-disable-next-line
   }, [checker, isActive, skipLocationSection]);
 
-  useEffect(() => {
-    // Autocomplete the location section in case the NewCheckerModal has been used with a stored address
-
-    // Detect if the user has used the NewCheckerModal with a stored address
-    if (address && !sectionData.length && !autoCompleteSection) {
-      setAutoCompleteSection(true);
-    }
-
-    // Wait until the sectionData has been set by CheckerPage and go to the next section
-    if (isActive && sectionData.length && autoCompleteSection) {
-      goToNextSection();
-      setAutoCompleteSection(false);
-    }
-    // eslint-disable-next-line
-  }, [isActive, sectionData.length, autoCompleteSection]);
-
-  if (!checker || !sectionData || autoCompleteSection || skipLocationSection) {
+  if (!checker || !sectionData || skipLocationSection) {
     return null;
   }
 
@@ -132,19 +103,16 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     ? t("location.address.heading")
     : t("location.map.heading");
 
-  // @TODO: fix the active style in a proper way without `style`
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   return (
     <StepByStepItem
       active={isActive}
+      activeStyle
       checked={isCompleted}
       customSize
       data-testid={LOCATION_SECTION}
       done={isActive}
       highlightActive
       largeCircle
-      style={activeStyle}
       {...{ heading }}
     >
       {isPermitForm && (

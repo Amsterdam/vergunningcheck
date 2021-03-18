@@ -2,7 +2,8 @@ import "jest-styled-components";
 
 import React from "react";
 
-import { render } from "../utils/test-utils";
+import text from "../i18n/nl";
+import { render, screen } from "../utils/test-utils";
 import ContactSentence from "./ContactSentence";
 
 it("ContactSentence renders correctly without the `link` prop", () => {
@@ -12,15 +13,13 @@ it("ContactSentence renders correctly without the `link` prop", () => {
 
   // Default texts
   expect(
-    queryByText("Bel in een van deze situaties de gemeente op", {
-      exact: false,
-    })
+    screen.queryByText(
+      text.translation.introPage.common["call in this situations"],
+      { exact: false }
+    )
   ).toBeInTheDocument();
 
   expect(queryByText("14 020", { exact: false })).toBeInTheDocument();
-  expect(
-    queryByText("maandag tot en met vrijdag", { exact: false })
-  ).toBeInTheDocument();
 
   expect(container.querySelector("a")).not.toBeInTheDocument();
 });
