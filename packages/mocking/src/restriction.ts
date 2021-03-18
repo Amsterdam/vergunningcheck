@@ -3,6 +3,7 @@ import { ZipCode, HouseNumberFull } from "./generic";
 export const NO_MONUMENT = "NO_MONUMENT";
 export const NATIONAL_MONUMENT = "NATIONAL_MONUMENT";
 export const MUNICIPAL_MONUMENT = "MUNICIPAL_MONUMENT";
+export const MUNICIPAL_MONUMENT_PROCEDURE = "MUNICIPAL_MONUMENT_PROCEDURE";
 export const NO_CITY_SCAPE = "NO_CITY_SCAPE";
 export const NATIONAL_CITY_SCAPE = "NATIONAL_CITY_SCAPE";
 export const MUNICIPAL_CITY_SCAPE = "MUNICIPAL_CITY_SCAPE";
@@ -11,6 +12,7 @@ export type RestrictionProperty =
   | "NO_MONUMENT"
   | "NATIONAL_MONUMENT"
   | "MUNICIPAL_MONUMENT"
+  | "MUNICIPAL_MONUMENT_PROCEDURE"
   | "NO_CITY_SCAPE"
   | "NATIONAL_CITY_SCAPE"
   | "MUNICIPAL_CITY_SCAPE";
@@ -63,6 +65,9 @@ export const fixtures = [
   ["1012TK", "1 A", [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
   ["1017GW", "279 H", [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
   ["1073JP", 1, [NATIONAL_MONUMENT, NATIONAL_CITY_SCAPE]],
+
+  // In procedure munical monument:
+  ["1091XN", "17 2", [MUNICIPAL_MONUMENT_PROCEDURE]],
 ] as RestrictionFixture[];
 
 // Get unique array from fixtures based on restrictions
