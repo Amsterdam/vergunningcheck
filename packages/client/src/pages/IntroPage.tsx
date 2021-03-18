@@ -28,7 +28,9 @@ const IntroPage: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Inleiding - {text.heading}</title>
+        <title>
+          {t("common.introduction")} - {text.heading}
+        </title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />

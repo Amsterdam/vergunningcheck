@@ -20,7 +20,7 @@ const ErrorPage: FunctionComponent<ErrorPageProps> = ({ error }) => {
     <BaseLayout>
       <Helmet>
         <title>
-          {t("errorMessages.error occured")} - Amsterdam Vergunningcheck
+          {t("errorMessages.error occured")} - {t("common.page title")}
         </title>
       </Helmet>
       <Error stack={error?.stack} content={error?.message} />
