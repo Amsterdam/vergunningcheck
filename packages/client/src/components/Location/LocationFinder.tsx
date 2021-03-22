@@ -247,7 +247,7 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
           error={!!(postalCode && postalCodeError) || showLocationNotFound}
           label={t("common.postalcode label")}
           name="postalCode"
-          onBlur={(e) => {
+          onBlur={() => {
             checkPostalCodeErrors();
             setFocus(false);
           }}
