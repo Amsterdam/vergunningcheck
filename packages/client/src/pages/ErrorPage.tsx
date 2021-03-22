@@ -14,6 +14,7 @@ type ErrorPageProps = {
   error?: ErrorProps;
 };
 
+// This page is rendered when an error occured
 const ErrorPage: FunctionComponent<ErrorPageProps> = ({ error }) => {
   const { t } = useTranslation();
   return (

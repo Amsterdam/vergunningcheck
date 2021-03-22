@@ -10,6 +10,7 @@ import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
 import { NEXT_BUTTON } from "../utils/test-ids";
 
+// This page will only render in case of a topic `hasIMTR`
 const IntroPage: FunctionComponent = () => {
   const history = useHistory();
   const topic = useTopic();

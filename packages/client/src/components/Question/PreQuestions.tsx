@@ -38,9 +38,10 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
     });
   };
 
-  const saveAnswer = (answer: Answer) => {
+  const saveAnswer = (answer: Answer, topicDataKey: string) => {
+    // This sets the answer.value in the `topicData`
     setTopicData({
-      questionMultipleCheckers: answer.value,
+      [topicDataKey]: answer.value,
     });
   };
 
@@ -69,7 +70,7 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
           );
         }
         throw new Error(
-          `The preQuestion "${preQuestion}" is not supported yet.`
+          `The preQuestion on index "${index}" is not supported yet.`
         );
       })}
     </>

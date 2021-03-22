@@ -1,3 +1,6 @@
+// Sentry is used to monitor JS errors in the client
+// See https://sentry.data.amsterdam.nl/sentry/vergunningcheck
+
 type config = {
   dsn: string;
   environment: string;

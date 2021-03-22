@@ -5,13 +5,14 @@ import { PrintOnly } from "../atoms";
 
 // Format the date to show in Print
 const date = new Date();
-const options = {
+const options: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "long",
   day: "numeric",
   hour: "numeric",
   minute: "numeric",
 };
+
 const currentDateTime = date.toLocaleDateString("nl-NL", options);
 
 export default () => (

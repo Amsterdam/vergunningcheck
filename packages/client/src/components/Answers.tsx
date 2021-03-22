@@ -9,11 +9,11 @@ import { booleanOptions } from "../utils";
 import { QUESTION_ANSWERS } from "../utils/test-ids";
 
 type AnswersProps = {
-  answer?: AnswerValue;
+  answer?: AnswerValue; // Pass the answer value provided by the user
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
-  question?: imtr.Question;
-  questionId: string;
-  saveAnswer: (answer: Answer, question?: imtr.Question) => void;
+  question?: imtr.Question; // `question` is optional, because a `PreQuestion` is not an `imtr-client` Question-class
+  questionId: string; // `questionId` is either the `imtr-client` Question-class id or the custom id from the `PreQuestion`
+  saveAnswer: (answer: Answer, question?: imtr.Question) => void; // Return the callback with an option `imtr-client` Question-class
 };
 
 const Answers: FunctionComponent<AnswersProps> = ({

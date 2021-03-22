@@ -119,6 +119,37 @@ If you want to tweak texts, the name or the intro of a checker, you need to add 
 - Create a new `Topic` and fill in the attributes accordingly
 - Duplicate an existing Intro component file in `packages/client/src/intros`, change the content to your wishes and name it **exactly** as you named it in the previous step `intro`
 
+## PreQuestions
+
+PreQuestions are used to render custom questions that are outside of the `imtr-client` and the `checker` class. For example,`PreQuestionMultipleCheckers` is used to inform the user and make the text in OutcomeSection dynamic.
+
+### Adding a new custom PreQuestion
+
+- Let's start by making sure the answer your new PreQuestion can be saved to the Session Storage. Add a new key to `const defaultTopicSession` in [SessionContext.tsx](packages/client/src/SessionContext.tsx) (eg: `questionNew: undefined,`)
+- ESLint should now complain that "`questionNew` does not exist in type `TopicData`". (If not, please make sure you run this project correctly on localhost.) Add `questionNew?: AnswerValue;` to `TopicData` in [types.ts](packages/client/src/types.ts) to type support `questionNew` as `undefined` or `AnswerValue`. ESLinst stops complaining now.
+- Let's continue by duplicating [PreQuestionMultipleCheckers.tsx](packages/client/src/components/Question/PreQuestionMultipleCheckers.tsx) and naming it `PreQuestionNew.tsx`
+- To make sure the `answer` value is loaded from and stored in the Session Storage, change the `topicDataKey` const (in the top of the file) to `questionNew` (Please make sure this is the same string as you entered in `defaultTopicSession` in a previous step)
+- Edit `questionId`, `heading` and optionally `description` and `questionAlert` to you own wishes (in your new `PreQuestionNew.tsx` file) (`questionId` is also the key in the translation file [i18n/nl.ts](packages/client/src/i18n/nl.ts))
+- Now, add an entry to the enum `PreQuestionComponent` in [types.ts](packages/client/src/types.ts) (eg: `NEW_PREQUESTION, // Corresponds to PreQuestionNew.tsx`)
+- Add this `NEW_PREQUESTION` value to a `preQuestions` topic array in a topic you choose. You can do this by editing the `topics` const in [config/index.ts](packages/client/src/config/index.ts) (eg: `preQuestions: [PreQuestionComponent.NEW_PREQUESTION],`)
+- Go to the topic route that you've just edited. By now, the client should display `Error: The preQuestion on index "{number}" is not supported yet.`
+- To support it, add a new `if` statement in [PreQuestions.tsx](packages/client/src/components/Question/PreQuestions.tsx) (eg:
+
+```
+if (preQuestion === PreQuestionComponent.NEW_PREQUESTION) {
+  return (
+    <PreQuestionNew
+      key={index}
+      index={index}
+      {...preQuestionsProps}
+    />
+  );
+}
+```
+
+- Your new PreQuestion should now be able to load and save the answer to the Session Storage. Verify this by answering the question and reloading the page. If setup correctly, the question has remembered the correct anwser.
+- As a final step, please add the unit tests to your new file `PreQuestionNew.tsx` and to [PreQuestions.test.tsx](packages/client/src/components/Question/PreQuestions.test.tsx)
+
 ## Preparing a UX test
 
 When we want to test our app with users we most follow this procedure:
@@ -181,3 +212,7 @@ This procedure will be changed to the DRAFT section below.
 ### (DRAFT) Rollback
 
 You can use the same procedure as deploying, just select a different artifact.
+
+```
+
+```
