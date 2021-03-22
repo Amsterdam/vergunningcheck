@@ -10,6 +10,10 @@ export default {
       edit: "Wijzig",
       "go to the next step": "Ga naar volgende stap",
       "housenumber label": "Huisnummer + toevoeging",
+      introduction: "Inleiding",
+      "if this is not the correct address then change the input":
+        "Klopt het adres niet? Wijzig dan postcode of huisnummer.",
+      loading: "Laden...",
       "municipal city scape": "gemeentelijk beschermd stads- of dorpsgezicht",
       "national city scape": "rijksbeschermd stads- of dorpsgezicht",
       next: "Volgende",
@@ -17,6 +21,8 @@ export default {
       "no valid postalcode":
         "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       "one moment please": "Een ogenblik geduld alstublieft",
+      "page title": "Amsterdam Vergunningcheck",
+      "questions and outcome": "Vragen en uitkomst",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
       "required field text": "Verplicht veld is niet ingevuld",
@@ -25,6 +31,7 @@ export default {
       "to the olo": "Naar het Omgevingsloket",
       "the building is a monument": "Het gebouw is een {{monument}}.",
       "the building is not a monument": "Het gebouw is geen monument.",
+      "this is the chosen address": "Dit is het gekozen adres",
       "the building is located inside a city scape":
         "Het gebouw ligt in een {{cityScape}}.",
       "the building is not located inside a city scape":
@@ -46,6 +53,7 @@ export default {
     errorMessages: {
       "category not found": "category niet gevonden",
       "error occured": "Er is een fout opgetreden.",
+      "page not found": "Pagina niet gevonden",
       "unfortunately we cannot get address results":
         "Helaas. Wij kunnen nu geen adresgegevens opvragen waardoor u deze check op dit moment niet kunt doen.",
       "please try again later or contact the city on":

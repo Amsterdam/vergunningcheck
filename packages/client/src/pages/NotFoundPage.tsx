@@ -10,7 +10,9 @@ const NotFoundPage: FunctionComponent = () => {
   return (
     <BaseLayout>
       <Helmet>
-        <title>Pagina niet gevonden - Amsterdam Vergunningcheck</title>
+        <title>
+          {t("errorMessages.page not found")} - {t("common.page title")}
+        </title>
       </Helmet>
       <Heading forwardedAs="h2">{t("notFoundPage.heading")}</Heading>
       <Paragraph>{t("notFoundPage.paragraph")}</Paragraph>
