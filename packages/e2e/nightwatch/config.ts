@@ -8,4 +8,4 @@ const config = {
   selectors,
 };
 
-module.exports = config;
+export = config;

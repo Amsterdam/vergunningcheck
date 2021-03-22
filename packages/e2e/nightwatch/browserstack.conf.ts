@@ -1,6 +1,5 @@
-const browserstack = require('browserstack-local');
-
-nightwatch_config = {
+import browserstack from "browserstack-local";
+const nightwatch_config: any = {
   src_folders : [ "nightwatch/tests" ],
 
   selenium : {
@@ -55,4 +54,4 @@ for(let i in nightwatch_config.test_settings){
   }
 }
 
-module.exports = nightwatch_config;
+export = nightwatch_config;

@@ -9,7 +9,7 @@
   "main": "puppeteer/basic.ts",
   "scripts": {
     "test": "jest",
-    "nightwatch:browserstack": "node scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari,ie",
+    "nightwatch:browserstack": "node scripts/local.runner.js -c nightwatch/browserstack.conf.ts -e chrome,firefox,safari,ie",
     "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
     "localhost:test:puppeteer": "find puppeteer/tests/*.ts -exec ts-node {} \\;",
     "localhost:test:nightwatch": "run-p localhost:test:nightwatch:*",
