@@ -127,7 +127,7 @@ PreQuestions are used to render custom questions that are outside of the `imtr-c
 
 - Let's start by making sure the answer your new PreQuestion can be saved to the Session Storage. Add a new key to `const defaultTopicSession` in [SessionContext.tsx](packages/client/src/SessionContext.tsx) (eg: `questionNew: undefined,`)
 - ESLint should now complain that "`questionNew` does not exist in type `TopicData`". (If not, please make sure you run this project correctly on localhost.) Add `questionNew?: AnswerValue;` to `TopicData` in [types.ts](packages/client/src/types.ts) to type support `questionNew` as `undefined` or `AnswerValue`. ESLinst stops complaining now.
-- Let's continue by duplicating [PreQuestionMultipleCheckers.tsx](packages/client/src/components/Question/PreQuestionMultipleCheckers.tsx) and naming it `PreQuestionNew.tsx`
+- Let's continue by duplicating [PreQuestionMultipleCheckers.tsx](packages/client/src/components/Question/PreQuestionMultipleCheckers.tsx) and rename it to `PreQuestionNew.tsx` (also rename it's export)
 - To make sure the `answer` value is loaded from and stored in the Session Storage, change the `topicDataKey` const (in the top of the file) to `questionNew` (Please make sure this is the same string as you entered in `defaultTopicSession` in a previous step)
 - Edit `questionId`, `heading` and optionally `description` and `questionAlert` to you own wishes (in your new `PreQuestionNew.tsx` file) (`questionId` is also the key in the translation file [i18n/nl.ts](packages/client/src/i18n/nl.ts))
 - Now, add an entry to the enum `PreQuestionComponent` in [types.ts](packages/client/src/types.ts) (eg: `NEW_PREQUESTION, // Corresponds to PreQuestionNew.tsx`)
@@ -212,7 +212,3 @@ This procedure will be changed to the DRAFT section below.
 ### (DRAFT) Rollback
 
 You can use the same procedure as deploying, just select a different artifact.
-
-```
-
-```
