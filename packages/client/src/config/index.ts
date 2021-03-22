@@ -1,14 +1,5 @@
 import Topic from "../models/topic";
-import { TopicType } from "../types";
-
-/**
- * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
- *
- * Direct importing and including components does not work because the hooks lose context.
- */
-export enum PreQuestionComponent {
-  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
-}
+import { PreQuestionComponent, TopicType } from "../types";
 
 /**
  * Merge the different topic types
