@@ -1,7 +1,7 @@
-const { address, domain, selectors } = require("../config");
+import { NightwatchBrowser } from "nightwatch";
+import { address, domain, selectors } from "../config";
 
 const {
-  outcomeNeedPermitButton,
   locationHouseNumberFull,
   locationFound,
   locationPostalCode,
@@ -14,8 +14,9 @@ const {
   questionForm,
 } = selectors;
 
-module.exports = {
-  [__filename]: async (b) => {
+
+export = {
+  [__filename]: async (b: NightwatchBrowser) => {
     const { assert } = b;
     b.url(`${domain}/dakkapel-plaatsen`);
 
@@ -64,6 +65,7 @@ module.exports = {
     //
     // // The page `HOW_TO_APPLY_FOR_A_PERMIT` has loaded
     // const result = await b.windowHandles();
+    // @ts-ignore
     // b.switchWindow(result.value[1]);
     // // TODO: make this URL available in packages/mocking
     // assert.urlEquals(

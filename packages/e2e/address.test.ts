@@ -1,7 +1,8 @@
+import address = require("./address");
+
 describe("mocking support", () => {
   it("Should be able to import an address from our mocking package", () => {
-    const address = require("./address");
-    assert(address).toEqual({
+    expect(address).toEqual({
       houseNumber: 19,
       houseNumberAddition: "C",
       houseNumberFull: "19c",

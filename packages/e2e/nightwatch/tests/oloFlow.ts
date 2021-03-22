@@ -1,3 +1,4 @@
+import { NightwatchBrowser } from "nightwatch";
 const { address, domain, selectors } = require("../config");
 
 const {
@@ -12,8 +13,9 @@ const {
   navButtonNext,
 } = selectors;
 
-module.exports = {
-  [__filename]: async (b) => {
+
+export = {
+  [__filename]: async (b: NightwatchBrowser) => {
     const { assert } = b;
 
     b.url(`${domain}/aanbouw-of-uitbouw-maken`);

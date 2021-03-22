@@ -103,7 +103,7 @@ If you want to combine 2 or more permits in 1 checker, we need to configure a to
 
 - Follow the install steps in [./packages/imtr/README.md](./scripts/sttimtrr_build/README.md)
 - First make sure you update your permits so we have all the files we need. See the section above.
-- List the permit-id's you want to combine in [./packages/imtr/src/config.js](./packages/imtr/src/config.ts) under `topics`.
+- List the permit-id's you want to combine in [./packages/imtr/src/config.ts](./packages/imtr/src/config.ts) under `topics`.
   - To find the permit-ids you can use in the `./packages/client/public/imtr/list.source.json`.
   - You have to give your topic a slug as the key. This slug is used in the url by the client-application.
 - Then run `npm run imtr`.
