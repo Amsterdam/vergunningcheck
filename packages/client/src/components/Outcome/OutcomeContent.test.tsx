@@ -15,14 +15,14 @@ import {
   render,
   screen,
 } from "../../utils/test-utils";
-import { NeedPermit, OutcomeContent, PermitFree } from "./";
+import { OutcomeContent, OutcomeMainContent, PermitFree } from "./";
 
 describe("OutcomeContent", () => {
   it("renders NEED_PERMIT outcome correctly", () => {
     render(
       <OutcomeContent
         outcomeContent={{
-          mainContent: <NeedPermit />,
+          mainContent: <OutcomeMainContent />,
           title: "title",
         }}
         outcomeType={ClientOutcomes.NEED_PERMIT}

@@ -16,7 +16,7 @@ type NeedPermitProps = {
   url?: string;
 };
 
-const NeedPermit: FunctionComponent<NeedPermitProps> = ({
+const OutcomeMainContent: FunctionComponent<NeedPermitProps> = ({
   contentText,
   eventName = eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
   linkText,
@@ -64,4 +64,4 @@ const NeedPermit: FunctionComponent<NeedPermitProps> = ({
   );
 };
 
-export default NeedPermit;
+export default OutcomeMainContent;

@@ -3,7 +3,7 @@ import React from "react";
 import text from "../../i18n/nl";
 import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
 import { render, screen } from "../../utils/test-utils";
-import NeedPermit from "./NeedPermit";
+import OutcomeMainContent from "./OutcomeMainContent";
 
 jest.mock("react-router-dom", () => ({
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
@@ -11,7 +11,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("NeedPermit", () => {
   it("renders the 'needs permit' outcome correctly", () => {
-    render(<NeedPermit />);
+    render(<OutcomeMainContent />);
 
     expect(screen.queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
 
@@ -25,7 +25,7 @@ describe("NeedPermit", () => {
   });
 
   it("doens't render", () => {
-    render(<NeedPermit contentText="" />);
+    render(<OutcomeMainContent contentText="" />);
 
     expect(screen.queryByTestId(NEED_PERMIT_BUTTON)).not.toBeInTheDocument();
   });

@@ -5,8 +5,7 @@ import Markdown from "../components/Markdown";
 import {
   DemolitionNeedReport,
   DemolitionPermitFree,
-  NeedPermit,
-  NeedReport,
+  OutcomeMainContent,
   PermitFree,
 } from "../components/Outcome";
 import { urls } from "../config";
@@ -59,12 +58,12 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           nl.translation.outcome.needContact["you need to contact the city"], // Fallback text
       },
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit />,
+        mainContent: <OutcomeMainContent />,
         title: nl.translation.outcome.needPermit["you need a permit"],
       },
       [NEED_REPORT]: {
         mainContent: (
-          <NeedReport contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
+          <OutcomeMainContent contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
         ),
         title: nl.translation.outcome.needReport["you need a report"],
       },
@@ -82,7 +81,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_BOTH_PERMIT_AND_REPORT]: {
         mainContent: (
-          <NeedPermit
+          <OutcomeMainContent
             contentText={
               nl.translation.outcome.needBothPermitAndReport[
                 "on this page you can read more how to do apply for demolition"
@@ -103,14 +102,13 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit url={urls.DEMOLITION_PERMIT_PAGE} />,
+        mainContent: <OutcomeMainContent url={urls.DEMOLITION_PERMIT_PAGE} />,
         title:
           nl.translation.outcome.needPermit["you need a permit for demolition"],
       },
       [NEED_REPORT]: {
         mainContent: (
-          // Maybe rename this to `OutcomeLink` or `OutcomeMainContent`
-          <NeedReport
+          <OutcomeMainContent
             contentText={
               nl.translation.outcome.needReport[
                 "on this page you can read more about report for demolition"
@@ -149,7 +147,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
               eventLocation={sections.OUTCOME}
               source={getNeedContactContent?.description || ""}
             />
-            <NeedReport url={urls.FIRESAFETY_PAGE} />
+            <OutcomeMainContent url={urls.FIRESAFETY_PAGE} />
           </>
         ),
         title:
@@ -159,14 +157,14 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_BOTH_PERMIT_AND_REPORT]: {},
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit url={urls.FIRESAFETY_PAGE} />,
+        mainContent: <OutcomeMainContent url={urls.FIRESAFETY_PAGE} />,
         title:
           nl.translation.outcome.needPermit[
             "you need a permit and not to report"
           ],
       },
       [NEED_REPORT]: {
-        mainContent: <NeedReport />,
+        mainContent: <OutcomeMainContent />,
         title:
           nl.translation.outcome.needReport["you need a report for firesafety"],
       },
