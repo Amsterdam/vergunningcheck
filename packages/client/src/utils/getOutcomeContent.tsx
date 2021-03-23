@@ -147,7 +147,16 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
               eventLocation={sections.OUTCOME}
               source={getNeedContactContent?.description || ""}
             />
-            <OutcomeMainContent url={urls.FIRESAFETY_PAGE} />
+            <OutcomeMainContent
+              contentText={
+                nl.translation.outcome.needReport[
+                  "on this page you can read more about report"
+                ]
+              }
+              eventName={eventNames.HOW_TO_REPORT}
+              linkText={nl.translation.outcome.needReport["how to report"]}
+              url={urls.FIRESAFETY_PAGE}
+            />
           </>
         ),
         title:
@@ -164,7 +173,18 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
       [NEED_REPORT]: {
-        mainContent: <OutcomeMainContent />,
+        mainContent: (
+          <OutcomeMainContent
+            contentText={
+              nl.translation.outcome.needReport[
+                "on this page you can read more about report"
+              ]
+            }
+            eventName={eventNames.HOW_TO_REPORT}
+            linkText={nl.translation.outcome.needReport["how to report"]}
+            url={urls.FIRESAFETY_PAGE}
+          />
+        ),
         title:
           nl.translation.outcome.needReport["you need a report for firesafety"],
       },

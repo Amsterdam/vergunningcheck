@@ -5,7 +5,7 @@ import { actions, eventNames } from "../../config/matomo";
 import {
   NEED_CONTACT,
   NEED_PERMIT,
-  NEED_PERMIT_BUTTON,
+  OUTCOME_MAIN_CONTENT_BUTTON,
   PERMIT_FREE,
 } from "../../utils/test-ids";
 import {
@@ -30,7 +30,9 @@ describe("OutcomeContent", () => {
     );
 
     // Should be in document
-    expect(screen.queryByTestId(NEED_PERMIT_BUTTON)).toBeInTheDocument();
+    expect(
+      screen.queryByTestId(OUTCOME_MAIN_CONTENT_BUTTON)
+    ).toBeInTheDocument();
     expect(screen.getByText("title")).toBeInTheDocument();
 
     // Shouldn't be in document
@@ -40,7 +42,7 @@ describe("OutcomeContent", () => {
     // Make sure the "Get Permit" Button works
     act(() => {
       // fireEvent.click(queryByTestId(NEED_PERMIT_BUTTON) as any);
-      fireEvent.click(screen.queryByTestId(NEED_PERMIT_BUTTON) as any);
+      fireEvent.click(screen.queryByTestId(OUTCOME_MAIN_CONTENT_BUTTON) as any);
     });
 
     expect(window.open).toHaveBeenCalledTimes(1);
