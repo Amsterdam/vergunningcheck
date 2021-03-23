@@ -1,6 +1,5 @@
-import { PreQuestionComponent } from "../config";
 import apiTopics from "../topics.json";
-import { TopicConfig, TopicType } from "../types";
+import { PreQuestionComponent, TopicConfig, TopicType } from "../types";
 
 class Topic {
   readonly intro?: string;
