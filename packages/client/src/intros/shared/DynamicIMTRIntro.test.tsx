@@ -11,7 +11,7 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on questions but not situation", () => {
     (useChecker as any).mockReturnValue({
       checker: {
-        _getUpcomingQuestions: () => [{}],
+        getUpcomingQuestions: () => [{}],
         getAutofillDataNeeds: () => [],
       } as any,
     });
@@ -22,7 +22,7 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on question and situation", () => {
     (useChecker as any).mockReturnValue({
       checker: {
-        _getUpcomingQuestions: () => [{}],
+        getUpcomingQuestions: () => [{}],
         getAutofillDataNeeds: () => [{}],
       } as any,
     });
@@ -33,7 +33,7 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on situation and no questions", () => {
     (useChecker as any).mockReturnValue({
       checker: {
-        _getUpcomingQuestions: () => [],
+        getUpcomingQuestions: () => [],
         getAutofillDataNeeds: () => [{}],
       } as any,
     });
@@ -44,7 +44,7 @@ describe("<DynamicIMTRIntro />", () => {
   it("can depend on neither situation or questions", () => {
     (useChecker as any).mockReturnValue({
       checker: {
-        _getUpcomingQuestions: () => [],
+        getUpcomingQuestions: () => [],
         getAutofillDataNeeds: () => [],
       } as any,
     });
