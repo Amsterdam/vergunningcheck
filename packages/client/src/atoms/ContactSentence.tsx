@@ -13,8 +13,7 @@ export default ({ eventName, link = true }: Props) => {
   return (
     <>
       {t(`introPage.common.call in this situations`)}{" "}
-      <PhoneNumber {...{ eventName, link }} />
-      {t("introPage.common.monday till friday")}
+      <PhoneNumber {...{ eventName, link }} />:
     </>
   );
 };

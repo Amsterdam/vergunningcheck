@@ -1,6 +1,7 @@
 import { Accordion, Card, CardContent, Column, Row } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import { HideForPrint } from "../../atoms";
@@ -20,6 +21,7 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
   disablePageView,
 }) => {
   const { matomoPageView } = useTracking();
+  const { t } = useTranslation();
   const { location } = useHistory();
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
   return (
     <Container>
       <Helmet>
-        <title>Amsterdam Vergunningcheck</title>
+        <title>{t("common.page title")}</title>
       </Helmet>
 
       <Header />
@@ -55,6 +57,7 @@ const BaseLayout: FunctionComponent<BaseLayoutProps> = ({
       </ContentContainer>
 
       <HideForPrint>
+        {/* istanbul ignore if */}
         {!process.env.JEST_WORKER_ID && (
           // Don't render when testing
           <>

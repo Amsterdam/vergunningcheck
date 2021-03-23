@@ -2,8 +2,7 @@ import { Link, Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button, HideForPrint, PrintOnly } from "../../atoms";
-import ComponentWrapper from "../../atoms/ComponentWrapper";
+import { Button, ComponentWrapper, HideForPrint, PrintOnly } from "../../atoms";
 import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";

@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, List, ListItem } from "../../atoms";
+import { AddressLines, ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
@@ -13,7 +13,6 @@ import {
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_SUMMARY,
 } from "../../utils/test-ids";
-import AddressLines from "../AddressLines";
 import EditLocationModal from "./EditLocationModal";
 
 const StyledList = styled(List)<{

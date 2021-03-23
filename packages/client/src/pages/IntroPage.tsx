@@ -4,8 +4,8 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
+import { Loading } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
-import Loading from "../components/Loading";
 import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
 import { NEXT_BUTTON } from "../utils/test-ids";
@@ -28,7 +28,9 @@ const IntroPage: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Inleiding - {text.heading}</title>
+        <title>
+          {t("common.introduction")} - {text.heading}
+        </title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />

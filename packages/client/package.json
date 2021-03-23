@@ -28,7 +28,10 @@
       "src/**/*.{js,jsx,ts,jsx}",
       "!src/components/Hidden**",
       "!src/utils/test-utils.*",
-      "!src/debug/*"
+      "!src/debug/*",
+      "!src/index.*",
+      "!src/routes.*",
+      "!src/serviceWorker.*"
     ]
   },
   "eslintConfig": {
@@ -64,9 +67,9 @@
     ]
   },
   "dependencies": {
-    "@amsterdam/asc-assets": "^0.26.1",
-    "@amsterdam/asc-ui": "^0.26.1",
-    "@apollo/client": "^3.2.5",
+    "@amsterdam/asc-assets": "^0.29.2",
+    "@amsterdam/asc-ui": "0.29.2",
+    "@apollo/client": "^3.3.12",
     "@datapunt/matomo-tracker-react": "^0.3.1",
     "@sentry/browser": "^5.27.2",
     "@types/lodash.isboolean": "^3.0.6",

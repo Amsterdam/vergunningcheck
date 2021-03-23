@@ -5,11 +5,12 @@ import React, {
   FunctionComponent,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Alert, ComponentWrapper } from "../../atoms";
+import { Alert, ComponentWrapper, Loading } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useDebounce, useTopicData, useTracking } from "../../hooks";
 import { Address } from "../../types";
@@ -20,38 +21,37 @@ import {
 } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
 import AutoSuggestList, { Option } from "../AutoSuggestList";
-import LocationLoading from "./LocationLoading";
 import LocationNotFound from "./LocationNotFound";
 import { LocationTextField } from "./LocationStyles";
 import LocationSummary from "./LocationSummary";
 
 const findAddress = loader("./LocationFinder.graphql");
 
-const RESULT_DELAY = 750;
+// This is the delay time in ms. that the loading message is displayed
+const RESULT_DELAY = 1000;
 
 // This makes sure the exactMatch is equal to the user input
 const isTrueExactMatch = (
   match?: { houseNumberFull?: string },
   houseNumberFull?: string
 ) =>
-  houseNumberFull &&
-  stripString(match?.houseNumberFull) === stripString(houseNumberFull);
+  !!(
+    houseNumberFull &&
+    stripString(match?.houseNumberFull) === stripString(houseNumberFull)
+  );
 
 type LocationFinderProps = {
   errorMessage?: ApolloError;
-  focus: boolean;
   sessionAddress: Address;
   setError: (error: ApolloError | undefined) => void;
-  setFocus: (focus: boolean) => void;
 };
 
 const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   errorMessage,
-  focus,
   sessionAddress,
   setError,
-  setFocus,
 }) => {
+  const isMountedRef = useRef(true);
   const { matomoTrackEvent } = useTracking();
   const { setTopicData } = useTopicData();
   const { t } = useTranslation();
@@ -65,9 +65,42 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   const [houseNumberFull, setHouseNumberFull] = useState<string | undefined>(
     sessionAddress?.houseNumberFull
   );
+  const [postalCodeError, setPostalCodeError] = useState<string>("");
+  const [houseNumberError, setHouseNumberError] = useState<string>("");
   const [autoSuggestValue, setAutoSuggestValue] = useState<string>("");
-  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+  const [focus, setFocus] = useState<boolean>(false);
 
+  const checkPostalCodeErrors = () => {
+    setPostalCodeError(
+      postalCode && !isValidPostalcode(postalCode)
+        ? t("common.no valid postalcode")
+        : ""
+    );
+  };
+  const checkHouseNumberErrors = () => {
+    setHouseNumberError(
+      houseNumber?.toString().trim() === ""
+        ? t("common.required field text")
+        : ""
+    );
+  };
+
+  useEffect(
+    () => () => {
+      // Detect if the component unmounts
+      isMountedRef.current = false;
+    },
+    []
+  );
+
+  useEffect(() => {
+    checkPostalCodeErrors();
+    checkHouseNumberErrors();
+    // eslint-disable-next-line
+  }, []);
+
+  // Graphql expects the `houseNumberFull` and `postalCode` are defined and for performance `postalCode` should be validated
+  const readyForQuery = !!(houseNumberFull && isValidPostalcode(postalCode));
   const variables = {
     extraHouseNumberFull: "",
     houseNumberFull: sanitizeHouseNumberFull(houseNumberFull),
@@ -75,99 +108,67 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
     queryExtra: false,
   };
 
-  // Validate forms
-  const validate = (
-    name: string,
-    value?: number | string,
-    required?: boolean
-  ) => {
-    if (touched[name]) {
-      if (required && (!value || value?.toString().trim() === "")) {
-        return t("common.required field text");
-      }
-      if (name === "postalCode" && !isValidPostalcode(value?.toString())) {
-        return t("common.no valid postalcode");
-      }
-    }
-    return undefined;
-  };
-
-  // Error messages
-  const houseNumberError = validate("houseNumber", houseNumber, true);
-  const postalCodeError = validate("postalCode", postalCode, true);
-
-  // Handle all the keys
-  const handleKeyDown = useCallback(
-    (event) => {
-      switch (event.key) {
-        case "Enter":
-          // Prevent submitting the form when pressing Enter
-          event.preventDefault();
-          // Disable focus on the input so the AutoSugest list disappears
-          (document.activeElement as HTMLElement).blur();
-          setFocus(false);
-          break;
-
-        default:
-          // Reset the autoSuggestValue on each key press to prevent bugs
-          setAutoSuggestValue("");
-          break;
-      }
-    },
-    [setFocus]
-  );
-
-  /* There is an issue with `skip`, it's not working if variables are given
-     in `options` to `useQuery`. See https://github.com/apollographql/react-apollo/issues/3367
-     Workaround is not giving any variables if the query should be skipped. */
-  const skip = !!(
-    houseNumberError ||
-    !houseNumberFull ||
-    !postalCode ||
-    !isValidPostalcode(postalCode) ||
-    postalCodeError
-  );
   const { loading, error: graphqlError, data } = useQuery(findAddress, {
-    variables: skip ? undefined : variables,
-    skip,
+    skip: !readyForQuery,
+    variables,
   });
+
+  const exactMatch = data?.findAddress?.exactMatch;
+
+  // Make sure the exactMatch is equal to the user input
+  const isExactMatch = isTrueExactMatch(exactMatch, houseNumberFull);
 
   const allowToSetAddress = !!(
     houseNumber &&
-    houseNumberFull &&
-    isValidPostalcode(postalCode) &&
+    readyForQuery &&
     !loading &&
     (data || graphqlError)
   );
 
-  const exactMatch = data?.findAddress?.exactMatch;
-
-  // This makes sure the exactMatch is equal to the user input
-  const isExactMatch = isTrueExactMatch(exactMatch, houseNumberFull);
-
   // Prevent setState error
   useEffect(() => {
-    if (allowToSetAddress) {
+    // Only `setTopicData` if this component is mounted
+    if (allowToSetAddress && isMountedRef) {
       setTopicData({ address: exactMatch });
     }
-  }, [allowToSetAddress, exactMatch, setTopicData]);
+    // eslint-disable-next-line
+  }, [allowToSetAddress, exactMatch, isMountedRef]);
 
-  // GraphQL error
+  // Handle graphql errors
   useEffect(() => {
     if (graphqlError && errorMessage?.message !== graphqlError?.message) {
       setError(graphqlError);
+
       matomoTrackEvent({
         action: actions.ERROR,
         name: eventNames.ADDRESS_API_DOWN,
       });
+    } else if (data && errorMessage && !graphqlError) {
+      // Reset old error (sometimes graphql errors resolve after retrying another address)
+      setError(undefined);
     }
-  }, [errorMessage, graphqlError, matomoTrackEvent, setError]);
+    // eslint-disable-next-line
+  }, [data, errorMessage, graphqlError]);
 
-  const handleBlur = (e: { target: { name: string; value: string } }) => {
-    // This fixes the focus error
-    e.target.value && setTouched({ ...touched, [e.target.name]: true });
-    setFocus(false);
-  };
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        if (allowToSetAddress) {
+          setTopicData({ address: exactMatch });
+        } else {
+          event.preventDefault();
+          (document.activeElement as HTMLElement).blur();
+        }
+        // Lose focus
+        setFocus(false);
+      }
+
+      // Reset the autoSuggestValue on each keyDown to make sure the autoSuggestList is reset
+      setAutoSuggestValue("");
+    },
+    // eslint-disable-next-line
+    [allowToSetAddress, exactMatch]
+  );
 
   // AutoSuggest
   const handleAutoSuggestSelect = (option: Option) => {
@@ -194,11 +195,10 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
   );
 
   // Determine when to show components
-  const showExactMatch = isExactMatch && !loading;
+  const showExactMatch = isExactMatch && !loading && !graphqlError;
 
   const showLocationNotFound = !!(
-    houseNumberFull &&
-    isValidPostalcode(postalCode) &&
+    readyForQuery &&
     showResult &&
     !isExactMatch &&
     !loading &&
@@ -206,17 +206,15 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
     !showAutoSuggest
   );
 
-  const showLoading = !!(
-    (houseNumberFull &&
-      isValidPostalcode(postalCode) &&
+  const showLoading =
+    !!(
+      readyForQuery &&
       !errorMessage &&
       !showAutoSuggest &&
       !showExactMatch &&
       !showLocationNotFound &&
-      !showResult) ||
-    loading
-  );
-
+      !showResult
+    ) || loading;
   // Debounce showing the LocationNotFound component
   const updateResult = useCallback(() => {
     setShowResult(true);
@@ -240,25 +238,28 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
     [debouncedUpdateResult, errorMessage]
   );
 
-  // @TODO: we can refactor this component by separating all inputs and input handles
-
   return (
     <>
       <ComponentWrapper>
         <LocationTextField
           autoFocus={!postalCode}
           defaultValue={postalCode}
-          error={
-            !!postalCodeError ||
-            (showLocationNotFound && isValidPostalcode(postalCode))
-          }
+          error={!!(postalCode && postalCodeError) || showLocationNotFound}
           label={t("common.postalcode label")}
           name="postalCode"
-          onBlur={handleBlur}
+          onBlur={() => {
+            checkPostalCodeErrors();
+            setFocus(false);
+          }}
           onChange={(e) => {
             setPostalCode(e.target.value);
+            // Clear error in case
+            if (isValidPostalcode(e.target.value)) {
+              setPostalCodeError("");
+            }
           }}
           onFocus={() => setFocus(true)}
+          onKeyDown={handleKeyDown}
           required
           spellCheck={false}
         />
@@ -268,14 +269,14 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
       <ComponentWrapper>
         <LocationTextField
           autoComplete="off" // This disables the native browser auto-suggest
-          error={
-            !!houseNumberError ||
-            (showLocationNotFound && isValidPostalcode(postalCode))
-          }
+          error={!!houseNumberError || showLocationNotFound}
           id="houseNumberFull"
           label={t("common.housenumber label")}
           name="houseNumberFull"
-          onBlur={handleBlur}
+          onBlur={() => {
+            checkHouseNumberErrors();
+            setFocus(false);
+          }}
           onChange={handleChange}
           onFocus={() => setFocus(true)}
           onKeyDown={handleKeyDown}
@@ -288,7 +289,6 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
 
         {showAutoSuggest && (
           <AutoSuggestList
-            // @TODO: make activeIndex dynamic (WCAG)
             activeIndex={-1}
             onSelectOption={handleAutoSuggestSelect}
             options={options}
@@ -297,7 +297,7 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
         )}
       </ComponentWrapper>
 
-      <LocationLoading loading={showLoading} />
+      {showLoading && <Loading message={t("common.address loading")} />}
 
       {showLocationNotFound && <LocationNotFound />}
 
@@ -306,7 +306,7 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
           <ComponentWrapper marginBottom={16}>
             <Alert data-testid={LOCATION_FOUND} level="info">
               <Paragraph gutterBottom={8} strong>
-                Dit is het gekozen adres:
+                {t("common.this is the chosen address")}:
               </Paragraph>
               <LocationSummary
                 addressFromLocation={exactMatch}
@@ -316,7 +316,9 @@ const LocationFinder: FunctionComponent<LocationFinderProps> = ({
             </Alert>
           </ComponentWrapper>
           <Paragraph gutterBottom={32}>
-            Klopt het adres niet? Wijzig dan postcode of huisnummer.
+            {t(
+              "common.if this is not the correct address then change the input"
+            )}
           </Paragraph>
         </>
       )}

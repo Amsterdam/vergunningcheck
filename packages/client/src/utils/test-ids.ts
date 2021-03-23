@@ -68,3 +68,4 @@ export const FIGCAPTION = "figcaption";
 
 // Miscellaneous
 export const PHONE_NUMBER = "phone-number";
+export const LOGO_WRAPPER = "logo-wrapper";
