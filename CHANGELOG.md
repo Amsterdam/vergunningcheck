@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.2] (2021-03-24)
+
+#### New Features
+* `client`
+  * [#830](https://github.com/Amsterdam/vergunningcheck/pull/830) Added feature to render PreQuestions to checkers ([@robinpiets](https://github.com/robinpiets))
+  * [#811](https://github.com/Amsterdam/vergunningcheck/pull/811) Updated flow when starting a new checker ([@svenjens](https://github.com/svenjens))
+  * [#829](https://github.com/Amsterdam/vergunningcheck/pull/829) Updated intro texts ([@svenjens](https://github.com/svenjens))
+  * [#822](https://github.com/Amsterdam/vergunningcheck/pull/822) Added button to Intro page and updated tests ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+* `client`
+  * [#848](https://github.com/Amsterdam/vergunningcheck/pull/848) Fixed bug with 'in procedure monument' addresses ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+  * [#845](https://github.com/Amsterdam/vergunningcheck/pull/845) Organised atoms and added documentation ([@robinpiets](https://github.com/robinpiets))
+  * [#846](https://github.com/Amsterdam/vergunningcheck/pull/846) Cleaned up files and updated tests ([@robinpiets](https://github.com/robinpiets))
+  * [#842](https://github.com/Amsterdam/vergunningcheck/pull/842) Removed inline styles ([@robinpiets](https://github.com/robinpiets))
+  * [#844](https://github.com/Amsterdam/vergunningcheck/pull/844) Fixed todo's and cleaned up code ([@robinpiets](https://github.com/robinpiets))
+  * [#839](https://github.com/Amsterdam/vergunningcheck/pull/839) Renamed timesCheckerLoaded to timesLoaded ([@robinpiets](https://github.com/robinpiets))
+  * [#823](https://github.com/Amsterdam/vergunningcheck/pull/823) Husky configuration update for husky 5 ([@svenjens](https://github.com/svenjens))
+* `client`, `graphql`, `imtr-client`
+  * [#821](https://github.com/Amsterdam/vergunningcheck/pull/821) Added Topic class and refactored client ([@robinpiets](https://github.com/robinpiets))
+  
 ## [2.5.1] (2021-02-17)
 
 #### New Features
