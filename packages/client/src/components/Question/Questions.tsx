@@ -111,43 +111,42 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     (isUserEvent = true) => {
       if (!checker) return;
 
-      if (isPermitForm) {
-        goToNextSection();
-      } else {
+      if (isPermitCheck) {
         const question = checker.stack[imtrQuestionIndex];
 
-        const userEvent = isCheckerConclusive()
-          ? GOTO_OUTCOME
-          : GOTO_NEXT_QUESTION;
-        const eventType = isUserEvent ? userEvent : "";
+        const hasContactOutcome =
+          question && checker.questionTriggersContactOutcome(question);
 
-        if (question && checker.questionTriggersContactOutcome(question)) {
-          // Go directly to "Contact Outcome" and skip other questions
-          goToOutcome(isUserEvent);
-        } else {
-          // Load the next question or go to the "Outcome"
+        // Check if this question is already answered before by making sure it's not the last question on the stack
+        const isPreviouslyAnsweredQuestion =
+          checker.stack.length - 1 !== imtrQuestionIndex;
 
-          // @TODO: refactor this code
-          // See: https://trello.com/c/ZWvyG3Xi/209-refactor-questions-tests-wip
-          if (checker.stack.length - 1 === imtrQuestionIndex) {
-            // If the (stack length - 1) is equal to the questionIndex, we want to load a new question
-            const next = checker.next();
+        // Check if there is a next question to display
+        const hasNextQuestion =
+          !isPreviouslyAnsweredQuestion && !!checker.next();
 
-            if (next) {
-              goToQuestion(questionIndex + 1, eventType);
+        // Handle going to the next question
+        if (isPreviouslyAnsweredQuestion || hasNextQuestion) {
+          // Determine the eventType for analytics purposes
+          const userEvent = isCheckerConclusive()
+            ? GOTO_OUTCOME
+            : GOTO_NEXT_QUESTION;
+          const eventType = isUserEvent ? userEvent : "";
 
-              // Turn skipping answered questions on
-              setSkipAnsweredQuestions(true);
-            } else {
-              goToOutcome(isUserEvent);
-            }
-          } else {
-            // In this case, the user is changing a previously answered question and we don't want to load a new question
-            goToQuestion(questionIndex + 1, eventType);
-            // Turn skipping answered questions on
-            setSkipAnsweredQuestions(true);
-          }
+          // Go to the actual question
+          goToQuestion(questionIndex + 1, eventType);
+
+          // Optionally skip the next question if already answered
+          setSkipAnsweredQuestions(true);
         }
+
+        // In this case we should not display a next question, but go to the outcome section
+        if (hasContactOutcome || !hasNextQuestion) {
+          goToOutcome(isUserEvent);
+        }
+      } else {
+        // Permit Forms don't need complex validation
+        goToNextSection();
       }
     },
     //eslint-disable-next-line
@@ -232,8 +231,8 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   if (!checker) return null;
 
-  // Show all questions in case of an active Form
-  const showAllQuestions = isPermitForm && address && isSectionActive;
+  // Show all questions in case of an active Permit Form
+  const isActivePermitForm = isPermitForm && address && isSectionActive;
 
   /**
    *
@@ -272,6 +271,9 @@ const Questions: FunctionComponent<QuestionsProps> = ({
     });
   };
 
+  // Toggle this boolean to hide all questions after the decisive contact question
+  let hasDecisiveContactQuestion = false;
+
   return (
     <>
       {/* Loop through Pre Questions */}
@@ -285,7 +287,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         }}
       />
 
-      {/* Loop through the questions */}
+      {/* Loop through all IMTR questions */}
       {checker.stack
         .concat(checker.getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
         .map((q, i) => {
@@ -298,18 +300,26 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             q === checker.stack[imtrQuestionIndex] && isSectionActive;
 
           // Check if this question is from `checker.stack` or from `checker.getUpcomingQuestions`
-          const isQuestionInStack = i <= checker.stack.length - 1;
+          const isQuestionInStack = checker.stack.includes(q);
 
-          // Skip unanswered questions or in case of Contact Outcome
-          if (
-            (!showAllQuestions &&
-              answer === undefined &&
-              !isCurrentQuestion &&
-              isQuestionInStack) ||
-            (!showAllQuestions && answer === undefined && !isQuestionInStack)
-          ) {
+          // This question is incomplete, because it is unanswered and not the current question
+          const isIncompleteQuestion =
+            answer === undefined && !isCurrentQuestion;
+
+          // Skip questions in case of a "contact outcome" or the question is incomplete
+          const skipThisQuestion =
+            hasDecisiveContactQuestion ||
+            (isIncompleteQuestion && !isActivePermitForm);
+
+          // For performance improvement it would be better not to re-render the question content so much
+          if (skipThisQuestion) {
             return null;
           }
+
+          // Toggle this boolean to hide all questions after the decisive contact question
+          hasDecisiveContactQuestion =
+            !hasDecisiveContactQuestion &&
+            checker.questionTriggersContactOutcome(q);
 
           // Disable the EditButton or not
           const disabled =
@@ -327,11 +337,11 @@ const Questions: FunctionComponent<QuestionsProps> = ({
               mapIndex - preQuestionsCount
             ] && !isPermitForm;
 
+          // Determine if this question triggers the contact outcome
+          const hasContactOutcome = checker.questionTriggersContactOutcome(q);
+
           // Define the outcome type
-          // @TODO: this part shuold be integrated in `getQuestionsThatTriggerOutcomes`
-          const outcomeType: imtr.ClientOutcomes = checker.questionTriggersContactOutcome(
-            q
-          )
+          const outcomeType: imtr.ClientOutcomes = hasContactOutcome
             ? imtr.ClientOutcomes.NEED_CONTACT
             : checker.getQuestionsThatTriggerOutcomes()[i];
 
@@ -351,8 +361,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
               }
               key={`question-${q.id}-${mapIndex}`}
             >
-              {/* @TODO: remove testing purpose */}
-              {/* index: {i} */}
               {isCurrentQuestion || (isPermitForm && isSectionActive) ? (
                 // Show the current question
                 <Question

@@ -176,8 +176,14 @@ export default class Checker {
   /**
    * We consider a checker to be finished or conclusive when either:
    * - we have one or more permits with a contact-outcome
-   * - all permits have outcomes
-   * - all questions are answered
+   * - all permits have outcomes and all questions are answered
+   *
+   * NB: this function has a bug when editing questions that trigger new questions.
+   * Sometimes editing questions ('no' > 'yes' and then 'yes' > 'no') will trigger an unusual result in `getUpcomingQuestions()`.
+   * There appear unanswered questions that are not relevant for the outcome.
+   * There is a `hacky` fix: looping through all answered questions (both `stack` and `getUpcomingQuestions()`) and manually calling `checker.next()`
+   * However, it is very hard to build a unit test for this and and also other tests will fail...
+   * See Trello card: https://trello.com/c/XGavkNhC/958-bug-in-checker
    *
    * @returns Returns true if "at least one" of the condintions is met
    */
@@ -192,8 +198,7 @@ export default class Checker {
 
     return (
       this.hasContactOutcome() ||
-      !hasUnfinishedPermits ||
-      !hasUnfinishedQuestions
+      (!hasUnfinishedPermits && !hasUnfinishedQuestions)
     );
   }
 
