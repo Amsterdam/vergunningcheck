@@ -156,9 +156,9 @@ export default class Checker {
   questionTriggersContactOutcome(currentQuestion: Question): boolean {
     const contactOutcomeDecision = this._getContactOutcomeDecisions();
 
-    // @TODO: cleanup
     return !!contactOutcomeDecision.find(
-      (d) => d?.inputs[d?.inputs.length - 1] === currentQuestion
+      (decision) =>
+        decision?.inputs[decision?.inputs.length - 1] === currentQuestion
     );
   }
 
