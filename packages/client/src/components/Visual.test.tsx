@@ -1,13 +1,13 @@
 import "jest-styled-components";
 
-import { captureException } from "@sentry/browser";
+import { captureException } from "@sentry/react";
 import React from "react";
 
 import { FIGCAPTION, FIGURE, IMG } from "../utils/test-ids";
 import { fireEvent, render, screen } from "../utils/test-utils";
 import Visual from "./Visual";
 
-jest.mock("@sentry/browser");
+jest.mock("@sentry/react");
 
 describe("Visual", () => {
   it("renders correctly without props", () => {

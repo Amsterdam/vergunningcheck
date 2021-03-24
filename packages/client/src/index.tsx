@@ -7,7 +7,7 @@ import "./i18n";
 import { GlobalStyle, ThemeProvider, themeColor } from "@amsterdam/asc-ui";
 import { ApolloProvider } from "@apollo/client";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
-import { init } from "@sentry/browser";
+import { ErrorBoundary, init } from "@sentry/react";
 import dotenv from "dotenv-flow";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -16,7 +16,6 @@ import { createGlobalStyle } from "styled-components";
 
 import apolloClient from "./apolloClient";
 import { CheckerProvider } from "./CheckerContext";
-import ErrorBoundary from "./components/ErrorBoundary";
 import Router from "./components/Router";
 import { matomo } from "./config/matomo";
 import { sentryConfig } from "./config/sentry";
@@ -36,6 +35,9 @@ const AppGlobalStyle = createGlobalStyle`
     background-color: ${themeColor("tint", "level3")};
   }
 `;
+
+// Clears the `window.onerror` from `index.html` so that Sentry can take over now that it's ready.
+window.onerror = () => {};
 
 init(sentryConfig);
 
