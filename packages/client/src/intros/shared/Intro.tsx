@@ -67,12 +67,12 @@ export default ({
           {usableForText}
         </Paragraph>
       )}
-      <CompactThemeProvider>
-        {exceptions.length > 0 && (
-          <>
-            <Heading styleAs="h4" forwardedAs="h3">
-              {t("introPage.common.exceptions title")}
-            </Heading>
+      {exceptions.length > 0 && (
+        <>
+          <Heading styleAs="h4" forwardedAs="h3">
+            {t("introPage.common.exceptions title")}
+          </Heading>
+          <CompactThemeProvider>
             <Paragraph gutterBottom={8}>
               <ContactSentence eventName={sections.INTRO} />
             </Paragraph>
@@ -85,9 +85,9 @@ export default ({
                 <ListItem key={exception}>{exception}</ListItem>
               ))}
             </List>
-          </>
-        )}
-      </CompactThemeProvider>
+          </CompactThemeProvider>
+        </>
+      )}
     </ComponentWrapper>
   );
 };
