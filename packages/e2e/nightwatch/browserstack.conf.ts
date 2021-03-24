@@ -1,6 +1,5 @@
-import browserstack from "browserstack-local";
 const nightwatch_config: any = {
-  src_folders : [ "nightwatch/tests" ],
+  src_folders : [ "nightwatch/tests/intrFlow.ts" ],
 
   selenium : {
     "start_process" : false,

@@ -3,7 +3,7 @@ function getHostFromEnv() {
 
   let result = "";
 
-  if (env === "staging") {
+  if (env === "netlify") {
     result = "https://ux.chappie2.com";
   } else if (env === "acceptance") {
     result = "https://acc.vergunningcheck.amsterdam.nl";
