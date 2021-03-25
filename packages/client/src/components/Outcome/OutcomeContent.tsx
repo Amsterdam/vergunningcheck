@@ -1,13 +1,14 @@
-// @TODO: TRANSLATE
-import { Heading, themeSpacing } from "@amsterdam/asc-ui";
+import { Heading, Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { isIE, isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms";
+import { Button, ComponentWrapper, HideForPrint, Link } from "../../atoms";
+import { oloHome } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
-import { useTracking } from "../../hooks";
+import { useSlug, useTopic, useTopicData, useTracking } from "../../hooks";
 import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
@@ -33,8 +34,21 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   outcomeType,
   showDiscaimer,
 }) => {
+  const slug = useSlug();
+  const { isPermitCheck, isPermitForm } = useTopic();
+  const { topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
+  const { t } = useTranslation();
+
   const { footerContent, mainContent, title } = outcomeContent;
+
+  // When the PreQuestion `MultipleCheckers` has been answered with `true` we will show an alternate text above the `NewCheckerModal`
+  const multipleCheckersText =
+    t(
+      `outcome.${slug}.you would like to build more than 1 so you need to do multiple permits`
+    ) +
+    " " +
+    t("outcome.if you have other plans you can do other permit checks as well");
 
   const handlePrintButton = () => {
     matomoTrackEvent({
@@ -55,14 +69,18 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
 
       <HideForPrint>
         {!isIE && !isMobile && (
-          <PrintButton
+          <Button
             data-testid={PRINT_BUTTON}
-            marginBottom={outcomeType === ClientOutcomes.PERMIT_FREE ? 32 : 40}
+            marginBottom={
+              isPermitCheck && outcomeType === ClientOutcomes.PERMIT_FREE
+                ? 8
+                : 10
+            }
             onClick={handlePrintButton}
-            variant="textButton"
+            variant={isPermitCheck ? "textButton" : "primary"}
           >
-            Uitkomst opslaan
-          </PrintButton>
+            {t(isPermitCheck ? "common.save outcome" : "common.download form")}
+          </Button>
         )}
       </HideForPrint>
 
@@ -70,10 +88,30 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
         {footerContent}
       </ComponentWrapper>
 
-      <HideForPrint>
-        <NewCheckerModal />
-        {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
-      </HideForPrint>
+      {isPermitCheck && (
+        <HideForPrint>
+          <Paragraph>
+            {topicData.questionMultipleCheckers
+              ? multipleCheckersText
+              : t(
+                  "outcome.if you have other plans you can do other permit checks"
+                )}
+          </Paragraph>
+          <NewCheckerModal />
+          {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
+        </HideForPrint>
+      )}
+
+      {isPermitForm && (
+        <Link
+          eventName={t("common.to the olo")}
+          href={oloHome}
+          target="_blank"
+          variant="inline"
+        >
+          {t("common.to the olo")}
+        </Link>
+      )}
     </OutcomeContentWrapper>
   );
 };

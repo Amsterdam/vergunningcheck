@@ -1,7 +1,7 @@
 {
   "name": "@vergunningcheck/client",
   "private": true,
-  "version": "2.5.1",
+  "version": "2.6.0",
   "description": "Client facing application/frontend for the Vergunningcheck application.",
   "keywords": [],
   "author": "Gemeente Amsterdam",
@@ -28,7 +28,10 @@
       "src/**/*.{js,jsx,ts,jsx}",
       "!src/components/Hidden**",
       "!src/utils/test-utils.*",
-      "!src/debug/*"
+      "!src/debug/*",
+      "!src/index.*",
+      "!src/routes.*",
+      "!src/serviceWorker.*"
     ]
   },
   "eslintConfig": {
@@ -72,8 +75,8 @@
     "@types/lodash.isboolean": "^3.0.6",
     "@types/lodash.isnumber": "^3.0.6",
     "@types/lodash.isstring": "^4.0.6",
-    "@vergunningcheck/imtr-client": "^2.5.1",
-    "@vergunningcheck/mocking": "^2.5.1",
+    "@vergunningcheck/imtr-client": "^2.6.0",
+    "@vergunningcheck/mocking": "^2.6.0",
     "dotenv-flow": "^3.1.0",
     "feature-policy": "^0.5.0",
     "graphql": "^15.4.0",

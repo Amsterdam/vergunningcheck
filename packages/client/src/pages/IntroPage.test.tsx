@@ -2,14 +2,18 @@ import React from "react";
 
 import nl from "../i18n/nl";
 import { geturl } from "../routes";
+import { findTopicBySlug } from "../utils";
 import { LOADING_TEXT, NEXT_BUTTON } from "../utils/test-ids";
 import { act, fireEvent, render, screen, waitFor } from "../utils/test-utils";
 import IntroPage from "./IntroPage";
 
 jest.mock("../routes");
 
+const mockTopicConfigured = findTopicBySlug("dakkapel-plaatsen");
+jest.mock("../hooks/useTopic", () => () => mockTopicConfigured);
+
 describe("IntroPage", () => {
-  it("renders correctly with topic", async () => {
+  it("renders correctly with configured permit check", async () => {
     render(<IntroPage />);
 
     // First wait for loading text
@@ -26,6 +30,10 @@ describe("IntroPage", () => {
         )
       ).toBeInTheDocument()
     );
+
+    expect(
+      screen.getByText(mockTopicConfigured?.text.heading)
+    ).toBeInTheDocument();
 
     // Render bullets
     expect(
@@ -58,13 +66,6 @@ describe("IntroPage", () => {
       screen.getByText(nl.translation.introPage.common["exceptions title"])
     ).toBeInTheDocument();
 
-    // Render paragraph
-    expect(
-      screen.getByText(
-        nl.translation.introPage.common["exceptions description"]
-      )
-    ).toBeInTheDocument();
-
     // Render bullets
     expect(
       screen.getByText(nl.translation.introPage.dakkapel["exception"], {
@@ -82,6 +83,10 @@ describe("IntroPage", () => {
       screen.getByText(
         nl.translation.introPage.dakkapel["build without permit exception"]
       )
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByText(nl.translation.common["do the permit check"])
     ).toBeInTheDocument();
 
     // Go to next page

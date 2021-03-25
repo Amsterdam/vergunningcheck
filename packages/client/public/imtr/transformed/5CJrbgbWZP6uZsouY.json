@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 28,
+      "version": 30,
       "name": "Conclusie Kozijn plaatsen",
       "questions": [
         {
@@ -75,22 +75,22 @@
         },
         {
           "text": "Gaat u het kozijn plaatsen in een hoofdgebouw of in een aanbouw, uitbouw of bijgebouw?",
-          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein, vaak is dat de woning.\n\nGaat u een kozijn plaatsen in een hoofdgebouw en in een aanbouw, uitbouw of bijgebouw? Doe dan een vergunningcheck voor het hoofdgebouw en een vergunningcheck voor de aanbouw, de uitbouw of het bijgebouw.",
+          "description": "Een hoofdgebouw is het belangrijkste gebouw op het terrein, vaak is dat de woning.",
           "options": [
             "In een hoofdgebouw",
             "In een aanbouw, uitbouw of bijgebouw"
           ],
           "type": "string",
           "prio": 70,
-          "id": "a3bf0ccfcf0169c3279a20c6733f3ece"
+          "id": "351ef1c03a41a467edb95e234252eb14"
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
-          "description": "![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een kozijn plaatsen? Doe voor iedere kant een vergunningcheck.",
+          "description": "![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "prio": 80,
-          "id": "de9e38e5b44668fb9643ce023bdc9ad1"
+          "id": "b985560ffd1baeffa224ea8c57f36339"
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
@@ -171,11 +171,11 @@
             ]
           }
         },
-        "2051b02658589f5a18ad0aafe112f2ed": {
+        "001a339134341d2b2e783e070c6e1947": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
-            "a3bf0ccfcf0169c3279a20c6733f3ece"
+            "351ef1c03a41a467edb95e234252eb14"
           ],
           "decisionTable": {
             "rules": [
@@ -257,12 +257,12 @@
             ]
           }
         },
-        "0f1d8b0e4fb84dc96f2982a5daf18b7d": {
+        "59569f1943ca34e871b28e3648f55eaf": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
-            "a3bf0ccfcf0169c3279a20c6733f3ece"
+            "351ef1c03a41a467edb95e234252eb14"
           ],
           "decisionTable": {
             "rules": [
@@ -308,13 +308,13 @@
             ]
           }
         },
-        "bf4da5c579ab1c0f91d3277f4200ec9e": {
+        "5bf356973a790ab2ab2c12aae335f0a8": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1"
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339"
           ],
           "decisionTable": {
             "rules": [
@@ -393,13 +393,13 @@
             ]
           }
         },
-        "98e14a3f209bc0ffb16fb044a20afbff": {
+        "102cc6b2d6d8d0dea1e2660113ca6b82": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "4719ae1995d383bce99ef832e23cdb3a"
           ],
           "decisionTable": {
@@ -489,14 +489,14 @@
             ]
           }
         },
-        "eb2a81158da21ec61a42e717633c0a08": {
+        "91379a6c6f7fc8ef48647fdfde242251": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1"
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339"
           ],
           "decisionTable": {
             "rules": [
@@ -599,13 +599,13 @@
             ]
           }
         },
-        "559853d784d1d7937834806c412683d9": {
+        "7741d8826901f1f3dc96106378020b9a": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "53dbefe6d601000cd8997f45aad0ffcc"
           ],
           "decisionTable": {
@@ -695,13 +695,13 @@
             ]
           }
         },
-        "0b292a20b0148d5a8263e8c270083fe4": {
+        "c023d38545d6c54b431783a60062a862": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "53dbefe6d601000cd8997f45aad0ffcc",
             "1b54a54e713ad693336aa03a270397d5"
           ],
@@ -802,13 +802,13 @@
             ]
           }
         },
-        "3091e710b9b0dd8fa5bb7d6f83f25768": {
+        "05b55ecb1bdade324f1ec4d6c5a4ff76": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "4719ae1995d383bce99ef832e23cdb3a",
             "a331478c13b3b442470e3fbd3240de29"
           ],
@@ -909,14 +909,14 @@
             ]
           }
         },
-        "543192588dba693a1704a37d11f9fb8d": {
+        "fdb60000316c3379c09090ddacbccb6a": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "53dbefe6d601000cd8997f45aad0ffcc"
           ],
           "decisionTable": {
@@ -1024,14 +1024,14 @@
             ]
           }
         },
-        "85e96e58d5b94410a915ad9d9b4fc689": {
+        "47bf85ad0fdc8b7f1ca8a852cf4be4f9": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "4719ae1995d383bce99ef832e23cdb3a"
           ],
           "decisionTable": {
@@ -1139,13 +1139,13 @@
             ]
           }
         },
-        "331dd0c10aade5d2273187f35c6edfcf": {
+        "e7938ef51cf75b704eabeee7312af1fc": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "4719ae1995d383bce99ef832e23cdb3a",
             "a331478c13b3b442470e3fbd3240de29",
             "42c3abd3fc8678c94798d4248da00b1b"
@@ -1266,14 +1266,14 @@
             ]
           }
         },
-        "b4419eda780c74e669ce7d55b199a2e5": {
+        "e2ddf3bf9b2143d7d465bd908a25b9bc": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "53dbefe6d601000cd8997f45aad0ffcc",
             "1b54a54e713ad693336aa03a270397d5"
           ],
@@ -1402,13 +1402,13 @@
             ]
           }
         },
-        "8517b4a6212445268a8148c4ded9e466": {
+        "e53dc888b392146b2fa7ce32161d8516": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "53dbefe6d601000cd8997f45aad0ffcc",
             "1b54a54e713ad693336aa03a270397d5",
             "acd95bdc892bb7cba8dc3c893fa3d3cf"
@@ -1529,14 +1529,14 @@
             ]
           }
         },
-        "a68f2edffa6b7c82bceb34b9a0b1f5b2": {
+        "bffb7bc9532e4572ff4f7ee7836e8d16": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "4719ae1995d383bce99ef832e23cdb3a",
             "a331478c13b3b442470e3fbd3240de29"
           ],
@@ -1665,14 +1665,14 @@
             ]
           }
         },
-        "cc3fd334cb0ae4960981b99e1c252936": {
+        "dfe2e929a3068a62c1b18b32e23f1bd0": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "53dbefe6d601000cd8997f45aad0ffcc",
             "1b54a54e713ad693336aa03a270397d5",
             "acd95bdc892bb7cba8dc3c893fa3d3cf"
@@ -1834,14 +1834,14 @@
             ]
           }
         },
-        "5e34d07b4f8276c7bd5d429c178ec30f": {
+        "6fe1491ed9316216fc747d71839893f5": {
           "requiredInputs": [
             "fd9899df974598b284692646da0ff8b5",
             "388861292e46bf7912480b69554dbe82",
             "5ddc188e4902ba7cf91f77cc82710c79",
             "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
+            "351ef1c03a41a467edb95e234252eb14",
+            "b985560ffd1baeffa224ea8c57f36339",
             "4719ae1995d383bce99ef832e23cdb3a",
             "a331478c13b3b442470e3fbd3240de29",
             "42c3abd3fc8678c94798d4248da00b1b"
@@ -2006,23 +2006,23 @@
         "dummy": {
           "requiredDecisions": [
             "62afe1cd6ab025646855fc78064a6290",
-            "2051b02658589f5a18ad0aafe112f2ed",
+            "001a339134341d2b2e783e070c6e1947",
             "725dfa3809ff1f9e0a7942b1827d41c8",
-            "0f1d8b0e4fb84dc96f2982a5daf18b7d",
-            "bf4da5c579ab1c0f91d3277f4200ec9e",
-            "98e14a3f209bc0ffb16fb044a20afbff",
-            "eb2a81158da21ec61a42e717633c0a08",
-            "559853d784d1d7937834806c412683d9",
-            "0b292a20b0148d5a8263e8c270083fe4",
-            "3091e710b9b0dd8fa5bb7d6f83f25768",
-            "543192588dba693a1704a37d11f9fb8d",
-            "85e96e58d5b94410a915ad9d9b4fc689",
-            "331dd0c10aade5d2273187f35c6edfcf",
-            "b4419eda780c74e669ce7d55b199a2e5",
-            "8517b4a6212445268a8148c4ded9e466",
-            "a68f2edffa6b7c82bceb34b9a0b1f5b2",
-            "cc3fd334cb0ae4960981b99e1c252936",
-            "5e34d07b4f8276c7bd5d429c178ec30f"
+            "59569f1943ca34e871b28e3648f55eaf",
+            "5bf356973a790ab2ab2c12aae335f0a8",
+            "102cc6b2d6d8d0dea1e2660113ca6b82",
+            "91379a6c6f7fc8ef48647fdfde242251",
+            "7741d8826901f1f3dc96106378020b9a",
+            "c023d38545d6c54b431783a60062a862",
+            "05b55ecb1bdade324f1ec4d6c5a4ff76",
+            "fdb60000316c3379c09090ddacbccb6a",
+            "47bf85ad0fdc8b7f1ca8a852cf4be4f9",
+            "e7938ef51cf75b704eabeee7312af1fc",
+            "e2ddf3bf9b2143d7d465bd908a25b9bc",
+            "e53dc888b392146b2fa7ce32161d8516",
+            "bffb7bc9532e4572ff4f7ee7836e8d16",
+            "dfe2e929a3068a62c1b18b32e23f1bd0",
+            "6fe1491ed9316216fc747d71839893f5"
           ],
           "decisionTable": {
             "rules": [

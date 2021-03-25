@@ -53,40 +53,6 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-// @TODO: extend this to dynamically load a slug for `react-router-dom`
-// export const mockSlug = (mockSlug: string) => {
-//   jest.mock("../hooks/useSlug", () => {
-//     return mockSlug;
-//   });
-//   jest.mock("react-router-dom", () => {
-//     return {
-//       ...(jest.requireActual("react-router-dom") as {}),
-//       useLocation: () => ({ pathname: `/${mockSlug}` }),
-//       useParams: () => ({ mockSlug }),
-//       useHistory: () => ({
-//         push: jest.fn(),
-//         replace: jest.fn(),
-//         location: {
-//           pathname: `/${mockSlug}`,
-//         },
-//       }),
-//     };
-//   });
-// };
-
-// How to mock the topic:
-// const mockTopic = {
-//   hasIMTR: false,
-//   intro: "DakkapelIntrosdfsdf",
-//   name: "Ddsfdsen 2",
-//   slug: "daksdftsen",
-//   text: {
-//     heading: "Vergsdftsen",
-//     locationIntro: "Vsdftsen",
-//   },
-// };
-// jest.mock("../hooks/useTst.mock("../hooks/useTopic", () => () => mockTopic);
-
 type TestProviderProps = {
   mocks: readonly MockedResponse<Record<string, any>>[];
 };

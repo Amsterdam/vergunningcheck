@@ -5,7 +5,7 @@ import Decision, { InputReducer } from "./decision";
 import Permit from "./permit";
 import Question from "./question";
 
-export const imtrOutcomes = {
+export const outcomes = {
   NEED_CONTACT: '"NeemContactOpMet"',
   NEED_PERMIT: '"Vergunningplicht"',
   NEED_REPORT: '"Meldingsplicht"',
@@ -130,7 +130,7 @@ export default class Checker {
       const outcome = permit.getDecisionById("dummy") as Decision;
       const outcomeMatchingRules = outcome.getMatchingRules();
       const matchingContactRule = outcomeMatchingRules.find(
-        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+        (rule) => rule.outputValue === outcomes.NEED_CONTACT
       );
       if (matchingContactRule) {
         const decisiveDecisions = outcome.getDecisiveInputs() as Decision[];
@@ -138,7 +138,7 @@ export default class Checker {
         // find the contact decision
         const contactDecision = decisiveDecisions.find((decision) =>
           decision.rules.find(
-            (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+            (rule) => rule.outputValue === outcomes.NEED_CONTACT
           )
         ) as Decision;
 
@@ -160,7 +160,7 @@ export default class Checker {
   isConclusive(): boolean {
     const hasContactPermit = !!this.permits.find(
       (permit) =>
-        permit.getOutputByDecisionId("dummy") === imtrOutcomes.NEED_CONTACT
+        permit.getOutputByDecisionId("dummy") === outcomes.NEED_CONTACT
     );
     const hasUnfinishedPermits = !!this.permits.find(
       (permit) => !permit.getOutputByDecisionId("dummy")
@@ -331,7 +331,7 @@ export default class Checker {
         const conclusion = permit.getDecisionById("dummy") as Decision;
         const outcomeMatchingRules = conclusion.getMatchingRules() as Rule[];
         const contactOutcome = outcomeMatchingRules.find(
-          (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+          (rule) => rule.outputValue === outcomes.NEED_CONTACT
         ) as Rule;
         const outcome = (contactOutcome?.outputValue ||
           outcomeMatchingRules[0].outputValue) as string;
@@ -339,13 +339,13 @@ export default class Checker {
         return {
           outcome,
           title:
-            outcome === imtrOutcomes.NEED_CONTACT
+            outcome === outcomes.NEED_CONTACT
               ? "Neem contact op met de gemeente"
               : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
                   outcome
                 )}`,
           description:
-            outcome === imtrOutcomes.NEED_CONTACT
+            outcome === outcomes.NEED_CONTACT
               ? contactOutcome.description
               : outcomeMatchingRules[0].description,
         };
@@ -354,7 +354,7 @@ export default class Checker {
 
   /**
    *
-   * Returns an outcome (as defined in `imtrOutcomes`) for each permit
+   * Returns an outcome (as defined in `imtr.outcomes`) for each permit
    *
    */
   getAllOutcomeTypes(): string[] {
@@ -368,16 +368,16 @@ export default class Checker {
    *
    */
   getClientOutcomeType(): ClientOutcomes {
-    const outcomes = this.getAllOutcomeTypes();
+    const outcomeTypes = this.getAllOutcomeTypes();
 
-    const needContactOutcome = outcomes.find(
-      (outcome) => outcome === imtrOutcomes.NEED_CONTACT
+    const needContactOutcome = outcomeTypes.find(
+      (outcome) => outcome === outcomes.NEED_CONTACT
     );
-    const needPermitOutcome = outcomes.find(
-      (outcome) => outcome === imtrOutcomes.NEED_PERMIT
+    const needPermitOutcome = outcomeTypes.find(
+      (outcome) => outcome === outcomes.NEED_PERMIT
     );
-    const needReportOutcome = outcomes.find(
-      (outcome) => outcome === imtrOutcomes.NEED_REPORT
+    const needReportOutcome = outcomeTypes.find(
+      (outcome) => outcome === outcomes.NEED_REPORT
     );
 
     if (needContactOutcome) {

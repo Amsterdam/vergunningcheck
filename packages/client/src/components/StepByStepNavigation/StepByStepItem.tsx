@@ -18,6 +18,7 @@ import StepByStepTitle from "./StepByStepTitle";
 
 export type StepByStepItemProps = {
   active?: boolean;
+  activeStyle?: boolean;
   checked?: boolean;
   circleBackgroundColor?: string;
   clickable?: boolean;
@@ -40,6 +41,7 @@ const StepByStepItem: FunctionComponent<
     StyledProps<any>
 > = ({
   active,
+  activeStyle,
   checked,
   children,
   circleBackgroundColor,
@@ -77,6 +79,7 @@ const StepByStepItem: FunctionComponent<
     <StepByStepItemStyle
       {...{
         active,
+        activeStyle,
         clickable,
         disabled,
         disabledTextColor,

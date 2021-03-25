@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Topic } from "../../types";
+import Topic from "../../models/topic";
 import { findTopicBySlug } from "../../utils";
 import { render, screen } from "../../utils/test-utils";
 import TopicLayout from "./TopicLayout";

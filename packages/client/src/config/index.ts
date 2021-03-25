@@ -1,26 +1,144 @@
+import Topic from "../models/topic";
+import { TopicType } from "../types";
+
+/**
+ * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
+ *
+ * Direct importing and including components does not work because the hooks lose context.
+ */
+export enum PreQuestionComponent {
+  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+}
+
 /**
  * Merge the different topic types
  *
- * hasIMTR: If topic has an imtr-file. If `false` it's olo/olo-redirect flow
  * intro: The name of the component that has all texts on the Intro page
  * name: The name of the checker/topic
- * redirectToOlo: If this flow should redirect the user to OLO
+ * preQuestions: Question Components to render before the actual IMTR questions. See `PreQuestionComponent` above
  * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
  * text: This is part that holds specific texts for each permit-checker
+ * type: See {TopicType} for the different types of Topic
+ * userMightNotNeedPermit: Enables an add-on text in the QuestionAlert: "if you make another choice you might not need a permit"
  */
+export const topics: Topic[] = [
+  {
+    intro: "DakkapelIntro",
+    name: "Dakkapel plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "dakkapel-plaatsen",
+    text: {
+      heading: "Vergunningcheck dakkapel plaatsen",
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    intro: "DakraamIntro",
+    name: "Dakraam plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "dakraam-plaatsen",
+    text: {
+      heading: "Vergunningcheck dakraam plaatsen",
+      locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    name: "Aanbouw of uitbouw maken",
+    slug: "aanbouw-of-uitbouw-maken",
+    text: {
+      heading: "Vergunningcheck aanbouw of uitbouw maken",
+      locationIntro:
+        "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    intro: "KozijnenIntro",
+    name: "Kozijnen plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "kozijnen-plaatsen",
+    text: {
+      heading: "Vergunningcheck kozijnen plaatsen",
+      locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    intro: "ZonnepanelenIntro",
+    name: "Zonnepanelen of zonneboiler plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "zonnepanelen-of-zonneboiler-plaatsen",
+    text: {
+      heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
+      locationIntro:
+        "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    intro: "SlopenIntro",
+    name: "Bouwwerk slopen",
+    slug: "bouwwerk-slopen",
+    text: {
+      heading: "Vergunningcheck bouwwerk slopen",
+      locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
+    },
+    type: TopicType.PERMIT_CHECK,
+  },
+  {
+    name: "Intern verbouwen",
+    slug: "intern-verbouwen",
+    text: {
+      heading: "Vergunningcheck intern verbouwen",
+      locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
+    },
+    type: TopicType.PERMIT_CHECK,
+  },
+  {
+    intro: "ZonweringRolluikIntro",
+    name: "Zonwering of rolluik plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "zonwering-of-rolluik-plaatsen",
+    text: {
+      heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
+      locationIntro:
+        "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    name: "Kappen of snoeien",
+    slug: "kappen-of-snoeien",
+    text: {
+      heading: "Vergunningcheck kappen of snoeien",
+    },
+    type: TopicType.REDIRECT,
+  },
+  {
+    intro: "BrandveiligGebruikIntro",
+    name: "Brandveilig gebruik",
+    slug: "brandveilig-gebruik",
+    text: {
+      heading: "Vergunningcheck brandveilig gebruik",
+    },
+    type: TopicType.PERMIT_CHECK,
+  },
+].map((t) => new Topic(t));
 
-import { Topic } from "../types";
-
-type OloUrlProps = {
-  houseNumber: number;
-  houseNumberFull: string;
-  postalCode: string;
-};
-
-const oloHome: string = "https://www.omgevingsloket.nl/";
-
+// Is the client running on production?
 export const isProduction: boolean =
   "vergunningcheck.amsterdam.nl" === window.location.hostname;
+
+// URLS used throughout the client
+export const oloHome: string = "https://www.omgevingsloket.nl/";
 
 export const urls = {
   DEMOLITION_PERMIT_PAGE:
@@ -36,6 +154,12 @@ export const urls = {
     "https://www.amsterdam.nl/veelgevraagd/?productid=%7bC25A69DB-3548-4E12-97BB-DB71318EDFB2%7d",
 };
 
+type OloUrlProps = {
+  houseNumber: number;
+  houseNumberFull: string;
+  postalCode: string;
+};
+
 export const generateOloUrl = ({
   houseNumber,
   houseNumberFull,
@@ -46,106 +170,3 @@ export const generateOloUrl = ({
   // Redirect user to OLO with all parameters
   return `${urls.OLO_LOCATION}?param=postcodecheck&facet_locatie_postcode=${postalCode}&facet_locatie_huisnummer=${houseNumber}&facet_locatie_huisnummertoevoeging=${suffix}`;
 };
-
-export const topics: Topic[] = [
-  {
-    hasIMTR: true,
-    intro: "DakkapelIntro",
-    name: "Dakkapel plaatsen",
-    slug: "dakkapel-plaatsen",
-    text: {
-      heading: "Vergunningcheck dakkapel plaatsen",
-      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
-    },
-  },
-  {
-    hasIMTR: true,
-    intro: "DakraamIntro",
-    name: "Dakraam plaatsen",
-    slug: "dakraam-plaatsen",
-    text: {
-      heading: "Vergunningcheck dakraam plaatsen",
-      locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
-    },
-  },
-  {
-    hasIMTR: false,
-    name: "Aanbouw of uitbouw maken",
-    slug: "aanbouw-of-uitbouw-maken",
-    text: {
-      heading: "Vergunningcheck aanbouw of uitbouw maken",
-      locationIntro:
-        "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
-    },
-  },
-  {
-    hasIMTR: true,
-    intro: "KozijnenIntro",
-    name: "Kozijnen plaatsen",
-    slug: "kozijnen-plaatsen",
-    text: {
-      heading: "Vergunningcheck kozijnen plaatsen",
-      locationIntro: "Voer het adres in waar u de kozijnen wilt gaan plaatsen",
-    },
-  },
-  {
-    hasIMTR: true,
-    intro: "ZonnepanelenIntro",
-    name: "Zonnepanelen of zonneboiler plaatsen",
-    slug: "zonnepanelen-of-zonneboiler-plaatsen",
-    text: {
-      heading: "Vergunningcheck zonnepanelen of zonneboiler plaatsen",
-      locationIntro:
-        "Voer het adres in waar u de zonnepanelen of zonneboiler wilt gaan plaatsen",
-    },
-  },
-  {
-    hasIMTR: true,
-    intro: "SlopenIntro",
-    name: "Bouwwerk slopen",
-    slug: "bouwwerk-slopen",
-    text: {
-      heading: "Vergunningcheck bouwwerk slopen",
-      locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen",
-    },
-  },
-  {
-    hasIMTR: false,
-    name: "Intern verbouwen",
-    slug: "intern-verbouwen",
-    text: {
-      heading: "Vergunningcheck intern verbouwen",
-      locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen",
-    },
-  },
-  {
-    hasIMTR: true,
-    intro: "ZonweringRolluikIntro",
-    name: "Zonwering of rolluik plaatsen",
-    slug: "zonwering-of-rolluik-plaatsen",
-    text: {
-      heading: "Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen",
-      locationIntro:
-        "Voer het adres in waar u de zonwering, het rolhek, rolluik of luik wilt gaan plaatsen",
-    },
-  },
-  {
-    hasIMTR: false,
-    name: "Kappen of snoeien",
-    redirectToOlo: true,
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "Vergunningcheck kappen of snoeien",
-    },
-  },
-  {
-    hasIMTR: true,
-    intro: "BrandveiligGebruikIntro",
-    name: "Brandveilig gebruik",
-    redirectToOlo: false,
-    slug: "brandveilig-gebruik",
-    text: {
-      heading: "Vergunningcheck brandveilig gebruik",
-    },
-  },
-];

@@ -64,6 +64,15 @@ export default styled.div<StepByStepItemProps>`
         color: ${disabledTextColor};
       }
     `}
+  ${({ activeStyle }) =>
+    // This overwrites the `lineBetweenItems`
+    activeStyle &&
+    css`
+      &&& {
+        margin-top: -1px;
+        border-color: transparent;
+      }
+    `}
 `;
 
 const CircleWrapperStyle = styled.div<StepByStepItemProps>`

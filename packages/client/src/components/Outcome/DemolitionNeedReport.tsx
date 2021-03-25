@@ -1,13 +1,11 @@
-// @TODO: TRANSLATE
 import { Heading, ListItem } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
-import { List } from "../../atoms";
+import { Link, List } from "../../atoms";
 import { urls } from "../../config";
 import { eventNames } from "../../config/matomo";
 import { NEED_REPORT } from "../../utils/test-ids";
-import Link from "../Link";
 
 const DemolitionNeedReport: FunctionComponent = () => {
   const { t } = useTranslation();
