@@ -22,6 +22,7 @@ export default {
         "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       "one moment please": "Een ogenblik geduld alstublieft",
       "page title": "Amsterdam Vergunningcheck",
+      previous: "Vorige",
       "questions and outcome": "Vragen en uitkomst",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",

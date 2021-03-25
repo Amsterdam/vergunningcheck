@@ -1,5 +1,6 @@
 import { ChevronLeft } from "@amsterdam/asc-assets";
 import React, { FormEvent, FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 
 import { PrevButton } from "../atoms";
 import { NEXT_BUTTON } from "../utils/test-ids";
@@ -18,36 +19,39 @@ export type NavProps = {
 
 const Nav: FunctionComponent<NavProps> = ({
   formEnds,
-  nextText = "Volgende",
+  nextText,
   noMarginBottom,
   onGoToNext,
   onGoToPrev,
-  prevText = "Vorige",
+  prevText,
   showNext,
   showPrev,
-}) => (
-  <NavStyle noMarginBottom={noMarginBottom}>
-    {showNext && (
-      <NextButton
-        data-testid={NEXT_BUTTON}
-        formEnds={formEnds}
-        onClick={onGoToNext}
-        taskflow={!formEnds}
-      >
-        {nextText}
-      </NextButton>
-    )}
-    {showPrev && (
-      <PrevButton onClick={onGoToPrev}>
-        <IconContainer>
-          <IconLeft size={14}>
-            <ChevronLeft />
-          </IconLeft>{" "}
-          {prevText}
-        </IconContainer>
-      </PrevButton>
-    )}
-  </NavStyle>
-);
+}) => {
+  const { t } = useTranslation();
+  return (
+    <NavStyle noMarginBottom={noMarginBottom}>
+      {showNext && (
+        <NextButton
+          data-testid={NEXT_BUTTON}
+          formEnds={formEnds}
+          onClick={onGoToNext}
+          taskflow={!formEnds}
+        >
+          {nextText || t("common.next")}
+        </NextButton>
+      )}
+      {showPrev && (
+        <PrevButton onClick={onGoToPrev}>
+          <IconContainer>
+            <IconLeft size={14}>
+              <ChevronLeft />
+            </IconLeft>{" "}
+            {prevText || t("common.previous")}
+          </IconContainer>
+        </PrevButton>
+      )}
+    </NavStyle>
+  );
+};
 
 export default Nav;

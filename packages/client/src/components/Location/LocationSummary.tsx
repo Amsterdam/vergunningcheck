@@ -27,7 +27,7 @@ const StyledList = styled(List)<{
     `}
 
   /* In case List isBelowInputFields make it appear white, instead of black */
-${({ isBelowInputFields }) =>
+  ${({ isBelowInputFields }) =>
     isBelowInputFields &&
     css`
       li {

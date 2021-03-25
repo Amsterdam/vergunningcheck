@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { BaseLayout } from "../components/Layouts";
 
+// This page will only render when a route does not exist (404)
 const NotFoundPage: FunctionComponent = () => {
   const { t } = useTranslation();
   return (

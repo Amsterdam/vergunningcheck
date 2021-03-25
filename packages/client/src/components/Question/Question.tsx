@@ -56,6 +56,7 @@ const Question: FunctionComponent<QuestionProps> = ({
     type,
   } = question;
 
+  // Determine the question type (can be extended with Checkbox)
   const isRadio = type === "boolean" || (type === "string" && options);
 
   const requiredText = isRadio

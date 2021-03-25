@@ -119,7 +119,7 @@ export type PreQuestionFunctions = {
   editQuestion: (index: number) => void;
   goToNextQuestion: () => void;
   isCheckerConclusive: () => boolean;
-  saveAnswer: (answer: Answer) => void;
+  saveAnswer: (answer: Answer, topicDataKey: string) => void;
 };
 
 // This is an imported topic from the Flo Legal api

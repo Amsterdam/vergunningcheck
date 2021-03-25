@@ -17,7 +17,7 @@ import LocationFinder from "./LocationFinder";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
-  handleNewAddressSubmit: (address: Address) => void;
+  handleNewAddressSubmit: (address: Address) => void; // Provide callback to call when the submit button has been pressed
 };
 
 const LocationInput = ({
