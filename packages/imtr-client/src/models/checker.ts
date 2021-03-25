@@ -63,6 +63,7 @@ export default class Checker {
   getQuestionAnswers(): Answers {
     return this.stack
       .concat(this.getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .filter((q) => q.answer !== undefined) // Remove all undefined questions
       .reduce((acc: Answers, question: Question) => {
         acc[question.id] = question.answer;
         return acc;
