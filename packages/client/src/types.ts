@@ -2,8 +2,6 @@ import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
 import { RouteProps } from "react-router-dom";
 
-import { PreQuestionComponent } from "./config";
-
 /**
  * Location types
  */
@@ -85,6 +83,15 @@ export type SessionData = {
 export type setTopicSessionDataFn = (
   topicData: null | Partial<TopicData>
 ) => void;
+
+/**
+ * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
+ *
+ * Direct importing and including components does not work because the hooks lose context.
+ */
+export enum PreQuestionComponent {
+  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+}
 
 /**
  * Topic types

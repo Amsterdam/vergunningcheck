@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from "react";
 
-import { PreQuestionComponent } from "../../config";
 import { useTopic, useTopicData } from "../../hooks";
-import { Answer } from "../../types";
+import { Answer, PreQuestionComponent } from "../../types";
 import PreQuestionMultipleCheckers from "./PreQuestionMultipleCheckers";
 
 type PreQuestionsProps = {
