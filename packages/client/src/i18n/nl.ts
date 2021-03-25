@@ -178,6 +178,10 @@ export default {
       nextQuestion: "Volgende vraag",
     },
     preQuestions: {
+      preQuestionAreYouSure: {
+        "are you sure": "Weet u het zeker?",
+        "then its fine": "Dan is het goed!",
+      },
       "dakkapel-plaatsen": {
         preQuestionMultipleCheckers: {
           "would you like to build more than one":

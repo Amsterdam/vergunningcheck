@@ -3,6 +3,7 @@ import React, { FunctionComponent } from "react";
 import { PreQuestionComponent } from "../../config";
 import { useTopic, useTopicData } from "../../hooks";
 import { Answer } from "../../types";
+import PreQuestionAreYouSure from "./PreQuestionAreYouSure";
 import PreQuestionMultipleCheckers from "./PreQuestionMultipleCheckers";
 
 type PreQuestionsProps = {
@@ -59,19 +60,29 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
 
   return preQuestions ? (
     <>
-      {preQuestions?.map((preQuestion, index) => {
-        if (preQuestion === PreQuestionComponent.MULTIPLE_CHECKERS) {
-          return (
-            <PreQuestionMultipleCheckers
-              key={index}
-              index={index}
-              {...preQuestionsProps}
-            />
-          );
+      {preQuestions.map((preQuestion, index) => {
+        switch (preQuestion) {
+          case PreQuestionComponent.MULTIPLE_CHECKERS:
+            return (
+              <PreQuestionMultipleCheckers
+                key={index}
+                index={index}
+                {...preQuestionsProps}
+              />
+            );
+          case PreQuestionComponent.ARE_YOU_SURE:
+            return (
+              <PreQuestionAreYouSure
+                key={index}
+                index={index}
+                {...preQuestionsProps}
+              />
+            );
+          default:
+            throw new Error(
+              `The preQuestion on index "${index}" is not supported yet.`
+            );
         }
-        throw new Error(
-          `The preQuestion on index "${index}" is not supported yet.`
-        );
       })}
     </>
   ) : null;

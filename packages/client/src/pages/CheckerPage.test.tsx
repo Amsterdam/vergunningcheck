@@ -95,7 +95,7 @@ describe("CheckerPage", () => {
 
       render(<CheckerPage />);
 
-      expect(topic.preQuestionsCount).toEqual(1);
+      expect(topic.preQuestionsCount).toEqual(2);
 
       expect(
         screen.getByText(

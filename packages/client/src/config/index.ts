@@ -8,6 +8,7 @@ import { TopicType } from "../types";
  */
 export enum PreQuestionComponent {
   MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+  ARE_YOU_SURE, // Corresponds to PreQuestionAreYouSure.tsx
 }
 
 /**
@@ -25,7 +26,10 @@ export const topics: Topic[] = [
   {
     intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
-    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    preQuestions: [
+      PreQuestionComponent.MULTIPLE_CHECKERS,
+      PreQuestionComponent.ARE_YOU_SURE,
+    ],
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",

@@ -16,6 +16,7 @@ export const defaultTopicSession: TopicData = {
   address: null,
   answers: {},
   questionMultipleCheckers: undefined,
+  questionAreYouSure: undefined,
   questionIndex: 0,
   sectionData: [],
   timesLoaded: 0,
