@@ -332,17 +332,13 @@ const Questions: FunctionComponent<QuestionsProps> = ({
             checker.stack.length === i + 1;
 
           // Get the outcomeType for this question
-          const questionOutcome = checker.getOutcomesPerQuestion()[i];
+          // In case of a "contact outcome" a QuestionAlert for need-permit within the same permit will result in a need-outcome text
+          // This is because we do not support "single-permit multi-oucome
+          // See: https://trello.com/c/sp6zzqiZ/959-twee-keer-gele-balk-over-niet-kunnen-vaststellen-uitkomst
+          const outcomeType = checker.getOutcomesPerQuestion()[i];
 
           // Check if current question is causing a permit requirement
-          const showQuestionAlert = !!questionOutcome && !isPermitForm;
-
-          // In case of a "contact outcome" hide other outcomeTypes, because we do not support "single-permit multi-oucome yet"
-          const outcomeType = checker.hasContactOutcome()
-            ? checker.questionTriggersContactOutcome(q)
-              ? imtr.ClientOutcomes.NEED_CONTACT
-              : imtr.ClientOutcomes.PERMIT_FREE
-            : questionOutcome;
+          const showQuestionAlert = !!outcomeType && !isPermitForm;
 
           return (
             <StepByStepItem
