@@ -202,14 +202,21 @@ export default class Checker {
     );
   }
 
-  getQuestionsThatTriggerOutcomes(): ClientOutcomes[] {
+  /**
+   * Generate a list with decisive outcomes for questions on the stack.
+   *
+   * @returns Array of ClientOutcomes with the stack index as key: `[checker.stack.index]: ClientOutcome`
+   */
+  getOutcomesPerQuestion(): ClientOutcomes[] {
     const permitsPerQuestion: ClientOutcomes[] = [];
+
     this.permits.forEach((permit: Permit) => {
       const outcomeDecision = permit.getDecisionById("dummy");
 
       if (outcomeDecision) {
         const imtrOutcome = outcomeDecision.getOutput();
 
+        // By default, the outcome is permit-free
         let outcomeType = ClientOutcomes.PERMIT_FREE;
 
         if (imtrOutcome === outcomes.NEED_CONTACT) {
@@ -220,6 +227,7 @@ export default class Checker {
           outcomeType = ClientOutcomes.NEED_REPORT;
         }
 
+        // Only return outcomes that are not permit-free
         if (outcomeType !== ClientOutcomes.PERMIT_FREE) {
           const decisiveDecisions = outcomeDecision.getDecisiveInputs() as Decision[];
           decisiveDecisions.forEach((decision) => {

@@ -329,21 +329,20 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
           const isFinalQuestion =
             !checker.getUpcomingQuestions().length &&
-            checker.stack.length === mapIndex - preQuestionsCount + 1;
+            checker.stack.length === i + 1;
+
+          // Get the outcomeType for this question
+          const questionOutcome = checker.getOutcomesPerQuestion()[i];
 
           // Check if current question is causing a permit requirement
-          const showQuestionAlert =
-            !!checker.getQuestionsThatTriggerOutcomes()[
-              mapIndex - preQuestionsCount
-            ] && !isPermitForm;
+          const showQuestionAlert = !!questionOutcome && !isPermitForm;
 
-          // Determine if this question triggers the contact outcome
-          const hasContactOutcome = checker.questionTriggersContactOutcome(q);
-
-          // Define the outcome type
-          const outcomeType: imtr.ClientOutcomes = hasContactOutcome
-            ? imtr.ClientOutcomes.NEED_CONTACT
-            : checker.getQuestionsThatTriggerOutcomes()[i];
+          // In case of a "contact outcome" hide other outcomeTypes, because we do not support "single-permit multi-oucome yet"
+          const outcomeType = checker.hasContactOutcome()
+            ? checker.questionTriggersContactOutcome(q)
+              ? imtr.ClientOutcomes.NEED_CONTACT
+              : imtr.ClientOutcomes.PERMIT_FREE
+            : questionOutcome;
 
           return (
             <StepByStepItem
