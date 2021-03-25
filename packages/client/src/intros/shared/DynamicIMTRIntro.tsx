@@ -8,7 +8,7 @@ import { Intro } from ".";
 const DynamicIMTRIntro: FunctionComponent = () => {
   const { checker } = useChecker();
   if (checker) {
-    const dependantOnQuestions = checker._getUpcomingQuestions().length > 0;
+    const dependantOnQuestions = checker.getUpcomingQuestions().length > 0;
     const dependantOnSituation =
       checker.getAutofillDataNeeds(autofillResolvers).length > 0;
     return <Intro {...{ dependantOnQuestions, dependantOnSituation }} />;
