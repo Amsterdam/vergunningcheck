@@ -2,7 +2,10 @@ import { Button, Heading, Modal, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const ModalUI = styled(Modal)`
-  top: 34%;
+  top: 30%;
+  > div {
+    max-height: 100%;
+  }
 `;
 
 export const ModalBlock = styled.div`
