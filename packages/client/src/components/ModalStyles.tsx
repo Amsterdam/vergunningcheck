@@ -19,10 +19,6 @@ export const ModalButton = styled(Button)`
   align-self: flex-start;
 `;
 
-export const ModalContent = styled.div`
-  min-height: 50vh;
-`;
-
 export const ModalHeading = styled(Heading)`
   flex-grow: 1;
 `;
