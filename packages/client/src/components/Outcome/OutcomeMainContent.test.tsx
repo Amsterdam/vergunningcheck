@@ -9,7 +9,7 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({ slug: "dakkapel-plaatsen" }),
 }));
 
-describe("NeedPermit", () => {
+describe("OutcomeMainContent", () => {
   it("renders the 'needs permit' outcome correctly", () => {
     render(<OutcomeMainContent />);
 
