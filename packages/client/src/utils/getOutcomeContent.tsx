@@ -1,3 +1,4 @@
+import { Paragraph } from "@amsterdam/asc-ui";
 import * as imtr from "@vergunningcheck/imtr-client";
 import React from "react";
 
@@ -144,14 +145,12 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
          * we have to use this hack
          */
         mainContent: (
-          <>
-            <Markdown
-              eventLocation={sections.OUTCOME}
-              source={getNeedContactContent?.description || ""}
-            />
-          </>
+          <Paragraph>
+            {nl.translation.outcome.needContact["in case of emergency"]}
+          </Paragraph>
         ),
-        title: nl.translation.outcome.needContact["in case of emergency"],
+        title:
+          nl.translation.outcome.needContact["you need to contact the city"],
       },
       [NEED_REPORT]: {},
       [NEED_BOTH_PERMIT_AND_REPORT]: {},
