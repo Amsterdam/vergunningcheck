@@ -355,7 +355,7 @@ export default {
       },
       "zonnepanelen-of-zonneboiler-plaatsen": {
         "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt meer dan 1 boom kappen. Doe voor elke volgende een vergunningcheck. Hebt u ook andere bouwplannen? Ook dan kunt u nog een vergunningcheck doen.",
+          "U wilt op verschillende plekken zonnepanelen of een zonneboiler plaatsen. Doe voor elke plek een vergunningcheck.",
       },
       "zonwering-of-rolluik-plaatsen": {
         "you would like to build more than 1 so you need to do multiple permits":
