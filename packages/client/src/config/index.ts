@@ -50,7 +50,7 @@ export const topics: Topic[] = [
   },
   {
     intro: "BomenkapIntro",
-    name: "Bomenkap",
+    name: "Boom kappen of snoeien",
     preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "bomenkap",
     text: {
