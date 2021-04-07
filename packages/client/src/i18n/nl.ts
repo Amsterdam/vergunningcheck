@@ -104,8 +104,6 @@ export default {
       bomenkap: {
         "you may need a permit":
           "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt voor het kappen of snoeien van een boom. Ook voor het kappen van een dode boom kan een vergunning nodig zijn. Hier kunt u de checker ook voor gebruiken.",
-        "intro exception":
-          "Staat de boom buiten de bebouwde kom, bijvoorbeeld in het Amsterdamse Bos of buiten de dorpen van Waterland? Doe dan ook een melding bij de provincie.",
       },
       firesafety: {
         "the building must be safe and the city must be able to verify":

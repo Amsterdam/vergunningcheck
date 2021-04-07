@@ -8,7 +8,6 @@ export default () => {
   return (
     <>
       <Paragraph>{t("introPage.bomenkap.you may need a permit")}</Paragraph>
-      <Paragraph>{t("introPage.bomenkap.intro exception")}</Paragraph>
     </>
   );
 };
