@@ -1,21 +1,14 @@
 import { reverse } from "named-urls";
 import { lazy } from "react";
 import { RouteProps } from "react-router-dom";
-import slugify from "slugify";
 
 import { topics } from "./config";
-import topicsJson from "./topics.json";
+import apiTopics from "./topics.json";
+import { RedirectRule, RoutePropExtended, TopicType } from "./types";
 
-type RedirectRule = {
-  from: string;
-  to: string;
-};
-
-export const getslug = (text: string) =>
-  slugify(text, {
-    strict: true, // remove special chars
-    lower: true, // result in lower case
-  });
+// Find all topics by their type
+const findAllTopicsByType = (type: TopicType) =>
+  topics.filter((t) => t.type === type);
 
 export const geturl = (route: string, params?: { slug: string }) => {
   if (!route) {
@@ -24,23 +17,23 @@ export const geturl = (route: string, params?: { slug: string }) => {
   return reverse(route, params);
 };
 
-type RoutePropExtended = RouteProps & { name: string };
+const apiTopicSlugs = apiTopics.flatMap((apiTopic) =>
+  apiTopic.map(({ slug }) => slug)
+);
 
-export const imtrSlugs = topicsJson
-  .flatMap((api) => api.map((t) => t.slug))
-  .join("|");
+export const imtrSlugs = apiTopicSlugs.join("|");
 
-export const oloSlugs = topics
-  .filter(({ redirectToOlo, hasIMTR }) => !redirectToOlo && !hasIMTR)
+// Get all OLO permit checks by fetching all `PERMIT_CHECK` and filter to see if they have an actual api topic file
+export const oloSlugs = findAllTopicsByType(TopicType.PERMIT_CHECK)
+  .filter((t) => !apiTopicSlugs.find((apiSlug) => apiSlug === t.slug))
   .map((t) => t.slug)
   .join("|");
 
-export const oloRedirectSlugs = topics
-  .filter(({ redirectToOlo }) => redirectToOlo)
+export const oloRedirectSlugs = findAllTopicsByType(TopicType.REDIRECT)
   .map((t) => t.slug)
   .join("|");
 
-const baseRouteConfig: RoutePropExtended[] = [
+export const baseRouteConfig: RoutePropExtended[] = [
   {
     component:
       process.env.NODE_ENV !== "production"
@@ -124,7 +117,3 @@ export const redirectConfig: RedirectRule[] = [
 export const routes = Object.fromEntries(
   baseRouteConfig.map(({ name, path }) => [name, path as string])
 );
-
-export const autofillRoutes: { checker: [string] } = {
-  checker: [routes.checker],
-};

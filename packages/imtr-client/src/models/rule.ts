@@ -1,5 +1,5 @@
-import { AnswerType, ClientSimpleType } from "../types";
-import { collectionOfSimpleTypes, isSimpleType } from "../utils";
+import { Answer, AnswerType, ClientSimpleType } from "../types";
+import { answerCollection, isSimpleType } from "../utils";
 
 /**
  * A rule is a record in the decisionTable.
@@ -7,10 +7,11 @@ import { collectionOfSimpleTypes, isSimpleType } from "../utils";
  * the rule evaluates to true.
  */
 export default class Rule {
-  readonly inputConditions: ClientSimpleType[];
+  readonly inputConditions: Answer[];
   readonly outputValue: ClientSimpleType;
   readonly description?: string;
   readonly __type = "Rule";
+  readonly matchType = "any";
 
   /**
    * Constructor for Rule
@@ -20,14 +21,14 @@ export default class Rule {
    * @param description - A description for this rule. Can be used for outcome.
    */
   constructor(
-    inputConditions: ClientSimpleType[],
+    inputConditions: Answer[],
     outputValue: ClientSimpleType,
     description?: string
   ) {
     if (
       !Array.isArray(inputConditions) ||
-      inputConditions.length === 0 ||
-      !collectionOfSimpleTypes(inputConditions)
+      inputConditions.length === 0
+      //  || !collectionOfSimpleTypes(inputConditions)
     ) {
       throw Error(
         "'inputConditions' on Rule should be an array with at least one real value."
@@ -52,24 +53,88 @@ export default class Rule {
    *
    * @returns indexes of matching values
    */
+  // evaluateNew2(inputs: AnswerType[]): number[] {
+  //   if (!answerCollection(inputs)) {
+  //     throw Error(
+  //       `'values' should be an array of answers, got ${JSON.stringify(inputs)}`
+  //     );
+  //   }
+
+  //   const matchingConditionIndexes = [];
+  //   for (let index = 0; index < this.inputConditions.length; index++) {
+  //     const condition = this.inputConditions[index];
+
+  //     if (condition === "-") {
+  //       // the condition is ignored
+  //       continue;
+  //     }
+
+  //     // if question.collection = true
+  //     if (Array.isArray(condition)) {
+  //       const input = inputs[index] as [];
+  //       if (
+  //         input.length !== condition.length ||
+  //         !input.every((value, i) => value === condition[i])
+  //       ) {
+  //         return [];
+  //       }
+  //     } else {
+  //       // condition is simple type
+  //       if (inputs[index] !== condition) {
+  //         return [];
+  //       }
+  //     }
+
+  //     // current input matches the condition
+  //     matchingConditionIndexes.push(index);
+  //   }
+
+  //   return matchingConditionIndexes;
+  // }
+
+  /**
+   * Find indexes of matching input conditions for provided values.
+   *
+   * @param values a list of values to compare with
+   *
+   * @returns indexes of matching values
+   */
   evaluateNew(values: AnswerType[]): number[] {
-    // XXX: `collectionOfSimpleTypes` doesn't work for the new `values`
-    // `values` can now be `[["Answer 1", "Answer 2"], ["Answer 3"]]` instead of ["Answer 1", "Answer 2", "Answer 3"]
-    if (!collectionOfSimpleTypes(values)) {
+    if (!answerCollection(values)) {
       throw Error(
         `'values' should be an array of simple types, got ${JSON.stringify(
           values
         )}`
       );
     }
-
     const result = this.inputConditions.reduce(
-      (acc: number[] | false, curr, index) => {
-        if (acc !== false && curr !== "-") {
-          if (curr === values[index]) {
-            acc.push(index);
+      (acc: number[] | false, inputCondition, index) => {
+        if (acc !== false && inputCondition !== "-") {
+          // console.log("compare", curr, "with", values[index]);
+
+          if (Array.isArray(inputCondition)) {
+            const x = values[index] as [];
+            if (
+              inputCondition.length === x.length &&
+              // AND support ??
+              // inputCondition.every(function (value, i) {
+              //   return value === x[i];
+              // })
+              // OR support
+              inputCondition.find(function (value, i) {
+                return value === x[i];
+              })
+            ) {
+              acc.push(index);
+            } else {
+              acc = false;
+            }
           } else {
-            acc = false;
+            if (inputCondition === values[index]) {
+              acc.push(index);
+            } else {
+              acc = false;
+            }
           }
         }
         return acc;

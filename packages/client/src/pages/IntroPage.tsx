@@ -1,19 +1,22 @@
+import { Button } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
+import { Loading } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
-import Loading from "../components/Loading";
-import Nav from "../components/Nav";
 import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
+import { NEXT_BUTTON } from "../utils/test-ids";
 
+// This page will only render in case of a topic `hasIMTR`
 const IntroPage: FunctionComponent = () => {
   const history = useHistory();
-
   const topic = useTopic();
-  const { text, intro } = topic;
+  const { t } = useTranslation();
 
+  const { intro, text } = topic;
   const introComponentPath = intro || "shared/DynamicIMTRIntro";
   const Intro = lazy(
     () => import(`../intros/${introComponentPath}`)
@@ -26,12 +29,16 @@ const IntroPage: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Inleiding - {text.heading}</title>
+        <title>
+          {t("common.introduction")} - {text.heading}
+        </title>
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />
       </Suspense>
-      <Nav noMarginBottom onGoToNext={goToNext} showNext />
+      <Button data-testid={NEXT_BUTTON} onClick={goToNext} variant="secondary">
+        {t("common.do the permit check")}
+      </Button>
     </TopicLayout>
   );
 };

@@ -1,19 +1,19 @@
 import React, { FunctionComponent } from "react";
 
+import { Loading } from "../../atoms";
 import { autofillResolvers } from "../../config/autofill";
 import { useChecker } from "../../hooks";
-import LoadingPage from "../../pages/LoadingPage";
 import { Intro } from ".";
 
 const DynamicIMTRIntro: FunctionComponent = () => {
   const { checker } = useChecker();
   if (checker) {
-    const dependantOnQuestions = checker._getUpcomingQuestions().length > 0;
+    const dependantOnQuestions = checker.getUpcomingQuestions().length > 0;
     const dependantOnSituation =
       checker.getAutofillDataNeeds(autofillResolvers).length > 0;
     return <Intro {...{ dependantOnQuestions, dependantOnSituation }} />;
   } else {
-    return <LoadingPage />;
+    return <Loading />;
   }
 };
 

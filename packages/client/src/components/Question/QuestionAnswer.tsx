@@ -5,19 +5,27 @@ import React, { FunctionComponent, HTMLAttributes } from "react";
 
 import { EditButton, TextToEdit } from "../../atoms";
 import { getAnswerLabel } from "../../utils";
-import { QuestionAlert } from "./";
+import QuestionAlert from "./QuestionAlert";
 
 type QuestionAnswerProps = {
   answer: AnswerType;
   disabled?: boolean;
-  outcomeType: ClientOutcomes;
+  outcomeType?: ClientOutcomes;
+  questionAlertText?: string;
   questionNeedsContactExit?: boolean;
-  showQuestionAlert: boolean;
+  showQuestionAlert?: boolean;
 };
 
 const QuestionAnswer: FunctionComponent<
   QuestionAnswerProps & HTMLAttributes<HTMLElement>
-> = ({ answer, disabled, onClick, outcomeType, showQuestionAlert }) => {
+> = ({
+  answer,
+  disabled,
+  onClick,
+  outcomeType,
+  questionAlertText,
+  showQuestionAlert,
+}) => {
   // Don't render when there's no answer
   if (answer === undefined) return null;
 
@@ -28,7 +36,10 @@ const QuestionAnswer: FunctionComponent<
         <EditButton {...{ disabled, onClick }} />
       </Paragraph>
       {showQuestionAlert && (
-        <QuestionAlert marginBottom={8} {...{ outcomeType }} />
+        <QuestionAlert
+          marginBottom={8}
+          {...{ outcomeType, questionAlertText }}
+        />
       )}
     </>
   );

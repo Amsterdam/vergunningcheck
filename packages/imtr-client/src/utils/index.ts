@@ -3,10 +3,21 @@ import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
 
 // Array checks
-export const collectionOfSimpleTypes = (col: unknown[]): boolean =>
+export const answerCollection = (col: unknown): boolean => {
+  if (collectionOfSimpleTypes(col)) return true;
+  if (
+    Array.isArray(col) &&
+    !col.find((val) => !isSimpleType(val) && !collectionOfSimpleTypes(val))
+  ) {
+    return true;
+  }
+  return false;
+};
+
+export const collectionOfSimpleTypes = (col: unknown): boolean =>
   Array.isArray(col) && !col.find((val) => !isSimpleType(val));
 
-export const collectionOfType = (col: unknown[], type: string): boolean => {
+export const collectionOfType = (col: unknown, type: string): boolean => {
   if (!Array.isArray(col) || col.includes(undefined) || col.includes(null)) {
     return false;
   }

@@ -5,21 +5,19 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
+import { Error, Form, PhoneNumber } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import { LOCATION_INPUT } from "../../utils/test-ids";
-import Error from "../Error";
-import Form from "../Form";
 import Nav from "../Nav";
-import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
-  handleNewAddressSubmit: (address: Address) => void;
+  handleNewAddressSubmit: (address: Address) => void; // Provide callback to call when the submit button has been pressed
 };
 
 const LocationInput = ({
@@ -36,7 +34,6 @@ const LocationInput = ({
   const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
-  const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
     if (address?.postalCode) {
@@ -53,7 +50,6 @@ const LocationInput = ({
       matomoTrackEvent({
         action: actions.CLICK_INTERNAL_NAVIGATION,
         name: `${eventNames.FORWARD} ${
-          // @TODO: there's a small bug here with directly going to OUTCOME when there's no questions to render
           hasIMTR ? sections.QUESTIONS : sections.LOCATION_RESULT
         }`,
       });
@@ -114,7 +110,7 @@ const LocationInput = ({
       )}
 
       {!hasIMTR && (
-        <Heading forwardedAs="h3">
+        <Heading forwardedAs="h2" styleAs="h3">
           {t("location.address.enter address")}
         </Heading>
       )}
@@ -124,11 +120,9 @@ const LocationInput = ({
         <LocationFinder
           {...{
             errorMessage,
-            focus,
             matomoTrackEvent,
             sessionAddress: address,
             setError,
-            setFocus,
           }}
         />
         <Nav

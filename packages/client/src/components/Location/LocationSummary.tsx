@@ -1,10 +1,10 @@
-// @TODO: Add translations
 import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
 import { setTag } from "@sentry/browser";
 import React, { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, List, ListItem } from "../../atoms";
+import { AddressLines, ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
@@ -13,7 +13,6 @@ import {
   LOCATION_RESTRICTION_MONUMENT,
   LOCATION_SUMMARY,
 } from "../../utils/test-ids";
-import AddressLines from "../AddressLines";
 import EditLocationModal from "./EditLocationModal";
 
 const StyledList = styled(List)<{
@@ -28,7 +27,7 @@ const StyledList = styled(List)<{
     `}
 
   /* In case List isBelowInputFields make it appear white, instead of black */
-${({ isBelowInputFields }) =>
+  ${({ isBelowInputFields }) =>
     isBelowInputFields &&
     css`
       li {
@@ -58,15 +57,25 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   showEditLocationModal,
   showTitle,
 }) => {
-  const topic = useTopic();
+  const { hasIMTR } = useTopic();
   const { topicData } = useTopicData();
+  const { t } = useTranslation();
+
   const address = addressFromLocation ?? topicData.address;
-
   const { restrictions } = address || {};
-  const { hasIMTR } = topic;
 
-  const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
-  const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;
+  const monument = getRestrictionByTypeName(
+    restrictions,
+    "Monument"
+  )?.name?.toLowerCase();
+
+  const cityScapeScope = getRestrictionByTypeName(restrictions, "CityScape")
+    ?.scope;
+  const cityScape = cityScapeScope
+    ? cityScapeScope === "NATIONAL"
+      ? t("common.national city scape")
+      : t("common.municipal city scape")
+    : "";
 
   if (monument) {
     setTag("monument", monument);
@@ -89,7 +98,9 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
 
       {showTitle && showSummary && (
         <Paragraph gutterBottom={8} strong>
-          Over dit adres hebben we de volgende gegevens gevonden:
+          {t(
+            "common.we have found the following information about this address"
+          )}
         </Paragraph>
       )}
 
@@ -105,19 +116,17 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
           {(monument || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_MONUMENT}>
               {monument
-                ? `Het gebouw is een ${monument.toLowerCase()}.`
-                : "Het gebouw is geen monument."}
+                ? t("common.the building is a monument", { monument })
+                : t("common.the building is not a monument")}
             </StyledListItem>
           )}
           {(cityScape || !hasIMTR) && (
             <StyledListItem data-testid={LOCATION_RESTRICTION_CITYSCAPE}>
               {cityScape
-                ? `Het gebouw ligt in een ${
-                    cityScape === "NATIONAL"
-                      ? "rijksbeschermd"
-                      : "gemeentelijk beschermd"
-                  } stads- of dorpsgezicht.`
-                : `Het gebouw ligt niet in een beschermd stads- of dorpsgezicht.`}
+                ? t("common.the building is located inside a city scape", {
+                    cityScape,
+                  })
+                : t("common.the building is not located inside a city scape")}
             </StyledListItem>
           )}
         </StyledList>

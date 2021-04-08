@@ -1,3 +1,5 @@
+// Matomo is used for analytics. We use pageviews as well as events
+
 import { isProduction } from ".";
 
 const matomoSiteId = {
@@ -70,6 +72,8 @@ export const eventNames = {
   HOW_TO_APPLY_FOR_A_PERMIT: "zo werkt aanvragen",
   HOW_TO_APPLY_FOR_A_DEMOLITION: "zo werkt sloop: melding en vergunning",
   HOW_TO_NOTIFY_A_DEMOLITION: "sloopmelding doen",
+  HOW_TO_REPORT: "zo werkt melding doen",
+  HOW_TO_REPORT_A_DEMOLITION: "sloopmelding doen",
   IAMSTERDAM: "iamsterdam.com",
   INSTAGRAM: "instagram",
   LINKEDIN: "linkedin",

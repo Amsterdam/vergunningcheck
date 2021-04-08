@@ -7,9 +7,10 @@ import React, {
   useState,
 } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
+import { Loading } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
-import Loading from "../components/Loading";
 import { LocationSection } from "../components/Location";
 import { OutcomeSection } from "../components/Outcome";
 import { QuestionSection } from "../components/Question";
@@ -59,7 +60,8 @@ const CheckerPage: FunctionComponent = () => {
   const slug = useSlug();
   const { text } = useTopic();
   const { setTopicData, topicData } = useTopicData();
-  const { timesCheckerLoaded, sectionData } = topicData;
+  const { t } = useTranslation();
+  const { timesLoaded, sectionData } = topicData;
 
   useEffect(() => {
     // Next to the useState hook, we also need the useRef hook to make sure the state is always up to date
@@ -82,9 +84,9 @@ const CheckerPage: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    // Count the times the checker is loaded
+    // Count the times the page is loaded
     setTopicData({
-      timesCheckerLoaded: timesCheckerLoaded ? timesCheckerLoaded + 1 : 1,
+      timesLoaded: timesLoaded ? timesLoaded + 1 : 1,
     });
     // eslint-disable-next-line
   }, []);
@@ -223,7 +225,9 @@ const CheckerPage: FunctionComponent = () => {
   return (
     <TopicLayout>
       <Helmet>
-        <title>Vragen en uitkomst - {text.heading}</title>
+        <title>
+          {t("common.questions and outcome")} - {text.heading}
+        </title>
       </Helmet>
 
       {checker ? (

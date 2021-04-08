@@ -1,7 +1,7 @@
-import { Question as ImtrQuestion } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import { FieldErrors } from "react-hook-form";
 
-export const booleanQuestion: ImtrQuestion = {
+export const booleanQuestion: imtr.Question = {
   __type: "Question",
   answer: undefined,
   collection: false,

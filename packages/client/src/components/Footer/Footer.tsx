@@ -10,11 +10,9 @@ import {
 } from "@amsterdam/asc-ui";
 import React, { memo } from "react";
 
-import { List, ListItem } from "../../atoms";
+import { Link, List, ListItem, PhoneNumber } from "../../atoms";
 import { eventNames, sections } from "../../config/matomo";
 import { FOOTER } from "../../utils/test-ids";
-import Link from "../Link";
-import PhoneNumber from "../PhoneNumber";
 import { ContentContainer } from "./FooterStyles";
 
 const FirstColumn = () => (
@@ -29,6 +27,7 @@ const FirstColumn = () => (
         <PhoneNumber
           darkBackground
           eventName={sections.FOOTER}
+          underline
           variant={null}
         />
       </strong>{" "}
@@ -125,20 +124,18 @@ const SecondColumn = () => (
 );
 
 const ThirdColumn = () => (
-  <List noPadding>
-    <Paragraph>
-      Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur,
-      uitgaan, evenementen en meer vindt u op{" "}
-      <Link
-        darkBackground
-        eventName={`${eventNames.IAMSTERDAM} - ${sections.FOOTER}`}
-        href="https://www.iamsterdam.com/"
-        strong
-      >
-        Iamsterdam.com
-      </Link>
-    </Paragraph>
-  </List>
+  <Paragraph>
+    Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan,
+    evenementen en meer vindt u op{" "}
+    <Link
+      darkBackground
+      eventName={`${eventNames.IAMSTERDAM} - ${sections.FOOTER}`}
+      href="https://www.iamsterdam.com/"
+      strong
+    >
+      Iamsterdam.com
+    </Link>
+  </Paragraph>
 );
 
 const Footer = () => (

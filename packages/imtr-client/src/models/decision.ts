@@ -60,25 +60,82 @@ export default class Decision {
     return this.getMatchingRules().shift()?.outputValue || undefined;
   }
 
+  // getAnswerSets() {
+  //   const answers = [
+  //     // from args?
+  //     ["a", "b"], // or!
+  //     ["c", "d"], // and!
+  //     "e",
+  //   ];
+  //   return [
+  //     [["a"], ["c", "d"], "e"],
+  //     [["b"], ["c", "d"], "e"],
+  //   ];
+  // }
+
   getMatchingRules(inputReducer?: InputReducer): Rule[] {
-    // Find the values for our inputs
+    // Find the relevant inputs
     const inputs = inputReducer ? this.inputs.map(inputReducer) : this.inputs;
+    // inputs.map(input => {
+    //   if (Array.isArray(input?.answer)) {
+    //     input?.answer.map(answer => {
+    //       answer
+    //     })
+    //   }
+    // });
+
+    // return this.rules.filter((rule) => {
+    //   for (let j = 0; j < inputs.length; j++) {
+    //     const answer = inputs[j].answer;
+
+    //     // if (Array.isArray(answer)) {
+    //     //   for (let i = 0; i < answer.length; i++) {
+    //     //     if (rule.evaluateNew([answer[i]])) {
+    //     //       return true;
+    //     //     }
+    //     //   }
+    //     // } else {
+    //       rule.evaluateNew(answer);
+    //     // }
+    //   }
+    //   return false;
+    // });
+
+    // Find the values for our inputs
     const values = inputs.map((input) => input?.answer);
-    // XXX: this needs to be fixed
-    return this.rules.filter((rule) => {
-      // If collection...
-      if (Array.isArray(values)) {
-        console.log("hier 1");
-        return values.find((val: any) => rule.evaluateNew(val).length !== 0);
-      } else {
-        console.log("hier 2");
-        return rule.evaluateNew(values).length !== 0;
-      }
-    });
+
+    return this.rules.filter((rule) => rule.evaluateNew(values).length !== 0);
+    // // XXX: this needs to be fixed
+    // return this.rules.filter((rule) => {
+    //   // If collection...
+    //   if (Array.isArray(values)) {
+    //     console.log("hier 1");
+    //     return values.find((val: any) => rule.evaluateNew(val).length !== 0);
+    //   } else {
+    //     console.log("hier 2");
+    //     return rule.evaluateNew(values).length !== 0;
+    //   }
+    // });
+
+    // return this.rules.filter((rule) => {
+    //   // TODO implement difference of rules matchin all values or partial sets
+    //   // DMN has support for this.
+    //   if (rule.matchType !== "any") { // XXX or input.type = 'any'...
+    //     throw Error("rule.matchType !== 'any' is not implemented.");
+    //   }
+    //   inputs.map((input) => {
+    //     if (input?.collection) {
+    //       input?.answer.forEach(answer => {
+
+    //       });) rule
+    //       rule.evaluateNew(values).length !== 0;
+    //     }
+    //   })
   }
 
   /**
    * Find inputs (Questions or Decisions) that are decisive for (the set of rules?)
+   *
    * @returns the decisive inputs
    */
   getDecisiveInputs(): Input[] {

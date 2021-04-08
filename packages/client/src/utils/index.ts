@@ -4,9 +4,10 @@ import { matchPath } from "react-router";
 
 import { topics } from "../config";
 import nl from "../i18n/nl";
+import Topic from "../models/topic";
 import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
-import topicsJson from "../topics.json";
-import { Answer, Restriction, Topic } from "../types";
+import apiTopics from "../topics.json";
+import { Answer, Restriction, TopicType } from "../types";
 
 const { no, yes } = nl.translation.common;
 
@@ -20,28 +21,27 @@ export const getSlugFromPathname = (pathname: string) => {
 };
 
 // Find a topic by the slug
-export const findTopicBySlug = (slug: string) => {
+export const findTopicBySlug = (slug: string): Topic | undefined => {
   const topic = topics.find((t) => t.slug === slug);
   if (topic) return topic;
 
-  const topicConfig = topicsJson.flat().find((topic) => topic.slug === slug);
+  const topicConfig = apiTopics.flat().find((topic) => topic.slug === slug);
   if (!topicConfig) {
-    return null;
+    return undefined;
   }
 
   // Provide name (with slug as fallback)
-  // Ignore in coverage because by default topics.json doesn't contain nameless topics
-  /* istanbul ignore next */
+  // This test coverage can be achieved by mocking `topics.json` (see: /client/src/utils/index.test.tsx)
   const { name = slug } = topicConfig;
 
-  return {
-    hasIMTR: true,
+  return new Topic({
     name,
     slug,
     text: {
       heading: name,
     },
-  } as Topic;
+    type: TopicType.PERMIT_CHECK,
+  });
 };
 
 // Data utils
@@ -114,16 +114,20 @@ export const isValidPostalcode = (value?: string) => {
  * @param {string} value
  */
 export const sanitizeHouseNumberFull = (value?: string) => {
-  const spacesBeforeAndAfterNonDigit = /(?<=\D)|(?=\D)/g;
+  const spacesBeforeAndAfterNonDigit = /\d+|\D+/g;
   const nonDigits = /[a-z]/i;
   const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/g;
 
   if (!value) return "";
   if (!nonDigits.test(value)) return value;
-  return (value.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
-    .join("") // Revert to one string
-    .replace(spacesBeforeAndAfterNonDigit, " ") // Add spaces before/after a non-digit
-    .trim(); // Trim space before and after
+  return (
+    (value.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
+      .join(" ") // Revert to one string
+      .match(spacesBeforeAndAfterNonDigit) || []
+  ) // Add spaces before/after a non-digit
+    .join(" ") // Revert to one string
+    .replace(/\s+/g, " ")
+    .trim();
 };
 
 /**

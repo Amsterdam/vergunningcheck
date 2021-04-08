@@ -1,0 +1,50 @@
+{
+  "permits": [
+    {
+      "version": 3,
+      "name": "Conclusie Bruidsschat-zonnepaneel",
+      "questions": [
+        {
+          "text": "Demo vraag",
+          "description": "Robin Piets uit team vergunningcheck heeft een demo vraag toegevoegd, want anders kan ik de andere vergunningchecks niet ophalen. Er mag (nog) geen checker bestaan zonder vragen en uitkomsten. Neem contact op met mij of Peter Lans als er vragen zijn hierover.",
+          "type": "boolean",
+          "prio": 10,
+          "id": "88a55532ab77b8b0d539995efb980f0c"
+        }
+      ],
+      "decisions": {
+        "873fd134c4ea6110f430b38e34ac8669": {
+          "requiredInputs": ["88a55532ab77b8b0d539995efb980f0c"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["873fd134c4ea6110f430b38e34ac8669"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "Ga3nu9SKCqR8v2tFt"
+}

@@ -1,5 +1,6 @@
-import { Answer as IMTRAnswer } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
+import { RouteProps } from "react-router-dom";
 
 /**
  * Location types
@@ -12,7 +13,7 @@ export type Restriction = {
 
 export type ZoningPlan = {
   __typename?: string;
-  name?: string;
+  name: string;
   scope?: string;
 };
 
@@ -35,7 +36,6 @@ export type Address = null | AddressType;
 /**
  * Section types
  */
-
 export type SectionComponent = {
   currentSection: SectionObject;
   sectionFunctions: SectionFunctions;
@@ -64,12 +64,13 @@ export type SectionFunctions = {
 export type TopicData = {
   address: Address;
   answers: {
-    [id: string]: IMTRAnswer;
+    [id: string]: imtr.Answer;
   };
-  timesCheckerLoaded: number;
-  sectionData: SectionData[];
-  type: string;
   questionIndex: number;
+  questionMultipleCheckers?: AnswerValue;
+  sectionData: SectionData[];
+  timesLoaded: number;
+  type: string;
 };
 
 export type setTopicFn = (topicData: Partial<TopicData>) => void;
@@ -84,44 +85,66 @@ export type setTopicSessionDataFn = (
 ) => void;
 
 /**
+ * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
+ *
+ * Direct importing and including components does not work because the hooks lose context.
+ */
+export enum PreQuestionComponent {
+  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+}
+
+/**
  * Topic types
  */
-type BaseTopic = {
+export enum TopicType {
+  PERMIT_CHECK, // A permit-check that is either an "OLO flow" or an "IMTR flow" check. IMTR checks are configured in `packages/imtr/src/config`.
+  PERMIT_FORM, // A permit-form - required when PERMIT_NEEDED - with the main focus on generating a PDF
+  REDIRECT, // A direct redirect to "OLO". We only use this to track the visitor count from amsterdam.nl
+}
+
+export type TopicConfig = {
+  intro?: string;
   name: string;
+  preQuestions?: PreQuestionComponent[];
   slug: string;
   text: {
     heading: string;
     locationIntro?: string;
   };
+  type: TopicType;
+  userMightNotNeedPermit?: boolean;
 };
 
-type IMTRTopic = {
-  hasIMTR: true;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
+export type PreQuestionFunctions = {
+  editQuestion: (index: number) => void;
+  goToNextQuestion: () => void;
+  isCheckerConclusive: () => boolean;
+  saveAnswer: (answer: Answer, topicDataKey: string) => void;
+};
 
-type OloTopic = {
-  hasIMTR: false;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
-
-type RedirectToOloTopic = {
-  hasIMTR: false;
-  redirectToOlo: true;
-  intro?: undefined;
-} & BaseTopic;
-
-export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
+// This is an imported topic from the Flo Legal api
+export type ApiTopic = {
+  name?: string;
+  path?: string;
+  permits: string[];
+  slug: string;
+};
 
 /**
  * Checker related types
  */
+
+export type QuestionAlert = {
+  questionAnswer: boolean;
+  text: string;
+};
+
+export type AnswerValue = boolean | string | string[];
+
 export type Answer = {
-  formValue: string;
+  formValue?: string; // This is only used for Radio / Checkbox answers
   label: string;
-  value: boolean | string | string[];
+  value: AnswerValue;
 };
 
 /**
@@ -134,3 +157,13 @@ export type OutcomeContentType = {
   mainContent?: ReactNode;
   title: string;
 };
+
+/**
+ * Router related types
+ */
+export type RedirectRule = {
+  from: string;
+  to: string;
+};
+
+export type RoutePropExtended = RouteProps & { name: string };

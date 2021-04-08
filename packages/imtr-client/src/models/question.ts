@@ -155,7 +155,9 @@ export default class Question {
 
       if (unsupportedOption) {
         throw Error(
-          `value '${unsupportedOption}' in setAnswer is not in options-list '${this.options}'`
+          `value '${unsupportedOption}' in setAnswer is not in options-list ${JSON.stringify(
+            this.options
+          )}`
         );
       }
     } else if (

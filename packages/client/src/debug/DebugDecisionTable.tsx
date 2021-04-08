@@ -95,7 +95,7 @@ const DebugDecisionTable: FunctionComponent = () => {
               </tr>
             </thead>
             <tbody>
-              {checker._getUpcomingQuestions().map((q: Question, i: number) => (
+              {checker.getUpcomingQuestions().map((q: Question, i: number) => (
                 <tr key={`open-${q.id}-${i}`}>
                   <td>
                     <QuestionSummary question={q} />
