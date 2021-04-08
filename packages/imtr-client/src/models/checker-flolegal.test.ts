@@ -18,25 +18,45 @@ describe("IMTR specific", () => {
       text: "Are you sure?",
       prio: 20,
     });
-    const d1 = new Decision(
-      "d1",
-      [q1, q2],
-      [
-        new Rule([true], "permit-required"),
-        new Rule([false, false], "permit-required"),
-        new Rule([false, true], "no-permit-required"),
-      ]
-    );
-    const dummy = new Decision(
-      "dummy",
-      [d1],
-      [
-        new Rule(["permit-required"], "You need a permit."),
-        new Rule(["no-permit-required"], "You don't need a permit."),
-      ]
-    );
+    const d1 = new Decision({
+      id: "d1",
+      inputs: [q1, q2],
+      rules: [
+        new Rule({ inputConditions: [true], outputValue: "permit-required" }),
+        new Rule({
+          inputConditions: [false, false],
+          outputValue: "permit-required",
+        }),
+        new Rule({
+          inputConditions: [false, true],
+          outputValue: "no-permit-required",
+        }),
+      ],
+    });
+    const dummy = new Decision({
+      id: "dummy",
+      inputs: [d1],
+      rules: [
+        new Rule({
+          inputConditions: ["permit-required"],
+          outputValue: "You need a permit.",
+        }),
+        new Rule({
+          inputConditions: ["no-permit-required"],
+          outputValue: "You don't need a permit.",
+        }),
+      ],
+    });
 
-    const checker = new Checker([new Permit("some permit", 1, [dummy])]);
+    const checker = new Checker({
+      permits: [
+        new Permit({
+          name: "some permit",
+          version: 1,
+          decisions: [dummy],
+        }),
+      ],
+    });
     let question = checker.next() as Question;
     question.setAnswer(true);
     expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(

@@ -11,3 +11,5 @@ export {
 
 export { makeRunWithLimit } from "https://denopkg.com/alextes/run-with-limit/mod.ts";
 export { default as yargs } from "https://deno.land/x/yargs@v16.0.3-deno/deno.ts";
+
+export type { JSONPermit, JSONPermitInner } from "../../imtr-lib/index.ts";

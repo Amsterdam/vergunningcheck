@@ -30,6 +30,10 @@ export type Resolver = (
 export type Answers = { [id: string]: Answer };
 export type AutofillResolverMap = { [name: string]: Resolver };
 
+export type CheckerProps = {
+  permits: Permit[];
+};
+
 /**
  * Step checker class for checker
  */
@@ -38,12 +42,13 @@ export default class Checker {
   private _stack: Question[] = [];
   private autofillData = "";
   private done = false;
+  readonly __type = "Checker";
 
   /**
    * Constructor for Checker
    * @param permits - Permits for this checker
    */
-  constructor(permits: Permit[]) {
+  constructor({ permits }: CheckerProps) {
     if (!collectionOfType(permits, "Permit")) {
       throw Error("'permits' must be an array of type 'Permit'");
     }

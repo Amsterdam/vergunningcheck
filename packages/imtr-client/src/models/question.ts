@@ -1,39 +1,54 @@
 import isNumber from "lodash.isnumber";
 import isString from "lodash.isstring";
-import { Answer, ClientSimpleType } from "../types";
+import { QuestionAnswer, ClientSimpleType } from "../types";
 
 import { collectionOfType } from "../utils";
 
 const DESC_MAX_LENGTH = 2048;
-export const questionTypes = ["boolean", "string", "number", "geo"];
+
+export const questionTypes = ["boolean", "string"];
+
+export type QuestionType = "string" | "boolean";
+export type QuestionAutofill = string;
+export type QuestionDescription = string;
+export type QuestionLongDescription = string;
+export type QuestionId = string;
+export type QuestionOption = string;
+export type QuestionOptions = QuestionOption[];
+export type QuestionPrio = number;
+export type QuestionText = string;
+export type QuestionUUID = string;
 
 /**
  * @param answer the values inputs should have
  * @param autofill - name of autofill requirement
  * @param description - a description for this question (mind the max-length)
+ * @param id -
  * @param longDescription - a longer description for this question (mind the max-length)
- * @param options a list of options for the answer
+ * @param options - a list of options for the answer
+ * @param prio -
  * @param text - the question itself
  * @param type - data type of the question, eg. 'boolean', or 'geo'
+ * @param uuid -
  */
 export type QuestionProps = {
-  answer?: Answer;
-  autofill?: string;
-  description?: string;
-  id: string;
-  longDescription?: string;
-  options?: string[];
-  prio: number;
-  text: string;
-  type: "string" | "boolean"; // geo / imtr-type from feel
-  uuid?: string;
+  answer?: QuestionAnswer;
+  autofill?: QuestionAutofill;
+  description?: QuestionDescription;
+  id: QuestionId;
+  longDescription?: QuestionLongDescription;
+  options?: QuestionOptions;
+  prio: QuestionPrio;
+  text: QuestionText;
+  type: QuestionType;
+  uuid?: QuestionUUID;
 };
 
 /**
  * A Question
  */
 export default class Question {
-  private _answer?: Answer;
+  private _answer?: QuestionAnswer;
 
   readonly __type = "Question";
   readonly autofill?: string;
@@ -116,7 +131,7 @@ export default class Question {
   // plugin:@typescript-eslint/recommended
   // eslint@typescript-eslint/explicit-module-boundary-types
 
-  get answer(): Answer {
+  get answer(): QuestionAnswer {
     return this._answer;
   }
 

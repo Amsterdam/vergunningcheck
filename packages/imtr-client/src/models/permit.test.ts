@@ -5,21 +5,38 @@ import Question from "./question";
 import Rule from "./rule";
 
 const getChecker = (questions: Question[]) => {
-  const d1 = new Decision("dummy", questions, [
-    new Rule([false], "no"),
-    new Rule([true, false], "not sure"),
-    new Rule([true, true], "yes"),
-  ]);
-  const dummy = new Decision(
-    "dummy",
-    [d1],
-    [
-      new Rule(["no"], imtrOutcomes.PERMIT_FREE),
-      new Rule(["not sure"], imtrOutcomes.NEED_CONTACT),
-      new Rule(["yes"], imtrOutcomes.NEED_PERMIT),
-    ]
-  );
-  return new Checker([new Permit("drivers-licence", 1, [dummy])]);
+  const d1 = new Decision({
+    id: "dummy",
+    inputs: questions,
+    rules: [
+      new Rule({ inputConditions: [false], outputValue: "no" }),
+      new Rule({ inputConditions: [true, false], outputValue: "not sure" }),
+      new Rule({ inputConditions: [true, true], outputValue: "yes" }),
+    ],
+  });
+  const dummy = new Decision({
+    id: "dummy",
+    inputs: [d1],
+    rules: [
+      new Rule({
+        inputConditions: ["no"],
+        outputValue: imtrOutcomes.PERMIT_FREE,
+      }),
+      new Rule({
+        inputConditions: ["not sure"],
+        outputValue: imtrOutcomes.NEED_CONTACT,
+      }),
+      new Rule({
+        inputConditions: ["yes"],
+        outputValue: imtrOutcomes.NEED_PERMIT,
+      }),
+    ],
+  });
+  return new Checker({
+    permits: [
+      new Permit({ name: "drivers-licence", version: 1, decisions: [dummy] }),
+    ],
+  });
 };
 const getQuestions = () => [
   new Question({
@@ -38,10 +55,12 @@ const getQuestions = () => [
 
 describe("Permit", () => {
   test("getDecisionById", () => {
-    const d = new Decision("somedummy", getQuestions(), [
-      new Rule([false], "no"),
-    ]);
-    const permit = new Permit("myperm", 1, [d]);
+    const d = new Decision({
+      id: "somedummy",
+      inputs: getQuestions(),
+      rules: [new Rule({ inputConditions: [false], outputValue: "no" })],
+    });
+    const permit = new Permit({ name: "myperm", version: 1, decisions: [d] });
     expect(permit.getDecisionById("somedummy")).toBe(d);
   });
   test("simple imtr checker", () => {

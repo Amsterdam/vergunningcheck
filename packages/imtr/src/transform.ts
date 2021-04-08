@@ -1,4 +1,4 @@
-import { join, emptyDir } from "./deps.ts";
+import { join, emptyDir, JSONPermit, JSONPermitInner } from "./deps.ts";
 import { readJson, writeJson } from "./util.ts";
 import imtrbuild from "./parser.ts";
 
@@ -7,11 +7,17 @@ import type {
   PermitResponse,
   TopicInputType,
   TopicOutputType,
-} from "./types.ts";
+} from "./types/index.ts";
 
 type Props = {
   config: string;
   dir: string;
+};
+
+const warn = (msg: string) => {
+  console.warn(
+    `====================================\n${msg}\n====================================\n`
+  );
 };
 
 export default async (argv: Props) => {
@@ -20,9 +26,10 @@ export default async (argv: Props) => {
 
   const topicsJsonPath = join(Deno.cwd(), argv.dir, "src", "topics.json");
 
-  const { apis }: { apis: APIConfig[] } = await import(
+  const config = (await import(
     argv.config ? join(Deno.cwd(), argv.config) : "./config.ts"
-  );
+  )) as { apis: APIConfig[] };
+  const { apis } = config;
 
   // We want to prevent duplicate keys for topics
   {
@@ -77,6 +84,7 @@ export default async (argv: Props) => {
 
     /* Convert multiple permit-xml files per topic to a json string and write to the [topic].json file */
     topics.forEach(async (topic: TopicOutputType) => {
+      let error = false;
       const { slug, permits } = topic;
       const topicJsonContent = {
         permits: await Promise.all(
@@ -124,7 +132,7 @@ export default async (argv: Props) => {
               );
 
               await writeJson(parsedPath, json);
-              const imtr = (await imtrbuild(json)) as any;
+              const imtr = (await imtrbuild(json)) as JSONPermitInner;
 
               /* Give questions a higher priority-number (so _less_ important) matching
                * the weight with the number of questions per permit
@@ -141,20 +149,28 @@ export default async (argv: Props) => {
                 };
               });
 
-              return {
+              const result: JSONPermit = {
                 version,
                 ...imtr,
               };
+              return result;
             } catch (e) {
-              console.error(`failed to convert json for ${permitId}`);
-              throw e;
+              error = true;
+              warn(`Failed to convert json for ${permitId}! ${e}`);
+
+              //throw e;
             }
           })
         ),
         slug,
       };
-
-      writeJson(join(transformedDir, `${slug}.json`), topicJsonContent);
+      if (error) {
+        warn(
+          `Cannot write ${slug} as one or more of it's permits failed to transform.`
+        );
+      } else {
+        writeJson(join(transformedDir, `${slug}.json`), topicJsonContent);
+      }
     });
     return topics;
   });

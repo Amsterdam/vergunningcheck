@@ -7,6 +7,11 @@ import Rule from "./rule";
 
 export type InputReducer = (input: Input) => Input | null;
 
+export type DecisionProps = {
+  id: string;
+  inputs: Input[];
+  rules: Rule[];
+};
 /**
  * A Decision in DMN is basically a table with inputs as columns
  * and records / lines as rules.
@@ -29,7 +34,7 @@ export default class Decision {
    * @param inputs - the Input requirements
    * @param rules - the Rule's from the decision table
    */
-  constructor(id: string, inputs: Input[], rules: Rule[]) {
+  constructor({ id, inputs, rules }: DecisionProps) {
     if (!isString(id)) {
       throw Error("'id' must be a String");
     }
@@ -46,6 +51,18 @@ export default class Decision {
         `'rules' must be an array of type 'Rule' (got ${JSON.stringify(rules)})`
       );
     }
+
+    const misconfiguredRule = rules.find(
+      (rule) => rule.inputConditions.length > inputs.length
+    );
+    if (misconfiguredRule) {
+      throw Error(
+        `inputConditions.length for rule ${JSON.stringify(
+          misconfiguredRule
+        )} too great for inputs.length ${inputs.length}`
+      );
+    }
+
     this.id = id;
     this.inputs = inputs;
     this.rules = rules;

@@ -110,6 +110,7 @@ If you want to combine 2 or more permits in 1 checker, we need to configure a to
 - List the permit-id's you want to combine in [./packages/imtr/src/config.ts](./packages/imtr/src/config.ts) under `topics`.
   - To find the permit-ids you can use in the `./packages/client/public/imtr/list.source.json`.
   - You have to give your topic a slug as the key. This slug is used in the url by the client-application.
+  - Note; the ordering of the permit-ids is important for the order of questions in the checker. The order is deteremined by the team based on mainly UX. Easier questions come first, preferably questions about the 'big stuff'. Eg. the house itself, or monument / cityscape status.
 - Then run `npm run imtr`.
 - Open the app, your checker should be visible in the list.
 

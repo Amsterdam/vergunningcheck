@@ -1,26 +1,29 @@
-import { emptyDir, exists, join, makeRunWithLimit } from './deps.ts';
-import type { ActivitiesResponse, APIConfig, TopicInputType } from "./types.ts";
+import { emptyDir, exists, join, makeRunWithLimit } from "./deps.ts";
+import type {
+  ActivitiesResponse,
+  APIConfig,
+  TopicInputType,
+} from "./types/index.ts";
 import { writeJson } from "./util.ts";
 
 type Props = {
   config: string;
   dir: string;
   maxConnections: number;
-}
+};
 
-const keyName = 'STTR_BUILDER_API_KEY';
+const keyName = "STTR_BUILDER_API_KEY";
 
 export default async (argv: Props) => {
-
   const baseDir = join(Deno.cwd(), argv.dir);
   const publicDir = join(baseDir, "public");
   const key = Deno.env.get(keyName);
 
   // dir should exist
-  if (!await exists(baseDir)) {
+  if (!(await exists(baseDir))) {
     return new Error(`directory '${baseDir}' not found`);
   }
-  if (!await exists(publicDir)) {
+  if (!(await exists(publicDir))) {
     return new Error(`directory '${baseDir}' should contain a 'public' folder`);
   }
 
@@ -54,7 +57,7 @@ export default async (argv: Props) => {
         }
         const activities = response as TopicInputType[];
 
-        writeJson(join(publicDir, outputDir, "list.json"), activities)
+        writeJson(join(publicDir, outputDir, "list.json"), activities);
 
         // Now fetch the permits using a pool of promises
         const { runWithLimit } = makeRunWithLimit(argv.maxConnections);
@@ -79,7 +82,10 @@ export default async (argv: Props) => {
             }
 
             try {
-              writeJson(join(publicDir, outputDir, `${permitId}.json`), await result.json())
+              writeJson(
+                join(publicDir, outputDir, `${permitId}.json`),
+                await result.json()
+              );
             } catch (e) {
               console.error(e, result);
             }
@@ -94,5 +100,4 @@ export default async (argv: Props) => {
   );
 
   await Promise.all(apisMap);
-
-}
+};

@@ -1,6 +1,12 @@
 import { ClientSimpleType } from "../types";
 import { collectionOfSimpleTypes, isSimpleType } from "../utils";
 
+type RuleProps = {
+  inputConditions: ClientSimpleType[];
+  outputValue: ClientSimpleType;
+  description?: string;
+};
+
 /**
  * A rule is a record in the decisionTable.
  * A rule has some conditions, if they match the given values
@@ -19,11 +25,7 @@ export default class Rule {
    * @param outputValue the resulting value if this rule evaluates to true
    * @param description - A description for this rule. Can be used for conclusion.
    */
-  constructor(
-    inputConditions: ClientSimpleType[],
-    outputValue: ClientSimpleType,
-    description?: string
-  ) {
+  constructor({ inputConditions, outputValue, description }: RuleProps) {
     if (
       !Array.isArray(inputConditions) ||
       inputConditions.length === 0 ||

@@ -7,7 +7,12 @@ export const collectionOfSimpleTypes = (col: unknown[]): boolean =>
   Array.isArray(col) && !col.find((val) => !isSimpleType(val));
 
 export const collectionOfType = (col: unknown[], type: string): boolean => {
-  if (!Array.isArray(col) || col.includes(undefined) || col.includes(null)) {
+  if (
+    !Array.isArray(col) ||
+    col.includes(undefined) ||
+    col.includes(null) ||
+    col.length === 0
+  ) {
     return false;
   }
   const itemOfInvaldType = col.find(

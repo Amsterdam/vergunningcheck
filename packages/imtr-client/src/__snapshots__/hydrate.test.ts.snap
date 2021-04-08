@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mock Question Rehydration with config 1`] = `
+Question {
+  "__type": "Question",
+  "_answer": "\\"b\\"",
+  "autofill": "Yes autofill 234()-!@#$%^&*()P",
+  "description": "some random description or undefined",
+  "id": "83ac94c0-92de-40df-a6f5-b96ee9b97cc4",
+  "longDescription": "some very long description with [some](markdown)",
+  "options": Array [
+    "\\"a\\"",
+    "\\"b\\"",
+  ],
+  "prio": 150,
+  "text": "Id fugiat ut molestiae delectus quia voluptas ab.",
+  "type": "string",
+  "uuid": "slopen vraag monument",
+}
+`;
+
+exports[`mock Rule Rehydration with config 1`] = `
+Rule {
+  "__type": "Rule",
+  "description": "Aut quasi deleniti amet.",
+  "inputConditions": Array [
+    false,
+    true,
+    false,
+  ],
+  "outputValue": 3,
+}
+`;

@@ -1,3 +1,4 @@
+import { JSONPermitInner } from "./deps.ts";
 import { getAutofillResolverKey } from "./autofill.ts";
 
 import {
@@ -25,8 +26,6 @@ import {
   UITV_EXECUTION_RULE,
   UITV_EXECUTION_RULES,
   UITV_GEO_REF,
-  UITV_LOCATION,
-  UITV_LOCATION_IDENTIFICATION,
   UITV_OPTION_TEXT,
   UITV_OPTION_TYPE,
   UITV_OPTION,
@@ -51,11 +50,10 @@ import type {
 import type {
   JSONDecisions,
   JSONInputs,
-  JSONPermit,
   JSONQuestion,
   JSONRule,
   JSONRuleInput,
-} from "./types/json.ts";
+} from "../../imtr-lib/index.ts";
 
 import { format, strFmt } from "./util.ts";
 
@@ -75,7 +73,7 @@ import { format, strFmt } from "./util.ts";
  * Main function to get configuration for imtr-client.
  * Output can be used to store as a json-file
  */
-export default (json: DMNDocument): JSONPermit => {
+export default (json: DMNDocument): JSONPermitInner => {
   const definition = json[DMN_DEFINITIONS][0] as DMNDefinition;
   return {
     /** Please don't sort these keys, it determines the json output. Most informative fields
@@ -184,19 +182,8 @@ const getQuestions = (
   return rules.map((rule) => {
     let result: any;
 
-    const geoReference = rule[UITV_GEO_REF];
-    if (geoReference) {
-      const text = geoReference[0][UITV_QUESTION_TEXT];
-      result = {
-        identification:
-          geoReference[0][UITV_LOCATION][0].attributes[
-            UITV_LOCATION_IDENTIFICATION
-          ],
-        type: "geo",
-      };
-      if (text) {
-        result.text = text;
-      }
+    if (rule[UITV_GEO_REF]) {
+      throw Error("geo not supported yet");
     } else {
       // list or boolean
       const question = rule[UITV_QUESTION][0];

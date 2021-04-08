@@ -1,6 +1,5 @@
 export type PermitId = string;
 export type PermitName = string;
-
 export type PermitConfig = Map<PermitId, PermitName>;
 
 export type APIConfig = {
@@ -18,6 +17,7 @@ export type ApiResult = {
 export type ActivitiesResponse = {
   error?: string;
 };
+
 export type PermitResponse = {
   sttr: string;
   version: number;

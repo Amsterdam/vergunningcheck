@@ -21,8 +21,8 @@ export const getRestrictionByTypeName = (
  * Scroll to `ref` in page. This function calculates the distance between
  * the top of the window and the top of the element and scrolls to it.
  *
- * @param {object} ref - reference to an element created by React.useRef()
- * @param {number} offset - pass an offset to reduce from the total distance
+ * @param ref - reference to an element created by React.useRef()
+ * @param offset - pass an offset to reduce from the total distance
  */
 export const scrollToRef = (
   ref: React.MutableRefObject<HTMLAnchorElement>,
@@ -39,7 +39,7 @@ export const scrollToRef = (
  * This function strips everything from a string that's not a letter or number, including spaces.
  * Usefull when comparing strings like `19-c` and `19 C `, which will both be `19c`
  *
- * @param {string | undefined} str
+ * @param str
  */
 export const stripString = (str?: string) =>
   str && str.toLowerCase().replace(/[^a-z0-9]+/g, "");
@@ -48,7 +48,7 @@ export const stripString = (str?: string) =>
  *
  * This function return `true` or `false` wheter or not a value is a equal to a Dutch postalcode (eg: 1055XD)
  *
- * @param {string} value
+ * @param value
  */
 export const isValidPostalcode = (value?: string) => {
   const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[a-z]{2}$/i;
@@ -59,7 +59,7 @@ export const isValidPostalcode = (value?: string) => {
  *
  * This function removes all query strings from an URL
  *
- * @param {string} value
+ * @param value
  */
 export const removeQueryStrings = (value: string) => {
   return value.split("?")[0];

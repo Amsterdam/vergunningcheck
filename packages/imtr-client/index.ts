@@ -1,6 +1,6 @@
 export { getChecker } from "./src";
 
-export type { Answer, Input } from "./src/types";
+export type { QuestionAnswer as Answer, Input } from "./src/types";
 export type {
   Answers,
   AutofillData,

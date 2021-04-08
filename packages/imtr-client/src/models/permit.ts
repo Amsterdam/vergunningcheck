@@ -6,6 +6,12 @@ import { collectionOfType } from "../utils";
 import Decision from "./decision";
 import Question from "./question";
 
+export type PermitProps = {
+  name: string;
+  version: number;
+  decisions: Decision[];
+};
+
 /**
  * Step checker class for permits
  */
@@ -23,9 +29,9 @@ export default class Permit {
    * @param version - imtr version number
    * @param decisions - Decisions for permmits
    */
-  constructor(name: string, version: number, decisions: Decision[]) {
+  constructor({ name, version, decisions }: PermitProps) {
     if (!isString(name)) {
-      throw Error("'name' must be a String");
+      throw Error(`'name' must be a String, (got ${name})`);
     }
     if (!isNumber(version) || version < 1) {
       throw Error("'version' must be a Number >= 1");

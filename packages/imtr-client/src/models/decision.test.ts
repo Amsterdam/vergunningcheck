@@ -3,8 +3,14 @@ import Question from "./question";
 import Rule from "./rule";
 
 const getMock = () => {
-  const yes = new Rule([true], "Something big");
-  const no = new Rule([false], "Something small");
+  const yes = new Rule({
+    inputConditions: [true],
+    outputValue: "Something big",
+  });
+  const no = new Rule({
+    inputConditions: [false],
+    outputValue: "Something small",
+  });
 
   const question = new Question({
     id: "abc",
@@ -12,19 +18,26 @@ const getMock = () => {
     text: "Are you planning something big?",
     prio: 10,
   });
-  const decision = new Decision("fake-id", [question], [yes, no]);
+  const decision = new Decision({
+    id: "fake-id",
+    inputs: [question],
+    rules: [yes, no],
+  });
 
-  const conclusionYes = new Rule(["Something big"], "You need this permit.");
-  const conclusionNo = new Rule(
-    ["Something small"],
-    "You don't need this permit."
-  );
+  const conclusionYes = new Rule({
+    inputConditions: ["Something big"],
+    outputValue: "You need this permit.",
+  });
+  const conclusionNo = new Rule({
+    inputConditions: ["Something small"],
+    outputValue: "You don't need this permit.",
+  });
 
-  const conclusionDecision = new Decision(
-    "dummy",
-    [decision],
-    [conclusionYes, conclusionNo]
-  );
+  const conclusionDecision = new Decision({
+    id: "dummy",
+    inputs: [decision],
+    rules: [conclusionYes, conclusionNo],
+  });
   return {
     rules: { yes, no },
     question,
@@ -42,8 +55,32 @@ describe("Decision", () => {
     expect(mock.decision.id).toBe("fake-id");
     expect(
       () =>
-        new Decision(3 as any, [mock.question], [mock.rules.yes, mock.rules.no])
+        new Decision({
+          id: 3 as any,
+          inputs: [mock.question],
+          rules: [mock.rules.yes, mock.rules.no],
+        })
     ).toThrow("'id' must be a String");
+  });
+
+  test("inpuntconditions length and inputs length", () => {
+    const mock = getMock();
+    const rule = new Rule({
+      inputConditions: [true, false],
+      outputValue: "xx",
+    });
+    expect(
+      () =>
+        new Decision({
+          id: "sadf",
+          inputs: [mock.question],
+          rules: [rule],
+        })
+    ).toThrow(
+      `inputConditions.length for rule ${JSON.stringify(
+        rule
+      )} too great for inputs.length 1`
+    );
   });
 
   describe("for Questions", () => {
@@ -60,25 +97,19 @@ describe("Decision", () => {
         text: "Do you live in Alkmaar?",
         prio: 20,
       });
-      const d1 = new Decision(
-        "b",
-        [q1, q2],
-        [
-          new Rule([false], "not interested"),
-          new Rule([true, false], "maybe later"),
-          new Rule([true, true], "let's go"),
-        ]
-      );
+      const d1 = new Decision({
+        id: "b",
+        inputs: [q1, q2],
+        rules: [
+          new Rule({ inputConditions: [false], outputValue: "not interested" }),
+          new Rule({
+            inputConditions: [true, false],
+            outputValue: "maybe later",
+          }),
+          new Rule({ inputConditions: [true, true], outputValue: "let's go" }),
+        ],
+      });
 
-      // const d3 = new Decision(
-      // 	"dummy",
-      // 	[d1, d2],
-      // 	[
-      // 		new Rule(["boring"], "Maybe you should move?"),
-      // 		new Rule(["fun!", "non local"], "Hi Robin or Sven"),
-      // 		new Rule(["fun!", "local"], "Hi André")
-      // 	]
-      // );
       q2.setAnswer(true);
       expect(d1.getDecisiveInputs()).toStrictEqual([]);
       q1.setAnswer(false);

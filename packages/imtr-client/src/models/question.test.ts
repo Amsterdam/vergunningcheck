@@ -1,13 +1,15 @@
+import { QuestionConfig } from "../hydrate";
 import Question from "./question";
 
-const getQuestion = () =>
-  new Question({
-    id: "aaa",
-    type: "boolean",
-    text: "Are you ok?",
-    prio: 10,
-    description: "Describe how you are _feeling_.",
-  });
+const config: QuestionConfig = {
+  id: "aaa",
+  type: "boolean",
+  text: "Are you ok?",
+  prio: 10,
+  description: "Describe how you are _feeling_.",
+};
+
+const getQuestion = () => new Question(config);
 
 describe("Question", () => {
   test("initialization", () => {

@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixtures Decision Question rehydration with config 1`] = `
+Question {
+  "__type": "Question",
+  "_answer": "\\"b\\"",
+  "autofill": "Yes autofill 234()-!@#$%^&*()P",
+  "description": "some random description or undefined",
+  "id": "83ac94c0-92de-40df-a6f5-b96ee9b97cc4",
+  "longDescription": "some very long description with [some](markdown)",
+  "options": Array [
+    "\\"a\\"",
+    "\\"b\\"",
+  ],
+  "prio": 150,
+  "text": "Id fugiat ut molestiae delectus quia voluptas ab.",
+  "type": "string",
+  "uuid": "slopen vraag monument",
+}
+`;
+
+exports[`fixtures Decision Rule rehydration with config 1`] = `
+Rule {
+  "__type": "Rule",
+  "description": "Aut quasi deleniti amet.",
+  "inputConditions": Array [
+    false,
+    true,
+    false,
+  ],
+  "outputValue": 3,
+}
+`;
+
+exports[`fixtures Question rehydration with config 1`] = `
+Question {
+  "__type": "Question",
+  "_answer": "\\"b\\"",
+  "autofill": "Yes autofill 234()-!@#$%^&*()P",
+  "description": "some random description or undefined",
+  "id": "83ac94c0-92de-40df-a6f5-b96ee9b97cc4",
+  "longDescription": "some very long description with [some](markdown)",
+  "options": Array [
+    "\\"a\\"",
+    "\\"b\\"",
+  ],
+  "prio": 150,
+  "text": "Id fugiat ut molestiae delectus quia voluptas ab.",
+  "type": "string",
+  "uuid": "slopen vraag monument",
+}
+`;
+
+exports[`fixtures Rule rehydration with config 1`] = `
+Rule {
+  "__type": "Rule",
+  "description": "Aut quasi deleniti amet.",
+  "inputConditions": Array [
+    false,
+    true,
+    false,
+  ],
+  "outputValue": 3,
+}
+`;
+
+exports[`mock Decision Rehydration with config 1`] = `
+Decision {
+  "__type": "Decision",
+  "getOutput": [Function],
+  "getQuestions": [Function],
+  "id": "asdfasdf",
+  "inputs": Array [
+    Question {
+      "__type": "Question",
+      "_answer": false,
+      "autofill": undefined,
+      "description": undefined,
+      "id": "ff2807ff-535e-4879-a052-b29ae224ac93",
+      "longDescription": "Cumque nihil eius libero omnis et eos sit.
+    ![e-tailers][https://lorempixel.com/400/200]
+    [https://lorempixel.com/400/200](https://lorempixel.com/400/200)
+    ",
+      "options": undefined,
+      "prio": 130,
+      "text": "Nihil deserunt autem rem at.?",
+      "type": "boolean",
+      "uuid": "bluetooth Senior Frozen",
+    },
+    Question {
+      "__type": "Question",
+      "_answer": "\\"Towels laan efficient\\"",
+      "autofill": undefined,
+      "description": undefined,
+      "id": "cf056fdf-4a7d-435e-b4eb-71ab7605b361",
+      "longDescription": "Accusamus enim illum laboriosam.
+    ![Steel Kirgizstan Integration][https://lorempixel.com/400/200]
+    [https://lorempixel.com/400/200](https://lorempixel.com/400/200)
+    ",
+      "options": Array [
+        "\\"Towels laan efficient\\"",
+        "\\"payment overriding Car\\"",
+      ],
+      "prio": 100,
+      "text": "Iste eligendi tempore ipsa tenetur quis et ex.?",
+      "type": "string",
+      "uuid": undefined,
+    },
+  ],
+  "rules": Array [
+    Rule {
+      "__type": "Rule",
+      "description": "Ipsam omnis aperiam eos aut molestias inventore ut.",
+      "inputConditions": Array [
+        false,
+      ],
+      "outputValue": "no",
+    },
+    Rule {
+      "__type": "Rule",
+      "description": "Libero eveniet voluptatem porro.",
+      "inputConditions": Array [
+        true,
+      ],
+      "outputValue": "no",
+    },
+  ],
+}
+`;
