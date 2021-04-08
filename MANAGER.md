@@ -1,3 +1,31 @@
+# Roadmap
+
+Nieuwe checkers toe te voegen zonder dat er technisch iets hoeft te gebeuren
+Wie gaat dit functioneel beheren? Nu Chris/Banu. Op termijn. "Eigenaar" van de checks (persoon/afdeling). Nog niet helemaal duidelijk omdat we daar nu nog niet zijn.
+Checks toevoegen voor andere toepassingen / gemeentes
+
+## Zonder tussenkomst van techniek checkers in productie (loskoppelen)
+
+- Aan uit zetten van checker in acceptatie (gepubliceerd of niet)
+- Productie zetten
+- Het kunnen updaten van een checker
+- Aanmaken van nieuwe checker
+- 1 flow-legal; sttr bestand aan checker koppelen
+- upload xml
+- Obv DSO-url bestand in kunnen laden (on the fly) (Dus niet FTP/VPN/wachtwoord etc.) Is dit DSO compatible.
+- Meerdere sttr bestanden in 1 checker samenvoegen
+- Formulieren (indieningsvereisten) in kunnen laden
+- Intro teksten / uitkomsten wijzigen / aanmaken
+- Publieke url's inladen. checkers met zelfde techniek die niet onder omgevingswet vallen
+
+## Beheer van Chappie zelf (beheer-document). Voor dienstverlening.
+
+- Autofill resolvers koppelen
+- Geen beheer functionaliteit vd app zelf nodig op korte termijn. Knop tekst, footer, header etc.
+- Rollen (per omgeving acc/prod)?
+- Wie kan de rollen vervolgens aanpassen?
+- Koppeling met gem.a'dam systeem
+
 # Vergunningcheck Manager
 
 Goals:

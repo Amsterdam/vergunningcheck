@@ -17,6 +17,7 @@ pipenv install
 pipenv shell
 python manage.py migrate
 python manage.py runserver
+python manage.py loaddata fixtures
 ```
 
 Optional:
