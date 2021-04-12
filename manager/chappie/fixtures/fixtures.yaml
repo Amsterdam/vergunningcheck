@@ -1,73 +1,63 @@
 ################### PERMITS ###################
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000001
+  pk: WKPxKx4YBJ5fqYSni
   fields:
     name: Dakkapel monument
-    imtr_url: http://localhost:3000/imtr/transformed/WKPxKx4YBJ5fqYSni.json
     topic: 00000000-0000-0000-0000-200000000001
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000002
+  pk: Aa2EX3YprpZQ65non
   fields:
     name: Dakkapel bouwen
-    imtr_url: http://localhost:3000/imtr/transformed/Aa2EX3YprpZQ65non.json
     topic: 00000000-0000-0000-0000-200000000001
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000003
+  pk: hMwHKR7Wz4FP8Dm4x
   fields:
     name: Het wijzigen van een monument bij een dakraam
-    imtr_url: http://localhost:3000/imtr/transformed/hMwHKR7Wz4FP8Dm4x.json
     topic: 00000000-0000-0000-0000-200000000002
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000004
+  pk: dRy4PfDs7jQPc9gMG
   fields:
     name: Dakraam bouwen
-    imtr_url: http://localhost:3000/imtr/transformed/dRy4PfDs7jQPc9gMG.json
     topic: 00000000-0000-0000-0000-200000000002
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000005
+  pk: Xm2WwYeGkNN9w6rgQ
   fields:
     name: Kozijn plaatsen in een monument
-    imtr_url: http://localhost:3000/imtr/transformed/Xm2WwYeGkNN9w6rgQ.json
     topic: 00000000-0000-0000-0000-200000000003
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000006
+  pk: 5CJrbgbWZP6uZsouY
   fields:
     name: Kozijn plaatsen
-    imtr_url: http://localhost:3000/imtr/transformed/5CJrbgbWZP6uZsouY.json
     topic: 00000000-0000-0000-0000-200000000003
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000007
+  pk: TRhZrFexMjBW42Ky6
   fields:
     name: Zonnepaneel en zonneboiler monument
-    imtr_url: http://localhost:3000/imtr/transformed/TRhZrFexMjBW42Ky6.json
     topic: 00000000-0000-0000-0000-200000000004
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000008
+  pk: skPG9qqTqWyX9tSY7
   fields:
     name: Zonnepaneel en zonneboiler bouwen
-    imtr_url: http://localhost:3000/imtr/transformed/skPG9qqTqWyX9tSY7.json
     topic: 00000000-0000-0000-0000-200000000004
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000009
+  pk: AkxinYRNNo679qi6T
   fields:
     name: Zonwering, rolhek, luik of rolluik monument
-    imtr_url: http://localhost:3000/imtr/transformed/AkxinYRNNo679qi6T.json
     topic: 00000000-0000-0000-0000-200000000005
 
 - model: chappie.permit
-  pk: 00000000-0000-0000-0000-000000000010
+  pk: TuP6ido9xpJSSxjLi
   fields:
     name: Zonwering, rolhek, luik of rolluik bouwen
-    imtr_url: http://localhost:3000/imtr/transformed/TuP6ido9xpJSSxjLi.json
     topic: 00000000-0000-0000-0000-200000000005
 
 # - model: chappie.permit
@@ -186,7 +176,7 @@
     # permits:
     #   - 00000000-0000-0000-0000-000000000001
     #   - 00000000-0000-0000-0000-000000000002
-    flow: 1
+    flow: IMTR
     name: Dakkapel plaatsen
     slug: dakkapel-plaatsen
 
@@ -196,7 +186,7 @@
     # permits:
     #   - 00000000-0000-0000-0000-000000000003
     #   - 00000000-0000-0000-0000-000000000004
-    flow: 1
+    flow: IMTR
     name: Dakraam plaatsen
     slug: dakraam-plaatsen
 
@@ -206,7 +196,7 @@
     # permits:
     #   - 00000000-0000-0000-0000-000000000005
     #   - 00000000-0000-0000-0000-000000000006
-    flow: 1
+    flow: IMTR
     name: Kozijnen plaatsen
     slug: kozijnen-plaatsen
 
@@ -216,7 +206,7 @@
     # permits:
     #   - 00000000-0000-0000-0000-000000000007
     #   - 00000000-0000-0000-0000-000000000008
-    flow: 1
+    flow: IMTR
     name: Zonnepanelen of zonneboiler plaatsen
     slug: zonnepanelen-of-zonneboiler-plaatsen
 
@@ -226,7 +216,7 @@
     # permits:
     #   - 00000000-0000-0000-0000-000000000009
     #   - 00000000-0000-0000-0000-000000000010
-    flow: 1
+    flow: IMTR
     name: Zonwering of rolluik plaatsen
     slug: zonwering-of-rolluik-plaatsen
 
@@ -235,7 +225,7 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000001
   fields:
-    flow: 2
+    flow: OLO
     name: Kappen of snoeien
     slug: kappen-of-snoeien
     heading: Vergunningcheck kappen of snoeien
@@ -243,7 +233,7 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000002
   fields:
-    flow: 2
+    flow: OLO
     name: Intern verbouwen
     slug: intern-verbouwen
     heading: Vergunningcheck intern verbouwen
@@ -252,7 +242,7 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000003
   fields:
-    flow: 2
+    flow: OLO
     name: Bouwwerk slopen
     slug: bouwwerk-slopen
     heading: Vergunningcheck bouwwerk slopen
@@ -261,8 +251,17 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000004
   fields:
-    flow: 2
+    flow: OLO
     name: Aanbouw of uitbouw maken
     slug: aanbouw-of-uitbouw-maken
     heading: Vergunningcheck aanbouw of uitbouw maken
     intro: Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken
+
+################### OUTCOMES ###################
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000001
+  fields:
+    topic: 00000000-0000-0000-0000-200000000001
+    flo_legal_outcomes: meldingplicht,vergunningplicht
+    text: U heeft meldingplicht en vergunningplicht.

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'pagedown.apps.PagedownConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,10 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 # XXX still needed?
-# import os
-# BASE_DIR = os.path.dirname(os.path.abspath(file))
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
@@ -135,4 +135,3 @@ try:
     from .settings_local import *
 except ImportError:
     pass
-

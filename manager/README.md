@@ -42,6 +42,14 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
+# Flush / reset the database
+
+```
+python manage.py flush
+python manage.py loaddata fixtures
+python manage.py createsuperuser
+```
+
 # Deployment
 
 ```
