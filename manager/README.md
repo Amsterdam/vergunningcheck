@@ -1,14 +1,14 @@
 # Vergunningcheck Manager
 
 The application provides an Admin interface for managing configuration and content for Vergunningcheck frontend.
-The second component is a REST API that can be consumed by GraphQL. It exposes `configuration`, `content` and `sessions`.
+The second component is a REST API that can be consumed by GraphQL.
 
 This project is build on Django, pipenv and ASGI.
 
 # Requirements
 
 - python3
-- pipenv `pip install pipenv`
+- pipenv (`pip install pipenv`)
 
 # Install and run
 

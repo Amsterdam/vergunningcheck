@@ -13,6 +13,8 @@ npm start
 
 If you need to update the checks there are additional install steps in [packages/imtr/README.md](packages/imtr/README.md).
 
+The python application can be run separately, please follow [manager/README.md](manager/README.md).
+
 ## Contributing
 
 If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)
