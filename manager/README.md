@@ -7,8 +7,8 @@ This project is build on Django, pipenv and ASGI.
 
 # Requirements
 
-- python3
-- pipenv (`pip install pipenv`)
+- python3 en pip3
+- pipenv (`pip3 install pipenv`)
 
 # Install and run
 
@@ -16,7 +16,6 @@ This project is build on Django, pipenv and ASGI.
 pipenv install
 pipenv shell
 python manage.py migrate
-python manage.py runserver
 python manage.py loaddata fixtures
 ```
 
@@ -26,6 +25,13 @@ Optional:
 python manage.py createsuperuser
 cp manager/settings_local.dist.py manager/settings_local.py
 ```
+
+Run the application:
+
+```
+python manage.py runserver
+```
+
 
 # Testing
 
