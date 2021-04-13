@@ -185,7 +185,7 @@ export default {
       bomenkap: {
         preQuestionMultipleCheckers: {
           "would you like to build more than one":
-            "Wilt u meer dan 1 boom kappen?",
+            "Wilt u meer dan 1 boom kappen of snoeien?",
           "you can do this permit check one at a time":
             "U kunt de vergunningcheck voor 1 boom tegelijk doen.",
         },
