@@ -39,7 +39,7 @@ const schema = makeExecutableSchema({
 const server = graphqlHTTP({
   ...config,
   schema,
-  validationRules: [depthLimit(6)],
+  validationRules: [depthLimit(4)],
   context: {
     loaders: {
       bagSearch: new DataLoader(bagSearchLoader.load),

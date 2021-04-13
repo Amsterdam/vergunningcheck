@@ -60,122 +60,11 @@
     name: Zonwering, rolhek, luik of rolluik bouwen
     topic: 00000000-0000-0000-0000-200000000005
 
-# - model: chappie.permit
-#   pk: MtNRm9GhSkdPavHJa
-#   fields:
-#     name: Aanbouw gebruiken
-#     imtr_url: http://localhost:3000/imtr/transformed/MtNRm9GhSkdPavHJa.json
-
-# - model: chappie.permit
-#   pk: WzTvyyRGkp2pf79aQ
-#   fields:
-#     name: Aanbouw bouwen
-#     imtr_url: http://localhost:3000/imtr/transformed/WzTvyyRGkp2pf79aQ.json
-
-# - model: chappie.permit
-#   pk: mpQ4YsJWhRTzxkM8n
-#   fields:
-#     name: Bouwen van bijbehorend bouwwerk
-#     imtr_url: http://localhost:3000/imtr/transformed/mpQ4YsJWhRTzxkM8n.json
-
-# - model: chappie.permit
-#   pk: yim42gLF6qjRXeD6D
-#   fields:
-#     name: Simpele Demo Checker voor in de Frontend
-#     imtr_url: http://localhost:3000/imtr/transformed/yim42gLF6qjRXeD6D.json
-
-# - model: chappie.permit
-#   pk: 6nb6FYuztEENADbmS
-#   fields:
-#     name: Kennis Omgevingswet
-#     imtr_url: http://localhost:3000/imtr/transformed/6nb6FYuztEENADbmS.json
-
-# - model: chappie.permit
-#   pk: LhnXDJZDmM7snACGX
-#   fields:
-#     name: Boom kappen of snoeien
-#     imtr_url: http://localhost:3000/imtr/transformed/LhnXDJZDmM7snACGX.json
-
-# - model: chappie.permit
-#   pk: oeDaandaPbYNMgh4J
-#   fields:
-#     name: aansluit digikoppeling test
-#     imtr_url: http://localhost:3000/imtr/transformed/oeDaandaPbYNMgh4J.json
-
-# - model: chappie.permit
-#   pk: 37mYBbnidDABYfjiM
-#   fields:
-#     name: Test outcomes/conclusions
-#     imtr_url: http://localhost:3000/imtr/transformed/37mYBbnidDABYfjiM.json
-
-# - model: chappie.permit
-#   pk: 7vjj2nkFqxp8uQnqS
-#   fields:
-#     name: imtr_urlAfmonteren voor DSO V2
-#     imtr_url: http://localhost:3000/imtr/transformed/7vjj2nkFqxp8uQnqS.json
-
-# - model: chappie.permit
-#   pk: X7LG33jf2M2Szav98
-#   fields:
-#     name: Ontheffing Vrachtauto, bijzonder voertuig en Ondeelbare lading
-#     imtr_url: http://localhost:3000/imtr/transformed/X7LG33jf2M2Szav98.json
-
-# - model: chappie.permit
-#   pk: ngXhhpGtPN9LKqbdG
-#   fields:
-#     name: Ketentest - Boom kappen of snoeien
-#     imtr_url: http://localhost:3000/imtr/transformed/ngXhhpGtPN9LKqbdG.json
-
-# - model: chappie.permit
-#   pk: TpPQq9NhKuTv4K6BQ
-#   fields:
-#     name: Ketentest - Boom kappen
-#     imtr_url: http://localhost:3000/imtr/transformed/TpPQq9NhKuTv4K6BQ.json
-
-# - model: chappie.permit
-#   pk: BefWb33vB4BYGhN6R
-#   fields:
-#     name: Klad- Poging sloopvergunning + melding in één checker
-#     imtr_url: http://localhost:3000/imtr/transformed/BefWb33vB4BYGhN6R.json
-
-# - model: chappie.permit
-#   pk: BNH6kk2ePCLuqDLxi
-#   fields:
-#     name: Zijkant voorkant check
-#     imtr_url: http://localhost:3000/imtr/transformed/BNH6kk2ePCLuqDLxi.json
-
-# - model: chappie.permit
-#   pk: D4mccynMtNdzYGhXF
-#   fields:
-#     name: Sloopmelding
-#     imtr_url: http://localhost:3000/imtr/transformed/D4mccynMtNdzYGhXF.json
-
-# - model: chappie.permit
-#   pk: bxBCdnrFZSbwxgmxC
-#   fields:
-#     name: Sloopvergunning - toestemming monument
-#     imtr_url: http://localhost:3000/imtr/transformed/bxBCdnrFZSbwxgmxC.json
-
-# - model: chappie.permit
-#   pk: 2eYY7McaiRgfnERo9
-#   fields:
-#     name: Sloopvergunning - toestemming slopen in BSG
-#     imtr_url: http://localhost:3000/imtr/transformed/2eYY7McaiRgfnERo9.json
-
-# - model: chappie.permit
-#   pk: qPZnwcs4R4kYGEvnu
-#   fields:
-#     name: "Sloopvergunning: toestemmingen monument + BSG"
-#     imtr_url: http://localhost:3000/imtr/transformed/qPZnwcs4R4kYGEvnu.json
-
 ################### IMTR TOPICS ###################
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000001
   fields:
-    # permits:
-    #   - 00000000-0000-0000-0000-000000000001
-    #   - 00000000-0000-0000-0000-000000000002
     flow: IMTR
     name: Dakkapel plaatsen
     slug: dakkapel-plaatsen
@@ -183,9 +72,6 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000002
   fields:
-    # permits:
-    #   - 00000000-0000-0000-0000-000000000003
-    #   - 00000000-0000-0000-0000-000000000004
     flow: IMTR
     name: Dakraam plaatsen
     slug: dakraam-plaatsen
@@ -193,9 +79,6 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000003
   fields:
-    # permits:
-    #   - 00000000-0000-0000-0000-000000000005
-    #   - 00000000-0000-0000-0000-000000000006
     flow: IMTR
     name: Kozijnen plaatsen
     slug: kozijnen-plaatsen
@@ -203,9 +86,6 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000004
   fields:
-    # permits:
-    #   - 00000000-0000-0000-0000-000000000007
-    #   - 00000000-0000-0000-0000-000000000008
     flow: IMTR
     name: Zonnepanelen of zonneboiler plaatsen
     slug: zonnepanelen-of-zonneboiler-plaatsen
@@ -213,9 +93,6 @@
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000005
   fields:
-    # permits:
-    #   - 00000000-0000-0000-0000-000000000009
-    #   - 00000000-0000-0000-0000-000000000010
     flow: IMTR
     name: Zonwering of rolluik plaatsen
     slug: zonwering-of-rolluik-plaatsen
