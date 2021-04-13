@@ -338,7 +338,10 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           const outcomeType = checker.getOutcomesPerQuestion()[i];
 
           // Check if current question is causing a permit requirement
-          const showQuestionAlert = !!outcomeType && !isPermitForm;
+          const showQuestionAlert =
+            !!outcomeType &&
+            !isPermitForm &&
+            q.id !== "fd15b895da25badc23fd38b0d4a9f2b3";
 
           return (
             <StepByStepItem

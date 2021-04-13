@@ -1,0 +1,984 @@
+{
+  "permits": [
+    {
+      "version": 102,
+      "name": "Conclusie Bomenkap- nieuw",
+      "questions": [
+        {
+          "text": "Is er spoed of direct gevaar?",
+          "description": "Denk aan:\n\n*   gevaar voor mensen of dieren,\n*   gevaar voor gebouwen of auto’s,\n*   als er een weg geblokkeerd kan raken.",
+          "type": "boolean",
+          "prio": 10,
+          "id": "fd15b895da25badc23fd38b0d4a9f2b3"
+        },
+        {
+          "text": "Meet de omtrek van de boom op 1,30 m boven de grond. Is de omtrek 31 cm of meer?",
+          "description": "U meet de omtrek door een meetlint om de buitenzijde van de boom te spannen. Als de boom uit meerdere stammen bestaat, meet u de omtrek van de dikste stam.",
+          "type": "boolean",
+          "prio": 20,
+          "id": "7b73358fd18dc78b9326a6cf12192b09"
+        },
+        {
+          "text": "Is de boom in het verleden geplant omdat er een herplantplicht was?",
+          "description": "Het is vaak verplicht om een nieuwe boom te planten als er een boom verwijderd is. Dit heet een herplantplicht.",
+          "type": "boolean",
+          "prio": 30,
+          "id": "3ecdeb6de96b79f5a48d1c4f3053fbf7"
+        },
+        {
+          "text": "Wat gaat u doen?",
+          "description": "Bij het **verwijderen** van de boom kan het gaan om:\n\n*   Rooien: u verwijdert de boom en de wortels helemaal.\n*   Kappen: u kapt de boom en laat de wortels in de grond zitten.\n\n**Verplanten** betekent dat u de boom weghaalt en ergens anders plant.\n\nVoorbeelden van **snoeien** zijn:\n\n*   Kandelaberen: de boom krijgt nu de vorm van een kandelaar.\n*   Knotten: u haalt de zijtakken weg zodat alleen de (hoofd)stam overblijft.\n*   Top uit de boom zagen.\n\nU **beschadigt** de boom, maakt hem minder mooi of doodt hem misschien als u een van de volgende dingen gaat doen:\n\n*   Wortels wegzagen of graven naast de boom.\n*   Bast verwijderen.\n*   Een boomhut maken in de boom.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/bomen.jpg)",
+          "options": [
+            "De boom verwijderen.",
+            "De boom verplanten.",
+            "De boom snoeien.",
+            "Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat."
+          ],
+          "type": "string",
+          "prio": 40,
+          "id": "ccd3c7c8f3f947c969213120ce2a8b70"
+        },
+        {
+          "text": "Gaat u de boom verwijderen omdat hij de iepziekte heeft?",
+          "type": "boolean",
+          "prio": 50,
+          "id": "20ce59b32f9ac50c4e9f70b02f030af8"
+        },
+        {
+          "text": "Gaat u de boom verwijderen zodat de boom of bomen ernaast meer ruimte hebben om te groeien?",
+          "description": "Dit wordt ook wel dunnen genoemd.",
+          "type": "boolean",
+          "prio": 60,
+          "id": "b5e299845d0b4b39910801492db02447"
+        },
+        {
+          "text": "Hebt u een beheerplan dat officieel is goedgekeurd door de gemeente?",
+          "type": "boolean",
+          "prio": 70,
+          "id": "5cf98d3672511d43ff9246b19b201c31"
+        },
+        {
+          "text": "Verandert de vorm van de boom?",
+          "description": "Als u meer dan 20% snoeit, dan beantwoordt u de vraag met ‘ja’.",
+          "type": "boolean",
+          "prio": 80,
+          "id": "2e4c3705a6379dee2b8200cbbcded183"
+        },
+        {
+          "text": "Gaat u de boom snoeien om de boom terug in zijn vorm te krijgen?",
+          "description": "U heeft de boom vroeger een bepaalde vorm gegeven en u wilt deze vorm houden door te snoeien. Zoals bij knotwilgen.",
+          "type": "boolean",
+          "prio": 90,
+          "id": "6ea896807dc32873370ad3aa352078c3"
+        },
+        {
+          "text": "Gaat u dit werk doen omdat de boom de iepziekte heeft?",
+          "type": "boolean",
+          "prio": 100,
+          "id": "a2f4ebb35559474b2ddf98201920caef"
+        },
+        {
+          "text": "Gaat u dit werk doen zodat de boom of bomen ernaast meer ruimte hebben om te groeien?",
+          "description": "Dit wordt ook wel dunnen genoemd.",
+          "type": "boolean",
+          "prio": 110,
+          "id": "b42535b17d279ccbf6ac5a7bd24a927a"
+        },
+        {
+          "text": "Hebt u een beheerplan dat officieel is goedgekeurd door de gemeente?",
+          "type": "boolean",
+          "prio": 120,
+          "id": "462bc3d8b045372249bfcc9a03a62c4b"
+        }
+      ],
+      "decisions": {
+        "515e9243bbce1fba31c95c0367cd5d05": {
+          "requiredInputs": ["fd15b895da25badc23fd38b0d4a9f2b3"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "4b503150156c5f3cee20dfd986bedb35": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "a2f4ebb35559474b2ddf98201920caef",
+            "b42535b17d279ccbf6ac5a7bd24a927a"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom verwijderen.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom verplanten.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom snoeien.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "c4f3b1fe0edb7c2101f6e11d0e03a553": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "2e4c3705a6379dee2b8200cbbcded183",
+            "6ea896807dc32873370ad3aa352078c3"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, true, "\"De boom snoeien.\"", true, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom verwijderen.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom verplanten.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "4aced3023583ddc53402e285e24909d0": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "20ce59b32f9ac50c4e9f70b02f030af8",
+            "b5e299845d0b4b39910801492db02447"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  "\"De boom verwijderen.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  "\"De boom verplanten.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom snoeien.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "be7cc71b53807ba5a014d1dc8848ce7d": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "20ce59b32f9ac50c4e9f70b02f030af8",
+            "b5e299845d0b4b39910801492db02447",
+            "5cf98d3672511d43ff9246b19b201c31"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  "\"De boom verwijderen.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  true,
+                  "\"De boom verplanten.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom snoeien.\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "b0fa27bffe5454b98c77b357de637f02": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "20ce59b32f9ac50c4e9f70b02f030af8",
+            "b5e299845d0b4b39910801492db02447"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"De boom verwijderen.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"De boom verplanten.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom snoeien.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "5f5dc50044afdd5038c0862d98fa75ef": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "a2f4ebb35559474b2ddf98201920caef",
+            "b42535b17d279ccbf6ac5a7bd24a927a"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom verwijderen.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom verplanten.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom snoeien.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "1a7187d822d1befc38ee49ea1f6bb410": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "a2f4ebb35559474b2ddf98201920caef",
+            "b42535b17d279ccbf6ac5a7bd24a927a",
+            "462bc3d8b045372249bfcc9a03a62c4b"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  true,
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom verwijderen.\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom verplanten.\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"De boom snoeien.\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "22486041071674323cd8ca4b8c7db3e6": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "2e4c3705a6379dee2b8200cbbcded183",
+            "6ea896807dc32873370ad3aa352078c3"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"De boom snoeien.\"",
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom verwijderen.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom verplanten.\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "443b845ceb31ab68f513db06122adf83": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "20ce59b32f9ac50c4e9f70b02f030af8",
+            "b5e299845d0b4b39910801492db02447",
+            "5cf98d3672511d43ff9246b19b201c31"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"De boom verwijderen.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"De boom verplanten.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"De boom snoeien.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "d1aac666f36b0f780978d1a44192200b": {
+          "requiredInputs": [
+            "fd15b895da25badc23fd38b0d4a9f2b3",
+            "7b73358fd18dc78b9326a6cf12192b09",
+            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "ccd3c7c8f3f947c969213120ce2a8b70",
+            "a2f4ebb35559474b2ddf98201920caef",
+            "b42535b17d279ccbf6ac5a7bd24a927a",
+            "462bc3d8b045372249bfcc9a03a62c4b"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  false,
+                  true,
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat.\"",
+                  false,
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"De boom verwijderen.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"De boom verplanten.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"De boom snoeien.\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "515e9243bbce1fba31c95c0367cd5d05",
+            "4b503150156c5f3cee20dfd986bedb35",
+            "c4f3b1fe0edb7c2101f6e11d0e03a553",
+            "4aced3023583ddc53402e285e24909d0",
+            "be7cc71b53807ba5a014d1dc8848ce7d",
+            "b0fa27bffe5454b98c77b357de637f02",
+            "5f5dc50044afdd5038c0862d98fa75ef",
+            "1a7187d822d1befc38ee49ea1f6bb410",
+            "22486041071674323cd8ca4b8c7db3e6",
+            "443b845ceb31ab68f513db06122adf83",
+            "d1aac666f36b0f780978d1a44192200b"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "slug": "SCKKBFsLHGG5Le5mJ"
+}
