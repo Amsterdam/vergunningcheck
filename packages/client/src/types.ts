@@ -134,3 +134,21 @@ export type OutcomeContentType = {
   mainContent?: ReactNode;
   title: string;
 };
+
+export interface TopicDataProps {
+  id: string;
+  slug: string;
+  name: string;
+  heading: string;
+  intro: string;
+}
+
+export type TopicStoreApi = {
+  setTopicData: (props: TopicDataProps) => void;
+  // @ts-ignore
+  topicData: TopicDataProps;
+};
+
+export default interface IProps {
+  children: React.ReactNode;
+}

@@ -33,7 +33,8 @@ class PermitAdmin(MyModelAdmin):
 
 class OutcomeAdmin(MyModelAdmin):
     pass
-    # list_display = ('topic', 'flo_legal_outcomes',)
+    list_display = ('flo_legal_outcomes', 'topic', 'text',)
+    search_fields = ('text',)
 
 
 admin.site.register(Topic, TopicAdmin)
