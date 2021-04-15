@@ -2,47 +2,45 @@ import { ClientSimpleType, removeQuotes } from "@vergunningcheck/imtr-client";
 import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
-import { topics } from "../config";
 import nl from "../i18n/nl";
-import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
-import topicsJson from "../topics.json";
-import { Answer, Restriction, Topic } from "../types";
+// import topicsJson from "../topics.json";
+import { Answer, Restriction } from "../types";
 
 const { no, yes } = nl.translation.common;
 
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
   const match = matchPath(pathname, {
-    path: `/:slug(${imtrSlugs}|${oloSlugs}|${oloRedirectSlugs})`,
+    path: `/:slug`,
   }) as any;
 
   return match?.params?.slug;
 };
 
 // Find a topic by the slug
-export const findTopicBySlug = (slug: string) => {
-  const topic = topics.find((t) => t.slug === slug);
-  if (topic) return topic;
+// export const findTopicBySlug = (slug: string) => {
+//   const topic = topics.find((t) => t.slug === slug);
+//   if (topic) return topic;
 
-  const topicConfig = topicsJson.flat().find((topic) => topic.slug === slug);
-  if (!topicConfig) {
-    return null;
-  }
+//   const topicConfig = topicsJson.flat().find((topic) => topic.slug === slug);
+//   if (!topicConfig) {
+//     return null;
+//   }
 
-  // Provide name (with slug as fallback)
-  // Ignore in coverage because by default topics.json doesn't contain nameless topics
-  /* istanbul ignore next */
-  const { name = slug } = topicConfig;
+//   // Provide name (with slug as fallback)
+//   // Ignore in coverage because by default topics.json doesn't contain nameless topics
+//   /* istanbul ignore next */
+//   const { name = slug } = topicConfig;
 
-  return {
-    hasIMTR: true,
-    name,
-    slug,
-    text: {
-      heading: name,
-    },
-  } as Topic;
-};
+//   return {
+//     hasIMTR: true,
+//     name,
+//     slug,
+//     text: {
+//       heading: name,
+//     },
+//   } as Topic;
+// };
 
 // Data utils
 export const getRestrictionByTypeName = (

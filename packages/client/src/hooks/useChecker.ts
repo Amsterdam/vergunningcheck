@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
-import topicsJson from "../topics.json";
 import { useTopic, useTopicData } from "./";
 
 export default () => {
@@ -11,6 +10,15 @@ export default () => {
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();
   const topic = useTopic();
+
+  if (!topic)
+    return {
+      checker,
+      setChecker: (checker: Checker | undefined) => {
+        checkerContext.setChecker(checker);
+      },
+    };
+
   const { topicData } = useTopicData();
 
   useEffect(() => {
@@ -30,14 +38,8 @@ export default () => {
     const loadChecker = !checker && !error && (!topic || topic.hasIMTR);
     if (loadChecker) {
       try {
-        const topicConfig = topicsJson
-          .flat()
-          .find((t) => t.slug === topic.slug) as {
-          path: string;
-        };
-
         const topicRequest = await fetch(
-          `${window.location.origin}/${topicConfig.path}`
+          `${window.location.origin}/imtr/transformed/${topic.slug}`
         );
         const newChecker = getChecker(await topicRequest.json());
         const { address, answers } = topicData;

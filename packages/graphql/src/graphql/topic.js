@@ -12,12 +12,17 @@ const typeDefs = gql`
   type Checker {
     permits: [Permit]!
   }
+  type TopicText {
+    heading: String!
+    locationIntro: String
+  }
 
   type Topic {
     name: String!
     slug: String!
-    intro: String
-    flow: String!
+    intro: String!
+    hasIMTR: Boolean!
+    text: TopicText!
     url: String!
     checker: Checker!
   }

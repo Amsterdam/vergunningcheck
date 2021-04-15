@@ -10,7 +10,18 @@ const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
 const loader = {
-  reducer: (o) => o,
+  reducer: ({ heading, intro, flow, ...rest }) => {
+    const res = {
+      ...rest,
+      hasIMTR: flow === "IMTR",
+      intro,
+      text: {
+        heading,
+      },
+    };
+    console.log({ res });
+    return res;
+  },
   fetchPage: () =>
     fetchJson(getUrl(`${URL}topics/`)).then((data) => {
       debug("fetched topics", data.results);

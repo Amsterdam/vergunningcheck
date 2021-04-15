@@ -6,7 +6,7 @@ import styled, { css } from "styled-components";
 
 import { ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
-import { Address } from "../../types";
+import { Address, Topic } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
@@ -63,7 +63,11 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   const address = addressFromLocation ?? topicData.address;
 
   const { restrictions } = address || {};
-  const { hasIMTR } = topic;
+  if (!topic) {
+    return <p>loading...</p>;
+  }
+
+  const { hasIMTR } = topic as Topic;
 
   const monument = getRestrictionByTypeName(restrictions, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(restrictions, "CityScape")?.scope;

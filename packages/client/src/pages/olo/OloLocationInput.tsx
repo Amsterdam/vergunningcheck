@@ -8,17 +8,24 @@ import Loading from "../../components/Loading";
 import { LocationInput } from "../../components/Location/";
 import { useTopic } from "../../hooks";
 import { geturl, routes } from "../../routes";
+import { Topic } from "../../types";
 
 const OloLocationInput: FunctionComponent = () => {
   const topic = useTopic();
+
   const history = useHistory();
   const { t } = useTranslation();
+
+  if (!topic) {
+    return <p>loading...</p>;
+  }
+  const { text } = topic as Topic;
 
   return (
     <TopicLayout>
       <Helmet>
         <title>
-          {t("location.address.enter address")} - {topic.text.heading}
+          {t("location.address.enter address")} - {text.heading}
         </title>
       </Helmet>
       <Suspense fallback={<Loading />}>

@@ -1,21 +1,26 @@
 import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
+import { useQuery } from "@apollo/client";
+import { loader } from "graphql.macro";
 import React, { FunctionComponent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import { ComponentWrapper, Label } from "../../atoms";
 import { CheckerContext } from "../../CheckerContext";
-import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
+import { Topic } from "../../types";
 import {
   NEW_CHECKER_MODAL_SAME_ADDRESS,
   RADIO_ADDRESS_1,
   RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
+import { default as ErrorComponent } from "../Error";
 import Modal from "../Modal";
+
+const query = loader("../../queries/Topics.graphql");
 
 const NewCheckerModal: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
@@ -32,6 +37,18 @@ const NewCheckerModal: FunctionComponent = () => {
     // If there are no data-needs we skip the question to save your address
     topicData.address ? null : false
   );
+
+  const { loading, error, data } = useQuery<{
+    topics: Topic[];
+  }>(query);
+
+  if (loading) {
+    return <p>Loading ...</p>;
+  } else if (error) {
+    return <ErrorComponent stack={error.stack} content={error.message} />;
+  }
+
+  const { topics } = data as { topics: Topic[] };
 
   if (!slug) {
     throw new Error("Cannot render NewCheckerModal without a slug.");

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { urls } from "../../config";
 import { eventNames, sections } from "../../config/matomo";
 import { useChecker, useTopic } from "../../hooks";
+import { Topic } from "../../types";
 import Disclaimer from "../Disclaimer";
 import Loading from "../Loading";
 import Markdown from "../Markdown";
@@ -26,9 +27,14 @@ const OutcomeWrapper = styled.div`
 
 const Outcome: FunctionComponent = () => {
   const { checker } = useChecker();
-  const topic = useTopic();
   const { t } = useTranslation();
+  const topic = useTopic();
 
+  if (!topic) {
+    return <p>loading...</p>;
+  }
+
+  const { name: topicName } = topic as Topic;
   const {
     NEED_BOTH_PERMIT_AND_REPORT,
     NEED_CONTACT,
@@ -138,7 +144,7 @@ const Outcome: FunctionComponent = () => {
 
   // This part can be refactored whenever we have another checker that have custom outcomes
   const checkerContent =
-    topic.name === "Bouwwerk slopen" ? contents.demolition : contents.default;
+    topicName === "Bouwwerk slopen" ? contents.demolition : contents.default;
 
   const outcomeContent = checkerContent[outcomeType];
   const showDiscaimer = outcomeType !== NEED_CONTACT;

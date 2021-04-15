@@ -32,11 +32,15 @@ const LocationInput = ({
   const { handleSubmit } = useForm();
   const { topicData, setTopicData } = useTopicData();
   const { t } = useTranslation();
+  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
+  const [focus, setFocus] = useState(false);
+
+  if (!topic) {
+    return <p>loading...</p>;
+  }
 
   const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
-  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
-  const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
     if (address?.postalCode) {
@@ -94,7 +98,7 @@ const LocationInput = ({
         address,
       });
     }
-    history.push(geturl(routes.intro, { slug }));
+    history.push(geturl(routes.start, { slug }));
   };
 
   return (

@@ -1,23 +1,26 @@
-import React, { FunctionComponent, Suspense, lazy } from "react";
+import React, { FunctionComponent, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
 import { TopicLayout } from "../components/Layouts";
 import Loading from "../components/Loading";
+import Markdown from "../components/Markdown";
 import Nav from "../components/Nav";
+import { sections } from "../config/matomo";
 import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
+import { Topic } from "../types";
 
 const IntroPage: FunctionComponent = () => {
   const history = useHistory();
 
   const topic = useTopic();
-  const { text, intro } = topic;
 
-  const introComponentPath = intro || "shared/DynamicIMTRIntro";
-  const Intro = lazy(
-    () => import(`../intros/${introComponentPath}`)
-  ) as FunctionComponent;
+  if (!topic) {
+    return <p>loading...</p>;
+  }
+
+  const { text, intro } = topic as Topic;
 
   const goToNext = () => {
     history.push(geturl(routes.checker, topic));
@@ -29,7 +32,7 @@ const IntroPage: FunctionComponent = () => {
         <title>Inleiding - {text.heading}</title>
       </Helmet>
       <Suspense fallback={<Loading />}>
-        <Intro />
+        <Markdown eventLocation={sections.INTRO} source={intro} />
       </Suspense>
       <Nav noMarginBottom onGoToNext={goToNext} showNext />
     </TopicLayout>

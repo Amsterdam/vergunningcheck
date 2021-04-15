@@ -16,11 +16,7 @@ const withLog = (msg, res) => {
 
 const fetchJson = (url) => {
   debug(`fetching '${url}'`);
-  const headers = {
-    Authorization: `Basic ${Buffer.from("andre:welkom01").toString("base64")}`,
-  };
-
-  return fetch(url, { headers }).then((res) => res.json());
+  return fetch(url).then((res) => res.json());
 };
 const gql = (input) => input.toString();
 

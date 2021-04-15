@@ -14,6 +14,7 @@ import { generateOloUrl } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
+import { Topic } from "../../types";
 import { LOCATION_RESULT } from "../../utils/test-ids";
 
 const OloLocationResult: FunctionComponent = () => {
@@ -23,7 +24,11 @@ const OloLocationResult: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
-  const { text } = topic;
+  if (!topic) {
+    return <p>loading...</p>;
+  }
+
+  const { text } = topic as Topic;
   const { address } = topicData;
 
   // This is to prevent a bug when the Session Storage data is manually cleared

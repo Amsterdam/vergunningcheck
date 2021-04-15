@@ -1,6 +1,10 @@
-import { topics } from "../../config";
-import { Topic } from "../../types";
-
-export default () => {
-  return topics.find((topic: Topic) => topic.slug === "dakkapel-plaatsen");
-};
+export default () => ({
+  hasIMTR: true,
+  intro: "DakkapelIntro",
+  name: "Dakkapel plaatsen",
+  slug: "dakkapel-plaatsen",
+  text: {
+    heading: "Vergunningcheck dakkapel plaatsen",
+    locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+  },
+});

@@ -1,0 +1,12 @@
+query topicDetail($slug: String!) {
+  topic(slug: $slug) {
+    hasIMTR
+    intro
+    name
+    slug
+    text {
+      heading
+      locationIntro
+    }
+  }
+}

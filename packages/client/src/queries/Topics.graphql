@@ -1,0 +1,10 @@
+query listTopics {
+  topics {
+    hasIMTR
+    name
+    # permits {
+    #   count
+    # }
+    slug
+  }
+}

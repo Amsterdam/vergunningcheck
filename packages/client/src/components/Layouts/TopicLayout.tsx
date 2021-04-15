@@ -17,6 +17,9 @@ const TopicLayout: FunctionComponent<TopicLayoutProps> = ({
   heading: headingProp,
 }) => {
   const topic = useTopic();
+  if (!topic) {
+    return <p>loading...</p>;
+  }
 
   const { hasIMTR, name, text } = topic;
   const formTitle = formTitleProp || text?.heading;

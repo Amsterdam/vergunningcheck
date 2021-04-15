@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 import { useSlug } from "./hooks";
 import { SessionData, TopicData, setSessionFn, setTopicFn } from "./types";
-import { findTopicBySlug } from "./utils";
+import { getSlugFromPathname } from "./utils";
 
 type AppSessionContext = {
   session: SessionData;
@@ -65,7 +65,7 @@ export const SessionProvider: FunctionComponent = ({ children }) => {
 
   useEffect(() => {
     // Prevent HomePage and other pages from not setting session data
-    if (!findTopicBySlug(slug)) {
+    if (!getSlugFromPathname(slug)) {
       return;
     }
 
@@ -86,7 +86,7 @@ export const SessionProvider: FunctionComponent = ({ children }) => {
 
   useEffect(() => {
     // Prevent HomePage and other pages from not setting session data
-    if (!findTopicBySlug(slug)) {
+    if (!getSlugFromPathname(slug)) {
       return;
     }
 

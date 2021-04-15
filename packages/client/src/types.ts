@@ -97,7 +97,7 @@ type BaseTopic = {
 
 type IMTRTopic = {
   hasIMTR: true;
-  intro?: string;
+  intro: string;
   redirectToOlo?: false;
 } & BaseTopic;
 
@@ -113,6 +113,16 @@ type RedirectToOloTopic = {
   intro?: undefined;
 } & BaseTopic;
 
+/**
+ * Merge the different topic types
+ *
+ * hasIMTR: If topic has an imtr-file. If `false` it's olo/olo-redirect flow
+ * intro: The name of the component that has all texts on the Intro page
+ * name: The name of the checker/topic
+ * redirectToOlo: If this flow should redirect the user to OLO
+ * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
+ * text: This is part that holds specific texts for each permit-checker
+ */
 export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
 
 /**
