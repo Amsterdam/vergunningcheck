@@ -1,20 +1,20 @@
 {
   "permits": [
     {
-      "version": 2,
+      "version": 1,
       "name": "Conclusie [IN ONTWIKKELING] Aanbouw monument",
       "questions": [
         {
           "identification": "nl.imow-gm0363.gebied.4",
           "type": "geo",
           "text": "Ga je werken aan of bij een Gemeentelijk monument?",
-          "prio": 10,
-          "id": "c84b85e0a69d437891e42385cb3b18b1"
+          "id": "uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "prio": 10
         }
       ],
       "decisions": {
-        "db329a05b4392df78ad7fba9bd571306": {
-          "requiredInputs": ["c84b85e0a69d437891e42385cb3b18b1"],
+        "_68c8558b-594d-4269-b5e6-8c1ee4f33b16": {
+          "requiredInputs": ["#input__02ea3eaa-44f4-4158-94ef-af41ff1549a6"],
           "decisionTable": {
             "rules": [
               {
@@ -33,7 +33,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["db329a05b4392df78ad7fba9bd571306"],
+          "requiredDecisions": ["#_68c8558b-594d-4269-b5e6-8c1ee4f33b16"],
           "decisionTable": {
             "rules": [
               {
@@ -47,6 +47,12 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__02ea3eaa-44f4-4158-94ef-af41ff1549a6": {
+          "href": "#uitv__02ea3eaa-44f4-4158-94ef-af41ff1549a6",
+          "type": "string"
         }
       }
     }

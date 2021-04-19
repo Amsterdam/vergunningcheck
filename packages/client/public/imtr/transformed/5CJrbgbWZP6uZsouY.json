@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 28,
+      "version": 21,
       "name": "Conclusie Kozijn plaatsen",
       "questions": [
         {
@@ -14,9 +14,9 @@
             "Geen monument"
           ],
           "type": "string",
+          "id": "uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
           "prio": 10,
-          "uuid": "kozijn-monument",
-          "id": "fd9899df974598b284692646da0ff8b5"
+          "uuid": "kozijn monument"
         },
         {
           "text": "Gaat u een kozijn plaatsen of vernieuwen?",
@@ -25,9 +25,9 @@
             "Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
+          "id": "uitv_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
           "prio": 20,
-          "uuid": "kozijn-onderhoud1",
-          "id": "37be1589dc9eb87496f29bfe5ea054d2"
+          "uuid": "kozijn - onderhoud1"
         },
         {
           "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -36,9 +36,9 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
+          "id": "uitv_ecb82efe-05cf-492d-af97-30f3ea151cfd",
           "prio": 30,
-          "uuid": "kozijn-onderhoud2",
-          "id": "8cca423541aeca3590b1b130ce850341"
+          "uuid": "kozijn - onderhoud2"
         },
         {
           "text": "Gaat u een kozijn plaatsen of vernieuwen?",
@@ -47,8 +47,8 @@
             "Ik ga een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
-          "prio": 40,
-          "id": "388861292e46bf7912480b69554dbe82"
+          "id": "uitv_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+          "prio": 40
         },
         {
           "text": "U gaat een kozijn plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel?",
@@ -57,8 +57,8 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet."
           ],
           "type": "string",
-          "prio": 50,
-          "id": "5ddc188e4902ba7cf91f77cc82710c79"
+          "id": "uitv_eae73c17-7f37-4d41-97b9-554f430bf886",
+          "prio": 50
         },
         {
           "text": "Ligt het gebouw in een beschermd stads- of dorpsgezicht?",
@@ -70,8 +70,8 @@
             "Nee, het gebouw ligt niet in een beschermd stads- of dorpsgezicht."
           ],
           "type": "string",
-          "prio": 60,
-          "id": "93ab606514daefeb631017b478380b45"
+          "id": "uitv_66dc2837-a2be-442c-a824-663055a5e4c5",
+          "prio": 60
         },
         {
           "text": "Gaat u het kozijn plaatsen in een hoofdgebouw of in een aanbouw, uitbouw of bijgebouw?",
@@ -81,65 +81,65 @@
             "In een aanbouw, uitbouw of bijgebouw"
           ],
           "type": "string",
-          "prio": 70,
-          "id": "a3bf0ccfcf0169c3279a20c6733f3ece"
+          "id": "uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+          "prio": 70
         },
         {
           "text": "Aan welke kant van het hoofdgebouw gaat u een kozijn plaatsen?",
           "description": "![Kozijnen in de voorkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_voorkant_01.png \"Voorkant\")\n\n![Kozijnen in de zijkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_zijkant_01.png \"Zijkant\")\n\n![Kozijnen in de achterkant van het gebouw.](https://sttr-files.flolegal.app/00000001002564440000/kozijn_kant_achterkant_01.png \"Achterkant\")\n\nDe regels zijn verschillend voor de voorkant, zijkant en achterkant. Gaat u aan meer dan 1 kant een kozijn plaatsen? Doe voor iedere kant een vergunningcheck.",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
-          "prio": 80,
-          "id": "de9e38e5b44668fb9643ce023bdc9ad1"
+          "id": "uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+          "prio": 80
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-weg_01.png \"Zijkant aan een straat, fietspad of voetpad.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een straat, fietspad of voetpad, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 90,
-          "id": "4719ae1995d383bce99ef832e23cdb3a"
+          "id": "uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+          "prio": 90
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of een ander vaarwater waar iedereen mag komen?",
           "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-water_01.png \"Zijkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een gracht, kanaal of ander vaarwater, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 100,
-          "id": "a331478c13b3b442470e3fbd3240de29"
+          "id": "uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
+          "prio": 100
         },
         {
           "text": "U gaat een kozijn plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![Een kozijn in de zijgevel. De zijgevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Zijkant-plantsoen_01.png \"Zijkant aan een plein, park of parkeerplaats.\")\n\nAls u naast het gebouw een tuin hebt en die ligt aan een plein, park of parkeerplaats, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 110,
-          "id": "42c3abd3fc8678c94798d4248da00b1b"
+          "id": "uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
+          "prio": 110
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een weg.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-weg_01.png \"Achterkant aan een straat, fietspad of voetpad.\")\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 120,
-          "id": "53dbefe6d601000cd8997f45aad0ffcc"
+          "id": "uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
+          "prio": 120
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan vaarwater.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-water_01.png \"Achterkant aan een gracht, kanaal of ander vaarwater.\")\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 130,
-          "id": "1b54a54e713ad693336aa03a270397d5"
+          "id": "uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
+          "prio": 130
         },
         {
           "text": "U gaat een kozijn plaatsen aan de achterkant van het gebouw. Ligt die gevel aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![Kozijnen in de achtergevel. De achtergevel ligt aan een plantsoen.](https://sttr-files.flolegal.app/00000001002564440000/OTG_Achterkant-plantsoen_01.png \"Achterkant aan een plein, park of parkeerplaats.\")\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 140,
-          "id": "acd95bdc892bb7cba8dc3c893fa3d3cf"
+          "id": "uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
+          "prio": 140
         }
       ],
       "decisions": {
-        "62afe1cd6ab025646855fc78064a6290": {
+        "_53f1eac3-0537-430a-929a-a739a4508dcc": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "37be1589dc9eb87496f29bfe5ea054d2"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c"
           ],
           "decisionTable": {
             "rules": [
@@ -171,11 +171,11 @@
             ]
           }
         },
-        "2051b02658589f5a18ad0aafe112f2ed": {
+        "_3b520c6f-cb0b-4b86-8455-967e79a6fd88": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "a3bf0ccfcf0169c3279a20c6733f3ece"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1"
           ],
           "decisionTable": {
             "rules": [
@@ -210,11 +210,11 @@
             ]
           }
         },
-        "725dfa3809ff1f9e0a7942b1827d41c8": {
+        "_eed9e3a5-7c89-44ca-98d5-df1852ca97fb": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "37be1589dc9eb87496f29bfe5ea054d2",
-            "8cca423541aeca3590b1b130ce850341"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
+            "#input_ecb82efe-05cf-492d-af97-30f3ea151cfd"
           ],
           "decisionTable": {
             "rules": [
@@ -257,12 +257,12 @@
             ]
           }
         },
-        "0f1d8b0e4fb84dc96f2982a5daf18b7d": {
+        "_904e4195-a880-4fb2-87fc-a2f28d48adf0": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "a3bf0ccfcf0169c3279a20c6733f3ece"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1"
           ],
           "decisionTable": {
             "rules": [
@@ -308,13 +308,13 @@
             ]
           }
         },
-        "bf4da5c579ab1c0f91d3277f4200ec9e": {
+        "_01b30bb1-3b74-443b-a17e-859a599a29f3": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174"
           ],
           "decisionTable": {
             "rules": [
@@ -393,14 +393,14 @@
             ]
           }
         },
-        "98e14a3f209bc0ffb16fb044a20afbff": {
+        "_7a7c4009-dffd-496f-8e84-cbd078b65f9d": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "4719ae1995d383bce99ef832e23cdb3a"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60"
           ],
           "decisionTable": {
             "rules": [
@@ -489,14 +489,14 @@
             ]
           }
         },
-        "eb2a81158da21ec61a42e717633c0a08": {
+        "_5bb5f53b-23d4-41dc-8f07-dceebd042182": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174"
           ],
           "decisionTable": {
             "rules": [
@@ -599,14 +599,14 @@
             ]
           }
         },
-        "559853d784d1d7937834806c412683d9": {
+        "_e72ef172-b0a2-4dd4-a1a5-fa1bde2ceed7": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "53dbefe6d601000cd8997f45aad0ffcc"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1"
           ],
           "decisionTable": {
             "rules": [
@@ -695,15 +695,15 @@
             ]
           }
         },
-        "0b292a20b0148d5a8263e8c270083fe4": {
+        "_b465634a-504d-4f6c-9b64-718c427ce65c": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "53dbefe6d601000cd8997f45aad0ffcc",
-            "1b54a54e713ad693336aa03a270397d5"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1",
+            "#input__4955c3f0-3d2c-4712-a838-7657afc8a982"
           ],
           "decisionTable": {
             "rules": [
@@ -802,15 +802,15 @@
             ]
           }
         },
-        "3091e710b9b0dd8fa5bb7d6f83f25768": {
+        "_ece339e2-1548-4614-a6b1-6ea948a9e31c": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "4719ae1995d383bce99ef832e23cdb3a",
-            "a331478c13b3b442470e3fbd3240de29"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+            "#input__efdf42a1-eda9-478d-a6a2-f1b790520606"
           ],
           "decisionTable": {
             "rules": [
@@ -909,15 +909,15 @@
             ]
           }
         },
-        "543192588dba693a1704a37d11f9fb8d": {
+        "_32dd605d-c4b1-4841-9cb6-742a0a8ebc72": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "53dbefe6d601000cd8997f45aad0ffcc"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1"
           ],
           "decisionTable": {
             "rules": [
@@ -1024,15 +1024,15 @@
             ]
           }
         },
-        "85e96e58d5b94410a915ad9d9b4fc689": {
+        "_e5cd3917-ec1f-4d4e-a680-df3ad889be0b": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "4719ae1995d383bce99ef832e23cdb3a"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60"
           ],
           "decisionTable": {
             "rules": [
@@ -1139,16 +1139,16 @@
             ]
           }
         },
-        "331dd0c10aade5d2273187f35c6edfcf": {
+        "_3ae1ab3a-85ae-42c8-bb34-087450170d48": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "4719ae1995d383bce99ef832e23cdb3a",
-            "a331478c13b3b442470e3fbd3240de29",
-            "42c3abd3fc8678c94798d4248da00b1b"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+            "#input__efdf42a1-eda9-478d-a6a2-f1b790520606",
+            "#input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33"
           ],
           "decisionTable": {
             "rules": [
@@ -1266,16 +1266,16 @@
             ]
           }
         },
-        "b4419eda780c74e669ce7d55b199a2e5": {
+        "_32a9f50d-d5c8-4ef0-8045-3d161e7ef657": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "53dbefe6d601000cd8997f45aad0ffcc",
-            "1b54a54e713ad693336aa03a270397d5"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1",
+            "#input__4955c3f0-3d2c-4712-a838-7657afc8a982"
           ],
           "decisionTable": {
             "rules": [
@@ -1402,16 +1402,16 @@
             ]
           }
         },
-        "8517b4a6212445268a8148c4ded9e466": {
+        "_549cd721-feec-47ae-8c41-cfc758466bf6": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "53dbefe6d601000cd8997f45aad0ffcc",
-            "1b54a54e713ad693336aa03a270397d5",
-            "acd95bdc892bb7cba8dc3c893fa3d3cf"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1",
+            "#input__4955c3f0-3d2c-4712-a838-7657afc8a982",
+            "#input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f"
           ],
           "decisionTable": {
             "rules": [
@@ -1529,16 +1529,16 @@
             ]
           }
         },
-        "a68f2edffa6b7c82bceb34b9a0b1f5b2": {
+        "_fab62edb-7fa1-4110-8dbf-62bc47c3ad47": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "4719ae1995d383bce99ef832e23cdb3a",
-            "a331478c13b3b442470e3fbd3240de29"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+            "#input__efdf42a1-eda9-478d-a6a2-f1b790520606"
           ],
           "decisionTable": {
             "rules": [
@@ -1665,17 +1665,17 @@
             ]
           }
         },
-        "cc3fd334cb0ae4960981b99e1c252936": {
+        "_aa8351f3-c4e9-4820-9557-f91e71dca2f0": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "53dbefe6d601000cd8997f45aad0ffcc",
-            "1b54a54e713ad693336aa03a270397d5",
-            "acd95bdc892bb7cba8dc3c893fa3d3cf"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__36aad415-6261-4996-8db5-20d4e2b999d1",
+            "#input__4955c3f0-3d2c-4712-a838-7657afc8a982",
+            "#input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f"
           ],
           "decisionTable": {
             "rules": [
@@ -1834,17 +1834,17 @@
             ]
           }
         },
-        "5e34d07b4f8276c7bd5d429c178ec30f": {
+        "_b36b3daa-6459-4927-9d7d-d3fc67d28073": {
           "requiredInputs": [
-            "fd9899df974598b284692646da0ff8b5",
-            "388861292e46bf7912480b69554dbe82",
-            "5ddc188e4902ba7cf91f77cc82710c79",
-            "93ab606514daefeb631017b478380b45",
-            "a3bf0ccfcf0169c3279a20c6733f3ece",
-            "de9e38e5b44668fb9643ce023bdc9ad1",
-            "4719ae1995d383bce99ef832e23cdb3a",
-            "a331478c13b3b442470e3fbd3240de29",
-            "42c3abd3fc8678c94798d4248da00b1b"
+            "#input__383f1988-b06b-4fe9-90d8-8041f01d832b",
+            "#input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+            "#input_eae73c17-7f37-4d41-97b9-554f430bf886",
+            "#input_66dc2837-a2be-442c-a824-663055a5e4c5",
+            "#input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+            "#input__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+            "#input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+            "#input__efdf42a1-eda9-478d-a6a2-f1b790520606",
+            "#input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33"
           ],
           "decisionTable": {
             "rules": [
@@ -2005,24 +2005,24 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "62afe1cd6ab025646855fc78064a6290",
-            "2051b02658589f5a18ad0aafe112f2ed",
-            "725dfa3809ff1f9e0a7942b1827d41c8",
-            "0f1d8b0e4fb84dc96f2982a5daf18b7d",
-            "bf4da5c579ab1c0f91d3277f4200ec9e",
-            "98e14a3f209bc0ffb16fb044a20afbff",
-            "eb2a81158da21ec61a42e717633c0a08",
-            "559853d784d1d7937834806c412683d9",
-            "0b292a20b0148d5a8263e8c270083fe4",
-            "3091e710b9b0dd8fa5bb7d6f83f25768",
-            "543192588dba693a1704a37d11f9fb8d",
-            "85e96e58d5b94410a915ad9d9b4fc689",
-            "331dd0c10aade5d2273187f35c6edfcf",
-            "b4419eda780c74e669ce7d55b199a2e5",
-            "8517b4a6212445268a8148c4ded9e466",
-            "a68f2edffa6b7c82bceb34b9a0b1f5b2",
-            "cc3fd334cb0ae4960981b99e1c252936",
-            "5e34d07b4f8276c7bd5d429c178ec30f"
+            "#_53f1eac3-0537-430a-929a-a739a4508dcc",
+            "#_3b520c6f-cb0b-4b86-8455-967e79a6fd88",
+            "#_eed9e3a5-7c89-44ca-98d5-df1852ca97fb",
+            "#_904e4195-a880-4fb2-87fc-a2f28d48adf0",
+            "#_01b30bb1-3b74-443b-a17e-859a599a29f3",
+            "#_7a7c4009-dffd-496f-8e84-cbd078b65f9d",
+            "#_5bb5f53b-23d4-41dc-8f07-dceebd042182",
+            "#_e72ef172-b0a2-4dd4-a1a5-fa1bde2ceed7",
+            "#_b465634a-504d-4f6c-9b64-718c427ce65c",
+            "#_ece339e2-1548-4614-a6b1-6ea948a9e31c",
+            "#_32dd605d-c4b1-4841-9cb6-742a0a8ebc72",
+            "#_e5cd3917-ec1f-4d4e-a680-df3ad889be0b",
+            "#_3ae1ab3a-85ae-42c8-bb34-087450170d48",
+            "#_32a9f50d-d5c8-4ef0-8045-3d161e7ef657",
+            "#_549cd721-feec-47ae-8c41-cfc758466bf6",
+            "#_fab62edb-7fa1-4110-8dbf-62bc47c3ad47",
+            "#_aa8351f3-c4e9-4820-9557-f91e71dca2f0",
+            "#_b36b3daa-6459-4927-9d7d-d3fc67d28073"
           ],
           "decisionTable": {
             "rules": [
@@ -2484,6 +2484,64 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__383f1988-b06b-4fe9-90d8-8041f01d832b": {
+          "href": "#uitv__383f1988-b06b-4fe9-90d8-8041f01d832b",
+          "type": "string"
+        },
+        "input_d9d62d9f-b11e-459d-9b59-f5f8eafada3c": {
+          "href": "#uitv_d9d62d9f-b11e-459d-9b59-f5f8eafada3c",
+          "type": "string"
+        },
+        "input_ecb82efe-05cf-492d-af97-30f3ea151cfd": {
+          "href": "#uitv_ecb82efe-05cf-492d-af97-30f3ea151cfd",
+          "type": "string"
+        },
+        "input_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d": {
+          "href": "#uitv_936da6e1-7baa-4bd2-89d1-b7ccefe2d82d",
+          "type": "string"
+        },
+        "input_eae73c17-7f37-4d41-97b9-554f430bf886": {
+          "href": "#uitv_eae73c17-7f37-4d41-97b9-554f430bf886",
+          "type": "string"
+        },
+        "input_66dc2837-a2be-442c-a824-663055a5e4c5": {
+          "href": "#uitv_66dc2837-a2be-442c-a824-663055a5e4c5",
+          "type": "string"
+        },
+        "input__63f771df-9e66-4bf5-a7f6-f5acbcd160e1": {
+          "href": "#uitv__63f771df-9e66-4bf5-a7f6-f5acbcd160e1",
+          "type": "string"
+        },
+        "input__61242aca-2bec-4fa9-bba4-b8f18f37c174": {
+          "href": "#uitv__61242aca-2bec-4fa9-bba4-b8f18f37c174",
+          "type": "string"
+        },
+        "input__273ad7e8-2f78-4a6f-bc5a-25c70e52df60": {
+          "href": "#uitv__273ad7e8-2f78-4a6f-bc5a-25c70e52df60",
+          "type": "boolean"
+        },
+        "input__efdf42a1-eda9-478d-a6a2-f1b790520606": {
+          "href": "#uitv__efdf42a1-eda9-478d-a6a2-f1b790520606",
+          "type": "boolean"
+        },
+        "input__c0d01afe-6c3f-44bc-ac35-d364dafc6c33": {
+          "href": "#uitv__c0d01afe-6c3f-44bc-ac35-d364dafc6c33",
+          "type": "boolean"
+        },
+        "input__36aad415-6261-4996-8db5-20d4e2b999d1": {
+          "href": "#uitv__36aad415-6261-4996-8db5-20d4e2b999d1",
+          "type": "boolean"
+        },
+        "input__4955c3f0-3d2c-4712-a838-7657afc8a982": {
+          "href": "#uitv__4955c3f0-3d2c-4712-a838-7657afc8a982",
+          "type": "boolean"
+        },
+        "input__bca2f871-5dce-43f8-ad46-1c7d5de86a4f": {
+          "href": "#uitv__bca2f871-5dce-43f8-ad46-1c7d5de86a4f",
+          "type": "boolean"
         }
       }
     }

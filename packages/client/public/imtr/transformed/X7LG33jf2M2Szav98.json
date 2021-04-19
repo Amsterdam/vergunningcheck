@@ -8,8 +8,8 @@
           "text": "Wilt u rijden binnen de 7,5-ton zone?",
           "description": "Kaart van 7,5 zone (binnenstad) tonen",
           "type": "boolean",
-          "prio": 10,
-          "id": "2fa811d95372858068173ce09e5bc770"
+          "id": "uitv__b37544b2-49a4-4416-841f-14fd1705885a",
+          "prio": 10
         },
         {
           "text": "Wat is het gewicht van het voertuig?",
@@ -20,85 +20,85 @@
             "meer dan 45 ton"
           ],
           "type": "string",
-          "prio": 20,
-          "id": "21f1139c41f1f0cb444220777861e271"
+          "id": "uitv__692d7d63-aadb-4d01-ad1f-881f4d426107",
+          "prio": 20
         },
         {
           "text": "Wat voor een voertuig gaat u gebruiken?",
           "description": "Een vrachtauto kan ook een trekker-opleggercombinatie zijn\n\nEen bijzonder voertuig kan een van de volgende typen voertuigen zijn:\n\n*   kraanwagens\n*   bedrijfsauto met een zware laadkraan (minimaal 35 tonmeter)\n*   hoogwerkers\n*   betonmolen\n*   betonmixer\n*   betonpomp\n*   kolkenzuiger\n*   brandweerwagen\n*   straatveger/straatreiniger/rioolzuiger\n*   verhuiswagen\n*   gepantserd voertuig\n*   elektrisch voertuig",
           "options": ["Een vrachtauto", "Een bijzonder voertuig"],
           "type": "string",
-          "prio": 30,
-          "id": "3b77a48f0f69ef208e21cf4676c7c8d8"
+          "id": "uitv__dbb6c481-8f97-4394-b849-49fd06630ab5",
+          "prio": 30
         },
         {
           "text": "Gaat u binnen de 7,5 ton zone gebruik maken van de vastgestelde vrachtroutes uit het Verkeersbesluit van 7 augustus 1996?",
           "description": "Kaart met vrachtroutes tonen.",
           "type": "boolean",
-          "prio": 40,
-          "id": "9e75fa9f6cb12900b1abbe3b66b26e2c"
+          "id": "uitv__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+          "prio": 40
         },
         {
           "text": "Heeft u 5 bewijsstukken die aantonen dat u binnen de 7,5 ton zone moet rijden?",
           "description": "De bewijsstukken moeten binnen 1 maand gedateerd zijn.\n\nVoorbeelden:\n\n\\- koopovereenkomst\n\n\\- Afleveradres",
           "type": "boolean",
-          "prio": 50,
-          "id": "0680754325235df9b6deb62775ee5b48"
+          "id": "uitv__80514188-c89a-4ce5-a723-54857669bad5",
+          "prio": 50
         },
         {
           "text": "Is de lengte van uw voertuig minder of gelijk aan 10 m?",
           "type": "boolean",
-          "prio": 60,
-          "id": "6fdbcbb4bf4b2ec3d39850a1e78f75a8"
+          "id": "uitv__149a4970-57b3-47d8-8409-bfd3918d3264",
+          "prio": 60
         },
         {
           "text": "Voldoet de emissieklasse van uw voertuig aan de Amsterdamse eisen?",
           "description": "Hier de Amsterdamse eisen tonen.",
           "type": "boolean",
-          "prio": 70,
-          "id": "b59523e987e382d5d0f05e7e0df56886"
+          "id": "uitv__88744d09-9ca1-46fd-8962-c46f5571b123",
+          "prio": 70
         },
         {
           "text": "Wilt u rijden met alleen een trekker?",
           "type": "boolean",
-          "prio": 80,
-          "id": "1994fa1b475dcc70339c86fc16d9e575"
+          "id": "uitv__109a3e03-b08a-44a1-ad56-d2ed0d998c87",
+          "prio": 80
         },
         {
           "text": "Is de datum van toelating van uw voertuig ouder dan 13 jaar?",
           "description": "Dit is de datum waarop het voertuig in gebruik is genomen, zoals voor in Nederland geregistreerde voertuigen is vastgelegd in het kentekenregister van de RDW.",
           "type": "boolean",
-          "prio": 90,
-          "id": "bb1d15804283404bf721745a90a0b5c8"
+          "id": "uitv__c8bd18cc-6843-4b00-ae31-cda0fddd1e96",
+          "prio": 90
         },
         {
           "text": "Wilt u een een ondeelbare lading vervoeren?",
           "description": "Een ondeelbare lading is een lading die niet deelbaar is in compartimenten of een deellading die wel in een vrachtauto van maximaal 10 meter past.\n\nVoorbeelden:\n\n\\- heipalen\n\n\\- damwanden\n\n\\- straatverlichtingspalen",
           "type": "boolean",
-          "prio": 100,
-          "id": "070e1dc652e3dfedadd4a6c906966879"
+          "id": "uitv__d5e5cef0-09c6-494d-8f02-3cf164effbec",
+          "prio": 100
         },
         {
           "text": "Wilt u rijden naar een specifieke bestemming en via een specifieke route?",
           "description": "Vanwege de kwetsbaarheid van sommige kades en bruggen is het niet mogelijk om zelf een route te kiezen die in hoofdzaak afwijkt van de vastgestelde vrachtroutes.",
           "type": "boolean",
-          "prio": 110,
-          "id": "a9557fe4e662c0f2803393510a514483"
+          "id": "uitv__0e863d59-5c76-4d4e-b0a4-7f768be5485e",
+          "prio": 110
         },
         {
           "text": "Heeft uw voertuig een electrische motoraandrijving?",
           "type": "boolean",
-          "prio": 120,
-          "id": "36d30107a1a9c05717785ab9f3bed3a8"
+          "id": "uitv__b5b8fa11-637d-44e6-9332-a288e40da556",
+          "prio": 120
         }
       ],
       "decisions": {
-        "c0afbe6bcf4e2c0454bf0f12b5d6ae18": {
+        "_7f84090e-e39d-49eb-a8e4-38ed6e3b149a": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "1994fa1b475dcc70339c86fc16d9e575"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__109a3e03-b08a-44a1-ad56-d2ed0d998c87"
           ],
           "decisionTable": {
             "rules": [
@@ -134,12 +134,12 @@
             ]
           }
         },
-        "79b5969d885d792339be795684bb34ca": {
+        "_9728b0ed-2566-4d0a-a1ea-3b5b026df739": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988"
           ],
           "decisionTable": {
             "rules": [
@@ -185,13 +185,13 @@
             ]
           }
         },
-        "ac6af68a7afeeb183125294b40781b92": {
+        "_5fb0624e-b743-4fad-b3db-f9246fd54694": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5"
           ],
           "decisionTable": {
             "rules": [
@@ -250,13 +250,13 @@
             ]
           }
         },
-        "8aa79619fbc8ba622999afc3939cb7d3": {
+        "_cfc4d6f7-2079-411d-8e9b-9ec45797325d": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "36d30107a1a9c05717785ab9f3bed3a8"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__b5b8fa11-637d-44e6-9332-a288e40da556"
           ],
           "decisionTable": {
             "rules": [
@@ -309,14 +309,14 @@
             ]
           }
         },
-        "842c62220821a2b35588971b7db58af7": {
+        "_e7d627d5-1f70-4470-bbcf-fd83aafea43b": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264"
           ],
           "decisionTable": {
             "rules": [
@@ -383,14 +383,14 @@
             ]
           }
         },
-        "3f029d1c7e29721ada77034e2aad1c38": {
+        "_b4861a6d-47ed-49e0-b421-1a9e3c5fbb38": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264",
+            "#input__88744d09-9ca1-46fd-8962-c46f5571b123"
           ],
           "decisionTable": {
             "rules": [
@@ -450,14 +450,14 @@
             ]
           }
         },
-        "7660ed4b008ea778cecb87440bb8242a": {
+        "_0842a6cb-dbf5-49d1-beea-0fcd64c12ca2": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "36d30107a1a9c05717785ab9f3bed3a8"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__b5b8fa11-637d-44e6-9332-a288e40da556"
           ],
           "decisionTable": {
             "rules": [
@@ -517,15 +517,15 @@
             ]
           }
         },
-        "ec7492803105e3bcbeafa44f1da7f0b7": {
+        "_1ae5adbc-7f0d-4387-9b77-a2dc203f1774": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "36d30107a1a9c05717785ab9f3bed3a8"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264",
+            "#input__b5b8fa11-637d-44e6-9332-a288e40da556"
           ],
           "decisionTable": {
             "rules": [
@@ -592,15 +592,15 @@
             ]
           }
         },
-        "b16fc266ff7821add0fa68aa9176e701": {
+        "_509953cf-574c-4590-be55-78919f3e4b1c": {
           "requiredInputs": [
-            "21f1139c41f1f0cb444220777861e271",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886",
-            "070e1dc652e3dfedadd4a6c906966879",
-            "a9557fe4e662c0f2803393510a514483"
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264",
+            "#input__88744d09-9ca1-46fd-8962-c46f5571b123",
+            "#input__d5e5cef0-09c6-494d-8f02-3cf164effbec",
+            "#input__0e863d59-5c76-4d4e-b0a4-7f768be5485e"
           ],
           "decisionTable": {
             "rules": [
@@ -667,16 +667,16 @@
             ]
           }
         },
-        "4f03d92b5730c7b4aa445891a376a17b": {
+        "_e54067d8-2dfe-4f1c-8c60-3c7fa800038b": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886",
-            "bb1d15804283404bf721745a90a0b5c8",
-            "a9557fe4e662c0f2803393510a514483",
-            "36d30107a1a9c05717785ab9f3bed3a8"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264",
+            "#input__88744d09-9ca1-46fd-8962-c46f5571b123",
+            "#input__c8bd18cc-6843-4b00-ae31-cda0fddd1e96",
+            "#input__0e863d59-5c76-4d4e-b0a4-7f768be5485e",
+            "#input__b5b8fa11-637d-44e6-9332-a288e40da556"
           ],
           "decisionTable": {
             "rules": [
@@ -751,16 +751,16 @@
             ]
           }
         },
-        "e58d75af8d6c935bc895b501725ca7a4": {
+        "_565723ca-1cda-4efe-abe7-29ea9fccacf2": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886",
-            "a9557fe4e662c0f2803393510a514483"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264",
+            "#input__88744d09-9ca1-46fd-8962-c46f5571b123",
+            "#input__0e863d59-5c76-4d4e-b0a4-7f768be5485e"
           ],
           "decisionTable": {
             "rules": [
@@ -843,17 +843,17 @@
             ]
           }
         },
-        "d9746d3337f8677333c97f4bf25526ca": {
+        "_fc30a1ee-c747-434b-963f-1a448c2b7cd2": {
           "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886",
-            "bb1d15804283404bf721745a90a0b5c8",
-            "a9557fe4e662c0f2803393510a514483",
-            "36d30107a1a9c05717785ab9f3bed3a8"
+            "#input__b37544b2-49a4-4416-841f-14fd1705885a",
+            "#input__692d7d63-aadb-4d01-ad1f-881f4d426107",
+            "#input__dbb6c481-8f97-4394-b849-49fd06630ab5",
+            "#input__80514188-c89a-4ce5-a723-54857669bad5",
+            "#input__149a4970-57b3-47d8-8409-bfd3918d3264",
+            "#input__88744d09-9ca1-46fd-8962-c46f5571b123",
+            "#input__c8bd18cc-6843-4b00-ae31-cda0fddd1e96",
+            "#input__0e863d59-5c76-4d4e-b0a4-7f768be5485e",
+            "#input__b5b8fa11-637d-44e6-9332-a288e40da556"
           ],
           "decisionTable": {
             "rules": [
@@ -956,18 +956,18 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "c0afbe6bcf4e2c0454bf0f12b5d6ae18",
-            "79b5969d885d792339be795684bb34ca",
-            "ac6af68a7afeeb183125294b40781b92",
-            "8aa79619fbc8ba622999afc3939cb7d3",
-            "842c62220821a2b35588971b7db58af7",
-            "3f029d1c7e29721ada77034e2aad1c38",
-            "7660ed4b008ea778cecb87440bb8242a",
-            "ec7492803105e3bcbeafa44f1da7f0b7",
-            "b16fc266ff7821add0fa68aa9176e701",
-            "4f03d92b5730c7b4aa445891a376a17b",
-            "e58d75af8d6c935bc895b501725ca7a4",
-            "d9746d3337f8677333c97f4bf25526ca"
+            "#_7f84090e-e39d-49eb-a8e4-38ed6e3b149a",
+            "#_9728b0ed-2566-4d0a-a1ea-3b5b026df739",
+            "#_5fb0624e-b743-4fad-b3db-f9246fd54694",
+            "#_cfc4d6f7-2079-411d-8e9b-9ec45797325d",
+            "#_e7d627d5-1f70-4470-bbcf-fd83aafea43b",
+            "#_b4861a6d-47ed-49e0-b421-1a9e3c5fbb38",
+            "#_0842a6cb-dbf5-49d1-beea-0fcd64c12ca2",
+            "#_1ae5adbc-7f0d-4387-9b77-a2dc203f1774",
+            "#_509953cf-574c-4590-be55-78919f3e4b1c",
+            "#_e54067d8-2dfe-4f1c-8c60-3c7fa800038b",
+            "#_565723ca-1cda-4efe-abe7-29ea9fccacf2",
+            "#_fc30a1ee-c747-434b-963f-1a448c2b7cd2"
           ],
           "decisionTable": {
             "rules": [
@@ -1211,6 +1211,56 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__b37544b2-49a4-4416-841f-14fd1705885a": {
+          "href": "#uitv__b37544b2-49a4-4416-841f-14fd1705885a",
+          "type": "boolean"
+        },
+        "input__692d7d63-aadb-4d01-ad1f-881f4d426107": {
+          "href": "#uitv__692d7d63-aadb-4d01-ad1f-881f4d426107",
+          "type": "string"
+        },
+        "input__dbb6c481-8f97-4394-b849-49fd06630ab5": {
+          "href": "#uitv__dbb6c481-8f97-4394-b849-49fd06630ab5",
+          "type": "string"
+        },
+        "input__9f878e66-c1bd-49b5-9240-c5e8c3ea6988": {
+          "href": "#uitv__9f878e66-c1bd-49b5-9240-c5e8c3ea6988",
+          "type": "boolean"
+        },
+        "input__80514188-c89a-4ce5-a723-54857669bad5": {
+          "href": "#uitv__80514188-c89a-4ce5-a723-54857669bad5",
+          "type": "boolean"
+        },
+        "input__149a4970-57b3-47d8-8409-bfd3918d3264": {
+          "href": "#uitv__149a4970-57b3-47d8-8409-bfd3918d3264",
+          "type": "boolean"
+        },
+        "input__88744d09-9ca1-46fd-8962-c46f5571b123": {
+          "href": "#uitv__88744d09-9ca1-46fd-8962-c46f5571b123",
+          "type": "boolean"
+        },
+        "input__109a3e03-b08a-44a1-ad56-d2ed0d998c87": {
+          "href": "#uitv__109a3e03-b08a-44a1-ad56-d2ed0d998c87",
+          "type": "boolean"
+        },
+        "input__c8bd18cc-6843-4b00-ae31-cda0fddd1e96": {
+          "href": "#uitv__c8bd18cc-6843-4b00-ae31-cda0fddd1e96",
+          "type": "boolean"
+        },
+        "input__d5e5cef0-09c6-494d-8f02-3cf164effbec": {
+          "href": "#uitv__d5e5cef0-09c6-494d-8f02-3cf164effbec",
+          "type": "boolean"
+        },
+        "input__0e863d59-5c76-4d4e-b0a4-7f768be5485e": {
+          "href": "#uitv__0e863d59-5c76-4d4e-b0a4-7f768be5485e",
+          "type": "boolean"
+        },
+        "input__b5b8fa11-637d-44e6-9332-a288e40da556": {
+          "href": "#uitv__b5b8fa11-637d-44e6-9332-a288e40da556",
+          "type": "boolean"
         }
       }
     }

@@ -3,6 +3,8 @@ export default {
     common: {
       "address loading": "Wij zoeken het adres.",
       edit: "Wijzig",
+      cancel: "Annuleer",
+      "do the permit check": "Doe de vergunningcheck",
       "housenumber label": "Huisnummer + toevoeging",
       next: "Volgende",
       no: "Nee",

@@ -9,8 +9,8 @@
           "collection": true,
           "options": ["boom", "struik", "weet niet"],
           "type": "string",
-          "prio": 10,
-          "id": "6a92431be59b06b880196e03fc402a39"
+          "id": "uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "prio": 10
         },
         {
           "text": "Wat is de conditie van de boom?",
@@ -18,8 +18,8 @@
           "collection": true,
           "options": ["ziek", "gezond of dood"],
           "type": "string",
-          "prio": 20,
-          "id": "07f27e70273789c0975d99cdb46f049a"
+          "id": "uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "prio": 20
         },
         {
           "text": "Wat wilt u gaan doen?",
@@ -30,28 +30,28 @@
             "snoeien of iets anders"
           ],
           "type": "string",
-          "prio": 30,
-          "id": "95bf43594d4500a8527ad241d9ae8f9b"
+          "id": "uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "prio": 30
         },
         {
           "text": "Is de boom geplant in verband met een herplantplicht?",
           "description": "Als de boom geplant is ter vervanging van een andere boom die gekapt is, dan is de boom geplant in verband met een herplantplicht.",
           "type": "boolean",
-          "prio": 40,
-          "id": "f500bc7863effbecb99573fa473395e1"
+          "id": "uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "prio": 40
         },
         {
           "text": "Wat is de omtrek van de boom, gemeten op 1.30 m hoogte?",
           "collection": true,
           "options": ["31 cm of meer", "minder dan 31 cm"],
           "type": "string",
-          "prio": 50,
-          "id": "ed7b88338404fdf23812d44b2c1b280b"
+          "id": "uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "prio": 50
         }
       ],
       "decisions": {
-        "52f271be34e4e0c841c1c22b020520b9": {
-          "requiredInputs": ["6a92431be59b06b880196e03fc402a39"],
+        "_ae2f87fb-f49a-419b-b3b3-42d973b43a69": {
+          "requiredInputs": ["#input__aec4d989-07b7-4cd4-8c3c-f14be821baed"],
           "decisionTable": {
             "rules": [
               {
@@ -69,10 +69,10 @@
             ]
           }
         },
-        "1d6dd925cfc8b531cc89d1ccfdc44afb": {
+        "_7b483540-dfa9-4dab-ade7-7c46f8331230": {
           "requiredInputs": [
-            "6a92431be59b06b880196e03fc402a39",
-            "07f27e70273789c0975d99cdb46f049a"
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955"
           ],
           "decisionTable": {
             "rules": [
@@ -95,11 +95,11 @@
             ]
           }
         },
-        "4282cd91770a67cc29803c363feb8e57": {
+        "_eb0a101b-2045-4f57-8e6f-85cc7f341295": {
           "requiredInputs": [
-            "6a92431be59b06b880196e03fc402a39",
-            "07f27e70273789c0975d99cdb46f049a",
-            "95bf43594d4500a8527ad241d9ae8f9b"
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2"
           ],
           "decisionTable": {
             "rules": [
@@ -142,12 +142,12 @@
             ]
           }
         },
-        "4c135184525bb69b4998dceab80ff16e": {
+        "_ad3812a6-5bd2-48dc-afd6-e5600fe65113": {
           "requiredInputs": [
-            "6a92431be59b06b880196e03fc402a39",
-            "07f27e70273789c0975d99cdb46f049a",
-            "95bf43594d4500a8527ad241d9ae8f9b",
-            "f500bc7863effbecb99573fa473395e1"
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+            "#input__080bdf26-719c-40ff-b2d6-2c2e562890f4"
           ],
           "decisionTable": {
             "rules": [
@@ -192,13 +192,13 @@
             ]
           }
         },
-        "d3c4fa9139f0ac663f23a69816d13856": {
+        "_4aeb1795-03b0-48d8-bc36-40fcfd3465a6": {
           "requiredInputs": [
-            "6a92431be59b06b880196e03fc402a39",
-            "07f27e70273789c0975d99cdb46f049a",
-            "95bf43594d4500a8527ad241d9ae8f9b",
-            "f500bc7863effbecb99573fa473395e1",
-            "ed7b88338404fdf23812d44b2c1b280b"
+            "#input__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+            "#input__9fc87e63-c097-4ec1-b72e-770db6465955",
+            "#input__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+            "#input__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+            "#input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5"
           ],
           "decisionTable": {
             "rules": [
@@ -251,11 +251,11 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "52f271be34e4e0c841c1c22b020520b9",
-            "1d6dd925cfc8b531cc89d1ccfdc44afb",
-            "4282cd91770a67cc29803c363feb8e57",
-            "4c135184525bb69b4998dceab80ff16e",
-            "d3c4fa9139f0ac663f23a69816d13856"
+            "#_ae2f87fb-f49a-419b-b3b3-42d973b43a69",
+            "#_7b483540-dfa9-4dab-ade7-7c46f8331230",
+            "#_eb0a101b-2045-4f57-8e6f-85cc7f341295",
+            "#_ad3812a6-5bd2-48dc-afd6-e5600fe65113",
+            "#_4aeb1795-03b0-48d8-bc36-40fcfd3465a6"
           ],
           "decisionTable": {
             "rules": [
@@ -291,6 +291,28 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__aec4d989-07b7-4cd4-8c3c-f14be821baed": {
+          "href": "#uitv__aec4d989-07b7-4cd4-8c3c-f14be821baed",
+          "type": "string"
+        },
+        "input__9fc87e63-c097-4ec1-b72e-770db6465955": {
+          "href": "#uitv__9fc87e63-c097-4ec1-b72e-770db6465955",
+          "type": "string"
+        },
+        "input__e585a61a-5660-4515-b829-6bcad7a4f6c2": {
+          "href": "#uitv__e585a61a-5660-4515-b829-6bcad7a4f6c2",
+          "type": "string"
+        },
+        "input__080bdf26-719c-40ff-b2d6-2c2e562890f4": {
+          "href": "#uitv__080bdf26-719c-40ff-b2d6-2c2e562890f4",
+          "type": "boolean"
+        },
+        "input__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5": {
+          "href": "#uitv__98be8ddc-fee2-4b6b-92ba-4aaaae576ae5",
+          "type": "string"
         }
       }
     }

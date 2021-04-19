@@ -1,7 +1,7 @@
 {
   "permits": [
     {
-      "version": 15,
+      "version": 7,
       "name": "Conclusie Zonwering, rolhek, luik of rolluik monument",
       "questions": [
         {
@@ -14,18 +14,18 @@
             "Geen monument"
           ],
           "type": "string",
+          "id": "uitv__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
           "prio": 10,
-          "uuid": "zonwering-monument",
-          "id": "dbb10a79d250c08b28dd0cda8fbf497a"
+          "uuid": "zonwering, rolhek, rolluik of luik - monument"
         },
         {
           "text": "Wat gaat u plaatsen?",
           "description": "Zonwering zit aan de buitenkant van het gebouw. Er zijn verschillende soorten: markiezen, screens en uitvalschermen.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Voorbeelden_Zonweringen.png \"Dit zijn voorbeelden van zonweringen.\")\n\nRolhekken, rolluiken en luiken worden geplaatst om bijvoorbeeld inbraak in winkels en woningen te voorkomen.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Voorbeelden_Luiken.png \"Dit zijn voorbeelden van rolhekken, rolluiken en luiken.\")",
           "options": ["Zonwering", "Rolhek, rolluik of luik"],
           "type": "string",
+          "id": "uitv__483cdac9-1849-48e2-80f0-8af3db93c72d",
           "prio": 20,
-          "uuid": "zonwering-wat",
-          "id": "433a2ea9ba4fb7670e095b7cb759192f"
+          "uuid": "zonwering, rolhek, rolluik of luik - wat"
         },
         {
           "text": "Gaat u een zonwering plaatsen of vernieuwen?",
@@ -34,9 +34,9 @@
             "Ik ga een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
+          "id": "uitv__9b12c8b7-c7a2-4b0e-bfda-db9f3e1803bf",
           "prio": 30,
-          "uuid": "zonwering-onderhoud1",
-          "id": "097b67ce6c823a909ac71fa86ba9473e"
+          "uuid": "zonwering - onderhoud1"
         },
         {
           "text": "U gaat een zonwering plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -45,9 +45,9 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
+          "id": "uitv__827ba44c-3695-4b64-9f47-694dffe53a1b",
           "prio": 40,
-          "uuid": "zonwering-onderhoud2",
-          "id": "d3d1cf135bf5d9989feca2007c3728a3"
+          "uuid": "zonwering - onderhoud2"
         },
         {
           "text": "Gaat u een rolhek, rolluik of luik plaatsen of vernieuwen?",
@@ -56,9 +56,9 @@
             "Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was."
           ],
           "type": "string",
+          "id": "uitv__2abeb51f-4229-4b71-a6a5-d602b3755c4b",
           "prio": 50,
-          "uuid": "rolhek-onderhoud1",
-          "id": "d7f180c22b2a5590fcfe1d2118b3cb28"
+          "uuid": "rolhek, rolluik of luik - onderhoud1"
         },
         {
           "text": "U gaat een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was. Verandert de vorm, de grootte of het profiel? Of verandert de kleur of het materiaal?",
@@ -67,17 +67,17 @@
             "Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet."
           ],
           "type": "string",
+          "id": "uitv__d4d20c76-66fe-4142-8d32-c1f7243a05a9",
           "prio": 60,
-          "uuid": "rolhek-onderhoud2",
-          "id": "7fa49d2ec1994795beedb34c88bbd063"
+          "uuid": "rolhek, rolluik of luik - onderhoud2"
         }
       ],
       "decisions": {
-        "39a6061ad689f2315be7f815f8f5f764": {
+        "_7b929faf-b7bf-4014-9750-4ff34179c4b5": {
           "requiredInputs": [
-            "dbb10a79d250c08b28dd0cda8fbf497a",
-            "433a2ea9ba4fb7670e095b7cb759192f",
-            "097b67ce6c823a909ac71fa86ba9473e"
+            "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+            "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
+            "#input__9b12c8b7-c7a2-4b0e-bfda-db9f3e1803bf"
           ],
           "decisionTable": {
             "rules": [
@@ -116,11 +116,11 @@
             ]
           }
         },
-        "7209dce89cc47c748b416ed28406efd7": {
+        "_062b23d3-02bb-457f-a844-de36dc4704ea": {
           "requiredInputs": [
-            "dbb10a79d250c08b28dd0cda8fbf497a",
-            "433a2ea9ba4fb7670e095b7cb759192f",
-            "d7f180c22b2a5590fcfe1d2118b3cb28"
+            "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+            "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
+            "#input__2abeb51f-4229-4b71-a6a5-d602b3755c4b"
           ],
           "decisionTable": {
             "rules": [
@@ -159,12 +159,12 @@
             ]
           }
         },
-        "5ecb02241081eb5eb96d7259002ed8cb": {
+        "_cf65b6d9-5d21-468b-85c7-a7121b33fdd8": {
           "requiredInputs": [
-            "dbb10a79d250c08b28dd0cda8fbf497a",
-            "433a2ea9ba4fb7670e095b7cb759192f",
-            "097b67ce6c823a909ac71fa86ba9473e",
-            "d3d1cf135bf5d9989feca2007c3728a3"
+            "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+            "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
+            "#input__9b12c8b7-c7a2-4b0e-bfda-db9f3e1803bf",
+            "#input__827ba44c-3695-4b64-9f47-694dffe53a1b"
           ],
           "decisionTable": {
             "rules": [
@@ -215,12 +215,12 @@
             ]
           }
         },
-        "80f51842a6deadc675d3f406a8c92da2": {
+        "_40891601-90df-45e8-b2de-c811cf2be97c": {
           "requiredInputs": [
-            "dbb10a79d250c08b28dd0cda8fbf497a",
-            "433a2ea9ba4fb7670e095b7cb759192f",
-            "d7f180c22b2a5590fcfe1d2118b3cb28",
-            "7fa49d2ec1994795beedb34c88bbd063"
+            "#input__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+            "#input__483cdac9-1849-48e2-80f0-8af3db93c72d",
+            "#input__2abeb51f-4229-4b71-a6a5-d602b3755c4b",
+            "#input__d4d20c76-66fe-4142-8d32-c1f7243a05a9"
           ],
           "decisionTable": {
             "rules": [
@@ -273,10 +273,10 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "39a6061ad689f2315be7f815f8f5f764",
-            "7209dce89cc47c748b416ed28406efd7",
-            "5ecb02241081eb5eb96d7259002ed8cb",
-            "80f51842a6deadc675d3f406a8c92da2"
+            "#_7b929faf-b7bf-4014-9750-4ff34179c4b5",
+            "#_062b23d3-02bb-457f-a844-de36dc4704ea",
+            "#_cf65b6d9-5d21-468b-85c7-a7121b33fdd8",
+            "#_40891601-90df-45e8-b2de-c811cf2be97c"
           ],
           "decisionTable": {
             "rules": [
@@ -312,6 +312,32 @@
               }
             ]
           }
+        }
+      },
+      "inputs": {
+        "input__448723b5-4dd9-4ffd-9c34-eef929ab07cc": {
+          "href": "#uitv__448723b5-4dd9-4ffd-9c34-eef929ab07cc",
+          "type": "string"
+        },
+        "input__483cdac9-1849-48e2-80f0-8af3db93c72d": {
+          "href": "#uitv__483cdac9-1849-48e2-80f0-8af3db93c72d",
+          "type": "string"
+        },
+        "input__9b12c8b7-c7a2-4b0e-bfda-db9f3e1803bf": {
+          "href": "#uitv__9b12c8b7-c7a2-4b0e-bfda-db9f3e1803bf",
+          "type": "string"
+        },
+        "input__827ba44c-3695-4b64-9f47-694dffe53a1b": {
+          "href": "#uitv__827ba44c-3695-4b64-9f47-694dffe53a1b",
+          "type": "string"
+        },
+        "input__2abeb51f-4229-4b71-a6a5-d602b3755c4b": {
+          "href": "#uitv__2abeb51f-4229-4b71-a6a5-d602b3755c4b",
+          "type": "string"
+        },
+        "input__d4d20c76-66fe-4142-8d32-c1f7243a05a9": {
+          "href": "#uitv__d4d20c76-66fe-4142-8d32-c1f7243a05a9",
+          "type": "string"
         }
       }
     }
