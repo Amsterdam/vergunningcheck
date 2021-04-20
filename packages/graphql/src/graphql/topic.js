@@ -16,6 +16,10 @@ const typeDefs = gql`
     heading: String!
     locationIntro: String
   }
+  type Outcomes {
+    flo_legal_outcomes: [String]
+    text: String
+  }
 
   type Topic {
     name: String!
@@ -24,6 +28,7 @@ const typeDefs = gql`
     hasIMTR: Boolean!
     text: TopicText!
     url: String!
+    outcomes: [Outcomes!]!
     checker: Checker!
   }
 

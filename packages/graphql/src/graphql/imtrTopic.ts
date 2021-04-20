@@ -25,12 +25,16 @@ const typeDefs = gql`
   type Checker {
     permits: [Permit]!
   }
-
+  type Outcomes {
+    flo_legal_outcomes: [String]
+    text: String
+  }
   type IMTRTopic {
     name: String!
     slug: String!
     intro: String
     checker: Checker!
+    outcomes: [Outcomes!]!
   }
 
   extend type Query {

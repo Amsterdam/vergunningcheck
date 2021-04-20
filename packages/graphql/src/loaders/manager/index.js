@@ -10,11 +10,15 @@ const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
 const loader = {
-  reducer: ({ heading, intro, flow, ...rest }) => {
+  reducer: ({ heading, intro, flow, outcomes, ...rest }) => {
     const res = {
       ...rest,
       hasIMTR: flow === "IMTR",
       intro,
+      outcomes: {
+        flo_legal_outcomes: outcomes[0] && outcomes[0].flo_legal_outcomes || "",
+        text: outcomes[0] && outcomes[0].text || ""
+      },
       text: {
         heading,
       },
