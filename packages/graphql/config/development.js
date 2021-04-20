@@ -14,7 +14,7 @@ const config = {
   enableContentSecurityPolicy: false,
   loaders: {
     ois: {
-      HOST: "http://localhost:8000",
+      HOST: "http://127.0.0.1:8000",
       manager: {
         mock: true,
       },

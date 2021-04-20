@@ -29,12 +29,12 @@ const loader = {
     }),
 
   fetch: (id) =>
-    fetchJson(getUrl(`${URL}topics/${id}`)).then((data) => {
+    fetchJson(getUrl(`${URL}topics/${id}/`)).then((data) => {
       debug("fetched topic", data);
       return loader.reducer(data);
     }),
   cached: (key) => withCache(`manager:${key}`, () => loader.fetch(key), TTL),
-  page: () => withCache(`manager:list`, () => loader.fetchPage(), TTL), // @TODO cursor pagination
+  page: () => withCache(`manager:list`, () => loader.fetchPage(), TTL),
   list: async (keys) => keys.map(loader.page),
   load: async (keys) => keys.map(loader.cached),
 };

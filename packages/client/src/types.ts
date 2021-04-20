@@ -99,6 +99,7 @@ type IMTRTopic = {
   hasIMTR: true;
   intro: string;
   redirectToOlo?: false;
+  permits: Permit[];
 } & BaseTopic;
 
 type OloTopic = {
@@ -107,11 +108,11 @@ type OloTopic = {
   redirectToOlo?: false;
 } & BaseTopic;
 
-type RedirectToOloTopic = {
-  hasIMTR: false;
-  redirectToOlo: true;
-  intro?: undefined;
-} & BaseTopic;
+// type RedirectToOloTopic = {
+//   hasIMTR: false;
+//   redirectToOlo: true;
+//   intro?: undefined;
+// } & BaseTopic;
 
 /**
  * Merge the different topic types
@@ -123,7 +124,7 @@ type RedirectToOloTopic = {
  * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
  * text: This is part that holds specific texts for each permit-checker
  */
-export type Topic = OloTopic | IMTRTopic | RedirectToOloTopic;
+export type Topic = OloTopic | IMTRTopic; // | RedirectToOloTopic;
 
 /**
  * Checker related types

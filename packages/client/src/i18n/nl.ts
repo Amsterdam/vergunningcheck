@@ -46,47 +46,47 @@ export default {
         "situation dependent on situation only":
           "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
       },
-      dakkapel: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd",
-        exception:
-          "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
-        "placing bullet": "het plaatsen van de dakkapel zelf.",
-        "intro description":
-          "U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt.",
-      },
-      dakraam: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin het dakraam komt, is zonder vergunning gebouwd.",
-        "intro description":
-          "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
-        "placing bullet": "het plaatsen van het dakraam zelf.",
-      },
-      kozijnen: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
-        "intro description":
-          "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.",
-        "placing bullet": "het plaatsen van de kozijnen zelf.",
-      },
-      slopen: {
-        "need report":
-          "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
-      },
-      zonnepanelen: {
-        "intro description":
-          "U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.",
-        "placing bullet":
-          "het plaatsen van de zonnepanelen of zonneboiler zelf.",
-      },
-      zonwering: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik komt, is zonder vergunning gebouwd.",
-        "intro description":
-          "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.",
-        "placing bullet":
-          "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
-      },
+      // dakkapel: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd",
+      //   exception:
+      //     "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
+      //   "placing bullet": "het plaatsen van de dakkapel zelf.",
+      //   "intro description":
+      //     "U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt.",
+      // },
+      // dakraam: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin het dakraam komt, is zonder vergunning gebouwd.",
+      //   "intro description":
+      //     "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
+      //   "placing bullet": "het plaatsen van het dakraam zelf.",
+      // },
+      // kozijnen: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
+      //   "intro description":
+      //     "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.",
+      //   "placing bullet": "het plaatsen van de kozijnen zelf.",
+      // },
+      // slopen: {
+      //   "need report":
+      //     "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
+      // },
+      // zonnepanelen: {
+      //   "intro description":
+      //     "U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.",
+      //   "placing bullet":
+      //     "het plaatsen van de zonnepanelen of zonneboiler zelf.",
+      // },
+      // zonwering: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik komt, is zonder vergunning gebouwd.",
+      //   "intro description":
+      //     "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.",
+      //   "placing bullet":
+      //     "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
+      // },
     },
     location: {
       address: {
@@ -152,35 +152,35 @@ export default {
         "view on neighbors grounds":
           "Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.",
       },
-      needBothPermitAndReport: {
-        "you need both permit and report":
-          "U hebt een omgevingsvergunning nodig. U moet de activiteit ook melden.", // This text should only be used for unconfigured (non-amsterdam) checkers
-        "you need both permit and report for demolition":
-          "U hebt een omgevingsvergunning nodig. U moet de sloop ook melden.",
-        "on this page you can read more how to do apply for demolition":
-          "Op de pagina 'Sloop: melding en vergunning' leest u hoe u dit doet, hoe lang het duurt en wat het kost.",
-        "demolition permit and report": "Sloop: melding en vergunning",
-      },
-      needContact: {
-        "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
-      },
-      needPermit: {
-        "you need a permit": "U hebt een omgevingsvergunning nodig.",
-        "you need a permit for demolition":
-          "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
-        "on this page you can read more how to apply":
-          "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
-        "how to apply": "Zo werkt aanvragen",
-      },
-      needReport: {
-        "you need a report":
-          "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
-        "you need a report for demolition":
-          "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
-        "on this page you can read more":
-          "Op de pagina 'Zo werkt een sloopmelding' leest u hoe u de melding doet.",
-        "notify a demolition": "Zo werkt een sloopmelding",
-      },
+      // needBothPermitAndReport: {
+      //   "you need both permit and report":
+      //     "U hebt een omgevingsvergunning nodig. U moet de activiteit ook melden.", // This text should only be used for unconfigured (non-amsterdam) checkers
+      //   "you need both permit and report for demolition":
+      //     "U hebt een omgevingsvergunning nodig. U moet de sloop ook melden.",
+      //   "on this page you can read more how to do apply for demolition":
+      //     "Op de pagina 'Sloop: melding en vergunning' leest u hoe u dit doet, hoe lang het duurt en wat het kost.",
+      //   "demolition permit and report": "Sloop: melding en vergunning",
+      // },
+      // needContact: {
+      //   "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
+      // },
+      // needPermit: {
+      //   "you need a permit": "U hebt een omgevingsvergunning nodig.",
+      //   "you need a permit for demolition":
+      //     "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+      //   "on this page you can read more how to apply":
+      //     "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
+      //   "how to apply": "Zo werkt aanvragen",
+      // },
+      // needReport: {
+      //   "you need a report":
+      //     "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
+      //   "you need a report for demolition":
+      //     "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
+      //   "on this page you can read more":
+      //     "Op de pagina 'Zo werkt een sloopmelding' leest u hoe u de melding doet.",
+      //   "notify a demolition": "Zo werkt een sloopmelding",
+      // },
       payAttentionTo: {
         "apply to building code":
           "U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.",
@@ -190,11 +190,11 @@ export default {
         "take in account":
           "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.",
       },
-      permitFree: {
-        "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
-        "you dont need a permit for demolition":
-          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
-      },
+      // permitFree: {
+      //   "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+      //   "you dont need a permit for demolition":
+      //     "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
+      // },
     },
   },
 };
