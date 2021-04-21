@@ -4,6 +4,10 @@ query topicDetail($slug: String!) {
     intro
     name
     slug
+    outcomes {
+      floLegalOutcomes
+      text
+    }
     text {
       heading
       locationIntro
