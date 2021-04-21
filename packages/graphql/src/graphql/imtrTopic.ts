@@ -26,7 +26,7 @@ const typeDefs = gql`
     permits: [Permit]!
   }
   type Outcomes {
-    flo_legal_outcomes: [String]
+    floLegalOutcomes: [String]
     text: String
   }
   type IMTRTopic {

@@ -15,10 +15,11 @@ const loader = {
       ...rest,
       hasIMTR: flow === "IMTR",
       intro,
-      outcomes: {
-        flo_legal_outcomes: outcomes[0] && outcomes[0].flo_legal_outcomes || "",
-        text: outcomes[0] && outcomes[0].text || ""
-      },
+      outcomes: outcomes.map((outcome) => ({
+          floLegalOutcomes: outcome && outcome.flo_legal_outcomes.split(','),
+          text: outcome.text || ""
+        })
+      ),
       text: {
         heading,
       },

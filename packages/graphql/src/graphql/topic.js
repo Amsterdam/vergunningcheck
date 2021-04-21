@@ -17,7 +17,7 @@ const typeDefs = gql`
     locationIntro: String
   }
   type Outcomes {
-    flo_legal_outcomes: [String]
+    floLegalOutcomes: [String]
     text: String
   }
 
