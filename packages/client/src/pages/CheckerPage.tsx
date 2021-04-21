@@ -123,7 +123,7 @@ const CheckerPage: FunctionComponent = () => {
   }, [checker]);
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const getActiveSectionIndex = () => {

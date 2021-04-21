@@ -24,7 +24,6 @@ const Error: FunctionComponent<ErrorProps> = ({
         level="error"
       >
         {children}
-
         {/* Display error stack in screen (not in production) */}
         {stack && process.env.NODE_ENV !== "production" && (
           <pre style={{ whiteSpace: "normal" }}>{stack}</pre>
