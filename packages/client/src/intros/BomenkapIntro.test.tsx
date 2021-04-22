@@ -8,7 +8,8 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
-const sentence1 = nl.translation.introPage.bomenkap["you may need a permit"];
+const sentence1 =
+  nl.translation.introPage["kappen-of-snoeien"]["you may need a permit"];
 
 it("BomenkapIntro renders correctly", () => {
   render(<BomenkapIntro />);

@@ -41,11 +41,6 @@ class Topic {
     return this.type === TopicType.PERMIT_FORM;
   }
 
-  get isRedirect(): boolean {
-    // A redirect is a PermitCheck we don't support yet (see enum TopicType for more info)
-    return this.type === TopicType.REDIRECT;
-  }
-
   get preQuestionsCount(): number {
     // Returns the amount of `preQuestions`
     return this.preQuestions?.length || 0;

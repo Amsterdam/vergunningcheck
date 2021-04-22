@@ -95,11 +95,8 @@ const DebugCheckersTable: FunctionComponent = () => {
             </td>
           </tr>
           {topics
-            // Filter OLO flows topics (topics without IMTR file and are configured to be isPermitCheck or Redirect)
-            .filter(
-              ({ hasIMTR, isPermitCheck, isRedirect }) =>
-                !hasIMTR && (isPermitCheck || isRedirect)
-            )
+            // Filter OLO flows topics (topics without IMTR file and are configured to be isPermitCheck)
+            .filter(({ hasIMTR, isPermitCheck }) => !hasIMTR && isPermitCheck)
             .map((topic) => {
               const { slug, name } = topic;
               return (
@@ -107,7 +104,7 @@ const DebugCheckersTable: FunctionComponent = () => {
                   <td>
                     <Link to={geturl(slug)}>{name}</Link>
                   </td>
-                  <td>{topic.isRedirect ? "redirect" : "OLO"}</td>
+                  <td>OLO</td>
                   <td>n.a.</td>
                   <td>0</td>
                 </tr>

@@ -29,10 +29,6 @@ export const oloSlugs = findAllTopicsByType(TopicType.PERMIT_CHECK)
   .map((t) => t.slug)
   .join("|");
 
-export const oloRedirectSlugs = findAllTopicsByType(TopicType.REDIRECT)
-  .map((t) => t.slug)
-  .join("|");
-
 export const baseRouteConfig: RoutePropExtended[] = [
   {
     component:
@@ -80,14 +76,6 @@ export const baseRouteConfig: RoutePropExtended[] = [
     exact: true,
     name: "oloLocationResult",
     path: `/:slug(${oloSlugs})/adresgegevens`,
-  },
-  {
-    component: lazy(
-      () => import(/* webpackPrefetch: true */ `./pages/olo/OloRedirectPage`)
-    ),
-    exact: true,
-    name: "oloRedirect",
-    path: `/:slug(${oloRedirectSlugs})`,
   },
   {
     component: lazy(() => import("./pages/NotFoundPage")),

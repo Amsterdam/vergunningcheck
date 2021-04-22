@@ -7,7 +7,9 @@ export default () => {
 
   return (
     <>
-      <Paragraph>{t("introPage.bomenkap.you may need a permit")}</Paragraph>
+      <Paragraph>
+        {t("introPage.kappen-of-snoeien.you may need a permit")}
+      </Paragraph>
     </>
   );
 };
