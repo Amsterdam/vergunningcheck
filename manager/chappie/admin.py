@@ -31,3 +31,5 @@ class OutcomeAdmin(MyModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Permit, PermitAdmin)
 admin.site.register(Outcome, OutcomeAdmin)
+
+admin.site.site_header = 'Chappie Manager'

@@ -1,5 +1,5 @@
 // @TODO: TRANSLATE
-import { Heading, themeSpacing } from "@amsterdam/asc-ui";
+import { themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { isIE, isMobile } from "react-device-detect";
@@ -8,7 +8,6 @@ import styled, { css } from "styled-components";
 import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";
-import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
@@ -23,7 +22,7 @@ const OutcomeContentWrapper = styled.div<{ showDiscaimer?: boolean }>`
 `;
 
 type OutcomeContentProps = {
-  outcomeContent: OutcomeContentType;
+  outcomeContent: String;
   outcomeType: ClientOutcomes;
   showDiscaimer?: boolean;
 };
@@ -34,7 +33,6 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   showDiscaimer,
 }) => {
   const { matomoTrackEvent } = useTracking();
-  const { footerContent, mainContent, title } = outcomeContent;
 
   const handlePrintButton = () => {
     matomoTrackEvent({
@@ -47,11 +45,8 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   return (
     <OutcomeContentWrapper {...{ showDiscaimer }}>
       <ComponentWrapper marginBottom={16} />
-      <ComponentWrapper marginBottom={24}>
-        <Heading forwardedAs="h2">{title}</Heading>
-      </ComponentWrapper>
 
-      {mainContent}
+      <ComponentWrapper marginBottom={24}>{outcomeContent}</ComponentWrapper>
 
       <HideForPrint>
         {!isIE && !isMobile && (
@@ -65,10 +60,6 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
           </PrintButton>
         )}
       </HideForPrint>
-
-      <ComponentWrapper marginBottom={footerContent ? 52 : 0}>
-        {footerContent}
-      </ComponentWrapper>
 
       <HideForPrint>
         <NewCheckerModal />

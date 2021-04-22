@@ -1,4 +1,4 @@
-import { Answer as IMTRAnswer } from "@vergunningcheck/imtr-client";
+import { Answer as IMTRAnswer, Permit } from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
 
 /**
@@ -107,12 +107,6 @@ type OloTopic = {
   intro?: string;
   redirectToOlo?: false;
 } & BaseTopic;
-
-// type RedirectToOloTopic = {
-//   hasIMTR: false;
-//   redirectToOlo: true;
-//   intro?: undefined;
-// } & BaseTopic;
 
 /**
  * Merge the different topic types

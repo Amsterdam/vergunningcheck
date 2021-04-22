@@ -20,6 +20,9 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Checker"
+
 
 class Permit(models.Model):
     flo_legal_id = models.CharField(max_length=30, primary_key=True, default='', editable=True,
@@ -30,6 +33,10 @@ class Permit(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Vergunning"
+        verbose_name_plural = "Vergunningen"
 
 
 class Outcome(models.Model):
@@ -42,3 +49,7 @@ class Outcome(models.Model):
 
     def __str__(self):
         return f"{self.topic.name}: {self.flo_legal_outcomes}"
+
+    class Meta:
+        verbose_name = "Uitkomst"
+        verbose_name_plural = "Uitkomsten"

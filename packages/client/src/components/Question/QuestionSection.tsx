@@ -2,16 +2,14 @@ import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { actions, sections } from "../../config/matomo";
-import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
+import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { SectionComponent } from "../../types";
-import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION_SECTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Questions } from "./";
 
 const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
-  const slug = useSlug();
   const { setTopicData, topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
@@ -65,7 +63,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
         name: sections.OUTCOME,
       });
 
-      const { title } = getOutcomeContent(checker, slug);
+      const title = "XXX todo";
 
       matomoTrackEvent({
         action: actions.THIS_IS_THE_OUTCOME,

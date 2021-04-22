@@ -17,10 +17,9 @@ import { useForm } from "react-hook-form";
 
 import { ScrollAnchor } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { useChecker, useSlug, useTopicData, useTracking } from "../../hooks";
+import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { Answer, SectionFunctions } from "../../types";
 import { scrollToRef } from "../../utils";
-import getOutcomeContent from "../../utils/getOutcomeContent";
 import { QUESTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { Question, QuestionAnswer } from "./";
@@ -43,7 +42,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
   const outcomeRef = useRef<any>(null);
   const [contactOutcome, setContactOutcome] = useState(false);
   const [skipAnsweredQuestions, setSkipAnsweredQuestions] = useState(false);
-  const slug = useSlug();
   const { topicData, setTopicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
 
@@ -181,8 +179,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
         name: sections.OUTCOME,
       });
 
-      const { title } = getOutcomeContent(checker, slug);
-
+      const title = "XXX todo";
       matomoTrackEvent({
         action: actions.THIS_IS_THE_OUTCOME,
         name: title,
