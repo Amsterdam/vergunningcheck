@@ -134,6 +134,65 @@
             ]
           }
         },
+        "8aa79619fbc8ba622999afc3939cb7d3": {
+          "requiredInputs": [
+            "2fa811d95372858068173ce09e5bc770",
+            "21f1139c41f1f0cb444220777861e271",
+            "3b77a48f0f69ef208e21cf4676c7c8d8",
+            "9e75fa9f6cb12900b1abbe3b66b26e2c",
+            "36d30107a1a9c05717785ab9f3bed3a8"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  "\"Een vrachtauto\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  "\"Een bijzonder voertuig\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"minder of gelijk aan 7,5 ton\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"meer dan 45 ton\"", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
         "79b5969d885d792339be795684bb34ca": {
           "requiredInputs": [
             "2fa811d95372858068173ce09e5bc770",
@@ -180,6 +239,73 @@
               },
               {
                 "inputs": ["-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "7660ed4b008ea778cecb87440bb8242a": {
+          "requiredInputs": [
+            "2fa811d95372858068173ce09e5bc770",
+            "21f1139c41f1f0cb444220777861e271",
+            "3b77a48f0f69ef208e21cf4676c7c8d8",
+            "9e75fa9f6cb12900b1abbe3b66b26e2c",
+            "0680754325235df9b6deb62775ee5b48",
+            "36d30107a1a9c05717785ab9f3bed3a8"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  "\"Een vrachtauto\"",
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Verbod\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  "\"Een bijzonder voertuig\"",
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Verbod\""
+              },
+              {
+                "inputs": [false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"minder of gelijk aan 7,5 ton\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"meer dan 45 ton\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
@@ -250,12 +376,14 @@
             ]
           }
         },
-        "8aa79619fbc8ba622999afc3939cb7d3": {
+        "ec7492803105e3bcbeafa44f1da7f0b7": {
           "requiredInputs": [
             "2fa811d95372858068173ce09e5bc770",
             "21f1139c41f1f0cb444220777861e271",
             "3b77a48f0f69ef208e21cf4676c7c8d8",
             "9e75fa9f6cb12900b1abbe3b66b26e2c",
+            "0680754325235df9b6deb62775ee5b48",
+            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
             "36d30107a1a9c05717785ab9f3bed3a8"
           ],
           "decisionTable": {
@@ -266,9 +394,11 @@
                   "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
                   "\"Een vrachtauto\"",
                   false,
+                  true,
+                  false,
                   false
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Verbod\""
               },
               {
                 "inputs": [
@@ -276,12 +406,14 @@
                   "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
                   "\"Een bijzonder voertuig\"",
                   false,
+                  true,
+                  false,
                   false
                 ],
-                "output": "\"Vergunningplicht\""
+                "output": "\"Verbod\""
               },
               {
-                "inputs": [false, "-", "-", "-", "-"],
+                "inputs": [false, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -290,20 +422,30 @@
                   "\"minder of gelijk aan 7,5 ton\"",
                   "-",
                   "-",
+                  "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"meer dan 45 ton\"", "-", "-", "-"],
+                "inputs": ["-", "\"meer dan 45 ton\"", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
@@ -450,307 +592,6 @@
             ]
           }
         },
-        "7660ed4b008ea778cecb87440bb8242a": {
-          "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "36d30107a1a9c05717785ab9f3bed3a8"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  "\"Een vrachtauto\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  "\"Een bijzonder voertuig\"",
-                  false,
-                  false,
-                  false
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"minder of gelijk aan 7,5 ton\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"meer dan 45 ton\"", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "ec7492803105e3bcbeafa44f1da7f0b7": {
-          "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "3b77a48f0f69ef208e21cf4676c7c8d8",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "36d30107a1a9c05717785ab9f3bed3a8"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  "\"Een vrachtauto\"",
-                  false,
-                  true,
-                  false,
-                  false
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  "\"Een bijzonder voertuig\"",
-                  false,
-                  true,
-                  false,
-                  false
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [false, "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"minder of gelijk aan 7,5 ton\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"meer dan 45 ton\"", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "b16fc266ff7821add0fa68aa9176e701": {
-          "requiredInputs": [
-            "21f1139c41f1f0cb444220777861e271",
-            "9e75fa9f6cb12900b1abbe3b66b26e2c",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886",
-            "070e1dc652e3dfedadd4a6c906966879",
-            "a9557fe4e662c0f2803393510a514483"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"meer dan 45 ton\"",
-                  false,
-                  true,
-                  true,
-                  true,
-                  true,
-                  false
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  "\"minder of gelijk aan 7,5 ton\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "4f03d92b5730c7b4aa445891a376a17b": {
-          "requiredInputs": [
-            "2fa811d95372858068173ce09e5bc770",
-            "21f1139c41f1f0cb444220777861e271",
-            "0680754325235df9b6deb62775ee5b48",
-            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
-            "b59523e987e382d5d0f05e7e0df56886",
-            "bb1d15804283404bf721745a90a0b5c8",
-            "a9557fe4e662c0f2803393510a514483",
-            "36d30107a1a9c05717785ab9f3bed3a8"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  true,
-                  false,
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  true,
-                  false,
-                  true,
-                  false,
-                  false,
-                  true
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [false, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"minder of gelijk aan 7,5 ton\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "\"meer dan 45 ton\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
         "e58d75af8d6c935bc895b501725ca7a4": {
           "requiredInputs": [
             "2fa811d95372858068173ce09e5bc770",
@@ -843,7 +684,82 @@
             ]
           }
         },
-        "d9746d3337f8677333c97f4bf25526ca": {
+        "b16fc266ff7821add0fa68aa9176e701": {
+          "requiredInputs": [
+            "21f1139c41f1f0cb444220777861e271",
+            "9e75fa9f6cb12900b1abbe3b66b26e2c",
+            "0680754325235df9b6deb62775ee5b48",
+            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
+            "b59523e987e382d5d0f05e7e0df56886",
+            "070e1dc652e3dfedadd4a6c906966879",
+            "a9557fe4e662c0f2803393510a514483"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"meer dan 45 ton\"",
+                  false,
+                  true,
+                  true,
+                  true,
+                  true,
+                  false
+                ],
+                "output": "\"Verbod\""
+              },
+              {
+                "inputs": [
+                  "\"minder of gelijk aan 7,5 ton\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", false, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "75f57176d6fbfff1ad50bea327032d8d": {
           "requiredInputs": [
             "2fa811d95372858068173ce09e5bc770",
             "21f1139c41f1f0cb444220777861e271",
@@ -862,20 +778,6 @@
                   true,
                   "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
                   "\"Een bijzonder voertuig\"",
-                  false,
-                  false,
-                  true,
-                  false,
-                  true,
-                  true
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  true,
-                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
-                  "\"Een bijzonder voertuig\"",
                   true,
                   false,
                   true,
@@ -884,6 +786,20 @@
                   true
                 ],
                 "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  "\"Een bijzonder voertuig\"",
+                  false,
+                  false,
+                  true,
+                  false,
+                  true,
+                  true
+                ],
+                "output": "\"Verbod\""
               },
               {
                 "inputs": [false, "-", "-", "-", "-", "-", "-", "-", "-"],
@@ -954,20 +870,104 @@
             ]
           }
         },
-        "dummy": {
+        "4f03d92b5730c7b4aa445891a376a17b": {
+          "requiredInputs": [
+            "2fa811d95372858068173ce09e5bc770",
+            "21f1139c41f1f0cb444220777861e271",
+            "0680754325235df9b6deb62775ee5b48",
+            "6fdbcbb4bf4b2ec3d39850a1e78f75a8",
+            "b59523e987e382d5d0f05e7e0df56886",
+            "bb1d15804283404bf721745a90a0b5c8",
+            "a9557fe4e662c0f2803393510a514483",
+            "36d30107a1a9c05717785ab9f3bed3a8"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  true,
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Verbod\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "\"meer dan 7,5 ton, minder of gelijk aan 45 ton\"",
+                  true,
+                  false,
+                  true,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Verbod\""
+              },
+              {
+                "inputs": [false, "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"minder of gelijk aan 7,5 ton\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"meer dan 45 ton\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_a56618d2-ab2f-4ae3-b7c4-ee034d64221a": {
           "requiredDecisions": [
             "c0afbe6bcf4e2c0454bf0f12b5d6ae18",
-            "79b5969d885d792339be795684bb34ca",
-            "ac6af68a7afeeb183125294b40781b92",
             "8aa79619fbc8ba622999afc3939cb7d3",
+            "79b5969d885d792339be795684bb34ca",
+            "7660ed4b008ea778cecb87440bb8242a",
+            "ac6af68a7afeeb183125294b40781b92",
+            "ec7492803105e3bcbeafa44f1da7f0b7",
             "842c62220821a2b35588971b7db58af7",
             "3f029d1c7e29721ada77034e2aad1c38",
-            "7660ed4b008ea778cecb87440bb8242a",
-            "ec7492803105e3bcbeafa44f1da7f0b7",
-            "b16fc266ff7821add0fa68aa9176e701",
-            "4f03d92b5730c7b4aa445891a376a17b",
             "e58d75af8d6c935bc895b501725ca7a4",
-            "d9746d3337f8677333c97f4bf25526ca"
+            "b16fc266ff7821add0fa68aa9176e701",
+            "75f57176d6fbfff1ad50bea327032d8d",
+            "4f03d92b5730c7b4aa445891a376a17b"
           ],
           "decisionTable": {
             "rules": [
@@ -1009,25 +1009,8 @@
                 "inputs": [
                   "-",
                   "-",
-                  "\"Verbod\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
                   "\"Vergunningplicht\"",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1044,6 +1027,23 @@
                   "-",
                   "-",
                   "-",
+                  "\"Verbod\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Verbod\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "\"Verbod\"",
                   "-",
@@ -1140,6 +1140,23 @@
                   "-"
                 ],
                 "output": "\"Verbod\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -1174,23 +1191,6 @@
                   "\"Verbod\""
                 ],
                 "output": "\"Verbod\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\""
-                ],
-                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [

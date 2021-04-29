@@ -116,49 +116,6 @@
             ]
           }
         },
-        "7209dce89cc47c748b416ed28406efd7": {
-          "requiredInputs": [
-            "dbb10a79d250c08b28dd0cda8fbf497a",
-            "433a2ea9ba4fb7670e095b7cb759192f",
-            "d7f180c22b2a5590fcfe1d2118b3cb28"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  "\"Rijksmonument\"",
-                  "\"Rolhek, rolluik of luik\"",
-                  "\"Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.\""
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [
-                  "\"Gemeentelijk monument\"",
-                  "\"Rolhek, rolluik of luik\"",
-                  "\"Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.\""
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"Geen monument\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "\"Zonwering\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was.\""
-                ],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
         "5ecb02241081eb5eb96d7259002ed8cb": {
           "requiredInputs": [
             "dbb10a79d250c08b28dd0cda8fbf497a",
@@ -209,6 +166,49 @@
                   "-",
                   "-",
                   "\"Nee, de vorm, de grootte en het profiel veranderen niet. Ook kleur en materiaal veranderen niet.\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "7209dce89cc47c748b416ed28406efd7": {
+          "requiredInputs": [
+            "dbb10a79d250c08b28dd0cda8fbf497a",
+            "433a2ea9ba4fb7670e095b7cb759192f",
+            "d7f180c22b2a5590fcfe1d2118b3cb28"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Rijksmonument\"",
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"Gemeentelijk monument\"",
+                  "\"Rolhek, rolluik of luik\"",
+                  "\"Ik ga een nieuw rolhek, rolluik of luik plaatsen op een plek waar er eerst geen was.\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"Geen monument\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "\"Zonwering\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Ik ga een rolhek, rolluik of luik plaatsen of vernieuwen op een plek waar er eerst al een was.\""
                 ],
                 "output": "\"no hit\""
               }
@@ -271,11 +271,11 @@
             ]
           }
         },
-        "dummy": {
+        "_35e347bb-4fb5-4e97-9297-85303271714c": {
           "requiredDecisions": [
             "39a6061ad689f2315be7f815f8f5f764",
-            "7209dce89cc47c748b416ed28406efd7",
             "5ecb02241081eb5eb96d7259002ed8cb",
+            "7209dce89cc47c748b416ed28406efd7",
             "80f51842a6deadc675d3f406a8c92da2"
           ],
           "decisionTable": {
@@ -287,18 +287,15 @@
               },
               {
                 "inputs": ["-", "\"Vergunningplicht\"", "-", "-"],
-                "output": "\"Vergunningplicht\"",
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": ["-", "-", "\"Vergunningplicht\"", "-"],
-                "output": "\"Vergunningplicht\"",
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": ["-", "-", "-", "\"Vergunningplicht\""],
-                "output": "\"Vergunningplicht\"",
-                "description": "U wilt een zonwering, rolhek, rolluik of luik plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
