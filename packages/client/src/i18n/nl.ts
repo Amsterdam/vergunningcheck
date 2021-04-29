@@ -101,7 +101,7 @@ export default {
           "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
         "placing bullet": "het plaatsen van het dakraam zelf.",
       },
-      bomenkap: {
+      "kappen-of-snoeien": {
         "you may need a permit":
           "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt voor het kappen of snoeien van een boom. Ook voor het kappen van een dode boom kan een vergunning nodig zijn. Hier kunt u de checker ook voor gebruiken.",
       },
@@ -182,7 +182,7 @@ export default {
       nextQuestion: "Volgende vraag",
     },
     preQuestions: {
-      bomenkap: {
+      "kappen-of-snoeien": {
         preQuestionMultipleCheckers: {
           "would you like to build more than one":
             "Wilt u meer dan 1 boom kappen of snoeien?",
@@ -242,6 +242,8 @@ export default {
           "Toestemming van uw buren als het gaat om een gezamenlijke muur of schutting.",
         "disposal of waste": "Het afvoeren van bouw- en sloopafval.",
         "disposal of tree waste": "Het afvoeren van boomafval.",
+        iepziekte:
+          "Mogelijke iepziekte, neem dan contact op met de gemeente op telefoonnummer 14 020",
         "permission from the VvE": "Toestemming van de VvE.",
         "protected flora and fauna":
           "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest vogels.",
@@ -335,7 +337,7 @@ export default {
         "Hebt u ook andere bouwplannen? Dan kunt u nog een vergunningcheck doen.",
       "if you have other plans you can do other permit checks as well":
         "Hebt u ook andere bouwplannen? Ook dan kunt u nog een vergunningcheck doen.",
-      bomenkap: {
+      "kappen-of-snoeien": {
         "you would like to build more than 1 so you need to do multiple permits":
           "U wilt meer dan 1 boom kappen. Doe voor elke volgende een vergunningcheck.",
       },

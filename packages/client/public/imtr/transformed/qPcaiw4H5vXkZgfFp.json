@@ -13,16 +13,12 @@
         }
       ],
       "decisions": {
-        "db329a05b4392df78ad7fba9bd571306": {
+        "15abf38ff4482c55cc9ceaea118671ab": {
           "requiredInputs": ["c84b85e0a69d437891e42385cb3b18b1"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"deels\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"ja\""],
+                "inputs": ["\"ja\",\"deels\""],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -32,8 +28,8 @@
             ]
           }
         },
-        "dummy": {
-          "requiredDecisions": ["db329a05b4392df78ad7fba9bd571306"],
+        "_0dbd9da0-48dc-4587-b3ee-45bf25dd195a": {
+          "requiredDecisions": ["15abf38ff4482c55cc9ceaea118671ab"],
           "decisionTable": {
             "rules": [
               {

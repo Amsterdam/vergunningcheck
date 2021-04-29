@@ -166,6 +166,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
               nl.translation.outcome.thinkAbout["protected flora and fauna"],
               nl.translation.outcome.thinkAbout["placement of a crane"],
               nl.translation.outcome.thinkAbout["disposal of tree waste"],
+              nl.translation.outcome.thinkAbout["iepziekte"],
             ]}
           />
         ),
@@ -244,7 +245,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
     return contents.demolition[outcomeType] as OutcomeContentType;
   } else if (slug === "brandveilig-gebruik") {
     return contents.firesafety[outcomeType] as OutcomeContentType;
-  } else if (slug === "bomenkap") {
+  } else if (slug === "kappen-of-snoeien") {
     return contents.bomenkap[outcomeType] as OutcomeContentType;
   }
   return contents.default[outcomeType] as OutcomeContentType;

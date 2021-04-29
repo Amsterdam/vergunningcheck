@@ -5,7 +5,7 @@ import { matchPath } from "react-router";
 import { topics } from "../config";
 import nl from "../i18n/nl";
 import Topic from "../models/topic";
-import { imtrSlugs, oloRedirectSlugs, oloSlugs } from "../routes";
+import { imtrSlugs, oloSlugs } from "../routes";
 import apiTopics from "../topics.json";
 import { Answer, Restriction, TopicType } from "../types";
 
@@ -14,7 +14,7 @@ const { no, yes } = nl.translation.common;
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
   const match = matchPath(pathname, {
-    path: `/:slug(${imtrSlugs}|${oloSlugs}|${oloRedirectSlugs})`,
+    path: `/:slug(${imtrSlugs}|${oloSlugs})`,
   }) as any;
 
   return match?.params?.slug;

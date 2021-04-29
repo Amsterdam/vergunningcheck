@@ -99,7 +99,6 @@ export enum PreQuestionComponent {
 export enum TopicType {
   PERMIT_CHECK, // A permit-check that is either an "OLO flow" or an "IMTR flow" check. IMTR checks are configured in `packages/imtr/src/config`.
   PERMIT_FORM, // A permit-form - required when PERMIT_NEEDED - with the main focus on generating a PDF
-  REDIRECT, // A direct redirect to "OLO". We only use this to track the visitor count from amsterdam.nl
 }
 
 export type TopicConfig = {

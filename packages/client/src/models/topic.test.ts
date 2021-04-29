@@ -22,7 +22,6 @@ describe("Topic", () => {
       isConfiguredPermitCheck,
       isPermitCheck,
       isPermitForm,
-      isRedirect,
       name,
       slug,
       text: { heading },
@@ -39,7 +38,6 @@ describe("Topic", () => {
     expect(isConfiguredPermitCheck).toBe(false);
     expect(isPermitCheck).toBe(false);
     expect(isPermitForm).toBe(true);
-    expect(isRedirect).toBe(false);
   });
 
   test("returns correct data for an existing topic", () => {

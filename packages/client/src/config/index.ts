@@ -52,7 +52,7 @@ export const topics: Topic[] = [
     intro: "BomenkapIntro",
     name: "Boom kappen of snoeien",
     preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
-    slug: "bomenkap",
+    slug: "kappen-of-snoeien",
     text: {
       heading: "Vergunningcheck bomenkap",
     },
@@ -115,14 +115,6 @@ export const topics: Topic[] = [
     },
     type: TopicType.PERMIT_CHECK,
     userMightNotNeedPermit: true,
-  },
-  {
-    name: "Kappen of snoeien",
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "Vergunningcheck kappen of snoeien",
-    },
-    type: TopicType.REDIRECT,
   },
   {
     intro: "BrandveiligGebruikIntro",
