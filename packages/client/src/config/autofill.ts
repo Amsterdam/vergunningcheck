@@ -80,7 +80,14 @@ export const autofillResolvers: AutofillResolverMap = {
         "Monument"
       );
       if (monumentData?.name) {
-        return addQuotes(monumentData.name);
+        // We decided that `in procedure monuments` should be mapped to actual monuments
+        const monument = monumentData.name
+          .replace(
+            "In procedure Gemeentelijk Monument",
+            "Gemeentelijk monument"
+          )
+          .replace("In procedure Rijksmonument", "Rijksmonument");
+        return addQuotes(monument);
       }
     }
     return addQuotes(strings.NO_MONUMENT);
