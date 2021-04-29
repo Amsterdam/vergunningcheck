@@ -29,7 +29,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
 
   const hideQuestionSection = !!(
     address &&
-    !checker?._getUpcomingQuestions().length &&
+    !checker?.getUpcomingQuestions().length &&
     !checker?.stack.length &&
     checker?.isConclusive() &&
     !isCompleted &&

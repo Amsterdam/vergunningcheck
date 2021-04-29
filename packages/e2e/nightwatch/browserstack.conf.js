@@ -1,6 +1,6 @@
-const browserstack = require('browserstack-local');
+import browserstack from "browserstack-local";
 
-nightwatch_config = {
+const nightwatch_config = {
   src_folders : [ "nightwatch/tests" ],
 
   selenium : {
@@ -12,7 +12,7 @@ nightwatch_config = {
   common_capabilities: {
     'build': 'nightwatch-browserstack',
     'browserstack.user': 'sjens1',
-    'browserstack.key': '3T6jZ9N4pYf9qjzoqKxU',
+    'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY,
     'browserstack.debug': false,
     'browserstack.local': true
   },
@@ -55,4 +55,4 @@ for(let i in nightwatch_config.test_settings){
   }
 }
 
-module.exports = nightwatch_config;
+export nightwatch_config;

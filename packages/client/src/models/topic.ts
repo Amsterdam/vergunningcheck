@@ -1,6 +1,5 @@
-import { PreQuestionComponent } from "../config";
 import apiTopics from "../topics.json";
-import { TopicConfig, TopicType } from "../types";
+import { PreQuestionComponent, TopicConfig, TopicType } from "../types";
 
 class Topic {
   readonly intro?: string;
@@ -22,6 +21,7 @@ class Topic {
   }
 
   get hasIMTR(): boolean {
+    // This validates if the current topic has a transformed IMTR file
     return !!(
       this.slug && apiTopics.flat().find((api) => api.slug === this.slug)
     );
@@ -32,18 +32,17 @@ class Topic {
   }
 
   get isConfiguredPermitCheck(): boolean {
+    // This validates if the current topic is configured as a PermitCheck and `hasIMTR`
     return this.hasIMTR && this.isPermitCheck;
   }
 
   get isPermitForm(): boolean {
+    // A PermitForm is in case a PermitCheck has a `NEED_PERMIT` (see enum TopicType for more info)
     return this.type === TopicType.PERMIT_FORM;
   }
 
-  get isRedirect(): boolean {
-    return this.type === TopicType.REDIRECT;
-  }
-
   get preQuestionsCount(): number {
+    // Returns the amount of `preQuestions`
     return this.preQuestions?.length || 0;
   }
 }

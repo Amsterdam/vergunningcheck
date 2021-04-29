@@ -1,15 +1,16 @@
 {
   "name": "@vergunningcheck/e2e",
   "private": true,
-  "version": "2.5.1",
+  "version": "2.6.0",
   "description": "Module for e2e and cross-browser testing of the Vergunningcheck application.",
   "keywords": [],
   "author": "Gemeente Amsterdam",
   "license": "ISC",
   "main": "puppeteer/basic.ts",
+  "type": "module",
   "scripts": {
     "test": "jest",
-    "nightwatch:browserstack": "node scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari,ie",
+    "nightwatch:browserstack": "node --experimental-modules scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari,ie",
     "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
     "localhost:test:puppeteer": "find puppeteer/tests/*.ts -exec ts-node {} \\;",
     "localhost:test:nightwatch": "run-p localhost:test:nightwatch:*",
@@ -20,7 +21,7 @@
     "@types/chai": "^4.2.13",
     "@types/mkdirp": "^1.0.1",
     "@types/puppeteer": "^3.0.2",
-    "@vergunningcheck/mocking": "^2.5.1",
+    "@vergunningcheck/mocking": "^2.6.0",
     "chai": "^4.2.0",
     "chromedriver": "^87.0.5",
     "geckodriver": "^1.20.0",
@@ -28,7 +29,7 @@
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.1",
     "mkdirp": "^1.0.4",
-    "nightwatch": "^1.4.3",
+    "nightwatch": "^1.6.2",
     "npm-run-all": "^4.1.5",
     "puppeteer": "^5.3.1",
     "selenium-server": "^3.141.59",
@@ -37,7 +38,6 @@
   },
   "dependencies": {
     "@types/nightwatch": "^1.3.3",
-    "@vergunningcheck/mocking": "^2.5.0",
     "browserstack-local": "^1.4.8",
     "selenium-webdriver": "^4.0.0-beta.1"
   }

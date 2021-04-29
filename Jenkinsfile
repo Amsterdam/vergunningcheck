@@ -40,7 +40,6 @@ node {
             tryStep "Run e2e test", {
                 docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                     e2e_image = docker.build("${NIGHTWATCH_CONTAINERNAME}","--pull --build-arg=JENKINS_URL=${env.JENKINS_URL} --build-arg=JOB_NAME=${env.JOB_NAME} --build-arg=BUILD_URL=${env.BUILD_URL} --build-arg=BUILD_NUMBER=${env.BUILD_NUMBER} -f ${NIGHTWATCH_DOCKERFILE} ${CONTAINERDIR}")
-    //              e2e_image.push()
                 }
             }
         }

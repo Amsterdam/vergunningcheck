@@ -26,11 +26,10 @@
         },
         {
           "text": "Wat is de conditie van de boom?",
-          "longDescription": "Deze vraag is opgenomen om de gebruiker te informeren dat de regels ook gelden voor dode bomen.",
           "options": ["ziek", "gezond of dood"],
           "type": "string",
           "prio": 30,
-          "id": "10c954a326010d2b39f5fd2297ce4969"
+          "id": "bb4c90c18d213043d9105da116316715"
         },
         {
           "text": "Gaat u deze activiteit uitvoeren vanwege de iepziekte of de Plantenziektenwet?",
@@ -41,10 +40,9 @@
         },
         {
           "text": "Is de boom geplant vanwege een herplantplicht?",
-          "longDescription": "Deze vraag is pas relevant als de omtrek minder dan 31 cm is.",
           "type": "boolean",
           "prio": 50,
-          "id": "7d3f8602bd9ce7067eef5caf46185591"
+          "id": "9af22a721d64f65e09ffb098b2afde2a"
         },
         {
           "text": "Is de omtrek van de boom gemeten op 1,30 m boven de grond gelijk aan of  meer dan 31 cm?",
@@ -68,7 +66,7 @@
         }
       ],
       "decisions": {
-        "f2d09e4176582bf5d27864a0fed00d54": {
+        "46f129fd150562b1c1ffee1cba27a2ad": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d"
@@ -84,6 +82,10 @@
                 "output": "\"NeemContactOpMet\""
               },
               {
+                "inputs": ["\"kandelaberen\"", true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
                 "inputs": ["\"verplanten\"", true],
                 "output": "\"NeemContactOpMet\""
               },
@@ -95,65 +97,18 @@
                 "output": "\"NeemContactOpMet\""
               },
               {
-                "inputs": ["\"kandelaberen\"", true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
                 "inputs": ["-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "acec8bc2f179a58bc91ec9809d20a73f": {
+        "365de750a818413a70db8745f4442212": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"verplanten\"", false, "\"ziek\""],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": [
-                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
-                  false,
-                  "\"ziek\""
-                ],
-                "output": "\"NeemContactOpMet\""
-              },
-              {
-                "inputs": ["\"kappen\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"rooien\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"kandelaberen\"", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"gezond of dood\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "b586f8f72d9566906a9ab7a1751ea662": {
-          "requiredInputs": [
-            "677d758249771ee55aba92c46230a87c",
-            "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969",
-            "7d3f8602bd9ce7067eef5caf46185591"
+            "bb4c90c18d213043d9105da116316715",
+            "9af22a721d64f65e09ffb098b2afde2a"
           ],
           "decisionTable": {
             "rules": [
@@ -202,12 +157,12 @@
             ]
           }
         },
-        "4b2da5fa6d23d2e94f1f0d7a2e5cff2b": {
+        "fd9c5a5d09e2f10f8e41771cf53b14f3": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969",
-            "7d3f8602bd9ce7067eef5caf46185591",
+            "bb4c90c18d213043d9105da116316715",
+            "9af22a721d64f65e09ffb098b2afde2a",
             "b15ebef68e3fe1b1d328d6f79d98a50d"
           ],
           "decisionTable": {
@@ -281,13 +236,13 @@
             ]
           }
         },
-        "c298c519a1b408282727b4f1eb73e185": {
+        "b1eba7a3aec91c7234a4c591d36c0a31": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969",
+            "bb4c90c18d213043d9105da116316715",
             "d1f9f633a12901c2a57355b9b4a1da15",
-            "7d3f8602bd9ce7067eef5caf46185591"
+            "9af22a721d64f65e09ffb098b2afde2a"
           ],
           "decisionTable": {
             "rules": [
@@ -336,13 +291,13 @@
             ]
           }
         },
-        "2e4a4ecd74cf941385a08829d1531466": {
+        "b1fa8f1d447d0cd4e09a240fe66fbf1d": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969",
+            "bb4c90c18d213043d9105da116316715",
             "d1f9f633a12901c2a57355b9b4a1da15",
-            "7d3f8602bd9ce7067eef5caf46185591",
+            "9af22a721d64f65e09ffb098b2afde2a",
             "b15ebef68e3fe1b1d328d6f79d98a50d"
           ],
           "decisionTable": {
@@ -397,12 +352,12 @@
             ]
           }
         },
-        "5a5d317f1f4d028d7efad79d306fb3e4": {
+        "a04a57ff0619e5e30bbf034ff0d3fc0c": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969",
-            "7d3f8602bd9ce7067eef5caf46185591",
+            "bb4c90c18d213043d9105da116316715",
+            "9af22a721d64f65e09ffb098b2afde2a",
             "b15ebef68e3fe1b1d328d6f79d98a50d",
             "c3f9e774ac062a61ce9230e8726e2c58"
           ],
@@ -472,12 +427,12 @@
             ]
           }
         },
-        "5016e11b807e3b0ae3e8e6fe4e5cdcf2": {
+        "c50ee2b48263f57a72cc8115866677e6": {
           "requiredInputs": [
             "677d758249771ee55aba92c46230a87c",
             "5a23ded3a1440de0b9c96ccb8e341f3d",
-            "10c954a326010d2b39f5fd2297ce4969",
-            "7d3f8602bd9ce7067eef5caf46185591",
+            "bb4c90c18d213043d9105da116316715",
+            "9af22a721d64f65e09ffb098b2afde2a",
             "b15ebef68e3fe1b1d328d6f79d98a50d",
             "c3f9e774ac062a61ce9230e8726e2c58",
             "5141c351aa554eb4c152225e7984c654"
@@ -555,16 +510,59 @@
             ]
           }
         },
-        "dummy": {
+        "0b5404fb63616806785cf0053b1c267d": {
+          "requiredInputs": [
+            "677d758249771ee55aba92c46230a87c",
+            "5a23ded3a1440de0b9c96ccb8e341f3d",
+            "bb4c90c18d213043d9105da116316715"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"verplanten\"", false, "\"ziek\""],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  "\"handelingen die de boom beschadigen, ontsieren of doden\"",
+                  false,
+                  "\"ziek\""
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": ["\"kappen\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"rooien\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["\"kandelaberen\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"gezond of dood\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7eb8024d-aade-4729-bf38-20e0844559bf": {
           "requiredDecisions": [
-            "f2d09e4176582bf5d27864a0fed00d54",
-            "acec8bc2f179a58bc91ec9809d20a73f",
-            "b586f8f72d9566906a9ab7a1751ea662",
-            "4b2da5fa6d23d2e94f1f0d7a2e5cff2b",
-            "c298c519a1b408282727b4f1eb73e185",
-            "2e4a4ecd74cf941385a08829d1531466",
-            "5a5d317f1f4d028d7efad79d306fb3e4",
-            "5016e11b807e3b0ae3e8e6fe4e5cdcf2"
+            "46f129fd150562b1c1ffee1cba27a2ad",
+            "365de750a818413a70db8745f4442212",
+            "fd9c5a5d09e2f10f8e41771cf53b14f3",
+            "b1eba7a3aec91c7234a4c591d36c0a31",
+            "b1fa8f1d447d0cd4e09a240fe66fbf1d",
+            "a04a57ff0619e5e30bbf034ff0d3fc0c",
+            "c50ee2b48263f57a72cc8115866677e6",
+            "0b5404fb63616806785cf0053b1c267d"
           ],
           "decisionTable": {
             "rules": [
@@ -599,7 +597,7 @@
               {
                 "inputs": [
                   "-",
-                  "\"NeemContactOpMet\"",
+                  "\"Vergunningplicht\"",
                   "-",
                   "-",
                   "-",
@@ -607,8 +605,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"NeemContactOpMet\"",
-                "description": "Neem contact op met de gemeente via nummer [14 020](tel:14020)"
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -621,8 +618,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -635,8 +631,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -649,8 +644,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -663,8 +657,7 @@
                   "-",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -677,8 +670,7 @@
                   "\"Vergunningplicht\"",
                   "-"
                 ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+                "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
@@ -689,10 +681,9 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\""
+                  "\"NeemContactOpMet\""
                 ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U heeft een omgevingsvergunning nodig voor deze activiteit.\n\nHet is mogelijk dat u ook een vergunning nodig heeft voor een andere activiteit"
+                "output": "\"NeemContactOpMet\""
               },
               {
                 "inputs": [

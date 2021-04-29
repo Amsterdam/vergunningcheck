@@ -1,3 +1,4 @@
+import { MockedResponse } from "@apollo/client/testing";
 import { loader } from "graphql.macro";
 const findAddress = loader("../components/Location/LocationFinder.graphql");
 
@@ -275,4 +276,4 @@ export default [
       errors: [{ stack: ["GraphQLError: ..."], message: "..." }],
     },
   },
-];
+] as MockedResponse[];

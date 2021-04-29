@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { Form } from "../../atoms";
-import { AnswerValue, PreQuestionFunctions } from "../../types";
+import { Answer, AnswerValue, PreQuestionFunctions } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
 import Answers from "../Answers";
@@ -16,6 +16,7 @@ type PreQuestionProps = {
   description?: string;
   questionAlertText?: string;
   questionId: string;
+  topicDataKey: string;
 };
 
 const PreQuestion: FunctionComponent<
@@ -27,7 +28,8 @@ const PreQuestion: FunctionComponent<
   isCheckerConclusive,
   questionAlertText,
   questionId,
-  saveAnswer,
+  saveAnswer: saveAnswerProp,
+  topicDataKey,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const { t } = useTranslation();
@@ -48,17 +50,25 @@ const PreQuestion: FunctionComponent<
     return () => unregister(questionId);
   }, [answer, questionId, register, unregister, setValue, requiredText]);
 
+  // Pass the custom key to update the value in the session storage
+  const saveAnswer = (answer: Answer) => saveAnswerProp(answer, topicDataKey);
+
   return (
     <Form
       dataId={questionId}
       dataTestId={QUESTION_FORM}
       onSubmit={handleSubmit(goToNextQuestion)}
     >
+      {/* Show the optional description below the title */}
       {description && <Paragraph>{description}</Paragraph>}
+
+      {/* Show the answer options */}
       <Answers {...{ answer, errors, questionId, saveAnswer }} />
 
+      {/* Show the optional QuestionAlert in case the `questionAlertText` has been set  */}
       <QuestionAlert marginBottom={8} {...{ questionAlertText }} />
 
+      {/* Show the navigation with the Next/Prev buttons */}
       <Nav
         nextText={
           isCheckerConclusive()

@@ -2,8 +2,6 @@ import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
 import { RouteProps } from "react-router-dom";
 
-import { PreQuestionComponent } from "./config";
-
 /**
  * Location types
  */
@@ -87,12 +85,20 @@ export type setTopicSessionDataFn = (
 ) => void;
 
 /**
+ * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
+ *
+ * Direct importing and including components does not work because the hooks lose context.
+ */
+export enum PreQuestionComponent {
+  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+}
+
+/**
  * Topic types
  */
 export enum TopicType {
   PERMIT_CHECK, // A permit-check that is either an "OLO flow" or an "IMTR flow" check. IMTR checks are configured in `packages/imtr/src/config`.
   PERMIT_FORM, // A permit-form - required when PERMIT_NEEDED - with the main focus on generating a PDF
-  REDIRECT, // A direct redirect to "OLO". We only use this to track the visitor count from amsterdam.nl
 }
 
 export type TopicConfig = {
@@ -112,7 +118,7 @@ export type PreQuestionFunctions = {
   editQuestion: (index: number) => void;
   goToNextQuestion: () => void;
   isCheckerConclusive: () => boolean;
-  saveAnswer: (answer: Answer) => void;
+  saveAnswer: (answer: Answer, topicDataKey: string) => void;
 };
 
 // This is an imported topic from the Flo Legal api

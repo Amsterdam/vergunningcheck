@@ -8,6 +8,8 @@ import { StepByStepItem } from "../StepByStepNavigation";
 import PreQuestion from "./PreQuestion";
 import QuestionAnswer from "./QuestionAnswer";
 
+const topicDataKey = "questionMultipleCheckers"; // This is the key defined in `TopicData` in `packages/client/src/types.ts`
+
 type QuestionComponentProps = {
   index: number;
   isSectionActive: boolean;
@@ -29,7 +31,8 @@ const PreQuestionMultipleCheckers: FunctionComponent<
   const { topicData } = useTopicData();
   const { t } = useTranslation();
 
-  const { questionMultipleCheckers: answer } = topicData;
+  const { [topicDataKey]: answer } = topicData;
+
   const isQuestionAnswered = answer !== undefined;
   const isCurrentQuestion = index === questionIndex && isSectionActive;
 
@@ -56,8 +59,6 @@ const PreQuestionMultipleCheckers: FunctionComponent<
     },
   ];
 
-  const activeStyle = { marginTop: -1, borderColor: "white" };
-
   // Get the optional text to display in the QuestionAlert
   const questionAlertText = questionAlert?.find(
     ({ userAnswer }) => userAnswer === answer
@@ -66,15 +67,16 @@ const PreQuestionMultipleCheckers: FunctionComponent<
   return (
     <StepByStepItem
       active={isCurrentQuestion}
+      activeStyle={isCurrentQuestion}
       checked={isQuestionAnswered}
       customSize
       data-testid={QUESTION}
       highlightActive={isCurrentQuestion}
-      style={isCurrentQuestion ? activeStyle : {}}
       {...{ heading }}
     >
       <>
         {isCurrentQuestion ? (
+          // Show the actual question
           <PreQuestion
             {...{
               answer,
@@ -85,9 +87,11 @@ const PreQuestionMultipleCheckers: FunctionComponent<
               questionAlertText,
               questionId,
               saveAnswer,
+              topicDataKey,
             }}
           />
         ) : (
+          // Show the user answer with an Edit button
           <QuestionAnswer
             onClick={() => editQuestion(index)}
             showQuestionAlert={!!questionAlertText}

@@ -17,9 +17,6 @@ function getHostFromEnv() {
   return result;
 }
 
-const host = getHostFromEnv(); // @TODO read from environment variable
-// const host = "http://localhost:3030";
-// const host = "https://vergunningcheck.amsterdam.nl";
-// const host = "https://ux.chappie2.com";
+const host = getHostFromEnv();
 
 export = host;

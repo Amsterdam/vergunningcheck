@@ -1,3 +1,4 @@
+import { Paragraph } from "@amsterdam/asc-ui";
 import * as imtr from "@vergunningcheck/imtr-client";
 import React from "react";
 
@@ -25,8 +26,8 @@ const {
  *
  * This function returns the correct content to render in the Outcome components
  *
- * @param {checker} Checker - pass the complete checker
- * @param {slug} string - pass the slug
+ * @param checker Checker - pass the complete checker
+ * @param slug string - pass the slug
  * @returns {OutcomeContentType} - an object with Outcome content
  */
 const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
@@ -135,6 +136,43 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
     },
+    // This content is only relevant for the bomenkap checker
+    bomenkap: {
+      [NEED_CONTACT]: {
+        /**
+         * Warning: This outcome doesn't have a real "need contact" text,
+         * but as long as we don't support multiple outcome texts for different routes,
+         * we have to use this hack
+         */
+        mainContent: (
+          <Paragraph>
+            {nl.translation.outcome.needContact["in case of emergency"]}
+          </Paragraph>
+        ),
+        title:
+          nl.translation.outcome.needContact["you need to contact the city"],
+      },
+      [NEED_REPORT]: {},
+      [NEED_BOTH_PERMIT_AND_REPORT]: {},
+      [NEED_PERMIT]: {
+        mainContent: <NeedPermit />,
+        title: nl.translation.outcome.needPermit["you need a permit"],
+      },
+      [PERMIT_FREE]: {
+        footerContent: (
+          <PermitFree
+            payAttentionToOverwrite={[]}
+            alsoThinkAboutOverwrite={[
+              nl.translation.outcome.thinkAbout["protected flora and fauna"],
+              nl.translation.outcome.thinkAbout["placement of a crane"],
+              nl.translation.outcome.thinkAbout["disposal of tree waste"],
+              nl.translation.outcome.thinkAbout["iepziekte"],
+            ]}
+          />
+        ),
+        title: nl.translation.outcome.permitFree["you dont need a permit"],
+      },
+    },
     // This content is only relevant for the firesafety checker
     firesafety: {
       [NEED_CONTACT]: {
@@ -207,6 +245,8 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
     return contents.demolition[outcomeType] as OutcomeContentType;
   } else if (slug === "brandveilig-gebruik") {
     return contents.firesafety[outcomeType] as OutcomeContentType;
+  } else if (slug === "kappen-of-snoeien") {
+    return contents.bomenkap[outcomeType] as OutcomeContentType;
   }
   return contents.default[outcomeType] as OutcomeContentType;
 };

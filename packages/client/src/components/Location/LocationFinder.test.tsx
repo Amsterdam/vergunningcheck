@@ -1,10 +1,8 @@
-import "@testing-library/jest-dom/extend-expect";
-
-import React, { useState } from "react";
+import { ApolloError } from "@apollo/client";
+import React, { FunctionComponent, useState } from "react";
 
 import locationFinderGraphQLMocks from "../../__mocks__/locationFinderGraphQLMocks";
 import text from "../../i18n/nl";
-import { findTopicBySlug } from "../../utils";
 import {
   AUTOSUGGEST_ITEM,
   AUTOSUGGEST_LIST,
@@ -21,29 +19,26 @@ import {
 import LocationFinder from "./LocationFinder";
 
 const setAddress = jest.fn();
-const setError = jest.fn();
-const matomoTrackEvent = jest.fn();
-
-const mockedFunctions = {
-  ...{ matomoTrackEvent, setAddress, setError },
-};
+const mockSetError = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   useParams: () => ({}),
 }));
 
 describe("LocationFinder", () => {
-  const topic = findTopicBySlug("dakkapel-plaatsen");
+  const Wrapper: FunctionComponent = () => {
+    const [errorMessage, setError] = useState<ApolloError | undefined>();
 
-  const Wrapper = () => {
-    const [focus, setFocus] = useState(false);
+    const handleError = (message?: ApolloError) => {
+      setError(message);
+      mockSetError(message);
+    };
 
     return (
       <LocationFinder
-        topic={topic}
-        sessionAddress={{}}
-        {...mockedFunctions}
-        {...{ focus, setFocus, setError }}
+        sessionAddress={null}
+        setError={handleError}
+        {...{ errorMessage, setAddress }}
       />
     );
   };
@@ -74,6 +69,10 @@ describe("LocationFinder", () => {
     await waitFor(() =>
       screen.queryByText(text.translation.common["address loading"])
     );
+
+    expect(inputPostalCode).toHaveValue("1055XD");
+    expect(inputHouseNumber).toHaveValue("1");
+
     await waitFor(() => screen.getByTestId(LOCATION_NOT_FOUND));
 
     // Change the input values to display the autosuggest
@@ -110,7 +109,7 @@ describe("LocationFinder", () => {
 
     // Select an option from the autosuggest and make sure the location is found
     await act(async () => {
-      fireEvent.mouseDown(screen.queryByText("19 C"));
+      fireEvent.mouseDown(screen.queryByText("19 C") as HTMLElement);
     });
 
     await waitFor(() =>
@@ -284,7 +283,7 @@ describe("LocationFinder", () => {
       })
     );
 
-    // This handles the graphql errors
+    // This address forces graphql errors
     await act(async () => {
       fireEvent.change(inputPostalCode, {
         target: { value: "6666AB" },
@@ -294,6 +293,20 @@ describe("LocationFinder", () => {
       });
     });
 
-    expect(setError).toHaveBeenCalled();
+    expect(mockSetError).toHaveBeenCalled();
+    expect(mockSetError).not.toHaveBeenCalledWith(undefined);
+
+    // Reset the graphql errors
+    await act(async () => {
+      fireEvent.change(inputPostalCode, {
+        target: { value: "1027AE" },
+      });
+      fireEvent.change(inputHouseNumber, {
+        target: { value: "20 HL" },
+      });
+    });
+    await waitFor(() => screen.getByTestId(LOCATION_FOUND));
+
+    expect(mockSetError).toHaveBeenCalledWith(undefined);
   });
 });

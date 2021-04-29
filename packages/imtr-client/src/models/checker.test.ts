@@ -143,16 +143,16 @@ describe("Checker internals", () => {
     expect(checker._getAllQuestions()).toStrictEqual([qShared, q1, q2]);
   });
 
-  test("_getUpcomingQuestions", () => {
-    expect(checker._getUpcomingQuestions()).toStrictEqual([q1, q2]);
+  test("getUpcomingQuestions", () => {
+    expect(checker.getUpcomingQuestions()).toStrictEqual([q1, q2]);
     checker.next();
     expect(checker.stack).toStrictEqual([q1]);
     q1.setAnswer(true);
 
-    expect(checker._getUpcomingQuestions()).toStrictEqual([q2]);
+    expect(checker.getUpcomingQuestions()).toStrictEqual([q2]);
     const next = checker.next();
     expect(next).toStrictEqual(q2);
-    expect(checker._getUpcomingQuestions()).toStrictEqual([]);
+    expect(checker.getUpcomingQuestions()).toStrictEqual([]);
   });
 });
 

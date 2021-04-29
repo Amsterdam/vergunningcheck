@@ -3,6 +3,7 @@ import React, {
   AnchorHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
+  KeyboardEventHandler,
   MouseEvent,
 } from "react";
 import { StyledProps } from "styled-components";
@@ -70,9 +71,15 @@ const StepByStepItem: FunctionComponent<
   // All "inactive" items are `small` by default, except when `customSize` has been set
   const small = (!customSize && !active) || (customSize && !largeCircle);
 
-  // @TODO: also enable the ENTER key to act as onClick
   const handleOnClick = (event: MouseEvent<HTMLElement, MouseEvent>) => {
     onClick && onClick(event);
+  };
+
+  const handleKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
+    // Enable 'Enter' key to handle the onClick function
+    if (event.key === "Enter") {
+      onClick && onClick(event);
+    }
   };
 
   return (
@@ -93,6 +100,7 @@ const StepByStepItem: FunctionComponent<
       aria-label={clickable ? heading : ""}
       as={clickable ? "a" : "div"}
       onClick={handleOnClick}
+      onKeyDown={handleKeyDown}
       role="menuitem"
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}

@@ -9,7 +9,6 @@
   },
   "scripts": {
     "back-merge": "git fetch && git checkout master && git merge && git checkout release && git merge && git merge master && git push && git checkout develop && git merge && git merge release && git push",
-    "build:netlify": "lerna bootstrap && lerna run build:netlify",
     "build:size-report": "lerna run build:size-report",
     "changelog": "git checkout release && git pull && lerna-changelog",
     "cleaninstall": "lerna clean -y && lerna bootstrap",
@@ -24,7 +23,6 @@
     "prepare-release": "npm i && npm run back-merge && git checkout develop && npm run imtr && echo '\n\nPlease commit your changes, then push your changed and then run \"npm run release\".\n'",
     "publish": "git checkout release && git pull && lerna publish",
     "release": "git checkout release && git pull && cli-confirm \"Are you sure you want to merge develop into release? (yN)\" && git merge origin/develop && git push",
-    "start:netlify": "netlify dev",
     "start:prod": "lerna run --parallel start:prod",
     "start": "lerna run --parallel --no-bail start",
     "test:coverage": "lerna run test:coverage",
@@ -32,7 +30,7 @@
   },
   "devDependencies": {
     "cli-confirm": "^1.0.1",
-    "husky": "^5.0.9",
+    "husky": "^6.0.0",
     "lerna": "^4.0.0",
     "lerna-changelog": "^1.0.1",
     "prettier": "^2.1.2"
