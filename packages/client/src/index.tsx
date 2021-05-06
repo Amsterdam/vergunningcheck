@@ -42,7 +42,7 @@ window.onerror = () => {};
 init(sentryConfig);
 
 ReactDOM.render(
-  <ErrorBoundary fallback={"Er is een fout"} showDialog>
+  <ErrorBoundary fallback={"Er is een fout opgetreden"} showDialog>
     <BrowserRouter>
       <CheckerProvider>
         <SessionProvider>
