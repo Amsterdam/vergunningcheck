@@ -34,7 +34,7 @@ import {
   UITV_QUESTION_TEXT,
   UITV_QUESTION,
   UITV_REUSABLE_ID,
-} from "./types/imtr.ts";
+} from "./types/imtr";
 
 import type {
   DMNDecision,
@@ -46,7 +46,7 @@ import type {
   DMNInputEntry,
   IMTROption,
   RequiredInputOrDecision,
-} from "./types/imtr.ts";
+} from "./types/imtr";
 
 import type {
   JSONDecisions,
@@ -55,9 +55,9 @@ import type {
   JSONQuestion,
   JSONRule,
   JSONRuleInput,
-} from "./types/json.ts";
+} from "./types/json";
 
-import { format, strFmt } from "./util.ts";
+import { format, strFmt } from "./util";
 
 type ParserQuestion = JSONQuestion & {
   _id: string;
@@ -98,7 +98,7 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
           key === DMN_REQUIRED_INPUT
             ? DMN_REQUIRED_INPUT
             : DMN_REQUIRED_DECISION
-        ] as RequiredInputOrDecision[];
+          ] as RequiredInputOrDecision[];
         const href = ir[0].attributes.href;
 
         const shortKey = `${key.split(":")[1]}s`;
@@ -139,7 +139,8 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
       return rules;
     }, []);
 
-    jsonDecisions[decision.attributes.id] = {
+    console.log();
+    jsonDecisions[decision.attributes.id.startsWith("_") ? "dummy" : decision.attributes.id] = {
       ...baseDecision,
       decisionTable: {
         rules,
@@ -156,10 +157,10 @@ const getInputs = (dmnInputDataCollection: DMNInputData[]) => {
   return dmnInputDataCollection.reduce((acc: JSONInputs, dmnInputData) => {
     const { href } = dmnInputData[DMN_EXTENSION_ELEMENTS][0][
       UITV_EXECUTION_RULE_REF
-    ][0].attributes;
+      ][0].attributes;
     const { typeRef } = dmnInputData[DMN_VARIABLE][0].attributes;
 
-    acc[dmnInputData.attributes.id] = {
+    acc[dmnInputData.attributes.id.startsWith("_") ? "dummy" : dmnInputData.attributes.id] = {
       href,
       type: feelTypes[typeRef],
     };
@@ -187,7 +188,7 @@ const getQuestions = (
         identification:
           geoReference[0][UITV_LOCATION][0].attributes[
             UITV_LOCATION_IDENTIFICATION
-          ],
+            ],
         type: "geo",
       };
       if (text) {
@@ -227,7 +228,7 @@ const getQuestions = (
     }
 
     // Set original id, we'll fix that in transform
-    result.id = rule.attributes.id;
+    result.id = rule.attributes.id
 
     // Just pass prio from rule-definition here, we'll fix the prio when merging the permits together
     result.prio = rule[INTER_PRIORITY];

@@ -297,7 +297,7 @@ export default class Checker {
    * @returns The previous question
    */
   previous(): Question {
-    return this.rewindTo(this.stack.length - (this.done === true ? 1 : 2));
+    return this.rewindTo(this.stack.length - (this.done ? 1 : 2));
   }
 
   /**

@@ -27,57 +27,8 @@
         }
       ],
       "decisions": {
-        "f00392fe7f8cf1f955c60fc9ef0dffde": {
-          "requiredInputs": ["149d511746a8e52741a1834e6823702b"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [true],
-                "output": "\"Informatieplicht\""
-              },
-              {
-                "inputs": [false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "e71291c631645bb667af43c437371120": {
-          "requiredInputs": ["d4329af763cb2d2523df446383cae361"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Informatieplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "77d42c7b13664a4cf0f4515dda40c578": {
-          "requiredInputs": ["52aa32bdf49e626e92ca81fbfb66d6fb"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Informatieplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_bb3eed2d-17fe-4bad-9447-f8401c8c05a3": {
-          "requiredDecisions": [
-            "f00392fe7f8cf1f955c60fc9ef0dffde",
-            "e71291c631645bb667af43c437371120",
-            "77d42c7b13664a4cf0f4515dda40c578"
-          ],
+        "dummy": {
+          "requiredDecisions": [null, null, null],
           "decisionTable": {
             "rules": [
               {
