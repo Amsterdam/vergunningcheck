@@ -153,7 +153,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       [NEED_REPORT]: {},
       [NEED_BOTH_PERMIT_AND_REPORT]: {},
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit />,
+        mainContent: <OutcomeMainContent />,
         title: nl.translation.outcome.needPermit["you need a permit"],
       },
       [PERMIT_FREE]: {
