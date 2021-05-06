@@ -8,14 +8,14 @@ import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";
 import { OUTCOME_MAIN_CONTENT_BUTTON } from "../../utils/test-ids";
 
-type outcomeMainContentProps = {
+type OutcomeMainContentProps = {
   contentText?: string;
   eventName?: string;
   linkText?: string;
   url?: string;
 };
 
-const OutcomeMainContent: FunctionComponent<outcomeMainContentProps> = ({
+const OutcomeMainContent: FunctionComponent<OutcomeMainContentProps> = ({
   contentText,
   eventName = eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
   linkText,
