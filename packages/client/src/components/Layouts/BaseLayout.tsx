@@ -13,7 +13,7 @@ import HiddenDebugInfo from "../HiddenDebugInfo";
 import { Container, Content, ContentContainer } from "./BaseLayoutStyles";
 
 type BaseLayoutProps = {
-  disablePageView?: boolean;
+  disablePageView?: boolean; // Add this prop to disabled tracking. Useful in production.
 };
 
 const BaseLayout: FunctionComponent<BaseLayoutProps> = ({

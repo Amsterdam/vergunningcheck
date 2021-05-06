@@ -22,6 +22,7 @@ export default {
         "Dit is geen geldige postcode. Een postcode bestaat uit 4 cijfers en 2 letters.",
       "one moment please": "Een ogenblik geduld alstublieft",
       "page title": "Amsterdam Vergunningcheck",
+      previous: "Vorige",
       "questions and outcome": "Vragen en uitkomst",
       "postalcode label": "Postcode",
       "required field radio": "Maak een keuze",
@@ -100,6 +101,10 @@ export default {
           "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
         "placing bullet": "het plaatsen van het dakraam zelf.",
       },
+      "kappen-of-snoeien": {
+        "you may need a permit":
+          "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt voor het kappen of snoeien van een boom. Ook voor het kappen van een dode boom kan een vergunning nodig zijn. Hier kunt u de checker ook voor gebruiken.",
+      },
       firesafety: {
         "the building must be safe and the city must be able to verify":
           "U gaat een gebouw in gebruik nemen of het gebruik wijzigen. Het gebouw moet veilig zijn voor bewoners, gasten en personeel. De gemeente moet kunnen controleren of dat zo is.",
@@ -177,6 +182,14 @@ export default {
       nextQuestion: "Volgende vraag",
     },
     preQuestions: {
+      "kappen-of-snoeien": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 boom kappen of snoeien?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 boom tegelijk doen.",
+        },
+      },
       "dakkapel-plaatsen": {
         preQuestionMultipleCheckers: {
           "would you like to build more than one":
@@ -228,7 +241,12 @@ export default {
         "consent from neighbors":
           "Toestemming van uw buren als het gaat om een gezamenlijke muur of schutting.",
         "disposal of waste": "Het afvoeren van bouw- en sloopafval.",
+        "disposal of tree waste": "Het afvoeren van boomafval.",
+        iepziekte:
+          "Mogelijke iepziekte, neem dan contact op met de gemeente op telefoonnummer 14 020",
         "permission from the VvE": "Toestemming van de VvE.",
+        "protected flora and fauna":
+          "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest vogels.",
         "placement of a crane":
           "Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.",
         "the consequences for the WOZ":
@@ -236,6 +254,7 @@ export default {
         "the risk of asbestos": "Het risico dat u asbest tegenkomt.",
         "the risk of still encountering asbestos":
           "Het veilig verwijderen van asbest, als u dit tegenkomt.",
+        "think about": "Denk wel aan:",
         "view on neighbors grounds":
           "Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.",
       },
@@ -250,6 +269,8 @@ export default {
         "demolition permit and report": "Sloop: melding en vergunning",
       },
       needContact: {
+        "in case of emergency":
+          "Bij spoed of gevaar is er een andere manier om toestemming te krijgen. Neem hiervoor contact op met de gemeente via telefoonnummer 14 020.",
         "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
         "you need to contact for firesafety":
           "U hebt geen omgevingsvergunning nodig. U moet misschien wel een melding 'Brandveilig gebruik' doen.",
@@ -316,6 +337,10 @@ export default {
         "Hebt u ook andere bouwplannen? Dan kunt u nog een vergunningcheck doen.",
       "if you have other plans you can do other permit checks as well":
         "Hebt u ook andere bouwplannen? Ook dan kunt u nog een vergunningcheck doen.",
+      "kappen-of-snoeien": {
+        "you would like to build more than 1 so you need to do multiple permits":
+          "U wilt meer dan 1 boom kappen. Doe voor elke volgende een vergunningcheck.",
+      },
       "dakkapel-plaatsen": {
         "you would like to build more than 1 so you need to do multiple permits":
           "U wilt meer dan 1 dakkapel plaatsen. Doe voor elke volgende een vergunningcheck.",

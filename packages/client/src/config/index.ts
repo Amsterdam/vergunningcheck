@@ -49,6 +49,17 @@ export const topics: Topic[] = [
     userMightNotNeedPermit: true,
   },
   {
+    intro: "BomenkapIntro",
+    name: "Boom kappen of snoeien",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "kappen-of-snoeien",
+    text: {
+      heading: "Vergunningcheck bomenkap",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
     intro: "KozijnenIntro",
     name: "Kozijnen plaatsen",
     preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
@@ -104,14 +115,6 @@ export const topics: Topic[] = [
     },
     type: TopicType.PERMIT_CHECK,
     userMightNotNeedPermit: true,
-  },
-  {
-    name: "Kappen of snoeien",
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "Vergunningcheck kappen of snoeien",
-    },
-    type: TopicType.REDIRECT,
   },
   {
     intro: "BrandveiligGebruikIntro",

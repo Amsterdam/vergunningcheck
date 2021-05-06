@@ -65,6 +65,8 @@ const NewCheckerModal: FunctionComponent = () => {
         action: actions.ACTIVE_STEP,
         name: sections.LOCATION_INPUT,
       });
+
+      // Restart this checker
       history.push(geturl(routes.checker, { slug: checkerSlug }));
     } else {
       matomoTrackEvent({
@@ -78,6 +80,8 @@ const NewCheckerModal: FunctionComponent = () => {
       });
       history.push(geturl(routes.intro, { slug: checkerSlug }));
     }
+
+    // Go to the new checker route
     setChecker(undefined);
   };
 
