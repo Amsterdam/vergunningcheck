@@ -7,7 +7,7 @@ const folder = `build/${new Date()}`;
   await mkdirp(folder);
 })();
 
-export const screenshot = async (page: puppeteer.Page) => {
+export const screenshot = async (page) => {
   const path = `${folder}/${new Date()}.png`;
   await page.screenshot({ path });
   console.log('saved screenshot in ', path);

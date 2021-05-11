@@ -1,4 +1,4 @@
-import address = require("./address");
+const address = require("./address");
 
 describe("mocking support", () => {
   it("Should be able to import an address from our mocking package", () => {

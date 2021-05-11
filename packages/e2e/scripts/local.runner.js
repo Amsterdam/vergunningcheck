@@ -1,5 +1,5 @@
-import Nightwatch from "nightwatch";
-import browserstack from "browserstack-local";
+const Nightwatch = require("nightwatch");
+const browserstack = require("browserstack-local");
 let bs_local;
 
 try {

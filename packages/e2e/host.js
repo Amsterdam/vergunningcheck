@@ -19,4 +19,4 @@ function getHostFromEnv() {
 
 const host = getHostFromEnv();
 
-export = host;
+module.exports = host;

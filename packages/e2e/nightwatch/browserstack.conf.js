@@ -1,5 +1,3 @@
-import browserstack from "browserstack-local";
-
 const nightwatch_config = {
   src_folders : [ "nightwatch/tests" ],
 
@@ -55,4 +53,4 @@ for(let i in nightwatch_config.test_settings){
   }
 }
 
-export nightwatch_config;
+module.exports = nightwatch_config;

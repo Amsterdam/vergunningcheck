@@ -1,5 +1,5 @@
-import { NightwatchBrowser } from "nightwatch";
-import { address, domain, selectors } from "../config";
+const { NightwatchBrowser } = require("nightwatch");
+const { address, domain, selectors } = require("../config");
 
 const {
   locationHouseNumberFull,
@@ -15,8 +15,8 @@ const {
 } = selectors;
 
 
-export = {
-  [__filename]: async (b: NightwatchBrowser) => {
+module.exports = {
+  [__filename]: async (b) => {
     const { assert } = b;
     b.url(`${domain}/dakkapel-plaatsen`);
 

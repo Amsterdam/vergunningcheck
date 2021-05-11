@@ -103,7 +103,7 @@ If you want to combine 2 or more permits in 1 checker, we need to configure a to
 
 - Follow the install steps in [./packages/imtr/README.md](./scripts/sttimtrr_build/README.md)
 - First make sure you update your permits so we have all the files we need. See the section above.
-- List the permit-id's you want to combine in [./packages/imtr/src/config.ts](./packages/imtr/src/config.ts) under `topics`.
+- List the permit-id's you want to combine in [./packages/imtr/src/config.js](./packages/imtr/src/config.ts) under `topics`.
   - To find the permit-ids you can use in the `./packages/client/public/imtr/list.source.json`.
   - You have to give your topic a slug as the key. This slug is used in the url by the client-application.
 - Then run `npm run imtr`.
@@ -126,11 +126,11 @@ PreQuestions are used to render custom questions that are outside of the `imtr-c
 ### Adding a new custom PreQuestion
 
 - Let's start by making sure the answer your new PreQuestion can be saved to the Session Storage. Add a new key to `const defaultTopicSession` in [SessionContext.tsx](packages/client/src/SessionContext.tsx) (eg: `questionNew: undefined,`)
-- ESLint should now complain that "`questionNew` does not exist in type `TopicData`". (If not, please make sure you run this project correctly on localhost.) Add `questionNew?: AnswerValue;` to `TopicData` in [types.ts](packages/client/src/types.ts) to type support `questionNew` as `undefined` or `AnswerValue`. ESLinst stops complaining now.
+- ESLint should now complain that "`questionNew` does not exist in type `TopicData`". (If not, please make sure you run this project correctly on localhost.) Add `questionNew?: AnswerValue;` to `TopicData` in [types.js](packages/client/src/types.ts) to type support `questionNew` as `undefined` or `AnswerValue`. ESLinst stops complaining now.
 - Let's continue by duplicating [PreQuestionMultipleCheckers.tsx](packages/client/src/components/Question/PreQuestionMultipleCheckers.tsx) and rename it to `PreQuestionNew.tsx` (also rename it's export)
 - To make sure the `answer` value is loaded from and stored in the Session Storage, change the `topicDataKey` const (in the top of the file) to `questionNew` (Please make sure this is the same string as you entered in `defaultTopicSession` in a previous step)
 - Edit `questionId`, `heading` and optionally `description` and `questionAlert` to you own wishes (in your new `PreQuestionNew.tsx` file) (`questionId` is also the key in the translation file [i18n/nl.ts](packages/client/src/i18n/nl.ts))
-- Now, add an entry to the enum `PreQuestionComponent` in [types.ts](packages/client/src/types.ts) (eg: `NEW_PREQUESTION, // Corresponds to PreQuestionNew.tsx`)
+- Now, add an entry to the enum `PreQuestionComponent` in [types.js](packages/client/src/types.ts) (eg: `NEW_PREQUESTION, // Corresponds to PreQuestionNew.tsx`)
 - Add this `NEW_PREQUESTION` value to a `preQuestions` topic array in a topic you choose. You can do this by editing the `topics` const in [config/index.ts](packages/client/src/config/index.ts) (eg: `preQuestions: [PreQuestionComponent.NEW_PREQUESTION],`)
 - Go to the topic route that you've just edited. By now, the client should display `Error: The preQuestion on index "{number}" is not supported yet.`
 - To support it, add a new `if` statement in [PreQuestions.tsx](packages/client/src/components/Question/PreQuestions.tsx) (eg:

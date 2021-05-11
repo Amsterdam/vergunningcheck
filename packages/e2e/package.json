@@ -6,16 +6,15 @@
   "keywords": [],
   "author": "Gemeente Amsterdam",
   "license": "ISC",
-  "main": "puppeteer/basic.ts",
-  "type": "module",
+  "main": "puppeteer/basic.js",
   "scripts": {
     "test": "jest",
-    "nightwatch:browserstack": "node --experimental-modules scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari,ie",
+    "nightwatch:browserstack": "node scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome",
     "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
-    "localhost:test:puppeteer": "find puppeteer/tests/*.ts -exec ts-node {} \\;",
+    "localhost:test:puppeteer": "find puppeteer/tests/*.js -exec ts-node {} \\;",
     "localhost:test:nightwatch": "run-p localhost:test:nightwatch:*",
-    "localhost:test:nightwatch:firefox": "kill-port 4444 || : && npx nightwatch nightwatch/tests/*.ts -e firefox",
-    "localhost:test:nightwatch:chrome": "npx nightwatch nightwatch/tests/*.ts -e chrome"
+    "localhost:test:nightwatch:firefox": "kill-port 4444 || : && npx nightwatch nightwatch/tests/*.js -e firefox",
+    "localhost:test:nightwatch:chrome": "npx nightwatch nightwatch/tests/*.js -e chrome"
   },
   "devDependencies": {
     "@types/chai": "^4.2.13",

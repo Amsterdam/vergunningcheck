@@ -1,4 +1,4 @@
-import { NightwatchBrowser } from "nightwatch";
+const { NightwatchBrowser } = require("nightwatch");
 const { address, domain, selectors } = require("../config");
 
 const {
@@ -14,8 +14,8 @@ const {
 } = selectors;
 
 
-export = {
-  [__filename]: async (b: NightwatchBrowser) => {
+module.exports = {
+  [__filename]: async (b) => {
     const { assert } = b;
 
     b.url(`${domain}/aanbouw-of-uitbouw-maken`);

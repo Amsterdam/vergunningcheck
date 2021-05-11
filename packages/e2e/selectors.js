@@ -19,4 +19,4 @@ const selectors = {
   questionForm: "[data-testid=question-form]",
 };
 
-export = selectors;
+module.exports = selectors;
