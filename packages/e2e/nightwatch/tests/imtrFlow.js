@@ -8,6 +8,8 @@ const {
   locationRestrictionMonument,
   main,
   navButtonNext,
+  pq1a1,
+  pq1a2,
   q1a1,
   q1a2,
   questionAlert,
@@ -21,17 +23,16 @@ module.exports = {
     b.url(`${domain}/dakkapel-plaatsen`);
 
     // Intro page has loaded
-    // b.waitForElementVisible(introBullets);
     assert.containsText(
       main,
-      "Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning nodig hebt."
+      "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt."
     );
     b.click(navButtonNext);
 
     // Location Input has loaded
     assert.containsText(
       main,
-      "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
+      "Voer het adres in waar u de dakkapel wilt gaan plaatsen."
     );
     assert.visible(locationPostalCode);
     b.setValue(locationPostalCode, address.zipCode);
@@ -46,14 +47,18 @@ module.exports = {
 
     // Question 1 has loaded
     b.waitForElementVisible(questionForm);
+    b.waitForElementVisible(pq1a1);
+    b.waitForElementVisible(pq1a2);
+    b.click(pq1a1);
+    b.click(navButtonNext);
     b.waitForElementVisible(q1a1);
     b.waitForElementVisible(q1a2);
-    assert.containsText(main, "Het gebouw is een gemeentelijk monument.");
-    assert.containsText(main, "Gaat u een dakkapel plaatsen of vernieuwen?");
-    assert.containsText(main, "Volgende vraag");
-    b.click(q1a1);
-    b.waitForElementVisible(questionAlert);
-    b.click(navButtonNext);
+    // assert.containsText(main, "Het gebouw is een gemeentelijk monument.");
+    // assert.containsText(main, "Gaat u een dakkapel plaatsen of vernieuwen?");
+    // assert.containsText(main, "Volgende vraag");
+    // b.click(q1a1);
+    // b.waitForElementVisible(questionAlert);
+    // b.click(navButtonNext);
 
     // // Permit outcome has loaded
     // b.waitForElementVisible(outcomeNeedPermitButton);

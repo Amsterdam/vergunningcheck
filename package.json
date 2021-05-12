@@ -12,6 +12,7 @@
     "build:size-report": "lerna run build:size-report",
     "changelog": "git checkout release && git pull && lerna-changelog",
     "cleaninstall": "lerna clean -y && lerna bootstrap",
+    "e2e-browserstack": "lerna run nightwatch:browserstack --scope @vergunningcheck/e2e",
     "imtr:fetch": "deno run --unstable --allow-read --allow-write --allow-env --allow-net -c ./packages/imtr/tsconfig.json ./packages/imtr/src/main.ts fetch --dir=packages/client",
     "imtr:install": "deno cache --unstable --reload --lock=./packages/imtr/lock.json ./packages/imtr/src/deps.ts || :",
     "imtr:postprocess": "cd packages/client; prettier src/topics.json public/**/transformed/*.json public/**/list.json --write",

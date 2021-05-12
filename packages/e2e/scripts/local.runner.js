@@ -1,17 +1,18 @@
-const Nightwatch = require("nightwatch");
-const browserstack = require("browserstack-local");
-let bs_local;
+#!/usr/bin/env node
+const Nightwatch = require('nightwatch');
+const browserstack = require('browserstack-local');
 
 try {
-
-  process.filename = "./node_modules/nightwatch/bin/nightwatch"
-  // Start browserstack local before start of test
+  let bs_local;
+  process.mainModule.filename = "./node_modules/nightwatch/bin/nightwatch"
+  // Code to start browserstack local before start of test
+  console.log("Connecting local");
   Nightwatch.bs_local = bs_local = new browserstack.Local();
   bs_local.start({'key': process.env.BROWSERSTACK_ACCESS_KEY }, (error) => {
     if (error) throw error;
 
     console.log('Connected. Now testing...');
-    Nightwatch.cli((argv) => {
+    Nightwatch.cli((argv) =>
       Nightwatch.CliRunner(argv)
         .setup(null, () => {
           // Code to stop browserstack local after end of parallel test
@@ -20,11 +21,11 @@ try {
         .runTests(() => {
           // Code to stop browserstack local after end of single test
           bs_local.stop(() => {});
-        });
-    });
+        })
+    );
   });
-} catch (ex) {
+} catch (err) {
   console.log('There was an error while starting the test runner:\n\n');
-  process.stderr.write(ex.stack + '\n');
+  process.stderr.write(err.stack + '\n');
   process.exit(2);
 }

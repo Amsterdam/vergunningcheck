@@ -9,7 +9,6 @@ const {
   locationRestrictionCityScape,
   locationRestrictionMonument,
   main,
-  navButtonPrev,
   navButtonNext,
 } = selectors;
 
@@ -30,11 +29,6 @@ module.exports = {
     b.waitForElementVisible(locationFound);
     assert.containsText(main, address.streetName);
 
-    // forward, back, forward
-    b.click(navButtonNext);
-    b.waitForElementVisible(navButtonPrev);
-    b.click(navButtonPrev);
-    b.waitForElementVisible(navButtonNext);
     b.click(navButtonNext);
 
     assert.visible(locationRestrictionMonument);
