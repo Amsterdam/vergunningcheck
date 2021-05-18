@@ -1,20 +1,19 @@
 const debug = require("debug")("graphql:loader:manager");
-const { withCache, fetchJson, getUrl } = require("../../util");
-const {
-  manager: config,
-  CACHE_TIMEOUT,
-  HOST,
-} = require("../../../config").loaders.ois;
+const { fetchJson, getUrl } = require("../../util");
+const { manager: config, HOST } = require("../../../config").loaders.ois;
 
-const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
 const loader = {
-  reducer: ({ heading, intro, flow, ...rest }) => {
+  reducer: ({ heading, intro, outcomes, flow, ...rest }) => {
     const res = {
       ...rest,
       hasIMTR: flow === "IMTR",
       intro,
+      outcomes: outcomes.map((o) => ({
+        results: o.flo_legal_outcomes.split(","),
+        text: o.text,
+      })),
       text: {
         heading,
       },
@@ -33,10 +32,9 @@ const loader = {
       debug("fetched topic", data);
       return loader.reducer(data);
     }),
-  cached: (key) => withCache(`manager:${key}`, () => loader.fetch(key), TTL),
-  page: () => withCache(`manager:list`, () => loader.fetchPage(), TTL),
-  list: async (keys) => keys.map(loader.page),
-  load: async (keys) => keys.map(loader.cached),
+  // we don't cache api calls to manager
+  list: async (keys) => keys.map(loader.fetchPage),
+  load: async (keys) => keys.map(loader.fetch),
 };
 
 module.exports = loader;

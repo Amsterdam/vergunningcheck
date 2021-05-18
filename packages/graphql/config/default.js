@@ -13,11 +13,18 @@ module.exports = {
     },
   },
   loaders: {
+    floLegal: {
+      HOST: "https://sttr-builder.eu.meteorapp.com/",
+      API_KEY: escape(process.env.STTR_BUILDER_API_KEY),
+      CACHE_TIMEOUT: 600,
+      imtr: {
+        url: "api/v2",
+      },
+    },
     ois: {
       HOST: "https://vergunningcheck.amsterdam.nl",
       manager: {
         url: "/api/",
-        cacheTimeout: 600,
       },
     },
     datapunt: {

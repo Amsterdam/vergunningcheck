@@ -17,7 +17,7 @@ const IntroPage: FunctionComponent = () => {
   const topic = useTopic();
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const { text, intro } = topic as Topic;

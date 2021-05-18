@@ -1,30 +1,28 @@
 const debug = require("debug")("graphql:topics");
 
+const transform = require("../loaders/floLegal/transform");
 const { gql } = require("../util");
 
 const typeDefs = gql`
-  type Question {
-    title: String!
-  }
-  type Permit {
-    questions: [Question]!
-  }
-  type Checker {
-    permits: [Permit]!
-  }
   type TopicText {
     heading: String!
     locationIntro: String
   }
 
   type Topic {
-    name: String!
-    slug: String!
-    intro: String!
+    checkerJSON: String!
     hasIMTR: Boolean!
+    intro: String!
+    name: String!
+    outcomes: [Outcome!]!
+    slug: String!
     text: TopicText!
     url: String!
-    checker: Checker!
+  }
+
+  type Outcome {
+    results: [String!]!
+    text: String!
   }
 
   extend type Query {
@@ -46,10 +44,15 @@ const resolvers = {
     },
   },
   Topic: {
-    checker: () => {
-      return {
-        permits: [{ questions: [{ title: "testing hard" }] }],
-      };
+    checkerJSON: async (topic, _, { loaders: { floLegal } }) => {
+      debug("get checkerJSON for topic", topic);
+      const jsons = await Promise.all(
+        topic.permits.map((permit) => floLegal.load(permit.flo_legal_id))
+      );
+      debug("the jsons", jsons);
+      const res = { permits: await Promise.all(transform(jsons)) };
+      debug(res);
+      return JSON.stringify(res);
     },
   },
 };

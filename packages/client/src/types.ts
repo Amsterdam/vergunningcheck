@@ -95,7 +95,8 @@ type BaseTopic = {
   };
 };
 
-type IMTRTopic = {
+export type IMTRTopic = {
+  checkerJSON: string;
   hasIMTR: true;
   intro: string;
   redirectToOlo?: false;

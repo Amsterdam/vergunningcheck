@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
+import { IMTRTopic } from "../types";
 import { useTopic, useTopicData } from "./";
 
 export default () => {
@@ -34,14 +35,11 @@ export default () => {
   }, [checker, checkerContext]);
 
   const initChecker = async () => {
-    // if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    const loadChecker = !checker && !error && (!topic || topic.hasIMTR);
-    if (loadChecker) {
+    // if the topic is found and has an imtr flow
+    if (!checker && !error && topic.hasIMTR) {
       try {
-        const topicRequest = await fetch(
-          `${window.location.origin}/imtr/transformed/${topic.slug}`
-        );
-        const newChecker = getChecker(await topicRequest.json());
+        const { checkerJSON } = topic as IMTRTopic;
+        const newChecker = getChecker(JSON.parse(checkerJSON));
         const { address, answers } = topicData;
 
         // Find if we have missing data needs

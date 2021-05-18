@@ -1,8 +1,13 @@
 query topicDetail($slug: String!) {
   topic(slug: $slug) {
     hasIMTR
+    checkerJSON
     intro
     name
+    outcomes {
+      results
+      text
+    }
     slug
     text {
       heading
