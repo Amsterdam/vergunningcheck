@@ -243,7 +243,7 @@ export default {
         "disposal of waste": "Het afvoeren van bouw- en sloopafval.",
         "disposal of tree waste": "Het afvoeren van boomafval.",
         iepziekte:
-          "Mogelijke iepziekte, neem dan contact op met de gemeente op telefoonnummer 14 020",
+          "Mogelijke iepziekte, neem dan contact op met de gemeente op telefoonnummer 14 020 of via iepen@amsterdam.nl",
         "permission from the VvE": "Toestemming van de VvE.",
         "protected flora and fauna":
           "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest vogels.",
@@ -270,7 +270,7 @@ export default {
       },
       needContact: {
         "in case of emergency":
-          "Bij spoed of gevaar is er een andere manier om toestemming te krijgen. Neem hiervoor contact op met de gemeente via telefoonnummer 14 020.",
+          "Bij spoed of gevaar is er een andere manier om toestemming te krijgen. Neem hiervoor contact op met de gemeente via telefoonnummer [14 020](tel:14020).",
         "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
         "you need to contact for firesafety":
           "U hebt geen omgevingsvergunning nodig. U moet misschien wel een melding 'Brandveilig gebruik' doen.",
