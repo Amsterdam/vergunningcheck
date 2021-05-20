@@ -25,7 +25,7 @@ try {
     );
   });
 } catch (err) {
-  console.log('There was an error while starting the test runner:\n\n');
+  console.error('There was an error while starting the test runner:\n\n');
   process.stderr.write(err.stack + '\n');
   process.exit(2);
 }
