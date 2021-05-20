@@ -4,6 +4,9 @@ const browserstack = require('browserstack-local');
 
 try {
   let bs_local;
+  function stopBrowserStackLocal () {
+    bs_local.stop(() => {});
+  }
   process.mainModule.filename = "./node_modules/nightwatch/bin/nightwatch"
   // Code to start browserstack local before start of test
   console.log("Connecting local");
@@ -14,14 +17,8 @@ try {
     console.log('Connected. Now testing...');
     Nightwatch.cli((argv) =>
       Nightwatch.CliRunner(argv)
-        .setup(null, () => {
-          // Code to stop browserstack local after end of parallel test
-          bs_local.stop(() => {});
-        })
-        .runTests(() => {
-          // Code to stop browserstack local after end of single test
-          bs_local.stop(() => {});
-        })
+        .setup(null, stopBrowserStackLocal)
+        .runTests(stopBrowserStackLocal)
     );
   });
 } catch (err) {
