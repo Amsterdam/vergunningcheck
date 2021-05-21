@@ -1,4 +1,10 @@
-import { Accordion, Card, CardContent, Heading } from "@amsterdam/asc-ui";
+import {
+  Accordion,
+  Button,
+  Card,
+  CardContent,
+  Heading,
+} from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useContext } from "react";
 
 import Permit from "../../../imtr-client/src/models/permit";
@@ -27,6 +33,15 @@ const DebugVariables: FunctionComponent<DebugVariablesProps> = () => {
       <Accordion title="Topic debug-informatie">
         <Card backgroundColor="level2" shadow>
           <CardContent>
+            <Button
+              onClick={() => {
+                throw Error("Dit is een test error");
+              }}
+              variant="secondary"
+            >
+              Throw een error
+            </Button>
+
             <Heading forwardedAs="h2">Summary</Heading>
             <p>
               current slug (slug): <strong>{slug}</strong>

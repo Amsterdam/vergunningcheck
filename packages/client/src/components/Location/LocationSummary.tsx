@@ -1,5 +1,5 @@
 import { Paragraph, themeColor, themeSpacing } from "@amsterdam/asc-ui";
-import { setTag } from "@sentry/browser";
+import { setTag } from "@sentry/react";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";

@@ -1,4 +1,4 @@
-import { captureException, setTag } from "@sentry/browser";
+import { captureException, setTag } from "@sentry/react";
 import * as imtr from "@vergunningcheck/imtr-client";
 import React, {
   FunctionComponent,
