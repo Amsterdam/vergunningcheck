@@ -164,5 +164,26 @@
   pk: 00000000-0000-0000-0000-300000000001
   fields:
     topic: 00000000-0000-0000-0000-200000000001
-    flo_legal_outcomes: meldingplicht,vergunningplicht
+    flo_legal_outcomes: "\"Vergunningplicht\""
+    text: U heeft vergunningplicht voor uw dakkapel.
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000002
+  fields:
+    topic: 00000000-0000-0000-0000-200000000001
+    flo_legal_outcomes: "\"Toestemmingsvrij\""
+    text: U heeft geen vergunning nodig voor uw dakkapel.
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000003
+  fields:
+    topic: 00000000-0000-0000-0000-200000000001
+    flo_legal_outcomes: "\"NeemContactOpMet\""
+    text: Wij kunnen op basis van de gegeven antwoorden niet aangeven of u een vergunning nodig hebt. Neem contact op met uw gemeente.
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000004
+  fields:
+    topic: 00000000-0000-0000-0000-200000000006
+    flo_legal_outcomes: "\"Meldingplicht\",\"Vergunningplicht\""
     text: U heeft meldingplicht en vergunningplicht.

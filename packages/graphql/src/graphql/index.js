@@ -1,4 +1,5 @@
 const { graphqlHTTP } = require("express-graphql");
+const debug = require("debug")("graphql:index");
 const DataLoader = require("dataloader");
 const { makeExecutableSchema } = require("apollo-server");
 const depthLimit = require("graphql-depth-limit");
@@ -37,10 +38,18 @@ const schema = makeExecutableSchema({
   resolvers: modules.map((m) => m.resolvers),
 });
 
-const server = graphqlHTTP({
+const options = {
   ...config,
   schema,
   validationRules: [depthLimit(4)],
+  customFormatErrorFn: ({ stack, ...rest }) => ({
+    stack: stack ? stack.split("\n") : [],
+    ...rest,
+  }),
+};
+
+const server = graphqlHTTP(() => ({
+  ...options,
   context: {
     loaders: {
       bagSearch: new DataLoader(bagSearchLoader.load),
@@ -58,11 +67,7 @@ const server = graphqlHTTP({
       zoningPlan: new DataLoader(zoningPlanLoader.load),
     },
   },
-  customFormatErrorFn: ({ stack, ...rest }) => ({
-    stack: stack ? stack.split("\n") : [],
-    ...rest,
-  }),
-});
+}));
 
 module.exports = {
   schema,

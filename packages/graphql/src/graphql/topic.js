@@ -1,7 +1,7 @@
 const debug = require("debug")("graphql:topics");
 
 const transform = require("../loaders/floLegal/transform");
-const { gql } = require("../util");
+const { gql, arrayEquals } = require("../util");
 
 const typeDefs = gql`
   type TopicText {
@@ -49,10 +49,37 @@ const resolvers = {
       const jsons = await Promise.all(
         topic.permits.map((permit) => floLegal.load(permit.flo_legal_id))
       );
-      debug("the jsons", jsons);
-      const res = { permits: await Promise.all(transform(jsons)) };
-      debug(res);
-      return JSON.stringify(res);
+
+      const permits = await Promise.all(transform(jsons));
+      const topicOutcomes = topic.outcomes.map((outcome) => outcome.results);
+
+      // Find all outcomes in Permit's
+      const outcomes = permits
+        .flatMap((permit) =>
+          permit.decisions.dummy.decisionTable.rules.map((rule) => rule.output)
+        )
+        // filter unique values
+        .filter((value, index, self) => self.indexOf(value) === index);
+
+      // Make sure all permit-outcomes are available in the Manager's Outcomes
+      debug("outcomes", outcomes, topic.outcomes);
+
+      if (
+        !arrayEquals(
+          outcomes,
+          topic.outcomes.flatMap((outcome) => outcome.results)
+        )
+      ) {
+        throw new Error(
+          `Outcomes don't match. IMTR files contain these outcomes:
+          ${JSON.stringify(outcomes)}
+          The Manager Topic contains:
+          ${JSON.stringify(topicOutcomes)}
+          `
+        );
+      }
+
+      return JSON.stringify({ permits });
     },
   },
 };
