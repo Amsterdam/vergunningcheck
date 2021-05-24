@@ -4,61 +4,67 @@
   pk: WKPxKx4YBJ5fqYSni
   fields:
     name: Dakkapel monument
-    topic: 00000000-0000-0000-0000-200000000001
 
 - model: chappie.permit
   pk: Aa2EX3YprpZQ65non
   fields:
     name: Dakkapel bouwen
-    topic: 00000000-0000-0000-0000-200000000001
 
 - model: chappie.permit
   pk: hMwHKR7Wz4FP8Dm4x
   fields:
     name: Het wijzigen van een monument bij een dakraam
-    topic: 00000000-0000-0000-0000-200000000002
 
 - model: chappie.permit
   pk: dRy4PfDs7jQPc9gMG
   fields:
     name: Dakraam bouwen
-    topic: 00000000-0000-0000-0000-200000000002
 
 - model: chappie.permit
   pk: Xm2WwYeGkNN9w6rgQ
   fields:
     name: Kozijn plaatsen in een monument
-    topic: 00000000-0000-0000-0000-200000000003
 
 - model: chappie.permit
   pk: 5CJrbgbWZP6uZsouY
   fields:
     name: Kozijn plaatsen
-    topic: 00000000-0000-0000-0000-200000000003
 
 - model: chappie.permit
   pk: TRhZrFexMjBW42Ky6
   fields:
     name: Zonnepaneel en zonneboiler monument
-    topic: 00000000-0000-0000-0000-200000000004
 
 - model: chappie.permit
   pk: skPG9qqTqWyX9tSY7
   fields:
     name: Zonnepaneel en zonneboiler bouwen
-    topic: 00000000-0000-0000-0000-200000000004
 
 - model: chappie.permit
   pk: AkxinYRNNo679qi6T
   fields:
     name: Zonwering, rolhek, luik of rolluik monument
-    topic: 00000000-0000-0000-0000-200000000005
 
 - model: chappie.permit
   pk: TuP6ido9xpJSSxjLi
   fields:
     name: Zonwering, rolhek, luik of rolluik bouwen
-    topic: 00000000-0000-0000-0000-200000000005
+
+- model: chappie.permit
+  pk: 2eYY7McaiRgfnERo9
+  fields:
+    name: Sloopvergunning - toestemming slopen in BSG
+
+- model: chappie.permit
+  pk: D4mccynMtNdzYGhXF
+  fields:
+    name: Sloopmelding
+
+- model: chappie.permit
+  pk: bxBCdnrFZSbwxgmxC
+  fields:
+    name: Sloopvergunning - toestemming monument
+
 
 ################### IMTR TOPICS ###################
 
@@ -68,6 +74,9 @@
     flow: IMTR
     name: Dakkapel plaatsen
     slug: dakkapel-plaatsen
+    permits:
+    - WKPxKx4YBJ5fqYSni
+    - Aa2EX3YprpZQ65non
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000002
@@ -75,6 +84,9 @@
     flow: IMTR
     name: Dakraam plaatsen
     slug: dakraam-plaatsen
+    permits:
+    - hMwHKR7Wz4FP8Dm4x
+    - dRy4PfDs7jQPc9gMG
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000003
@@ -82,6 +94,9 @@
     flow: IMTR
     name: Kozijnen plaatsen
     slug: kozijnen-plaatsen
+    permits:
+    - Xm2WwYeGkNN9w6rgQ
+    - 5CJrbgbWZP6uZsouY
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000004
@@ -89,6 +104,9 @@
     flow: IMTR
     name: Zonnepanelen of zonneboiler plaatsen
     slug: zonnepanelen-of-zonneboiler-plaatsen
+    permits:
+    - TRhZrFexMjBW42Ky6
+    - skPG9qqTqWyX9tSY7
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000005
@@ -96,6 +114,21 @@
     flow: IMTR
     name: Zonwering of rolluik plaatsen
     slug: zonwering-of-rolluik-plaatsen
+    permits:
+    - TuP6ido9xpJSSxjLi
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000006
+  fields:
+    flow: IMTR
+    name: Bouwwerk slopen
+    slug: bouwwerk-slopen
+    heading: Vergunningcheck bouwwerk slopen
+    intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
+    permits:
+    - 2eYY7McaiRgfnERo9
+    - D4mccynMtNdzYGhXF
+    - bxBCdnrFZSbwxgmxC
 
 ################### OLO TOPICS ###################
 
@@ -115,15 +148,6 @@
     slug: intern-verbouwen
     heading: Vergunningcheck intern verbouwen
     intro: Voer het adres in waar u intern wilt gaan verbouwen
-
-- model: chappie.Topic
-  pk: 00000000-0000-0000-0000-100000000003
-  fields:
-    flow: OLO
-    name: Bouwwerk slopen
-    slug: bouwwerk-slopen
-    heading: Vergunningcheck bouwwerk slopen
-    intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000004
