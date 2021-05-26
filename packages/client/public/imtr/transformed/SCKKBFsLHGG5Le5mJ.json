@@ -1,8 +1,8 @@
 {
   "permits": [
     {
-      "version": 130,
-      "name": "Conclusie Bomenkap- nieuw",
+      "version": 160,
+      "name": "Bomenkap- nieuw",
       "questions": [
         {
           "text": "Is er spoed of direct gevaar?",
@@ -13,10 +13,10 @@
         },
         {
           "text": "Meet de omtrek van de boom op 1,30 meter boven de grond. Is de omtrek 31 centimeter of meer?",
-          "description": "U meet de omtrek door een meetlint om de buitenzijde van de boom te spannen. Als de boom uit meerdere stammen bestaat, meet u de omtrek van de dikste stam.\n\n![](https://sttr-files.flolegal.app/00000001002564440000/Boom%20plaatje.png)",
+          "description": "U meet de omtrek door een meetlint om de buitenzijde van de boom te spannen. Als de boom uit meerdere stammen bestaat, meet u de omtrek van de dikste stam.\n\n![Is de omtrek van de boom kleiner dan 31 centimeter op een hoogte van 1,30 meter](https://sttr-files.flolegal.app/00000001002564440000/Boom%20plaatje-klein.png)",
           "type": "boolean",
           "prio": 20,
-          "id": "7e12c435d2dba7164bf8497298be1dc5"
+          "id": "753a9121049cdc9f3f1b898b92413138"
         },
         {
           "text": "Is de boom in het verleden geplant omdat er een herplantplicht was?",
@@ -40,10 +40,10 @@
         },
         {
           "text": "Gaat u de boom verwijderen omdat hij de iepziekte heeft?",
-          "description": "Twijfelt u? Mail dan naar iepen@amsterdam.nl.",
+          "description": "Twijfelt u of de boom de iepziekte heeft? Mail dan naar [iepen@amsterdam.nl](mailto:iepen@amsterdam.nl).",
           "type": "boolean",
           "prio": 50,
-          "id": "9bac96cf00a00b7b203e5b008ce7356b"
+          "id": "f7efa201d9d9394312ffecf01042b6d1"
         },
         {
           "text": "Gaat u de boom verwijderen zodat de boom of bomen ernaast meer ruimte hebben om te groeien?",
@@ -59,58 +59,51 @@
           "id": "5cf98d3672511d43ff9246b19b201c31"
         },
         {
-          "text": "Gaat u de boom verplanten omdat hij de iepziekte heeft?",
-          "description": "Twijfelt u? Mail dan naar iepen@amsterdam.nl.",
-          "type": "boolean",
-          "prio": 80,
-          "id": "60a2baa0c9f5c63145eefb0a752e7425"
-        },
-        {
           "text": "Gaat u de boom verplanten zodat de boom of bomen ernaast meer ruimte hebben om te groeien?",
           "description": "Dit wordt ook wel dunnen genoemd.",
           "type": "boolean",
-          "prio": 90,
-          "id": "57efa69c336b29bba91aced83f2992d2"
+          "prio": 80,
+          "id": "423fab920ab05541e79a5646bc4243c3"
         },
         {
           "text": "Hebt u een beheerplan dat officieel is goedgekeurd door de gemeente?",
           "type": "boolean",
-          "prio": 100,
-          "id": "d2f7f1929307824143c62725e77c000a"
+          "prio": 90,
+          "id": "e32ee10ea65676638bbdf1189924ecda"
         },
         {
           "text": "Verandert de vorm van de boom?",
           "description": "Als u meer dan 20% snoeit, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
-          "prio": 110,
-          "id": "b3d99761c6e33c6d8b1c43576a5641a7"
+          "prio": 100,
+          "id": "1c06f8f5726cdb589b2076ad2c1f97ee"
         },
         {
           "text": "Gaat u de boom snoeien om de boom terug in zijn vorm te krijgen?",
           "description": "U heeft de boom vroeger een bepaalde vorm gegeven en u wilt deze vorm houden door te snoeien. Zoals bij knotwilgen.",
           "type": "boolean",
-          "prio": 120,
-          "id": "23c8f93d70136ef4005316e27cfcd4a7"
+          "prio": 110,
+          "id": "133c90b1d0e27bedb602eff5d86c68fc"
         },
         {
           "text": "Gaat u dit werk doen omdat de boom de iepziekte heeft?",
-          "description": "Twijfelt u? Mail dan naar iepen@amsterdam.nl.",
+          "description": "Twijfelt u of de boom de iepziekte heeft? Mail dan naar [iepen@amsterdam.nl](mailto:iepen@amsterdam.nl).",
           "type": "boolean",
-          "prio": 130,
-          "id": "86557c7f54f9376cbc216e7cdb09f83c"
+          "prio": 120,
+          "id": "cfbc7dd00c0509315fb0dba9f4a0806c"
         },
         {
           "text": "Gaat u dit werk doen zodat de boom of bomen ernaast meer ruimte hebben om te groeien?",
           "description": "Dit wordt ook wel dunnen genoemd.",
           "type": "boolean",
-          "prio": 140,
-          "id": "81edb178fcd4f1cd2c95f874b18aa6e1"
+          "prio": 130,
+          "id": "57bbb8d39c84e28f4f28bf3e4bc1e362"
         },
         {
           "text": "Hebt u een beheerplan dat officieel is goedgekeurd door de gemeente?",
           "type": "boolean",
-          "prio": 150,
-          "id": "10a1bbf556827b2f791a1e4f22bcffcb"
+          "prio": 140,
+          "id": "c3514beb8ea03b75dee73478a8923e66"
         }
       ],
       "decisions": {
@@ -129,13 +122,13 @@
             ]
           }
         },
-        "2be0b1579aaa0d11b08a46e0bb4b0849": {
+        "9f577321d8dcd6d81b68e86a6b242da3": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "3ecdeb6de96b79f5a48d1c4f3053fbf7",
             "2135158106889c6acbbe2ce6d41d0090",
-            "9bac96cf00a00b7b203e5b008ce7356b",
+            "f7efa201d9d9394312ffecf01042b6d1",
             "b5e299845d0b4b39910801492db02447"
           ],
           "decisionTable": {
@@ -193,13 +186,13 @@
             ]
           }
         },
-        "454cca7384071dc5501daa8edb737ad2": {
+        "6f1181610fd64d886b72d668b6e56321": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "3ecdeb6de96b79f5a48d1c4f3053fbf7",
             "2135158106889c6acbbe2ce6d41d0090",
-            "9bac96cf00a00b7b203e5b008ce7356b",
+            "f7efa201d9d9394312ffecf01042b6d1",
             "b5e299845d0b4b39910801492db02447",
             "5cf98d3672511d43ff9246b19b201c31"
           ],
@@ -272,12 +265,12 @@
             ]
           }
         },
-        "106c047b9f0055a1ba7d499ac051277a": {
+        "9b4441652e3f1774fb1c464c6744c449": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "9bac96cf00a00b7b203e5b008ce7356b",
+            "f7efa201d9d9394312ffecf01042b6d1",
             "b5e299845d0b4b39910801492db02447"
           ],
           "decisionTable": {
@@ -329,12 +322,12 @@
             ]
           }
         },
-        "842b087e377e93eadf53921b952e5252": {
+        "798ad3277a86008ee9ab0f23e1e4f4b9": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "9bac96cf00a00b7b203e5b008ce7356b",
+            "f7efa201d9d9394312ffecf01042b6d1",
             "b5e299845d0b4b39910801492db02447",
             "5cf98d3672511d43ff9246b19b201c31"
           ],
@@ -393,14 +386,65 @@
             ]
           }
         },
-        "69101b1acd96306e6cbca505e9accb81": {
+        "d2dbba933d7a8a34ff32018a510f67ff": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "3ecdeb6de96b79f5a48d1c4f3053fbf7",
             "2135158106889c6acbbe2ce6d41d0090",
-            "60a2baa0c9f5c63145eefb0a752e7425",
-            "57efa69c336b29bba91aced83f2992d2"
+            "423fab920ab05541e79a5646bc4243c3"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, true, "\"De boom verplanten\"", false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", false, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom verwijderen\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "\"De boom snoeien\"", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "9a808477505817b440267f7af93b02a0": {
+          "requiredInputs": [
+            "7f6d4f0eaae730fcee7f3bb910cad5a2",
+            "753a9121049cdc9f3f1b898b92413138",
+            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "2135158106889c6acbbe2ce6d41d0090",
+            "423fab920ab05541e79a5646bc4243c3",
+            "e32ee10ea65676638bbdf1189924ecda"
           ],
           "decisionTable": {
             "rules": [
@@ -410,7 +454,7 @@
                   false,
                   true,
                   "\"De boom verplanten\"",
-                  false,
+                  true,
                   false
                 ],
                 "output": "\"Vergunningplicht\""
@@ -447,7 +491,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
@@ -457,97 +501,63 @@
             ]
           }
         },
-        "7234fda8c4a1baaba522782969261ecf": {
+        "24a00cdecc043f79032f8eedda42db0a": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
-            "3ecdeb6de96b79f5a48d1c4f3053fbf7",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "60a2baa0c9f5c63145eefb0a752e7425",
-            "57efa69c336b29bba91aced83f2992d2",
-            "d2f7f1929307824143c62725e77c000a"
+            "423fab920ab05541e79a5646bc4243c3"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  true,
-                  "\"De boom verplanten\"",
-                  false,
-                  true,
-                  false
-                ],
+                "inputs": [false, true, "\"De boom verplanten\"", false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "inputs": [true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "inputs": ["-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", false, "-", "-", "-", "-"],
+                "inputs": ["-", "-", "\"De boom verwijderen\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"De boom verwijderen\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "\"De boom snoeien\"", "-", "-", "-"],
+                "inputs": ["-", "-", "\"De boom snoeien\"", "-"],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
-                  "-",
                   "-",
                   "-",
                   "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat\"",
-                  "-",
-                  "-",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "a21b633c3d50cdb2dc62d446a5f82c1e": {
+        "5b14b105e69cf06e6e69b06b2a39a071": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "60a2baa0c9f5c63145eefb0a752e7425",
-            "57efa69c336b29bba91aced83f2992d2"
+            "423fab920ab05541e79a5646bc4243c3",
+            "e32ee10ea65676638bbdf1189924ecda"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, true, "\"De boom verplanten\"", false, false],
+                "inputs": [false, true, "\"De boom verplanten\"", true, false],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -577,7 +587,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
@@ -587,78 +597,14 @@
             ]
           }
         },
-        "944c842ca50195debc59d96383e164aa": {
+        "1203b87f2ddb41c3d0d3e6c8a0035e6d": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
-            "2135158106889c6acbbe2ce6d41d0090",
-            "60a2baa0c9f5c63145eefb0a752e7425",
-            "57efa69c336b29bba91aced83f2992d2",
-            "d2f7f1929307824143c62725e77c000a"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [
-                  false,
-                  true,
-                  "\"De boom verplanten\"",
-                  false,
-                  true,
-                  false
-                ],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"De boom verwijderen\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"De boom snoeien\"", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Ik ga iets doen waardoor ik de boom misschien beschadig of minder mooi maak. Het kan ook zijn dat de boom ervan doodgaat\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", false, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "c7e0b946e2a5c0ddafdae352275b59a1": {
-          "requiredInputs": [
-            "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "3ecdeb6de96b79f5a48d1c4f3053fbf7",
             "2135158106889c6acbbe2ce6d41d0090",
-            "b3d99761c6e33c6d8b1c43576a5641a7",
-            "23c8f93d70136ef4005316e27cfcd4a7"
+            "1c06f8f5726cdb589b2076ad2c1f97ee",
+            "133c90b1d0e27bedb602eff5d86c68fc"
           ],
           "decisionTable": {
             "rules": [
@@ -715,13 +661,13 @@
             ]
           }
         },
-        "87a9da1ac0c4ab8fe9a4e920ded2cbfd": {
+        "28b9fe344a19824b68f4de42a298f2e9": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "b3d99761c6e33c6d8b1c43576a5641a7",
-            "23c8f93d70136ef4005316e27cfcd4a7"
+            "1c06f8f5726cdb589b2076ad2c1f97ee",
+            "133c90b1d0e27bedb602eff5d86c68fc"
           ],
           "decisionTable": {
             "rules": [
@@ -766,15 +712,15 @@
             ]
           }
         },
-        "e212443974235ecbca544eca7780a7da": {
+        "09f28fe9844992419243173029c01703": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "3ecdeb6de96b79f5a48d1c4f3053fbf7",
             "2135158106889c6acbbe2ce6d41d0090",
-            "86557c7f54f9376cbc216e7cdb09f83c",
-            "81edb178fcd4f1cd2c95f874b18aa6e1",
-            "10a1bbf556827b2f791a1e4f22bcffcb"
+            "cfbc7dd00c0509315fb0dba9f4a0806c",
+            "57bbb8d39c84e28f4f28bf3e4bc1e362",
+            "c3514beb8ea03b75dee73478a8923e66"
           ],
           "decisionTable": {
             "rules": [
@@ -845,14 +791,14 @@
             ]
           }
         },
-        "9f1bf86a8a4d45355213407fbdfed15b": {
+        "c309f3ddbb69336eb22cf6642338c86c": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "3ecdeb6de96b79f5a48d1c4f3053fbf7",
             "2135158106889c6acbbe2ce6d41d0090",
-            "86557c7f54f9376cbc216e7cdb09f83c",
-            "81edb178fcd4f1cd2c95f874b18aa6e1"
+            "cfbc7dd00c0509315fb0dba9f4a0806c",
+            "57bbb8d39c84e28f4f28bf3e4bc1e362"
           ],
           "decisionTable": {
             "rules": [
@@ -902,14 +848,14 @@
             ]
           }
         },
-        "bba1ebe2ee9a23f605f6853470c09e72": {
+        "3f4f42137f63bef06f0a888c41a4bd7a": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "86557c7f54f9376cbc216e7cdb09f83c",
-            "81edb178fcd4f1cd2c95f874b18aa6e1",
-            "10a1bbf556827b2f791a1e4f22bcffcb"
+            "cfbc7dd00c0509315fb0dba9f4a0806c",
+            "57bbb8d39c84e28f4f28bf3e4bc1e362",
+            "c3514beb8ea03b75dee73478a8923e66"
           ],
           "decisionTable": {
             "rules": [
@@ -959,13 +905,13 @@
             ]
           }
         },
-        "ed923778d280357feeebac9d2fbb3a3f": {
+        "db2ad4726da6f0b8f0fc186b16ccfe30": {
           "requiredInputs": [
             "7f6d4f0eaae730fcee7f3bb910cad5a2",
-            "7e12c435d2dba7164bf8497298be1dc5",
+            "753a9121049cdc9f3f1b898b92413138",
             "2135158106889c6acbbe2ce6d41d0090",
-            "86557c7f54f9376cbc216e7cdb09f83c",
-            "81edb178fcd4f1cd2c95f874b18aa6e1"
+            "cfbc7dd00c0509315fb0dba9f4a0806c",
+            "57bbb8d39c84e28f4f28bf3e4bc1e362"
           ],
           "decisionTable": {
             "rules": [
@@ -1013,20 +959,20 @@
         "dummy": {
           "requiredDecisions": [
             "cb2c129fcdbffafbefa9c4fcbed58d48",
-            "2be0b1579aaa0d11b08a46e0bb4b0849",
-            "454cca7384071dc5501daa8edb737ad2",
-            "106c047b9f0055a1ba7d499ac051277a",
-            "842b087e377e93eadf53921b952e5252",
-            "69101b1acd96306e6cbca505e9accb81",
-            "7234fda8c4a1baaba522782969261ecf",
-            "a21b633c3d50cdb2dc62d446a5f82c1e",
-            "944c842ca50195debc59d96383e164aa",
-            "c7e0b946e2a5c0ddafdae352275b59a1",
-            "87a9da1ac0c4ab8fe9a4e920ded2cbfd",
-            "e212443974235ecbca544eca7780a7da",
-            "9f1bf86a8a4d45355213407fbdfed15b",
-            "bba1ebe2ee9a23f605f6853470c09e72",
-            "ed923778d280357feeebac9d2fbb3a3f"
+            "9f577321d8dcd6d81b68e86a6b242da3",
+            "6f1181610fd64d886b72d668b6e56321",
+            "9b4441652e3f1774fb1c464c6744c449",
+            "798ad3277a86008ee9ab0f23e1e4f4b9",
+            "d2dbba933d7a8a34ff32018a510f67ff",
+            "9a808477505817b440267f7af93b02a0",
+            "24a00cdecc043f79032f8eedda42db0a",
+            "5b14b105e69cf06e6e69b06b2a39a071",
+            "1203b87f2ddb41c3d0d3e6c8a0035e6d",
+            "28b9fe344a19824b68f4de42a298f2e9",
+            "09f28fe9844992419243173029c01703",
+            "c309f3ddbb69336eb22cf6642338c86c",
+            "3f4f42137f63bef06f0a888c41a4bd7a",
+            "db2ad4726da6f0b8f0fc186b16ccfe30"
           ],
           "decisionTable": {
             "rules": [
