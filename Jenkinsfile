@@ -9,8 +9,6 @@ String PLAYBOOK = 'deploy.yml'
 // All other data uses variables, no changes needed for static
 String NGINX_CONTAINERNAME = "ois/vergunningcheck_nginx:${env.BUILD_NUMBER}"
 String NGINX_DOCKERFILE="ci/Dockerfile.client"
-String NIGHTWATCH_CONTAINERNAME = "ois/vergunningcheck_nightwatch:${env.BUILD_NUMBER}"
-String NIGHTWATCH_DOCKERFILE="ci/Dockerfile.nightwatch"
 String BACKEND_CONTAINERNAME = "ois/vergunningcheck_graphql:${env.BUILD_NUMBER}"
 String BACKEND_DOCKERFILE="ci/Dockerfile.graphql"
 String BRANCH = "${env.BRANCH_NAME}"
