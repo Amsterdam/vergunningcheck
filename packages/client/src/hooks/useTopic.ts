@@ -20,6 +20,7 @@ export default () => {
 
   const { topic } = data as { topic: Topic };
 
+  console.log(error, data);
   if (!topic) {
     throw new Error(`useTopic: can't find topic for slug (${slug})`);
   }

@@ -252,6 +252,7 @@ export default class Checker {
    * Get all decisions for the outcome of every permit.
    */
   _getOutcomeDecisions(): Decision[] {
+    console.log(this.permits)
     return this.permits
       .map((permit) => permit.getDecisionById("dummy"))
       .flatMap((outcome) => (outcome as Decision).inputs) as Decision[];

@@ -55,9 +55,11 @@ const resolvers = {
 
       // Find all outcomes in Permit's
       const outcomes = permits
-        .flatMap((permit) =>
-          permit.decisions.dummy.decisionTable.rules.map((rule) => rule.output)
-        )
+        .flatMap((permit) => {
+          const id = Object.keys(permit.decisions).pop();
+          return permit.decisions[id].decisionTable.rules.map((rule) => {  console.log(rule);
+          return rule.output})
+        })
         // filter unique values
         .filter((value, index, self) => self.indexOf(value) === index);
 
