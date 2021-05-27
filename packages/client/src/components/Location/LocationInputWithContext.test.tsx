@@ -1,9 +1,7 @@
-import "@testing-library/jest-dom/extend-expect";
-
-import { ApolloError } from "@apollo/client";
 import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
+import { actions, eventNames, sections } from "../../config/matomo";
 import { PREV_BUTTON } from "../../utils/test-ids";
 import {
   act,
@@ -17,8 +15,6 @@ import LocationInput from "./LocationInput";
 // This test is separated from the original `LocationInput.test
 // because the `useTopicData` mock is hard to combine with non-hooked context
 
-const handleNewAddressSubmit = jest.fn();
-
 const mockAddress = {
   ...addressGraphQLMock[0].result.data.findAddress.exactMatch,
 };
@@ -29,19 +25,13 @@ jest.mock("../../hooks/useTopicData", () => () => ({
 }));
 
 describe("LocationInput", () => {
-  const Wrapper = ({ error }: { error?: ApolloError | undefined }) => (
-    <LocationInput
-      error={error}
-      handleNewAddressSubmit={handleNewAddressSubmit}
-    />
-  );
   it("should handle with context", () => {
     const {
       houseNumberFull: resultHouseNumberFull,
       postalCode: resultPostalCode,
     } = addressGraphQLMock[0].result.data.findAddress.exactMatch;
 
-    render(<Wrapper />);
+    render(<LocationInput handleNewAddressSubmit={jest.fn()} />);
 
     expect(screen.getByLabelText(/postcode/i)).toHaveValue(resultPostalCode);
     expect(screen.getByLabelText(/huisnummer/i)).toHaveValue(
@@ -55,6 +45,9 @@ describe("LocationInput", () => {
       fireEvent.click(prevButton);
     });
 
-    expect(mockMatomoTrackEvent).toHaveBeenCalledTimes(1);
+    expect(mockMatomoTrackEvent).toBeCalledWith({
+      action: actions.CLICK_INTERNAL_NAVIGATION,
+      name: `${eventNames.BACK} ${sections.INTRO}`,
+    });
   });
 });

@@ -56,7 +56,9 @@ describe("OloLocationResult", () => {
       )
     ).toBeInTheDocument();
 
-    expect(screen.getByText("Vorige")).toBeInTheDocument();
+    expect(
+      screen.getByText(nl.translation.common.previous)
+    ).toBeInTheDocument();
   });
 
   it("should handle next button", () => {
@@ -83,7 +85,7 @@ describe("OloLocationResult", () => {
 
     render(<OloLocationResult />);
 
-    const prevButton = screen.getByText("Vorige");
+    const prevButton = screen.getByText(nl.translation.common.previous);
     expect(prevButton).toBeInTheDocument();
 
     fireEvent.click(prevButton);

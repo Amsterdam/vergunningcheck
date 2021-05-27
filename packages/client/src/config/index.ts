@@ -1,14 +1,5 @@
 import Topic from "../models/topic";
-import { TopicType } from "../types";
-
-/**
- * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
- *
- * Direct importing and including components does not work because the hooks lose context.
- */
-export enum PreQuestionComponent {
-  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
-}
+import { PreQuestionComponent, TopicType } from "../types";
 
 /**
  * Merge the different topic types
@@ -53,6 +44,17 @@ export const topics: Topic[] = [
       heading: "Vergunningcheck aanbouw of uitbouw maken",
       locationIntro:
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  },
+  {
+    intro: "BomenkapIntro",
+    name: "Boom kappen of snoeien",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "kappen-of-snoeien",
+    text: {
+      heading: "Vergunningcheck bomenkap",
     },
     type: TopicType.PERMIT_CHECK,
     userMightNotNeedPermit: true,
@@ -113,14 +115,6 @@ export const topics: Topic[] = [
     },
     type: TopicType.PERMIT_CHECK,
     userMightNotNeedPermit: true,
-  },
-  {
-    name: "Kappen of snoeien",
-    slug: "kappen-of-snoeien",
-    text: {
-      heading: "Vergunningcheck kappen of snoeien",
-    },
-    type: TopicType.REDIRECT,
   },
   {
     intro: "BrandveiligGebruikIntro",

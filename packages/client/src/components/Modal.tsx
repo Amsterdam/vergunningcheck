@@ -12,7 +12,6 @@ import {
 import {
   ModalBlock,
   ModalButton,
-  ModalContent,
   ModalFooterButtons,
   ModalHeading,
   ModalUI,
@@ -78,7 +77,7 @@ const Modal: FunctionComponent<ModalProps> = ({
         }}
         open={open}
       >
-        <ModalContent>
+        <>
           <TopBar>
             <ModalHeading forwardedAs="h4">
               {heading}
@@ -128,7 +127,7 @@ const Modal: FunctionComponent<ModalProps> = ({
               )}
             </ModalFooterButtons>
           </ModalBlock>
-        </ModalContent>
+        </>
       </ModalUI>
     </>
   );

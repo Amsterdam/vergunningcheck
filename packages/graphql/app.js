@@ -1,6 +1,5 @@
 const express = require("express");
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
 
 const config = require("./config");
 const { server } = require("./src/graphql");
@@ -18,9 +17,6 @@ app.use(
     ':remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time/:total-time ms'
   )
 );
-
-// Not sure why but (at least dev-server of) netlify needs a bodyParser
-app.use(bodyParser.json());
 
 // Error handling
 // eslint-disable-next-line no-unused-vars

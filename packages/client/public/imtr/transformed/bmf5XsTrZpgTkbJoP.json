@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 2,
-      "name": "Conclusie [AUB VERWIJDEREN] Eendaags evenement",
+      "name": "[AUB VERWIJDEREN] Eendaags evenement",
       "questions": [
         {
           "text": "Is het een eendaags evenement?",
@@ -73,23 +73,23 @@
         }
       ],
       "decisions": {
-        "6230c1f82d3c7bdf94afc39141539fa7": {
-          "requiredInputs": ["e3d4f507cac78cb8a971a04b1072bf99"],
+        "0c763f2f294aa7b3a8201c1bd6aa6014": {
+          "requiredInputs": ["9d626febed132de9158af3ec229a3269"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
+                "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false],
+                "inputs": [true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "0c763f2f294aa7b3a8201c1bd6aa6014": {
-          "requiredInputs": ["9d626febed132de9158af3ec229a3269"],
+        "70072222ec1bad314f5467ee00f71136": {
+          "requiredInputs": ["0422ef4c70dedb31386b6d89f6446ea5"],
           "decisionTable": {
             "rules": [
               {
@@ -163,31 +163,38 @@
             ]
           }
         },
-        "70072222ec1bad314f5467ee00f71136": {
-          "requiredInputs": ["0422ef4c70dedb31386b6d89f6446ea5"],
+        "6230c1f82d3c7bdf94afc39141539fa7": {
+          "requiredInputs": ["e3d4f507cac78cb8a971a04b1072bf99"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false],
+                "inputs": [true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true],
+                "inputs": [false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "c7a7a0626ab70b24d51afab4956290cb": {
-          "requiredInputs": ["673a2cdad36f5b80620ba787bfc181d8"],
+        "fa513277b701c5621a251bd8f91ed88a": {
+          "requiredInputs": [
+            "e3d4f507cac78cb8a971a04b1072bf99",
+            "df6bb895faac161b16e4aeb90976433d"
+          ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true],
+                "inputs": [false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [false],
+                "inputs": [true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false],
                 "output": "\"no hit\""
               }
             ]
@@ -223,23 +230,16 @@
             ]
           }
         },
-        "fa513277b701c5621a251bd8f91ed88a": {
-          "requiredInputs": [
-            "e3d4f507cac78cb8a971a04b1072bf99",
-            "df6bb895faac161b16e4aeb90976433d"
-          ],
+        "c7a7a0626ab70b24d51afab4956290cb": {
+          "requiredInputs": ["673a2cdad36f5b80620ba787bfc181d8"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, true],
+                "inputs": [true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
+                "inputs": [false],
                 "output": "\"no hit\""
               }
             ]
@@ -458,17 +458,17 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "6230c1f82d3c7bdf94afc39141539fa7",
             "0c763f2f294aa7b3a8201c1bd6aa6014",
+            "70072222ec1bad314f5467ee00f71136",
             "b4bf0d84aea28ece68b3ff33dac343fd",
             "579fe319144269a95e7f7a3c3da573c8",
             "cddc86557b0c904422b9c351a230ef43",
             "354c0782f7eb70040ea3e3777f06759d",
-            "70072222ec1bad314f5467ee00f71136",
-            "c7a7a0626ab70b24d51afab4956290cb",
+            "6230c1f82d3c7bdf94afc39141539fa7",
+            "fa513277b701c5621a251bd8f91ed88a",
             "6294fb11141585d9e8c5be17f3b7e4ac",
             "ac5d92387cd15d604213439d165d637a",
-            "fa513277b701c5621a251bd8f91ed88a",
+            "c7a7a0626ab70b24d51afab4956290cb",
             "a5a8e5d1954e417d28a2fd70547a4675"
           ],
           "decisionTable": {

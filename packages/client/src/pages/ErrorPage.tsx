@@ -14,13 +14,14 @@ type ErrorPageProps = {
   error?: ErrorProps;
 };
 
+// This page is rendered when an error occured
 const ErrorPage: FunctionComponent<ErrorPageProps> = ({ error }) => {
   const { t } = useTranslation();
   return (
     <BaseLayout>
       <Helmet>
         <title>
-          {t("errorMessages.error occured")} - Amsterdam Vergunningcheck
+          {t("errorMessages.error occured")} - {t("common.page title")}
         </title>
       </Helmet>
       <Error stack={error?.stack} content={error?.message} />

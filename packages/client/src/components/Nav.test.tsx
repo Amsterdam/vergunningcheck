@@ -3,6 +3,7 @@ import "jest-styled-components";
 import React from "react";
 
 import { Form } from "../atoms";
+import nl from "../i18n/nl";
 import { NEXT_BUTTON, PREV_BUTTON } from "../utils/test-ids";
 import { fireEvent, render, screen } from "../utils/test-utils";
 import Nav from "./Nav";
@@ -19,9 +20,13 @@ describe("Nav", () => {
     render(<Nav showPrev showNext />);
 
     expect(screen.queryByTestId(PREV_BUTTON)).toBeInTheDocument();
+    expect(
+      screen.getByText(nl.translation.common.previous)
+    ).toBeInTheDocument();
 
     const nextButton = screen.queryByTestId(NEXT_BUTTON);
     expect(nextButton).toBeInTheDocument();
+    expect(screen.getByText(nl.translation.common.next)).toBeInTheDocument();
     expect(nextButton).toHaveStyleRule("margin-right", "25px");
   });
 

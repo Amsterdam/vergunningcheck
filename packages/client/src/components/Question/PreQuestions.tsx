@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from "react";
 
-import { PreQuestionComponent } from "../../config";
 import { useTopic, useTopicData } from "../../hooks";
-import { Answer } from "../../types";
+import { Answer, PreQuestionComponent } from "../../types";
 import PreQuestionMultipleCheckers from "./PreQuestionMultipleCheckers";
 
 type PreQuestionsProps = {
@@ -38,9 +37,10 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
     });
   };
 
-  const saveAnswer = (answer: Answer) => {
+  const saveAnswer = (answer: Answer, topicDataKey: string) => {
+    // This sets the answer.value in the `topicData`
     setTopicData({
-      questionMultipleCheckers: answer.value,
+      [topicDataKey]: answer.value,
     });
   };
 
@@ -69,7 +69,7 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
           );
         }
         throw new Error(
-          `The preQuestion "${preQuestion}" is not supported yet.`
+          `The preQuestion on index "${index}" is not supported yet.`
         );
       })}
     </>

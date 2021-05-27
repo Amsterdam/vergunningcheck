@@ -2,7 +2,7 @@
   "permits": [
     {
       "version": 45,
-      "name": "Conclusie Vellen houtopstand - formulier Robin [IN ONTWIKKELING]",
+      "name": "Vellen houtopstand - formulier Robin [IN ONTWIKKELING]",
       "questions": [
         {
           "text": "Wat wilt u gaan doen?",
@@ -118,36 +118,6 @@
         }
       ],
       "decisions": {
-        "45f515dfa6311253e4a162be788f1785": {
-          "requiredInputs": ["92fb683f6ebb3f4236be977e063b2fb0"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"een\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"twee\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "8d11edbe272047116e1d6f910f906d74": {
-          "requiredInputs": ["8982171b31f85f80c8ba4c7f10ed17ce"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": ["\"iep\""],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": ["\"spar\""],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
         "1c81127956958667e66b64dd79e27536": {
           "requiredInputs": [
             "069727e9170dd08073dc8f8f79c2de64",
@@ -180,6 +150,36 @@
               },
               {
                 "inputs": ["-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "45f515dfa6311253e4a162be788f1785": {
+          "requiredInputs": ["92fb683f6ebb3f4236be977e063b2fb0"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"een\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"twee\""],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "8d11edbe272047116e1d6f910f906d74": {
+          "requiredInputs": ["8982171b31f85f80c8ba4c7f10ed17ce"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"iep\""],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": ["\"spar\""],
                 "output": "\"no hit\""
               }
             ]
@@ -244,9 +244,9 @@
         },
         "dummy": {
           "requiredDecisions": [
+            "1c81127956958667e66b64dd79e27536",
             "45f515dfa6311253e4a162be788f1785",
             "8d11edbe272047116e1d6f910f906d74",
-            "1c81127956958667e66b64dd79e27536",
             "b5815439c15dd7f070fd08d54b0f18c5"
           ],
           "decisionTable": {

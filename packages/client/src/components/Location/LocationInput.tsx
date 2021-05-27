@@ -17,7 +17,7 @@ import LocationFinder from "./LocationFinder";
 
 type LocationInputProps = {
   error?: ApolloError | undefined;
-  handleNewAddressSubmit: (address: Address) => void;
+  handleNewAddressSubmit: (address: Address) => void; // Provide callback to call when the submit button has been pressed
 };
 
 const LocationInput = ({
@@ -34,7 +34,6 @@ const LocationInput = ({
   const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
-  const [focus, setFocus] = useState(false);
 
   const onSubmit = () => {
     if (address?.postalCode) {
@@ -121,11 +120,9 @@ const LocationInput = ({
         <LocationFinder
           {...{
             errorMessage,
-            focus,
             matomoTrackEvent,
             sessionAddress: address,
             setError,
-            setFocus,
           }}
         />
         <Nav

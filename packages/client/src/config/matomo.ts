@@ -1,3 +1,5 @@
+// Matomo is used for analytics. We use pageviews as well as events
+
 import { isProduction } from ".";
 
 const matomoSiteId = {

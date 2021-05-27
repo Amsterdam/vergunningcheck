@@ -1,5 +1,10 @@
 import { Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
-import React, { FunctionComponent, useContext, useState } from "react";
+import React, {
+  FunctionComponent,
+  KeyboardEventHandler,
+  useContext,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -60,6 +65,8 @@ const NewCheckerModal: FunctionComponent = () => {
         action: actions.ACTIVE_STEP,
         name: sections.LOCATION_INPUT,
       });
+
+      // Restart this checker
       history.push(geturl(routes.checker, { slug: checkerSlug }));
     } else {
       matomoTrackEvent({
@@ -73,7 +80,16 @@ const NewCheckerModal: FunctionComponent = () => {
       });
       history.push(geturl(routes.intro, { slug: checkerSlug }));
     }
+
+    // Go to the new checker route
     setChecker(undefined);
+  };
+
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    // Enable 'Enter' key to handle the confirmation
+    if (event.key === "Enter") {
+      handleConfirmButton();
+    }
   };
 
   return (
@@ -105,6 +121,7 @@ const NewCheckerModal: FunctionComponent = () => {
                     onChange={() => {
                       setCheckerSlug(slug);
                     }}
+                    onKeyDown={handleKeyDown}
                   />
                 </Label>
               ))}

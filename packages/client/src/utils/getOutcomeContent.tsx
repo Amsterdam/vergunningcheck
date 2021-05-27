@@ -5,7 +5,7 @@ import Markdown from "../components/Markdown";
 import {
   DemolitionNeedReport,
   DemolitionPermitFree,
-  NeedPermit,
+  OutcomeMainContent,
   PermitFree,
 } from "../components/Outcome";
 import { urls } from "../config";
@@ -25,8 +25,8 @@ const {
  *
  * This function returns the correct content to render in the Outcome components
  *
- * @param {checker} Checker - pass the complete checker
- * @param {slug} string - pass the slug
+ * @param checker Checker - pass the complete checker
+ * @param slug string - pass the slug
  * @returns {OutcomeContentType} - an object with Outcome content
  */
 const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
@@ -58,12 +58,12 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           nl.translation.outcome.needContact["you need to contact the city"], // Fallback text
       },
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit />,
+        mainContent: <OutcomeMainContent />,
         title: nl.translation.outcome.needPermit["you need a permit"],
       },
       [NEED_REPORT]: {
         mainContent: (
-          <NeedPermit contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
+          <OutcomeMainContent contentText="Demo text for need permit outcome. We don't fully support this outcome yet" />
         ),
         title: nl.translation.outcome.needReport["you need a report"],
       },
@@ -81,7 +81,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_BOTH_PERMIT_AND_REPORT]: {
         mainContent: (
-          <NeedPermit
+          <OutcomeMainContent
             contentText={
               nl.translation.outcome.needBothPermitAndReport[
                 "on this page you can read more how to do apply for demolition"
@@ -102,15 +102,13 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit url={urls.DEMOLITION_PERMIT_PAGE} />,
+        mainContent: <OutcomeMainContent url={urls.DEMOLITION_PERMIT_PAGE} />,
         title:
           nl.translation.outcome.needPermit["you need a permit for demolition"],
       },
       [NEED_REPORT]: {
         mainContent: (
-          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
-          // Maybe rename this to `OutcomeLink` or `OutcomeMainContent`
-          <NeedPermit
+          <OutcomeMainContent
             contentText={
               nl.translation.outcome.needReport[
                 "on this page you can read more about report for demolition"
@@ -135,6 +133,46 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
           ],
       },
     },
+    // This content is only relevant for the bomenkap checker
+    bomenkap: {
+      [NEED_CONTACT]: {
+        /**
+         * Warning: This outcome doesn't have a real "need contact" text,
+         * but as long as we don't support multiple outcome texts for different routes,
+         * we have to use this hack
+         */
+        mainContent: (
+          <Markdown
+            eventLocation={sections.OUTCOME}
+            source={
+              nl.translation.outcome.needContact["in case of emergency"] || ""
+            }
+          />
+        ),
+        title:
+          nl.translation.outcome.needContact["you need to contact the city"],
+      },
+      [NEED_REPORT]: {},
+      [NEED_BOTH_PERMIT_AND_REPORT]: {},
+      [NEED_PERMIT]: {
+        mainContent: <OutcomeMainContent />,
+        title: nl.translation.outcome.needPermit["you need a permit"],
+      },
+      [PERMIT_FREE]: {
+        footerContent: (
+          <PermitFree
+            payAttentionToOverwrite={[]}
+            alsoThinkAboutOverwrite={[
+              nl.translation.outcome.thinkAbout["protected flora and fauna"],
+              nl.translation.outcome.thinkAbout["placement of a crane"],
+              nl.translation.outcome.thinkAbout["disposal of tree waste"],
+              nl.translation.outcome.thinkAbout["iepziekte"],
+            ]}
+          />
+        ),
+        title: nl.translation.outcome.permitFree["you dont need a permit"],
+      },
+    },
     // This content is only relevant for the firesafety checker
     firesafety: {
       [NEED_CONTACT]: {
@@ -149,7 +187,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
               eventLocation={sections.OUTCOME}
               source={getNeedContactContent?.description || ""}
             />
-            <NeedPermit
+            <OutcomeMainContent
               contentText={
                 nl.translation.outcome.needReport[
                   "on this page you can read more about report"
@@ -168,7 +206,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_BOTH_PERMIT_AND_REPORT]: {},
       [NEED_PERMIT]: {
-        mainContent: <NeedPermit url={urls.FIRESAFETY_PAGE} />,
+        mainContent: <OutcomeMainContent url={urls.FIRESAFETY_PAGE} />,
         title:
           nl.translation.outcome.needPermit[
             "you need a permit and not to report"
@@ -176,8 +214,7 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
       },
       [NEED_REPORT]: {
         mainContent: (
-          // @TODO: refactor these components, because we use the `NeedPermit` component to render the need report content, because it looks the same
-          <NeedPermit
+          <OutcomeMainContent
             contentText={
               nl.translation.outcome.needReport[
                 "on this page you can read more about report"
@@ -207,6 +244,8 @@ const getOutcomeContent = (checker: imtr.Checker, slug: string) => {
     return contents.demolition[outcomeType] as OutcomeContentType;
   } else if (slug === "brandveilig-gebruik") {
     return contents.firesafety[outcomeType] as OutcomeContentType;
+  } else if (slug === "kappen-of-snoeien") {
+    return contents.bomenkap[outcomeType] as OutcomeContentType;
   }
   return contents.default[outcomeType] as OutcomeContentType;
 };
