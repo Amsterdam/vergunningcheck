@@ -30,6 +30,10 @@ export const apis: APIConfig[] = [
         "2eYY7McaiRgfnERo9", // cityscape
         "D4mccynMtNdzYGhXF", // report
       ],
+      "kappen-of-snoeien": [
+        // cut a tree
+        "SCKKBFsLHGG5Le5mJ" // tree
+      ],
       "zonnepanelen-of-zonneboiler-plaatsen": [
         // solar panels or solar water heater
         "TRhZrFexMjBW42Ky6", // monument
