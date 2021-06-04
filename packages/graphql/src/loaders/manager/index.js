@@ -5,22 +5,20 @@ const { manager: config, HOST } = require("../../../config").loaders.ois;
 const URL = `${HOST}${config.url}`;
 
 const loader = {
-  reducer: ({ heading, intro, outcomes, flow, ...rest }) => {
-    const res = {
-      ...rest,
-      hasIMTR: flow === "IMTR",
-      intro,
-      outcomes: outcomes.map((o) => ({
-        results: o.flo_legal_outcomes.split(","),
-        text: o.text,
-      })),
-      text: {
-        heading,
-      },
-    };
-    console.log({ res });
-    return res;
-  },
+  reducer: ({ slug, name, heading, intro, outcomes, flow, permits }) => ({
+    name,
+    slug,
+    permits,
+    hasIMTR: flow === "IMTR",
+    intro,
+    outcomes: outcomes.map((o) => ({
+      results: o.flo_legal_outcomes.split(","),
+      text: o.text,
+    })),
+    text: {
+      heading,
+    },
+  }),
   fetchPage: () =>
     fetchJson(getUrl(`${URL}topics/`)).then((data) => {
       debug("fetched topics", data.results);

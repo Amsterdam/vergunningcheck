@@ -7,7 +7,6 @@ const { graphql: config } = require("../../config");
 
 const bagSearchLoader = require("../loaders/bagSearch");
 const bagLoader = require("../loaders/bag");
-const floLegalLoader = require("../loaders/floLegal");
 const managerLoader = require("../loaders/manager");
 const monumentLoader = require("../loaders/monument");
 const geoSearchLoader = require("../loaders/geoSearch");
@@ -56,7 +55,6 @@ const server = graphqlHTTP(() => ({
       bag: {
         accommodation: new DataLoader(bagLoader.accommodation.load),
       },
-      floLegal: new DataLoader(floLegalLoader.load),
       geoSearch: new DataLoader(geoSearchLoader.load),
       manager: new DataLoader(managerLoader.load),
       managerList: new DataLoader(managerLoader.list),

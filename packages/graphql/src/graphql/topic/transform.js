@@ -117,7 +117,7 @@ module.exports = (permits) => {
     },
   ];
 
-  return permits.map(async ({ json, version }, permitIndex) => {
+  return permits.map(async (json, permitIndex) => {
     // apply all reducers to imtr
     try {
       const baseImtr = await imtrbuild(json);
@@ -132,7 +132,6 @@ module.exports = (permits) => {
       );
 
       const res = {
-        version,
         ...imtr,
       };
       debug("res", res);

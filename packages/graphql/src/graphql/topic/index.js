@@ -1,7 +1,8 @@
+const parser = require("fast-xml-parser");
 const debug = require("debug")("graphql:topics");
 
-const transform = require("../loaders/floLegal/transform");
-const { gql, arrayEquals } = require("../util");
+const transform = require("./transform");
+const { gql, arrayEquals } = require("../../util");
 
 const typeDefs = gql`
   type TopicText {
@@ -44,10 +45,19 @@ const resolvers = {
     },
   },
   Topic: {
-    checkerJSON: async (topic, _, { loaders: { floLegal } }) => {
-      debug("get checkerJSON for topic", topic);
+    checkerJSON: async (topic) => {
       const jsons = await Promise.all(
-        topic.permits.map((permit) => floLegal.load(permit.flo_legal_id))
+        topic.permits.map(async (permit) => {
+          const sttr = JSON.parse(permit.imtr_config.blob).sttr;
+          const res = await parser.parse(sttr, {
+            ignoreAttributes: false,
+            arrayMode: true,
+            attrNodeName: "attributes",
+            ignoreNameSpace: false,
+            attributeNamePrefix: "",
+          });
+          return res;
+        })
       );
 
       const permits = await Promise.all(transform(jsons));

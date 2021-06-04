@@ -108,7 +108,6 @@ const getAutofillResolverKey = (questionText) => {
  * Get decisions configuration
  */
 const getDecisions = (dmnDecisions) => {
-  console.log("getDecisions");
   return dmnDecisions.reduce((jsonDecisions, decision) => {
     // Get the information-requirement (input or decision) href-reference
     // requiredInput or requiredDecision
@@ -163,7 +162,11 @@ const getDecisions = (dmnDecisions) => {
       return ruleSet;
     }, []);
 
-    jsonDecisions[decision.attributes.id] = {
+    jsonDecisions[
+      Object.keys(baseDecision)[0] === "requiredDecisions"
+        ? "dummy"
+        : decision.attributes.id
+    ] = {
       ...baseDecision,
       decisionTable: {
         rules,
@@ -177,7 +180,6 @@ const getDecisions = (dmnDecisions) => {
  * Get input configuration
  */
 const getInputs = (dmnInputDataCollection) => {
-  console.log("getInputs");
   return dmnInputDataCollection.reduce((acc, dmnInputData) => {
     const { href } = dmnInputData[DMN_EXTENSION_ELEMENTS][0][
       UITV_EXECUTION_RULE_REF
