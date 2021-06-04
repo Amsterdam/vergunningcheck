@@ -341,7 +341,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           const showQuestionAlert =
             !!outcomeType &&
             !isPermitForm &&
-            q.id !== "fd15b895da25badc23fd38b0d4a9f2b3";
+            q.text !== "Is er spoed of direct gevaar?";
 
           return (
             <StepByStepItem
