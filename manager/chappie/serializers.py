@@ -1,24 +1,35 @@
-from django.contrib.auth.models import User, Group
-from .models import Topic, Permit, Outcome
 from rest_framework import serializers
+
+from .models import IMTRConfig, Outcome, Permit, Topic
+
+
+class IMTRConfigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IMTRConfig
+        exclude = []
+        fields = ["blob"]
 
 
 class PermitSerializer(serializers.HyperlinkedModelSerializer):
+    imtr_config = IMTRConfigSerializer(read_only=True)
 
     class Meta:
         model = Permit
-        fields = ['flo_legal_id', 'name']
+        fields = ["name", "imtr_config"]
         lookup_field = "flo_legal_id"
         extra_kwargs = {
-            'url': {'lookup_field': 'flo_legal_id'},
-            'topic': {'lookup_field': 'slug'}
+            "url": {"lookup_field": "flo_legal_id"},
+            "topic": {"lookup_field": "slug"},
         }
 
 
 class OutcomeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Outcome
-        fields = ['flo_legal_outcomes', 'text', ]
+        fields = [
+            "flo_legal_outcomes",
+            "text",
+        ]
 
 
 class TopicSerializer(serializers.HyperlinkedModelSerializer):
@@ -28,7 +39,7 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Topic
         exclude = []
-        lookup_field = 'slug'
+        lookup_field = "slug"
         extra_kwargs = {
-            'url': {'lookup_field': 'slug'},
+            "url": {"lookup_field": "slug"},
         }

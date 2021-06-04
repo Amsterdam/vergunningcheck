@@ -1,7 +1,14 @@
 import uuid
 
 from django.db import models
+from django.utils import timezone
 from sortedm2m.fields import SortedManyToManyField
+
+
+class IMTRConfig(models.Model):
+    created = models.DateField(default=timezone.now)
+    version = models.IntegerField()
+    blob = models.TextField()
 
 
 class Permit(models.Model):
@@ -13,8 +20,9 @@ class Permit(models.Model):
         help_text="Dit is het id uit de url in de FloLegal STTR Builder. Bijvoorbeeld 'WKPxKx4YBJ5fqYSni' uit 'https://sttr-builder.flolegal.app/#/activiteit/WKPxKx4YBJ5fqYSni'",
     )
     name = models.CharField(max_length=120)
-    # topic = models.ForeignKey(
-    #     Topic, related_name="permits", on_delete=models.CASCADE, default=None)
+    imtr_config = models.ForeignKey(
+        IMTRConfig, on_delete=models.CASCADE, default=None, blank=True, null=True
+    )
 
     def __str__(self):
         return self.name

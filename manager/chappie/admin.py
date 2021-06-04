@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db import models
 from pagedown.widgets import AdminPagedownWidget
 
-from .models import Outcome, Permit, Topic
+from .models import IMTRConfig, Outcome, Permit, Topic
 
 
 class MyModelAdmin(admin.ModelAdmin):
@@ -31,6 +31,11 @@ class OutcomeAdmin(MyModelAdmin):
     pass
 
 
+class IMTRConfigAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(IMTRConfig, IMTRConfigAdmin)
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Permit, PermitAdmin)
 admin.site.register(Outcome, OutcomeAdmin)

@@ -128,6 +128,10 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
+STTR_BUILDER_API_KEY = os.environ.get("STTR_BUILDER_API_KEY")
+STTR_BUILDER_API_HOST = "https://sttr-builder.eu.meteorapp.com"
+
+
 try:
     from .settings_local import *
 except ImportError:
