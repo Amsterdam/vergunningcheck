@@ -13,6 +13,15 @@ npm start
 
 If you need to update the IMTR files there are additional install steps in [packages/imtr/README.md](packages/imtr/README.md).
 
+If you want to use browserstack cloud service:
+you will need the following configuration 
+Please set the username and access key by setting the environment variables: 
+  - BROWSERSTACK_USER                                                          
+  - BROWSERSTACK_KEY                                                           
+ 
+ .env files are supported                                                    
+
+
 ## Contributing
 
 If you want to contribute to this project please read [CONTRIBUTING.md](CONTRIBUTING.md)

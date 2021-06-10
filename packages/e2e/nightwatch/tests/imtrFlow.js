@@ -58,31 +58,23 @@ module.exports = {
     assert.containsText(main, "Het gebouw is een gemeentelijk monument.");
     assert.containsText(
       main,
-      "Staat het gebouw waarop u de dakkapel gaat plaatsen in"
+      "Wilt u meer dan 1 dakkapel plaatsen?"
     );
     assert.containsText(main, "Ja");
     assert.containsText(main, "Nee");
-    b.click(q1a2);
+    b.click(q1a1);
+    b.waitForElementVisible(questionForm);
+    assert.containsText(main, "Gaat u een dakkapel plaatsen of vernieuwen?");
+    assert.containsText(main, "Volgende vraag");
+    b.click(q2a1);
     b.waitForElementVisible(questionAlert);
     assert.containsText(
       main,
-      "Door dit antwoord kunnen we niet vaststellen of u een vergunning nodig hebt."
+      "Door dit antwoord hebt u een vergunning nodig. Als u een andere keuze maakt, hebt u misschien geen vergunning nodig."
     );
-    assert.containsText(main, "Naar de uitkomst");
-    b.click(navButtonNext);
-
-    // Contact outcome has loaded
-    b.waitForElementVisible(outcomeContact);
-    assert.containsText(main, "Neem contact op met de gemeente");
-    assert.containsText(main, "Nog een vergunningcheck doen");
-    b.click(questionEditButton);
-
-    // Question q1 has loaded (again)
-    b.waitForElementVisible(questionForm);
-    assert.containsText(main, "Naar de uitkomst");
-    b.click(q1a1);
     assert.containsText(main, "Volgende vraag");
     b.click(navButtonNext);
+
 
     // Question 2 has loaded
     b.waitForElementVisible(questionForm);
@@ -107,7 +99,7 @@ module.exports = {
     b.switchWindow(result.value[1]);
     // TODO: make this URL available in packages/mocking
     assert.urlEquals(
-      "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D#case_%7BBB9A7369-D795-42F8-8505-DC83EE4CC0C0%7D"
+      "https://www.amsterdam.nl/veelgevraagd/?productid=%7B215DE049-EFA3-492D-A4B1-EDFF40E0BC51%7D"
     );
 
     /**

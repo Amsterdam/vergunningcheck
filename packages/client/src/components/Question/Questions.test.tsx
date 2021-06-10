@@ -88,7 +88,7 @@ describe("Questions", () => {
     render(<Questions isActive sectionFunctions={sectionFunctions} />);
 
     expect(screen.getByRole("form")).toBeInTheDocument();
-    expect(screen.getByTestId(`1-a1`)).toBeInTheDocument();
+    expect(screen.getByTestId(`q1-a1`)).toBeInTheDocument();
     expect(screen.getByTestId(PREV_BUTTON)).toBeInTheDocument();
     expect(screen.getByTestId(EDIT_BUTTON)).toBeInTheDocument();
 
@@ -103,7 +103,7 @@ describe("Questions", () => {
     // Submit the form
     act(() => {
       // Press the answer
-      fireEvent.click(screen.getByTestId(`1-a1`));
+      fireEvent.click(screen.getByTestId(`q1-a1`));
     });
     await act(async () => {
       // Submit the form
@@ -149,8 +149,8 @@ describe("Questions", () => {
       />
     );
 
-    expect(screen.queryByTestId(`1-a1`)).not.toBeInTheDocument();
-    expect(screen.getByTestId(`2-a1`)).toBeInTheDocument();
+    expect(screen.queryByTestId(`q1-a1`)).not.toBeInTheDocument();
+    expect(screen.getByTestId(`q2-a1`)).toBeInTheDocument();
 
     expect(screen.getByTestId(PREV_BUTTON)).toBeInTheDocument();
     expect(screen.getAllByTestId(EDIT_BUTTON)[1]).toBeInTheDocument();
@@ -193,7 +193,7 @@ describe("Questions", () => {
     // Submit the form
     act(() => {
       // Press the answer
-      fireEvent.click(screen.getByTestId(`2-a1`));
+      fireEvent.click(screen.getByTestId(`q2-a1`));
     });
     await act(async () => {
       // Submit the form

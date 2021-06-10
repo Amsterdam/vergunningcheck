@@ -273,14 +273,6 @@ const Questions: FunctionComponent<QuestionsProps> = ({
 
   // Toggle this boolean to hide all questions after the decisive contact question
   let hasDecisiveContactQuestion = false;
-  console.log({
-    editQuestionHook,
-    isCheckerConclusive,
-    isSectionActive,
-    questionIndex,
-    setSkipAnsweredQuestions,
-    testQuestionIndex: questionIndex,
-  });
 
   return (
     <>

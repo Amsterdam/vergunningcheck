@@ -9,7 +9,7 @@
   "main": "puppeteer/basic.js",
   "scripts": {
     "test": "jest",
-    "nightwatch:browserstack": "cross-env DOMAIN=https://localhost:3000 node scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari",
+    "nightwatch:browserstack": "cross-env DOMAIN=http://localhost:3000 node scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari",
     "nightwatch:browserstack-acceptence": "cross-env DOMAIN=https://acc.vergunningcheck.amsterdam.nl node scripts/local.runner.js -c nightwatch/browserstack.conf.js -e chrome,firefox,safari",
     "localhost:test": "run-p localhost:test:puppeteer localhost:test:nightwatch:*",
     "localhost:test:puppeteer": "find puppeteer/tests/*.js -exec ts-node {} \\;",

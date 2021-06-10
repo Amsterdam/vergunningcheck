@@ -43,7 +43,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
           const answerId = `${questionId}-${formValue}`;
           return (
             <Label
-              data-testid={`${testQuestionIndex}-a${index + 1}`}
+              data-testid={`q${testQuestionIndex}-a${index + 1}`}
               htmlFor={answerId}
               key={answerId}
               label={label}
