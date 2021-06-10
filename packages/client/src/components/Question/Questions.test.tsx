@@ -30,8 +30,6 @@ const mockTopicSession = {
 const { id: idQ1, options: optionsQ1 } = mockedChecker1.permits[0].questions[1];
 const optionsQ1a = optionsQ1 ? optionsQ1[0] : "";
 const optionsQ1b = optionsQ1 ? optionsQ1[1] : "";
-const { id: idQ2 } = mockedChecker1.permits[0].questions[2];
-const { id: idQ3 } = mockedChecker1.permits[1].questions[0];
 
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
@@ -90,7 +88,7 @@ describe("Questions", () => {
     render(<Questions isActive sectionFunctions={sectionFunctions} />);
 
     expect(screen.getByRole("form")).toBeInTheDocument();
-    expect(screen.getByTestId(`${idQ1}-a1`)).toBeInTheDocument();
+    expect(screen.getByTestId(`1-a1`)).toBeInTheDocument();
     expect(screen.getByTestId(PREV_BUTTON)).toBeInTheDocument();
     expect(screen.getByTestId(EDIT_BUTTON)).toBeInTheDocument();
 
@@ -105,7 +103,7 @@ describe("Questions", () => {
     // Submit the form
     act(() => {
       // Press the answer
-      fireEvent.click(screen.getByTestId(`${idQ1}-a1`));
+      fireEvent.click(screen.getByTestId(`1-a1`));
     });
     await act(async () => {
       // Submit the form
@@ -151,8 +149,8 @@ describe("Questions", () => {
       />
     );
 
-    expect(screen.queryByTestId(`${idQ1}-a1`)).not.toBeInTheDocument();
-    expect(screen.getByTestId(`${idQ2}-a1`)).toBeInTheDocument();
+    expect(screen.queryByTestId(`1-a1`)).not.toBeInTheDocument();
+    expect(screen.getByTestId(`2-a1`)).toBeInTheDocument();
 
     expect(screen.getByTestId(PREV_BUTTON)).toBeInTheDocument();
     expect(screen.getAllByTestId(EDIT_BUTTON)[1]).toBeInTheDocument();
@@ -195,7 +193,7 @@ describe("Questions", () => {
     // Submit the form
     act(() => {
       // Press the answer
-      fireEvent.click(screen.getByTestId(`${idQ3}-a1`));
+      fireEvent.click(screen.getByTestId(`2-a1`));
     });
     await act(async () => {
       // Submit the form

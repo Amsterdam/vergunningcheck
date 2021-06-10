@@ -22,6 +22,7 @@ type QuestionProps = {
   onGoToNext?: () => void;
   onGoToPrev?: () => void;
   outcomeType: imtr.ClientOutcomes;
+  testQuestionIndex: number;
   saveAnswer: (answer: Answer, question?: imtr.Question) => void;
   showQuestionAlert: boolean;
   showNext?: boolean;
@@ -31,6 +32,7 @@ const Question: FunctionComponent<QuestionProps> = ({
   hideNav,
   isCheckerConclusive,
   question,
+  testQuestionIndex,
   outcomeType,
   onGoToNext,
   onGoToPrev,
@@ -111,7 +113,9 @@ const Question: FunctionComponent<QuestionProps> = ({
         </ComponentWrapper>
       )}
 
-      <Answers {...{ errors, question, questionId, saveAnswer }} />
+      <Answers
+        {...{ errors, question, questionId, testQuestionIndex, saveAnswer }}
+      />
 
       {showQuestionAlert && <QuestionAlert {...{ outcomeType }} />}
 

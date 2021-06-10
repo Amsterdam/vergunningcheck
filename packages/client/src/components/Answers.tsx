@@ -13,6 +13,7 @@ type AnswersProps = {
   errors: FieldErrors; // This prop needs to be passed down, because the useForm() hook fails fetching `errors` in this component
   question?: imtr.Question; // `question` is optional, because a `PreQuestion` is not an `imtr-client` Question-class
   questionId: string; // `questionId` is either the `imtr-client` Question-class id or the custom id from the `PreQuestion`
+  testQuestionIndex: number; // test question index is the index in of amount of questions.
   saveAnswer: (answer: Answer, question?: imtr.Question) => void; // Return the callback with an option `imtr-client` Question-class
 };
 
@@ -21,6 +22,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
   errors,
   question,
   questionId,
+  testQuestionIndex,
   saveAnswer,
 }) => {
   const answers: Answer[] = question?.options
@@ -41,7 +43,7 @@ const Answers: FunctionComponent<AnswersProps> = ({
           const answerId = `${questionId}-${formValue}`;
           return (
             <Label
-              data-testid={`${questionId}-a${index + 1}`}
+              data-testid={`${testQuestionIndex}-a${index + 1}`}
               htmlFor={answerId}
               key={answerId}
               label={label}

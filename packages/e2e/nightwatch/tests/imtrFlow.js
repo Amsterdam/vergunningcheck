@@ -1,4 +1,4 @@
-const { address, domain, selectors } = require("../config");
+const { address, selectors } = require("../config");
 
 const {
   outcomeContact,
@@ -10,6 +10,8 @@ const {
   locationRestrictionMonument,
   main,
   navButtonNext,
+  pq1a1,
+  pq1a2,
   q1a1,
   q1a2,
   q2a1,
@@ -21,13 +23,13 @@ const {
 module.exports = {
   [__filename]: async (b) => {
     const { assert } = b;
-    b.url(`${domain}/dakkapel-plaatsen`);
+    b.url(`${process.env.DOMAIN}/dakkapel-plaatsen`);
 
     // Intro page has loaded
     b.waitForElementVisible(introBullets);
     assert.containsText(
       main,
-      "Met de vergunningcheck kunt u zien wanneer u een omgevingsvergunning nodig hebt."
+      "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt."
     );
     b.click(navButtonNext);
 
@@ -49,12 +51,14 @@ module.exports = {
 
     // Question 1 has loaded
     b.waitForElementVisible(questionForm);
-    b.waitForElementVisible(q1a1);
-    b.waitForElementVisible(q1a2);
+    b.waitForElementVisible(pq1a1);
+    b.waitForElementVisible(pq1a2);
+    b.click(pq1a1);
+    b.click(navButtonNext);
     assert.containsText(main, "Het gebouw is een gemeentelijk monument.");
     assert.containsText(
       main,
-      "Staat het gebouw waarop u de dakkapel gaat plaatsen in een gebied"
+      "Staat het gebouw waarop u de dakkapel gaat plaatsen in"
     );
     assert.containsText(main, "Ja");
     assert.containsText(main, "Nee");

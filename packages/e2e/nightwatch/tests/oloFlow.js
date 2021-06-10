@@ -1,5 +1,5 @@
 const { NightwatchBrowser } = require("nightwatch");
-const { address, domain, selectors } = require("../config");
+const { address, selectors } = require("../config");
 
 const {
   locationHouseNumberFull,
@@ -15,9 +15,10 @@ const {
 
 module.exports = {
   [__filename]: async (b) => {
+
     const { assert } = b;
 
-    b.url(`${domain}/aanbouw-of-uitbouw-maken`);
+    b.url(`${process.env.DOMAIN}/aanbouw-of-uitbouw-maken`);
     b.waitForElementVisible(locationPostalCode);
 
     assert.containsText(main, "Invullen adres");

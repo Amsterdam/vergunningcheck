@@ -179,6 +179,8 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 - Verify the `release` branch is on acceptance and it's the latest build
 - Consider running `npm run back-merge` if you made any changes
 - Communicate to stakeholders there is a new release testable on acceptance
+- In new tab run `npm run e2e-browserstack-acceptence` to test if the application is running on acceptence in all browsers.
+- Close the running application.
 
 ### Create the release PR
 

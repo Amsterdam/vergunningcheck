@@ -30,8 +30,9 @@ const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
 
 const preQuestionText =
   nl.translation.preQuestions[topic.slug].preQuestionMultipleCheckers;
-const { id: idQ1, text: textQ1 } = mockedChecker1.permits[0].questions[1];
+const { text: textQ1 } = mockedChecker1.permits[0].questions[1];
 const { text: textQ2 } = mockedChecker1.permits[1].questions[0];
+const idQ1 = 1;
 
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),

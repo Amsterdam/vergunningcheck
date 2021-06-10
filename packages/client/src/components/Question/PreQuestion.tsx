@@ -16,6 +16,7 @@ type PreQuestionProps = {
   description?: string;
   questionAlertText?: string;
   questionId: string;
+  testQuestionIndex: number;
   topicDataKey: string;
 };
 
@@ -28,6 +29,7 @@ const PreQuestion: FunctionComponent<
   isCheckerConclusive,
   questionAlertText,
   questionId,
+  testQuestionIndex,
   saveAnswer: saveAnswerProp,
   topicDataKey,
 }) => {
@@ -63,7 +65,9 @@ const PreQuestion: FunctionComponent<
       {description && <Paragraph>{description}</Paragraph>}
 
       {/* Show the answer options */}
-      <Answers {...{ answer, errors, questionId, saveAnswer }} />
+      <Answers
+        {...{ answer, errors, questionId, saveAnswer, testQuestionIndex }}
+      />
 
       {/* Show the optional QuestionAlert in case the `questionAlertText` has been set  */}
       <QuestionAlert marginBottom={8} {...{ questionAlertText }} />

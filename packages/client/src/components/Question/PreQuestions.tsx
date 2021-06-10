@@ -10,6 +10,7 @@ type PreQuestionsProps = {
   isSectionActive: boolean;
   questionIndex: number;
   setSkipAnsweredQuestions: (val: boolean) => void;
+  testQuestionIndex: number;
 };
 
 const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
@@ -18,6 +19,7 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
   isSectionActive,
   questionIndex,
   setSkipAnsweredQuestions,
+  testQuestionIndex,
 }) => {
   const { preQuestions } = useTopic();
   const { setTopicData } = useTopicData();
@@ -53,6 +55,7 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
       questionIndex,
       saveAnswer,
       setSkipAnsweredQuestions,
+      testQuestionIndex,
     },
   };
 

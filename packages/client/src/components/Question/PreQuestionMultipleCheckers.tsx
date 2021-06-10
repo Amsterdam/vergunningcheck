@@ -14,6 +14,7 @@ type QuestionComponentProps = {
   index: number;
   isSectionActive: boolean;
   questionIndex: number;
+  testQuestionIndex: number;
 };
 
 const PreQuestionMultipleCheckers: FunctionComponent<
@@ -26,6 +27,7 @@ const PreQuestionMultipleCheckers: FunctionComponent<
   isSectionActive,
   questionIndex,
   saveAnswer,
+  testQuestionIndex,
 }) => {
   const slug = useSlug();
   const { topicData } = useTopicData();
@@ -87,6 +89,7 @@ const PreQuestionMultipleCheckers: FunctionComponent<
               questionAlertText,
               questionId,
               saveAnswer,
+              testQuestionIndex,
               topicDataKey,
             }}
           />
