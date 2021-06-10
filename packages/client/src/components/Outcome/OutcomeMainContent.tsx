@@ -6,16 +6,16 @@ import { Button, ComponentWrapper, HideForPrint, PrintOnly } from "../../atoms";
 import { urls } from "../../config";
 import { actions, eventNames } from "../../config/matomo";
 import { useTracking } from "../../hooks";
-import { NEED_PERMIT_BUTTON } from "../../utils/test-ids";
+import { OUTCOME_MAIN_CONTENT_BUTTON } from "../../utils/test-ids";
 
-type NeedPermitProps = {
+type OutcomeMainContentProps = {
   contentText?: string;
   eventName?: string;
   linkText?: string;
   url?: string;
 };
 
-const NeedPermit: FunctionComponent<NeedPermitProps> = ({
+const OutcomeMainContent: FunctionComponent<OutcomeMainContentProps> = ({
   contentText,
   eventName = eventNames.HOW_TO_APPLY_FOR_A_PERMIT,
   linkText,
@@ -33,7 +33,7 @@ const NeedPermit: FunctionComponent<NeedPermitProps> = ({
   // Make sure to render the component with content
   if (!content || !link) return null;
 
-  const handlePermitInfoButton = () => {
+  const handleOutcomeInfoButton = () => {
     matomoTrackEvent({
       action: actions.CLICK_EXTERNAL_NAVIGATION,
       name: eventName,
@@ -46,8 +46,8 @@ const NeedPermit: FunctionComponent<NeedPermitProps> = ({
       <Paragraph>{content}</Paragraph>
       <HideForPrint>
         <Button
-          data-testid={NEED_PERMIT_BUTTON}
-          onClick={handlePermitInfoButton}
+          data-testid={OUTCOME_MAIN_CONTENT_BUTTON}
+          onClick={handleOutcomeInfoButton}
           type="button"
           variant="primaryInverted"
         >
@@ -55,7 +55,7 @@ const NeedPermit: FunctionComponent<NeedPermitProps> = ({
         </Button>
       </HideForPrint>
       <PrintOnly>
-        <Link href={url} onClick={handlePermitInfoButton} variant="inline">
+        <Link href={url} onClick={handleOutcomeInfoButton} variant="inline">
           {link}
         </Link>
       </PrintOnly>
@@ -63,4 +63,4 @@ const NeedPermit: FunctionComponent<NeedPermitProps> = ({
   );
 };
 
-export default NeedPermit;
+export default OutcomeMainContent;

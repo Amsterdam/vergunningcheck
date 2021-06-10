@@ -2,7 +2,10 @@ import { Button, Heading, Modal, themeSpacing } from "@amsterdam/asc-ui";
 import styled from "styled-components";
 
 export const ModalUI = styled(Modal)`
-  top: 34%;
+  top: 30%;
+  > div {
+    max-height: 100%;
+  }
 `;
 
 export const ModalBlock = styled.div`
@@ -14,10 +17,6 @@ export const ModalBlock = styled.div`
 // This is to prevent bugs with flexbox
 export const ModalButton = styled(Button)`
   align-self: flex-start;
-`;
-
-export const ModalContent = styled.div`
-  min-height: 50vh;
 `;
 
 export const ModalHeading = styled(Heading)`

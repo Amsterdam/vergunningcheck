@@ -1,6 +1,6 @@
 const selectors = {
   outcomeContact: "[data-testid=need-contact]",
-  outcomeNeedPermitButton: "[data-testid=need-permit-button]",
+  outcomeNeedPermitButton: "[data-testid=outcome-main-content-button]",
   introBullets: "[data-testid=intro-usable-for-bullets]",
   locationForm: "#locatieWerkzaamhedenForm",
   locationHouseNumberFull: "input[name=houseNumberFull]",
