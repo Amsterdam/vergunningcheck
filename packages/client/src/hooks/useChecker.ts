@@ -16,7 +16,7 @@ export default () => {
 
   useEffect(() => {
     // Initilize the checker on first load, reload and on reset
-    if (!checker && !checkerContext.checker && topic) {
+    if (!checker && !checkerContext.checker && topic?.hasIMTR) {
       initChecker();
     }
     // Force clearing the checker when the checker has been reset on the context
