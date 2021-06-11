@@ -8,6 +8,7 @@ const query = loader("../queries/Topic.graphql");
 
 export default () => {
   const slug = useSlug();
+
   const { loading, error, data } = useQuery<{
     topic: Topic;
   }>(query, { variables: { slug } });

@@ -17,7 +17,11 @@ const IntroPage: FunctionComponent = () => {
   const topic = useTopic();
 
   if (!topic) {
-    return <Loading />;
+    return (
+      <TopicLayout>
+        <Loading />
+      </TopicLayout>
+    );
   }
 
   const { text, intro } = topic as Topic;

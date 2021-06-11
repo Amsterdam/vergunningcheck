@@ -71,6 +71,7 @@ export const SessionProvider: FunctionComponent = ({ children }) => {
 
     // Set the topic/session data when (re)initilizing
     const newTopicData = slugSession || defaultTopicSession;
+
     if (!topicData || topicData.type !== slug) {
       if (!newTopicData.type || newTopicData.type !== slug) {
         // Set the topic `type` to the session, so we can compare the topicData
