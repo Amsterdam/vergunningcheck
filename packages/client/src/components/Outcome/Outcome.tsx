@@ -17,7 +17,7 @@ const Outcome: FunctionComponent = () => {
   const topic = useTopic();
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   if (checker === undefined) {

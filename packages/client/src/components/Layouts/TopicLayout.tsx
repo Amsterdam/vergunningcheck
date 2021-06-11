@@ -4,6 +4,7 @@ import React, { FunctionComponent } from "react";
 import { HideForPrint } from "../../atoms";
 import { DebugVariables } from "../../debug";
 import { useTopic } from "../../hooks";
+import Loading from "../Loading";
 import { BaseLayout } from ".";
 
 interface TopicLayoutProps {
@@ -18,7 +19,11 @@ const TopicLayout: FunctionComponent<TopicLayoutProps> = ({
 }) => {
   const topic = useTopic();
   if (!topic) {
-    return <p>loading...</p>;
+    return (
+      <BaseLayout>
+        <Loading />
+      </BaseLayout>
+    );
   }
 
   const { hasIMTR, name, text } = topic;
@@ -33,6 +38,7 @@ const TopicLayout: FunctionComponent<TopicLayoutProps> = ({
           {heading}
         </Heading>
       )}
+
       {children}
 
       <HideForPrint>

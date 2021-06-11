@@ -14,6 +14,7 @@ import {
   LOCATION_SUMMARY,
 } from "../../utils/test-ids";
 import AddressLines from "../AddressLines";
+import Loading from "../Loading";
 import EditLocationModal from "./EditLocationModal";
 
 const StyledList = styled(List)<{
@@ -64,7 +65,7 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
 
   const { restrictions } = address || {};
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const { hasIMTR } = topic as Topic;

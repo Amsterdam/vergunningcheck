@@ -13,6 +13,7 @@ import { getRestrictionByTypeName } from "../../utils";
 import { LOCATION_INPUT } from "../../utils/test-ids";
 import Error from "../Error";
 import Form from "../Form";
+import Loading from "../Loading";
 import Nav from "../Nav";
 import PhoneNumber from "../PhoneNumber";
 import LocationFinder from "./LocationFinder";
@@ -36,7 +37,7 @@ const LocationInput = ({
   const [focus, setFocus] = useState(false);
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const { hasIMTR, slug, text } = topic;

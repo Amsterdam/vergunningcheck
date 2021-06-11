@@ -18,6 +18,7 @@ import {
   RADIO_ADDRESS_2,
 } from "../../utils/test-ids";
 import { default as ErrorComponent } from "../Error";
+import Loading from "../Loading";
 import Modal from "../Modal";
 
 const query = loader("../../queries/Topics.graphql");
@@ -43,7 +44,7 @@ const NewCheckerModal: FunctionComponent = () => {
   }>(query);
 
   if (loading) {
-    return <p>Loading ...</p>;
+    return <Loading />;
   } else if (error) {
     return <ErrorComponent stack={error.stack} content={error.message} />;
   }
