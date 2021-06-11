@@ -1,4 +1,4 @@
-import { captureException } from "@sentry/browser";
+import { captureException } from "@sentry/react";
 import React, {
   Fragment,
   FunctionComponent,

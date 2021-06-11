@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.1] (2021-05-20)
+
+#### New Features
+* `client`
+  * [#872](https://github.com/Amsterdam/vergunningcheck/pull/872) Bomenkap checker added ([@svenjens](https://github.com/svenjens))
+  * [#849](https://github.com/Amsterdam/vergunningcheck/pull/849) Extend keyboard functionality within the app ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+* `client`, `imtr`
+  * [#903](https://github.com/Amsterdam/vergunningcheck/pull/903) Acceptatie fix for bomenkap checker  ([@svenjens](https://github.com/svenjens))
+* `client`
+  * [#863](https://github.com/Amsterdam/vergunningcheck/pull/863) Fixed modal height ([@svenjens](https://github.com/svenjens))
+  * [#840](https://github.com/Amsterdam/vergunningcheck/pull/840) Changed link hover color from red to white in error box. ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+* `client`, `e2e`
+  * [#847](https://github.com/Amsterdam/vergunningcheck/pull/847) Refactor get outcome content to split need report and need permit ([@svenjens](https://github.com/svenjens))
+* `client`, `e2e`, `graphql`
+  * [#885](https://github.com/Amsterdam/vergunningcheck/pull/885) Remove support for Netlify ([@afjlambert](https://github.com/afjlambert))
+* `client`
+  * [#858](https://github.com/Amsterdam/vergunningcheck/pull/858) Added documentation and translation ([@robinpiets](https://github.com/robinpiets))
+  * [#857](https://github.com/Amsterdam/vergunningcheck/pull/857) Moved PreQuestionComponent to types ([@robinpiets](https://github.com/robinpiets))
+  * [#843](https://github.com/Amsterdam/vergunningcheck/pull/843) Upgraded amsterdam dependencies ([@robinpiets](https://github.com/robinpiets))
+* `client`, `imtr-client`
+  * [#859](https://github.com/Amsterdam/vergunningcheck/pull/859) Refactored Questions logic and redering ([@robinpiets](https://github.com/robinpiets))
+* `mocking`
+  * [#841](https://github.com/Amsterdam/vergunningcheck/pull/841) chore: extended list of zipcodes ([@svenjens](https://github.com/svenjens))
+  
 ## [2.6.0] (2021-03-24)
 
 #### New Features

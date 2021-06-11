@@ -1,4 +1,4 @@
-import { captureException } from "@sentry/browser";
+import { captureException } from "@sentry/react";
 import React, { FunctionComponent, useState } from "react";
 
 import { FIGCAPTION, FIGURE, IMG } from "../utils/test-ids";

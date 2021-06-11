@@ -33,6 +33,27 @@
     <!-- Dynamic polyfill for fixing IE11 on localhost, without having to build the app -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=EventSource%2CPromise%2Ces2015%2Ces5"></script>
     <% } %>
+
+    <script>
+      // This gives us basic error tracking until the main app bundle loads and
+      // initializes Sentry. Allows us to catch errors that would surface before
+      // Sentry has a chance to catch.
+      (function() {
+        function setErrorMessage(message, error) {
+          const elem = document.querySelector('#root');
+          elem.innerHTML = `<h2>${message}</h2><br/> <pre>${error}</pre>`;
+        }
+
+        window.onerror = function(message, filename, lineno, colno, error) {
+          setErrorMessage(
+                  message + ' ' + filename + ':' + lineno + ':' + colno,
+                  error
+          );
+        };
+      })();
+    </script>
+
+
   </head>
 
   <body>
@@ -40,7 +61,8 @@
       >U heeft JavaScript nodig om deze vergunningcheck te kunnen
       gebruiken.</noscript
     >
-    <div id="root"></div>
+    <div id="root">
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
