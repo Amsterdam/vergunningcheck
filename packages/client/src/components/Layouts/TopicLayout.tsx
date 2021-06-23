@@ -1,10 +1,9 @@
 import { FormTitle, Heading } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 
-import { HideForPrint } from "../../atoms";
+import { Loading, HideForPrint } from "../../atoms";
 import { DebugVariables } from "../../debug";
 import { useTopic } from "../../hooks";
-import Loading from "../Loading";
 import { BaseLayout } from ".";
 
 interface TopicLayoutProps {
