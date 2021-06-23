@@ -23,7 +23,7 @@ const OloLocationResult: FunctionComponent = () => {
   const { t } = useTranslation();
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const { text } = topic as GraphQLTopic;
