@@ -47,6 +47,7 @@ export const OUTCOME_SECTION = "outcome-section";
 export const OUTCOME_SECTION_CONTENT = "outcome-section-content";
 export const NEED_CONTACT = "need-contact";
 export const NEED_PERMIT = "need-permit";
+export const OUTCOME_MAIN_CONTENT_BUTTON = "outcome-main-content-button";
 export const NEED_PERMIT_BUTTON = "need-permit-button";
 export const NEED_REPORT = "need-report";
 export const PERMIT_FREE = "permit-free";
@@ -68,3 +69,4 @@ export const FIGCAPTION = "figcaption";
 
 // Miscellaneous
 export const PHONE_NUMBER = "phone-number";
+export const LOGO_WRAPPER = "logo-wrapper";

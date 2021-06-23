@@ -2,6 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 import React, { FunctionComponent } from "react";
 
+import { TopicType } from "../types";
 import { render } from "../utils/test-utils";
 import { getMatomoSiteId } from "./matomo";
 import { topics } from ".";
@@ -38,9 +39,9 @@ describe("Config", () => {
     topics.push({
       slug: "test-slug-for-missing-intro-page",
       intro: "IntroPageThatWillNeverExist",
-      hasIMTR: false,
       name: "Test something",
       text: { heading: "Test heading" },
+      type: TopicType.PERMIT_CHECK,
     });
 
     const { queryAllByText } = render(<AllIntroPages />);

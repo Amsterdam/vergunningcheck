@@ -14,7 +14,7 @@ const mockProps = {
 };
 
 it("Answers should render", () => {
-  render(<Answers {...mockProps} />);
+  render(<Answers {...mockProps} questionId={mockProps.question.id} />);
   expect(screen.getByTestId(QUESTION_ANSWERS)).toBeInTheDocument();
 
   // Don't find the error
@@ -22,7 +22,13 @@ it("Answers should render", () => {
 });
 
 it("Answers should render the error message", () => {
-  render(<Answers {...mockProps} errors={booleanQuestionError} />);
+  render(
+    <Answers
+      {...mockProps}
+      errors={booleanQuestionError}
+      questionId={mockProps.question.id}
+    />
+  );
 
   expect(screen.queryByRole("alert")).toBeInTheDocument();
   expect(
@@ -31,7 +37,7 @@ it("Answers should render the error message", () => {
 });
 
 it("Answers should handle the onChange", () => {
-  render(<Answers {...mockProps} />);
+  render(<Answers {...mockProps} questionId={mockProps.question.id} />);
   act(() => {
     fireEvent.click(screen.getByLabelText("Ja"));
   });

@@ -1,18 +1,8 @@
 import { reverse } from "named-urls";
 import { lazy } from "react";
 import { RouteProps } from "react-router-dom";
-import slugify from "slugify";
 
-type RedirectRule = {
-  from: string;
-  to: string;
-};
-
-export const getslug = (text: string) =>
-  slugify(text, {
-    strict: true, // remove special chars
-    lower: true, // result in lower case
-  });
+import { RedirectRule, RoutePropExtended } from "./types";
 
 export const geturl = (route: string, params?: { slug: string }) => {
   if (!route) {
@@ -21,18 +11,7 @@ export const geturl = (route: string, params?: { slug: string }) => {
   return reverse(route, params);
 };
 
-type RoutePropExtended = RouteProps & { name: string };
-
-// export const imtrSlugs = topicsJson
-//   .flatMap((api) => api.map((t) => t.slug))
-//   .join("|");
-
-// export const oloSlugs = topics
-//   .filter(({ redirectToOlo, hasIMTR }) => !redirectToOlo && !hasIMTR)
-//   .map((t) => t.slug)
-//   .join("|");
-
-const baseRouteConfig: RoutePropExtended[] = [
+export const baseRouteConfig: RoutePropExtended[] = [
   {
     component:
       process.env.NODE_ENV !== "production"
@@ -51,9 +30,7 @@ const baseRouteConfig: RoutePropExtended[] = [
   {
     component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/IntroPage`)
-      // () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationInput`)
     ),
-    // name: "oloLocationInput",
     name: "start",
     exact: true,
     path: `/:slug`,
@@ -102,7 +79,3 @@ export const redirectConfig: RedirectRule[] = [
 export const routes = Object.fromEntries(
   baseRouteConfig.map(({ name, path }) => [name, path as string])
 );
-
-export const autofillRoutes: { checker: [string] } = {
-  checker: [routes.checker],
-};

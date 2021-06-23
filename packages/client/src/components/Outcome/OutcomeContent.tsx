@@ -1,13 +1,14 @@
-// @TODO: TRANSLATE
-import { themeSpacing } from "@amsterdam/asc-ui";
+import { Paragraph, themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { isIE, isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { ComponentWrapper, HideForPrint, PrintButton } from "../../atoms";
+import { Button, ComponentWrapper, HideForPrint } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTracking } from "../../hooks";
+import { useSlug, useTopicData, useTracking } from "../../hooks";
+import { OutcomeContentType } from "../../types";
 import { PRINT_BUTTON } from "../../utils/test-ids";
 import NewCheckerModal from "./NewCheckerModal";
 
@@ -22,7 +23,7 @@ const OutcomeContentWrapper = styled.div<{ showDiscaimer?: boolean }>`
 `;
 
 type OutcomeContentProps = {
-  outcomeContent: String;
+  outcomeContent: OutcomeContentType;
   outcomeType: ClientOutcomes;
   showDiscaimer?: boolean;
 };
@@ -32,7 +33,20 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
   outcomeType,
   showDiscaimer,
 }) => {
+  const slug = useSlug();
+  const { topicData } = useTopicData();
   const { matomoTrackEvent } = useTracking();
+  const { t } = useTranslation();
+
+  const { footerContent } = outcomeContent;
+
+  // When the PreQuestion `MultipleCheckers` has been answered with `true` we will show an alternate text above the `NewCheckerModal`
+  const multipleCheckersText =
+    t(
+      `outcome.${slug}.you would like to build more than 1 so you need to do multiple permits`
+    ) +
+    " " +
+    t("outcome.if you have other plans you can do other permit checks as well");
 
   const handlePrintButton = () => {
     matomoTrackEvent({
@@ -50,18 +64,33 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
 
       <HideForPrint>
         {!isIE && !isMobile && (
-          <PrintButton
+          <Button
             data-testid={PRINT_BUTTON}
-            marginBottom={outcomeType === ClientOutcomes.PERMIT_FREE ? 32 : 40}
+            marginBottom={
+              outcomeType === ClientOutcomes.PERMIT_FREE
+                ? 8
+                : 10
+            }
             onClick={handlePrintButton}
-            variant="textButton"
+            variant={"textButton"}
           >
-            Uitkomst opslaan
-          </PrintButton>
+            {t("common.save outcome")}
+          </Button>
         )}
       </HideForPrint>
 
+      <ComponentWrapper marginBottom={footerContent ? 52 : 0}>
+        {footerContent}
+      </ComponentWrapper>
+
       <HideForPrint>
+        <Paragraph>
+          {topicData.questionMultipleCheckers
+            ? multipleCheckersText
+            : t(
+                "outcome.if you have other plans you can do other permit checks"
+              )}
+        </Paragraph>
         <NewCheckerModal />
         {!isMobile && <ComponentWrapper>&nbsp;</ComponentWrapper>}
       </HideForPrint>

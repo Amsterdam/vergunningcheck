@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
-import { IMTRTopic } from "../types";
+import { GraphQLTopic } from "../types";
 import { useTopic, useTopicData } from "./";
 
 export default () => {
@@ -38,7 +38,7 @@ export default () => {
     // if the topic is found and has an imtr flow
     if (!checker && !error && topic.hasIMTR) {
       try {
-        const { checkerJSON } = topic as IMTRTopic;
+        const { checkerJSON } = topic as GraphQLTopic;
         const newChecker = getChecker(JSON.parse(checkerJSON));
         const { address, answers } = topicData;
 

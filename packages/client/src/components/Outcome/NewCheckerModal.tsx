@@ -1,23 +1,23 @@
-import { ErrorMessage, Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
+import React, {
+  FunctionComponent,
+  KeyboardEventHandler,
+  useContext,
+  useState,
+} from "react";
+import { Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import { useQuery } from "@apollo/client";
 import { loader } from "graphql.macro";
-import React, { FunctionComponent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { ComponentWrapper, Label } from "../../atoms";
+import { ComponentWrapper, Label, Error as ErrorComponent } from "../../atoms";
 import { CheckerContext } from "../../CheckerContext";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
-import { Topic } from "../../types";
-import {
-  NEW_CHECKER_MODAL_SAME_ADDRESS,
-  RADIO_ADDRESS_1,
-  RADIO_ADDRESS_2,
-} from "../../utils/test-ids";
-import { default as ErrorComponent } from "../Error";
+
+import { GraphQLTopic } from "../../types";
 import Modal from "../Modal";
 
 const query = loader("../../queries/Topics.graphql");
@@ -32,14 +32,9 @@ const NewCheckerModal: FunctionComponent = () => {
   const [checkerSlug, setCheckerSlug] = useState(slug);
   const history = useHistory();
   const [finished, setFinished] = useState(false);
-  const [hasError, setError] = useState(false);
-  const [saveAddress, setSaveAddress] = useState<null | boolean>(
-    // If there are no data-needs we skip the question to save your address
-    topicData.address ? null : false
-  );
 
   const { loading, error, data } = useQuery<{
-    topics: Topic[];
+    topics: GraphQLTopic[];
   }>(query);
 
   if (loading) {
@@ -48,7 +43,7 @@ const NewCheckerModal: FunctionComponent = () => {
     return <ErrorComponent stack={error.stack} content={error.message} />;
   }
 
-  const { topics } = data as { topics: Topic[] };
+  const { topics } = data as { topics: GraphQLTopic[] };
 
   if (!slug) {
     throw new Error("Cannot render NewCheckerModal without a slug.");
@@ -59,121 +54,80 @@ const NewCheckerModal: FunctionComponent = () => {
       action: actions.OPEN_MODAL,
       name: eventNames.OPEN_MODAL_DO_ANOTHER_CHECK,
     });
-
-    setError(false);
   };
 
   const handleConfirmButton = () => {
-    const hasError = saveAddress === null;
+    setFinished(!!checkerSlug);
 
-    setError(hasError);
+    matomoTrackEvent({
+      action: actions.START_ANOTHER_CHECK,
+      name: eventNames.DO_ANOTHER_CHECK,
+    });
 
-    if (hasError) {
+    // Set the new topic data with the correct `type` and potentially the `address`
+    const newTopicData = {
+      ...defaultTopicSession,
+      address: topicData.address,
+      // Update timesLoaded + 1 or reset to zero if going to a new checker
+      timesLoaded: checkerSlug === slug ? topicData.timesLoaded + 1 : 0,
+      type: checkerSlug,
+    };
+
+    // Clear checker
+    if (checkerSlug === slug) {
+      // Only change the topicData for the current topic
+      setTopicData(newTopicData);
+
       matomoTrackEvent({
-        action: actions.START_ANOTHER_CHECK,
-        name: `${eventNames.DO_ANOTHER_CHECK} - ${eventNames.NO_CHOICE_HAS_BEEN_MADE}`,
-      });
-    } else {
-      setFinished(!!checkerSlug);
-
-      const doSaveAddress = saveAddress === true;
-
-      matomoTrackEvent({
-        action: actions.START_ANOTHER_CHECK,
-        name: `${eventNames.DO_ANOTHER_CHECK} - ${
-          doSaveAddress
-            ? eventNames.WITH_THE_SAME_ADDRESS
-            : eventNames.WITHOUT_THE_SAME_ADDRESS
-        }`,
+        action: actions.ACTIVE_STEP,
+        name: sections.LOCATION_INPUT,
       });
 
-      // Set the new topic data with the correct `type` and potentially the `address`
-      const newTopicData = {
-        ...defaultTopicSession,
-        // Optionally save address
-        address: doSaveAddress ? topicData.address : null,
-        // Update timesCheckerLoaded + 1 or reset to zero if going to a new checker
-        timesCheckerLoaded:
-          checkerSlug === slug ? topicData.timesCheckerLoaded + 1 : 0,
-        type: checkerSlug,
-      };
-
-      if (checkerSlug === slug) {
-        // Only change the topicData for the current topic
-        setTopicData(newTopicData);
-
-        matomoTrackEvent({
-          action: actions.ACTIVE_STEP,
-          name: doSaveAddress ? sections.QUESTIONS : sections.LOCATION_INPUT,
-        });
-      } else {
-        // Change the topicData for another topic
-        setSession({
-          [checkerSlug]: newTopicData,
-        });
-      }
-
-      // Clear checker and go to the new topic slug
-      setChecker(undefined);
+      // Restart this checker
       history.push(geturl(routes.checker, { slug: checkerSlug }));
+    } else {
+      matomoTrackEvent({
+        action: actions.CLICK_INTERNAL_NAVIGATION,
+        name: sections.INTRO,
+      });
+
+      // Change the topicData for another topic
+      setSession({
+        [checkerSlug]: newTopicData,
+      });
+      history.push(geturl(routes.intro, { slug: checkerSlug }));
+    }
+
+    // Go to the new checker route
+    setChecker(undefined);
+  };
+
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    // Enable 'Enter' key to handle the confirmation
+    if (event.key === "Enter") {
+      handleConfirmButton();
     }
   };
 
   return (
     <Modal
-      closeButtonText="Annuleer"
+      closeButtonText={t("common.cancel")}
       closeModalAfterConfirm={finished}
       handleConfirmButton={handleConfirmButton}
       handleOpenModal={handleOpenModal}
-      heading="U wilt nog een vergunningcheck doen."
-      openButtonText="Nog een vergunningcheck doen"
+      heading={t("outcome.newCheckerModal.heading")}
+      openButtonText={t("outcome.newCheckerModal.openModalBtnText")}
       showConfirmButton
     >
-      {topicData.address && (
-        // Do not show this part for checkers without data need
-        <ComponentWrapper>
-          <Paragraph
-            data-testid={NEW_CHECKER_MODAL_SAME_ADDRESS}
-            gutterBottom={8}
-            strong
-          >
-            Wilt u nog een vergunningcheck doen voor hetzelfde adres?
-          </Paragraph>
-          <RadioGroup name="address">
-            <Label htmlFor="address-input-1" label="Ja">
-              <Radio
-                checked={saveAddress === true}
-                data-testid={RADIO_ADDRESS_1}
-                error={!!hasError}
-                id="address-input-1"
-                onChange={() => setSaveAddress(true)}
-              />
-            </Label>
-            <Label htmlFor="address-input-2" label="Nee">
-              <Radio
-                checked={saveAddress === false}
-                data-testid={RADIO_ADDRESS_2}
-                error={!!hasError}
-                id="address-input-2"
-                onChange={() => setSaveAddress(false)}
-              />
-            </Label>
-          </RadioGroup>
-          <ErrorMessage
-            message={hasError ? t("common.required field radio") : ""}
-          />
-        </ComponentWrapper>
-      )}
-
       <ComponentWrapper>
         <Paragraph strong gutterBottom={8}>
-          Welke vergunningcheck wilt u doen?
+          {t("outcome.newCheckerModal.selectNextPermitCheck")}
         </Paragraph>
 
         <ComponentWrapper>
           <RadioGroup name="checkers">
             {topics
-              .filter((topic) => topic.hasIMTR)
+              .filter(({ hasIMTR }) => hasIMTR)
               .sort((a, b) => a.name.localeCompare(b.name))
               .map(({ name, slug }) => (
                 <Label htmlFor={slug} key={name} label={name}>
@@ -182,9 +136,9 @@ const NewCheckerModal: FunctionComponent = () => {
                     data-testid={`radio-checker-${slug}`}
                     id={slug}
                     onChange={() => {
-                      setError(false);
                       setCheckerSlug(slug);
                     }}
+                    onKeyDown={handleKeyDown}
                   />
                 </Label>
               ))}

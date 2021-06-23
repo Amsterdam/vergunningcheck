@@ -5,7 +5,7 @@ import Decision, { InputReducer } from "./decision";
 import Permit from "./permit";
 import Question from "./question";
 
-export const imtrOutcomes = {
+export const outcomes = {
   NEED_CONTACT: '"NeemContactOpMet"',
   NEED_PERMIT: '"Vergunningplicht"',
   NEED_REPORT: '"Meldingsplicht"',
@@ -62,7 +62,8 @@ export default class Checker {
    */
   getQuestionAnswers(): Answers {
     return this.stack
-      .concat(this._getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .concat(this.getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .filter((q) => q.answer !== undefined) // Remove all undefined questions
       .reduce((acc: Answers, question: Question) => {
         acc[question.id] = question.answer;
         return acc;
@@ -116,21 +117,18 @@ export default class Checker {
   }
 
   /**
-   * Find all permits that have a "contact" outcome,
-   * for every permit see if the decisive decision's last question
-   * equals the currentQuestion.
+   * Checks all rules in all permits to see if "contact" outcomes have been set
    *
-   * @param currentQuestion - the question to check for exit
-   *
-   * @returns if checker has a 'contact' outcome
-   * consumer can exit if wanted
+   * @returns An Array of decisions with "contact" outcomes
    */
-  needContactExit(currentQuestion: Question): boolean {
-    return !!this.permits.find((permit) => {
+  _getContactOutcomeDecisions(): Decision[] {
+    const decisions = [] as Decision[];
+
+    this.permits.find((permit) => {
       const outcome = permit.getDecisionById("dummy") as Decision;
       const outcomeMatchingRules = outcome.getMatchingRules();
       const matchingContactRule = outcomeMatchingRules.find(
-        (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+        (rule) => rule.outputValue === outcomes.NEED_CONTACT
       );
       if (matchingContactRule) {
         const decisiveDecisions = outcome.getDecisiveInputs() as Decision[];
@@ -138,35 +136,114 @@ export default class Checker {
         // find the contact decision
         const contactDecision = decisiveDecisions.find((decision) =>
           decision.rules.find(
-            (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+            (rule) => rule.outputValue === outcomes.NEED_CONTACT
           )
         ) as Decision;
 
-        // get inputs from contact decision
-        const lastIndex = contactDecision.inputs.length - 1;
-        // if currentQuestion equals the last input in decision, it's a match
-        return contactDecision.inputs[lastIndex] === currentQuestion;
+        decisions.push(contactDecision);
       }
-      return false;
     });
+
+    return decisions;
   }
 
   /**
-   * We consider a checker to be finished or conclusive when either we
-   * have one or more permits with a contact-outcome, or all permits
-   * have a outcomes.
-   * @returns Returns true if "at least one" of the permits inside checker has a final outcome
+   * Find all "contact" outcomes, and check if the decisive decision's last question equals the currentQuestion.
+   *
+   * @param currentQuestion - the question to check for exit
+   *
+   * @returns Returns true if the `currentQuestion` triggers the 'contact' outcome
+   */
+  questionTriggersContactOutcome(currentQuestion: Question): boolean {
+    const contactOutcomeDecision = this._getContactOutcomeDecisions();
+
+    return !!contactOutcomeDecision.find(
+      (decision) =>
+        decision?.inputs[decision?.inputs.length - 1] === currentQuestion
+    );
+  }
+
+  /**
+   * Check if a question triggers the 'contact' outcome
+   *
+   * @returns Returns true if a question triggers the 'contact' outcome
+   */
+  hasContactOutcome(): boolean {
+    return !!this.stack
+      .concat(this.getUpcomingQuestions()) // Merge the stack with upcoming questions to get all questions
+      .find((q) => this.questionTriggersContactOutcome(q));
+  }
+
+  /**
+   * We consider a checker to be finished or conclusive when either:
+   * - we have one or more permits with a contact-outcome
+   * - all permits have outcomes and all questions are answered
+   *
+   * NB: this function has a bug when editing questions that trigger new questions.
+   * Sometimes editing questions ('no' > 'yes' and then 'yes' > 'no') will trigger an unusual result in `getUpcomingQuestions()`.
+   * There appear unanswered questions that are not relevant for the outcome.
+   * There is a `hacky` fix: looping through all answered questions (both `stack` and `getUpcomingQuestions()`) and manually calling `checker.next()`
+   * However, it is very hard to build a unit test for this and and also other tests will fail...
+   * See Trello card: https://trello.com/c/XGavkNhC/958-bug-in-checker
+   *
+   * @returns Returns true if "at least one" of the condintions is met
    */
   isConclusive(): boolean {
-    const hasContactPermit = !!this.permits.find(
-      (permit) =>
-        permit.getOutputByDecisionId("dummy") === imtrOutcomes.NEED_CONTACT
-    );
     const hasUnfinishedPermits = !!this.permits.find(
       (permit) => !permit.getOutputByDecisionId("dummy")
     );
 
-    return !hasUnfinishedPermits || hasContactPermit;
+    const hasUnfinishedQuestions = !!this.stack
+      .concat(this.getUpcomingQuestions())
+      .find((q) => q.answer === undefined);
+
+    return (
+      this.hasContactOutcome() ||
+      (!hasUnfinishedPermits && !hasUnfinishedQuestions)
+    );
+  }
+
+  /**
+   * Generate a list with decisive outcomes for questions on the stack.
+   *
+   * @returns Array of ClientOutcomes with the stack index as key: `[checker.stack.index]: ClientOutcome`
+   */
+  getOutcomesPerQuestion(): ClientOutcomes[] {
+    const permitsPerQuestion: ClientOutcomes[] = [];
+
+    this.permits.forEach((permit: Permit) => {
+      const outcomeDecision = permit.getDecisionById("dummy");
+
+      if (outcomeDecision) {
+        const imtrOutcome = outcomeDecision.getOutput();
+
+        // By default, the outcome is permit-free
+        let outcomeType = ClientOutcomes.PERMIT_FREE;
+
+        if (imtrOutcome === outcomes.NEED_CONTACT) {
+          outcomeType = ClientOutcomes.NEED_CONTACT;
+        } else if (imtrOutcome === outcomes.NEED_PERMIT) {
+          outcomeType = ClientOutcomes.NEED_PERMIT;
+        } else if (imtrOutcome === outcomes.NEED_REPORT) {
+          outcomeType = ClientOutcomes.NEED_REPORT;
+        }
+
+        // Only return outcomes that are not permit-free
+        if (outcomeType !== ClientOutcomes.PERMIT_FREE) {
+          const decisiveDecisions = outcomeDecision.getDecisiveInputs() as Decision[];
+          decisiveDecisions.forEach((decision) => {
+            const decisiveQuestion = decision
+              .getDecisiveInputs()
+              .pop() as Question;
+            const index = this.stack.indexOf(decisiveQuestion);
+            if (!permitsPerQuestion[index]) {
+              permitsPerQuestion[index] = outcomeType;
+            }
+          });
+        }
+      }
+    });
+    return permitsPerQuestion;
   }
 
   /**
@@ -271,7 +348,7 @@ export default class Checker {
   /**
    * Get unanswered questions that we need before the checker is final
    */
-  _getUpcomingQuestions(): Question[] {
+  getUpcomingQuestions(): Question[] {
     // take only questions/inputs into concideration that are autofilled or answered by the user
     const inputReducer: InputReducer = (input: Input) => {
       return this.stack.includes(input as Question) ||
@@ -298,7 +375,7 @@ export default class Checker {
    * @returns - the next question for this checker
    */
   _getNextQuestion(): Question | undefined {
-    return this._getUpcomingQuestions().shift();
+    return this.getUpcomingQuestions().shift();
   }
 
   /**
@@ -331,7 +408,7 @@ export default class Checker {
         const conclusion = permit.getDecisionById("dummy") as Decision;
         const outcomeMatchingRules = conclusion.getMatchingRules() as Rule[];
         const contactOutcome = outcomeMatchingRules.find(
-          (rule) => rule.outputValue === imtrOutcomes.NEED_CONTACT
+          (rule) => rule.outputValue === outcomes.NEED_CONTACT
         ) as Rule;
         const outcome = (contactOutcome?.outputValue ||
           outcomeMatchingRules[0].outputValue) as string;
@@ -339,13 +416,13 @@ export default class Checker {
         return {
           outcome,
           title:
-            outcome === imtrOutcomes.NEED_CONTACT
+            outcome === outcomes.NEED_CONTACT
               ? "Neem contact op met de gemeente"
               : `${permit.name.replace("Conclusie", "")}: ${removeQuotes(
                   outcome
                 )}`,
           description:
-            outcome === imtrOutcomes.NEED_CONTACT
+            outcome === outcomes.NEED_CONTACT
               ? contactOutcome.description
               : outcomeMatchingRules[0].description,
         };
@@ -354,7 +431,7 @@ export default class Checker {
 
   /**
    *
-   * Returns an outcome (as defined in `imtrOutcomes`) for each permit
+   * Returns an outcome (as defined in `imtr.outcomes`) for each permit
    *
    */
   getAllOutcomeTypes(): string[] {
@@ -368,16 +445,16 @@ export default class Checker {
    *
    */
   getClientOutcomeType(): ClientOutcomes {
-    const outcomes = this.getAllOutcomeTypes();
+    const outcomeTypes = this.getAllOutcomeTypes();
 
-    const needContactOutcome = outcomes.find(
-      (outcome) => outcome === imtrOutcomes.NEED_CONTACT
+    const needContactOutcome = outcomeTypes.find(
+      (outcome) => outcome === outcomes.NEED_CONTACT
     );
-    const needPermitOutcome = outcomes.find(
-      (outcome) => outcome === imtrOutcomes.NEED_PERMIT
+    const needPermitOutcome = outcomeTypes.find(
+      (outcome) => outcome === outcomes.NEED_PERMIT
     );
-    const needReportOutcome = outcomes.find(
-      (outcome) => outcome === imtrOutcomes.NEED_REPORT
+    const needReportOutcome = outcomeTypes.find(
+      (outcome) => outcome === outcomes.NEED_REPORT
     );
 
     if (needContactOutcome) {

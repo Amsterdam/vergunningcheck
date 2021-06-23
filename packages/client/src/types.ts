@@ -1,5 +1,6 @@
-import { Answer as IMTRAnswer, Permit } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import { ReactNode } from "react";
+import { RouteProps } from "react-router-dom";
 
 /**
  * Location types
@@ -12,7 +13,7 @@ export type Restriction = {
 
 export type ZoningPlan = {
   __typename?: string;
-  name?: string;
+  name: string;
   scope?: string;
 };
 
@@ -35,7 +36,6 @@ export type Address = null | AddressType;
 /**
  * Section types
  */
-
 export type SectionComponent = {
   currentSection: SectionObject;
   sectionFunctions: SectionFunctions;
@@ -64,12 +64,13 @@ export type SectionFunctions = {
 export type TopicData = {
   address: Address;
   answers: {
-    [id: string]: IMTRAnswer;
+    [id: string]: imtr.Answer;
   };
-  timesCheckerLoaded: number;
-  sectionData: SectionData[];
-  type: string;
   questionIndex: number;
+  questionMultipleCheckers?: AnswerValue;
+  sectionData: SectionData[];
+  timesLoaded: number;
+  type: string;
 };
 
 export type setTopicFn = (topicData: Partial<TopicData>) => void;
@@ -84,50 +85,75 @@ export type setTopicSessionDataFn = (
 ) => void;
 
 /**
+ * PreQuestions enable us to configure custom questions before the IMTR questions. We will use these questions to customise the Outcome Section.
+ *
+ * Direct importing and including components does not work because the hooks lose context.
+ */
+export enum PreQuestionComponent {
+  MULTIPLE_CHECKERS, // Corresponds to PreQuestionMultipleCheckers.tsx
+}
+
+/**
  * Topic types
  */
-type BaseTopic = {
+export enum TopicType {
+  PERMIT_CHECK, // A permit-check that is either an "OLO flow" or an "IMTR flow" check. IMTR checks are configured in `packages/imtr/src/config`.
+  REDIRECT, // A direct redirect to "OLO". We only use this to track the visitor count from amsterdam.nl
+}
+
+/**
+ * checkerJSON: the json to be passed to imtr-client
+ * hasIMTR: If topic has an imtr-file. If `false` it's the olo-flow
+ * name: The name of the topic
+ * outcomes: Configuration for the outcome, contains the permit-outcome key and the actual text for the outcome-page as Markdown
+ * slug: unique slug for this checker
+ * text: {
+ *   heading: the title shown in the form
+ *   intro: the intro-text as Markdown
+ *   locationIntro: piece of text shown on intropage
+ * }
+ * userMightNotNeedPermit: Enables an add-on text in the QuestionAlert: "if you make another choice you might not need a permit"
+ */
+export type GraphQLTopic = {
+  checkerJSON: string;
+  hasIMTR: boolean;
   name: string;
+  outcomes: {
+    results: string[];
+    text: string;
+  }[];
+  preQuestions?: PreQuestionComponent[];
   slug: string;
   text: {
     heading: string;
+    intro: string;
     locationIntro?: string;
   };
+  userMightNotNeedPermit: boolean;
 };
 
-export type IMTRTopic = {
-  checkerJSON: string;
-  hasIMTR: true;
-  intro: string;
-  redirectToOlo?: false;
-  permits: Permit[];
-} & BaseTopic;
-
-type OloTopic = {
-  hasIMTR: false;
-  intro?: string;
-  redirectToOlo?: false;
-} & BaseTopic;
-
-/**
- * Merge the different topic types
- *
- * hasIMTR: If topic has an imtr-file. If `false` it's olo/olo-redirect flow
- * intro: The name of the component that has all texts on the Intro page
- * name: The name of the checker/topic
- * redirectToOlo: If this flow should redirect the user to OLO
- * slug: The part of our app URL that identifies which permit-checker to load (`dakraam-plaatsen` will be `https://vergunningcheck.amsterdam.nl/dakraam-plaatsen`)
- * text: This is part that holds specific texts for each permit-checker
- */
-export type Topic = OloTopic | IMTRTopic; // | RedirectToOloTopic;
+export type PreQuestionFunctions = {
+  editQuestion: (index: number) => void;
+  goToNextQuestion: () => void;
+  isCheckerConclusive: () => boolean;
+  saveAnswer: (answer: Answer, topicDataKey: string) => void;
+};
 
 /**
  * Checker related types
  */
+
+export type QuestionAlert = {
+  questionAnswer: boolean;
+  text: string;
+};
+
+export type AnswerValue = boolean | string;
+
 export type Answer = {
-  formValue: string;
+  formValue?: string; // This is only used for Radio / Checkbox answers
   label: string;
-  value: boolean | string;
+  value: AnswerValue;
 };
 
 /**
@@ -140,3 +166,13 @@ export type OutcomeContentType = {
   mainContent?: ReactNode;
   title: string;
 };
+
+/**
+ * Router related types
+ */
+export type RedirectRule = {
+  from: string;
+  to: string;
+};
+
+export type RoutePropExtended = RouteProps & { name: string };

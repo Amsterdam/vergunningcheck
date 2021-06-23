@@ -116,6 +116,7 @@
     slug: zonwering-of-rolluik-plaatsen
     permits:
     - TuP6ido9xpJSSxjLi
+    user_might_not_need_permit: false
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000006
@@ -124,11 +125,24 @@
     name: Bouwwerk slopen
     slug: bouwwerk-slopen
     heading: Vergunningcheck bouwwerk slopen
-    intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
+    location_intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
     permits:
     - 2eYY7McaiRgfnERo9
     - D4mccynMtNdzYGhXF
     - bxBCdnrFZSbwxgmxC
+    user_might_not_need_permit: false
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000007
+  fields:
+    flow: IMTR
+    name: Brandveilig gebruik
+    slug: brandveilig-gebruik
+    heading: Vergunningcheck brandveilig gebruik
+    location_intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
+    permits:
+    - 8hqLFZcdXKaesAJgS
+    user_might_not_need_permit: false
 
 ################### OLO TOPICS ###################
 
@@ -147,7 +161,8 @@
     name: Intern verbouwen
     slug: intern-verbouwen
     heading: Vergunningcheck intern verbouwen
-    intro: Voer het adres in waar u intern wilt gaan verbouwen
+    location_intro: Voer het adres in waar u intern wilt gaan verbouwen
+    user_might_not_need_permit: false
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000004
@@ -156,7 +171,7 @@
     name: Aanbouw of uitbouw maken
     slug: aanbouw-of-uitbouw-maken
     heading: Vergunningcheck aanbouw of uitbouw maken
-    intro: Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken
+    location_intro: Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken
 
 ################### OUTCOMES ###################
 

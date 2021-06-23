@@ -45,8 +45,10 @@ class Topic(models.Model):
     name = models.CharField(max_length=80)
     heading = models.CharField(max_length=80, default="")
     intro = models.TextField()
+    location_intro = models.TextField(default="")
     flow = models.CharField(max_length=30, choices=flows)
     permits = SortedManyToManyField(Permit)
+    user_might_not_need_permit = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

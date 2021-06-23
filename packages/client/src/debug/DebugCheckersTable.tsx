@@ -6,19 +6,12 @@ import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Alert } from "../atoms";
-import Error from "../components/Error";
+import { Alert, Error } from "../atoms";
 import { geturl, routes } from "../routes";
-import { Topic } from "../types";
+import { GraphQLTopic } from "../types";
 
 const query = loader("../queries/Topics.graphql");
 
-// type topicProps = {
-//   path?: string;
-//   permits: string[];
-//   slug: string;
-//   name?: string;
-// };
 
 const StyledHeading = styled(Heading)`
   margin: ${themeSpacing(4, 0, 2)};
@@ -26,7 +19,7 @@ const StyledHeading = styled(Heading)`
 
 const DebugCheckersTable: FunctionComponent = () => {
   const { loading, error, data } = useQuery<{
-    topics: Topic[];
+    topics: GraphQLTopic[];
   }>(query);
 
   if (loading) {
@@ -35,7 +28,7 @@ const DebugCheckersTable: FunctionComponent = () => {
     return <Error stack={error.stack} content={error.message} />;
   }
 
-  const { topics } = data as { topics: Topic[] };
+  const { topics } = data as { topics: GraphQLTopic[] };
 
   return (
     <>
@@ -61,8 +54,13 @@ const DebugCheckersTable: FunctionComponent = () => {
         <tbody>
           <tr>
             <td colSpan={4}>
+              <StyledHeading forwardedAs="h2">Vergunningchecks</StyledHeading>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={4}>
               <StyledHeading forwardedAs="h2">
-                STTR flow (de Amsterdamse checks)
+                Vergunningchecks die naar het OLO leiden
               </StyledHeading>
             </td>
           </tr>
@@ -78,11 +76,11 @@ const DebugCheckersTable: FunctionComponent = () => {
             ))}
           <tr>
             <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">OLO flow</StyledHeading>
+              <StyledHeading forwardedAs="h2">Formulieren</StyledHeading>
             </td>
           </tr>
           {topics
-            .filter(({ hasIMTR }) => !hasIMTR) // only show olo / redir-olo topics
+            .filter(({ hasIMTR }) => !hasIMTR) // only show olo
             .map(({ slug, name }) => (
               <tr key={slug}>
                 <td>

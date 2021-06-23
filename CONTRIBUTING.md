@@ -6,15 +6,14 @@ Thanks for considering to contribute to this project. Please follow the below gu
 
 First a brief intro on some of the terminology and concepts we use, to make sure the steps below make sense.
 
-- permit, ('vergunning' in dutch). You might need a permit for an activity (activiteit).
-- topic, a type of doing (werkzaamheid in dutch). Could be multiple activities / permits in one topic. It corresponds with a configured checker with one or more permits.
-- STTR; STTR is a spec dutch DSO legislation
-- IMTR-file; IMTR is an XML standard for dutch DSO legislation
-- xml to json; we convert IMTR-XML to JSON for better performance
-- STTR-builder; the tool used to build IMTR-files
-- check; the activity of checking whether you need a permit (see permit)
-- visitor; the person performing a check
-- checker; the tool itself (including an intro page, register lookups, a set of questions and an outcome)
+- permit, ('vergunning' in Dutch). You might need a permit for an activity (activiteit)
+- permit check, the activity of checking whether you need a permit
+- topic, a type of doing (werkzaamheid in Dutch). Could be multiple activities / permits in one topic. It corresponds with a configured permit check with one or more permits
+- STTR; STTR is a specific Dutch DSO standard (STandaard Toepasbare Regels in Dutch)
+- IMTR-file; IMTR is an XML model for Dutch DSO legislation (InformatieModel Toepasbare Regels in Dutch)
+- STTR-builder; the tool we're using to build STTR, which exports IMTR-files (as XML)
+- XML to JSON; we convert IMTR-XML to JSON for better performance and frontend usability
+- checker; the tool itself to do a permit check (including an intro page, a set of questions with outcomes (based on the JSON) and possible register lookups)
 
 ## Commiting
 
@@ -24,14 +23,14 @@ We use [Conventional Commits](https://www.conventionalcommits.org).
 
 We use [Amsterdam Styled Components](https://github.com/Amsterdam/amsterdam-styled-components/), see [Storybook](https://amsterdam.github.io/amsterdam-styled-components) which is an implementation of the [Amsterdam Design System](https://designsystem.amsterdam.nl).
 
-Example usage of the `Alert` component:
+Example usage of the `Paragraph` component:
 
 ```js
-import { Alert } from "@amsterdam/asc-ui";
+import { Paragraph } from "@amsterdam/asc-ui";
 
 ...
 
-<Alert content="content" heading="heading">
+<Paragraph strong>Strong text</Paragraph>
 ```
 
 ## Styling usage of margin and padding
@@ -43,11 +42,8 @@ Example usage:
 ```scss
 padding-top: ${themeSpacing(1)}; // This will have a padding of 1 * 4 = 4px
 padding-bottom: ${themeSpacing(3)}; // This will have a padding of 3 * 4 = 12px
-```
 
-To simplify things you can also use:
-
-```scss
+// To simplify things you can also use:
 margin: ${themeSpacing(5, 0, 4)}; // margin: 20px 0 16px;
 ```
 
@@ -88,7 +84,7 @@ When you're making a new PR for a feature or a bug, it says "Please make sure yo
 
 These commands may help you:
 
-- `npm run test:coverage` - to test the coverage for all files
+- `npm run test:coverage` - to test the coverage for all files (more useful inside a package)
 - `npm run test -- src/atoms --collect-coverage` - to test the coverage for certain files (in packages/client)
 - `jest --clearCache` - in case there are failed tests, but the tests work on another computer or in another folder
 
@@ -123,12 +119,43 @@ If you want to tweak texts, the name or the intro of a checker, you need to add 
 - Create a new `Topic` and fill in the attributes accordingly
 - Duplicate an existing Intro component file in `packages/client/src/intros`, change the content to your wishes and name it **exactly** as you named it in the previous step `intro`
 
+## PreQuestions
+
+PreQuestions are used to render custom questions that are outside of the `imtr-client` and the `checker` class. For example,`PreQuestionMultipleCheckers` is used to inform the user and make the text in OutcomeSection dynamic.
+
+### Adding a new custom PreQuestion
+
+- Let's start by making sure the answer your new PreQuestion can be saved to the Session Storage. Add a new key to `const defaultTopicSession` in [SessionContext.tsx](packages/client/src/SessionContext.tsx) (eg: `questionNew: undefined,`)
+- ESLint should now complain that "`questionNew` does not exist in type `TopicData`". (If not, please make sure you run this project correctly on localhost.) Add `questionNew?: AnswerValue;` to `TopicData` in [types.ts](packages/client/src/types.ts) to type support `questionNew` as `undefined` or `AnswerValue`. ESLinst stops complaining now.
+- Let's continue by duplicating [PreQuestionMultipleCheckers.tsx](packages/client/src/components/Question/PreQuestionMultipleCheckers.tsx) and rename it to `PreQuestionNew.tsx` (also rename it's export)
+- To make sure the `answer` value is loaded from and stored in the Session Storage, change the `topicDataKey` const (in the top of the file) to `questionNew` (Please make sure this is the same string as you entered in `defaultTopicSession` in a previous step)
+- Edit `questionId`, `heading` and optionally `description` and `questionAlert` to you own wishes (in your new `PreQuestionNew.tsx` file) (`questionId` is also the key in the translation file [i18n/nl.ts](packages/client/src/i18n/nl.ts))
+- Now, add an entry to the enum `PreQuestionComponent` in [types.ts](packages/client/src/types.ts) (eg: `NEW_PREQUESTION, // Corresponds to PreQuestionNew.tsx`)
+- Add this `NEW_PREQUESTION` value to a `preQuestions` topic array in a topic you choose. You can do this by editing the `topics` const in [config/index.ts](packages/client/src/config/index.ts) (eg: `preQuestions: [PreQuestionComponent.NEW_PREQUESTION],`)
+- Go to the topic route that you've just edited. By now, the client should display `Error: The preQuestion on index "{number}" is not supported yet.`
+- To support it, add a new `if` statement in [PreQuestions.tsx](packages/client/src/components/Question/PreQuestions.tsx) (eg:
+
+```
+if (preQuestion === PreQuestionComponent.NEW_PREQUESTION) {
+  return (
+    <PreQuestionNew
+      key={index}
+      index={index}
+      {...preQuestionsProps}
+    />
+  );
+}
+```
+
+- Your new PreQuestion should now be able to load and save the answer to the Session Storage. Verify this by answering the question and reloading the page. If setup correctly, the question has remembered the correct anwser.
+- As a final step, please add the unit tests to your new file `PreQuestionNew.tsx` and to [PreQuestions.test.tsx](packages/client/src/components/Question/PreQuestions.test.tsx)
+
 ## Preparing a UX test
 
 When we want to test our app with users we most follow this procedure:
 
 - Create new branch from the base branch and name it `ux-test-${topic}` where `${topic}` is the topic name and check this out locally
-- In `./packages/client` run `npm run gererate` to get the latest IMTR files and transform them to json
+- In the root of the project run `npm run imtr` to get the latest IMTR files and transform them to json
 - Edit the `topic` array in [config/index.ts](packages/client/src/config/index.ts) and make sure you added the correct config.
 - Push these changes to GitHub
 - Goto _Domain settings_ on Netlify and add a new SubDomain for your `ux-test-${topic}` branch
@@ -172,10 +199,10 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 
 This procedure will be changed to the DRAFT section below.
 
-- Approve the release to production in [Jenkins](https://ci.data.amsterdam.nl/job/OIS/job/vergunningcheck/job/master/), now we're live
-- Communicate to stakeholders there is a new release on production
-- Back-merge `master` into `release` into `develop` by running `npm run back-merge`
-- Consider [preparing](#prepare-a-release) the next release in the section above
+- Approve the release on the master branch in [Jenkins](https://ci.data.amsterdam.nl/job/OIS/job/vergunningcheck/job/master/) and after deploying the app is on production
+- Verify that the `REACT_APP_VERSION` has been updated to the new version and communicate to stakeholders there is a new version on production
+- Run `npm run back-merge` to back-merge `master` into `release` into `develop`
+- Consider [preparing](#prepare-a-release) the next release (see the section above)
 
 ### (DRAFT) Deploy to production
 

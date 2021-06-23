@@ -2,11 +2,10 @@ import { Paragraph } from "@amsterdam/asc-ui";
 import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Alert, ComponentWrapper } from "../../atoms";
+import { Alert, ComponentWrapper, PhoneNumber } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTracking } from "../../hooks";
 import { LOCATION_NOT_FOUND } from "../../utils/test-ids";
-import PhoneNumber from "../PhoneNumber";
 
 const LocationNotFound: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
@@ -29,7 +28,7 @@ const LocationNotFound: FunctionComponent = () => {
         )}
         level="error"
         outline
-        style={{ background: "white" }} // @TODO: This style is a temporary fix, need to fix default white background at @masterdam/asc-ui
+        white
       >
         <Paragraph>
           {t("errorMessages.please try again later or contact the city on")}{" "}

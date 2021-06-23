@@ -3,6 +3,7 @@ import React, {
   AnchorHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
+  KeyboardEventHandler,
   MouseEvent,
 } from "react";
 import { StyledProps } from "styled-components";
@@ -18,6 +19,7 @@ import StepByStepTitle from "./StepByStepTitle";
 
 export type StepByStepItemProps = {
   active?: boolean;
+  activeStyle?: boolean;
   checked?: boolean;
   circleBackgroundColor?: string;
   clickable?: boolean;
@@ -40,6 +42,7 @@ const StepByStepItem: FunctionComponent<
     StyledProps<any>
 > = ({
   active,
+  activeStyle,
   checked,
   children,
   circleBackgroundColor,
@@ -68,15 +71,22 @@ const StepByStepItem: FunctionComponent<
   // All "inactive" items are `small` by default, except when `customSize` has been set
   const small = (!customSize && !active) || (customSize && !largeCircle);
 
-  // @TODO: also enable the ENTER key to act as onClick
   const handleOnClick = (event: MouseEvent<HTMLElement, MouseEvent>) => {
     onClick && onClick(event);
+  };
+
+  const handleKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
+    // Enable 'Enter' key to handle the onClick function
+    if (event.key === "Enter") {
+      onClick && onClick(event);
+    }
   };
 
   return (
     <StepByStepItemStyle
       {...{
         active,
+        activeStyle,
         clickable,
         disabled,
         disabledTextColor,
@@ -87,10 +97,11 @@ const StepByStepItem: FunctionComponent<
         href,
       }}
       data-testid={STEPBYSTEPITEM}
-      aria-label={clickable ? heading : ""} // @TODO: Refactor with `??`
+      aria-label={clickable ? heading : ""}
       as={clickable ? "a" : "div"}
       onClick={handleOnClick}
-      role={clickable ? "menuitem" : ""} // @TODO: Refactor with `??`
+      onKeyDown={handleKeyDown}
+      role="menuitem"
       tabIndex={clickable && !disabled && !active ? 0 : -1}
       {...otherProps}
     >

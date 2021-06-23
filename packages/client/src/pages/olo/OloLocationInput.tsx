@@ -3,12 +3,12 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
+import { Loading } from "../../atoms";
 import { TopicLayout } from "../../components/Layouts";
-import Loading from "../../components/Loading";
 import { LocationInput } from "../../components/Location/";
 import { useTopic } from "../../hooks";
 import { geturl, routes } from "../../routes";
-import { Topic } from "../../types";
+import { GraphQLTopic } from "../../types";
 
 const OloLocationInput: FunctionComponent = () => {
   const topic = useTopic();
@@ -19,7 +19,7 @@ const OloLocationInput: FunctionComponent = () => {
   if (!topic) {
     return <p>loading...</p>;
   }
-  const { text } = topic as Topic;
+  const { text } = topic as GraphQLTopic;
 
   return (
     <TopicLayout>

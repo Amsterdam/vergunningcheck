@@ -1,17 +1,17 @@
-import { Answers, Checker } from "@vergunningcheck/imtr-client";
+import * as imtr from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { SessionContext } from "../SessionContext";
-import { Address, Topic } from "../types";
+import { GraphQLTopic, Address } from "../types";
 
 type SessionContextProviderProps = {
   addressMock?: Address;
-  answers?: Answers;
-  checker?: Checker;
+  answers?: imtr.Answers;
+  checker?: imtr.Checker;
   questionIndex?: number;
-  topicMock: Topic;
+  topicMock: GraphQLTopic;
 };
 
 const SessionContextProvider: FunctionComponent<SessionContextProviderProps> = ({

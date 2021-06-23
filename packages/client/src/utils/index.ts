@@ -3,7 +3,6 @@ import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
 import nl from "../i18n/nl";
-// import topicsJson from "../topics.json";
 import { Answer, Restriction } from "../types";
 
 const { no, yes } = nl.translation.common;
@@ -16,31 +15,6 @@ export const getSlugFromPathname = (pathname: string) => {
 
   return match?.params?.slug;
 };
-
-// Find a topic by the slug
-// export const findTopicBySlug = (slug: string) => {
-//   const topic = topics.find((t) => t.slug === slug);
-//   if (topic) return topic;
-
-//   const topicConfig = topicsJson.flat().find((topic) => topic.slug === slug);
-//   if (!topicConfig) {
-//     return null;
-//   }
-
-//   // Provide name (with slug as fallback)
-//   // Ignore in coverage because by default topics.json doesn't contain nameless topics
-//   /* istanbul ignore next */
-//   const { name = slug } = topicConfig;
-
-//   return {
-//     hasIMTR: true,
-//     name,
-//     slug,
-//     text: {
-//       heading: name,
-//     },
-//   } as Topic;
-// };
 
 // Data utils
 export const getRestrictionByTypeName = (
@@ -112,16 +86,20 @@ export const isValidPostalcode = (value?: string) => {
  * @param {string} value
  */
 export const sanitizeHouseNumberFull = (value?: string) => {
-  const spacesBeforeAndAfterNonDigit = /(?<=\D)|(?=\D)/g;
+  const spacesBeforeAndAfterNonDigit = /\d+|\D+/g;
   const nonDigits = /[a-z]/i;
   const tokenizeLetterAndNonLetter = /[^A-Z\s]+|[A-Z]/g;
 
   if (!value) return "";
   if (!nonDigits.test(value)) return value;
-  return (value.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
-    .join("") // Revert to one string
-    .replace(spacesBeforeAndAfterNonDigit, " ") // Add spaces before/after a non-digit
-    .trim(); // Trim space before and after
+  return (
+    (value.toUpperCase().match(tokenizeLetterAndNonLetter) || []) // tokenize the string into letter/non-letter & non-whitespace chunks
+      .join(" ") // Revert to one string
+      .match(spacesBeforeAndAfterNonDigit) || []
+  ) // Add spaces before/after a non-digit
+    .join(" ") // Revert to one string
+    .replace(/\s+/g, " ")
+    .trim();
 };
 
 /**

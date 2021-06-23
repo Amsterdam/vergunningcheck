@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { getDataNeed } from "../../config/autofill";
 import { actions, sections } from "../../config/matomo";
 import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { SectionComponent } from "../../types";
@@ -14,7 +15,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
-  const { address, questionIndex, timesCheckerLoaded } = topicData;
+  const { address, questionIndex, timesLoaded } = topicData;
   const { currentSection, sectionFunctions } = props;
 
   const { isActive, isCompleted } = currentSection;
@@ -26,7 +27,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
 
   const hideQuestionSection = !!(
     address &&
-    !checker?._getUpcomingQuestions().length &&
+    !checker?.getUpcomingQuestions().length &&
     !checker?.stack.length &&
     checker?.isConclusive() &&
     !isCompleted &&
@@ -34,7 +35,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
   );
 
   useEffect(() => {
-    if (timesCheckerLoaded === 0 && address) {
+    if (timesLoaded === 0 && address) {
       // TrackEvent for active step (only when NewCheckerModal is used with saveAddress)
       // This might need tweaking in case we have configured checkers that can render without questions
       matomoTrackEvent({
@@ -43,7 +44,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
       });
 
       setTopicData({
-        timesCheckerLoaded: 1,
+        timesLoaded: 1,
       });
     }
     // eslint-disable-next-line
@@ -78,8 +79,14 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     return null;
   }
 
-  // Activate the first question (in case of refresh)
-  if (isActive && !isCompleted && checker.stack.length === 0) {
+  const noDataNeedAndEmptyStack =
+    !getDataNeed(checker) &&
+    isActive &&
+    !isCompleted &&
+    checker.stack.length === 0;
+
+  // Prevent an empty Question Section when refreshing a checker without getDataNeed (only happens when first question remains unanswered)
+  if (noDataNeedAndEmptyStack) {
     checker.next();
   }
 
@@ -112,6 +119,7 @@ const QuestionSection: FunctionComponent<SectionComponent> = (props) => {
     <>
       <StepByStepItem
         active={highlightSection}
+        as="div"
         checked={isCompleted}
         customSize
         data-testid={QUESTION_SECTION}

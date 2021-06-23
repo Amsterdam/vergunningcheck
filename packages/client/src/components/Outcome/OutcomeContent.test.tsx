@@ -69,7 +69,5 @@ describe("OutcomeContent", () => {
     // Shouldn't be in document
     expect(screen.queryByTestId(NEED_PERMIT)).not.toBeInTheDocument();
     expect(screen.queryByTestId(NEED_CONTACT)).not.toBeInTheDocument();
-
-    // @TODO: Write test for PRINT_BUTTON
   });
 });

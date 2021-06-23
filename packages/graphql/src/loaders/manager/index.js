@@ -5,19 +5,21 @@ const { manager: config, HOST } = require("../../../config").loaders.ois;
 const URL = `${HOST}${config.url}`;
 
 const loader = {
-  reducer: ({ slug, name, heading, intro, outcomes, flow, permits }) => ({
-    name,
-    slug,
-    permits,
-    hasIMTR: flow === "IMTR",
-    intro,
-    outcomes: outcomes.map((o) => ({
-      results: o.flo_legal_outcomes.split(","),
-      text: o.text,
-    })),
-    text: {
-      heading,
-    },
+  reducer: (topic) => ({
+      name: topic.name,
+      slug: topic.slug,
+      permits: topic.permits,
+      hasIMTR: topic.flow === "IMTR",
+      outcomes: topic.outcomes.map((outcome) => ({
+        results: outcome.flo_legal_outcomes.split(","),
+        text: outcome.text,
+      })),
+      text: {
+        heading: topic.heading,
+        intro: topic.intro,
+        locationIntro: topic.location_intro,
+      },
+      userMightNotNeedPermit: topic.user_might_not_need_permit,
   }),
   fetchPage: () =>
     fetchJson(getUrl(`${URL}topics/`)).then((data) => {

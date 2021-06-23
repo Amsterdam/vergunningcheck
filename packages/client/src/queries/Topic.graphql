@@ -2,7 +2,6 @@ query topicDetail($slug: String!) {
   topic(slug: $slug) {
     hasIMTR
     checkerJSON
-    intro
     name
     outcomes {
       results
@@ -11,6 +10,7 @@ query topicDetail($slug: String!) {
     slug
     text {
       heading
+      intro
       locationIntro
     }
   }

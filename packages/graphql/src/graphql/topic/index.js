@@ -7,18 +7,18 @@ const { gql, arrayEquals } = require("../../util");
 const typeDefs = gql`
   type TopicText {
     heading: String!
+    intro: String!
     locationIntro: String
   }
 
   type Topic {
     checkerJSON: String!
     hasIMTR: Boolean!
-    intro: String!
     name: String!
     outcomes: [Outcome!]!
     slug: String!
     text: TopicText!
-    url: String!
+    userMightNotNeedPermit: Boolean!
   }
 
   type Outcome {
