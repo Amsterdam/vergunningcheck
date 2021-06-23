@@ -1,5 +1,6 @@
 const parser = require("fast-xml-parser");
 const debug = require("debug")("graphql:topics");
+const _ = require("lodash");
 
 const transform = require("./transform");
 const { gql, arrayEquals } = require("../../util");
@@ -61,25 +62,16 @@ const resolvers = {
       );
 
       const permits = await Promise.all(transform(jsons));
-      const topicOutcomes = topic.outcomes.map((outcome) => outcome.results);
+      const topicOutcomes = topic.outcomes.map((outcome) => outcome.results).sort();
 
       // Find all outcomes in Permit's
-      const outcomes = permits
-        .flatMap((permit) =>
-          permit.decisions.dummy.decisionTable.rules.map((rule) => rule.output)
-        )
-        // filter unique values
-        .filter((value, index, self) => self.indexOf(value) === index);
+      const outcomes = _.uniqWith(permits
+        .map((permit) =>
+        _.uniq(permit.decisions.dummy.decisionTable.rules.map((rule) => rule.output))
+      ), _.isEqual).sort();
 
       // Make sure all permit-outcomes are available in the Manager's Outcomes
-      debug("outcomes", outcomes, topic.outcomes);
-
-      if (
-        !arrayEquals(
-          outcomes,
-          topic.outcomes.flatMap((outcome) => outcome.results)
-        )
-      ) {
+      if (!_.isEqual(outcomes, topicOutcomes)) {
         throw new Error(
           `Outcomes don't match. IMTR files contain these outcomes:
           ${JSON.stringify(outcomes)}

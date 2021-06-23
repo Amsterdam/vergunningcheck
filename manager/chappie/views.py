@@ -5,8 +5,8 @@ from .models import Topic
 from .serializers import TopicSerializer
 
 
-def index():
-    return HttpResponse("Visit /beheer/ or /api/ please.")
+def index(request):
+    return HttpResponse("Visit <a href=/beheer/>/beheer/</a> or <a href=/api/>/api/</a> please.")
 
 
 class TopicViewSet(viewsets.ReadOnlyModelViewSet):

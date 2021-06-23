@@ -15,20 +15,10 @@ This project is build on Django, pipenv and ASGI.
 ```sh
 pipenv install
 pipenv shell
+cp manager/settings_local.dist.py manager/settings_local.py
 python manage.py migrate
 python manage.py loaddata fixtures
-```
-
-Optional:
-
-```
 python manage.py createsuperuser
-cp manager/settings_local.dist.py manager/settings_local.py
-```
-
-Run the application:
-
-```
 python manage.py runserver
 ```
 
