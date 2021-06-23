@@ -17,31 +17,6 @@ export const getSlugFromPathname = (pathname: string) => {
   return match?.params?.slug;
 };
 
-// Find a topic by the slug
-// export const findTopicBySlug = (slug: string) => {
-//   const topic = topics.find((t) => t.slug === slug);
-//   if (topic) return topic;
-
-//   const topicConfig = topicsJson.flat().find((topic) => topic.slug === slug);
-//   if (!topicConfig) {
-//     return null;
-//   }
-
-//   // Provide name (with slug as fallback)
-//   // Ignore in coverage because by default topics.json doesn't contain nameless topics
-//   /* istanbul ignore next */
-//   const { name = slug } = topicConfig;
-
-//   return {
-//     hasIMTR: true,
-//     name,
-//     slug,
-//     text: {
-//       heading: name,
-//     },
-//   } as Topic;
-// };
-
 // Data utils
 export const getRestrictionByTypeName = (
   restrictions?: Restriction[],

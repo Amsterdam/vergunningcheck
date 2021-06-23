@@ -1,5 +1,6 @@
 import "../i18n";
 
+import { TopicType, PreQuestionComponent } from "../types";
 import { ThemeProvider } from "@amsterdam/asc-ui";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { MockLink, MockedResponse } from "@apollo/client/testing";
@@ -50,6 +51,21 @@ jest.mock("react-router-dom", () => ({
     },
   }),
 }));
+
+
+
+export const testTopic = {
+    intro: "DakkapelIntro",
+    name: "Dakkapel plaatsen",
+    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
+    slug: "dakkapel-plaatsen",
+    text: {
+      heading: "Vergunningcheck dakkapel plaatsen",
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+    },
+    type: TopicType.PERMIT_CHECK,
+    userMightNotNeedPermit: true,
+  }
 
 // @TODO: extend this to dynamically load a slug for `react-router-dom`
 // export const mockSlug = (mockSlug: string) => {

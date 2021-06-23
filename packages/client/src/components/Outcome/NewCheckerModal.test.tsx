@@ -2,8 +2,7 @@ import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
 import { actions, eventNames } from "../../config/matomo";
-import { Topic } from "../../types";
-import { findTopicBySlug } from "../../utils";
+import {testTopic } from "../../utils/test-utils";
 import {
   MODAL,
   MODAL_CONFIRM_BUTTON,
@@ -20,7 +19,7 @@ import {
 } from "../../utils/test-utils";
 import NewCheckerModal from "./NewCheckerModal";
 
-const customTopic = findTopicBySlug("dakraam-plaatsen") as Topic;
+
 
 const mockAddress = {
   ...addressGraphQLMock[0].result.data.findAddress.exactMatch,
@@ -38,8 +37,8 @@ describe("NewCheckerModal", () => {
     const { queryByText, queryByTestId } = render(<NewCheckerModal />);
     expect(queryByTestId(MODAL_OPEN_BUTTON)).toBeInTheDocument();
     expect(queryByTestId(MODAL)).not.toBeInTheDocument();
-    expect(queryByText(customTopic.name)).toBeNull();
-    expect(window.location.href).not.toContain(customTopic.slug);
+    expect(queryByText(testTopic.name)).toBeNull();
+    expect(window.location.href).not.toContain(testTopic.slug);
 
     act(() => {
       fireEvent.click(queryByTestId(MODAL_OPEN_BUTTON) as HTMLElement);
@@ -47,7 +46,7 @@ describe("NewCheckerModal", () => {
     // Modal = open
 
     expect(queryByTestId(MODAL)).toBeInTheDocument();
-    expect(queryByText(customTopic.name)).toBeInTheDocument();
+    expect(queryByText(testTopic.name)).toBeInTheDocument();
     expect(queryByText("Annuleer")).toBeInTheDocument();
 
     // Make sure Matomo Analytics work
@@ -77,7 +76,7 @@ describe("NewCheckerModal", () => {
       fireEvent.click(queryByTestId(RADIO_ADDRESS_2) as HTMLElement);
       // Click the new topic to open
       fireEvent.click(
-        queryByTestId(`radio-checker-${customTopic.slug}`) as HTMLElement
+        queryByTestId(`radio-checker-${testTopic.slug}`) as HTMLElement
       );
 
       // Because this event is not async, it should call `NO_CHOICE_HAS_BEEN_MADE`
