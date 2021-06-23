@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import locationFinderGraphQLMocks from "../../__mocks__/locationFinderGraphQLMocks";
 import text from "../../i18n/nl";
-import { findTopicBySlug } from "../../utils";
+import {testTopic } from "../../utils/test-utils";
 import {
   AUTOSUGGEST_ITEM,
   AUTOSUGGEST_LIST,
@@ -33,14 +33,12 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("LocationFinder", () => {
-  const topic = findTopicBySlug("dakkapel-plaatsen");
-
   const Wrapper = () => {
     const [focus, setFocus] = useState(false);
 
     return (
       <LocationFinder
-        topic={topic}
+        topic={testTopic}
         sessionAddress={{}}
         {...mockedFunctions}
         {...{ focus, setFocus, setError }}

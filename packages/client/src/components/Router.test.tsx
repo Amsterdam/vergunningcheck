@@ -1,8 +1,7 @@
 import React from "react";
 
 import nl from "../i18n/nl";
-import { Topic } from "../types";
-import { findTopicBySlug } from "../utils";
+import { testTopic} from "../utils/test-utils";
 import { LOADING_TEXT } from "../utils/test-ids";
 import { render, screen, waitFor } from "../utils/test-utils";
 import Router from "./Router";
@@ -33,8 +32,6 @@ describe("Router", () => {
   it("renders a topic intro", async () => {
     window.history.pushState({}, "Page Title", "/dakkapel-plaatsen");
 
-    const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
-
     render(<Router />);
 
     await waitFor(() =>
@@ -43,7 +40,7 @@ describe("Router", () => {
 
     // Find the topic text
     await waitFor(() =>
-      expect(screen.getByText(topic.name)).toBeInTheDocument()
+      expect(screen.getByText(testTopic.name)).toBeInTheDocument()
     );
 
     // Find the intro text
