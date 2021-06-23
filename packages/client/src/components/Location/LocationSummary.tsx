@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { AddressLines, ComponentWrapper, List, ListItem } from "../../atoms";
+import { Loading, AddressLines, ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
 import { Address, GraphQLTopic } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
@@ -65,7 +65,7 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   const { restrictions } = address || {};
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const { hasIMTR } = topic as GraphQLTopic;

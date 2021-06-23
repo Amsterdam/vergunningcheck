@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { Error, Form, PhoneNumber } from "../../atoms";
+import { Loading, Error, Form, PhoneNumber } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
@@ -33,7 +33,7 @@ const LocationInput = ({
   const [errorMessage, setError] = useState<ApolloError | undefined>(error);
 
   if (!topic) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   const { hasIMTR, slug, text } = topic;

@@ -19,7 +19,11 @@ const IntroPage: FunctionComponent = () => {
   const { t } = useTranslation();
 
   if (!topic) {
-    return <Loading />;
+    return (
+      <TopicLayout>
+        <Loading />
+      </TopicLayout>
+    );
   }
 
   const { text: {intro, heading} } = topic as GraphQLTopic;

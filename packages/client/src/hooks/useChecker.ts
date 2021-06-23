@@ -12,19 +12,11 @@ export default () => {
   const [error, setError] = useState();
   const topic = useTopic();
 
-  if (!topic)
-    return {
-      checker,
-      setChecker: (checker: Checker | undefined) => {
-        checkerContext.setChecker(checker);
-      },
-    };
-
   const { topicData } = useTopicData();
 
   useEffect(() => {
     // Initilize the checker on first load, reload and on reset
-    if (!checker && !checkerContext.checker) {
+    if (!checker && !checkerContext.checker && topic?.hasIMTR) {
       initChecker();
     }
     // Force clearing the checker when the checker has been reset on the context
@@ -32,11 +24,11 @@ export default () => {
       setChecker(undefined);
     }
     //eslint-disable-next-line
-  }, [checker, checkerContext]);
+  }, [topic, checker, checkerContext]);
 
   const initChecker = async () => {
     // if the topic is found and has an imtr flow
-    if (!checker && !error && topic.hasIMTR) {
+    if (!checker && !error && topic) {
       try {
         const { checkerJSON } = topic as GraphQLTopic;
         const newChecker = getChecker(JSON.parse(checkerJSON));

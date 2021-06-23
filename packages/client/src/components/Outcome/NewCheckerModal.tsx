@@ -10,7 +10,7 @@ import { loader } from "graphql.macro";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { ComponentWrapper, Label, Error as ErrorComponent } from "../../atoms";
+import { Loading, ComponentWrapper, Label, Error as ErrorComponent } from "../../atoms";
 import { CheckerContext } from "../../CheckerContext";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
@@ -18,6 +18,7 @@ import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
 
 import { GraphQLTopic } from "../../types";
+
 import Modal from "../Modal";
 
 const query = loader("../../queries/Topics.graphql");
@@ -38,7 +39,7 @@ const NewCheckerModal: FunctionComponent = () => {
   }>(query);
 
   if (loading) {
-    return <p>Loading ...</p>;
+    return <Loading />;
   } else if (error) {
     return <ErrorComponent stack={error.stack} content={error.message} />;
   }
