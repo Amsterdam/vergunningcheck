@@ -16,8 +16,8 @@ If you need to update the IMTR files there are additional install steps in [pack
 If you want to use browserstack cloud service:
 you will need the following configuration 
 Please set the username and access key by setting the environment variables: 
-  - BROWSERSTACK_USER                                                          
-  - BROWSERSTACK_KEY                                                           
+  - BROWSERSTACK_USERNAME                                                          
+  - BROWSERSTACK_ACCESS_KEY                                                           
  
  .env files are supported                                                    
 

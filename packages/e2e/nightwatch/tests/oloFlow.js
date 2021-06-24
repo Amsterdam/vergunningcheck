@@ -9,6 +9,7 @@ const {
   locationRestrictionCityScape,
   locationRestrictionMonument,
   main,
+  navButtonPrev,
   navButtonNext,
 } = selectors;
 
@@ -29,6 +30,11 @@ module.exports = {
     b.setValue(locationHouseNumberFull, address.houseNumberFull);
     b.waitForElementVisible(locationFound);
     assert.containsText(main, address.streetName);
+    // forward, back, forward
+    b.click(navButtonNext);
+    b.waitForElementVisible(navButtonPrev);
+    b.click(navButtonPrev);
+    b.waitForElementVisible(navButtonNext);
 
     b.click(navButtonNext);
 

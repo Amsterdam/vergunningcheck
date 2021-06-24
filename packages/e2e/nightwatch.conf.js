@@ -112,8 +112,8 @@ module.exports = {
     // Configuration for when using the browserstack.com cloud service               |
     //                                                                               |
     // Please set the username and access key by setting the environment variables:  |
-    // - BROWSERSTACK_USER                                                           |
-    // - BROWSERSTACK_KEY                                                            |
+    // - BROWSERSTACK_USERNAME                                                           |
+    // - BROWSERSTACK_ACCESS_KEY                                                            |
     // .env files are supported                                                      |
     //////////////////////////////////////////////////////////////////////////////////
     browserstack: {
@@ -126,8 +126,8 @@ module.exports = {
       desiredCapabilities: {
         "bstack:options": {
           local: "false",
-          userName: "${BROWSERSTACK_USER}", // eslint-disable-line no-template-curly-in-string
-          accessKey: "${BROWSERSTACK_KEY}", // eslint-disable-line no-template-curly-in-string
+          userName: "${BROWSERSTACK_USERNAME}", // eslint-disable-line no-template-curly-in-string
+          accessKey: "${BROWSERSTACK_ACCESS_KEY}", // eslint-disable-line no-template-curly-in-string
         },
       },
 
