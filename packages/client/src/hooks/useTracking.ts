@@ -2,7 +2,7 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { useTranslation } from "react-i18next";
 
 import { trackingEnabled } from "../config/matomo";
-import { findTopicBySlug, getSlugFromPathname } from "../utils";
+import { getSlugFromPathname } from "../utils";
 
 type TrackingProps = {
   action: string;
@@ -15,7 +15,6 @@ export default () => {
      Therefore we cannot use useSlug and useTopic, because they throw when not available. */
   const { t } = useTranslation();
   const slug = getSlugFromPathname(window.location.pathname);
-  const topic = findTopicBySlug(slug);
 
   const { trackEvent, trackPageView } = useMatomo();
   const enabled = trackingEnabled();
@@ -24,7 +23,7 @@ export default () => {
     matomoPageView: () => enabled && trackPageView({}),
     matomoTrackEvent: ({
       action,
-      category = topic?.name || slug || t("errorMessages.category not found"),
+      category = slug || t("errorMessages.category not found"),
       name,
     }: TrackingProps) =>
       enabled &&

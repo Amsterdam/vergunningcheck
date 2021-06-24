@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { autofillResolvers, getDataNeed } from "../../config/autofill";
 import { actions, eventNames, sections } from "../../config/matomo";
-import { useChecker, useTopic, useTopicData, useTracking } from "../../hooks";
+import { useChecker, useTopicData, useTracking } from "../../hooks";
 import { Address, SectionComponent } from "../../types";
 import { LOCATION_SECTION } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
@@ -16,7 +16,6 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
     setTopicData,
     topicData: { address, sectionData, timesLoaded },
   } = useTopicData();
-  const { isPermitCheck } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -29,7 +28,6 @@ const LocationSection: FunctionComponent<SectionComponent> = (props) => {
   // Show the Location Section only when required by `hasDataNeeds`
   const skipLocationSection = !!(
     checker &&
-    isPermitCheck &&
     !getDataNeed(checker)
   );
 

@@ -8,17 +8,24 @@ import { TopicLayout } from "../../components/Layouts";
 import { LocationInput } from "../../components/Location/";
 import { useTopic } from "../../hooks";
 import { geturl, routes } from "../../routes";
+import { GraphQLTopic } from "../../types";
 
 const OloLocationInput: FunctionComponent = () => {
   const topic = useTopic();
+
   const history = useHistory();
   const { t } = useTranslation();
+
+  if (!topic) {
+    return <Loading />;
+  }
+  const { text } = topic as GraphQLTopic;
 
   return (
     <TopicLayout>
       <Helmet>
         <title>
-          {t("location.address.enter address")} - {topic.text.heading}
+          {t("location.address.enter address")} - {text.heading}
         </title>
       </Helmet>
       <Suspense fallback={<Loading />}>

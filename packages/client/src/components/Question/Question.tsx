@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { ComponentWrapper, Form } from "../../atoms";
 import { actions, eventNames } from "../../config/matomo";
-import { useTopic, useTopicData, useTracking } from "../../hooks";
+import { useTopicData, useTracking } from "../../hooks";
 import { Answer } from "../../types";
 import { getAnswerLabel } from "../../utils";
 import { QUESTION_FORM } from "../../utils/test-ids";
@@ -42,7 +42,6 @@ const Question: FunctionComponent<QuestionProps> = ({
   const {
     topicData: { questionIndex },
   } = useTopicData();
-  const { isPermitForm } = useTopic();
   const { matomoTrackEvent } = useTracking();
   const { t } = useTranslation();
 
@@ -117,11 +116,9 @@ const Question: FunctionComponent<QuestionProps> = ({
 
       {!hideNav && (
         <Nav
-          formEnds={isCheckerConclusive() || isPermitForm}
+          formEnds={isCheckerConclusive()}
           nextText={
-            isPermitForm
-              ? t("common.go to the next step")
-              : isCheckerConclusive()
+            isCheckerConclusive()
               ? t("outcome.goToOutcome")
               : t("question.nextQuestion")
           }

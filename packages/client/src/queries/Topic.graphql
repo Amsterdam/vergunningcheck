@@ -1,0 +1,17 @@
+query topicDetail($slug: String!) {
+  topic(slug: $slug) {
+    hasIMTR
+    checkerJSON
+    name
+    outcomes {
+      results
+      text
+    }
+    slug
+    text {
+      heading
+      intro
+      locationIntro
+    }
+  }
+}

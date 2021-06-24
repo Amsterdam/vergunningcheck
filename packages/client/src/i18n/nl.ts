@@ -85,59 +85,59 @@ export default {
         "sometimes it's written in a destination plan that a permit is required":
           "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
       },
-      dakkapel: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd",
-        exception:
-          "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
-        "placing bullet": "het plaatsen van de dakkapel zelf.",
-        "intro description":
-          "U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt.",
-      },
-      dakraam: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin het dakraam komt, is zonder vergunning gebouwd.",
-        "intro description":
-          "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
-        "placing bullet": "het plaatsen van het dakraam zelf.",
-      },
-      "kappen-of-snoeien": {
-        "you may need a permit":
-          "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt voor het kappen of snoeien van een boom. Ook voor het kappen van een dode boom kan een vergunning nodig zijn. Hier kunt u de checker ook voor gebruiken.",
-      },
-      firesafety: {
-        "the building must be safe and the city must be able to verify":
-          "U gaat een gebouw in gebruik nemen of het gebruik wijzigen. Het gebouw moet veilig zijn voor bewoners, gasten en personeel. De gemeente moet kunnen controleren of dat zo is.",
-        "you might need to report and in some case you need a permit":
-          "Het kan zijn dat u een melding voor brandveilig gebruik moet doen. In sommige gevallen moet u een omgevingsvergunning voor brandveilig gebruik aanvragen. Met deze vergunningcheck kunt u zien wat u moet doen.",
-      },
-      kozijnen: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
-        "intro description":
-          "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.",
-        "placing bullet": "het plaatsen van de kozijnen zelf.",
-      },
-      slopen: {
-        "you want to demolish a structure":
-          "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
-        "you may need a permit or to report":
-          "U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.",
-      },
-      zonnepanelen: {
-        "intro description":
-          "U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.",
-        "placing bullet":
-          "het plaatsen van de zonnepanelen of zonneboiler zelf.",
-      },
-      zonwering: {
-        "build without permit exception":
-          "Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik komt, is zonder vergunning gebouwd.",
-        "intro description":
-          "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.",
-        "placing bullet":
-          "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
-      },
+      // dakkapel: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd",
+      //   exception:
+      //     "U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.",
+      //   "placing bullet": "het plaatsen van de dakkapel zelf.",
+      //   "intro description":
+      //     "U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt.",
+      // },
+      // dakraam: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin het dakraam komt, is zonder vergunning gebouwd.",
+      //   "intro description":
+      //     "Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.",
+      //   "placing bullet": "het plaatsen van het dakraam zelf.",
+      // },
+      // "kappen-of-snoeien": {
+      //   "you may need a permit":
+      //     "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt voor het kappen of snoeien van een boom. Ook voor het kappen van een dode boom kan een vergunning nodig zijn. Hier kunt u de checker ook voor gebruiken.",
+      // },
+      // firesafety: {
+      //   "the building must be safe and the city must be able to verify":
+      //     "U gaat een gebouw in gebruik nemen of het gebruik wijzigen. Het gebouw moet veilig zijn voor bewoners, gasten en personeel. De gemeente moet kunnen controleren of dat zo is.",
+      //   "you might need to report and in some case you need a permit":
+      //     "Het kan zijn dat u een melding voor brandveilig gebruik moet doen. In sommige gevallen moet u een omgevingsvergunning voor brandveilig gebruik aanvragen. Met deze vergunningcheck kunt u zien wat u moet doen.",
+      // },
+      // kozijnen: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.",
+      //   "intro description":
+      //     "Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.",
+      //   "placing bullet": "het plaatsen van de kozijnen zelf.",
+      // },
+      // slopen: {
+      //   "you want to demolish a structure":
+      //     "U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.",
+      //   "you may need a permit or to report":
+      //     "U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.",
+      // },
+      // zonnepanelen: {
+      //   "intro description":
+      //     "U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.",
+      //   "placing bullet":
+      //     "het plaatsen van de zonnepanelen of zonneboiler zelf.",
+      // },
+      // zonwering: {
+      //   "build without permit exception":
+      //     "Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik komt, is zonder vergunning gebouwd.",
+      //   "intro description":
+      //     "U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.",
+      //   "placing bullet":
+      //     "het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.",
+      // },
     },
     location: {
       address: {
@@ -182,54 +182,54 @@ export default {
       nextQuestion: "Volgende vraag",
     },
     preQuestions: {
-      "kappen-of-snoeien": {
-        preQuestionMultipleCheckers: {
-          "would you like to build more than one":
-            "Wilt u meer dan 1 boom kappen of snoeien?",
-          "you can do this permit check one at a time":
-            "U kunt de vergunningcheck voor 1 boom tegelijk doen.",
-        },
-      },
-      "dakkapel-plaatsen": {
-        preQuestionMultipleCheckers: {
-          "would you like to build more than one":
-            "Wilt u meer dan 1 dakkapel plaatsen?",
-          "you can do this permit check one at a time":
-            "U kunt de vergunningcheck voor 1 dakkapel tegelijk doen.",
-        },
-      },
-      "dakraam-plaatsen": {
-        preQuestionMultipleCheckers: {
-          "would you like to build more than one":
-            "Wilt u meer dan 1 dakraam plaatsen?",
-          "you can do this permit check one at a time":
-            "U kunt de vergunningcheck voor 1 dakraam tegelijk doen.",
-        },
-      },
-      "kozijnen-plaatsen": {
-        preQuestionMultipleCheckers: {
-          "would you like to build more than one":
-            "Wilt u meer dan 1 kozijn plaatsen?",
-          "you can do this permit check one at a time":
-            "U kunt de vergunningcheck voor 1 kozijn tegelijk doen.",
-        },
-      },
-      "zonnepanelen-of-zonneboiler-plaatsen": {
-        preQuestionMultipleCheckers: {
-          "would you like to build more than one":
-            "Wilt u op verschillende plekken zonnepanelen of een zonneboiler plaatsen?",
-          "you can do this permit check one at a time":
-            "U kunt de vergunningcheck voor 1 plek tegelijk doen.",
-        },
-      },
-      "zonwering-of-rolluik-plaatsen": {
-        preQuestionMultipleCheckers: {
-          "would you like to build more than one":
-            "Wilt u meer dan 1 zonwering, rolhek, rolluik of luik plaatsen?",
-          "you can do this permit check one at a time":
-            "U kunt de vergunningcheck voor 1 zonwering, rolhek, rolluik of luik tegelijk doen.",
-        },
-      },
+      // "kappen-of-snoeien": {
+      //   preQuestionMultipleCheckers: {
+      //     "would you like to build more than one":
+      //       "Wilt u meer dan 1 boom kappen of snoeien?",
+      //     "you can do this permit check one at a time":
+      //       "U kunt de vergunningcheck voor 1 boom tegelijk doen.",
+      //   },
+      // },
+      // "dakkapel-plaatsen": {
+      //   preQuestionMultipleCheckers: {
+      //     "would you like to build more than one":
+      //       "Wilt u meer dan 1 dakkapel plaatsen?",
+      //     "you can do this permit check one at a time":
+      //       "U kunt de vergunningcheck voor 1 dakkapel tegelijk doen.",
+      //   },
+      // },
+      // "dakraam-plaatsen": {
+      //   preQuestionMultipleCheckers: {
+      //     "would you like to build more than one":
+      //       "Wilt u meer dan 1 dakraam plaatsen?",
+      //     "you can do this permit check one at a time":
+      //       "U kunt de vergunningcheck voor 1 dakraam tegelijk doen.",
+      //   },
+      // },
+      // "kozijnen-plaatsen": {
+      //   preQuestionMultipleCheckers: {
+      //     "would you like to build more than one":
+      //       "Wilt u meer dan 1 kozijn plaatsen?",
+      //     "you can do this permit check one at a time":
+      //       "U kunt de vergunningcheck voor 1 kozijn tegelijk doen.",
+      //   },
+      // },
+      // "zonnepanelen-of-zonneboiler-plaatsen": {
+      //   preQuestionMultipleCheckers: {
+      //     "would you like to build more than one":
+      //       "Wilt u op verschillende plekken zonnepanelen of een zonneboiler plaatsen?",
+      //     "you can do this permit check one at a time":
+      //       "U kunt de vergunningcheck voor 1 plek tegelijk doen.",
+      //   },
+      // },
+      // "zonwering-of-rolluik-plaatsen": {
+      //   preQuestionMultipleCheckers: {
+      //     "would you like to build more than one":
+      //       "Wilt u meer dan 1 zonwering, rolhek, rolluik of luik plaatsen?",
+      //     "you can do this permit check one at a time":
+      //       "U kunt de vergunningcheck voor 1 zonwering, rolhek, rolluik of luik tegelijk doen.",
+      //   },
+      // },
     },
     outcome: {
       heading: "Uitkomst",
@@ -259,46 +259,46 @@ export default {
           "Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.",
       },
       // @TODO: refactor this per checker, like introPage
-      needBothPermitAndReport: {
-        "you need both permit and report":
-          "U hebt een omgevingsvergunning nodig. U moet de activiteit ook melden.", // This text should only be used for unconfigured (non-amsterdam) checkers
-        "you need both permit and report for demolition":
-          "U hebt een omgevingsvergunning nodig. U moet de sloop ook melden.",
-        "on this page you can read more how to do apply for demolition":
-          "Op de pagina 'Sloop: melding en vergunning' leest u hoe u dit doet, hoe lang het duurt en wat het kost.",
-        "demolition permit and report": "Sloop: melding en vergunning",
-      },
-      needContact: {
-        "in case of emergency":
-          "Bij spoed of gevaar is er een andere manier om toestemming te krijgen. Neem hiervoor contact op met de gemeente via telefoonnummer [14 020](tel:14020).",
-        "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
-        "you need to contact for firesafety":
-          "U hebt geen omgevingsvergunning nodig. U moet misschien wel een melding 'Brandveilig gebruik' doen.",
-      },
-      needPermit: {
-        "you need a permit": "U hebt een omgevingsvergunning nodig.",
-        "you need a permit for demolition":
-          "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
-        "you need a permit and not to report":
-          "U hebt een omgevingsvergunning nodig. U hoeft geen aparte melding te doen.",
-        "on this page you can read more how to apply":
-          "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
-        "how to apply": "Zo werkt aanvragen",
-      },
-      needReport: {
-        "you need a report":
-          "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
-        "you need a report for demolition":
-          "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
-        "you need a report for firesafety":
-          "U moet een melding 'Brandveilig gebruik' doen. U hebt geen omgevingsvergunning nodig.",
-        "on this page you can read more about report for demolition":
-          "Op de pagina 'Zo werkt een sloopmelding' leest u hoe u de melding doet.",
-        "on this page you can read more about report":
-          "Op de pagina 'Zo werkt een melding doen' leest u hoe u de melding doet.",
-        "how to report": "Zo werkt een melding doen",
-        "how to report for demolition": "Zo werkt een sloopmelding",
-      },
+      // needBothPermitAndReport: {
+      //   "you need both permit and report":
+      //     "U hebt een omgevingsvergunning nodig. U moet de activiteit ook melden.", // This text should only be used for unconfigured (non-amsterdam) checkers
+      //   "you need both permit and report for demolition":
+      //     "U hebt een omgevingsvergunning nodig. U moet de sloop ook melden.",
+      //   "on this page you can read more how to do apply for demolition":
+      //     "Op de pagina 'Sloop: melding en vergunning' leest u hoe u dit doet, hoe lang het duurt en wat het kost.",
+      //   "demolition permit and report": "Sloop: melding en vergunning",
+      // },
+      // needContact: {
+      //   "in case of emergency":
+      //     "Bij spoed of gevaar is er een andere manier om toestemming te krijgen. Neem hiervoor contact op met de gemeente via telefoonnummer [14 020](tel:14020).",
+      //   "you need to contact the city": "Neem contact op met de gemeente", // This text should only be used for unconfigured (non-amsterdam) checkers
+      //   "you need to contact for firesafety":
+      //     "U hebt geen omgevingsvergunning nodig. U moet misschien wel een melding 'Brandveilig gebruik' doen.",
+      // },
+      // needPermit: {
+      //   "you need a permit": "U hebt een omgevingsvergunning nodig.",
+      //   "you need a permit for demolition":
+      //     "U hebt een omgevingsvergunning nodig. U hoeft de sloop niet apart te melden.",
+      //   "you need a permit and not to report":
+      //     "U hebt een omgevingsvergunning nodig. U hoeft geen aparte melding te doen.",
+      //   "on this page you can read more how to apply":
+      //     "Op de pagina 'Zo werkt aanvragen' leest u hoe u de aanvraag indient, hoe lang het duurt en wat het kost.",
+      //   "how to apply": "Zo werkt aanvragen",
+      // },
+      // needReport: {
+      //   "you need a report":
+      //     "U hebt geen omgevingsvergunning nodig. U heeft wel een meldingsplicht.",
+      //   "you need a report for demolition":
+      //     "U hebt geen omgevingsvergunning nodig. U moet de sloop wel melden.",
+      //   "you need a report for firesafety":
+      //     "U moet een melding 'Brandveilig gebruik' doen. U hebt geen omgevingsvergunning nodig.",
+      //   "on this page you can read more about report for demolition":
+      //     "Op de pagina 'Zo werkt een sloopmelding' leest u hoe u de melding doet.",
+      //   "on this page you can read more about report":
+      //     "Op de pagina 'Zo werkt een melding doen' leest u hoe u de melding doet.",
+      //   "how to report": "Zo werkt een melding doen",
+      //   "how to report for demolition": "Zo werkt een sloopmelding",
+      // },
       payAttentionTo: {
         "apply to building code":
           "U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.",
@@ -308,13 +308,13 @@ export default {
         "take in account":
           "U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.",
       },
-      permitFree: {
-        "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
-        "you dont need a permit and dont need to report":
-          "U hebt geen omgevingsvergunning nodig. U hoeft ook geen melding te doen.",
-        "you dont need a permit for demolition":
-          "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
-      },
+      // permitFree: {
+      //   "you dont need a permit": "U hebt geen omgevingsvergunning nodig.",
+      //   "you dont need a permit and dont need to report":
+      //     "U hebt geen omgevingsvergunning nodig. U hoeft ook geen melding te doen.",
+      //   "you dont need a permit for demolition":
+      //     "U hebt geen omgevingsvergunning nodig. U hoeft de sloop ook niet te melden.",
+      // },
       newCheckerModal: {
         recheckWithSameAddress:
           "Wilt u nog een vergunningcheck doen voor hetzelfde adres?",
@@ -322,45 +322,45 @@ export default {
         openModalBtnText: "Nog een vergunningcheck doen",
         selectNextPermitCheck: "Welke vergunningcheck wilt u doen?",
       },
-      cuttingTreeForm: {
-        title: "Hier uw aanvraag formulier",
-        "pictures of the tree": "Een foto van de boom / bomen.",
-        "you are done with the form and you can download it": `U bent klaar met het aanvraagformulier. U kunt deze downloaden en
-        meesturen in het Omgevingsloket. In het Omgevingloket vragen ze nog naar
-        een aantal bijlagen, denk aan bijvoorbeeld:`,
-        "a plan with the situation and the tree ids":
-          "Een plan met situering en nummering van de boom waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte.",
-        "a written report":
-          "Een schriftelijk verslag, als u overleg hebt gehad met omwonenden en/of overige belanghebbenden.",
-      },
+      // cuttingTreeForm: {
+      //   title: "Hier uw aanvraag formulier",
+      //   "pictures of the tree": "Een foto van de boom / bomen.",
+      //   "you are done with the form and you can download it": `U bent klaar met het aanvraagformulier. U kunt deze downloaden en
+      //   meesturen in het Omgevingsloket. In het Omgevingloket vragen ze nog naar
+      //   een aantal bijlagen, denk aan bijvoorbeeld:`,
+      //   "a plan with the situation and the tree ids":
+      //     "Een plan met situering en nummering van de boom waar het om gaat. Vermeld ook per boom de omtrek van de stam in centimeters, op 130 cm hoogte.",
+      //   "a written report":
+      //     "Een schriftelijk verslag, als u overleg hebt gehad met omwonenden en/of overige belanghebbenden.",
+      // },
       "if you have other plans you can do other permit checks":
         "Hebt u ook andere bouwplannen? Dan kunt u nog een vergunningcheck doen.",
       "if you have other plans you can do other permit checks as well":
         "Hebt u ook andere bouwplannen? Ook dan kunt u nog een vergunningcheck doen.",
-      "kappen-of-snoeien": {
-        "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt meer dan 1 boom kappen. Doe voor elke volgende een vergunningcheck.",
-      },
-      "dakkapel-plaatsen": {
-        "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt meer dan 1 dakkapel plaatsen. Doe voor elke volgende een vergunningcheck.",
-      },
-      "dakraam-plaatsen": {
-        "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt meer dan 1 dakraam plaatsen. Doe voor elke volgende een vergunningcheck.",
-      },
-      "kozijnen-plaatsen": {
-        "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt meer dan 1 kozijn plaatsen. Doe voor elke volgende een vergunningcheck.",
-      },
-      "zonnepanelen-of-zonneboiler-plaatsen": {
-        "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt op verschillende plekken zonnepanelen of een zonneboiler plaatsen. Doe voor elke plek een vergunningcheck.",
-      },
-      "zonwering-of-rolluik-plaatsen": {
-        "you would like to build more than 1 so you need to do multiple permits":
-          "U wilt meer dan 1 zonwering, rolhek, rolluik of luik plaatsen. Doe voor elke volgende een vergunningcheck.",
-      },
+      // "kappen-of-snoeien": {
+      //   "you would like to build more than 1 so you need to do multiple permits":
+      //     "U wilt meer dan 1 boom kappen. Doe voor elke volgende een vergunningcheck.",
+      // },
+      // "dakkapel-plaatsen": {
+      //   "you would like to build more than 1 so you need to do multiple permits":
+      //     "U wilt meer dan 1 dakkapel plaatsen. Doe voor elke volgende een vergunningcheck.",
+      // },
+      // "dakraam-plaatsen": {
+      //   "you would like to build more than 1 so you need to do multiple permits":
+      //     "U wilt meer dan 1 dakraam plaatsen. Doe voor elke volgende een vergunningcheck.",
+      // },
+      // "kozijnen-plaatsen": {
+      //   "you would like to build more than 1 so you need to do multiple permits":
+      //     "U wilt meer dan 1 kozijn plaatsen. Doe voor elke volgende een vergunningcheck.",
+      // },
+      // "zonnepanelen-of-zonneboiler-plaatsen": {
+      //   "you would like to build more than 1 so you need to do multiple permits":
+      //     "U wilt op verschillende plekken zonnepanelen of een zonneboiler plaatsen. Doe voor elke plek een vergunningcheck.",
+      // },
+      // "zonwering-of-rolluik-plaatsen": {
+      //   "you would like to build more than 1 so you need to do multiple permits":
+      //     "U wilt meer dan 1 zonwering, rolhek, rolluik of luik plaatsen. Doe voor elke volgende een vergunningcheck.",
+      // },
     },
   },
 };

@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import { findTopicBySlug } from "../utils";
+import {testTopic } from "../utils/test-utils";
 import useTopic from "./useTopic";
 
 jest.mock("react-router-dom", () => ({
@@ -13,6 +13,6 @@ jest.mock("react-router-dom", () => ({
 describe("useTopic", () => {
   it("returns the topic", () => {
     const { result } = renderHook(() => useTopic());
-    expect(result.current).toEqual(findTopicBySlug("dakkapel-plaatsen"));
+    expect(result.current).toEqual(testTopic);
   });
 });

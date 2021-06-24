@@ -1,21 +1,27 @@
-import { Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
 import React, {
   FunctionComponent,
   KeyboardEventHandler,
   useContext,
   useState,
 } from "react";
+import { Paragraph, Radio, RadioGroup } from "@amsterdam/asc-ui";
+import { useQuery } from "@apollo/client";
+import { loader } from "graphql.macro";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { ComponentWrapper, Label } from "../../atoms";
+import { Loading, ComponentWrapper, Label, Error as ErrorComponent } from "../../atoms";
 import { CheckerContext } from "../../CheckerContext";
-import { topics } from "../../config";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useSlug, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { SessionContext, defaultTopicSession } from "../../SessionContext";
+
+import { GraphQLTopic } from "../../types";
+
 import Modal from "../Modal";
+
+const query = loader("../../queries/Topics.graphql");
 
 const NewCheckerModal: FunctionComponent = () => {
   const { matomoTrackEvent } = useTracking();
@@ -27,6 +33,18 @@ const NewCheckerModal: FunctionComponent = () => {
   const [checkerSlug, setCheckerSlug] = useState(slug);
   const history = useHistory();
   const [finished, setFinished] = useState(false);
+
+  const { loading, error, data } = useQuery<{
+    topics: GraphQLTopic[];
+  }>(query);
+
+  if (loading) {
+    return <Loading />;
+  } else if (error) {
+    return <ErrorComponent stack={error.stack} content={error.message} />;
+  }
+
+  const { topics } = data as { topics: GraphQLTopic[] };
 
   if (!slug) {
     throw new Error("Cannot render NewCheckerModal without a slug.");
@@ -110,7 +128,7 @@ const NewCheckerModal: FunctionComponent = () => {
         <ComponentWrapper>
           <RadioGroup name="checkers">
             {topics
-              .filter(({ isConfiguredPermitCheck }) => isConfiguredPermitCheck)
+              .filter(({ hasIMTR }) => hasIMTR)
               .sort((a, b) => a.name.localeCompare(b.name))
               .map(({ name, slug }) => (
                 <Label htmlFor={slug} key={name} label={name}>

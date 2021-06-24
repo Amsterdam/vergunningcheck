@@ -1,13 +1,15 @@
+import React, { FunctionComponent, Suspense } from "react";
 import { Button } from "@amsterdam/asc-ui";
-import React, { FunctionComponent, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-
 import { Loading } from "../atoms";
 import { TopicLayout } from "../components/Layouts";
+import Markdown from "../components/Markdown";
+import { sections } from "../config/matomo";
 import { useTopic } from "../hooks";
 import { geturl, routes } from "../routes";
+import { GraphQLTopic } from "../types";
 import { NEXT_BUTTON } from "../utils/test-ids";
 
 // This page will only render in case of a topic `hasIMTR`
@@ -16,11 +18,15 @@ const IntroPage: FunctionComponent = () => {
   const topic = useTopic();
   const { t } = useTranslation();
 
-  const { intro, text } = topic;
-  const introComponentPath = intro || "shared/DynamicIMTRIntro";
-  const Intro = lazy(
-    () => import(`../intros/${introComponentPath}`)
-  ) as FunctionComponent;
+  if (!topic) {
+    return (
+      <TopicLayout>
+        <Loading />
+      </TopicLayout>
+    );
+  }
+
+  const { text: {intro, heading} } = topic as GraphQLTopic;
 
   const goToNext = () => {
     history.push(geturl(routes.checker, topic));
@@ -30,11 +36,11 @@ const IntroPage: FunctionComponent = () => {
     <TopicLayout>
       <Helmet>
         <title>
-          {t("common.introduction")} - {text.heading}
+          {t("common.introduction")} - {heading}
         </title>
       </Helmet>
       <Suspense fallback={<Loading />}>
-        <Intro />
+        <Markdown eventLocation={sections.INTRO} source={intro} />
       </Suspense>
       <Button data-testid={NEXT_BUTTON} onClick={goToNext} variant="secondary">
         {t("common.do the permit check")}

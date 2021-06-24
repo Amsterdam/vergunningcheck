@@ -3,19 +3,20 @@ import { useContext, useEffect, useState } from "react";
 
 import { CheckerContext } from "../CheckerContext";
 import { autofillResolvers } from "../config/autofill";
-import topicsJson from "../topics.json";
+import { GraphQLTopic } from "../types";
 import { useTopic, useTopicData } from "./";
 
 export default () => {
   const checkerContext = useContext(CheckerContext);
   const [checker, setChecker] = useState(checkerContext.checker);
   const [error, setError] = useState();
-  const { hasIMTR, slug } = useTopic();
+  const topic = useTopic();
+
   const { topicData } = useTopicData();
 
   useEffect(() => {
     // Initilize the checker on first load, reload and on reset
-    if (!checker && !checkerContext.checker) {
+    if (!checker && !checkerContext.checker && topic?.hasIMTR) {
       initChecker();
     }
     // Force clearing the checker when the checker has been reset on the context
@@ -23,21 +24,14 @@ export default () => {
       setChecker(undefined);
     }
     //eslint-disable-next-line
-  }, [checker, checkerContext]);
+  }, [topic, checker, checkerContext]);
 
   const initChecker = async () => {
-    // Load the checker if the topic is not found (dynamic IMTR-checker) or the topic is found and has an imtr flow
-    const loadChecker = !checker && !error && hasIMTR;
-    if (loadChecker) {
+    // if the topic is found and has an imtr flow
+    if (!checker && !error && topic) {
       try {
-        const topicConfig = topicsJson.flat().find((t) => t.slug === slug) as {
-          path: string;
-        };
-
-        const topicRequest = await fetch(
-          `${window.location.origin}/${topicConfig.path}`
-        );
-        const newChecker = getChecker(await topicRequest.json());
+        const { checkerJSON } = topic as GraphQLTopic;
+        const newChecker = getChecker(JSON.parse(checkerJSON));
         const { address, answers } = topicData;
 
         // Find if we have missing data needs

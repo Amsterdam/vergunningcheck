@@ -4,9 +4,9 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 
-import { AddressLines, ComponentWrapper, List, ListItem } from "../../atoms";
+import { Loading, AddressLines, ComponentWrapper, List, ListItem } from "../../atoms";
 import { useTopic, useTopicData } from "../../hooks";
-import { Address } from "../../types";
+import { Address, GraphQLTopic } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import {
   LOCATION_RESTRICTION_CITYSCAPE,
@@ -57,12 +57,18 @@ const LocationSummary: FunctionComponent<LocationSummaryProps> = ({
   showEditLocationModal,
   showTitle,
 }) => {
-  const { hasIMTR } = useTopic();
+  const topic = useTopic();
   const { topicData } = useTopicData();
   const { t } = useTranslation();
 
   const address = addressFromLocation ?? topicData.address;
   const { restrictions } = address || {};
+
+  if (!topic) {
+    return <Loading />;
+  }
+
+  const { hasIMTR } = topic as GraphQLTopic;
 
   const monument = getRestrictionByTypeName(
     restrictions,

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 
-import { useTopic, useTopicData } from "../../hooks";
+import { useTopicData } from "../../hooks";
 import { Answer, PreQuestionComponent } from "../../types";
 import PreQuestionMultipleCheckers from "./PreQuestionMultipleCheckers";
 
@@ -19,7 +19,9 @@ const PreQuestions: FunctionComponent<PreQuestionsProps> = ({
   questionIndex,
   setSkipAnsweredQuestions,
 }) => {
-  const { preQuestions } = useTopic();
+  // FIXME: const { preQuestions } = useTopic();
+  const preQuestions: [] = [];
+
   const { setTopicData } = useTopicData();
 
   const goToNextQuestion = () => {

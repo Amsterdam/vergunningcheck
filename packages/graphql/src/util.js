@@ -14,9 +14,13 @@ const withLog = (msg, res) => {
   return res;
 };
 
-const fetchJson = (url) => {
-  debug(`fetching '${url}'`);
-  return fetch(url).then((res) => res.json());
+const arrayEquals = (array1, array2) =>
+  array1.length === array2.length &&
+  array1.every((value, index) => value === array2[index]);
+
+const fetchJson = (url, options) => {
+  debug(`fetching '${url}' with options ${options}`);
+  return fetch(url, options).then((res) => res.json());
 };
 const gql = (input) => input.toString();
 
@@ -45,6 +49,7 @@ const postXml = (url, body) => {
 };
 
 module.exports = {
+  arrayEquals,
   fetchJson,
   gql,
   getUrl,

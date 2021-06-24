@@ -3,6 +3,7 @@ import { ClientOutcomes } from "@vergunningcheck/imtr-client";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
+import { GraphQLTopic } from "../../types";
 import { Alert, HideForPrint } from "../../atoms";
 import { useTopic } from "../../hooks";
 import { QUESTION_ALERT } from "../../utils/test-ids";
@@ -20,7 +21,7 @@ const QuestionAlert: FunctionComponent<QuestionAlertProps> = ({
   questionAlertText,
   outcomeType,
 }) => {
-  const { userMightNotNeedPermit } = useTopic();
+  const { userMightNotNeedPermit } = useTopic() as GraphQLTopic;
   const { t } = useTranslation();
 
   const imtrOutcome =

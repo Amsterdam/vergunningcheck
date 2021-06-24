@@ -1,0 +1,212 @@
+################### PERMITS ###################
+
+- model: chappie.permit
+  pk: WKPxKx4YBJ5fqYSni
+  fields:
+    name: Dakkapel monument
+
+- model: chappie.permit
+  pk: Aa2EX3YprpZQ65non
+  fields:
+    name: Dakkapel bouwen
+
+- model: chappie.permit
+  pk: hMwHKR7Wz4FP8Dm4x
+  fields:
+    name: Het wijzigen van een monument bij een dakraam
+
+- model: chappie.permit
+  pk: dRy4PfDs7jQPc9gMG
+  fields:
+    name: Dakraam bouwen
+
+- model: chappie.permit
+  pk: Xm2WwYeGkNN9w6rgQ
+  fields:
+    name: Kozijn plaatsen in een monument
+
+- model: chappie.permit
+  pk: 5CJrbgbWZP6uZsouY
+  fields:
+    name: Kozijn plaatsen
+
+- model: chappie.permit
+  pk: TRhZrFexMjBW42Ky6
+  fields:
+    name: Zonnepaneel en zonneboiler monument
+
+- model: chappie.permit
+  pk: skPG9qqTqWyX9tSY7
+  fields:
+    name: Zonnepaneel en zonneboiler bouwen
+
+- model: chappie.permit
+  pk: AkxinYRNNo679qi6T
+  fields:
+    name: Zonwering, rolhek, luik of rolluik monument
+
+- model: chappie.permit
+  pk: TuP6ido9xpJSSxjLi
+  fields:
+    name: Zonwering, rolhek, luik of rolluik bouwen
+
+- model: chappie.permit
+  pk: 2eYY7McaiRgfnERo9
+  fields:
+    name: Sloopvergunning - toestemming slopen in BSG
+
+- model: chappie.permit
+  pk: D4mccynMtNdzYGhXF
+  fields:
+    name: Sloopmelding
+
+- model: chappie.permit
+  pk: bxBCdnrFZSbwxgmxC
+  fields:
+    name: Sloopvergunning - toestemming monument
+
+- model: chappie.permit
+  pk: SCKKBFsLHGG5Le5mJ
+  fields:
+    name: Kappen of snoeien
+
+
+
+################### IMTR TOPICS ###################
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000001
+  fields:
+    flow: IMTR
+    name: Dakkapel plaatsen
+    slug: dakkapel-plaatsen
+    permits:
+    - WKPxKx4YBJ5fqYSni
+    - Aa2EX3YprpZQ65non
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000002
+  fields:
+    flow: IMTR
+    name: Dakraam plaatsen
+    slug: dakraam-plaatsen
+    permits:
+    - hMwHKR7Wz4FP8Dm4x
+    - dRy4PfDs7jQPc9gMG
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000003
+  fields:
+    flow: IMTR
+    name: Kozijnen plaatsen
+    slug: kozijnen-plaatsen
+    permits:
+    - Xm2WwYeGkNN9w6rgQ
+    - 5CJrbgbWZP6uZsouY
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000004
+  fields:
+    flow: IMTR
+    name: Zonnepanelen of zonneboiler plaatsen
+    slug: zonnepanelen-of-zonneboiler-plaatsen
+    permits:
+    - TRhZrFexMjBW42Ky6
+    - skPG9qqTqWyX9tSY7
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000005
+  fields:
+    flow: IMTR
+    name: Zonwering of rolluik plaatsen
+    slug: zonwering-of-rolluik-plaatsen
+    permits:
+    - TuP6ido9xpJSSxjLi
+    user_might_not_need_permit: false
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000006
+  fields:
+    flow: IMTR
+    name: Bouwwerk slopen
+    slug: bouwwerk-slopen
+    heading: Vergunningcheck bouwwerk slopen
+    location_intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
+    permits:
+    - 2eYY7McaiRgfnERo9
+    - D4mccynMtNdzYGhXF
+    - bxBCdnrFZSbwxgmxC
+    user_might_not_need_permit: false
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-200000000007
+  fields:
+    flow: IMTR
+    name: Brandveilig gebruik
+    slug: brandveilig-gebruik
+    heading: Vergunningcheck brandveilig gebruik
+    location_intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
+    permits:
+    - 8hqLFZcdXKaesAJgS
+    user_might_not_need_permit: false
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-100000000008
+  fields:
+    flow: IMTR
+    name: Kappen of snoeien
+    slug: kappen-of-snoeien
+    heading: Vergunningcheck kappen of snoeien
+    permits:
+    - SCKKBFsLHGG5Le5mJ
+
+################### OLO TOPICS ###################
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-100000000002
+  fields:
+    flow: OLO
+    name: Intern verbouwen
+    slug: intern-verbouwen
+    heading: Vergunningcheck intern verbouwen
+    location_intro: Voer het adres in waar u intern wilt gaan verbouwen
+    user_might_not_need_permit: false
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-100000000004
+  fields:
+    flow: OLO
+    name: Aanbouw of uitbouw maken
+    slug: aanbouw-of-uitbouw-maken
+    heading: Vergunningcheck aanbouw of uitbouw maken
+    location_intro: Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken
+
+################### OUTCOMES ###################
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000001
+  fields:
+    topic: 00000000-0000-0000-0000-200000000001
+    flo_legal_outcomes: "\"Vergunningplicht\""
+    text: U heeft vergunningplicht voor uw dakkapel.
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000002
+  fields:
+    topic: 00000000-0000-0000-0000-200000000001
+    flo_legal_outcomes: "\"Toestemmingsvrij\""
+    text: U heeft geen vergunning nodig voor uw dakkapel.
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000003
+  fields:
+    topic: 00000000-0000-0000-0000-200000000001
+    flo_legal_outcomes: "\"NeemContactOpMet\""
+    text: Wij kunnen op basis van de gegeven antwoorden niet aangeven of u een vergunning nodig hebt. Neem contact op met uw gemeente.
+
+- model: chappie.outcome
+  pk: 00000000-0000-0000-0000-300000000004
+  fields:
+    topic: 00000000-0000-0000-0000-200000000006
+    flo_legal_outcomes: "\"Meldingplicht\",\"Vergunningplicht\""
+    text: U heeft meldingplicht en vergunningplicht.

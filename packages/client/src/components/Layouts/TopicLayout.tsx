@@ -1,7 +1,7 @@
 import { FormTitle, Heading } from "@amsterdam/asc-ui";
 import React, { FunctionComponent } from "react";
 
-import { HideForPrint } from "../../atoms";
+import { Loading, HideForPrint } from "../../atoms";
 import { DebugVariables } from "../../debug";
 import { useTopic } from "../../hooks";
 import { BaseLayout } from ".";
@@ -16,7 +16,15 @@ const TopicLayout: FunctionComponent<TopicLayoutProps> = ({
   formTitle: formTitleProp,
   heading: headingProp,
 }) => {
-  const { hasIMTR, name, text } = useTopic();
+  const topic = useTopic();
+  if (!topic) {
+    return (
+      <BaseLayout>
+        <Loading />
+      </BaseLayout>
+    );
+  }
+  const { hasIMTR, name, text } = topic;
 
   const formTitle = formTitleProp || text?.heading;
   const heading = hasIMTR && name ? name : headingProp;
@@ -29,6 +37,7 @@ const TopicLayout: FunctionComponent<TopicLayoutProps> = ({
           {heading}
         </Heading>
       )}
+
       {children}
 
       <HideForPrint>

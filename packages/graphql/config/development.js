@@ -13,6 +13,12 @@ const config = {
   },
   enableContentSecurityPolicy: false,
   loaders: {
+    ois: {
+      HOST: "http://127.0.0.1:8000",
+      manager: {
+        mock: true,
+      },
+    },
     datapunt: {
       // HOST: "https:// .... use acceptance url if needed
       CACHE_TIMEOUT: 10,

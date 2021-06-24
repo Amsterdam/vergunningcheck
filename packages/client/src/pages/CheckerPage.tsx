@@ -18,7 +18,7 @@ import { StepByStepNavigation } from "../components/StepByStepNavigation";
 import { DebugDecisionTable } from "../debug";
 import { useChecker, useSlug, useTopic, useTopicData } from "../hooks";
 import { SessionContext } from "../SessionContext";
-import { SectionFunctions, SectionObject } from "../types";
+import { SectionFunctions, SectionObject, GraphQLTopic } from "../types";
 import ErrorPage from "./ErrorPage";
 
 const defaultSectionData = {
@@ -58,7 +58,7 @@ const CheckerPage: FunctionComponent = () => {
   const sectionsRef = React.useRef(initialSections);
   const [sections, updateSections] = useState(initialSections);
   const slug = useSlug();
-  const { text } = useTopic();
+  const topic = useTopic();
   const { setTopicData, topicData } = useTopicData();
   const { t } = useTranslation();
   const { timesLoaded, sectionData } = topicData;
@@ -123,6 +123,14 @@ const CheckerPage: FunctionComponent = () => {
     // Prevent linter to add all dependencies, now the useEffect is only called when `checker` updates
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checker]);
+
+  if (!topic) {
+    return (
+      <TopicLayout>
+        <Loading />
+      </TopicLayout>
+    );
+  }
 
   const getActiveSectionIndex = () => {
     const activeSection = sectionsRef.current.filter(
@@ -221,6 +229,8 @@ const CheckerPage: FunctionComponent = () => {
     getNextSection,
     goToNextSection,
   };
+
+  const { text } = topic as GraphQLTopic;
 
   return (
     <TopicLayout>

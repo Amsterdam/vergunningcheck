@@ -4,10 +4,10 @@ import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+
 import { Disclaimer } from "../../atoms";
-import { useChecker, useSlug, useTopic } from "../../hooks";
+import { useChecker } from "../../hooks";
 import { SectionComponent } from "../../types";
-import getOutcomeContent from "../../utils/getOutcomeContent";
 import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
 import { OutcomeContent } from "./";
@@ -20,8 +20,7 @@ const OutcomeWrapper = styled.div`
 
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
-  const slug = useSlug();
-  const { isPermitCheck } = useTopic();
+
   const { t } = useTranslation();
 
   if (!checker) return null;
@@ -35,10 +34,17 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
 
   const outcomeType = checker.getClientOutcomeType();
   const showDiscaimer =
-    outcomeType !== ClientOutcomes.NEED_CONTACT && isPermitCheck;
+    outcomeType !== ClientOutcomes.NEED_CONTACT;
 
   // Define the content for the Outcome components
-  const outcomeContent = getOutcomeContent(checker, slug);
+  const outcomeContent = {
+    description: 'some description',
+    eventName: 'some eventName',
+    footerContent: <p>some more....</p>,
+    mainContent: <p>some outcome ...</p>,
+    title: "some outcome ...",
+  };
+
 
   // Show content only when this section is active or completed
   const showContent = isActive || isCompleted;

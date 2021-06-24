@@ -3,16 +3,15 @@ import React, { FunctionComponent } from "react";
 import { useContext } from "react";
 
 import { CheckerContext } from "../CheckerContext";
-import Topic from "../models/topic";
 import { SessionContext } from "../SessionContext";
-import { Address } from "../types";
+import { GraphQLTopic, Address } from "../types";
 
 type SessionContextProviderProps = {
   addressMock?: Address;
   answers?: imtr.Answers;
   checker?: imtr.Checker;
   questionIndex?: number;
-  topicMock: Topic;
+  topicMock: GraphQLTopic;
 };
 
 const SessionContextProvider: FunctionComponent<SessionContextProviderProps> = ({

@@ -2,13 +2,7 @@ import { reverse } from "named-urls";
 import { lazy } from "react";
 import { RouteProps } from "react-router-dom";
 
-import { topics } from "./config";
-import apiTopics from "./topics.json";
-import { RedirectRule, RoutePropExtended, TopicType } from "./types";
-
-// Find all topics by their type
-const findAllTopicsByType = (type: TopicType) =>
-  topics.filter((t) => t.type === type);
+import { RedirectRule, RoutePropExtended } from "./types";
 
 export const geturl = (route: string, params?: { slug: string }) => {
   if (!route) {
@@ -16,18 +10,6 @@ export const geturl = (route: string, params?: { slug: string }) => {
   }
   return reverse(route, params);
 };
-
-const apiTopicSlugs = apiTopics.flatMap((apiTopic) =>
-  apiTopic.map(({ slug }) => slug)
-);
-
-export const imtrSlugs = apiTopicSlugs.join("|");
-
-// Get all OLO permit checks by fetching all `PERMIT_CHECK` and filter to see if they have an actual api topic file
-export const oloSlugs = findAllTopicsByType(TopicType.PERMIT_CHECK)
-  .filter((t) => !apiTopicSlugs.find((apiSlug) => apiSlug === t.slug))
-  .map((t) => t.slug)
-  .join("|");
 
 export const baseRouteConfig: RoutePropExtended[] = [
   {
@@ -49,9 +31,9 @@ export const baseRouteConfig: RoutePropExtended[] = [
     component: lazy(
       () => import(/* webpackPrefetch: true */ `./pages/IntroPage`)
     ),
-    name: "intro",
+    name: "start",
     exact: true,
-    path: `/:slug(${imtrSlugs})`,
+    path: `/:slug`,
   },
   {
     component: lazy(
@@ -59,15 +41,7 @@ export const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "checker",
-    path: `/:slug(${imtrSlugs})/vragen-en-uitkomst`,
-  },
-  {
-    component: lazy(
-      () => import(/* webpackPrefetch: true */ `./pages/olo/OloLocationInput`)
-    ),
-    exact: true,
-    name: "oloLocationInput",
-    path: `/:slug(${oloSlugs})`,
+    path: `/:slug/vragen-en-uitkomst`,
   },
   {
     component: lazy(
@@ -75,7 +49,7 @@ export const baseRouteConfig: RoutePropExtended[] = [
     ),
     exact: true,
     name: "oloLocationResult",
-    path: `/:slug(${oloSlugs})/adresgegevens`,
+    path: `/:slug/adresgegevens`,
   },
   {
     component: lazy(() => import("./pages/NotFoundPage")),

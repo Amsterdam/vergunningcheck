@@ -1,50 +1,34 @@
 import { Heading, Paragraph } from "@amsterdam/asc-ui";
 import { themeSpacing } from "@amsterdam/asc-ui";
-import { Button } from "@amsterdam/asc-ui";
+import { useQuery } from "@apollo/client";
+import { loader } from "graphql.macro";
 import React, { FunctionComponent } from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Alert } from "../atoms";
-import { topics } from "../config";
+import { Alert, Error } from "../atoms";
 import { geturl, routes } from "../routes";
-import apiTopics from "../topics.json";
-import { ApiTopic } from "../types";
+import { GraphQLTopic } from "../types";
+
+const query = loader("../queries/Topics.graphql");
+
 
 const StyledHeading = styled(Heading)`
   margin: ${themeSpacing(4, 0, 2)};
 `;
 
-const findClientTopic = (apiTopic: ApiTopic) =>
-  topics.find(({ slug }) => slug === apiTopic.slug);
-
-const returnedData = (apiTopic: ApiTopic) => {
-  const imtrTopic = topics.find(({ slug }) => slug === apiTopic.slug);
-
-  const title = imtrTopic
-    ? imtrTopic.name
-    : apiTopic
-    ? apiTopic.name || apiTopic.slug
-    : "[ERROR]";
-  return (
-    <tr key={title}>
-      <td>
-        <Link to={geturl(routes.intro, apiTopic)}>{title}</Link>
-      </td>
-      <td>{imtrTopic ? "configured" : "single"}</td>
-      <td>{apiTopic?.path?.split("/")[0]}</td>
-      <td>
-        <span onClick={() => alert(apiTopic.permits)}>
-          {apiTopic.permits?.length}
-        </span>
-      </td>
-    </tr>
-  );
-};
-
 const DebugCheckersTable: FunctionComponent = () => {
-  const [showChecks, setShowChecks] = useState(false);
+  const { loading, error, data } = useQuery<{
+    topics: GraphQLTopic[];
+  }>(query);
+
+  if (loading) {
+    return <p>Loading ...</p>;
+  } else if (error) {
+    return <Error stack={error.stack} content={error.message} />;
+  }
+
+  const { topics } = data as { topics: GraphQLTopic[] };
 
   return (
     <>
@@ -63,12 +47,6 @@ const DebugCheckersTable: FunctionComponent = () => {
               <strong>Name</strong>
             </td>
             <td>
-              <strong>Type</strong>
-            </td>
-            <td>
-              <strong>Folder</strong>
-            </td>
-            <td>
               <strong>#&nbsp;permits</strong>
             </td>
           </tr>
@@ -79,14 +57,6 @@ const DebugCheckersTable: FunctionComponent = () => {
               <StyledHeading forwardedAs="h2">Vergunningchecks</StyledHeading>
             </td>
           </tr>
-          {apiTopics.map((apiTopic) =>
-            apiTopic
-              .filter(
-                (apiTopic) => findClientTopic(apiTopic)?.isConfiguredPermitCheck
-              )
-              .map((apiTopic) => returnedData(apiTopic))
-          )}
-
           <tr>
             <td colSpan={4}>
               <StyledHeading forwardedAs="h2">
@@ -95,54 +65,30 @@ const DebugCheckersTable: FunctionComponent = () => {
             </td>
           </tr>
           {topics
-            // Filter OLO flows topics (topics without IMTR file and are configured to be isPermitCheck)
-            .filter(({ hasIMTR, isPermitCheck }) => !hasIMTR && isPermitCheck)
-            .map((topic) => {
-              const { slug, name } = topic;
-              return (
-                <tr key={slug}>
-                  <td>
-                    <Link to={geturl(slug)}>{name}</Link>
-                  </td>
-                  <td>OLO</td>
-                  <td>n.a.</td>
-                  <td>0</td>
-                </tr>
-              );
-            })}
-
+            .filter((topic) => topic.hasIMTR)
+            .map((topic) => (
+              <tr key={topic.name}>
+                <td>
+                  <Link to={geturl(routes.start, topic)}>{topic.name}</Link>
+                </td>
+                <td>{/*topic.permits?.length */}</td>
+              </tr>
+            ))}
           <tr>
             <td colSpan={4}>
               <StyledHeading forwardedAs="h2">Formulieren</StyledHeading>
             </td>
           </tr>
-          {apiTopics.map((apiTopic) =>
-            apiTopic
-              .filter((apiTopic) => findClientTopic(apiTopic)?.isPermitForm)
-              .map((apiTopic) => returnedData(apiTopic))
-          )}
-
-          <tr>
-            <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">
-                Overige vergunningchecks
-              </StyledHeading>
-              {!showChecks && (
-                <Button
-                  onClick={() => setShowChecks(!showChecks)}
-                  variant="tertiary"
-                >
-                  Toon alle losse checks uit de Builder
-                </Button>
-              )}
-            </td>
-          </tr>
-          {showChecks &&
-            apiTopics.map((apiTopic) =>
-              apiTopic
-                .filter((apiTopic) => !findClientTopic(apiTopic))
-                .map((apiTopic) => returnedData(apiTopic))
-            )}
+          {topics
+            .filter(({ hasIMTR }) => !hasIMTR) // only show olo
+            .map(({ slug, name }) => (
+              <tr key={slug}>
+                <td>
+                  <Link to={geturl(routes.start, { slug })}>{name}</Link>
+                </td>
+                <td>0</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>

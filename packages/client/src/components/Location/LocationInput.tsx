@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { Error, Form, PhoneNumber } from "../../atoms";
+import { Loading, Error, Form, PhoneNumber } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
@@ -30,10 +30,14 @@ const LocationInput = ({
   const { handleSubmit } = useForm();
   const { topicData, setTopicData } = useTopicData();
   const { t } = useTranslation();
+  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
+
+  if (!topic) {
+    return <Loading />;
+  }
 
   const { hasIMTR, slug, text } = topic;
   const { address } = topicData;
-  const [errorMessage, setError] = useState<ApolloError | undefined>(error);
 
   const onSubmit = () => {
     if (address?.postalCode) {
@@ -90,7 +94,7 @@ const LocationInput = ({
         address,
       });
     }
-    history.push(geturl(routes.intro, { slug }));
+    history.push(geturl(routes.start, { slug }));
   };
 
   return (

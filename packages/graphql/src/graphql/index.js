@@ -1,4 +1,5 @@
 const { graphqlHTTP } = require("express-graphql");
+const debug = require("debug")("graphql:index");
 const DataLoader = require("dataloader");
 const { makeExecutableSchema } = require("apollo-server");
 const depthLimit = require("graphql-depth-limit");
@@ -6,25 +7,28 @@ const { graphql: config } = require("../../config");
 
 const bagSearchLoader = require("../loaders/bagSearch");
 const bagLoader = require("../loaders/bag");
+const managerLoader = require("../loaders/manager");
 const monumentLoader = require("../loaders/monument");
 const geoSearchLoader = require("../loaders/geoSearch");
 const zoningPlanLoader = require("../loaders/zoningPlan");
 
-const node = require("./node");
 const address = require("./address");
 const area = require("./area");
-const monument = require("./monument");
 const cityScape = require("./cityScape");
+const monument = require("./monument");
+const node = require("./node");
 const restriction = require("./restriction");
+const topic = require("./topic");
 const zoningPlan = require("./zoningPlan");
 
 const modules = [
-  node,
   address,
   area,
-  monument,
   cityScape,
+  monument,
+  node,
   restriction,
+  topic,
   zoningPlan,
 ];
 
@@ -33,31 +37,35 @@ const schema = makeExecutableSchema({
   resolvers: modules.map((m) => m.resolvers),
 });
 
-// const server = graphqlHTTP((request, response, graphQLParams) => ({
-const server = graphqlHTTP({
+const options = {
   ...config,
   schema,
-  validationRules: [depthLimit(3)],
+  validationRules: [depthLimit(4)],
+  customFormatErrorFn: ({ stack, ...rest }) => ({
+    stack: stack ? stack.split("\n") : [],
+    ...rest,
+  }),
+};
+
+const server = graphqlHTTP(() => ({
+  ...options,
   context: {
-    // request,
     loaders: {
       bagSearch: new DataLoader(bagSearchLoader.load),
       bag: {
         accommodation: new DataLoader(bagLoader.accommodation.load),
       },
-      zoningPlan: new DataLoader(zoningPlanLoader.load),
       geoSearch: new DataLoader(geoSearchLoader.load),
+      manager: new DataLoader(managerLoader.load),
+      managerList: new DataLoader(managerLoader.list),
       monument: {
         situation: new DataLoader(monumentLoader.situation.load),
         monument: new DataLoader(monumentLoader.monument.load),
       },
+      zoningPlan: new DataLoader(zoningPlanLoader.load),
     },
   },
-  customFormatErrorFn: ({ stack, ...rest }) => ({
-    stack: stack ? stack.split("\n") : [],
-    ...rest,
-  }),
-});
+}));
 
 module.exports = {
   schema,

@@ -2,46 +2,18 @@ import { ClientSimpleType, removeQuotes } from "@vergunningcheck/imtr-client";
 import { MutableRefObject } from "react";
 import { matchPath } from "react-router";
 
-import { topics } from "../config";
 import nl from "../i18n/nl";
-import Topic from "../models/topic";
-import { imtrSlugs, oloSlugs } from "../routes";
-import apiTopics from "../topics.json";
-import { Answer, Restriction, TopicType } from "../types";
+import { Answer, Restriction } from "../types";
 
 const { no, yes } = nl.translation.common;
 
 // Get slug from url
 export const getSlugFromPathname = (pathname: string) => {
   const match = matchPath(pathname, {
-    path: `/:slug(${imtrSlugs}|${oloSlugs})`,
+    path: `/:slug`,
   }) as any;
 
   return match?.params?.slug;
-};
-
-// Find a topic by the slug
-export const findTopicBySlug = (slug: string): Topic | undefined => {
-  const topic = topics.find((t) => t.slug === slug);
-  if (topic) return topic;
-
-  const topicConfig = apiTopics.flat().find((topic) => topic.slug === slug);
-  if (!topicConfig) {
-    return undefined;
-  }
-
-  // Provide name (with slug as fallback)
-  // This test coverage can be achieved by mocking `topics.json` (see: /client/src/utils/index.test.tsx)
-  const { name = slug } = topicConfig;
-
-  return new Topic({
-    name,
-    slug,
-    text: {
-      heading: name,
-    },
-    type: TopicType.PERMIT_CHECK,
-  });
 };
 
 // Data utils

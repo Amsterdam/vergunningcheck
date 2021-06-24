@@ -98,20 +98,37 @@ export enum PreQuestionComponent {
  */
 export enum TopicType {
   PERMIT_CHECK, // A permit-check that is either an "OLO flow" or an "IMTR flow" check. IMTR checks are configured in `packages/imtr/src/config`.
-  PERMIT_FORM, // A permit-form - required when PERMIT_NEEDED - with the main focus on generating a PDF
 }
 
-export type TopicConfig = {
-  intro?: string;
+/**
+ * checkerJSON: the json to be passed to imtr-client
+ * hasIMTR: If topic has an imtr-file. If `false` it's the olo-flow
+ * name: The name of the topic
+ * outcomes: Configuration for the outcome, contains the permit-outcome key and the actual text for the outcome-page as Markdown
+ * slug: unique slug for this checker
+ * text: {
+ *   heading: the title shown in the form
+ *   intro: the intro-text as Markdown
+ *   locationIntro: piece of text shown on intropage
+ * }
+ * userMightNotNeedPermit: Enables an add-on text in the QuestionAlert: "if you make another choice you might not need a permit"
+ */
+export type GraphQLTopic = {
+  checkerJSON: string;
+  hasIMTR: boolean;
   name: string;
+  outcomes: {
+    results: string[];
+    text: string;
+  }[];
   preQuestions?: PreQuestionComponent[];
   slug: string;
   text: {
     heading: string;
+    intro: string;
     locationIntro?: string;
   };
-  type: TopicType;
-  userMightNotNeedPermit?: boolean;
+  userMightNotNeedPermit: boolean;
 };
 
 export type PreQuestionFunctions = {
@@ -119,14 +136,6 @@ export type PreQuestionFunctions = {
   goToNextQuestion: () => void;
   isCheckerConclusive: () => boolean;
   saveAnswer: (answer: Answer, topicDataKey: string) => void;
-};
-
-// This is an imported topic from the Flo Legal api
-export type ApiTopic = {
-  name?: string;
-  path?: string;
-  permits: string[];
-  slug: string;
 };
 
 /**
