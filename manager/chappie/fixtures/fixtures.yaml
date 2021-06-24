@@ -65,6 +65,12 @@
   fields:
     name: Sloopvergunning - toestemming monument
 
+- model: chappie.permit
+  pk: SCKKBFsLHGG5Le5mJ
+  fields:
+    name: Kappen of snoeien
+
+
 
 ################### IMTR TOPICS ###################
 
@@ -144,15 +150,17 @@
     - 8hqLFZcdXKaesAJgS
     user_might_not_need_permit: false
 
-################### OLO TOPICS ###################
-
 - model: chappie.Topic
-  pk: 00000000-0000-0000-0000-100000000001
+  pk: 00000000-0000-0000-0000-100000000008
   fields:
-    flow: OLO
+    flow: IMTR
     name: Kappen of snoeien
     slug: kappen-of-snoeien
     heading: Vergunningcheck kappen of snoeien
+    permits:
+    - SCKKBFsLHGG5Le5mJ
+
+################### OLO TOPICS ###################
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-100000000002

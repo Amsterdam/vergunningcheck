@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
 import { Link, Paragraph } from "@amsterdam/asc-ui";
+import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Button, ComponentWrapper, HideForPrint, PrintOnly } from "../../atoms";

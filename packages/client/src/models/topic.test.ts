@@ -4,7 +4,6 @@ import Topic from "./topic";
 const testTopic = findTopicBySlug("dakkapel-plaatsen") as Topic;
 
 describe("Topic", () => {
-
   test("returns correct data for an existing topic", () => {
     const {
       hasIMTR,

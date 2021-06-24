@@ -7,7 +7,7 @@ import "./i18n";
 import { GlobalStyle, ThemeProvider, themeColor } from "@amsterdam/asc-ui";
 import { ApolloProvider } from "@apollo/client";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
-import { init } from "@sentry/browser";
+import { ErrorBoundary, init } from "@sentry/react";
 import dotenv from "dotenv-flow";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -36,24 +36,29 @@ const AppGlobalStyle = createGlobalStyle`
   }
 `;
 
+// Clears the `window.onerror` from `index.html` so that Sentry can take over now that it's ready.
+window.onerror = () => {};
+
 init(sentryConfig);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <CheckerProvider>
-      <SessionProvider>
-        <ApolloProvider client={apolloClient}>
-          <ThemeProvider>
-            <GlobalStyle />
-            <AppGlobalStyle />
-            <MatomoProvider value={createInstance(matomo)}>
-              <Router />
-            </MatomoProvider>
-          </ThemeProvider>
-        </ApolloProvider>
-      </SessionProvider>
-    </CheckerProvider>
-  </BrowserRouter>,
+  <ErrorBoundary fallback={"Er is een fout opgetreden"} showDialog>
+    <BrowserRouter>
+      <CheckerProvider>
+        <SessionProvider>
+          <ApolloProvider client={apolloClient}>
+            <ThemeProvider>
+              <GlobalStyle />
+              <AppGlobalStyle />
+              <MatomoProvider value={createInstance(matomo)}>
+                <Router />
+              </MatomoProvider>
+            </ThemeProvider>
+          </ApolloProvider>
+        </SessionProvider>
+      </CheckerProvider>
+    </BrowserRouter>
+  </ErrorBoundary>,
 
   document.getElementById("root")
 );

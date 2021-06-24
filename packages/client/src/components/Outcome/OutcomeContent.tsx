@@ -79,7 +79,7 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
         )}
       </HideForPrint>
 
-      <ComponentWrapper marginBottom={footerContent ? 52 : 0}>
+      <ComponentWrapper marginBottom={footerContent ? 24 : 0}>
         {footerContent}
       </ComponentWrapper>
 

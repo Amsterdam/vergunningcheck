@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.1] (2021-05-20)
+
+#### New Features
+* `client`
+  * [#872](https://github.com/Amsterdam/vergunningcheck/pull/872) Bomenkap checker added ([@svenjens](https://github.com/svenjens))
+  * [#849](https://github.com/Amsterdam/vergunningcheck/pull/849) Extend keyboard functionality within the app ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+* `client`, `imtr`
+  * [#903](https://github.com/Amsterdam/vergunningcheck/pull/903) Acceptatie fix for bomenkap checker  ([@svenjens](https://github.com/svenjens))
+* `client`
+  * [#863](https://github.com/Amsterdam/vergunningcheck/pull/863) Fixed modal height ([@svenjens](https://github.com/svenjens))
+  * [#840](https://github.com/Amsterdam/vergunningcheck/pull/840) Changed link hover color from red to white in error box. ([@svenjens](https://github.com/svenjens))
+
+#### Chores
+* `client`, `e2e`
+  * [#847](https://github.com/Amsterdam/vergunningcheck/pull/847) Refactor get outcome content to split need report and need permit ([@svenjens](https://github.com/svenjens))
+* `client`, `e2e`, `graphql`
+  * [#885](https://github.com/Amsterdam/vergunningcheck/pull/885) Remove support for Netlify ([@afjlambert](https://github.com/afjlambert))
+* `client`
+  * [#858](https://github.com/Amsterdam/vergunningcheck/pull/858) Added documentation and translation ([@robinpiets](https://github.com/robinpiets))
+  * [#857](https://github.com/Amsterdam/vergunningcheck/pull/857) Moved PreQuestionComponent to types ([@robinpiets](https://github.com/robinpiets))
+  * [#843](https://github.com/Amsterdam/vergunningcheck/pull/843) Upgraded amsterdam dependencies ([@robinpiets](https://github.com/robinpiets))
+* `client`, `imtr-client`
+  * [#859](https://github.com/Amsterdam/vergunningcheck/pull/859) Refactored Questions logic and redering ([@robinpiets](https://github.com/robinpiets))
+* `mocking`
+  * [#841](https://github.com/Amsterdam/vergunningcheck/pull/841) chore: extended list of zipcodes ([@svenjens](https://github.com/svenjens))
+  
+## [2.6.0] (2021-03-24)
+
+#### New Features
+* `client`
+  * [#830](https://github.com/Amsterdam/vergunningcheck/pull/830) Added feature to render PreQuestions to checkers ([@robinpiets](https://github.com/robinpiets))
+  * [#811](https://github.com/Amsterdam/vergunningcheck/pull/811) Updated flow when starting a new checker ([@svenjens](https://github.com/svenjens))
+  * [#829](https://github.com/Amsterdam/vergunningcheck/pull/829) Updated intro texts ([@svenjens](https://github.com/svenjens))
+  * [#822](https://github.com/Amsterdam/vergunningcheck/pull/822) Added button to Intro page and updated tests ([@robinpiets](https://github.com/robinpiets))
+
+#### Bug fixes
+* `client`
+  * [#848](https://github.com/Amsterdam/vergunningcheck/pull/848) Fixed bug with 'in procedure monument' addresses ([@robinpiets](https://github.com/robinpiets))
+
+#### Chores
+  * [#845](https://github.com/Amsterdam/vergunningcheck/pull/845) Organised atoms and added documentation ([@robinpiets](https://github.com/robinpiets))
+  * [#846](https://github.com/Amsterdam/vergunningcheck/pull/846) Cleaned up files and updated tests ([@robinpiets](https://github.com/robinpiets))
+  * [#842](https://github.com/Amsterdam/vergunningcheck/pull/842) Removed inline styles ([@robinpiets](https://github.com/robinpiets))
+  * [#844](https://github.com/Amsterdam/vergunningcheck/pull/844) Fixed todo's and cleaned up code ([@robinpiets](https://github.com/robinpiets))
+  * [#839](https://github.com/Amsterdam/vergunningcheck/pull/839) Renamed timesCheckerLoaded to timesLoaded ([@robinpiets](https://github.com/robinpiets))
+  * [#823](https://github.com/Amsterdam/vergunningcheck/pull/823) Husky configuration update for husky 5 ([@svenjens](https://github.com/svenjens))
+* `client`, `graphql`, `imtr-client`
+  * [#821](https://github.com/Amsterdam/vergunningcheck/pull/821) Added Topic class and refactored client ([@robinpiets](https://github.com/robinpiets))
+  
 ## [2.5.1] (2021-02-17)
 
 #### New Features

@@ -1,4 +1,4 @@
-import { captureException, setTag } from "@sentry/browser";
+import { captureException, setTag } from "@sentry/react";
 import * as imtr from "@vergunningcheck/imtr-client";
 import React, {
   FunctionComponent,
@@ -321,7 +321,9 @@ sectionFunctions,
           const outcomeType = checker.getOutcomesPerQuestion()[i];
 
           // Check if current question is causing a permit requirement
-          const showQuestionAlert = !!outcomeType;
+          const showQuestionAlert =
+            !!outcomeType &&
+            q.text !== "Is er spoed of direct gevaar?";
 
           return (
             <StepByStepItem
