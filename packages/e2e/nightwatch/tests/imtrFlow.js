@@ -66,7 +66,7 @@ module.exports = {
     b.waitForElementVisible(questionForm);
     assert.containsText(main, "Gaat u een dakkapel plaatsen of vernieuwen?");
     assert.containsText(main, "Volgende vraag");
-    b.click(q2a1);
+    // b.click(q2a1);
     b.waitForElementVisible(questionAlert);
     assert.containsText(
       main,
