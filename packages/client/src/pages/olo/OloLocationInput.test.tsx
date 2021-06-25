@@ -4,8 +4,8 @@ import React from "react";
 
 import addressGraphQLMock from "../../__mocks__/address";
 import nl from "../../i18n/nl";
-import { findTopicBySlug } from "../../utils";
 import { LOCATION_FOUND } from "../../utils/test-ids";
+import { testTopic } from "../../utils/test-utils";
 import {
   act,
   fireEvent,
@@ -18,8 +18,7 @@ import OloLocationInput from "./OloLocationInput";
 
 const { common } = nl.translation;
 
-const mockTopic = findTopicBySlug("aanbouw-of-uitbouw-maken");
-jest.mock("../../hooks/useTopic", () => () => mockTopic);
+jest.mock("../../hooks/useTopic", () => () => testTopic);
 
 const mockAddress = {
   ...addressGraphQLMock[0].request.variables,

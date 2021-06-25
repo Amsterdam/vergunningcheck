@@ -6,10 +6,8 @@ import mockedChecker1 from "../__mocks__/checker-dakkapel-plaatsen-mock.json";
 import mockedChecker2 from "../__mocks__/checker-without-dataneeds-mock.json";
 import { useChecker, useTopicData } from "../hooks";
 import nl from "../i18n/nl";
-import Topic from "../models/topic";
 import { defaultTopicSession } from "../SessionContext";
 import { TopicData } from "../types";
-import { findTopicBySlug } from "../utils";
 import {
   EDIT_BUTTON,
   LOADING_TEXT,
@@ -23,13 +21,12 @@ import {
   QUESTION_SECTION,
   STEPBYSTEPNAVIGATION,
 } from "../utils/test-ids";
+import { testTopic } from "../utils/test-utils";
 import { act, fireEvent, render, screen, waitFor } from "../utils/test-utils";
 import CheckerPage from "./CheckerPage";
 
-const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
-
 const preQuestionText =
-  nl.translation.preQuestions[topic.slug].preQuestionMultipleCheckers;
+  nl.translation.preQuestions[testTopic.slug].preQuestionMultipleCheckers;
 const { id: idQ1, text: textQ1 } = mockedChecker1.permits[0].questions[1];
 const { text: textQ2 } = mockedChecker1.permits[1].questions[0];
 
@@ -95,7 +92,7 @@ describe("CheckerPage", () => {
 
       render(<CheckerPage />);
 
-      expect(topic.preQuestionsCount).toEqual(1);
+      expect(testTopic.preQuestionsCount).toEqual(1);
 
       expect(
         screen.getByText(
@@ -172,7 +169,7 @@ describe("CheckerPage", () => {
 
       // Validate that the questionIndex will be updated on the CheckerContext
       expect(setTopicDataMock).toBeCalledWith({
-        questionIndex: topic.preQuestionsCount + 1,
+        questionIndex: testTopic.preQuestionsCount + 1,
       });
     });
 
@@ -197,7 +194,7 @@ describe("CheckerPage", () => {
         topicData: {
           ...defaultTopicSession,
           address: address[0].result.data.findAddress.exactMatch,
-          questionIndex: topic?.preQuestionsCount,
+          questionIndex: testTopic?.preQuestionsCount,
           questionMultipleCheckers: false,
           sectionData: [
             { index: 0, isActive: false, isCompleted: true },
@@ -214,7 +211,7 @@ describe("CheckerPage", () => {
       expect(screen.queryByTestId(LOCATION_INPUT)).not.toBeInTheDocument();
       expect(screen.queryByTestId(LOCATION_SUMMARY)).toBeInTheDocument();
       expect(screen.queryAllByTestId(QUESTION).length).toBe(
-        2 + topic.preQuestionsCount
+        2 + testTopic.preQuestionsCount
       );
       expect(screen.queryByTestId(`${idQ1}-a1`)).not.toBeInTheDocument();
 

@@ -1,16 +1,12 @@
-import { findTopicBySlug } from "../utils";
-import Topic from "./topic";
-
-const testTopic = findTopicBySlug("dakkapel-plaatsen") as Topic;
+import { testTopic } from "../utils/test-utils";
 
 describe("Topic", () => {
   test("returns correct data for an existing topic", () => {
     const {
       hasIMTR,
-      intro,
       name,
       slug,
-      text: { heading },
+      text: { heading, intro },
     } = testTopic;
 
     expect(heading).toBeDefined();

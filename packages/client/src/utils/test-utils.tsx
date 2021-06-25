@@ -1,6 +1,5 @@
 import "../i18n";
 
-import { TopicType, PreQuestionComponent } from "../types";
 import { ThemeProvider } from "@amsterdam/asc-ui";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { MockLink, MockedResponse } from "@apollo/client/testing";
@@ -13,7 +12,9 @@ import { BrowserRouter } from "react-router-dom";
 import matchMedia from "../__mocks__/matchMedia";
 import { CheckerProvider } from "../CheckerContext";
 import { matomo } from "../config/matomo";
+import Topic from "../models/topic";
 import { SessionProvider } from "../SessionContext";
+import { PreQuestionComponent } from "../types";
 
 export * from "@testing-library/react";
 
@@ -54,18 +55,25 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-export const testTopic = {
-  intro: "DakkapelIntro",
+export const testTopic = new Topic({
+  hasIMTR: true,
   name: "Dakkapel plaatsen",
   preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
   slug: "dakkapel-plaatsen",
   text: {
+    intro: "DakkapelIntro",
     heading: "Vergunningcheck dakkapel plaatsen",
     locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
   },
-  type: TopicType.PERMIT_CHECK,
+  checkerJSON: "{}",
   userMightNotNeedPermit: true,
-}
+  outcomes: [
+    {
+      results: [],
+      text: "",
+    },
+  ],
+});
 
 type TestProviderProps = {
   mocks: readonly MockedResponse<Record<string, any>>[];

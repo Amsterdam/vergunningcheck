@@ -6,7 +6,6 @@ exports[`manager loader manager result 1`] = `
 Array [
   Object {
     "hasIMTR": true,
-    "intro": "",
     "name": "Dakkapel plaatsen",
     "outcomes": Array [
       Object {
@@ -45,7 +44,10 @@ Array [
     "slug": "dakkapel-plaatsen",
     "text": Object {
       "heading": "",
+      "intro": "",
+      "locationIntro": undefined,
     },
+    "userMightNotNeedPermit": undefined,
   },
 ]
 `;
@@ -54,7 +56,6 @@ exports[`manager loader manager result 2`] = `
 Array [
   Object {
     "hasIMTR": true,
-    "intro": "Voer het adres in waar u het bouwwerk wilt gaan slopen",
     "name": "Bouwwerk slopen",
     "outcomes": Array [
       Object {
@@ -88,7 +89,10 @@ Array [
     "slug": "bouwwerk-slopen",
     "text": Object {
       "heading": "Vergunningcheck bouwwerk slopen",
+      "intro": "Voer het adres in waar u het bouwwerk wilt gaan slopen",
+      "locationIntro": undefined,
     },
+    "userMightNotNeedPermit": undefined,
   },
 ]
 `;
@@ -96,7 +100,6 @@ Array [
 exports[`manager loader reducer 1`] = `
 Object {
   "hasIMTR": true,
-  "intro": "",
   "name": "Dakkapel plaatsen",
   "outcomes": Array [
     Object {
@@ -135,6 +138,9 @@ Object {
   "slug": "dakkapel-plaatsen",
   "text": Object {
     "heading": "",
+    "intro": "",
+    "locationIntro": undefined,
   },
+  "userMightNotNeedPermit": undefined,
 }
 `;

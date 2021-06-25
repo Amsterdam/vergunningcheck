@@ -3,7 +3,7 @@ const debug = require("debug")("graphql:topics");
 const _ = require("lodash");
 
 const transform = require("./transform");
-const { gql, arrayEquals } = require("../../util");
+const { gql } = require("../../util");
 
 const typeDefs = gql`
   type TopicText {
@@ -49,26 +49,40 @@ const resolvers = {
     checkerJSON: async (topic) => {
       const jsons = await Promise.all(
         topic.permits.map(async (permit) => {
-          const sttr = JSON.parse(permit.imtr_config.blob).sttr;
-          const res = await parser.parse(sttr, {
-            ignoreAttributes: false,
-            arrayMode: true,
-            attrNodeName: "attributes",
-            ignoreNameSpace: false,
-            attributeNamePrefix: "",
-          });
-          return res;
+          const { blob } = permit.imtr_config;
+          try {
+            const { sttr } = JSON.parse(blob);
+            const res = await parser.parse(sttr, {
+              ignoreAttributes: false,
+              arrayMode: true,
+              attrNodeName: "attributes",
+              ignoreNameSpace: false,
+              attributeNamePrefix: "",
+            });
+            return res;
+          } catch (e) {
+            console.error(e);
+            console.error(permit.name);
+          }
         })
       );
 
       const permits = await Promise.all(transform(jsons));
-      const topicOutcomes = topic.outcomes.map((outcome) => outcome.results).sort();
+      const topicOutcomes = topic.outcomes
+        .map((outcome) => outcome.results)
+        .sort();
 
       // Find all outcomes in Permit's
-      const outcomes = _.uniqWith(permits
-        .map((permit) =>
-        _.uniq(permit.decisions.dummy.decisionTable.rules.map((rule) => rule.output))
-      ), _.isEqual).sort();
+      const outcomes = _.uniqWith(
+        permits.map((permit) =>
+          _.uniq(
+            permit.decisions.dummy.decisionTable.rules.map(
+              (rule) => rule.output
+            )
+          )
+        ),
+        _.isEqual
+      ).sort();
 
       // Make sure all permit-outcomes are available in the Manager's Outcomes
       if (!_.isEqual(outcomes, topicOutcomes)) {

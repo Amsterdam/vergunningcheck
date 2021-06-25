@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 
 import addressMock from "../__mocks__/addressMock";
-import mockTopics from "../__mocks__/topicsMock.json";
 import nl from "../i18n/nl";
 import {
   getAnswerLabel,
@@ -24,8 +23,6 @@ const Element = () => {
 
   return <div data-testid="element" ref={ref} />;
 };
-
-jest.mock("../topics.json", () => mockTopics);
 
 describe("util", () => {
   test("scrollToRef", () => {

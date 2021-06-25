@@ -137,9 +137,7 @@ module.exports = (permits) => {
       debug("res", res);
       return res;
     } catch (e) {
-      console.error(
-        `failed to convert json for ${json["dmn:definitions"][0].attributes.name}`
-      );
+      console.error(`failed to convert json`, json);
       throw e;
     }
   });
