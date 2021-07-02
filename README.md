@@ -19,7 +19,7 @@ Please set the username and access key by setting the environment variables:
   - BROWSERSTACK_USERNAME                                                          
   - BROWSERSTACK_ACCESS_KEY                                                           
  
- .env files are supported                                                    
+ .env files are supported. Get your credentials from https://www.browserstack.com/accounts/settings 
 
 
 ## Contributing
