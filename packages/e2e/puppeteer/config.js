@@ -1,5 +1,3 @@
-import { Flow } from "./types";
-
 export const selectors = require("../selectors");
 export const host = require("../host");
 
@@ -13,7 +11,7 @@ export const puppeteerOptions = DEBUG
     }
   : {};
 
-export const flows: Flow[] = [
+export const flows = [
   {
     type: "olo",
     options: {

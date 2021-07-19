@@ -1,4 +1,5 @@
-const { address, domain, selectors } = require("../config");
+const { NightwatchBrowser } = require("nightwatch");
+const { address, selectors } = require("../config");
 
 const {
   locationHouseNumberFull,
@@ -12,27 +13,29 @@ const {
   navButtonNext,
 } = selectors;
 
+
 module.exports = {
   [__filename]: async (b) => {
+
     const { assert } = b;
 
-    b.url(`${domain}/aanbouw-of-uitbouw-maken`);
+    b.url(`${process.env.DOMAIN}/aanbouw-of-uitbouw-maken`);
     b.waitForElementVisible(locationPostalCode);
 
     assert.containsText(main, "Invullen adres");
-    // TODO: test invalid fields feedback
+    // @TODO: test invalid fields feedback
     assert.visible(locationPostalCode);
     b.setValue(locationPostalCode, address.zipCode);
     assert.visible(locationHouseNumberFull);
     b.setValue(locationHouseNumberFull, address.houseNumberFull);
     b.waitForElementVisible(locationFound);
     assert.containsText(main, address.streetName);
-
     // forward, back, forward
     b.click(navButtonNext);
     b.waitForElementVisible(navButtonPrev);
     b.click(navButtonPrev);
     b.waitForElementVisible(navButtonNext);
+
     b.click(navButtonNext);
 
     assert.visible(locationRestrictionMonument);

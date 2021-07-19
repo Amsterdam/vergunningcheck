@@ -22,6 +22,7 @@ describe("PreQuestion", () => {
       <PreQuestion
         answer={true}
         questionId="question-1"
+        testQuestionIndex={1}
         {...preQuestionFunctions}
       />
     );
@@ -50,6 +51,7 @@ describe("PreQuestion", () => {
       <PreQuestion
         description="mock description"
         questionId="question-2"
+        testQuestionIndex={2}
         questionAlertText="mock questionAlertText"
         {...preQuestionFunctions}
         isCheckerConclusive={() => true}
@@ -66,7 +68,7 @@ describe("PreQuestion", () => {
     // Handles onClick
     expect(screen.getByLabelText(nl.translation.common.yes)).not.toBeChecked();
     act(() => {
-      fireEvent.click(screen.getByTestId(`question-2-a1`));
+      fireEvent.click(screen.getByTestId(`q2-a1`));
     });
     expect(screen.getByLabelText(nl.translation.common.yes)).toBeChecked();
     expect(saveAnswer).toBeCalled();

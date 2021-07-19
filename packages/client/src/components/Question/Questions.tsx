@@ -284,6 +284,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
           isSectionActive,
           questionIndex,
           setSkipAnsweredQuestions,
+          testQuestionIndex: questionIndex,
         }}
       />
 
@@ -366,6 +367,7 @@ const Questions: FunctionComponent<QuestionsProps> = ({
                     isPermitForm && (!isFinalQuestion || !isSectionActive)
                   }
                   question={q}
+                  testQuestionIndex={mapIndex}
                   onGoToPrev={handlePrevQuestion}
                   onGoToNext={handleNextQuestion}
                   showNext

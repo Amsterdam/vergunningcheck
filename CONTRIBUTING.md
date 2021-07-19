@@ -168,7 +168,10 @@ When we want to test our app with users we most follow this procedure:
 Basically what we want to do is merge `develop` with `release` including the latest IMTR-changes. We use lerna-changelog to generate our changes we can use in [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
 Make sure you are logged in by npm command line. If not, log in with `npm adduser`. Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
-- Run `npm run prepare-release` to back-merge and generate new IMTR-files
+- Run the project locally on http://localhost:3000/. 
+- In new tab run `npm run e2e-browserstack` to test if the application is running in all browsers.
+- Close the running application.
+- In new tab run `npm run prepare-release` to back-merge and generate new IMTR-files
 - Commit changes if needed
 - Push these changes (to origin/develop)
 - Run `npm run release` to merge `develop` with `release` and push it.
@@ -176,6 +179,8 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 - Verify the `release` branch is on acceptance and it's the latest build
 - Consider running `npm run back-merge` if you made any changes
 - Communicate to stakeholders there is a new release testable on acceptance
+- In new tab run `npm run e2e-browserstack-acceptence` to test if the application is running on acceptence in all browsers.
+- Close the running application.
 
 ### Create the release PR
 
