@@ -31,7 +31,9 @@ module.exports = {
       main,
       "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt."
     );
-    b.click(navButtonNext);
+
+    assert.visible(navButtonNext);
+    b.waitForElementPresent(navButtonNext, 1000).click(navButtonNext);
 
     // Location Input has loaded
     assert.containsText(

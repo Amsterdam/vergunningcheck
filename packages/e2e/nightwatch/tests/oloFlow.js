@@ -47,11 +47,5 @@ module.exports = {
     assert.urlEquals(
       `https://www.omgevingsloket.nl/Particulier/particulier/home/checken/LocatieWerkzaamheden?param=postcodecheck&facet_locatie_postcode=${address.zipCode}&facet_locatie_huisnummer=${address.houseNumber}&facet_locatie_huisnummertoevoeging=${address.houseNumberAddition}`
     );
-
-    b.waitForElementPresent(locationForm);
-    assert.containsText(
-      locationForm,
-      `${address.streetName} ${address.houseNumber}-${address.houseNumberAddition}`
-    );
-  },
+    },
 };

@@ -30,8 +30,8 @@ const nightwatch_config = {
     safari: {
       desiredCapabilities: {
         browser: "safari",
-        osVersion: "Catalina",
-        browserVersion: "13.0"
+        osVersion: "Big Sur",
+        browserVersion: "14.1"
       }
     },
     ie: {
