@@ -77,7 +77,6 @@ describe("Checker recursive", () => {
       ]
     );
     const checker = new Checker([new Permit("some permit", 22, [d1, d2, d3])]);
-
     let question = checker.next() as Question;
     expect(question).toBe(questions[0]);
     question.setAnswer(true);

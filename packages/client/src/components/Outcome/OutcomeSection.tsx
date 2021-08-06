@@ -1,12 +1,12 @@
 import { themeSpacing } from "@amsterdam/asc-ui";
 import { ClientOutcomes } from "@vergunningcheck/imtr-client";
+import _ from "lodash";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-
 import { Disclaimer } from "../../atoms";
-import { useChecker } from "../../hooks";
+import { useChecker, useTopic } from "../../hooks";
 import { SectionComponent } from "../../types";
 import { OUTCOME_SECTION, OUTCOME_SECTION_CONTENT } from "../../utils/test-ids";
 import { StepByStepItem } from "../StepByStepNavigation";
@@ -20,6 +20,7 @@ const OutcomeWrapper = styled.div`
 
 const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { checker } = useChecker();
+  const topic = useTopic();
 
   const { t } = useTranslation();
 
@@ -33,18 +34,28 @@ const OutcomeSection: FunctionComponent<SectionComponent> = (props) => {
   const { isActive, isCompleted } = currentSection;
 
   const outcomeType = checker.getClientOutcomeType();
-  const showDiscaimer =
-    outcomeType !== ClientOutcomes.NEED_CONTACT;
+  const outcomeData = checker.getOutcomesToDisplay();
+  console.log("outcomeData", outcomeData);
+  console.log("topic", topic);
+  console.log("checker", checker);
+  console.log("outcomeType", outcomeType);
+
+  const outcomes = _.uniqWith(
+    outcomeData.map((outcome) => outcome.outcome),
+    _.isEqual
+  ).sort();
+
+  console.log("outcomes", outcomes);
+  const showDiscaimer = outcomeType !== ClientOutcomes.NEED_CONTACT;
 
   // Define the content for the Outcome components
   const outcomeContent = {
-    description: 'some description',
-    eventName: 'some eventName',
+    description: "some description",
+    eventName: "some eventName",
     footerContent: <p>some more....</p>,
     mainContent: <p>some outcome ...</p>,
     title: "some outcome ...",
   };
-
 
   // Show content only when this section is active or completed
   const showContent = isActive || isCompleted;

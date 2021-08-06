@@ -69,7 +69,7 @@ const resolvers = {
 
       const permits = await Promise.all(transform(jsons));
       const topicOutcomes = topic.outcomes
-        .map((outcome) => outcome.results)
+        .map((outcome) => outcome.results.map(result => result.replace(/\s/g, '')))
         .sort();
 
       // Find all outcomes in Permit's
@@ -83,6 +83,8 @@ const resolvers = {
         ),
         _.isEqual
       ).sort();
+
+      console.log(permits);
 
       // Make sure all permit-outcomes are available in the Manager's Outcomes
       if (!_.isEqual(outcomes, topicOutcomes)) {

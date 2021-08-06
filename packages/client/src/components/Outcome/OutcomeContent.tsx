@@ -60,17 +60,15 @@ const OutcomeContent: FunctionComponent<OutcomeContentProps> = ({
     <OutcomeContentWrapper {...{ showDiscaimer }}>
       <ComponentWrapper marginBottom={16} />
 
-      <ComponentWrapper marginBottom={24}>{outcomeContent}</ComponentWrapper>
+      <ComponentWrapper marginBottom={24}>
+        {outcomeContent.mainContent}
+      </ComponentWrapper>
 
       <HideForPrint>
         {!isIE && !isMobile && (
           <Button
             data-testid={PRINT_BUTTON}
-            marginBottom={
-              outcomeType === ClientOutcomes.PERMIT_FREE
-                ? 8
-                : 10
-            }
+            marginBottom={outcomeType === ClientOutcomes.PERMIT_FREE ? 8 : 10}
             onClick={handlePrintButton}
             variant={"textButton"}
           >

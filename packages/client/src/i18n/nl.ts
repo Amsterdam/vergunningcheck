@@ -63,28 +63,28 @@ export default {
         "Helaas. Wij kunnen geen adres vinden bij deze combinatie van postcode en huisnummer.",
     },
     introPage: {
-      common: {
-        "amount of houses exception":
-          "Het aantal woningen verandert door uw verbouwing.",
-        "call in this situations":
-          "Bel in een van deze situaties de gemeente op telefoonnummer ",
-        "call with questions": "Heeft u vragen? Bel dan",
-        "change answer":
-          "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
-        "check for permit intro":
-          "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
-        "exceptions title": "Bijzondere situaties:",
-        "monument bullet": "het wijzigen van een monument.",
-        "permit for": "U kunt een vergunning nodig hebben voor:",
-        "situation dependent on both situation and questions":
-          "Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
-        "situation dependent on questions only":
-          "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
-        "situation dependent on situation only":
-          "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
-        "sometimes it's written in a destination plan that a permit is required":
-          "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
-      },
+      // common: {
+      //   "amount of houses exception":
+      //     "Het aantal woningen verandert door uw verbouwing.",
+      //   "call in this situations":
+      //     "Bel in een van deze situaties de gemeente op telefoonnummer ",
+      //   "call with questions": "Heeft u vragen? Bel dan",
+      //   "change answer":
+      //     "U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.",
+      //   "check for permit intro":
+      //     "Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt.",
+      //   "exceptions title": "Bijzondere situaties:",
+      //   "monument bullet": "het wijzigen van een monument.",
+      //   "permit for": "U kunt een vergunning nodig hebben voor:",
+      //   "situation dependent on both situation and questions":
+      //     "Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
+      //   "situation dependent on questions only":
+      //     "Uw antwoorden bepalen of u een omgevingsvergunning nodig hebt.",
+      //   "situation dependent on situation only":
+      //     "Uw situatie bepaalt of u een omgevingsvergunning nodig hebt.",
+      //   "sometimes it's written in a destination plan that a permit is required":
+      //     "Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.",
+      // },
       // dakkapel: {
       //   "build without permit exception":
       //     "Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd",
