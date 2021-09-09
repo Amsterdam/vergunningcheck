@@ -201,10 +201,17 @@ export default async (argv: Props) => {
             if (!apiPermit) {
               throw new Error(`apiPermit not found for id ${permitId}`);
             }
-
-            const { sttr: xml, version } = (await readJson(
-              join(publicDir, outputDir, `${permitId}.json`)
-            )) as PermitResponse;
+            let xml, version;
+            try {
+              let x = (await readJson(
+                join(publicDir, outputDir, `${permitId}.json`)
+              )) as PermitResponse;
+              xml = x.sttr;
+              version = x.version;
+            } catch (e) {
+              console.error(e);
+              return;
+            }
 
             if (typeof version !== "number") {
               throw new Error("version should be a number");

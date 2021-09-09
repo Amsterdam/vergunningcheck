@@ -70,7 +70,7 @@ export default async (argv: Props) => {
 
             if (!result.ok) {
               const text = await result.text();
-              throw new Error(
+              console.error(
                 `request of ${permitId} failed, status: ${result.status} ${result.statusText}. ${text}`
               );
             }
