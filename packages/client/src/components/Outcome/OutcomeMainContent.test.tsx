@@ -6,7 +6,7 @@ import { render, screen } from "../../utils/test-utils";
 import OutcomeMainContent from "./OutcomeMainContent";
 
 jest.mock("react-router-dom", () => ({
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
+  useParams: () => ({ slug: "dakraam-plaatsen" }),
 }));
 
 describe("OutcomeMainContent", () => {

@@ -5,14 +5,14 @@ import useTopic from "./useTopic";
 
 jest.mock("react-router-dom", () => ({
   useLocation: () => ({
-    pathname: `/${"dakkapel-plaatsen"}/go`,
-    params: { slug: "dakkapel-plaatsen" },
+    pathname: `/${"dakraam-plaatsen"}/go`,
+    params: { slug: "dakraam-plaatsen" },
   }),
 }));
 
 describe("useTopic", () => {
   it("returns the topic", () => {
     const { result } = renderHook(() => useTopic());
-    expect(result.current).toEqual(findTopicBySlug("dakkapel-plaatsen"));
+    expect(result.current).toEqual(findTopicBySlug("dakraam-plaatsen"));
   });
 });

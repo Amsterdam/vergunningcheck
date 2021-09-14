@@ -2,6 +2,7 @@ import apiTopics from "../topics.json";
 import { PreQuestionComponent, TopicConfig, TopicType } from "../types";
 
 class Topic {
+  readonly disableIMTR?: boolean;
   readonly intro?: string;
   readonly name: string;
   readonly preQuestions?: PreQuestionComponent[];
@@ -11,6 +12,7 @@ class Topic {
   readonly userMightNotNeedPermit?: boolean;
 
   constructor(config: TopicConfig) {
+    this.disableIMTR = config.disableIMTR;
     this.intro = config.intro;
     this.name = config.name;
     this.preQuestions = config.preQuestions;
@@ -22,8 +24,9 @@ class Topic {
 
   get hasIMTR(): boolean {
     // This validates if the current topic has a transformed IMTR file
-    return !!(
-      this.slug && apiTopics.flat().find((api) => api.slug === this.slug)
+    return (
+      !this.disableIMTR &&
+      !!(this.slug && apiTopics.flat().find((api) => api.slug === this.slug))
     );
   }
 

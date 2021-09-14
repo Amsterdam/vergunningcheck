@@ -31,9 +31,9 @@ describe("Router", () => {
   });
 
   it("renders a topic intro", async () => {
-    window.history.pushState({}, "Page Title", "/dakkapel-plaatsen");
+    window.history.pushState({}, "Page Title", "/dakraam-plaatsen");
 
-    const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
+    const topic = findTopicBySlug("dakraam-plaatsen") as Topic;
 
     render(<Router />);
 

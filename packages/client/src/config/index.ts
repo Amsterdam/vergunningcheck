@@ -14,16 +14,14 @@ import { PreQuestionComponent, TopicType } from "../types";
  */
 export const topics: Topic[] = [
   {
-    intro: "DakkapelIntro",
     name: "Dakkapel plaatsen",
-    preQuestions: [PreQuestionComponent.MULTIPLE_CHECKERS],
     slug: "dakkapel-plaatsen",
     text: {
       heading: "Vergunningcheck dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
     },
     type: TopicType.PERMIT_CHECK,
-    userMightNotNeedPermit: true,
+    disableIMTR: true,
   },
   {
     intro: "DakraamIntro",
