@@ -36,7 +36,7 @@ const { id: idQ3 } = mockedChecker1.permits[1].questions[0];
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
   useLocation: () => ({
-    pathname: "/dakkapel-plaatsen",
+    pathname: "/dakraam-plaatsen",
   }),
 }));
 

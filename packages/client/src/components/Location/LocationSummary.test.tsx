@@ -12,7 +12,7 @@ import LocationSummary from "./LocationSummary";
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
   useLocation: () => ({
-    pathname: "/dakkapel-plaatsen",
+    pathname: "/dakraam-plaatsen",
   }),
 }));
 

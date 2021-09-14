@@ -139,7 +139,11 @@ const getDecisions = (dmnDecisions: DMNDecision[]) => {
       return rules;
     }, []);
 
-    jsonDecisions[Object.keys(baseDecision)[0] === "requiredDecisions" ? "dummy" : decision.attributes.id] = {
+    jsonDecisions[
+      Object.keys(baseDecision)[0] === "requiredDecisions"
+        ? "dummy"
+        : decision.attributes.id
+    ] = {
       ...baseDecision,
       decisionTable: {
         rules,

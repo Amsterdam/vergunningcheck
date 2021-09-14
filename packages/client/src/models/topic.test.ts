@@ -12,7 +12,7 @@ const mockTopic = new Topic({
   type: TopicType.PERMIT_FORM,
 });
 
-const realTopic = findTopicBySlug("dakkapel-plaatsen") as Topic;
+const realTopic = findTopicBySlug("dakraam-plaatsen") as Topic;
 
 describe("Topic", () => {
   test("returns correct data for a new class", () => {

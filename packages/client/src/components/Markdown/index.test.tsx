@@ -4,7 +4,7 @@ import { render, screen } from "../../utils/test-utils";
 import MarkDown from "./";
 
 jest.mock("react-router-dom", () => ({
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
+  useParams: () => ({ slug: "dakraam-plaatsen" }),
 }));
 
 const image =

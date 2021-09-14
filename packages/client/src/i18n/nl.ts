@@ -154,7 +154,7 @@ export default {
 
       testing: {
         "address input":
-          "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
+          "Voer het adres in waar u het dakraam wilt gaan plaatsen.",
       },
     },
     notFoundPage: {
