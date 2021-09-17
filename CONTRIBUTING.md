@@ -165,6 +165,8 @@ When we want to test our app with users we most follow this procedure:
 
 ### Prepare a release, deploy to acceptance
 
+In case of a hotfix skip this step and continue with creating the release PR below.
+
 Basically what we want to do is merge `develop` with `release` including the latest IMTR-changes. We use lerna-changelog to generate our changes we can use in [CHANGELOG.md](CHANGELOG.md), so you'll need a [personal access token](https://github.com/settings/tokens) for the GitHub API with the public_repo scope for public repositories.
 Make sure you are logged in by npm command line. If not, log in with `npm adduser`. Add `export GITHUB_AUTH=...` to your profile (eg: `.zshrc`).
 
@@ -178,6 +180,8 @@ Make sure you are logged in by npm command line. If not, log in with `npm adduse
 - Communicate to stakeholders there is a new release testable on acceptance
 
 ### Create the release PR
+
+In case of a hotfix merge your changes with `release` yourself and continue here.
 
 - Run `npm run changelog`, a changelog will be generated
 - Paste the changelog to the [CHANGELOG.md](CHANGELOG.md), determine the version number and replace "Unreleased " with the new version, so it looks like this: `[2.0.0](2020-09-02)`

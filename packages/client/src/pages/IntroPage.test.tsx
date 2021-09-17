@@ -9,7 +9,7 @@ import IntroPage from "./IntroPage";
 
 jest.mock("../routes");
 
-const mockTopicConfigured = findTopicBySlug("dakkapel-plaatsen");
+const mockTopicConfigured = findTopicBySlug("dakraam-plaatsen");
 jest.mock("../hooks/useTopic", () => () => mockTopicConfigured);
 
 describe("IntroPage", () => {
@@ -41,7 +41,7 @@ describe("IntroPage", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(nl.translation.introPage.dakkapel["placing bullet"])
+      screen.getByText(nl.translation.introPage.dakraam["placing bullet"])
     ).toBeInTheDocument();
 
     // Render second paragraph
@@ -58,19 +58,12 @@ describe("IntroPage", () => {
 
     // Render third paragraph
     expect(
-      screen.getByText(nl.translation.introPage.dakkapel["intro description"])
+      screen.getByText(nl.translation.introPage.dakraam["intro description"])
     ).toBeInTheDocument();
 
     // Render exceptions heading
     expect(
       screen.getByText(nl.translation.introPage.common["exceptions title"])
-    ).toBeInTheDocument();
-
-    // Render bullets
-    expect(
-      screen.getByText(nl.translation.introPage.dakkapel["exception"], {
-        exact: false,
-      })
     ).toBeInTheDocument();
 
     expect(
@@ -81,7 +74,7 @@ describe("IntroPage", () => {
 
     expect(
       screen.getByText(
-        nl.translation.introPage.dakkapel["build without permit exception"]
+        nl.translation.introPage.dakraam["build without permit exception"]
       )
     ).toBeInTheDocument();
 

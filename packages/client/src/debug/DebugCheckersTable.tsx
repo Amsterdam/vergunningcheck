@@ -96,7 +96,7 @@ const DebugCheckersTable: FunctionComponent = () => {
           </tr>
           {topics
             // Filter OLO flows topics (topics without IMTR file and are configured to be isPermitCheck)
-            .filter(({ hasIMTR, isPermitCheck }) => !hasIMTR && isPermitCheck)
+            .filter(({ hasIMTR }) => !hasIMTR)
             .map((topic) => {
               const { slug, name } = topic;
               return (

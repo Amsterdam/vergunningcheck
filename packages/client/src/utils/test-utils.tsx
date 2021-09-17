@@ -41,14 +41,14 @@ jest.mock("../hooks/useTracking", () => {
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as {}),
   useLocation: () => ({
-    pathname: "/dakkapel-plaatsen",
+    pathname: "/dakraam-plaatsen",
   }),
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
+  useParams: () => ({ slug: "dakraam-plaatsen" }),
   useHistory: () => ({
     push: mockHistoryPush,
     replace: mockHistoryReplace,
     location: {
-      pathname: "/dakkapel-plaatsen",
+      pathname: "/dakraam-plaatsen",
     },
   }),
 }));

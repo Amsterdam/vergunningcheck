@@ -17,12 +17,14 @@ export const geturl = (route: string, params?: { slug: string }) => {
   return reverse(route, params);
 };
 
-const apiTopicSlugs = apiTopics.flatMap((apiTopic) =>
-  apiTopic.map(({ slug }) => slug)
-);
+const disabledTopicSlugs = topics
+  .filter(({ disableIMTR }) => disableIMTR)
+  .map(({ slug }) => slug);
+const apiTopicSlugs = apiTopics
+  .flatMap((apiTopic) => apiTopic.map(({ slug }) => slug))
+  .filter((slug) => !disabledTopicSlugs.includes(slug));
 
 export const imtrSlugs = apiTopicSlugs.join("|");
-
 // Get all OLO permit checks by fetching all `PERMIT_CHECK` and filter to see if they have an actual api topic file
 export const oloSlugs = findAllTopicsByType(TopicType.PERMIT_CHECK)
   .filter((t) => !apiTopicSlugs.find((apiSlug) => apiSlug === t.slug))

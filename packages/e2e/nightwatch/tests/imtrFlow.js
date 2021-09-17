@@ -21,7 +21,7 @@ const {
 module.exports = {
   [__filename]: async (b) => {
     const { assert } = b;
-    b.url(`${domain}/dakkapel-plaatsen`);
+    b.url(`${domain}/dakraam-plaatsen`);
 
     // Intro page has loaded
     b.waitForElementVisible(introBullets);
