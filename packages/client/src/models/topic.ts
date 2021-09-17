@@ -2,7 +2,6 @@ import { GraphQLTopic, PreQuestionComponent } from "../types";
 
 class Topic {
   readonly hasIMTR: boolean;
-  readonly intro?: string;
   readonly name: string;
   readonly preQuestions?: PreQuestionComponent[];
   readonly slug: string;

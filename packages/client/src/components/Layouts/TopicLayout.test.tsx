@@ -1,6 +1,6 @@
 import React from "react";
 
-import {testTopic } from "../../utils/test-utils";
+import { testTopic } from "../../utils/test-utils";
 import { render, screen } from "../../utils/test-utils";
 import TopicLayout from "./TopicLayout";
 

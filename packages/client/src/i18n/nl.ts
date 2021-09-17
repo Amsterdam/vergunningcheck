@@ -154,7 +154,7 @@ export default {
 
       testing: {
         "address input":
-          "Voer het adres in waar u de dakkapel wilt gaan plaatsen.",
+          "Voer het adres in waar u het dakraam wilt gaan plaatsen.",
       },
     },
     notFoundPage: {
@@ -198,14 +198,14 @@ export default {
       //       "U kunt de vergunningcheck voor 1 dakkapel tegelijk doen.",
       //   },
       // },
-      // "dakraam-plaatsen": {
-      //   preQuestionMultipleCheckers: {
-      //     "would you like to build more than one":
-      //       "Wilt u meer dan 1 dakraam plaatsen?",
-      //     "you can do this permit check one at a time":
-      //       "U kunt de vergunningcheck voor 1 dakraam tegelijk doen.",
-      //   },
-      // },
+      "dakraam-plaatsen": {
+        preQuestionMultipleCheckers: {
+          "would you like to build more than one":
+            "Wilt u meer dan 1 dakraam plaatsen?",
+          "you can do this permit check one at a time":
+            "U kunt de vergunningcheck voor 1 dakraam tegelijk doen.",
+        },
+      },
       // "kozijnen-plaatsen": {
       //   preQuestionMultipleCheckers: {
       //     "would you like to build more than one":

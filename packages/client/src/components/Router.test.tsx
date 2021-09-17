@@ -1,8 +1,8 @@
 import React from "react";
 
 import nl from "../i18n/nl";
-import { testTopic} from "../utils/test-utils";
 import { LOADING_TEXT } from "../utils/test-ids";
+import { testTopic } from "../utils/test-utils";
 import { render, screen, waitFor } from "../utils/test-utils";
 import Router from "./Router";
 
@@ -30,7 +30,7 @@ describe("Router", () => {
   });
 
   it("renders a topic intro", async () => {
-    window.history.pushState({}, "Page Title", "/dakkapel-plaatsen");
+    window.history.pushState({}, "Page Title", "/dakraam-plaatsen");
 
     render(<Router />);
 
