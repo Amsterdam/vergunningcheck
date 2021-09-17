@@ -12,7 +12,6 @@ import { GraphQLTopic } from "../types";
 
 const query = loader("../queries/Topics.graphql");
 
-
 const StyledHeading = styled(Heading)`
   margin: ${themeSpacing(4, 0, 2)};
 `;
@@ -39,58 +38,28 @@ const DebugCheckersTable: FunctionComponent = () => {
           deze pagina niet te gebruiken.
         </Paragraph>
       </Alert>
-      <br />
-      <table style={{ width: "100%" }}>
-        <thead>
-          <tr>
-            <td>
-              <strong>Name</strong>
-            </td>
-            <td>
-              <strong>#&nbsp;permits</strong>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">Vergunningchecks</StyledHeading>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">
-                Vergunningchecks die naar het OLO leiden
-              </StyledHeading>
-            </td>
-          </tr>
-          {topics
-            .filter((topic) => topic.hasIMTR)
-            .map((topic) => (
-              <tr key={topic.name}>
-                <td>
-                  <Link to={geturl(routes.start, topic)}>{topic.name}</Link>
-                </td>
-                <td>{/*topic.permits?.length */}</td>
-              </tr>
-            ))}
-          <tr>
-            <td colSpan={4}>
-              <StyledHeading forwardedAs="h2">Formulieren</StyledHeading>
-            </td>
-          </tr>
-          {topics
-            .filter(({ hasIMTR }) => !hasIMTR) // only show olo
-            .map(({ slug, name }) => (
-              <tr key={slug}>
-                <td>
-                  <Link to={geturl(routes.start, { slug })}>{name}</Link>
-                </td>
-                <td>0</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <StyledHeading forwardedAs="h2">Vergunningchecks</StyledHeading>
+      <ul>
+        {topics
+          .filter((topic) => topic.hasIMTR)
+          .map((topic) => (
+            <li key={topic.slug}>
+              <Link to={geturl(routes.start, topic)}>{topic.name}</Link>
+            </li>
+          ))}
+      </ul>
+      <StyledHeading forwardedAs="h2">
+        Vergunningchecks die naar het OLO leiden
+      </StyledHeading>
+      <ul>
+        {topics
+          .filter(({ hasIMTR }) => !hasIMTR) // only show olo
+          .map(({ slug, name }) => (
+            <li key={slug}>
+              <Link to={geturl(routes.start, { slug })}>{name}</Link>
+            </li>
+          ))}
+      </ul>
     </>
   );
 };

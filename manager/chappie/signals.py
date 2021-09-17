@@ -31,3 +31,9 @@ def pre_save_permit(sender, instance, *args, **kwargs):
             instance.imtr_config = imtr_config
 
         return instance
+
+
+@receiver(pre_save, sender=Permit)
+def post_save_permit(sender, instance, *args, **kwargs):
+    instance.imtr_config.config_permit = instance
+    instance.imtr_config.save()

@@ -9,7 +9,6 @@ const typeDefs = gql`
   type TopicText {
     heading: String!
     intro: String!
-    locationIntro: String
   }
 
   type Topic {
@@ -24,7 +23,7 @@ const typeDefs = gql`
 
   type Outcome {
     results: [String!]!
-    text: String!
+    text: String
   }
 
   extend type Query {

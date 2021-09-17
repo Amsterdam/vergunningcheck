@@ -109,7 +109,6 @@ export enum TopicType {
  * text: {
  *   heading: the title shown in the form
  *   intro: the intro-text as Markdown
- *   locationIntro: piece of text shown on intropage
  * }
  * userMightNotNeedPermit: Enables an add-on text in the QuestionAlert: "if you make another choice you might not need a permit"
  */
@@ -126,7 +125,6 @@ export type GraphQLTopic = {
   text: {
     heading: string;
     intro: string;
-    locationIntro?: string;
   };
   userMightNotNeedPermit: boolean;
 };

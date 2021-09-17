@@ -6,20 +6,19 @@ const URL = `${HOST}${config.url}`;
 
 const loader = {
   reducer: (topic) => ({
-      name: topic.name,
-      slug: topic.slug,
-      permits: topic.permits,
-      hasIMTR: topic.flow === "IMTR",
-      outcomes: topic.outcomes.map((outcome) => ({
-        results: outcome.flo_legal_outcomes.split(","),
-        text: outcome.text,
-      })),
-      text: {
-        heading: topic.heading,
-        intro: topic.intro,
-        locationIntro: topic.location_intro,
-      },
-      userMightNotNeedPermit: topic.user_might_not_need_permit,
+    name: topic.name,
+    slug: topic.slug,
+    permits: topic.permits,
+    hasIMTR: topic.flow === "IMTR",
+    outcomes: topic.outcomes.map((outcome) => ({
+      results: outcome.flo_legal_outcomes.split(","),
+      text: outcome.text,
+    })),
+    text: {
+      heading: topic.heading,
+      intro: topic.intro,
+    },
+    userMightNotNeedPermit: topic.user_might_not_need_permit,
   }),
   fetchPage: () =>
     fetchJson(getUrl(`${URL}topics/`)).then((data) => {

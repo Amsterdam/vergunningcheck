@@ -1,4 +1,74 @@
+- model: auth.group
+  pk: 1
+  fields:
+    name: Beheerder
+    permissions:
+    - 33
+    - 34
+    - 36
+    - 4
+    - 17
+    - 18
+    - 19
+    - 20
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+
+################### USERS ###################
+
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$260000$MdXlXkLgLEAgCFue2jmV6M$b3X+/E00BsLHff5EEdF/M5KPG046p5HNHEfrZGYbVlo=
+    is_superuser: true
+    username: a.lambert
+    first_name: Andre
+    last_name: Lambert
+    email: afj.lambert@gmail.com
+    is_staff: true
+    is_active: true
+
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$260000$rorSo8DMQ4R2zp3AwDAoXA$5gpUJMhMqjsPjPqyr8lBc+sNqCP5oN5CUID6PTdY3qI=
+    is_superuser: false
+    username: c.van.der.velde
+    first_name: Chris
+    last_name: van der Velde
+    email: c.van.der.velde@amsterdam.nl
+    is_staff: true
+    groups:
+    - 1
+
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$260000$ax1i2fOpitjyr6NZYmfn86$zjhFDnYERodQhLMxQghE+HxjnBa55PZNEH2ckbKjkRE=
+    is_superuser: false
+    username: b.bulucu
+    first_name: Banu
+    last_name: Bulucu
+    email: b.bulucu@amsterdam.nl
+    is_staff: true
+    groups:
+    - 1
+
+
 ################### PERMITS ###################
+
+- model: chappie.permit
+  pk: 8hqLFZcdXKaesAJgS
+  fields:
+    name: Brandveilig gebruik
 
 - model: chappie.permit
   pk: WKPxKx4YBJ5fqYSni
@@ -71,6 +141,36 @@
     name: Kappen of snoeien
 
 
+################### PRE-QUESTIONS ###################
+
+- model: chappie.PreQuestion
+  pk: 1
+  fields:
+    key: MULTIPLE_CHECKERS
+    description: Warn user about doing separate checkers for separate projects.
+
+
+################### OLO TOPICS ###################
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-100000000002
+  fields:
+    flow: OLO
+    heading: Vergunningcheck intern verbouwen
+    intro: Voer het adres in waar u intern wilt gaan verbouwen.
+    name: Intern verbouwen
+    slug: intern-verbouwen
+    user_might_not_need_permit: false
+
+- model: chappie.Topic
+  pk: 00000000-0000-0000-0000-100000000004
+  fields:
+    flow: OLO
+    heading: Vergunningcheck aanbouw of uitbouw maken
+    intro: Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken.
+    name: Aanbouw of uitbouw maken
+    slug: aanbouw-of-uitbouw-maken
+
 
 ################### IMTR TOPICS ###################
 
@@ -78,60 +178,187 @@
   pk: 00000000-0000-0000-0000-200000000001
   fields:
     flow: IMTR
+    heading: Vergunningcheck dakkapel plaatsen
+    intro: >
+      Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt. U kunt een vergunning nodig hebben voor:
+
+
+      - het wijzigen van een monument.
+
+      - het plaatsen van de dakkapel zelf.
+
+      Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt. U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.
+
+
+      U kunt deze vergunningcheck gebruiken als u een nieuwe dakkapel plaatst of als u een bestaande vernieuwt.
+
+
+      **Bijzondere situaties:**
+
+
+      Bel in een van deze situaties de gemeente op telefoonnummer 14 020:
+
+      - U gaat de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw of een vakantiehuis.
+
+      - Het aantal woningen verandert door uw verbouwing.
+
+      - Het gebouw, of het deel van het gebouw waarin de dakkapel komt, is zonder vergunning gebouwd
     name: Dakkapel plaatsen
     slug: dakkapel-plaatsen
     permits:
     - WKPxKx4YBJ5fqYSni
     - Aa2EX3YprpZQ65non
+    pre_questions:
+    - 1
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000002
   fields:
     flow: IMTR
+    heading: Vergunningcheck dakraam plaatsen
+    intro: >
+      Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt. U kunt een vergunning nodig hebben voor:
+
+
+      - het wijzigen van een monument.
+
+      - het plaatsen van het dakraam zelf.
+
+
+      Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt. U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.
+
+
+      Deze vergunningcheck gaat over dakramen, daklichten en lichtstraten. U kunt hem gebruiken als u een nieuwe plaatst of als u een bestaande vernieuwt.
+
+
+      **Bijzondere situaties:**
+
+
+      Bel in een van deze situaties de gemeente op telefoonnummer 14 020:
+
+      - Het aantal woningen verandert door uw verbouwing.
+
+      - Het gebouw, of het deel van het gebouw waarin het dakraam komt, is zonder vergunning gebouwd.
     name: Dakraam plaatsen
     slug: dakraam-plaatsen
     permits:
     - hMwHKR7Wz4FP8Dm4x
     - dRy4PfDs7jQPc9gMG
+    pre_questions:
+    - 1
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000003
   fields:
     flow: IMTR
+    heading: Vergunningcheck kozijnen plaatsen
+    intro: >
+      Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt. U kunt een vergunning nodig hebben voor:
+
+
+      - het wijzigen van een monument.
+
+      - het plaatsen van de kozijnen zelf.
+
+      Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt. U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.
+
+
+      Deze vergunningcheck gaat over kozijnen, deuren, ramen en panelen. U kunt hem gebruiken als u nieuwe plaatst of als u bestaande vernieuwt.
+
+
+      **Bijzondere situaties:**
+
+
+      Bel in een van deze situaties de gemeente op telefoonnummer 14 020:
+
+
+      - Het aantal woningen verandert door uw verbouwing.
+
+      - Het gebouw, of het deel van het gebouw waarin het kozijn komt, is zonder vergunning gebouwd.
     name: Kozijnen plaatsen
     slug: kozijnen-plaatsen
     permits:
     - Xm2WwYeGkNN9w6rgQ
     - 5CJrbgbWZP6uZsouY
+    pre_questions:
+    - 1
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000004
   fields:
     flow: IMTR
+    heading: Vergunningcheck zonnepanelen of zonneboiler plaatsen
+    intro: >
+      Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt. U kunt een vergunning nodig hebben voor:
+
+
+      - het wijzigen van een monument.
+
+      - het plaatsen van de zonnepanelen of zonneboiler zelf.
+
+      Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt. U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.
+
+
+      U kunt deze vergunningcheck gebruiken als u nieuwe zonnepanelen of een nieuwe zonneboiler plaatst of als u een bestaande vernieuwt.
     name: Zonnepanelen of zonneboiler plaatsen
     slug: zonnepanelen-of-zonneboiler-plaatsen
     permits:
     - TRhZrFexMjBW42Ky6
     - skPG9qqTqWyX9tSY7
+    pre_questions:
+    - 1
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000005
   fields:
     flow: IMTR
+    heading: Vergunningcheck zonwering, rolhek, rolluik of luik plaatsen
+    intro: >
+      Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt. U kunt een vergunning nodig hebben voor:
+
+
+      - het wijzigen van een monument.
+
+      - het plaatsen van de zonwering, het rolhek, rolluik of luik zelf.
+
+      Uw situatie en uw antwoorden bepalen of u een omgevingsvergunning nodig hebt. U kunt verschillende antwoorden uitproberen. Zo kunt u zien op welke manier u misschien toch geen vergunning nodig hebt.
+
+
+      U kunt deze vergunningcheck gebruiken als u een nieuwe zonwering, rolhek, rolluik of luik plaatst of als u een bestaande vernieuwt.
+
+
+      **Bijzondere situaties:**
+
+
+      Bel in een van deze situaties de gemeente op telefoonnummer 14 020:
+
+
+      - Het aantal woningen verandert door uw verbouwing.
+
+      - Het gebouw, of het deel van het gebouw waarin de zonwering, het rolhek, rolluik of luik komt, is zonder vergunning gebouwd.
     name: Zonwering of rolluik plaatsen
     slug: zonwering-of-rolluik-plaatsen
     permits:
+    - AkxinYRNNo679qi6T
     - TuP6ido9xpJSSxjLi
-    user_might_not_need_permit: false
+    pre_questions:
+    - 1
 
 - model: chappie.Topic
   pk: 00000000-0000-0000-0000-200000000006
   fields:
     flow: IMTR
+    heading: Vergunningcheck bouwwerk slopen
+    intro: >
+      U wilt een bouwwerk slopen. Een bouwwerk is bijvoorbeeld een gebouw of een schuur. Ook een muur of een schutting is een bouwwerk.
+
+
+      U hebt misschien een omgevingsvergunning nodig. Het kan ook zijn dat u de sloop moet melden. Met deze vergunningcheck kunt u zien wat u moet doen.
+
+
+      Soms staat in het bestemmingsplan dat een vergunning nodig is. Deze vergunningcheck kijkt niet naar bestemmingsplannen. Nadat u alle vragen hebt beantwoord, leest u hoe u dat zelf kunt bekijken.
     name: Bouwwerk slopen
     slug: bouwwerk-slopen
-    heading: Vergunningcheck bouwwerk slopen
-    location_intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
     permits:
     - 2eYY7McaiRgfnERo9
     - D4mccynMtNdzYGhXF
@@ -142,71 +369,77 @@
   pk: 00000000-0000-0000-0000-200000000007
   fields:
     flow: IMTR
+    heading: Vergunningcheck brandveilig gebruik
+    intro: >
+      U gaat een gebouw in gebruik nemen of het gebruik wijzigen. Het gebouw moet veilig zijn voor bewoners, gasten en personeel. De gemeente moet kunnen controleren of dat zo is.
+
+
+      Het kan zijn dat u een melding voor brandveilig gebruik moet doen. In sommige gevallen moet u een omgevingsvergunning voor brandveilig gebruik aanvragen. Met deze vergunningcheck kunt u zien wat u moet doen.
     name: Brandveilig gebruik
     slug: brandveilig-gebruik
-    heading: Vergunningcheck brandveilig gebruik
-    location_intro: Voer het adres in waar u het bouwwerk wilt gaan slopen
     permits:
     - 8hqLFZcdXKaesAJgS
     user_might_not_need_permit: false
 
 - model: chappie.Topic
-  pk: 00000000-0000-0000-0000-100000000008
+  pk: 00000000-0000-0000-0000-200000000008
   fields:
     flow: IMTR
+    heading: Vergunningcheck bomenkap
+    intro: Met de vergunningcheck kunt u zien of u een omgevingsvergunning nodig hebt voor het kappen of snoeien van een boom. Ook voor het kappen van een dode boom kan een vergunning nodig zijn. Hier kunt u de checker ook voor gebruiken.
     name: Kappen of snoeien
     slug: kappen-of-snoeien
-    heading: Vergunningcheck kappen of snoeien
     permits:
     - SCKKBFsLHGG5Le5mJ
+    pre_questions:
+    - 1
 
-################### OLO TOPICS ###################
-
-- model: chappie.Topic
-  pk: 00000000-0000-0000-0000-100000000002
-  fields:
-    flow: OLO
-    name: Intern verbouwen
-    slug: intern-verbouwen
-    heading: Vergunningcheck intern verbouwen
-    location_intro: Voer het adres in waar u intern wilt gaan verbouwen
-    user_might_not_need_permit: false
-
-- model: chappie.Topic
-  pk: 00000000-0000-0000-0000-100000000004
-  fields:
-    flow: OLO
-    name: Aanbouw of uitbouw maken
-    slug: aanbouw-of-uitbouw-maken
-    heading: Vergunningcheck aanbouw of uitbouw maken
-    location_intro: Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken
 
 ################### OUTCOMES ###################
 
-- model: chappie.outcome
+- model: chappie.Outcome
   pk: 00000000-0000-0000-0000-300000000001
   fields:
     topic: 00000000-0000-0000-0000-200000000001
     flo_legal_outcomes: "\"Vergunningplicht\""
-    text: U heeft vergunningplicht voor uw dakkapel.
+    text: >
 
-- model: chappie.outcome
+- model: chappie.Outcome
   pk: 00000000-0000-0000-0000-300000000002
   fields:
     topic: 00000000-0000-0000-0000-200000000001
     flo_legal_outcomes: "\"Toestemmingsvrij\""
-    text: U heeft geen vergunning nodig voor uw dakkapel.
+    text: >
+      Dit is waar u verder op moet letten:
 
-- model: chappie.outcome
+
+      - U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.
+      - U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.
+
+
+      Denk ook aan:
+
+
+      - Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.
+      - Het afvoeren van bouw- en sloopafval.
+      - Het risico dat u asbest tegenkomt.
+      - Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.
+      - De gevolgen voor de WOZ-waarde van uw huis.
+      - Toestemming van de VvE.
+- model: chappie.Outcome
   pk: 00000000-0000-0000-0000-300000000003
   fields:
     topic: 00000000-0000-0000-0000-200000000001
     flo_legal_outcomes: "\"NeemContactOpMet\""
-    text: Wij kunnen op basis van de gegeven antwoorden niet aangeven of u een vergunning nodig hebt. Neem contact op met uw gemeente.
+    text: >
+      Neem contact op met de gemeente
 
-- model: chappie.outcome
+
+      U woont in een welstandsvrij gebied. Daarvoor gelden andere regels. U kunt hiervoor contact opnemen met de gemeente. Bel 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.
+- model: chappie.Outcome
   pk: 00000000-0000-0000-0000-300000000004
   fields:
     topic: 00000000-0000-0000-0000-200000000006
     flo_legal_outcomes: "\"Meldingplicht\",\"Vergunningplicht\""
-    text: U heeft meldingplicht en vergunningplicht.
+    text: >
+      U heeft meldingplicht en vergunningplicht.

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import IMTRConfig, Outcome, Permit, Topic
+from .models import IMTRConfig, Outcome, Permit, PreQuestion, Topic
 
 
 class IMTRConfigSerializer(serializers.ModelSerializer):
@@ -32,9 +32,18 @@ class OutcomeSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
+class PreQuestionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PreQuestion
+        fields = [
+            "key",
+        ]
+
+
 class TopicSerializer(serializers.HyperlinkedModelSerializer):
     permits = PermitSerializer(many=True, read_only=True)
     outcomes = OutcomeSerializer(many=True, read_only=True)
+    pre_questions = PreQuestionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Topic

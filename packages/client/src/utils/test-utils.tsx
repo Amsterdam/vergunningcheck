@@ -63,7 +63,6 @@ export const testTopic = new Topic({
   text: {
     intro: "DakkapelIntro",
     heading: "Vergunningcheck dakkapel plaatsen",
-    locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
   },
   checkerJSON: "{}",
   userMightNotNeedPermit: true,

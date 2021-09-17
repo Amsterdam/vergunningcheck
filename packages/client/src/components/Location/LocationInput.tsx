@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { Loading, Error, Form, PhoneNumber } from "../../atoms";
+import { Error, Form, Loading, PhoneNumber } from "../../atoms";
 import { actions, eventNames, sections } from "../../config/matomo";
 import { useTopic, useTopicData, useTracking } from "../../hooks";
 import { geturl, routes } from "../../routes";
 import { Address } from "../../types";
 import { getRestrictionByTypeName } from "../../utils";
 import { LOCATION_INPUT } from "../../utils/test-ids";
+import Markdown from "../Markdown";
 import Nav from "../Nav";
 import LocationFinder from "./LocationFinder";
 
@@ -118,7 +119,9 @@ const LocationInput = ({
           {t("location.address.enter address")}
         </Heading>
       )}
-      {text.locationIntro && <Paragraph>{text.locationIntro}.</Paragraph>}
+      {text.intro && (
+        <Markdown eventLocation={sections.LOCATION_INPUT} source={text.intro} />
+      )}
 
       <Form dataTestId={LOCATION_INPUT} onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
