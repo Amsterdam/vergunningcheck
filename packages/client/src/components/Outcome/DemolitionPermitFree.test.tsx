@@ -5,7 +5,7 @@ import { render, screen } from "../../utils/test-utils";
 import DemolitionPermitFree from "./DemolitionPermitFree";
 
 jest.mock("react-router-dom", () => ({
-  useParams: () => ({ slug: "dakkapel-plaatsen" }),
+  useParams: () => ({ slug: "dakraam-plaatsen" }),
 }));
 
 describe("DemolitionPermitFree", () => {

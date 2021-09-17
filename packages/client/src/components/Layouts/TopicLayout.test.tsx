@@ -5,7 +5,7 @@ import { findTopicBySlug } from "../../utils";
 import { render, screen } from "../../utils/test-utils";
 import TopicLayout from "./TopicLayout";
 
-const topic = findTopicBySlug("dakkapel-plaatsen") as Topic;
+const topic = findTopicBySlug("dakraam-plaatsen") as Topic;
 
 describe("TopicLayout", () => {
   it("renders with text", () => {

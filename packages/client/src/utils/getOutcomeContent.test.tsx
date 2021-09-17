@@ -9,7 +9,7 @@ import getOutcomeContent from "./getOutcomeContent";
 describe("getOutcomeContent", () => {
   it("renders the default permitFree outcome", () => {
     const checker = getChecker(mockedChecker1);
-    const mockedSlug = "dakkapel-plaatsen";
+    const mockedSlug = "dakraam-plaatsen";
     const { title } = getOutcomeContent(checker, mockedSlug);
     expect(title).toMatch(
       nl.translation.outcome.permitFree["you dont need a permit"]
@@ -27,7 +27,7 @@ describe("getOutcomeContent", () => {
     checker.stack[1].setAnswer(false);
     checker.next();
 
-    const mockedSlug = "dakkapel-plaatsen";
+    const mockedSlug = "dakraam-plaatsen";
     const { title } = getOutcomeContent(checker, mockedSlug);
     expect(title).toMatch(
       nl.translation.outcome.needContact["you need to contact the city"]
